@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.7 2009/10/15 19:43:12 ewillink Exp $
+-- * $Id: OCLParser.g,v 1.8 2009/10/23 21:26:55 ewillink Exp $
 -- */
 --
 -- The Complete OCL Parser
@@ -55,7 +55,7 @@ $Notice
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Bug 259818, 285633, 292112
+ *   E.D.Willink - Bug 259818, 285633, 292112, 292594
  * </copyright>
  */
 	./
@@ -98,8 +98,7 @@ $KeyWords
 $End
 
 $Terminals
-	ATPRE      ::= '@pre'
-
+	AT        	 ::= '@'
 	CARET        ::= '^'
 	CARETCARET   ::= '^^'
 	QUESTIONMARK ::= '?'
@@ -156,10 +155,10 @@ $Rules
 -----------------------------------------------------------------------
 --	Calls
 -----------------------------------------------------------------------
-	isMarkedPreCSopt ::= '@pre'
+	isMarkedPreCSopt ::= '@' pre
 		/.$BeginJava
 					CSTNode result = createIsMarkedPreCS();
-					setOffsets(result, getIToken($getToken(1)));
+					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
 					$setResult(result);
 		  $EndJava
 		./

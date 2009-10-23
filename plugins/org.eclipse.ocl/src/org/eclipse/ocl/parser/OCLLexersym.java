@@ -15,7 +15,7 @@
 *   E.D.Willink - Bug 292112
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.9 2009/10/15 19:44:00 ewillink Exp $
+* $Id: OCLLexersym.java,v 1.10 2009/10/23 21:26:55 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -29,7 +29,7 @@
 *
 * Contributors:
 *   IBM - Initial API and implementation
-*   E.D.Willink - Bug 292112
+*   E.D.Willink - Bug 292112, 292594
 * </copyright>
 */
 
@@ -47,24 +47,24 @@ public interface OCLLexersym {
       Char_CR = 101,
       Char_HT = 97,
       Char_FF = 98,
-      Char_a = 20,
-      Char_b = 21,
-      Char_c = 22,
-      Char_d = 23,
+      Char_a = 18,
+      Char_b = 19,
+      Char_c = 20,
+      Char_d = 21,
       Char_e = 11,
-      Char_f = 24,
-      Char_g = 25,
-      Char_h = 26,
-      Char_i = 27,
-      Char_j = 28,
-      Char_k = 29,
-      Char_l = 30,
-      Char_m = 31,
-      Char_n = 32,
-      Char_o = 33,
-      Char_p = 15,
-      Char_q = 34,
-      Char_r = 16,
+      Char_f = 22,
+      Char_g = 23,
+      Char_h = 24,
+      Char_i = 25,
+      Char_j = 26,
+      Char_k = 27,
+      Char_l = 28,
+      Char_m = 29,
+      Char_n = 30,
+      Char_o = 31,
+      Char_p = 32,
+      Char_q = 33,
+      Char_r = 34,
       Char_s = 35,
       Char_t = 36,
       Char_u = 37,
@@ -136,14 +136,14 @@ public interface OCLLexersym {
       Char_Comma = 86,
       Char_Dot = 14,
       Char_LessThan = 87,
-      Char_GreaterThan = 17,
+      Char_GreaterThan = 15,
       Char_Plus = 73,
-      Char_Minus = 18,
+      Char_Minus = 16,
       Char_Slash = 88,
       Char_Star = 74,
       Char_LeftParen = 89,
       Char_RightParen = 90,
-      Char_Equal = 19,
+      Char_Equal = 17,
       Char_EOF = 99;
 
       public final static String orderedTerminalSymbols[] = {
@@ -162,8 +162,6 @@ public interface OCLLexersym {
                  "E",
                  "SingleQuote",
                  "Dot",
-                 "p",
-                 "r",
                  "GreaterThan",
                  "Minus",
                  "Equal",
@@ -181,7 +179,9 @@ public interface OCLLexersym {
                  "m",
                  "n",
                  "o",
+                 "p",
                  "q",
+                 "r",
                  "s",
                  "t",
                  "u",

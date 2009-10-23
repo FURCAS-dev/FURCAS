@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.14 2009/10/15 19:44:22 ewillink Exp $
+* $Id: OCLParsersym.java,v 1.15 2009/10/23 21:26:55 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -31,7 +31,7 @@
 *
 * Contributors:
 *   IBM - Initial API and implementation
-*   E.D.Willink - Bug 259818, 285633, 292112
+*   E.D.Willink - Bug 259818, 285633, 292112, 292594
 * </copyright>
 */
 
@@ -49,9 +49,9 @@ public interface OCLParsersym {
 	 * @noreference These constants are not intended to be referenced by clients.
 	 */
     public final static int
-      TK_STRING_LITERAL = 53,
-      TK_INTEGER_LITERAL = 54,
-      TK_REAL_LITERAL = 55,
+      TK_STRING_LITERAL = 54,
+      TK_INTEGER_LITERAL = 55,
+      TK_REAL_LITERAL = 56,
       TK_PLUS = 49,
       TK_MINUS = 40,
       TK_MULTIPLY = 41,
@@ -76,7 +76,7 @@ public interface OCLParsersym {
       TK_SEMICOLON = 82,
       TK_DOT = 83,
       TK_DOTDOT = 84,
-      TK_ATPRE = 38,
+      TK_AT = 38,
       TK_CARET = 85,
       TK_CARETCARET = 86,
       TK_QUESTIONMARK = 80,
@@ -85,9 +85,9 @@ public interface OCLParsersym {
       TK_then = 72,
       TK_else = 73,
       TK_endif = 74,
-      TK_and = 56,
-      TK_or = 57,
-      TK_xor = 58,
+      TK_and = 57,
+      TK_or = 58,
+      TK_xor = 59,
       TK_not = 44,
       TK_implies = 69,
       TK_let = 46,
@@ -123,16 +123,16 @@ public interface OCLParsersym {
       TK_OclVoid = 34,
       TK_OclInvalid = 35,
       TK_inv = 50,
-      TK_pre = 59,
+      TK_pre = 51,
       TK_post = 60,
-      TK_context = 51,
+      TK_context = 52,
       TK_package = 70,
       TK_endpackage = 76,
       TK_def = 48,
       TK_body = 61,
       TK_derive = 62,
       TK_init = 63,
-      TK_static = 52,
+      TK_static = 53,
       TK_OclMessage = 36,
       TK_EOF_TOKEN = 87,
       TK_IDENTIFIER = 37,
@@ -179,7 +179,7 @@ public interface OCLParsersym {
                  "OclInvalid",
                  "OclMessage",
                  "IDENTIFIER",
-                 "ATPRE",
+                 "AT",
                  "LBRACKET",
                  "MINUS",
                  "MULTIPLY",
@@ -192,6 +192,7 @@ public interface OCLParsersym {
                  "def",
                  "PLUS",
                  "inv",
+                 "pre",
                  "context",
                  "static",
                  "STRING_LITERAL",
@@ -200,7 +201,6 @@ public interface OCLParsersym {
                  "and",
                  "or",
                  "xor",
-                 "pre",
                  "post",
                  "body",
                  "derive",
