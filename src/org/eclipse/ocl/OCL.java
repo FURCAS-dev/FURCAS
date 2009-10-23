@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: OCL.java,v 1.11 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: OCL.java,v 1.12 2009/10/23 21:06:56 ewillink Exp $
  */
 package org.eclipse.ocl;
 
@@ -251,6 +251,30 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	}
 
 	/**
+	 * Return an analyzer configured ready to parse an input string.
+	 * 
+	 * @param input the input to parse
+	 * @return an analyzer
+	 * @since 3.0
+	 */
+	public OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createAnalyzer(String input) {
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer;
+		if (parserRepairCount > 0) {
+			OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(
+				rootEnvironment, input.toCharArray());
+			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
+			parser.setDefaultRepairCount(parserRepairCount);
+			lexer.lexToTokens(parser);
+			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				parser);
+		} else {
+			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
+				rootEnvironment, input);
+		}
+		return analyzer;
+	}
+
+	/**
 	 * Parses an OCL document, returning the constraints parsed from it. This
 	 * <code>OCL</code> instance remembers these constraints; they can be
 	 * retrieved later via the {@link #getConstraints()} method.
@@ -268,20 +292,8 @@ public class OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	public List<CT> parse(OCLInput input)
 			throws ParserException {
 
-		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer;
-		String contentAsString = input.getContentAsString();
-		if (parserRepairCount > 0) {
-			OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(
-				rootEnvironment, contentAsString.toCharArray());
-			OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
-			parser.setDefaultRepairCount(parserRepairCount);
-			lexer.lexToTokens(parser);
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				parser);
-		} else {
-			analyzer = new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
-				rootEnvironment, contentAsString);
-		}
+		String inputString = input.getContentAsString();
+		OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer = createAnalyzer(inputString);
 
 		// clear out old diagnostics
 		ProblemHandler ph = OCLUtil.getAdapter(rootEnvironment,
