@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.6 2009/10/07 20:41:46 ewillink Exp $
+ * $Id: OperationConstraintsTest.java,v 1.7 2009/10/23 21:25:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -67,12 +67,12 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	}
 	
 	/**
-	 * Tests a postcondition containing the "@pre" construct.
+	 * Tests a postcondition containing the "@ pre" construct.
 	 */
 	public void test_postcondition_atPre() {
 		parseConstraint(
 			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"post: color <> color@pre implies color = c " + //$NON-NLS-1$
+			"post: color <> color@ pre implies color = c " + //$NON-NLS-1$
 			"endpackage"); //$NON-NLS-1$
 	}
 	

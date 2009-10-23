@@ -15,7 +15,7 @@
 *   E.D.Willink - Bug 292112
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.11 2009/10/15 19:44:00 ewillink Exp $
+* $Id: OCLLexer.java,v 1.12 2009/10/23 21:26:55 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -29,7 +29,7 @@
 *
 * Contributors:
 *   IBM - Initial API and implementation
-*   E.D.Willink - Bug 292112
+*   E.D.Willink - Bug 292112, 292594
 * </copyright>
 */
 
@@ -624,10 +624,10 @@ public class OCLLexer extends AbstractLexer implements OCLParsersym, OCLLexersym
             }
 	 
             //
-            // Rule 269:  Token ::= @ p r e
+            // Rule 269:  Token ::= @
             //
             case 269: { 
-				makeToken(TK_ATPRE);
+				makeToken(TK_AT);
 	            break;
             }
 	 

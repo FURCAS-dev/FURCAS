@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.12 2009/10/15 19:42:43 ewillink Exp $
+* $Id: OCLBacktrackingParser.java,v 1.13 2009/10/23 21:26:17 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -31,7 +31,7 @@
 *
 * Contributors:
 *   IBM - Initial API and implementation
-*   E.D.Willink - Bug 259818, 285633, 292112
+*   E.D.Willink - Bug 259818, 285633, 292112, 292594
 * </copyright>
 */
 
@@ -1417,12 +1417,12 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
 				break;
  
 			//
-			// Rule 244:  isMarkedPreCSopt ::= @pre
+			// Rule 244:  isMarkedPreCSopt ::= @ pre
 			//
 			case 244: {
 				
 				CSTNode result = createIsMarkedPreCS();
-				setOffsets(result, getIToken(dtParser.getToken(1)));
+				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(2)));
 				dtParser.setSym1(result);
 	  		  break;
 			}
