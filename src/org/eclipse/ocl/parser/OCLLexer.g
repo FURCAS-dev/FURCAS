@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.6 2009/10/15 19:43:12 ewillink Exp $
+-- * $Id: OCLLexer.g,v 1.7 2009/10/23 21:26:55 ewillink Exp $
 -- */
 --
 -- The Complete OCL Lexer
@@ -64,24 +64,23 @@ $Notice
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Bug 292112
+ *   E.D.Willink - Bug 292112, 292594
  * </copyright>
  */
 	./
 $End
 
 $Export
-	ATPRE
-	
+	AT
 	CARET
 	CARETCARET
 	QUESTIONMARK
 $End
 
 $Rules
-	Token ::= '@' p r e
+	Token ::= '@'
 		/.$BeginAction
-					makeToken($_ATPRE);
+					makeToken($_AT);
 		  $EndAction
 		./
 
