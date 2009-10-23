@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.10 2009/10/15 19:42:56 ewillink Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.11 2009/10/23 21:26:18 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -31,7 +31,7 @@
 *
 * Contributors:
 *   IBM - Initial API and implementation
-*   E.D.Willink - Bug 259818, 285633, 292112
+*   E.D.Willink - Bug 259818, 285633, 292112, 292594
 * </copyright>
 */
 
@@ -70,7 +70,7 @@ public interface OCLBacktrackingParsersym {
       TK_RPAREN = 4,
       TK_LBRACE = 80,
       TK_RBRACE = 77,
-      TK_LBRACKET = 50,
+      TK_LBRACKET = 51,
       TK_RBRACKET = 81,
       TK_ARROW = 83,
       TK_BAR = 67,
@@ -80,7 +80,7 @@ public interface OCLBacktrackingParsersym {
       TK_SEMICOLON = 84,
       TK_DOT = 85,
       TK_DOTDOT = 86,
-      TK_ATPRE = 48,
+      TK_AT = 48,
       TK_CARET = 87,
       TK_CARETCARET = 88,
       TK_QUESTIONMARK = 79,
@@ -126,13 +126,13 @@ public interface OCLBacktrackingParsersym {
       TK_OclAny = 32,
       TK_OclVoid = 33,
       TK_OclInvalid = 34,
-      TK_inv = 51,
-      TK_pre = 52,
+      TK_inv = 52,
+      TK_pre = 49,
       TK_post = 53,
       TK_context = 57,
       TK_package = 66,
       TK_endpackage = 61,
-      TK_def = 49,
+      TK_def = 50,
       TK_body = 54,
       TK_derive = 62,
       TK_init = 63,
@@ -193,11 +193,11 @@ public interface OCLBacktrackingParsersym {
                  "INTEGER_LITERAL",
                  "REAL_LITERAL",
                  "COMMA",
-                 "ATPRE",
+                 "AT",
+                 "pre",
                  "def",
                  "LBRACKET",
                  "inv",
-                 "pre",
                  "post",
                  "body",
                  "static",
