@@ -25,8 +25,8 @@
       <import plugin="org.eclipse.emf.query.index" version="1.0.0" match="greaterOrEqual"/>
       <import feature="org.eclipse.xtext.sdk" version="0.7.2.v200908120607"/>
       <import feature="org.eclipse.xpand.sdk" version="0.7.2.v200908120436"/>
+      <import feature="org.eclipse.emf.mwe.sdk" version="0.7.2.v200908120417"/>
    </requires>
-   
 
    <plugin
          id="org.eclipse.emf.query2.test"
