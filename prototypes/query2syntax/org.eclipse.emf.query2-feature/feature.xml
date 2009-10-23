@@ -17,8 +17,8 @@
    </license>
 
    <requires>
-      <import feature="org.eclipse.xtext.sdk" version="0.7.2.v200908120607"/>
-      <import feature="org.eclipse.xpand.sdk" version="0.7.2.v200908120436"/>
+      <import plugin="org.eclipse.xpand"/>
+      <import plugin="org.eclipse.xtext"/>
    </requires>
 
    <plugin
