@@ -131,6 +131,14 @@
         <element xmi:type="ecore:EAttribute" href="umlClassDiagram.ecore#//Attribute/name"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_Qnb1Mb1MEd6wE7AuCkZlvg"/>
       </children>
+      <children xmi:type="notation:Node" xmi:id="_wFP7YMI4Ed6G66tjDDvA5A" type="2001">
+        <element xmi:type="ecore:EAttribute" href="umlClassDiagram.ecore#//Attribute/type"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_wFP7YcI4Ed6G66tjDDvA5A"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_0vcZoMI4Ed6G66tjDDvA5A" type="2001">
+        <element xmi:type="ecore:EAttribute" href="umlClassDiagram.ecore#//Attribute/value"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_0vcZocI4Ed6G66tjDDvA5A"/>
+      </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_PyaZEr1JEd6wE7AuCkZlvg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_PyaZE71JEd6wE7AuCkZlvg"/>
       <styles xmi:type="notation:FilteringStyle" xmi:id="_PyaZFL1JEd6wE7AuCkZlvg"/>
@@ -150,6 +158,14 @@
       <children xmi:type="notation:Node" xmi:id="_S4fR0L1MEd6wE7AuCkZlvg" type="2001">
         <element xmi:type="ecore:EAttribute" href="umlClassDiagram.ecore#//Method/name"/>
         <layoutConstraint xmi:type="notation:Location" xmi:id="_S4fR0b1MEd6wE7AuCkZlvg"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_WuZEAMI8Ed6G66tjDDvA5A" type="2001">
+        <element xmi:type="ecore:EAttribute" href="umlClassDiagram.ecore#//Method/parameters"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_WuZEAcI8Ed6G66tjDDvA5A"/>
+      </children>
+      <children xmi:type="notation:Node" xmi:id="_dHkzoMI8Ed6G66tjDDvA5A" type="2001">
+        <element xmi:type="ecore:EAttribute" href="umlClassDiagram.ecore#//Method/returnType"/>
+        <layoutConstraint xmi:type="notation:Location" xmi:id="_dHkzocI8Ed6G66tjDDvA5A"/>
       </children>
       <styles xmi:type="notation:DrawerStyle" xmi:id="_Qwcupb1JEd6wE7AuCkZlvg"/>
       <styles xmi:type="notation:SortingStyle" xmi:id="_Qwcupr1JEd6wE7AuCkZlvg"/>
@@ -252,7 +268,7 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_CS6Rkb1KEd6wE7AuCkZlvg" routing="Rectilinear" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_CS6Rkr1KEd6wE7AuCkZlvg" fontName="Segoe UI"/>
     <element xsi:nil="true"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CS6Rk71KEd6wE7AuCkZlvg" points="[-8, -24, 298, 112]$[-8, -130, 298, 6]$[-256, -130, 50, 6]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_CS6Rk71KEd6wE7AuCkZlvg" points="[0, -41, 322, 112]$[0, -138, 322, 15]$[-272, -138, 50, 15]"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_G9fxYL1KEd6wE7AuCkZlvg" type="3002" source="_1BvL4L1IEd6wE7AuCkZlvg" target="_PyQoEL1JEd6wE7AuCkZlvg">
     <children xmi:type="notation:Node" xmi:id="_G9fxZL1KEd6wE7AuCkZlvg" type="4011">
@@ -264,23 +280,23 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_G9fxYb1KEd6wE7AuCkZlvg" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_G9fxYr1KEd6wE7AuCkZlvg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="umlClassDiagram.ecore#//Class/attribute"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_G9fxY71KEd6wE7AuCkZlvg" points="[0, 1, -79, 29]$[0, 29, -79, 57]$[0, 29, -79, 57]$[79, 29, 0, 57]$[79, -16, 0, 12]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0W4sgL1SEd6wE7AuCkZlvg" id="(0.9411764705882353,0.9852941176470589)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_0W4sgb1SEd6wE7AuCkZlvg" id="(0.46956521739130436,0.7647058823529411)"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_G9fxY71KEd6wE7AuCkZlvg" points="[0, 1, -79, 3]$[0, 35, -79, 37]$[0, 48, -79, 50]$[79, 48, 0, 50]$[79, 18, 0, 20]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3LnhIMI4Ed6G66tjDDvA5A" id="(0.9411764705882353,0.9852941176470589)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3LnhIcI4Ed6G66tjDDvA5A" id="(0.46956521739130436,0.7647058823529411)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_SRGMkL1KEd6wE7AuCkZlvg" type="3002" source="_1BvL4L1IEd6wE7AuCkZlvg" target="_QwcuoL1JEd6wE7AuCkZlvg">
     <children xmi:type="notation:Node" xmi:id="_SRGMlL1KEd6wE7AuCkZlvg" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_SRGMlb1KEd6wE7AuCkZlvg" x="63" y="-34"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SRGMlb1KEd6wE7AuCkZlvg" x="-15" y="-51"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_SRGMlr1KEd6wE7AuCkZlvg" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_SRGMl71KEd6wE7AuCkZlvg" x="63" y="13"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_SRGMl71KEd6wE7AuCkZlvg" x="32" y="-51"/>
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_SRGMkb1KEd6wE7AuCkZlvg" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_SRGMkr1KEd6wE7AuCkZlvg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="umlClassDiagram.ecore#//Class/method"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SRGMk71KEd6wE7AuCkZlvg" points="[0, 23, -321, 42]$[0, 89, -321, 108]$[321, 89, 0, 108]$[321, 6, 0, 25]"/>
-    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XRo0or1SEd6wE7AuCkZlvg" id="(0.23529411764705882,0.6617647058823529)"/>
-    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_XRo0o71SEd6wE7AuCkZlvg" id="(0.5,0.5)"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_SRGMk71KEd6wE7AuCkZlvg" points="[0, 23, -337, 25]$[0, 100, -337, 102]$[337, 100, 0, 102]$[337, 40, 0, 42]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hj-GcMI8Ed6G66tjDDvA5A" id="(0.23529411764705882,0.6617647058823529)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_hj-GccI8Ed6G66tjDDvA5A" id="(0.5,0.5)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_v4MNQL1KEd6wE7AuCkZlvg" type="3002" source="_24eEAL1IEd6wE7AuCkZlvg" target="_1BvL4L1IEd6wE7AuCkZlvg">
     <children xmi:type="notation:Node" xmi:id="_v4MNRL1KEd6wE7AuCkZlvg" type="4011">
@@ -354,21 +370,21 @@
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_mWphYb1REd6wE7AuCkZlvg" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_mWphYr1REd6wE7AuCkZlvg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="umlClassDiagram.ecore#//Attribute/attributeOwner"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mWphY71REd6wE7AuCkZlvg" points="[0, 12, 79, -16]$[0, 57, 79, 29]$[-79, 57, 0, 29]$[-79, 57, 0, 29]$[-79, 29, 0, 1]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_mWphY71REd6wE7AuCkZlvg" points="[0, 20, 79, 18]$[0, 50, 79, 48]$[-79, 50, 0, 48]$[-79, 37, 0, 35]$[-79, 3, 0, 1]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3t12sr1REd6wE7AuCkZlvg" id="(0.46956521739130436,0.7647058823529411)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3t12s71REd6wE7AuCkZlvg" id="(0.9411764705882353,0.9852941176470589)"/>
   </edges>
   <edges xmi:type="notation:Edge" xmi:id="_64LEsL1REd6wE7AuCkZlvg" type="3002" source="_QwcuoL1JEd6wE7AuCkZlvg" target="_1BvL4L1IEd6wE7AuCkZlvg">
     <children xmi:type="notation:Node" xmi:id="_64LEtL1REd6wE7AuCkZlvg" type="4011">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_64LEtb1REd6wE7AuCkZlvg" x="46" y="16"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_64LEtb1REd6wE7AuCkZlvg" x="57" y="-54"/>
     </children>
     <children xmi:type="notation:Node" xmi:id="_64LEtr1REd6wE7AuCkZlvg" type="4012">
-      <layoutConstraint xmi:type="notation:Location" xmi:id="_64LEt71REd6wE7AuCkZlvg" x="-19" y="16"/>
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_64LEt71REd6wE7AuCkZlvg" x="57" y="4"/>
     </children>
     <styles xmi:type="notation:ConnectorStyle" xmi:id="_64LEsb1REd6wE7AuCkZlvg" lineColor="4210752"/>
     <styles xmi:type="notation:FontStyle" xmi:id="_64LEsr1REd6wE7AuCkZlvg" fontColor="4210752" fontName="Segoe UI" fontHeight="10"/>
     <element xmi:type="ecore:EReference" href="umlClassDiagram.ecore#//Method/methodOwner"/>
-    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_64LEs71REd6wE7AuCkZlvg" points="[0, 25, 321, 6]$[0, 108, 321, 89]$[-321, 108, 0, 89]$[-321, 42, 0, 23]"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_64LEs71REd6wE7AuCkZlvg" points="[0, 42, 337, 40]$[0, 102, 337, 100]$[-337, 102, 0, 100]$[-337, 25, 0, 23]"/>
     <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_V6c_QL1SEd6wE7AuCkZlvg" id="(0.5,0.5)"/>
     <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_64LEuL1REd6wE7AuCkZlvg" id="(0.23529411764705882,0.6617647058823529)"/>
   </edges>

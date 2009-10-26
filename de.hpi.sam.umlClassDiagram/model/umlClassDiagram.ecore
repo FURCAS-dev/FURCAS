@@ -7,9 +7,11 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="../../de.hpi.sam.umlCompositionStructureDiagram/model/compositionStructureDiagram.ecore#//CompositionStructureDiagram">
     <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//UmlClassDiagram"
         eOpposite="#//UmlClassDiagram/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeStructure" eType="ecore:EClass ../../de.hpi.sam.umlCompositionStructureDiagram/model/compositionStructureDiagram.ecore#//CompositionStructureDiagram"
+        eOpposite="../../de.hpi.sam.umlCompositionStructureDiagram/model/compositionStructureDiagram.ecore#//CompositionStructureDiagram/elements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" upperBound="-1"
@@ -22,22 +24,29 @@
         eType="#//Connection" eOpposite="#//Connection/destination"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedParts" upperBound="-1"
+        eType="ecore:EClass ../../de.hpi.sam.umlCompositionStructureDiagram/model/compositionStructureDiagram.ecore#//Part"
+        eOpposite="../../de.hpi.sam.umlCompositionStructureDiagram/model/compositionStructureDiagram.ecore#//Part/containingClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attributeOwner" eType="#//Class"
-        eOpposite="#//Class/attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributeOwner" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//Element">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="methodOwner" eType="#//Class"
-        eOpposite="#//Class/method"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodOwner" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/method"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="parameters" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="returnType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connection" abstract="true" eSuperTypes="#//Element">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Class"
-        eOpposite="#//Class/outgoingConnections"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Class"
-        eOpposite="#//Class/incomingConnections"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/outgoingConnections"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" lowerBound="1"
+        eType="#//Class" eOpposite="#//Class/incomingConnections"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="annotation" upperBound="2"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
