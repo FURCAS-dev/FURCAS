@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.umlClassDiagram/src"
+    modelPluginID="de.hpi.sam.umlClassDiagram" modelName="UmlClassDiagram" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>umlClassDiagram.ecore</foreignModel>
+  <genPackages prefix="UmlClassDiagram" basePackage="de.hpi.sam" disposableProviderFactory="true"
+      ecorePackage="umlClassDiagram.ecore#/">
+    <genClasses ecoreClass="umlClassDiagram.ecore#//UmlClassDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//UmlClassDiagram/elements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="umlClassDiagram.ecore#//Element">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Element/diagram"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Class">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/method"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/outgoingConnections"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/incomingConnections"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Class/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Class/name"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Attribute/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Attribute/attributeOwner"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Method">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Method/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Method/methodOwner"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="umlClassDiagram.ecore#//Connection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Connection/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Connection/destination"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Connection/annotation"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Composition"/>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Aggregation"/>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Relation"/>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Inheritance"/>
+  </genPackages>
+</genmodel:GenModel>
