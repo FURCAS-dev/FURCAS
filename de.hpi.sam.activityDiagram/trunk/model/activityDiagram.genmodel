@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.activityDiagram/src"
+    modelPluginID="de.hpi.sam.activityDiagram" modelName="ActivityDiagram" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>activityDiagram.ecore</foreignModel>
+  <genPackages prefix="ActivityDiagram" disposableProviderFactory="true" ecorePackage="activityDiagram.ecore#/">
+    <genClasses ecoreClass="activityDiagram.ecore#//activityDiagramContainer">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//activityDiagramContainer/elements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="activityDiagram.ecore#//Element">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference activityDiagram.ecore#//Element/container"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//Activity">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference activityDiagram.ecore#//Activity/actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityDiagram.ecore#//Activity/name"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//Action">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//Action/activity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityDiagram.ecore#//Action/name"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//ControlFlow">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//ControlFlow/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//ControlFlow/target"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityDiagram.ecore#//ControlFlow/condition"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//SendSignal">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//SendSignal/incoming"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityDiagram.ecore#//SendSignal/name"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//ReceiveSignal">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//ReceiveSignal/outgoing"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute activityDiagram.ecore#//ReceiveSignal/name"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//Split">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//Split/incoming"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//Split/outgoings"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//Join">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//Join/outgoing"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//Join/incomings"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="activityDiagram.ecore#//Node"/>
+    <genClasses ecoreClass="activityDiagram.ecore#//DecisionNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//DecisionNode/outgoings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//DecisionNode/incoming"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//JoinNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//JoinNode/incomings"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//JoinNode/outgoing"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//StartNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//StartNode/outgoing"/>
+    </genClasses>
+    <genClasses ecoreClass="activityDiagram.ecore#//EndNodeFlow"/>
+    <genClasses ecoreClass="activityDiagram.ecore#//EndNodeActivity"/>
+    <genClasses image="false" ecoreClass="activityDiagram.ecore#//EndNode">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference activityDiagram.ecore#//EndNode/incoming"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
