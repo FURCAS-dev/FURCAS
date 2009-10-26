@@ -6,12 +6,14 @@
  */
 package activityDiagram.impl;
 
+import activityDiagram.Activity;
 import activityDiagram.ActivityDiagramPackage;
 import activityDiagram.Element;
 import activityDiagram.activityDiagramContainer;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -19,9 +21,10 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -32,6 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link activityDiagram.impl.activityDiagramContainerImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link activityDiagram.impl.activityDiagramContainerImpl#getActivities <em>Activities</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,6 +51,16 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 	 * @ordered
 	 */
 	protected EList<Element> elements;
+
+	/**
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivities()
+	 * @generated
+	 * @ordered
+	 */
+	protected Activity activities;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -74,7 +88,7 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 	 */
 	public EList<Element> getElements() {
 		if (elements == null) {
-			elements = new EObjectContainmentWithInverseEList<Element>(Element.class, this, ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS, ActivityDiagramPackage.ELEMENT__CONTAINER);
+			elements = new EObjectContainmentEList<Element>(Element.class, this, ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS);
 		}
 		return elements;
 	}
@@ -84,12 +98,56 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
+	public Activity getActivities() {
+		return activities;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetActivities(Activity newActivities, NotificationChain msgs) {
+		Activity oldActivities = activities;
+		activities = newActivities;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES, oldActivities, newActivities);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivities(Activity newActivities) {
+		if (newActivities != activities) {
+			NotificationChain msgs = null;
+			if (activities != null)
+				msgs = ((InternalEObject)activities).eInverseRemove(this, ActivityDiagramPackage.ACTIVITY__CONTAINER, Activity.class, msgs);
+			if (newActivities != null)
+				msgs = ((InternalEObject)newActivities).eInverseAdd(this, ActivityDiagramPackage.ACTIVITY__CONTAINER, Activity.class, msgs);
+			msgs = basicSetActivities(newActivities, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES, newActivities, newActivities));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getElements()).basicAdd(otherEnd, msgs);
+			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES:
+				if (activities != null)
+					msgs = ((InternalEObject)activities).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES, null, msgs);
+				return basicSetActivities((Activity)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -104,6 +162,8 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS:
 				return ((InternalEList<?>)getElements()).basicRemove(otherEnd, msgs);
+			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES:
+				return basicSetActivities(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -118,6 +178,8 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS:
 				return getElements();
+			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES:
+				return getActivities();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -135,6 +197,9 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 				getElements().clear();
 				getElements().addAll((Collection<? extends Element>)newValue);
 				return;
+			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES:
+				setActivities((Activity)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -150,6 +215,9 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS:
 				getElements().clear();
 				return;
+			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES:
+				setActivities((Activity)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -164,6 +232,8 @@ public class activityDiagramContainerImpl extends EObjectImpl implements activit
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS:
 				return elements != null && !elements.isEmpty();
+			case ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES:
+				return activities != null;
 		}
 		return super.eIsSet(featureID);
 	}

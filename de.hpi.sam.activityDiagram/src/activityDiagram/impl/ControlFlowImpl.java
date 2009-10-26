@@ -6,16 +6,20 @@
  */
 package activityDiagram.impl;
 
+import activityDiagram.Activity;
 import activityDiagram.ActivityDiagramPackage;
 import activityDiagram.ControlFlow;
 import activityDiagram.Element;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *   <li>{@link activityDiagram.impl.ControlFlowImpl#getSource <em>Source</em>}</li>
  *   <li>{@link activityDiagram.impl.ControlFlowImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link activityDiagram.impl.ControlFlowImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link activityDiagram.impl.ControlFlowImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -194,6 +199,91 @@ public class ControlFlowImpl extends ElementImpl implements ControlFlow {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Activity getActivity() {
+		if (eContainerFeatureID() != ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY) return null;
+		return (Activity)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetActivity(Activity newActivity, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newActivity, ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivity(Activity newActivity) {
+		if (newActivity != eInternalContainer() || (eContainerFeatureID() != ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY && newActivity != null)) {
+			if (EcoreUtil.isAncestor(this, newActivity))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newActivity != null)
+				msgs = ((InternalEObject)newActivity).eInverseAdd(this, ActivityDiagramPackage.ACTIVITY__FLOWS, Activity.class, msgs);
+			msgs = basicSetActivity(newActivity, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY, newActivity, newActivity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetActivity((Activity)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				return basicSetActivity(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				return eInternalContainer().eInverseRemove(this, ActivityDiagramPackage.ACTIVITY__FLOWS, Activity.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -205,6 +295,8 @@ public class ControlFlowImpl extends ElementImpl implements ControlFlow {
 				return basicGetTarget();
 			case ActivityDiagramPackage.CONTROL_FLOW__CONDITION:
 				return getCondition();
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				return getActivity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,6 +317,9 @@ public class ControlFlowImpl extends ElementImpl implements ControlFlow {
 				return;
 			case ActivityDiagramPackage.CONTROL_FLOW__CONDITION:
 				setCondition((String)newValue);
+				return;
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				setActivity((Activity)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -247,6 +342,9 @@ public class ControlFlowImpl extends ElementImpl implements ControlFlow {
 			case ActivityDiagramPackage.CONTROL_FLOW__CONDITION:
 				setCondition(CONDITION_EDEFAULT);
 				return;
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				setActivity((Activity)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -265,6 +363,8 @@ public class ControlFlowImpl extends ElementImpl implements ControlFlow {
 				return target != null;
 			case ActivityDiagramPackage.CONTROL_FLOW__CONDITION:
 				return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
+			case ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY:
+				return getActivity() != null;
 		}
 		return super.eIsSet(featureID);
 	}

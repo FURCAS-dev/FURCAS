@@ -18,6 +18,7 @@ package activityDiagram;
  *   <li>{@link activityDiagram.ControlFlow#getSource <em>Source</em>}</li>
  *   <li>{@link activityDiagram.ControlFlow#getTarget <em>Target</em>}</li>
  *   <li>{@link activityDiagram.ControlFlow#getCondition <em>Condition</em>}</li>
+ *   <li>{@link activityDiagram.ControlFlow#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -103,5 +104,33 @@ public interface ControlFlow extends Element {
 	 * @generated
 	 */
 	void setCondition(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Activity</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link activityDiagram.Activity#getFlows <em>Flows</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Activity</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activity</em>' container reference.
+	 * @see #setActivity(Activity)
+	 * @see activityDiagram.ActivityDiagramPackage#getControlFlow_Activity()
+	 * @see activityDiagram.Activity#getFlows
+	 * @model opposite="flows" transient="false"
+	 * @generated
+	 */
+	Activity getActivity();
+
+	/**
+	 * Sets the value of the '{@link activityDiagram.ControlFlow#getActivity <em>Activity</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Activity</em>' container reference.
+	 * @see #getActivity()
+	 * @generated
+	 */
+	void setActivity(Activity value);
 
 } // ControlFlow

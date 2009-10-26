@@ -134,17 +134,19 @@ public class ActivityDiagramSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityDiagramPackage.SPLIT: {
-				Split split = (Split)theEObject;
-				T result = caseSplit(split);
-				if (result == null) result = caseElement(split);
+			case ActivityDiagramPackage.FORK_NODE: {
+				ForkNode forkNode = (ForkNode)theEObject;
+				T result = caseForkNode(forkNode);
+				if (result == null) result = caseNode(forkNode);
+				if (result == null) result = caseElement(forkNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ActivityDiagramPackage.JOIN: {
-				Join join = (Join)theEObject;
-				T result = caseJoin(join);
-				if (result == null) result = caseElement(join);
+			case ActivityDiagramPackage.MERGE_NODE: {
+				MergeNode mergeNode = (MergeNode)theEObject;
+				T result = caseMergeNode(mergeNode);
+				if (result == null) result = caseNode(mergeNode);
+				if (result == null) result = caseElement(mergeNode);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -315,32 +317,32 @@ public class ActivityDiagramSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Split</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Fork Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Split</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Fork Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSplit(Split object) {
+	public T caseForkNode(ForkNode object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Join</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Merge Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Join</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Merge Node</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseJoin(Join object) {
+	public T caseMergeNode(MergeNode object) {
 		return null;
 	}
 

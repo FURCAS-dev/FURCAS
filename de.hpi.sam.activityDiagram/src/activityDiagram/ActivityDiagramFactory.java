@@ -80,22 +80,22 @@ public interface ActivityDiagramFactory extends EFactory {
 	ReceiveSignal createReceiveSignal();
 
 	/**
-	 * Returns a new object of class '<em>Split</em>'.
+	 * Returns a new object of class '<em>Fork Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Split</em>'.
+	 * @return a new object of class '<em>Fork Node</em>'.
 	 * @generated
 	 */
-	Split createSplit();
+	ForkNode createForkNode();
 
 	/**
-	 * Returns a new object of class '<em>Join</em>'.
+	 * Returns a new object of class '<em>Merge Node</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Join</em>'.
+	 * @return a new object of class '<em>Merge Node</em>'.
 	 * @generated
 	 */
-	Join createJoin();
+	MergeNode createMergeNode();
 
 	/**
 	 * Returns a new object of class '<em>Decision Node</em>'.

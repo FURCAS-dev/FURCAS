@@ -66,8 +66,8 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 			case ActivityDiagramPackage.CONTROL_FLOW: return createControlFlow();
 			case ActivityDiagramPackage.SEND_SIGNAL: return createSendSignal();
 			case ActivityDiagramPackage.RECEIVE_SIGNAL: return createReceiveSignal();
-			case ActivityDiagramPackage.SPLIT: return createSplit();
-			case ActivityDiagramPackage.JOIN: return createJoin();
+			case ActivityDiagramPackage.FORK_NODE: return createForkNode();
+			case ActivityDiagramPackage.MERGE_NODE: return createMergeNode();
 			case ActivityDiagramPackage.DECISION_NODE: return createDecisionNode();
 			case ActivityDiagramPackage.JOIN_NODE: return createJoinNode();
 			case ActivityDiagramPackage.START_NODE: return createStartNode();
@@ -143,9 +143,9 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Split createSplit() {
-		SplitImpl split = new SplitImpl();
-		return split;
+	public ForkNode createForkNode() {
+		ForkNodeImpl forkNode = new ForkNodeImpl();
+		return forkNode;
 	}
 
 	/**
@@ -153,9 +153,9 @@ public class ActivityDiagramFactoryImpl extends EFactoryImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Join createJoin() {
-		JoinImpl join = new JoinImpl();
-		return join;
+	public MergeNode createMergeNode() {
+		MergeNodeImpl mergeNode = new MergeNodeImpl();
+		return mergeNode;
 	}
 
 	/**

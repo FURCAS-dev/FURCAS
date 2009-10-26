@@ -9,6 +9,8 @@ package activityDiagram.impl;
 import activityDiagram.Action;
 import activityDiagram.Activity;
 import activityDiagram.ActivityDiagramPackage;
+import activityDiagram.ControlFlow;
+import activityDiagram.activityDiagramContainer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -29,12 +31,24 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <ul>
  *   <li>{@link activityDiagram.impl.ActivityImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link activityDiagram.impl.ActivityImpl#getName <em>Name</em>}</li>
+ *   <li>{@link activityDiagram.impl.ActivityImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link activityDiagram.impl.ActivityImpl#getFlows <em>Flows</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ActivityImpl extends ElementImpl implements Activity {
+	/**
+	 * The cached value of the '{@link #getActions() <em>Actions</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActions()
+	 * @generated
+	 * @ordered
+	 */
+	protected Action actions;
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,6 +68,16 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getFlows() <em>Flows</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getFlows()
+	 * @generated
+	 * @ordered
+	 */
+	protected ControlFlow flows;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -80,8 +104,7 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	 * @generated
 	 */
 	public Action getActions() {
-		if (eContainerFeatureID() != ActivityDiagramPackage.ACTIVITY__ACTIONS) return null;
-		return (Action)eContainer();
+		return actions;
 	}
 
 	/**
@@ -90,7 +113,12 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	 * @generated
 	 */
 	public NotificationChain basicSetActions(Action newActions, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newActions, ActivityDiagramPackage.ACTIVITY__ACTIONS, msgs);
+		Action oldActions = actions;
+		actions = newActions;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__ACTIONS, oldActions, newActions);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
 		return msgs;
 	}
 
@@ -100,12 +128,10 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	 * @generated
 	 */
 	public void setActions(Action newActions) {
-		if (newActions != eInternalContainer() || (eContainerFeatureID() != ActivityDiagramPackage.ACTIVITY__ACTIONS && newActions != null)) {
-			if (EcoreUtil.isAncestor(this, newActions))
-				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+		if (newActions != actions) {
 			NotificationChain msgs = null;
-			if (eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
+			if (actions != null)
+				msgs = ((InternalEObject)actions).eInverseRemove(this, ActivityDiagramPackage.ACTION__ACTIVITY, Action.class, msgs);
 			if (newActions != null)
 				msgs = ((InternalEObject)newActions).eInverseAdd(this, ActivityDiagramPackage.ACTION__ACTIVITY, Action.class, msgs);
 			msgs = basicSetActions(newActions, msgs);
@@ -141,13 +167,105 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public activityDiagramContainer getContainer() {
+		if (eContainerFeatureID() != ActivityDiagramPackage.ACTIVITY__CONTAINER) return null;
+		return (activityDiagramContainer)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetContainer(activityDiagramContainer newContainer, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newContainer, ActivityDiagramPackage.ACTIVITY__CONTAINER, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setContainer(activityDiagramContainer newContainer) {
+		if (newContainer != eInternalContainer() || (eContainerFeatureID() != ActivityDiagramPackage.ACTIVITY__CONTAINER && newContainer != null)) {
+			if (EcoreUtil.isAncestor(this, newContainer))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newContainer != null)
+				msgs = ((InternalEObject)newContainer).eInverseAdd(this, ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES, activityDiagramContainer.class, msgs);
+			msgs = basicSetContainer(newContainer, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__CONTAINER, newContainer, newContainer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlow getFlows() {
+		return flows;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetFlows(ControlFlow newFlows, NotificationChain msgs) {
+		ControlFlow oldFlows = flows;
+		flows = newFlows;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__FLOWS, oldFlows, newFlows);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFlows(ControlFlow newFlows) {
+		if (newFlows != flows) {
+			NotificationChain msgs = null;
+			if (flows != null)
+				msgs = ((InternalEObject)flows).eInverseRemove(this, ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY, ControlFlow.class, msgs);
+			if (newFlows != null)
+				msgs = ((InternalEObject)newFlows).eInverseAdd(this, ActivityDiagramPackage.CONTROL_FLOW__ACTIVITY, ControlFlow.class, msgs);
+			msgs = basicSetFlows(newFlows, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTIVITY__FLOWS, newFlows, newFlows));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTIVITY__ACTIONS:
+				if (actions != null)
+					msgs = ((InternalEObject)actions).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActivityDiagramPackage.ACTIVITY__ACTIONS, null, msgs);
+				return basicSetActions((Action)otherEnd, msgs);
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
 				if (eInternalContainer() != null)
 					msgs = eBasicRemoveFromContainer(msgs);
-				return basicSetActions((Action)otherEnd, msgs);
+				return basicSetContainer((activityDiagramContainer)otherEnd, msgs);
+			case ActivityDiagramPackage.ACTIVITY__FLOWS:
+				if (flows != null)
+					msgs = ((InternalEObject)flows).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ActivityDiagramPackage.ACTIVITY__FLOWS, null, msgs);
+				return basicSetFlows((ControlFlow)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -162,6 +280,10 @@ public class ActivityImpl extends ElementImpl implements Activity {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTIVITY__ACTIONS:
 				return basicSetActions(null, msgs);
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
+				return basicSetContainer(null, msgs);
+			case ActivityDiagramPackage.ACTIVITY__FLOWS:
+				return basicSetFlows(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -174,8 +296,8 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
-			case ActivityDiagramPackage.ACTIVITY__ACTIONS:
-				return eInternalContainer().eInverseRemove(this, ActivityDiagramPackage.ACTION__ACTIVITY, Action.class, msgs);
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
+				return eInternalContainer().eInverseRemove(this, ActivityDiagramPackage.ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES, activityDiagramContainer.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -192,6 +314,10 @@ public class ActivityImpl extends ElementImpl implements Activity {
 				return getActions();
 			case ActivityDiagramPackage.ACTIVITY__NAME:
 				return getName();
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
+				return getContainer();
+			case ActivityDiagramPackage.ACTIVITY__FLOWS:
+				return getFlows();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -209,6 +335,12 @@ public class ActivityImpl extends ElementImpl implements Activity {
 				return;
 			case ActivityDiagramPackage.ACTIVITY__NAME:
 				setName((String)newValue);
+				return;
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
+				setContainer((activityDiagramContainer)newValue);
+				return;
+			case ActivityDiagramPackage.ACTIVITY__FLOWS:
+				setFlows((ControlFlow)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,6 +360,12 @@ public class ActivityImpl extends ElementImpl implements Activity {
 			case ActivityDiagramPackage.ACTIVITY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
+				setContainer((activityDiagramContainer)null);
+				return;
+			case ActivityDiagramPackage.ACTIVITY__FLOWS:
+				setFlows((ControlFlow)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -241,9 +379,13 @@ public class ActivityImpl extends ElementImpl implements Activity {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTIVITY__ACTIONS:
-				return getActions() != null;
+				return actions != null;
 			case ActivityDiagramPackage.ACTIVITY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case ActivityDiagramPackage.ACTIVITY__CONTAINER:
+				return getContainer() != null;
+			case ActivityDiagramPackage.ACTIVITY__FLOWS:
+				return flows != null;
 		}
 		return super.eIsSet(featureID);
 	}

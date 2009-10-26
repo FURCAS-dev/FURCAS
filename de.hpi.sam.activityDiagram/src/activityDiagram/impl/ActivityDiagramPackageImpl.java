@@ -16,12 +16,12 @@ import activityDiagram.Element;
 import activityDiagram.EndNode;
 import activityDiagram.EndNodeActivity;
 import activityDiagram.EndNodeFlow;
-import activityDiagram.Join;
+import activityDiagram.ForkNode;
 import activityDiagram.JoinNode;
+import activityDiagram.MergeNode;
 import activityDiagram.Node;
 import activityDiagram.ReceiveSignal;
 import activityDiagram.SendSignal;
-import activityDiagram.Split;
 import activityDiagram.StartNode;
 import activityDiagram.activityDiagramContainer;
 
@@ -93,14 +93,14 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass splitEClass = null;
+	private EClass forkNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass joinEClass = null;
+	private EClass mergeNodeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -235,8 +235,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getElement() {
-		return elementEClass;
+	public EReference getactivityDiagramContainer_Activities() {
+		return (EReference)activityDiagramContainerEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -244,8 +244,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getElement_Container() {
-		return (EReference)elementEClass.getEStructuralFeatures().get(0);
+	public EClass getElement() {
+		return elementEClass;
 	}
 
 	/**
@@ -280,6 +280,24 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getActivity_Container() {
+		return (EReference)activityEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActivity_Flows() {
+		return (EReference)activityEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAction() {
 		return actionEClass;
 	}
@@ -298,8 +316,26 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getAction_Incoming() {
+		return (EReference)actionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAction_Outgoing() {
+		return (EReference)actionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EAttribute getAction_Name() {
-		return (EAttribute)actionEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)actionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -336,6 +372,15 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 */
 	public EAttribute getControlFlow_Condition() {
 		return (EAttribute)controlFlowEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getControlFlow_Activity() {
+		return (EReference)controlFlowEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -397,8 +442,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getSplit() {
-		return splitEClass;
+	public EClass getForkNode() {
+		return forkNodeEClass;
 	}
 
 	/**
@@ -406,8 +451,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSplit_Incoming() {
-		return (EReference)splitEClass.getEStructuralFeatures().get(0);
+	public EReference getForkNode_Incoming() {
+		return (EReference)forkNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -415,8 +460,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getSplit_Outgoings() {
-		return (EReference)splitEClass.getEStructuralFeatures().get(1);
+	public EReference getForkNode_Outgoings() {
+		return (EReference)forkNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -424,8 +469,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getJoin() {
-		return joinEClass;
+	public EClass getMergeNode() {
+		return mergeNodeEClass;
 	}
 
 	/**
@@ -433,8 +478,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getJoin_Outgoing() {
-		return (EReference)joinEClass.getEStructuralFeatures().get(0);
+	public EReference getMergeNode_Outgoing() {
+		return (EReference)mergeNodeEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -442,8 +487,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getJoin_Incomings() {
-		return (EReference)joinEClass.getEStructuralFeatures().get(1);
+	public EReference getMergeNode_Incomings() {
+		return (EReference)mergeNodeEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -593,22 +638,27 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		// Create classes and their features
 		activityDiagramContainerEClass = createEClass(ACTIVITY_DIAGRAM_CONTAINER);
 		createEReference(activityDiagramContainerEClass, ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS);
+		createEReference(activityDiagramContainerEClass, ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES);
 
 		elementEClass = createEClass(ELEMENT);
-		createEReference(elementEClass, ELEMENT__CONTAINER);
 
 		activityEClass = createEClass(ACTIVITY);
 		createEReference(activityEClass, ACTIVITY__ACTIONS);
 		createEAttribute(activityEClass, ACTIVITY__NAME);
+		createEReference(activityEClass, ACTIVITY__CONTAINER);
+		createEReference(activityEClass, ACTIVITY__FLOWS);
 
 		actionEClass = createEClass(ACTION);
 		createEReference(actionEClass, ACTION__ACTIVITY);
+		createEReference(actionEClass, ACTION__INCOMING);
+		createEReference(actionEClass, ACTION__OUTGOING);
 		createEAttribute(actionEClass, ACTION__NAME);
 
 		controlFlowEClass = createEClass(CONTROL_FLOW);
 		createEReference(controlFlowEClass, CONTROL_FLOW__SOURCE);
 		createEReference(controlFlowEClass, CONTROL_FLOW__TARGET);
 		createEAttribute(controlFlowEClass, CONTROL_FLOW__CONDITION);
+		createEReference(controlFlowEClass, CONTROL_FLOW__ACTIVITY);
 
 		sendSignalEClass = createEClass(SEND_SIGNAL);
 		createEReference(sendSignalEClass, SEND_SIGNAL__INCOMING);
@@ -618,13 +668,13 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		createEReference(receiveSignalEClass, RECEIVE_SIGNAL__OUTGOING);
 		createEAttribute(receiveSignalEClass, RECEIVE_SIGNAL__NAME);
 
-		splitEClass = createEClass(SPLIT);
-		createEReference(splitEClass, SPLIT__INCOMING);
-		createEReference(splitEClass, SPLIT__OUTGOINGS);
+		forkNodeEClass = createEClass(FORK_NODE);
+		createEReference(forkNodeEClass, FORK_NODE__INCOMING);
+		createEReference(forkNodeEClass, FORK_NODE__OUTGOINGS);
 
-		joinEClass = createEClass(JOIN);
-		createEReference(joinEClass, JOIN__OUTGOING);
-		createEReference(joinEClass, JOIN__INCOMINGS);
+		mergeNodeEClass = createEClass(MERGE_NODE);
+		createEReference(mergeNodeEClass, MERGE_NODE__OUTGOING);
+		createEReference(mergeNodeEClass, MERGE_NODE__INCOMINGS);
 
 		nodeEClass = createEClass(NODE);
 
@@ -680,8 +730,8 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		controlFlowEClass.getESuperTypes().add(this.getElement());
 		sendSignalEClass.getESuperTypes().add(this.getElement());
 		receiveSignalEClass.getESuperTypes().add(this.getElement());
-		splitEClass.getESuperTypes().add(this.getElement());
-		joinEClass.getESuperTypes().add(this.getElement());
+		forkNodeEClass.getESuperTypes().add(this.getNode());
+		mergeNodeEClass.getESuperTypes().add(this.getNode());
 		nodeEClass.getESuperTypes().add(this.getElement());
 		decisionNodeEClass.getESuperTypes().add(this.getNode());
 		joinNodeEClass.getESuperTypes().add(this.getNode());
@@ -692,23 +742,28 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(activityDiagramContainerEClass, activityDiagramContainer.class, "activityDiagramContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getactivityDiagramContainer_Elements(), this.getElement(), this.getElement_Container(), "elements", null, 0, -1, activityDiagramContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getactivityDiagramContainer_Elements(), this.getElement(), null, "elements", null, 0, -1, activityDiagramContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getactivityDiagramContainer_Activities(), this.getActivity(), this.getActivity_Container(), "activities", null, 0, 1, activityDiagramContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(elementEClass, Element.class, "Element", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElement_Container(), this.getactivityDiagramContainer(), this.getactivityDiagramContainer_Elements(), "container", null, 0, 1, Element.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getActivity_Actions(), this.getAction(), this.getAction_Activity(), "actions", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_Actions(), this.getAction(), this.getAction_Activity(), "actions", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getActivity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_Container(), this.getactivityDiagramContainer(), this.getactivityDiagramContainer_Activities(), "container", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getActivity_Flows(), this.getControlFlow(), this.getControlFlow_Activity(), "flows", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(actionEClass, Action.class, "Action", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAction_Activity(), this.getActivity(), this.getActivity_Actions(), "activity", null, 0, -1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAction_Activity(), this.getActivity(), this.getActivity_Actions(), "activity", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAction_Incoming(), this.getControlFlow(), null, "incoming", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAction_Outgoing(), this.getControlFlow(), null, "outgoing", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAction_Name(), ecorePackage.getEString(), "name", null, 0, 1, Action.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(controlFlowEClass, ControlFlow.class, "ControlFlow", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getControlFlow_Source(), this.getElement(), null, "source", null, 0, 1, ControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getControlFlow_Target(), this.getElement(), null, "target", null, 0, 1, ControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getControlFlow_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, ControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getControlFlow_Activity(), this.getActivity(), this.getActivity_Flows(), "activity", null, 0, 1, ControlFlow.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(sendSignalEClass, SendSignal.class, "SendSignal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSendSignal_Incoming(), this.getControlFlow(), null, "incoming", null, 0, 1, SendSignal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -718,13 +773,13 @@ public class ActivityDiagramPackageImpl extends EPackageImpl implements Activity
 		initEReference(getReceiveSignal_Outgoing(), this.getControlFlow(), null, "outgoing", null, 0, 1, ReceiveSignal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReceiveSignal_Name(), ecorePackage.getEString(), "name", null, 0, 1, ReceiveSignal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(splitEClass, Split.class, "Split", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSplit_Incoming(), this.getControlFlow(), null, "incoming", null, 0, 1, Split.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSplit_Outgoings(), this.getControlFlow(), null, "outgoings", null, 0, -1, Split.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(forkNodeEClass, ForkNode.class, "ForkNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getForkNode_Incoming(), this.getControlFlow(), null, "incoming", null, 0, 1, ForkNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getForkNode_Outgoings(), this.getControlFlow(), null, "outgoings", null, 0, -1, ForkNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(joinEClass, Join.class, "Join", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getJoin_Outgoing(), this.getControlFlow(), null, "outgoing", null, 0, 1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getJoin_Incomings(), this.getControlFlow(), null, "incomings", null, 0, -1, Join.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(mergeNodeEClass, MergeNode.class, "MergeNode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getMergeNode_Outgoing(), this.getControlFlow(), null, "outgoing", null, 0, 1, MergeNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMergeNode_Incomings(), this.getControlFlow(), null, "incomings", null, 0, -1, MergeNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(nodeEClass, Node.class, "Node", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -79,13 +79,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES = 1;
+
+	/**
 	 * The number of structural features of the '<em>activity Diagram Container</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_DIAGRAM_CONTAINER_FEATURE_COUNT = 1;
+	int ACTIVITY_DIAGRAM_CONTAINER_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link activityDiagram.impl.ElementImpl <em>Element</em>}' class.
@@ -98,22 +107,13 @@ public interface ActivityDiagramPackage extends EPackage {
 	int ELEMENT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ELEMENT__CONTAINER = 0;
-
-	/**
 	 * The number of structural features of the '<em>Element</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ELEMENT_FEATURE_COUNT = 1;
+	int ELEMENT_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link activityDiagram.impl.ActivityImpl <em>Activity</em>}' class.
@@ -126,16 +126,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	int ACTIVITY = 2;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTIVITY__CONTAINER = ELEMENT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Actions</b></em>' container reference.
+	 * The feature id for the '<em><b>Actions</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -153,13 +144,31 @@ public interface ActivityDiagramPackage extends EPackage {
 	int ACTIVITY__NAME = ELEMENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Container</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__CONTAINER = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Flows</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__FLOWS = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Activity</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTIVITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int ACTIVITY_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link activityDiagram.impl.ActionImpl <em>Action</em>}' class.
@@ -172,16 +181,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	int ACTION = 3;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION__CONTAINER = ELEMENT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Activity</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Activity</b></em>' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -190,13 +190,31 @@ public interface ActivityDiagramPackage extends EPackage {
 	int ACTION__ACTIVITY = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__INCOMING = ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION__OUTGOING = ELEMENT_FEATURE_COUNT + 2;
+
+	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION__NAME = ELEMENT_FEATURE_COUNT + 1;
+	int ACTION__NAME = ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Action</em>' class.
@@ -205,7 +223,7 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
+	int ACTION_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link activityDiagram.impl.ControlFlowImpl <em>Control Flow</em>}' class.
@@ -216,15 +234,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int CONTROL_FLOW = 4;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROL_FLOW__CONTAINER = ELEMENT__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference.
@@ -254,13 +263,22 @@ public interface ActivityDiagramPackage extends EPackage {
 	int CONTROL_FLOW__CONDITION = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Activity</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROL_FLOW__ACTIVITY = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Control Flow</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROL_FLOW_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	int CONTROL_FLOW_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link activityDiagram.impl.SendSignalImpl <em>Send Signal</em>}' class.
@@ -271,15 +289,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int SEND_SIGNAL = 5;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SEND_SIGNAL__CONTAINER = ELEMENT__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.
@@ -319,15 +328,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	int RECEIVE_SIGNAL = 6;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RECEIVE_SIGNAL__CONTAINER = ELEMENT__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -355,98 +355,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	int RECEIVE_SIGNAL_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link activityDiagram.impl.SplitImpl <em>Split</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see activityDiagram.impl.SplitImpl
-	 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getSplit()
-	 * @generated
-	 */
-	int SPLIT = 7;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPLIT__CONTAINER = ELEMENT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Incoming</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPLIT__INCOMING = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Outgoings</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPLIT__OUTGOINGS = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Split</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int SPLIT_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The meta object id for the '{@link activityDiagram.impl.JoinImpl <em>Join</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see activityDiagram.impl.JoinImpl
-	 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getJoin()
-	 * @generated
-	 */
-	int JOIN = 8;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN__CONTAINER = ELEMENT__CONTAINER;
-
-	/**
-	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN__OUTGOING = ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Incomings</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN__INCOMINGS = ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Join</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link activityDiagram.impl.NodeImpl <em>Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -455,15 +363,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int NODE = 9;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NODE__CONTAINER = ELEMENT__CONTAINER;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
@@ -475,6 +374,80 @@ public interface ActivityDiagramPackage extends EPackage {
 	int NODE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link activityDiagram.impl.ForkNodeImpl <em>Fork Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see activityDiagram.impl.ForkNodeImpl
+	 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getForkNode()
+	 * @generated
+	 */
+	int FORK_NODE = 7;
+
+	/**
+	 * The feature id for the '<em><b>Incoming</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE__INCOMING = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Outgoings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE__OUTGOINGS = NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Fork Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FORK_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+
+	/**
+	 * The meta object id for the '{@link activityDiagram.impl.MergeNodeImpl <em>Merge Node</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see activityDiagram.impl.MergeNodeImpl
+	 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getMergeNode()
+	 * @generated
+	 */
+	int MERGE_NODE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE__OUTGOING = NODE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Incomings</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE__INCOMINGS = NODE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Merge Node</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MERGE_NODE_FEATURE_COUNT = NODE_FEATURE_COUNT + 2;
+
+	/**
 	 * The meta object id for the '{@link activityDiagram.impl.DecisionNodeImpl <em>Decision Node</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -483,15 +456,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int DECISION_NODE = 10;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int DECISION_NODE__CONTAINER = NODE__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Outgoings</b></em>' reference list.
@@ -531,15 +495,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	int JOIN_NODE = 11;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JOIN_NODE__CONTAINER = NODE__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Incomings</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -577,15 +532,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	int START_NODE = 12;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int START_NODE__CONTAINER = NODE__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Outgoing</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -612,15 +558,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int END_NODE = 15;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_NODE__CONTAINER = NODE__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.
@@ -651,15 +588,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	int END_NODE_FLOW = 13;
 
 	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_NODE_FLOW__CONTAINER = END_NODE__CONTAINER;
-
-	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -686,15 +614,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	int END_NODE_ACTIVITY = 14;
-
-	/**
-	 * The feature id for the '<em><b>Container</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int END_NODE_ACTIVITY__CONTAINER = END_NODE__CONTAINER;
 
 	/**
 	 * The feature id for the '<em><b>Incoming</b></em>' reference.
@@ -737,6 +656,17 @@ public interface ActivityDiagramPackage extends EPackage {
 	EReference getactivityDiagramContainer_Elements();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link activityDiagram.activityDiagramContainer#getActivities <em>Activities</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Activities</em>'.
+	 * @see activityDiagram.activityDiagramContainer#getActivities()
+	 * @see #getactivityDiagramContainer()
+	 * @generated
+	 */
+	EReference getactivityDiagramContainer_Activities();
+
+	/**
 	 * Returns the meta object for class '{@link activityDiagram.Element <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -745,17 +675,6 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getElement();
-
-	/**
-	 * Returns the meta object for the container reference '{@link activityDiagram.Element#getContainer <em>Container</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Container</em>'.
-	 * @see activityDiagram.Element#getContainer()
-	 * @see #getElement()
-	 * @generated
-	 */
-	EReference getElement_Container();
 
 	/**
 	 * Returns the meta object for class '{@link activityDiagram.Activity <em>Activity</em>}'.
@@ -768,10 +687,10 @@ public interface ActivityDiagramPackage extends EPackage {
 	EClass getActivity();
 
 	/**
-	 * Returns the meta object for the container reference '{@link activityDiagram.Activity#getActions <em>Actions</em>}'.
+	 * Returns the meta object for the containment reference '{@link activityDiagram.Activity#getActions <em>Actions</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the container reference '<em>Actions</em>'.
+	 * @return the meta object for the containment reference '<em>Actions</em>'.
 	 * @see activityDiagram.Activity#getActions()
 	 * @see #getActivity()
 	 * @generated
@@ -790,6 +709,28 @@ public interface ActivityDiagramPackage extends EPackage {
 	EAttribute getActivity_Name();
 
 	/**
+	 * Returns the meta object for the container reference '{@link activityDiagram.Activity#getContainer <em>Container</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Container</em>'.
+	 * @see activityDiagram.Activity#getContainer()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EReference getActivity_Container();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link activityDiagram.Activity#getFlows <em>Flows</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Flows</em>'.
+	 * @see activityDiagram.Activity#getFlows()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EReference getActivity_Flows();
+
+	/**
 	 * Returns the meta object for class '{@link activityDiagram.Action <em>Action</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -800,15 +741,37 @@ public interface ActivityDiagramPackage extends EPackage {
 	EClass getAction();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link activityDiagram.Action#getActivity <em>Activity</em>}'.
+	 * Returns the meta object for the container reference '{@link activityDiagram.Action#getActivity <em>Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Activity</em>'.
+	 * @return the meta object for the container reference '<em>Activity</em>'.
 	 * @see activityDiagram.Action#getActivity()
 	 * @see #getAction()
 	 * @generated
 	 */
 	EReference getAction_Activity();
+
+	/**
+	 * Returns the meta object for the reference '{@link activityDiagram.Action#getIncoming <em>Incoming</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Incoming</em>'.
+	 * @see activityDiagram.Action#getIncoming()
+	 * @see #getAction()
+	 * @generated
+	 */
+	EReference getAction_Incoming();
+
+	/**
+	 * Returns the meta object for the reference '{@link activityDiagram.Action#getOutgoing <em>Outgoing</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Outgoing</em>'.
+	 * @see activityDiagram.Action#getOutgoing()
+	 * @see #getAction()
+	 * @generated
+	 */
+	EReference getAction_Outgoing();
 
 	/**
 	 * Returns the meta object for the attribute '{@link activityDiagram.Action#getName <em>Name</em>}'.
@@ -863,6 +826,17 @@ public interface ActivityDiagramPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getControlFlow_Condition();
+
+	/**
+	 * Returns the meta object for the container reference '{@link activityDiagram.ControlFlow#getActivity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the container reference '<em>Activity</em>'.
+	 * @see activityDiagram.ControlFlow#getActivity()
+	 * @see #getControlFlow()
+	 * @generated
+	 */
+	EReference getControlFlow_Activity();
 
 	/**
 	 * Returns the meta object for class '{@link activityDiagram.SendSignal <em>Send Signal</em>}'.
@@ -929,68 +903,68 @@ public interface ActivityDiagramPackage extends EPackage {
 	EAttribute getReceiveSignal_Name();
 
 	/**
-	 * Returns the meta object for class '{@link activityDiagram.Split <em>Split</em>}'.
+	 * Returns the meta object for class '{@link activityDiagram.ForkNode <em>Fork Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Split</em>'.
-	 * @see activityDiagram.Split
+	 * @return the meta object for class '<em>Fork Node</em>'.
+	 * @see activityDiagram.ForkNode
 	 * @generated
 	 */
-	EClass getSplit();
+	EClass getForkNode();
 
 	/**
-	 * Returns the meta object for the reference '{@link activityDiagram.Split#getIncoming <em>Incoming</em>}'.
+	 * Returns the meta object for the reference '{@link activityDiagram.ForkNode#getIncoming <em>Incoming</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Incoming</em>'.
-	 * @see activityDiagram.Split#getIncoming()
-	 * @see #getSplit()
+	 * @see activityDiagram.ForkNode#getIncoming()
+	 * @see #getForkNode()
 	 * @generated
 	 */
-	EReference getSplit_Incoming();
+	EReference getForkNode_Incoming();
 
 	/**
-	 * Returns the meta object for the reference list '{@link activityDiagram.Split#getOutgoings <em>Outgoings</em>}'.
+	 * Returns the meta object for the reference list '{@link activityDiagram.ForkNode#getOutgoings <em>Outgoings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Outgoings</em>'.
-	 * @see activityDiagram.Split#getOutgoings()
-	 * @see #getSplit()
+	 * @see activityDiagram.ForkNode#getOutgoings()
+	 * @see #getForkNode()
 	 * @generated
 	 */
-	EReference getSplit_Outgoings();
+	EReference getForkNode_Outgoings();
 
 	/**
-	 * Returns the meta object for class '{@link activityDiagram.Join <em>Join</em>}'.
+	 * Returns the meta object for class '{@link activityDiagram.MergeNode <em>Merge Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Join</em>'.
-	 * @see activityDiagram.Join
+	 * @return the meta object for class '<em>Merge Node</em>'.
+	 * @see activityDiagram.MergeNode
 	 * @generated
 	 */
-	EClass getJoin();
+	EClass getMergeNode();
 
 	/**
-	 * Returns the meta object for the reference '{@link activityDiagram.Join#getOutgoing <em>Outgoing</em>}'.
+	 * Returns the meta object for the reference '{@link activityDiagram.MergeNode#getOutgoing <em>Outgoing</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Outgoing</em>'.
-	 * @see activityDiagram.Join#getOutgoing()
-	 * @see #getJoin()
+	 * @see activityDiagram.MergeNode#getOutgoing()
+	 * @see #getMergeNode()
 	 * @generated
 	 */
-	EReference getJoin_Outgoing();
+	EReference getMergeNode_Outgoing();
 
 	/**
-	 * Returns the meta object for the reference list '{@link activityDiagram.Join#getIncomings <em>Incomings</em>}'.
+	 * Returns the meta object for the reference list '{@link activityDiagram.MergeNode#getIncomings <em>Incomings</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Incomings</em>'.
-	 * @see activityDiagram.Join#getIncomings()
-	 * @see #getJoin()
+	 * @see activityDiagram.MergeNode#getIncomings()
+	 * @see #getMergeNode()
 	 * @generated
 	 */
-	EReference getJoin_Incomings();
+	EReference getMergeNode_Incomings();
 
 	/**
 	 * Returns the meta object for class '{@link activityDiagram.Node <em>Node</em>}'.
@@ -1169,6 +1143,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		EReference ACTIVITY_DIAGRAM_CONTAINER__ELEMENTS = eINSTANCE.getactivityDiagramContainer_Elements();
 
 		/**
+		 * The meta object literal for the '<em><b>Activities</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVITY_DIAGRAM_CONTAINER__ACTIVITIES = eINSTANCE.getactivityDiagramContainer_Activities();
+
+		/**
 		 * The meta object literal for the '{@link activityDiagram.impl.ElementImpl <em>Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1177,14 +1159,6 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EClass ELEMENT = eINSTANCE.getElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ELEMENT__CONTAINER = eINSTANCE.getElement_Container();
 
 		/**
 		 * The meta object literal for the '{@link activityDiagram.impl.ActivityImpl <em>Activity</em>}' class.
@@ -1197,7 +1171,7 @@ public interface ActivityDiagramPackage extends EPackage {
 		EClass ACTIVITY = eINSTANCE.getActivity();
 
 		/**
-		 * The meta object literal for the '<em><b>Actions</b></em>' container reference feature.
+		 * The meta object literal for the '<em><b>Actions</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -1213,6 +1187,22 @@ public interface ActivityDiagramPackage extends EPackage {
 		EAttribute ACTIVITY__NAME = eINSTANCE.getActivity_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVITY__CONTAINER = eINSTANCE.getActivity_Container();
+
+		/**
+		 * The meta object literal for the '<em><b>Flows</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTIVITY__FLOWS = eINSTANCE.getActivity_Flows();
+
+		/**
 		 * The meta object literal for the '{@link activityDiagram.impl.ActionImpl <em>Action</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1223,12 +1213,28 @@ public interface ActivityDiagramPackage extends EPackage {
 		EClass ACTION = eINSTANCE.getAction();
 
 		/**
-		 * The meta object literal for the '<em><b>Activity</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Activity</b></em>' container reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
 		EReference ACTION__ACTIVITY = eINSTANCE.getAction_Activity();
+
+		/**
+		 * The meta object literal for the '<em><b>Incoming</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION__INCOMING = eINSTANCE.getAction_Incoming();
+
+		/**
+		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTION__OUTGOING = eINSTANCE.getAction_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1271,6 +1277,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute CONTROL_FLOW__CONDITION = eINSTANCE.getControlFlow_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Activity</b></em>' container reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTROL_FLOW__ACTIVITY = eINSTANCE.getControlFlow_Activity();
 
 		/**
 		 * The meta object literal for the '{@link activityDiagram.impl.SendSignalImpl <em>Send Signal</em>}' class.
@@ -1325,14 +1339,14 @@ public interface ActivityDiagramPackage extends EPackage {
 		EAttribute RECEIVE_SIGNAL__NAME = eINSTANCE.getReceiveSignal_Name();
 
 		/**
-		 * The meta object literal for the '{@link activityDiagram.impl.SplitImpl <em>Split</em>}' class.
+		 * The meta object literal for the '{@link activityDiagram.impl.ForkNodeImpl <em>Fork Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see activityDiagram.impl.SplitImpl
-		 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getSplit()
+		 * @see activityDiagram.impl.ForkNodeImpl
+		 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getForkNode()
 		 * @generated
 		 */
-		EClass SPLIT = eINSTANCE.getSplit();
+		EClass FORK_NODE = eINSTANCE.getForkNode();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming</b></em>' reference feature.
@@ -1340,7 +1354,7 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPLIT__INCOMING = eINSTANCE.getSplit_Incoming();
+		EReference FORK_NODE__INCOMING = eINSTANCE.getForkNode_Incoming();
 
 		/**
 		 * The meta object literal for the '<em><b>Outgoings</b></em>' reference list feature.
@@ -1348,17 +1362,17 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPLIT__OUTGOINGS = eINSTANCE.getSplit_Outgoings();
+		EReference FORK_NODE__OUTGOINGS = eINSTANCE.getForkNode_Outgoings();
 
 		/**
-		 * The meta object literal for the '{@link activityDiagram.impl.JoinImpl <em>Join</em>}' class.
+		 * The meta object literal for the '{@link activityDiagram.impl.MergeNodeImpl <em>Merge Node</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see activityDiagram.impl.JoinImpl
-		 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getJoin()
+		 * @see activityDiagram.impl.MergeNodeImpl
+		 * @see activityDiagram.impl.ActivityDiagramPackageImpl#getMergeNode()
 		 * @generated
 		 */
-		EClass JOIN = eINSTANCE.getJoin();
+		EClass MERGE_NODE = eINSTANCE.getMergeNode();
 
 		/**
 		 * The meta object literal for the '<em><b>Outgoing</b></em>' reference feature.
@@ -1366,7 +1380,7 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference JOIN__OUTGOING = eINSTANCE.getJoin_Outgoing();
+		EReference MERGE_NODE__OUTGOING = eINSTANCE.getMergeNode_Outgoing();
 
 		/**
 		 * The meta object literal for the '<em><b>Incomings</b></em>' reference list feature.
@@ -1374,7 +1388,7 @@ public interface ActivityDiagramPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference JOIN__INCOMINGS = eINSTANCE.getJoin_Incomings();
+		EReference MERGE_NODE__INCOMINGS = eINSTANCE.getMergeNode_Incomings();
 
 		/**
 		 * The meta object literal for the '{@link activityDiagram.impl.NodeImpl <em>Node</em>}' class.

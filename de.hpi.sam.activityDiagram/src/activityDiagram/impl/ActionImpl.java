@@ -9,21 +9,17 @@ package activityDiagram.impl;
 import activityDiagram.Action;
 import activityDiagram.Activity;
 import activityDiagram.ActivityDiagramPackage;
-
-import java.util.Collection;
+import activityDiagram.ControlFlow;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,6 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link activityDiagram.impl.ActionImpl#getActivity <em>Activity</em>}</li>
+ *   <li>{@link activityDiagram.impl.ActionImpl#getIncoming <em>Incoming</em>}</li>
+ *   <li>{@link activityDiagram.impl.ActionImpl#getOutgoing <em>Outgoing</em>}</li>
  *   <li>{@link activityDiagram.impl.ActionImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
@@ -41,14 +39,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ActionImpl extends ElementImpl implements Action {
 	/**
-	 * The cached value of the '{@link #getActivity() <em>Activity</em>}' containment reference list.
+	 * The cached value of the '{@link #getIncoming() <em>Incoming</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getActivity()
+	 * @see #getIncoming()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Activity> activity;
+	protected ControlFlow incoming;
+
+	/**
+	 * The cached value of the '{@link #getOutgoing() <em>Outgoing</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getOutgoing()
+	 * @generated
+	 * @ordered
+	 */
+	protected ControlFlow outgoing;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -94,11 +102,116 @@ public class ActionImpl extends ElementImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Activity> getActivity() {
-		if (activity == null) {
-			activity = new EObjectContainmentWithInverseEList<Activity>(Activity.class, this, ActivityDiagramPackage.ACTION__ACTIVITY, ActivityDiagramPackage.ACTIVITY__ACTIONS);
+	public Activity getActivity() {
+		if (eContainerFeatureID() != ActivityDiagramPackage.ACTION__ACTIVITY) return null;
+		return (Activity)eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetActivity(Activity newActivity, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newActivity, ActivityDiagramPackage.ACTION__ACTIVITY, msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setActivity(Activity newActivity) {
+		if (newActivity != eInternalContainer() || (eContainerFeatureID() != ActivityDiagramPackage.ACTION__ACTIVITY && newActivity != null)) {
+			if (EcoreUtil.isAncestor(this, newActivity))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newActivity != null)
+				msgs = ((InternalEObject)newActivity).eInverseAdd(this, ActivityDiagramPackage.ACTIVITY__ACTIONS, Activity.class, msgs);
+			msgs = basicSetActivity(newActivity, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return activity;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTION__ACTIVITY, newActivity, newActivity));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlow getIncoming() {
+		if (incoming != null && incoming.eIsProxy()) {
+			InternalEObject oldIncoming = (InternalEObject)incoming;
+			incoming = (ControlFlow)eResolveProxy(oldIncoming);
+			if (incoming != oldIncoming) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.ACTION__INCOMING, oldIncoming, incoming));
+			}
+		}
+		return incoming;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlow basicGetIncoming() {
+		return incoming;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setIncoming(ControlFlow newIncoming) {
+		ControlFlow oldIncoming = incoming;
+		incoming = newIncoming;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTION__INCOMING, oldIncoming, incoming));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlow getOutgoing() {
+		if (outgoing != null && outgoing.eIsProxy()) {
+			InternalEObject oldOutgoing = (InternalEObject)outgoing;
+			outgoing = (ControlFlow)eResolveProxy(oldOutgoing);
+			if (outgoing != oldOutgoing) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ActivityDiagramPackage.ACTION__OUTGOING, oldOutgoing, outgoing));
+			}
+		}
+		return outgoing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ControlFlow basicGetOutgoing() {
+		return outgoing;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOutgoing(ControlFlow newOutgoing) {
+		ControlFlow oldOutgoing = outgoing;
+		outgoing = newOutgoing;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityDiagramPackage.ACTION__OUTGOING, oldOutgoing, outgoing));
 	}
 
 	/**
@@ -127,12 +240,13 @@ public class ActionImpl extends ElementImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTION__ACTIVITY:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getActivity()).basicAdd(otherEnd, msgs);
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetActivity((Activity)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -146,9 +260,23 @@ public class ActionImpl extends ElementImpl implements Action {
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTION__ACTIVITY:
-				return ((InternalEList<?>)getActivity()).basicRemove(otherEnd, msgs);
+				return basicSetActivity(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID()) {
+			case ActivityDiagramPackage.ACTION__ACTIVITY:
+				return eInternalContainer().eInverseRemove(this, ActivityDiagramPackage.ACTIVITY__ACTIONS, Activity.class, msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
 
 	/**
@@ -161,6 +289,12 @@ public class ActionImpl extends ElementImpl implements Action {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTION__ACTIVITY:
 				return getActivity();
+			case ActivityDiagramPackage.ACTION__INCOMING:
+				if (resolve) return getIncoming();
+				return basicGetIncoming();
+			case ActivityDiagramPackage.ACTION__OUTGOING:
+				if (resolve) return getOutgoing();
+				return basicGetOutgoing();
 			case ActivityDiagramPackage.ACTION__NAME:
 				return getName();
 		}
@@ -172,13 +306,17 @@ public class ActionImpl extends ElementImpl implements Action {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTION__ACTIVITY:
-				getActivity().clear();
-				getActivity().addAll((Collection<? extends Activity>)newValue);
+				setActivity((Activity)newValue);
+				return;
+			case ActivityDiagramPackage.ACTION__INCOMING:
+				setIncoming((ControlFlow)newValue);
+				return;
+			case ActivityDiagramPackage.ACTION__OUTGOING:
+				setOutgoing((ControlFlow)newValue);
 				return;
 			case ActivityDiagramPackage.ACTION__NAME:
 				setName((String)newValue);
@@ -196,7 +334,13 @@ public class ActionImpl extends ElementImpl implements Action {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTION__ACTIVITY:
-				getActivity().clear();
+				setActivity((Activity)null);
+				return;
+			case ActivityDiagramPackage.ACTION__INCOMING:
+				setIncoming((ControlFlow)null);
+				return;
+			case ActivityDiagramPackage.ACTION__OUTGOING:
+				setOutgoing((ControlFlow)null);
 				return;
 			case ActivityDiagramPackage.ACTION__NAME:
 				setName(NAME_EDEFAULT);
@@ -214,7 +358,11 @@ public class ActionImpl extends ElementImpl implements Action {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ActivityDiagramPackage.ACTION__ACTIVITY:
-				return activity != null && !activity.isEmpty();
+				return getActivity() != null;
+			case ActivityDiagramPackage.ACTION__INCOMING:
+				return incoming != null;
+			case ActivityDiagramPackage.ACTION__OUTGOING:
+				return outgoing != null;
 			case ActivityDiagramPackage.ACTION__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}

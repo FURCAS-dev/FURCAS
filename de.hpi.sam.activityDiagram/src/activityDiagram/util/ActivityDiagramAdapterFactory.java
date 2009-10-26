@@ -100,12 +100,12 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 				return createReceiveSignalAdapter();
 			}
 			@Override
-			public Adapter caseSplit(Split object) {
-				return createSplitAdapter();
+			public Adapter caseForkNode(ForkNode object) {
+				return createForkNodeAdapter();
 			}
 			@Override
-			public Adapter caseJoin(Join object) {
-				return createJoinAdapter();
+			public Adapter caseMergeNode(MergeNode object) {
+				return createMergeNodeAdapter();
 			}
 			@Override
 			public Adapter caseNode(Node object) {
@@ -254,30 +254,30 @@ public class ActivityDiagramAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link activityDiagram.Split <em>Split</em>}'.
+	 * Creates a new adapter for an object of class '{@link activityDiagram.ForkNode <em>Fork Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see activityDiagram.Split
+	 * @see activityDiagram.ForkNode
 	 * @generated
 	 */
-	public Adapter createSplitAdapter() {
+	public Adapter createForkNodeAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link activityDiagram.Join <em>Join</em>}'.
+	 * Creates a new adapter for an object of class '{@link activityDiagram.MergeNode <em>Merge Node</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see activityDiagram.Join
+	 * @see activityDiagram.MergeNode
 	 * @generated
 	 */
-	public Adapter createJoinAdapter() {
+	public Adapter createMergeNodeAdapter() {
 		return null;
 	}
 
