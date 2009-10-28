@@ -64,15 +64,10 @@
 			<zipfileset dir="${buildDirectory}/LPG" 
 						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
 			/>
-		</zip>
-
-		<!-- Add the LPG bundles into Update zip -->
-		<!--zip destfile="${buildDirectory}/${buildLabel}/${UpdateZip}" update="true">
-			<zipfileset dir="${buildDirectory}/LPG" 
-						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+			<zipfileset dir="${buildDirectory}" 
+						includes="**/epl-v10.html, **/notice.html"
 			/>
-		</zip-->
-		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
+		</zip>
 
 		<!-- build runtime from SDK -->
 		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-runtime${incubation}-${buildAlias}.zip" update="true">
@@ -84,14 +79,9 @@
 				<include name="**/${domainNamespace}.ocl*/" />
 				<include name="**/${domainNamespace}.ocl*/**" />
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*" />
-						
+				<include name="**/epl-v10.html" />
+				<include name="**/notice.html" />
 			</zipfileset>
-			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
-			            dirmode="775"
-			            filemode="664"
-			            id="rootfiles"
-			            includes="**/eclipse/epl-v10.html, **/eclipse/notice.html"
-			/>
 		</zip>
 
 		<!-- standalone: extract the jars we need into ./lib/, then the readme into ./, then zip the whole thing and clean up -->
