@@ -65,7 +65,7 @@
 						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
 			/>
 			<zipfileset dir="${buildDirectory}" 
-						includes="**/epl-v10.html, **/notice.html"
+						includes="epl-v10.html, notice.html" prefix="eclipse"
 			/>
 		</zip>
 
@@ -79,8 +79,8 @@
 				<include name="**/${domainNamespace}.ocl*/" />
 				<include name="**/${domainNamespace}.ocl*/**" />
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*" />
-				<include name="**/epl-v10.html" />
-				<include name="**/notice.html" />
+				<include name="**/eclipse/epl-v10.html" />
+				<include name="**/eclipse/notice.html" />
 			</zipfileset>
 		</zip>
 
