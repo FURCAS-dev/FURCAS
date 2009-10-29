@@ -10,12 +10,13 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.internal.impl;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.BufferOverflowException;
 import java.nio.ByteBuffer;
+import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
 import java.nio.channels.WritableByteChannel;
 import java.util.HashMap;
@@ -49,7 +50,7 @@ public class SerializationStrategyFactory {
 
 	private static final int BYTE_SIZE = Byte.SIZE / 8;
 
-	public static final int NO_INT = 0x3FFFFFFE;
+	public static final int NO_INT = -1;
 
 	// Java spec requires for UTF-8 to be available on all supported platforms
 	private static final String STRING_ENCODING = "UTF-8"; //$NON-NLS-1$
@@ -685,13 +686,16 @@ public class SerializationStrategyFactory {
 
 		private static final byte INTRA = 0;
 		private static final byte CROSS = 1;
+		private int[] position = new int[2];
 
 		@Override
 		public EReferenceDescriptorInternal readElement(String key) {
 			byte linkType = channel.getByte();
 			switch (linkType) {
 			case INTRA:
-				return this.linkTable.get(channel.getLong());
+				position[0] = channel.getInt();
+				position[1] = channel.getInt();
+				return this.linkTable.get(position);
 			case CROSS:
 				URI tarRes = URI.createURI(channel.getString());
 				String fragment = channel.getString();
@@ -718,7 +722,9 @@ public class SerializationStrategyFactory {
 		public void writeElement(EReferenceDescriptorInternal element) {
 			if (element.isIntraLink()) {
 				channel.putByte(INTRA);
-				channel.putLong(this.linkTable.getPosition(element));
+				this.linkTable.getPosition(element, position);
+				channel.putInt(position[0]);
+				channel.putInt(position[1]);
 			} else {
 				channel.putByte(CROSS);
 				channel.putString(element.getSourceResourceURI().toString());
@@ -811,16 +817,18 @@ public class SerializationStrategyFactory {
 
 	private Channel channel;
 
-	public SerializationStrategyFactory(FileInputStream ch) {
+	public SerializationStrategyFactory(InputStream ch) {
 		try {
-			this.channel = new DumpReadBuffer(ch.getChannel(), MAX_SIZE, true);
+			ReadableByteChannel newChannel = Channels.newChannel(ch);
+			this.channel = new DumpReadBuffer(newChannel, MAX_SIZE, true);
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
 	}
 
-	public SerializationStrategyFactory(FileOutputStream ch) {
-		this.channel = new DumpWriteBuffer(ch.getChannel(), MAX_SIZE, true);
+	public SerializationStrategyFactory(OutputStream ch) {
+		WritableByteChannel newChannel = Channels.newChannel(ch);
+		this.channel = new DumpWriteBuffer(newChannel, MAX_SIZE, true);
 	}
 
 	public SerializationStrategy<String, EObjectDescriptorImpl> createEObjectMapStrategy(PageableResourceDescriptorImpl resDesc) {
@@ -836,9 +844,9 @@ public class SerializationStrategyFactory {
 		return new OutgoingLinkMapStrategy(this.getChannel(), resourceMap, eObjectMap);
 	}
 
-	public SerializationStrategy<String, EReferenceDescriptorInternal> createIncomingLinkMapStrategy(PageableResourceDescriptorImpl resDesc,
-			SingleMap<String, EObjectDescriptorImpl> eObjectMap, SingleMap<URI, PageableResourceDescriptorImpl> resourceMap,
-			ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable) {
+	public SerializationStrategy<String, EReferenceDescriptorInternal> createIncomingLinkMapStrategy(
+			PageableResourceDescriptorImpl resDesc, SingleMap<String, EObjectDescriptorImpl> eObjectMap,
+			SingleMap<URI, PageableResourceDescriptorImpl> resourceMap, ListMap<String, ReferenceDescriptorImpl> outgoingLinkTable) {
 		return new IncomingLinkMapStrategy(this.getChannel(), resDesc, resourceMap, eObjectMap, outgoingLinkTable);
 	}
 

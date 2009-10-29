@@ -423,7 +423,7 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 		this.initialize(tab, size);
 	}
 
-	public <T extends MapEntry> long getPosition(T element) {
+	public <T extends MapEntry> void getPosition(T element, int[] output) {
 		if (element == null) {
 			throw new IllegalArgumentException("Argument must not be null");
 		}
@@ -442,7 +442,9 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 				E[] elems = (E[]) item;
 				for (int j = 0; j < elems.length; j++) {
 					if (elems[j] == element) {
-						return ((long) i) << 32 | j;
+						output[0] = i;
+						output[1] = j;
+						return;
 					}
 				}
 			}
@@ -450,9 +452,9 @@ public class ListMap<K, E extends MapEntry> extends AbstractKeylessMapBase<K, E>
 		}
 	}
 
-	public E get(long position) {
-		int j = (int) position;
-		int i = (int) (position >> 32);
+	public E get(int[] position) {
+		int j = position[1];
+		int i = position[0];
 		Object[] tab = (Object[]) this.table[i];
 		return (E) tab[j];
 	}
