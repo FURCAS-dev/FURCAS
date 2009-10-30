@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import usecase.Actor;
-import usecase.Akteur;
 import usecase.Association;
 import usecase.Element;
 import usecase.Usecase;

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import usecase.Actor;
-import usecase.Akteur;
 import usecase.Association;
 import usecase.Usecase;
 import usecase.UsecasePackage;
