@@ -1,0 +1,222 @@
+package com.sap.ide.cts.editor.contentassist.processor;
+
+import generated.TCSLexer;
+import generated.TCSParser;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Before;
+import org.junit.Test;
+
+/**
+ * 
+ */
+public class TestCtsContentAssistProcessorTCSEnumeration extends
+		CtsContentAssistProcessorTestBase {
+
+	@Before
+	public void initProcessor() {
+		initMetamodelId("demo.sap.com/tcsmeta");
+		initProcessorForFixture("Enumeration.tcs", TCSLexer.class,
+				TCSParser.class, "TCS", TCSLexer.class
+						.getResourceAsStream("TCS.tcs"));
+	}
+
+	@Test
+	public void testAfterSyntaxNameProperty() {
+		List<String> expected = new ArrayList<String>();
+		expected.add("(");
+		expected.add("{");
+
+		assertDisplayStrings(expected, 0, 19);
+	}
+
+	@Test
+	public void testAfterSyntaxOpeningBracket() {
+		List<String> expected = new ArrayList<String>();
+		expected.add("enumerationTemplate");
+		expected.add("enumerationTemplate -> : ;");
+		expected.add("enumerationTemplate -> ;");
+		expected.add("enumerationTemplate name : ;");
+		expected.add("enumerationTemplate name :: name : ;");
+		expected.add("enumerationTemplate name :: name ;");
+		expected.add("enumerationTemplate name ;");
+		expected.add("function");
+		expected.add("function functionName ( -> ) : ;");
+		expected.add("function functionName ( name ) : ;");
+		expected.add("function functionName ( name :: name ) : ;");
+		expected.add("keywords");
+		expected.add("lexer");
+		expected.add("omitted");
+		expected.add("operatorTemplate");
+		expected
+				.add("operatorTemplate -> ( operators = , source = -> name ) : ;");
+		expected
+				.add("operatorTemplate -> ( operators = , source = -> name ) ;");
+		expected
+				.add("operatorTemplate -> ( operators = , source = strucfeature ) : ;");
+		expected
+				.add("operatorTemplate -> ( operators = , source = strucfeature ) ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = -> name ) : ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = -> name ) ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = strucfeature ) : ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = strucfeature ) ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = -> name ) : ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = -> name ) ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = strucfeature ) : ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = strucfeature ) ;");
+		expected.add("operators");
+		expected.add("operators { }");
+		expected.add("primitiveTemplate");
+		expected
+				.add("primitiveTemplate templateName for -> using tokenName : value = value ;");
+		expected
+				.add("primitiveTemplate templateName for name :: name using tokenName : value = value ;");
+		expected
+				.add("primitiveTemplate templateName for name using tokenName : value = value ;");
+		expected.add("symbols");
+		expected.add("template");
+		expected.add("template -> : ;");
+		expected.add("template -> ;");
+		expected.add("template name : ;");
+		expected.add("template name :: name : ;");
+		expected.add("template name :: name ;");
+		expected.add("template name ;");
+		expected.add("token");
+		expected.add("token name : ;");
+		expected.add("}");
+
+		assertDisplayStrings(expected, 1, 0);
+	}
+
+	@Test
+	public void testAfterEndOfFirstTemplate() {
+		List<String> expected = new ArrayList<String>();
+		expected.add("enumerationTemplate");
+		expected.add("enumerationTemplate -> : ;");
+		expected.add("enumerationTemplate -> ;");
+		expected.add("enumerationTemplate name : ;");
+		expected.add("enumerationTemplate name :: name : ;");
+		expected.add("enumerationTemplate name :: name ;");
+		expected.add("enumerationTemplate name ;");
+		expected.add("function");
+		expected.add("function functionName ( -> ) : ;");
+		expected.add("function functionName ( name ) : ;");
+		expected.add("function functionName ( name :: name ) : ;");
+		expected.add("keywords");
+		expected.add("lexer");
+		expected.add("omitted");
+		expected.add("operatorTemplate");
+		expected
+				.add("operatorTemplate -> ( operators = , source = -> name ) : ;");
+		expected
+				.add("operatorTemplate -> ( operators = , source = -> name ) ;");
+		expected
+				.add("operatorTemplate -> ( operators = , source = strucfeature ) : ;");
+		expected
+				.add("operatorTemplate -> ( operators = , source = strucfeature ) ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = -> name ) : ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = -> name ) ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = strucfeature ) : ;");
+		expected
+				.add("operatorTemplate name ( operators = , source = strucfeature ) ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = -> name ) : ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = -> name ) ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = strucfeature ) : ;");
+		expected
+				.add("operatorTemplate name :: name ( operators = , source = strucfeature ) ;");
+		expected.add("operators");
+		expected.add("operators { }");
+		expected.add("primitiveTemplate");
+		expected
+				.add("primitiveTemplate templateName for -> using tokenName : value = value ;");
+		expected
+				.add("primitiveTemplate templateName for name :: name using tokenName : value = value ;");
+		expected
+				.add("primitiveTemplate templateName for name using tokenName : value = value ;");
+		expected.add("symbols");
+		expected.add("template");
+		expected.add("template -> : ;");
+		expected.add("template -> ;");
+		expected.add("template name : ;");
+		expected.add("template name :: name : ;");
+		expected.add("template name :: name ;");
+		expected.add("template name ;");
+		expected.add("token");
+		expected.add("token name : ;");
+		expected.add("}");
+
+		assertDisplayStrings(expected, 12, 0);
+	}
+
+	@Test
+	public void testEnumerationAutoCreateArgValue() {
+		List<String> expected = new ArrayList<String>();
+		expected.add("always");
+		expected.add("ifmissing");
+		expected.add("never");
+		expected.add("value");
+
+		assertDisplayStrings(expected, 8, 77);
+	}
+
+	@Test
+	public void testAfterEnumerationAutoCreateArgValue() {
+		List<String> expected = new ArrayList<String>();
+		expected.add(",");
+		expected.add("}");
+
+		assertDisplayStrings(expected, 8, 86);
+	}
+
+	@Test
+	public void testAfterEnumerationAutoCreateArgValueAndSeparator() {
+		List<String> expected = new ArrayList<String>();
+		expected.add(",");
+		expected.add("as");
+		expected.add("as = template");
+		expected.add("autoCreate");
+		expected.add("autoCreate = value");
+		expected.add("createAs");
+		expected.add("createAs =");
+		expected.add("createIn");
+		expected.add("createIn =");
+		expected.add("disambiguate");
+		expected.add("disambiguate = disambiguation");
+		expected.add("filter");
+		expected.add("filter = filter");
+		expected.add("forcedLower");
+		expected.add("forcedLower = value");
+		expected.add("forcedUpper");
+		expected.add("forcedUpper = value");
+		expected.add("importContext");
+		expected.add("lookIn");
+		expected.add("lookIn =");
+		expected.add("mode");
+		expected.add("mode = mode");
+		expected.add("partial");
+		expected.add("query");
+		expected.add("query = query");
+		expected.add("refersTo");
+		expected.add("refersTo = propertyName");
+		expected.add("separator");
+		expected.add("separator =");
+
+		assertDisplayStrings(expected, 8, 87);
+	}
+}

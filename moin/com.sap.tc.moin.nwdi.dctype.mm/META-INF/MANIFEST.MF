@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %plugin.name
+Bundle-SymbolicName: com.sap.tc.moin.nwdi.dctype.mm;singleton:=true
+Bundle-Version: 1.0.0.090422161532
+Bundle-Activator: com.sap.tc.moin.nwdi.dctype.mm.internal.MoinMetaModelDCTypePlugin
+Bundle-Vendor: %provider.name
+Bundle-Localization: plugin
+Export-Package: com.sap.tc.moin.nwdi.dctype.mm
+Require-Bundle: org.eclipse.core.resources,com.sap.ide.dii05.facade,com.tssap.util.core,com.tssap.util.ui,com.sap.mi.fwk.dcfwk,org.eclipse.ui.navigator
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ActivationPolicy: lazy

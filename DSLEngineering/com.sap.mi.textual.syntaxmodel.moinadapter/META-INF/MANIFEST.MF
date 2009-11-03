@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Moinadapter Plug-in
+Bundle-SymbolicName: com.sap.mi.textual.syntaxmodel.moinadapter
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Require-Bundle: com.sap.mi.textual.common,
+ com.sap.mi.textual.grammar.parser,
+ com.sap.tc.moin.textual.runtime.moin,
+ com.sap.tc.moin.ide.facade,
+ com.sap.tcsmeta.mm.eclipse,
+ com.sap.mi.textual.parsing
+Export-Package: com.sap.mi.textual.syntaxmodel.moinadapter

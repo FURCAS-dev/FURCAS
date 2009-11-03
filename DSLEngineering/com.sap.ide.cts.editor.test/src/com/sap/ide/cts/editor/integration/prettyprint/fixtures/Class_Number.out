@@ -1,0 +1,19 @@
+value class Number{const Boolean 1..1 greaterOrEquals(Number 1..1 n)
+  native
+const Boolean 1..1 greaterThan(Number 1..1 n)
+  native
+const Boolean 1..1 lessOrEquals(Number 1..1 n)
+  native
+const Boolean 1..1 lessThan(Number 1..1 n)
+  native
+const Number 1..1 minus(Number 0..*n)
+  native
+const Number 1..1 plus(Number 0..*n)
+  native
+const Number 1..1 times(Number 0..*n)
+  native
+const Number 1..1 div(Number 0..*n)
+  native
+const Number 1..1 negate()
+  native
+}

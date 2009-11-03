@@ -1,0 +1,40 @@
+<project name="OCLCommon" default="clean.distribute" basedir=".">
+
+	<property file="${ant.file.OCLCommon}/../build.properties" />
+	<property file="${ant.file.OCLCommon}/../../build.properties" />
+	<property file="${ant.file.OCLCommon}/../../build.properties.default" />	
+
+	<import file="${OCLBase}/generic-build.xml" />
+			
+	<target name="call.dependent">
+		<!-- nothing to do -->
+	</target>	
+	
+	<path id="project.src.path">
+		<pathelement location="${oclCommon.src.dir}" />
+		<pathelement location="${oclCommon.srcgen.dir}" />
+		<pathelement location="${oclCommon.srcgensyntax.dir}" />
+	</path>
+	
+	<target name="clean">
+		<delete includeemptydirs="true" failonerror="false">
+			<fileset dir="${oclCommon.bin.dir}" includes="**/*" />
+		</delete>
+	</target>
+	
+	<target name="init">
+		<mkdir dir="${oclCommon.bin.dir}" />
+	</target>
+
+	<target name="compile" description="Compiles the java sources">
+		<javac destdir="${oclCommon.bin.dir}" deprecation="${deprecation.warnings}" debug="${build.compiler.debug}" encoding="ISO-8859-1" source="1.4" target="1.4">
+			<classpath refid="oclCommon.class.path" />
+			<src refid="project.src.path" />
+		</javac>
+	</target>
+	
+	<target name="pack">
+		<!-- nothing to do -->
+	</target>	
+	
+</project>

@@ -1,0 +1,24 @@
+syntax Problem {
+
+	primitiveTemplate string for ->String default using STRING:
+		value = "unescapeString(%token%)";
+
+	template ->Problem multi main
+		:	->severity ->description "at" ->location ";"
+		;
+
+	enumerationTemplate ->Severity
+		:	#error		= "error",
+			#warning	= "warning",
+			#critic		= "critic"
+		;
+
+	symbols {
+		semi		= ";";
+	}
+
+	token COMMENT	: endOfLine(start = "--");
+
+	
+}
+

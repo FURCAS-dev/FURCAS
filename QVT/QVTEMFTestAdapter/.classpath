@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OCLEMFTestAdapter"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QVTCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QVTEMF"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QVTTestAdapter"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OCLTestAdapter"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,71 @@
+package com.sap.runlet.testmetamodel.editor;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import org.eclipse.core.resources.IProject;
+
+import runlettest.RunletTest;
+
+import com.sap.ide.treeprovider.GenericRefObjectNode;
+import com.sap.ide.treeprovider.RootNodeProvider;
+import com.sap.mi.fwk.IPartitionScopeProvider;
+import com.sap.mi.fwk.PartitionService;
+import com.sap.mi.fwk.QueryService;
+import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mql.MQLResultSet;
+import com.sap.tc.moin.repository.mql.QueryScopeProvider;
+
+/**
+ * Computes the root nodes of the Runlet metamodel which are the deployment
+ * units.
+ * 
+ * @author Axel Uhl D043530
+ * 
+ */
+public class RunletRootNodeProvider implements RootNodeProvider {
+
+    private static List<MofClass> topLevelModelElementTypes;
+
+    @Override
+    public List<ITreeNode<?>> getChildren(Object parent, IProject project, Connection connection) {
+	IPartitionScopeProvider partitionScopeProvider = PartitionService.getInstance().getPartitionScopeProvider(project, connection,
+		com.sap.mi.fwk.IPartitionScopeProvider.PartitionScope.INNER);
+	QueryScopeProvider queryScopeProvider = QueryService.getInstance().getQueryScopeProvider(partitionScopeProvider);
+	MQLResultSet runletTestTest = connection.getMQLProcessor().execute(
+		"select rt from runlettest::RunletTest as rt", queryScopeProvider); //$NON-NLS-1$
+	RefObject[] runletTest = runletTestTest.getRefObjects("rt"); //$NON-NLS-1$
+	List<ITreeNode<?>> children = new ArrayList<ITreeNode<?>>(runletTest.length + 1);
+	for (int i = 0; i < runletTest.length; i++) {
+	    children.add(new GenericRefObjectNode(parent, runletTest[i]));
+	}
+	return children;
+    }
+
+    @Override
+    public List<MofClass> getTopLevelModelElementTypes(Connection connection) {
+	if (connection == null) {
+	    return Collections.emptyList();
+	} 
+	else if (topLevelModelElementTypes == null) {
+	    topLevelModelElementTypes = new ArrayList<MofClass>(1);
+	    topLevelModelElementTypes.add(connection.getClass(RunletTest.CLASS_DESCRIPTOR).refMetaObject());
+	}
+	return topLevelModelElementTypes;
+    }
+
+    @Override
+    public String getPartionFolderName() {
+	return "src";
+    }
+
+    @Override
+    public String getPartitionExtension() {
+	return "types";
+    }
+
+}

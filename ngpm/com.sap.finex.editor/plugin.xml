@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.sap.finex.editor.FinexClassEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="finex"
+            icon="resources/icons/change_view_action.gif"
+            id="com.sap.finex.editor.TypeEditor"
+            name="Class Editor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="false"
+            default="true"
+            editorId="com.sap.finex.editor.TypeEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="structure.Type">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.rootNodeDefinition">
+        <rootNodeProvider classname="com.sap.finex.tree.FinexRootNodeProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.textLabelProvider">
+        <textLabelProvider classname="com.sap.finex.tree.FinexTreeLabelProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.imageProvider">
+        <imageProvider classname="com.sap.finex.tree.FinexTreeImageProvider" />
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Path
+               Value="mappings"
+               Versioned="true">
+         </Path>
+      </ContentDefinition>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.editor.autoEditing">
+      <configuration
+            autoEditingType="static (default)">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.editor.bracketMatching">
+      <configuration
+            matchingType="default">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.editor.folding">
+      <configuration
+            foldingType="static (default)">
+      </configuration>
+   </extension>
+
+</plugin>

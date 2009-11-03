@@ -1,0 +1,7 @@
+.svn*
+obj/
+bin/
+*.suo
+*.user
+*.db
+*.class

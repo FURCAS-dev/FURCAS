@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Require-Bundle: com.sap.tc.moin.query.repositoryhelper;visibility:=ree
+ xport
+Export-Package: .
+Bundle-Vendor: %providerName
+Bundle-Version: 2.0.0.090422162124
+Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-ManifestVersion: 2
+Bundle-SymbolicName: com.sap.tc.moin.friends.di.facade;singleton:=true
+

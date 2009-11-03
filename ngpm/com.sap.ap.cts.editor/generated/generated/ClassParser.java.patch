@@ -1,0 +1,15 @@
+Index: ClassParser.java
+===================================================================
+--- ClassParser.java    (revision 2461)
++++ ClassParser.java    (working copy)
+@@ -16,6 +16,10 @@
+ import java.util.Map;
+ import java.util.HashMap;
+ public class ClassParser extends ObservableInjectingParser {
++       
++       private final String opName = null;
++       private final Token firstToken = null;
++       
+     public static final String[] tokenNames = new String[] {
+         "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "BOOL", "BINARY", "DATE", "OBJECT", "LCURL", "RCURL", "LANGLE", "RANGLE", "COLON", "LPAREN", "RPAREN", "EQUALS", "DOT", "DCOLON", "ARROW", "PIPE", "LBRACKET", "RBRACKET", "DDOT", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "ASSIGN", "ORDERED", "UNIQUE", "ORDEREDUNIQUE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "RANGE_OR_INT", "'excluding'", "','", "'value'", "'+='", "'}]'", "'new'", "'owns'", "'else'", "'[{'", "'AddLink'", "';'", "'*'", "'iterate'", "'const'", "'void'", "'fromEntry'", "']}'", "'RemoveLink'", "'fetchCell'", "'excludingAt'", "'native'", "'this'", "'function'", "'foreach'", "'return'", "'class'", "'while'", "'var'", "'{['", "'dim'", "'count'", "'-='", "'includingAt'", "'NULL'", "'if'", "'including'"
+     };

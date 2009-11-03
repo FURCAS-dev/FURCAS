@@ -1,0 +1,1 @@
+This project gives access to the metamodel of TCS as provided by a MOIN metamodel wrapper plugin.

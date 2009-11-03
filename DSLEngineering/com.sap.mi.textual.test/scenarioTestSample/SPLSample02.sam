@@ -1,0 +1,11 @@
+service SimpleForward {
+        processing {
+                uri us = 'sip:phoenix@barbade.enseirb.fr';
+
+                registration {
+                        response incoming INVITE() {
+                                return forward us;
+                        }
+                }
+        }
+}

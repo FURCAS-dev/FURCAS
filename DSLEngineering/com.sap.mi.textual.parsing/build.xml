@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+ This script allow to build a jar from already compile java classes for usage with generated DSL parsers. 
+ Date: $Date: 2008-12-03 12:08:25 +0100 (Mi, 03 Dez 2008) $
+ Revision: $Revision: 2413 $
+ Author: $Author: c5107456 $
+-->
+<project name="com.sap.mi.textual.parsing" basedir="." default="jar">
+
+  <property name="build" location="./bin"/>
+	<property name="src" location="./src"/>
+  <property name="jarDir" location="./jar"/>
+  <property name="jarname" location="${jarDir}/DSLParsing.jar"/>
+
+  <target name="jar" depends="create">
+    <jar jarfile="${jarname}" basedir="${build}"/>
+  	<echo message="This build created a jarfile '${jarname}' for usage in projects using generated Parsers."/>
+  </target>
+  
+  <target name="jarWithSources" depends="create">
+    <jar jarfile="${jarname}" >
+    	<fileset dir="${build}" />
+    	<fileset dir="${src}"/>
+    </jar>
+  	<echo message="This build created a jarfile '${jarname}' for usage in projects using generated Parsers."/>
+  </target>
+	
+  <target name="create" depends="delete">
+    <mkdir dir="${jarDir}"/>
+  </target>
+
+  <target name="delete">
+    <delete file="${jarname}"/>
+  </target>
+
+ <target name="compile">
+ 	<!--<javac srcdir="src" destdir="${build}">
+ 	      <classpath>
+ 	         <pathelement path="${classpath}"/>
+ 	     	 <pathelement location="lib/antlr-3.1.1.jar"/>
+ 	   	     <pathelement location="lib/stringtemplate.jar"/>
+ 	   	  </classpath>
+ 	    </javac>
+ 	    -->
+  </target>
+
+ 
+</project>

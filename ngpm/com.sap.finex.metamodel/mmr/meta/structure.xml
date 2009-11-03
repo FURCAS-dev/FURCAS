@@ -1,0 +1,859 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1' ?>
+<!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue Oct 27 16:33:16 2009' >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>Unisys.JCR.1</XMI.exporter>
+   <XMI.exporterVersion>1.3.2</XMI.exporterVersion>
+  </XMI.documentation>
+  <XMI.metamodel xmi.name = 'org.omg.mof.Model' xmi.version = '1.3'/>
+ </XMI.header>
+<XMI.content>
+<!-- ==================== structure    [Package] ==================== -->
+<Model:Package xmi.id = 'a4AC9B68C00DA' 
+  name = 'structure' annotation = '' 
+  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+  <Model:Namespace.contents>
+    <!-- ==================== structure.FinexClass    [Class] ==================== -->
+    <Model:Class xmi.id = 'a4AC9B93102DE' 
+      name = 'FinexClass' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:ModelElement.constraints>
+        <Model:Constraint xmi.idref = 'a4ACB356D005D'/>  <!-- structure.FinexClass.OnlyOneUnnamedFunction -->
+        <Model:Constraint xmi.idref = 'a4ACC43B40389'/>  <!-- structure.FinexClass.InvariantsMustBeBoolean -->
+        <Model:Constraint xmi.idref = 'a4AD814A50000'/>  <!-- structure.FinexClass.InvariantsMustBeSideEffectFree -->
+        <Model:Constraint xmi.idref = 'a4AD314B90242'/>  <!-- structure.FinexClass.FieldsMustHaveUniqueNames -->
+      </Model:ModelElement.constraints>
+      <Model:GeneralizableElement.supertypes>
+        <Model:GeneralizableElement xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+      </Model:GeneralizableElement.supertypes>
+      <Model:Namespace.contents>
+        <!-- ==================== structure.FinexClass.invariants    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AC9BC3A00FA' 
+          name = 'invariants' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BBE90196'/>
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AC9BC3A00FA'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.FinexClass.ownedTypes    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AC9F939007D' 
+          name = 'ownedTypes' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AC9F939007D'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.FinexClass.functions    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4ACA57A202EB' 
+          name = 'functions' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BCB402BF'/>
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4ACA57A202EB'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.FinexClass.associations    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AD84792002E' 
+          name = 'associations' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AD83D6C029F'/>  <!-- structure.Association -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AD84792002E'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.FinexClass.valueType    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a4AC9F8AB0280' 
+          name = 'valueType' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+          </Model:TypedElement.type>
+        </Model:Attribute>
+        <!-- ==================== structure.FinexClass.getNavigableFields    [Operation] ==================== -->
+        <Model:Operation xmi.id = 'a4AD8486600CB' 
+          name = 'getNavigableFields' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isQuery = 'true' >
+          <Model:Namespace.contents>
+            <Model:Parameter xmi.id = 'XX.1' 
+              name = '*return' annotation = '' 
+              direction = 'return_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+              </Model:TypedElement.type>
+            </Model:Parameter>
+          </Model:Namespace.contents>
+        </Model:Operation>
+        <!-- ==================== structure.FinexClass.OnlyOneUnnamedFunction    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4ACB356D005D' 
+          name = 'OnlyOneUnnamedFunction' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context FinexClass
+inv:
+  self.functions-&gt;select(f | f.name.size() = 0)-&gt;size() &lt;= 1</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+        <!-- ==================== structure.FinexClass.InvariantsMustBeBoolean    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4ACC43B40389' 
+          name = 'InvariantsMustBeBoolean' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context FinexClass
+inv:
+  self.invariants-&gt;forAll(i | i.isBoolean())</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+        <!-- ==================== structure.FinexClass.InvariantsMustBeSideEffectFree    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4AD814A50000' 
+          name = 'InvariantsMustBeSideEffectFree' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context FinexClass
+inv:
+  self.invariants-&gt;select( not isSideEffectFree() )-&gt;isEmpty()</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+        <!-- ==================== structure.FinexClass.FieldsMustHaveUniqueNames    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4AD314B90242' 
+          name = 'FieldsMustHaveUniqueNames' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context FinexClass
+inv:
+  self.getNavigableFields()-&gt;forAll(f1, f2 | f1 &lt;&gt; f2 implies f1.name &lt;&gt; f2.name)</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== structure.org.omg.sap2mof.store=no    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.78' 
+      name = 'org.omg.sap2mof.store=no' annotation = '' 
+      tagId = 'org.omg.sap2mof.store' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>no</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'ra4AC9BC3A00FA'/>  <!-- structure.FinexClass.invariants -->
+        <Model:ModelElement xmi.idref = 'ra4AC9F939007D'/>  <!-- structure.FinexClass.ownedTypes -->
+        <Model:ModelElement xmi.idref = 'ra4ACA57A202EB'/>  <!-- structure.FinexClass.functions -->
+        <Model:ModelElement xmi.idref = 'ra4ACB3B2803B9'/>  <!-- structure.Field.determination -->
+        <Model:ModelElement xmi.idref = 'ra4AC9BBF60119'/>  <!-- structure.Defaultable.defaultValue -->
+        <Model:ModelElement xmi.idref = 'a4AC9BBF60119'/>
+        <Model:ModelElement xmi.idref = 'a4AC9BC3A00FA'/>
+        <Model:ModelElement xmi.idref = 'a4AC9F939007D'/>
+        <Model:ModelElement xmi.idref = 'a4ACA57A202EB'/>
+        <Model:ModelElement xmi.idref = 'a4ACB3B2803B9'/>
+      </Model:Tag.elements>
+    </Model:Tag>
+    <Model:Import xmi.id = 'G.79' 
+      name = 'PrimitiveTypes' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context FinexClass::getNavigableFields():Bag(Field)...    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.80' 
+      name = 'org.omg.sap2mof.OperationCodeOcl=context FinexClass::getNavigableFields():Bag(Field)...' annotation = '' 
+      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>context FinexClass::getNavigableFields():Bag(Field)
+body:
+  self.typedElement-&gt;select(f | f.oclIsKindOf(Field)).oclAsType(Field).otherEnd()-&gt;select(f | f.navigable)</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a4AD8486600CB'/>  <!-- structure.FinexClass.getNavigableFields -->
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== structure.Field    [Class] ==================== -->
+    <Model:Class xmi.id = 'a4AC9BB240280' 
+      name = 'Field' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:ModelElement.constraints>
+        <Model:Constraint xmi.idref = 'a4ACB3B4C02FD'/>  <!-- structure.Field.NotBothDefaultValueAndDetermination -->
+        <Model:Constraint xmi.idref = 'a4AD314A200BB'/>  <!-- structure.Field.DefaultTypeMustMatch -->
+        <Model:Constraint xmi.idref = 'a4AD314AE005D'/>  <!-- structure.Field.DeterminationTypeMustMatch -->
+        <Model:Constraint xmi.idref = 'a4AD6E47E02BF'/>  <!-- structure.Field.DeterminationMustBeSideEffectFree -->
+      </Model:ModelElement.constraints>
+      <Model:GeneralizableElement.supertypes>
+        <Model:GeneralizableElement xml:link = 'simple' href = 'finex.xml|a4AC9F38B02AF'/>
+        <Model:GeneralizableElement xmi.idref = 'a4AC9FB3B00EA'/>  <!-- structure.TypedElement -->
+        <Model:GeneralizableElement xmi.idref = 'a4ACA08D7034B'/>  <!-- structure.Defaultable -->
+      </Model:GeneralizableElement.supertypes>
+      <Model:Namespace.contents>
+        <!-- ==================== structure.Field.determination    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4ACB3B2803B9' 
+          name = 'determination' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BBE90196'/>
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4ACB3B2803B9'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.Field.key    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a4AC9BBB30251' 
+          name = 'key' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+          </Model:TypedElement.type>
+        </Model:Attribute>
+        <!-- ==================== structure.Field.mandatory    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a4AC9BB5F0232' 
+          name = 'mandatory' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+          </Model:TypedElement.type>
+        </Model:Attribute>
+        <!-- ==================== structure.Field.singleMultiplicity    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a4ACDBEE003C8' 
+          name = 'singleMultiplicity' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+          </Model:TypedElement.type>
+        </Model:Attribute>
+        <!-- ==================== structure.Field.navigable    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a4AD85ED10128' 
+          name = 'navigable' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+          </Model:TypedElement.type>
+        </Model:Attribute>
+        <!-- ==================== structure.Field.otherEnd    [Operation] ==================== -->
+        <Model:Operation xmi.id = 'a4AD8544C029F' 
+          name = 'otherEnd' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isQuery = 'true' >
+          <Model:Namespace.contents>
+            <Model:Parameter xmi.id = 'XX.2' 
+              name = '*return' annotation = '' 
+              direction = 'return_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+              </Model:TypedElement.type>
+            </Model:Parameter>
+          </Model:Namespace.contents>
+        </Model:Operation>
+        <!-- ==================== structure.Field.getNavigableFrom    [Operation] ==================== -->
+        <Model:Operation xmi.id = 'a4AD85EEE0196' 
+          name = 'getNavigableFrom' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isQuery = 'true' >
+          <Model:Namespace.contents>
+            <Model:Parameter xmi.id = 'XX.3' 
+              name = '*return' annotation = '' 
+              direction = 'return_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+              </Model:TypedElement.type>
+            </Model:Parameter>
+          </Model:Namespace.contents>
+        </Model:Operation>
+        <!-- ==================== structure.Field.NotBothDefaultValueAndDetermination    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4ACB3B4C02FD' 
+          name = 'NotBothDefaultValueAndDetermination' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Field
+inv:
+  self.defaultValue-&gt;size() + self.determination-&gt;size() &lt;= 1</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+        <!-- ==================== structure.Field.DefaultTypeMustMatch    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4AD314A200BB' 
+          name = 'DefaultTypeMustMatch' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Field
+inv:
+  self.defaultValue-&gt;notEmpty() implies self.defaultValue.type = self.type</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+        <!-- ==================== structure.Field.DeterminationTypeMustMatch    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4AD314AE005D' 
+          name = 'DeterminationTypeMustMatch' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Field
+inv:
+  self.determination-&gt;notEmpty() implies self.determination.type = self.type</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+        <!-- ==================== structure.Field.DeterminationMustBeSideEffectFree    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a4AD6E47E02BF' 
+          name = 'DeterminationMustBeSideEffectFree' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Field
+inv:
+  self.determination-&gt;notEmpty() implies self.determination.isSideEffectFree()</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Field::otherEnd():Field...    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.81' 
+      name = 'org.omg.sap2mof.OperationCodeOcl=context Field::otherEnd():Field...' annotation = '' 
+      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>context Field::otherEnd():Field
+body:
+  self.association.ends-&gt;select( f | f &lt;&gt; self)-&gt;first()</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a4AD8544C029F'/>  <!-- structure.Field.otherEnd -->
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Field::getNavigableFrom():Type...    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.82' 
+      name = 'org.omg.sap2mof.OperationCodeOcl=context Field::getNavigableFrom():Type...' annotation = '' 
+      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>context Field::getNavigableFrom():Type
+body:
+  self.otherEnd().type</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a4AD85EEE0196'/>  <!-- structure.Field.getNavigableFrom -->
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== structure.Type    [Class] ==================== -->
+    <Model:Class xmi.id = 'a4AC9BE620186' 
+      name = 'Type' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'true' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:GeneralizableElement.supertypes>
+        <Model:GeneralizableElement xml:link = 'simple' href = 'finex.xml|a4AC9F38B02AF'/>
+      </Model:GeneralizableElement.supertypes>
+      <Model:Namespace.contents>
+        <!-- ==================== structure.Type.owner    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AC9F939008C' 
+          name = 'owner' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AC9F939008C'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== structure.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.83' 
+      name = 'org.omg.sap2mof.store=yes' annotation = '' 
+      tagId = 'org.omg.sap2mof.store' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'ra4AC9F939008C'/>  <!-- structure.Type.owner -->
+        <Model:ModelElement xmi.idref = 'a4AC9BBF6011B'/>
+        <Model:ModelElement xmi.idref = 'a4AC9BC3A00FC'/>
+        <Model:ModelElement xmi.idref = 'a4AC9F939008C'/>
+        <Model:ModelElement xmi.idref = 'a4ACA57A202ED'/>
+        <Model:ModelElement xmi.idref = 'a4ACB3B2803C8'/>
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== structure.TypedElement    [Class] ==================== -->
+    <Model:Class xmi.id = 'a4AC9FB3B00EA' 
+      name = 'TypedElement' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:Namespace.contents>
+        <!-- ==================== structure.TypedElement.type    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AC9F915001F' 
+          name = 'type' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AC9F915001F'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.TypedElement.getImpliedType    [Operation] ==================== -->
+        <Model:Operation xmi.id = 'a4ACA4C9B02CB' 
+          name = 'getImpliedType' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isQuery = 'false' >
+          <Model:Namespace.contents>
+            <Model:Parameter xmi.id = 'XX.4' 
+              name = '*return' annotation = '' 
+              direction = 'return_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+              </Model:TypedElement.type>
+            </Model:Parameter>
+            <Model:Parameter xmi.id = 'XX.5' 
+              name = 'name' annotation = '' 
+              direction = 'in_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Parameter>
+          </Model:Namespace.contents>
+        </Model:Operation>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context TypedElement::getImpliedType(name:String):Type...    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.84' 
+      name = 'org.omg.sap2mof.OperationCodeOcl=context TypedElement::getImpliedType(name:String):Type...' annotation = '' 
+      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>context TypedElement::getImpliedType(name:String):Type
+body:
+  Sequence{1..name.size()}-&gt;iterate(i; result:Type=null |
+    if not result.oclIsUndefined() then
+      result
+    else
+      let seq=structure::FinexClass.allInstances()-&gt;select(c | c.name=name.subString(i, name.size()))-&gt;asSequence() in
+        if seq-&gt;size() &gt; 0 then
+          seq-&gt;first()
+        else
+          null
+        endif
+    endif
+  )</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a4ACA4C9B02CB'/>  <!-- structure.TypedElement.getImpliedType -->
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== structure.Defaultable    [Class] ==================== -->
+    <Model:Class xmi.id = 'a4ACA08D7034B' 
+      name = 'Defaultable' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'true' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:Namespace.contents>
+        <!-- ==================== structure.Defaultable.defaultValue    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AC9BBF60119' 
+          name = 'defaultValue' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BBE90196'/>
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AC9BBF60119'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.Defaultable.getEnclosingType    [Operation] ==================== -->
+        <Model:Operation xmi.id = 'a4AD33CB7001F' 
+          name = 'getEnclosingType' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isQuery = 'true' >
+          <Model:Namespace.contents>
+            <Model:Parameter xmi.id = 'XX.6' 
+              name = '*return' annotation = '' 
+              direction = 'return_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+              </Model:TypedElement.type>
+            </Model:Parameter>
+          </Model:Namespace.contents>
+        </Model:Operation>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Defaultable::getEnclosingType():Type...    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.85' 
+      name = 'org.omg.sap2mof.OperationCodeOcl=context Defaultable::getEnclosingType():Type...' annotation = '' 
+      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>context Defaultable::getEnclosingType():Type
+body:
+  if self.oclIsKindOf(Parameter) then
+    self.oclAsType(Parameter).signature.owner
+  else
+    self.oclAsType(Field).getNavigableFrom()
+  endif</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a4AD33CB7001F'/>  <!-- structure.Defaultable.getEnclosingType -->
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== structure.Association    [Class] ==================== -->
+    <Model:Class xmi.id = 'a4AD83D6C029F' 
+      name = 'Association' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:GeneralizableElement.supertypes>
+        <Model:GeneralizableElement xml:link = 'simple' href = 'finex.xml|a4AC9F38B02AF'/>
+      </Model:GeneralizableElement.supertypes>
+      <Model:Namespace.contents>
+        <!-- ==================== structure.Association.ends    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AD83DB10203' 
+          name = 'ends' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '2' upper = '2' is_ordered = 'true' is_unique = 'true' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AD83DB10203'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== structure.A_defaultValue_defaultOf    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4AC9BBF5030D' 
+      name = 'A_defaultValue_defaultOf' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4AC9BBF60119' 
+          name = 'defaultValue' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BBE90196'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4AC9BBF6011B' 
+          name = 'defaultOf' annotation = '' 
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4ACA08D7034B'/>  <!-- structure.Defaultable -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <Model:Import xmi.id = 'G.86' 
+      name = 'behavior' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'behavior.xml|a4AC9B69103C8'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <!-- ==================== structure.A_invariants_invariantOf    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4AC9BC39033C' 
+      name = 'A_invariants_invariantOf' annotation = 'The invariant expressions must be of type Boolean' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4AC9BC3A00FA' 
+          name = 'invariants' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BBE90196'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4AC9BC3A00FC' 
+          name = 'invariantOf' annotation = '' 
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== structure.A_type_typedElement    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4AC9F913007D' 
+      name = 'A_type_typedElement' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4AC9F915001F' 
+          name = 'type' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4AC9F9150021' 
+          name = 'typedElement' annotation = '' 
+          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9FB3B00EA'/>  <!-- structure.TypedElement -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== structure.A_ownedTypes_owner    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4AC9F9380119' 
+      name = 'A_ownedTypes_owner' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4AC9F939007D' 
+          name = 'ownedTypes' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BE620186'/>  <!-- structure.Type -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4AC9F939008C' 
+          name = 'owner' annotation = '' 
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== structure.A_functions_owner    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4ACA57A2000C' 
+      name = 'A_functions_owner' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4ACA57A202EB' 
+          name = 'functions' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BCB402BF'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4ACA57A202ED' 
+          name = 'owner' annotation = '' 
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== structure.A_determination_determinationOf    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4ACB3B270177' 
+      name = 'A_determination_determinationOf' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4ACB3B2803B9' 
+          name = 'determination' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'behavior.xml|a4AC9BBE90196'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4ACB3B2803C8' 
+          name = 'determinationOf' annotation = '' 
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== structure.AssociationEnds    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4AD83DB000CB' 
+      name = 'AssociationEnds' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4AD83DB10203' 
+          name = 'ends' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '2' upper = '2' is_ordered = 'true' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4AD83DB10213' 
+          name = 'association' annotation = '' 
+          isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AD83D6C029F'/>  <!-- structure.Association -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== structure.A_associations_clazz    [Association] ==================== -->
+    <Model:Association xmi.id = 'a4AD8479100EA' 
+      name = 'A_associations_clazz' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a4AD84792002E' 
+          name = 'associations' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AD83D6C029F'/>  <!-- structure.Association -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a4AD847920030' 
+          name = 'clazz' annotation = '' 
+          isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <Model:Import xmi.id = 'G.87' 
+      name = 'finex' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'finex.xml|a4AC9B67601A5'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+  </Model:Namespace.contents>
+</Model:Package>
+</XMI.content>
+</XMI>

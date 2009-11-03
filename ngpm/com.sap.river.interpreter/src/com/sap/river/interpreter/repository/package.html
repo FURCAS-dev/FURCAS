@@ -1,0 +1,185 @@
+<h2>Introduction</h2>
+
+<p>A {@link Repository} is a durable store for objects and the links
+between them. It is organized in {@link Snapshot}s, each of which
+representing a coherent view of the object and link sets at an atomic
+point in time. Snapshots can have a predecessor, meaning they resulted
+from applying a set of changes (see {@link ChangeSet}) to the preceding
+snapshot. If a snapshot has multiple predecessors, this means it is
+considered a merge between two branches. Branching and merging will be a
+future topic.</p>
+
+<p>The repository is used by the {@link
+com.sap.river.interpreter.RiverInterpreter interpreter} and its {@link
+com.sap.river.interpreter.TransactionBuffer}. When the interpreter
+starts, it is assigned a repository from where to load and to which to
+store data. The interpreter maintains a transaction buffer which records
+the changes that the interpreter carried out on persistent data. The
+transaction buffer is a special {@link ChangeSet} and can therefore be
+applied to a snapshot to produce a new successor snapshot.</p>
+
+
+<h2>Determining Default Snapshot for Queries</h2>
+
+<p>When the interpreter reads from the repository, it needs to do so
+from a given snapshot. Either this snapshot is determined by the
+application, asking for data from a specific snapshot, or it defaults to
+the "current default" snapshot, something that resembles the "HEAD"
+revision on the "trunk" of a versioning repository. (Once branching and
+merging is supported, there may also be something like a default branch
+for an interpreter. For now, let's assume that the interpreter together
+with the repository can determine this "current default" snapshot
+somehow.)</p>
+
+<p>Which one is the "current default" snapshot is determined upon the
+first access to the repository reading from the "current default"
+snapshot. When repository and interpreter have agreed what the "current
+default" snapshot is, the interpreter records this and uses the same
+snapshot as its "current default" until a <em>commit</em> or a <em>rollback</em>
+is performed. With this, all unqualified repository queries will
+continue to read from the same snapshot consistently, even if other
+interpreters in the meantime create successor snapshots which may be
+chosen as "current default" snapshots by other interpreters.</p>
+
+
+<h2>Determining the Transaction Buffer's Base Snapshot</h2>
+
+<p>As a change set, a transaction buffer contains changes to be
+applied to a <em>single</em> snapshot only. Therefore, the interpreter
+and the repository need to determine at some point which snapshot
+this is. When the interpreter starts out and no interaction with the
+repository has yet taken place, this snapshot is not yet determined.
+Creation of new entity objects does not change this.</p>
+
+<p>Because an application may explicitly request data from snapshots
+other than the "current default" snapshot, it is important to record the
+snapshot to which a piece of data---objects and links---pertains.
+Therefore, each {@link RepositoryObject} maintains its {@link
+RepositoryObject#getOrigin original snapshot}, the snapshot from which
+it was loaded or into which it was committed. For objects that are not
+meant to be persistently stored, this will be <tt>null</tt>. For objects
+that have not yet been committed but which are already marked to be
+committed by adding them to the {@link TransactionBuffer} as "created,"
+currently it is also <tt>null</tt>, and a request to the {@link
+TransactionBuffer} is required to find out if an object is in this
+state. (TODO this may need to change, and a more convenient way on a
+{@link RepositoryObject} should be provided to find out about its
+persistence-related status)</p>
+
+
+<h2>Navigation</h2>
+
+<p>When the interpreter evaluates an association navigation, it does so in
+the context of the snapshot of the object at which navigation starts. This also
+applies to value objects. The objects reached by the navigation are marked to
+belong to the same snapshot as the object on which the navigation started.</p>
+
+
+<h2>Creating Links</h2>
+
+<p>When a link is created, it connects two class-typed objects. If any of those objects
+is a persistent object and the link is relevant for the object's equality,
+then the link will also be marked for being stored persistently, meaning it gets
+added to the transaction buffer as created link. Regarding the snapshot, the new
+link will pertain to the same snapshot as the object on its end that caused
+the link to become a persistent link in the first place.</p>
+
+<p>If the object on the other end already belongs to a snapshot, this has to
+be the same snapshot as the one the link not belongs to. The invariant is that
+a link and the objects at both its ends all either belong to no snapshot or all
+to the same snapshot.</p>
+
+<p>If the link is a composite link between two entities, and the parent
+entity is a persistent object and the child entity is not yet persistent,
+the link will become persistent with the parent's snapshot, and so will
+the child entity. Recursively, all link attached to the child entity will
+then also be marked as persistent, meaning that those who weren't marked so
+before will then be added as "created" in the transaction buffer.</p>
+
+<p>Links may also be created for a persistent association extent between two
+value objects if it is not relevant for either value's equality. In this
+case the link will be added to whatever the transaction buffer's "new shapshot"
+is.</p>
+
+
+<h2>Deleting Links</h2>
+
+<p>When a persistent link is deleted, this will be signalled to the transaction buffer.
+If the link's snapshot is not compatible with the buffer's base snapshot, this
+is an error. If the link is composite, the child object and its entire composition
+tree with all attached links are considered deleted, too.</p>
+
+<h2>Deleting an Entity</h2>
+
+<p>When a persistent entity is deleted, this is recorded in the transaction buffer.
+If the entity's snapshot does not match the buffer's base snapshot, this is considered
+an error. After deletion and even after committing the deletion the transient entity
+object still exists. However, it doesn't have a snapshot assigned anymore.</p>
+
+<h2>TODO</h2>
+
+<p>We should be able to tell for a {@link RepositoryObject} whether
+or not it is generally "marked for" persistence, already committed or
+only transient. For the transient objects, no lookup in the repository
+would be required during navigation. With the current setup, the objects
+themselves don't contain enough data to decide this. Although the
+snapshot is <tt>null</tt>, the object may still be contained in the
+{@link TransactionBuffer} as "created." But then again, for those
+objects the repository still doesn't know anything about them...</p>
+
+<p>A {@link TransactionBuffer} maintains a snapshot on which it is <em>based</em>.
+When applied, it will produce a new snapshot that doesn't exist until
+the buffer has successfully been committed. Objects and links marked as
+"created" in the transaction buffer will belong to this new snapshot.
+Should this snapshot which doesn't exist before the buffer has been
+committed, be identifiable and distinguishable from the <tt>null</tt>
+snapshot? If we had such a snapshot "placeholder" for the "new"
+snapshot, we could assign this already to all newly-created {@link
+RepositoryObject}s and by this easily find out about each object's
+persistence status. Otherwise, the transaction buffer would always be
+required to determine the persistence status of a {@link
+RepositoryObject}.</p>
+
+<p>When the transaction buffer has successfully been committed, all
+the {@link RepositoryObject}s affected by this commit (created/deleted
+objects/links) have to have their snapshot updated. For those deleted,
+the snapshot could either be removed meaning that these objects from now
+on are considered transient, or the base snapshot could be left
+assigned, meaning that they lastly existed in that previous snapshot
+that served as the base for applying the transaction buffer.</p>
+
+<p>For all objects/links created the snapshot marker should probably
+be set to the snapshot created by the commit. This, however, will change
+these objects' Java equality/hashCode, requiring a massive re-hashing in
+all structures. It would be cool if this could be avoided. For the
+newly-created objects/links, this may work based on the above idea,
+using a placeholder snapshot for the "new snapshot" which then after the
+commit doesn't change its Java hashCode/equals definition and still
+identifies this new snapshot. This, however, would require that objects
+loaded from this new snapshot after it has been committed will get
+assigned a snapshot object that compares equal and has an equal hashCode
+to the virtual "new snapshot" object. This may make a major
+indirection/re-keying of snapshots necessary.</p>
+
+<p><b>Problem:</b> When an object/link exists in a snapshot that is the base
+of a buffer that now gets committed, the plan is to update the snapshot
+identifier to the snapshot resulting from the commit. However, if an auto-merge
+took place, changes from other change sets may have happened in between that
+may invalidate objects/links and generally parts of the contents of the
+link container. Only if the snapshot resulting from the commit is an
+immediate successor to the base snapshot, all objects/links and the link container
+contents can be assumed to still be consistent, and it is okay to just update
+the snapshot identifier that they all use to the snapshot resulting from
+the commit. If an auto-merge took place without conflicts, only the changes
+from the transaction buffer can be assumed to still be up-to-date. For all
+other objects/links the interpreter has to assume that they may have changed
+due to some other snapshot having been auto-merged. In this case, the change
+set of the snapshots that got incorporated in the merge need to be analyzed
+and the objects/links held in memory that are affected by those change sets
+need to be invalidated or automatically updated. For example, if an external
+snapshot that auto-merged during the commit deleted an entity that the current
+session still holds in memory, while updating the snapshot identifier to the
+new snapshot this entity needs to have the snapshot identifier nulled out,
+making it a transient entity only. Developers may even expect these entities
+and their links to become invisible. But currently we don't have a concept
+for turning entities/links "invisible" or "invalid."</p>

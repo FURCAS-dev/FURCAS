@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1235991154479_uuid:5f780c17-fe1c-4100-b6f0-a4fd0aef16c9</UID>
+<PACKAGE>moin.base</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>d025533</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="Ene4pO1LG8ylallbackHandlerIsNull" BKEY="SerializationCallbackHandlerIsNull" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Error during the S2X serialization. The serialization callback handler is null. A metamodel that uses TranslatableTextFragments has to define a serialization callback handler.</TEXT>
+<TEXT AKEY="TranslationUnitIsNull" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Error during the S2X serialization. The translation unit from the customer callback "{0}" is null.</TEXT>
+</RESOURCES>
+</ROOT>

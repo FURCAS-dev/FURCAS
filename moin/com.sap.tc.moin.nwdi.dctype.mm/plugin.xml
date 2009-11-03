@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+<!-- Trace enabling -->
+   <extension point="com.tssap.tools.ui.traceParticipant">
+      <traceParticipant file="traceParticipant.properties"/>
+   </extension>
+
+	<extension id="MoinMetaModelNature" name="Moin Metamodel Nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="com.sap.tc.moin.nwdi.dctype.mm.internal.MoinMetaModelNature"/>
+		</runtime>
+	</extension>
+	<extension point="com.sap.ide.dii05.ui.dctype">
+		<DCType
+        caption="%dcType.name"
+        class="com.sap.tc.moin.nwdi.dctype.mm.MoinMetaModelDcType"
+        finalPerspective="com.sap.ide.moftool.editor.perspective"
+        image="icons/Mof.gif"
+        preferredPerspectives="com.sap.ide.moftool.editor.perspective"
+        type="com.sap.tc.moin.nwdi.dctype.mm"
+        vendor="sap.com">
+			<BuildDC name="tc/moin/bi/bp/mmbuildplugin_720" ppref="def" vendor="sap.com"/>
+   <DCDependency
+         at-build-time="true"
+         at-deploy-time="false"
+         at-design-time="false"
+         at-runtime="false"
+         id="tc/moin/api"
+         name="tc/moin/api"
+         ppref="api"
+         vendor="sap.com">
+   </DCDependency>
+   <DCDependency
+         at-build-time="true"
+         at-deploy-time="false"
+         at-design-time="false"
+         at-runtime="false"
+         id="tc/moin/jmicore/api"
+         name="tc/moin/jmicore/api"
+         ppref="api"
+         vendor="sap.com">
+   </DCDependency>
+		</DCType>
+	</extension>
+ <extension
+       point="org.eclipse.ui.newWizards">
+    <wizard
+          category="com.sap.mi.fwk.dcfwk.newwizards"
+          class="com.sap.tc.moin.nwdi.dctype.mm.internal.MoinMetaModelDcTypeWizard"
+          finalPerspective="com.sap.ide.moftool.editor.perspective"
+          icon="icons/Mof.gif"
+          id="com.sap.tc.moin.nwdi.dctype.mm.wizard"
+          name="%newWizard.name"
+          preferredPerspectives="com.sap.ide.moftool.editor.perspective"
+          project="true">
+       <description>
+          %newWizard.description
+       </description>
+    </wizard>
+ </extension>	
+ <extension
+       point="com.sap.ide.dii05.lib.ppentityservices">
+    <EntityService
+          class="com.sap.tc.moin.nwdi.dctype.mm.MetaModelFolderTreeEntityService"
+          id="com.sap.tc.moin.nwdi.dctype.mm.metaModelFolderTreeEntityService"
+          name="%entityService.name">
+       <type
+             name="Metamodel Folder Tree">
+       </type>
+    </EntityService>
+ </extension>	
+    <extension point="org.eclipse.core.runtime.preferences">
+        <initializer class="com.sap.tc.moin.nwdi.dctype.mm.internal.preferences.PreferenceInitializer">
+        </initializer>
+    </extension>
+</plugin>

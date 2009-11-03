@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Treeprovider Plug-in
+Bundle-SymbolicName: com.sap.ide.treeprovider;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sap.ide.treeprovider.internal.Activator
+Bundle-Vendor: SAP AG
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.ui.views,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ com.sap.mi.fwk.ui,
+ com.sap.mi.fwk,
+ com.sap.tc.moin.ide.facade,
+ org.eclipse.ui.navigator,
+ com.sap.ap.metamodel.core;bundle-version="0.0.4",
+ com.sap.mi.tools.cockpit.editor;bundle-version="1.0.0",
+ com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: .
+Export-Package: com.sap.ide.treeprovider

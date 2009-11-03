@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.NatureDefinition">
+      <NatureDefinition
+            EclipseNature="com.sap.tc.moin.nwdi.dctype.mm.MoinMetaModelNature"
+            NatureName="M2Content">
+         <Path
+               Value="diagrams/"
+               Versioned="true">
+         </Path>
+         <Path
+               Value="moin/meta/"
+               Versioned="true">
+         </Path>
+      </NatureDefinition>
+      <NatureDefinition
+            EclipseNature="com.sap.tc.moin.nwdi.dctype.MoinNature"
+            NatureName="MoinDemoContent">
+         <Path
+               Value="src/"
+               Versioned="true">
+         </Path>
+      </NatureDefinition>
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Nature
+               NatureName="M2Content">
+         </Nature>
+         <Path
+               Value="test"
+               Versioned="true">
+         </Path>
+      </ContentDefinition>
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Nature
+               NatureName="M2Content">
+         </Nature>
+      </ContentDefinition>
+   </extension>
+
+</plugin>

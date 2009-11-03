@@ -1,0 +1,252 @@
+syntax CollectionLevelPermission(k=0 ) {
+
+primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+		value = "unescapeString(%token%)";
+
+primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING: 
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+				
+primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+		
+primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+		value = "%token%";
+
+primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+		value = "%token%";
+		
+primitiveTemplate doubleAsStringSymbol for PrimitiveTypes::String default using DOUBLE:
+		value = "%token%";
+		
+enumerationTemplate OperatorEnum auto;
+
+template coghead::CollectionLevelPermission main context(Permission) 
+	: 	"collection" "permissions" "{"
+			"default"  "{"
+				(isDefined(createRecord) ?
+					"create"   ":" "(" createRecord{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")" ";"
+				)
+				(isDefined(retrieveAllRecords) ?
+					"retrieve" ":" "(" retrieveAllRecords{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")" ";"
+				)
+				(isDefined(updateAllRecords) ?
+					"update"   ":" "(" updateAllRecords{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")" ";"
+				)
+				(isDefined(deleteAllRecords) ?
+					"delete"   ":" "(" deleteAllRecords{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")" ";"
+				)
+			"}"
+			(isDefined(templatedPermissions) ? 
+				"data-driven" "{"
+					templatedPermissions{separator=";"} 
+				"}"
+			)
+	  	"}" 
+	;
+	
+template coghead::TemplatedPermission
+	: 	"[" query "]"
+		(isDefined(retrieve) ? 
+			"retrieve" "(" retrieve{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")"
+		)
+		(isDefined(update) ? 
+			"update" "(" update{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")"
+		)
+		(isDefined(delete) ?
+			"delete" "(" delete{refersTo=name, separator=",", query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles", filter="->select(r | r.name= ?)"} ")" 
+		) 
+	;
+	
+template coghead::Query
+	: 	"from"   collectionTemplates{separator=","}
+		--(isDefined(sortBy)    ? "sortby"  sortBy{separator=","})
+		--(isDefined(groupBy)   ? "groupby" groupBy{separator=","})
+		--(isDefined(projection)  ? "select" projection) 
+	;
+
+template coghead::SortSpec
+	:	
+	;
+
+template coghead::GroupBySpec
+	:
+	;	
+	 
+template coghead::CollectionTemplate context(ColTempl)
+	: 	collection{refersTo=name, query="OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection"}
+		"as" name
+		(isDefined(fieldTemplates) ? "where" fieldTemplates{separator="and"} ) 
+	;
+
+template coghead::FieldTemplate abstract;
+
+template coghead::OperatorTemplate
+	:	field{refersTo=name, query="OCL:#context(ColTempl).oclAsType(CollectionTemplate).collection.schema.entries", filter="->select(f | f.name = ?)"}
+		"=" {{ operator='coghead.OperatorEnumEnum.EQUALS' }}
+		valueOrListOrFunction
+	;
+
+-- TODO	
+template coghead::Projection
+	: 	  -- {separator=","}
+	;
+
+-- ### Expressions Start ###
+		
+	template coghead::Expression abstract;
+	
+	template coghead::xpath::XPathExpression abstract;
+	
+	template coghead::xpath::Literal abstract;
+	
+	template coghead::xpath::StringLiteral
+		: value{as = stringSymbol}
+		;
+	
+	template coghead::xpath::NumberLiteral
+		:	[[
+				value{as = integerAsStringSymbol}
+			|
+				value{as = doubleAsStringSymbol}				
+			|
+				value{as = floatAsStringSymbol}
+			]]
+		;
+		
+-- ### Expressions End ###	
+	
+symbols {
+		lbracket	= "[";
+		rbracket	= "]";
+		lcurl		= "{";
+		rcurl		= "}";
+		langle      = "<";
+		rangle      = ">";
+		lparen		= "(";
+		rparen		= ")";
+		excl		= "!";
+		equals		= "=";
+		equalsEquals= "==";
+		assign		= ":=";
+		dot			= ".";
+		arrow		= "->";
+		colon		= ":";
+		dcolon		= "::";
+		semicolon	= ";";
+	}
+
+	token COMMENT	: endOfLine(start = "//");
+	token MULTI_LINE_COMMENT	: multiLine(start = "/*", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+NAME
+	:	(
+			SNAME
+		|	'\\''!
+			(	
+		//	ESC	|
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals
+protected
+INT
+	: (DIGIT)+
+	;
+ 
+// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals
+%protected
+FLOAT
+	:	'.' DIGIT+
+	|	DIGIT+ '.' DIGIT*
+	;
+
+// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals
+%protected
+DOUBLE
+	:	(
+			'.' DIGIT+
+		  |
+		  	DIGIT+ ( '.' DIGIT* )?
+		)
+		( 'e' | 'E' ) ( '+' | '-' )? DIGIT+
+	;
+
+RANGE_OR_INT_OR_FLOAT_OR_DOUBLE
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') ( 'e' | 'E' ) )  => DOUBLE { _type = DOUBLE; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+	"; 
+}

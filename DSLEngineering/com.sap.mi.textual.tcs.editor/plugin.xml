@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.sap.mi.tcs.editor.TcsEditor"
+            icon="icons/change_view_action.gif"
+            id="com.sap.mi.tcs.editor.TcsEditor"
+            name="TCS Editor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Path
+               Value="mappings"
+               Versioned="true">
+         </Path>
+      </ContentDefinition>
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.rootNodeDefinition">
+         <rootNodeProvider classname="com.sap.mi.tcs.editor.tree.TcsRootNodeProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.textLabelProvider">
+        <textLabelProvider classname="com.sap.mi.tcs.editor.tree.TcsTreeLabelProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.imageProvider">
+        <imageProvider classname="com.sap.mi.tcs.editor.tree.TcsTreeImageProvider" />
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="false"
+            editorId="com.sap.mi.tcs.editor.TcsEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="tcs.ConcreteSyntax">
+      </association>
+   </extension>
+
+</plugin>

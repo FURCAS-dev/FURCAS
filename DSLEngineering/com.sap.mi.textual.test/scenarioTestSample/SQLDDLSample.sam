@@ -1,0 +1,622 @@
+CREATE TABLE LocatedElement (
+	__IDLocatedElement__ Integer NOT NULL,
+	location text,
+	PRIMARY KEY LocatedElement (__IDLocatedElement__)
+) ;
+
+CREATE TABLE Program (
+	__IDProgram__ Integer NOT NULL,
+	FOREIGN KEY service (__FKservice__) REFERENCES Service (__IDService__),
+	PRIMARY KEY Program (__IDProgram__),
+	__FKservice__ Integer
+) ;
+
+CREATE TABLE Service (
+	__IDService__ Integer NOT NULL,
+	name text,
+	PRIMARY KEY Service (__IDService__)
+) ;
+
+CREATE TABLE Session (
+	__IDSession__ Integer NOT NULL,
+	PRIMARY KEY Session (__IDSession__)
+) ;
+
+CREATE TABLE Registration (
+	__IDRegistration__ Integer NOT NULL,
+	PRIMARY KEY Registration (__IDRegistration__)
+) ;
+
+CREATE TABLE Dialog (
+	__IDDialog__ Integer NOT NULL,
+	PRIMARY KEY Dialog (__IDDialog__)
+) ;
+
+CREATE TABLE Event (
+	__IDEvent__ Integer NOT NULL,
+	eventId text,
+	PRIMARY KEY Event (__IDEvent__)
+) ;
+
+CREATE TABLE Method (
+	__IDMethod__ Integer NOT NULL,
+	FOREIGN KEY type (__FKtype__) REFERENCES TypeExpression (__IDTypeExpression__),
+	direction text,
+	FOREIGN KEY methodName (__FKmethodName__) REFERENCES MethodName (__IDMethodName__),
+	PRIMARY KEY Method (__IDMethod__),
+	__FKmethodName__ Integer,
+	__FKtype__ Integer
+) ;
+
+CREATE TABLE Argument (
+	__IDArgument__ Integer NOT NULL,
+	PRIMARY KEY Argument (__IDArgument__)
+) ;
+
+CREATE TABLE MethodName (
+	__IDMethodName__ Integer NOT NULL,
+	PRIMARY KEY MethodName (__IDMethodName__)
+) ;
+
+CREATE TABLE SIPMethodName (
+	__IDSIPMethodName__ Integer NOT NULL,
+	name text,
+	PRIMARY KEY SIPMethodName (__IDSIPMethodName__)
+) ;
+
+CREATE TABLE ControlMethodName (
+	__IDControlMethodName__ Integer NOT NULL,
+	name text,
+	PRIMARY KEY ControlMethodName (__IDControlMethodName__)
+) ;
+
+CREATE TABLE Branch (
+	__IDBranch__ Integer NOT NULL,
+	PRIMARY KEY Branch (__IDBranch__)
+) ;
+
+CREATE TABLE DefaultBranch (
+	__IDDefaultBranch__ Integer NOT NULL,
+	PRIMARY KEY DefaultBranch (__IDDefaultBranch__)
+) ;
+
+CREATE TABLE NamedBranch (
+	__IDNamedBranch__ Integer NOT NULL,
+	PRIMARY KEY NamedBranch (__IDNamedBranch__)
+) ;
+
+CREATE TABLE TypeExpression (
+	__IDTypeExpression__ Integer NOT NULL,
+	PRIMARY KEY TypeExpression (__IDTypeExpression__)
+) ;
+
+CREATE TABLE SimpleType (
+	__IDSimpleType__ Integer NOT NULL,
+	type text,
+	PRIMARY KEY SimpleType (__IDSimpleType__)
+) ;
+
+CREATE TABLE SequenceType (
+	__IDSequenceType__ Integer NOT NULL,
+	modifier text,
+	type text,
+	size Integer,
+	PRIMARY KEY SequenceType (__IDSequenceType__)
+) ;
+
+CREATE TABLE DefinedType (
+	__IDDefinedType__ Integer NOT NULL,
+	typeName text,
+	PRIMARY KEY DefinedType (__IDDefinedType__)
+) ;
+
+CREATE TABLE Declaration (
+	__IDDeclaration__ Integer NOT NULL,
+	name text,
+	PRIMARY KEY Declaration (__IDDeclaration__)
+) ;
+
+CREATE TABLE VariableDeclaration (
+	__IDVariableDeclaration__ Integer NOT NULL,
+	FOREIGN KEY type (__FKtype__) REFERENCES TypeExpression (__IDTypeExpression__),
+	FOREIGN KEY initExp (__FKinitExp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY VariableDeclaration (__IDVariableDeclaration__),
+	__FKinitExp__ Integer,
+	__FKtype__ Integer
+) ;
+
+CREATE TABLE FunctionDeclaration (
+	__IDFunctionDeclaration__ Integer NOT NULL,
+	FOREIGN KEY returnType (__FKreturnType__) REFERENCES TypeExpression (__IDTypeExpression__),
+	PRIMARY KEY FunctionDeclaration (__IDFunctionDeclaration__),
+	__FKreturnType__ Integer
+) ;
+
+CREATE TABLE RemoteFunctionDeclaration (
+	__IDRemoteFunctionDeclaration__ Integer NOT NULL,
+	functionLocation text,
+	PRIMARY KEY RemoteFunctionDeclaration (__IDRemoteFunctionDeclaration__)
+) ;
+
+CREATE TABLE LocalFunctionDeclaration (
+	__IDLocalFunctionDeclaration__ Integer NOT NULL,
+	PRIMARY KEY LocalFunctionDeclaration (__IDLocalFunctionDeclaration__)
+) ;
+
+CREATE TABLE StructureDeclaration (
+	__IDStructureDeclaration__ Integer NOT NULL,
+	PRIMARY KEY StructureDeclaration (__IDStructureDeclaration__)
+) ;
+
+CREATE TABLE StructureProperty (
+	__IDStructureProperty__ Integer NOT NULL,
+	name text,
+	FOREIGN KEY type (__FKtype__) REFERENCES TypeExpression (__IDTypeExpression__),
+	PRIMARY KEY StructureProperty (__IDStructureProperty__),
+	__FKtype__ Integer
+) ;
+
+CREATE TABLE FunctionCall (
+	__IDFunctionCall__ Integer NOT NULL,
+	FOREIGN KEY function (__FKfunction__) REFERENCES FunctionDeclaration (__IDFunctionDeclaration__),
+	PRIMARY KEY FunctionCall (__IDFunctionCall__),
+	__FKfunction__ Integer
+) ;
+
+CREATE TABLE Statement (
+	__IDStatement__ Integer NOT NULL,
+	PRIMARY KEY Statement (__IDStatement__)
+) ;
+
+CREATE TABLE CompoundStat (
+	__IDCompoundStat__ Integer NOT NULL,
+	PRIMARY KEY CompoundStat (__IDCompoundStat__)
+) ;
+
+CREATE TABLE SetStat (
+	__IDSetStat__ Integer NOT NULL,
+	FOREIGN KEY target (__FKtarget__) REFERENCES Place (__IDPlace__),
+	FOREIGN KEY setValue (__FKsetValue__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY SetStat (__IDSetStat__),
+	__FKsetValue__ Integer,
+	__FKtarget__ Integer
+) ;
+
+CREATE TABLE DeclarationStat (
+	__IDDeclarationStat__ Integer NOT NULL,
+	FOREIGN KEY declaration (__FKdeclaration__) REFERENCES Declaration (__IDDeclaration__),
+	PRIMARY KEY DeclarationStat (__IDDeclarationStat__),
+	__FKdeclaration__ Integer
+) ;
+
+CREATE TABLE ReturnStat (
+	__IDReturnStat__ Integer NOT NULL,
+	FOREIGN KEY returnedValue (__FKreturnedValue__) REFERENCES Expression (__IDExpression__),
+	FOREIGN KEY branch (__FKbranch__) REFERENCES NamedBranch (__IDNamedBranch__),
+	PRIMARY KEY ReturnStat (__IDReturnStat__),
+	__FKreturnedValue__ Integer,
+	__FKbranch__ Integer
+) ;
+
+CREATE TABLE IfStat (
+	__IDIfStat__ Integer NOT NULL,
+	FOREIGN KEY "condition" (__FKcondition__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY IfStat (__IDIfStat__),
+	__FKcondition__ Integer
+) ;
+
+CREATE TABLE WhenStat (
+	__IDWhenStat__ Integer NOT NULL,
+	FOREIGN KEY idExp (__FKidExp__) REFERENCES Variable (__IDVariable__),
+	PRIMARY KEY WhenStat (__IDWhenStat__),
+	__FKidExp__ Integer
+) ;
+
+CREATE TABLE ForeachStat (
+	__IDForeachStat__ Integer NOT NULL,
+	iteratorName text,
+	FOREIGN KEY sequenceExp (__FKsequenceExp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY ForeachStat (__IDForeachStat__),
+	__FKsequenceExp__ Integer
+) ;
+
+CREATE TABLE SelectStat (
+	__IDSelectStat__ Integer NOT NULL,
+	FOREIGN KEY matchedExp (__FKmatchedExp__) REFERENCES Expression (__IDExpression__),
+	FOREIGN KEY selectDefault (__FKselectDefault__) REFERENCES SelectDefault (__IDSelectDefault__),
+	PRIMARY KEY SelectStat (__IDSelectStat__),
+	__FKselectDefault__ Integer,
+	__FKmatchedExp__ Integer
+) ;
+
+CREATE TABLE FunctionCallStat (
+	__IDFunctionCallStat__ Integer NOT NULL,
+	FOREIGN KEY functionCall (__FKfunctionCall__) REFERENCES FunctionCall (__IDFunctionCall__),
+	PRIMARY KEY FunctionCallStat (__IDFunctionCallStat__),
+	__FKfunctionCall__ Integer
+) ;
+
+CREATE TABLE ContinueStat (
+	__IDContinueStat__ Integer NOT NULL,
+	PRIMARY KEY ContinueStat (__IDContinueStat__)
+) ;
+
+CREATE TABLE BreakStat (
+	__IDBreakStat__ Integer NOT NULL,
+	PRIMARY KEY BreakStat (__IDBreakStat__)
+) ;
+
+CREATE TABLE PushStat (
+	__IDPushStat__ Integer NOT NULL,
+	FOREIGN KEY target (__FKtarget__) REFERENCES Place (__IDPlace__),
+	FOREIGN KEY pushedValue (__FKpushedValue__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY PushStat (__IDPushStat__),
+	__FKtarget__ Integer,
+	__FKpushedValue__ Integer
+) ;
+
+CREATE TABLE WhenHeader (
+	__IDWhenHeader__ Integer NOT NULL,
+	headerId text,
+	FOREIGN KEY value (__FKvalue__) REFERENCES Constant (__IDConstant__),
+	PRIMARY KEY WhenHeader (__IDWhenHeader__),
+	__FKvalue__ Integer
+) ;
+
+CREATE TABLE SelectMember (
+	__IDSelectMember__ Integer NOT NULL,
+	PRIMARY KEY SelectMember (__IDSelectMember__)
+) ;
+
+CREATE TABLE SelectDefault (
+	__IDSelectDefault__ Integer NOT NULL,
+	PRIMARY KEY SelectDefault (__IDSelectDefault__)
+) ;
+
+CREATE TABLE SelectCase (
+	__IDSelectCase__ Integer NOT NULL,
+	PRIMARY KEY SelectCase (__IDSelectCase__)
+) ;
+
+CREATE TABLE Expression (
+	__IDExpression__ Integer NOT NULL,
+	PRIMARY KEY Expression (__IDExpression__)
+) ;
+
+CREATE TABLE ConstantExp (
+	__IDConstantExp__ Integer NOT NULL,
+	FOREIGN KEY value (__FKvalue__) REFERENCES Constant (__IDConstant__),
+	PRIMARY KEY ConstantExp (__IDConstantExp__),
+	__FKvalue__ Integer
+) ;
+
+CREATE TABLE OperatorExp (
+	__IDOperatorExp__ Integer NOT NULL,
+	opName text,
+	FOREIGN KEY leftExp (__FKleftExp__) REFERENCES Expression (__IDExpression__),
+	FOREIGN KEY rightExp (__FKrightExp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY OperatorExp (__IDOperatorExp__),
+	__FKrightExp__ Integer,
+	__FKleftExp__ Integer
+) ;
+
+CREATE TABLE ForwardExp (
+	__IDForwardExp__ Integer NOT NULL,
+	isParallel Boolean,
+	FOREIGN KEY exp (__FKexp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY ForwardExp (__IDForwardExp__),
+	__FKexp__ Integer
+) ;
+
+CREATE TABLE WithExp (
+	__IDWithExp__ Integer NOT NULL,
+	FOREIGN KEY exp (__FKexp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY WithExp (__IDWithExp__),
+	__FKexp__ Integer
+) ;
+
+CREATE TABLE BlockExp (
+	__IDBlockExp__ Integer NOT NULL,
+	FOREIGN KEY exp (__FKexp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY BlockExp (__IDBlockExp__),
+	__FKexp__ Integer
+) ;
+
+CREATE TABLE ReasonExp (
+	__IDReasonExp__ Integer NOT NULL,
+	PRIMARY KEY ReasonExp (__IDReasonExp__)
+) ;
+
+CREATE TABLE BODYExp (
+	__IDBODYExp__ Integer NOT NULL,
+	PRIMARY KEY BODYExp (__IDBODYExp__)
+) ;
+
+CREATE TABLE RequestURIExp (
+	__IDRequestURIExp__ Integer NOT NULL,
+	PRIMARY KEY RequestURIExp (__IDRequestURIExp__)
+) ;
+
+CREATE TABLE PopExp (
+	__IDPopExp__ Integer NOT NULL,
+	FOREIGN KEY source (__FKsource__) REFERENCES Place (__IDPlace__),
+	PRIMARY KEY PopExp (__IDPopExp__),
+	__FKsource__ Integer
+) ;
+
+CREATE TABLE FunctionCallExp (
+	__IDFunctionCallExp__ Integer NOT NULL,
+	FOREIGN KEY functionCall (__FKfunctionCall__) REFERENCES FunctionCall (__IDFunctionCall__),
+	PRIMARY KEY FunctionCallExp (__IDFunctionCallExp__),
+	__FKfunctionCall__ Integer
+) ;
+
+CREATE TABLE Place (
+	__IDPlace__ Integer NOT NULL,
+	PRIMARY KEY Place (__IDPlace__)
+) ;
+
+CREATE TABLE SIPHeaderPlace (
+	__IDSIPHeaderPlace__ Integer NOT NULL,
+	header text,
+	PRIMARY KEY SIPHeaderPlace (__IDSIPHeaderPlace__)
+) ;
+
+CREATE TABLE VariablePlace (
+	__IDVariablePlace__ Integer NOT NULL,
+	PRIMARY KEY VariablePlace (__IDVariablePlace__)
+) ;
+
+CREATE TABLE PropertyCallPlace (
+	__IDPropertyCallPlace__ Integer NOT NULL,
+	propName text,
+	FOREIGN KEY source (__FKsource__) REFERENCES VariablePlace (__IDVariablePlace__),
+	PRIMARY KEY PropertyCallPlace (__IDPropertyCallPlace__),
+	__FKsource__ Integer
+) ;
+
+CREATE TABLE Variable (
+	__IDVariable__ Integer NOT NULL,
+	FOREIGN KEY source (__FKsource__) REFERENCES Declaration (__IDDeclaration__),
+	PRIMARY KEY Variable (__IDVariable__),
+	__FKsource__ Integer
+) ;
+
+CREATE TABLE MessageField (
+	__IDMessageField__ Integer NOT NULL,
+	FOREIGN KEY exp (__FKexp__) REFERENCES Expression (__IDExpression__),
+	PRIMARY KEY MessageField (__IDMessageField__),
+	__FKexp__ Integer
+) ;
+
+CREATE TABLE ReasonMessageField (
+	__IDReasonMessageField__ Integer NOT NULL,
+	PRIMARY KEY ReasonMessageField (__IDReasonMessageField__)
+) ;
+
+CREATE TABLE HeadedMessageField (
+	__IDHeadedMessageField__ Integer NOT NULL,
+	headerId text,
+	PRIMARY KEY HeadedMessageField (__IDHeadedMessageField__)
+) ;
+
+CREATE TABLE Constant (
+	__IDConstant__ Integer NOT NULL,
+	PRIMARY KEY Constant (__IDConstant__)
+) ;
+
+CREATE TABLE BooleanConstant (
+	__IDBooleanConstant__ Integer NOT NULL,
+	value Boolean,
+	PRIMARY KEY BooleanConstant (__IDBooleanConstant__)
+) ;
+
+CREATE TABLE IntegerConstant (
+	__IDIntegerConstant__ Integer NOT NULL,
+	value Integer,
+	PRIMARY KEY IntegerConstant (__IDIntegerConstant__)
+) ;
+
+CREATE TABLE StringConstant (
+	__IDStringConstant__ Integer NOT NULL,
+	value text,
+	PRIMARY KEY StringConstant (__IDStringConstant__)
+) ;
+
+CREATE TABLE URIConstant (
+	__IDURIConstant__ Integer NOT NULL,
+	uri text,
+	PRIMARY KEY URIConstant (__IDURIConstant__)
+) ;
+
+CREATE TABLE SequenceConstant (
+	__IDSequenceConstant__ Integer NOT NULL,
+	PRIMARY KEY SequenceConstant (__IDSequenceConstant__)
+) ;
+
+CREATE TABLE ResponseConstant (
+	__IDResponseConstant__ Integer NOT NULL,
+	FOREIGN KEY response (__FKresponse__) REFERENCES Response (__IDResponse__),
+	PRIMARY KEY ResponseConstant (__IDResponseConstant__),
+	__FKresponse__ Integer
+) ;
+
+CREATE TABLE Response (
+	__IDResponse__ Integer NOT NULL,
+	PRIMARY KEY Response (__IDResponse__)
+) ;
+
+CREATE TABLE SuccessResponse (
+	__IDSuccessResponse__ Integer NOT NULL,
+	successKind text,
+	PRIMARY KEY SuccessResponse (__IDSuccessResponse__)
+) ;
+
+CREATE TABLE ErrorResponse (
+	__IDErrorResponse__ Integer NOT NULL,
+	PRIMARY KEY ErrorResponse (__IDErrorResponse__)
+) ;
+
+CREATE TABLE ClientErrorResponse (
+	__IDClientErrorResponse__ Integer NOT NULL,
+	errorKind text,
+	PRIMARY KEY ClientErrorResponse (__IDClientErrorResponse__)
+) ;
+
+CREATE TABLE GlobalErrorResponse (
+	__IDGlobalErrorResponse__ Integer NOT NULL,
+	errorKind text,
+	PRIMARY KEY GlobalErrorResponse (__IDGlobalErrorResponse__)
+) ;
+
+CREATE TABLE RedirectionErrorResponse (
+	__IDRedirectionErrorResponse__ Integer NOT NULL,
+	errorKind text,
+	PRIMARY KEY RedirectionErrorResponse (__IDRedirectionErrorResponse__)
+) ;
+
+CREATE TABLE ServerErrorResponse (
+	__IDServerErrorResponse__ Integer NOT NULL,
+	errorKind text,
+	PRIMARY KEY ServerErrorResponse (__IDServerErrorResponse__)
+) ;
+
+CREATE TABLE WhenStat_statements_Statement (
+	__IDWhenStat__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE SelectStat_selectCases_SelectCase (
+	__IDSelectStat__ Integer NOT NULL,
+	__IDSelectCase__ Integer NOT NULL
+) ;
+
+CREATE TABLE Method_arguments_Argument (
+	__IDMethod__ Integer NOT NULL,
+	__IDArgument__ Integer NOT NULL
+) ;
+
+CREATE TABLE Registration_declarations_Declaration (
+	__IDRegistration__ Integer NOT NULL,
+	__IDDeclaration__ Integer NOT NULL
+) ;
+
+CREATE TABLE Service_declarations_Declaration (
+	__IDService__ Integer NOT NULL,
+	__IDDeclaration__ Integer NOT NULL
+) ;
+
+CREATE TABLE LocalFunctionDeclaration_statements_Statement (
+	__IDLocalFunctionDeclaration__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE WhenStat_whenHeaders_WhenHeader (
+	__IDWhenStat__ Integer NOT NULL,
+	__IDWhenHeader__ Integer NOT NULL
+) ;
+
+CREATE TABLE Dialog_methods_Method (
+	__IDDialog__ Integer NOT NULL,
+	__IDMethod__ Integer NOT NULL
+) ;
+
+CREATE TABLE Registration_sessions_Session (
+	__IDRegistration__ Integer NOT NULL,
+	__IDSession__ Integer NOT NULL
+) ;
+
+CREATE TABLE FunctionCall_parameters_Expression (
+	__IDFunctionCall__ Integer NOT NULL,
+	__IDExpression__ Integer NOT NULL
+) ;
+
+CREATE TABLE Method_statements_Statement (
+	__IDMethod__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE Branch_statements_Statement (
+	__IDBranch__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE CompoundStat_statements_Statement (
+	__IDCompoundStat__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE WhenStat_elseStatements_Statement (
+	__IDWhenStat__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE WithExp_msgFields_MessageField (
+	__IDWithExp__ Integer NOT NULL,
+	__IDMessageField__ Integer NOT NULL
+) ;
+
+CREATE TABLE StructureDeclaration_properties_Argument (
+	__IDStructureDeclaration__ Integer NOT NULL,
+	__IDArgument__ Integer NOT NULL
+) ;
+
+CREATE TABLE IfStat_thenStatements_Statement (
+	__IDIfStat__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE IfStat_elseStatements_Statement (
+	__IDIfStat__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE SelectMember_statements_Statement (
+	__IDSelectMember__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE FunctionDeclaration_arguments_Argument (
+	__IDFunctionDeclaration__ Integer NOT NULL,
+	__IDArgument__ Integer NOT NULL
+) ;
+
+CREATE TABLE Event_methods_Method (
+	__IDEvent__ Integer NOT NULL,
+	__IDMethod__ Integer NOT NULL
+) ;
+
+CREATE TABLE Event_declarations_Declaration (
+	__IDEvent__ Integer NOT NULL,
+	__IDDeclaration__ Integer NOT NULL
+) ;
+
+CREATE TABLE ForeachStat_statements_Statement (
+	__IDForeachStat__ Integer NOT NULL,
+	__IDStatement__ Integer NOT NULL
+) ;
+
+CREATE TABLE Dialog_declarations_Declaration (
+	__IDDialog__ Integer NOT NULL,
+	__IDDeclaration__ Integer NOT NULL
+) ;
+
+CREATE TABLE Method_branches_Branch (
+	__IDMethod__ Integer NOT NULL,
+	__IDBranch__ Integer NOT NULL
+) ;
+
+CREATE TABLE Service_sessions_Session (
+	__IDService__ Integer NOT NULL,
+	__IDSession__ Integer NOT NULL
+) ;
+
+CREATE TABLE SequenceConstant_values_Constant (
+	__IDSequenceConstant__ Integer NOT NULL,
+	__IDConstant__ Integer NOT NULL
+) ;
+
+CREATE TABLE SelectCase_values_Constant (
+	__IDSelectCase__ Integer NOT NULL,
+	__IDConstant__ Integer NOT NULL
+) ;

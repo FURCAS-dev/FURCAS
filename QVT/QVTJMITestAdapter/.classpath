@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OCLCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QVTCommon"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QVTJMI"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/QVTTestAdapter"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OCLTestAdapter"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OCLJMITest"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/OCLJMITestAdapter"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

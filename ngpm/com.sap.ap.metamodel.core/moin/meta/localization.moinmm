@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/tc/moin/mof_1.4' i='1' v='1.0'/>
+<M c='1' q='Model.Package' i='45ED2E2925D14D728A6546C630BDE3FB4BDA77C3'/>
+<M c='1' q='Model.Import' i='45ED2E29372BCE32CB9241CD1FB9E2F08880B940'/>
+<M c='1' q='Model.Attribute' i='45ED2E29726BF05A1AA847C8298F93D7745C3BFB'/>
+<M c='1' q='Model.Aliases' i='45ED2E297C6E4C4F64E543CC20E2ED5F34992C72' se='0' ce='-1' oe='-1'/>
+<M c='1' q='Model.Contains' i='45ED2E29A15C5D7FDF8D483F1CFA93E430ADEDCC' se='0' ce='0' oe='1'/>
+<M c='1' q='Model.IsOfType' i='45ED2E29DA5028C85512452C3856E282A65D065B' se='1' ce='-1' oe='-1'/>
+<M c='1' q='Model.Class' i='45ED2E29E9B8C271FD484D6E2F52CCB9570C451A'/>
+<Model.Attribute m:c='1' m:i='E089BB2D51F762B73E4B11DEBCF20018DE1146FF' name='text' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Attribute m:c='1' m:i='E089BB2D51F762B83E4B11DE81A00018DE1146FF' name='hintForTranslator' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Class m:c='1' m:i='E089BB2D51F762B93E4B11DE83E10018DE1146FF' name='TranslatableText' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Import m:c='1' m:i='E089BB2D51F762BA3E4B11DEBFE90018DE1146FF' name='PrimitiveTypes' annotation='' visibility='public_vis' isClustered='false'/>
+<Model.Package m:c='1' m:i='E089BB2D51F762BB3E4B11DEBA130018DE1146FF' name='localization' annotation='Contains model snipplets useful for parts of the programming model that require translation of (parts of) their artifacts, such as UI texts, message texts or descriptions useful during design-time. This may require linking to concepts such as &quot;development language&quot; providing defaults for the language in which a string is given.&#10;&#10;It will also be an interesting question how the languages, regions and dialects important for the translation process should be represented.' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Aliases c='1'>
+<L f='E089BB2D51F762BA3E4B11DEBFE90018DE1146FF' s='PF.MetaModelDataArea:45ED2E2A9B676E5825E742FD3D27AC08D5F6FAF0'/>
+</Model.Aliases>
+<Model.Contains c='1'>
+<L f='E089BB2D51F762B93E4B11DE83E10018DE1146FF' s='E089BB2D51F762B73E4B11DEBCF20018DE1146FF'/>
+<L f='E089BB2D51F762B93E4B11DE83E10018DE1146FF' s='E089BB2D51F762B83E4B11DE81A00018DE1146FF'/>
+<L f='E089BB2D51F762BB3E4B11DEBA130018DE1146FF' s='E089BB2D51F762B93E4B11DE83E10018DE1146FF'/>
+<L f='E089BB2D51F762BB3E4B11DEBA130018DE1146FF' s='E089BB2D51F762BA3E4B11DEBFE90018DE1146FF'/>
+</Model.Contains>
+<Model.IsOfType c='1'>
+<L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E089BB2D51F762B73E4B11DEBCF20018DE1146FF'/>
+<L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E089BB2D51F762B83E4B11DE81A00018DE1146FF'/>
+</Model.IsOfType>
+</Partition>

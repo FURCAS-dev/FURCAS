@@ -1,0 +1,81 @@
+# Specification of the ATM_CORE component
+# Author: Pascal Andre
+# Date: 11/07/05
+# 
+# Note : Only the features of interest for the withdrawal service
+#        are included in the current specification.
+# 
+COMPONENT ATM_CORE
+
+/* The ATM_CORE component is the central component for a bank cashier station.
+   The main services of such a system are cash withdrawal, account query, deposit money
+   and transfer bank query.
+   The current specification focuses only on cash withdrawal.
+*/
+
+INTERFACE  
+  provides : {withdrawal, account_query, deposit, transfer}
+  requires : {ask_authorization, ask_account_balance} 
+# Contents of the following comment beyond the scope of the considered subset.
+/*
+TYPES
+  CashCard  :  {code:Integer, id:Integer, limit:Integer} # record type 
+CONSTANTS
+  available_cash : Integer := 100,
+  swallowed_size : Integer := 100
+VARIABLES
+  name : String,
+  swallowed_cards : Set,
+  available_notes : Integer
+PROPERTIES
+ cash_disp: available_notes >= 0,
+ card_capacity: size(swallowed_cards) <= swallowed_size 
+  
+INITIALIZATION
+  name := "ATM203";
+  swallowed_cards := emptySet;
+  available_notes := 10000;
+*/
+SERVICES
+
+# services from external files (currently only in the same directory) can be included
+provided external withdrawal
+provided external account_query
+provided external deposit
+provided external transfer
+
+#a fool service for testing dependencies
+provided ident () 
+
+	Interface
+  	 # subprovides : {}
+   	 # calrequires : {}
+     # extrequires : {}
+     Behavior 
+       init i # i is the initial state 
+       final f # f is a final state
+       {
+          i -- display("my id") --> e1,
+          e1 -- __CALLER!!ident() --> f
+       }
+end
+
+#required services
+required ask_authorization (id : Integer, code : Integer) : Boolean
+end
+required ask_account_balance (id : Integer) : Integer
+end
+
+#internal services +++
+provided debit (c : CashCard, m : Integer)
+end
+provided eject_card()
+end
+provided swallow_card()
+end
+provided display(msg : String)
+end
+
+END_SERVICES
+
+# end of ATM_CORE

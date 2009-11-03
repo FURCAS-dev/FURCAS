@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+<!-- ======================================================================================= -->
+<!-- Trace Enabling				                                                             -->
+<!-- ======================================================================================= -->
+ <extension point="com.tssap.tools.ui.traceParticipant">
+      <traceParticipant file="traceParticipant.properties"/>
+   </extension>
+
+<!-- ======================================================================================= -->
+<!-- Wizards					                                                             -->
+<!-- ======================================================================================= -->
+ <extension point="org.eclipse.ui.newWizards">
+	<category
+	      id="com.sap.mi.fwk.dcfwk.newwizards"
+	      name="%newwizard.category.modeling">
+	</category>
+ </extension>
+ 
+<!-- ======================================================================================= -->
+<!-- Enitity Services			                                                             -->
+<!-- ======================================================================================= -->
+ <extension
+       point="com.sap.ide.dii05.lib.ppentityservices">
+    <EntityService
+          class="com.sap.mi.fwk.dcfwk.ModelFolderTreeEntityService"
+          id="com.sap.mi.fwk.dcfwk.modelFolderTreeEntityService"
+          name="%entityService.name">
+       <type
+             name="Model Folder Tree">
+       </type>
+    </EntityService>
+ </extension>	
+
+<!-- ======================================================================================= -->
+<!-- Commands					                                                             -->
+<!-- ======================================================================================= -->
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            categoryId="org.eclipse.ui.category.project"
+            description="%action.descr.repairdc"
+            id="com.sap.mi.fwk.dcfwk.commands.repairDc"
+            name="%action.name.repairdc">
+      </command>
+   </extension>
+
+<!-- ======================================================================================= -->
+<!-- Handlers					                                                             -->
+<!-- ======================================================================================= -->
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.sap.mi.fwk.dcfwk.internal.RepairDcAction"
+            commandId="com.sap.mi.fwk.dcfwk.commands.repairDc">
+         <activeWhen>
+            <reference
+                  definitionId="com.sap.mi.fwk.expressions.moinProjects">
+            </reference>
+         </activeWhen>
+      </handler>
+   </extension>
+	
+<!-- ======================================================================================= -->
+<!-- Menus						                                                             -->
+<!-- ======================================================================================= -->
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:com.sap.mi.fwk.ui.menu.modeling?after=group.project">
+         <command
+               commandId="com.sap.mi.fwk.dcfwk.commands.repairDc"
+               label="%action.name.repairdc">
+         </command>
+      </menuContribution>
+   </extension>
+
+</plugin>

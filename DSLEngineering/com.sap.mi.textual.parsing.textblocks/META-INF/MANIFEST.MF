@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Textblocks  Parsing Plug-in
+Bundle-SymbolicName: com.sap.mi.textual.parsing.textblocks;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Require-Bundle: com.sap.tc.moin.libraries.api,
+ com.sap.tcsmeta.mm.eclipse,
+ org.eclipse.core.runtime,
+ com.sap.mi.textual.parsing,
+ com.sap.tc.moin.globalmodellistener,
+ com.sap.tc.moin.textual.runtime.moin,
+ com.sap.mi.textual.common,
+ com.sap.mi.textual.tcs.util,
+ com.sap.tc.moin.libraries.core
+Export-Package: 
+ com.sap.mi.textual.parsing.textblocks,
+ com.sap.mi.textual.parsing.textblocks.observer,
+ com.sap.mi.textual.textblocks.model
+Bundle-Activator: com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator

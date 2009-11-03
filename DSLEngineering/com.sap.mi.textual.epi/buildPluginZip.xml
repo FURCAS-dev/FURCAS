@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project default="plugin_export" name="build">
+	<target name="plugin_export">
+		<pde.exportPlugins destination="C:\TargetWS\TargetDev\com.sap.mi.textual.epi\build" exportSource="true" exportType="zip" filename="com.sap.mi.textual.zip" plugins="com.sap.tcsmeta.mm.eclipse,com.sap.mi.textual,com.sap.mi.textual.common,com.sap.mi.textual.epi,com.sap.mi.textual.grammar.parser,com.sap.mi.textual.moinlookup,com.sap.mi.textual.parsing,com.sap.tc.moin.textual.runtime.moin,com.sap.mi.textual.syntaxmodel.moinadapter" useJARFormat="false"/>
+	</target>
+</project>

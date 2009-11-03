@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sap.mi.textual.parsing.textblocks" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="com.sap.mi.textual.parsing.textblocks" id="unresolvedReferencesChangeListener" name="%eventListeners"/>
+      </appInfo>
+      <documentation>
+         Extenders provide event listeners that care changes in the list of unresolved references that is maintained by the GlobalDelayedReferencesResolver.
+      </documentation>
+   </annotation>
+
+   <element name="listener">
+      <complexType>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Provide the fully-qualified name of a class with a public no-arg constructor, implementing the interface com.sap.ap.metamodel.core.lifecycle.GlobalEventListener
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

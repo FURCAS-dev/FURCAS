@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<C n='sap.com/moin/mm/ap/core' i='2' v=''/>
+<M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
+<M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
+<M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
+<M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
+<M c='1' q='textblocks.DocumentNode_Has_DocumentNodeVersions' i='480716BCBE2DC5500C5F11DDB14600016CE99C52' se='1' ce='-1' oe='0'/>
+<M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
+<M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
+<M c='2' q='data.classes.SapClass' i='E0234C8C51E4770E3E4B11DE910A0018DE1146FF' ova='description'/>
+<M c='2' q='data.classes.ClassTypeDefinition' i='E0234C8C51E6C0F73E4B11DEC7320018DE1146FF'/>
+<M c='2' q='data.classes.MethodSignature' i='E0234C8C51E931D73E4B11DE9A720018DE1146FF' ova='description'/>
+<M c='2' q='data.classes.A_elementsOfType_clazz' i='E0234C8C51EB7BC43E4B11DECAD00018DE1146FF' se='0' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.A_package__classes' i='E0234C8C51EB7BCA3E4B11DE87500018DE1146FF' se='1' ce='0' oe='-1'/>
+<M c='2' q='data.classes.A_ownedTypeDefinition_ownerTypedElement' i='E0234C8C51EB7BD63E4B11DEB7290018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='data.classes.A_implements__implementation' i='E0234C8C51EB7BDF3E4B11DEB2830018DE1146FF' se='1' ce='0' oe='-1'/>
+<M c='2' q='data.classes.OwnedSignatures' i='E0234C8C51EB7BF13E4B11DE9A020018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
+<M c='2' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
+<M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
+<M c='2' q='behavioral.actions.Variable' i='E0BC871351C57D223E4B11DEAD420018DE1146FF' ova='description'/>
+<M c='2' q='behavioral.actions.NamedValueDeclaration' i='E0BC871351C57D263E4B11DEADF60018DE1146FF'/>
+<M c='2' q='behavioral.actions.A_statements_block' i='E0BC871351C57D323E4B11DE94BD0018DE1146FF' se='1' ce='1' oe='0'/>
+<M c='2' q='behavioral.actions.A_variables_owner' i='E0BC871351C57D383E4B11DE82350018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='behavioral.actions.A_namedValue_namedValueDeclaration' i='E0BC871351C7C7243E4B11DECEA40018DE1146FF' se='1' ce='-1' oe='-1'/>
+<modelmanagement.Package m:c='2' m:i='49C77CCEF50AD71017A311DEC3C600155883529C' name='ctsTestFixture2'/>
+<data.classes.A_elementsOfType_clazz c='2'>
+<L f='E07B8DB9AB9390924C4611DEC50E00016CE99C52' s='E07B8DB9ABADA8404C4611DEC9DF00016CE99C52'/>
+</data.classes.A_elementsOfType_clazz>
+<data.classes.A_package__classes c='2'>
+<L f='49C77CCEF50AD71017A311DEC3C600155883529C' s='E07B8DB9ABADA8404C4611DEC9DF00016CE99C52'/>
+</data.classes.A_package__classes>
+<data.classes.A_ownedTypeDefinition_ownerTypedElement c='2'>
+<L f='E07B8DB9AB9390924C4611DEC50E00016CE99C52' s='E07B8DB9AB9390934C4611DEBEE700016CE99C52'/>
+</data.classes.A_ownedTypeDefinition_ownerTypedElement>
+<data.classes.A_implements__implementation c='2'>
+<L f='E07B8DB9ABAC21A04C4611DEAC0C00016CE99C52' s='E07B8DB9ABA2F9E04C4611DEA6B600016CE99C52'/>
+</data.classes.A_implements__implementation>
+<data.classes.OwnedSignatures c='2'>
+<L f='E07B8DB9ABADA8404C4611DEC9DF00016CE99C52' s='E07B8DB9ABAC21A04C4611DEAC0C00016CE99C52'/>
+</data.classes.OwnedSignatures>
+<modelmanagement.A_ownedPackages_owner c='2'>
+<L f='49C77CCEF50AD71017A311DEC3C600155883529C' s='local:49A546849BE6F100033F11DE88F600016CE99C52'/>
+</modelmanagement.A_ownedPackages_owner>
+<behavioral.actions.A_statements_block c='2'>
+<L f='E07B8DB9AB9390944C4611DE86F700016CE99C52' s='E07B8DB9ABA2F9E04C4611DEA6B600016CE99C52'/>
+</behavioral.actions.A_statements_block>
+<behavioral.actions.A_variables_owner c='2'>
+<L f='E07B8DB9AB9390934C4611DEBEE700016CE99C52' s='E07B8DB9ABA2F9E04C4611DEA6B600016CE99C52'/>
+</behavioral.actions.A_variables_owner>
+<behavioral.actions.A_namedValue_namedValueDeclaration c='2'>
+<L f='E07B8DB9AB9390934C4611DEBEE700016CE99C52' s='E07B8DB9AB9390944C4611DE86F700016CE99C52'/>
+</behavioral.actions.A_namedValue_namedValueDeclaration>
+</Partition>

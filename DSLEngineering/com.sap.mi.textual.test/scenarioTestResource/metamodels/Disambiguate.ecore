@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Disambiguate"
+    nsURI="http:///disambiguate.ecore" nsPrefix="disambiguate">
+  <eClassifiers xsi:type="ecore:EClass" name="MethodCallExpression" eSuperTypes="#//ObjectBasedExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="methodName" lowerBound="1"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ObjectBasedExpression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" eType="#//ObjectBasedExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ObjectBasedExpression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationEndNavigationExpression"
+      eSuperTypes="#//ObjectBasedExpression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="associationEndName" lowerBound="1"
+        eType="#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//ObjectBasedExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Statements">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="statements" upperBound="-1"
+        eType="#//ObjectBasedExpression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="This" eSuperTypes="#//ObjectBasedExpression"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+</ecore:EPackage>

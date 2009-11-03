@@ -1,0 +1,75 @@
+-- @name		KM3
+-- @version		2007
+-- @domains		MDE
+-- @authors		Mikael Barbero,  Jouault
+-- @date		2007/09/24
+-- @description	KM3 (Kernel MetaMetaModel) is a metametamodel.
+
+package KM3 {
+
+	abstract class ModelElement {
+		attribute name : String;
+	}
+	
+	abstract class PackageElement extends ModelElement {
+		reference "package"[0-1] : Package oppositeOf contents;
+	}
+
+	class Metamodel {
+		reference contents[*] ordered container : Package oppositeOf metamodel;
+	}
+
+	class Package extends PackageElement {
+		reference metamodel[0-1] : Metamodel oppositeOf contents;
+		reference contents[*] ordered container : PackageElement oppositeOf "package";
+	}
+
+-- @begin Classifiers
+	abstract class Classifier extends PackageElement {
+	}
+
+	class Class extends Classifier {
+		attribute isAbstract : Boolean;
+		reference supertypes[*] ordered : Class;
+		reference structuralFeatures[*] ordered container : StructuralFeature oppositeOf owner;
+	}
+
+	class DataType extends Classifier {
+	}
+
+	class Enumeration extends DataType {
+		reference literals[*] ordered container : EnumLiteral oppositeOf "enumeration";
+	}
+
+	class EnumLiteral extends ModelElement {
+		reference "enumeration" : Enumeration oppositeOf literals;
+	}
+-- @end Classifiers
+
+-- @begin StructuralFeatures
+	abstract class StructuralFeature extends ModelElement {
+		attribute lower : Integer;
+		attribute upper : Integer;
+		attribute isOrdered : Boolean;
+		reference owner : Class oppositeOf structuralFeatures;
+		reference type : Classifier;
+	}
+
+	class Attribute extends StructuralFeature {
+		attribute isUnique : Boolean;
+	}
+
+	class Reference extends StructuralFeature {
+		reference opposite[0-1] : Reference;
+		attribute isContainer : Boolean;
+	}
+-- @end StructuralFeatures
+}
+
+package PrimitiveTypes {
+-- @begin Primitive Types
+	datatype Boolean;
+	datatype Integer;
+	datatype String;
+-- @end Primitive Types
+}

@@ -1,0 +1,424 @@
+-- @authors		Frederic Jouault
+-- @date		2007/05/21
+-- @description	This TCS model defines the syntax of the LOTOS language.
+-- @see			ftp://ftp.inrialpes.fr/pub/vasy/publications/others/Turner-96.pdf
+syntax LOTOS {
+
+	primitiveTemplate identifier for ->String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for ->String using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for ->String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\'' + %value%.toCString() + '\''";
+
+	primitiveTemplate integerSymbol for ->Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+
+	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+		value = "Double.valueOf(%token%)";
+
+	template ->Specification main context
+		:	"specification" ->name
+			(isDefined(->gates) ? "[" ->gates{separator = ","} "]")
+			":" (->isExit ? "exit" : "noexit")
+			[ ->types ] {nbNL = 2}
+			"behaviour" [
+				(isDefined(->definition) ? ->definition)
+			] "endspec"
+		;
+
+	template ->Definition
+		:	[
+				->behaviour
+			] (isDefined(->declarations) ? "where" [
+				->declarations
+			] {nbNL = 2})
+		;
+
+	template ->TypeOrProcessDeclaration abstract;
+	
+	template ->Process context
+		:	"process" ->name
+			(isDefined(->gates) ? "[" ->gates{separator = ","} "]")
+			(isDefined(->variables) ? "(" ->variables{separator = ","} ")")
+			":" (->isExit ? "exit" : "noexit") ":=" ->definition "endproc"
+		;
+
+-- @begin Behaviour
+	template ->Behaviour abstract operatored(Behaviour);
+	
+	template ->Let context nonPrimary
+		:	"let" ->variables "=" ->value "in"
+			[ ->behaviour ]
+		;
+
+	template ->Choice context nonPrimary
+		:	"choice" ->variables "[]"
+			[ ->behaviour ]
+		;
+		
+	template ->Hide nonPrimary
+		:	"hide" ->gates{separator = ","} "in"
+			[ ->behaviour ]
+		;
+
+	template ->ProcessCall
+		:	->name "[" ->gates{separator = ","} "]"
+			(isDefined(->arguments) ? "(" ->arguments{separator = ","} ")")
+		;	
+		
+	operatorTemplate ->SimpleParallel(operators = parOp, source = ->left, storeRightTo = ->right);
+	operatorTemplate ->GatedParallel(operators = gatedParOp, source = ->left, storeRightTo = ->right)
+		:	->gates{separator = ","} "]|"
+		;
+
+	operatorTemplate ->GuardedBehaviour(operators = guardedOp, source = ->behaviour)
+		:	"[" ->guard "]"	-- prefix to operator
+		;
+
+	operatorTemplate ->ActionBehaviour(operators = semiOp, source = ->behaviour) context
+		:	->action		-- prefix to operator
+		;
+		
+	operatorTemplate ->Alternative(operators = alternativeOp, source = ->left, storeRightTo = ->right);
+-- @end Behaviour
+
+-- @begin Actions
+	template ->Action abstract;
+	
+	template ->GateAction context
+		:	->gate
+-- TODO: resolve ambiguity when guard is outside
+			(isDefined(->communications) ? ->communications{forcedLower = 1}
+				(isDefined(->guard) ? "[" ->guard "]")
+			)
+		;
+		
+	template ->Communication abstract;
+	
+	template ->InComm
+		:	"?" ->declarations
+		;
+		
+	template ->OutComm
+		:	"!" ->value
+		;
+-- @end Actions
+
+-- @begin Guards
+	template ->GuardExpression abstract;
+	
+	template ->EqualityTestGuardExp(disambiguate = "value EQ")
+		:	->left "=" ->right
+		;
+		
+	template ->BooleanGuardExp
+		:	->value
+		;
+-- @end Guards
+
+-- @begin Values
+	template ->Value abstract operatored(Value);
+	
+	template ->Variable
+		:	->declaration{refersTo = name}
+		;
+		
+	template ->OperationCall
+		:	->operationName "(" ->arguments{separator = ","} ")"
+		;
+		
+	template ->IntegerVal
+		:	->value
+		;
+
+	template ->BooleanVal
+		:	(->value ? "true" : "false")
+		;
+		
+	operatorTemplate ->CastVal(operators = opOf, source = ->value)
+		:	->toType
+		;
+
+	operatorTemplate ->OperatorCall(operators =
+			opPlus
+			opEq opGe opGt opLe opLt opNe
+			opAnd opOr
+			, source = ->left, storeOpTo = ->operatorName, storeRightTo = ->right);
+-- @end Values
+	
+	template ->VariableDeclaration addToContext
+		:	->name
+		;
+
+	template ->VariableDeclarations
+		:	->declarations{separator = ","} ":" ->type
+		;
+		
+-- @begin Types
+	template ->Type abstract;
+	
+	template ->LibraryList
+		:	"library" ->names{separator = ","} "endlib"
+		;
+		
+	template ->TypeDefinition
+		:	"type" ->name "is" ->types{separator = ","}	[
+				"sorts" ->sorts{separator = ","}
+				"opns" [
+					->operations
+				]
+				"eqns" [
+					->equations
+				] {endNL = false}
+			] "endtype"
+		;
+		
+	template ->Operations
+		:	->declarations{separator = ","}
+			":" ->parameterTypes{separator = ","} "->" ->returnType
+		;
+		
+	template ->OperationDeclaration addToContext
+		:	->name
+		;
+		
+	template ->Equations context
+		:	"forall" ->declarations{separator = ","} [
+				->ofSorts
+			] {indentIncr = 0, nbNL = 2, endNL = false}
+		;
+		
+	template ->OfSort
+		:	"ofsort" ->name [
+				->equations
+			] {endNL = false}
+		;
+		
+	template ->Equation abstract;
+	
+	template ->SimpleEquation
+		:	->left "=" ->right ";"
+		;
+		
+	template ->GuardedEquation(disambiguate = "guardExpression IMPLIES")
+		:	->guard "=>" ->equation
+		;
+-- @end Types
+
+	symbols {
+		lsquarersquare		= "[]";
+		lsquare		= "[";
+		rsquare		= "]"	: rightSpace;
+		excl		= "!";
+		coma		= ","	: leftNone, rightSpace;
+		lparen		= "(";
+		rparen		= ")"	: leftNone, rightSpace;
+		lcurly		= "{"	: leftSpace;
+		rcurly		= "}"	: leftNone, rightSpace;
+		semi		= ";"	: leftNone, rightSpace;
+		colon		= ":"	: leftSpace, rightSpace;	-- except after def where it is leftNone, rightSpace
+		pipe		= "|"	: leftSpace, rightSpace;
+		sharp		= "#"	: leftSpace;
+		qmark		= "?";
+		coloncolon	= "::"	: leftNone, rightNone;
+		pipe3		= "|||";
+		pipelsquare	= "|[";
+		rsquarepipe	= "]|";
+		coloneq		= ":=";
+		implies		= "=>"	: leftSpace, rightSpace;
+
+		-- operator symbols
+		point		= "."	: leftNone;
+		rarrow		= "->"	: leftSpace, rightSpace;
+		minus		= "-"	: leftSpace, rightSpace;
+		star		= "*"	: leftSpace, rightSpace;
+		slash		= "/"	: leftSpace, rightSpace;
+		plus		= "+"	: leftSpace, rightSpace;
+		eq		= "="	: leftSpace, rightSpace;
+		gt		= ">"	: leftSpace, rightSpace;
+		lt		= "<"	: leftSpace, rightSpace;
+		ge		= ">="	: leftSpace, rightSpace;
+		le		= "<="	: leftSpace, rightSpace;
+		ne		= "<>"	: leftSpace, rightSpace;
+		larrow		= "<-"	: leftSpace, rightSpace;
+	}
+	
+	operators Behaviour {
+		priority 0, right {
+			semiOp		= ";", 1;	-- prefix
+		}
+		
+		priority 1 {
+			guardedOp		= "->", 1;	-- prefix
+		}
+		
+		priority 2 {
+			alternativeOp	= "[]", 2;
+		}
+		
+		priority 3 {
+			parOp			= "|||", 2;
+			gatedParOp		= "|[", 2;
+		}
+
+--		priority 4 {
+--			disableOp		= "|>", 2;
+--		}
+
+--		priority 5 {
+--			enableOp		= ">>", 2;
+--		}
+	}
+
+	operators Value {
+		priority 0 {
+			opOf	= "of", 2;
+		}
+		
+		priority 1 {
+			opPlus	= plus, 2;
+		}
+		
+		priority 2 {
+			opEq	= "eq", 2;
+			opGe	= ge, 2;
+			opGt	= gt, 2;
+			opLe	= le, 2;
+			opLt	= lt, 2;
+			opNe	= "neq", 2;
+		}
+		
+		priority 3 {
+			opAnd = "and", 2;
+			opOr = "or", 2;
+		}
+	}
+	
+	token COMMENT : multiLine(start = "(*", end = "*)");
+
+	lexer = "
+%options testLiterals = false;
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		)
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+%v2	options {
+%v2		testLiterals = true;
+%v2	}
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+NAME
+	:	(
+%v3			SNAME
+%v2			s:SNAME {if(s.getType() != SNAME) $setType(s.getType());}
+		|	'\"'!
+			(	ESC
+			|	'\\n' {newline();}
+			|	~('\\\\'|'\\\"'|'\\n')
+			)*
+			'\"'!
+%v3			{setText(unescapeString(getText(), 1));}
+		)
+	;
+
+INT
+	:	(DIGIT)+
+%v2		(('.' DIGIT)=> '.' (DIGIT)+ {$setType(FLOAT);})?
+	;
+
+%v3	FLOAT	:	DIGIT+ '.' DIGIT*	;
+
+%protected
+ESC
+	:	'\\\\'!
+		(	'n' %v2{%setText(\"\\n\");}
+		|	'r' %v2{%setText(\"\\r\");}
+		|	't' %v2{%setText(\"\\t\");}
+		|	'b' %v2{%setText(\"\\b\");}
+		|	'f' %v2{%setText(\"\\f\");}
+		|	'\"' %v2{%setText(\"\\\"\");}
+		|	'\\'' %v2{%setText(\"\\'\");}
+		|	'\\\\' %v2{%setText(\"\\\\\");}
+		|	(
+				('0'..'3')
+				(
+%v2					options {
+%v2						warnWhenFollowAmbig = false;
+%v2					}
+				:	('0'..'7')
+					(
+%v2						options {
+%v2							warnWhenFollowAmbig = false;
+%v2						}
+					:	'0'..'7'
+					)?
+				)?
+			|	('4'..'7')
+				(
+%v2					options {
+%v2						warnWhenFollowAmbig = false;
+%v2					}
+				:	('0'..'7')
+				)?
+			)
+				{
+%v2					String s = %getText;
+%v2					int i;
+%v2					int ret = 0;
+%v2					String ans;
+%v2					for (i=0; i<s.length(); ++i)
+%v2						ret = ret*8 + s.charAt(i) - '0';
+%v2					ans = String.valueOf((char) ret);
+%v2					%setText(ans);
+				}
+		)
+	;
+
+STRING
+	:	'\\''!
+		(	ESC
+		|	'\\n' {newline();}
+		|	~('\\\\'|'\\''|'\\n')
+		)*
+		'\\''!
+%v3			{setText(unescapeString(getText(), 1));}
+	;
+
+	";
+
+}

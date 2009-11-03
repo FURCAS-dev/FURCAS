@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1225369443199_uuid:4d26bbe3-2a3d-4d8e-9986-5d5bfb88ca5d</UID>
+<PACKAGE>moin.api</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>D052089</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="IllegalArgumentValue_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Argument with name "{0}"  has an illegal value "{1}"</TEXT>
+<TEXT AKEY="IllegalArgument_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Argument with name "{0}" is illegal</TEXT>
+<TEXT AKEY="sHbQrxY+pZrJnt_Method_Value_XMSG" BKEY="Illegal_Argument_Method_Value_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Method "{0}": Argument with name "{1}" has an illegal value "{2}"</TEXT>
+<TEXT AKEY="IndexOutOfBoundsParam_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Index: {0} Size: {1}</TEXT>
+<TEXT AKEY="IndexOutOfBounds_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Index is outside the legal bounds</TEXT>
+<TEXT AKEY="qKnsQHGBXcJCsAbstractMethod_XMSG" BKEY="MustOverrideThisAbstractMethod_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">This method must be overridden by a concrete subclass</TEXT>
+<TEXT AKEY="ParameterMustNotBeNull_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Parameter "{0}" must not be null</TEXT>
+<TEXT AKEY="Unknown_Enum_Value_Detected_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Unable to handle unknown enumeration value of type {0}: {1}</TEXT>
+<TEXT AKEY="UnsupportedOperationNoArg_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">The called operation is not supported</TEXT>
+<TEXT AKEY="UnsupportedOperation_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Operation "{0}" is not supported</TEXT>
+</RESOURCES>
+</ROOT>

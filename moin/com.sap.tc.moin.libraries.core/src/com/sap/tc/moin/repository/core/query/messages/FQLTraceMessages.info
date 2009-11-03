@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1231770725281_uuid:8a205952-bd68-4df3-a3c4-ffe8d7bb2152</UID>
+<PACKAGE>moin.core</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>D052089</RESPONSIBLE>
+<SKIP_TRANSLATION/>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="MQL_Parse_time_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Parse time : {0} ms.</TEXT>
+<TEXT AKEY="wXo4YRkM6yiicution_of_query_XMSG" BKEY="MQL_Processor_Aborted_execution_of_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Aborted execution of query: {0} {1}</TEXT>
+<TEXT AKEY="XIgu0ARvkxC5ion_finished_in_XMSG" BKEY="MQL_Processor_BQL_estimation_finished_in_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: BQL estimation finished in {0} ms.</TEXT>
+<TEXT AKEY="hscclsAOoQxBfollowing_query_XMSG" BKEY="MQL_Processor_BQL_estimation_produced_following_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: BQL estimation produced following query: \\n {0}</TEXT>
+<TEXT AKEY="AYof3bWyltApcution_finished_XMSG" BKEY="MQL_Processor_BQL_in_memory_execution_finished_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: BQL in-memory execution finished in {0} ms.</TEXT>
+<TEXT AKEY="6yvGWPec1JFnstructs_cluster_XMSG" BKEY="MQL_Processor_BQL_memory_engine_constructs_cluster_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: BQL memory engine constructs cluster...</TEXT>
+<TEXT AKEY="wx7JR1rw0UChaluates_cluster_XMSG" BKEY="MQL_Processor_BQL_memory_engine_evaluates_cluster_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: BQL memory engine evaluates cluster...</TEXT>
+<TEXT AKEY="Zo+wgSGEbKVk_execution_done_XMSG" BKEY="MQL_Processor_BQL_memory_execution_done_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: ... BQL memory execution done!</TEXT>
+<TEXT AKEY="4BBwK71vNUuDcution_possible_XMSG" BKEY="MQL_Processor_BQL_query_of_nature_refAllOfType_refAllOfClass_fast_slim_index_execution_possible_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: BQL query of nature refAllOfType/refAllOfClass (fast slim index execution possible).</TEXT>
+<TEXT AKEY="c/PGX4ERepCx_produced_query_XMSG" BKEY="MQL_Processor_BQL_translation_produced_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: BQL translation produced query: {0}</TEXT>
+<TEXT AKEY="bdGRBVdVBxExcation_finished_XMSG" BKEY="MQL_Processor_BQL_verification_finished_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: BQL verification finished in {0} ms.</TEXT>
+<TEXT AKEY="RTbylR3ZqzVgtion_estimation_XMSG" BKEY="MQL_Processor_Collection_estimation_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Collection estimation in {0} ms.</TEXT>
+<TEXT AKEY="oY4xEkuie4lblements_in_sets_XMSG" BKEY="MQL_Processor_Compare_elements_in_sets_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Compare {0} of the element {1} from First Set with element {2} from Second Set for {3}</TEXT>
+<TEXT AKEY="2PTDDJ0VsWbvlink_estimation_XMSG" BKEY="MQL_Processor_Cross_link_estimation_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Cross-link estimation in {0} ms.</TEXT>
+<TEXT AKEY="AO1dJVgjczw8uery_in_service_XMSG" BKEY="MQL_Processor_Executed_leaf_query_in_service_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Executed leaf query in {0} ms in {1} service</TEXT>
+<TEXT AKEY="W6VCwoDfx6U3uted_node_query_XMSG" BKEY="MQL_Processor_Executed_node_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Executed node query in {0} ms.</TEXT>
+<TEXT AKEY="Fdegjg5OunX0ted_union_query_XMSG" BKEY="MQL_Processor_Executed_union_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Executed union query in {0} ms.</TEXT>
+<TEXT AKEY="p12gP/9am+uRt_of_node_query_XMSG" BKEY="MQL_Processor_Executing_first_part_of_node_query_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Executing first part of node query...</TEXT>
+<TEXT AKEY="VFrMWMTqydM5uery_in_service_XMSG" BKEY="MQL_Processor_Executing_following_leaf_query_in_service_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Executing following leaf query in {0} service: {1} {2}</TEXT>
+<TEXT AKEY="kowe+x3e/JzRwing_node_query_XMSG" BKEY="MQL_Processor_Executing_following_node_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Executing following node query: {0} {1}</TEXT>
+<TEXT AKEY="yH8+8/z2rDOzing_union_query_XMSG" BKEY="MQL_Processor_Executing_following_union_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Executing following union query: {0} {1}</TEXT>
+<TEXT AKEY="xEBu0NbgsU2Bt_of_node_query_XMSG" BKEY="MQL_Processor_Executing_second_part_of_node_query_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Executing second part of node query...</TEXT>
+<TEXT AKEY="CGNAGqxhsJx6Execution_START_XMSG" BKEY="MQL_Processor_Execution_START_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Execution START.</TEXT>
+<TEXT AKEY="pMZmFyvGOlMW_Execution_STOP_XMSG" BKEY="MQL_Processor_Execution_STOP_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Execution STOP.</TEXT>
+<TEXT AKEY="gZV5lEtVfV4Yult_Set_of_size_XMSG" BKEY="MQL_Processor_First_Result_Set_of_size_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: First Result Set of size {0} \: {1} {2}</TEXT>
+<TEXT AKEY="UpnNdjQwHb8jfollowing_query_XMSG" BKEY="MQL_Processor_Found_warnings_during_preparation_of_the_following_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Found warnings during preparation of the following query: {0} {1}</TEXT>
+<TEXT AKEY="CPfJUU2AZQTz_internal_query_XMSG" BKEY="MQL_Processor_Further_pre_processing_of_internal_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Further pre-processing of internal query: {0} {1}</TEXT>
+<TEXT AKEY="tlVQ/N6XzOQ3e_estimation_in_XMSG" BKEY="MQL_Processor_Instance_estimation_in_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Instance estimation in {0} ms.</TEXT>
+<TEXT AKEY="n6Fy3y8odxvpture_type_scope_XMSG" BKEY="MQL_Processor_Internal_query_after_adjusting_structure_type_scope_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after adjusting structure type scope: {0} {1}</TEXT>
+<TEXT AKEY="oNzrAsedxB/Vording_to_graph_XMSG" BKEY="MQL_Processor_Internal_query_after_breaking_up_according_to_graph_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after breaking up according to graph: {0} {1}</TEXT>
+<TEXT AKEY="dnqfCKAfDWu0ng_node_queries_XMSG" BKEY="MQL_Processor_Internal_query_after_compressing_node_queries_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after compressing node queries : {0} {1}</TEXT>
+<TEXT AKEY="SGtgaj8DYNNofter_expansions_XMSG" BKEY="MQL_Processor_Internal_query_after_expansions_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after expansions: {0} {1}</TEXT>
+<TEXT AKEY="3j2Ze9SomloWlity_assignment_XMSG" BKEY="MQL_Processor_Internal_query_after_facility_assignment_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after facility assignment: {0} {1}</TEXT>
+<TEXT AKEY="z3zTSMXsSTDNpartition_scope_XMSG" BKEY="MQL_Processor_Internal_query_after_optimizing_non_dirty_partition_scope_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after optimizing non-dirty partition scope: {0} {1}</TEXT>
+<TEXT AKEY="DCu4xtLCCeQVquery_spreading_XMSG" BKEY="MQL_Processor_Internal_query_after_query_spreading_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after query spreading: {0} {1}</TEXT>
+<TEXT AKEY="7/TZiPIK2hTPing_empty_parts_XMSG" BKEY="MQL_Processor_Internal_query_after_removing_empty_parts_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after removing empty parts: {0} {1}</TEXT>
+<TEXT AKEY="NM/WENYhcB2mient_partitions_XMSG" BKEY="MQL_Processor_Internal_query_after_removing_transient_partitions_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after removing transient partitions: {0} {1}</TEXT>
+<TEXT AKEY="yUEiaX5c2x31ype_comparisons_XMSG" BKEY="MQL_Processor_Internal_query_after_removing_type_comparisons_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after removing type comparisons : {0} {1}</TEXT>
+<TEXT AKEY="U25vatEvMI6zafter_splitting_XMSG" BKEY="MQL_Processor_Internal_query_after_splitting_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after splitting: {0} {1}</TEXT>
+<TEXT AKEY="H9ocE9aSW8qGle_associations_XMSG" BKEY="MQL_Processor_Internal_query_after_steering_appart_multiple_associations_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after steering appart multiple associations: {0} {1}</TEXT>
+<TEXT AKEY="sdOWCvhVpi5lverifying_scope_XMSG" BKEY="MQL_Processor_Internal_query_after_translating_and_verifying_scope_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Internal query after translating and verifying scope: {0} {1}</TEXT>
+<TEXT AKEY="NlsJ9Pq7wl/werpreting_query_XMSG" BKEY="MQL_Processor_Interpreting_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Interpreting query: {0} {1}</TEXT>
+<TEXT AKEY="Zb4gFTxZCxxLing_Result_Sets_XMSG" BKEY="MQL_Processor_Joining_Result_Sets_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Joining Result Sets:</TEXT>
+<TEXT AKEY="Dr11UwH7DEsd_partition_time_XMSG" BKEY="MQL_Processor_Loading_partition_time_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Loading partition {0} in {1} ms.</TEXT>
+<TEXT AKEY="hPcjkPZ0y8T6ceeds_threshold_XMSG" BKEY="MQL_Processor_No_optimization_of_relevant_partition_scope_because_the_number_of_relevant_partitions_exceeds_threshold_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: No optimization of relevant partition scope because the number of relevant partitions ({0}) is larger than the threshold ({1})</TEXT>
+<TEXT AKEY="pg3VsK/CCjiDceeds_threshold_XMSG" BKEY="MQL_Processor_Number_of_elements_in_partition_exceeds_threshold_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Number of elements ({0}) in relevant partition {1} exceeds the threshold ({2})</TEXT>
+<TEXT AKEY="7wN0III2rRhu_for_connection_XMSG" BKEY="MQL_Processor_Obtained_for_connection_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Obtained for connection {0}</TEXT>
+<TEXT AKEY="D/uWSMutQMGj_than_threshold_XMSG" BKEY="MQL_Processor_Optimization_of_relevant_partition_scope_because_the_number_of_relevant_partitions_smaller_than_threshold_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Optimization of relevant partition scope because the number of relevant partitions ({0}) is smaller than the threshold ({1})</TEXT>
+<TEXT AKEY="5dCs4Ng5DI+hation_START_ast_XMSG" BKEY="MQL_Processor_Preparation_START_ast_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Preparation START - ast.</TEXT>
+<TEXT AKEY="5HE49JEYSLRPation_START_cst_XMSG" BKEY="MQL_Processor_Preparation_START_cst_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Preparation START - cst.</TEXT>
+<TEXT AKEY="kWFll8eoaKMRreparation_STOP_XMSG" BKEY="MQL_Processor_Preparation_STOP_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: Preparation STOP.</TEXT>
+<TEXT AKEY="9uOlNwTyQunOration_finished_XMSG" BKEY="MQL_Processor_Preparation_finished_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Preparation finished in {0} ms and produced {1} {2}</TEXT>
+<TEXT AKEY="MJtfVZYFb+Q4r_on_result_set_XMSG" BKEY="MQL_Processor_Putting_fix_order_on_result_set_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Putting fix order on result set in {0} ms.</TEXT>
+<TEXT AKEY="6PI3CVinQHoTcution_finished_XMSG" BKEY="MQL_Processor_Query_execution_finished_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Query execution finished in {0} ms.</TEXT>
+<TEXT AKEY="3D9iHxaBtU21aration_aborted_XMSG" BKEY="MQL_Processor_Query_preparation_aborted_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Query preparation aborted: {0} {1}</TEXT>
+<TEXT AKEY="e1s7YWJT6Elfuced_result_set_XMSG" BKEY="MQL_Processor_Query_produced_result_set_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Query {0} {1} {2}... produced the following result set ...{3} {4}</TEXT>
+<TEXT AKEY="zkaxNo9wT3Qyge_for_facility_XMSG" BKEY="MQL_Processor_Registering_MqlQueryService_based_on_the_Facility_Query_Language_for_facility_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Registering MqlQueryService based on the Facility Query Language for facility {0} and for connection {1}</TEXT>
+<TEXT AKEY="k7X8+wa7yEZbex_for_facility_XMSG" BKEY="MQL_Processor_Registering_MqlQueryService_based_on_the_Full_Index_for_facility_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Registering MqlQueryService based on the Full Index for facility {0} and for connection {1}</TEXT>
+<TEXT AKEY="benG1qqtHaCEex_for_facility_XMSG" BKEY="MQL_Processor_Registering_MqlQueryService_based_on_the_Slim_Index_for_facility_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Registering MqlQueryService based on the Slim Index for facility {0} and for connection {1}</TEXT>
+<TEXT AKEY="7Z7FtF2BMy+jex_for_facility_XMSG" BKEY="MQL_Processor_Registering_MqlQueryService_based_on_the_Slim_Variant_Index_for_facility_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Registering MqlQueryService based on the Slim Variant Index for facility {0} and for connection {1}</TEXT>
+<TEXT AKEY="QzkGz18jGW/0cheduling_query_XMSG" BKEY="MQL_Processor_Scheduling_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Scheduling query: {0} {1}</TEXT>
+<TEXT AKEY="wTWKvxFhGFAVult_Set_of_size_XMSG" BKEY="MQL_Processor_Second_Result_Set_of_size_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Second Result Set of size {0} \: {1} {2}</TEXT>
+<TEXT AKEY="YFM2H42n+nz4sition_from_set_XMSG" BKEY="MQL_Processor_Selecting_position_from_set_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Selecting position {0} from Set {1} into {2}</TEXT>
+<TEXT AKEY="/TJeUUV1Zd5cng_of_cst_query_XMSG" BKEY="MQL_Processor_Syntactic_parsing_of_cst_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Syntactic parsing of cst query: {0} {1}</TEXT>
+<TEXT AKEY="qILqRa/AYhIQrget_Result_Set_XMSG" BKEY="MQL_Processor_Target_Result_Set_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Target Result Set: {0} {1}</TEXT>
+<TEXT AKEY="KaC2u7/9PDMrhas_type_errors_XMSG" BKEY="MQL_Processor_The_following_query_has_type_errors_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: The following query has type errors: {0} {1}</TEXT>
+<TEXT AKEY="N/N30f8X1JcYaded_partitions_XMSG" BKEY="MQL_Processor_The_relevant_partitions_for_scheduling_are_upgraded_from_the_dirty_partitions_to_the_loaded_partitions_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: The relevant partitions for scheduling are upgraded from the dirty partitions to the loaded partitions</TEXT>
+<TEXT AKEY="4u4LVteyAA0Lng_of_ast_query_XMSG" BKEY="MQL_Processor_Type_and_format_checking_of_ast_query_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: Type and format checking of ast query: {0} {1}</TEXT>
+<TEXT AKEY="Nuf53dEN8/Otnd_defined_over_XMSG" BKEY="MQL_Processor_User_provided_global_execution_scope_is_inclusive_and_defined_over_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: User-provided global execution scope is inclusive and defined over</TEXT>
+<TEXT AKEY="77wzmkBzOpU5nd_defined_over_XMSG" BKEY="MQL_Processor_User_provided_global_execution_scope_is_not_inclusive_and_defined_over_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: User-provided global execution scope is not inclusive and defined over</TEXT>
+<TEXT AKEY="YGFiWxd0Gxgkient_partitions_XMSG" BKEY="MQL_Processor_current_dirty_and_non_empty_transient_partitions_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: current dirty and non-empty transient partitions:</TEXT>
+<TEXT AKEY="iSB8OIkd7Z6uirty_partitions_XMSG" BKEY="MQL_Processor_current_dirty_partitions_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: current dirty partitions:</TEXT>
+<TEXT AKEY="/O+iWmuLQKMnaded_partitions_XMSG" BKEY="MQL_Processor_current_loaded_partitions_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: current loaded partitions:</TEXT>
+<TEXT AKEY="6tQnJARhQbX6sient_partition_XMSG" BKEY="MQL_Processor_dirty_or_not_empty_transient_partition_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Partition {0} is dirty or not-empty transient</TEXT>
+<TEXT AKEY="vFGhRc6MT8Qsdirty_partition_XMSG" BKEY="MQL_Processor_dirty_partition_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Partition {0} is dirty</TEXT>
+<TEXT AKEY="Dgq8Nh7z6+HM_query_is_empty_XMSG" BKEY="MQL_Processor_first_part_of_node_query_is_empty_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: ... first part of node query is empty.</TEXT>
+<TEXT AKEY="MlIYbB3W5PdZoaded_partition_XMSG" BKEY="MQL_Processor_loaded_partition_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Partition {0} is loaded</TEXT>
+<TEXT AKEY="jV7ncNiGlDXF_does_not_parse_XMSG" BKEY="MQL_Processor_query_does_not_parse_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL Processor: {0} {1} {2} does not parse</TEXT>
+<TEXT AKEY="+pcGyg9YxKJU_query_is_empty_XMSG" BKEY="MQL_Processor_second_part_of_node_query_is_empty_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">MQL Processor: ... second part of node query is empty.</TEXT>
+<TEXT AKEY="MQL_parser_parses_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">MQL parser parses: {0} {1}</TEXT>
+<TEXT AKEY="0JxkTLopZontvia_association_XMSG" BKEY="Unable_to_resolve_object_linked_by_via_association_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">Unable to resolve object {0} linked by {1} via association {2}</TEXT>
+</RESOURCES>
+</ROOT>

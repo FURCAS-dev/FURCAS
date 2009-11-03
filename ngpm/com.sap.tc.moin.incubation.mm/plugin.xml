@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+	<extension id="com.sap.tc.moin.metamodel.BuildNature" name="Metamodel Build Nature for Pure Plugins"
+		point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="com.sap.tc.moin.incubation.mm.internal.resource.MmBuildNature">
+			</run>
+		</runtime>
+		<builder id="com.sap.tc.moin.metamodel.Builder">
+		</builder>
+	</extension>
+ <extension
+       id="com.sap.tc.moin.metamodel.Builder"
+       point="org.eclipse.core.resources.builders">
+    <builder
+          hasNature="true">
+       <run
+             class="com.sap.tc.moin.incubation.mm.internal.resource.MmBuilder">
+       </run>
+    </builder>
+ </extension>
+   <extension
+         point="org.eclipse.pde.ui.pluginContent">
+      <wizard
+            class="com.sap.tc.moin.incubation.mm.internal.creation.MmTemplateWizard"
+            icon="resources/icons/Mof.gif"
+            id="com.sap.tc.moin.incubation.mm.creation.wizard"
+            java="true"
+            name="%template.metamodelPlugin.name"
+            pureOSGi="false"
+            rcp="false"
+            requiresActivator="false"
+            ui-content="false">
+         <description>
+            %pluginContent.metamodelPlugin.description
+         </description>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.pde.ui.templates">
+      <template
+            class="com.sap.tc.moin.incubation.mm.internal.creation.MmTemplateSection"
+            contributingId="com.sap.tc.moin.runtime.MoinMetaModel"
+            icon="resources/icons/Mof.gif"
+            id="com.sap.tc.moin.incubation.mm.creation.template"
+            name="%template.metamodelPlugin.name">
+      </template>
+   </extension>
+ <extension
+       point="org.eclipse.pde.ui.newExtension">
+    <wizard
+          availableAsShortcut="true"
+          category="templates"
+          class="com.sap.tc.moin.incubation.mm.internal.creation.MmTemplateSection"
+          icon="resources/icons/Mof.gif"
+          id="com.sap.tc.moin.incubation.mm.creation.newExtension"
+          name="%newExtension.templates.metamodelPlugin.name"
+          template="com.sap.tc.moin.incubation.mm.creation.template">
+       <description>
+          %newExtension.templates.metamodelPlugin.desc
+       </description>
+    </wizard>
+ </extension>
+ 
+   <extension
+         id="com.sap.tc.moin.metamodel.problemMarker"
+         name="Metamodel Problem Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.pde.core.problem"/>
+      <persistent value="true"/>
+      <attribute
+            name="missingPackageExports">
+      </attribute>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="com.sap.tc.moin.incubation.mm.internal.resource.MmMarkerResolutionGenerator"
+            markerType="com.sap.tc.moin.metamodel.problemMarker">
+      </markerResolutionGenerator>
+   </extension>
+
+</plugin>

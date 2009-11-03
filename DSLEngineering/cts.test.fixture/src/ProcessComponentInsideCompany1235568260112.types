@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='modelmanagement.processcomponents.ProcessComponentInsideCompany' i='48AC91AC05CCABAD6F0211DD8ACD0019D29902CC' ova='description'/>
+<M c='1' q='modelmanagement.deploymentunits.A_pcsInsideCompany_deploymentUnit' i='48AC91AC05CCABBD6F0211DDA6700019D29902CC' se='0' ce='1' oe='-1'/>
+<modelmanagement.processcomponents.ProcessComponentInsideCompany m:c='1' m:i='49A546849BE6F100033F11DE88F600016CE99C52' name='ctsTestFixture'/>
+<modelmanagement.deploymentunits.A_pcsInsideCompany_deploymentUnit c='1'>
+<L f='49A546849BE6F100033F11DE88F600016CE99C52' s='local:49A546839BCD0060033F11DE81AE00016CE99C52'/>
+</modelmanagement.deploymentunits.A_pcsInsideCompany_deploymentUnit>
+</Partition>

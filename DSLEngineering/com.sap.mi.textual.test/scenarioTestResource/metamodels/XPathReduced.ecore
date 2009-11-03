@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="XPath"
+    nsURI="XPath" nsPrefix="XPath">
+  <eClassifiers xsi:type="ecore:EClass" name="LocatedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" ordered="false"
+        unique="false" eType="ecore:EDataType XPath.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentsBefore" unique="false"
+        upperBound="-1" eType="ecore:EDataType XPath.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentsAfter" unique="false"
+        upperBound="-1" eType="ecore:EDataType XPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NamedElement" abstract="true" eSuperTypes="#//LocatedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType XPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//LocatedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//Expression #//NamedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LiteralExp" abstract="true" eSuperTypes="#//Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IntegerExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType XPath.ecore#//Integer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringExp" eSuperTypes="#//LiteralExp">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="symbol" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType XPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorCallExp" eSuperTypes="#//NamedElement #//LocatedElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" lowerBound="1" eType="#//Expression"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" eType="#//Expression"/>
+  </eClassifiers>
+</ecore:EPackage>

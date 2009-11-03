@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/tc/moin/mof_1.4' i='1' v='1.0'/>
+<M c='1' q='Model.Package' i='45ED2E2925D14D728A6546C630BDE3FB4BDA77C3'/>
+<M c='1' q='Model.Contains' i='45ED2E29A15C5D7FDF8D483F1CFA93E430ADEDCC' se='0' ce='0' oe='1'/>
+<Model.Package m:c='1' m:i='E0616CBF5200FFA83E4B11DECCFC0018DE1146FF' name='landscape' annotation='A customer may describe the system landscape in an instance of this metamodel. In particular, this describes machines, network infrastructure, as well as software components installed on each of those.&#10;&#10;This information can be used to determine a good configuration for a customer, given a selection of solutions that the customer wants. It may also be helpful in tracking and monitoring the landscape. Ideally, landscape configuration scripts could be generated from a selection of components and a plan as to how to distribute the components across the landscape.&#10;&#10;Landscape components (source: Nestle): OS, DB, Network, middle tier software, business applications (SAP, non-SAP, legacy)' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Package m:c='1' m:i='E0616CBF5200FFA93E4B11DE90680018DE1146FF' name='cachingandreplication' annotation='Talks about, depending on a specific deployment to a landscape, what to cache where and what to replicate from where to where. This will have to be based on the quantity structure of objects and calls (what will be under which amount of stress?) and on landscape information (computing power, network bandwidth, speed, latency, ...).' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Package m:c='1' m:i='E0616CBF5200FFAA3E4B11DE9E850018DE1146FF' name='deployment' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Contains c='1'>
+<L f='E0616CBF5200FFAA3E4B11DE9E850018DE1146FF' s='E0616CBF5200FFA83E4B11DECCFC0018DE1146FF'/>
+<L f='E0616CBF5200FFAA3E4B11DE9E850018DE1146FF' s='E0616CBF5200FFA93E4B11DE90680018DE1146FF'/>
+</Model.Contains>
+</Partition>

@@ -1,0 +1,244 @@
+syntax KM3(k = 4) {
+
+	primitiveTemplate identifier for ->String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for ->String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\'' + %value%.toCString() + '\''";
+
+	primitiveTemplate integerSymbol for ->Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+
+	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+		value = "Double.valueOf(%token%)";
+
+	template ->Metamodel main context
+		:	[ ->contents ] {indentIncr = 0, nbNL = 2, startNL = false}
+		;
+
+	template ->ModelElement abstract;
+	
+	template ->PackageElement abstract;
+
+	template ->Classifier abstract addToContext;
+
+	template ->Package
+		:	"package" ->name <before_block_bracket> "{" [
+				->contents
+			] {nbNL = 2} "}"
+		;
+ 
+	template ->DataType abstract
+		:	"datatype" ->name ";"
+		;
+
+	template ->Class context
+		:	(->isAbstract ? "abstract") "class" ->name 
+			(isDefined(->supertypes) ?  "extends" ->supertypes{refersTo = name, separator = "," <after_supertypes_coma>, autoCreate = never})	-- pathProperty = package, pathSeparator = colons
+			"{" [
+				->structuralFeatures
+			] "}"
+		;
+
+	template ->KM3::StructuralFeature abstract;
+
+	template ->Reference addToContext
+		:	"reference" ->name
+			$multiplicity
+			(->isOrdered ? "ordered")
+			(->isContainer ? "container")
+			":" ->type{refersTo = name, autoCreate = never}
+			(isDefined(->opposite) ?
+				"oppositeOf"
+				->opposite{refersTo = name, lookIn = type, autoCreate = never}
+			)
+			";"
+		;
+
+	template ->Attribute
+		:	(->isUnique ? "unique")
+			"attribute" ->name
+			$multiplicity
+			(->isOrdered ? "ordered")
+			":" ->type{refersTo = name, autoCreate = never} 
+			";"
+		;
+
+	template ->Enumeration
+		:	"enumeration" ->name "{" [
+				->literals
+			] "}"
+		;
+
+	template ->EnumLiteral
+		:	"literal" ->name ";"
+		;
+		
+	function multiplicity(->KM3::StructuralFeature)
+		:
+			(->lower = 1 and ->upper = 1 ?
+
+				:
+					(->lower = 0 and ->upper = -1 ?
+							"[" "*" "]"
+						:
+							(->upper = -1 ?
+									"[" ->lower "-" "*" "]"
+								:
+										"[" ->lower "-" ->upper "]"
+							)
+					)
+			)
+		;
+
+	symbols {
+		lsquare		= "[";
+		rsquare		= "]"	: rightSpace;
+		excl		= "!";
+		coma		= ",";
+		lparen		= "(";
+		rparen		= ")";
+		lcurly		= "{"	: leftSpace;
+		rcurly		= "}";
+		semi		= ";";
+		colon		= ":"	: leftSpace, rightSpace;
+		colons		= "::";
+		pipe		= "|";
+		sharp		= "#";
+		qmark		= "?";
+
+		-- operator symbols
+		point		= ".";
+		rarrow		= "->";
+		minus		= "-";
+		star		= "*";
+		slash		= "/";
+		plus		= "+";
+		eq		= "=";
+		gt		= ">";
+		lt		= "<";
+		ge		= ">=";
+		le		= "<=";
+		ne		= "<>";
+		larrow		= "<-";
+	}
+
+	token COMMENT	: endOfLine(start = "--");
+
+	lexer = "
+%options testLiterals = false;
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		)
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+%v2	options {
+%v2		testLiterals = true;
+%v2	}
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+NAME
+	:	(
+%v3			SNAME
+%v2			s:SNAME {if(s.getType() != SNAME) $setType(s.getType());}
+%v2	{
+%v2	if($getText.equals(\"true\")) $setType(BOOLEAN);
+%v2	if($getText.equals(\"false\")) $setType(BOOLEAN);
+%v2	}
+		|	'\"'!
+			(	ESC
+			|	'\\n' {newline();}
+			|	~('\\\\'|'\\\"'|'\\n')
+			)*
+			'\"'!
+		)
+	;
+
+INT
+	:	(DIGIT)+
+%v2		(('.' DIGIT)=> '.' (DIGIT)+ {$setType(FLOAT);})?
+	;
+
+%v3	FLOAT	:	DIGIT+ '.' DIGIT*	;
+
+%protected
+ESC
+	:	'\\\\'!
+		(	'n' 
+		|	'r' 
+		|	't' 
+		|	'b' 
+		|	'f' 
+		|	'\"' 
+		|	'\\'' 
+		|	'\\\\' 
+		|	(
+				('0'..'3')
+				(
+%v2					options {
+%v2						warnWhenFollowAmbig = false;
+%v2					}
+				:	('0'..'7')
+					(
+%v2						options {
+%v2							warnWhenFollowAmbig = false;
+%v2						}
+					:	'0'..'7'
+					)?
+				)?
+			|	('4'..'7')
+				(
+%v2					options {
+%v2						warnWhenFollowAmbig = false;
+%v2					}
+				:	('0'..'7')
+				)?
+			)
+				{
+				}
+		)
+	;
+
+STRING
+	:	'\\''!
+		(	ESC
+		|	'\\n' {newline();}
+		|	~('\\\\'|'\\''|'\\n')
+		)*
+		'\\''!
+	;
+
+	";
+
+}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="enumtest"
+    nsURI="http:///test.ecore" nsPrefix="test">
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionList">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Expression"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Planet">
+    <eLiterals name="mercury"/>
+    <eLiterals name="venus"/>
+    <eLiterals name="mars"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Speed">
+    <eLiterals name="slow"/>
+    <eLiterals name="quick"/>
+    <eLiterals name="lightning"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PlanetExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="planet" lowerBound="1"
+        eType="#//Planet"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="speed" lowerBound="1" eType="#//Speed"/>
+  </eClassifiers>
+</ecore:EPackage>

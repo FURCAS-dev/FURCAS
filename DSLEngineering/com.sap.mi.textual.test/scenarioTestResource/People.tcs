@@ -1,0 +1,83 @@
+syntax People {
+
+	-- simple basic syntax containing a world model,
+	-- used for new features of TCS: such as:
+	-- tests PropertyInit
+	-- tagged contexts
+	-- OCL querues
+
+	primitiveTemplate identifier for ->String default using NAME:
+		value = "unescapeString(%token%)";
+
+
+	
+	
+	template ->World main context
+		: 
+		[[ "world" "{" ->nations{separator=","} "}"
+		|	disambiguate("~WORLD") "heaven" "{" ->nations{separator=","} "}" "defs:" ->definitions
+		]]
+		;
+	
+		
+	template ->Nation context(nationTag)
+		: ->name "[" ->cities{separator=","} "]"
+		  "capital:" ->capital{refersTo=name, lookIn='cities'}
+		;
+		
+	template ->City context addToContext
+		: ->name "(" ->persons{separator=","} ")"
+		  (isDefined(->representative) ? "representative:" 
+		  	->representative{
+		  			refersTo=name,
+		  			query="OCL:#context(nationTag).capital.persons",
+		  			filter="->select(p | p.name = ?)",
+		  			invert="self.name"
+		  		})
+		;
+		
+	template ->Person
+		: 
+			->name
+			
+			-- language does not allow for person to be anywhere
+			-- in other nation than its container (which does not need to be a bug)  
+			"@" ->currentlyIn{refersTo=name, lookIn='#context(nationTag).cities'} 
+			(isDefined(->parents) ? 
+				"("
+					"mother:" ->parents{refersTo=name, forcedLower=1, forcedUpper=1}
+				--	"father:" ->parents{refersTo=name, forcedLower=1, forcedUpper=1}
+				")"
+			)	
+			(isDefined(->spouse) ? 
+				"spouse:" ->spouse{as=identifier, query="OCL:Person.allInstances()", filter="->select(p|p.name=?)"}
+			)
+			{{->male = 'true', ->age='42', ->height='1.83', ->codeName='"Viper"', ->embassy=lookIn("currentlyIn.nation.capital"), ->embassy2=lookIn("OCL:currentlyIn.nation.capital")}} -- nonsense defaults
+		;
+		
+	template ->PersonDefinition abstract operatored(PersonDefinitions);
+	
+	template ->ConcretePersonDefinition 
+		:	->person{refersTo=name}
+		;
+	
+	operatorTemplate ->NestedPersonDefinition(operators = starOp, source=->'nestedDefinition', storeOpTo = ->op)
+		:	{{ ->lowerMultiplicity='0', ->upperMultiplicity='-1'}}
+		;
+	
+	
+	symbols {
+		world = "world";
+		star = "*";
+	}
+	
+	operators PersonDefinitions {
+		priority 0 {
+			postfix starOp	= star, 1;
+		}
+	}
+	
+	
+	omitted token COMMENT : endOfLine(start = "--");
+	
+}

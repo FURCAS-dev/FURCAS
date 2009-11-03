@@ -1,0 +1,1 @@
+Put icon files named X.gif into this directory for metamodel classes named X.

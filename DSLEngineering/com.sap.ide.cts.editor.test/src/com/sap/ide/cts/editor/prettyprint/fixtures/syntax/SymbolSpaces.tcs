@@ -1,0 +1,53 @@
+syntax SymbolSpaces {
+
+	template TCS::ConcreteSyntax main
+		:	"normal_combinations:" <newline>
+			<newline>
+			"aNormal" "aNormal" "aNormal" <newline>
+			"[sNormal]" "[sNormal]" "[sNormal]" <newline>
+			"aNormal" "[sNormal]" "aNormal" <newline>
+			"[sNormal]" "aNormal" "[sNormal]" <newline>
+			"aNormal" name "aNormal" <newline>
+			"[sNormal]" name "[sNormal]" <newline>
+			<newline>
+			
+			"no_space_combinations:" <newline>
+			<newline>
+			"aRightSpace" "aLeftNone" <newline>
+			"aRightNone" "aLeftSpace" <newline>
+			"aRightSpace" "[sLeftNone]" <newline>
+			"aRightNone" "[sLeftSpace]" <newline>
+			"aRightNone" name <newline>
+			"[sRightNone]" name <newline>
+			name "aLeftNone" <newline>
+			name "[sLeftNone]" <newline>
+			<newline>
+			
+			"space_combinations:" <newline>
+			<newline>
+			"aRightSpace" "aNormal" <newline>
+			"aNormal" "aLeftSpace" <newline>
+			"aRightSpace" "[sNormal]" <newline>
+			"aNormal" "[sLeftSpace]" <newline>
+			"aRightSpace" name <newline>
+			"[sRightSpace]" name <newline>
+			name "aLeftSpace]" <newline>
+			name "[sLeftSpace]" <newline>
+		;
+	
+	symbols {
+		-- alphanumeric
+		aNormal = "aNormal";
+		aLeftNone = "aLeftNone" : leftNone;
+		aLeftSpace = "aLeftSpace" : leftSpace;
+		aRightNone = "aRightNone" : rightNone;
+		aRightSpace = "aRightSpace" : rightSpace;
+		
+		-- special chars
+		sNormal = "[sNormal]";
+		sLeftNone = "[sLeftNone]" : leftNone;
+		sLeftSpace = "[sLeftSpace]" : leftSpace;
+		sRightNone = "[sRightNone]" : rightNone;
+		sRightSpace = "[sRightSpace]" : rightSpace;
+	}
+}

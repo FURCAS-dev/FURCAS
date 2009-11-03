@@ -1,0 +1,15 @@
+TODO:
+Name of syntax and file different
+Warning for several operatorLists (forum)
+Warning for unused operators
+Warning for refersTo to multivalued properties
+
+
+
+        // TODO (basically implement TCS2Problem.ATL to Java for validation)
+        // validate against metamodel
+        // check metamodel exists
+        // check primitives are covered
+        // check template elements are covered
+        // check features correspond
+        // check mandatory features are covered

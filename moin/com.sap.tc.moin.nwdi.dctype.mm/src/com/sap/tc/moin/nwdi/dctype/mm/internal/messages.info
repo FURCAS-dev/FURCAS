@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1234520170327_uuid:f5169e6f-fc1f-4633-90d4-4f5f463ee955</UID>
+<PACKAGE>mi.dcfwk</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>D001685</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="MoinMetaModelDcTypeWizard_0" LENGTH="255" PROCESSOR="none" TYPE="XHED">Create New Metamodel DC</TEXT>
+<TEXT AKEY="MoinMetaModelDcTypeWizard_1" LENGTH="255" PROCESSOR="none" TYPE="XHED">Create Wrapper Plugin Project</TEXT>
+<TEXT AKEY="MoinMetaModelDcTypeWizard_2" LENGTH="255" PROCESSOR="none" TYPE="XTXT">Would you like to create an Eclipse wrapper project for the new metamodel as well?</TEXT>
+</RESOURCES>
+</ROOT>

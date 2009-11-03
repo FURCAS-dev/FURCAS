@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='modelmanagement.Application' i='48AC91AC05CCABCC6F0211DD86740019D29902CC' ova='description'/>
+<modelmanagement.Application m:c='1' m:i='48A901603FDE60D06CE211DDCB17005056C00001' name='NGPM'/>
+</Partition>

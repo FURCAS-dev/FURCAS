@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1221664533703_uuid:3ee186af-f776-473f-83a6-2d7af4100b24</UID>
+<PACKAGE>mi.dcfwk</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>d027044</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="action.descr.repairdc" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Resets the metadata of a MOIN DC to its defaults</TEXT>
+<TEXT AKEY="action.name.repairdc" LENGTH="255" PROCESSOR="none" TYPE="XMIT">&amp;Repair Project</TEXT>
+<TEXT AKEY="entityService.name" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Model Folder Tree Entity Service</TEXT>
+<TEXT AKEY="newwizard.category.modeling" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Modeling Infrastructure</TEXT>
+<TEXT AKEY="plugin.name" LENGTH="255" PROCESSOR="none" TYPE="XMSG">DC Framework for Moin</TEXT>
+<TEXT AKEY="provider.name" LENGTH="255" PROCESSOR="none" TYPE="XMSG">SAP AG</TEXT>
+</RESOURCES>
+</ROOT>

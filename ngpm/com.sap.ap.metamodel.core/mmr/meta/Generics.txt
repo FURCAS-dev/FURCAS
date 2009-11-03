@@ -1,0 +1,77 @@
+A ParameterizedClass owns a Class definition and a set of formal type
+arguments. Those formal type arguments can be used again in that class
+definition wherever a class is expected (mainly, these are association
+ends and operation argument/return/fault types).
+
+A ParameterizedClass is not a Class and thus cannot be used where a
+class can be used. It must be parameterized with a set of actual type
+arguments to become usable as a Class. Of course, those actual type
+parameters may in turn be formal type parameters defined in the
+context of the class where the ParameterizedClassInstantiation is
+used. Example:
+
+class Collection<T> extends Iterable<T> {
+  ...
+}
+
+Here, the "extends Iterable<T>" uses the formal type parameter T as
+the type of the actual type parameter in the instantiation of the
+ParameterizedClass Iterable<S>. With this it is also possible to
+instantiate a type only partially, as in:
+
+class A<S> {
+  B<S, Integer> b;
+}
+
+class B<T, V> {
+  ...
+}
+
+The attribute b in class A binds only one of B's type arguments to a
+concrete class (Integer). The other is the forwarded formal argument
+of A itself.
+
+Regarding conformance, a ParameterizedClass does not conform to
+anything because it is not a Class. Only a
+ParameterizedClassInstantiation can conform to another class. In this
+case, all signatures of the instantiation can be computed but may
+still have formal type parameters in them. In this case, conformance
+checks can only rely on the type constraints specified for formal type
+arguments. They are transitively propagated, as in:
+
+class A<S:Comparable> {
+  void m(B<S> b) {
+    ...
+  }
+}
+
+In this case, due to the type constraint for A's type argument S, the
+signature of m conforms to void m(Comparable).
+
+Type constraints on type arguments can also be inferred from the
+implementation. Consider the following example:
+
+class A {
+  void m(Integer i) { ... }
+}
+
+class B<T> {
+  A a;
+
+  void n(T t) {
+    a.m(t);
+  }
+}
+
+In this case the parameter type of A.m (Integer) can be inferred for
+the type to which the type of B.n's parameter t has to conform. Since
+t's type it T, this establishes a type constraint for T, namely that
+it has to conform to Integer.
+
+If multiple such inferences are possible, this will tighten the
+constraints for the formal type parameter. If necessary, a new
+anonymous Class needs to be constructed for this purpose that contains
+the union of all the features required. This could in particular be
+implemented by having this new anonymous class maintain delegating
+associations to each type that the formal type parameter (T) was used
+as.

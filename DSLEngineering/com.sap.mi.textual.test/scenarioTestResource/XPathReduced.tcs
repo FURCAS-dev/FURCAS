@@ -1,0 +1,236 @@
+syntax XPathReduced {
+
+	primitiveTemplate identifier for ->String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for ->String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\'' + %value%.toCString() + '\''";
+
+	primitiveTemplate integerSymbol for ->Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+
+	primitiveTemplate floatSymbol for ->Double default using FLOAT:
+		value = "Double.valueOf(%token%)";
+
+-- Expressions
+	template ->Expression main abstract operatored;
+
+	template ->VariableExp
+		:	"$" ->name
+		;
+
+
+	
+	operatorTemplate ->OperatorCallExp(operators =
+			opUnion
+
+			opMinus1
+
+			opMul opDiv opMod
+
+			opPlus opMinus
+
+			opLT
+			opLE
+			opGT
+			opGE
+
+			opEQ
+			opNE
+
+			opAnd
+
+			opOr,
+			source = ->'left', storeOpTo = ->name, storeRightTo = ->'right');
+
+	
+
+	template ->LiteralExp abstract;
+
+	template ->IntegerExp
+		:	->symbol
+		;
+
+	template ->StringExp
+		:	->symbol{as = stringSymbol}
+		;
+-- End Expressions
+
+
+
+	symbols {
+		dollar		= "$";
+		lsquare		= "[";
+		rsquare		= "]";
+		lparen		= "(";
+		rparen		= ")";
+		colons		= "::";
+		point		= ".";
+		pointpoint	= "..";
+		arobas		= "@";
+		slash		= "/";
+
+		-- operator symbols
+		pipe		= "|";
+		minus		= "-";
+		star		= "*";
+		slashslash	= "//";
+		plus		= "+";
+		eq		= "=";
+		gt		= ">";
+		lt		= "<";
+		ge		= ">=";
+		le		= "<=";
+		excleq		= "!=";
+	}
+
+	operators {
+		priority 0 {
+			-- opPredicate []
+		}
+
+		priority 1 {
+			-- opChild		= slash, 2;
+			-- opDescendant	= slashslash, 2;
+		}
+
+		priority 2 {
+			opUnion		= pipe, 2;
+		}
+
+		priority 3 {
+			opMinus1	= minus, 1;
+		}
+
+		priority 4 {
+			opMul		= star, 2;
+			opDiv		= "div", 2;
+			opMod		= "mod", 2;
+		}
+
+		priority 5 {
+			opPlus		= plus, 2;
+			opMinus		= minus, 2;
+		}
+
+		priority 6 {
+			opLT	 	= lt, 2;
+			opLE		= le, 2;
+			opGT		= gt, 2;
+			opGE		= ge, 2;
+		}
+
+		priority 7 {
+			opEQ		= eq, 2;
+			opNE		= excleq, 2;
+		}
+
+		priority 8 {
+			opAnd		= "and", 2;
+		}
+
+		priority 9 {
+			opOr		= "or", 2;
+		}
+	}
+
+
+	token COMMENT	: endOfLine(start = "--");
+	
+	lexer = "
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		)
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+NAME
+	:	(
+			SNAME
+		|	'\"'!
+			(	ESC
+			|	'\\n' {newline();}
+			|	~('\\\\'|'\\\"'|'\\n')
+			)*
+			'\"'!
+			{setText(unescapeString(getText(), 1));}
+		)
+	;
+
+INT
+	:	(DIGIT)+
+	;
+
+	FLOAT	:	DIGIT+ (('.' DIGIT)=>'.' DIGIT+)?	;	// cannot accept DIGIT '.' because it would conflict with Navigation
+
+%protected
+ESC
+	:	'\\\\'!
+		(	'n' 
+		|	'r' 
+		|	't' 
+		|	'b' 
+		|	'f' 
+		|	'\"' 
+		|	'\\'' 
+		|	'\\\\' 
+		|	(
+				('0'..'3')
+				(
+				:	('0'..'7')
+					(
+					:	'0'..'7'
+					)?
+				)?
+			|	('4'..'7')
+				(
+				:	('0'..'7')
+				)?
+			)
+				{
+				}
+		)
+	;
+
+STRING
+	:	'\\''!
+		(	ESC
+		|	'\\n' {newline();}
+		|	~('\\\\'|'\\''|'\\n')
+		)*
+		'\\''!
+		{setText(unescapeString(getText(), 1));}
+	;
+	";
+}

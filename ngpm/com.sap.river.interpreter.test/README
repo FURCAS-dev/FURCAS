@@ -1,0 +1,2 @@
+Make sure you check out the project ngpm.stdlib into your target workspace. It contains
+the required definitions of the elementary datatypes used in some of the tests.

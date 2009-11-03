@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TextualCommon
+Bundle-SymbolicName: com.sap.mi.textual.common
+Bundle-Version: 1.0.0
+Export-Package: com.sap.mi.textual.common.exceptions,
+ com.sap.mi.textual.common.implementation,
+ com.sap.mi.textual.common.interfaces,
+ com.sap.mi.textual.common.util
+Require-Bundle: com.sap.tcsmeta.mm.eclipse;bundle-version="1.0.0"

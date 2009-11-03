@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TCSParser
+Bundle-SymbolicName: com.sap.mi.textual.grammar.parser
+Bundle-Version: 1.0.0
+Require-Bundle: com.sap.mi.textual.common,
+ com.sap.mi.textual.parsing,
+ com.sap.mi.textual;bundle-version="1.0.0",
+ com.sap.mi.textual.moinlookup;bundle-version="1.0.0"
+Export-Package: 
+ com.sap.mi.textual.grammar.parser
+Bundle-ClassPath: .

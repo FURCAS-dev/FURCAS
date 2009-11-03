@@ -1,0 +1,28 @@
+Thoughts on Expression syntax
+-----------------------------
+
+Expression	::= ObjectBasedExpression
+			| Equals
+			| FunctionCall
+			| AnonymousFunction
+			| PrimaryExpression
+			;
+
+Equals		::= Expression "=" Expression;
+			
+PrimaryExpression ::= This | Literal | Variable;
+
+This		::= "this" ;
+
+Variable	::= identifier;
+
+Literal		::= string | number | binary | boolean | valueliteral;
+			
+ObjectBasedExpression ::= Expression "."
+			[[ CollectionExp
+			| MethodCall
+			| Count
+			| FunctionFromMethod
+			| AssociationNagivation ]]
+			;
+

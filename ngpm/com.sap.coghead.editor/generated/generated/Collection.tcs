@@ -1,0 +1,402 @@
+syntax Collection(k=0 ) {
+-- k = 0 means manually defined syntactic predicates
+
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING: 
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+
+	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+		
+	primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+		value = "%token%";
+
+	primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+		value = "%token%";
+		
+	primitiveTemplate doubleAsStringSymbol for PrimitiveTypes::String default using DOUBLE:
+		value = "%token%";
+		
+	primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+		value = "%token%";	
+		
+	primitiveTemplate binarySymbol for PrimitiveTypes::String using BINARY:
+		value = "%token%";
+		
+	primitiveTemplate dateSymbol for PrimitiveTypes::String using DATE:
+		value = "%token%";
+		
+	enumerationTemplate ElementaryTypeEnum auto;
+	enumerationTemplate Axis auto;
+	
+	template Collection main context(env)
+		: "collection" name "{"
+		    schema
+		    actions
+		  "}"
+		;
+	
+	template Schema
+		: entries{separator=";"} (isDefined(entries) ? ";")
+		;
+	
+	template SchemaEntry abstract;
+	
+	template FieldGroup context(FieldGroup)
+		: "group" $cardinality name "{"
+		  		fields{mode=inFieldGroup, separator=";"}
+		  "}"
+		;
+	
+	template Field
+		: (unique ? "unique") type $cardinality name 
+		  (isDefined(defaultValue) ? "default"    defaultValue)	-- TODO: what is the root for the default value? the current record?
+		  (isDefined(formula)      ? "formula"    formula)      -- TODO: defaultValue and formula seem to be pretty redundant
+		  (isDefined(constraint)   ? "constraint" constraint)
+		;
+	
+	template Field #inFieldGroup
+		: (unique ? "unique") type $cardinality name {{ schema=lookIn("OCL:#context(FieldGroup).oclAsType(FieldGroup).schema")}}
+		  (isDefined(defaultValue) ? "default"    defaultValue)
+		  (isDefined(formula)      ? "formula"    formula)
+		  (isDefined(constraint)   ? "constraint" constraint)
+		;
+
+		
+-- ### Expressions Start ###
+		
+	template coghead::Expression abstract;
+	
+	template coghead::xpath::XPathExpression abstract operatored(XPathExpressions);
+	
+	operatorTemplate coghead::xpath::PathExpr(operators = slash, source='lhs', storeRightTo='rhs');
+
+	-- TODO: add axis support
+	template coghead::xpath::AxisStep
+		: 	(isDefined(axis) ? axis "::") nodeTest
+		;
+	
+	-- TODO: do we need to introduce a Predicate MM class to get the syntax right?
+	-- The separator constructed used here is awkward.	
+	operatorTemplate coghead::xpath::FilterExpr(operators = lbracket, source='expression')
+		:	predicates "]" 
+		;
+	
+	template coghead::xpath::NodeTest abstract;
+	
+	template coghead::xpath::NameTest
+		: name
+		;
+		
+	template coghead::xpath::VariableRef 
+		: "$" variable{refersTo=name, lookIn='#context(env).variables'}
+		;
+	
+	template coghead::xpath::Literal abstract;
+	
+	template coghead::xpath::StringLiteral
+		: value{as = stringSymbol}
+		;
+	
+	template coghead::xpath::NumberLiteral
+		:	[[
+				value{as = integerAsStringSymbol}
+			|
+				value{as = doubleAsStringSymbol}				
+			|
+				value{as = floatAsStringSymbol}
+			]]
+		;
+		
+-- ### Expressions End ###
+	
+	template Action abstract;
+	
+	function actionBasics(Action)
+		: (scope=#COLLECTION ? "collection") (sideEffectFree ? "const")
+		  [[
+		     "completesIn" "<" executionTimeLimit
+		   |
+		  ]]
+		  name signature ownedBlock
+		;
+	
+	template UserDefinedAction
+		: (scope=#COLLECTION ? "collection") (sideEffectFree ? "const")
+		  [[
+		     "completesIn" "<" executionTimeLimit
+		   |
+		  ]]
+		  name signature ownedBlock
+		  -- $actionBasics
+		;
+	
+	template Signature
+		: "("
+		      additionalInput{refersTo='collection.name', query="OCL:\"Collection\".allInstances()->select(c | c.name=?).schema"}
+		      {{ additionalInputForm=lookIn("OCL:if self.additionalInput->isEmpty() then
+		    									 	null 
+		    									 else 
+		    									 	self.additionalInput.collection.getDefaultForm() 
+		    									 endif") }}
+		  ")"
+		  ":" (isDefined(output) ?
+		       output{refersTo='collection.name', query="OCL:\"Collection\".allInstances()->select(c | c.name=?).schema"} :
+		       "void")
+		;
+	
+	template coghead::action::Block context
+		: "{" statements{separator=";"} (isDefined(statements) ? ";") "}"
+		;
+	
+	template Statement abstract;
+	
+	template LoopLikeStatement abstract;
+	
+	template WhileStatement
+		: "while" loopCondition ownedBlock
+		;
+	
+	template ForEachStatement context(foreachStatement)
+		: "foreach" iteratorVariable{mode=forEachStatement} "in" collectionVariable{refersTo=name} ownedBlock
+		;
+	
+	template Variable #forEachStatement
+		: name
+		  {{ elementaryType=lookIn("#context(foreachStatement).oclAsType(ForEachStatement).collectionVariable.elementaryType"),
+		     schemaType=lookIn("#context(foreachStatement).oclAsType(ForEachStatement).collectionVariable.schemaType"),
+		     multiplicity='coghead.action.MultiplicityEnum.SINGLE',
+		     env=lookIn("#context(foreachStatement).oclAsType(ForEachStatement).ownedBlock") }}
+		;
+	
+	template BreakStatement
+		: "break"
+		;
+	
+	template Notification
+		: "notify" to "subject" subject "body" body
+		;
+	
+	template VariableDeclarationStatement
+		: declaredVariable
+		;
+	
+	template PerformActionStatement
+		: output{refersTo=name} "=" input{refersTo=name} "."
+		  action{refersTo=name, query="OCL:input.schemaType.collection.actions->select(a | a.name=?)"}
+		  "("
+		  additionalInput{refersTo=name}
+		  ")"
+		;
+	
+	template Variable addToContext
+		: [[
+		     elementaryType{forcedLower=1}
+		  |
+		     schemaType{refersTo='collection.name',
+		                query="OCL:\"Collection\".allInstances()->select(c | c.name=?).schema",
+		                forcedLower=1}
+			 (multiplicity=#COLLECTION ? "[" "]")
+		  ]]
+		  name
+		  {{ env = lookIn("OCL:#context") }}
+		;
+	
+	function cardinality(SchemaEntry)
+		: [[
+			"[" "]" {{ cardinality='-1' }}
+		  |
+		    "[" cardinality "]"
+		  |
+		    {{ cardinality='1' }}
+		  ]]
+		;
+ 	 	
+	symbols {
+		lbracket	= "[";
+		rbracket	= "]";
+		lcurl		= "{";
+		rcurl		= "}";
+		langle      = "<";
+		rangle      = ">";
+		lparen		= "(";
+		rparen		= ")";
+		excl		= "!";
+		equals		= "=";
+		equalsEquals= "==";
+		assign		= ":=";
+		dot			= ".";
+		ddot		= "..";
+		arrow		= "->";
+		pipe		= "|";
+		colon		= ":";
+		dcolon		= "::";
+		semicolon	= ";";
+		including	= "including";
+		excluding	= "excluding";
+		includingat	= "includingAt";
+		excludingat	= "excludingAt";
+		iterate		= "iterate";
+		lcurl_lbrack = "{[";
+		lbrack_lcurl = "[{";
+		rcurl_rbrack = "}]";
+		rbrack_rcurl = "]}";
+		star		= "*";
+	}
+	
+	operators XPathExpressions {
+		priority 0 {
+			lbracket	= "[", 2;
+		}
+		priority 1 {
+			slash		= "/", 2;
+		}
+	}
+	
+	operators TypeDefinitions {
+		priority 0 {
+			postfix starOp	= star, 1;
+			-- postfix upperOp	= INT, 1;
+		}
+		priority 1 {
+			bracketOp	= lbracket, 2;
+			braceOp		= lcurl, 2;
+			-- lowerOp		= INT, 2;
+		}
+	}
+	
+	token COMMENT	: endOfLine(start = "//");
+	token MULTI_LINE_COMMENT	: multiLine(start = "/*", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+OBJECT	:	'o:'	;
+
+NAME
+	:	(
+			SNAME
+		|	'\\''!
+			(	
+		//	ESC	|
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+BINARY
+	:	'0x'((DIGIT | 'a'..'f' | 'A'..'F') (DIGIT | 'a'..'f' | 'A'..'F'))+
+	;
+
+// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals
+protected
+INT
+	: (DIGIT)+
+	;
+ 
+// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals
+%protected
+FLOAT
+	:	'.' DIGIT+
+	|	DIGIT+ '.' DIGIT*
+	;
+
+// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals
+%protected
+DOUBLE
+	:	(
+			'.' DIGIT+
+		  |
+		  	DIGIT+ ( '.' DIGIT* )?
+		)
+		( 'e' | 'E' ) ( '+' | '-' )? DIGIT+
+	;
+
+RANGE_OR_INT_OR_FLOAT_OR_DOUBLE
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') ( 'e' | 'E' ) )  => DOUBLE { _type = DOUBLE; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+DATE	:	DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT
+            (
+              ( (',' | '.') DIGIT ) => ((',' | '.') (DIGIT)+)
+              |
+            )
+            ('Z' | (('+'|'-') DIGIT DIGIT DIGIT DIGIT)?) )? ;
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+}

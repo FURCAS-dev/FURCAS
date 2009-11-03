@@ -1,0 +1,447 @@
+-- @name		TCS
+-- @version		1.0
+-- @domains		MDE, Grammarware
+-- @authors		Jouault
+-- @date		2007/07/30
+-- @description	TCS (Textual Concrete Syntax) is a textual syntax specification language for metamodels.
+
+package TCS {
+
+	abstract class LocatedElement {
+		attribute location[0-1] : String;
+		attribute commentsBefore[*] ordered : String;
+		attribute commentsAfter[*] ordered : String;
+	}
+
+	abstract class NamedElement extends LocatedElement {
+		attribute name : String;
+	}
+	
+	abstract class QualifiedNamedElement extends LocatedElement {
+		attribute names[1-*] : String;
+	}
+
+	class ConcreteSyntax extends NamedElement {
+		-- name must be the metamodel's
+		attribute k[0-1] : Integer;
+		reference templates[*] ordered container : Template oppositeOf concreteSyntax;
+		reference keywords[*] ordered container : Keyword;
+		reference symbols[*] ordered container : Symbol;
+		reference operatorLists[*] ordered container : OperatorList;
+		reference tokens[*] ordered container : Token;
+		attribute lexer : String;
+	}
+
+-- @begin Templates
+	abstract class Template extends QualifiedNamedElement {
+		reference concreteSyntax : ConcreteSyntax oppositeOf templates;
+		attribute disambiguate[0-1] : String;
+		attribute disambiguateV3[0-1] : String;
+	}
+
+	class FunctionTemplate extends Template {
+		attribute functionName : String;
+		reference functionSequence container : Sequence oppositeOf functionContainer;
+		
+	}
+
+	class ClassTemplate extends Template {
+		-- name must be the class's
+		reference templateSequence container : Sequence oppositeOf templateContainer;
+		attribute modifiers[*] : TemplateModifiers;
+
+		-- until Enumeration is supported
+		attribute isAbstract : Boolean;
+		attribute isDeep : Boolean;
+		reference prefixSequence container : Sequence oppositeOf prefixContainer;
+		attribute isOperatored : Boolean;
+		reference operatorList[0-1] : OperatorList;
+		attribute isMain : Boolean;
+		attribute isMulti : Boolean;	-- can be used in combination with main
+		attribute isContext : Boolean;
+		attribute isAddToContext : Boolean;
+		attribute isNonPrimary : Boolean;
+		attribute mode[0-1] : String;
+	}
+
+	enumeration TemplateModifiers {
+		literal "abstract";
+		literal operatored;
+		literal main;
+		literal context;
+		literal addToContext;
+	}
+
+	class PrimitiveTemplate extends Template {
+		-- name of this template
+		attribute templateName: String;
+		attribute isDefault : Boolean;
+		attribute tokenName : String;
+		attribute value : String;
+		attribute serializer : String;
+		attribute orKeyword : Boolean;
+	}
+
+	class OperatorTemplate extends Template {
+		reference operators[*] : Operator oppositeOf templates;
+		attribute source : String;
+		attribute storeOpTo[0-1] : String;
+		attribute storeRightTo[0-1] : String;
+		reference otSequence[0-1] container : Sequence oppositeOf otContainer;
+		attribute isContext : Boolean;
+	}
+
+	class EnumerationTemplate extends Template {
+		-- name must be the enumeration's
+		attribute automatic : Boolean;
+		reference mappings[*] ordered container : EnumLiteralMapping;
+	}
+
+	class EnumLiteralMapping extends LocatedElement {
+		reference "literal" container : EnumLiteralVal;
+		reference element container : SequenceElement;
+	}
+-- @end Templates
+
+-- @begin Literals
+	abstract class Literal extends NamedElement {
+		reference operators[*] : Operator oppositeOf "literal";
+		reference literalRefs[*] : LiteralRef oppositeOf "referredLiteral";
+		attribute value : String;
+	}
+
+	class Symbol extends Literal {
+		attribute spaces[*] : SpaceKind;
+	}
+
+	enumeration SpaceKind {
+		literal leftSpace;
+		literal leftNone;
+		literal rightSpace;
+		literal rightNone;
+	}
+
+	class Keyword extends Literal {
+	}
+-- @end Literals
+
+-- @begin Operators
+	class OperatorList extends LocatedElement {
+		attribute name[0-1] : String;
+		reference priorities[*] ordered container : Priority oppositeOf list;
+	}
+
+	class Priority extends LocatedElement {
+		reference list : OperatorList oppositeOf priorities;
+		attribute value : Integer;
+		attribute associativity : Associativity;
+		reference operators[*] container : Operator oppositeOf priority;
+	}
+
+	class Operator extends NamedElement {
+		attribute isPostfix : Boolean;
+		attribute arity : Integer;
+		reference "literal"[0-1] : Literal oppositeOf operators;
+		reference priority : Priority oppositeOf operators;
+		reference templates[*] : OperatorTemplate oppositeOf operators;
+	}
+
+	enumeration Associativity {
+		literal left;
+		literal right;
+	}
+-- @end Operators
+
+	class Sequence extends LocatedElement {
+		reference elements[*] ordered container : SequenceElement oppositeOf elementSequence;
+		reference templateContainer[0-1] : ClassTemplate oppositeOf templateSequence;
+		reference prefixContainer[0-1] : ClassTemplate oppositeOf prefixSequence;
+		reference functionContainer[0-1] : FunctionTemplate oppositeOf functionSequence;
+		reference blockContainer[0-1] : Block oppositeOf blockSequence;
+		reference thenContainer[0-1] : ConditionalElement oppositeOf thenSequence;
+		reference elseContainer[0-1] : ConditionalElement oppositeOf elseSequence;
+		reference separatorContainer[0-1] : SeparatorPArg oppositeOf separatorSequence;
+		reference otContainer[0-1] : OperatorTemplate oppositeOf otSequence;
+--		reference keyContainer : Key oppositeOf keySequence;
+		reference alternativeContainer[0-1] : Alternative oppositeOf sequences;
+	}
+
+-- @begin Sequence Elements
+	abstract class SequenceElement extends LocatedElement {
+		reference elementSequence : Sequence oppositeOf elements;
+	}
+
+	class LiteralRef extends SequenceElement {
+		reference referredLiteral : Literal oppositeOf literalRefs;
+	}
+
+	class Property extends SequenceElement {
+		attribute name : String;
+		reference propertyArgs[*] ordered container : PropertyArg oppositeOf property;
+	}
+
+	class CustomSeparator extends SequenceElement {
+		attribute name : String;
+	}
+
+	class Block extends SequenceElement {
+		reference blockSequence container : Sequence oppositeOf blockContainer;
+		reference blockArgs[*] ordered container : BlockArg oppositeOf block;
+	}
+
+	class ConditionalElement extends SequenceElement {
+		-- condition must be boolean
+		reference condition container : Expression oppositeOf conditionalElement;
+		reference thenSequence container : Sequence oppositeOf thenContainer;
+		reference elseSequence container : Sequence oppositeOf elseContainer;
+	}
+
+	class PropertyInit extends SequenceElement {
+		attribute name : String;
+		reference value container : Value;
+	}
+
+	class Alternative extends SequenceElement {
+		reference sequences[2-*] ordered container : Sequence oppositeOf alternativeContainer;
+		attribute isMulti : Boolean;
+	}
+
+	class FunctionCall extends SequenceElement {
+		reference calledFunction : FunctionTemplate;
+	}
+-- @end Sequence Elements
+
+-- @begin Property Arguments
+	abstract class PropertyArg extends LocatedElement {
+		reference property : Property oppositeOf propertyArgs;
+	}
+
+	class RefersToPArg extends PropertyArg {
+		attribute propertyName : String;
+	}
+
+	class LookInPArg extends PropertyArg {
+		attribute propertyName[1-*] ordered : String;
+	}
+
+	class CreateInPArg extends PropertyArg {
+		attribute propertyName[1-*] ordered : String;
+	}
+
+	class RefersToKeyPArg extends PropertyArg {
+		attribute value : Boolean;
+	}
+
+	class SeparatorPArg extends PropertyArg {
+		reference separatorSequence container : Sequence oppositeOf separatorContainer;
+	}
+
+	class AutoCreatePArg extends PropertyArg {
+		attribute value : AutoCreateKind;
+	}
+
+	class ImportContextPArg extends PropertyArg {
+
+	}
+
+	class ForcedLowerPArg extends PropertyArg {
+		attribute value : Integer;
+	}
+
+	enumeration AutoCreateKind {
+		literal always;
+		literal ifmissing;
+		literal never;
+	}
+
+	class CreateAsPArg extends PropertyArg {
+		attribute name : String;
+	}
+
+	class AsPArg extends PropertyArg {
+		attribute value : String;
+	}
+
+	class ModePArg extends PropertyArg {
+		attribute mode : String;
+	}
+-- @end Property Arguments
+
+
+-- @begin Block Arguments
+	abstract class BlockArg extends LocatedElement {
+		reference block : Block oppositeOf blockArgs;
+	}
+
+	class NbNLBArg extends BlockArg {
+		attribute value : Integer;
+	}
+
+	class IndentIncrBArg extends BlockArg {
+		attribute value : Integer;
+	}
+
+	class StartNLBArg extends BlockArg {
+		attribute value : Boolean;
+	}
+
+	class StartNbNLBArg extends BlockArg {
+		attribute value : Integer;
+	}
+
+	class EndNLBArg extends BlockArg {
+		attribute value : Boolean;
+	}
+-- @end Block Arguments
+
+
+-- @begin Expressions
+	abstract class Expression extends LocatedElement {
+		reference conditionalElement : ConditionalElement oppositeOf condition;
+	}
+
+	class AndExp extends Expression {
+		reference expressions[*] ordered container : AtomExp oppositeOf andExp;
+	}
+
+	abstract class AtomExp extends LocatedElement {
+		reference andExp : AndExp oppositeOf expressions;
+		attribute propertyName : String;
+	}
+
+	class EqualsExp extends AtomExp {
+		reference value container : Value;	-- Was an Attribute but Ecore forbids non-EDataType attributes
+	}
+
+	class BooleanPropertyExp extends AtomExp {
+	}
+
+	class IsDefinedExp extends AtomExp {
+	}
+
+	class OneExp extends AtomExp {
+	}
+-- @end Expressions
+
+
+-- @begin Values
+	abstract class Value extends LocatedElement {
+
+	}
+
+	class StringVal extends Value {
+		attribute symbol : String;
+	}
+
+	class IntegerVal extends Value {
+		attribute symbol : Integer;
+	}
+
+	class NegativeIntegerVal extends Value {
+		attribute symbol : Integer;
+	}
+
+	class EnumLiteralVal extends Value {
+		attribute name : String;
+	}
+
+	class PropertyVal extends Value {
+		attribute propertyName[1-*] : String;
+	}
+-- @end Values
+
+
+-- @begin Tokens
+	class Token extends NamedElement {
+		reference pattern container : OrPattern;
+	}
+
+	class OrPattern extends LocatedElement {
+		reference simplePatterns[1-*] ordered container : SimplePattern;
+	}
+
+-- @begin SimplePatterns
+	abstract class SimplePattern extends NamedElement {
+	}
+
+	class RulePattern extends SimplePattern {
+		reference rule container : Rule;
+--		reference arguments[*] ordered container : RuleArgument;
+	}
+
+-- @begin Rules
+	abstract class Rule extends LocatedElement {
+	}
+
+	class WordRule extends Rule {
+		reference start container : OrPattern;
+		reference part container : OrPattern;
+		reference end[0-1] container : OrPattern;
+		reference words[*] container : Word;
+	}
+
+	class Word extends NamedElement {
+		attribute token : String;
+	}
+
+	class EndOfLineRule extends Rule {
+		reference start container : StringPattern;
+		attribute dropStart : Boolean;
+	}
+
+	class MultiLineRule extends Rule {
+		reference start container : StringPattern;
+		attribute dropStart : Boolean;
+		reference end container : StringPattern;
+		attribute dropEnd : Boolean;
+		reference esc[0-1] container : StringPattern;
+		reference escMappings[*] container : Mapping;
+	}
+	
+	abstract class Mapping extends LocatedElement {}
+	
+	class SimpleMapping extends Mapping {
+		attribute key : String;
+		attribute value : String;
+	}
+	
+	class WildcardMapping extends Mapping {}
+	
+	class OctalMapping extends Mapping {}
+
+	class HexadecimalMapping extends Mapping {}
+-- @end Rules
+
+--	class RuleArgument extends NamedElement {
+--		reference value container : OrPattern;
+--	}
+
+	class StringPattern extends SimplePattern {
+	}
+
+	class ClassPattern extends SimplePattern {
+	}
+-- @end SimplePatterns
+-- @end Tokens
+
+
+-- @begin Obsolete Items
+--	class Key extends NamedElement {
+--		-- name must be the class's
+--		reference keySequence container : Sequence oppositeOf keyContainer;
+--	}
+--	class FunctionCall extends SequenceElement {		-- unused
+--		reference function : Function;
+--		reference arguments[*] ordered container : Argument;
+--	}
+-- @end Obsolete Items
+
+}
+
+package PrimitiveTypes {
+
+	datatype Boolean;
+	datatype Integer;
+	datatype String;
+
+}

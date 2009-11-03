@@ -1,0 +1,138 @@
+See also the example in Test.ngpm
+
+With these definitions, CatamaranSkipper conforms to the Skipper
+interface by definition. The "extends" clause would take over the
+sailBoat(Boat) operation. Catamaran and Boat have as their only
+commonality the conformance with an interface / abstract class that
+carries the single method "Skipper getCaptain()" because covariance is
+ok for return types. Covariance in this case needs to be defined
+further. It probably should mean that the "subtype" offers all
+features of the "supertype" in an again conforming way.
+
+Further thoughts on conformance and inference:
+----------------------------------------------
+
+An invocation of a signature uses expressions as argument types. For
+those, their types can be inferred to a large extent, either because
+they are literals or explicitly declared or resulting from other
+operation invocations which have a declared type.
+
+Generic types and conformance:
+------------------------------
+
+When a generic type is instantiated (or in Haskell-like terminology a
+"type constructor" is used to construct a specific type), the
+resulting type has a set of signatures. Those signatures are subject
+to the regular conformance rules. Therefore, the operations that use
+a formal type parameter as the type of an inbound operation argument
+will *not* result in conforming signatures when instantiated with
+conforming but different types. They would result in covariant but not
+contravariant argument definitions.
+
+A conformance check may be required between a ParameterizedClass
+(which is not a Class in the metamodel inheritance hierarchy) and a
+Class because within the class definition for the ParameterizedClass
+the "this" variable may be used. Those usages must be type-checked or
+may at least need to a back-propagation of constraints onto the
+FormalTypeParameters. It may also turn out that regardless of the type
+parameters the use of "this" may never be conforming which then needs
+to be reported as an error. For this conformance check, the
+FormalTypeParameters need to be included in the recursive conformance
+checks. They need to be treates as if they were their typeConstraint
+type if that has been specified, or Object (a class with no declared
+features at all) otherwise.
+
+Conformance checks are also required between Classes and
+ParameterizedClassInstantiations. In this case, there exist a number
+of ActualTypeParameters for the FormalTypeParameters used in the
+classDefinition of the ParameterizedClass. For the purpose of the
+conformance check, these actual types need to be used instead of the
+FormalTypeParameter elements themselves. This means that the
+conformance check for a ParameterizedClassInstantiation needs to use a
+resolver for the FormalTypeParameter elements. 
+
+Type adaptation and covariant argument types:
+---------------------------------------------
+
+Situation: Type B wants to conform to type A and thus needs to offer
+a conforming signature for each of A's signatures. If B wants to
+constrain an argument type covariantly in one of the otherwise
+conforming signatures, type adaptation may be used to still make B
+conforming to A as follows:
+
+class A {
+  void m(C c) { ... };
+}
+
+class B {
+  void m(D d) { ... };
+}
+
+Where D is different from C but conforms to C. With these definitions,
+B does not conform to A. An adaptation can be provided to make B
+conform to A as follows:
+
+adapt B to A {
+  // feature missing from B to conform to A:
+  void m(C c) {
+    if (c instanceof D) {
+      m((D) c);
+    } else {
+      m(/* try some conversion from c into a new object of type D */ ...);
+    }
+  }
+}
+
+Type inference:
+---------------
+
+Literals of primitive types should reveal their basic type, probably
+not their domain in the sense of length restrictions. For example, if
+a variable gets assigned the string "abc" then not necessarily should
+there be a length restriction of 3 be imposed on the values assigned
+to that variable.
+
+Operations always have a return type associated. That type may itself
+have been determined by the type inference built into the language,
+but at any given point in (design-)time, that type is known. If not
+explicitly declared by the developer, the type may change based on the
+implementation of the operation. With this, an expression that invokes
+an operation has as its static type the return type of that operation.
+
+VariableExpressions are similar in their typing to an
+OperationExpression. If the developer explicitly types the variable,
+that defined the static type. Else, the type will be infered from the
+program code in which the variable is used. That type is assigned to
+the variable and may change during design-time as the developer
+modifies the code using the variable.
+
+AssociationNavigationExpressions are statically typed by the type of
+the respective association end.
+
+When a not explicitly-typed variable gets assigned a value (or
+analogously, a value is returned from an operation, e.g., by assigning
+it to the implicit result variable (will we have one?)), the inferred
+type of the expression being assigned is added to the inferred set of
+possible types for the values of the variable.
+
+Two interesting things can be derived from the inferred set of
+possible types: the union and the intersection of all possible
+signatures of those types.
+
+If the resulting inferred type of a variable or operation is asked,
+the "intersection" is computed over the set of inferred types for
+it. The intersection of two DataTypes is another
+(anonymous) DataType that exposes a set of signatures computed as the
+intersection of the signatures of the respective classes:
+
+  context intersection(classSet:Set(Class)):Class
+  post:
+    allSignatures(result) = classSet->iterate(
+        c:Class, result:Set(Operation = allSignatures(classSet->first()) |
+           result->intersection(allSignatures(c))))
+
+In case of an empty result, the variable / operation cannot be
+reasonably used in any type-safe manner. This may then be a hint to
+the bad practice of a "union type" operation result or variable
+assignment and should at least result in a warning.
+

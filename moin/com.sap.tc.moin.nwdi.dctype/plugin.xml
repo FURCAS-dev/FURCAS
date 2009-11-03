@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+<!-- Trace enabling -->
+   <extension point="com.tssap.tools.ui.traceParticipant">
+      <traceParticipant file="traceParticipant.properties"/>
+   </extension>
+
+	<extension id="MoinNature" name="Moin Nature" point="org.eclipse.core.resources.natures">
+		<runtime>
+			<run class="com.sap.tc.moin.nwdi.dctype.internal.MoinNature"/>
+		</runtime>
+	</extension>
+	<extension point="com.sap.ide.dii05.ui.dctype">
+		<DCType caption="%dcType.name" class="com.sap.tc.moin.nwdi.dctype.MoinTestDcType" type="com.sap.tc.moin.nwdi.dctype.Moin" vendor="sap.com">
+			<BuildDC name="tc/bi/bp/nop" ppref="def" vendor="sap.com"/>
+		</DCType>
+	</extension>
+
+ <extension
+       point="org.eclipse.ui.newWizards">
+    <wizard
+          category="com.sap.mi.fwk.dcfwk.newwizards"
+          class="com.sap.tc.moin.nwdi.dctype.internal.MoinTestDcTypeWizard"
+          icon="resources/icons/project.gif"
+          id="com.sap.tc.moin.nwdi.dctype.newwizard"
+          name="%newWizard.name"
+          project="true">
+       <description>
+          %newWizard.description
+       </description>
+    </wizard>
+ </extension>	
+
+</plugin>

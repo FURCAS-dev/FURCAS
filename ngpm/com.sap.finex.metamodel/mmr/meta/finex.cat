@@ -1,0 +1,88 @@
+
+(object Petal
+    version    	50
+    _written   	"Rose 8.3.0407.2800"
+    charSet    	0)
+
+(object Class_Category "finex"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    attributes 	(list Attribute_Set
+	(object Attribute
+	    tool       	"MOF"
+	    name       	"uml2mof.clusteredImport"
+	    value      	(value Text "structure,behavior")))
+    quid       	"4AC9B67601A5"
+    stereotype 	"metamodel"
+    exportControl 	"Public"
+    logical_models 	(list unit_reference_list
+	(object Class_Category "modelmanagement"
+	    quid       	"4AC9F37703A9"
+	    exportControl 	"Public"
+	    logical_models 	(list unit_reference_list
+		(object Class "NamedElement"
+		    quid       	"4AC9F38B02AF"
+		    class_attributes 	(list class_attribute_list
+			(object ClassAttribute "name"
+			    quid       	"4AC9F3A502FD"
+			    type       	"String"
+			    quidu      	"39A2BDA60394"
+			    exportControl 	"Public"))))
+	    logical_presentations 	(list unit_reference_list
+		(object ClassDiagram "Model Management"
+		    quid       	"4AC9F38401F4"
+		    title      	"Model Management"
+		    zoom       	100
+		    max_height 	28350
+		    max_width  	21600
+		    origin_x   	0
+		    origin_y   	0
+		    items      	(list diagram_item_list
+			(object ClassView "Class" "Logical View::finex::modelmanagement::NamedElement" @1
+			    ShowCompartmentStereotypes 	TRUE
+			    IncludeAttribute 	TRUE
+			    IncludeOperation 	TRUE
+			    location   	(1113, 306)
+			    font       	(object Font
+				size       	10
+				face       	"Arial"
+				bold       	FALSE
+				italics    	FALSE
+				underline  	FALSE
+				strike     	FALSE
+				color      	0
+				default_color 	TRUE)
+			    label      	(object ItemLabel
+				Parent_View 	@1
+				location   	(956, 225)
+				fill_color 	13434879
+				nlines     	1
+				max_width  	314
+				justify    	0
+				label      	"NamedElement")
+			    icon_style 	"Icon"
+			    line_color 	3342489
+			    fill_color 	13434879
+			    quidu      	"4AC9F38B02AF"
+			    compartment 	(object Compartment
+				Parent_View 	@1
+				location   	(956, 286)
+				font       	(object Font
+				    size       	10
+				    face       	"Arial"
+				    bold       	FALSE
+				    italics    	FALSE
+				    underline  	FALSE
+				    strike     	FALSE
+				    color      	0
+				    default_color 	TRUE)
+				icon_style 	"Icon"
+				fill_color 	13434879
+				anchor     	2
+				nlines     	2
+				max_width  	303)
+			    width      	332
+			    height     	186
+			    annotation 	8
+			    autoResize 	TRUE))))))
+    logical_presentations 	(list unit_reference_list))

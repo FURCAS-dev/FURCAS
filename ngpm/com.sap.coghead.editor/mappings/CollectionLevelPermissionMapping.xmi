@@ -1,0 +1,863 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<M c='1' q='TCS.ConcreteSyntax' i='483FE093F85A80F22E3811DD99D7001742153E0C'/>
+<M c='1' q='TCS.ClassTemplate' i='483FE093F85CF1F02E3811DD822D001742153E0C'/>
+<M c='1' q='TCS.PrimitiveTemplate' i='483FE093F85CF1FE2E3811DDB996001742153E0C'/>
+<M c='1' q='TCS.EnumerationTemplate' i='483FE093F85F62F72E3811DDB374001742153E0C'/>
+<M c='1' q='TCS.Symbol' i='483FE093F861ACE22E3811DDAA65001742153E0C'/>
+<M c='1' q='TCS.Keyword' i='483FE093F861ACE42E3811DDC0B0001742153E0C'/>
+<M c='1' q='TCS.Sequence' i='483FE093F8641DE52E3811DDA866001742153E0C'/>
+<M c='1' q='TCS.LiteralRef' i='483FE093F868D8D02E3811DDC44A001742153E0C'/>
+<M c='1' q='TCS.Property' i='483FE093F868D8D22E3811DDBC2E001742153E0C'/>
+<M c='1' q='TCS.ConditionalElement' i='483FE093F86B49D72E3811DD916A001742153E0C'/>
+<M c='1' q='TCS.Alternative' i='483FE093F86D93C02E3811DDBFBA001742153E0C'/>
+<M c='1' q='TCS.RefersToPArg' i='483FE093F86D93C72E3811DD8074001742153E0C'/>
+<M c='1' q='TCS.SeparatorPArg' i='483FE093F86D93CF2E3811DD83CE001742153E0C'/>
+<M c='1' q='TCS.AsPArg' i='483FE093F87004C82E3811DDBD9A001742153E0C'/>
+<M c='1' q='TCS.AndExp' i='483FE093F87275CA2E3811DD81F7001742153E0C'/>
+<M c='1' q='TCS.IsDefinedExp' i='483FE093F874BFB72E3811DDC779001742153E0C'/>
+<M c='1' q='TCS.Token' i='483FE093F87730B42E3811DDA11F001742153E0C' ova='pattern'/>
+<M c='1' q='TCS.OrPattern' i='483FE093F87730B62E3811DDCB94001742153E0C'/>
+<M c='1' q='TCS.RulePattern' i='483FE093F87730B92E3811DD8294001742153E0C' ova='rule'/>
+<M c='1' q='TCS.EndOfLineRule' i='483FE093F879A1B52E3811DDA57F001742153E0C' ova='start'/>
+<M c='1' q='TCS.MultiLineRule' i='483FE093F879A1B82E3811DDC22B001742153E0C' ova='start,end,esc'/>
+<M c='1' q='TCS.StringPattern' i='483FE093F87BEBA42E3811DD87AD001742153E0C'/>
+<M c='1' q='TCS.ConcreteSyntax_Template' i='484003027EF4E1002E4D11DDC29A001742153E0C' se='0' ce='0' oe='1'/>
+<M c='1' q='TCS.ConcreteSyntax_Token' i='48400488674AE0302E4E11DD8E8A001742153E0C' se='0' ce='0' oe='1'/>
+<M c='1' q='TCS.ConcreteSyntax_Symbol' i='4840048B690B2DD02E4E11DD844E001742153E0C' se='0' ce='0' oe='1'/>
+<M c='1' q='TCS.ClassTemplate_Sequence' i='484006E8D1A6DA502E4F11DDCEAD001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.elements' i='4843B9951529F330308411DD9172001742153E0C' se='0' ce='0' oe='1'/>
+<M c='1' q='TCS.SeparatorPArg_Sequence' i='4843BB7E38111490308511DD9064001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.thenSequence' i='4843BC3FAB9FE7B0308511DDB50E001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.ConditionalElement_Expression' i='4843C95D7CE2E730308D11DDAEC3001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.Property_PropertyArg' i='4843CCC383C18FA0308F11DDC781001742153E0C' se='0' ce='0' oe='1'/>
+<M c='1' q='TCS.AndExp_AtomExp' i='4843CE1C50D89CE0309011DDB957001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.OrPattern_SimplePattern' i='4843D098CC37E7F0309111DD807F001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.LiteralRef_Literal' i='48440C14410FA0E030B511DDB79B001742153E0C' se='0' ce='-1' oe='-1'/>
+<M c='1' q='textblockdefinition.TextBlockDefinition' i='4850EADF1A241B6E386111DD9B53001742153E0C'/>
+<M c='1' q='textblockdefinition.TextblockDefinition_References_Production' i='4850EADF1A241B73386111DDAC42001742153E0C' se='1' ce='-1' oe='-1'/>
+<M c='1' q='TCS.QueryPArg' i='487F15F5D36D3A3053E511DDAF7E001742153E0C'/>
+<M c='1' q='TCS.QualifiedNamedElement_ModelElement' i='48B5573C7AF43F30743C11DD8699001742153E0C' se='0' ce='-1' oe='-1'/>
+<M c='1' q='TCS.Property_StrucFeature' i='48BD1189A3D8A95078D711DDC360001742153E0C' se='0' ce='-1' oe='-1'/>
+<M c='1' q='TCS.InjectorActionsBlock' i='4912CB052AE90D40ABF011DDCDF8001742153E0C'/>
+<M c='1' q='TCS.InjectorActionsBlock_InjectorAction' i='4912CB2C424BD670ABF011DD8D3C001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.PropertyReference' i='4912CBA0874500D0ABF011DD80CE001742153E0C'/>
+<M c='1' q='TCS.Property_PropertyReference' i='4912CBBD9899F430ABF011DD84D8001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.PropertyInit_PropertyReference' i='4912CBC19B596250ABF011DD8575001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.AtomExp_PropertyReference' i='4912CC9E1F09B1E0ABF111DD9AB5001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.ContextTags' i='4914266739D38F40ACBF11DD90C9001742153E0C'/>
+<M c='1' q='TCS.ClassTemplate_ContextTags' i='49142672401A9D80ACBF11DDC5A9001742153E0C' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.PrimitivePropertyInit' i='49257A4E3A3FBC20B71311DDCC9D00016CE99C52'/>
+<M c='1' q='TCS.SequenceInAlternative' i='496F03BE10363160E2E811DD834C00016CE99C52'/>
+<M c='1' q='TCS.Alternative_Sequence' i='496F6B77E31C9820E32511DDB13100016CE99C52' se='0' ce='0' oe='-1'/>
+<M c='1' q='TCS.AsPArg_Template' i='E000054CC3C682806A7811DEB92500016CE99C52' se='0' ce='-1' oe='-1'/>
+<M c='1' q='TCS.FilterPArg' i='E007956A4F5400F065A811DE877100016CE99C52'/>
+<M c='1' q='TCS.SequenceElement_Template' i='E03D847172B416B06AEA11DEA60500016CE99C52' se='0' ce='-1' oe='-1'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD421CA0A42B11DE9B1700016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD421CA1A42B11DE8FCF00016CE99C52' templateName='identifier' isDefault='true' tokenName='NAME' value='unescapeString(%token%)' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD421CA2A42B11DEA1E300016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD421CA3A42B11DECE1500016CE99C52' templateName='stringSymbol' isDefault='false' tokenName='STRING' value='unescapeString(%token%)' serializer='&apos;\&quot;&apos; + %value%.toCString() + &apos;\&quot;&apos;' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD43A340A42B11DEA35700016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD43A341A42B11DECAA200016CE99C52' templateName='integerSymbol' isDefault='true' tokenName='INT' value='Integer.valueOf(%token%)' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD4529E0A42B11DECA2800016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD4529E1A42B11DE950C00016CE99C52' templateName='longSymbol' isDefault='true' tokenName='INT' value='Long.valueOf(%token%)' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD46B080A42B11DEA97F00016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD46B081A42B11DE8BDE00016CE99C52' templateName='integerAsStringSymbol' isDefault='true' tokenName='INT' value='%token%' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD46B082A42B11DEAAF700016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD49BDC0A42B11DEADE700016CE99C52' templateName='floatAsStringSymbol' isDefault='true' tokenName='FLOAT' value='%token%' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD4B4460A42B11DE8F1E00016CE99C52'/>
+<TCS.PrimitiveTemplate m:c='1' m:i='E0F4BA0CDD4B4461A42B11DEB07B00016CE99C52' templateName='doubleAsStringSymbol' isDefault='true' tokenName='DOUBLE' value='%token%' orKeyword='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD4B4462A42B11DE8C9300016CE99C52'/>
+<TCS.EnumerationTemplate m:c='1' m:i='E0F4BA0CDD4B4463A42B11DE8D6700016CE99C52' automatic='true'/>
+<TCS.ContextTags m:c='1' m:i='E0F4BA0CDD4FD840A42B11DEAD9D00016CE99C52' tags='Permission'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD841A42B11DEAAF300016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD842A42B11DEB83F00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD843A42B11DE8E1800016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD844A42B11DEACD700016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD845A42B11DE84E900016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD4FD846A42B11DECA3500016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD4FD847A42B11DEC40F00016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD4FD848A42B11DEA04900016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD849A42B11DEB6AA00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD84AA42B11DEC20200016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD84BA42B11DE880400016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD4FD84CA42B11DEB88100016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD4FD84DA42B11DEB3B900016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD4FD84EA42B11DE87C400016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD4FD84FA42B11DEC17200016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD4FD850A42B11DEA28400016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD4FD851A42B11DEAE2A00016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD4FD852A42B11DECD0F00016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD515EE0A42B11DE869400016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EE1A42B11DEA9D700016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EE2A42B11DEB97400016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD515EE4A42B11DE873600016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD515EE5A42B11DE8C0C00016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD515EE6A42B11DEACB500016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD515EE7A42B11DECFD400016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EE8A42B11DEC66700016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EE9A42B11DE863900016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EEAA42B11DEA4DA00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD515EEBA42B11DEB26500016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD515EECA42B11DE9C7500016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EEDA42B11DE9CC200016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD515EEEA42B11DEAE1000016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD515EEFA42B11DE9D3300016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD515EF0A42B11DE9B1D00016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD515EF1A42B11DE943800016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EF3A42B11DEAAA800016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EF4A42B11DECA0C00016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD515EF6A42B11DEC51700016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD515EF7A42B11DECAB300016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD515EF8A42B11DE85A100016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD515EF9A42B11DEA4F900016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EFAA42B11DEAB8D00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EFBA42B11DE98F400016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD515EFCA42B11DEC0A400016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD515EFDA42B11DE943000016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD515EFEA42B11DEC2F600016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD52E580A42B11DE8F0D00016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD52E581A42B11DEA7A800016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD52E582A42B11DE8E4000016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD52E583A42B11DEA8AD00016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD52E584A42B11DEB09600016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD52E585A42B11DE802600016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD52E586A42B11DEC23500016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD52E587A42B11DEB5FC00016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD52E588A42B11DE841C00016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD52E589A42B11DE827B00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD546C20A42B11DE8C2600016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD546C21A42B11DEB0DB00016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD546C22A42B11DECF0400016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C23A42B11DE9FC100016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C24A42B11DE922E00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C25A42B11DE927800016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD546C26A42B11DEB38700016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD546C27A42B11DEA89400016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C28A42B11DE870100016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD546C29A42B11DE97FC00016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD546C2AA42B11DEBFB700016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD546C2BA42B11DE84D000016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD546C2CA42B11DEA2D900016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C2EA42B11DE838200016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C2FA42B11DECE1200016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD546C30A42B11DE898600016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD546C31A42B11DEBF3F00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C32A42B11DEBC6E00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD546C33A42B11DE803000016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD546C34A42B11DE824500016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD546C35A42B11DE8E8C00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C36A42B11DE865E00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C37A42B11DEC51E00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD546C38A42B11DEBA1800016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C39A42B11DEABC000016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD546C3AA42B11DE95D600016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD546C3BA42B11DEA5FA00016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD546C3CA42B11DEA72400016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C3DA42B11DEB84000016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD546C3EA42B11DECA9300016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD546C3FA42B11DE9CFC00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD546C40A42B11DEC31000016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD546C41A42B11DECDA400016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD55F2C0A42B11DE81CC00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='true' isMulti='false' isContext='true' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD577960A42B11DE9B0600016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5C0D40A42B11DE913D00016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD5C0D41A42B11DEBA0F00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5C0D42A42B11DEC2C200016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5C0D43A42B11DE8E8F00016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD5C0D44A42B11DEC2CD00016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD5C0D45A42B11DE97D600016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5C0D46A42B11DEC23300016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5C0D47A42B11DE801A00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5C0D48A42B11DEB67D00016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD5D93E0A42B11DE80F900016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93E1A42B11DE912600016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5D93E2A42B11DEC68900016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD5D93E3A42B11DE9E5600016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD5D93E4A42B11DEB15C00016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD5D93E5A42B11DEC6EC00016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93E7A42B11DEC4C700016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5D93E8A42B11DEB04100016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD5D93E9A42B11DE953200016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5D93EAA42B11DE87CA00016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD5D93EBA42B11DEC16300016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD5D93ECA42B11DEC0A800016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93EDA42B11DEBD9000016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93EEA42B11DEC30C00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5D93EFA42B11DEC15200016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD5D93F0A42B11DEC85700016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93F1A42B11DECD4900016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5D93F2A42B11DEAC2B00016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD5D93F3A42B11DEA43C00016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD5D93F4A42B11DE9FD000016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD5D93F5A42B11DEB2A600016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93F7A42B11DE826E00016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5D93F8A42B11DEC9C900016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD5D93F9A42B11DE8D5C00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5D93FAA42B11DEC52500016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD5D93FBA42B11DEC73F00016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD5D93FCA42B11DEC2FD00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5D93FDA42B11DECD6100016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5F1A80A42B11DECC5800016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD5F1A81A42B11DE861A00016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD5F1A82A42B11DEB60300016CE99C52' propertyName='name'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5F1A83A42B11DEB72000016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5F1A84A42B11DEB86D00016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD5F1A85A42B11DE927500016CE99C52'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD5F1A86A42B11DEBDA900016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection.getApplication().myAccount.roles'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD5F1A87A42B11DE929400016CE99C52' filter='-&gt;select(r | r.name= ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD5F1A89A42B11DEB43800016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5F1A8AA42B11DEC34400016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD5F1A8BA42B11DEA3C600016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD5F1A8DA42B11DE9AE000016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD60A120A42B11DEC6EA00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD60A121A42B11DEA53500016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD60A122A42B11DE8A6000016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD60A123A42B11DEAB1C00016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD60A124A42B11DECE3D00016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD60A125A42B11DECEC500016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD60A126A42B11DECEF300016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD60A127A42B11DECC0500016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD60A128A42B11DEA94300016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD63AE60A42B11DE898E00016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD63AE61A42B11DEAF8000016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD63AE62A42B11DEC97600016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD653500A42B11DEBDCB00016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD653501A42B11DEA07900016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD653502A42B11DE96EA00016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.ContextTags m:c='1' m:i='E0F4BA0CDD684240A42B11DECB7300016CE99C52' tags='ColTempl'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD684241A42B11DEBDCE00016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD684242A42B11DE8D8000016CE99C52' propertyName='name'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD684243A42B11DEA84500016CE99C52' query='OCL:#context(Permission).oclAsType(CollectionLevelPermission).theCollection'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD684244A42B11DEB27300016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD684245A42B11DE9B7A00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD684246A42B11DE859C00016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD684247A42B11DE867500016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD684248A42B11DEAF3D00016CE99C52'/>
+<TCS.IsDefinedExp m:c='1' m:i='E0F4BA0CDD684249A42B11DE978200016CE99C52'/>
+<TCS.AndExp m:c='1' m:i='E0F4BA0CDD68424AA42B11DE885600016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD69C8E0A42B11DE8BFB00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD69C8E1A42B11DEAB0C00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD69C8E2A42B11DE965600016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD69C8E3A42B11DEB14200016CE99C52'/>
+<TCS.SeparatorPArg m:c='1' m:i='E0F4BA0CDD69C8E4A42B11DEC93F00016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD69C8E5A42B11DE928100016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD69C8E6A42B11DE9CEF00016CE99C52'/>
+<TCS.ConditionalElement m:c='1' m:i='E0F4BA0CDD69C8E7A42B11DE83FF00016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD69C8E8A42B11DEBA0800016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD69C8E9A42B11DEA88100016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='true' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD6B4F80A42B11DECB4A00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD6B4F81A42B11DEB45600016CE99C52' isAbstract='true' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD6CD620A42B11DEC94900016CE99C52'/>
+<TCS.RefersToPArg m:c='1' m:i='E0F4BA0CDD6CD621A42B11DEC23F00016CE99C52' propertyName='name'/>
+<TCS.QueryPArg m:c='1' m:i='E0F4BA0CDD6CD622A42B11DEB31F00016CE99C52' query='OCL:#context(ColTempl).oclAsType(CollectionTemplate).collection.schema.entries'/>
+<TCS.FilterPArg m:c='1' m:i='E0F4BA0CDD6CD623A42B11DE8DD400016CE99C52' filter='-&gt;select(f | f.name = ?)'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52'/>
+<TCS.LiteralRef m:c='1' m:i='E0F4BA0CDD6CD625A42B11DE887300016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD6CD626A42B11DEC41300016CE99C52'/>
+<TCS.PrimitivePropertyInit m:c='1' m:i='E0F4BA0CDD6CD627A42B11DEBDCE00016CE99C52' value='coghead.OperatorEnumEnum.EQUALS' isDefault='false'/>
+<TCS.InjectorActionsBlock m:c='1' m:i='E0F4BA0CDD6CD628A42B11DEA93000016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD6E5CC0A42B11DE9D5200016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD6E5CC1A42B11DE863C00016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD6E5CC2A42B11DE80FC00016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD6E5CC3A42B11DE8F2A00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD7DC610A42B11DE819E00016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD7DC611A42B11DEA33100016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD7DC612A42B11DE825D00016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD80D350A42B11DE906C00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD80D351A42B11DE895100016CE99C52' isAbstract='true' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD83E090A42B11DECADD00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD83E091A42B11DEC77E00016CE99C52' isAbstract='true' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD86EDD0A42B11DE98BA00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD86EDD1A42B11DE845200016CE99C52' isAbstract='true' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD8B81B0A42B11DEBB9A00016CE99C52'/>
+<TCS.AsPArg m:c='1' m:i='E0F4BA0CDD8B81B1A42B11DE985500016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD8B81B2A42B11DEAB2900016CE99C52'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD8B81B3A42B11DEB8D600016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD8B81B4A42B11DE91A000016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD8B81B5A42B11DE9B4100016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD8E8EF0A42B11DEC4C500016CE99C52'/>
+<TCS.AsPArg m:c='1' m:i='E0F4BA0CDD8E8EF1A42B11DE93E500016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD8E8EF2A42B11DEB91400016CE99C52'/>
+<TCS.SequenceInAlternative m:c='1' m:i='E0F4BA0CDD8E8EF3A42B11DEC03F00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD8E8EF4A42B11DEB3D200016CE99C52'/>
+<TCS.AsPArg m:c='1' m:i='E0F4BA0CDD8E8EF5A42B11DE994100016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD8E8EF6A42B11DEB75800016CE99C52'/>
+<TCS.SequenceInAlternative m:c='1' m:i='E0F4BA0CDD8E8EF7A42B11DEB43D00016CE99C52'/>
+<TCS.PropertyReference m:c='1' m:i='E0F4BA0CDD8E8EF8A42B11DEBAEB00016CE99C52'/>
+<TCS.AsPArg m:c='1' m:i='E0F4BA0CDD8E8EF9A42B11DE98A300016CE99C52'/>
+<TCS.Property m:c='1' m:i='E0F4BA0CDD8E8EFAA42B11DE860900016CE99C52'/>
+<TCS.SequenceInAlternative m:c='1' m:i='E0F4BA0CDD8E8EFBA42B11DEB1A600016CE99C52'/>
+<TCS.Alternative m:c='1' m:i='E0F4BA0CDD8E8EFCA42B11DE8F4800016CE99C52' isMulti='false'/>
+<TCS.Sequence m:c='1' m:i='E0F4BA0CDD8E8EFDA42B11DECCD700016CE99C52'/>
+<textblockdefinition.TextBlockDefinition m:c='1' m:i='E0F4BA0CDD8E8EFEA42B11DE9C6C00016CE99C52'/>
+<TCS.ClassTemplate m:c='1' m:i='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52' isAbstract='false' isDeep='false' isOperatored='false' isMain='false' isMulti='false' isContext='false' isAddToContext='false' isNonPrimary='false' isReferenceOnly='false'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD8E8F00A42B11DE8F0A00016CE99C52' name='lbracket' value='['/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD8E8F01A42B11DE8AB800016CE99C52' name='rbracket' value=']'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD8E8F02A42B11DE9C9500016CE99C52' name='lcurl' value='{'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD8E8F03A42B11DEB92700016CE99C52' name='rcurl' value='}'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD8E8F04A42B11DEB70400016CE99C52' name='langle' value='&lt;'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901590A42B11DE887600016CE99C52' name='rangle' value='&gt;'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901591A42B11DEA01D00016CE99C52' name='lparen' value='('/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52' name='rparen' value=')'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901593A42B11DE89AB00016CE99C52' name='excl' value='!'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901594A42B11DEA7CD00016CE99C52' name='equals' value='='/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901595A42B11DE960A00016CE99C52' name='equalsEquals' value='=='/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901596A42B11DE8E1600016CE99C52' name='assign' value=':='/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901597A42B11DE813F00016CE99C52' name='dot' value='.'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901598A42B11DEB8B900016CE99C52' name='arrow' value='-&gt;'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD901599A42B11DEB97500016CE99C52' name='colon' value=':'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD90159AA42B11DEACA000016CE99C52' name='dcolon' value='::'/>
+<TCS.Symbol m:c='1' m:i='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52' name='semicolon' value=';'/>
+<TCS.StringPattern m:c='1' m:i='E0F4BA0CDD90159CA42B11DEB00400016CE99C52' name='//'/>
+<TCS.EndOfLineRule m:c='1' m:i='E0F4BA0CDD90159DA42B11DEA56D00016CE99C52' start='E0F4BA0CDD90159CA42B11DEB00400016CE99C52' dropStart='false'/>
+<TCS.RulePattern m:c='1' m:i='E0F4BA0CDD90159EA42B11DE87C800016CE99C52' rule='E0F4BA0CDD90159DA42B11DEA56D00016CE99C52'/>
+<TCS.OrPattern m:c='1' m:i='E0F4BA0CDD90159FA42B11DEA29100016CE99C52'/>
+<TCS.Token m:c='1' m:i='E0F4BA0CDD9015A0A42B11DEC46600016CE99C52' name='COMMENT' pattern='E0F4BA0CDD90159FA42B11DEA29100016CE99C52' isOmitted='false'/>
+<TCS.StringPattern m:c='1' m:i='E0F4BA0CDD9015A1A42B11DECE8100016CE99C52' name='/*'/>
+<TCS.StringPattern m:c='1' m:i='E0F4BA0CDD9015A2A42B11DE882800016CE99C52' name='*/'/>
+<TCS.MultiLineRule m:c='1' m:i='E0F4BA0CDD9015A3A42B11DE804600016CE99C52' start='E0F4BA0CDD9015A1A42B11DECE8100016CE99C52' dropStart='false' end='E0F4BA0CDD9015A2A42B11DE882800016CE99C52' dropEnd='false'/>
+<TCS.RulePattern m:c='1' m:i='E0F4BA0CDD9015A4A42B11DEC10D00016CE99C52' rule='E0F4BA0CDD9015A3A42B11DE804600016CE99C52'/>
+<TCS.OrPattern m:c='1' m:i='E0F4BA0CDD9015A5A42B11DEB47700016CE99C52'/>
+<TCS.Token m:c='1' m:i='E0F4BA0CDD9015A6A42B11DE94D300016CE99C52' name='MULTI_LINE_COMMENT' pattern='E0F4BA0CDD9015A5A42B11DEB47700016CE99C52' isOmitted='false'/>
+<TCS.ConcreteSyntax m:c='1' m:i='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' name='CollectionLevelPermission' k='0' lexer='&#13;&#10;%options testLiterals = false;&#13;&#10;&#13;&#10;&#13;&#10;NL&#13;&#10;&#9;:&#9;(&#9;&apos;\r&apos; &apos;\n&apos;&#13;&#10;&#9;&#9;|&#9;&apos;\n&apos; &apos;\r&apos;&#9;//Improbable&#13;&#10;&#9;&#9;|&#9;&apos;\r&apos;&#13;&#10;&#9;&#9;|&#9;&apos;\n&apos;&#13;&#10;&#9;&#9;)&#13;&#10;&#9;{newline();$channel=HIDDEN;}&#13;&#10;&#9;;&#13;&#10;&#13;&#10;WS&#13;&#10;&#9;:&#9;(&#9;&apos; &apos;&#13;&#10;&#9;&#9;|&#9;&apos;\t&apos;&#13;&#10;&#9;&#9;){$channel=HIDDEN;}&#13;&#10;&#9;;&#13;&#10;&#13;&#10;%protected&#13;&#10;DIGIT&#13;&#10;&#9;:&#9;&apos;0&apos;..&apos;9&apos;&#13;&#10;&#9;;&#13;&#10;&#13;&#10;%protected&#13;&#10;ALPHA&#13;&#10;&#9;:&#9;&apos;a&apos;..&apos;z&apos;&#13;&#10;&#9;|&#9;&apos;A&apos;..&apos;Z&apos;&#13;&#10;&#9;|&#9;&apos;_&apos;&#13;&#10;&#9;//For Unicode compatibility (from 0000 to 00ff)&#13;&#10;&#9;|&#9;&apos;\u00C0&apos; .. &apos;\u00D6&apos;&#13;&#10;&#9;|&#9;&apos;\u00D8&apos; .. &apos;\u00F6&apos;&#13;&#10;&#9;|&#9;&apos;\u00F8&apos; .. &apos;\u00FF&apos;&#13;&#10;&#9;;&#13;&#10;&#13;&#10;%protected&#13;&#10;SNAME&#13;&#10;&#9;:&#9;(ALPHA) (ALPHA | DIGIT)*&#13;&#10;;&#13;&#10;&#13;&#10;NAME&#13;&#10;&#9;:&#9;(&#13;&#10;&#9;&#9;&#9;SNAME&#13;&#10;&#9;&#9;|&#9;&apos;\&apos;&apos;!&#13;&#10;&#9;&#9;&#9;(&#9;&#13;&#10;&#9;&#9;//&#9;ESC&#9;|&#13;&#10;&#9;&#9;&#9;&apos;\n&apos; {newline();}&#13;&#10;&#9;&#9;&#9;|&#9;~(&apos;\\&apos;|&apos;\&apos;&apos;|&apos;\n&apos;)&#13;&#10;&#9;&#9;&#9;)*&#13;&#10;&#9;&#9;&#9;&apos;\&apos;&apos;!&#13;&#10;&#9;&#9;)&#13;&#10;&#9;;&#13;&#10;&#13;&#10;STRING&#13;&#10;&#9;:&#9;&apos;&quot;&apos;!&#13;&#10;&#9;&#9;(&#9;&#13;&#10;&#9;&#9;//ESC&#9;|&#9;&#9;&#13;&#10;&#9;&#9;&#9;&apos;\n&apos; {newline();}&#13;&#10;&#9;&#9;|&#9;~(&apos;\\&apos;|&apos;&quot;&apos;|&apos;\n&apos;)&#13;&#10;&#9;&#9;)*&#13;&#10;&#9;&#9;&apos;&quot;&apos;!&#13;&#10;&#9;;&#13;&#10;&#13;&#10;// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals&#13;&#10;protected&#13;&#10;INT&#13;&#10;&#9;: (DIGIT)+&#13;&#10;&#9;;&#13;&#10; &#13;&#10;// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals&#13;&#10;%protected&#13;&#10;FLOAT&#13;&#10;&#9;:&#9;&apos;.&apos; DIGIT+&#13;&#10;&#9;|&#9;DIGIT+ &apos;.&apos; DIGIT*&#13;&#10;&#9;;&#13;&#10;&#13;&#10;// According to XPath 2.0: http://www.w3.org/TR/xpath20/#id-literals&#13;&#10;%protected&#13;&#10;DOUBLE&#13;&#10;&#9;:&#9;(&#13;&#10;&#9;&#9;&#9;&apos;.&apos; DIGIT+&#13;&#10;&#9;&#9;  |&#13;&#10;&#9;&#9;  &#9;DIGIT+ ( &apos;.&apos; DIGIT* )?&#13;&#10;&#9;&#9;)&#13;&#10;&#9;&#9;( &apos;e&apos; | &apos;E&apos; ) ( &apos;+&apos; | &apos;-&apos; )? DIGIT+&#13;&#10;&#9;;&#13;&#10;&#13;&#10;RANGE_OR_INT_OR_FLOAT_OR_DOUBLE&#13;&#10;    :   ( INT &apos;..&apos; ) =&gt; INT  { _type = INT; }&#13;&#10;    |&#9;( INT &apos;.&apos; NAME ) =&gt; INT { _type = INT; }&#13;&#10;    |   ( INT &apos;.&apos; ~(&apos;.&apos;&#9;|&#9;&apos;a&apos;..&apos;z&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;   &#9;|&#9;&apos;A&apos;..&apos;Z&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;   &#9;|&#9;&apos;_&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;//For Unicode compatibility (from 0000 to 00ff)&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;|&#9;&apos;\u00C0&apos; .. &apos;\u00D6&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;|&#9;&apos;\u00D8&apos; .. &apos;\u00F6&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;|&#9;&apos;\u00F8&apos; .. &apos;\u00FF&apos;) ( &apos;e&apos; | &apos;E&apos; ) )  =&gt; DOUBLE { _type = DOUBLE; }&#13;&#10;    |   ( INT &apos;.&apos; ~(&apos;.&apos;&#9;|&#9;&apos;a&apos;..&apos;z&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;   &#9;|&#9;&apos;A&apos;..&apos;Z&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;   &#9;|&#9;&apos;_&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;//For Unicode compatibility (from 0000 to 00ff)&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;|&#9;&apos;\u00C0&apos; .. &apos;\u00D6&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;|&#9;&apos;\u00D8&apos; .. &apos;\u00F6&apos;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;|&#9;&apos;\u00F8&apos; .. &apos;\u00FF&apos;) )  =&gt; FLOAT { _type = FLOAT; }&#13;&#10;    |   INT                  { _type = INT; }&#13;&#10;    ;&#13;&#10;&#13;&#10;&#9;'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDD919C30A42B11DEBE1C00016CE99C52' value='collection'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDD94A971A42B11DE8A3D00016CE99C52' value='permissions'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDD94A972A42B11DEAE4300016CE99C52' value='default'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDDA6F902A42B11DEAC8200016CE99C52' value='create'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52' value=','/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDDB7C1D8A42B11DEB2DF00016CE99C52' value='retrieve'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDDC70420A42B11DEA9F700016CE99C52' value='update'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDDD7CCFAA42B11DEBF1D00016CE99C52' value='delete'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDDEA1C7AA42B11DEB53E00016CE99C52' value='data-driven'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDE335A70A42B11DE904200016CE99C52' value='from'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDE612130A42B11DEB95200016CE99C52' value='as'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDE8746DAA42B11DEB36F00016CE99C52' value='where'/>
+<TCS.Keyword m:c='1' m:i='E0F4BA0CDE8746DBA42B11DEACF500016CE99C52' value='and'/>
+<TCS.ConcreteSyntax_Template c='1'>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD421CA1A42B11DE8FCF00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD421CA3A42B11DECE1500016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD43A341A42B11DECAA200016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD4529E1A42B11DE950C00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD46B081A42B11DE8BDE00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD49BDC0A42B11DEADE700016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD4B4461A42B11DEB07B00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD4B4463A42B11DE8D6700016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD60A128A42B11DEA94300016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD63AE62A42B11DEC97600016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD653502A42B11DE96EA00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD6B4F81A42B11DEB45600016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD7DC612A42B11DE825D00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD80D351A42B11DE895100016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD83E091A42B11DEC77E00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD86EDD1A42B11DE845200016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8B81B5A42B11DE9B4100016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52'/>
+</TCS.ConcreteSyntax_Template>
+<TCS.ConcreteSyntax_Token c='1'>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD9015A0A42B11DEC46600016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD9015A6A42B11DE94D300016CE99C52'/>
+</TCS.ConcreteSyntax_Token>
+<TCS.ConcreteSyntax_Symbol c='1'>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8E8F00A42B11DE8F0A00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8E8F01A42B11DE8AB800016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8E8F02A42B11DE9C9500016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8E8F03A42B11DEB92700016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD8E8F04A42B11DEB70400016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901590A42B11DE887600016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901593A42B11DE89AB00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901594A42B11DEA7CD00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901595A42B11DE960A00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901596A42B11DE8E1600016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901597A42B11DE813F00016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901598A42B11DEB8B900016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD901599A42B11DEB97500016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD90159AA42B11DEACA000016CE99C52'/>
+<L f='E0F4BA0CDD9015A7A42B11DEB53200016CE99C52' s='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52'/>
+</TCS.ConcreteSyntax_Symbol>
+<TCS.ClassTemplate_Sequence c='1'>
+<L f='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52' s='E0F4BA0CDD546C41A42B11DECDA400016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52' s='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52'/>
+<L f='E0F4BA0CDD60A128A42B11DEA94300016CE99C52' s='E0F4BA0CDD60A126A42B11DECEF300016CE99C52'/>
+<L f='E0F4BA0CDD63AE62A42B11DEC97600016CE99C52' s='E0F4BA0CDD63AE60A42B11DE898E00016CE99C52'/>
+<L f='E0F4BA0CDD653502A42B11DE96EA00016CE99C52' s='E0F4BA0CDD653500A42B11DEBDCB00016CE99C52'/>
+<L f='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52' s='E0F4BA0CDD69C8E8A42B11DEBA0800016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52' s='E0F4BA0CDD6E5CC2A42B11DE80FC00016CE99C52'/>
+<L f='E0F4BA0CDD7DC612A42B11DE825D00016CE99C52' s='E0F4BA0CDD7DC610A42B11DE819E00016CE99C52'/>
+<L f='E0F4BA0CDD8B81B5A42B11DE9B4100016CE99C52' s='E0F4BA0CDD8B81B3A42B11DEB8D600016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52' s='E0F4BA0CDD8E8EFDA42B11DECCD700016CE99C52'/>
+</TCS.ClassTemplate_Sequence>
+<TCS.elements c='1'>
+<L f='E0F4BA0CDD4FD84FA42B11DEC17200016CE99C52' s='E0F4BA0CDD4FD84EA42B11DE87C400016CE99C52'/>
+<L f='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52' s='E0F4BA0CDD4FD849A42B11DEB6AA00016CE99C52'/>
+<L f='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52' s='E0F4BA0CDD4FD84AA42B11DEC20200016CE99C52'/>
+<L f='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52' s='E0F4BA0CDD4FD84BA42B11DE880400016CE99C52'/>
+<L f='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52' s='E0F4BA0CDD515EE0A42B11DE869400016CE99C52'/>
+<L f='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52' s='E0F4BA0CDD515EE1A42B11DEA9D700016CE99C52'/>
+<L f='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52' s='E0F4BA0CDD515EE2A42B11DEB97400016CE99C52'/>
+<L f='E0F4BA0CDD515EEEA42B11DEAE1000016CE99C52' s='E0F4BA0CDD515EEDA42B11DE9CC200016CE99C52'/>
+<L f='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52' s='E0F4BA0CDD515EE8A42B11DEC66700016CE99C52'/>
+<L f='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52' s='E0F4BA0CDD515EE9A42B11DE863900016CE99C52'/>
+<L f='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52' s='E0F4BA0CDD515EEAA42B11DEA4DA00016CE99C52'/>
+<L f='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52' s='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52'/>
+<L f='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52' s='E0F4BA0CDD515EF3A42B11DEAAA800016CE99C52'/>
+<L f='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52' s='E0F4BA0CDD515EF4A42B11DECA0C00016CE99C52'/>
+<L f='E0F4BA0CDD52E581A42B11DEA7A800016CE99C52' s='E0F4BA0CDD52E580A42B11DE8F0D00016CE99C52'/>
+<L f='E0F4BA0CDD52E588A42B11DE841C00016CE99C52' s='E0F4BA0CDD515EFAA42B11DEAB8D00016CE99C52'/>
+<L f='E0F4BA0CDD52E588A42B11DE841C00016CE99C52' s='E0F4BA0CDD515EFBA42B11DE98F400016CE99C52'/>
+<L f='E0F4BA0CDD52E588A42B11DE841C00016CE99C52' s='E0F4BA0CDD515EFCA42B11DEC0A400016CE99C52'/>
+<L f='E0F4BA0CDD52E588A42B11DE841C00016CE99C52' s='E0F4BA0CDD52E585A42B11DE802600016CE99C52'/>
+<L f='E0F4BA0CDD52E588A42B11DE841C00016CE99C52' s='E0F4BA0CDD52E586A42B11DEC23500016CE99C52'/>
+<L f='E0F4BA0CDD52E588A42B11DE841C00016CE99C52' s='E0F4BA0CDD52E587A42B11DEB5FC00016CE99C52'/>
+<L f='E0F4BA0CDD546C29A42B11DE97FC00016CE99C52' s='E0F4BA0CDD546C28A42B11DE870100016CE99C52'/>
+<L f='E0F4BA0CDD546C30A42B11DE898600016CE99C52' s='E0F4BA0CDD546C23A42B11DE9FC100016CE99C52'/>
+<L f='E0F4BA0CDD546C30A42B11DE898600016CE99C52' s='E0F4BA0CDD546C24A42B11DE922E00016CE99C52'/>
+<L f='E0F4BA0CDD546C30A42B11DE898600016CE99C52' s='E0F4BA0CDD546C25A42B11DE927800016CE99C52'/>
+<L f='E0F4BA0CDD546C30A42B11DE898600016CE99C52' s='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52'/>
+<L f='E0F4BA0CDD546C30A42B11DE898600016CE99C52' s='E0F4BA0CDD546C2EA42B11DE838200016CE99C52'/>
+<L f='E0F4BA0CDD546C30A42B11DE898600016CE99C52' s='E0F4BA0CDD546C2FA42B11DECE1200016CE99C52'/>
+<L f='E0F4BA0CDD546C3AA42B11DE95D600016CE99C52' s='E0F4BA0CDD546C39A42B11DEABC000016CE99C52'/>
+<L f='E0F4BA0CDD546C3EA42B11DECA9300016CE99C52' s='E0F4BA0CDD546C36A42B11DE865E00016CE99C52'/>
+<L f='E0F4BA0CDD546C3EA42B11DECA9300016CE99C52' s='E0F4BA0CDD546C37A42B11DEC51E00016CE99C52'/>
+<L f='E0F4BA0CDD546C3EA42B11DECA9300016CE99C52' s='E0F4BA0CDD546C3CA42B11DEA72400016CE99C52'/>
+<L f='E0F4BA0CDD546C3EA42B11DECA9300016CE99C52' s='E0F4BA0CDD546C3DA42B11DEB84000016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD4FD841A42B11DEAAF300016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD4FD842A42B11DEB83F00016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD4FD843A42B11DE8E1800016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD4FD844A42B11DEACD700016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD4FD845A42B11DE84E900016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD515EE4A42B11DE873600016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD515EF6A42B11DEC51700016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD52E589A42B11DE827B00016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD546C31A42B11DEBF3F00016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD546C32A42B11DEBC6E00016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD546C3FA42B11DE9CFC00016CE99C52'/>
+<L f='E0F4BA0CDD546C41A42B11DECDA400016CE99C52' s='E0F4BA0CDD546C40A42B11DEC31000016CE99C52'/>
+<L f='E0F4BA0CDD5D93E2A42B11DEC68900016CE99C52' s='E0F4BA0CDD5D93E1A42B11DE912600016CE99C52'/>
+<L f='E0F4BA0CDD5D93E8A42B11DEB04100016CE99C52' s='E0F4BA0CDD5C0D46A42B11DEC23300016CE99C52'/>
+<L f='E0F4BA0CDD5D93E8A42B11DEB04100016CE99C52' s='E0F4BA0CDD5C0D47A42B11DE801A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E8A42B11DEB04100016CE99C52' s='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E8A42B11DEB04100016CE99C52' s='E0F4BA0CDD5D93E7A42B11DEC4C700016CE99C52'/>
+<L f='E0F4BA0CDD5D93F2A42B11DEAC2B00016CE99C52' s='E0F4BA0CDD5D93F1A42B11DECD4900016CE99C52'/>
+<L f='E0F4BA0CDD5D93F8A42B11DEC9C900016CE99C52' s='E0F4BA0CDD5D93EDA42B11DEBD9000016CE99C52'/>
+<L f='E0F4BA0CDD5D93F8A42B11DEC9C900016CE99C52' s='E0F4BA0CDD5D93EEA42B11DEC30C00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F8A42B11DEC9C900016CE99C52' s='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52'/>
+<L f='E0F4BA0CDD5D93F8A42B11DEC9C900016CE99C52' s='E0F4BA0CDD5D93F7A42B11DE826E00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A84A42B11DEB86D00016CE99C52' s='E0F4BA0CDD5F1A83A42B11DEB72000016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8AA42B11DEC34400016CE99C52' s='E0F4BA0CDD5D93FDA42B11DECD6100016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8AA42B11DEC34400016CE99C52' s='E0F4BA0CDD5F1A80A42B11DECC5800016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8AA42B11DEC34400016CE99C52' s='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8AA42B11DEC34400016CE99C52' s='E0F4BA0CDD5F1A89A42B11DEB43800016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52' s='E0F4BA0CDD577960A42B11DE9B0600016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52' s='E0F4BA0CDD5C0D41A42B11DEBA0F00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52' s='E0F4BA0CDD5C0D42A42B11DEC2C200016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52' s='E0F4BA0CDD5D93E9A42B11DE953200016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52' s='E0F4BA0CDD5D93F9A42B11DE8D5C00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8CA42B11DEBC3000016CE99C52' s='E0F4BA0CDD5F1A8BA42B11DEA3C600016CE99C52'/>
+<L f='E0F4BA0CDD60A123A42B11DEAB1C00016CE99C52' s='E0F4BA0CDD60A122A42B11DE8A6000016CE99C52'/>
+<L f='E0F4BA0CDD60A126A42B11DECEF300016CE99C52' s='E0F4BA0CDD60A120A42B11DEC6EA00016CE99C52'/>
+<L f='E0F4BA0CDD60A126A42B11DECEF300016CE99C52' s='E0F4BA0CDD60A125A42B11DECEC500016CE99C52'/>
+<L f='E0F4BA0CDD69C8E3A42B11DEB14200016CE99C52' s='E0F4BA0CDD69C8E2A42B11DE965600016CE99C52'/>
+<L f='E0F4BA0CDD69C8E6A42B11DE9CEF00016CE99C52' s='E0F4BA0CDD69C8E0A42B11DE8BFB00016CE99C52'/>
+<L f='E0F4BA0CDD69C8E6A42B11DE9CEF00016CE99C52' s='E0F4BA0CDD69C8E5A42B11DE928100016CE99C52'/>
+<L f='E0F4BA0CDD69C8E8A42B11DEBA0800016CE99C52' s='E0F4BA0CDD684244A42B11DEB27300016CE99C52'/>
+<L f='E0F4BA0CDD69C8E8A42B11DEBA0800016CE99C52' s='E0F4BA0CDD684245A42B11DE9B7A00016CE99C52'/>
+<L f='E0F4BA0CDD69C8E8A42B11DEBA0800016CE99C52' s='E0F4BA0CDD684247A42B11DE867500016CE99C52'/>
+<L f='E0F4BA0CDD69C8E8A42B11DEBA0800016CE99C52' s='E0F4BA0CDD69C8E7A42B11DE83FF00016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC2A42B11DE80FC00016CE99C52' s='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC2A42B11DE80FC00016CE99C52' s='E0F4BA0CDD6CD625A42B11DE887300016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC2A42B11DE80FC00016CE99C52' s='E0F4BA0CDD6CD628A42B11DEA93000016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC2A42B11DE80FC00016CE99C52' s='E0F4BA0CDD6E5CC1A42B11DE863C00016CE99C52'/>
+<L f='E0F4BA0CDD8B81B3A42B11DEB8D600016CE99C52' s='E0F4BA0CDD8B81B2A42B11DEAB2900016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF3A42B11DEC03F00016CE99C52' s='E0F4BA0CDD8E8EF2A42B11DEB91400016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF7A42B11DEB43D00016CE99C52' s='E0F4BA0CDD8E8EF6A42B11DEB75800016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFBA42B11DEB1A600016CE99C52' s='E0F4BA0CDD8E8EFAA42B11DE860900016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFDA42B11DECCD700016CE99C52' s='E0F4BA0CDD8E8EFCA42B11DE8F4800016CE99C52'/>
+</TCS.elements>
+<TCS.SeparatorPArg_Sequence c='1'>
+<L f='E0F4BA0CDD4FD850A42B11DEA28400016CE99C52' s='E0F4BA0CDD4FD84FA42B11DEC17200016CE99C52'/>
+<L f='E0F4BA0CDD515EEFA42B11DE9D3300016CE99C52' s='E0F4BA0CDD515EEEA42B11DEAE1000016CE99C52'/>
+<L f='E0F4BA0CDD52E582A42B11DE8E4000016CE99C52' s='E0F4BA0CDD52E581A42B11DEA7A800016CE99C52'/>
+<L f='E0F4BA0CDD546C2AA42B11DEBFB700016CE99C52' s='E0F4BA0CDD546C29A42B11DE97FC00016CE99C52'/>
+<L f='E0F4BA0CDD546C3BA42B11DEA5FA00016CE99C52' s='E0F4BA0CDD546C3AA42B11DE95D600016CE99C52'/>
+<L f='E0F4BA0CDD5D93E3A42B11DE9E5600016CE99C52' s='E0F4BA0CDD5D93E2A42B11DEC68900016CE99C52'/>
+<L f='E0F4BA0CDD5D93F3A42B11DEA43C00016CE99C52' s='E0F4BA0CDD5D93F2A42B11DEAC2B00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A85A42B11DE927500016CE99C52' s='E0F4BA0CDD5F1A84A42B11DEB86D00016CE99C52'/>
+<L f='E0F4BA0CDD60A124A42B11DECE3D00016CE99C52' s='E0F4BA0CDD60A123A42B11DEAB1C00016CE99C52'/>
+<L f='E0F4BA0CDD69C8E4A42B11DEC93F00016CE99C52' s='E0F4BA0CDD69C8E3A42B11DEB14200016CE99C52'/>
+</TCS.SeparatorPArg_Sequence>
+<TCS.thenSequence c='1'>
+<L f='E0F4BA0CDD515EE4A42B11DE873600016CE99C52' s='E0F4BA0CDD515EE3A42B11DEA42D00016CE99C52'/>
+<L f='E0F4BA0CDD515EF6A42B11DEC51700016CE99C52' s='E0F4BA0CDD515EF5A42B11DE85C200016CE99C52'/>
+<L f='E0F4BA0CDD52E589A42B11DE827B00016CE99C52' s='E0F4BA0CDD52E588A42B11DE841C00016CE99C52'/>
+<L f='E0F4BA0CDD546C31A42B11DEBF3F00016CE99C52' s='E0F4BA0CDD546C30A42B11DE898600016CE99C52'/>
+<L f='E0F4BA0CDD546C3FA42B11DE9CFC00016CE99C52' s='E0F4BA0CDD546C3EA42B11DECA9300016CE99C52'/>
+<L f='E0F4BA0CDD5D93E9A42B11DE953200016CE99C52' s='E0F4BA0CDD5D93E8A42B11DEB04100016CE99C52'/>
+<L f='E0F4BA0CDD5D93F9A42B11DE8D5C00016CE99C52' s='E0F4BA0CDD5D93F8A42B11DEC9C900016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8BA42B11DEA3C600016CE99C52' s='E0F4BA0CDD5F1A8AA42B11DEC34400016CE99C52'/>
+<L f='E0F4BA0CDD69C8E7A42B11DE83FF00016CE99C52' s='E0F4BA0CDD69C8E6A42B11DE9CEF00016CE99C52'/>
+</TCS.thenSequence>
+<TCS.ConditionalElement_Expression c='1'>
+<L f='E0F4BA0CDD515EE4A42B11DE873600016CE99C52' s='E0F4BA0CDD4FD848A42B11DEA04900016CE99C52'/>
+<L f='E0F4BA0CDD515EF6A42B11DEC51700016CE99C52' s='E0F4BA0CDD515EE7A42B11DECFD400016CE99C52'/>
+<L f='E0F4BA0CDD52E589A42B11DE827B00016CE99C52' s='E0F4BA0CDD515EF9A42B11DEA4F900016CE99C52'/>
+<L f='E0F4BA0CDD546C31A42B11DEBF3F00016CE99C52' s='E0F4BA0CDD546C22A42B11DECF0400016CE99C52'/>
+<L f='E0F4BA0CDD546C3FA42B11DE9CFC00016CE99C52' s='E0F4BA0CDD546C35A42B11DE8E8C00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E9A42B11DE953200016CE99C52' s='E0F4BA0CDD5C0D45A42B11DE97D600016CE99C52'/>
+<L f='E0F4BA0CDD5D93F9A42B11DE8D5C00016CE99C52' s='E0F4BA0CDD5D93ECA42B11DEC0A800016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8BA42B11DEA3C600016CE99C52' s='E0F4BA0CDD5D93FCA42B11DEC2FD00016CE99C52'/>
+<L f='E0F4BA0CDD69C8E7A42B11DE83FF00016CE99C52' s='E0F4BA0CDD68424AA42B11DE885600016CE99C52'/>
+</TCS.ConditionalElement_Expression>
+<TCS.Property_PropertyArg c='1'>
+<L f='E0F4BA0CDD515EE0A42B11DE869400016CE99C52' s='E0F4BA0CDD4FD84DA42B11DEB3B900016CE99C52'/>
+<L f='E0F4BA0CDD515EE0A42B11DE869400016CE99C52' s='E0F4BA0CDD4FD850A42B11DEA28400016CE99C52'/>
+<L f='E0F4BA0CDD515EE0A42B11DE869400016CE99C52' s='E0F4BA0CDD4FD851A42B11DEAE2A00016CE99C52'/>
+<L f='E0F4BA0CDD515EE0A42B11DE869400016CE99C52' s='E0F4BA0CDD4FD852A42B11DECD0F00016CE99C52'/>
+<L f='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52' s='E0F4BA0CDD515EECA42B11DE9C7500016CE99C52'/>
+<L f='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52' s='E0F4BA0CDD515EEFA42B11DE9D3300016CE99C52'/>
+<L f='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52' s='E0F4BA0CDD515EF0A42B11DE9B1D00016CE99C52'/>
+<L f='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52' s='E0F4BA0CDD515EF1A42B11DE943800016CE99C52'/>
+<L f='E0F4BA0CDD52E585A42B11DE802600016CE99C52' s='E0F4BA0CDD515EFEA42B11DEC2F600016CE99C52'/>
+<L f='E0F4BA0CDD52E585A42B11DE802600016CE99C52' s='E0F4BA0CDD52E582A42B11DE8E4000016CE99C52'/>
+<L f='E0F4BA0CDD52E585A42B11DE802600016CE99C52' s='E0F4BA0CDD52E583A42B11DEA8AD00016CE99C52'/>
+<L f='E0F4BA0CDD52E585A42B11DE802600016CE99C52' s='E0F4BA0CDD52E584A42B11DEB09600016CE99C52'/>
+<L f='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52' s='E0F4BA0CDD546C27A42B11DEA89400016CE99C52'/>
+<L f='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52' s='E0F4BA0CDD546C2AA42B11DEBFB700016CE99C52'/>
+<L f='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52' s='E0F4BA0CDD546C2BA42B11DE84D000016CE99C52'/>
+<L f='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52' s='E0F4BA0CDD546C2CA42B11DEA2D900016CE99C52'/>
+<L f='E0F4BA0CDD546C3CA42B11DEA72400016CE99C52' s='E0F4BA0CDD546C3BA42B11DEA5FA00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52' s='E0F4BA0CDD5D93E0A42B11DE80F900016CE99C52'/>
+<L f='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52' s='E0F4BA0CDD5D93E3A42B11DE9E5600016CE99C52'/>
+<L f='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52' s='E0F4BA0CDD5D93E4A42B11DEB15C00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52' s='E0F4BA0CDD5D93E5A42B11DEC6EC00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52' s='E0F4BA0CDD5D93F0A42B11DEC85700016CE99C52'/>
+<L f='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52' s='E0F4BA0CDD5D93F3A42B11DEA43C00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52' s='E0F4BA0CDD5D93F4A42B11DE9FD000016CE99C52'/>
+<L f='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52' s='E0F4BA0CDD5D93F5A42B11DEB2A600016CE99C52'/>
+<L f='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52' s='E0F4BA0CDD5F1A82A42B11DEB60300016CE99C52'/>
+<L f='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52' s='E0F4BA0CDD5F1A85A42B11DE927500016CE99C52'/>
+<L f='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52' s='E0F4BA0CDD5F1A86A42B11DEBDA900016CE99C52'/>
+<L f='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52' s='E0F4BA0CDD5F1A87A42B11DE929400016CE99C52'/>
+<L f='E0F4BA0CDD60A125A42B11DECEC500016CE99C52' s='E0F4BA0CDD60A124A42B11DECE3D00016CE99C52'/>
+<L f='E0F4BA0CDD684244A42B11DEB27300016CE99C52' s='E0F4BA0CDD684242A42B11DE8D8000016CE99C52'/>
+<L f='E0F4BA0CDD684244A42B11DEB27300016CE99C52' s='E0F4BA0CDD684243A42B11DEA84500016CE99C52'/>
+<L f='E0F4BA0CDD69C8E5A42B11DE928100016CE99C52' s='E0F4BA0CDD69C8E4A42B11DEC93F00016CE99C52'/>
+<L f='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52' s='E0F4BA0CDD6CD621A42B11DEC23F00016CE99C52'/>
+<L f='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52' s='E0F4BA0CDD6CD622A42B11DEB31F00016CE99C52'/>
+<L f='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52' s='E0F4BA0CDD6CD623A42B11DE8DD400016CE99C52'/>
+<L f='E0F4BA0CDD8B81B2A42B11DEAB2900016CE99C52' s='E0F4BA0CDD8B81B1A42B11DE985500016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF2A42B11DEB91400016CE99C52' s='E0F4BA0CDD8E8EF1A42B11DE93E500016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF6A42B11DEB75800016CE99C52' s='E0F4BA0CDD8E8EF5A42B11DE994100016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFAA42B11DE860900016CE99C52' s='E0F4BA0CDD8E8EF9A42B11DE98A300016CE99C52'/>
+</TCS.Property_PropertyArg>
+<TCS.AndExp_AtomExp c='1'>
+<L f='E0F4BA0CDD4FD848A42B11DEA04900016CE99C52' s='E0F4BA0CDD4FD847A42B11DEC40F00016CE99C52'/>
+<L f='E0F4BA0CDD515EE7A42B11DECFD400016CE99C52' s='E0F4BA0CDD515EE6A42B11DEACB500016CE99C52'/>
+<L f='E0F4BA0CDD515EF9A42B11DEA4F900016CE99C52' s='E0F4BA0CDD515EF8A42B11DE85A100016CE99C52'/>
+<L f='E0F4BA0CDD546C22A42B11DECF0400016CE99C52' s='E0F4BA0CDD546C21A42B11DEB0DB00016CE99C52'/>
+<L f='E0F4BA0CDD546C35A42B11DE8E8C00016CE99C52' s='E0F4BA0CDD546C34A42B11DE824500016CE99C52'/>
+<L f='E0F4BA0CDD5C0D45A42B11DE97D600016CE99C52' s='E0F4BA0CDD5C0D44A42B11DEC2CD00016CE99C52'/>
+<L f='E0F4BA0CDD5D93ECA42B11DEC0A800016CE99C52' s='E0F4BA0CDD5D93EBA42B11DEC16300016CE99C52'/>
+<L f='E0F4BA0CDD5D93FCA42B11DEC2FD00016CE99C52' s='E0F4BA0CDD5D93FBA42B11DEC73F00016CE99C52'/>
+<L f='E0F4BA0CDD68424AA42B11DE885600016CE99C52' s='E0F4BA0CDD684249A42B11DE978200016CE99C52'/>
+</TCS.AndExp_AtomExp>
+<TCS.OrPattern_SimplePattern c='1'>
+<L f='E0F4BA0CDD90159FA42B11DEA29100016CE99C52' s='E0F4BA0CDD90159EA42B11DE87C800016CE99C52'/>
+<L f='E0F4BA0CDD9015A5A42B11DEB47700016CE99C52' s='E0F4BA0CDD9015A4A42B11DEC10D00016CE99C52'/>
+</TCS.OrPattern_SimplePattern>
+<TCS.LiteralRef_Literal c='1'>
+<L f='E0F4BA0CDD4FD841A42B11DEAAF300016CE99C52' s='E0F4BA0CDD919C30A42B11DEBE1C00016CE99C52'/>
+<L f='E0F4BA0CDD4FD842A42B11DEB83F00016CE99C52' s='E0F4BA0CDD94A971A42B11DE8A3D00016CE99C52'/>
+<L f='E0F4BA0CDD4FD843A42B11DE8E1800016CE99C52' s='E0F4BA0CDD8E8F02A42B11DE9C9500016CE99C52'/>
+<L f='E0F4BA0CDD4FD844A42B11DEACD700016CE99C52' s='E0F4BA0CDD94A972A42B11DEAE4300016CE99C52'/>
+<L f='E0F4BA0CDD4FD845A42B11DE84E900016CE99C52' s='E0F4BA0CDD8E8F02A42B11DE9C9500016CE99C52'/>
+<L f='E0F4BA0CDD4FD849A42B11DEB6AA00016CE99C52' s='E0F4BA0CDDA6F902A42B11DEAC8200016CE99C52'/>
+<L f='E0F4BA0CDD4FD84AA42B11DEC20200016CE99C52' s='E0F4BA0CDD901599A42B11DEB97500016CE99C52'/>
+<L f='E0F4BA0CDD4FD84BA42B11DE880400016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD4FD84EA42B11DE87C400016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD515EE1A42B11DEA9D700016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD515EE2A42B11DEB97400016CE99C52' s='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52'/>
+<L f='E0F4BA0CDD515EE8A42B11DEC66700016CE99C52' s='E0F4BA0CDDB7C1D8A42B11DEB2DF00016CE99C52'/>
+<L f='E0F4BA0CDD515EE9A42B11DE863900016CE99C52' s='E0F4BA0CDD901599A42B11DEB97500016CE99C52'/>
+<L f='E0F4BA0CDD515EEAA42B11DEA4DA00016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD515EEDA42B11DE9CC200016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD515EF3A42B11DEAAA800016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD515EF4A42B11DECA0C00016CE99C52' s='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52'/>
+<L f='E0F4BA0CDD515EFAA42B11DEAB8D00016CE99C52' s='E0F4BA0CDDC70420A42B11DEA9F700016CE99C52'/>
+<L f='E0F4BA0CDD515EFBA42B11DE98F400016CE99C52' s='E0F4BA0CDD901599A42B11DEB97500016CE99C52'/>
+<L f='E0F4BA0CDD515EFCA42B11DEC0A400016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD52E580A42B11DE8F0D00016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD52E586A42B11DEC23500016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD52E587A42B11DEB5FC00016CE99C52' s='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52'/>
+<L f='E0F4BA0CDD546C23A42B11DE9FC100016CE99C52' s='E0F4BA0CDDD7CCFAA42B11DEBF1D00016CE99C52'/>
+<L f='E0F4BA0CDD546C24A42B11DE922E00016CE99C52' s='E0F4BA0CDD901599A42B11DEB97500016CE99C52'/>
+<L f='E0F4BA0CDD546C25A42B11DE927800016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD546C28A42B11DE870100016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD546C2EA42B11DE838200016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD546C2FA42B11DECE1200016CE99C52' s='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52'/>
+<L f='E0F4BA0CDD546C32A42B11DEBC6E00016CE99C52' s='E0F4BA0CDD8E8F03A42B11DEB92700016CE99C52'/>
+<L f='E0F4BA0CDD546C36A42B11DE865E00016CE99C52' s='E0F4BA0CDDEA1C7AA42B11DEB53E00016CE99C52'/>
+<L f='E0F4BA0CDD546C37A42B11DEC51E00016CE99C52' s='E0F4BA0CDD8E8F02A42B11DE9C9500016CE99C52'/>
+<L f='E0F4BA0CDD546C39A42B11DEABC000016CE99C52' s='E0F4BA0CDD90159BA42B11DE8DAE00016CE99C52'/>
+<L f='E0F4BA0CDD546C3DA42B11DEB84000016CE99C52' s='E0F4BA0CDD8E8F03A42B11DEB92700016CE99C52'/>
+<L f='E0F4BA0CDD546C40A42B11DEC31000016CE99C52' s='E0F4BA0CDD8E8F03A42B11DEB92700016CE99C52'/>
+<L f='E0F4BA0CDD577960A42B11DE9B0600016CE99C52' s='E0F4BA0CDD8E8F00A42B11DE8F0A00016CE99C52'/>
+<L f='E0F4BA0CDD5C0D42A42B11DEC2C200016CE99C52' s='E0F4BA0CDD8E8F01A42B11DE8AB800016CE99C52'/>
+<L f='E0F4BA0CDD5C0D46A42B11DEC23300016CE99C52' s='E0F4BA0CDDB7C1D8A42B11DEB2DF00016CE99C52'/>
+<L f='E0F4BA0CDD5C0D47A42B11DE801A00016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E1A42B11DE912600016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E7A42B11DEC4C700016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD5D93EDA42B11DEBD9000016CE99C52' s='E0F4BA0CDDC70420A42B11DEA9F700016CE99C52'/>
+<L f='E0F4BA0CDD5D93EEA42B11DEC30C00016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F1A42B11DECD4900016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F7A42B11DE826E00016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD5D93FDA42B11DECD6100016CE99C52' s='E0F4BA0CDDD7CCFAA42B11DEBF1D00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A80A42B11DECC5800016CE99C52' s='E0F4BA0CDD901591A42B11DEA01D00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A83A42B11DEB72000016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A89A42B11DEB43800016CE99C52' s='E0F4BA0CDD901592A42B11DEA1FE00016CE99C52'/>
+<L f='E0F4BA0CDD60A120A42B11DEC6EA00016CE99C52' s='E0F4BA0CDE335A70A42B11DE904200016CE99C52'/>
+<L f='E0F4BA0CDD60A122A42B11DE8A6000016CE99C52' s='E0F4BA0CDDA87F90A42B11DEA62D00016CE99C52'/>
+<L f='E0F4BA0CDD684245A42B11DE9B7A00016CE99C52' s='E0F4BA0CDE612130A42B11DEB95200016CE99C52'/>
+<L f='E0F4BA0CDD69C8E0A42B11DE8BFB00016CE99C52' s='E0F4BA0CDE8746DAA42B11DEB36F00016CE99C52'/>
+<L f='E0F4BA0CDD69C8E2A42B11DE965600016CE99C52' s='E0F4BA0CDE8746DBA42B11DEACF500016CE99C52'/>
+<L f='E0F4BA0CDD6CD625A42B11DE887300016CE99C52' s='E0F4BA0CDD901594A42B11DEA7CD00016CE99C52'/>
+</TCS.LiteralRef_Literal>
+<textblockdefinition.TextblockDefinition_References_Production c='1'>
+<L f='E0F4BA0CDD421CA1A42B11DE8FCF00016CE99C52' s='E0F4BA0CDD421CA0A42B11DE9B1700016CE99C52'/>
+<L f='E0F4BA0CDD421CA3A42B11DECE1500016CE99C52' s='E0F4BA0CDD421CA2A42B11DEA1E300016CE99C52'/>
+<L f='E0F4BA0CDD43A341A42B11DECAA200016CE99C52' s='E0F4BA0CDD43A340A42B11DEA35700016CE99C52'/>
+<L f='E0F4BA0CDD4529E1A42B11DE950C00016CE99C52' s='E0F4BA0CDD4529E0A42B11DECA2800016CE99C52'/>
+<L f='E0F4BA0CDD46B081A42B11DE8BDE00016CE99C52' s='E0F4BA0CDD46B080A42B11DEA97F00016CE99C52'/>
+<L f='E0F4BA0CDD49BDC0A42B11DEADE700016CE99C52' s='E0F4BA0CDD46B082A42B11DEAAF700016CE99C52'/>
+<L f='E0F4BA0CDD4B4461A42B11DEB07B00016CE99C52' s='E0F4BA0CDD4B4460A42B11DE8F1E00016CE99C52'/>
+<L f='E0F4BA0CDD4B4463A42B11DE8D6700016CE99C52' s='E0F4BA0CDD4B4462A42B11DE8C9300016CE99C52'/>
+<L f='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52' s='E0F4BA0CDD55F2C0A42B11DE81CC00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52' s='E0F4BA0CDD5F1A8DA42B11DE9AE000016CE99C52'/>
+<L f='E0F4BA0CDD60A128A42B11DEA94300016CE99C52' s='E0F4BA0CDD60A127A42B11DECC0500016CE99C52'/>
+<L f='E0F4BA0CDD63AE62A42B11DEC97600016CE99C52' s='E0F4BA0CDD63AE61A42B11DEAF8000016CE99C52'/>
+<L f='E0F4BA0CDD653502A42B11DE96EA00016CE99C52' s='E0F4BA0CDD653501A42B11DEA07900016CE99C52'/>
+<L f='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52' s='E0F4BA0CDD69C8E9A42B11DEA88100016CE99C52'/>
+<L f='E0F4BA0CDD6B4F81A42B11DEB45600016CE99C52' s='E0F4BA0CDD6B4F80A42B11DECB4A00016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52' s='E0F4BA0CDD6E5CC3A42B11DE8F2A00016CE99C52'/>
+<L f='E0F4BA0CDD7DC612A42B11DE825D00016CE99C52' s='E0F4BA0CDD7DC611A42B11DEA33100016CE99C52'/>
+<L f='E0F4BA0CDD80D351A42B11DE895100016CE99C52' s='E0F4BA0CDD80D350A42B11DE906C00016CE99C52'/>
+<L f='E0F4BA0CDD83E091A42B11DEC77E00016CE99C52' s='E0F4BA0CDD83E090A42B11DECADD00016CE99C52'/>
+<L f='E0F4BA0CDD86EDD1A42B11DE845200016CE99C52' s='E0F4BA0CDD86EDD0A42B11DE98BA00016CE99C52'/>
+<L f='E0F4BA0CDD8B81B5A42B11DE9B4100016CE99C52' s='E0F4BA0CDD8B81B4A42B11DE91A000016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52' s='E0F4BA0CDD8E8EFEA42B11DE9C6C00016CE99C52'/>
+</textblockdefinition.TextblockDefinition_References_Production>
+<TCS.QualifiedNamedElement_ModelElement c='1'>
+<L f='E0F4BA0CDD421CA1A42B11DE8FCF00016CE99C52' s='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4'/>
+<L f='E0F4BA0CDD421CA3A42B11DECE1500016CE99C52' s='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4'/>
+<L f='E0F4BA0CDD43A341A42B11DECAA200016CE99C52' s='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9'/>
+<L f='E0F4BA0CDD4529E1A42B11DE950C00016CE99C52' s='PF.MetaModelDataArea:45ED2E2AFC07FF42BE3044B03ECDC5DE2DC6E2BF'/>
+<L f='E0F4BA0CDD46B081A42B11DE8BDE00016CE99C52' s='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4'/>
+<L f='E0F4BA0CDD49BDC0A42B11DEADE700016CE99C52' s='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4'/>
+<L f='E0F4BA0CDD4B4461A42B11DEB07B00016CE99C52' s='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4'/>
+<L f='E0F4BA0CDD4B4463A42B11DE8D6700016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B68A206511DEB39B0019D29902CC'/>
+<L f='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66E206511DEC1B70019D29902CC'/>
+<L f='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B669206511DEC3F50019D29902CC'/>
+<L f='E0F4BA0CDD60A128A42B11DEA94300016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B666206511DEB2DB0019D29902CC'/>
+<L f='E0F4BA0CDD63AE62A42B11DEC97600016CE99C52' s='PF.MetaModelDataArea:49D62CFB32090050206511DEBCE20019D29902CC'/>
+<L f='E0F4BA0CDD653502A42B11DE96EA00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3209005D206511DEA6AD0019D29902CC'/>
+<L f='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B686206511DEBCBC0019D29902CC'/>
+<L f='E0F4BA0CDD6B4F81A42B11DEB45600016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B683206511DE82590019D29902CC'/>
+<L f='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B689206511DEBCBB0019D29902CC'/>
+<L f='E0F4BA0CDD7DC612A42B11DE825D00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3209005F206511DEA8DE0019D29902CC'/>
+<L f='E0F4BA0CDD80D351A42B11DE895100016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B68B206511DE9BC20019D29902CC'/>
+<L f='E0F4BA0CDD83E091A42B11DEC77E00016CE99C52' s='PF.MetaModelDataArea:E05F1801F1C6EC2034EE11DEC5600019D29902CC'/>
+<L f='E0F4BA0CDD86EDD1A42B11DE845200016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA71E34EE11DECA8F0019D29902CC'/>
+<L f='E0F4BA0CDD8B81B5A42B11DE9B4100016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA72034EE11DE92A00019D29902CC'/>
+<L f='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA71F34EE11DEC59D0019D29902CC'/>
+</TCS.QualifiedNamedElement_ModelElement>
+<TCS.Property_StrucFeature c='1'>
+<L f='E0F4BA0CDD4FD846A42B11DECA3500016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66A206511DEC0EA0019D29902CC'/>
+<L f='E0F4BA0CDD4FD84CA42B11DEB88100016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66A206511DEC0EA0019D29902CC'/>
+<L f='E0F4BA0CDD515EE5A42B11DE8C0C00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66B206511DEA0E70019D29902CC'/>
+<L f='E0F4BA0CDD515EEBA42B11DEB26500016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66B206511DEA0E70019D29902CC'/>
+<L f='E0F4BA0CDD515EF7A42B11DECAB300016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66C206511DEACBC0019D29902CC'/>
+<L f='E0F4BA0CDD515EFDA42B11DE943000016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66C206511DEACBC0019D29902CC'/>
+<L f='E0F4BA0CDD546C20A42B11DE8C2600016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66D206511DEB1610019D29902CC'/>
+<L f='E0F4BA0CDD546C26A42B11DEB38700016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B66D206511DEB1610019D29902CC'/>
+<L f='E0F4BA0CDD546C33A42B11DE803000016CE99C52' s='PF.MetaModelDataArea:E05F1801C73887724B6E11DEBDF9001CBF0234BB'/>
+<L f='E0F4BA0CDD546C38A42B11DEBA1800016CE99C52' s='PF.MetaModelDataArea:E05F1801C73887724B6E11DEBDF9001CBF0234BB'/>
+<L f='E0F4BA0CDD5C0D40A42B11DE913D00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B667206511DE9B8E0019D29902CC'/>
+<L f='E0F4BA0CDD5C0D43A42B11DE8E8F00016CE99C52' s='PF.MetaModelDataArea:E05F1801C72CA0904B6E11DE8E49001CBF0234BB'/>
+<L f='E0F4BA0CDD5C0D48A42B11DEB67D00016CE99C52' s='PF.MetaModelDataArea:E05F1801C72CA0904B6E11DE8E49001CBF0234BB'/>
+<L f='E0F4BA0CDD5D93EAA42B11DE87CA00016CE99C52' s='PF.MetaModelDataArea:E05F1801C73887714B6E11DEA71D001CBF0234BB'/>
+<L f='E0F4BA0CDD5D93EFA42B11DEC15200016CE99C52' s='PF.MetaModelDataArea:E05F1801C73887714B6E11DEA71D001CBF0234BB'/>
+<L f='E0F4BA0CDD5D93FAA42B11DEC52500016CE99C52' s='PF.MetaModelDataArea:E05F1801C73887704B6E11DEA5BA001CBF0234BB'/>
+<L f='E0F4BA0CDD5F1A81A42B11DE861A00016CE99C52' s='PF.MetaModelDataArea:E05F1801C73887704B6E11DEA5BA001CBF0234BB'/>
+<L f='E0F4BA0CDD60A121A42B11DEA53500016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B661206511DE9E900019D29902CC'/>
+<L f='E0F4BA0CDD684241A42B11DEBDCE00016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B684206511DECA310019D29902CC'/>
+<L f='E0F4BA0CDD684246A42B11DE859C00016CE99C52' s='PF.MetaModelDataArea:49DC4AB9734E0760240A11DE826100155883529C'/>
+<L f='E0F4BA0CDD684248A42B11DEAF3D00016CE99C52' s='PF.MetaModelDataArea:E05F1801837E7AA049EB11DE9FF4001CBF0234BB'/>
+<L f='E0F4BA0CDD69C8E1A42B11DEAB0C00016CE99C52' s='PF.MetaModelDataArea:E05F1801837E7AA049EB11DE9FF4001CBF0234BB'/>
+<L f='E0F4BA0CDD6CD620A42B11DEC94900016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B682206511DE81E80019D29902CC'/>
+<L f='E0F4BA0CDD6CD626A42B11DEC41300016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B687206511DEB5290019D29902CC'/>
+<L f='E0F4BA0CDD6E5CC0A42B11DE9D5200016CE99C52' s='PF.MetaModelDataArea:49D62CFB3206B688206511DEC3230019D29902CC'/>
+<L f='E0F4BA0CDD8B81B0A42B11DEBB9A00016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA71D34EE11DE88910019D29902CC'/>
+<L f='E0F4BA0CDD8E8EF0A42B11DEC4C500016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA71D34EE11DE88910019D29902CC'/>
+<L f='E0F4BA0CDD8E8EF4A42B11DEB3D200016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA71D34EE11DE88910019D29902CC'/>
+<L f='E0F4BA0CDD8E8EF8A42B11DEBAEB00016CE99C52' s='PF.MetaModelDataArea:E05F1801F1CBA71D34EE11DE88910019D29902CC'/>
+</TCS.Property_StrucFeature>
+<TCS.InjectorActionsBlock_InjectorAction c='1'>
+<L f='E0F4BA0CDD6CD628A42B11DEA93000016CE99C52' s='E0F4BA0CDD6CD627A42B11DEBDCE00016CE99C52'/>
+</TCS.InjectorActionsBlock_InjectorAction>
+<TCS.Property_PropertyReference c='1'>
+<L f='E0F4BA0CDD515EE0A42B11DE869400016CE99C52' s='E0F4BA0CDD4FD84CA42B11DEB88100016CE99C52'/>
+<L f='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52' s='E0F4BA0CDD515EEBA42B11DEB26500016CE99C52'/>
+<L f='E0F4BA0CDD52E585A42B11DE802600016CE99C52' s='E0F4BA0CDD515EFDA42B11DE943000016CE99C52'/>
+<L f='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52' s='E0F4BA0CDD546C26A42B11DEB38700016CE99C52'/>
+<L f='E0F4BA0CDD546C3CA42B11DEA72400016CE99C52' s='E0F4BA0CDD546C38A42B11DEBA1800016CE99C52'/>
+<L f='E0F4BA0CDD5C0D41A42B11DEBA0F00016CE99C52' s='E0F4BA0CDD5C0D40A42B11DE913D00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52' s='E0F4BA0CDD5C0D48A42B11DEB67D00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52' s='E0F4BA0CDD5D93EFA42B11DEC15200016CE99C52'/>
+<L f='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52' s='E0F4BA0CDD5F1A81A42B11DE861A00016CE99C52'/>
+<L f='E0F4BA0CDD60A125A42B11DECEC500016CE99C52' s='E0F4BA0CDD60A121A42B11DEA53500016CE99C52'/>
+<L f='E0F4BA0CDD684244A42B11DEB27300016CE99C52' s='E0F4BA0CDD684241A42B11DEBDCE00016CE99C52'/>
+<L f='E0F4BA0CDD684247A42B11DE867500016CE99C52' s='E0F4BA0CDD684246A42B11DE859C00016CE99C52'/>
+<L f='E0F4BA0CDD69C8E5A42B11DE928100016CE99C52' s='E0F4BA0CDD69C8E1A42B11DEAB0C00016CE99C52'/>
+<L f='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52' s='E0F4BA0CDD6CD620A42B11DEC94900016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC1A42B11DE863C00016CE99C52' s='E0F4BA0CDD6E5CC0A42B11DE9D5200016CE99C52'/>
+<L f='E0F4BA0CDD8B81B2A42B11DEAB2900016CE99C52' s='E0F4BA0CDD8B81B0A42B11DEBB9A00016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF2A42B11DEB91400016CE99C52' s='E0F4BA0CDD8E8EF0A42B11DEC4C500016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF6A42B11DEB75800016CE99C52' s='E0F4BA0CDD8E8EF4A42B11DEB3D200016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFAA42B11DE860900016CE99C52' s='E0F4BA0CDD8E8EF8A42B11DEBAEB00016CE99C52'/>
+</TCS.Property_PropertyReference>
+<TCS.PropertyInit_PropertyReference c='1'>
+<L f='E0F4BA0CDD6CD627A42B11DEBDCE00016CE99C52' s='E0F4BA0CDD6CD626A42B11DEC41300016CE99C52'/>
+</TCS.PropertyInit_PropertyReference>
+<TCS.AtomExp_PropertyReference c='1'>
+<L f='E0F4BA0CDD4FD847A42B11DEC40F00016CE99C52' s='E0F4BA0CDD4FD846A42B11DECA3500016CE99C52'/>
+<L f='E0F4BA0CDD515EE6A42B11DEACB500016CE99C52' s='E0F4BA0CDD515EE5A42B11DE8C0C00016CE99C52'/>
+<L f='E0F4BA0CDD515EF8A42B11DE85A100016CE99C52' s='E0F4BA0CDD515EF7A42B11DECAB300016CE99C52'/>
+<L f='E0F4BA0CDD546C21A42B11DEB0DB00016CE99C52' s='E0F4BA0CDD546C20A42B11DE8C2600016CE99C52'/>
+<L f='E0F4BA0CDD546C34A42B11DE824500016CE99C52' s='E0F4BA0CDD546C33A42B11DE803000016CE99C52'/>
+<L f='E0F4BA0CDD5C0D44A42B11DEC2CD00016CE99C52' s='E0F4BA0CDD5C0D43A42B11DE8E8F00016CE99C52'/>
+<L f='E0F4BA0CDD5D93EBA42B11DEC16300016CE99C52' s='E0F4BA0CDD5D93EAA42B11DE87CA00016CE99C52'/>
+<L f='E0F4BA0CDD5D93FBA42B11DEC73F00016CE99C52' s='E0F4BA0CDD5D93FAA42B11DEC52500016CE99C52'/>
+<L f='E0F4BA0CDD684249A42B11DE978200016CE99C52' s='E0F4BA0CDD684248A42B11DEAF3D00016CE99C52'/>
+</TCS.AtomExp_PropertyReference>
+<TCS.ClassTemplate_ContextTags c='1'>
+<L f='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52' s='E0F4BA0CDD4FD840A42B11DEAD9D00016CE99C52'/>
+<L f='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52' s='E0F4BA0CDD684240A42B11DECB7300016CE99C52'/>
+</TCS.ClassTemplate_ContextTags>
+<TCS.Alternative_Sequence c='1'>
+<L f='E0F4BA0CDD8E8EFCA42B11DE8F4800016CE99C52' s='E0F4BA0CDD8E8EF3A42B11DEC03F00016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFCA42B11DE8F4800016CE99C52' s='E0F4BA0CDD8E8EF7A42B11DEB43D00016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFCA42B11DE8F4800016CE99C52' s='E0F4BA0CDD8E8EFBA42B11DEB1A600016CE99C52'/>
+</TCS.Alternative_Sequence>
+<TCS.AsPArg_Template c='1'>
+<L f='E0F4BA0CDD8B81B1A42B11DE985500016CE99C52' s='E0F4BA0CDD421CA3A42B11DECE1500016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF1A42B11DE93E500016CE99C52' s='E0F4BA0CDD46B081A42B11DE8BDE00016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF5A42B11DE994100016CE99C52' s='E0F4BA0CDD4B4461A42B11DEB07B00016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF9A42B11DE98A300016CE99C52' s='E0F4BA0CDD49BDC0A42B11DEADE700016CE99C52'/>
+</TCS.AsPArg_Template>
+<TCS.SequenceElement_Template c='1'>
+<L f='E0F4BA0CDD4FD841A42B11DEAAF300016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD842A42B11DEB83F00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD843A42B11DE8E1800016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD844A42B11DEACD700016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD845A42B11DE84E900016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD849A42B11DEB6AA00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD84AA42B11DEC20200016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD84BA42B11DE880400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD4FD84EA42B11DE87C400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EE0A42B11DE869400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EE1A42B11DEA9D700016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EE2A42B11DEB97400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EE4A42B11DE873600016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EE8A42B11DEC66700016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EE9A42B11DE863900016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EEAA42B11DEA4DA00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EEDA42B11DE9CC200016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EF2A42B11DE9A1F00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EF3A42B11DEAAA800016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EF4A42B11DECA0C00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EF6A42B11DEC51700016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EFAA42B11DEAB8D00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EFBA42B11DE98F400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD515EFCA42B11DEC0A400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD52E580A42B11DE8F0D00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD52E585A42B11DE802600016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD52E586A42B11DEC23500016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD52E587A42B11DEB5FC00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD52E589A42B11DE827B00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C23A42B11DE9FC100016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C24A42B11DE922E00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C25A42B11DE927800016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C28A42B11DE870100016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C2DA42B11DEB3DE00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C2EA42B11DE838200016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C2FA42B11DECE1200016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C31A42B11DEBF3F00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C32A42B11DEBC6E00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C36A42B11DE865E00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C37A42B11DEC51E00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C39A42B11DEABC000016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C3CA42B11DEA72400016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C3DA42B11DEB84000016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C3FA42B11DE9CFC00016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD546C40A42B11DEC31000016CE99C52' s='E0F4BA0CDD55F2C1A42B11DEB58B00016CE99C52'/>
+<L f='E0F4BA0CDD577960A42B11DE9B0600016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5C0D41A42B11DEBA0F00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5C0D42A42B11DEC2C200016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5C0D46A42B11DEC23300016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5C0D47A42B11DE801A00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E1A42B11DE912600016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E6A42B11DE9F6F00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E7A42B11DEC4C700016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93E9A42B11DE953200016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93EDA42B11DEBD9000016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93EEA42B11DEC30C00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F1A42B11DECD4900016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F6A42B11DE910900016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F7A42B11DE826E00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93F9A42B11DE8D5C00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5D93FDA42B11DECD6100016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A80A42B11DECC5800016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A83A42B11DEB72000016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A88A42B11DEB34A00016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A89A42B11DEB43800016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD5F1A8BA42B11DEA3C600016CE99C52' s='E0F4BA0CDD5F1A8EA42B11DEB55A00016CE99C52'/>
+<L f='E0F4BA0CDD60A120A42B11DEC6EA00016CE99C52' s='E0F4BA0CDD60A128A42B11DEA94300016CE99C52'/>
+<L f='E0F4BA0CDD60A122A42B11DE8A6000016CE99C52' s='E0F4BA0CDD60A128A42B11DEA94300016CE99C52'/>
+<L f='E0F4BA0CDD60A125A42B11DECEC500016CE99C52' s='E0F4BA0CDD60A128A42B11DEA94300016CE99C52'/>
+<L f='E0F4BA0CDD684244A42B11DEB27300016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD684245A42B11DE9B7A00016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD684247A42B11DE867500016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD69C8E0A42B11DE8BFB00016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD69C8E2A42B11DE965600016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD69C8E5A42B11DE928100016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD69C8E7A42B11DE83FF00016CE99C52' s='E0F4BA0CDD69C8EAA42B11DEC67600016CE99C52'/>
+<L f='E0F4BA0CDD6CD624A42B11DEB6FB00016CE99C52' s='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52'/>
+<L f='E0F4BA0CDD6CD625A42B11DE887300016CE99C52' s='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52'/>
+<L f='E0F4BA0CDD6CD628A42B11DEA93000016CE99C52' s='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52'/>
+<L f='E0F4BA0CDD6E5CC1A42B11DE863C00016CE99C52' s='E0F4BA0CDD6E5CC4A42B11DEA87C00016CE99C52'/>
+<L f='E0F4BA0CDD8B81B2A42B11DEAB2900016CE99C52' s='E0F4BA0CDD8B81B5A42B11DE9B4100016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF2A42B11DEB91400016CE99C52' s='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52'/>
+<L f='E0F4BA0CDD8E8EF6A42B11DEB75800016CE99C52' s='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFAA42B11DE860900016CE99C52' s='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52'/>
+<L f='E0F4BA0CDD8E8EFCA42B11DE8F4800016CE99C52' s='E0F4BA0CDD8E8EFFA42B11DE80D700016CE99C52'/>
+</TCS.SequenceElement_Template>
+</Partition>

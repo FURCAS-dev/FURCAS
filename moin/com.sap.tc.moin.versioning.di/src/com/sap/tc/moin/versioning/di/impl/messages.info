@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1218699997564_uuid:e9ab25ad-8612-451e-b713-e4607cf201ee</UID>
+<PACKAGE>moin.fct_nwdi_ide</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>d020964</RESPONSIBLE>
+<DESCRIPTION>Versioning based on preparation approach</DESCRIPTION>
+<SKIP_TRANSLATION/>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="/ZQlel4ot5AiconfirmCheckout_XGRP" BKEY="CheckoutDialog_confirmCheckout_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">Confirm Checkout</TEXT>
+<TEXT AKEY="R9fj8XYxP35s_doNotShowAgain_XCKL" BKEY="CheckoutDialog_doNotShowAgain_XCKL" LENGTH="255" PROCESSOR="none" TYPE="XCKL">Do not show again</TEXT>
+<TEXT AKEY="ugp1FJPhvHqfilesToBeCreated_XTND" BKEY="CheckoutDialog_filesToBeCreated_XTND" LENGTH="255" PROCESSOR="none" TYPE="XTND">The following files will be created</TEXT>
+<TEXT AKEY="iV2SiAQEOMunilesToBeDeleted_XTND" BKEY="CheckoutDialog_filesToBeDeleted_XTND" LENGTH="255" PROCESSOR="none" TYPE="XTND">The following files need to be prepared for deletion</TEXT>
+<TEXT AKEY="/hfNzOndizqHEditedExclusive_XTND" BKEY="CheckoutDialog_filesToBeEditedExclusive_XTND" LENGTH="255" PROCESSOR="none" TYPE="XTND">The following files need to be prepared for exclusive editing</TEXT>
+<TEXT AKEY="HLDbb7lda9KMfilesToBeEdited_XTND" BKEY="CheckoutDialog_filesToBeEdited_XTND" LENGTH="255" PROCESSOR="none" TYPE="XTND">The following files need to be prepared for editing</TEXT>
+<TEXT AKEY="OP6PGPXS4+ZY_problemDetails_XGRP" BKEY="CheckoutDialog_problemDetails_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">Problem details</TEXT>
+<TEXT AKEY="CheckoutDialog_proceed_XBUT" LENGTH="255" PROCESSOR="none" TYPE="XBUT">Proceed</TEXT>
+<TEXT AKEY="xt4ICXmsbbe1therCheckouters_YMSG" BKEY="CheckoutDialog_warningOtherCheckouters_YMSG" LENGTH="0" PROCESSOR="none" TYPE="YMSG">Checking out files that are checked out by other users may cause severe problems.\nAre you sure?</TEXT>
+<TEXT AKEY="PreparationCheckResult_ok_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">ok</TEXT>
+<TEXT AKEY="o/V8tNU3ZGaXgBeforeCheckout_XCKL" BKEY="VersioningPreferencePage_showDialogBeforeCheckout_XCKL" LENGTH="255" PROCESSOR="none" TYPE="XCKL">&amp;Show versioning dialog before checking out model partitions</TEXT>
+<TEXT AKEY="pOBRf4/XTPfcrencePage_title_XGRP" BKEY="VersioningPreferencePage_title_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">Model related versioning operations</TEXT>
+<TEXT AKEY="Tm+moSX43+7+DCNotModifiable_XMSG" BKEY="VersioningServiceImpl_DCNotModifiable_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">DC containing file {0} is not modifiable.</TEXT>
+<TEXT AKEY="Ws0+E4u0bXl1RefreshingFiles_XMSG" BKEY="VersioningServiceImpl_RefreshingFiles_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Refreshing files</TEXT>
+<TEXT AKEY="zc0hEaF2aEfOperationsFailed_XMSG" BKEY="VersioningServiceImpl_RepositoryOperationsFailed_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Repository operations failed</TEXT>
+<TEXT AKEY="I2NVxkS2nuhIangelistMissing_XMSG" BKEY="VersioningServiceImpl_changelistMissing_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Change list for check out could not be determined</TEXT>
+<TEXT AKEY="Evl3Aba5LsLNdOutByOtherUser_XMSG" BKEY="VersioningServiceImpl_checkedOutByOtherUser_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">File is already checked out by user {0}</TEXT>
+<TEXT AKEY="AzKT4hiM5fSLOutByOtherUsers_XMSG" BKEY="VersioningServiceImpl_checkedOutByOtherUsers_XMSG" LENGTH="255" PROCESSOR="MessageFormat" TYPE="XMSG">File is already checked out by the following users: {0}</TEXT>
+<TEXT AKEY="mKF7lpyuY0tFyStatesCanceled_XMSG" BKEY="VersioningServiceImpl_checkingRepositoryStatesCanceled_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Checking repository states was canceled.</TEXT>
+<TEXT AKEY="O1eU6g3ThHv6atesInterrupted_XMSG" BKEY="VersioningServiceImpl_checkingRepositoryStatesInterrupted_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Checking repository states was interrupted</TEXT>
+<TEXT AKEY="5rhmA69ttCgdheckoutCanceled_XMSG" BKEY="VersioningServiceImpl_checkoutCanceled_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Checkout was canceled.</TEXT>
+<TEXT AKEY="I6MQ9EqJSZWZlogErrorMessage_XMSG" BKEY="VersioningServiceImpl_checkoutDialogErrorMessage_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">It is not possible to execute the required repository operations. See below for details.</TEXT>
+<TEXT AKEY="OYSRn4FfB/O9utDialogMessage_XMSG" BKEY="VersioningServiceImpl_checkoutDialogMessage_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">The execution of the operation requires repository operations.</TEXT>
+<TEXT AKEY="/RfOxkpIE1vnkoutDialogTitle_XGRP" BKEY="VersioningServiceImpl_checkoutDialogTitle_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">Prepare Modification</TEXT>
+<TEXT AKEY="8Xlndtcx0bwol_checkoutFiles_XMSG" BKEY="VersioningServiceImpl_checkoutFiles_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Checkout files</TEXT>
+<TEXT AKEY="I/0KtpQ1ev0LepositoryStates_XMSG" BKEY="VersioningServiceImpl_computingRepositoryStates_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Computing repository states</TEXT>
+<TEXT AKEY="hBeIXFKL1g/xRepositoryState_XMSG" BKEY="VersioningServiceImpl_errorGettingRepositoryState_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Could not get repository state</TEXT>
+<TEXT AKEY="tRxRl9are/L8mpl_errorPrefix_XMSG" BKEY="VersioningServiceImpl_errorPrefix_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Error:</TEXT>
+<TEXT AKEY="55QBXPteju4UcuredOnCheckout_XMSG" BKEY="VersioningServiceImpl_errorsOccuredOnCheckout_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Errors occured on checkout for edit</TEXT>
+<TEXT AKEY="VrCtcyiD33Hxmpl_errorsOnAdd_XMSG" BKEY="VersioningServiceImpl_errorsOnAdd_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Adding new Files failed</TEXT>
+<TEXT AKEY="G6faKMh2TPmjrrorsOnDeletion_XMSG" BKEY="VersioningServiceImpl_errorsOnDeletion_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Errors occured on file deletion</TEXT>
+<TEXT AKEY="mFPzeg8qP5O2Impl_fileExists_XMSG" BKEY="VersioningServiceImpl_fileExists_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">A file with the given path already exists in the repository.</TEXT>
+<TEXT AKEY="2JkJVBPNTY4yUnderSrcControl_XMSG" BKEY="VersioningServiceImpl_fileReadOnlyNotUnderSrcControl_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">File is readlony but not under source control.</TEXT>
+<TEXT AKEY="Uxa51DLG9p+ZImpl_infoPrefix_XMSG" BKEY="VersioningServiceImpl_infoPrefix_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Info:</TEXT>
+<TEXT AKEY="y5/gshzwrnQGmpl_logonFailed_XMSG" BKEY="VersioningServiceImpl_logonFailed_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Logon to source repository failed</TEXT>
+<TEXT AKEY="0iJjp1eEsxQDtionNotPossible_XGRP" BKEY="VersioningServiceImpl_modificationNotPossible_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">Modification Not Possible</TEXT>
+<TEXT AKEY="HLo1o9m9bFVatSyncedToLatest_XMSG" BKEY="VersioningServiceImpl_notSyncedToLatest_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">File is not synced to the latest version.</TEXT>
+<TEXT AKEY="WSTCa5zkzw5pitoryOperations_XMSG" BKEY="VersioningServiceImpl_performingRepositoryOperations_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Performing repository operations</TEXT>
+<TEXT AKEY="rYZWwCAjGBUPtionWasCanceled_XMSG" BKEY="VersioningServiceImpl_preparationWasCanceled_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Preparation for partition modification was canceled</TEXT>
+<TEXT AKEY="ukwZ9x1ixr0Ml_prepareCreate_XGRP" BKEY="VersioningServiceImpl_prepareCreate_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">The following files will be created</TEXT>
+<TEXT AKEY="ZBb8IxGcdgjfl_prepareDelete_XGRP" BKEY="VersioningServiceImpl_prepareDelete_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">The following files need to be prepared for deletion</TEXT>
+<TEXT AKEY="KyVmz4SCufDCreEditExclusive_XGRP" BKEY="VersioningServiceImpl_prepareEditExclusive_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">The following files need to be prepared for exclusive editing</TEXT>
+<TEXT AKEY="xCNpsLwgEJUcmpl_prepareEdit_XGRP" BKEY="VersioningServiceImpl_prepareEdit_XGRP" LENGTH="255" PROCESSOR="none" TYPE="XGRP">The following files need to be prepared for editing</TEXT>
+<TEXT AKEY="ll+vaTxki/qsInNonDTRProject_XMSG" BKEY="VersioningServiceImpl_readOnlyFilesInNonDTRProject_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">The project is not in DTR, but there are readonly files!\n</TEXT>
+<TEXT AKEY="f5ey8/YGqOh/_readOnlyPrefix_XMSG" BKEY="VersioningServiceImpl_readOnlyPrefix_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">readonly:</TEXT>
+<TEXT AKEY="LEjv44Thw+8Ul_warningPrefix_XMSG" BKEY="VersioningServiceImpl_warningPrefix_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Warning:</TEXT>
+<TEXT AKEY="KJZr/YJrh2lFblilityRequired_XMSG" BKEY="VersioningServiceImpl_writeablilityRequired_XMSG" LENGTH="255" PROCESSOR="none" TYPE="XMSG">The operation requires the writeability of the following Objects:\n</TEXT>
+</RESOURCES>
+</ROOT>

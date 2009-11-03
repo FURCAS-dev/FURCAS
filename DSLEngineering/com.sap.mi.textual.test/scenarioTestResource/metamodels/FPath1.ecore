@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="FPath"
+    nsURI="FPath" nsPrefix="FPath">
+  <eClassifiers xsi:type="ecore:EClass" name="LocatedElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="location" ordered="false"
+        unique="false" eType="ecore:EDataType FPath.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentsBefore" unique="false"
+        upperBound="-1" eType="ecore:EDataType FPath.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="commentsAfter" unique="false"
+        upperBound="-1" eType="ecore:EDataType FPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true" eSuperTypes="#//LocatedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContextExp" eSuperTypes="#//Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="VariableExp" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType FPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FunctionCallExp" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType FPath.ecore#//String"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="arguments" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NumberExp" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType FPath.ecore#//Double"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StringExp" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType FPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PathExp" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="initialNodeSet" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="steps" lowerBound="1" upperBound="-1"
+        eType="#//Step" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OperatorExp" abstract="true" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" ordered="false"
+        unique="false" lowerBound="1" eType="ecore:EDataType FPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BinaryOperatorExp" eSuperTypes="#//OperatorExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="left" ordered="false" lowerBound="1"
+        eType="#//Expression" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="right" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UnaryOperatorExp" eSuperTypes="#//OperatorExp">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" ordered="false"
+        lowerBound="1" eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Step" eSuperTypes="#//LocatedElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="axis" ordered="false" unique="false"
+        lowerBound="1" eType="#//Axis"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="test" ordered="false" lowerBound="1"
+        eType="#//Test" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="predicates" upperBound="-1"
+        eType="#//Expression" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Test" abstract="true" eSuperTypes="#//LocatedElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WildcardTest" eSuperTypes="#//Test"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NameTest" eSuperTypes="#//Test">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
+        lowerBound="1" eType="ecore:EDataType FPath.ecore#//String"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Axis">
+    <eLiterals name="component" value="1" literal="component"/>
+    <eLiterals name="internalinterface" value="2" literal="internal-interface"/>
+    <eLiterals name="interface" value="3" literal="interface"/>
+    <eLiterals name="attribute" value="4" literal="attribute"/>
+    <eLiterals name="binding" value="5" literal="binding"/>
+    <eLiterals name="child" value="6" literal="child"/>
+    <eLiterals name="parent" value="7" literal="parent"/>
+    <eLiterals name="descendant" value="8" literal="descendant"/>
+    <eLiterals name="ancestor" value="9" literal="ancestor"/>
+    <eLiterals name="sibling" value="10" literal="sibling"/>
+    <eLiterals name="descendantorself" value="11" literal="descendant-or-self"/>
+    <eLiterals name="ancestororself" value="12" literal="ancestor-or-self"/>
+    <eLiterals name="siblingorself" value="13" literal="sibling-or-self"/>
+  </eClassifiers>
+</ecore:EPackage>

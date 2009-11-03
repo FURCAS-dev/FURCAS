@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Parser Plug-in
+Bundle-SymbolicName: com.sap.ide.cts.parser
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sap.ide.cts.parser.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ com.sap.tc.moin.libraries.api,
+ com.sap.mi.textual.parsing,
+ com.sap.mi.textual.parsing.textblocks,
+ com.sap.tcsmeta.mm.eclipse,
+ com.sap.mi.textual.moinlookup,
+ com.sap.mi.textual.common,
+ com.sap.tc.moin.textual.runtime.moin;bundle-version="1.0.0",
+ com.sap.mi.textual.tcs.util;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.ide.cts.parser,
+ com.sap.ide.cts.parser.errorhandling,
+ com.sap.ide.cts.parser.incremental,
+ com.sap.ide.cts.parser.incremental.antlr,
+ com.sap.ide.cts.parser.incremental.util

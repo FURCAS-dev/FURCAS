@@ -1,0 +1,832 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1' ?>
+<!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Oct 23 21:58:37 2009' >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>Unisys.JCR.1</XMI.exporter>
+   <XMI.exporterVersion>1.3.2</XMI.exporterVersion>
+  </XMI.documentation>
+  <XMI.metamodel xmi.name = 'org.omg.mof.Model' xmi.version = '1.3'/>
+ </XMI.header>
+<XMI.content>
+<!-- ==================== abapMapping    [Package] ==================== -->
+<Model:Package xmi.id = 'a47EB7A8A0148' 
+  name = 'abapMapping' annotation = '' 
+  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+  <Model:Namespace.contents>
+    <!-- ==================== abapMapping.AbapDictionary    [Package] ==================== -->
+    <Model:Package xmi.id = 'a47EB9AD600FA' 
+      name = 'AbapDictionary' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+      <Model:Namespace.contents>
+        <!-- ==================== abapMapping.AbapDictionary.XsdType    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E1463B0222' 
+          name = 'XsdType' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.XsdType.xsdType    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E8F751000F' 
+              name = 'xsdType' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== abapMapping.AbapDictionary.XsdType.length    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E8F75801C5' 
+              name = 'length' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B538AB300B3'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== abapMapping.AbapDictionary.XsdType.pattern    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E8F75E02DE' 
+              name = 'pattern' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== abapMapping.AbapDictionary.XsdType.totalDigits    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E8F8B7002E' 
+              name = 'totalDigits' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B538AB300B3'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== abapMapping.AbapDictionary.XsdType.fractionDigits    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E8F8BD007D' 
+              name = 'fractionDigits' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B538AB300B3'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.UnstructuredAbapType    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E903250271' 
+          name = 'UnstructuredAbapType' annotation = 'Like any AbapType, mapped to a Class with the corresponding annotations.' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+          </Model:GeneralizableElement.supertypes>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.CodeValue    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E8FE7C009C' 
+          name = 'CodeValue' annotation = 'We deliberately reduced code values to unstructured, primitive values. Those examples that we are aware of where codes are of structured types only contain unmaintained attributes such as LIST_AGENCY_IDs and other supplementary components that can in our opinion safely be omitted for the time being.' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.CodeValue.type    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra47E8FEC40157' 
+              name = 'type' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8F8D0037A'/>  <!-- abapMapping.AbapDictionary.AbapPrimtiveType -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a47E8FEC40157'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== abapMapping.AbapDictionary.CodeValue.value    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E8FF8203A9' 
+              name = 'value' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== abapMapping.AbapDictionary.CodeValue.description    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47F231CF0148' 
+              name = 'description' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'localization.xml|a450001CE02D8'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.Code    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E1463A02BF' 
+          name = 'Code' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:ModelElement.constraints>
+            <Model:Constraint xmi.idref = 'a47E8FEDB01E4'/>  <!-- abapMapping.AbapDictionary.Code.TypeOfValuesEqualsAbapType -->
+          </Model:ModelElement.constraints>
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a47E8F6C1003E'/>  <!-- abapMapping.AbapDictionary.DataElement -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.Code.values    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra47E8FE8101A5' 
+              name = 'values' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8FE7C009C'/>  <!-- abapMapping.AbapDictionary.CodeValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a47E8FE8101A5'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== abapMapping.AbapDictionary.Code.extensible    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E904F501C5' 
+              name = 'extensible' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== abapMapping.AbapDictionary.Code.TypeOfValuesEqualsAbapType    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a47E8FEDB01E4' 
+              name = 'TypeOfValuesEqualsAbapType' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context Code
+inv:
+  self.values-&gt;forAll(cv:CodeValue |
+      cv.type = self.abapType)</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a47E1463A02BF'/>  <!-- abapMapping.AbapDictionary.Code -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.DataElement    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E8F6C1003E' 
+          name = 'DataElement' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a47E903250271'/>  <!-- abapMapping.AbapDictionary.UnstructuredAbapType -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.DataElement.abapType    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra47E8F912029F' 
+              name = 'abapType' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8F8D0037A'/>  <!-- abapMapping.AbapDictionary.AbapPrimtiveType -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a47E8F912029F'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.AbapType    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E1460601A5' 
+          name = 'AbapType' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.AbapType.xsdRepresentation    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra47E8F73B0109' 
+              name = 'xsdRepresentation' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E1463B0222'/>  <!-- abapMapping.AbapDictionary.XsdType -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a47E8F73B0109'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== abapMapping.AbapDictionary.AbapType.name    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E2434C030D' 
+              name = 'name' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.AbapStructureType    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E9016F00BB' 
+          name = 'AbapStructureType' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.AbapStructureType.fields    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra47E901EE009C' 
+              name = 'fields' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E901E6036B'/>  <!-- abapMapping.AbapDictionary.AbapStructureField -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a47E901EE009C'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.AbapStructureField    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E901E6036B' 
+          name = 'AbapStructureField' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.AbapStructureField.type    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra47E902240177' 
+              name = 'type' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a47E902240177'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== abapMapping.AbapDictionary.AbapStructureField.name    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E9021501B5' 
+              name = 'name' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.AbapPrimtiveType    [Class] ==================== -->
+        <Model:Class xmi.id = 'a47E8F8D0037A' 
+          name = 'AbapPrimtiveType' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a47E903250271'/>  <!-- abapMapping.AbapDictionary.UnstructuredAbapType -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== abapMapping.AbapDictionary.AbapPrimtiveType.length    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a47E24354002E' 
+              name = 'length' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B538AB300B3'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== abapMapping.AbapDictionary.AbapStructureFields    [Association] ==================== -->
+        <Model:Association xmi.id = 'a47E901ED0119' 
+          name = 'AbapStructureFields' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a47E901EE009C' 
+              name = 'fields' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E901E6036B'/>  <!-- abapMapping.AbapDictionary.AbapStructureField -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a47E901EE00AB' 
+              name = 'abapStructureType' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E9016F00BB'/>  <!-- abapMapping.AbapDictionary.AbapStructureType -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== abapMapping.AbapDictionary.AbapStructureFieldType    [Association] ==================== -->
+        <Model:Association xmi.id = 'a47E90223029F' 
+          name = 'AbapStructureFieldType' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a47E902240177' 
+              name = 'type' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a47E902240179' 
+              name = 'abapStructureField' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E901E6036B'/>  <!-- abapMapping.AbapDictionary.AbapStructureField -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== abapMapping.AbapDictionary.AbapTypeXsdType    [Association] ==================== -->
+        <Model:Association xmi.id = 'a47E8F73A036B' 
+          name = 'AbapTypeXsdType' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a47E8F73B0109' 
+              name = 'xsdRepresentation' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E1463B0222'/>  <!-- abapMapping.AbapDictionary.XsdType -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a47E8F73B010B' 
+              name = 'abapType' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== abapMapping.AbapDictionary.CodeValues    [Association] ==================== -->
+        <Model:Association xmi.id = 'a47E8FE8100AB' 
+          name = 'CodeValues' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a47E8FE8101A5' 
+              name = 'values' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8FE7C009C'/>  <!-- abapMapping.AbapDictionary.CodeValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a47E8FE8101B5' 
+              name = 'code' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E1463A02BF'/>  <!-- abapMapping.AbapDictionary.Code -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== abapMapping.AbapDictionary.DataElementAbapType    [Association] ==================== -->
+        <Model:Association xmi.id = 'a47E8F9120128' 
+          name = 'DataElementAbapType' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a47E8F912029F' 
+              name = 'abapType' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8F8D0037A'/>  <!-- abapMapping.AbapDictionary.AbapPrimtiveType -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a47E8F91202A1' 
+              name = 'dataElement' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8F6C1003E'/>  <!-- abapMapping.AbapDictionary.DataElement -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== abapMapping.AbapDictionary.CodeValueType    [Association] ==================== -->
+        <Model:Association xmi.id = 'a47E8FEC10242' 
+          name = 'CodeValueType' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a47E8FEC40157' 
+              name = 'type' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8F8D0037A'/>  <!-- abapMapping.AbapDictionary.AbapPrimtiveType -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a47E8FEC40159' 
+              name = 'codeValue' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a47E8FE7C009C'/>  <!-- abapMapping.AbapDictionary.CodeValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+      </Model:Namespace.contents>
+    </Model:Package>
+    <Model:Import xmi.id = 'G.877' 
+      name = 'PrimitiveTypes' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <Model:Import xmi.id = 'G.878' 
+      name = 'localization' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'localization.xml|a450001630220'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <!-- ==================== abapMapping.AbapClassImplementationAnnotation    [Class] ==================== -->
+    <Model:Class xmi.id = 'a47EB7AC40251' 
+      name = 'AbapClassImplementationAnnotation' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:ModelElement.constraints>
+        <Model:Constraint xmi.idref = 'a47EBABA6000F'/>  <!-- abapMapping.AbapClassImplementationAnnotation.AbapTypeMustBeUnstructured -->
+      </Model:ModelElement.constraints>
+      <Model:Namespace.contents>
+        <!-- ==================== abapMapping.AbapClassImplementationAnnotation.abapType    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra47EB9B2C007D' 
+          name = 'abapType' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a47EB9B2C007D'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== abapMapping.AbapClassImplementationAnnotation.kind    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a47EB7C9500BB' 
+          name = 'kind' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7C3E000F'/>  <!-- abapMapping.AbapClassKind -->
+          </Model:TypedElement.type>
+        </Model:Attribute>
+        <!-- ==================== abapMapping.AbapClassImplementationAnnotation.AbapTypeMustBeUnstructured    [Constraint] ==================== -->
+        <Model:Constraint xmi.id = 'a47EBABA6000F' 
+          name = 'AbapTypeMustBeUnstructured' annotation = '' 
+          language = 'OCL' evaluationPolicy = 'deferred' >
+          <Model:Constraint.expression>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context AbapClassImplementationAnnotation
+inv:
+  self.kind = AbapClassKind::ABAP_TYPE implies
+    self.abapType.oclIsKindOf(UnstructuredAbapType)</XMI.any>
+          </Model:Constraint.expression>
+          <Model:Constraint.constrainedElements>
+            <Model:ModelElement xmi.idref = 'a47EB7AC40251'/>  <!-- abapMapping.AbapClassImplementationAnnotation -->
+          </Model:Constraint.constrainedElements>
+        </Model:Constraint>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== abapMapping.AbapAssociationImplementationAnnotation    [Class] ==================== -->
+    <Model:Class xmi.id = 'a47EB7B180280' 
+      name = 'AbapAssociationImplementationAnnotation' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' />
+    <!-- ==================== abapMapping.AbapAssociationEndImplementationAnnotation    [Class] ==================== -->
+    <Model:Class xmi.id = 'a47EB7B2F02CE' 
+      name = 'AbapAssociationEndImplementationAnnotation' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' />
+    <!-- ==================== abapMapping.AbapSignatureImplementationAnnotation    [Class] ==================== -->
+    <Model:Class xmi.id = 'a47EB7BBB0399' 
+      name = 'AbapSignatureImplementationAnnotation' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+      isSingleton = 'false' >
+      <Model:Namespace.contents>
+        <!-- ==================== abapMapping.AbapSignatureImplementationAnnotation.kind    [Attribute] ==================== -->
+        <Model:Attribute xmi.id = 'a47EB806A0119' 
+          name = 'kind' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' 
+          isDerived = 'false' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7CB403A9'/>  <!-- abapMapping.AbapSignatureKind -->
+          </Model:TypedElement.type>
+        </Model:Attribute>
+      </Model:Namespace.contents>
+    </Model:Class>
+    <!-- ==================== abapMapping.AbapClassKind    [DataType] ==================== -->
+    <Model:DataType xmi.id = 'a47EB7C3E000F' 
+      name = 'AbapClassKind' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' >
+      <Model:DataType.typeCode>
+        <XMI.CorbaTypeCode>
+          <XMI.CorbaTcEnum xmi.tcName = 'AbapClassKind'>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'BO_AND_ROOT_NODE'/>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'BO_NODE'/>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'DEPENDENT_OBJECT'/>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'DATA_TYPE'/>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'ABAP_TYPE'/>
+          </XMI.CorbaTcEnum>
+        </XMI.CorbaTypeCode>
+      </Model:DataType.typeCode>
+    </Model:DataType>
+    <!-- ==================== abapMapping.AbapSignatureKind    [DataType] ==================== -->
+    <Model:DataType xmi.id = 'a47EB7CB403A9' 
+      name = 'AbapSignatureKind' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' >
+      <Model:DataType.typeCode>
+        <XMI.CorbaTypeCode>
+          <XMI.CorbaTcEnum xmi.tcName = 'AbapSignatureKind'>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'QUERY'/>
+          <XMI.CorbaTcEnumLabel xmi.tcName = 'ACTION'/>
+          </XMI.CorbaTcEnum>
+        </XMI.CorbaTypeCode>
+      </Model:DataType.typeCode>
+    </Model:DataType>
+    <!-- ==================== abapMapping.A_abapAnnotation_sapClass    [Association] ==================== -->
+    <Model:Association xmi.id = 'a47EB7AE10213' 
+      name = 'A_abapAnnotation_sapClass' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a47EB7AE10399' 
+          name = 'abapAnnotation' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7AC40251'/>  <!-- abapMapping.AbapClassImplementationAnnotation -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a47EB7AE1039B' 
+          name = 'sapClass' annotation = '' 
+          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'data.xml|a4432171B031E'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== abapMapping.org.omg.sap2mof.store=no    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.879' 
+      name = 'org.omg.sap2mof.store=no' annotation = '' 
+      tagId = 'org.omg.sap2mof.store' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>no</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a47EB7AE10399'/>
+        <Model:ModelElement xmi.idref = 'a47EB7B3903B9'/>
+        <Model:ModelElement xmi.idref = 'a47EB7B3A03B9'/>
+        <Model:ModelElement xmi.idref = 'a47EB7BC4006D'/>
+      </Model:Tag.elements>
+    </Model:Tag>
+    <!-- ==================== abapMapping.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.880' 
+      name = 'org.omg.sap2mof.store=yes' annotation = '' 
+      tagId = 'org.omg.sap2mof.store' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'a47EB7AE1039B'/>
+        <Model:ModelElement xmi.idref = 'a47EB7B3903BB'/>
+        <Model:ModelElement xmi.idref = 'a47EB7B3A03BB'/>
+        <Model:ModelElement xmi.idref = 'a47EB7BC4006F'/>
+      </Model:Tag.elements>
+    </Model:Tag>
+    <Model:Import xmi.id = 'G.881' 
+      name = 'data' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <!-- ==================== abapMapping.A_abapAnnotation_association    [Association] ==================== -->
+    <Model:Association xmi.id = 'a47EB7B3803C8' 
+      name = 'A_abapAnnotation_association' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a47EB7B3903B9' 
+          name = 'abapAnnotation' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7B180280'/>  <!-- abapMapping.AbapAssociationImplementationAnnotation -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a47EB7B3903BB' 
+          name = 'association' annotation = '' 
+          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'data.xml|a44321DA40150'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== abapMapping.A_abapAnnotation_associationEnd    [Association] ==================== -->
+    <Model:Association xmi.id = 'a47EB7B3A01D4' 
+      name = 'A_abapAnnotation_associationEnd' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a47EB7B3A03B9' 
+          name = 'abapAnnotation' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7B2F02CE'/>  <!-- abapMapping.AbapAssociationEndImplementationAnnotation -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a47EB7B3A03BB' 
+          name = 'associationEnd' annotation = '' 
+          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'data.xml|a44EC55FB03B8'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== abapMapping.A_abapAnnotation_signature    [Association] ==================== -->
+    <Model:Association xmi.id = 'a47EB7BC30271' 
+      name = 'A_abapAnnotation_signature' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a47EB7BC4006D' 
+          name = 'abapAnnotation' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7BBB0399'/>  <!-- abapMapping.AbapSignatureImplementationAnnotation -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a47EB7BC4006F' 
+          name = 'signature' annotation = '' 
+          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xml:link = 'simple' href = 'data.xml|a4432198602CB'/>
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+    <!-- ==================== abapMapping.A_abapType_abapClassImplementationAnnotation    [Association] ==================== -->
+    <Model:Association xmi.id = 'a47EB9B2B02AF' 
+      name = 'A_abapType_abapClassImplementationAnnotation' annotation = '' 
+      isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+      isDerived = 'false' >
+      <Model:Namespace.contents>
+        <Model:AssociationEnd xmi.id = 'a47EB9B2C007D' 
+          name = 'abapType' annotation = '' 
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47E1460601A5'/>  <!-- abapMapping.AbapDictionary.AbapType -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+        <Model:AssociationEnd xmi.id = 'a47EB9B2C008C' 
+          name = 'abapClassImplementationAnnotation' annotation = '' 
+          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          <Model:AssociationEnd.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:AssociationEnd.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a47EB7AC40251'/>  <!-- abapMapping.AbapClassImplementationAnnotation -->
+          </Model:TypedElement.type>
+        </Model:AssociationEnd>
+      </Model:Namespace.contents>
+    </Model:Association>
+  </Model:Namespace.contents>
+</Model:Package>
+</XMI.content>
+</XMI>

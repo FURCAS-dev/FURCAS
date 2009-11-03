@@ -1,0 +1,35 @@
+<test>
+  <run type="junit4_ec" purpose="queryclient,weekstone">
+  	<required>devtest.masstest.properties</required>
+    <timeout>1800</timeout>
+
+    <name>MOIN: Support for Team Server IDE integration</name>
+    <plugin-name>com.sap.tc.moin.query.client</plugin-name>
+    <plugin-suite>com.sap.tc.moin.js.query.service.client.test.QueryServiceClientTestSuite</plugin-suite>
+    <code-coverage>com.sap.tc.moin.query.client;com.sap.tc.moin.query.repositoryhelper;com.sap.tc.moin.dihelper</code-coverage>
+    <jvmArg>-Dmoin.test.configuration=eclipseRuntimeTestConfiguration.properties</jvmArg>
+    <jvmArg>-XX:MaxPermSize=96m</jvmArg>
+    <jvmArg>-ea</jvmArg>
+    <jvmArg>-Xmx1024M</jvmArg>
+    <jvmArg>-Dcom.sun.management.jmxremote</jvmArg>
+    <!-- <jvmArg>-Ddevtest.masstest.properties=resources\nwdi.properties</jvmArg> -->
+  </run>
+  
+  <run type="junit4_ec" purpose="staging">
+    <required>com.sap.tc.moin.stagetest</required>
+    <!-- <required>devtest.masstest.properties</required> -->
+    <timeout>900</timeout>
+    <name>MOIN: Collection of unstable tests for Team Server IDE integration</name>
+    <plugin-name>com.sap.tc.moin.query.client</plugin-name>
+    <plugin-suite>com.sap.tc.moin.js.query.service.client.test.QueryServiceClientTestSuite</plugin-suite>
+    <code-coverage>com.sap.tc.moin.query.client;com.sap.tc.moin.query.repositoryhelper;com.sap.tc.moin.dihelper</code-coverage>   
+    <jvmArg>-Dmoin.test.configuration=eclipseRuntimeTestConfiguration.properties</jvmArg>
+    <!-- jvmArg>-Dcom.sap.tc.moin.stagetest=ISOLATED</jvmArg -->
+    <jvmArg>-XX:MaxPermSize=96m</jvmArg>
+    <jvmArg>-ea</jvmArg>
+    <jvmArg>-Xmx1024M</jvmArg>
+    <jvmArg>-Dcom.sun.management.jmxremote</jvmArg>
+    <jvmArg>-Ddevtest.masstest.properties=D:/fw_procedure/jdtd/config/nwdi.properties</jvmArg>
+    <!-- <jvmArg>-Dcom.sap.tc.moin.stagetest=ISOLATED</jvmArg> -->
+  </run>
+</test>

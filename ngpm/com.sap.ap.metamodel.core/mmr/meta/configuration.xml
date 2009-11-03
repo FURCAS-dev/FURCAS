@@ -1,0 +1,1300 @@
+<?xml version = '1.0' encoding = 'ISO-8859-1' ?>
+<!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Oct 23 21:58:37 2009' >
+ <XMI.header>
+  <XMI.documentation>
+   <XMI.exporter>Unisys.JCR.1</XMI.exporter>
+   <XMI.exporterVersion>1.3.2</XMI.exporterVersion>
+  </XMI.documentation>
+  <XMI.metamodel xmi.name = 'org.omg.mof.Model' xmi.version = '1.3'/>
+ </XMI.header>
+<XMI.content>
+<!-- ==================== configuration    [Package] ==================== -->
+<Model:Package xmi.id = 'a4472C17701A4' 
+  name = 'configuration' annotation = 'How application developers declare configuration switches, what their type system is, what dependencies, relations and constraints on the configuration switches are, how configuration UIs are connected and what defaults for configurations are' 
+  isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+  <Model:Namespace.contents>
+    <!-- ==================== configuration.businessconfiguration    [Package] ==================== -->
+    <Model:Package xmi.id = 'a453F50DD00BF' 
+      name = 'businessconfiguration' annotation = '' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+      <Model:Namespace.contents>
+        <!-- ==================== configuration.businessconfiguration.experimental    [Package] ==================== -->
+        <Model:Package xmi.id = 'a4868ACD80196' 
+          name = 'experimental' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.experimental.PackageUse    [Class] ==================== -->
+            <Model:Class xmi.id = 'a4868D542000F' 
+              name = 'PackageUse' annotation = 'Tells a set of components and how they are wired such that for each required interface there are components configured that provide an implementation of that interface. For the outermost components all of the configuration parameters it exposes are defined or defaulted. These configuration settings transitively map through to the innermost components.' 
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+              isSingleton = 'false' >
+              <Model:Namespace.contents>
+                <!-- ==================== configuration.businessconfiguration.experimental.PackageUse.package_    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4869F122030D' 
+                  name = 'package_' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'modelmanagement.xml|a452B7C8B00D8'/>
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4869F122030D'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== configuration.businessconfiguration.experimental.PackageUse.setting    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4869F1690186' 
+                  name = 'setting' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869F14600EA'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationSetting -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4869F1690186'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+              </Model:Namespace.contents>
+            </Model:Class>
+            <!-- ==================== configuration.businessconfiguration.experimental.ConfigurationEntity    [Class] ==================== -->
+            <Model:Class xmi.id = 'a4869E420034B' 
+              name = 'ConfigurationEntity' annotation = '' 
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+              isSingleton = 'false' >
+              <Model:GeneralizableElement.supertypes>
+                <Model:GeneralizableElement xml:link = 'simple' href = 'modelmanagement.xml|a45013C240030'/>
+              </Model:GeneralizableElement.supertypes>
+              <Model:Namespace.contents>
+                <!-- ==================== configuration.businessconfiguration.experimental.ConfigurationEntity.pickList    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4869E767031E' 
+                  name = 'pickList' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a46E7DBE202CE'/>  <!-- configuration.businessconfiguration.ValueSet -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4869E767031E'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== configuration.businessconfiguration.experimental.ConfigurationEntity.configurableItem    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4869E76D0186' 
+                  name = 'configurableItem' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'data.xml|a44EC55FB03B8'/>
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4869E76D0186'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+              </Model:Namespace.contents>
+            </Model:Class>
+            <!-- ==================== configuration.businessconfiguration.experimental.ConfigurationSetting    [Class] ==================== -->
+            <Model:Class xmi.id = 'a4869F14600EA' 
+              name = 'ConfigurationSetting' annotation = '' 
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+              isSingleton = 'false' >
+              <Model:Namespace.contents>
+                <!-- ==================== configuration.businessconfiguration.experimental.ConfigurationSetting.entity    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4869F17D0128' 
+                  name = 'entity' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869E420034B'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationEntity -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4869F17D0128'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== configuration.businessconfiguration.experimental.ConfigurationSetting.value    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4869F17E00BB' 
+                  name = 'value' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'dataaccess.xml|a450E63AB03A2'/>
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4869F17E00BB'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+              </Model:Namespace.contents>
+            </Model:Class>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_value_valueSetEntry    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869E30C033C' 
+              name = 'A_value_valueSetEntry' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869E30D00EA' 
+                  name = 'value' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'dataaccess.xml|a450E63AB03A2'/>
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869E30D0109' 
+                  name = 'valueSetEntry' annotation = '' 
+                  isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a46E7DDDE0000'/>  <!-- configuration.businessconfiguration.ValueSetEntry -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+            <Model:Tag xmi.id = 'G.849' 
+              name = 'org.omg.sap2mof.store=yes' annotation = '' 
+              tagId = 'org.omg.sap2mof.store' >
+              <Model:Tag.values>
+                <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+              </Model:Tag.values>
+              <Model:Tag.elements>
+                <Model:ModelElement xmi.idref = 'a4869E30D0109'/>
+                <Model:ModelElement xmi.idref = 'a4869EFFD033C'/>
+              </Model:Tag.elements>
+            </Model:Tag>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_configurationEntity_pickList    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869E767031C' 
+              name = 'A_configurationEntity_pickList' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:ModelElement.annotation>One way to think about it: for an association end, the developer may specify a pick list from which somebody may choose one or more items (based on the assoc's multiplicity) at configuration time.
+
+This might make the most sense for associations that have "static" scope, although this isn't yet possible given the state of the metamodel as of this writing.</Model:ModelElement.annotation>
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869E767031D' 
+                  name = 'configurationEntity' annotation = '' 
+                  isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869E420034B'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationEntity -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869E767031E' 
+                  name = 'pickList' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a46E7DBE202CE'/>  <!-- configuration.businessconfiguration.ValueSet -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_configurableItem_configurationEntity    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869E76C03A9' 
+              name = 'A_configurableItem_configurationEntity' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869E76D0186' 
+                  name = 'configurableItem' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'data.xml|a44EC55FB03B8'/>
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869E76D0188' 
+                  name = 'configurationEntity' annotation = '' 
+                  isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869E420034B'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationEntity -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_configurability_package_    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869EFFD0148' 
+              name = 'A_configurability_package_' annotation = 'A package exposes a number of configuration entities. When a package is being used, values must be provided for all configuration entities.' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869EFFD032C' 
+                  name = 'configurability' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869E420034B'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationEntity -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869EFFD033C' 
+                  name = 'package_' annotation = '' 
+                  isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'modelmanagement.xml|a452B7C8B00D8'/>
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_package__packageUse    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869F1220148' 
+              name = 'A_package__packageUse' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869F122030D' 
+                  name = 'package_' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'modelmanagement.xml|a452B7C8B00D8'/>
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869F122030F' 
+                  name = 'packageUse' annotation = '' 
+                  isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4868D542000F'/>  <!-- configuration.businessconfiguration.experimental.PackageUse -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_setting_packageUse    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869F167035B' 
+              name = 'A_setting_packageUse' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869F1690186' 
+                  name = 'setting' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869F14600EA'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationSetting -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869F1690188' 
+                  name = 'packageUse' annotation = '' 
+                  isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4868D542000F'/>  <!-- configuration.businessconfiguration.experimental.PackageUse -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_entity_configurationSetting    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869F17C01B5' 
+              name = 'A_entity_configurationSetting' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869F17D0128' 
+                  name = 'entity' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869E420034B'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationEntity -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869F17D012A' 
+                  name = 'configurationSetting' annotation = '' 
+                  isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869F14600EA'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationSetting -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== configuration.businessconfiguration.experimental.A_value_configurationSetting    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4869F17D02FD' 
+              name = 'A_value_configurationSetting' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4869F17E00BB' 
+                  name = 'value' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xml:link = 'simple' href = 'dataaccess.xml|a450E63AB03A2'/>
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4869F17E00DA' 
+                  name = 'configurationSetting' annotation = '' 
+                  isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4869F14600EA'/>  <!-- configuration.businessconfiguration.experimental.ConfigurationSetting -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+          </Model:Namespace.contents>
+        </Model:Package>
+        <!-- ==================== configuration.businessconfiguration.ScopingContext    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E344E0315' 
+          name = 'ScopingContext' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' />
+        <!-- ==================== configuration.businessconfiguration.Industry    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E34480059' 
+          name = 'Industry' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a452E344E0315'/>  <!-- configuration.businessconfiguration.ScopingContext -->
+          </Model:GeneralizableElement.supertypes>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.Country    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E344100E5' 
+          name = 'Country' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a452E344E0315'/>  <!-- configuration.businessconfiguration.ScopingContext -->
+          </Model:GeneralizableElement.supertypes>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.ConfigurationElement    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E346F0286' 
+          name = 'ConfigurationElement' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.ConfigurationElement.applicableInContext    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra452E348501AB' 
+              name = 'applicableInContext' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E344E0315'/>  <!-- configuration.businessconfiguration.ScopingContext -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a452E348501AB'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.BusinessTopic    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E2D6B026F' 
+          name = 'BusinessTopic' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a452E346F0286'/>  <!-- configuration.businessconfiguration.ConfigurationElement -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.BusinessTopic.businessOption    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra452E2DA400C3' 
+              name = 'businessOption' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6D0005'/>  <!-- configuration.businessconfiguration.BusinessOption -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a452E2DA400C3'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.BusinessPackage    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E2D6C0108' 
+          name = 'BusinessPackage' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a452E346F0286'/>  <!-- configuration.businessconfiguration.ConfigurationElement -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.BusinessPackage.businessTopic    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra452E2DA3005D' 
+              name = 'businessTopic' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6B026F'/>  <!-- configuration.businessconfiguration.BusinessTopic -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a452E2DA3005D'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.BusinessOption    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E2D6D0005' 
+          name = 'BusinessOption' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a452E346F0286'/>  <!-- configuration.businessconfiguration.ConfigurationElement -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.BusinessOption.valueSet    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra46E7DB1002CF' 
+              name = 'valueSet' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a46E7DBE202CE'/>  <!-- configuration.businessconfiguration.ValueSet -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a46E7DB1002CF'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.BusinessArea    [Class] ==================== -->
+        <Model:Class xmi.id = 'a452E2D6901D6' 
+          name = 'BusinessArea' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a452E346F0286'/>  <!-- configuration.businessconfiguration.ConfigurationElement -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.BusinessArea.businessPackage    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra452E2DA1021D' 
+              name = 'businessPackage' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6C0108'/>  <!-- configuration.businessconfiguration.BusinessPackage -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a452E2DA1021D'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.ValueSet    [Class] ==================== -->
+        <Model:Class xmi.id = 'a46E7DBE202CE' 
+          name = 'ValueSet' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:ModelElement.annotation>A set of values of a specific type which can be added to a system. For example, if the type is "Country" then the value set could be a list of countries known to or relevant for the application.
+
+Value sets may be extensible or constant. In the "Country" example, the list of countries may change, be it because new countries are created or countries cease to exist because they get merged, or just because more countries are relevant for the application than originally thought.
+
+Such value sets are also known as "BC Sets" (Business Configuration Sets).</Model:ModelElement.annotation>
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xml:link = 'simple' href = 'modelmanagement.xml|a45013C240030'/>
+            <Model:GeneralizableElement xml:link = 'simple' href = 'data.xml|a4717B7BC031A'/>
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.ValueSet.configurationBusinessOption    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra46E7DB1002AF' 
+              name = 'configurationBusinessOption' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6D0005'/>  <!-- configuration.businessconfiguration.BusinessOption -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a46E7DB1002AF'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.businessconfiguration.ValueSet.entries    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra46E7DDE7000F' 
+              name = 'entries' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a46E7DDDE0000'/>  <!-- configuration.businessconfiguration.ValueSetEntry -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a46E7DDE7000F'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.businessconfiguration.ValueSet.extensible    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a46E7DDB00119' 
+              name = 'extensible' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.org.omg.sap2mof.store=no    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.852' 
+          name = 'org.omg.sap2mof.store=no' annotation = '' 
+          tagId = 'org.omg.sap2mof.store' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>no</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'ra46E7DB1002AF'/>  <!-- configuration.businessconfiguration.ValueSet.configurationBusinessOption -->
+            <Model:ModelElement xmi.idref = 'ra46E7DDE7000F'/>  <!-- configuration.businessconfiguration.ValueSet.entries -->
+            <Model:ModelElement xmi.idref = 'a46E7DB1002AF'/>
+            <Model:ModelElement xmi.idref = 'a46E7DDE7000F'/>
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== configuration.businessconfiguration.ValueSetEntry    [Class] ==================== -->
+        <Model:Class xmi.id = 'a46E7DDDE0000' 
+          name = 'ValueSetEntry' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xml:link = 'simple' href = 'modelmanagement.xml|a45013C240030'/>
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.businessconfiguration.ValueSetEntry.valueSet    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra46E7DDE7001F' 
+              name = 'valueSet' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a46E7DBE202CE'/>  <!-- configuration.businessconfiguration.ValueSet -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a46E7DDE7001F'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.businessconfiguration.ValueSetEntry.canBeChanged    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a46E7DE250109' 
+              name = 'canBeChanged' annotation = 'If true, ' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+            <!-- ==================== configuration.businessconfiguration.ValueSetEntry.canBeDeleted    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a46E7DE2A000F' 
+              name = 'canBeDeleted' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.businessconfiguration.A_businessPackage_businessArea    [Association] ==================== -->
+        <Model:Association xmi.id = 'a452E2DA00013' 
+          name = 'A_businessPackage_businessArea' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a452E2DA1021D' 
+              name = 'businessPackage' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6C0108'/>  <!-- configuration.businessconfiguration.BusinessPackage -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a452E2DA2007A' 
+              name = 'businessArea' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6901D6'/>  <!-- configuration.businessconfiguration.BusinessArea -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.businessconfiguration.A_businessTopic_businessPackage    [Association] ==================== -->
+        <Model:Association xmi.id = 'a452E2DA20297' 
+          name = 'A_businessTopic_businessPackage' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a452E2DA3005D' 
+              name = 'businessTopic' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6B026F'/>  <!-- configuration.businessconfiguration.BusinessTopic -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a452E2DA3008F' 
+              name = 'businessPackage' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6C0108'/>  <!-- configuration.businessconfiguration.BusinessPackage -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.businessconfiguration.A_businessOption_businessTopic    [Association] ==================== -->
+        <Model:Association xmi.id = 'a452E2DA30220' 
+          name = 'A_businessOption_businessTopic' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a452E2DA400C3' 
+              name = 'businessOption' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6D0005'/>  <!-- configuration.businessconfiguration.BusinessOption -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a452E2DA400F6' 
+              name = 'businessTopic' annotation = '' 
+              isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6B026F'/>  <!-- configuration.businessconfiguration.BusinessTopic -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.businessconfiguration.A_applicableInContext_configurationElement    [Association] ==================== -->
+        <Model:Association xmi.id = 'a452E34840326' 
+          name = 'A_applicableInContext_configurationElement' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a452E348501AB' 
+              name = 'applicableInContext' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E344E0315'/>  <!-- configuration.businessconfiguration.ScopingContext -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a452E348501B5' 
+              name = 'configurationElement' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E346F0286'/>  <!-- configuration.businessconfiguration.ConfigurationElement -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.businessconfiguration.A_configurationBusinessOption_valueSet    [Association] ==================== -->
+        <Model:Association xmi.id = 'a46E7DB0F0222' 
+          name = 'A_configurationBusinessOption_valueSet' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a46E7DB1002AF' 
+              name = 'configurationBusinessOption' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a452E2D6D0005'/>  <!-- configuration.businessconfiguration.BusinessOption -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a46E7DB1002CF' 
+              name = 'valueSet' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a46E7DBE202CE'/>  <!-- configuration.businessconfiguration.ValueSet -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.businessconfiguration.A_entries_valueSet    [Association] ==================== -->
+        <Model:Association xmi.id = 'a46E7DDE60213' 
+          name = 'A_entries_valueSet' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a46E7DDE7000F' 
+              name = 'entries' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a46E7DDDE0000'/>  <!-- configuration.businessconfiguration.ValueSetEntry -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a46E7DDE7001F' 
+              name = 'valueSet' annotation = '' 
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a46E7DBE202CE'/>  <!-- configuration.businessconfiguration.ValueSet -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+      </Model:Namespace.contents>
+    </Model:Package>
+    <Model:Import xmi.id = 'G.848' 
+      name = 'dataaccess' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'dataaccess.xml|a453E0CD8006C'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <Model:Import xmi.id = 'G.850' 
+      name = 'data' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'data.xml|a453E0C08006D'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <Model:Import xmi.id = 'G.851' 
+      name = 'modelmanagement' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'modelmanagement.xml|a44D74C00013D'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <Model:Import xmi.id = 'G.853' 
+      name = 'PrimitiveTypes' annotation = '' 
+      visibility = 'public_vis' isClustered = 'false' >
+      <Model:Import.importedNamespace>
+        <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
+      </Model:Import.importedNamespace>
+    </Model:Import>
+    <!-- ==================== configuration.context_drivers    [Package] ==================== -->
+    <Model:Package xmi.id = 'a43847F3C03AE' 
+      name = 'context_drivers' annotation = 'An interesting extensibility construct to be looked at closer.' 
+      isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+      <Model:Namespace.contents>
+        <!-- ==================== configuration.context_drivers.ContextCategory    [Class] ==================== -->
+        <Model:Class xmi.id = 'a441649D40098' 
+          name = 'ContextCategory' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.context_drivers.ContextCategory.rootValue    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra44164BAC0344' 
+              name = 'rootValue' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a44164BAC0344'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategory.categoryConfiguration    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra44227E410317' 
+              name = 'categoryConfiguration' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a44227E410317'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategory.name    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a441649D40099' 
+              name = 'name' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.context_drivers.org.omg.sap2mof.store=no    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.854' 
+          name = 'org.omg.sap2mof.store=no' annotation = '' 
+          tagId = 'org.omg.sap2mof.store' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>no</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'ra44164BAC0344'/>  <!-- configuration.context_drivers.ContextCategory.rootValue -->
+            <Model:ModelElement xmi.idref = 'ra441649D4008A'/>  <!-- configuration.context_drivers.ContextCategoryValue.includedValuesConfiguration -->
+            <Model:ModelElement xmi.idref = 'ra443B603702DF'/>  <!-- configuration.context_drivers.ContextCategoryValue.children -->
+            <Model:ModelElement xmi.idref = 'ra44227CA70015'/>  <!-- configuration.context_drivers.ContextualElement.ContextualElementConfiguration -->
+            <Model:ModelElement xmi.idref = 'ra44227E41030D'/>  <!-- configuration.context_drivers.ContexConfiguration.category -->
+            <Model:ModelElement xmi.idref = 'ra443B615E02CD'/>  <!-- configuration.context_drivers.ContexConfiguration.excludedValues -->
+            <Model:ModelElement xmi.idref = 'a44164BAC0344'/>
+            <Model:ModelElement xmi.idref = 'a44227E41030D'/>
+            <Model:ModelElement xmi.idref = 'a441649D4008A'/>
+            <Model:ModelElement xmi.idref = 'a44227CA70015'/>
+            <Model:ModelElement xmi.idref = 'a443B603702DF'/>
+            <Model:ModelElement xmi.idref = 'a443B615E02CD'/>
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== configuration.context_drivers.ContextCategoryValue    [Class] ==================== -->
+        <Model:Class xmi.id = 'a441649D4008E' 
+          name = 'ContextCategoryValue' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a441649D40098'/>  <!-- configuration.context_drivers.ContextCategory -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.context_drivers.ContextCategoryValue.context    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra44164BAC034E' 
+              name = 'context' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40098'/>  <!-- configuration.context_drivers.ContextCategory -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a44164BAC034E'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategoryValue.includedValuesConfiguration    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra441649D4008A' 
+              name = 'includedValuesConfiguration' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a441649D4008A'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategoryValue.parent    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra443B603702E9' 
+              name = 'parent' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a443B603702E9'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategoryValue.children    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra443B603702DF' 
+              name = 'children' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a443B603702DF'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategoryValue.excludedValuesConfiguration    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra443B615E02D7' 
+              name = 'excludedValuesConfiguration' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a443B615E02D7'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContextCategoryValue.value    [Attribute] ==================== -->
+            <Model:Attribute xmi.id = 'a441649D40091' 
+              name = 'value' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' 
+              isDerived = 'false' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
+              </Model:TypedElement.type>
+            </Model:Attribute>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.context_drivers.ContextualElement    [Class] ==================== -->
+        <Model:Class xmi.id = 'a44227C5101D4' 
+          name = 'ContextualElement' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.context_drivers.ContextualElement.ContextualElementConfiguration    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra44227CA70015' 
+              name = 'ContextualElementConfiguration' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a44227CA70015'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.context_drivers.ContexConfiguration    [Class] ==================== -->
+        <Model:Class xmi.id = 'a441649D40087' 
+          name = 'ContexConfiguration' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:Namespace.contents>
+            <!-- ==================== configuration.context_drivers.ContexConfiguration.category    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra44227E41030D' 
+              name = 'category' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40098'/>  <!-- configuration.context_drivers.ContextCategory -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a44227E41030D'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContexConfiguration.includedValues    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra441649D4008B' 
+              name = 'includedValues' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a441649D4008B'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContexConfiguration.configuredElement    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra44227CA7000B' 
+              name = 'configuredElement' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a44227C5101D4'/>  <!-- configuration.context_drivers.ContextualElement -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a44227CA7000B'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== configuration.context_drivers.ContexConfiguration.excludedValues    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra443B615E02CD' 
+              name = 'excludedValues' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a443B615E02CD'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== configuration.context_drivers.ValuesOfBusinessContext    [Association] ==================== -->
+        <Model:Association xmi.id = 'a44164BAC01EF' 
+          name = 'ValuesOfBusinessContext' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a44164BAC0344' 
+              name = 'rootValue' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a44164BAC034E' 
+              name = 'context' annotation = '' 
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40098'/>  <!-- configuration.context_drivers.ContextCategory -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.context_drivers.CategoryForConfiguration    [Association] ==================== -->
+        <Model:Association xmi.id = 'a44227E410082' 
+          name = 'CategoryForConfiguration' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a44227E41030D' 
+              name = 'category' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40098'/>  <!-- configuration.context_drivers.ContextCategory -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a44227E410317' 
+              name = 'categoryConfiguration' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.context_drivers.IncludedContextValues    [Association] ==================== -->
+        <Model:Association xmi.id = 'a441649D40089' 
+          name = 'IncludedContextValues' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a441649D4008A' 
+              name = 'includedValuesConfiguration' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a441649D4008B' 
+              name = 'includedValues' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.context_drivers.ContextForElement    [Association] ==================== -->
+        <Model:Association xmi.id = 'a44227CA50315' 
+          name = 'ContextForElement' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a44227CA7000B' 
+              name = 'configuredElement' annotation = '' 
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a44227C5101D4'/>  <!-- configuration.context_drivers.ContextualElement -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a44227CA70015' 
+              name = 'ContextualElementConfiguration' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.context_drivers.ContextValueHierarchy    [Association] ==================== -->
+        <Model:Association xmi.id = 'a443B603402CD' 
+          name = 'ContextValueHierarchy' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a443B603702DF' 
+              name = 'children' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a443B603702E9' 
+              name = 'parent' annotation = '' 
+              isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+        <!-- ==================== configuration.context_drivers.ExcludedContextValues    [Association] ==================== -->
+        <Model:Association xmi.id = 'a443B615A03AA' 
+          name = 'ExcludedContextValues' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a443B615E02CD' 
+              name = 'excludedValues' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D4008E'/>  <!-- configuration.context_drivers.ContextCategoryValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a443B615E02D7' 
+              name = 'excludedValuesConfiguration' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a441649D40087'/>  <!-- configuration.context_drivers.ContexConfiguration -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
+      </Model:Namespace.contents>
+    </Model:Package>
+  </Model:Namespace.contents>
+</Model:Package>
+</XMI.content>
+</XMI>

@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/tc/moin/mof_1.4' i='1' v='1.0'/>
+<M c='1' q='Model.AttachesTo' i='45ED2E29092EBA89637D4A76065DC0F48C45219D' se='1' ce='-1' oe='-1'/>
+<M c='1' q='Model.Package' i='45ED2E2925D14D728A6546C630BDE3FB4BDA77C3'/>
+<M c='1' q='Model.Reference' i='45ED2E2927D6234A5FEB4A9136C380ABBE1B3593'/>
+<M c='1' q='Model.Association' i='45ED2E293423E542EE1D4C2F09318449887E2FCC'/>
+<M c='1' q='Model.RefersTo' i='45ED2E2935733359781E47111E31E56279382F75' se='0' ce='-1' oe='-1'/>
+<M c='1' q='Model.Import' i='45ED2E29372BCE32CB9241CD1FB9E2F08880B940'/>
+<M c='1' q='Model.AssociationEnd' i='45ED2E294D5F42A5B94C462B13F4F76DE1C16DBF'/>
+<M c='1' q='Model.Tag' i='45ED2E29545D7A2836A940A93CC3A3E5E8010D2D'/>
+<M c='1' q='Model.Attribute' i='45ED2E29726BF05A1AA847C8298F93D7745C3BFB'/>
+<M c='1' q='Model.Aliases' i='45ED2E297C6E4C4F64E543CC20E2ED5F34992C72' se='0' ce='-1' oe='-1'/>
+<M c='1' q='Model.Contains' i='45ED2E29A15C5D7FDF8D483F1CFA93E430ADEDCC' se='0' ce='0' oe='1'/>
+<M c='1' q='Model.IsOfType' i='45ED2E29DA5028C85512452C3856E282A65D065B' se='1' ce='-1' oe='-1'/>
+<M c='1' q='Model.Class' i='45ED2E29E9B8C271FD484D6E2F52CCB9570C451A'/>
+<M c='1' q='Model.Generalizes' i='45ED2E29EBEA040675924D782BC3C9E3F7C65DCA' se='1' ce='-1' oe='0'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3AB3E4B11DEC1360018DE1146FF' name='package_' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3AC3E4B11DE9C640018DE1146FF' name='setting' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3AD3E4B11DE81430018DE1146FF' name='PackageUse' annotation='Tells a set of components and how they are wired such that for each required interface there are components configured that provide an implementation of that interface. For the outermost components all of the configuration parameters it exposes are defined or defaulted. These configuration settings transitively map through to the innermost components.' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3AE3E4B11DE910C0018DE1146FF' name='pickList' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3AF3E4B11DECF190018DE1146FF' name='configurableItem' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' name='ConfigurationEntity' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3B13E4B11DEC7DE0018DE1146FF' name='entity' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3B23E4B11DECF3A0018DE1146FF' name='value' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' name='ConfigurationSetting' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3B43E4B11DECBCE0018DE1146FF' name='value' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3B53E4B11DE8B720018DE1146FF' name='valueSetEntry' annotation='' isNavigable='false' aggregation='composite' isChangeable='true'>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3B63E4B11DEC1E20018DE1146FF' name='A_value_valueSetEntry' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.Tag m:c='1' m:i='E0DDC76451F9D3B73E4B11DE8C680018DE1146FF' name='org.omg.sap2mof.store=yes' annotation='' tagId='org.omg.sap2mof.store' values='yes'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3B83E4B11DEA8B70018DE1146FF' name='configurationEntity' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3B93E4B11DEA6AA0018DE1146FF' name='pickList' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3BA3E4B11DEAF5E0018DE1146FF' name='A_configurationEntity_pickList' annotation='One way to think about it: for an association end, the developer may specify a pick list from which somebody may choose one or more items (based on the assoc&apos;s multiplicity) at configuration time.&#10;&#10;This might make the most sense for associations that have &quot;static&quot; scope, although this isn&apos;t yet possible given the state of the metamodel as of this writing.' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3BB3E4B11DE9BAF0018DE1146FF' name='configurableItem' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3BC3E4B11DE827A0018DE1146FF' name='configurationEntity' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3BD3E4B11DE81580018DE1146FF' name='A_configurableItem_configurationEntity' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3BE3E4B11DE94110018DE1146FF' name='configurability' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3BF3E4B11DE9E370018DE1146FF' name='package_' annotation='' isNavigable='false' aggregation='composite' isChangeable='true'>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3C03E4B11DEAD410018DE1146FF' name='A_configurability_package_' annotation='A package exposes a number of configuration entities. When a package is being used, values must be provided for all configuration entities.' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3C13E4B11DEBFA40018DE1146FF' name='package_' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3C23E4B11DEA3800018DE1146FF' name='packageUse' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3C33E4B11DEC8A00018DE1146FF' name='A_package__packageUse' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3C43E4B11DEA3D60018DE1146FF' name='setting' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3C53E4B11DEBF670018DE1146FF' name='packageUse' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3C63E4B11DE8BCE0018DE1146FF' name='A_setting_packageUse' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3C73E4B11DEAE360018DE1146FF' name='entity' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3C83E4B11DE880F0018DE1146FF' name='configurationSetting' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3C93E4B11DE922F0018DE1146FF' name='A_entity_configurationSetting' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3CA3E4B11DEB2010018DE1146FF' name='value' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451F9D3CB3E4B11DEAEA30018DE1146FF' name='configurationSetting' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451F9D3CC3E4B11DEA5210018DE1146FF' name='A_value_configurationSetting' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.Package m:c='1' m:i='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' name='experimental' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3CE3E4B11DE82860018DE1146FF' name='ScopingContext' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3CF3E4B11DEC7C80018DE1146FF' name='Industry' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3D03E4B11DEB0AE0018DE1146FF' name='Country' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3D13E4B11DE9E870018DE1146FF' name='applicableInContext' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' name='ConfigurationElement' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3D33E4B11DEC4F80018DE1146FF' name='businessOption' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF' name='BusinessTopic' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3D53E4B11DEC37B0018DE1146FF' name='businessTopic' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF' name='BusinessPackage' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3D73E4B11DE91AE0018DE1146FF' name='valueSet' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3D83E4B11DE85160018DE1146FF' name='BusinessOption' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3D93E4B11DE9A7F0018DE1146FF' name='businessPackage' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451F9D3DA3E4B11DEBABA0018DE1146FF' name='BusinessArea' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3DB3E4B11DE9C090018DE1146FF' name='configurationBusinessOption' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451F9D3DC3E4B11DEA0F90018DE1146FF' name='entries' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Attribute m:c='1' m:i='E0DDC76451F9D3DD3E4B11DE90700018DE1146FF' name='extensible' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Class m:c='1' m:i='E0DDC76451FC44903E4B11DE90300018DE1146FF' name='ValueSet' annotation='A set of values of a specific type which can be added to a system. For example, if the type is &quot;Country&quot; then the value set could be a list of countries known to or relevant for the application.&#10;&#10;Value sets may be extensible or constant. In the &quot;Country&quot; example, the list of countries may change, be it because new countries are created or countries cease to exist because they get merged, or just because more countries are relevant for the application than originally thought.&#10;&#10;Such value sets are also known as &quot;BC Sets&quot; (Business Configuration Sets).' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Tag m:c='1' m:i='E0DDC76451FC44913E4B11DEA0370018DE1146FF' name='org.omg.sap2mof.store=no' annotation='' tagId='org.omg.sap2mof.store' values='no'/>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44923E4B11DEC0B60018DE1146FF' name='valueSet' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Attribute m:c='1' m:i='E0DDC76451FC44933E4B11DE85960018DE1146FF' name='canBeChanged' annotation='If true, ' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Attribute m:c='1' m:i='E0DDC76451FC44943E4B11DEAAD80018DE1146FF' name='canBeDeleted' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Class m:c='1' m:i='E0DDC76451FC44953E4B11DEA2410018DE1146FF' name='ValueSetEntry' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44963E4B11DE95530018DE1146FF' name='businessPackage' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44973E4B11DE8FE00018DE1146FF' name='businessArea' annotation='' isNavigable='false' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44983E4B11DEAD090018DE1146FF' name='A_businessPackage_businessArea' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44993E4B11DEB5830018DE1146FF' name='businessTopic' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC449A3E4B11DE9BDF0018DE1146FF' name='businessPackage' annotation='' isNavigable='false' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC449B3E4B11DECC9F0018DE1146FF' name='A_businessTopic_businessPackage' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC449C3E4B11DEB60A0018DE1146FF' name='businessOption' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC449D3E4B11DEC8790018DE1146FF' name='businessTopic' annotation='' isNavigable='false' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC449E3E4B11DEA39B0018DE1146FF' name='A_businessOption_businessTopic' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC449F3E4B11DE93AB0018DE1146FF' name='applicableInContext' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44A03E4B11DE99940018DE1146FF' name='configurationElement' annotation='' isNavigable='false' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44A13E4B11DEA7680018DE1146FF' name='A_applicableInContext_configurationElement' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44A23E4B11DE85230018DE1146FF' name='configurationBusinessOption' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44A33E4B11DE857A0018DE1146FF' name='valueSet' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44A43E4B11DE9F820018DE1146FF' name='A_configurationBusinessOption_valueSet' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44A53E4B11DEC4660018DE1146FF' name='entries' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44A63E4B11DEBFFE0018DE1146FF' name='valueSet' annotation='' isNavigable='true' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44A73E4B11DE9B180018DE1146FF' name='A_entries_valueSet' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.Package m:c='1' m:i='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' name='businessconfiguration' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Import m:c='1' m:i='E0DDC76451FC44A93E4B11DEB3B80018DE1146FF' name='dataaccess' annotation='' visibility='public_vis' isClustered='false'/>
+<Model.Import m:c='1' m:i='E0DDC76451FC44AA3E4B11DEB68B0018DE1146FF' name='data' annotation='' visibility='public_vis' isClustered='false'/>
+<Model.Import m:c='1' m:i='E0DDC76451FC44AB3E4B11DEA2240018DE1146FF' name='modelmanagement' annotation='' visibility='public_vis' isClustered='false'/>
+<Model.Import m:c='1' m:i='E0DDC76451FC44AC3E4B11DEB67F0018DE1146FF' name='PrimitiveTypes' annotation='' visibility='public_vis' isClustered='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44AD3E4B11DE99FB0018DE1146FF' name='rootValue' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44AE3E4B11DEBD210018DE1146FF' name='categoryConfiguration' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Attribute m:c='1' m:i='E0DDC76451FC44AF3E4B11DECEF20018DE1146FF' name='name' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Class m:c='1' m:i='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' name='ContextCategory' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Tag m:c='1' m:i='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF' name='org.omg.sap2mof.store=no' annotation='' tagId='org.omg.sap2mof.store' values='no'/>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44B23E4B11DE84A20018DE1146FF' name='context' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44B33E4B11DE85BD0018DE1146FF' name='includedValuesConfiguration' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44B43E4B11DEAE3C0018DE1146FF' name='parent' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44B53E4B11DEA65D0018DE1146FF' name='children' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44B63E4B11DECDA00018DE1146FF' name='excludedValuesConfiguration' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Attribute m:c='1' m:i='E0DDC76451FC44B73E4B11DEA6BF0018DE1146FF' name='value' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
+<Model.Class m:c='1' m:i='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' name='ContextCategoryValue' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44B93E4B11DEAAB30018DE1146FF' name='ContextualElementConfiguration' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451FC44BA3E4B11DECA7C0018DE1146FF' name='ContextualElement' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44BB3E4B11DE8AEF0018DE1146FF' name='category' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44BC3E4B11DE94F90018DE1146FF' name='includedValues' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44BD3E4B11DE891F0018DE1146FF' name='configuredElement' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Reference>
+<Model.Reference m:c='1' m:i='E0DDC76451FC44BE3E4B11DEAC490018DE1146FF' name='excludedValues' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.Reference>
+<Model.Class m:c='1' m:i='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' name='ContexConfiguration' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C03E4B11DE82230018DE1146FF' name='rootValue' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C13E4B11DE81920018DE1146FF' name='context' annotation='' isNavigable='true' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44C23E4B11DE86CD0018DE1146FF' name='ValuesOfBusinessContext' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C33E4B11DEA4C00018DE1146FF' name='category' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C43E4B11DE8EEE0018DE1146FF' name='categoryConfiguration' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44C53E4B11DEB51D0018DE1146FF' name='CategoryForConfiguration' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C63E4B11DEAC100018DE1146FF' name='includedValuesConfiguration' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C73E4B11DEC6580018DE1146FF' name='includedValues' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44C83E4B11DEA0F60018DE1146FF' name='IncludedContextValues' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44C93E4B11DEB8670018DE1146FF' name='configuredElement' annotation='' isNavigable='true' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44CA3E4B11DEC1770018DE1146FF' name='ContextualElementConfiguration' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44CB3E4B11DECF570018DE1146FF' name='ContextForElement' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44CC3E4B11DEBA720018DE1146FF' name='children' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44CD3E4B11DE8E250018DE1146FF' name='parent' annotation='' isNavigable='true' aggregation='composite' isChangeable='true'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44CE3E4B11DEBAE20018DE1146FF' name='ContextValueHierarchy' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44CF3E4B11DEC4960018DE1146FF' name='excludedValues' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.AssociationEnd m:c='1' m:i='E0DDC76451FC44D03E4B11DE86980018DE1146FF' name='excludedValuesConfiguration' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
+</Model.AssociationEnd>
+<Model.Association m:c='1' m:i='E0DDC76451FC44D13E4B11DE8D7A0018DE1146FF' name='ExcludedContextValues' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
+<Model.Package m:c='1' m:i='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' name='context_drivers' annotation='An interesting extensibility construct to be looked at closer.' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.Package m:c='1' m:i='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' name='configuration' annotation='How application developers declare configuration switches, what their type system is, what dependencies, relations and constraints on the configuration switches are, how configuration UIs are connected and what defaults for configurations are' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
+<Model.AttachesTo c='1'>
+<L f='E0DDC76451F9D3B53E4B11DE8B720018DE1146FF' s='E0DDC76451F9D3B73E4B11DE8C680018DE1146FF'/>
+<L f='E0DDC76451F9D3BF3E4B11DE9E370018DE1146FF' s='E0DDC76451F9D3B73E4B11DE8C680018DE1146FF'/>
+<L f='E0DDC76451F9D3DB3E4B11DE9C090018DE1146FF' s='E0DDC76451FC44913E4B11DEA0370018DE1146FF'/>
+<L f='E0DDC76451F9D3DC3E4B11DEA0F90018DE1146FF' s='E0DDC76451FC44913E4B11DEA0370018DE1146FF'/>
+<L f='E0DDC76451FC44A23E4B11DE85230018DE1146FF' s='E0DDC76451FC44913E4B11DEA0370018DE1146FF'/>
+<L f='E0DDC76451FC44A53E4B11DEC4660018DE1146FF' s='E0DDC76451FC44913E4B11DEA0370018DE1146FF'/>
+<L f='E0DDC76451FC44AD3E4B11DE99FB0018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44B33E4B11DE85BD0018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44B53E4B11DEA65D0018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44B93E4B11DEAAB30018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44BB3E4B11DE8AEF0018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44BE3E4B11DEAC490018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44C03E4B11DE82230018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44C33E4B11DEA4C00018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44C63E4B11DEAC100018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44CA3E4B11DEC1770018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44CC3E4B11DEBA720018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44CF3E4B11DEC4960018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+</Model.AttachesTo>
+<Model.RefersTo c='1'>
+<L f='E0DDC76451F9D3AB3E4B11DEC1360018DE1146FF' s='E0DDC76451F9D3C13E4B11DEBFA40018DE1146FF'/>
+<L f='E0DDC76451F9D3AC3E4B11DE9C640018DE1146FF' s='E0DDC76451F9D3C43E4B11DEA3D60018DE1146FF'/>
+<L f='E0DDC76451F9D3AE3E4B11DE910C0018DE1146FF' s='E0DDC76451F9D3B93E4B11DEA6AA0018DE1146FF'/>
+<L f='E0DDC76451F9D3AF3E4B11DECF190018DE1146FF' s='E0DDC76451F9D3BB3E4B11DE9BAF0018DE1146FF'/>
+<L f='E0DDC76451F9D3B13E4B11DEC7DE0018DE1146FF' s='E0DDC76451F9D3C73E4B11DEAE360018DE1146FF'/>
+<L f='E0DDC76451F9D3B23E4B11DECF3A0018DE1146FF' s='E0DDC76451F9D3CA3E4B11DEB2010018DE1146FF'/>
+<L f='E0DDC76451F9D3D13E4B11DE9E870018DE1146FF' s='E0DDC76451FC449F3E4B11DE93AB0018DE1146FF'/>
+<L f='E0DDC76451F9D3D33E4B11DEC4F80018DE1146FF' s='E0DDC76451FC449C3E4B11DEB60A0018DE1146FF'/>
+<L f='E0DDC76451F9D3D53E4B11DEC37B0018DE1146FF' s='E0DDC76451FC44993E4B11DEB5830018DE1146FF'/>
+<L f='E0DDC76451F9D3D73E4B11DE91AE0018DE1146FF' s='E0DDC76451FC44A33E4B11DE857A0018DE1146FF'/>
+<L f='E0DDC76451F9D3D93E4B11DE9A7F0018DE1146FF' s='E0DDC76451FC44963E4B11DE95530018DE1146FF'/>
+<L f='E0DDC76451F9D3DB3E4B11DE9C090018DE1146FF' s='E0DDC76451FC44A23E4B11DE85230018DE1146FF'/>
+<L f='E0DDC76451F9D3DC3E4B11DEA0F90018DE1146FF' s='E0DDC76451FC44A53E4B11DEC4660018DE1146FF'/>
+<L f='E0DDC76451FC44923E4B11DEC0B60018DE1146FF' s='E0DDC76451FC44A63E4B11DEBFFE0018DE1146FF'/>
+<L f='E0DDC76451FC44AD3E4B11DE99FB0018DE1146FF' s='E0DDC76451FC44C03E4B11DE82230018DE1146FF'/>
+<L f='E0DDC76451FC44AE3E4B11DEBD210018DE1146FF' s='E0DDC76451FC44C43E4B11DE8EEE0018DE1146FF'/>
+<L f='E0DDC76451FC44B23E4B11DE84A20018DE1146FF' s='E0DDC76451FC44C13E4B11DE81920018DE1146FF'/>
+<L f='E0DDC76451FC44B33E4B11DE85BD0018DE1146FF' s='E0DDC76451FC44C63E4B11DEAC100018DE1146FF'/>
+<L f='E0DDC76451FC44B43E4B11DEAE3C0018DE1146FF' s='E0DDC76451FC44CD3E4B11DE8E250018DE1146FF'/>
+<L f='E0DDC76451FC44B53E4B11DEA65D0018DE1146FF' s='E0DDC76451FC44CC3E4B11DEBA720018DE1146FF'/>
+<L f='E0DDC76451FC44B63E4B11DECDA00018DE1146FF' s='E0DDC76451FC44D03E4B11DE86980018DE1146FF'/>
+<L f='E0DDC76451FC44B93E4B11DEAAB30018DE1146FF' s='E0DDC76451FC44CA3E4B11DEC1770018DE1146FF'/>
+<L f='E0DDC76451FC44BB3E4B11DE8AEF0018DE1146FF' s='E0DDC76451FC44C33E4B11DEA4C00018DE1146FF'/>
+<L f='E0DDC76451FC44BC3E4B11DE94F90018DE1146FF' s='E0DDC76451FC44C73E4B11DEC6580018DE1146FF'/>
+<L f='E0DDC76451FC44BD3E4B11DE891F0018DE1146FF' s='E0DDC76451FC44C93E4B11DEB8670018DE1146FF'/>
+<L f='E0DDC76451FC44BE3E4B11DEAC490018DE1146FF' s='E0DDC76451FC44CF3E4B11DEC4960018DE1146FF'/>
+</Model.RefersTo>
+<Model.Aliases c='1'>
+<L f='E0DDC76451FC44A93E4B11DEB3B80018DE1146FF' s='local:E075D95551F762B63E4B11DEB2AF0018DE1146FF'/>
+<L f='E0DDC76451FC44AA3E4B11DEB68B0018DE1146FF' s='local:E0234C8C51F05DE83E4B11DEC5320018DE1146FF'/>
+<L f='E0DDC76451FC44AB3E4B11DEA2240018DE1146FF' s='local:E07264A551F9D39C3E4B11DE9D6A0018DE1146FF'/>
+<L f='E0DDC76451FC44AC3E4B11DEB67F0018DE1146FF' s='PF.MetaModelDataArea:45ED2E2A9B676E5825E742FD3D27AC08D5F6FAF0'/>
+</Model.Aliases>
+<Model.Contains c='1'>
+<L f='E0DDC76451F9D3AD3E4B11DE81430018DE1146FF' s='E0DDC76451F9D3AB3E4B11DEC1360018DE1146FF'/>
+<L f='E0DDC76451F9D3AD3E4B11DE81430018DE1146FF' s='E0DDC76451F9D3AC3E4B11DE9C640018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3AE3E4B11DE910C0018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3AF3E4B11DECF190018DE1146FF'/>
+<L f='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' s='E0DDC76451F9D3B13E4B11DEC7DE0018DE1146FF'/>
+<L f='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' s='E0DDC76451F9D3B23E4B11DECF3A0018DE1146FF'/>
+<L f='E0DDC76451F9D3B63E4B11DEC1E20018DE1146FF' s='E0DDC76451F9D3B43E4B11DECBCE0018DE1146FF'/>
+<L f='E0DDC76451F9D3B63E4B11DEC1E20018DE1146FF' s='E0DDC76451F9D3B53E4B11DE8B720018DE1146FF'/>
+<L f='E0DDC76451F9D3BA3E4B11DEAF5E0018DE1146FF' s='E0DDC76451F9D3B83E4B11DEA8B70018DE1146FF'/>
+<L f='E0DDC76451F9D3BA3E4B11DEAF5E0018DE1146FF' s='E0DDC76451F9D3B93E4B11DEA6AA0018DE1146FF'/>
+<L f='E0DDC76451F9D3BD3E4B11DE81580018DE1146FF' s='E0DDC76451F9D3BB3E4B11DE9BAF0018DE1146FF'/>
+<L f='E0DDC76451F9D3BD3E4B11DE81580018DE1146FF' s='E0DDC76451F9D3BC3E4B11DE827A0018DE1146FF'/>
+<L f='E0DDC76451F9D3C03E4B11DEAD410018DE1146FF' s='E0DDC76451F9D3BE3E4B11DE94110018DE1146FF'/>
+<L f='E0DDC76451F9D3C03E4B11DEAD410018DE1146FF' s='E0DDC76451F9D3BF3E4B11DE9E370018DE1146FF'/>
+<L f='E0DDC76451F9D3C33E4B11DEC8A00018DE1146FF' s='E0DDC76451F9D3C13E4B11DEBFA40018DE1146FF'/>
+<L f='E0DDC76451F9D3C33E4B11DEC8A00018DE1146FF' s='E0DDC76451F9D3C23E4B11DEA3800018DE1146FF'/>
+<L f='E0DDC76451F9D3C63E4B11DE8BCE0018DE1146FF' s='E0DDC76451F9D3C43E4B11DEA3D60018DE1146FF'/>
+<L f='E0DDC76451F9D3C63E4B11DE8BCE0018DE1146FF' s='E0DDC76451F9D3C53E4B11DEBF670018DE1146FF'/>
+<L f='E0DDC76451F9D3C93E4B11DE922F0018DE1146FF' s='E0DDC76451F9D3C73E4B11DEAE360018DE1146FF'/>
+<L f='E0DDC76451F9D3C93E4B11DE922F0018DE1146FF' s='E0DDC76451F9D3C83E4B11DE880F0018DE1146FF'/>
+<L f='E0DDC76451F9D3CC3E4B11DEA5210018DE1146FF' s='E0DDC76451F9D3CA3E4B11DEB2010018DE1146FF'/>
+<L f='E0DDC76451F9D3CC3E4B11DEA5210018DE1146FF' s='E0DDC76451F9D3CB3E4B11DEAEA30018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3AD3E4B11DE81430018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3B63E4B11DEC1E20018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3B73E4B11DE8C680018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3BA3E4B11DEAF5E0018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3BD3E4B11DE81580018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3C03E4B11DEAD410018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3C33E4B11DEC8A00018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3C63E4B11DE8BCE0018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3C93E4B11DE922F0018DE1146FF'/>
+<L f='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF' s='E0DDC76451F9D3CC3E4B11DEA5210018DE1146FF'/>
+<L f='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' s='E0DDC76451F9D3D13E4B11DE9E870018DE1146FF'/>
+<L f='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF' s='E0DDC76451F9D3D33E4B11DEC4F80018DE1146FF'/>
+<L f='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF' s='E0DDC76451F9D3D53E4B11DEC37B0018DE1146FF'/>
+<L f='E0DDC76451F9D3D83E4B11DE85160018DE1146FF' s='E0DDC76451F9D3D73E4B11DE91AE0018DE1146FF'/>
+<L f='E0DDC76451F9D3DA3E4B11DEBABA0018DE1146FF' s='E0DDC76451F9D3D93E4B11DE9A7F0018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451F9D3DB3E4B11DE9C090018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451F9D3DC3E4B11DEA0F90018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451F9D3DD3E4B11DE90700018DE1146FF'/>
+<L f='E0DDC76451FC44953E4B11DEA2410018DE1146FF' s='E0DDC76451FC44923E4B11DEC0B60018DE1146FF'/>
+<L f='E0DDC76451FC44953E4B11DEA2410018DE1146FF' s='E0DDC76451FC44933E4B11DE85960018DE1146FF'/>
+<L f='E0DDC76451FC44953E4B11DEA2410018DE1146FF' s='E0DDC76451FC44943E4B11DEAAD80018DE1146FF'/>
+<L f='E0DDC76451FC44983E4B11DEAD090018DE1146FF' s='E0DDC76451FC44963E4B11DE95530018DE1146FF'/>
+<L f='E0DDC76451FC44983E4B11DEAD090018DE1146FF' s='E0DDC76451FC44973E4B11DE8FE00018DE1146FF'/>
+<L f='E0DDC76451FC449B3E4B11DECC9F0018DE1146FF' s='E0DDC76451FC44993E4B11DEB5830018DE1146FF'/>
+<L f='E0DDC76451FC449B3E4B11DECC9F0018DE1146FF' s='E0DDC76451FC449A3E4B11DE9BDF0018DE1146FF'/>
+<L f='E0DDC76451FC449E3E4B11DEA39B0018DE1146FF' s='E0DDC76451FC449C3E4B11DEB60A0018DE1146FF'/>
+<L f='E0DDC76451FC449E3E4B11DEA39B0018DE1146FF' s='E0DDC76451FC449D3E4B11DEC8790018DE1146FF'/>
+<L f='E0DDC76451FC44A13E4B11DEA7680018DE1146FF' s='E0DDC76451FC449F3E4B11DE93AB0018DE1146FF'/>
+<L f='E0DDC76451FC44A13E4B11DEA7680018DE1146FF' s='E0DDC76451FC44A03E4B11DE99940018DE1146FF'/>
+<L f='E0DDC76451FC44A43E4B11DE9F820018DE1146FF' s='E0DDC76451FC44A23E4B11DE85230018DE1146FF'/>
+<L f='E0DDC76451FC44A43E4B11DE9F820018DE1146FF' s='E0DDC76451FC44A33E4B11DE857A0018DE1146FF'/>
+<L f='E0DDC76451FC44A73E4B11DE9B180018DE1146FF' s='E0DDC76451FC44A53E4B11DEC4660018DE1146FF'/>
+<L f='E0DDC76451FC44A73E4B11DE9B180018DE1146FF' s='E0DDC76451FC44A63E4B11DEBFFE0018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3CD3E4B11DEC1850018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3CE3E4B11DE82860018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3CF3E4B11DEC7C80018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3D03E4B11DEB0AE0018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3D83E4B11DE85160018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451F9D3DA3E4B11DEBABA0018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44903E4B11DE90300018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44913E4B11DEA0370018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44953E4B11DEA2410018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44983E4B11DEAD090018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC449B3E4B11DECC9F0018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC449E3E4B11DEA39B0018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44A13E4B11DEA7680018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44A43E4B11DE9F820018DE1146FF'/>
+<L f='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF' s='E0DDC76451FC44A73E4B11DE9B180018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44AD3E4B11DE99FB0018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44AE3E4B11DEBD210018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44AF3E4B11DECEF20018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B23E4B11DE84A20018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B33E4B11DE85BD0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B43E4B11DEAE3C0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B53E4B11DEA65D0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B63E4B11DECDA00018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B73E4B11DEA6BF0018DE1146FF'/>
+<L f='E0DDC76451FC44BA3E4B11DECA7C0018DE1146FF' s='E0DDC76451FC44B93E4B11DEAAB30018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44BB3E4B11DE8AEF0018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44BC3E4B11DE94F90018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44BD3E4B11DE891F0018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44BE3E4B11DEAC490018DE1146FF'/>
+<L f='E0DDC76451FC44C23E4B11DE86CD0018DE1146FF' s='E0DDC76451FC44C03E4B11DE82230018DE1146FF'/>
+<L f='E0DDC76451FC44C23E4B11DE86CD0018DE1146FF' s='E0DDC76451FC44C13E4B11DE81920018DE1146FF'/>
+<L f='E0DDC76451FC44C53E4B11DEB51D0018DE1146FF' s='E0DDC76451FC44C33E4B11DEA4C00018DE1146FF'/>
+<L f='E0DDC76451FC44C53E4B11DEB51D0018DE1146FF' s='E0DDC76451FC44C43E4B11DE8EEE0018DE1146FF'/>
+<L f='E0DDC76451FC44C83E4B11DEA0F60018DE1146FF' s='E0DDC76451FC44C63E4B11DEAC100018DE1146FF'/>
+<L f='E0DDC76451FC44C83E4B11DEA0F60018DE1146FF' s='E0DDC76451FC44C73E4B11DEC6580018DE1146FF'/>
+<L f='E0DDC76451FC44CB3E4B11DECF570018DE1146FF' s='E0DDC76451FC44C93E4B11DEB8670018DE1146FF'/>
+<L f='E0DDC76451FC44CB3E4B11DECF570018DE1146FF' s='E0DDC76451FC44CA3E4B11DEC1770018DE1146FF'/>
+<L f='E0DDC76451FC44CE3E4B11DEBAE20018DE1146FF' s='E0DDC76451FC44CC3E4B11DEBA720018DE1146FF'/>
+<L f='E0DDC76451FC44CE3E4B11DEBAE20018DE1146FF' s='E0DDC76451FC44CD3E4B11DE8E250018DE1146FF'/>
+<L f='E0DDC76451FC44D13E4B11DE8D7A0018DE1146FF' s='E0DDC76451FC44CF3E4B11DEC4960018DE1146FF'/>
+<L f='E0DDC76451FC44D13E4B11DE8D7A0018DE1146FF' s='E0DDC76451FC44D03E4B11DE86980018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44B03E4B11DEBB480018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44B13E4B11DEA7ED0018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44BA3E4B11DECA7C0018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44C23E4B11DE86CD0018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44C53E4B11DEB51D0018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44C83E4B11DEA0F60018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44CB3E4B11DECF570018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44CE3E4B11DEBAE20018DE1146FF'/>
+<L f='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF' s='E0DDC76451FC44D13E4B11DE8D7A0018DE1146FF'/>
+<L f='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' s='E0DDC76451FC44A83E4B11DEC0FD0018DE1146FF'/>
+<L f='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' s='E0DDC76451FC44A93E4B11DEB3B80018DE1146FF'/>
+<L f='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' s='E0DDC76451FC44AA3E4B11DEB68B0018DE1146FF'/>
+<L f='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' s='E0DDC76451FC44AB3E4B11DEA2240018DE1146FF'/>
+<L f='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' s='E0DDC76451FC44AC3E4B11DEB67F0018DE1146FF'/>
+<L f='E0DDC76451FC44D33E4B11DEBCB60018DE1146FF' s='E0DDC76451FC44D23E4B11DEAB7E0018DE1146FF'/>
+</Model.Contains>
+<Model.IsOfType c='1'>
+<L f='local:E07264A551F762DB3E4B11DEADE60018DE1146FF' s='E0DDC76451F9D3AB3E4B11DEC1360018DE1146FF'/>
+<L f='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' s='E0DDC76451F9D3AC3E4B11DE9C640018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451F9D3AE3E4B11DE910C0018DE1146FF'/>
+<L f='local:E0234C8C51E476D13E4B11DEBFA90018DE1146FF' s='E0DDC76451F9D3AF3E4B11DECF190018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3B13E4B11DEC7DE0018DE1146FF'/>
+<L f='local:E075D95551F2A7CD3E4B11DEAE830018DE1146FF' s='E0DDC76451F9D3B23E4B11DECF3A0018DE1146FF'/>
+<L f='local:E075D95551F2A7CD3E4B11DEAE830018DE1146FF' s='E0DDC76451F9D3B43E4B11DECBCE0018DE1146FF'/>
+<L f='E0DDC76451FC44953E4B11DEA2410018DE1146FF' s='E0DDC76451F9D3B53E4B11DE8B720018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3B83E4B11DEA8B70018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451F9D3B93E4B11DEA6AA0018DE1146FF'/>
+<L f='local:E0234C8C51E476D13E4B11DEBFA90018DE1146FF' s='E0DDC76451F9D3BB3E4B11DE9BAF0018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3BC3E4B11DE827A0018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3BE3E4B11DE94110018DE1146FF'/>
+<L f='local:E07264A551F762DB3E4B11DEADE60018DE1146FF' s='E0DDC76451F9D3BF3E4B11DE9E370018DE1146FF'/>
+<L f='local:E07264A551F762DB3E4B11DEADE60018DE1146FF' s='E0DDC76451F9D3C13E4B11DEBFA40018DE1146FF'/>
+<L f='E0DDC76451F9D3AD3E4B11DE81430018DE1146FF' s='E0DDC76451F9D3C23E4B11DEA3800018DE1146FF'/>
+<L f='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' s='E0DDC76451F9D3C43E4B11DEA3D60018DE1146FF'/>
+<L f='E0DDC76451F9D3AD3E4B11DE81430018DE1146FF' s='E0DDC76451F9D3C53E4B11DEBF670018DE1146FF'/>
+<L f='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF' s='E0DDC76451F9D3C73E4B11DEAE360018DE1146FF'/>
+<L f='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' s='E0DDC76451F9D3C83E4B11DE880F0018DE1146FF'/>
+<L f='local:E075D95551F2A7CD3E4B11DEAE830018DE1146FF' s='E0DDC76451F9D3CA3E4B11DEB2010018DE1146FF'/>
+<L f='E0DDC76451F9D3B33E4B11DE83BB0018DE1146FF' s='E0DDC76451F9D3CB3E4B11DEAEA30018DE1146FF'/>
+<L f='E0DDC76451F9D3CE3E4B11DE82860018DE1146FF' s='E0DDC76451F9D3D13E4B11DE9E870018DE1146FF'/>
+<L f='E0DDC76451F9D3D83E4B11DE85160018DE1146FF' s='E0DDC76451F9D3D33E4B11DEC4F80018DE1146FF'/>
+<L f='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF' s='E0DDC76451F9D3D53E4B11DEC37B0018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451F9D3D73E4B11DE91AE0018DE1146FF'/>
+<L f='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF' s='E0DDC76451F9D3D93E4B11DE9A7F0018DE1146FF'/>
+<L f='E0DDC76451F9D3D83E4B11DE85160018DE1146FF' s='E0DDC76451F9D3DB3E4B11DE9C090018DE1146FF'/>
+<L f='E0DDC76451FC44953E4B11DEA2410018DE1146FF' s='E0DDC76451F9D3DC3E4B11DEA0F90018DE1146FF'/>
+<L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='E0DDC76451F9D3DD3E4B11DE90700018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451FC44923E4B11DEC0B60018DE1146FF'/>
+<L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='E0DDC76451FC44933E4B11DE85960018DE1146FF'/>
+<L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='E0DDC76451FC44943E4B11DEAAD80018DE1146FF'/>
+<L f='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF' s='E0DDC76451FC44963E4B11DE95530018DE1146FF'/>
+<L f='E0DDC76451F9D3DA3E4B11DEBABA0018DE1146FF' s='E0DDC76451FC44973E4B11DE8FE00018DE1146FF'/>
+<L f='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF' s='E0DDC76451FC44993E4B11DEB5830018DE1146FF'/>
+<L f='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF' s='E0DDC76451FC449A3E4B11DE9BDF0018DE1146FF'/>
+<L f='E0DDC76451F9D3D83E4B11DE85160018DE1146FF' s='E0DDC76451FC449C3E4B11DEB60A0018DE1146FF'/>
+<L f='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF' s='E0DDC76451FC449D3E4B11DEC8790018DE1146FF'/>
+<L f='E0DDC76451F9D3CE3E4B11DE82860018DE1146FF' s='E0DDC76451FC449F3E4B11DE93AB0018DE1146FF'/>
+<L f='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' s='E0DDC76451FC44A03E4B11DE99940018DE1146FF'/>
+<L f='E0DDC76451F9D3D83E4B11DE85160018DE1146FF' s='E0DDC76451FC44A23E4B11DE85230018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451FC44A33E4B11DE857A0018DE1146FF'/>
+<L f='E0DDC76451FC44953E4B11DEA2410018DE1146FF' s='E0DDC76451FC44A53E4B11DEC4660018DE1146FF'/>
+<L f='E0DDC76451FC44903E4B11DE90300018DE1146FF' s='E0DDC76451FC44A63E4B11DEBFFE0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44AD3E4B11DE99FB0018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44AE3E4B11DEBD210018DE1146FF'/>
+<L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E0DDC76451FC44AF3E4B11DECEF20018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44B23E4B11DE84A20018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44B33E4B11DE85BD0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B43E4B11DEAE3C0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44B53E4B11DEA65D0018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44B63E4B11DECDA00018DE1146FF'/>
+<L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E0DDC76451FC44B73E4B11DEA6BF0018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44B93E4B11DEAAB30018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44BB3E4B11DE8AEF0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44BC3E4B11DE94F90018DE1146FF'/>
+<L f='E0DDC76451FC44BA3E4B11DECA7C0018DE1146FF' s='E0DDC76451FC44BD3E4B11DE891F0018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44BE3E4B11DEAC490018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44C03E4B11DE82230018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44C13E4B11DE81920018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44C33E4B11DEA4C00018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44C43E4B11DE8EEE0018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44C63E4B11DEAC100018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44C73E4B11DEC6580018DE1146FF'/>
+<L f='E0DDC76451FC44BA3E4B11DECA7C0018DE1146FF' s='E0DDC76451FC44C93E4B11DEB8670018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44CA3E4B11DEC1770018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44CC3E4B11DEBA720018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44CD3E4B11DE8E250018DE1146FF'/>
+<L f='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF' s='E0DDC76451FC44CF3E4B11DEC4960018DE1146FF'/>
+<L f='E0DDC76451FC44BF3E4B11DE98E20018DE1146FF' s='E0DDC76451FC44D03E4B11DE86980018DE1146FF'/>
+</Model.IsOfType>
+<Model.Generalizes c='1'>
+<L f='local:E07264A551F9D3903E4B11DEC5340018DE1146FF' s='E0DDC76451F9D3B03E4B11DEAFF20018DE1146FF'/>
+<L f='E0DDC76451F9D3CE3E4B11DE82860018DE1146FF' s='E0DDC76451F9D3CF3E4B11DEC7C80018DE1146FF'/>
+<L f='E0DDC76451F9D3CE3E4B11DE82860018DE1146FF' s='E0DDC76451F9D3D03E4B11DEB0AE0018DE1146FF'/>
+<L f='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' s='E0DDC76451F9D3D43E4B11DE8E190018DE1146FF'/>
+<L f='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' s='E0DDC76451F9D3D63E4B11DEAF630018DE1146FF'/>
+<L f='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' s='E0DDC76451F9D3D83E4B11DE85160018DE1146FF'/>
+<L f='E0DDC76451F9D3D23E4B11DE80C00018DE1146FF' s='E0DDC76451F9D3DA3E4B11DEBABA0018DE1146FF'/>
+<L f='local:E07264A551F9D3903E4B11DEC5340018DE1146FF' s='E0DDC76451FC44903E4B11DE90300018DE1146FF'/>
+<L f='local:E0234C8C51E6C0D23E4B11DE830D0018DE1146FF' s='E0DDC76451FC44903E4B11DE90300018DE1146FF'/>
+<L f='local:E07264A551F9D3903E4B11DEC5340018DE1146FF' s='E0DDC76451FC44953E4B11DEA2410018DE1146FF'/>
+<L f='E0DDC76451FC44B03E4B11DEBB480018DE1146FF' s='E0DDC76451FC44B83E4B11DEC4EE0018DE1146FF'/>
+</Model.Generalizes>
+</Partition>

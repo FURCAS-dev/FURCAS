@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='data.classes.Association' i='48071122676B42480C5C11DDB87700016CE99C52' ova='description'/>
+<M c='1' q='data.classes.AssociationEnd' i='48071122676CC8DC0C5C11DDC48F00016CE99C52' ova='description'/>
+<M c='1' q='data.classes.SapClass' i='48071122676E4F840C5C11DDCE5100016CE99C52' ova='description'/>
+<M c='1' q='data.classes.ClassTypeDefinition' i='48071122676FD61E0C5C11DD8E9900016CE99C52'/>
+<M c='1' q='data.classes.MethodSignature' i='48071122676FD6370C5C11DD9F8600016CE99C52' ova='description'/>
+<M c='1' q='data.classes.EndsOfAssociation' i='480711226772E35E0C5C11DD813000016CE99C52' ce='1' oe='0'/>
+<M c='1' q='data.classes.A_elementsOfType_clazz' i='480711226772E3700C5C11DDADB900016CE99C52' ce='-1' oe='-1'/>
+<M c='1' q='data.classes.A_associations_package_' i='480711226772E3730C5C11DDBE5400016CE99C52' ce='1' oe='-1'/>
+<M c='1' q='data.classes.A_package__classes' i='480711226772E3760C5C11DD845000016CE99C52' ce='0' oe='-1'/>
+<M c='1' q='data.classes.A_type_associationEnd' i='480711226772E37F0C5C11DD89BE00016CE99C52' ce='1' oe='-1'/>
+<M c='1' q='data.classes.OwnedSignatures' i='48071122677469FA0C5C11DDA86500016CE99C52' ce='1' oe='-1'/>
+<M c='1' q='modelmanagement.deploymentunits.DeploymentUnit' i='48071122677D91E70C5C11DDCCE000016CE99C52' ova='description'/>
+<M c='1' q='modelmanagement.deploymentunits.A_deploymentUnits_application' i='48071122677F18500C5C11DD82A800016CE99C52' ce='1' oe='-1'/>
+<M c='1' q='modelmanagement.Package' i='48071122677F18540C5C11DD83A300016CE99C52' ova='description'/>
+<M c='1' q='modelmanagement.Application' i='48071122677F185A0C5C11DD9E2E00016CE99C52' ova='description'/>
+<M c='1' q='modelmanagement.A_ownedPackages_owner' i='48071122677F18600C5C11DDAAF600016CE99C52' ce='1' oe='-1'/>
+<modelmanagement.Application m:c='1' m:i='48078872853FB3D00CA311DDC18800016CE99C52' name='myApplication'/>
+<modelmanagement.deploymentunits.DeploymentUnit m:c='1' m:i='4807889197C1DC900CA311DDAADA00016CE99C52' name='myDeploymentUnit'/>
+<modelmanagement.Package m:c='1' m:i='4807889FA00864500CA311DDC35700016CE99C52' name='myPackage'/>
+<data.classes.SapClass m:c='1' m:i='480788B3AC18C5500CA311DDA0BD00016CE99C52' name='Class1' valueType='false'/>
+<data.classes.SapClass m:c='1' m:i='480788B9AFD187900CA311DD86F300016CE99C52' name='Class2' valueType='false'/>
+<data.classes.Association m:c='1' m:i='480788C7B7D4C4C00CA311DDC37000016CE99C52' name='Class1ToClass2'/>
+<data.classes.AssociationEnd m:c='1' m:i='480788C7B7E407000CA311DDA37C00016CE99C52' name='' navigable='false' composite='false' readonly='false'/>
+<data.classes.ClassTypeDefinition m:c='1' m:i='480788C7B7F98AD00CA311DDAD7A00016CE99C52' lowerMultiplicity='0' upperMultiplicity='1' ordered='false' unique='false'/>
+<data.classes.AssociationEnd m:c='1' m:i='480788C7B80746700CA311DDBD8300016CE99C52' name='aClass2' navigable='true' composite='false' readonly='false'/>
+<data.classes.ClassTypeDefinition m:c='1' m:i='480788C7B80746710CA311DDB3DA00016CE99C52' lowerMultiplicity='0' upperMultiplicity='1' ordered='false' unique='false'/>
+<data.classes.MethodSignature m:c='1' m:i='48078911E3D962600CA311DDCAD100016CE99C52' name='myMethodSignature'/>
+<data.classes.EndsOfAssociation c='1'>
+<L f='480788C7B7E407000CA311DDA37C00016CE99C52' s='480788C7B7D4C4C00CA311DDC37000016CE99C52'/>
+<L f='480788C7B80746700CA311DDBD8300016CE99C52' s='480788C7B7D4C4C00CA311DDC37000016CE99C52'/>
+</data.classes.EndsOfAssociation>
+<data.classes.A_elementsOfType_clazz c='1'>
+<L f='480788C7B7F98AD00CA311DDAD7A00016CE99C52' s='480788B3AC18C5500CA311DDA0BD00016CE99C52'/>
+<L f='480788C7B80746710CA311DDB3DA00016CE99C52' s='480788B9AFD187900CA311DD86F300016CE99C52'/>
+</data.classes.A_elementsOfType_clazz>
+<data.classes.A_associations_package_ c='1'>
+<L f='480788C7B7D4C4C00CA311DDC37000016CE99C52' s='4807889FA00864500CA311DDC35700016CE99C52'/>
+</data.classes.A_associations_package_>
+<data.classes.A_package__classes c='1'>
+<L f='4807889FA00864500CA311DDC35700016CE99C52' s='480788B3AC18C5500CA311DDA0BD00016CE99C52'/>
+<L f='4807889FA00864500CA311DDC35700016CE99C52' s='480788B9AFD187900CA311DD86F300016CE99C52'/>
+</data.classes.A_package__classes>
+<data.classes.A_type_associationEnd c='1'>
+<L f='480788C7B7F98AD00CA311DDAD7A00016CE99C52' s='480788C7B7E407000CA311DDA37C00016CE99C52'/>
+<L f='480788C7B80746710CA311DDB3DA00016CE99C52' s='480788C7B80746700CA311DDBD8300016CE99C52'/>
+</data.classes.A_type_associationEnd>
+<data.classes.OwnedSignatures c='1'>
+<L f='48078911E3D962600CA311DDCAD100016CE99C52' s='480788B3AC18C5500CA311DDA0BD00016CE99C52'/>
+</data.classes.OwnedSignatures>
+<modelmanagement.deploymentunits.A_deploymentUnits_application c='1'>
+<L f='4807889197C1DC900CA311DDAADA00016CE99C52' s='48078872853FB3D00CA311DDC18800016CE99C52'/>
+</modelmanagement.deploymentunits.A_deploymentUnits_application>
+<modelmanagement.A_ownedPackages_owner c='1'>
+<L f='4807889FA00864500CA311DDC35700016CE99C52' s='4807889197C1DC900CA311DDAADA00016CE99C52'/>
+</modelmanagement.A_ownedPackages_owner>
+</Partition>

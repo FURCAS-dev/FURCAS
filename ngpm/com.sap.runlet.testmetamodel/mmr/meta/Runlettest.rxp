@@ -1,0 +1,84 @@
+Scoped Symbol Entered (Category): 'Logical View' with id S.228.1334.48.0
+Enter classes at top level
+Enter Category Hierarchy for: Logical View::PrimitiveTypes
+Scoped Symbol Entered (Category): 'PrimitiveTypes' with id S.228.1334.48.1
+Metamodel: PrimitiveTypes hasImplicitReferences = true
+Scoped Symbol Entered (DataType): 'Integer' with id S.228.1334.48.2
+Scoped Symbol Entered (DataType): 'Float' with id S.228.1334.48.3
+Scoped Symbol Entered (DataType): 'Double' with id S.228.1334.48.4
+Scoped Symbol Entered (DataType): 'String' with id S.228.1334.48.5
+Scoped Symbol Entered (DataType): 'Long' with id S.228.1334.48.6
+Scoped Symbol Entered (DataType): 'Boolean' with id S.228.1334.48.7
+Enter Category Hierarchy for: Logical View::Reflect
+Scoped Symbol Entered (Category): 'Reflect' with id S.228.1334.48.8
+Metamodel: Reflect hasImplicitReferences = true
+Scoped Symbol Entered (Class): 'Element' with id S.228.1334.48.9
+Enter Category Hierarchy for: Logical View::runlettest
+Scoped Symbol Entered (Category): 'runlettest' with id S.228.1334.48.10
+Metamodel: runlettest hasImplicitReferences = true
+Scoped Symbol Entered (Class): 'RunletTest' with id S.228.1334.48.11
+Scoped Symbol Entered (Class): 'Named' with id S.228.1334.48.12
+Scoped Symbol Entered (Attribute): 'name' with id S.228.1334.48.13
+Scoped Symbol Entered (Class): 'Subcomponent' with id S.228.1334.48.14
+Scoped Symbol Entered (Attribute): 'sub' with id S.228.1334.48.15
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'runletTest' with id S.228.1334.48.16
+Attribute was created for implicit Ref
+Generate for Model: Runlettest
+Create Package: Logical View::PrimitiveTypes
+Metamodel: PrimitiveTypes Create Package--hasImplicitReferences = true
+Create Class: Logical View::PrimitiveTypes::Integer
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Integer, the Corba type decl is long
+CreatePrimitiveType: long @ 
+Create Class: Logical View::PrimitiveTypes::Float
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Float, the Corba type decl is float
+CreatePrimitiveType: float @ 
+Create Class: Logical View::PrimitiveTypes::Double
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Double, the Corba type decl is double
+CreatePrimitiveType: double @ 
+Create Class: Logical View::PrimitiveTypes::String
+Suppressed tag: uml2mof.corbaType
+CreateDataType: String, the Corba type decl is wstring
+CreatePrimitiveType: wstring @ 
+Create Class: Logical View::PrimitiveTypes::Long
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Long, the Corba type decl is long long
+CreatePrimitiveType: long long @ 
+Create Class: Logical View::PrimitiveTypes::Boolean
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Boolean, the Corba type decl is boolean
+CreatePrimitiveType: boolean @ 
+Create Package: Logical View::Reflect
+Metamodel: Reflect Create Package--hasImplicitReferences = true
+Create Class: Logical View::Reflect::Element
+Create Package: Logical View::runlettest
+Metamodel: runlettest Create Package--hasImplicitReferences = true
+Create Class: Logical View::runlettest::RunletTest
+Create Reference in Class: Logical View::runlettest::RunletTest to Role: Logical View::runlettest::<unnamed>::sub
+  Class/UseCase/Interface: Subcomponent
+Create Class: Logical View::runlettest::Named
+Creating Import reference: Importer: runlettest, Exporter: PrimitiveTypes As: ''
+Create Class: Logical View::runlettest::Subcomponent
+Create Reference in Class: Logical View::runlettest::Subcomponent to Role: Logical View::runlettest::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Process Association: A_sub_runletTest:4A89403F02DE
+*Warning: Association found with no name between 'Subcomponent' and 'RunletTest'.  The name 'A_sub_runletTest' has been created for it.
+Create Association: A_sub_runletTest
+Create Association End: sub
+  Association End Type: Subcomponent
+     Qualified name: Logical View::runlettest::Subcomponent
+     TheType: Class
+     Stereotype: 
+  Association end added: runlettest.A_sub_runletTest.sub
+  Class/UseCase/Interface: Subcomponent
+Create Association End: 
+  Association End Type: RunletTest
+     Qualified name: Logical View::runlettest::RunletTest
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to runletTest
+  Association end added: runlettest.A_sub_runletTest.runletTest
+  Class/UseCase/Interface: RunletTest

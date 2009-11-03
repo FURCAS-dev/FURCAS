@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/coghead' i='1' v=''/>
+<M c='1' q='coghead.Application' i='49D62CFB32044565206511DEC07B0019D29902CC'/>
+<M c='1' q='coghead.ApplicationLevelPermission' i='49D62CFB3206B677206511DE99420019D29902CC'/>
+<M c='1' q='coghead.A_permissions_application' i='49D9FDBF649AC48822AB11DE9D2900155883529C' se='1' ce='1' oe='-1'/>
+<M c='1' q='coghead.A_rootPackages_myApplication' i='E05F18015DEA2E22493B11DEA723001A6BCDC3B3' se='1' ce='1' oe='-1'/>
+<coghead.Application m:c='1' m:i='E016575C51F680D04C4411DEAEF3001A6BCDC3B3' name='PartyOrganizer'/>
+<coghead.ApplicationLevelPermission m:c='1' m:i='E016575C522AFE504C4411DEB5B9001A6BCDC3B3'/>
+<coghead.A_permissions_application c='1'>
+<L f='E016575C522AFE504C4411DEB5B9001A6BCDC3B3' s='E016575C51F680D04C4411DEAEF3001A6BCDC3B3'/>
+</coghead.A_permissions_application>
+<coghead.A_rootPackages_myApplication c='1'>
+<L f='local:E012BF1E682ED3C04C4411DE90C3001A6BCDC3B3' s='E016575C51F680D04C4411DEAEF3001A6BCDC3B3'/>
+<L f='local:E016575C761702004C4411DE8F28001A6BCDC3B3' s='E016575C51F680D04C4411DEAEF3001A6BCDC3B3'/>
+</coghead.A_rootPackages_myApplication>
+</Partition>

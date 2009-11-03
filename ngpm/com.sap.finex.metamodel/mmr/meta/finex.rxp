@@ -1,0 +1,950 @@
+Scoped Symbol Entered (Category): 'Logical View' with id S.299.1633.14.0
+Enter classes at top level
+Enter Category Hierarchy for: Logical View::Reflect
+Scoped Symbol Entered (Category): 'Reflect' with id S.299.1633.14.1
+Metamodel: Reflect hasImplicitReferences = true
+Scoped Symbol Entered (Class): 'Element' with id S.299.1633.14.2
+Enter Category Hierarchy for: Logical View::PrimitiveTypes
+Scoped Symbol Entered (Category): 'PrimitiveTypes' with id S.299.1633.14.3
+Metamodel: PrimitiveTypes hasImplicitReferences = true
+Scoped Symbol Entered (DataType): 'Integer' with id S.299.1633.14.4
+Scoped Symbol Entered (DataType): 'Float' with id S.299.1633.14.5
+Scoped Symbol Entered (DataType): 'Double' with id S.299.1633.14.6
+Scoped Symbol Entered (DataType): 'String' with id S.299.1633.14.7
+Scoped Symbol Entered (DataType): 'Long' with id S.299.1633.14.8
+Scoped Symbol Entered (DataType): 'Boolean' with id S.299.1633.14.9
+Enter Category Hierarchy for: Logical View::finex
+Scoped Symbol Entered (Category): 'finex' with id S.299.1633.14.10
+Metamodel: finex hasImplicitReferences = true
+Enter Category Hierarchy for: Logical View::finex::modelmanagement
+Scoped Symbol Entered (Category): 'modelmanagement' with id S.299.1633.14.11
+Scoped Symbol Entered (Class): 'NamedElement' with id S.299.1633.14.12
+Scoped Symbol Entered (Attribute): 'name' with id S.299.1633.14.13
+Enter Category Hierarchy for: Logical View::structure
+Scoped Symbol Entered (Category): 'structure' with id S.299.1633.14.14
+Metamodel: structure hasImplicitReferences = true
+Scoped Symbol Entered (Class): 'FinexClass' with id S.299.1633.14.15
+Scoped Symbol Entered (Attribute): 'valueType' with id S.299.1633.14.16
+Scoped Symbol Entered (Operation): 'getNavigableFields' with id S.299.1633.14.17
+Scoped Symbol Entered (Constraint): 'OnlyOneUnnamedFunction' with id S.299.1633.14.18
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.19
+Scoped Symbol Entered (Constraint): 'InvariantsMustBeBoolean' with id S.299.1633.14.20
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.21
+Scoped Symbol Entered (Constraint): 'InvariantsMustBeSideEffectFree' with id S.299.1633.14.22
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.23
+Scoped Symbol Entered (Constraint): 'FieldsMustHaveUniqueNames' with id S.299.1633.14.24
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.25
+Scoped Symbol Entered (Class): 'Field' with id S.299.1633.14.26
+Scoped Symbol Entered (Attribute): 'key' with id S.299.1633.14.27
+Scoped Symbol Entered (Attribute): 'mandatory' with id S.299.1633.14.28
+Scoped Symbol Entered (Attribute): 'singleMultiplicity' with id S.299.1633.14.29
+Scoped Symbol Entered (Attribute): 'navigable' with id S.299.1633.14.30
+Scoped Symbol Entered (Operation): 'otherEnd' with id S.299.1633.14.31
+Scoped Symbol Entered (Operation): 'getNavigableFrom' with id S.299.1633.14.32
+Scoped Symbol Entered (Constraint): 'NotBothDefaultValueAndDetermination' with id S.299.1633.14.33
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.34
+Scoped Symbol Entered (Constraint): 'DefaultTypeMustMatch' with id S.299.1633.14.35
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.36
+Scoped Symbol Entered (Constraint): 'DeterminationTypeMustMatch' with id S.299.1633.14.37
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.38
+Scoped Symbol Entered (Constraint): 'DeterminationMustBeSideEffectFree' with id S.299.1633.14.39
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.40
+Scoped Symbol Entered (Class): 'Type' with id S.299.1633.14.41
+Scoped Symbol Entered (Class): 'TypedElement' with id S.299.1633.14.42
+Scoped Symbol Entered (Operation): 'getImpliedType' with id S.299.1633.14.43
+Scoped Symbol Entered (Class): 'Defaultable' with id S.299.1633.14.44
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.299.1633.14.45
+Scoped Symbol Entered (Class): 'Association' with id S.299.1633.14.46
+Scoped Symbol Entered (Attribute): 'defaultValue' with id S.299.1633.14.47
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'defaultOf' with id S.299.1633.14.48
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'invariants' with id S.299.1633.14.49
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'invariantOf' with id S.299.1633.14.50
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'type' with id S.299.1633.14.51
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'typedElement' with id S.299.1633.14.52
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'ownedTypes' with id S.299.1633.14.53
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'owner' with id S.299.1633.14.54
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'functions' with id S.299.1633.14.55
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'owner' with id S.299.1633.14.56
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'determination' with id S.299.1633.14.57
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'determinationOf' with id S.299.1633.14.58
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'ends' with id S.299.1633.14.59
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'association' with id S.299.1633.14.60
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'associations' with id S.299.1633.14.61
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'clazz' with id S.299.1633.14.62
+Attribute was created for implicit Ref
+Enter Category Hierarchy for: Logical View::behavior
+Scoped Symbol Entered (Category): 'behavior' with id S.299.1633.14.63
+Metamodel: behavior hasImplicitReferences = true
+Enter Category Hierarchy for: Logical View::behavior::expressions
+Scoped Symbol Entered (Category): 'expressions' with id S.299.1633.14.64
+Scoped Symbol Entered (Class): 'Expression' with id S.299.1633.14.65
+Scoped Symbol Entered (Operation): 'isNumeric' with id S.299.1633.14.66
+Scoped Symbol Entered (Operation): 'isBoolean' with id S.299.1633.14.67
+Scoped Symbol Entered (Operation): 'numericPostType' with id S.299.1633.14.68
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.299.1633.14.69
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.299.1633.14.70
+Scoped Symbol Entered (Class): 'BinaryBooleanOperator' with id S.299.1633.14.71
+Scoped Symbol Entered (Constraint): 'OperandsMustBeBoolean' with id S.299.1633.14.72
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.73
+Scoped Symbol Entered (Class): 'Not' with id S.299.1633.14.74
+Scoped Symbol Entered (Class): 'BinaryNumericOperator' with id S.299.1633.14.75
+Scoped Symbol Entered (Constraint): 'OperandsMustBeNumeric' with id S.299.1633.14.76
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.77
+Scoped Symbol Entered (Class): 'UnaryNumericOperator' with id S.299.1633.14.78
+Scoped Symbol Entered (Constraint): 'OperandMustBeNumeric' with id S.299.1633.14.79
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.80
+Scoped Symbol Entered (Class): 'BooleanOperatorExpression' with id S.299.1633.14.81
+Scoped Symbol Entered (Attribute): 'operator' with id S.299.1633.14.82
+Scoped Symbol Entered (Constraint): 'HasBooleanResult' with id S.299.1633.14.83
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.84
+Scoped Symbol Entered (Class): 'NumericOperatorExpression' with id S.299.1633.14.85
+Scoped Symbol Entered (Attribute): 'operator' with id S.299.1633.14.86
+Scoped Symbol Entered (Constraint): 'OperatorResultType' with id S.299.1633.14.87
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.88
+Scoped Symbol Entered (Class): 'FilterExpression' with id S.299.1633.14.89
+Scoped Symbol Entered (Constraint): 'TypeIsSameAsOperand' with id S.299.1633.14.90
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.91
+Scoped Symbol Entered (Constraint): 'ConditionIsSideEffectFree' with id S.299.1633.14.92
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.93
+Scoped Symbol Entered (Class): 'PathExpression' with id S.299.1633.14.94
+Scoped Symbol Entered (Constraint): 'SourceTypeMustHaveField' with id S.299.1633.14.95
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.96
+Scoped Symbol Entered (Constraint): 'PathExpressionTypeIsFieldType' with id S.299.1633.14.97
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.98
+Scoped Symbol Entered (Class): 'Count' with id S.299.1633.14.99
+Scoped Symbol Entered (Constraint): 'CountHasIntegerValue' with id S.299.1633.14.100
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.101
+Scoped Symbol Entered (Class): 'UnaryOperator' with id S.299.1633.14.102
+Scoped Symbol Entered (Class): 'UnaryMinus' with id S.299.1633.14.103
+Scoped Symbol Entered (Class): 'NumericAggregate' with id S.299.1633.14.104
+Scoped Symbol Entered (Class): 'UnaryBooleanOperator' with id S.299.1633.14.105
+Scoped Symbol Entered (Constraint): 'OperandMustBeBoolean' with id S.299.1633.14.106
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.107
+Scoped Symbol Entered (Class): 'BooleanAggregate' with id S.299.1633.14.108
+Scoped Symbol Entered (Class): 'Single' with id S.299.1633.14.109
+Scoped Symbol Entered (Constraint): 'OutputTypeEqualsOperandType' with id S.299.1633.14.110
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.111
+Scoped Symbol Entered (Class): 'This' with id S.299.1633.14.112
+Scoped Symbol Entered (Class): 'FirstPathExpression' with id S.299.1633.14.113
+Scoped Symbol Entered (Class): 'BinaryOperator' with id S.299.1633.14.114
+Scoped Symbol Entered (Class): 'WithArgument' with id S.299.1633.14.115
+Scoped Symbol Entered (Attribute): 'left' with id S.299.1633.14.116
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'leftOf' with id S.299.1633.14.117
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'right' with id S.299.1633.14.118
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'rightOf' with id S.299.1633.14.119
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'condition' with id S.299.1633.14.120
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'conditionOf' with id S.299.1633.14.121
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'field' with id S.299.1633.14.122
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'pathExpression' with id S.299.1633.14.123
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'operandOf' with id S.299.1633.14.124
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'operand' with id S.299.1633.14.125
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'argument' with id S.299.1633.14.126
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'withArgument' with id S.299.1633.14.127
+Attribute was created for implicit Ref
+Enter Category Hierarchy for: Logical View::behavior::expressions::literals
+Scoped Symbol Entered (Category): 'literals' with id S.299.1633.14.128
+Scoped Symbol Entered (Class): 'Literal' with id S.299.1633.14.129
+Scoped Symbol Entered (Attribute): 'literal' with id S.299.1633.14.130
+Scoped Symbol Entered (Class): 'StringLiteral' with id S.299.1633.14.131
+Scoped Symbol Entered (Class): 'BooleanLiteral' with id S.299.1633.14.132
+Scoped Symbol Entered (Class): 'IntegerLiteral' with id S.299.1633.14.133
+Scoped Symbol Entered (Class): 'DecimalLiteral' with id S.299.1633.14.134
+Scoped Symbol Entered (Class): 'DateLiteral' with id S.299.1633.14.135
+Scoped Symbol Entered (Class): 'BinaryLiteral' with id S.299.1633.14.136
+Enter Category Hierarchy for: Logical View::behavior::actions
+Scoped Symbol Entered (Category): 'actions' with id S.299.1633.14.137
+Scoped Symbol Entered (Class): 'Block' with id S.299.1633.14.138
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.299.1633.14.139
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.299.1633.14.140
+Scoped Symbol Entered (Operation): 'getOuterMostBlock' with id S.299.1633.14.141
+Scoped Symbol Entered (Class): 'Statement' with id S.299.1633.14.142
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.299.1633.14.143
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.299.1633.14.144
+Scoped Symbol Entered (Class): 'ExpressionStatement' with id S.299.1633.14.145
+Scoped Symbol Entered (Class): 'StatementWithNestedBlock' with id S.299.1633.14.146
+Scoped Symbol Entered (Class): 'Foreach' with id S.299.1633.14.147
+Scoped Symbol Entered (Class): 'SingleBlockStatement' with id S.299.1633.14.148
+Scoped Symbol Entered (Class): 'NamedValue' with id S.299.1633.14.149
+Scoped Symbol Entered (Class): 'NamedValueWithOptionalInitExpression' with id S.299.1633.14.150
+Scoped Symbol Entered (Class): 'Variable' with id S.299.1633.14.151
+Scoped Symbol Entered (Class): 'NamedValueDeclaration' with id S.299.1633.14.152
+Scoped Symbol Entered (Class): 'Assignment' with id S.299.1633.14.153
+Scoped Symbol Entered (Constraint): 'NoAssigmentAllowedToFieldsWithDetermination' with id S.299.1633.14.154
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.155
+Scoped Symbol Entered (Constraint): 'ExpressionTypeMustConformToAssignmentTargetType' with id S.299.1633.14.156
+Scoped Symbol Entered (Operation): 'OCL' with id S.299.1633.14.157
+Scoped Symbol Entered (Class): 'StatementWithArgument' with id S.299.1633.14.158
+Scoped Symbol Entered (Attribute): 'statements' with id S.299.1633.14.159
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'block' with id S.299.1633.14.160
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'expression' with id S.299.1633.14.161
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'expressionStatement' with id S.299.1633.14.162
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'nestedBlocks' with id S.299.1633.14.163
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'owningStatement' with id S.299.1633.14.164
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'initExpression' with id S.299.1633.14.165
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'namedValueWithOptionalInitExpression' with id S.299.1633.14.166
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'namedValue' with id S.299.1633.14.167
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'namedValueDeclaration' with id S.299.1633.14.168
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'namedValues' with id S.299.1633.14.169
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'block' with id S.299.1633.14.170
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'assignTo' with id S.299.1633.14.171
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'assignment' with id S.299.1633.14.172
+Attribute was created for implicit Ref
+Enter Category Hierarchy for: Logical View::behavior::functions
+Scoped Symbol Entered (Category): 'functions' with id S.299.1633.14.173
+Scoped Symbol Entered (Class): 'Function' with id S.299.1633.14.174
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.299.1633.14.175
+Scoped Symbol Entered (Class): 'Parameter' with id S.299.1633.14.176
+Scoped Symbol Entered (Attribute): 'direction' with id S.299.1633.14.177
+Scoped Symbol Entered (Class): 'Direction' with id S.299.1633.14.178
+Scoped Symbol Entered (Attribute): 'IN' with id S.299.1633.14.179
+Scoped Symbol Entered (Attribute): 'OUT' with id S.299.1633.14.180
+Scoped Symbol Entered (Attribute): 'implementation' with id S.299.1633.14.181
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'signature' with id S.299.1633.14.182
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'parameters' with id S.299.1633.14.183
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'signature' with id S.299.1633.14.184
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'expression' with id S.299.1633.14.185
+Attribute was created for implicit Ref
+Scoped Symbol Entered (Attribute): 'parameter' with id S.299.1633.14.186
+Attribute was created for implicit Ref
+Generate for Model: finex
+Create Package: Logical View::Reflect
+Metamodel: Reflect Create Package--hasImplicitReferences = true
+Create Class: Logical View::Reflect::Element
+Create Package: Logical View::PrimitiveTypes
+Metamodel: PrimitiveTypes Create Package--hasImplicitReferences = true
+Create Class: Logical View::PrimitiveTypes::Integer
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Integer, the Corba type decl is long
+CreatePrimitiveType: long @ 
+Create Class: Logical View::PrimitiveTypes::Float
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Float, the Corba type decl is float
+CreatePrimitiveType: float @ 
+Create Class: Logical View::PrimitiveTypes::Double
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Double, the Corba type decl is double
+CreatePrimitiveType: double @ 
+Create Class: Logical View::PrimitiveTypes::String
+Suppressed tag: uml2mof.corbaType
+CreateDataType: String, the Corba type decl is wstring
+CreatePrimitiveType: wstring @ 
+Create Class: Logical View::PrimitiveTypes::Long
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Long, the Corba type decl is long long
+CreatePrimitiveType: long long @ 
+Create Class: Logical View::PrimitiveTypes::Boolean
+Suppressed tag: uml2mof.corbaType
+CreateDataType: Boolean, the Corba type decl is boolean
+CreatePrimitiveType: boolean @ 
+Create Package: Logical View::finex
+Metamodel: finex Create Package--hasImplicitReferences = true
+Suppressed tag: uml2mof.clusteredImport
+Creating Import reference: Importer: finex, Exporter: structure As: ''
+Creating Import reference: Importer: finex, Exporter: behavior As: ''
+Create Package: Logical View::finex::modelmanagement
+Create Class: Logical View::finex::modelmanagement::NamedElement
+Creating Import reference: Importer: finex, Exporter: PrimitiveTypes As: ''
+Create Package: Logical View::structure
+Metamodel: structure Create Package--hasImplicitReferences = true
+Create Class: Logical View::structure::FinexClass
+Create Reference in Class: Logical View::structure::FinexClass to Role: Logical View::structure::<unnamed>::invariants
+  Class/UseCase/Interface: Expression
+Create Reference in Class: Logical View::structure::FinexClass to Role: Logical View::structure::<unnamed>::ownedTypes
+  Class/UseCase/Interface: Type
+Create Reference in Class: Logical View::structure::FinexClass to Role: Logical View::structure::<unnamed>::functions
+  Class/UseCase/Interface: Function
+Create Reference in Class: Logical View::structure::FinexClass to Role: Logical View::structure::<unnamed>::associations
+  Class/UseCase/Interface: Association
+Creating Import reference: Importer: structure, Exporter: PrimitiveTypes As: ''
+Suppressed tag: rose2mof.isQuery
+Suppressed tag: rose2mof.return.multiplicity
+Create Constraint: Logical View::structure::FinexClass::OnlyOneUnnamedFunction
+Create Constraint: Logical View::structure::FinexClass::InvariantsMustBeBoolean
+Create Constraint: Logical View::structure::FinexClass::InvariantsMustBeSideEffectFree
+Create Constraint: Logical View::structure::FinexClass::FieldsMustHaveUniqueNames
+Create Class: Logical View::structure::Field
+Create Reference in Class: Logical View::structure::Field to Role: Logical View::structure::<unnamed>::determination
+  Class/UseCase/Interface: Expression
+Create Reference in Class: Logical View::structure::Field to Role: Logical View::structure::AssociationEnds::association
+**** Reference not processed: not navigable
+Create Reference in Class: Logical View::structure::Field to Role: Logical View::behavior::expressions::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Create Reference in Class: Logical View::structure::Field to Role: Logical View::behavior::actions::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Suppressed tag: rose2mof.isQuery
+Suppressed tag: rose2mof.isQuery
+Create Constraint: Logical View::structure::Field::NotBothDefaultValueAndDetermination
+Create Constraint: Logical View::structure::Field::DefaultTypeMustMatch
+Create Constraint: Logical View::structure::Field::DeterminationTypeMustMatch
+Create Constraint: Logical View::structure::Field::DeterminationMustBeSideEffectFree
+Create Class: Logical View::structure::Type
+Create Reference in Class: Logical View::structure::Type to Role: Logical View::structure::<unnamed>::typedElement
+**** Reference not processed: not navigable
+Create Reference in Class: Logical View::structure::Type to Role: Logical View::structure::<unnamed>::owner
+  Class/UseCase/Interface: FinexClass
+Create Class: Logical View::structure::TypedElement
+Create Reference in Class: Logical View::structure::TypedElement to Role: Logical View::structure::<unnamed>::type
+  Class/UseCase/Interface: Type
+Create Class: Logical View::structure::Defaultable
+Create Reference in Class: Logical View::structure::Defaultable to Role: Logical View::structure::<unnamed>::defaultValue
+  Class/UseCase/Interface: Expression
+Suppressed tag: rose2mof.isQuery
+Create Class: Logical View::structure::Association
+Create Reference in Class: Logical View::structure::Association to Role: Logical View::structure::AssociationEnds::ends
+  Class/UseCase/Interface: Field
+Create Reference in Class: Logical View::structure::Association to Role: Logical View::structure::<unnamed>::clazz
+**** Reference not processed: not navigable
+Process Association: A_defaultValue_defaultOf:4AC9BBF5030D
+*Warning: Association found with no name between 'Expression' and 'Defaultable'.  The name 'A_defaultValue_defaultOf' has been created for it.
+Create Association: A_defaultValue_defaultOf
+Create Association End: defaultValue
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_defaultValue_defaultOf.defaultValue
+Creating Import reference: Importer: structure, Exporter: behavior As: ''
+  Class/UseCase/Interface: Expression
+Create Association End: defaultOf
+  Association End Type: Defaultable
+     Qualified name: Logical View::structure::Defaultable
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_defaultValue_defaultOf.defaultOf
+  Class/UseCase/Interface: Defaultable
+Process Association: A_invariants_invariantOf:4AC9BC39033C
+*Warning: Association found with no name between 'Expression' and 'FinexClass'.  The name 'A_invariants_invariantOf' has been created for it.
+Create Association: A_invariants_invariantOf
+Create Association End: invariants
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_invariants_invariantOf.invariants
+  Class/UseCase/Interface: Expression
+Create Association End: invariantOf
+  Association End Type: FinexClass
+     Qualified name: Logical View::structure::FinexClass
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_invariants_invariantOf.invariantOf
+  Class/UseCase/Interface: FinexClass
+Process Association: A_type_typedElement:4AC9F913007D
+*Warning: Association found with no name between 'Type' and 'TypedElement'.  The name 'A_type_typedElement' has been created for it.
+Create Association: A_type_typedElement
+Create Association End: type
+  Association End Type: Type
+     Qualified name: Logical View::structure::Type
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_type_typedElement.type
+  Class/UseCase/Interface: Type
+Create Association End: typedElement
+  Association End Type: TypedElement
+     Qualified name: Logical View::structure::TypedElement
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_type_typedElement.typedElement
+  Class/UseCase/Interface: TypedElement
+Process Association: A_ownedTypes_owner:4AC9F9380119
+*Warning: Association found with no name between 'Type' and 'FinexClass'.  The name 'A_ownedTypes_owner' has been created for it.
+Create Association: A_ownedTypes_owner
+Create Association End: ownedTypes
+  Association End Type: Type
+     Qualified name: Logical View::structure::Type
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_ownedTypes_owner.ownedTypes
+  Class/UseCase/Interface: Type
+Create Association End: owner
+  Association End Type: FinexClass
+     Qualified name: Logical View::structure::FinexClass
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_ownedTypes_owner.owner
+  Class/UseCase/Interface: FinexClass
+Process Association: A_functions_owner:4ACA57A2000C
+*Warning: Association found with no name between 'Function' and 'FinexClass'.  The name 'A_functions_owner' has been created for it.
+Create Association: A_functions_owner
+Create Association End: functions
+  Association End Type: Function
+     Qualified name: Logical View::behavior::functions::Function
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_functions_owner.functions
+  Class/UseCase/Interface: Function
+Create Association End: owner
+  Association End Type: FinexClass
+     Qualified name: Logical View::structure::FinexClass
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_functions_owner.owner
+  Class/UseCase/Interface: FinexClass
+Process Association: A_determination_determinationOf:4ACB3B270177
+*Warning: Association found with no name between 'Expression' and 'Field'.  The name 'A_determination_determinationOf' has been created for it.
+Create Association: A_determination_determinationOf
+Create Association End: determination
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_determination_determinationOf.determination
+  Class/UseCase/Interface: Expression
+Create Association End: determinationOf
+  Association End Type: Field
+     Qualified name: Logical View::structure::Field
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_determination_determinationOf.determinationOf
+  Class/UseCase/Interface: Field
+Process Association: AssociationEnds:4AD83DB000CB
+Create Association: AssociationEnds
+Create Association End: ends
+  Association End Type: Field
+     Qualified name: Logical View::structure::Field
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.AssociationEnds.ends
+  Class/UseCase/Interface: Field
+Create Association End: association
+  Association End Type: Association
+     Qualified name: Logical View::structure::Association
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.AssociationEnds.association
+  Class/UseCase/Interface: Association
+Process Association: A_associations_clazz:4AD8479100EA
+*Warning: Association found with no name between 'Association' and 'FinexClass'.  The name 'A_associations_clazz' has been created for it.
+Create Association: A_associations_clazz
+Create Association End: associations
+  Association End Type: Association
+     Qualified name: Logical View::structure::Association
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_associations_clazz.associations
+  Class/UseCase/Interface: Association
+Create Association End: clazz
+  Association End Type: FinexClass
+     Qualified name: Logical View::structure::FinexClass
+     TheType: Class
+     Stereotype: 
+  Association end added: structure.A_associations_clazz.clazz
+  Class/UseCase/Interface: FinexClass
+Create import due to class gen. Parent = Logical View::finex::modelmanagement::NamedElement. Child = Logical View::structure::Field
+Creating Import reference: Importer: structure, Exporter: finex As: ''
+Create import due to class gen. Parent = Logical View::finex::modelmanagement::NamedElement. Child = Logical View::structure::Type
+Create import due to class gen. Parent = Logical View::finex::modelmanagement::NamedElement. Child = Logical View::structure::Association
+Create Package: Logical View::behavior
+Metamodel: behavior Create Package--hasImplicitReferences = true
+Create Package: Logical View::behavior::expressions
+Create Package: Logical View::behavior::expressions::literals
+Create Class: Logical View::behavior::expressions::literals::Literal
+Creating Import reference: Importer: behavior, Exporter: PrimitiveTypes As: ''
+Create Class: Logical View::behavior::expressions::literals::StringLiteral
+Create Class: Logical View::behavior::expressions::literals::BooleanLiteral
+Create Class: Logical View::behavior::expressions::literals::IntegerLiteral
+Create Class: Logical View::behavior::expressions::literals::DecimalLiteral
+Create Class: Logical View::behavior::expressions::literals::DateLiteral
+Create Class: Logical View::behavior::expressions::literals::BinaryLiteral
+Create Class: Logical View::behavior::expressions::Expression
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::expressions::<unnamed>::leftOf
+  Class/UseCase/Interface: BinaryOperator
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::expressions::<unnamed>::rightOf
+  Class/UseCase/Interface: BinaryOperator
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::expressions::<unnamed>::conditionOf
+  Class/UseCase/Interface: FilterExpression
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::expressions::<unnamed>::operandOf
+  Class/UseCase/Interface: UnaryOperator
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::expressions::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::actions::<unnamed>::expressionStatement
+**** Reference not processed: association in different package
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::actions::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::behavior::functions::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::structure::<unnamed>::defaultOf
+**** Reference not processed: association in different package
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::structure::<unnamed>::invariantOf
+**** Reference not processed: association in different package
+Create Reference in Class: Logical View::behavior::expressions::Expression to Role: Logical View::structure::<unnamed>::determinationOf
+**** Reference not processed: association in different package
+Suppressed tag: rose2mof.isQuery
+Creating Import reference: Importer: behavior, Exporter: structure As: ''
+Suppressed tag: rose2mof.isQuery
+Suppressed tag: rose2mof.isQuery
+Create Class: Logical View::behavior::expressions::BinaryBooleanOperator
+Create Constraint: Logical View::behavior::expressions::BinaryBooleanOperator::OperandsMustBeBoolean
+Create Class: Logical View::behavior::expressions::Not
+Create Class: Logical View::behavior::expressions::BinaryNumericOperator
+Create Constraint: Logical View::behavior::expressions::BinaryNumericOperator::OperandsMustBeNumeric
+Create Class: Logical View::behavior::expressions::UnaryNumericOperator
+Create Constraint: Logical View::behavior::expressions::UnaryNumericOperator::OperandMustBeNumeric
+Create Class: Logical View::behavior::expressions::BooleanOperatorExpression
+Create Constraint: Logical View::behavior::expressions::BooleanOperatorExpression::HasBooleanResult
+Create Class: Logical View::behavior::expressions::NumericOperatorExpression
+Create Constraint: Logical View::behavior::expressions::NumericOperatorExpression::OperatorResultType
+Create Class: Logical View::behavior::expressions::FilterExpression
+Create Reference in Class: Logical View::behavior::expressions::FilterExpression to Role: Logical View::behavior::expressions::<unnamed>::condition
+  Class/UseCase/Interface: Expression
+Create Constraint: Logical View::behavior::expressions::FilterExpression::TypeIsSameAsOperand
+Create Constraint: Logical View::behavior::expressions::FilterExpression::ConditionIsSideEffectFree
+Create Class: Logical View::behavior::expressions::PathExpression
+Create Reference in Class: Logical View::behavior::expressions::PathExpression to Role: Logical View::behavior::expressions::<unnamed>::field
+  Class/UseCase/Interface: Field
+Create Constraint: Logical View::behavior::expressions::PathExpression::SourceTypeMustHaveField
+Create Constraint: Logical View::behavior::expressions::PathExpression::PathExpressionTypeIsFieldType
+Create Class: Logical View::behavior::expressions::Count
+Create Constraint: Logical View::behavior::expressions::Count::CountHasIntegerValue
+Create Class: Logical View::behavior::expressions::UnaryOperator
+Create Reference in Class: Logical View::behavior::expressions::UnaryOperator to Role: Logical View::behavior::expressions::<unnamed>::operand
+  Class/UseCase/Interface: Expression
+Create Class: Logical View::behavior::expressions::UnaryMinus
+Create Class: Logical View::behavior::expressions::NumericAggregate
+Create Class: Logical View::behavior::expressions::UnaryBooleanOperator
+Create Constraint: Logical View::behavior::expressions::UnaryBooleanOperator::OperandMustBeBoolean
+Create Class: Logical View::behavior::expressions::BooleanAggregate
+Create Class: Logical View::behavior::expressions::Single
+Create Constraint: Logical View::behavior::expressions::Single::OutputTypeEqualsOperandType
+Create Class: Logical View::behavior::expressions::This
+Create Class: Logical View::behavior::expressions::FirstPathExpression
+Create Class: Logical View::behavior::expressions::BinaryOperator
+Create Reference in Class: Logical View::behavior::expressions::BinaryOperator to Role: Logical View::behavior::expressions::<unnamed>::left
+  Class/UseCase/Interface: Expression
+Create Reference in Class: Logical View::behavior::expressions::BinaryOperator to Role: Logical View::behavior::expressions::<unnamed>::right
+  Class/UseCase/Interface: Expression
+Create Class: Logical View::behavior::expressions::WithArgument
+Create Reference in Class: Logical View::behavior::expressions::WithArgument to Role: Logical View::behavior::expressions::<unnamed>::argument
+  Class/UseCase/Interface: Expression
+Process Association: A_left_leftOf:4ACB431400DA
+*Warning: Association found with no name between 'Expression' and 'BinaryOperator'.  The name 'A_left_leftOf' has been created for it.
+Create Association: A_left_leftOf
+Create Association End: left
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_left_leftOf.left
+  Class/UseCase/Interface: Expression
+Create Association End: leftOf
+  Association End Type: BinaryOperator
+     Qualified name: Logical View::behavior::expressions::BinaryOperator
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_left_leftOf.leftOf
+  Class/UseCase/Interface: BinaryOperator
+Process Association: A_right_rightOf:4ACB4316009C
+*Warning: Association found with no name between 'Expression' and 'BinaryOperator'.  The name 'A_right_rightOf' has been created for it.
+Create Association: A_right_rightOf
+Create Association End: right
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_right_rightOf.right
+  Class/UseCase/Interface: Expression
+Create Association End: rightOf
+  Association End Type: BinaryOperator
+     Qualified name: Logical View::behavior::expressions::BinaryOperator
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_right_rightOf.rightOf
+  Class/UseCase/Interface: BinaryOperator
+Process Association: A_condition_conditionOf:4ACDBCC70242
+*Warning: Association found with no name between 'Expression' and 'FilterExpression'.  The name 'A_condition_conditionOf' has been created for it.
+Create Association: A_condition_conditionOf
+Create Association End: condition
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_condition_conditionOf.condition
+  Class/UseCase/Interface: Expression
+Create Association End: conditionOf
+  Association End Type: FilterExpression
+     Qualified name: Logical View::behavior::expressions::FilterExpression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_condition_conditionOf.conditionOf
+  Class/UseCase/Interface: FilterExpression
+Process Association: A_field_pathExpression:4ACDBEC100EA
+*Warning: Association found with no name between 'Field' and 'PathExpression'.  The name 'A_field_pathExpression' has been created for it.
+Create Association: A_field_pathExpression
+Create Association End: field
+  Association End Type: Field
+     Qualified name: Logical View::structure::Field
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_field_pathExpression.field
+  Class/UseCase/Interface: Field
+Create Association End: 
+  Association End Type: PathExpression
+     Qualified name: Logical View::behavior::expressions::PathExpression
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to pathExpression
+  Association end added: behavior.expressions.A_field_pathExpression.pathExpression
+  Class/UseCase/Interface: PathExpression
+Process Association: A_operandOf_operand:4ACDC45201F4
+*Warning: Association found with no name between 'UnaryOperator' and 'Expression'.  The name 'A_operandOf_operand' has been created for it.
+Create Association: A_operandOf_operand
+Create Association End: operandOf
+  Association End Type: UnaryOperator
+     Qualified name: Logical View::behavior::expressions::UnaryOperator
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_operandOf_operand.operandOf
+  Class/UseCase/Interface: UnaryOperator
+Create Association End: operand
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_operandOf_operand.operand
+  Class/UseCase/Interface: Expression
+Process Association: A_argument_withArgument:4AD819CD00AB
+*Warning: Association found with no name between 'Expression' and 'WithArgument'.  The name 'A_argument_withArgument' has been created for it.
+Create Association: A_argument_withArgument
+Create Association End: argument
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.expressions.A_argument_withArgument.argument
+  Class/UseCase/Interface: Expression
+Create Association End: 
+  Association End Type: WithArgument
+     Qualified name: Logical View::behavior::expressions::WithArgument
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to withArgument
+  Association end added: behavior.expressions.A_argument_withArgument.withArgument
+  Class/UseCase/Interface: WithArgument
+Create Package: Logical View::behavior::actions
+Create Class: Logical View::behavior::actions::Block
+Create Reference in Class: Logical View::behavior::actions::Block to Role: Logical View::behavior::actions::<unnamed>::statements
+  Class/UseCase/Interface: Statement
+Create Reference in Class: Logical View::behavior::actions::Block to Role: Logical View::behavior::actions::<unnamed>::owningStatement
+  Class/UseCase/Interface: StatementWithNestedBlock
+Create Reference in Class: Logical View::behavior::actions::Block to Role: Logical View::behavior::actions::<unnamed>::namedValues
+  Class/UseCase/Interface: NamedValue
+Create Reference in Class: Logical View::behavior::actions::Block to Role: Logical View::behavior::functions::<unnamed>::signature
+**** Reference not processed: association in different package
+Suppressed tag: rose2mof.isQuery
+Suppressed tag: rose2mof.isQuery
+Suppressed tag: rose2mof.isQuery
+Create Class: Logical View::behavior::actions::Statement
+Create Reference in Class: Logical View::behavior::actions::Statement to Role: Logical View::behavior::actions::<unnamed>::block
+  Class/UseCase/Interface: Block
+Suppressed tag: rose2mof.isQuery
+Suppressed tag: rose2mof.isQuery
+Create Class: Logical View::behavior::actions::ExpressionStatement
+Create Reference in Class: Logical View::behavior::actions::ExpressionStatement to Role: Logical View::behavior::actions::<unnamed>::expression
+  Class/UseCase/Interface: Expression
+Create Class: Logical View::behavior::actions::StatementWithNestedBlock
+Create Reference in Class: Logical View::behavior::actions::StatementWithNestedBlock to Role: Logical View::behavior::actions::<unnamed>::nestedBlocks
+  Class/UseCase/Interface: Block
+Create Class: Logical View::behavior::actions::Foreach
+Create Class: Logical View::behavior::actions::SingleBlockStatement
+Create Class: Logical View::behavior::actions::NamedValue
+Create Reference in Class: Logical View::behavior::actions::NamedValue to Role: Logical View::behavior::actions::<unnamed>::block
+**** Reference not processed: not navigable
+Create Class: Logical View::behavior::actions::NamedValueWithOptionalInitExpression
+Create Reference in Class: Logical View::behavior::actions::NamedValueWithOptionalInitExpression to Role: Logical View::behavior::actions::<unnamed>::initExpression
+  Class/UseCase/Interface: Expression
+Create Reference in Class: Logical View::behavior::actions::NamedValueWithOptionalInitExpression to Role: Logical View::behavior::actions::<unnamed>::<unnamed>
+**** Reference not processed: not navigable
+Create Class: Logical View::behavior::actions::Variable
+Create Class: Logical View::behavior::actions::NamedValueDeclaration
+Create Reference in Class: Logical View::behavior::actions::NamedValueDeclaration to Role: Logical View::behavior::actions::<unnamed>::namedValue
+  Class/UseCase/Interface: NamedValueWithOptionalInitExpression
+Create Class: Logical View::behavior::actions::Assignment
+Create Reference in Class: Logical View::behavior::actions::Assignment to Role: Logical View::behavior::actions::<unnamed>::assignTo
+  Class/UseCase/Interface: Field
+Create Constraint: Logical View::behavior::actions::Assignment::NoAssigmentAllowedToFieldsWithDetermination
+Create Constraint: Logical View::behavior::actions::Assignment::ExpressionTypeMustConformToAssignmentTargetType
+Create Class: Logical View::behavior::actions::StatementWithArgument
+Process Association: A_statements_block:4ACA0B1D032F
+*Warning: Association found with no name between 'Statement' and 'Block'.  The name 'A_statements_block' has been created for it.
+Create Association: A_statements_block
+Create Association End: statements
+  Association End Type: Statement
+     Qualified name: Logical View::behavior::actions::Statement
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_statements_block.statements
+  Class/UseCase/Interface: Statement
+Create Association End: block
+  Association End Type: Block
+     Qualified name: Logical View::behavior::actions::Block
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_statements_block.block
+  Class/UseCase/Interface: Block
+Process Association: A_expression_expressionStatement:4ACA0BBC0022
+*Warning: Association found with no name between 'Expression' and 'ExpressionStatement'.  The name 'A_expression_expressionStatement' has been created for it.
+Create Association: A_expression_expressionStatement
+Create Association End: expression
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_expression_expressionStatement.expression
+  Class/UseCase/Interface: Expression
+Create Association End: expressionStatement
+  Association End Type: ExpressionStatement
+     Qualified name: Logical View::behavior::actions::ExpressionStatement
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_expression_expressionStatement.expressionStatement
+  Class/UseCase/Interface: ExpressionStatement
+Process Association: A_nestedBlocks_owningStatement:4ACA0C95029A
+*Warning: Association found with no name between 'Block' and 'StatementWithNestedBlock'.  The name 'A_nestedBlocks_owningStatement' has been created for it.
+Create Association: A_nestedBlocks_owningStatement
+Create Association End: nestedBlocks
+  Association End Type: Block
+     Qualified name: Logical View::behavior::actions::Block
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_nestedBlocks_owningStatement.nestedBlocks
+  Class/UseCase/Interface: Block
+Create Association End: owningStatement
+  Association End Type: StatementWithNestedBlock
+     Qualified name: Logical View::behavior::actions::StatementWithNestedBlock
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_nestedBlocks_owningStatement.owningStatement
+  Class/UseCase/Interface: StatementWithNestedBlock
+Process Association: A_initExpression_namedValueWithOptionalInitExpression:4ACA113F03C8
+*Warning: Association found with no name between 'Expression' and 'NamedValueWithOptionalInitExpression'.  The name 'A_initExpression_namedValueWithOptionalInitExpression' has been created for it.
+Create Association: A_initExpression_namedValueWithOptionalInitExpression
+Create Association End: initExpression
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_initExpression_namedValueWithOptionalInitExpression.initExpression
+  Class/UseCase/Interface: Expression
+Create Association End: 
+  Association End Type: NamedValueWithOptionalInitExpression
+     Qualified name: Logical View::behavior::actions::NamedValueWithOptionalInitExpression
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to namedValueWithOptionalInitExpression
+  Association end added: behavior.actions.A_initExpression_namedValueWithOptionalInitExpression.namedValueWithOptionalInitExpression
+  Class/UseCase/Interface: NamedValueWithOptionalInitExpression
+Process Association: A_namedValue_namedValueDeclaration:4ACA11B101B5
+*Warning: Association found with no name between 'NamedValueWithOptionalInitExpression' and 'NamedValueDeclaration'.  The name 'A_namedValue_namedValueDeclaration' has been created for it.
+Create Association: A_namedValue_namedValueDeclaration
+Create Association End: namedValue
+  Association End Type: NamedValueWithOptionalInitExpression
+     Qualified name: Logical View::behavior::actions::NamedValueWithOptionalInitExpression
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_namedValue_namedValueDeclaration.namedValue
+  Class/UseCase/Interface: NamedValueWithOptionalInitExpression
+Create Association End: 
+  Association End Type: NamedValueDeclaration
+     Qualified name: Logical View::behavior::actions::NamedValueDeclaration
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to namedValueDeclaration
+  Association end added: behavior.actions.A_namedValue_namedValueDeclaration.namedValueDeclaration
+  Class/UseCase/Interface: NamedValueDeclaration
+Process Association: A_namedValues_block:4ACA1332013F
+*Warning: Association found with no name between 'NamedValue' and 'Block'.  The name 'A_namedValues_block' has been created for it.
+Create Association: A_namedValues_block
+Create Association End: namedValues
+  Association End Type: NamedValue
+     Qualified name: Logical View::behavior::actions::NamedValue
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_namedValues_block.namedValues
+  Class/UseCase/Interface: NamedValue
+Create Association End: block
+  Association End Type: Block
+     Qualified name: Logical View::behavior::actions::Block
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_namedValues_block.block
+  Class/UseCase/Interface: Block
+Process Association: A_assignTo_assignment:4AD81C3B006D
+*Warning: Association found with no name between 'Field' and 'Assignment'.  The name 'A_assignTo_assignment' has been created for it.
+Create Association: A_assignTo_assignment
+Create Association End: assignTo
+  Association End Type: Field
+     Qualified name: Logical View::structure::Field
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.actions.A_assignTo_assignment.assignTo
+  Class/UseCase/Interface: Field
+Create Association End: 
+  Association End Type: Assignment
+     Qualified name: Logical View::behavior::actions::Assignment
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to assignment
+  Association end added: behavior.actions.A_assignTo_assignment.assignment
+  Class/UseCase/Interface: Assignment
+Create Package: Logical View::behavior::functions
+Create Class: Logical View::behavior::functions::Function
+Create Reference in Class: Logical View::behavior::functions::Function to Role: Logical View::behavior::functions::<unnamed>::implementation
+  Class/UseCase/Interface: Block
+Create Reference in Class: Logical View::behavior::functions::Function to Role: Logical View::behavior::functions::<unnamed>::parameters
+  Class/UseCase/Interface: Parameter
+Create Reference in Class: Logical View::behavior::functions::Function to Role: Logical View::structure::<unnamed>::owner
+**** Reference not processed: association in different package
+Suppressed tag: rose2mof.isQuery
+Create Class: Logical View::behavior::functions::Parameter
+Create Reference in Class: Logical View::behavior::functions::Parameter to Role: Logical View::behavior::functions::<unnamed>::signature
+  Class/UseCase/Interface: Function
+Create Reference in Class: Logical View::behavior::functions::Parameter to Role: Logical View::behavior::functions::<unnamed>::<unnamed>
+  Class/UseCase/Interface: Expression
+Create Class: Logical View::behavior::functions::Direction
+Create enum datatype: Direction
+Process Association: A_implementation_signature:4ACA029501E3
+*Warning: Association found with no name between 'Block' and 'Function'.  The name 'A_implementation_signature' has been created for it.
+Create Association: A_implementation_signature
+Create Association End: implementation
+  Association End Type: Block
+     Qualified name: Logical View::behavior::actions::Block
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.functions.A_implementation_signature.implementation
+  Class/UseCase/Interface: Block
+Create Association End: signature
+  Association End Type: Function
+     Qualified name: Logical View::behavior::functions::Function
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.functions.A_implementation_signature.signature
+  Class/UseCase/Interface: Function
+Process Association: A_parameters_signature:4ACA05570262
+*Warning: Association found with no name between 'Parameter' and 'Function'.  The name 'A_parameters_signature' has been created for it.
+Create Association: A_parameters_signature
+Create Association End: parameters
+  Association End Type: Parameter
+     Qualified name: Logical View::behavior::functions::Parameter
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.functions.A_parameters_signature.parameters
+  Class/UseCase/Interface: Parameter
+Create Association End: signature
+  Association End Type: Function
+     Qualified name: Logical View::behavior::functions::Function
+     TheType: Class
+     Stereotype: 
+  Association end added: behavior.functions.A_parameters_signature.signature
+  Class/UseCase/Interface: Function
+Process Association: A_expression_parameter:4ACA07BB038C
+*Warning: Association found with no name between 'Expression' and 'Parameter'.  The name 'A_expression_parameter' has been created for it.
+Create Association: A_expression_parameter
+Create Association End: 
+  Association End Type: Expression
+     Qualified name: Logical View::behavior::expressions::Expression
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to expression
+  Association end added: behavior.functions.A_expression_parameter.expression
+  Class/UseCase/Interface: Expression
+Create Association End: 
+  Association End Type: Parameter
+     Qualified name: Logical View::behavior::functions::Parameter
+     TheType: Class
+     Stereotype: 
+  The reference name is changed to parameter
+  Association end added: behavior.functions.A_expression_parameter.parameter
+  Class/UseCase/Interface: Parameter
+Create import due to class gen. Parent = Logical View::structure::TypedElement. Child = Logical View::behavior::expressions::Expression
+Create import due to class gen. Parent = Logical View::finex::modelmanagement::NamedElement. Child = Logical View::behavior::actions::NamedValue
+Creating Import reference: Importer: behavior, Exporter: finex As: ''
+Create import due to class gen. Parent = Logical View::structure::TypedElement. Child = Logical View::behavior::actions::NamedValue
+Create import due to class gen. Parent = Logical View::finex::modelmanagement::NamedElement. Child = Logical View::behavior::functions::Function
+Create import due to class gen. Parent = Logical View::structure::Defaultable. Child = Logical View::behavior::functions::Parameter
+Set Constrained for Conatraint: Logical View::structure::FinexClass::OnlyOneUnnamedFunction
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::FinexClass::InvariantsMustBeBoolean
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::FinexClass::InvariantsMustBeSideEffectFree
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::FinexClass::FieldsMustHaveUniqueNames
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::Field::NotBothDefaultValueAndDetermination
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::Field::DefaultTypeMustMatch
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::Field::DeterminationTypeMustMatch
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::structure::Field::DeterminationMustBeSideEffectFree
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::BinaryBooleanOperator::OperandsMustBeBoolean
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::BinaryNumericOperator::OperandsMustBeNumeric
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::UnaryNumericOperator::OperandMustBeNumeric
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::BooleanOperatorExpression::HasBooleanResult
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::NumericOperatorExpression::OperatorResultType
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::FilterExpression::TypeIsSameAsOperand
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::FilterExpression::ConditionIsSideEffectFree
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::PathExpression::SourceTypeMustHaveField
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::PathExpression::PathExpressionTypeIsFieldType
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::Count::CountHasIntegerValue
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::UnaryBooleanOperator::OperandMustBeBoolean
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::expressions::Single::OutputTypeEqualsOperandType
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::actions::Assignment::NoAssigmentAllowedToFieldsWithDetermination
+Constrained Element string = @
+Set Constrained for Conatraint: Logical View::behavior::actions::Assignment::ExpressionTypeMustConformToAssignmentTargetType
+Constrained Element string = @

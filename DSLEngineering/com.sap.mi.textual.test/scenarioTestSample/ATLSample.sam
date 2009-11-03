@@ -1,0 +1,1993 @@
+-- @atlcompiler atl2006
+module TCS2ANTLR;
+create OUT : ANTLR from IN : TCS, MM : KM3;
+
+uses KM3Helpers;
+uses strings;
+uses TCS2ANTLRActions;
+
+
+-- Used to navigate over TCS model.
+--helper context MOF!Classifier def: getInstanceBy(propName : String, value : String) : String =
+--	self.allInstances()->select(e | e.refGetValue(propName) = value)->asSequence()->first();
+helper context MOF!EClassifier def: getInstancesBy(propName : String, value : String) : Sequence(OclAny) =
+	self.allInstancesFrom('IN')->select(e |
+		e.refGetValue(propName) = value
+	)->asSequence(); -- without From('IN'), elements from ANTLR TCS are also returned
+
+helper context MOF!EClassifier def: getInstanceBy(propName : String, value : String) : String =
+	self.getInstancesBy(propName, value)->first();
+		
+-- without From('IN'), elements from ANTLR TCS are also returned
+helper context String def: toPRName() : String =
+	let ret : String = self.firstToLower() in
+	if thisModule.reserved->includes(ret) then
+		ret + '_'
+	else
+		ret
+	endif;
+
+helper context TCS!SequenceElement def: getTemplate : TCS!Template =
+	let sequence : TCS!"Sequence" = self.elementSequence in
+	if not sequence.templateContainer.oclIsUndefined() then
+		sequence.templateContainer
+	else if not sequence.prefixContainer.oclIsUndefined() then
+		sequence.prefixContainer
+	else if not sequence.otContainer.oclIsUndefined() then
+		sequence.otContainer
+	else if not sequence.blockContainer.oclIsUndefined() then
+		sequence.blockContainer.getTemplate
+	else if not sequence.thenContainer.oclIsUndefined() then
+		sequence.thenContainer.getTemplate
+	else if not sequence.elseContainer.oclIsUndefined() then
+		sequence.elseContainer.getTemplate
+	else if not sequence.alternativeContainer.oclIsUndefined() then
+		sequence.alternativeContainer.getTemplate
+	else if not sequence.functionContainer.oclIsUndefined() then
+		sequence.functionContainer
+	else -- if not sequence.separatorContainer.oclIsUndefined() then
+		sequence.separatorContainer.property.getTemplate
+	endif endif endif endif endif endif endif endif;
+
+-- gets positive conditions
+helper context TCS!SequenceElement def: getConditions : Sequence(TCS!AtomExp) =
+	let sequence : TCS!"Sequence" = self.elementSequence in
+	if not sequence.templateContainer.oclIsUndefined() then
+		Sequence {}
+	else if not sequence.otContainer.oclIsUndefined() then
+		Sequence {}
+	else if not sequence.blockContainer.oclIsUndefined() then
+		sequence.blockContainer.getConditions
+	else if not sequence.thenContainer.oclIsUndefined() then
+		sequence.thenContainer.getAllConditions
+	else if not sequence.elseContainer.oclIsUndefined() then
+		sequence.elseContainer.getConditions -- we don't want the negative conditions
+	else if not sequence.alternativeContainer.oclIsUndefined() then
+		sequence.alternativeContainer.getConditions
+	else if not sequence.functionContainer.oclIsUndefined() then
+		Sequence {}
+	else -- if not sequence.separatorContainer.oclIsUndefined() then
+		sequence.separatorContainer.property.getConditions
+	endif endif endif endif endif endif endif;
+
+helper context TCS!ConditionalElement def: getAllConditions : Sequence(TCS!AtomExp) =
+	self.condition.expressions->union(self.getConditions);
+
+helper context TCS!Template def: class : KM3!Class =
+	let name : String = if self.oclIsKindOf(TCS!FunctionTemplate) then
+		self.className
+	else
+		self.name
+	endif in
+	KM3!Class.allInstancesFrom('MM')->asSequence()->select(e |
+		e.name = name
+	)->first();
+--OR	KM3!Class.getInstanceFromBy('MM', 'name', name);
+--OR	name.class;
+-- AND
+--  helper context String def: class : KM3!Class oppositeOf name;
+--  How to specify the metamodel in which to look for?
+--  helper context String def: class : KM3!Class in MM oppositeOf name;
+
+
+helper context TCS!Template def: subtypes : Set(KM3!Class) =
+	KM3!Class.allInstancesFrom('MM')->select(e |
+		e.supertypes->includes(self.class)
+	);
+
+helper context TCS!Template def: subnames : Set(KM3!Class) =
+	self.subtypes->collect(e |
+		e.name
+	);
+
+helper context TCS!Template def: allSubtypes : Set(KM3!Class) =
+	KM3!Class.allInstancesFrom('MM')->select(e |
+		e.allSupertypes->includes(self.class)
+	);
+
+helper context TCS!Template def: allConcreteSubnames : Set(KM3!Class) =
+	self.allSubtypes->reject(e | e.isAbstract)->collect(e |
+		e.name
+	);
+
+-- Returns a Sequence that will be iterated upon in distinct foreach.
+helper context TCS!ClassTemplate def: subtemplates : Sequence(TCS!Template) =
+	let subnames : Sequence(String) = if self.isDeep then
+			self.allConcreteSubnames
+		else
+			self.subnames
+		endif in
+	thisModule.sortTemplates(TCS!Template.allInstancesFrom('IN')->select(e |
+		subnames->includes(e.name) and
+		if e.oclIsKindOf(TCS!ClassTemplate) then
+			self.mode = e.mode
+		else
+			true
+		endif
+	));
+
+helper context TCS!SequenceElement def: getContext : KM3!Class =
+	self.getTemplate.class;
+
+helper context TCS!SequenceElement def: getContextProperty(name : String) : KM3!StructuralFeature =
+	self.getContext.lookupElementExtended(name);
+
+helper context String def: asLiteral : String =
+	thisModule.literalDelim + self + thisModule.literalDelim;
+
+--helper context TCS!Symbol def: toANTLR : String =
+--	self.name.toUpper() + '\n\t:\t' + self.value.asLiteral + '\n\t;\n';
+
+rule Symbol2LexerRule {
+	from
+		s : TCS!Symbol
+	to
+		t : ANTLR!ProductionRule (
+			name <- s.name.toUpper(),
+			needReturnDeclaration <- false,
+			expression <- e
+		),
+		e : ANTLR!Terminal (
+			value <- s.value
+		)
+}
+
+-- @begin Token.toANTLR
+--helper context TCS!Token def: toANTLR : String =
+--	self.name + '\n\t:\t' + self.pattern.toANTLR + '\n\t;\n';
+
+rule Token2LexerRule {
+	from
+		s : TCS!Token
+	to
+		t : ANTLR!ProductionRule (
+			name <- s.name,
+			needReturnDeclaration <- false,
+			expression <- s.pattern
+		)
+}
+
+--helper context TCS!OrPattern def: toANTLR : String =
+--	let s : String = self.simplePatterns->iterate(e; acc : String = '' |
+--		if acc = '' then
+--			''
+--		else
+--			acc + ' | '
+--		endif + e.toANTLR
+--	) in
+--	if self.simplePatterns->size() > 1 then
+--		'(' + s + ')'
+--	else
+--		s
+--	endif;
+
+rule OrPattern2Alternative {
+	from
+		s : TCS!OrPattern
+	to
+		t : ANTLR!Alternative (
+			expressions <- s.simplePatterns
+		)
+}
+
+--helper context TCS!RulePattern def: getArgument(name : String) : String =
+--	let ret : TCS!Argument = self.arguments->select(e |
+--		e.name = name
+--	)->first() in
+--	if ret.oclIsUndefined() then
+--		OclUndefined
+--	else
+--		ret.value.toANTLR
+--	endif;
+
+-- MODIFIED
+--helper context TCS!RulePattern def: toANTLR : String =
+--	'(' + self.rule.toANTLR + ')';
+
+rule RulePattern2Concatenation {
+	from
+		s : TCS!RulePattern
+	to
+		t : ANTLR!Concatenation (		-- placeholder
+			expressions <- s.rule
+		)
+}
+
+--helper context TCS!WordRule def: toANTLR : String =
+--	self.start.toANTLR + ' ' + self.part.toANTLR + '*' +
+--	if self.end.oclIsUndefined() then
+--		''
+--	else
+--		' ' + self.end.toANTLR
+--	endif +
+--	if self.words->size() > 0 then
+--		'{' + self.words->iterate(e; acc : String = '' |
+--			acc + 'if($getText.equals(\"' + e.name.toCString() + '\")) $setType(' + e.token + ');'
+--		) + '}'
+--	else
+--		''
+--	endif;
+
+rule WordRule2Concatenation {
+	from
+		s : TCS!WordRule
+	to
+		t : ANTLR!Concatenation (
+			expressions <- Sequence {s.start, part}->union(
+						if s.end.oclIsUndefined() then
+							Sequence {}
+						else
+							Sequence {s.end}
+						endif)
+		),
+		part : ANTLR!Sequence_ (
+			expression <- s.part,
+			lower <- 0,
+			upper <- 0-1
+		)
+}
+
+--helper context TCS!EndOfLineRule def: toANTLR : String =
+--	self.start.toANTLR + ' (~(\'\\r\'|\'\\n\'))*';
+
+rule EndOfLineRule2Concatenation {
+	from
+		s : TCS!EndOfLineRule
+	to
+		t : ANTLR!Concatenation (
+			expressions <- Sequence {s.start, seq}
+		),
+		seq : ANTLR!Sequence_ (
+			expression <- neg,
+			lower <- 0,
+			upper <- 0-1
+		),
+		neg : ANTLR!Negation (
+			expression <- alt
+		),
+		alt : ANTLR!Alternative (
+			expressions <- Sequence {cr, lf}
+		),
+		cr : ANTLR!CharTerminal (
+			value <- '\\r'
+		),
+		lf : ANTLR!CharTerminal (
+			value <- '\\n'
+		)
+}
+
+--helper context TCS!MultiLineRule def: toANTLR : String =
+--	self.start.toANTLR + '!' + '(' +
+--		if self.esc.oclIsUndefined() then
+--			''
+--		else
+--			'(' + self.esc.toANTLR + '! ~(\'\\n\')) | '
+--		endif +
+--		'\'\\n\' {newline();} | ' +
+--		'~(' +
+--		if self.esc.oclIsUndefined() then
+--			''
+--		else
+--			self.esc.toANTLR + ' | '
+--		endif + self.end.toANTLR + ' | \'\\n\' )' +
+--	')*' + self.end.toANTLR + '!';
+
+rule MultiLineRuleWithoutEsc2Concatenation {
+	from
+		s : TCS!MultiLineRule (
+			s.esc.oclIsUndefined()
+		)
+	to
+		t : ANTLR!Concatenation (
+			expressions <- Sequence {
+				if s.dropStart then
+					thisModule.MultiLineRuleDropStart(s)
+				else
+					s.start
+				endif,
+				seq,
+				if s.dropEnd then
+					thisModule.MultiLineRuleDropEnd(s)
+				else
+					s.end
+				endif
+			}
+		),
+		seq : ANTLR!Sequence_ (
+			options <- Sequence {'greedy = false;'},
+			expression <- alt,
+			lower <- 0,
+			upper <- 0-1
+		),
+		alt : ANTLR!Alternative (
+			expressions <- Sequence {nl, neg}
+		),
+		nl : ANTLR!CharTerminal (
+			value <- '\\n',
+			action <- sa
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'newline();'
+		),
+		neg : ANTLR!Negation (
+			expression <- onl	--neggedAlt
+		),
+--		neggedAlt : ANTLR!Alternative (
+--			expressions <- Sequence {s.end, onl}
+--		),
+		onl : ANTLR!CharTerminal (
+			value <- '\\n'
+		)
+}
+
+lazy rule MultiLineRuleDropStart {
+	from
+		s : TCS!MultiLineRule
+	to
+		start : ANTLR!Drop (
+			expression <- s.start
+		)
+}
+
+lazy rule MultiLineRuleDropEnd {
+	from
+		s : TCS!MultiLineRule
+	to
+		end : ANTLR!Drop (
+			expression <- s.end
+		)
+}
+
+rule MultiLineRuleWithEsc2Concatenation {
+	from
+		s : TCS!MultiLineRule (
+			not s.esc.oclIsUndefined()
+		)
+	to
+		t : ANTLR!Concatenation (
+			expressions <- Sequence {
+				if s.dropStart then
+					thisModule.MultiLineRuleDropStart(s)
+				else
+					s.start
+				endif,
+				seq,
+				if s.dropEnd then
+					thisModule.MultiLineRuleDropEnd(s)
+				else
+					s.end
+				endif
+			}
+		),
+		seq : ANTLR!Sequence_ (
+			options <- Sequence {'greedy = false;'},
+			expression <- alt,
+			lower <- 0,
+			upper <- 0-1
+		),
+		alt : ANTLR!Alternative (
+			expressions <- Sequence {escC, nl, neg}
+		),
+		escC : ANTLR!Concatenation (
+			expressions <- Sequence {esc, negNl}
+		),
+		esc : ANTLR!Drop (
+			expression <- thisModule.LazyStringPattern2Terminal(s.esc)
+		),
+		negNl : ANTLR!Negation (
+			expression <- neggedNl
+		),
+		neggedNl : ANTLR!CharTerminal (
+			value <- '\\n'
+		),
+		nl : ANTLR!CharTerminal (
+			value <- '\\n',
+			action <- sa
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'newline();'
+		),
+		neg : ANTLR!Negation (
+			expression <- neggedAlt
+		),
+		neggedAlt : ANTLR!Alternative (
+--			expressions <- Sequence {s.esc, s.end, onl}
+			expressions <- Sequence {s.esc, onl}
+		),
+		onl : ANTLR!CharTerminal (
+			value <- '\\n'
+		)
+}
+
+--helper context TCS!StringPattern def: toANTLR : String =
+--	let d : String =
+--			if self.name.size() = 1 then
+--				'\''
+--			else
+--				thisModule.literalDelim
+--			endif in
+--	d + self.name.toCString() + d;
+
+rule StringPattern2Terminal {
+	from
+		s : TCS!StringPattern
+	to
+		t : ANTLR!Terminal (
+			value <- s.name.toCString()
+		)
+}
+
+lazy rule LazyStringPattern2Terminal {
+	from
+		s : TCS!StringPattern
+	to
+		t : ANTLR!Terminal (
+			value <- s.name.toCString()
+		)
+}
+
+--helper context TCS!ClassPattern def: toANTLR : String =
+--	let alpha : String = '\'a\'..\'z\' | \'A\'..\'Z\'' in
+--	'(' + if self.name = 'alpha' then
+--		alpha
+--	else
+--		if self.name = 'alnum' then
+--			alpha + ' | \'0\'..\'9\''
+--		else
+--			('unknown class ' + self.name).debug('error')
+--		endif
+--	endif + ')'; -- @end Token.toANTLR
+
+rule AlphaClassPattern2Alternative {
+	from
+		s : TCS!ClassPattern (
+			s.name = 'alpha'
+		)
+	to
+		t : ANTLR!Alternative (
+			expressions <- Sequence {up, low}
+		),
+		up : ANTLR!Interval (
+			start <- upA,
+			end <- upZ
+		),
+		low : ANTLR!Interval (
+			start <- lowA,
+			end <- lowZ
+		),
+		upA : ANTLR!CharTerminal (
+			value <- 'A'
+		),
+		upZ : ANTLR!CharTerminal (
+			value <- 'Z'
+		),
+		lowA : ANTLR!CharTerminal (
+			value <- 'a'
+		),
+		lowZ : ANTLR!CharTerminal (
+			value <- 'z'
+		)
+}
+
+rule AlnumClassPattern2Alternative {
+	from
+		s : TCS!ClassPattern (
+			s.name = 'alnum'
+		)
+	to
+		t : ANTLR!Alternative (
+			expressions <- Sequence {up, low, digit}
+		),
+		up : ANTLR!Interval (
+			start <- upA,
+			end <- upZ
+		),
+		low : ANTLR!Interval (
+			start <- lowA,
+			end <- lowZ
+		),
+		digit : ANTLR!Interval (
+			start <- zero,
+			end <- nine
+		),
+		upA : ANTLR!CharTerminal (
+			value <- 'A'
+		),
+		upZ : ANTLR!CharTerminal (
+			value <- 'Z'
+		),
+		lowA : ANTLR!CharTerminal (
+			value <- 'a'
+		),
+		lowZ : ANTLR!CharTerminal (
+			value <- 'z'
+		),
+		zero : ANTLR!CharTerminal (
+			value <- '0'
+		),
+		nine : ANTLR!CharTerminal (
+			value <- '9'
+		)
+}
+
+helper context TCS!ConcreteSyntax def: mainTemplates : Sequence(TCS!ClassTemplate) =
+	self.templates->select(e |
+		e.oclIsKindOf(TCS!ClassTemplate)
+	)->select(e |
+		e.isMain
+	);
+
+abstract rule ConcreteSyntax2Grammar {
+	from
+		cs : TCS!ConcreteSyntax
+	to
+		g : ANTLR!Grammar (
+			id <- cs.location,
+			name <- cs.name,
+			actions <- Sequence {saei, saErrors},
+			rules <- Sequence {main}->union(cs.templates)->union(cs.operatorLists->collect(e | e.priorities)->flatten()),
+			options <- thisModule.getGrammarOptions(cs.k),
+			package <- 'org.eclipse.gmt.tcs.injector',
+			lexer <-
+				let optionsOrLexer : String = cs.lexer.regexReplaceAll('(?s)%options ([^\\n]*).*$', '$1') in
+				let options : String = if optionsOrLexer = cs.lexer then '' else optionsOrLexer endif in
+				thisModule.lexerHeader
+					.regexReplaceAll('%name%', cs.name)
+					.regexReplaceAll('%optionsPlaceHolder', options)
+					+
+				cs.lexer
+					.regexReplaceAll('%protected', thisModule.lexerFragmentKeyword)
+					.regexReplaceAll('%setText', thisModule.lexerActionSetText)
+					.regexReplaceAll('%getText', thisModule.lexerActionGetText)
+					.regexReplaceAll('%v2', thisModule.lexerV2Replacement)
+					.regexReplaceAll('%v3', thisModule.lexerV3Replacement)
+					.regexReplaceAll('%options', '//')
+--			+ cs.symbols->iterate(e; acc : String = '\n' |
+--				acc + '\n' + e.toANTLR
+--			)
+--			+ cs.tokens->iterate(e; acc : String = '\n' |
+--				acc + '\n' + e.toANTLR
+--			)
+			,
+			lexerRules <- cs.symbols->union(cs.tokens)
+		),
+		saei : ANTLR!SimpleSemanticAction (
+			value <- 'public org.eclipse.gmt.tcs.injector.TCSRuntime ei = null;'
+		),
+		saErrors : ANTLR!SimpleSemanticAction (
+			value <- thisModule.errorReportingAction
+		),
+		main : ANTLR!ProductionRule (
+			id <- cs.location,
+			needReturnDeclaration <- false,
+			name <- 'main',
+			returns <- ret
+		),
+		ret : ANTLR!VariableDeclaration (
+			id <- cs.location,
+			name <- 'ret',
+			initialValue <- 'null',
+			type <- thisModule.typeModelElement
+		)
+}
+
+rule SingleMainTemplateCS2Grammar extends ConcreteSyntax2Grammar {
+	from
+		cs : TCS!ConcreteSyntax (
+			cs.mainTemplates->size() = 1
+		)
+	using {
+		mainTemplate : TCS!ClassTemplate = cs.mainTemplates->first();
+	}
+	to
+		g : ANTLR!Grammar,	-- TODO: really necessary to repeat this?
+		c : ANTLR!Concatenation (
+			rule <- main,
+			expressions <- Sequence {s, eof}
+		),
+		s : ANTLR!Sequence_ (
+			lower <- 1,
+			upper <- if mainTemplate.isMulti then
+				0 - 1
+			else
+				1
+			endif,
+			expression <- rc
+		),
+		rc : ANTLR!RuleCall (
+			id <- cs.location,
+			calledRule <- mainTemplate,
+			storeTo <- vret
+		),
+		eof : ANTLR!TokenCall (
+			name <- 'EOF'
+		),
+		vret : ANTLR!Variable (
+			id <- cs.location,
+			declaration <- ret
+		)
+}
+
+rule MultipleMainTemplateCS2Grammar extends ConcreteSyntax2Grammar {
+	from
+		cs : TCS!ConcreteSyntax (
+			cs.mainTemplates->size() > 1
+		)
+	to
+		g : ANTLR!Grammar,	-- TODO: really necessary to repeat this?
+		c : ANTLR!Concatenation (
+			rule <- main,
+			expressions <- Sequence {s, eof}
+		),
+		s : ANTLR!Sequence_ (
+			lower <- 1,
+			upper <- -1,
+			expression <- a
+		),
+		a : ANTLR!Alternative (
+			id <- cs.location
+		),
+		vret : distinct ANTLR!Variable foreach(mainTemplate in cs.mainTemplates) (
+			id <- cs.location,
+
+			declaration <- ret
+		),
+		rc : distinct ANTLR!RuleCall foreach(mainTemplate in cs.mainTemplates) (
+			id <- cs.location,
+
+			calledRule <- mainTemplate,
+			alternative <- a,
+			storeTo <- vret
+		),
+		eof : ANTLR!TokenCall (
+			name <- 'EOF'
+		)
+}
+
+rule FunctionTemplate2ProductionRule {
+	from
+		t : TCS!FunctionTemplate
+	to
+		pr : ANTLR!ProductionRule (
+			id <- t.location,
+			name <- t.name.toPRName(),
+			needReturnDeclaration <- false,
+			expression <- t.functionSequence,
+			parameters <- ret,
+			-- called ret while it's a parameter
+			-- because it's a ret for the calling classTemplate
+			labelDeclarations <- Sequence {temp}
+		),
+		temp : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'temp',
+			initialValue <- 'null',
+			type <- 'java.lang.Object'
+		),
+		ret : ANTLR!Parameter (
+			id <- t.location,
+			name <- 'ret',
+			type <- thisModule.typeModelElement
+		)
+}
+
+abstract rule ClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate
+	to
+		pr : ANTLR!ProductionRule (
+			id <- t.location,
+			name <- t.name.toPRName() +
+				if t.mode.oclIsUndefined() then
+					''
+				else
+					'_' + t.mode
+				endif,
+			returns <- ret
+		),
+		ret : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'ret',
+			type <- thisModule.typeModelElement
+		),
+		saContext : ANTLR!SimpleSemanticAction
+}
+
+rule ConcreteClassTemplate2ProductionRule extends ClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate (
+			not t.isAbstract
+		)
+	to
+		pr : ANTLR!ProductionRule (
+			expression <- t.templateSequence,
+			declarations <- Sequence {firstToken},
+			labelDeclarations <- Sequence {temp},
+			needReturnDeclaration <- true,
+			actions <- Sequence {saContext, saLocation}
+		),
+		ret : ANTLR!VariableDeclaration (
+			initialValue <- thisModule.createAction(t.name, t.isContext, t.isAddToContext)
+		),
+		saContext : ANTLR!SimpleSemanticAction (
+			value <- 'ei.leaveContext(' + t.isContext.toString() + ');'
+		),
+		temp : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'temp',
+			initialValue <- 'null',
+			type <- 'java.lang.Object'
+		),
+		firstToken : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'firstToken',
+			initialValue <- thisModule.nextTokenValue,
+			type <- thisModule.tokenType
+		),
+		saLocation : ANTLR!SimpleSemanticAction (
+			value <- thisModule.postActions
+		)
+}
+
+helper context TCS!ClassTemplate def: nonOperatorSubtemplates : Sequence(TCS!Template) =
+	self.subtemplates->select(e |
+		not e.oclIsKindOf(TCS!OperatorTemplate)
+	);
+
+abstract rule AbstractClassTemplate2ProductionRule extends ClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate (
+			t.isAbstract and not t.isOperatored
+		)
+	to
+		pr : ANTLR!ProductionRule (
+			actions <- Sequence {saContext},
+			needReturnDeclaration <- false,
+			expression <- c
+		),
+		c : ANTLR!Concatenation (
+			expressions <- if t.prefixSequence.oclIsUndefined() then
+				Sequence {a}
+			else
+				Sequence {t.prefixSequence, a}
+			endif
+		),
+		a : ANTLR!Alternative (
+			id <- t.location,
+			expressions <- t.nonOperatorSubtemplates->collect(e |
+				thisModule.Templates2RuleCall(t, e)
+			)
+		),
+		ret : ANTLR!VariableDeclaration (
+			initialValue <- 'null'
+		),
+		saContext : ANTLR!SimpleSemanticAction (
+			value <- 'ei.addToContext(ret, ' + t.isAddToContext.toString() + ');'
+		)
+--		,
+--		v : distinct ANTLR!Variable foreach(subtemplate in t.nonOperatorSubtemplates) (
+--			declaration <- ret
+--		),
+--		rc : distinct ANTLR!RuleCall foreach(subtemplate in t.nonOperatorSubtemplates) (
+--			calledRule <- subtemplate,
+--			syntacticPredicate <- subtemplate.disambiguate,
+--			alternative <- a,
+--			storeTo <- v
+--		)
+}
+
+lazy rule Templates2RuleCall {
+	from
+		caller : TCS!ClassTemplate,
+		callee : TCS!Template
+	to
+		rc : ANTLR!RuleCall (
+			calledRule <- callee,
+			syntacticPredicate <- callee.disambiguate,
+			storeTo <- v
+		),
+		v : ANTLR!Variable (
+			declaration <- thisModule.resolveTemp(caller, 'ret')
+		)
+}
+
+rule EmptyAbstractClassTemplate2ProductionRule extends AbstractClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate (
+			t.templateSequence.oclIsUndefined()
+		)
+	to
+		pr : ANTLR!ProductionRule	-- a target pattern cannot be empty
+}
+
+rule NonEmptyAbstractClassTemplate2ProductionRule extends AbstractClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate (
+			not t.templateSequence.oclIsUndefined()
+		)
+	to
+		pr : ANTLR!ProductionRule,	-- must keep the default element
+		pr2 : ANTLR!ProductionRule (
+			id <- t.location,
+			grammar <- t.concreteSyntax,
+			name <- t.name.toPRName() + '_abstractContents',
+			returns <- ret2,
+			needReturnDeclaration <- true,
+			expression <- t.templateSequence,
+			declarations <- Sequence {firstToken2},
+			labelDeclarations <- Sequence {temp},
+			actions <- saContext2,
+			actions <- saLocation2
+		),
+		a : ANTLR!Alternative (
+			expressions <-
+				let rcs : Sequence(ANTLR!RuleCall) = t.nonOperatorSubtemplates->collect(e |
+						thisModule.Templates2RuleCall(t, e)
+					) in
+				if t.disambiguate.oclIsUndefined() then
+					rcs->append(rc2)
+				else
+					rcs->prepend(rc2)
+				endif
+		),
+		v2 : ANTLR!Variable (
+			declaration <- ret
+		),
+		rc2 : ANTLR!RuleCall (
+			calledRule <- pr2,
+--			alternative <- a,
+			storeTo <- v2
+		),
+		ret2 : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'ret',
+			initialValue <- thisModule.createAction(t.name, t.isContext.toString(), t.isAddToContext),
+			type <- thisModule.typeModelElement
+		),
+		saContext2 : ANTLR!SimpleSemanticAction (
+			value <- 'ei.leaveContext(' + t.isContext.toString() + ');'
+		),
+		temp : ANTLR!VariableDeclaration (	-- cannot be called temp2 because it is referenced elsewhere with a resolveTemp
+			id <- t.location,
+			name <- 'temp',
+			initialValue <- 'null',
+			type <- 'java.lang.Object'
+		),
+		firstToken2 : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'firstToken',
+			initialValue <- thisModule.nextTokenValue,
+			type <- thisModule.tokenType
+		),
+		saLocation2 : ANTLR!SimpleSemanticAction (
+			value <- thisModule.postActions
+		)
+}
+
+rule OperatoredAbstractClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate
+		(
+			t.isAbstract and t.isOperatored
+		)
+	using
+	{
+		subtemplates : Sequence(TCS!Template) = t.subtemplates->select(e |
+			not e.oclIsKindOf(TCS!OperatorTemplate)
+		);
+		primarySubtemplates : Sequence(TCS!Template) = thisModule.sortTemplates(subtemplates->select(e |
+			not e.isNonPrimary
+		));
+		nonPrimarySubtemplates : Sequence(TCS!Template) = thisModule.sortTemplates(subtemplates->select(e |
+			e.isNonPrimary
+		));
+	}
+	to
+		pr : ANTLR!ProductionRule (
+			name <- t.name.toPRName(),
+			returns <- ret,
+			needReturnDeclaration <- false,
+			expression <- a
+		),
+		ret : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'ret',
+			initialValue <- 'null',
+			type <- thisModule.typeModelElement
+		),
+		a : ANTLR!Alternative (
+			expressions <- rc
+		),
+		v : ANTLR!Variable (
+			declaration <- ret
+		),
+		rc : ANTLR!RuleCall (
+			-- call Priority Rule with highest index
+			calledRule <- TCS!Priority.allInstancesFrom('IN')->select(e |
+				e.isOfList(t.operatorList)
+			)->iterate(e; acc : TCS!Priority = Sequence {}->first() |
+				if acc.oclIsUndefined() then -- fallback if first was null
+					e
+				else
+					if e.value > acc.value then
+						e
+					else
+						acc
+					endif
+				endif
+			),
+			storeTo <- v
+		),
+		nonPrimaryV : distinct ANTLR!Variable foreach(ps in nonPrimarySubtemplates) (
+			declaration <- ret
+		),
+		nonPrimaryRc : distinct ANTLR!RuleCall foreach(ps in nonPrimarySubtemplates) (
+			calledRule <- ps,
+			syntacticPredicate <- ps.disambiguate,
+			alternative <- a,
+			storeTo <- nonPrimaryV
+		),
+		primaryPr : ANTLR!ProductionRule (
+			name <- 'primary_' + t.name.toPRName(),
+			grammar <- t.concreteSyntax,
+			needReturnDeclaration <- false,
+			returns <- primaryRet,
+			expression <- primaryA
+		),
+		primaryRet : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'ret',
+			initialValue <- 'null',
+			type <- thisModule.typeModelElement
+		),
+		primaryA : ANTLR!Alternative,
+		primaryV : distinct ANTLR!Variable foreach(ps in primarySubtemplates) (
+			declaration <- primaryRet
+		),
+		primaryRc : distinct ANTLR!RuleCall foreach(ps in primarySubtemplates) (
+			calledRule <- ps,
+			syntacticPredicate <- ps.disambiguate,
+			alternative <- primaryA,
+			storeTo <- primaryV
+		)
+}
+
+
+-- TODO: implement parentheses.{left,right}
+rule OperatoredAbstractClassTemplate2ProductionRuleWithParentheses extends OperatoredAbstractClassTemplate2ProductionRule {
+	from
+		t : TCS!ClassTemplate (
+			if t.parentheses.oclIsUndefined() then
+				true	-- defaults to "(", ")"
+			else
+				not t.parentheses.isOff
+			endif
+		)
+	to
+		pr : ANTLR!ProductionRule,
+		primaryC : ANTLR!Concatenation (
+			alternative <- primaryA,
+			expressions <- Sequence {primaryTkL, primaryRc2, primaryTkR}
+		),
+		primaryTkL : ANTLR!TokenCall (
+			name <- 'LPAREN'
+		),
+		primaryV2 : ANTLR!Variable (
+			declaration <- primaryRet
+		),
+		primaryRc2 : ANTLR!RuleCall (
+			calledRule <- pr,
+			storeTo <- primaryV2
+		),
+		primaryTkR : ANTLR!TokenCall (
+			name <- 'RPAREN'
+		)
+}
+
+helper context TCS!Priority def: isOfList(list : TCS!OperatorList) : Boolean =
+	if self.list.name.oclIsUndefined() then
+		list.oclIsUndefined()
+	else
+		self.list = list
+	endif;
+
+helper context TCS!Priority def: getCalledRule(isRight : Boolean) : ANTLR!ProductionRule =
+	if self.value = 0 then
+		if isRight and self.associativity = #right then
+			self
+		else
+			thisModule.resolveTemp(TCS!ClassTemplate.allInstancesFrom('IN')->select(e |
+				e.isOperatored and
+				self.isOfList(e.operatorList)
+			)->first(), 'primaryPr')
+		endif
+	else
+		thisModule.resolveTemp(TCS!Priority.allInstancesFrom('IN')->select(e |
+			e.list = self.list
+		)->select(e |
+			e.value = if isRight then
+				if self.associativity = #left then
+					self.value - 1
+				else
+					self.value
+				endif
+			else
+				self.value - 1
+			endif
+		)->first(), 'pr')
+	endif;
+
+-- binary or postfix
+helper context TCS!Priority def: binaryOps : Sequence(TCS!Operator) =
+	self.operators->select(e |
+		e.arity = 2 or e.isPostfix
+	);
+
+helper context TCS!Priority def: prefix : String =
+	if self.list.name.oclIsUndefined() then
+		''
+	else
+		self.list.name.firstToLower() + '_'
+	endif;
+
+rule Priority2ProductionRule {
+	from
+		p : TCS!Priority
+	to
+		pr : ANTLR!ProductionRule (
+			name <- p.prefix + 'priority_' + p.value.toString(),
+			returns <- ret,
+			needReturnDeclaration <- false,
+			expression <- a,
+			declarations <- Sequence {opName, firstToken},
+			labelDeclarations <- Sequence {right}
+		),
+		ret : ANTLR!VariableDeclaration (
+			id <- p.location,
+			name <- 'ret',
+			initialValue <- 'null',
+			type <- thisModule.typeModelElement
+		),
+		opName : ANTLR!VariableDeclaration (
+			name <- 'opName',
+			type <- 'java.lang.String',
+			initialValue <- 'null'
+		),
+		right : ANTLR!VariableDeclaration (
+			name <- 'right',
+			type <- thisModule.typeModelElement,
+			initialValue <- 'null'
+		),
+		firstToken : ANTLR!VariableDeclaration (
+			id <- p.location,
+			name <- 'firstToken',
+			initialValue <- thisModule.nextTokenValue,
+			type <- thisModule.tokenType
+		),
+		a : ANTLR!Alternative (
+			expressions <- p.operators->select(e |
+				e.arity = 1 and not e.isPostfix
+			)->including(c)
+		),
+		c : ANTLR!Concatenation (
+			expressions <- Sequence {rc, binaryS}
+		),
+		v : ANTLR!Variable (
+			declaration <- ret
+		),
+		rc : ANTLR!RuleCall (
+			calledRule <- p.getCalledRule(false),
+			storeTo <- v
+		),
+		binaryS : distinct ANTLR!Sequence_ foreach(b in if p.binaryOps->size() > 0 then
+			Sequence {true}
+		else
+			Sequence {}
+		endif) (
+			lower <- 0,
+			upper <- if p.associativity = #left then
+				0 - 1
+			else
+				1
+			endif,
+			expression <- binaryA
+		),
+		binaryA : ANTLR!Alternative (
+			-- TODO: why do we need resolveTemp now that we have inheritance?
+			--expressions <- p.binaryOps->collect(e | thisModule.resolveTemp(e, 'c'))
+			expressions <- p.binaryOps
+		)
+}
+
+-- looking at storeRightTo was not good because of unary operators
+helper context TCS!OperatorTemplate def: isSpecific : Boolean =
+--	not self.otSequence.oclIsUndefined();
+----	self.storeRightTo.oclIsUndefined();
+-- 20070724: if storeRightTo is specified then otSequence may be defined as a complex operator
+	(self.storeRightTo.oclIsUndefined() and self.operators->forAll(e | e.arity > 1)) and
+	not self.otSequence.oclIsUndefined();
+	
+
+helper context TCS!Operator def: specificTemplates : Sequence(TCS!Template) =
+	thisModule.sortTemplates(self.templates->select(e |
+		e.isSpecific
+	));
+
+helper context TCS!Operator def: nonSpecificTemplates : Sequence(TCS!Template) =
+	thisModule.sortTemplates(self.templates->select(e |
+		not e.isSpecific
+	));
+
+helper context TCS!Operator def: isPrefix : Boolean =
+	self.arity = 1 and not self.isPostfix;
+
+helper context TCS!Operator def: placeRCFirst : Boolean =
+	self.arity = 1 and
+	if self.templates->size() = 1 then
+		self.templates->first().storeOpTo.oclIsUndefined()
+	else
+		false
+	endif;
+
+abstract rule Operator2Concatenation {
+	from
+		o : TCS!Operator (
+			(not o.literal.oclIsUndefined()) and
+			not o.isPostfix
+		)
+	to
+		c : ANTLR!Concatenation (
+			expressions <- if o.placeRCFirst then	-- warning only works if one template!
+						rcOpNonSpec
+					else
+						Sequence {}
+					endif->union(Sequence {t, a})
+		),
+		t : ANTLR!Expression (
+			action <- sa
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'opName = \"' + o.literal.value + '\";'
+		),
+		a : ANTLR!Alternative,
+		vOpSpec : distinct ANTLR!Variable foreach(t in o.specificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'ret')
+		),
+		rcOpSpec : distinct ANTLR!RuleCall foreach(t in o.specificTemplates) (
+			calledRule <- t,
+			alternative <- a,
+			arguments <- teOpSpec,
+			syntacticPredicate <- t.disambiguate,
+			storeTo <- vOpSpec
+		),
+		teOpSpec : distinct ANTLR!TextualExpression foreach(t in o.specificTemplates) (
+			value <- 'opName, ret, firstToken'
+		),
+		cNonSpec : distinct ANTLR!Concatenation foreach(t in o.nonSpecificTemplates) (
+			alternative <- a
+		),
+		vRightNonSpec : distinct ANTLR!Variable foreach(t in o.nonSpecificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'right')
+		),
+		vOpNonSpec : distinct ANTLR!Variable foreach(t in o.nonSpecificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'ret')
+		),
+		rcOpNonSpec : distinct ANTLR!RuleCall foreach(t in o.nonSpecificTemplates) (
+			calledRule <- t,
+			arguments <- teOpNonSpec,
+			syntacticPredicate <- t.disambiguate,
+			storeTo <- vOpNonSpec,
+			concatenation <- if o.placeRCFirst then
+						c	-- warning: already set for order
+					else
+						cNonSpec
+					endif
+		),
+
+		-- 20070724: placed after rcOpNonSpec to invert rule calls so that complex operators may be specified
+		rcRightNonSpec : distinct ANTLR!RuleCall foreach(t in o.nonSpecificTemplates) (
+			calledRule <- o.priority.getCalledRule(true),
+			storeTo <- vRightNonSpec,
+			concatenation <- cNonSpec,
+			action <- saRight
+		),
+		saRight : distinct ANTLR!SimpleSemanticAction foreach(t in o.nonSpecificTemplates) (
+			value <- if o.arity = 1 then
+					-- for unary exp... TODO: do not even pass "right == null" as argument to the template (see below)
+					'ei.set(ret, \"' + t.source + '\", right);'
+				else
+					'ei.set(ret, \"' + t.storeRightTo + '\", right);'
+				endif + thisModule.postActions	-- TODO: remove setLocation in called rule when necessary... DONE?
+		),
+		teOpNonSpec : distinct ANTLR!TextualExpression foreach(t in o.nonSpecificTemplates) (
+			value <- if o.arity = 2 then
+--				'opName, ret, right, firstToken'
+				'opName, ret, firstToken'
+			else
+--				'opName, right, null, firstToken'
+				'opName, right, firstToken'
+			endif
+		)
+}
+
+rule KeywordOperator2Concatenation extends Operator2Concatenation {
+	from
+		o : TCS!Operator (
+			o.literal.oclIsKindOf(TCS!Keyword)
+		)
+	to
+		c : ANTLR!Concatenation,
+		t : ANTLR!Terminal (
+			value <- o.literal.value
+		)
+}
+
+helper def: sortTemplates(s : Sequence(TCS!Template)) : Sequence(TCS!Template) =
+	s->iterate(e; acc : Sequence(TCS!Template) = Sequence {} |
+		if e.disambiguate.oclIsUndefined() then
+			acc->including(e)
+		else
+			Sequence {e}->union(acc)
+		endif
+	);
+
+rule SymbolOperator2Concatenation extends Operator2Concatenation {
+	from
+		o : TCS!Operator (
+			o.literal.oclIsKindOf(TCS!Symbol)
+		)
+	to
+		c : ANTLR!Concatenation,
+		t : ANTLR!TokenCall (
+			name <- o.literal.name.toUpper()
+		)
+}
+
+-- TODO: the same for keyword
+rule PostfixSymbolOperator2Concatenation {
+	from
+		o : TCS!Operator
+		(
+			o.literal.oclIsKindOf(TCS!Symbol)
+			and o.isPostfix
+		)
+	to
+		c : ANTLR!Concatenation (
+			expressions <- Sequence {t, a}
+		),
+		t : ANTLR!TokenCall (
+			action <- sa,
+			name <- o.literal.name.toUpper()
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'opName = \"' + o.literal.value + '\";'
+		),
+		a : ANTLR!Alternative,
+		cNonSpec : distinct ANTLR!Concatenation foreach(t in o.templates) (--o.nonSpecificTemplates) (
+			alternative <- a
+		),
+		vOpNonSpec : distinct ANTLR!Variable foreach(t in o.templates) (--o.nonSpecificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'ret')
+		),
+		rcOpNonSpec : distinct ANTLR!RuleCall foreach(t in o.templates) (--o.nonSpecificTemplates) (
+			calledRule <- t,
+			arguments <- teOpNonSpec,
+			syntacticPredicate <- t.disambiguate,
+			storeTo <- vOpNonSpec,
+			concatenation <- cNonSpec
+		),
+		teOpNonSpec : distinct ANTLR!TextualExpression foreach(t in o.templates) (--o.nonSpecificTemplates) (
+			value <-
+				if t.isSpecific then
+					'opName, ret, firstToken'
+				else
+					'opName, ret, firstToken'
+				endif
+		)
+}
+
+rule EmptyOperator2Concatenation {
+	from
+		o : TCS!Operator
+		(
+			o.literal.oclIsUndefined()
+		)
+	to
+		c : ANTLR!Concatenation (
+			expressions <- Sequence {a}
+		),
+		a : ANTLR!Alternative,
+		vOpSpec : distinct ANTLR!Variable foreach(t in o.specificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'ret')
+		),
+		rcOpSpec : distinct ANTLR!RuleCall foreach(t in o.specificTemplates) (
+			calledRule <- t,
+			alternative <- a,
+			arguments <- teOpSpec,
+			syntacticPredicate <- t.disambiguate,
+			storeTo <- vOpSpec
+		),
+		teOpSpec : distinct ANTLR!TextualExpression foreach(t in o.specificTemplates) (
+			value <- 'opName, ret, firstToken'
+		),
+		cNonSpec : distinct ANTLR!Concatenation foreach(t in o.nonSpecificTemplates) (
+			alternative <- a
+		),
+		vRightNonSpec : distinct ANTLR!Variable foreach(t in o.nonSpecificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'right')
+		),
+		vOpNonSpec : distinct ANTLR!Variable foreach(t in o.nonSpecificTemplates) (
+			declaration <- thisModule.resolveTemp(o.priority, 'ret')
+		),
+		rcOpNonSpec : distinct ANTLR!RuleCall foreach(t in o.nonSpecificTemplates) (
+			calledRule <- t,
+			arguments <- teOpNonSpec,
+			syntacticPredicate <- t.disambiguate,
+			storeTo <- vOpNonSpec,
+			concatenation <- cNonSpec
+		),
+		rcRightNonSpec : distinct ANTLR!RuleCall foreach(t in o.nonSpecificTemplates) (
+			calledRule <- o.priority.getCalledRule(true),
+			storeTo <- vRightNonSpec,
+			concatenation <- cNonSpec,
+			action <- saRight
+		),
+		saRight : distinct ANTLR!SimpleSemanticAction foreach(t in o.nonSpecificTemplates) (
+			value <- if o.arity = 1 then
+					-- for unary exp... TODO: do not even pass "right == null" as argument to the template (see below)
+					'ei.set(ret, \"' + t.source + '\", right);'
+				else
+					'ei.set(ret, \"' + t.storeRightTo + '\", right);'
+				endif + thisModule.postActions	-- TODO: remove setLocation in called rule when necessary... DONE?
+		),
+		teOpNonSpec : distinct ANTLR!TextualExpression foreach(t in o.nonSpecificTemplates) (
+			value <- if o.arity = 2 then
+				'opName, ret, firstToken'
+			else
+				'opName, right, firstToken'
+			endif
+		)
+}
+
+abstract rule OperatorTemplate2ProductionRule {
+	from
+		t : TCS!OperatorTemplate
+	to
+		pr : ANTLR!ProductionRule (
+			name <- t.name.toPRName(),
+			needReturnDeclaration <- true,
+			returns <- ret
+		),
+		pOpName : ANTLR!Parameter (
+			name <- 'opName',
+			type <- 'java.lang.String'
+		),
+		pLeft : ANTLR!Parameter (
+			name <- 'left',
+			type <- thisModule.typeModelElement
+		),
+		pFirstToken : ANTLR!Parameter (
+			name <- 'firstToken',
+			type <- thisModule.tokenType
+		),
+		ret : ANTLR!VariableDeclaration (
+			name <- 'ret',
+			initialValue <- thisModule.createAction(t.name, t.isContext, false),
+			type <- thisModule.typeModelElement
+		),
+		saContext : ANTLR!SimpleSemanticAction (
+			value <- 'ei.leaveContext(' + t.isContext.toString() + ');'
+		),
+		saOperator : ANTLR!SimpleSemanticAction (
+			value <- if t.storeOpTo.oclIsUndefined() then
+				'// discard operator name'
+			else
+				'ei.set(ret, \"' + t.storeOpTo + '\", opName);'
+			endif
+		),
+		saLeft : ANTLR!SimpleSemanticAction (
+			value <- 'ei.set(ret, \"' + t.source + '\", left);'
+		),
+		saLocation : ANTLR!SimpleSemanticAction (
+			value <- if t.isSpecific or t.operators->forAll(e | e.isPostfix) then
+					thisModule.postActions
+				else
+					'// post actions performed in calling rule (i.e., priority_<n>)'
+				endif
+		)
+}
+
+helper context TCS!OperatorTemplate def: isPrefix : Boolean =
+	self.operators->forAll(e | e.isPrefix);
+
+rule SpecificRightArgumentOperatorTemplate2ProductionRule extends OperatorTemplate2ProductionRule {
+	from
+		t : TCS!OperatorTemplate
+		(
+--			t.isSpecific
+-- 20070724: for complex operators
+			not t.otSequence.oclIsUndefined()
+		)
+	to
+		pr : ANTLR!ProductionRule (
+			expression <- t.otSequence,
+			actions <- Sequence {saOperator, saLeft, saLocation, saContext},
+			labelDeclarations <- temp,
+			parameters <- Sequence {pOpName, pLeft, pFirstToken}
+		),
+		temp : ANTLR!VariableDeclaration (
+			id <- t.location,
+			name <- 'temp',
+			initialValue <- 'null',
+			type <- 'java.lang.Object'
+		)
+}
+
+-- TODO: remove saRight in this case because now the setRight is done in the calling template (i.e., priority_<n>)
+rule NonSpecificRightArgumentOperatorTemplate2ProductionRule extends OperatorTemplate2ProductionRule {
+	from
+		t : TCS!OperatorTemplate
+		(
+--			not t.isSpecific
+--			--t.isPrefix or not t.isSpecific
+-- 20070724: for complex operators
+			t.otSequence.oclIsUndefined()
+		)
+	to
+		pr : ANTLR!ProductionRule (
+			options <- 'defaultErrorHandler = false;',	-- this is an empty rule
+--			actions <- Sequence {saOperator, saLeft, saRight, saLocation, saContext},
+--			parameters <- Sequence {pOpName, pLeft, pRight, pFirstToken}
+			actions <- Sequence {saOperator, saLeft, saLocation, saContext},
+			parameters <- Sequence {pOpName, pLeft, pFirstToken}
+		)
+--		pRight : ANTLR!Parameter (
+--			name <- 'right',
+--			type <- thisModule.typeModelElement
+--		),
+--		saRight : ANTLR!SimpleSemanticAction (
+--			value <-
+--				-- TODO: use rule inheritance to simply to put saRight instead of making it empty
+--				if t.storeRightTo.oclIsUndefined() then		-- for unary operators
+--					''
+--				else
+--					'ei.set(ret, \"' + t.storeRightTo + '\", right);'
+--				endif
+--		)
+}
+-- @end Non-RPN
+
+rule PrimitiveTemplate2ProductionRule {
+	from
+		pt : TCS!PrimitiveTemplate
+	to
+		pr : ANTLR!ProductionRule (
+			name <- pt.name.toPRName(),
+			needReturnDeclaration <- true,
+			returns <- ret,
+			expression <- a
+		),
+		a : ANTLR!Alternative (
+			expressions <- Sequence {tc}->union(if pt.orKeyword then
+				TCS!Keyword.allInstancesFrom('IN')->collect(e |
+					thisModule.Keyword2Terminal(e)
+				)->union(
+					let hasBooleanPt : Boolean = pt.concreteSyntax.templates->select(e |
+							e.oclIsKindOf(TCS!PrimitiveTemplate)
+						)->exists(e |
+							e.tokenName = 'BOOLEAN'
+						) in
+					if hasBooleanPt then
+						Sequence {thisModule.BooleanIdentifier(pt)}
+					else
+						Sequence {}
+					endif
+				)
+			else
+				Sequence {}
+			endif)
+		),
+		ret : ANTLR!VariableDeclaration (
+			name <- 'ret',
+			initialValue <- 'null',
+			type <- 'java.lang.Object'
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'ret = ' + pt.value.regexReplaceAll('%token%', 'ast.getText()') + '; ei.setToken((Object)ast);'
+		),
+		tc : ANTLR!TokenCall (
+			name <- pt.tokenName,
+			storeASTTo <- 'ast',
+			action <- sa
+		)
+}
+
+unique lazy rule Keyword2Terminal {
+	from
+		s : TCS!Keyword
+	to
+		t : ANTLR!Terminal (
+			value <- s.value,
+			action <- sa
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'ret = \"' + s.value + '\";'
+		)
+}
+
+unique lazy rule BooleanIdentifier {
+	from
+		pt : TCS!PrimitiveTemplate
+	to
+		tc : ANTLR!TokenCall (
+			name <- 'BOOLEAN',
+			storeASTTo <- 'astb',
+			action <- sa
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'ret = astb.getText();'
+		)
+}
+
+rule EnumerationTemplate2ProductionRule {
+	from
+		et : TCS!EnumerationTemplate
+	to
+		pr : ANTLR!ProductionRule (
+			name <- et.name.toPRName(),
+			needReturnDeclaration <- true,
+			returns <- ret,
+			expression <- a
+		),
+		ret : ANTLR!VariableDeclaration (
+			name <- 'ret',
+			initialValue <- 'null',
+			type <- 'java.lang.Object'
+		),
+		a : ANTLR!Alternative (
+			expressions <- et.mappings
+		)
+}
+
+rule EnumLiteralMapping2Concatenation {
+	from
+		elm : TCS!EnumLiteralMapping
+	to
+		c : ANTLR!Concatenation (
+			expressions <- elm.element,
+			action <- sa
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			value <- 'ret = ei.createEnumLiteral(\"' + elm.literal.name + '\");'
+		)
+}
+
+rule Sequence2Concatenation {
+	from
+		s : TCS!"Sequence" --(s.keyContainer.oclIsUndefined())	-- not for keys
+		
+	--(s.keyContainer.oclIsUndefined())	-- not for keys
+	to
+		c : ANTLR!Concatenation (
+			id <- s.location,
+			expressions <- s.elements->reject(e |
+				e.oclIsKindOf(TCS!CustomSeparator)
+			)
+		)
+}
+
+-- @begin SequenceElements
+rule SymbolRef2TokenCall {
+	from
+		lr : TCS!LiteralRef
+		(
+			lr.referredLiteral.oclIsKindOf(TCS!Symbol)
+		)
+	to
+		tk : ANTLR!TokenCall (
+			id <- lr.location,
+			name <- lr.referredLiteral.name.toUpper()
+		)
+}
+
+rule KeywordRef2Terminal {
+	from
+		lr : TCS!LiteralRef
+		(
+			lr.referredLiteral.oclIsKindOf(TCS!Keyword)
+		)
+	to
+		t : ANTLR!Terminal (
+			id <- lr.location,
+			value <- lr.referredLiteral.value
+		)
+}
+
+helper context KM3!StructuralFeature def: getPrimitiveRule(name : String) : TCS!PrimitiveTemplate =
+	let tn : String = self.type.name in
+	let pts : Sequence(TCS!PrimitiveTemplate) = TCS!PrimitiveTemplate.allInstancesFrom('IN')->asSequence()->select(e |
+		e.typeName = tn
+	) in
+	if name.size() = 0 then
+		pts->select(e |
+			e.isDefault = true
+		)->first()
+	else
+		pts->select(e |
+			e.name = name
+		)->first()
+	endif;
+
+helper context TCS!Property def: prop : KM3!StructuralFeature =
+	self.getContextProperty(self.name);
+
+helper context TCS!Property def: upper : Integer =
+	let actualUpper : Integer = self.prop.upper in
+	if actualUpper = 1 then
+		1
+	else
+		let conditions : Sequence(TCS!AtomExp) = self.getConditions->select(e |
+			e.oclIsKindOf(TCS!OneExp)
+		)->select(e |
+			e.propertyName = self.name
+		) in
+		if conditions->notEmpty() then
+			1
+		else
+			actualUpper
+		endif
+	endif;
+
+helper context TCS!Property def: importContext : Boolean =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!ImportContextPArg)
+	)->notEmpty();
+
+helper context TCS!Property def: as : TCS!AsPArg =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!AsPArg)
+	)->first();
+
+helper context TCS!Property def: autoCreate : TCS!AutoCreatePArg =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!AutoCreatePArg)
+	)->first();
+
+helper context TCS!Property def: createAs : TCS!CreateAsPArg =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!CreateAsPArg)
+	)->first();
+
+helper context TCS!Property def: refersTo : TCS!RefersToPArg =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!RefersToPArg)
+	)->first();
+
+helper context TCS!Property def: lookIn : TCS!LookInPArg =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!LookInPArg)
+	)->first();
+
+helper context TCS!Property def: createIn : TCS!CreateInPArg =
+	self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!CreateInPArg)
+	)->first();
+
+helper context TCS!Property def: finalProp : KM3!StructuralFeature =
+	if self.refersTo.oclIsUndefined() then
+		self.prop
+	else
+		self.prop.type.lookupElementExtended(self.refersTo.propertyName)
+	endif;
+
+helper context TCS!Property def: mode : String =
+	let ret : TCS!ModePArg = self.propertyArgs->select(e |
+			e.oclIsKindOf(TCS!ModePArg)
+		)->first() in
+	if ret.oclIsUndefined() then
+		ret
+	else
+		ret.mode
+	endif;
+
+helper context TCS!Property def: calledTemplate : TCS!Template =
+	if self.finalProp.type.oclIsKindOf(KM3!Class) then
+		TCS!ClassTemplate.getInstancesBy('name', self.finalProp.type.name)->select(e |
+			e.mode = self.mode
+		)->first()
+	else if self.finalProp.type.oclIsKindOf(KM3!DataType) then
+		self.finalProp.getPrimitiveRule(
+			if self.as.oclIsUndefined() then
+				''
+			else
+				self.as.value
+			endif
+		)
+	else -- if self.finalProp.type.oclIsKindOf(KM3!Enumeration) then
+		TCS!EnumerationTemplate.getInstanceBy('name', self.finalProp.type.name)
+	endif endif;
+
+helper context TCS!Property def: saTxt : String =
+	if self.prop = self.finalProp then
+		'ei.set(ret, \"' + self.name + '\", temp);'
+	else
+		'ei.setRef(ret, \"' + self.name + '\", \"' + self.prop.type.name + '\", \"' + self.refersTo.propertyName + '\", temp, ' + if self.lookIn.oclIsUndefined() then
+			'null'
+		else
+			'\"' + self.lookIn.propertyName->iterate(e; acc : String = '' |
+				acc + if acc = '' then
+					''
+				else
+					'.'
+				endif + e
+			) + '\"'
+		endif + ', ' + if self.autoCreate.oclIsUndefined() then
+			'\"never\"'
+		else
+			'\"' + self.autoCreate.value.toString() + '\"'
+		endif + ', ' + if self.createAs.oclIsUndefined() then
+			'null'
+		else
+			'\"' + self.createAs.name + '\"'
+		endif + ', ' + self.importContext.toString() + ', ' + if self.createIn.oclIsUndefined() then
+			'null'
+		else
+			'\"' + self.createIn.propertyName->iterate(e; acc : String = '' |
+				acc + if acc = '' then
+					''
+				else
+					'.'
+				endif + e
+			) + '\"'
+		endif + ');'
+	endif;
+
+rule Property2RuleCall {
+	from
+		p : TCS!Property
+		(
+			p.upper = 1
+		)
+	to
+		rc : ANTLR!RuleCall (
+			id <- p.location,
+			calledRule <- p.calledTemplate,
+			syntacticPredicate <- p.calledTemplate.disambiguate,
+			-- TESTING
+			storeTo <- v,
+			action <- sa
+		),
+		v : ANTLR!Variable (
+			id <- p.location,
+			declaration <- thisModule.resolveTemp(p.getTemplate, 'temp')
+		),
+		sa : ANTLR!SimpleSemanticAction (
+			id <- p.location,
+			value <- p.saTxt
+		)
+}
+
+-- Only used by MultiValuedProperty2Sequence
+helper context TCS!Property def: lower : Integer =
+	let forcedLower : Integer = self.propertyArgs->select(e |
+		e.oclIsKindOf(TCS!ForcedLowerPArg)
+	)->first() in
+	if forcedLower.oclIsUndefined() then
+		self.prop.lower
+	else
+		forcedLower.value
+	endif;
+
+rule MultiValuedProperty2Sequence {
+	from
+		p : TCS!Property
+		(
+			p.upper > 1 or p.upper = 0 - 1
+		)
+	to
+		s : ANTLR!Sequence_ (
+			id <- p.location,
+			lower <- if p.lower = 0 then
+				0
+			else
+				1
+			endif,
+			upper <- 1,
+			expression <- globalC
+		),
+		globalC : ANTLR!Concatenation (
+			id <- p.location,
+			expressions <- Sequence {firstrc, reps}
+		),
+		reps : ANTLR!Sequence_ (
+			lower <- if p.lower = 0 then
+				0
+			else
+				p.lower - 1
+			endif,
+			upper <- 0 - 1,
+-- code below not possible because ANTLR has no construct for this, we would need to expand this somehow
+--			if p.upper < 0 then
+--				0 - 1
+--			else
+--				p.upper - 1
+--			endif,
+			expression <- repC
+		),
+		repC : ANTLR!Concatenation (
+			id <- p.location,
+			expressions <- let sep : TCS!SeparatorPArg = p.propertyArgs->select(e |
+				e.oclIsKindOf(TCS!SeparatorPArg)
+			)->first() in
+			if sep.oclIsUndefined() then
+				Sequence {reprc}
+			else
+				Sequence {sep.separatorSequence, reprc}
+			endif
+		),
+		firstrc : ANTLR!RuleCall (
+			id <- p.location,
+			calledRule <- p.calledTemplate,
+			syntacticPredicate <- p.calledTemplate.disambiguate,
+			-- TESTING
+			storeTo <- firstv,
+			action <- firstsa
+		),
+		firstv : ANTLR!Variable (
+			id <- p.location,
+			declaration <- thisModule.resolveTemp(p.getTemplate, 'temp')
+		),
+		firstsa : ANTLR!SimpleSemanticAction (
+			id <- p.location,
+			value <- p.saTxt
+		),
+		reprc : ANTLR!RuleCall (
+			id <- p.location,
+			calledRule <- p.calledTemplate,
+			syntacticPredicate <- p.calledTemplate.disambiguate,
+			-- TESTING
+			storeTo <- repv,
+			action <- repsa
+		),
+		repv : ANTLR!Variable (
+			id <- p.location,
+			declaration <- thisModule.resolveTemp(p.getTemplate, 'temp')
+		),
+		repsa : ANTLR!SimpleSemanticAction (
+			id <- p.location,
+			value <- p.saTxt
+		)
+}
+
+rule Block2Concatenation {
+	from
+		b : TCS!Block
+	to
+		c : ANTLR!Concatenation (
+			id <- b.location,
+			expressions <- b.blockSequence
+		)
+}
+
+helper context TCS!StringVal def: toActionPart() : String =
+	'\"' + self.symbol + '\"';
+
+helper context TCS!IntegerVal def: toActionPart() : String =
+	'new java.lang.Integer(' + self.symbol.toString() + ')';
+
+helper context TCS!NegativeIntegerVal def: toActionPart() : String =
+	'new java.lang.Integer(-' + self.symbol.toString() + ')';
+
+helper context TCS!EnumLiteralVal def: toActionPart() : String =
+	'new ' + thisModule.nativelibPackage + '.ASMEnumLiteral(\"' + self.name + '\")';
+
+helper context TCS!ConditionalElement def: getAction(thenAction : Boolean) : String =
+	self.condition.expressions->iterate(e; acc : String = '' |
+		acc + if acc = '' then '' else ' ' endif +
+		if e.oclIsKindOf(TCS!BooleanPropertyExp) then
+			'ei.set(ret, \"' + e.propertyName + '\", java.lang.Boolean.' +
+			if thenAction then
+				'TRUE'
+			else
+				'FALSE'
+			endif + ');'
+		else if e.oclIsKindOf(TCS!EqualsExp) then
+			if thenAction then
+				'ei.set(ret, \"' + e.propertyName + '\", ' + e.value.toActionPart() + ');'
+			else
+				'' -- nothing to do here: if it does not equals something, then we can't know what is its value
+			endif
+		else -- if e.oclIsKindOf(TCS!IsDefinedExp) or e.oclIsKindOf(TCS!OneExp) then
+			'' -- nothing to do here
+		endif endif
+	);
+
+abstract rule ConditionalElement2Alternative {
+	from
+		ta : TCS!ConditionalElement
+	to
+		aa : ANTLR!Alternative (
+			id <- ta.location
+		),
+		saThen : ANTLR!SimpleSemanticAction (
+			expression <- ta.thenSequence,
+			value <- ta.getAction(true)
+		),
+		saElse : ANTLR!SimpleSemanticAction (
+			value <- ta.getAction(false)
+		)
+}
+
+rule HalfConditionalElement2Alternative extends ConditionalElement2Alternative {
+	from
+		ta : TCS!ConditionalElement (
+			ta.elseSequence.oclIsUndefined()
+		)
+	to
+		aa : ANTLR!Alternative (
+			expressions <- Sequence {ta.thenSequence, c}
+		),
+		c : ANTLR!Concatenation (
+			id <- ta.location,
+			action <- saElse
+		)
+}
+
+rule FullConditionalElement2Alternative extends ConditionalElement2Alternative {
+	from
+		ta : TCS!ConditionalElement (
+			not ta.elseSequence.oclIsUndefined()
+		)
+	to
+		aa : ANTLR!Alternative (
+			expressions <- Sequence {ta.thenSequence, ta.elseSequence}
+		),
+		saElse : ANTLR!SimpleSemanticAction (
+			expression <- ta.elseSequence
+		)
+}
+
+rule Alternative2Alternative {
+	from
+		ta : TCS!Alternative
+	to
+		aa : ANTLR!Alternative (
+			id <- ta.location,
+			expressions <- ta.sequences
+		)
+}
+
+rule FunctionCall2RuleCall {
+	from
+		fc : TCS!FunctionCall
+	to
+		rc : ANTLR!RuleCall (
+			calledRule <- fc.calledFunction,
+			arguments <- te
+		),
+		te : ANTLR!TextualExpression (
+			value <- 'ret'
+		)
+}
+-- @end SequenceElements
+

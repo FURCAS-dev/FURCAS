@@ -1,0 +1,117 @@
+syntax LexerMember {
+
+	-- experimental language to test having an additional lexer member defined
+
+	primitiveTemplate identifier for ->String default using NAME:
+		value = "unescapeString(%token%)";
+
+
+	
+	
+	template ->BibTextFile main context
+		: "test"
+		;
+		
+
+
+token COMMENT	: endOfLine(start = "--");
+
+lexer = "
+%options testLiterals = false;
+
+@lexer::members [[
+    boolean noFloatMode = false;
+]]
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		)
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+OBJECT	:	'o:'	;
+
+NAME
+	:	(
+			SNAME
+		|	'\\''!
+			(	
+		//	ESC	|
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		{setText(unescapeString(getText(), 1));}
+		)
+	;
+
+BINARY
+	:	'0x'(DIGIT)+
+	;
+
+INT
+	:	(DIGIT)+
+	;
+	
+LBRACKET
+	:	'[' { noFloatMode = true; } 
+	;
+	
+RBRACKET
+	:	']' { noFloatMode = false; } 
+	;	
+
+FLOAT	:	{!noFloatMode}?=>DIGIT+ '.' DIGIT*	;
+
+
+
+DATE	:	DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT DIGIT DIGIT ;
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\\\"'|'\\n')
+		)*
+		'\"'!
+		{setText(unescapeString(getText(), 1));}
+
+	;
+
+	";
+
+}

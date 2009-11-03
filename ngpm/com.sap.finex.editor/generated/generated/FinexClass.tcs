@@ -1,0 +1,503 @@
+syntax FinexClass(k=0 ) {
+-- k = 0 means manually defined syntactic predicates
+
+	primitiveTemplate firstLowercaseIdentifier for PrimitiveTypes::String using FIRST_LOWERCASE_NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate firstUppercaseIdentifier for PrimitiveTypes::String default using FIRST_UPPERCASE_NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+
+	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+
+	primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+		value = "%token%";
+
+	primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+		value = "%token%";
+
+	primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+		value = "%token%";	
+		
+	primitiveTemplate binarySymbol for PrimitiveTypes::String using BINARY:
+		value = "%token%";
+		
+	primitiveTemplate dateSymbol for PrimitiveTypes::String using DATE:
+		value = "%token%";
+	
+-- @begin BLOCKS AND STATEMENTS
+	template structure::FinexClass main context(root)
+		:	$classDeclaration
+		;
+	
+	template structure::Type #field abstract;
+	template structure::FinexClass #field
+		:   $classDeclaration
+		    {{ owner = lookIn("OCL:#context(field).oclAsType(structure::Field).association.clazz") }}
+		;
+	
+	function classDeclaration(FinexClass)
+		:  --	(valueType ? "value")  TODO: I [Jan] commented it out as it collieded with the concrete syntax for multiplicities. 
+		   --   as this feature was not (yet) requested by FINEX I left it out. 
+		    [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} ]] ":" [
+			[[
+			   disambiguate("structure_association")
+			   associations{forcedLower=1} ";"
+			 |
+			   disambiguate("behavior_functions_function")
+			   functions{forcedLower=1} ";"
+			 |
+			   "[" invariants{forcedLower=1} "]" ";"
+			]]*
+			] ":" [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} ]]
+		;
+	
+	template structure::Type abstract;
+	
+	template structure::Association
+		: ends {forcedLower=1, forcedUpper=1}
+		  [[
+		     "opposite" ends {forcedLower=1, forcedUpper=1, mode=opposite}
+		   |
+		     -- force creation of non-declared opposite end
+		     ends {forcedLower=1, forcedUpper=1, mode=nondeclaredOpposite} 
+		  ]]
+		  {{ name=lookIn("OCL:if self.ends->last().name.size() > 0 then
+		                        self.ends->first().name.concat(' opposite ').concat(self.ends->last().name)
+		                      else
+		                        self.ends->first().name
+		                      endif") 
+		  }}
+		;
+	
+	template structure::Field context(field)
+		: [[
+		      "." 	{{ singleMultiplicity='true' }}
+		    |
+		      ".."	{{ singleMultiplicity='false' }}
+		  ]]
+		  [[ -- explicit typing by reference:
+		     [[
+		        name{as=firstLowercaseIdentifier}
+		        {{ mandatory = 'false' }}
+		      |
+		        name{as=firstUppercaseIdentifier}
+		        {{ mandatory = 'true' }}
+		     ]]
+		     [[
+		       type{as=firstLowercaseIdentifier, query="OCL:structure::FinexClass.allInstances()",
+		                         filter="->select(c | c.name = ?)"}
+		      |
+		       type{as=firstUppercaseIdentifier, query="OCL:structure::FinexClass.allInstances()",
+		                         filter="->select(c | c.name = ?)"}
+			 ]]
+		     $asKey
+		     [[
+		        "DEFAULT" defaultValue
+		      |
+		        ":=" determination
+		      |
+		        -- empty alternative
+		     ]]
+		   | -- explicit typing by in-place type declaration
+		     disambiguate("structure_type_field")
+		     type{mode=field} {{ name = lookIn("OCL:self.type.name") }} 
+		     $asKey
+		     [[
+		     	"DEFAULT" defaultValue{forcedLower=1}
+		      |
+		        ":=" determination{forcedLower=1}
+		      |
+		     ]]
+		  ]]
+		  {{ navigable = 'true' }}				 -- the declared end is always navigable
+		;
+
+	template structure::Field #opposite
+		: name{as=firstLowercaseIdentifier}			 -- only match lowercase identifiers (not mandatory)
+		  {{
+		  	navigable = 'true',				 -- the opposite end has been explicitly navigable
+		  	mandatory = 'false',				 -- match as non-mandatory fields for the opposite direction
+		  	singleMultiplicity='true',			 -- always multiplicity 0..1 or 1..1
+		  	type      = lookIn("OCL:self.association.clazz") -- set context(root) FinexClass as type
+		  }}
+		;
+			
+	template structure::Field #nondeclaredOpposite
+		:
+		  {{
+		  	name      = '""', 				 -- no name
+		  	navigable = 'false',				 -- this end is not navigable
+		  	mandatory = 'false',				 -- match as non-mandatory fields for the opposite direction
+		  	singleMultiplicity='true',			 -- always multiplicity 0..1
+		  	type      = lookIn("OCL:self.association.clazz") -- set context(root) FinexClass as type
+		  }}
+		;
+	
+		
+	function asKey(structure::Field)
+		: (key ? "AS" "KEY")
+		;
+	
+	template behavior::functions::Function
+		: "function"
+		  [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} | {{ name='""' }} ]]
+		  "("
+			[[
+			  "IN" parameters{mode=IN, separator=",", forcedLower=1}
+			  [[
+			     "," "OUT" parameters{mode=OUT, separator=",", forcedLower=1}
+			   |
+			  ]]
+			 |
+			  "OUT" parameters{mode=OUT, separator=",", forcedLower=1}
+			]] ")" ":" implementation
+		;
+	
+	function parameter(behavior::functions::Parameter)
+		: -- explicit typing
+	     [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} ]]
+	     [[
+	       type{as=firstLowercaseIdentifier, query="OCL:structure::FinexClass.allInstances()",
+	                         filter="->select(c | c.name = ?)"}
+	      |
+	       type{as=firstUppercaseIdentifier, query="OCL:structure::FinexClass.allInstances()",
+	                         filter="->select(c | c.name = ?)"}
+		 ]]		      
+		 (isDefined(defaultValue) ? "DEFAULT" defaultValue)
+		;
+		
+	template behavior::functions::Parameter #IN
+		: $parameter
+		  {{ direction='behavior.functions.DirectionEnum.IN' }}
+		;
+	
+	template behavior::functions::Parameter #OUT
+		: $parameter
+		  {{ direction='behavior.functions.DirectionEnum.OUT' }}
+		;
+	
+	template behavior::actions::Block context
+		: "{" [
+		      statements
+		  ] "}"
+		;
+	
+	template behavior::actions::Statement abstract;
+
+	template behavior::actions::StatementWithArgument abstract;
+	template behavior::actions::Assignment (disambiguateV3 = "DOT NAME EQUALS")
+		: "." 
+		  --[[
+			assignTo{as=firstLowercaseIdentifier, 
+		               query="OCL:self.block.getOuterMostBlock().signature.owner.getNavigableFields()",
+		               filter="->select(f | f.name = ?)"}
+		   --  |       
+		   --     assignTo{as=firstUppercaseIdentifier, 
+		   --            query="OCL:self.block.getOuterMostBlock().signature.owner.getNavigableFields()", 
+		   --            filter="->select(f | f.name = ?)"}
+		  --]] 
+		  "=" argument ";"
+		;
+
+	template behavior::actions::ExpressionStatement
+		: expression ";"
+		;
+		
+	
+	template behavior::expressions::Expression abstract operatored(Expressions);
+	
+	-- ----------------------- Predefined Operators ---------------------
+	operatorTemplate behavior::expressions::BinaryBooleanOperator(operators=andOp orOp, source='left',
+																  storeOpTo='operator', storeRightTo='right')
+		: {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		;
+	
+	operatorTemplate behavior::expressions::Not(operators=notOp, source='operand')
+		: {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		;
+	
+	operatorTemplate behavior::expressions::BooleanAggregate(operators=dotOp, source='operand')
+		: [[
+		     "and" {{ operator='"and"' }}
+		   |
+		     "or" {{ operator='"or"' }}
+		   |
+		     "xor" {{ operator='"xor"' }}
+		  ]]
+		  "(" ")" 
+		  {{ type=lookIn("OCL:operand.type") }}
+		;
+	
+	operatorTemplate behavior::expressions::BinaryNumericOperator(
+					operators=plusOp minusOp timesOp dividedOp greaterOp lessOp
+					          greaterEqualsOp lessEqualsOp equalsOp unequalsOp,
+					source='left', storeOpTo='operator', storeRightTo='right')
+		: {{ type=lookIn("OCL:self.numericPostType(self.operator, self.left.type, self.right.type)") }}
+		;
+
+	operatorTemplate behavior::expressions::UnaryMinus(operators=unaryMinusOp,
+			source='operand', storeOpTo='operator')
+		: {{ type=lookIn("OCL:operand.type") }}
+		;
+	
+	operatorTemplate behavior::expressions::Count(operators=dotOp, source='operand')
+		: "count" {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')") }}
+		  "(" ")"
+		;
+
+	operatorTemplate behavior::expressions::Single(operators=dotOp, source='operand')
+		: "single" {{ type=lookIn("OCL:self.operand.type") }}
+		  "(" ")"
+		;
+	
+	operatorTemplate behavior::expressions::NumericAggregate(operators=dotOp, source='operand')
+		: [[
+		     "sum" {{ operator='"sum"' }}
+		   |
+		     "avg" {{ operator='"avg"' }}
+		   |
+		     "min" {{ operator='"min"' }}
+		   |
+		     "max" {{ operator='"max"' }}
+		  ]]
+		  "(" ")" {{ type=lookIn("OCL:operand.type") }}
+		;
+	
+	-- ----------------------- Other Expressions --------------
+	template behavior::expressions::Expression #pathExpression abstract;
+	template behavior::expressions::This #pathExpression
+		: {{ type = lookIn("OCL:self.getEnclosingType()") }}
+		;
+
+--	template UnaryOperator abstract;
+--	template BinaryOperator abstract;
+	template FirstPathExpression
+		: "." operand{mode=pathExpression}
+		  [[
+		     field{as=firstLowercaseIdentifier, query="OCL:self.operand.type.oclAsType(structure::FinexClass).getNavigableFields()",
+		     									filter="->select(f|f.name=?)", invert="name"}
+		   |
+		     field{as=firstUppercaseIdentifier, query="OCL:self.operand.type.oclAsType(structure::FinexClass).getNavigableFields()",
+		     									filter="->select(f|f.name=?)", invert="name"}
+		  ]]
+		  {{ type = lookIn("OCL:self.field.type") }}
+		;
+		
+	operatorTemplate behavior::expressions::PathExpression(operators=dotOp, source='operand')
+		: [[
+		     field{as=firstLowercaseIdentifier, query="OCL:self.operand.type.oclAsType(structure::FinexClass).getNavigableFields()",
+		     									filter="->select(f|f.name=?)", invert="name"}
+		   |
+		     field{as=firstUppercaseIdentifier, query="OCL:self.operand.type.oclAsType(structure::FinexClass).getNavigableFields()",
+		     									filter="->select(f|f.name=?)", invert="name"}
+		  ]]
+		  {{ type = lookIn("OCL:self.field.type") }}
+		;
+		
+	operatorTemplate behavior::expressions::FilterExpression(operators=lBracketOp, source='operand')
+		: condition "]"
+		;
+		
+	-- ----------------------- LITERALS ---------------------
+	template behavior::expressions::literals::Literal abstract;
+	template behavior::expressions::literals::BooleanLiteral
+		: literal{as = booleanSymbol}
+		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		; 
+	
+	template behavior::expressions::literals::StringLiteral
+		: literal{as = stringSymbol}
+		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'String')") }}
+		; 
+
+	template behavior::expressions::literals::DecimalLiteral
+		: literal{as = floatAsStringSymbol}
+		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Decimal')") }}
+		; 
+	
+	template behavior::expressions::literals::IntegerLiteral
+		: literal{as = integerAsStringSymbol}
+		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')") }}
+		; 
+	
+	template behavior::expressions::literals::DateLiteral
+		: literal{as = dateSymbol}
+		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Date')") }}
+		; 
+	
+	template behavior::expressions::literals::BinaryLiteral
+		: literal{as = binarySymbol}
+		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Binary')") }}
+		; 
+	
+	symbols {
+		lbracket	= "[";
+		rbracket	= "]";
+		lcurl		= "{";
+		rcurl		= "}";
+		langle      = "<";
+		rangle      = ">";
+		lparen		= "(";
+		rparen		= ")";
+		equals		= "=";
+		equalsEquals= "==";
+		assign		= ":=";
+		dot			= ".";
+		ddot		= "..";
+		pipe		= "|";
+		colon		= ":";
+		semicolon	= ";";
+	}
+	
+	operators Expressions {
+		priority 0 {
+			unaryMinusOp	= "-", 1;
+			notOp			= "not", 1;
+			dotOp			= ".", 2;
+			lBracketOp		= "[", 2;
+		}
+		priority 1 {
+			timesOp		= "*", 2;
+			dividedOp	= "/", 2;
+			andOp		= "AND", 2;
+		}
+		priority 2 {
+			orOp		= "OR", 2;
+			plusOp		= "+", 2;
+			minusOp		= "-", 2;
+		}
+		priority 3 {
+			greaterOp		= ">", 2;
+			lessOp			= "<", 2;
+			greaterEqualsOp = ">=", 2;
+			lessEqualsOp	= "<=", 2;
+			equalsOp		= "=", 2;
+			unequalsOp		= "!=", 2;
+		}
+	}
+	
+	omitted token COMMENT	: endOfLine(start = "//");
+	omitted token MULTI_LINE_COMMENT	: multiLine(start = "/*", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	LOWERCASE_ALPHA | UPPERCASE_ALPHA
+	;
+
+%protected
+LOWERCASE_ALPHA
+	:	'a'..'z'
+	|	'_'
+	// lowercase accented characters
+	|	'\\u00DE' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+UPPERCASE_ALPHA
+	:	'A'..'Z'
+	// uppercase accented characters
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00DD'
+	;
+
+%protected
+FIRST_LOWERCASE_SNAME
+	:	(LOWERCASE_ALPHA) (ALPHA | DIGIT)*
+;
+
+%protected
+FIRST_UPPERCASE_SNAME
+	:	(UPPERCASE_ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+OBJECT	:	'o:'	;
+
+FIRST_UPPERCASE_NAME
+	:	FIRST_UPPERCASE_SNAME
+	;
+
+FIRST_LOWERCASE_NAME
+	:	FIRST_LOWERCASE_SNAME
+	;
+
+BINARY
+	:	'0x'((DIGIT | 'a'..'f' | 'A'..'F') (DIGIT | 'a'..'f' | 'A'..'F'))+
+	;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+	:	DIGIT+ '.' DIGIT*
+	;
+  
+RANGE_OR_INT
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' (FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME) ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+
+DATE	:	DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT
+            (
+              ( (',' | '.') DIGIT ) => ((',' | '.') (DIGIT)+)
+              |
+            )
+            ('Z' | (('+'|'-') DIGIT DIGIT DIGIT DIGIT)?) )? ;
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+}

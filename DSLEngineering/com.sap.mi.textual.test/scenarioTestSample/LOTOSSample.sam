@@ -1,0 +1,97 @@
+specification ALTERNATING_BIT_PROTOCOL [PUT, GET] : noexit behaviour
+   hide SDT0, SDT1, RDT0, RDT1, RDTe, RACK0, RACK1, SACK0, SACK1, SACKe in
+   (
+      (
+      TRANSMITTER [PUT, SDT0, SDT1, SACK0, SACK1, SACKe]
+      |||
+      RECEIVER [GET, RDT0, RDT1, RDTe, RACK0, RACK1]
+      )
+   |[SDT0, SDT1, RDT0, RDT1, RDTe, RACK0, RACK1, SACK0, SACK1, SACKe]|
+      (
+      MEDIUM1 [SDT0, SDT1, RDT0, RDT1, RDTe]
+      |||
+      MEDIUM2 [RACK0, RACK1, SACK0, SACK1, SACKe]
+      )
+   )
+
+where
+
+process MEDIUM1 [SDT0, SDT1, RDT0, RDT1, RDTe] : noexit :=
+   SDT0;           (* reception d'un message *)
+      (
+      RDT0;        (* transmission correcte *)
+         MEDIUM1 [SDT0, SDT1, RDT0, RDT1, RDTe]
+      []
+      RDTe;        (* perte avec indication *)
+         MEDIUM1 [SDT0, SDT1, RDT0, RDT1, RDTe]
+      []
+      (hide LOSS in
+      LOSS;        (* perte silencieuse *)
+         MEDIUM1 [SDT0, SDT1, RDT0, RDT1, RDTe]
+      ))
+   []
+   MEDIUM1 [SDT1, SDT0, RDT1, RDT0, RDTe]
+endproc
+
+process MEDIUM2 [RACK0, RACK1, SACK0, SACK1, SACKe] : noexit :=
+   RACK0;         (* reception d'un acquittement *)
+      (
+      SACK0;      (* transmission correcte *)
+         MEDIUM2 [RACK0, RACK1, SACK0, SACK1, SACKe]
+      []
+      SACKe;      (* perte avec indication *)
+         MEDIUM2 [RACK0, RACK1, SACK0, SACK1, SACKe]
+      []
+      (hide LOSS in
+      LOSS;       (* perte silencieuse *)
+         MEDIUM2 [RACK0, RACK1, SACK0, SACK1, SACKe]
+      ))
+   []
+   MEDIUM2 [RACK1, RACK0, SACK1, SACK0, SACKe]
+endproc
+
+process TRANSMITTER [PUT, SDT0, SDT1, SACK0, SACK1, SACKe] : noexit :=
+   PUT;         (* aquisition d'un message *)
+      TRANSMIT [PUT, SDT0, SDT1, SACK0, SACK1, SACKe]
+where
+   process TRANSMIT [PUT, SDT0, SDT1, SACK0, SACK1, SACKe] : noexit :=
+      SDT0;             (* emission du message *)
+         (
+         SACK0;         (* bit de controle correct *)
+            TRANSMITTER [PUT, SDT1, SDT0, SACK1, SACK0, SACKe]
+         []
+         SACK1;         (* bit de controle incorrect => reemission *)
+            TRANSMIT [PUT, SDT0, SDT1, SACK0, SACK1, SACKe]
+         []
+         SACKe;         (* indication de perte => reemission *)
+            TRANSMIT [PUT, SDT0, SDT1, SACK0, SACK1, SACKe]
+         []
+         (hide TIMEOUT in
+         TIMEOUT;       (* timeout => reemission *)
+            TRANSMIT [PUT, SDT0, SDT1, SACK0, SACK1, SACKe]
+         ))
+   endproc
+endproc
+
+process RECEIVER [GET, RDT0, RDT1, RDTe, RACK0, RACK1] : noexit :=
+   RDT0;                  (* bit de controle corect *)
+      GET;                (* livraison du message M *)
+         RACK0;           (* envoi d'un acquittement correct *)
+            RECEIVER [GET, RDT1, RDT0, RDTe, RACK1, RACK0]
+   []
+   RDT1;                  (* bit de controle incorrect => *)
+      RACK1;              (* envoi d'un acquittement incorrect *)
+         RECEIVER [GET, RDT0, RDT1, RDTe, RACK0, RACK1]
+   []
+   RDTe;                  (* indication de perte => *)
+      RACK1;              (* envoi d'un acquittement incorrect *)
+         RECEIVER [GET, RDT0, RDT1, RDTe, RACK0, RACK1]
+   []
+   (hide TIMEOUT in
+   TIMEOUT;               (* timeout => *)
+      RACK1;              (* envoi d'un acquittement incorrect *)
+         RECEIVER [GET, RDT0, RDT1, RDTe, RACK0, RACK1])
+endproc
+
+endspec
+

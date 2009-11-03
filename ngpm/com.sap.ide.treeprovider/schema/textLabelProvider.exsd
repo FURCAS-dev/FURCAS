@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sap.ide.treeprovider" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.sap.ide.treeprovider" id="textLabelProvider" name="Text label provider for tree nodes"/>
+      </appinfo>
+      <documentation>
+         Extenders will get called for a text label for a given tree node.
+      </documentation>
+   </annotation>
+
+   <element name="textLabelProvider">
+      <complexType>
+         <attribute name="classname" type="string" use="required">
+         </attribute>
+      </complexType>
+   </element>
+
+</schema>

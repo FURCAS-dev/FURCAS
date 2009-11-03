@@ -1,0 +1,30 @@
+normal_combinations:
+
+aNormalaNormalaNormal
+[sNormal][sNormal][sNormal]
+aNormal[sNormal]aNormal
+[sNormal]aNormal[sNormal]
+aNormalnameaNormal
+[sNormal]name[sNormal]
+
+no_space_combinations:
+
+aRightSpaceaLeftNone
+aRightNoneaLeftSpace
+aRightSpace[sLeftNone]
+aRightNone[sLeftSpace]
+aRightNonename
+[sRightNone]name
+nameaLeftNone
+name[sLeftNone]
+
+space_combinations:
+
+aRightSpace aNormal
+aNormal aLeftSpace
+aRightSpace [sNormal]
+aNormal [sLeftSpace]
+aRightSpace name
+[sRightSpace] name
+name aLeftSpace]
+name [sLeftSpace]

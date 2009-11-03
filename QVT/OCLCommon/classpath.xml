@@ -1,0 +1,13 @@
+<project name="OCLCommon_CLASSPATH" basedir=".">
+
+	<property file="${ant.file.OCLCommon_CLASSPATH}/../build.properties" />
+	<property file="${ant.file.OCLCommon_CLASSPATH}/../../build.properties" />
+	<property file="${ant.file.OCLCommon_CLASSPATH}/../../build.properties.default" />	
+	
+	<path id="oclCommon.class.path">
+		<pathelement location="${oclCommon.bin.dir}" />
+		<fileset dir="${oclCommon.lib.dir}" includes="**/*.jar" />
+		<fileset dir="${emf.dir}" includes="**/*.jar"/>
+	</path>
+
+</project>

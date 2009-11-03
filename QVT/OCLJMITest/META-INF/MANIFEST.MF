@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OCLJMITest
+Bundle-SymbolicName: OCLJMITest
+Bundle-Version: 1.0.0
+Export-Package: de.ikv.medini.ocljmi.test
+Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0"

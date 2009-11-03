@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1228153722656_uuid:cf028afb-77cd-4ce5-9da8-1924b878828d</UID>
+<PACKAGE>moin.fct_nwdi_ide</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>d020214</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="pluginName" LENGTH="255" PROCESSOR="none" TYPE="XTIT">Tests for MOIN DI Versioning</TEXT>
+<TEXT AKEY="preferencesTitleVersioning" LENGTH="255" PROCESSOR="none" TYPE="XTIT">Versioning</TEXT>
+<TEXT AKEY="providerName" LENGTH="255" PROCESSOR="none" TYPE="XTIT">SAP AG</TEXT>
+</RESOURCES>
+</ROOT>

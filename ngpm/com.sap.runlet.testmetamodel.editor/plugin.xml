@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.sap.runlet.testmetamodel.editor.RunletTestEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="runlettest"
+            id="com.sap.runlet.testmetamodel.editor.RunletTestEditor"
+            name="Runlet Test Editor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="true"
+            editorId="com.sap.runlet.testmetamodel.editor.RunletTestEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="runlettest.RunletTest">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.rootNodeDefinition">
+        <rootNodeProvider classname="com.sap.runlet.testmetamodel.editor.RunletRootNodeProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.textLabelProvider">
+        <textLabelProvider classname="com.sap.runlet.testmetamodel.editor.RunletTreeLabelProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.imageProvider">
+        <imageProvider classname="com.sap.runlet.testmetamodel.editor.RunletTreeImageProvider" />
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Path
+               Value="mappings"
+               Versioned="true">
+         </Path>
+      </ContentDefinition>
+   </extension>
+
+</plugin>

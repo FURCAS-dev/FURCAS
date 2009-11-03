@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.sap.tc.moin.facility.primary.libraries.fs;singleton:=true
+Bundle-Version: 2.0.0.090422161345
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Export-Package: com.sap.tc.moin.facility.primary.persistence.lfs.javaioimpl,.,com.sap.tc.moin.facility.primary.persistence.fs,com.sap.tc.moin.facility.primary.diservice.fs.impl
+Require-Bundle: com.tssap.ext.libs.j2ee,com.sap.tc.moin.libraries.jmi,com.sap.tc.moin.libraries.core,com.sap.tc.moin.libraries.base,com.sap.tc.moin.libraries.spi,com.sap.base.technology.facade,com.sap.tc.moin.libraries.api,com.sap.tc.moin.facility.primary.libraries.api,com.sap.tc.moin.facility.primary.libraries,com.sap.tc.moin.libraries.spi.internal

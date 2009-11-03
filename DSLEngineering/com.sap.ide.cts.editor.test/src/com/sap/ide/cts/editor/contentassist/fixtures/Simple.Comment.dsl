@@ -1,0 +1,3 @@
+-- student
+   student  -- name
+   peter

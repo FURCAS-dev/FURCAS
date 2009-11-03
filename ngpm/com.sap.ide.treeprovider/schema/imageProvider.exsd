@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.sap.ide.treeprovider" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.sap.ide.treeprovider" id="imageProvider" name="Image Provider for Model Tree"/>
+      </appinfo>
+      <documentation>
+         Plugins can contribute an extension that defines additional root nodes for the model tree displayed by this plugin in the Project Explorer view. The RootNodeProvider interface to implement has an operation that returns the root nodes for the extension.
+      </documentation>
+   </annotation>
+
+   <element name="imageProvider">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <attribute name="classname" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+</schema>

@@ -1,0 +1,20 @@
+Bundle-ManifestVersion: 2
+Bundle-Name: Moinadapter Plug-in
+Bundle-SymbolicName: com.sap.tc.moin.textual.runtime.moin
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.sap.tc.moin.ide.facade,
+ com.sap.mi.textual.common;bundle-version="1.0.0",
+ com.sap.mi.textual.parsing;bundle-version="1.0.0",
+ com.sap.tc.moin.libraries.core;bundle-version="2.0.0"
+Bundle-ClassPath: 
+ adapter.jar
+Export-Package: 
+ com.sap.tc.moin.textual.moinadapter.adapter;
+  uses:="com.sap.tc.moin.repository,
+   javax.jmi.reflect,
+   com.sap.mi.textual.grammar,
+   javax.jmi.model"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

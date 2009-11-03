@@ -1,0 +1,7 @@
+value class Boolean{const Boolean 1..0 and(Boolean 0..*values)
+  native
+const Boolean 1..0 or(Boolean 0..*values)
+  native
+const Boolean 1..0 not()
+  native
+}

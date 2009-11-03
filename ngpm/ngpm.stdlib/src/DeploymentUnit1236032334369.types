@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<C n='sap.com/moin/mm/ap/core' i='2' v=''/>
+<M c='2' q='modelmanagement.deploymentunits.DeploymentUnit' i='48AC91AC05CCABBA6F0211DDB99F0019D29902CC' ova='description'/>
+<M c='2' q='modelmanagement.deploymentunits.A_deploymentUnits_application' i='48AC91AC05CCABC26F0211DD881F0019D29902CC' se='0' ce='1' oe='-1'/>
+<modelmanagement.deploymentunits.DeploymentUnit m:c='2' m:i='49AC5B4E1D8E5270077811DEBC0C0019D29902CC' name='Tests'/>
+<modelmanagement.deploymentunits.A_deploymentUnits_application c='2'>
+<L f='49AC5B4E1D8E5270077811DEBC0C0019D29902CC' s='local:48A901603FDE60D06CE211DDCB17005056C00001'/>
+</modelmanagement.deploymentunits.A_deploymentUnits_application>
+</Partition>

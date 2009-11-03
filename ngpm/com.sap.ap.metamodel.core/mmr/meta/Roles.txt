@@ -1,0 +1,49 @@
+Discussion with Stephen Nelson, 2008/10/22
+
+Roles could be understood as a kind of "dynamic subclass." An
+association links between the original entity and a role class. The
+role class is specific to the original class (e.g., Student is a role
+for class Person; Employee is a role for class BusinessPartner).
+
+Roles conform to their original class. A Person instance viewn in role
+Employee conforms to class Person.
+
+Roles can add features (operations, associations, ...) beyond what the
+original class offers.
+
+If an object enters an association to a role, it can dynamically be
+"cast" into an instance of that role resulting in an object that
+statically is of the role type, keeping the original object's
+identity. Somehow this resembles traversing the association from
+original to role, only that the result still has the same identity but
+has the extended features and exhibits the extended state as defined
+by the role.
+
+As a variant, roles may redefine features of the original class. Now
+this becomes tricky from a polymorphism point of view. The role's
+features are only available if the *static* type of an object is that
+of the role. Therefore, redefinitions that occur by a role don't work
+polymorphically. But does it have to be like that? Couldn't the
+semantics be that the object with its ID is annotated with the dynamic
+type it's supposed to have? This could then be set to either role that
+is reachable by navigating the connected graph of role
+associations. The "cast" would replace the dynamic type of the object
+by that of another role. This would be preserved as the object gets
+passed around. The runtime would assert that type replacement can only
+happen within a connected graph of roles.
+
+For feature dispatching, the dynamic type is relevant. For association
+lookup, only the identity counts. Therefore, as long as the static
+type matches during insertion into the association, the object can be
+inserted. For example, a Student role object can be inserted into an
+association between class Person and something else as a Person.
+
+The runtime identity of an object would then consist of the object ID
+plus a type identifier which has to be the original class or any of
+the roles in the connected graph of roles attached to the original
+type. A reference to an object always has both, the ID and the dynamic
+type. Therefore, the dynamic type gets passed along with the object
+and gets stored in associations. Therefore, when a Student gets
+entered into a Person association, it will be retrieved as a Student
+again. Its behavior will be determined by what the Student role class
+tells, in particular including any redefinitions of Person features.

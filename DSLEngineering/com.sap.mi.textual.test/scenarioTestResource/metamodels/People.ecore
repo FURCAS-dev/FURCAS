@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore">
+  <ecore:EPackage name="People" nsURI="People" nsPrefix="People">
+    <eClassifiers xsi:type="ecore:EClass" name="Person" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false"
+          unique="false" lowerBound="1" eType="#/1/String"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="age" eType="#/1/Integer"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="male" eType="#/1/Boolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="height" eType="#/1/Double"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="currentlyIn" eType="#/0/City"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="codeName" eType="#/1/String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="embassy" eType="#/0/City"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="embassy2" eType="#/0/City"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parents" lowerBound="2"
+          upperBound="2" eType="#/0/Person"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="spouse" eType="#/0/Person"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="City" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="persons" ordered="false"
+          upperBound="-1" eType="#/0/Person"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#/1/String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nation" eType="#/0/Nation"
+          eOpposite="#/0/Nation/cities"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="representative" eType="#/0/Person"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="World">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nations" upperBound="-1"
+          eType="#/0/Nation" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
+          eType="#/0/PersonDefinition"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Nation">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="cities" upperBound="-1"
+          eType="#/0/City" containment="true" eOpposite="#/0/City/nation"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#/1/String"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="capital" eType="#/0/City"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PersonDefinition" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="person" lowerBound="1"
+          eType="#/0/Person"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ConcretePersonDefinition" eSuperTypes="#/0/PersonDefinition"/>
+    <eClassifiers xsi:type="ecore:EClass" name="NestedPersonDefinition" eSuperTypes="#/0/PersonDefinition">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lowerMultiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upperMultiplicity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nestedPersonDefinition"
+          lowerBound="1" eType="#/0/PersonDefinition"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="op" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </ecore:EPackage>
+  <ecore:EPackage name="PrimitiveTypes" nsURI="PrimitiveTypes" nsPrefix="PrimitiveTypes">
+    <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Double" instanceClassName="double"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Boolean" instanceClassName="boolean"/>
+  </ecore:EPackage>
+</xmi:XMI>

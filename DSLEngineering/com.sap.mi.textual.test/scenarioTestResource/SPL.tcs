@@ -1,0 +1,705 @@
+syntax SPL {
+
+	primitiveTemplate identifier for ->String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for ->String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\'' + %value%.toCString() + '\''";
+
+	primitiveTemplate uriSymbol for ->String using URI:
+		value = "unescapeString(%token%)",
+		serializer="'\'' + %value%.toCString() + '\''";
+
+	primitiveTemplate headerIdSymbol for ->String using HEADERID:
+		value = "unescapeString(%token%)",
+		serializer="'\'' + %value%.toCString() + '\''";
+
+	primitiveTemplate integerSymbol for ->Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+
+	template ->Program main
+		:	->service
+		;
+
+	template ->Service context
+		:	"service" ->name "{" [
+				[ "processing" "{" ] {indentIncr = 0, startNL = false, endNL = false, nbNL = 0} [
+					->declarations
+					->sessions
+				] {nbNL = 2} "}"
+			] "}"
+		;
+
+-- @begin Sessions
+	template ->Session abstract;
+
+	template ->Registration context
+		:	"registration" "{" [
+				->declarations
+				->sessions
+			] {nbNL = 2} "}"
+		;
+
+	template ->Dialog context
+		:	"dialog" "{" [
+				->declarations
+				->methods
+			] {nbNL = 2} "}"
+		;
+
+	template ->Event
+		:	"event" ->eventId
+			"{" [
+				->declarations
+				->methods
+			] {nbNL = 2} "}"
+		;
+
+-- @begin Methods
+	template ->Method context
+		:	$methodHeader
+			"{" [
+				(isDefined(->branches) ?
+						->branches
+					:
+						->statements
+				)
+			] "}"
+		;
+
+--	template ->SimpleMethod
+--		:	$methodHeader "{" [
+--				->statements
+--			] "}"
+--		;
+
+--	template ->ComposedMethod
+--		:	$methodHeader "{" [
+--				->branches
+--			] "}"
+--		;
+
+	function methodHeader(->Method)
+		:	->type
+			(->direction = #in ?
+					"incoming"
+				:
+					(->direction = #out ?
+							"outgoing"
+						:
+							-- inout
+					)
+			)
+			->methodName
+			"(" ->arguments{separator = ","} ")"
+		;
+
+	template ->Argument addToContext
+		:	->type ->name
+		;
+
+-- @begin Method Names
+	template ->MethodName abstract;
+
+	template ->SIPMethodName
+		:	->name
+		;
+
+	template ->ControlMethodName
+		:	->name
+		;
+-- @end Method Names
+-- @end Methods
+-- @end Sessions
+
+
+-- @begin Branches
+	template ->Branch abstract;
+
+	template ->DefaultBranch
+		:	"branch" "default"
+			"{" ->statements "}"
+		;
+
+	template ->NamedBranch
+		:	"branch" ->name{separator = "|"}
+			"{" ->statements "}"
+		;
+-- @end Branches
+
+-- @begin Declarations
+	template ->Declaration abstract;
+
+	template ->VariableDeclaration addToContext
+		:	->type ->name (isDefined(->initExp) ? "=" ->initExp) ";"
+		;
+
+-- @begin FunctionDeclarations
+	template ->FunctionDeclaration abstract;
+
+	template ->RemoteFunctionDeclaration context addToContext
+		:	->functionLocation ->returnType ->name "(" ->arguments{separator = ","} ")" ";"
+		;
+
+	template ->LocalFunctionDeclaration context addToContext
+		:	->returnType ->name "(" ->arguments{separator = ","} ")" "{" [
+				->statements
+			] "}"
+		;
+-- @end FunctionDeclarations
+
+-- @begin StructureDeclarations
+	template ->StructureDeclaration
+		:	"type" ->name "{" [
+				->properties
+			] "}"
+		;
+
+	template ->StructureProperty
+		:	->type ->name ";"
+		;
+-- @end StructureDeclarations
+-- @end Declarations
+
+-- @begin Statements
+	template ->Statement abstract;
+
+	template ->CompoundStat
+		:	"{" [ ->statements ] "}"
+		;
+
+	template ->SetStat
+		:	->target "=" ->setValue ";"
+		;
+
+	template ->DeclarationStat
+		:	->declaration
+		;
+
+	template ->ReturnStat
+		:	"return"
+			(isDefined(->returnedValue) ? ->returnedValue)
+			(isDefined(->branch) ? "branch" ->branch{refersTo = name, autoCreate = ifmissing})
+			";"
+		;
+
+	template ->IfStat
+		:	"if" "(" ->condition ")" [
+				->thenStatement
+			]
+			(isDefined(->elseStatement) ?
+				"else" [
+					->elseStatement
+				]
+			)
+		;
+
+	template ->WhenStat context
+		:	"when" ->idExp "(" ->whenHeaders{separator = ","} ")" "{" [
+				->statements
+			] "}"
+			(isDefined(->elseStatement) ?
+				"else" [
+					->elseStatement
+				]
+			)
+		;
+
+	template ->WhenHeader addToContext
+		:	->headerId{as = headerIdSymbol} ->type ->name (isDefined(->value) ? ->value)
+		;
+
+	template ->ForeachStat context
+		:	"foreach" "(" ->iterator "in" ->sequenceExp ")" "{" [
+				->statements
+			] "}"
+		;
+
+	template ->Iterator addToContext
+		:	->name
+		;
+
+	template ->SelectStat
+		:	"select" "(" ->matchedExp ")" "{" [
+				->selectCases
+				(isDefined(->selectDefault) ?
+					->selectDefault
+				)
+			] "}"
+		;
+
+	template ->SelectCase
+		:	"case" ->values{separator = "|"} ":" [ ->statements ]
+		;
+
+	template ->SelectDefault
+		:	"default" ":" [ ->statements ]
+		;
+
+	template ->FunctionCallStat
+		:	->functionCall ";"
+		;
+
+	template ->ContinueStat
+		:	"continue" ";"
+		;
+
+	template ->BreakStat
+		:	"break" ";"
+		;
+
+	template ->PushStat
+		:	"push" ->target ->pushedValue ";"
+		;
+-- @end Statements
+
+-- @begin Expressions
+	template ->Expression abstract operatored;
+
+	template ->ConstantExp
+		:	->value
+		;
+
+	operatorTemplate ->OperatorExp(operators =
+--				opPoint opRarrow
+				opNot opMinus1
+				opStar opSlash
+				opPlus opMinus2
+				opEq opGt opLt opGe opLe opNe
+				opAnd opOr
+				opMatch opNoMatch
+			, source = ->leftExp, storeOpTo = ->opName, storeRightTo = ->rightExp);
+
+	-- must be nonPrimary because it finishes (or may finish) by an expression
+	template ->ForwardExp nonPrimary
+		:	(->isParallel ? "parallel") "forward" (isDefined(->exp) ? ->exp)
+		;
+
+	-- must be operatorTemplate because it is left recursive
+	operatorTemplate ->WithExp(operators = opWith, source = ->exp)
+		:	"{" ->msgFields{separator = ","} "}"
+		;
+
+	template ->MessageField abstract;
+
+	template ->ReasonMessageField
+		:	"reason" "=" ->exp
+		;
+
+	template ->HeadedMessageField
+		:	->headerId{as = headerIdSymbol} ->exp
+		;
+
+	-- TODO: BlockExp?
+	template ->ReasonExp
+		:	"reason"
+		;
+
+	template ->BODYExp
+		:	"BODY"
+		;
+
+	template ->RequestURIExp
+		:	"requestURI"
+		;
+
+	template ->PopExp
+		:	"pop" ->source
+		;
+
+	template ->FunctionCallExp
+		:	->functionCall
+		;
+
+	template ->FunctionCall
+		:	->function{refersTo = name} "(" ->parameters{separator = ","} ")"
+		;
+
+	template ->Place abstract;
+
+	template ->SIPHeaderPlace
+		:	->header
+		;
+
+	template ->VariablePlace abstract;
+
+	template ->Variable
+		:	->source{refersTo = name}
+		;
+
+--	template ->PropertyCallPlace
+--		:	-- TODO
+--		;
+-- @end Expressions
+
+-- @begin Constants
+	template ->Constant abstract;
+
+	template ->BooleanConstant
+		:	(->value ? "true" : "false")
+		;
+
+	template ->IntegerConstant
+		:	->value
+		;
+
+	template ->StringConstant
+		:	->value{as = stringSymbol}
+		;
+
+	template ->URIConstant
+		:	->uri{as = uriSymbol}
+		;
+
+	template ->SequenceConstant
+		:	"<" ->values{separator = ","} ">"
+		;
+
+	template ->ResponseConstant
+		:	->response
+		;
+-- @end Constants
+
+-- @begin Responses
+	template ->Response abstract;
+
+	template ->SuccessResponse abstract
+		:	"/" <no_space> "SUCCESS"
+			(isDefined(->successKind) ? <no_space> "/" <no_space> ->successKind)
+		;
+
+	template ->ErrorResponse abstract
+		:	"/" <no_space> "ERROR"
+		;
+
+	template ->ClientErrorResponse
+		:	"/" <no_space> "ERROR" <no_space> "/" <no_space> "CLIENT"
+			(isDefined(->errorKind) ? <no_space> "/" <no_space> ->errorKind)
+		;
+
+	template ->GlobalErrorResponse
+		:	"/" <no_space> "ERROR" <no_space> "/" <no_space> "GLOBAL"
+			(isDefined(->errorKind) ? <no_space> "/" <no_space> ->errorKind)
+		;
+
+	template ->RedirectionErrorResponse
+		:	"/" <no_space> "ERROR" <no_space> "/" <no_space> "REDIRECTION"
+			(isDefined(->errorKind) ? <no_space> "/" <no_space> ->errorKind)
+		;
+
+	template ->ServerErrorResponse
+		:	"/" <no_space> "ERROR" <no_space> "/" <no_space> "SERVER"
+			(isDefined(->errorKind) ? <no_space> "/" <no_space> ->errorKind)
+		;
+-- @end Responses
+
+
+-- @begin Types
+	template ->TypeExpression abstract;
+
+	template ->SimpleType
+		:	->type
+		;
+
+	template ->SequenceType
+		:	(isDefined(->modifier) ?
+				->modifier
+			)
+			->type "<" (isDefined(->size) ? ->size) ">"
+		;
+
+	enumerationTemplate ->Modifier auto
+		:	#LIFO		= "LIFO",
+			#FIFO		= "FIFO"
+		;
+-- @end Types
+
+	enumerationTemplate ->SIPMethod auto
+		:	#ACK		= "ACK",
+			#BYE		= "BYE",
+			#CANCEL		= "CANCEL",
+			#INVITE		= "INVITE",
+			#NOTIFY		= "NOTIFY",
+			#OPTIONS	= "OPTIONS",
+			#REACK		= "REACK",
+			#REGISTER	= "REGISTER",
+			#REINVITE	= "REINVITE",
+			#RESUBSCRIBE	= "RESUBSCRIBE",
+			#SUBSCRIBE	= "SUBSCRIBE"
+		;
+
+	enumerationTemplate ->ControlMethod auto
+		:	#deploy		= "deploy",
+			#undeploy	= "undeploy",
+			#uninvite	= "uninvite",
+			#unregister	= "unregister",
+			#unsubscribe	= "unsubscribe"
+		;
+
+	enumerationTemplate ->FunctionLocation auto
+		:	#remote		= "remote",
+			#local		= "local"
+		;
+
+	enumerationTemplate ->SuccessKind auto
+		:	#OK		= "OK",
+			#ACCEPTED	= "ACCEPTED"
+		;
+
+	enumerationTemplate ->ClientErrorKind auto
+		:	#ADDRESS_INCOMPLETE			= "ADDRESS_INCOMPLETE",
+			#AMBIGUOUS				= "AMBIGUOUS",
+			#BAD_EXTENSION				= "BAD_EXTENSION",
+			#BAD_REQUEST				= "BAD_REQUEST",
+			#BUSY_HERE				= "BUSY_HERE",
+			#CALL_OR_TRANSACTION_DOES_NOT_EXIST	= "CALL_OR_TRANSACTION_DOES_NOT_EXIST",
+			#EXTENSION_REQUIRED			= "EXTENSION_REQUIRED",
+			#FORBIDDEN				= "FORBIDDEN",
+			#GONE					= "GONE",
+			#INTERVAL_TOO_BRIEF			= "INTERVAL_TOO_BRIEF",
+			#LOOP_DETECTED				= "LOOP_DETECTED",
+			#METHOD_NOT_ALLOWED			= "METHOD_NOT_ALLOWED",
+			#NOT_ACCEPTABLE_HERE			= "NOT_ACCEPTABLE_HERE",
+			#NOT_ACCEPTABLE				= "NOT_ACCEPTABLE",
+			#NOT_FOUND				= "NOT_FOUND",
+			#PAYMENT_REQUIRED			= "PAYMENT_REQUIRED",
+			#PROXY_AUTHENTICATION_REQUIRED		= "PROXY_AUTHENTICATION_REQUIRED",
+			#REQUESTURI_TOO_LONG			= "REQUESTURI_TOO_LONG",
+			#REQUEST_ENTITY_TOO_LARGE		= "REQUEST_ENTITY_TOO_LARGE",
+			#REQUEST_PENDING			= "REQUEST_PENDING",
+			#REQUEST_TERMINATED			= "REQUEST_TERMINATED",
+			#REQUEST_TIMEOUT			= "REQUEST_TIMEOUT",
+			#TEMPORARILY_UNAVAILABLE		= "TEMPORARILY_UNAVAILABLE",
+			#TOO_MANY_HOPS				= "TOO_MANY_HOPS",
+			#UNAUTHORIZED				= "UNAUTHORIZED",
+			#UNDECIPHERABLE				= "UNDECIPHERABLE",
+			#UNSUPPORTED_MEDIA_TYPE			= "UNSUPPORTED_MEDIA_TYPE",
+			#UNSUPPORTED_URI_SCHEME			= "UNSUPPORTED_URI_SCHEME"
+		;
+
+	enumerationTemplate ->GlobalErrorKind auto
+		:	#BUSY_EVERYWHERE		= "BUSY_EVERYWHERE",
+			#DECLINE			= "DECLINE",
+			#DOES_NOT_EXIST_ANYWHERE	= "DOES_NOT_EXIST_ANYWHERE",
+			#NOT_ACCEPTABLE			= "NOT_ACCEPTABLE"
+		;
+
+	enumerationTemplate ->RedirectionErrorKind auto
+		:	#ALTERNATIVE_SERVICE	= "ALTERNATIVE_SERVICE",
+			#MOVED_PERMANENTLY	= "MOVED_PERMANENTLY",
+			#MOVED_TEMPORARILY	= "MOVED_TEMPORARILY",
+			#MULTIPLE_CHOICES	= "MULTIPLE_CHOICES",
+			#USE_PROXY		= "USE_PROXY"
+		;
+
+	enumerationTemplate ->ServerErrorKind auto
+		:	#BAD_GATEWAY		= "BAD_GATEWAY",
+			#MESSAGE_TOO_LARGE	= "MESSAGE_TOO_LARGE",
+			#NOT_IMPLEMENTED	= "NOT_IMPLEMENTED",
+			#SERVER_INTERNAL_ERROR	= "SERVER_INTERNAL_ERROR",
+			#SERVER_TIMEOUT		= "SERVER_TIMEOUT",
+			#SERVICE_UNAVAILABLE	= "SERVICE_UNAVAILABLE",
+			#VERSION_NOT_SUPPORTED	= "VERSION_NOT_SUPPORTED"
+		;
+
+	enumerationTemplate ->SIPHeader auto
+		:	#CALL_ID		= "CALL_ID",
+			#CONTACT		= "CONTACT",
+			#CSEQ			= "CSEQ",
+			#EVENT			= "EVENT",
+			#FROM			= "FROM",
+			#MAX_FORWARDS		= "MAX_FORWARDS",
+			#SUBSCRIPTION_STATE	= "SUBSCRIPTION_STATE",
+			#TO			= "TO",
+			#VIA			= "VIA"
+		;
+
+	enumerationTemplate ->PrimitiveType auto
+		:	#void		= "void",
+			#bool		= "bool",
+			#int		= "int",
+			#request	= "request",
+			#response	= "response",
+			#string		= "string",
+			#time		= "time",
+			#uri		= "uri"
+		;
+
+	symbols {
+		lsquare		= "[";
+		rsquare		= "]"	: rightSpace;
+		excl		= "!";
+		coma		= ","	: leftNone, rightSpace;
+		lparen		= "(";
+		rparen		= ")"	: leftNone, rightSpace;
+		lcurly		= "{"	: leftSpace;
+		rcurly		= "}"	: leftNone, rightSpace;
+		semi		= ";"	: leftNone, rightSpace;
+		colon		= ":"	: leftNone, rightSpace;
+		colons		= "::";
+		pipe		= "|"	: leftSpace, rightSpace;
+		sharp		= "#"	: leftSpace;
+		qmark		= "?";
+
+		-- operator symbols
+		point		= "."	: leftNone;
+		rarrow		= "->"	: leftNone;
+		minus		= "-"	: leftSpace, rightSpace;
+		star		= "*"	: leftSpace, rightSpace;
+		slash		= "/"	: leftSpace, rightSpace;
+		plus		= "+"	: leftSpace, rightSpace;
+		eq		= "="	: leftSpace, rightSpace;
+		eqeq		= "==";
+		gt		= ">"	: leftSpace, rightSpace;
+		lt		= "<"	: leftSpace, rightSpace;
+		ge		= ">="	: leftSpace, rightSpace;
+		le		= "<="	: leftSpace, rightSpace;
+		ne		= "!="	: leftSpace, rightSpace;
+		larrow		= "<-"	: leftSpace, rightSpace;
+		ampamp		= "&&";
+		pipepipe	= "||";
+	}
+
+	operators {
+		priority 0 {	-- 0 is highest
+--			opPoint = point, 2;
+--			opRarrow = rarrow, 2;
+			opWith = "with", 2;
+		}
+
+		priority 1 {
+			opNot = excl, 1;		-- no corresponding symbol => symbol is the keyword defined by the quoted string (which is also the name)
+			opMinus1 = minus, 1;
+		}
+
+		priority 2 {
+			opStar = star, 2;
+			opSlash = slash, 2;
+		}
+
+		priority 3 {
+			opPlus = plus, 2;
+			opMinus2 = minus, 2;
+		}
+
+		priority 4 {
+			opEq = eqeq, 2;
+			opGt = gt, 2;
+			opLt = lt, 2;
+			opGe = ge, 2;
+			opLe = le, 2;
+			opNe = ne, 2;
+		}
+
+		priority 5 {
+			opAnd = ampamp, 2;
+			opOr = pipepipe, 2;
+		}
+
+		priority 6 {
+			opMatch = "match", 2;
+			opNoMatch = "nomatch", 2;
+		}
+	}
+
+	token NAME	:	word(
+					start = [alpha] | "_",
+					part = [alnum] | "_"
+					
+					
+				);
+	token COMMENT	:	endOfLine(start = "//") | multiLine(start = "/*", end = "*/");
+	token URI	:	multiLine(start = "\'", end = "\'");
+	token HEADERID	:	word(
+					start = "#",
+					part = [alnum] | "_" | "!" | "%" | "*" | "-" | "+" | "'" | "`" | "~",
+					end = ":"
+				);
+
+	lexer = "
+%options testLiterals = false;
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		)
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+INT
+	:	(DIGIT)+
+	;
+
+
+%protected
+ESC
+	:	'\\\\'!
+		(	'n' %v2{%setText(\"\\n\");}
+		|	'r' %v2{%setText(\"\\r\");}
+		|	't' %v2{%setText(\"\\t\");}
+		|	'b' %v2{%setText(\"\\b\");}
+		|	'f' %v2{%setText(\"\\f\");}
+		|	'\"' %v2{%setText(\"\\\"\");}
+		|	'\\.' %v2{%setText(\".\");}	// SPL-specific
+		|	'\\'' %v2{%setText(\"\\'\");}
+		|	'\\\\' %v2{%setText(\"\\\\\");}
+		|	(
+				('0'..'3')
+				(
+%v2					options {
+%v2						warnWhenFollowAmbig = false;
+%v2					}
+				:	('0'..'7')
+					(
+%v2						options {
+%v2							warnWhenFollowAmbig = false;
+%v2						}
+					:	'0'..'7'
+					)?
+				)?
+			|	('4'..'7')
+				(
+%v2					options {
+%v2						warnWhenFollowAmbig = false;
+%v2					}
+				:	('0'..'7')
+				)?
+			)
+				{
+%v2					String s = %getText;
+%v2					int i;
+%v2					int ret = 0;
+%v2					String ans;
+%v2					for (i=0; i<s.length(); ++i)
+%v2						ret = ret*8 + s.charAt(i) - '0';
+%v2					ans = String.valueOf((char) ret);
+%v2					%setText(ans);
+				}
+		)
+	;
+
+STRING
+	:	'\\\"'!
+		(	ESC
+		|	'\\n' {newline();}
+		|	~('\\\\'|'\\\"'|'\\n')
+		)*
+		'\\\"'!
+%v3		{setText(unescapeString(getText(), 1));}
+	;
+	";
+
+}

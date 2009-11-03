@@ -1,0 +1,30 @@
+Index: ClassParser.java
+===================================================================
+--- ClassParser.java	(revision 2538)
++++ ClassParser.java	(revision 2535)
+@@ -16534,7 +16534,7 @@
+     public static final BitSet FOLLOW_identifier_in_dataaccess_expressions_methodcallexpression3953 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_identifier_in_dataaccess_expressions_variableexpression4003 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_data_classes_functionsignaturetypedefinition_anonymousFunctionExpr_in_dataaccess_expressions_fp_anonymousfunctionexpr4086 = new BitSet(new long[]{0x0000000000000002L});
+-    public static final BitSet FOLLOW_data_classes_functionsignature_anonymousFunctionExpr_in_data_classes_functionsignaturetypedefinition_anonymousFunctionExpr4145 = new BitSet(new long[]{0x0100100001001042L,0x0000000000000040L});
++    public static final BitSet FOLLOW_data_classes_functionsignature_anonymousFunctionExpr_in_data_classes_functionsignaturetypedefinition_anonymousFunctionExpr4145 = new BitSet(new long[]{0x0100100001001040L,0x0000000000000040L});
+     public static final BitSet FOLLOW_printmultiplicity_in_data_classes_functionsignaturetypedefinition_anonymousFunctionExpr4151 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_72_in_data_classes_functionsignature_anonymousFunctionExpr4201 = new BitSet(new long[]{0x0000000000040000L});
+     public static final BitSet FOLLOW_LPAREN_in_data_classes_functionsignature_anonymousFunctionExpr4205 = new BitSet(new long[]{0x0000000000080010L,0x0000000000000100L});
+@@ -16626,14 +16626,14 @@
+     public static final BitSet FOLLOW_data_classes_classtypedefinition_in_data_classes_typedefinition6101 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_data_classes_functionsignaturetypedefinition_in_data_classes_typedefinition6109 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_data_generics_parameterizedclassinstantiation_typeDefinition_in_data_classes_classtypedefinition6149 = new BitSet(new long[]{0x0100100001001040L,0x0000000000000040L});
+-    public static final BitSet FOLLOW_identifier_in_data_classes_classtypedefinition6168 = new BitSet(new long[]{0x0100100001001042L,0x0000000000000040L});
++    public static final BitSet FOLLOW_identifier_in_data_classes_classtypedefinition6168 = new BitSet(new long[]{0x0100100001001040L,0x0000000000000040L});
+     public static final BitSet FOLLOW_printmultiplicity_in_data_classes_classtypedefinition6180 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_identifier_in_data_generics_parameterizedclassinstantiation_typeDefinition6225 = new BitSet(new long[]{0x0000000000004000L});
+     public static final BitSet FOLLOW_LANGLE_in_data_generics_parameterizedclassinstantiation_typeDefinition6232 = new BitSet(new long[]{0x0000000000000010L});
+     public static final BitSet FOLLOW_data_generics_actualtypeparameter_in_data_generics_parameterizedclassinstantiation_typeDefinition6240 = new BitSet(new long[]{0x0000000000008010L});
+     public static final BitSet FOLLOW_data_generics_actualtypeparameter_in_data_generics_parameterizedclassinstantiation_typeDefinition6248 = new BitSet(new long[]{0x0000000000008010L});
+     public static final BitSet FOLLOW_RANGLE_in_data_generics_parameterizedclassinstantiation_typeDefinition6258 = new BitSet(new long[]{0x0000000000000002L});
+-    public static final BitSet FOLLOW_data_classes_functionsignature_functionSignatureTypeDefinition_in_data_classes_functionsignaturetypedefinition6312 = new BitSet(new long[]{0x0100100001001042L,0x0000000000000040L});
++    public static final BitSet FOLLOW_data_classes_functionsignature_functionSignatureTypeDefinition_in_data_classes_functionsignaturetypedefinition6312 = new BitSet(new long[]{0x0100100001001040L,0x0000000000000040L});
+     public static final BitSet FOLLOW_printmultiplicity_in_data_classes_functionsignaturetypedefinition6318 = new BitSet(new long[]{0x0000000000000002L});
+     public static final BitSet FOLLOW_72_in_data_classes_functionsignature_functionSignatureTypeDefinition6368 = new BitSet(new long[]{0x0000000000040000L});
+     public static final BitSet FOLLOW_LPAREN_in_data_classes_functionsignature_functionSignatureTypeDefinition6372 = new BitSet(new long[]{0x0000000000080010L,0x0000000000000100L});

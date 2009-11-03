@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expression"
+    nsURI="http:///test.ecore" nsPrefix="test">
+  <eClassifiers xsi:type="ecore:EClass" name="Expression" abstract="true"/>
+  <eSubpackages name="primitives" nsPrefix="">
+    <eClassifiers xsi:type="ecore:EDataType" name="String" instanceClassName="java.lang.String"/>
+    <eClassifiers xsi:type="ecore:EDataType" name="Integer" instanceClassName="int"/>
+  </eSubpackages>
+  <eSubpackages name="wrongPackage">
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionList"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StringExpression"/>
+  </eSubpackages>
+  <eSubpackages name="rightPackage">
+    <eClassifiers xsi:type="ecore:EClass" name="BinaryExpression" eSuperTypes="#//Expression">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="leftSide" lowerBound="1"
+          eType="#//Expression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="rightSide" lowerBound="1"
+          eType="#//Expression"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="Operator" upperBound="-1"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ValueExpression" eSuperTypes="#//Expression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1"
+          eType="#//primitives/Integer"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ExpressionList">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+          eType="#//Expression"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StringExpression" eSuperTypes="#//Expression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="#//primitives/String"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

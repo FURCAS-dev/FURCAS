@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/coghead' i='1' v=''/>
+<M c='1' q='coghead.Account' i='49D62CFB32044562206511DE8B190019D29902CC'/>
+<M c='1' q='coghead.AccountLevelPermission' i='49D62CFB3206B680206511DEAC170019D29902CC'/>
+<M c='1' q='coghead.Role' i='49D62CFB3206B68D206511DE809C0019D29902CC'/>
+<M c='1' q='coghead.A_runtimeCreate_accountLevelPermission' i='49D62CFB320B7163206511DEC7EA0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_runtimeRetrieve_accountLevelPermission' i='49D62CFB320B7166206511DEB4BB0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_runtimeUpdate_accountLevelPermission' i='49D62CFB320B7169206511DEB09E0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_runtimeDelete_accountLevelPermission' i='49D62CFB320B716C206511DEC2820019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_designTimeCreate_accountLevelPermission' i='49D62CFB320B716F206511DEACDA0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_designTimeRetrieve_accountLevelPermission' i='49D62CFB320B7172206511DE9F0F0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_designTimeUpdate_accountLevelPermission' i='49D62CFB320B7175206511DEC2ED0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_designTimeDelete_accountLevelPermission' i='49D62CFB320B7178206511DEB6FE0019D29902CC' se='1' ce='-1' oe='-1'/>
+<M c='1' q='coghead.A_permissions_account' i='49D9FDBF649AC48522AB11DEC7E300155883529C' se='1' ce='1' oe='-1'/>
+<M c='1' q='coghead.A_roles_account' i='E05F18012213402246B711DEBE7600155883529C' se='1' ce='1' oe='-1'/>
+<M c='1' q='coghead.A_applications_myAccount' i='E05F1801D73A8BD1493B11DE999A001A6BCDC3B3' se='1' ce='1' oe='-1'/>
+<coghead.Account m:c='1' m:i='E016575C30B8D4404C4411DEB120001A6BCDC3B3' name='RiverAccount'/>
+<coghead.Role m:c='1' m:i='E016575C3147CDD04C4411DE9058001A6BCDC3B3' name='Admins' description='Admins'/>
+<coghead.Role m:c='1' m:i='E016575C315AE0A04C4411DE97A2001A6BCDC3B3' name='Support' description='Support'/>
+<coghead.Role m:c='1' m:i='E016575C315AE0A14C4411DE8E7C001A6BCDC3B3' name='Users' description='Users'/>
+<coghead.AccountLevelPermission m:c='1' m:i='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+<coghead.A_runtimeCreate_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+<L f='E016575C315AE0A14C4411DE8E7C001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_runtimeCreate_accountLevelPermission>
+<coghead.A_runtimeRetrieve_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+<L f='E016575C315AE0A14C4411DE8E7C001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_runtimeRetrieve_accountLevelPermission>
+<coghead.A_runtimeUpdate_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+<L f='E016575C315AE0A14C4411DE8E7C001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_runtimeUpdate_accountLevelPermission>
+<coghead.A_runtimeDelete_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+<L f='E016575C315AE0A14C4411DE8E7C001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_runtimeDelete_accountLevelPermission>
+<coghead.A_designTimeCreate_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_designTimeCreate_accountLevelPermission>
+<coghead.A_designTimeRetrieve_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_designTimeRetrieve_accountLevelPermission>
+<coghead.A_designTimeUpdate_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_designTimeUpdate_accountLevelPermission>
+<coghead.A_designTimeDelete_accountLevelPermission c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C31CFC2804C4411DEB165001A6BCDC3B3'/>
+</coghead.A_designTimeDelete_accountLevelPermission>
+<coghead.A_permissions_account c='1'>
+<L f='E016575C31CFC2804C4411DEB165001A6BCDC3B3' s='E016575C30B8D4404C4411DEB120001A6BCDC3B3'/>
+</coghead.A_permissions_account>
+<coghead.A_roles_account c='1'>
+<L f='E016575C3147CDD04C4411DE9058001A6BCDC3B3' s='E016575C30B8D4404C4411DEB120001A6BCDC3B3'/>
+<L f='E016575C315AE0A04C4411DE97A2001A6BCDC3B3' s='E016575C30B8D4404C4411DEB120001A6BCDC3B3'/>
+<L f='E016575C315AE0A14C4411DE8E7C001A6BCDC3B3' s='E016575C30B8D4404C4411DEB120001A6BCDC3B3'/>
+</coghead.A_roles_account>
+<coghead.A_applications_myAccount c='1'>
+<L f='local:E016575C51F680D04C4411DEAEF3001A6BCDC3B3' s='E016575C30B8D4404C4411DEB120001A6BCDC3B3'/>
+</coghead.A_applications_myAccount>
+</Partition>

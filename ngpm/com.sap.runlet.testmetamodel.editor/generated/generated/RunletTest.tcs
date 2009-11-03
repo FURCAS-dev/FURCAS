@@ -1,0 +1,183 @@
+syntax RunletTest(k=0 ) {
+-- k = 0 means manually defined syntactic predicates
+
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+
+	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+		
+	primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+		value = "%token%";
+		
+	primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+		value = "%token%";
+		
+	primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+		value = "%token%";	
+		
+	primitiveTemplate binarySymbol for PrimitiveTypes::String using BINARY:
+		value = "%token%";
+		
+	primitiveTemplate dateSymbol for PrimitiveTypes::String using DATE:
+		value = "%token%";
+	
+-- @begin TEMPLATES
+
+    -- Fill in your templates here --
+ 	template RunletTest main context(root)
+ 		: "runlettest" name "{"
+ 		  [
+ 		  	sub{separator=";"}
+ 		  ]
+ 		  "}"
+ 		;
+ 	
+ 	template Subcomponent
+ 		: "sub" name
+ 		;
+ 		
+	symbols {
+		lbracket	= "[";
+		rbracket	= "]";
+		lcurl		= "{";
+		rcurl		= "}";
+		langle      = "<";
+		rangle      = ">";
+		lparen		= "(";
+		rparen		= ")";
+		excl		= "!";
+		equals		= "=";
+		equalsEquals= "==";
+		assign		= ":=";
+		dot			= ".";
+		ddot		= "..";
+		arrow		= "->";
+		pipe		= "|";
+		colon		= ":";
+		dcolon		= "::";
+		semicolon	= ";";
+		including	= "including";
+		excluding	= "excluding";
+		includingat	= "includingAt";
+		excludingat	= "excludingAt";
+		iterate		= "iterate";
+		lcurl_lbrack = "{[";
+		lbrack_lcurl = "[{";
+		rcurl_rbrack = "}]";
+		rbrack_rcurl = "]}";
+		star		= "*";
+	}
+	
+	token COMMENT	: endOfLine(start = "//");
+	token MULTI_LINE_COMMENT	: multiLine(start = "/*", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+OBJECT	:	'o:'	;
+
+NAME
+	:	(
+			SNAME
+		|	'\\''!
+			(	
+		//	ESC	|
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+BINARY
+	:	'0x'(DIGIT)+
+	;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+	:	DIGIT+ '.' DIGIT*
+	;
+  
+RANGE_OR_INT
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+
+DATE	:	DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT
+            ((','|'.') (DIGIT)+)? ('Z' | (('+'|'-') DIGIT DIGIT DIGIT DIGIT)?) )? ;
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+}

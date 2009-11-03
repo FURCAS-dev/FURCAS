@@ -1,0 +1,1315 @@
+syntax Class(k=0 ) {
+-- k = 0 means manually defined syntactic predicates
+
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+
+	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+		
+	primitiveTemplate integerAsStringSymbol for PrimitiveTypes::String default using INT:
+		value = "%token%";
+
+	primitiveTemplate floatAsStringSymbol for PrimitiveTypes::String default using FLOAT:
+		value = "%token%";
+		
+	primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+		value = "%token%";	
+		
+	primitiveTemplate binarySymbol for PrimitiveTypes::String using BINARY:
+		value = "%token%";
+		
+	primitiveTemplate dateSymbol for PrimitiveTypes::String using DATE:
+		value = "%token%";
+	
+-- @begin BLOCKS AND STATEMENTS
+	template data::classes::SapClass main context(root)
+		:	(valueType ? "value") "class" name parameterization
+		  [[
+		    |
+		     disambiguate("'|'")
+		     "|" formalObjectParameters{forcedLower=1, separator=","} "|"
+		  ]]
+			(isDefined(adapters) ? "implements" adapters{mode=implements, forcedLower=1, separator=","})
+		    <space> "{" [
+		    	ownedSignatures{disambiguate="data_classes_methodsignature"}
+		    	elementsOfType{mode=property, partial}
+		    ] "}"
+		;
+	
+	template TypeAdapter #implements
+		: to{as=identifier, query="OCL:data::classes::SapClass.allInstances()", filter="->select(c | c.name = ?)", invert = "name"}
+		  {{ name = lookIn("OCL:'From_'.concat(self.adapted.name).concat('_to_').concat(self.to.name)") }}
+		;
+	 
+	template data::generics::ClassParameterization
+		:	"<" formalTypeParameters{ forcedLower=1, separator = "," } ">"
+		;
+		
+	template data::generics::FormalTypeParameter
+		: 	name 
+			( isDefined(typeConstraint) ? 
+			     ":" 
+			     [[
+			             (typeConstraint instanceOf ParameterizedClassInstantiation ? typeConstraint{mode=typeDefinition})
+			     |
+			             typeConstraint{as=identifier, query="OCL:data::classes::SapClass.allInstances()",
+			             								filter="->select(c | c.name = ?)", invert="name"}
+			     ]] 
+			
+			) 
+		;
+	
+	template behavioral::actions::Block context(block)
+		: 	"{"
+			[ (isDefined(statements) ? statements{separator = ";", forcedLower=1} ";") ]
+			"}"
+		;		
+	
+	template StringTemplate
+                :       "<$"
+                        [ (isDefined(expressions) ? expressions{separator = ";"} ";") ]
+                        "$>"
+                ;
+              
+
+	--TODO: workaround for missing name resolution of methodCallExpression
+	--template Signature abstract;
+	template MethodSignature(disambiguateV3 = "data_classes_methodsignature") context
+		:
+	      	  (sideEffectFree ? "const")
+		  [[
+		    "converter" converter{forcedLower=1} output{forcedLower=1, mode=converter}
+		    {{ name='"converter"', ownedTypeDefinitions=lookIn("OCL:self.output") }}
+		   |
+		    (isDefined(output) ? output {{ ownedTypeDefinitions = lookIn("output") }} :"void")
+		    name
+		  ]]
+		  "(" input{separator=","} ")"
+		  [ ( isDefined(implementation) ? implementation : ";" ) ]
+		;
+	
+	template ConverterBetweenParametrizations
+		: {{ clazz=lookIn("#context(root)") }}
+		;
+		
+	template TypeDefinition #converter abstract;
+	
+	-- The output type definition for a converter for an object-parameterized class
+	-- is parameterized with the same parameter list as the input of the method
+	template ClassTypeDefinition #converter context
+		: {{ lowerMultiplicity='1', 
+		     upperMultiplicity='1', 
+		     clazz=lookIn("#context(root)"),
+		     -- iterate over formal parameters of converter method
+		     ownedObjectParameters=foreach("OCL:self.signaturesWithOutput->asSequence()->first().input", mode="converter", as=ActualObjectParameter),
+		     objectParameters=lookIn("OCL:self.ownedObjectParameters")
+		  }}
+		;
+	
+	template ActualObjectParameter #converter
+		:  {{ 
+			formalObjectParameter=lookIn("OCL:let sig=#context.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature) in
+        				sig.owner.oclAsType(SapClass).formalObjectParameters->at(sig.input->indexOf(#context.oclAsType(Parameter)))"),
+			value=foreach("OCL:#context.oclAsType(Parameter)", mode="converter", as=VariableExpression)
+		   }}
+		;
+		
+	template VariableExpression #converter
+		: {{
+			variable=lookIn("OCL:#context.oclAsType(NamedValue)")
+		  }}
+		;
+	
+	template SignatureImplementation abstract;
+	
+	template FunctionSignatureImplementation abstract;
+	
+	template NativeImpl
+		: "native"
+		;
+		
+	template Statement abstract;
+	template SingleBlockStatement abstract;
+	template StatementWithArgument(disambiguateV3 = "('return' | (NAME EQUALS)) | 'store' | 'delete'") abstract;
+	template NamedValueDeclaration(disambiguateV3 = "behavioral_actions_namedvaluedeclaration")
+		: namedValue -- TODO needs to occur before ExpressionStatement in .g file, but how to enforce this?
+		;
+	template ExpressionStatement(disambiguateV3 = "(NAME ~NAME) | (NAME EOF) | ~NAME")
+		:	expression
+		;
+	template StatementWithNestedBlocks abstract;
+	template Conditional abstract;
+	
+	template IfElse
+		:	"if" "(" condition ")"
+			nestedBlocks{separator="else"}
+		;
+	
+	template WhileLoop
+		:	"while" "(" condition ")"
+			nestedBlocks
+		;
+		
+	operatorTemplate FunctionCallExpression(operators = lparen, source = 'calledBlock')
+		:	parameters{separator=","} ")"
+			--{{
+				-- We must produce a NestedTypeDefinition iff the source object's type isMany() and the called signature's type isMany()
+				-- details: https://research.qkal.sap.corp/mediawiki/index.php?title=Runlet_-_A_Programming_Model_Exploration_Environment/Language_Specification#Method_invocation
+			--	ownedTypeDefinition = foreach("OCL:functionSignature.output",  
+			--		when="OCL:methodSignature.output.isMany() and self.object.getType().isMany()", mode="functionCallExpression", as="NestedTypeDefinition",
+			--		when="OCL:methodSignature.output.oclIsKindOf(ClassTypeDefinition)", mode="functionCallExpression", as="ClassTypeDefinition", 
+			--		when="OCL:methodSignature.output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="functionCallExpression", as="FunctionSignatureTypeDefinition",
+			--		when="OCL:methodSignature.output.oclIsKindOf(NestedTypeDefinition)", mode="functionCallExpressionNoFurtherNesting", as="NestedTypeDefinition")
+			--}}
+		;
+	
+	
+	template Return
+		:	"return" argument
+		;
+	
+	template StatementWithEntityArgument abstract;
+	template Store
+		:	"store" argument{forcedLower=1}
+		;
+	
+	template Delete
+		:	"delete" argument{forcedLower=1}
+		;
+	
+	template Rollback
+		:	"rollback"
+		;
+	
+	template Assignment(disambiguateV3 = "NAME EQUALS")
+		:	assignTo{refersTo = name} "=" argument{forcedLower=1}
+		;
+
+        template NamedValueWithOptionalInitExpression abstract;
+		
+	template Variable addToContext
+		:	[[
+				"var" name
+					(isDefined(initExpression) ? "=" initExpression)
+			|
+				ownedTypeDefinition{forcedLower=1} name
+				(isDefined(initExpression) ?
+					"=" initExpression
+				)
+			]]
+			{{ owner=lookIn("#context(block)") }}
+		;
+		
+	template behavioral::actions::Constant addToContext
+		:	"const" [[
+			    disambiguate("identifier EQUALS")
+				name "=" initExpression
+			|
+				ownedTypeDefinition name
+					"=" initExpression
+			]] 
+			{{ owner=lookIn("#context(block)") }}
+		;
+		
+-- @begin ASSOCIATION LINK MANIPULATION
+
+	template LinkManipulationStatement abstract;
+	
+	template AddLink
+		--TODO how to specify the access to specific elements within a to-n assoc
+		--TODO how to specify complex refersTo expressions like below?
+		--:	objects[0] "." association{query = ends->select(e|e.type = objects[0].type).otherEnd} "+=" objects[1]
+		:
+			--temporary hack until issues above are resolved
+			--"AddLink" "(" association{refersTo = name, lookIn= #all} "," objects{separator = ","} ")"
+			--"AddLink" "(" association{as=identifier, query='select aeReturn from AssociationEnd as ae,	Association as assoc where ae.\\"type\\" = this	where aeReturn.name = ? where aeReturn.container = assoc where ae.container = asso'}"," objects{separator = ","} ")"
+			"AddLink" "(" association{as=identifier, query="OCL:self.objects->at(1).getType().oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds()",
+														filter="->select(e| e.association.name=?).association"} "," objects{separator = ","} ")"
+		; 
+		
+	template RemoveLink
+		--TODO how to specify the access to specific elements within a to-n assoc
+		--TODO how to specify complex refersTo expressions like below?
+		--:	objects[0] "." accociation{refersTo = ends->select(e|e.type = objects[0].type).otherEnd} "-=" objects[1]
+		:
+			--temporary hack until issues above are resolved
+			"RemoveLink" "(" association{as=identifier, query="OCL:self.objects->at(1).getType().oclAsType(data::classes::ClassTypeDefinition).clazz.getAssociationEnds()",
+														filter="->select(e| e.association.name=?).association"} "," objects{separator = ","} ")"
+		;
+
+-- @end ASSOCIATION LINK MANIPULATION
+
+-- @begin ASSOCIATION PROPERTY DECLARATIONS
+
+	-- Within the context of a class, this template represents the exposure of an
+	-- association end as "property" with one or more method signatures exposing it;
+	-- ironically, the ClassTypeDefinition template here is for the class *in* which
+	-- the property is declared; there is another ClassTypeDefinition template for the
+	-- other end. Challenge: how to set the multiplicities? Default would be 0..*, but
+	-- there may be an explicit specification provided on the other end which may reside
+	-- in another class; this would mean that the default provided here has to be overridden
+	-- by another template; TODO how to express this? Perhaps by explicit "opposite" keyword?
+	template ClassTypeDefinition #property context
+		: associationEnd{mode=property, forcedLower=1}
+		  {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false',
+		     unique=lookIn("OCL:self.associationEnd.otherEnd().type.unique"),
+		     ownedObjectParameters=foreach("OCL:#context(root).oclAsType(data::classes::SapClass).formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
+		     objectParameters=lookIn("OCL:self.ownedObjectParameters")
+		  }}
+		;
+	
+	template ActualObjectParameter #localAssociationEnd
+		:  {{ 
+			formalObjectParameter=lookIn("OCL:#context.oclAsType(Parameter)"),
+			value=foreach("OCL:#context.oclAsType(Parameter)", mode="localAssociationEnd", as=VariableExpression)
+		   }}
+		;
+		
+	template VariableExpression #localAssociationEnd
+		: {{
+			variable=lookIn("OCL:#context.oclAsType(NamedValue)")
+		  }}
+		;
+	
+	-- This is the end on the side of the property declaration; the type definition
+	-- is already set as it is being defined "inside-out"
+	template data::classes::AssociationEnd #property
+		: ( composite ? "owns" ) association{mode=property} {{ name='"unnamed"', navigable='false',
+		  -- The following would mark the end as equality contribution if it occurs in a value type
+		  -- contributesToEquality=lookIn("#context.valueType") }}
+		  contributesToEquality='true' }}
+		;
+	
+	-- The task of this template is to match / produce the association and the second association end and (this
+	-- is the part solved by forcedUppper=1) add it to the ends where one element is already expected.
+	template data::classes::Association #property
+		: ends { forcedLower=1, forcedUpper=1 }
+		  {{ name='"unnamed"', package_=lookIn("OCL:#context(root).oclAsType(data::classes::SapClass).package_") }}
+		;
+		
+	template data::classes::AssociationEnd context
+		:
+		  type name {{ navigable='true', contributesToEquality='false' }}
+		[[
+		  "{" signatureImplementations{forcedLower=1, mode=property, separator=","} "}"
+		|
+		  ";" {{ -- should there be a default exposure?
+		      }}
+		]]
+		;
+	
+	template AssociationEndSignatureImplementation #property abstract;
+	template ExtentModifyingAssociationEndSignatureImplementation #property abstract;
+	template LinkManipulationAtPosition #property abstract;
+	
+	template LinkTraversal #property
+		: "." implements_{mode=propertyGetter, forcedLower=1}
+		;
+	
+	template MethodSignature #propertyGetter
+		: {{ name=lookIn("OCL:'.'.concat(#context.oclAsType(data::classes::AssociationEnd).name)"), 
+			 output=lookIn("OCL:#context.oclAsType(data::classes::AssociationEnd).type"),
+		     owner=lookIn("#context(root)"),
+		     sideEffectFree='true' }}
+		;
+
+	template LinkSetting #property
+		: "=" implements_{mode=propertySetter, forcedLower=1}
+		;
+	
+	template MethodSignature #propertySetter
+		: input{mode=propertyModifier, forcedLower=1, forcedUpper=1}
+		  {{ name=lookIn("OCL:#context.oclAsType(data::classes::AssociationEnd).name.concat('=')"), 
+		     owner=lookIn("#context(root)") }}
+		;
+	
+	template LinkAddition #property
+		: "+=" implements_{mode=propertyAdder, forcedLower=1}
+		;
+	
+	template MethodSignature #propertyAdder
+		: input{mode=propertyModifier, forcedLower=1, forcedUpper=1}
+		  {{ name=lookIn("OCL:#context.oclAsType(data::classes::AssociationEnd).name.concat('+=')"),
+		  	 owner=lookIn("#context(root)") }}
+		;
+	
+	template LinkRemoval #property
+		: "-=" implements_{mode=propertyRemover, forcedLower=1}
+		;
+	
+	template MethodSignature #propertyRemover
+		: {{ name=lookIn("OCL:#context.oclAsType(data::classes::AssociationEnd).name.concat('-=')"),
+			 owner=lookIn("#context(root)") }}
+		  input{mode=propertyModifier, forcedLower=1, forcedUpper=1}
+		;
+	
+	template classes::Parameter #propertyModifier
+		: {{ name='"value"' }}
+		;
+
+-- @end ASSOCIATION PROPERTY DECLARATIONS
+
+-- @end BLOCKS AND STATEMENTS
+
+-- @begin EXPRESSIONS 
+
+	template dataaccess::expressions::Expression abstract operatored(Expressions);
+	
+	operatorTemplate ObjectCount(operators = dotOp, source='object', disambiguateV3="'count'")
+		: "count"
+		  ownedTypeDefinition{forcedLower=1, mode=objectCount}
+		;
+	
+	template TypeDefinition #objectCount abstract;
+	
+	template ClassTypeDefinition #objectCount
+		: {{ clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'Number')"),
+		     lowerMultiplicity='1', upperMultiplicity='1', ordered='true', unique='true' }}
+		;
+	
+	operatorTemplate Ternary(operators = questionmark, source='condition')
+		: trueExpr ":" falseExpr
+		;
+	
+	--currently never referenced directly, so no need to mention here	
+	--template WithArgument abstract;
+	
+-- @begin OBJECT BASED EXPRESSIONS 	
+	--template ObjectBasedExpression abstract; -- operatored(Expressions);
+	
+	--template SignatureCallExpression abstract;
+	
+	operatorTemplate MethodCallExpression(operators = dotOp, source='object',
+	        disambiguateV3="((PIPE identifier) | (identifier))")
+		:	(asynchronous ?	"|")
+		[[
+			disambiguate("identifier LPAREN")
+			(methodSignature instanceOf MethodSignature ? 
+				methodSignature{as=identifier, query="OCL:self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()",
+											   filter="->select(s | s.name = ?)", invert="name"} : "NULL" )
+					--the latter case should never be
+					--possible due to an OCL constraint on 
+					--MethodCallExpression
+				"(" parameters{separator = ","} ")"
+			-- TODO the resulting type needs to be set to one that copies a lower multiplicity of 0 on the source object
+		|
+			disambiguate("identifier EQUALS")
+			(methodSignature instanceOf MethodSignature ?
+				-- case: exp1 "." endName "="
+				methodSignature{as=identifier, query="OCL:self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()", 
+												filter="->select(s | s.name = ?.concat('='))", invert="name.subString(1, -1+name.size())"}
+				"=" parameters{forcedLower=1, forcedUpper=1} 
+			)
+		|
+			disambiguate("identifier '+='")
+			(methodSignature instanceOf MethodSignature ?
+				-- case: exp1 "." endName "+="
+				methodSignature{as=identifier, query="OCL:self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()", 
+												filter="->select(s | s.name = ?.concat('+='))", invert="name.subString(1, -2+name.size())"}
+				"+=" parameters{forcedLower=1, forcedUpper=1} 
+			)
+		|
+			disambiguate("identifier '-='")
+			(methodSignature instanceOf MethodSignature ?
+				-- case: exp1 "." endName "-="
+				methodSignature{as=identifier, query="OCL:self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()", 
+												filter="->select(s | s.name = ?.concat('-='))", invert="name.subString(1, -2+name.size())"}
+				"-=" parameters{forcedLower=1, forcedUpper=1} 
+			)
+		|
+			disambiguate("identifier (~(LPAREN | EQUALS) | EOF)")
+			(methodSignature instanceOf MethodSignature ?
+				-- case: exp1 "." endName
+				methodSignature{as=identifier, query="OCL:self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()", 
+												filter="->select(s | s.name = '.'.concat(?))", invert="name.subString(2, name.size())"}
+			)
+		]]
+		
+		{{
+			-- We must produce a NestedTypeDefinition iff the source object's type isMany() and the called signature's type isMany()
+			-- details: https://research.qkal.sap.corp/mediawiki/index.php?title=Runlet_-_A_Programming_Model_Exploration_Environment/Language_Specification#Method_invocation
+			ownedTypeDefinition = foreach("OCL:methodSignature.output",  
+				when="OCL:methodSignature.output.isMany() and self.object.getType().isMany()", mode="methodCallExpression", as=NestedTypeDefinition,
+				when="OCL:methodSignature.output.oclIsKindOf(ClassTypeDefinition)", mode="methodCallExpression", as=ClassTypeDefinition, 
+				when="OCL:methodSignature.output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="methodCallExpression", as=FunctionSignatureTypeDefinition,
+				when="OCL:methodSignature.output.oclIsKindOf(NestedTypeDefinition)", mode="methodCallExpressionNoFurtherNesting", as=NestedTypeDefinition)
+		}}
+		;
+	
+	template TypeDefinition #methodCallExpression abstract;
+
+	template ClassTypeDefinition #methodCallExpression (disambiguateV3="'1000'")
+		: {{ clazz=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.oclAsType(ClassTypeDefinition).clazz"),
+	             objectParameters=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.oclAsType(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.isMany() or self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().isMany() then -1 else self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.upperMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().upperMultiplicity endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.ordered or self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.unique and not self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().isMany()") }}
+		;
+	
+	template FunctionSignatureTypeDefinition #methodCallExpression (disambiguateV3="'2000'")
+		: {{ signature=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.oclAsType(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.isMany() or self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().isMany() then -1 else self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.upperMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().upperMultiplicity endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.ordered or self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.unique and not self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().isMany()") }}
+		;
+		
+	template NestedTypeDefinition #methodCallExpression (disambiguateV3="'3000'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().upperMultiplicity"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().ordered"),
+		     unique='false'
+		  }}
+		;
+		
+	template NestedTypeDefinition #methodCallExpressionNoFurtherNesting (disambiguateV3="'4000'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.oclAsType(NestedTypeDefinition).type"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.lowerMultiplicity * self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().upperMultiplicity"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.ordered or self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(MethodCallExpression).methodSignature.output.unique and not self.ownerTypedElement.oclAsType(MethodCallExpression).object.getType().isMany()")
+		  }}
+		;
+		
+	-- TODO association end navigation should usually be done by calling the traversal method signature
+	--operatorTemplate AssociationEndNavigationExpression(operators = dotOp, source='object')
+	--	:	toEnd{as=identifier,  query='OCL:self.object.type.oclAsType(data::classes::ClassTypeDefinition).clazz.associationEnds->select(e | e.name = ?)'}
+	--	;
+		
+-- @end OBJECT BASED EXPRESSIONS 			
+		
+	template VariableExpression
+		:	variable{refersTo = name}
+		;
+		
+	operatorTemplate Equals(operators = equalsOp, source='left', storeRightTo='right')
+		: ownedTypeDefinition{mode=BooleanLiteral, forcedLower=1}
+		;
+		
+	template fp::AnonymousFunctionExpr context
+		:	
+		       (ownedTypeDefinition instanceOf FunctionSignatureTypeDefinition ?
+				[[ ownedTypeDefinition{mode=anonymousFunctionExp, forcedLower=1}
+				 | ownedTypeDefinition{mode=cellSet, forcedLower=1}
+				]] )
+		;
+	
+	template TypeDefinition #cellSet abstract;
+	template FunctionSignatureTypeDefinition #cellSet
+		:	signature{mode=cellSet}
+			{{ lowerMultiplicity='1', upperMultiplicity='1',
+			   ownedSignature = lookIn("signature") }}
+		;
+	
+	template Signature #cellSet abstract;
+	template FunctionSignature #cellSet
+		: implementation{mode=cellSet, forcedLower=1}
+		  {{ output = lookIn("OCL:self.implementation.oclAsType(CellSet).aggregationFunction.output"),
+		     sideEffectFree = lookIn("OCL:self.implementation.isSideEffectFree()") }}
+		;
+	
+	template FunctionSignatureImplementation #cellSet abstract;
+		
+	template FunctionSignatureTypeDefinition #anonymousFunctionExp
+		:	signature{mode=anonymousFunctionExp, forcedLower=1} $printMultiplicity
+			{{ ownedSignature = lookIn("signature") }}
+		;
+	
+	template Signature #anonymousFunctionExp abstract;
+	template FunctionSignature #anonymousFunctionExp context
+		:	(sideEffectFree ? "const" ) "function" "(" input{separator = ","} ")"
+			":" (isDefined(output) ? output{forcedLower = 1} : "void")
+		    	{{ownedTypeDefinitions = lookIn("output") }}
+				implementation{forcedLower = 1}
+		;
+		
+	operatorTemplate fp::FunctionFromMethodExpr(operators = dcolonOp, source='object') context
+		:	method{as=identifier, query="OCL:self.object.getType().oclAsType(ClassTypeDefinition).clazz.allSignatures()",
+									filter="->select(s | s.name = ?)", invert="name"}
+		    ownedTypeDefinition{mode=functionFromMethodExpr, forcedLower=1}
+		;
+	
+	template TypeDefinition #functionFromMethodExpr abstract;
+	template FunctionSignatureTypeDefinition #functionFromMethodExpr
+		: {{ signature=lookIn("OCL:#context.oclAsType(fp::FunctionFromMethodExpr).method"),
+		     lowerMultiplicity=lookIn("OCL:#context.oclAsType(fp::FunctionFromMethodExpr).object.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:#context.oclAsType(fp::FunctionFromMethodExpr).object.getType().upperMultiplicity") }}
+		;
+	
+	template ObjectCreationExpression context
+		: "new"
+		  [[
+		    classToInstantiate{as=identifier, query="OCL:data::classes::SapClass.allInstances()",
+		    									filter="->select(c | c.name = ?)", invert="name"}
+		    ownedTypeDefinition{mode=objectCreationExpression, forcedLower=1}
+		  |
+		    (classToInstantiate instanceOf ParameterizedClassInstantiation ?
+		     classToInstantiate{mode=objectCreationExpression})
+	        ownedTypeDefinition{mode=objectCreationExpression, forcedLower=1}
+		  ]]
+		;
+	
+	template ParameterizedClassInstantiation #objectCreationExpression
+		:   parameterizedClass{as=identifier, query="OCL:data::classes::SapClass.allInstances()->select(c |c.isParameterizedClassDefinition())",
+												filter="->select(c | c.name = ?)", invert="name"}
+			"<" actualTypeParametersForInstantiation{forcedLower=1} ">"
+			{{ name=lookIn("parameterizedClass.name"), package_=lookIn("OCL:#context(root).oclAsType(data::classes::SapClass).package_") }}
+		;
+
+    template ActualTypeParameter
+       :   type{as=identifier, query="OCL:data::classes::SapClass.allInstances()", filter="->select(c | c.name = ?)", invert="name"}
+           {{ formalTypeParameter=lookIn("OCL:Sequence{ 1..self.parameterizedClassInstantiation.parameterizedClass.parameterization.formalTypeParameters->size()}
+           									->select( i | self.parameterizedClassInstantiation.actualTypeParametersForInstantiation->asSequence()->at(i) = self)
+           									->collect( j | self.parameterizedClassInstantiation.parameterizedClass.parameterization.formalTypeParameters->at(j))") }}
+       ;
+		
+	template TypeDefinition #objectCreationExpression abstract;
+	
+	template ClassTypeDefinition #objectCreationExpression
+		: [[
+		    |
+		     disambiguate("'|'")
+             	     "|" ownedObjectParameters{forcedLower=1, separator = ","} "|"
+             	     {{ objectParameters=lookIn("OCL:self.ownedObjectParameters") }}
+          	  ]]
+		  {{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true', 
+		  	clazz = lookIn("OCL:#context.oclAsType(dataaccess::expressions::ObjectCreationExpression).classToInstantiate") }}
+		;
+	
+	template ActualObjectParameter
+		: value
+		  {{ formalObjectParameter=lookIn("OCL:self.owningClassTypeDefinition.clazz.formalObjectParameters->at(
+		  									self.owningClassTypeDefinition.objectParameters->indexOf(self))") }}
+		;
+	
+	template This
+		:	"this" ownedTypeDefinition{mode=this, forcedLower=1}
+		;	
+		
+	template TypeDefinition #this abstract;
+	
+	template ClassTypeDefinition #this context -- context needed for foreach
+		: {{
+			lowerMultiplicity = '1', 
+			upperMultiplicity = '1', 
+			ordered = 'true',  
+			unique = 'true',  
+			clazz = lookIn("#context(root)"),
+		    ownedObjectParameters=foreach("OCL:#context(root).oclAsType(data::classes::SapClass).formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
+		    objectParameters=lookIn("OCL:self.ownedObjectParameters")
+		  }}
+		;
+	
+	template Commit
+		:	"commit" ownedTypeDefinition{mode=commit, forcedLower=1}
+		;
+	
+	template TypeDefinition #commit abstract;
+	template ClassTypeDefinition #commit
+		:    {{ clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'Snapshot')"),
+		     lowerMultiplicity='1', upperMultiplicity='1', ordered='false', unique='true' }}
+		;
+	
+	template All context(allQuery)
+		: "all"
+		  [[
+		    "[" "all" "]"
+		    {{ snapshot='persistence.expressions.SnapshotSelectionEnum.ALL' }}
+		   |
+		    "[" "changed" "]"
+		    {{ snapshot='persistence.expressions.SnapshotSelectionEnum.CHANGED' }}
+		   |
+		    "[" snapshotIdentifier{forcedLower=1} "]"
+		    {{ snapshot='persistence.expressions.SnapshotSelectionEnum.SPECIFIED' }}
+		   | -- empty
+		     {{ snapshot='persistence.expressions.SnapshotSelectionEnum.DEFAULT' }}
+		  ]]
+		  ofClass{as=identifier, query="OCL:data::classes::SapClass.allInstances()", 
+		  							filter="->select(c | c.name = ?)", invert="name"}
+		  ownedTypeDefinition{forcedLower=1, mode=allQuery}
+		;
+	
+	template TypeDefinition #allQuery abstract;
+	template ClassTypeDefinition #allQuery
+		: {{lowerMultiplicity = '0', upperMultiplicity = '-1', ordered = 'false',  unique = 'true',
+		    clazz = lookIn("OCL:#context(allQuery).oclAsType(persistence::expressions::All).ofClass") }}
+		    -- object parameters not to be considered because "all" is limited to entity types
+		    -- which don't have object parameters
+		;
+	
+	template Foreach --TODO Remove from metamodel?
+		:	"foreach"
+		;
+		
+    operatorTemplate Head (operators = arrowOp, source = 'object') context(head)
+        :        "head" "(" ")"
+        -- TODO ownedTypeDefinition should be set to a new type definition that has upper multiplicity 1
+        ;
+        
+    operatorTemplate Tail (operators = arrowOp, source = 'object') context(tail)
+        :        "tail" "(" ")"
+        ;
+                		
+-- @begin COLLECTION EXPRESSIONS 	
+	--template CollectionExpression abstract; --operatored(Expressions);
+	
+	operatorTemplate Including (operators = arrowOp, source = 'source')
+		: "including" "(" argument ")"
+		  {{ ownedTypeDefinition=foreach("OCL:self.source.getType()", mode="includingExpression") }}
+		;
+	operatorTemplate Excluding (operators = arrowOp, source = 'source')
+		: "excluding" "(" argument ")"
+		;
+
+	--currently never referenced directly, so no need to mention here	
+	--template WithPosition abstract operatored(Expressions);  
+	
+	operatorTemplate IncludingAt (operators = arrowOp, source = 'source')
+		: "including" "[" at "]" "(" argument ")"
+		  {{ ownedTypeDefinition=foreach("OCL:self.source.getType()", 
+		  				  when="OCL:self.source.getType().getNestingLevel() < self.argument.getType().getNestingLevel()", mode="includingExpressionNewNestedType", as=NestedTypeDefinition,
+		  				  when="OCL:self.source.getType().oclIsKindOf(ClassTypeDefinition)", mode="includingExpression", as=ClassTypeDefinition,
+		  				  when="OCL:self.source.getType().oclIsKindOf(FunctionSignatureTypeDefinition)", mode="includingExpression", as=FunctionSignatureTypeDefinition,
+		  				  when="OCL:self.source.getType().oclIsKindOf(NestedTypeDefinition)", mode="includingExpression", as=NestedTypeDefinition) }}
+		;
+
+	operatorTemplate ExcludingAt (operators = arrowOp, source = 'source')
+		:	"excluding" "[" at "]" "(" argument ")"
+		;
+		
+	template TypeDefinition #includingExpression abstract;
+
+	template ClassTypeDefinition #includingExpression (disambiguateV3="'1002'")
+		: {{ clazz=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().oclAsType(ClassTypeDefinition).clazz"),
+	             objectParameters=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().oclAsType(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if (self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity < 0)  or (self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity < 0) then
+						  -1
+						else
+						  self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity + self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity 
+						endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().unique") }}
+		;
+	
+	template FunctionSignatureTypeDefinition #includingExpression (disambiguateV3="'2002'")
+		: {{ signature=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().oclAsType(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if (self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity < 0)  or (self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity < 0) then
+						  -1
+						else
+						  self.ownerTypedElement.oclAsType(CollectionExpression).source.getType().upperMultiplicity + self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity
+						endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(CollectionExpression).source.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(CollectionExpression).source.getType().unique") }}
+		;
+		
+	template NestedTypeDefinition #includingExpression (disambiguateV3="'3002'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().oclAsType(NestedTypeDefinition).type"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if (self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity < 0)  or (self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity < 0) then
+						  -1
+						else
+						  self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity + self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity
+						endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().unique") }}
+		;
+
+	--TODO: orderedness and uniqueness from argument?		
+	template NestedTypeDefinition #includingExpressionNewNestedType (disambiguateV3="'4002'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(Including).argument.getType().oclAsType(NestedTypeDefinition).type"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(Including).source.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if (self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity < 0)  or (self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity < 0) then
+						  -1
+						else
+						  self.ownerTypedElement.oclAsType(Including).source.getType().upperMultiplicity + self.ownerTypedElement.oclAsType(Including).argument.getType().upperMultiplicity
+						endif"),
+		     ordered='true', 		--TODO: what should be the default for orderedness on new nested types: o=true, as for 1..1 ou objects?
+		     unique='true' }} 		--TODO: what should be the default for uniqueness  on new nested types: u=true, as for 1..1 ou objects?
+		;
+
+	operatorTemplate Iterate(operators = arrowOp, source = 'source') context
+		:	--[[
+			--CONSTRAINT: iterators has to have a mult. of 1..1 in this case!
+			--"foreach" iterators "in" source ":" iteratorExpression
+			
+			-- By default, create and put the "acc" accumulator variable into the context.
+			-- Optionally, match an optional assignment first and use it as accumulator.
+			
+			--|
+			"iterate" "("
+			[[
+			   disambiguate("behavioral_actions_constant_nonEmptyAccumulator SEMICOLON")
+			   accumulator{mode=nonEmptyAccumulator} ";"
+			 |
+			   accumulator{mode=emptyAccumulator, forcedLower=1}
+			]]
+			iterators{separator = ","} "|" iteratorExpression ")"
+			--]]
+		;
+	
+	template behavioral::actions::Constant #emptyAccumulator addToContext
+		: {{ name='"acc"' }}
+		;
+		
+	template behavioral::actions::Constant #nonEmptyAccumulator addToContext
+		: ownedTypeDefinition name
+		  (isDefined(initExpression) ? "=" initExpression)
+		;
+		
+	template Iterator context(iterator) addToContext
+		: [[
+		     disambiguate("data_classes_typedefinition NAME")
+			 ownedTypeDefinition{forcedLower=1} name
+		  |
+		    name
+		    -- if the source type definition has an upper multiplicity > 1,
+		    -- the iterator type's upper multiplicity will be set to 1.
+		    -- If the source's type definition is a nested type definition, this
+		    -- nested type definition is a to-many, and the single type is
+		    -- obtained by taking the nested type definition's referenced type
+		    -- definition.
+		    {{ ownedTypeDefinition=foreach("OCL:if self.\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+		    										self.\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type
+		    									else
+		    										self.\"iterate\".source.getType()
+		    									endif",
+		    							   mode="iteratorType") }}
+		  ]]
+		;
+	
+	template TypeDefinition #iteratorType abstract;
+	template ClassTypeDefinition #iteratorType
+		: {{
+			clazz=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).clazz
+							  else
+							      #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(ClassTypeDefinition).clazz
+							  endif"),
+			objectParameters=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).objectParameters
+							  else
+							      #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(ClassTypeDefinition).objectParameters
+							  endif"),
+			lowerMultiplicity=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
+							  else
+							      1
+							  endif"),
+			upperMultiplicity=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).upperMultiplicity
+							  else
+							      1
+							  endif"),
+			ordered=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.ordered
+							  else
+							      true
+							  endif"),
+			unique=lookIn("OCL:if #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iterator).oclAsType(Iterator).\"iterate\".source.getType().oclAsType(NestedTypeDefinition).type.unique
+							  else
+							      true
+							  endif")
+		  }}
+		;
+	
+	operatorTemplate Selection(operators=lbracketOp, source='object') context
+		: iterator{mode=selection} selectionExpr "]" 
+		;
+	
+	template Iterator #selection addToContext
+		: {{ name='"self"' }}
+		;
+
+-- @end COLLECTION EXPRESSIONS
+
+	operatorTemplate Replace (operators = arrowOp, source = 'object')
+		: "replace" "(" steps{separator="."} "=" with ")"
+		;
+	
+	operatorTemplate Snapshot (operators = arrowOp, source = 'object') context(snapshot)
+                : "snapshot" "(" ")"
+                  ownedTypeDefinition{mode=Snapshot, forcedLower=1}
+                ;
+                
+        template TypeDefinition #Snapshot abstract;
+        template ClassTypeDefinition #Snapshot
+                : {{lowerMultiplicity = lookIn("OCL:#context(snapshot).oclAsType(persistence::expressions::Snapshot).object.getType().lowerMultiplicity"), 
+                    upperMultiplicity = lookIn("OCL:#context(snapshot).oclAsType(persistence::expressions::Snapshot).object.getType().upperMultiplicity"), 
+                    ordered = lookIn("OCL:#context(snapshot).oclAsType(persistence::expressions::Snapshot).object.getType().ordered"),  unique = 'false', 
+                    clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'Snapshot')") }}
+                ;
+	
+	template NavigationStep
+		: to{as=identifier, query="OCL:let i = self.replace.steps->indexOf(self) in
+				 let t = 
+				 	if i=1 then 
+				 		self.replace.object.getType().oclAsType(ClassTypeDefinition) 
+				 	else 
+				 		self.replace.steps->at(-1 + i).to.type 
+				 	endif in
+				 		t.clazz.getConformingClasses().getAssociationEnds().otherEnd()",
+				 filter="->select(ae|ae.name=?)", invert="name"}
+		  ( isDefined(filterFunction) ? "[" filterFunction "]" )
+		;
+
+-- @begin ANALYTICS EXPRESSIONS
+	template CellSet #cellSet
+		: "aggregate" factsType "by" dimensions{separator=","} ":"
+		  (isDefined(valueFunction) ? "key" valueFunction{mode=dimension})
+		  aggregationFunction{mode=aggregationFunction}
+		;
+	
+	template Dimension addToContext
+		: name ":" characteristicFunction{mode=dimension}
+		;
+	
+	template FunctionSignature #dimension context
+		: output{forcedLower=1} implementation{forcedLower=1}
+		  input{forcedLower=1, forcedUpper=1, mode=dimension}
+		  {{ sideEffectFree = lookIn("OCL:self.implementation.isSideEffectFree()") }}
+		;
+	
+	template data::classes::Parameter #dimension addToContext
+		: {{ name='"fact"' }}
+		;
+	
+	template FunctionSignature #aggregationFunction context
+		: output{forcedLower=1} implementation{forcedLower=1}
+		  input{forcedLower=1, forcedUpper=1, mode=aggregationFunction}
+		  {{ sideEffectFree = lookIn("OCL:self.implementation.isSideEffectFree()") }}
+		;
+	
+	template data::classes::Parameter #aggregationFunction addToContext
+		: {{ name='"values"' }}
+		;
+	
+	operatorTemplate DimensionExpression(operators = arrowOp, source = 'cellSet')
+		: "dim" "(" facts "," dimension{as=identifier,
+		     query="OCL:self.cellSet.getType().oclAsType(FunctionSignatureTypeDefinition).signature.input",
+		     filter="->select(p|p.name=?)", invert="name"}
+		   ")"
+		;
+-- @end ANALYTICS EXPRESSIONS
+
+-- @begin LITERAL EXPRESSIONS 	
+	template literals::Literal abstract;
+	
+	template BinaryLiteral
+		: literal{as = binarySymbol}
+		  ownedTypeDefinition{mode=BinaryLiteral, forcedLower=1}
+		;	
+		
+	template TypeDefinition #BinaryLiteral abstract;
+	template ClassTypeDefinition #BinaryLiteral
+		: 
+			{{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true',
+			clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'Binary')") }}
+		;
+		
+	template StringLiteral
+		: literal{as = stringSymbol} 
+		  ownedTypeDefinition{mode=StringLiteral, forcedLower=1}
+		;
+	
+	template TypeDefinition #StringLiteral abstract;
+	template ClassTypeDefinition #StringLiteral
+		: 
+			{{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true',
+			clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'String')") }}
+		;
+		
+	template NumberLiteral
+		:
+		[[
+		literal{as = integerAsStringSymbol}
+		|
+		literal{as = floatAsStringSymbol}
+		]]
+		ownedTypeDefinition{mode=NumberLiteral, forcedLower=1}
+		;
+
+	template TypeDefinition #NumberLiteral abstract;
+	template ClassTypeDefinition #NumberLiteral
+		: 
+			{{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true',
+			clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'Number')") }}
+		;
+		
+	template TimePointLiteral
+		: literal{as = dateSymbol}
+		  ownedTypeDefinition{mode=TimePointLiteral, forcedLower=1}
+		;
+		
+	template TypeDefinition #TimePointLiteral abstract;
+	template ClassTypeDefinition #TimePointLiteral
+		: 
+			{{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true',
+			clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'TimePoint')") }}
+		;
+		
+	template BooleanLiteral
+		: literal{as = booleanSymbol}
+		  ownedTypeDefinition{mode=BooleanLiteral, forcedLower=1}
+		;
+		
+	template TypeDefinition #BooleanLiteral abstract;
+	template ClassTypeDefinition #BooleanLiteral
+		: 
+			{{lowerMultiplicity = '1', upperMultiplicity = '1', ordered = 'true',  unique = 'true',
+			clazz = lookIn("OCL:data::classes::SapClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		;
+		
+	template ObjectLiteral context(objectLiteral)
+		: "value" valueClass{as=identifier, query="OCL:data::classes::SapClass.allInstances()",
+											filter="->select(c | c.name = ?)", invert="name"}
+		  ownedTypeDefinition{mode=objectLiteral, forcedLower=1}
+		  "(" propertyValues{separator=","} ")"
+		;
+	
+	template ValueInit
+		: forEnd{as=identifier, query="OCL:#context(objectLiteral).oclAsType(dataaccess::expressions::literals::ObjectLiteral)
+									.valueClass.getAssociationEnds().otherEnd()",
+								filter="->select(ae|ae.name=?)", 
+								invert="name"} 
+		  ":" value
+		;
+	
+	template TypeDefinition #objectLiteral abstract;
+	template ClassTypeDefinition #objectLiteral
+		: [[
+		     disambiguate("'|'")
+		     "|" ownedObjectParameters{forcedLower=1, separator = ","} "|"
+		     -- copy references of owned object parameters to objectParameters
+		     {{ objectParameters=lookIn("OCL:self.ownedObjectParameters") }}
+		   |
+		  ]]
+		  {{ clazz=lookIn("OCL:#context(objectLiteral).oclAsType(dataaccess::expressions::literals::ObjectLiteral).valueClass"), 
+		  		lowerMultiplicity='1',
+		     upperMultiplicity='1', ordered='true', unique='true' }}
+		;
+	
+-- @end LITERAL EXPRESSIONS
+	
+-- @end EXPRESSIONS
+
+-- @begin CLASSES
+	template TypeDefinition abstract; -- operatored(TypeDefinitions);
+	
+	template ClassTypeDefinition
+                : (clazz instanceOf ParameterizedClassInstantiation ? clazz{mode=typeDefinition} :
+                   clazz{as=identifier, query="OCL:data::classes::SapClass.allInstances()", filter="->select(c | c.name = ?)", invert="name"})
+                  [[ disambiguate("'|'")
+                     "|" ownedObjectParameters{forcedLower=1, separator = ","} "|"
+                     {{ objectParameters=lookIn("OCL:self.ownedObjectParameters") }}
+                   |
+                  ]]
+                  $printMultiplicity
+		;
+	
+	-- TODO: can this be harmonized into one template rule (merge #typeDefinition and #objectCreationExpression)?
+        template ParameterizedClassInstantiation #typeDefinition
+                :       parameterizedClass{as=identifier, query="OCL:data::classes::SapClass.allInstances()->select(c | c.isParameterizedClassDefinition())", 
+                											filter="->select(c | c.name = ?)", 
+                											invert="name"}
+                        "<" actualTypeParametersForInstantiation{forcedLower=1} ">"
+                        {{ name=lookIn("parameterizedClass.name"), package_=lookIn("OCL:#context(root).oclAsType(data::classes::SapClass).package_") }}
+                ;
+		
+	template FunctionSignatureTypeDefinition
+		:	signature{mode=functionSignatureTypeDefinition} $printMultiplicity
+			{{ ownedSignature = lookIn("signature") }}
+		;
+	
+	template Signature #functionSignatureTypeDefinition abstract;
+	template FunctionSignature #functionSignatureTypeDefinition context
+		:	"function" (sideEffectFree ? "const") "(" input{separator = ","} ")"
+			":" (isDefined(output) ? output{forcedLower = 1} : "void")
+		    	{{ownedTypeDefinitions = lookIn("output") }}
+			[[
+				disambiguate("LCURL (INT ~(DDOT | RCURL) | ~STAR)")
+				implementation{forcedLower = 1}
+				|
+			]]
+		;
+		
+	
+	--operatorTemplate NestedTypeDefinition(operators = bracketOp starOp, source='type', storeOpTo = op)
+	--	:	{{ ownedTypeDefinition=lookIn("type") }}
+	--	    (op="[" ? "]" {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='true', unique='false' }} :
+		    -- TODO add the following line again one we have disambiguated this from a starting function body declaration
+		    -- (op="{" ? "}" {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='true' }} :
+		     -- else starOp
+	--	     {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='false' }})
+		    -- )
+	--	;
+		
+	template FunctionSignature context
+		:	"function" "(" input{separator = ","} ")"
+			(isDefined(output) ? ":" output{forcedLower = 1})
+		    	{{ownedTypeDefinitions = lookIn("output") }}
+			implementation
+		;
+		
+	template classes::Parameter addToContext
+		: ownedTypeDefinition{forcedLower=1} name
+		  (isDefined(defaultValue) ? "=" defaultValue)
+		;
+		
+-- @end CLASSES
+ 	 	
+ 	function printMultiplicity(Multiplicity)
+		:
+			[[
+			disambiguate("integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol")
+			lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'false', ordered = 'false' }}
+			|
+			disambiguate("LBRACKET integerSymbol DDOT")
+			"["
+			lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique='false', ordered='true' }}
+			"]"
+			|
+			disambiguate("LCURL integerSymbol DDOT")
+			"{"
+			lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'true', ordered = 'false' }}
+			"}"
+			|
+			disambiguate("LBRACK_LCURL integerSymbol DDOT")
+			"[{"
+			lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'true', ordered = 'true' }} 
+			"}]"
+			|
+			disambiguate("LCURL_LBRACK integerSymbol DDOT")
+			"{["
+			lowerMultiplicity ".." (upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ unique = 'true', ordered = 'true' }} 
+			"]}"
+			| -- Do we really want to support this? How would a C developer read "String* x"?
+			disambiguate("STAR | integerSymbol ~DDOT")
+			(upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'false', ordered = 'false' }}
+			|
+			disambiguate("LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET")
+			"["
+			(upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique='false', ordered='false' }}
+			"]"
+			|
+			disambiguate("LBRACKET RBRACKET")
+			"["
+			{{upperMultiplicity = '-1', lowerMultiplicity = '0', unique='false', ordered='true' }}
+			"]"
+			|
+			disambiguate("LCURL STAR RCURL | LCURL integerSymbol RCURL")
+			"{"
+			(upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'true', ordered = 'false' }}
+			"}"
+			|
+			disambiguate("LCURL RCURL")
+			"{"
+			{{upperMultiplicity = '-1', lowerMultiplicity = '0', unique = 'true', ordered = 'false' }}
+			"}"
+			|
+			disambiguate("LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK")
+			"[{"
+			(upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'true', ordered = 'true' }} 
+			"}]"
+			|
+			disambiguate("LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL")
+			"{["
+			(upperMultiplicity = -1 ? "*" : upperMultiplicity) {{ lowerMultiplicity = '0', unique = 'true', ordered = 'true' }} 
+			"]}"
+			|
+			disambiguate("LCURL_LBRACK RBRACK_RCURL")
+			"{["
+			{{ lowerMultiplicity = '0', upperMultiplicity='-1', unique = 'true', ordered = 'true' }} 
+			"]}"
+			|
+			disambiguate("LBRACK_LCURL RCURL_RBRACK")
+			"[{"
+			{{ lowerMultiplicity = '0', upperMultiplicity='-1', unique = 'true', ordered = 'true' }} 
+			"}]"
+			|
+			{{ lowerMultiplicity = '0', upperMultiplicity = '1', ordered = 'false', unique = 'false' }}
+			]]
+		;
+
+ 	 	
+	symbols {
+		lbracket	= "[";
+		rbracket	= "]";
+		lcurl		= "{";
+		rcurl		= "}";
+		langle      = "<";
+		rangle      = ">";
+		lparen		= "(";
+		rparen		= ")";
+		excl		= "!";
+		equals		= "=";
+		equalsEquals= "==";
+		assign		= ":=";
+		dot			= ".";
+		ddot		= "..";
+		arrow		= "->";
+		pipe		= "|";
+		colon		= ":";
+		dcolon		= "::";
+		semicolon	= ";";
+		including	= "including";
+		excluding	= "excluding";
+		includingat	= "includingAt";
+		excludingat	= "excludingAt";
+		iterate		= "iterate";
+		lcurl_lbrack = "{[";
+		lbrack_lcurl = "[{";
+		rcurl_rbrack = "}]";
+		rbrack_rcurl = "]}";
+		star		= "*";
+	}
+	
+	operators Expressions {
+		priority 0 {
+			dotOp		= ".", 2;
+			dcolonOp	= "::", 2;
+			lparen		= "(", 2;
+			arrowOp     = "->", 2;
+			lbracketOp  = "[", 2;
+		}
+		priority 1 {
+			equalsOp	= "==", 2;
+		}
+		priority 2 {
+			questionmark = "?", 2;
+		}
+	}
+	
+	operators TypeDefinitions {
+		priority 0 {
+			postfix starOp	= star, 1;
+			-- postfix upperOp	= INT, 1;
+		}
+		priority 1 {
+			bracketOp	= lbracket, 2;
+			braceOp		= lcurl, 2;
+			-- lowerOp		= INT, 2;
+		}
+	}
+	
+	omitted token COMMENT	: endOfLine(start = "//");
+	omitted token MULTI_LINE_COMMENT	: multiLine(start = "/*", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+OBJECT	:	'o:'	;
+
+NAME
+	:	(
+			SNAME
+		|	'\\''!
+			(	
+		//	ESC	|
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+BINARY
+	:	'0x'((DIGIT | 'a'..'f' | 'A'..'F') (DIGIT | 'a'..'f' | 'A'..'F'))+
+	;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+	:	DIGIT+ '.' DIGIT*
+	;
+  
+RANGE_OR_INT
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+
+DATE	:	DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ((' '|'T') DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT
+            (
+              ( (',' | '.') DIGIT ) => ((',' | '.') (DIGIT)+)
+              |
+            )
+            ('Z' | (('+'|'-') DIGIT DIGIT DIGIT DIGIT)?) )? ;
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+}

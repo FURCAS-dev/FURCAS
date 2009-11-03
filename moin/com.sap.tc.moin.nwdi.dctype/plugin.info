@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ROOT CONV_VERSION="1.2">
+<GENERAL>
+<UID>time:1221724807437_uuid:942fc0f3-b3fd-438a-8f0e-db9bca83f9c1</UID>
+<PACKAGE>mi.dcfwk</PACKAGE>
+<DOMAIN>BC</DOMAIN>
+<ORIGLANG>EN</ORIGLANG>
+<RESPONSIBLE>d027044</RESPONSIBLE>
+</GENERAL>
+<RESOURCES>
+<TEXT AKEY="dcType.name" LENGTH="255" PROCESSOR="none" TYPE="XTND">Moin (for Testing Only)</TEXT>
+<TEXT AKEY="newWizard.description" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Create an empty Modeling Infrastructure Project</TEXT>
+<TEXT AKEY="newWizard.name" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Empty Project (for Testing Only)</TEXT>
+<TEXT AKEY="plugin.name" LENGTH="255" PROCESSOR="none" TYPE="XMSG">Moin Test DC Type</TEXT>
+<TEXT AKEY="provider.name" LENGTH="255" PROCESSOR="none" TYPE="XMSG">SAP AG</TEXT>
+</RESOURCES>
+</ROOT>

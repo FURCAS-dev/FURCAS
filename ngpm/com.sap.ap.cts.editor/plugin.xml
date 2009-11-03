@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.sap.ap.cts.editor.ActionsEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="act"
+            icon="resources/icons/change_view_action.gif"
+            id="com.sap.ap.cts.editor.ActionsEditor"
+            name="Actions Editor">
+      </editor>
+      <editor
+            class="com.sap.ap.cts.editor.ClassEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="ngpm"
+            icon="resources/icons/change_view_action.gif"
+            id="com.sap.ap.cts.editor.ClassEditor"
+            name="Class Editor">
+      </editor>
+      <editor
+            class="com.sap.ap.cts.editor.BindingEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="act"
+            icon="resources/icons/change_view_action.gif"
+            id="com.sap.ap.cts.editor.BindingEditor"
+            name="Binding Editor">
+      </editor>
+      <editor
+            class="com.sap.ap.cts.editor.AdapterEditor"
+            contributorClass="com.sap.ide.cts.editor.AbstractGrammarBasedEditorActionBarContributor"
+            extensions="act"
+            icon="resources/icons/change_view_action.gif"
+            id="com.sap.ap.cts.editor.AdapterEditor"
+            name="Type Adapter Editor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="false"
+            default="true"
+            editorId="com.sap.ap.cts.editor.ActionsEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="behavioral.actions.Block">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="true"
+            editorId="com.sap.ap.cts.editor.ClassEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="data.classes.SapClass">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="false"
+            default="true"
+            editorId="com.sap.ap.cts.editor.BindingEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="integration.binding.HttpGetBinding">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="false"
+            default="true"
+            editorId="com.sap.ap.cts.editor.AdapterEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="data.classes.TypeAdapter">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.rootNodeDefinition">
+        <rootNodeProvider classname="com.sap.ap.cts.monet.tree.RunletRootNodeProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.textLabelProvider">
+        <textLabelProvider classname="com.sap.ap.cts.monet.tree.RunletTreeLabelProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.imageProvider">
+        <imageProvider classname="com.sap.ap.cts.monet.tree.RunletTreeImageProvider" />
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Path
+               Value="mappings"
+               Versioned="true">
+         </Path>
+      </ContentDefinition>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.editor.autoEditing">
+      <configuration
+            autoEditingType="static (default)">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.editor.bracketMatching">
+      <configuration
+            matchingType="default">
+      </configuration>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.editor.folding">
+      <configuration
+            foldingType="static (default)">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="com.sap.tc.moin.repository.mmi.reflect.RefObject"
+            class="com.sap.ap.cts.monet.deepcopy.RunletModelCopyAdapterFactory">
+         <adapter
+               type="com.sap.mi.fwk.ui.dnd.IModelTransferTarget">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="com.sap.tc.moin.repository.mmi.reflect.RefObject"
+            class="com.sap.ap.cts.monet.deepcopy.RunletModelCopyAdapterFactory">
+         <adapter
+               type="com.sap.mi.fwk.ui.dnd.IModelTransferExtender">
+         </adapter>
+      </factory>
+      <factory
+            adaptableType="com.sap.ide.treeprovider.GenericRefObjectNode"
+            class="com.sap.ap.cts.monet.deepcopy.RunletModelCopyAdapterFactory">
+         <adapter
+               type="com.sap.mi.fwk.ui.dnd.IModelTransferTarget">
+         </adapter>
+      </factory>
+   </extension>
+
+</plugin>

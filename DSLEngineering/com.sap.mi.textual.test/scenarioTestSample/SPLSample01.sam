@@ -1,0 +1,164 @@
+// Call Queuing (QUEUE)
+
+service queue {
+  processing {
+
+    local string sip_invite ( uri to );
+    local void sip_bye ( string call_id );
+
+    local void rtp_play ( string call_id, string file );
+    local void rtp_bridge ( string call_id_from, string call_id_to );
+
+    // Liste d'association spécifiant l'association entre deux sessions SIP (par Call-ID)
+    local int hashtbl_create ( int taille );
+    local void hashtbl_add ( int assoc, string cle, string value );
+    local string hashtbl_find ( int assoc, string cle );
+    local void hashtbl_delete ( int assoc, string cle );
+    local void hashtbl_clean ( int assoc );
+    local int hashtbl_length ( int assoc );
+
+
+    FIFO string<4> remove_element ( string call_id, FIFO string<4> list ) {  
+      FIFO string<4> temp_waiting_list;
+      foreach ( waiting_session in list ) {
+	if ( waiting_session != call_id ) {
+	  push temp_waiting_list waiting_session;
+	}
+      }
+      return temp_waiting_list;
+    }
+
+    void play(string call_id, int index) {
+      select(index) {
+      case 0: rtp_play(call_id, "attendee.wav"); return;
+      case 1: rtp_play(call_id, "attendee1.wav"); return;
+      case 2: rtp_play(call_id, "attendee2.wav"); return;
+      case 3: rtp_play(call_id, "attendee3.wav"); return;
+      case 4: rtp_play(call_id, "attendee4.wav"); return;
+      }
+    }
+
+    int callers;
+    int callees;
+    int callees_temp;
+
+    uri callee = 'sip:secretaire@enseirb.fr';
+ 
+
+    void deploy () {
+      callers = hashtbl_create ( 5 );
+      callees = hashtbl_create ( 1 );
+      callees_temp = hashtbl_create ( 5 );
+    }
+
+    void undeploy () {
+      hashtbl_clean ( callers );
+      hashtbl_clean ( callees );   
+      hashtbl_clean ( callees_temp );   
+    }
+
+
+    registration {
+
+      int presence = 0;  // -1: undef, 0: libre, 1: occupé
+
+      FIFO string<4> waiting_list;
+      int currentSize = 4;
+
+      dialog {
+
+		response incoming INVITE () {
+		  if ( presence != -1 ) {
+		    if ( currentSize != 0 ) {  
+		      response resp = forward;
+		      if ( resp == /SUCCESS ) {  
+			currentSize = currentSize - 1;
+			return resp; 
+		      } else {
+			return /ERROR/SERVER/SERVICE_UNAVAILABLE;
+		      }
+		    } else {
+		      return /ERROR/CLIENT/TEMPORARILY_UNAVAILABLE with { reason = "Estimated pending time too long, too many callers in hold, please retry later... " };
+		    } 
+		  } else {
+		    return /ERROR/SERVER/SERVICE_UNAVAILABLE;
+		  } 
+		}
+	
+		void incoming ACK () {
+		  string session_id = "";
+		  if ( waiting_list == 7 ) {
+		    push waiting_list CALL_ID;
+		    response resp = forward;
+		    if ( presence == 0 ) {
+		      session_id = sip_invite ( callee );
+		      hashtbl_add ( callees_temp, session_id, CALL_ID );
+		    } else {
+		      play ( CALL_ID, hashtbl_length(callers));
+		      hashtbl_add ( callers, CALL_ID, session_id );
+		    }
+		  } else {
+		    push waiting_list CALL_ID;
+		    response resp = forward;
+		    play ( CALL_ID, hashtbl_length(callers));
+		    hashtbl_add ( callers, CALL_ID, session_id );
+		  }
+		}
+	
+		response outgoing INVITE () {
+		  response res = forward;
+		  if ( res == /ERROR ) {
+		    string call_id_associated = hashtbl_find ( callees_temp, CALL_ID );
+		    hashtbl_delete ( callees_temp, CALL_ID );
+		    play ( call_id_associated, hashtbl_length(callers));
+		    hashtbl_add ( callers, call_id_associated, "" );
+		  }
+		  return res;
+		}
+	
+		void outgoing ACK () {
+		  response res = forward;
+		  presence = 1;
+		  string call_id_associated = hashtbl_find ( callees_temp, CALL_ID );
+		  waiting_list = remove_element ( call_id_associated, waiting_list );
+		  currentSize = currentSize + 1;
+		  hashtbl_add ( callers, call_id_associated, CALL_ID );
+		  hashtbl_add ( callees, CALL_ID, call_id_associated );
+		  hashtbl_delete ( callees_temp, CALL_ID );
+		  rtp_bridge ( call_id_associated, CALL_ID);
+	
+		  int i = 0;
+		  foreach(c in waiting_list) {
+		    play(c, i);
+		    i = i+1;
+		  }
+		} 
+	
+		response incoming BYE () {
+		  if ( FROM != callee ) {
+		    string call_id_associated = hashtbl_find ( callers, CALL_ID );
+		    if ( call_id_associated != "" ) {
+		      sip_bye ( call_id_associated );
+		      hashtbl_delete ( callers, CALL_ID );
+		      return forward;
+		    } else {
+		      waiting_list = remove_element ( CALL_ID, waiting_list );
+		      currentSize = currentSize + 1;
+		      hashtbl_delete ( callers, CALL_ID );
+		      return forward;
+		    }
+		  } 
+		}
+	
+		response outgoing BYE () {
+		  if ( TO != callee ) {
+		    hashtbl_delete ( callers, CALL_ID);
+		    return forward;
+		  } 
+		}
+		
+      } // end dialog
+    } // end registration
+    
+  }  // end processing
+} // end service
