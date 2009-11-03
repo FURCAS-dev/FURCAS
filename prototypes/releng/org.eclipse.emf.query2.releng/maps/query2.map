@@ -15,6 +15,7 @@ plugin@org.eclipse.emf.query2.tools.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/
 
 feature@org.eclipse.emf.query2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2-feature
 feature@org.eclipse.emf.query2.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.test-feature
+feature@org.eclipse.emf.query2.index=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.index-feature
 
 plugin@org.eclipse.emf.query.index=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/index/org.eclipse.emf.query.index
 fragment@org.eclipse.emf.query.index.internal.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/index/org.eclipse.emf.query.index.test
