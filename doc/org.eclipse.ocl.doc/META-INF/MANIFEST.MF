@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
-Bundle-SymbolicName: org.eclipse.ocl.doc;singleton:=true
+Bundle-SymbolicName: org.eclipse.ocl3.doc;singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: %Provider.name
 Bundle-Localization: plugin
