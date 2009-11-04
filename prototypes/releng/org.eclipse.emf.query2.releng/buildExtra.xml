@@ -11,11 +11,6 @@
 	<target name="extraPackaging">
 		<!-- USE PDE PACKAGER TO ASSEMBLE THESE ZIPS -->
 
-		<!-- create ALL zip from ${allZip} -->
-		<zip destfile="${buildDirectory}/${buildLabel}/GEF-ALL-${buildAlias}.zip" update="true">
-			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}" dirmode="775" filemode="664" />
-		</zip>
-
 		<!-- build GEF SDK: Draw2D + GEF SDKs, no examples -->
 		<zip destfile="${buildDirectory}/${buildLabel}/emf-query2-index-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
@@ -23,6 +18,7 @@
 			            filemode="664"
 			>
 				<include name="**/org.eclipse.emf.query2.index*/**" />
+				<include name="**/org.eclipse.emf.query.index*/**" />
 			</zipfileset>
 		</zip>
 
