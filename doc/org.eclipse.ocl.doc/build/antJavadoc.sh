@@ -3,7 +3,7 @@
 # BEGIN CUSTOMIZATIONS
 
 # The plugin name
-pluginName="org.eclipse.ocl3"; 
+pluginName="org.eclipse.ocl"; 
 
 # string labels for javadoc content
 windowTitle="OCL Javadoc";

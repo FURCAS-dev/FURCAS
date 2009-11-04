@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.emf.ocl3.examples"
+      id="org.eclipse.emf.ocl.examples"
       label="%featureName"
       version="3.0.0.qualifier"
       provider-name="%providerName"
@@ -28,7 +28,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes
-         id="org.eclipse.emf.ocl3.examples.source"
+         id="org.eclipse.emf.ocl.examples.source"
          version="0.0.0"/>
 
    <requires>
@@ -38,21 +38,21 @@ http://www.eclipse.org/legal/epl-v10.html
       <import plugin="org.eclipse.ui.ide" version="3.2.0" match="compatible"/>
       <import plugin="org.eclipse.ui.console" version="3.1.0" match="compatible"/>
       <import plugin="org.eclipse.jface.text" version="3.2.0" match="compatible"/>
-      <import plugin="org.eclipse.ocl3.ecore" version="3.0.0" match="compatible"/>
+      <import plugin="org.eclipse.ocl.ecore" version="3.0.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.edit" version="2.3.0" match="compatible"/>
       <import plugin="org.eclipse.emf.ecore.xmi" version="2.3.0" match="compatible"/>
       <import plugin="org.eclipse.emf.edit.ui" version="2.3.0" match="compatible"/>
    </requires>
 
    <plugin
-         id="org.eclipse.emf.ocl3.examples"
+         id="org.eclipse.emf.ocl.examples"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.eclipse.emf.ocl3.examples.interpreter"
+         id="org.eclipse.emf.ocl.examples.interpreter"
          download-size="0"
          install-size="0"
          version="0.0.0"
