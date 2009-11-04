@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.eclipse.query2.index"
+      id="org.eclipse.emf.query2.index"
       label="Query2 Index"
       version="0.7.0.qualifier"
       provider-name="SAP AG">
