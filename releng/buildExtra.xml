@@ -76,8 +76,8 @@
 			            filemode="664"
 			            excludes="**/${domainNamespace}.*.examples*, **/${domainNamespace}.*.examples*/**, **/${domainNamespace}.*.samples*, **/${domainNamespace}.*.samples*/**, **/${domainNamespace}.*.sdk*, **/${domainNamespace}.*.sdk*/**, **/${domainNamespace}.*.all*, **/${domainNamespace}.*.all*/**, **/${domainNamespace}.*.doc*, **/${domainNamespace}.*.doc*/**, **/${domainNamespace}.*.source*, **/${domainNamespace}.*.source*/**, **/*src.zip"
 			>
-				<include name="**/${domainNamespace}.ocl*/" />
-				<include name="**/${domainNamespace}.ocl*/**" />
+				<include name="**/${domainNamespace}.ocl3*/" />
+				<include name="**/${domainNamespace}.ocl3*/**" />
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*" />
 				<include name="**/eclipse/epl-v10.html" />
 				<include name="**/eclipse/notice.html" />
@@ -90,9 +90,9 @@
 		<copy todir="${allSDKZipUnpackTemp}/lib" preservelastmodified="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}">
 				<patternset>
-					<include name="**/plugins/org.eclipse.ocl.ecore_*.jar" />
-					<include name="**/plugins/org.eclipse.ocl.uml_*.jar" />
-					<include name="**/plugins/org.eclipse.ocl_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl3.ecore_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl3.uml_*.jar" />
+					<include name="**/plugins/org.eclipse.ocl3_*.jar" />
 					<include name="**/plugins/net.sourceforge.lpg.lpgjavaruntime_*.jar" />
 				</patternset>
 			</zipfileset>
