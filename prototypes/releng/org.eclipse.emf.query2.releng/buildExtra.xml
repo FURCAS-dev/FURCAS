@@ -16,6 +16,7 @@
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
 			            filemode="664"
+						excludes="**/*.test*, **/*.ui*"
 			>
 				<include name="**/org.eclipse.emf.query2.index*/**" />
 				<include name="**/org.eclipse.emf.query.index*/**" />
