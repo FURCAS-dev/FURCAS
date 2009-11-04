@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="org.eclipse.ocl.doc" default="build.jars" basedir=".">
+<project name="org.eclipse.ocl3.doc" default="build.jars" basedir=".">
 
 	<property file="${buildDirectory}/finalPluginsVersions.properties"/>
-	<property name="pluginVersion" value="${org.eclipse.ocl.doc}"/>
+	<property name="pluginVersion" value="${org.eclipse.ocl3.doc}"/>
 
 	<property name="plugin" value="org.eclipse.ocl"/>
-	<property name="docPlugin" value="org.eclipse.ocl.doc"/>
+	<property name="docPlugin" value="org.eclipse.ocl3.doc"/>
 
 	<property name="filesToInclude" value="META-INF/**,about.html,about.ini,about.mappings,about.properties,modeling*.png,plugin.xml,plugin.properties,toc.xml,schema.css,book.css,topics_*.xml,index/**,images/**,tutorials/**,references/**"/>
 	<property name="filesToExclude" value="**/*.dnx"/>
