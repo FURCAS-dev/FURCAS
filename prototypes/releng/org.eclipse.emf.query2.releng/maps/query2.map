@@ -13,6 +13,7 @@ plugin@net.sourceforge.lpg.lpgjavaruntime=v1_1,:pserver:anonymous@dev.eclipse.or
 plugin@org.eclipse.emf.query2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/plugins/org.eclipse.emf.query2
 plugin@org.eclipse.emf.query2.tools.ui=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/plugins/org.eclipse.emf.query2.tools.ui
 
+feature@org.eclipse.emf.query2.master=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.master-feature
 feature@org.eclipse.emf.query2=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2-feature
 feature@org.eclipse.emf.query2.test=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.test-feature
 feature@org.eclipse.emf.query2.index=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf.query/prototypes/query2syntax/org.eclipse.emf.query2.index-feature
