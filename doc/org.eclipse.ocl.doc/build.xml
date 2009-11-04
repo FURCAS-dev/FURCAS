@@ -4,7 +4,7 @@
 	<property file="${buildDirectory}/finalPluginsVersions.properties"/>
 	<property name="pluginVersion" value="${org.eclipse.ocl3.doc}"/>
 
-	<property name="plugin" value="org.eclipse.ocl"/>
+	<property name="plugin" value="org.eclipse.ocl3"/>
 	<property name="docPlugin" value="org.eclipse.ocl3.doc"/>
 
 	<property name="filesToInclude" value="META-INF/**,about.html,about.ini,about.mappings,about.properties,modeling*.png,plugin.xml,plugin.properties,toc.xml,schema.css,book.css,topics_*.xml,index/**,images/**,tutorials/**,references/**"/>
