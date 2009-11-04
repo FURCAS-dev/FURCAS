@@ -21,6 +21,10 @@ http://www.eclipse.org/legal/epl-v10.html
       %license
    </license>
 
+   <includes
+         id="org.eclipse.emf.query2.index"
+         version="0.0.0"/>
+
    <requires>
       <import plugin="org.eclipse.xpand"/>
       <import plugin="org.eclipse.xtext"/>
