@@ -129,7 +129,7 @@
 
 	<target name="convertSchemaToHtml">
 		<property name="schema-destination" value="./references/extension-points" />
-		<pde.convertSchemaToHTML manifest="../org.eclipse.ocl/plugin.xml" destination="${schema-destination}" />
+		<pde.convertSchemaToHTML manifest="../org.eclipse.ocl3/plugin.xml" destination="${schema-destination}" />
 	</target>
 
 </project>
