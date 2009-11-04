@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EnvironmentRegistryImpl.java,v 1.4 2007/10/11 23:05:05 cdamus Exp $
+ * $Id: EnvironmentRegistryImpl.java,v 1.5 2009/11/04 19:44:06 aigdalov Exp $
  */
 
 package org.eclipse.ocl.internal;
@@ -128,7 +128,8 @@ public class EnvironmentRegistryImpl implements Registry {
 			new java.util.HashMap<String, EnvironmentDescriptor>();
 		
 		RegistryReader(OCLPlugin plugin) {
-			namespace = plugin.getSymbolicName();
+			// FIXME
+			namespace = "org.eclipse.ocl"; //$NON-NLS-1$ //plugin.getSymbolicName();
 		}
 		
 		void readRegistry() {

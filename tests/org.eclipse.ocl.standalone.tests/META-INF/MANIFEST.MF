@@ -1,18 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %Plugin.name
-Bundle-SymbolicName: org.eclipse.ocl3.standalone.tests;singleton:=true
+Bundle-SymbolicName: org.eclipse.ocl.standalone.tests;singleton:=true
 Bundle-Version: 1.3.0.qualifier
 Bundle-ClassPath: .
 Bundle-Vendor: %Plugin.providerName
 Bundle-Localization: plugin
 Export-Package: org.eclipse.ocl.standalone.tests
 Require-Bundle: 
- org.eclipse.ocl3.ecore.tests;bundle-version="3.0.0",
- org.eclipse.ocl3.uml.tests;bundle-version="3.0.0",
- org.eclipse.ocl3;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.ocl3.ecore;bundle-version="[3.0.0,4.0.0)",
- org.eclipse.ocl3.uml;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.ocl.ecore.tests;bundle-version="3.0.0",
+ org.eclipse.ocl.uml.tests;bundle-version="3.0.0",
+ org.eclipse.ocl;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.ocl.ecore;bundle-version="[3.0.0,4.0.0)",
+ org.eclipse.ocl.uml;bundle-version="[3.0.0,4.0.0)",
  org.junit;bundle-version="[3.8.0,4.0.0)",
  org.eclipse.emf.common;bundle-version="[2.3.0,3.0.0)",
  org.eclipse.emf.ecore;bundle-version="[2.3.0,3.0.0)",
