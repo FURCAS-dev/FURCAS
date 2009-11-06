@@ -85,19 +85,18 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 		String tgtFragment = null;
 		String srcFragment = null;
 
+		this.srcResScope = null;
+		this.tgtResScope = null;
+
 		if (srcEObjectQuery != null) {
-			if (srcResScope == null) {
-				this.srcResScope = new LinkedHashSet<URI>();
-			}
+			this.srcResScope = new LinkedHashSet<URI>();
 			for (URI next : srcEObjectQuery.getResourceScope(globalTables)) {
 				srcResScope.add(next);
 			}
 			srcFragment = srcEObjectQuery.getFragment();
 		}
 		if (tgtEObjectQuery != null) {
-			if (tgtResScope == null) {
-				this.tgtResScope = new LinkedHashSet<URI>();
-			}
+			this.tgtResScope = new LinkedHashSet<URI>();
 			for (URI next : tgtEObjectQuery.getResourceScope(globalTables)) {
 				tgtResScope.add(next);
 			}
