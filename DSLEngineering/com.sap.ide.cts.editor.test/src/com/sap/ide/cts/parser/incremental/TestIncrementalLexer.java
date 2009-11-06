@@ -101,6 +101,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 		TextBlock newlyLexedVersion = TbVersionUtil
 				.getOtherVersion(editedVersion, VersionEnum.CURRENT);
 
+		//TODO fix!
 		assertEquals(3, newlyLexedVersion.getTokens().size());
 		assertEquals("test1", newlyLexedVersion.getTokens().get(1).getValue()); // (BOS,
 		// contentToken,
