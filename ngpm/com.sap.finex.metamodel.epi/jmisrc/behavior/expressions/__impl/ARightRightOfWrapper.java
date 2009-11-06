@@ -125,6 +125,7 @@ public class ARightRightOfWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ARightRightOf> get___JmiInterface() {
         return behavior.expressions.ARightRightOf.class;
     }

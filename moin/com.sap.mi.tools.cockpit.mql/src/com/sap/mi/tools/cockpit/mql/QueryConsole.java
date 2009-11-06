@@ -3,6 +3,8 @@ package com.sap.mi.tools.cockpit.mql;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -12,8 +14,6 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * The MQLConsole class controls the plug-in life cycle.
@@ -66,7 +66,7 @@ public class QueryConsole extends AbstractUIPlugin {
 
 	public static final String MOIN_BROWSER_IMAGE = "MOIN_BROWSER_IMAGE"; //$NON-NLS-1$
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	/**
 	 * The constructor.
@@ -136,7 +136,7 @@ public class QueryConsole extends AbstractUIPlugin {
 		}
 		catch (final IOException e) {
 			// spec'ed to ignore problems
-			QueryConsole.tracer.error(e.getMessage(), e);
+			QueryConsole.tracer.log(Level.SEVERE, e.getMessage(), e);
 			return;
 		}
 
@@ -177,7 +177,7 @@ public class QueryConsole extends AbstractUIPlugin {
 		}
 		catch (final MalformedURLException e) {
 			// spec'ed to ignore problems
-			QueryConsole.tracer.error(e.getMessage(), e);
+			QueryConsole.tracer.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 

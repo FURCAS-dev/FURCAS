@@ -1,9 +1,8 @@
 package com.sap.mi.fwk.ui.tree.nodes;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * This class is intended for tree node implementations that logically represent a model object of a specific type. They

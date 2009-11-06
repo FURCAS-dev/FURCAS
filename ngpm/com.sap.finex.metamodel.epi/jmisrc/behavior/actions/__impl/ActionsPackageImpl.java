@@ -161,6 +161,7 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ActionsPackage> get___JmiInterface() {
         return behavior.actions.ActionsPackage.class;
     }
@@ -169,7 +170,9 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -231,7 +234,9 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(7);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_statements_block"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.actions.AStatementsBlock"); //$NON-NLS-1$

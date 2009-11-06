@@ -8,7 +8,7 @@ import com.tssap.util.trace.TracingManager;
 
 public abstract class MoinMetamodelDcService {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MoinMetamodelDcService.class);
+	private static final Logger stracer = Logger.getLogger(MoinMetamodelDcService.class);
 
 	/**
 	 * @return whether the given project has the Moin metamodel nature, i.e. whether metamodel
@@ -28,7 +28,7 @@ public abstract class MoinMetamodelDcService {
 			boolean hasNature = project.hasNature(MoinMetaModelDcType.ID_NATURE);
 			return hasNature;
 		} catch (CoreException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return false;
 		}
 	}

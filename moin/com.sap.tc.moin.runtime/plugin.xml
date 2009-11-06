@@ -5,10 +5,10 @@
 
    <extension-point id="MoinFacility" name="%moinFacility"/>
       
-   <extension point="com.tssap.tools.ui.traceParticipant">
+   <!--<extension point="com.tssap.tools.ui.traceParticipant">
       <tracePaticipant class="com.sap.tc.moin.repository.runtimehost.logger.ide.MoinLoggerDynamicParticipant">
       </tracePaticipant>
-   </extension>
+   </extension>-->
 
    <extension point="org.eclipse.ui.preferencePages">
       <page class="com.sap.tc.moin.repository.runtimehost.ide.MoinPreferencePage" id="MoinPreferencePage" name="%_preferences_page_title">

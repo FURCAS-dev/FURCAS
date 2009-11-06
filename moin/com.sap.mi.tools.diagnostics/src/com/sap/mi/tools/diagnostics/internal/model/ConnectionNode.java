@@ -7,6 +7,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.ObjectName;
 import javax.management.openmbean.CompositeData;
@@ -15,8 +17,6 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.diagnostics.internal.MoinJmxClient;
 import com.sap.mi.tools.diagnostics.internal.messages.DiagnosticsMessages;
 import com.sap.tc.moin.repository.jmx.ConnectionMBean;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Represents one connection
@@ -25,7 +25,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class ConnectionNode extends MBeanNode {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 
 	private final transient String mId;
 	private final transient String mLabel;
@@ -73,7 +73,7 @@ public class ConnectionNode extends MBeanNode {
 				result.add(nullPartitionNode);
 			return result.toArray(new Object[result.size()]);
 		} catch (IOException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 		}
 		return NO_CHILDREN;
 	}
@@ -113,7 +113,7 @@ public class ConnectionNode extends MBeanNode {
 
 			return result.toString();
 		} catch (IOException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return "Error: " + e.getMessage(); //$NON-NLS-1$
 		}
 	}

@@ -14,7 +14,7 @@ import com.sap.tc.moin.repository.jmx.ConnectionMBean;
  */
 public class DeadConnectionNode extends ConnectionNode {
 	
-	//private static final TracerI sTracer = TracingManager.getTracer(DeadConnectionNode.class);
+	//private static final Logger stracer = Logger.getLogger(DeadConnectionNode.class);
 
 	public DeadConnectionNode(ConnectionsNode node, ObjectName name) throws IOException {
         super(node, name, null, null);

@@ -1,13 +1,12 @@
 package com.sap.mi.fwk.ui.properties;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.IViewerLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.ViewerLabel;
 
 import com.sap.mi.fwk.ModelManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A label provider for {@link RefObject} showing a human-raedable name as text

@@ -22,6 +22,7 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private structure.__impl.FieldImpl getCastWrappedObject() {
         return (structure.__impl.FieldImpl) getWrappedObject();
     }
@@ -545,6 +546,7 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Field> get___JmiInterface() {
         return structure.Field.class;
     }

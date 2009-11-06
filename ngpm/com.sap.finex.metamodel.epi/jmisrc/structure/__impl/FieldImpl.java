@@ -393,6 +393,7 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Field> get___JmiInterface() {
         return structure.Field.class;
     }

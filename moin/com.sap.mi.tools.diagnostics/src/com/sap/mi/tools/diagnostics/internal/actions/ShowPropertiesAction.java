@@ -1,5 +1,8 @@
 package com.sap.mi.tools.diagnostics.internal.actions;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.ui.IPageLayout;
@@ -10,8 +13,6 @@ import org.eclipse.ui.texteditor.IWorkbenchActionDefinitionIds;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.diagnostics.internal.model.MoinNode;
 import com.sap.mi.tools.diagnostics.internal.model.PartitionableNode;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Shows the properties view for various nodes
@@ -20,7 +21,7 @@ import com.tssap.util.trace.TracingManager;
  */
 class ShowPropertiesAction extends DiagnosticsViewerAction {
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+    private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
     
     ShowPropertiesAction(StructuredViewer viewer) {
         super("&Properties", viewer); //$NON-NLS-1$
@@ -32,7 +33,7 @@ class ShowPropertiesAction extends DiagnosticsViewerAction {
             PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(IPageLayout.ID_PROP_SHEET);
         } 
         catch (PartInitException e) {
-            sTracer.error(e.getMessage(), e);
+            stracer.log(Level.SEVERE, e.getMessage(), e);
         }
     }
     

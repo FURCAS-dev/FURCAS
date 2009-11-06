@@ -24,6 +24,7 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.SingleImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.SingleImpl) getWrappedObject();
     }
@@ -500,6 +501,7 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Single> get___JmiInterface() {
         return behavior.expressions.Single.class;
     }

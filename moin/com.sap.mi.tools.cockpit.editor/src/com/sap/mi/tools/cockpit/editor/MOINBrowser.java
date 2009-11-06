@@ -3,6 +3,8 @@ package com.sap.mi.tools.cockpit.editor;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -12,8 +14,6 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * The MOINBrowser class controls the plug-in life cycle
@@ -23,7 +23,7 @@ public final class MOINBrowser extends AbstractUIPlugin {
 	// The shared instance
 	private static MOINBrowser plugin;
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	public static final String METAMODEL_IMAGE = "METAMODEL_IMAGE"; //$NON-NLS-1$
 
@@ -146,7 +146,7 @@ public final class MOINBrowser extends AbstractUIPlugin {
 		}
 		catch (final IOException e) {
 			// spec'ed to ignore problems
-			MOINBrowser.tracer.error(e.getMessage(), e);
+			MOINBrowser.tracer.log(Level.SEVERE, e.getMessage(), e);
 			return;
 		}
 
@@ -189,7 +189,7 @@ public final class MOINBrowser extends AbstractUIPlugin {
 		}
 		catch (final MalformedURLException e) {
 			// spec'ed to ignore problems
-			MOINBrowser.tracer.error(e.getMessage(), e);
+			MOINBrowser.tracer.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 

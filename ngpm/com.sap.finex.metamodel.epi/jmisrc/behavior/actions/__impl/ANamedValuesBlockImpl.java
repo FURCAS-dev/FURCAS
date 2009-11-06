@@ -64,6 +64,7 @@ public final class ANamedValuesBlockImpl extends com.sap.tc.moin.repository.core
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ANamedValuesBlock> get___JmiInterface() {
         return behavior.actions.ANamedValuesBlock.class;
     }

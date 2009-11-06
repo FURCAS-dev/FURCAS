@@ -24,6 +24,7 @@ public class NotWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefO
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.NotImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.NotImpl) getWrappedObject();
     }
@@ -551,6 +552,7 @@ public class NotWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefO
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Not> get___JmiInterface() {
         return behavior.expressions.Not.class;
     }

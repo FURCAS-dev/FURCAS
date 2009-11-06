@@ -9,6 +9,8 @@ import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.ui.IMemento;
@@ -19,8 +21,6 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.cockpit.mql.QueryConsole;
 import com.sap.mi.tools.cockpit.mql.ui.view.QueryConsoleView;
 import com.sap.mi.tools.cockpit.mql.wizard.QueryTemplateWizard;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * The model for query templates in {@link QueryConsoleView}.
@@ -32,7 +32,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class Model {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private final static String QUERY_MEMENTO = "query.template.memento"; //$NON-NLS-1$
 
@@ -129,7 +129,7 @@ public final class Model {
 				this.templatesFile.createNewFile();
 			}
 			catch (final IOException e) {
-				Model.tracer.error(e.getMessage(), e);
+				Model.tracer.log(Level.SEVERE, e.getMessage(), e);
 			}
 		} else {
 			FileReader reader;
@@ -139,11 +139,11 @@ public final class Model {
 			}
 			catch (final WorkbenchException e) {
 				this.memento = null;
-				Model.tracer.error(e.getMessage(), e);
+				Model.tracer.log(Level.SEVERE, e.getMessage(), e);
 			}
 			catch (final FileNotFoundException e) {
 				this.memento = null;
-				Model.tracer.error(e.getMessage(), e);
+				Model.tracer.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		this.root = root;
@@ -271,7 +271,7 @@ public final class Model {
 			exportModel(this.templatesFile);
 		}
 		catch (final Exception e) {
-			Model.tracer.error(e.getMessage(), e);
+			Model.tracer.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 

@@ -24,6 +24,7 @@ public class DateLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.literals.__impl.DateLiteralImpl getCastWrappedObject() {
         return (behavior.expressions.literals.__impl.DateLiteralImpl) getWrappedObject();
     }
@@ -507,6 +508,7 @@ public class DateLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.DateLiteral> get___JmiInterface() {
         return behavior.expressions.literals.DateLiteral.class;
     }

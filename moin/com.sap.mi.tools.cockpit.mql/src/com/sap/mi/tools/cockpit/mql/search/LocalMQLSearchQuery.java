@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -24,8 +26,6 @@ import com.sap.tc.moin.repository.mql.MQLExecutionException;
 import com.sap.tc.moin.repository.mql.MQLFormatException;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.QueryScopeProvider;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * @author d003456
@@ -33,7 +33,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class LocalMQLSearchQuery extends MQLSearchQuery {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private final Connection connection;
 
@@ -93,14 +93,14 @@ public class LocalMQLSearchQuery extends MQLSearchQuery {
 				this.queryDetailsPage.setError(out.toString());
 			}
 			catch (final IOException io) {
-				LocalMQLSearchQuery.tracer.error(io.getMessage(), io);
+				LocalMQLSearchQuery.tracer.log(Level.SEVERE, io.getMessage(), io);
 			}
 			finally {
 				try {
 					out.close();
 				}
 				catch (final IOException io) {
-					LocalMQLSearchQuery.tracer.error(io.getMessage(), io);
+					LocalMQLSearchQuery.tracer.log(Level.SEVERE, io.getMessage(), io);
 				}
 			}
 

@@ -1,12 +1,11 @@
 package com.sap.mi.fwk.ui.internal.tree;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.ui.views.tasklist.ITaskListResourceAdapter;
 
 import com.sap.mi.fwk.ui.internal.adapter.PartitionableResourceAdapter;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNodeRefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class TreeNodeRefObjectAdapterFactory implements IAdapterFactory {
 

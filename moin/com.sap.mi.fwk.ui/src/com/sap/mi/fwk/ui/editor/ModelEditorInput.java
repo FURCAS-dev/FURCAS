@@ -1,6 +1,8 @@
 package com.sap.mi.fwk.ui.editor;
 
 import java.lang.ref.WeakReference;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -24,8 +26,6 @@ import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * The input for model editors. Clients may instantiate or subclass.
@@ -40,7 +40,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class ModelEditorInput implements IEditorInput, IPersistableElement {
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+    private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
     /**
      * The stored {@link MRI} string

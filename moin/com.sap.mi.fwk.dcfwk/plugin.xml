@@ -5,9 +5,9 @@
 <!-- ======================================================================================= -->
 <!-- Trace Enabling				                                                             -->
 <!-- ======================================================================================= -->
- <extension point="com.tssap.tools.ui.traceParticipant">
+<!-- <extension point="com.tssap.tools.ui.traceParticipant">
       <traceParticipant file="traceParticipant.properties"/>
-   </extension>
+   </extension>-->
 
 <!-- ======================================================================================= -->
 <!-- Wizards					                                                             -->
@@ -22,7 +22,7 @@
 <!-- ======================================================================================= -->
 <!-- Enitity Services			                                                             -->
 <!-- ======================================================================================= -->
- <extension
+ <!--<extension
        point="com.sap.ide.dii05.lib.ppentityservices">
     <EntityService
           class="com.sap.mi.fwk.dcfwk.ModelFolderTreeEntityService"
@@ -32,7 +32,7 @@
              name="Model Folder Tree">
        </type>
     </EntityService>
- </extension>	
+ </extension>	-->
 
 <!-- ======================================================================================= -->
 <!-- Commands					                                                             -->

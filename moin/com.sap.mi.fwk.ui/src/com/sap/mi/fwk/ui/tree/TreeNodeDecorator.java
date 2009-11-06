@@ -1,6 +1,7 @@
 package com.sap.mi.fwk.ui.tree;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -16,8 +17,7 @@ import com.sap.mi.fwk.MarkerManager;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.internal.MiFwkUIPlugin;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Default node decorator capable of handling {@link ITreeNode} as well as {@link RefObject}. The decorator must be declared in the tool
@@ -58,7 +58,7 @@ import com.tssap.util.trace.TracingManager;
 public class TreeNodeDecorator extends LabelProvider implements ILightweightLabelDecorator, ILabelDecorator {
 
 	@SuppressWarnings("unused")
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MARKERS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MARKERS);
 
 	public static final String DECORATOR_ID = "com.sap.mi.fwk.ui.tree.treenodedecorator"; //$NON-NLS-1$
 	public static final int SEVERITY_UNKNOWN = -2;

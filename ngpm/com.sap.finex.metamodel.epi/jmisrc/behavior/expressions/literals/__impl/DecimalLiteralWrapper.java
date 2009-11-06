@@ -24,6 +24,7 @@ public class DecimalLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.literals.__impl.DecimalLiteralImpl getCastWrappedObject() {
         return (behavior.expressions.literals.__impl.DecimalLiteralImpl) getWrappedObject();
     }
@@ -507,6 +508,7 @@ public class DecimalLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.DecimalLiteral> get___JmiInterface() {
         return behavior.expressions.literals.DecimalLiteral.class;
     }

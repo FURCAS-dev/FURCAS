@@ -1,6 +1,9 @@
 package com.sap.mi.fwk.ui;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -31,8 +34,6 @@ import com.sap.tc.moin.repository.PartitionsNotSavedException;
 import com.sap.tc.moin.repository.ReferencedTransientElementsException;
 import com.sap.tc.moin.repository.Session;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Facility to <b>create</b> or <b>save</b> MOIN connections from the <b>UI
@@ -56,7 +57,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class ConnectionManagerUI {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_CONNECTIONS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_CONNECTIONS);
 	private static ConnectionManagerUI sInstance;
 
 	/**
@@ -133,7 +134,7 @@ public final class ConnectionManagerUI {
 						.getProjectLabel(project)), followUp) {
 			@Override
 			protected Connection doRun(IProgressMonitor monitor) {
-				if (sTracer.info()) {
+				if (sTracer.isLoggable(Level.INFO)) {
 					sTracer.info("Creating connection in thread " + Thread.currentThread().getName()); //$NON-NLS-1$
 				}
 				Connection connection = ConnectionManager.getInstance().createConnection(project);
@@ -176,7 +177,7 @@ public final class ConnectionManagerUI {
 		Job job = new CreateConnectionJob(msg, followUp) {
 			@Override
 			protected Connection doRun(IProgressMonitor monitor) {
-				if (sTracer.info()) {
+				if (sTracer.isLoggable(Level.INFO)) {
 					sTracer.info("Creating default connection in thread " + Thread.currentThread().getName()); //$NON-NLS-1$
 				}
 				Connection connection = ConnectionManager.getInstance().getOrCreateDefaultConnection(project);
@@ -438,7 +439,7 @@ public final class ConnectionManagerUI {
 				Job uiUpdateJob = new UIJob(MiFwkUiMessages.ConnectionManagerUI_Message_UI_Update) {
 					@Override
 					public IStatus runInUIThread(IProgressMonitor monitor) {
-						if (sTracer.info()) {
+						if (sTracer.isLoggable(Level.INFO)) {
 							sTracer.info("Running UI update in thread " + Thread.currentThread().getName()); //$NON-NLS-1$
 						}
 						followUp.run(connection, monitor);

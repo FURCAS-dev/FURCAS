@@ -332,6 +332,7 @@ public final class PathExpressionImpl extends com.sap.tc.moin.repository.core.jm
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.PathExpression> get___JmiInterface() {
         return behavior.expressions.PathExpression.class;
     }

@@ -3,6 +3,8 @@ package com.sap.mi.fwk.dcfwk.internal;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -23,8 +25,6 @@ import com.sap.ide.dii05.model.api.IDevelopmentComponent;
 import com.sap.mi.fwk.dcfwk.MoinDcOptions;
 import com.sap.mi.fwk.dcfwk.MoinProject;
 import com.sap.mi.fwk.dcfwk.internal.messages.DcFwkMessages;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Aligns the DC's public parts with the ones specified in the DC type
@@ -37,7 +37,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class RepairDcAction extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(RepairDcAction.class);
+	private static final Logger stracer = Logger.getLogger(RepairDcAction.class.getName());
 
 	public RepairDcAction() {
 		super();
@@ -56,7 +56,7 @@ public final class RepairDcAction extends AbstractHandler {
 		}
 
 		long tm = 0L;
-		if (sTracer.debug())
+		if (stracer.isLoggable(Level.FINE))
 			tm = System.currentTimeMillis();
 
 		final IRunnableWithProgress op = new IRunnableWithProgress() {
@@ -96,9 +96,9 @@ public final class RepairDcAction extends AbstractHandler {
 		} catch (OperationCanceledException e) { // $JL-EXC$
 		}
 
-		if (sTracer.debug()) {
+		if (stracer.isLoggable(Level.FINE)) {
 			tm = System.currentTimeMillis() - tm;
-			sTracer.debug("Repair took " + tm + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+			stracer.log(Level.FINE, "Repair took " + tm + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return null;
 	}

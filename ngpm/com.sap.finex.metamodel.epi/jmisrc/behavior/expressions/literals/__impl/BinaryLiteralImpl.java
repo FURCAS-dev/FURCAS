@@ -303,6 +303,7 @@ public final class BinaryLiteralImpl extends com.sap.tc.moin.repository.core.jmi
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.BinaryLiteral> get___JmiInterface() {
         return behavior.expressions.literals.BinaryLiteral.class;
     }

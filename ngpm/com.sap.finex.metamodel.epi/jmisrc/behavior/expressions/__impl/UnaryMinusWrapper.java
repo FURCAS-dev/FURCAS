@@ -24,6 +24,7 @@ public class UnaryMinusWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.UnaryMinusImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.UnaryMinusImpl) getWrappedObject();
     }
@@ -551,6 +552,7 @@ public class UnaryMinusWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.UnaryMinus> get___JmiInterface() {
         return behavior.expressions.UnaryMinus.class;
     }

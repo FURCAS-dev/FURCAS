@@ -303,6 +303,7 @@ public final class DecimalLiteralImpl extends com.sap.tc.moin.repository.core.jm
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.DecimalLiteral> get___JmiInterface() {
         return behavior.expressions.literals.DecimalLiteral.class;
     }

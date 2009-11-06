@@ -14,6 +14,7 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private structure.__impl.AssociationImpl getCastWrappedObject() {
         return (structure.__impl.AssociationImpl) getWrappedObject();
     }
@@ -110,6 +111,7 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Association> get___JmiInterface() {
         return structure.Association.class;
     }

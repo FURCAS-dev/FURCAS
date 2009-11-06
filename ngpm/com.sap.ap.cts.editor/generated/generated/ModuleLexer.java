@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2009-06-16 20:59:43
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2009-11-06 10:27:10
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -178,41 +178,41 @@ public class ModuleLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g"; }
+    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g"; }
 
     // $ANTLR start "COMMENT"
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:325:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:331:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:9: '//' (~ ( '\\r' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:9: '//' (~ ( '\\r' | '\\n' ) )*
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:14: (~ ( '\\r' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
                 int LA1_0 = input.LA(1);
-
+                
                 if ( ((LA1_0>='\u0000' && LA1_0<='\t')||(LA1_0>='\u000B' && LA1_0<='\f')||(LA1_0>='\u000E' && LA1_0<='\uFFFF')) ) {
                     alt1=1;
                 }
-
-
+                
+            
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:326:15: ~ ( '\\r' | '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -224,27 +224,27 @@ public class ModuleLexer extends Lexer {
             	        recover(mse);
             	        throw mse;}
 
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    break loop1;
                 }
             } while (true);
 
-
+            
             }
 
-
+            
             }
 
-
+            
             }
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -258,46 +258,46 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:331:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:337:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/*"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
                 int LA2_0 = input.LA(1);
-
+                
                 if ( (LA2_0=='*') ) {
                     int LA2_1 = input.LA(2);
-
+                    
                     if ( (LA2_1=='/') ) {
                         alt2=2;
                     }
                     else if ( ((LA2_1>='\u0000' && LA2_1<='.')||(LA2_1>='0' && LA2_1<='\uFFFF')) ) {
                         alt2=1;
                     }
-
-
+                    
+                
                 }
                 else if ( ((LA2_0>='\u0000' && LA2_0<=')')||(LA2_0>='+' && LA2_0<='\uFFFF')) ) {
                     alt2=1;
                 }
-
-
+                
+            
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:332:43: ( '\\n' | ~ '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:43: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -309,10 +309,10 @@ public class ModuleLexer extends Lexer {
             	        recover(mse);
             	        throw mse;}
 
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    break loop2;
                 }
@@ -320,18 +320,18 @@ public class ModuleLexer extends Lexer {
 
             match("*/"); if (state.failed) return ;
 
-
+            
             }
 
-
+            
             }
 
-
+            
             }
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -345,13 +345,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:337:3: ( '[' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:338:3: '['
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:343:3: ( '[' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:344:3: '['
             {
             match('['); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -365,13 +365,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:343:3: ( ']' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:344:3: ']'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:349:3: ( ']' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:350:3: ']'
             {
             match(']'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -385,13 +385,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:349:3: ( '{' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:350:3: '{'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:355:3: ( '{' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:356:3: '{'
             {
             match('{'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -405,13 +405,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:355:3: ( '}' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:356:3: '}'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:361:3: ( '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:362:3: '}'
             {
             match('}'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -425,13 +425,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = LANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:361:3: ( '<' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:362:3: '<'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:367:3: ( '<' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:368:3: '<'
             {
             match('<'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -445,13 +445,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:367:3: ( '>' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:368:3: '>'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:373:3: ( '>' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:374:3: '>'
             {
             match('>'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -465,13 +465,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:373:3: ( '(' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:374:3: '('
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:379:3: ( '(' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:380:3: '('
             {
             match('('); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -485,13 +485,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:379:3: ( ')' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:380:3: ')'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:385:3: ( ')' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:386:3: ')'
             {
             match(')'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -505,13 +505,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = EXCL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:385:3: ( '!' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:386:3: '!'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:391:3: ( '!' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:392:3: '!'
             {
             match('!'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -525,13 +525,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:391:3: ( '=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:392:3: '='
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:397:3: ( '=' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:398:3: '='
             {
             match('='); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -545,14 +545,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = EQUALSEQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:397:3: ( '==' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:398:3: '=='
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:403:3: ( '==' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:404:3: '=='
             {
             match("=="); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -566,14 +566,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:403:3: ( ':=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:404:3: ':='
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:409:3: ( ':=' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:410:3: ':='
             {
             match(":="); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -587,13 +587,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:409:3: ( '.' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:410:3: '.'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:415:3: ( '.' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:416:3: '.'
             {
             match('.'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -607,14 +607,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = DDOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:415:3: ( '..' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:416:3: '..'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:421:3: ( '..' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:422:3: '..'
             {
             match(".."); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -628,14 +628,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = ARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:421:3: ( '->' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:422:3: '->'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:427:3: ( '->' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:428:3: '->'
             {
             match("->"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -649,13 +649,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = PIPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:427:3: ( '|' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:428:3: '|'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:433:3: ( '|' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:434:3: '|'
             {
             match('|'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -669,13 +669,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:433:3: ( ':' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:434:3: ':'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:439:3: ( ':' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:440:3: ':'
             {
             match(':'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -689,14 +689,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = DCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:439:3: ( '::' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:440:3: '::'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:445:3: ( '::' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:446:3: '::'
             {
             match("::"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -710,13 +710,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:445:3: ( ';' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:446:3: ';'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:451:3: ( ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:452:3: ';'
             {
             match(';'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -730,14 +730,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = INCLUDING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:451:3: ( 'including' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:452:3: 'including'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:457:3: ( 'including' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:458:3: 'including'
             {
             match("including"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -751,14 +751,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = EXCLUDING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:457:3: ( 'excluding' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:458:3: 'excluding'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:463:3: ( 'excluding' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:464:3: 'excluding'
             {
             match("excluding"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -772,14 +772,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = INCLUDINGAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:463:3: ( 'includingAt' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:464:3: 'includingAt'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:469:3: ( 'includingAt' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:470:3: 'includingAt'
             {
             match("includingAt"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -793,14 +793,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = EXCLUDINGAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:469:3: ( 'excludingAt' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:470:3: 'excludingAt'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:475:3: ( 'excludingAt' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:476:3: 'excludingAt'
             {
             match("excludingAt"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -814,14 +814,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = ITERATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:475:3: ( 'iterate' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:476:3: 'iterate'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:481:3: ( 'iterate' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:482:3: 'iterate'
             {
             match("iterate"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -835,14 +835,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = LCURL_LBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:481:3: ( '{[' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:482:3: '{['
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:487:3: ( '{[' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:488:3: '{['
             {
             match("{["); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -856,14 +856,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = LBRACK_LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:487:3: ( '[{' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:488:3: '[{'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:493:3: ( '[{' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:494:3: '[{'
             {
             match("[{"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -877,14 +877,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RCURL_RBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:493:3: ( '}]' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:494:3: '}]'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:499:3: ( '}]' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:500:3: '}]'
             {
             match("}]"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -898,14 +898,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RBRACK_RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:499:3: ( ']}' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:500:3: ']}'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:505:3: ( ']}' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:506:3: ']}'
             {
             match("]}"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -919,13 +919,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:505:3: ( '*' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:506:3: '*'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:511:3: ( '*' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:512:3: '*'
             {
             match('*'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -939,16 +939,16 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:515:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:515:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:521:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:521:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:515:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:521:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
-
+            
             if ( (LA3_0=='\r') ) {
                 int LA3_1 = input.LA(2);
-
+                
                 if ( (LA3_1=='\n') ) {
                     alt3=1;
                 }
@@ -957,7 +957,7 @@ public class ModuleLexer extends Lexer {
             }
             else if ( (LA3_0=='\n') ) {
                 int LA3_2 = input.LA(2);
-
+                
                 if ( (LA3_2=='\r') ) {
                     alt3=2;
                 }
@@ -968,49 +968,49 @@ public class ModuleLexer extends Lexer {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
                     new NoViableAltException("", 3, 0, input);
-
+            
                 throw nvae;
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:515:6: '\\r' '\\n'
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:521:6: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
-
+                    
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:516:5: '\\n' '\\r'
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:522:5: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
-
+                    
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:517:5: '\\r'
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:523:5: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
-
+                    
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:518:5: '\\n'
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:524:5: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
-
+                    
                     }
                     break;
-
+            
             }
 
             if ( state.backtracking==0 ) {
               newline();_channel=HIDDEN;
             }
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1024,8 +1024,8 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:524:2: ( ( ' ' | '\\t' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:524:4: ( ' ' | '\\t' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:530:2: ( ( ' ' | '\\t' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:530:4: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1040,9 +1040,9 @@ public class ModuleLexer extends Lexer {
             if ( state.backtracking==0 ) {
               _channel=HIDDEN;
             }
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1054,11 +1054,11 @@ public class ModuleLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:531:2: ( '0' .. '9' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:531:4: '0' .. '9'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:537:2: ( '0' .. '9' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:537:4: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
-
+            
             }
 
         }
@@ -1070,8 +1070,8 @@ public class ModuleLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:536:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:542:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -1083,7 +1083,7 @@ public class ModuleLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-
+            
             }
 
         }
@@ -1095,30 +1095,30 @@ public class ModuleLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:547:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:547:4: ( ALPHA ) ( ALPHA | DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:553:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:553:4: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:547:4: ( ALPHA )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:547:5: ALPHA
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:553:4: ( ALPHA )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:553:5: ALPHA
             {
             mALPHA(); if (state.failed) return ;
-
+            
             }
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:547:12: ( ALPHA | DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:553:12: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
                 int LA4_0 = input.LA(1);
-
+                
                 if ( ((LA4_0>='0' && LA4_0<='9')||(LA4_0>='A' && LA4_0<='Z')||LA4_0=='_'||(LA4_0>='a' && LA4_0<='z')||(LA4_0>='\u00C0' && LA4_0<='\u00D6')||(LA4_0>='\u00D8' && LA4_0<='\u00F6')||(LA4_0>='\u00F8' && LA4_0<='\u00FF')) ) {
                     alt4=1;
                 }
-
-
+                
+            
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -1130,16 +1130,16 @@ public class ModuleLexer extends Lexer {
             	        recover(mse);
             	        throw mse;}
 
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    break loop4;
                 }
             } while (true);
 
-
+            
             }
 
         }
@@ -1153,10 +1153,10 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:550:6: ( 'true' | 'false' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:556:6: ( 'true' | 'false' )
             int alt5=2;
             int LA5_0 = input.LA(1);
-
+            
             if ( (LA5_0=='t') ) {
                 alt5=1;
             }
@@ -1167,27 +1167,27 @@ public class ModuleLexer extends Lexer {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
                     new NoViableAltException("", 5, 0, input);
-
+            
                 throw nvae;
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:550:8: 'true'
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:556:8: 'true'
                     {
                     match("true"); if (state.failed) return ;
 
-
+                    
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:550:17: 'false'
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:556:17: 'false'
                     {
                     match("false"); if (state.failed) return ;
 
-
+                    
                     }
                     break;
-
+            
             }
             state.type = _type;
             state.channel = _channel;
@@ -1202,14 +1202,14 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = OBJECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:552:8: ( 'o:' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:552:10: 'o:'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:558:8: ( 'o:' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:558:10: 'o:'
             {
             match("o:"); if (state.failed) return ;
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1223,13 +1223,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:555:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:555:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:561:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:561:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:555:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:561:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             int alt7=2;
             int LA7_0 = input.LA(1);
-
+            
             if ( ((LA7_0>='A' && LA7_0<='Z')||LA7_0=='_'||(LA7_0>='a' && LA7_0<='z')||(LA7_0>='\u00C0' && LA7_0<='\u00D6')||(LA7_0>='\u00D8' && LA7_0<='\u00F6')||(LA7_0>='\u00F8' && LA7_0<='\u00FF')) ) {
                 alt7=1;
             }
@@ -1240,48 +1240,48 @@ public class ModuleLexer extends Lexer {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
                     new NoViableAltException("", 7, 0, input);
-
+            
                 throw nvae;
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:556:4: SNAME
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:562:4: SNAME
                     {
                     mSNAME(); if (state.failed) return ;
-
+                    
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:557:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:563:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
                     {
                     match('\''); if (state.failed) return ;
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:558:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:564:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
                     loop6:
                     do {
                         int alt6=3;
                         int LA6_0 = input.LA(1);
-
+                        
                         if ( (LA6_0=='\n') ) {
                             alt6=1;
                         }
                         else if ( ((LA6_0>='\u0000' && LA6_0<='\t')||(LA6_0>='\u000B' && LA6_0<='&')||(LA6_0>='(' && LA6_0<='[')||(LA6_0>=']' && LA6_0<='\uFFFF')) ) {
                             alt6=2;
                         }
-
-
+                        
+                    
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:560:4: '\\n'
+                    	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:566:4: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
                     	      newline();
                     	    }
-
+                    	    
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:561:6: ~ ( '\\\\' | '\\'' | '\\n' )
+                    	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:567:6: ~ ( '\\\\' | '\\'' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1293,25 +1293,25 @@ public class ModuleLexer extends Lexer {
                     	        recover(mse);
                     	        throw mse;}
 
-
+                    	    
                     	    }
                     	    break;
-
+                    
                     	default :
                     	    break loop6;
                         }
                     } while (true);
 
                     match('\''); if (state.failed) return ;
-
+                    
                     }
                     break;
-
+            
             }
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1325,26 +1325,26 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:568:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:568:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:574:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:574:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
             {
             match("0x"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:568:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:574:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
             int cnt8=0;
             loop8:
             do {
                 int alt8=2;
                 int LA8_0 = input.LA(1);
-
+                
                 if ( ((LA8_0>='0' && LA8_0<='9')||(LA8_0>='A' && LA8_0<='F')||(LA8_0>='a' && LA8_0<='f')) ) {
                     alt8=1;
                 }
-
-
+                
+            
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:568:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:574:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
             	        input.consume();
@@ -1366,10 +1366,10 @@ public class ModuleLexer extends Lexer {
             	        recover(mse);
             	        throw mse;}
 
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    if ( cnt8 >= 1 ) break loop8;
             	    if (state.backtracking>0) {state.failed=true; return ;}
@@ -1380,9 +1380,9 @@ public class ModuleLexer extends Lexer {
                 cnt8++;
             } while (true);
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1396,30 +1396,30 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:573:2: ( ( DIGIT )+ )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:573:4: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:579:2: ( ( DIGIT )+ )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:579:4: ( DIGIT )+
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:573:4: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:579:4: ( DIGIT )+
             int cnt9=0;
             loop9:
             do {
                 int alt9=2;
                 int LA9_0 = input.LA(1);
-
+                
                 if ( ((LA9_0>='0' && LA9_0<='9')) ) {
                     alt9=1;
                 }
-
-
+                
+            
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:573:5: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:579:5: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    if ( cnt9 >= 1 ) break loop9;
             	    if (state.backtracking>0) {state.failed=true; return ;}
@@ -1430,9 +1430,9 @@ public class ModuleLexer extends Lexer {
                 cnt9++;
             } while (true);
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1444,30 +1444,30 @@ public class ModuleLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:578:2: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:578:4: ( DIGIT )+ '.' ( DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:2: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:4: ( DIGIT )+ '.' ( DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:578:4: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:4: ( DIGIT )+
             int cnt10=0;
             loop10:
             do {
                 int alt10=2;
                 int LA10_0 = input.LA(1);
-
+                
                 if ( ((LA10_0>='0' && LA10_0<='9')) ) {
                     alt10=1;
                 }
-
-
+                
+            
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:578:4: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:4: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    if ( cnt10 >= 1 ) break loop10;
             	    if (state.backtracking>0) {state.failed=true; return ;}
@@ -1479,32 +1479,32 @@ public class ModuleLexer extends Lexer {
             } while (true);
 
             match('.'); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:578:15: ( DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:15: ( DIGIT )*
             loop11:
             do {
                 int alt11=2;
                 int LA11_0 = input.LA(1);
-
+                
                 if ( ((LA11_0>='0' && LA11_0<='9')) ) {
                     alt11=1;
                 }
-
-
+                
+            
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:578:15: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:15: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    break loop11;
                 }
             } while (true);
 
-
+            
             }
 
         }
@@ -1518,13 +1518,13 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:582:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:588:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
             int alt12=4;
             int LA12_0 = input.LA(1);
-
+            
             if ( ((LA12_0>='0' && LA12_0<='9')) ) {
                 int LA12_1 = input.LA(2);
-
+                
                 if ( ((LA12_1>='0' && LA12_1<='9')) && (synpred3_Module())) {
                     alt12=3;
                 }
@@ -1544,7 +1544,7 @@ public class ModuleLexer extends Lexer {
                     if (state.backtracking>0) {state.failed=true; return ;}
                     NoViableAltException nvae =
                         new NoViableAltException("", 12, 1, input);
-
+                
                     throw nvae;
                 }
             }
@@ -1552,51 +1552,51 @@ public class ModuleLexer extends Lexer {
                 if (state.backtracking>0) {state.failed=true; return ;}
                 NoViableAltException nvae =
                     new NoViableAltException("", 12, 0, input);
-
+            
                 throw nvae;
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:582:9: ( INT '..' )=> INT
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:588:9: ( INT '..' )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        _type = INT; 
                     }
-
+                    
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:583:7: ( INT '.' NAME )=> INT
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:589:7: ( INT '.' NAME )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        _type = INT; 
                     }
-
+                    
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:590:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        _type = FLOAT; 
                     }
-
+                    
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:591:9: INT
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:9: INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                        _type = INT; 
                     }
-
+                    
                     }
                     break;
-
+            
             }
             state.type = _type;
             state.channel = _channel;
@@ -1611,8 +1611,8 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = DATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:595:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:595:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:601:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:601:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
             {
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
@@ -1624,16 +1624,16 @@ public class ModuleLexer extends Lexer {
             match('-'); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:595:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:601:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
             int alt17=2;
             int LA17_0 = input.LA(1);
-
+            
             if ( (LA17_0==' '||LA17_0=='T') ) {
                 alt17=1;
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:595:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:601:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
                     {
                     if ( input.LA(1)==' '||input.LA(1)=='T' ) {
                         input.consume();
@@ -1653,10 +1653,10 @@ public class ModuleLexer extends Lexer {
                     match(':'); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:596:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:602:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
                     int alt14=2;
                     int LA14_0 = input.LA(1);
-
+                    
                     if ( (LA14_0==','||LA14_0=='.') && (synpred4_Module())) {
                         alt14=1;
                     }
@@ -1664,10 +1664,10 @@ public class ModuleLexer extends Lexer {
                         alt14=2;}
                     switch (alt14) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
                             {
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:40: ( ( ',' | '.' ) ( DIGIT )+ )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:41: ( ',' | '.' ) ( DIGIT )+
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:40: ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:41: ( ',' | '.' ) ( DIGIT )+
                             {
                             if ( input.LA(1)==','||input.LA(1)=='.' ) {
                                 input.consume();
@@ -1679,27 +1679,27 @@ public class ModuleLexer extends Lexer {
                                 recover(mse);
                                 throw mse;}
 
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:53: ( DIGIT )+
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:53: ( DIGIT )+
                             int cnt13=0;
                             loop13:
                             do {
                                 int alt13=2;
                                 int LA13_0 = input.LA(1);
-
+                                
                                 if ( ((LA13_0>='0' && LA13_0<='9')) ) {
                                     alt13=1;
                                 }
-
-
+                                
+                            
                                 switch (alt13) {
                             	case 1 :
-                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:54: DIGIT
+                            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:54: DIGIT
                             	    {
                             	    mDIGIT(); if (state.failed) return ;
-
+                            	    
                             	    }
                             	    break;
-
+                            
                             	default :
                             	    if ( cnt13 >= 1 ) break loop13;
                             	    if (state.backtracking>0) {state.failed=true; return ;}
@@ -1710,24 +1710,24 @@ public class ModuleLexer extends Lexer {
                                 cnt13++;
                             } while (true);
 
-
+                            
                             }
 
-
+                            
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:599:13: 
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:605:13: 
                             {
                             }
                             break;
-
+                    
                     }
 
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:600:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:606:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
                     int alt16=2;
                     int LA16_0 = input.LA(1);
-
+                    
                     if ( (LA16_0=='Z') ) {
                         alt16=1;
                     }
@@ -1735,25 +1735,25 @@ public class ModuleLexer extends Lexer {
                         alt16=2;}
                     switch (alt16) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:600:14: 'Z'
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:606:14: 'Z'
                             {
                             match('Z'); if (state.failed) return ;
-
+                            
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:600:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:606:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
                             {
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:600:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+                            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:606:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
                             int alt15=2;
                             int LA15_0 = input.LA(1);
-
+                            
                             if ( (LA15_0=='+'||LA15_0=='-') ) {
                                 alt15=1;
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:600:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
+                                    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:606:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
                                     {
                                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                                         input.consume();
@@ -1769,27 +1769,27 @@ public class ModuleLexer extends Lexer {
                                     mDIGIT(); if (state.failed) return ;
                                     mDIGIT(); if (state.failed) return ;
                                     mDIGIT(); if (state.failed) return ;
-
+                                    
                                     }
                                     break;
-
+                            
                             }
 
-
+                            
                             }
                             break;
-
+                    
                     }
 
-
+                    
                     }
                     break;
-
+            
             }
 
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1803,37 +1803,37 @@ public class ModuleLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:609:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:609:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
             {
             match('\"'); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:604:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:610:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
             loop18:
             do {
                 int alt18=3;
                 int LA18_0 = input.LA(1);
-
+                
                 if ( (LA18_0=='\n') ) {
                     alt18=1;
                 }
                 else if ( ((LA18_0>='\u0000' && LA18_0<='\t')||(LA18_0>='\u000B' && LA18_0<='!')||(LA18_0>='#' && LA18_0<='[')||(LA18_0>=']' && LA18_0<='\uFFFF')) ) {
                     alt18=2;
                 }
-
-
+                
+            
                 switch (alt18) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:606:4: '\\n'
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:612:4: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
             	      newline();
             	    }
-
+            	    
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:607:5: ~ ( '\\\\' | '\"' | '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:613:5: ~ ( '\\\\' | '\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1845,19 +1845,19 @@ public class ModuleLexer extends Lexer {
             	        recover(mse);
             	        throw mse;}
 
-
+            	    
             	    }
             	    break;
-
+            
             	default :
             	    break loop18;
                 }
             } while (true);
 
             match('\"'); if (state.failed) return ;
-
+            
             }
-
+    
             state.type = _type;
             state.channel = _channel;
         }
@@ -1867,332 +1867,332 @@ public class ModuleLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:8: ( COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:8: ( COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
         int alt19=41;
         alt19 = dfa19.predict(input);
         switch (alt19) {
             case 1 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:10: COMMENT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:10: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 2 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:18: MULTI_LINE_COMMENT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:18: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 3 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:37: LBRACKET
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:37: LBRACKET
                 {
                 mLBRACKET(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 4 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:46: RBRACKET
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:46: RBRACKET
                 {
                 mRBRACKET(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 5 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:55: LCURL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:55: LCURL
                 {
                 mLCURL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 6 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:61: RCURL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:61: RCURL
                 {
                 mRCURL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 7 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:67: LANGLE
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:67: LANGLE
                 {
                 mLANGLE(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 8 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:74: RANGLE
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:74: RANGLE
                 {
                 mRANGLE(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 9 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:81: LPAREN
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:81: LPAREN
                 {
                 mLPAREN(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 10 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:88: RPAREN
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:88: RPAREN
                 {
                 mRPAREN(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 11 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:95: EXCL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:95: EXCL
                 {
                 mEXCL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 12 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:100: EQUALS
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:100: EQUALS
                 {
                 mEQUALS(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 13 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:107: EQUALSEQUALS
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:107: EQUALSEQUALS
                 {
                 mEQUALSEQUALS(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 14 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:120: ASSIGN
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:120: ASSIGN
                 {
                 mASSIGN(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 15 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:127: DOT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:127: DOT
                 {
                 mDOT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 16 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:131: DDOT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:131: DDOT
                 {
                 mDDOT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 17 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:136: ARROW
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:136: ARROW
                 {
                 mARROW(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 18 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:142: PIPE
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:142: PIPE
                 {
                 mPIPE(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 19 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:147: COLON
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:147: COLON
                 {
                 mCOLON(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 20 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:153: DCOLON
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:153: DCOLON
                 {
                 mDCOLON(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 21 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:160: SEMICOLON
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:160: SEMICOLON
                 {
                 mSEMICOLON(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 22 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:170: INCLUDING
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:170: INCLUDING
                 {
                 mINCLUDING(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 23 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:180: EXCLUDING
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:180: EXCLUDING
                 {
                 mEXCLUDING(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 24 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:190: INCLUDINGAT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:190: INCLUDINGAT
                 {
                 mINCLUDINGAT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 25 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:202: EXCLUDINGAT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:202: EXCLUDINGAT
                 {
                 mEXCLUDINGAT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 26 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:214: ITERATE
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:214: ITERATE
                 {
                 mITERATE(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 27 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:222: LCURL_LBRACK
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:222: LCURL_LBRACK
                 {
                 mLCURL_LBRACK(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 28 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:235: LBRACK_LCURL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:235: LBRACK_LCURL
                 {
                 mLBRACK_LCURL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 29 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:248: RCURL_RBRACK
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:248: RCURL_RBRACK
                 {
                 mRCURL_RBRACK(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 30 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:261: RBRACK_RCURL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:261: RBRACK_RCURL
                 {
                 mRBRACK_RCURL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 31 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:274: STAR
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:274: STAR
                 {
                 mSTAR(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 32 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:279: NL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:279: NL
                 {
                 mNL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 33 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:282: WS
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:282: WS
                 {
                 mWS(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 34 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:285: BOOL
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:285: BOOL
                 {
                 mBOOL(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 35 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:290: OBJECT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:290: OBJECT
                 {
                 mOBJECT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 36 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:297: NAME
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:297: NAME
                 {
                 mNAME(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 37 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:302: BINARY
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:302: BINARY
                 {
                 mBINARY(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 38 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:309: INT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:309: INT
                 {
                 mINT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 39 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:313: RANGE_OR_INT
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:313: RANGE_OR_INT
                 {
                 mRANGE_OR_INT(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 40 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:326: DATE
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:326: DATE
                 {
                 mDATE(); if (state.failed) return ;
-
+                
                 }
                 break;
             case 41 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:331: STRING
+                // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:1:331: STRING
                 {
                 mSTRING(); if (state.failed) return ;
-
+                
                 }
                 break;
-
+        
         }
-
+    
     }
 
     // $ANTLR start synpred1_Module
     public final void synpred1_Module_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:582:9: ( INT '..' )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:582:11: INT '..'
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:588:9: ( INT '..' )
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:588:11: INT '..'
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
 
-
+        
         }
     }
     // $ANTLR end synpred1_Module
 
     // $ANTLR start synpred2_Module
     public final void synpred2_Module_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:583:7: ( INT '.' NAME )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:583:9: INT '.' NAME
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:589:7: ( INT '.' NAME )
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:589:9: INT '.' NAME
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
         mNAME(); if (state.failed) return ;
-
+        
         }
     }
     // $ANTLR end synpred2_Module
 
     // $ANTLR start synpred3_Module
     public final void synpred3_Module_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:584:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:590:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:590:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2206,15 +2206,15 @@ public class ModuleLexer extends Lexer {
             recover(mse);
             throw mse;}
 
-
+        
         }
     }
     // $ANTLR end synpred3_Module
 
     // $ANTLR start synpred4_Module
     public final void synpred4_Module_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:15: ( ( ',' | '.' ) DIGIT )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:597:17: ( ',' | '.' ) DIGIT
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:15: ( ( ',' | '.' ) DIGIT )
+        // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:603:17: ( ',' | '.' ) DIGIT
         {
         if ( input.LA(1)==','||input.LA(1)=='.' ) {
             input.consume();
@@ -2227,7 +2227,7 @@ public class ModuleLexer extends Lexer {
             throw mse;}
 
         mDIGIT(); if (state.failed) return ;
-
+        
         }
     }
     // $ANTLR end synpred4_Module
@@ -2430,7 +2430,7 @@ public class ModuleLexer extends Lexer {
             "",
             ""
     };
-
+    
     static final short[] DFA19_eot = DFA.unpackEncodedString(DFA19_eotS);
     static final short[] DFA19_eof = DFA.unpackEncodedString(DFA19_eofS);
     static final char[] DFA19_min = DFA.unpackEncodedStringToUnsignedChars(DFA19_minS);
@@ -2438,7 +2438,7 @@ public class ModuleLexer extends Lexer {
     static final short[] DFA19_accept = DFA.unpackEncodedString(DFA19_acceptS);
     static final short[] DFA19_special = DFA.unpackEncodedString(DFA19_specialS);
     static final short[][] DFA19_transition;
-
+    
     static {
         int numStates = DFA19_transitionS.length;
         DFA19_transition = new short[numStates][];
@@ -2446,9 +2446,9 @@ public class ModuleLexer extends Lexer {
             DFA19_transition[i] = DFA.unpackEncodedString(DFA19_transitionS[i]);
         }
     }
-
+    
     class DFA19 extends DFA {
-
+    
         public DFA19(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
             this.decisionNumber = 19;

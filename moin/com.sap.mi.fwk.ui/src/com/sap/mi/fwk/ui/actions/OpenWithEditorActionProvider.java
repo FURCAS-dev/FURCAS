@@ -1,8 +1,9 @@
 package com.sap.mi.fwk.ui.actions;
 
 import java.util.Collection;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
@@ -21,12 +22,11 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.mi.fwk.ui.editor.ModelEditorManager;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class OpenWithEditorActionProvider extends CommonActionProvider {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
@@ -66,7 +66,7 @@ public class OpenWithEditorActionProvider extends CommonActionProvider {
 								ModelEditorManager.getInstance().openEditor(ro, editorDescriptor.getId());
 							}
 						} catch (final PartInitException e) {
-							OpenWithEditorActionProvider.sTracer.error("Editor could not be started", e); //$NON-NLS-1$
+							OpenWithEditorActionProvider.sTracer.log(Level.SEVERE, "Editor could not be started", e); //$NON-NLS-1$
 						}
 					}
 

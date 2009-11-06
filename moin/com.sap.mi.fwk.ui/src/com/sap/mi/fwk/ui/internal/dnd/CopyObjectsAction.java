@@ -3,8 +3,6 @@ package com.sap.mi.fwk.ui.internal.dnd;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.ISharedImages;
@@ -16,6 +14,7 @@ import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.mi.fwk.ui.dnd.ModelClipboard;
 import com.sap.mi.fwk.ui.internal.RetargetSelectionAction;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Copies a number of {@link RefBaseObject}s to the default clipboard. To be used

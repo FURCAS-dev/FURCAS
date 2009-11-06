@@ -2,15 +2,13 @@ package com.sap.mi.fwk.dcfwk.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.osgi.framework.Bundle;
-
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Used for calling methods of plugin "com.sap.mi.fwk" without having static
@@ -23,7 +21,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class InvocationHelper {
 
-	private static final TracerI sTracerProjects = TracingManager.getTracer("com.sap.mi.fwk.dcfwk.internal.InvocationHelper"); //$NON-NLS-1$
+	private static final Logger sTracerProjects = Logger.getLogger("com.sap.mi.fwk.dcfwk.internal.InvocationHelper"); //$NON-NLS-1$
 
 	public static IStatus callModelManager_refreshFromFileSystem(IProject project) {
 		Object modelManager = getModelManagerInstance();

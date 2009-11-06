@@ -5,6 +5,8 @@ package com.sap.mi.tools.cockpit.editor.action;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
@@ -24,8 +26,6 @@ import com.sap.mi.tools.cockpit.editor.ui.MOINBrowserView;
 import com.sap.mi.tools.cockpit.editor.ui.dialog.select.SelectPartionDialog;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * @author d003456
@@ -33,7 +33,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class MoveModelElementToPartitionAction extends Action {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	private final MOINBrowserView viewer;
 
@@ -76,7 +76,7 @@ public class MoveModelElementToPartitionAction extends Action {
 				connections.add(refObjectNode.getValue().get___Connection());
 				final IStatus status = ConnectionManager.getInstance().save(connections, null);
 				if (status != null && !status.isOK()) {
-					MoveModelElementToPartitionAction.tracer.error(MoveModelElementToPartitionAction.class,
+					MoveModelElementToPartitionAction.tracer.logp(Level.SEVERE, MoveModelElementToPartitionAction.class.getName(),
 							"moveRefObjectFromMyView", status.getMessage(), status.getException()); //$NON-NLS-1$
 				}
 				this.refObjectNodeSearcher.revealRefObjectNodeinModelTree(refObjectNode.getValue());

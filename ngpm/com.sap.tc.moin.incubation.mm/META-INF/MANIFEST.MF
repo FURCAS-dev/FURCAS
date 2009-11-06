@@ -11,7 +11,6 @@ Require-Bundle: org.eclipse.core.runtime;bundle-version="3.4.0",
  org.eclipse.ui.workbench;bundle-version="3.4.1",
  org.eclipse.ui.ide;bundle-version="3.4.1",
  org.eclipse.pde.ui;bundle-version="3.4.0",
- com.sap.base.technology.facade;bundle-version="2.0.0",
  com.sap.tc.moin.libraries.buildplugin;bundle-version="2.0.0",
  com.sap.tc.moin.ide.facade;bundle-version="2.0.0",
  com.sap.mi.fwk;bundle-version="1.0.0"

@@ -2,6 +2,8 @@ package com.sap.mi.fwk.ui.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -26,8 +28,6 @@ import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.ConnectionManagerUI;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Aligns the MOIN in-memory state with the filesystem persistence for a number
@@ -39,7 +39,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class RefreshModelDataAction extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 	private static final String PREF_KEY_SAVE_CONNECTIONS_ON_REFRESH = "saveConnectionsOnRefresh"; //$NON-NLS-1$
 
 	public RefreshModelDataAction() {

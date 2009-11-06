@@ -264,6 +264,7 @@ public final class ThisImpl extends com.sap.tc.moin.repository.core.jmi.reflect.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.This> get___JmiInterface() {
         return behavior.expressions.This.class;
     }

@@ -7,6 +7,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.InstanceNotFoundException;
 import javax.management.MBeanServerConnection;
@@ -27,8 +29,6 @@ import com.sap.mi.fwk.ui.mbeans.EditorRegistryMBean;
 import com.sap.tc.moin.repository.jmx.ConfigurationMBean;
 import com.sap.tc.moin.repository.jmx.ConnectionMBean;
 import com.sap.tc.moin.repository.jmx.MoinMBean;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Client providing JMX-based access to Moin. Currently restricted to localhost
@@ -49,7 +49,7 @@ public final class MoinJmxClient {
 		void mBeanChanged(ObjectName name);
 	}
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 	private static final String OBJECT_NAME_TYPE = "type"; //$NON-NLS-1$
 	public static final String OBJECT_NAME_NAME = "name"; //$NON-NLS-1$
 	public static final String OBJECT_NAME_SESSION = "session"; //$NON-NLS-1$
@@ -89,8 +89,8 @@ public final class MoinJmxClient {
 		}
 
 		JMXServiceURL address = new JMXServiceURL("service:jmx:rmi:///jndi/rmi://" + mHost + ":" + mPort + "/jmxrmi"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-		if (sTracer.debug()) {
-			sTracer.debug("Using JMXServiceURL address: " + address.toString()); //$NON-NLS-1$
+		if (stracer.isLoggable(Level.FINE)) {
+			stracer.log(Level.FINE, "Using JMXServiceURL address: " + address.toString()); //$NON-NLS-1$
 		}
 
 		// Create the JMXCconnectorServer
@@ -110,10 +110,10 @@ public final class MoinJmxClient {
 				mJmxConnection.addNotificationListener(new ObjectName(OBJECT_NAME_MBEANSERVER), mNotificationListener,
 						null, null);
 			} catch (InstanceNotFoundException e) {
-				sTracer.error(e.getMessage(), e);
+				stracer.log(Level.SEVERE, e.getMessage(), e);
 				throw new IOException(e.getMessage());
 			} catch (MalformedObjectNameException e) {
-				sTracer.error(e.getMessage(), e);
+				stracer.log(Level.SEVERE, e.getMessage(), e);
 				throw new IOException(e.getMessage());
 			}
 		}
@@ -136,7 +136,7 @@ public final class MoinJmxClient {
 				}
 				mConnector.close();
 			} catch (Exception e) {
-				sTracer.error(e.getMessage(), e);
+				stracer.log(Level.SEVERE, e.getMessage(), e);
 			}
 			mConnector = null;
 			mJmxConnection = null;
@@ -163,7 +163,7 @@ public final class MoinJmxClient {
 		} catch (InstanceNotFoundException e) { // $JL-EXC$
 			return null;
 		} catch (Exception e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 	}
@@ -195,7 +195,7 @@ public final class MoinJmxClient {
 //		} catch (InstanceNotFoundException e) { // $JL-EXC$
 //			return Collections.emptyMap();
 		} catch (Exception e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return Collections.emptyMap();
 		}
 	}
@@ -220,7 +220,7 @@ public final class MoinJmxClient {
 		} catch (InstanceNotFoundException e) { // $JL-EXC$
 			return null;
 		} catch (Exception e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 	}
@@ -241,7 +241,7 @@ public final class MoinJmxClient {
 			}
 			return connections;
 		} catch (Exception e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return Collections.emptyMap();
 		}
 	}
@@ -277,7 +277,7 @@ public final class MoinJmxClient {
 				return beans.toArray(new EditorRegistryEntryMBean[beans.size()]);
 			}
 		} catch (Exception e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 		}
 		return new EditorRegistryEntryMBean[0];
 	}
@@ -290,7 +290,7 @@ public final class MoinJmxClient {
 		}
 
 		public void handleNotification(Notification notification, Object handback) {
-			sTracer.debug("Received notification: " + notification.toString()); //$NON-NLS-1$
+			stracer.log(Level.FINE, "Received notification: " + notification.toString()); //$NON-NLS-1$
 			ObjectName name = ((MBeanServerNotification) notification).getMBeanName();
 			if (!MoinJmxClient.isConnectionType(name))
 				return;
@@ -317,7 +317,7 @@ public final class MoinJmxClient {
 			// }
 
 			mListener.mBeanChanged(name);
-			sTracer.debug("Forwarded notification: " + notification.toString() + " to listener: " //$NON-NLS-1$ //$NON-NLS-2$
+			stracer.log(Level.FINE, "Forwarded notification: " + notification.toString() + " to listener: " //$NON-NLS-1$ //$NON-NLS-2$
 					+ mListener.toString());
 		}
 	}

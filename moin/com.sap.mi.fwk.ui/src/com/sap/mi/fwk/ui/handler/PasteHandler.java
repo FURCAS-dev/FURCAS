@@ -1,7 +1,5 @@
 package com.sap.mi.fwk.ui.handler;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -27,6 +25,7 @@ import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransferHandler;
 import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransferHandler.TransferOperationEnum;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Generic paste handler to be used in extension point org.eclipse.ui.handlers.

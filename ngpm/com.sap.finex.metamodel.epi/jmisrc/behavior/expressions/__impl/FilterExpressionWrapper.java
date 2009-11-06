@@ -24,6 +24,7 @@ public class FilterExpressionWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.FilterExpressionImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.FilterExpressionImpl) getWrappedObject();
     }
@@ -544,6 +545,7 @@ public class FilterExpressionWrapper extends com.sap.tc.moin.repository.core.jmi
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.FilterExpression> get___JmiInterface() {
         return behavior.expressions.FilterExpression.class;
     }

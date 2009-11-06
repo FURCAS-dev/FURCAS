@@ -173,6 +173,7 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Association> get___JmiInterface() {
         return structure.Association.class;
     }

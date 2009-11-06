@@ -618,6 +618,7 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ExpressionsPackage> get___JmiInterface() {
         return behavior.expressions.ExpressionsPackage.class;
     }

@@ -9,7 +9,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IMenuCreator;
-import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -25,7 +25,6 @@ import org.eclipse.swt.widgets.MenuItem;
 
 import com.sap.mi.tools.diagnostics.internal.model.ConnectionNode;
 import com.sap.mi.tools.diagnostics.internal.model.PartitionNode;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * Dumps a partition's contents either to the system editor, console, or clipboard
@@ -122,13 +121,11 @@ public class DumpPartitionContentsAction
 					String contents = connectionNode.showContentOfModelPartition(priString);
 					dump(priString, contents);
 				} catch (IOException e) {
-	                ExtendedMessageDialog.showError(
+	                ErrorDialog.openError(
 	                        mViewer.getControl().getShell(), 
 	                        "Error on Dump",  //$NON-NLS-1$
 	                        e.getMessage(), 
-	                        null, 
-	                        new String[] {IDialogConstants.OK_LABEL}, 
-	                        e);
+	                        null);
 				}
 			}
 

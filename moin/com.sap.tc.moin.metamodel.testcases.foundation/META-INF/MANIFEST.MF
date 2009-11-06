@@ -28,5 +28,8 @@ Export-Package: com.sap.tc.moin.testcasesfoundation.case005f.__impl,
  com.sap.tc.moin.testcasesfoundation.case003f.__impl,
  com.sap.tc.moin.testcasesfoundation.case005f.structurebasedtexts.__impl,
  com.sap.tc.moin.testcasesfoundation.case001f
-Require-Bundle: com.sap.tc.moin.ide.facade,com.sap.tc.moin.libraries.jmi.facade,com.sap.base.technology.facade,org.eclipse.core.runtime,org.eclipse.core.resources
+Require-Bundle: com.sap.tc.moin.ide.facade,
+ com.sap.tc.moin.libraries.jmi.facade,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources
 Eclipse-LazyStart: true

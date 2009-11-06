@@ -6,6 +6,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +17,8 @@ import org.junit.Test;
 
 import tcs.TcsPackage;
 
+import com.sap.ide.cts.editor.test.util.ProjectConnectionBasedTest;
 import com.sap.mi.fwk.ConnectionManager;
-import com.sap.mi.fwk.test.service.TestUtil;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
@@ -25,7 +26,7 @@ import com.sap.mi.textual.test.util.StringListHelper;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
-public class TestMoinLookUp {
+public class TestMoinLookUp extends ProjectConnectionBasedTest{
 
 	private static IProject project;
 	private static Connection connection;
@@ -33,15 +34,7 @@ public class TestMoinLookUp {
 	private static IMetaModelLookup<RefObject> lookup = null;
 
 	@BeforeClass
-	public static void setup() throws Exception {
-		project = TestUtil.createLocalMoinDCProject("TCSTest");
-		TestUtil.addPublicPartDependency(project, "tcsmeta", "demo.sap.com",
-				"def_assmbl", true, true, true);
-		TestUtil.addPublicPartDependency(project, "tcsmeta", "demo.sap.com",
-				"def_cmp", true, true, true);
-		connection = ConnectionManager.getInstance().getExistingDefaultConnection(project);
-
-		
+	public static void setup() throws Exception {	
         
         lookup = MOINContainerNameLookUpFactory.getMOINContainerNameLookUpFactory(TcsPackage.PACKAGE_DESCRIPTOR.getModelContainerName() );
 //		Field partitionScopeProviderField = AbstractQueryBasedMoinMetaLookUp.class
@@ -57,14 +50,13 @@ public class TestMoinLookUp {
 	}
 
 	@AfterClass
-	public static void tearDown() {
+	public static void tearDown2() {
 	    if (lookup != null ) {
 	        lookup.close();
 	    }
 	    if (connection != null && connection.isAlive()) {
 			connection.close();
 		}
-		TestUtil.deleteLocalMoinDCProject(project);
 	}
 
 	private IMetaModelLookup<RefObject> getLookup() {
@@ -199,5 +191,17 @@ public class TestMoinLookUp {
 		assertEquals("left", literals.get(1));
 		
 	}
+
+    @Override
+    public InputStream getProjectContentAsStream() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public String getProjectName() {
+        // TODO Auto-generated method stub
+        return "MoinLookUpTest";
+    }
 
 }

@@ -8,9 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.core.runtime.Assert;
 
 import com.sap.mi.fwk.PartitionService;
@@ -21,6 +18,8 @@ import com.sap.mi.tools.cockpit.editor.ui.MOINBrowserView;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * @author d003456

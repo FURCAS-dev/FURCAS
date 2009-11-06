@@ -1,7 +1,5 @@
 package com.sap.mi.fwk.ui.internal.dnd;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.ui.ISharedImages;
@@ -13,6 +11,7 @@ import com.sap.mi.fwk.ui.dnd.ModelClipboard;
 import com.sap.mi.fwk.ui.internal.RetargetSelectionAction;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.tc.moin.repository.DeepCopyResultSet;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Pastes a number of {@link RefObject}s from the clipboard to either a

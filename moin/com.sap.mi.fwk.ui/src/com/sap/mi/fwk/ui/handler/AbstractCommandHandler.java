@@ -2,6 +2,9 @@ package com.sap.mi.fwk.ui.handler;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.resources.IProject;
@@ -22,8 +25,6 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * This class is used as basis for command handlers which execute MOIN commands.
@@ -66,7 +67,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class AbstractCommandHandler extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_COMMANDS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_COMMANDS);
 
 	/**
 	 * DEPRECATED API Undoes a given command and shows a progress bar while
@@ -103,7 +104,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		 * 
 		 * IProgressService ps = PlatformUI.getWorkbench().getProgressService();
 		 * try { ps.busyCursorWhile(operation); } catch (Exception e) {
-		 * sTracer.error("Command could not be undone", e); //$NON-NLS-1$ throw
+		 * stracer.log(Level.SEVERE, "Command could not be undone", e); //$NON-NLS-1$ throw
 		 * new RuntimeException(e); }
 		 */
 	}
@@ -127,7 +128,7 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		Collection<PartitionOperation> affectedPartitions = command.getAffectedPartitions();
 		IStatus status = CommandManager.getInstance().prepareExecution(connection, affectedPartitions);
 		if (!status.isOK()) {
-			sTracer.debug("User cancelled command preparation either by cancelling check-out or conflicting editor save"); //$NON-NLS-1$
+			sTracer.fine("User cancelled command preparation either by cancelling check-out or conflicting editor save"); //$NON-NLS-1$
 			throw new ExecutionCancelledException();
 		}
 
@@ -151,10 +152,10 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		try {
 			ps.busyCursorWhile(operation);
 		} catch (InterruptedException e) {
-			sTracer.debug("User canceled. Command has been executed and should be undone by calling handler:" + command.getDescription()); //$NON-NLS-1$
+			sTracer.fine("User canceled. Command has been executed and should be undone by calling handler:" + command.getDescription()); //$NON-NLS-1$
 			throw new ExecutionCancelledException();
 		} catch (Exception e) {
-			sTracer.error("Command could not be executed", e); //$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Command could not be executed", e); //$NON-NLS-1$
 			throw new RuntimeException(e);
 		}
 		return true;
@@ -203,10 +204,10 @@ public abstract class AbstractCommandHandler extends AbstractHandler {
 		try {
 			ps.busyCursorWhile(operation);
 		} catch (InterruptedException e) {
-			sTracer.debug("User canceled connection creation"); //$NON-NLS-1$
+			sTracer.fine("User canceled connection creation"); //$NON-NLS-1$
 			throw new ExecutionCancelledException();
 		} catch (Exception e) {
-			sTracer.error("Connection could not be created", e); //$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Connection could not be created", e); //$NON-NLS-1$
 			throw new RuntimeException(e);
 		}
 		return connections[0];

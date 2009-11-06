@@ -1,14 +1,13 @@
 package com.sap.mi.fwk.ui;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 import com.sap.mi.fwk.ModelAdapter;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * UI counterpart of {@link ModelAdapter} implementing several policies to

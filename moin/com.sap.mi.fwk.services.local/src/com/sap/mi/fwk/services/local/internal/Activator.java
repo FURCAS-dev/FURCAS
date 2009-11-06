@@ -1,17 +1,14 @@
 package com.sap.mi.fwk.services.local.internal;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.swt.graphics.Image;
 import org.osgi.framework.BundleContext;
 
-import com.sap.ide.util.ui.SapUI;
-import com.sap.ide.util.ui.image.IImageKey;
-import com.sap.ide.util.ui.image.IImagePool;
 import com.sap.mi.fwk.services.local.ErrorHandling;
-import com.tssap.util.trace.TracerI;
 
 public class Activator extends Plugin {
 
@@ -56,7 +53,7 @@ public class Activator extends Plugin {
 		return plugin;
 	}
 
-	public static void logError(Throwable e, TracerI tracer) {
+	public static void logError(Throwable e, Logger tracer) {
 		if (e instanceof InvocationTargetException)
 			e = e.getCause();
 		ErrorHandling.logError(null, e, tracer, PLUGIN_ID);
@@ -70,9 +67,9 @@ public class Activator extends Plugin {
 		return ErrorHandling.createStatus(severity, code, message, exception, PLUGIN_ID);
 	}
 
-	public static Image getSharedImage(IImageKey imgKey) {
-    	IImagePool pool = SapUI.getImageServices().getGlobalImagePool();
-    	return pool.getImage(imgKey);
-    }
+//	public static Image getSharedImage(IImageKey imgKey) {
+//    	IImagePool pool = SapUI.getImageServices().getGlobalImagePool();
+//    	return pool.getImage(imgKey);
+//    }
 
 }

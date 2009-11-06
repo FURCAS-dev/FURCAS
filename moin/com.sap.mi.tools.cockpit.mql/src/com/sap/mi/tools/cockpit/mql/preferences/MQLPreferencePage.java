@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.MessageFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.StringButtonFieldEditor;
@@ -16,8 +18,6 @@ import com.sap.mi.tools.cockpit.mql.Messages;
 import com.sap.mi.tools.cockpit.mql.QueryConsole;
 import com.sap.tc.moin.js.query.service.client.RemoteMqlProcessor;
 import com.sap.tc.moin.js.query.service.client.RemoteMqlProcessorFactory;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Preference page for MOIN cockpit.
@@ -27,7 +27,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class MQLPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	public static final String PREFERENCE_TEAM_SERVER_URL = "com.sap.mi.tools.cockpit.mql.preferences.teamserverurl"; //$NON-NLS-1$
 
@@ -134,8 +134,8 @@ public class MQLPreferencePage extends FieldEditorPreferencePage implements IWor
 		this.teamServer.getTextControl(parent).setData(LIFT_WIDGET_NAME_KEY, LIFT_TEXT_WIDGET_URL);
 		addField(this.teamServer);
 
-		if (MQLPreferencePage.tracer.debug()) {
-			MQLPreferencePage.tracer.debug("MQLPreferencePage.createFieldEditors", "Fields created"); //$NON-NLS-1$ //$NON-NLS-2$
+		if (MQLPreferencePage.tracer.isLoggable(Level.FINE)) {
+			MQLPreferencePage.tracer.logp(Level.FINE, "MQLPreferencePage", "createFieldEditors", "Fields created"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 }

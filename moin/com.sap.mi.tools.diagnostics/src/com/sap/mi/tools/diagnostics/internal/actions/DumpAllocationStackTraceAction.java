@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IMenuCreator;
-import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.Clipboard;
@@ -18,7 +18,6 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
 
 import com.sap.mi.tools.diagnostics.internal.model.ConnectionNode;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * Dumps a connection's creation stack trace either to console or clipboard
@@ -119,13 +118,11 @@ public class DumpAllocationStackTraceAction
 					String trace = connectionNode.showAllocationStackTrace();
 					dump(trace);
 				} catch (IOException e) {
-	                ExtendedMessageDialog.showError(
+	               ErrorDialog.openError(
 	                        mViewer.getControl().getShell(), 
 	                        "Error on Dump",  //$NON-NLS-1$
 	                        e.getMessage(), 
-	                        null, 
-	                        new String[] {IDialogConstants.OK_LABEL}, 
-	                        e);
+	                        null);
 				}
 			}
 

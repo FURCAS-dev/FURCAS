@@ -1,7 +1,6 @@
 Manifest-Version: 1.0
-Require-Bundle: com.sap.mi.basic.facade;visibility:=reexport,com.sap.m
- i.graphics.facade;visibility:=reexport,com.sap.mi.dii.facade;visibili
- ty:=reexport
+Require-Bundle: com.sap.mi.basic.facade;visibility:=reexport,
+ com.sap.mi.graphics.facade;visibility:=reexport
 Bundle-Vendor: %provider.name
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.0.090422162106

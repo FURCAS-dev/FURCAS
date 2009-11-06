@@ -6,14 +6,13 @@ package com.sap.mi.tools.cockpit.editor.model.command;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.Assert;
 
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456

@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -41,8 +43,6 @@ import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionMembershipChangeEvent;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * An Event Adapter for the Project Explorer /Navigator. Hidden Root nodes are
@@ -62,7 +62,7 @@ import com.tssap.util.trace.TracingManager;
  * 
  */
 public final class StructuredProjectViewerEventAdapterImpl implements MarkerRefreshListener {
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_PROJECTS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_PROJECTS);
 
 	private final Map<EventRegistry, UpdateListener> mRegistryToUpdateListener = new HashMap<EventRegistry, UpdateListener>();
 	private final Map<EventRegistry, ChangeListener> mRegistryToExternalChangeListener = new HashMap<EventRegistry, ChangeListener>();

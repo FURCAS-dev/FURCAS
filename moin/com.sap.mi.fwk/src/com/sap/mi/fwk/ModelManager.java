@@ -10,6 +10,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.Map.Entry;
 import java.util.concurrent.Callable;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
@@ -54,8 +57,6 @@ import com.sap.tc.moin.repository.cdam.ide.internal.IdeFacilityDispatcherInterna
 import com.sap.tc.moin.repository.ide.MoinFactory;
 import com.sap.tc.moin.repository.spi.facility.ide.ContainerInitializationState;
 import com.sap.tc.moin.textverticalization.TranslatableTextFragment;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Facility to access MOIN models. Contains project-related services.
@@ -78,7 +79,7 @@ public final class ModelManager {
 	private static final String EXT_POINT_ELEMENT_OPEXECUTOR = "operationExecutor"; //$NON-NLS-1$
 	private static final String EXT_POINT_ATT_OPEXECUTOR_CLASS = "class"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 
 	private static ModelManager sInstance;
 
@@ -543,11 +544,11 @@ public final class ModelManager {
 
 	Session createSession(final CompoundClientSpec clientSpec) {
 		final Session session = getMoinInstance().createSession(clientSpec);
-		if (ModelManager.sTracer.debug()) {
+		if (ModelManager.sTracer.isLoggable(Level.FINE)) {
 			// trace session creation
 			final Exception exception = new Exception("Call Stack"); //$NON-NLS-1$
 			final String message = "Creating session " + session; //$NON-NLS-1$
-			ModelManager.sTracer.log(TracerI.DEBUG, message, exception);
+			ModelManager.sTracer.log(Level.FINE, message, exception);
 		}
 		return session;
 	}

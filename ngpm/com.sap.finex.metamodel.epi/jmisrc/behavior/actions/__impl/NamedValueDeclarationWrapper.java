@@ -20,6 +20,7 @@ public class NamedValueDeclarationWrapper extends com.sap.tc.moin.repository.cor
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.NamedValueDeclarationImpl getCastWrappedObject() {
         return (behavior.actions.__impl.NamedValueDeclarationImpl) getWrappedObject();
     }
@@ -204,6 +205,7 @@ public class NamedValueDeclarationWrapper extends com.sap.tc.moin.repository.cor
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.NamedValueDeclaration> get___JmiInterface() {
         return behavior.actions.NamedValueDeclaration.class;
     }

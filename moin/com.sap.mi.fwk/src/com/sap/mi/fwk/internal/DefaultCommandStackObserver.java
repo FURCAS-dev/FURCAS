@@ -1,6 +1,9 @@
 package com.sap.mi.fwk.internal;
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.IUndoableOperation;
@@ -23,8 +26,6 @@ import com.sap.tc.moin.repository.commands.CommandHandle;
 import com.sap.tc.moin.repository.commands.CommandStack;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Handles MOIN command notifications and updates Eclipse undo stack if
@@ -35,7 +36,7 @@ import com.tssap.util.trace.TracingManager;
 public final class DefaultCommandStackObserver implements CommandStackObserver {
 
 	private static final IUndoableOperation[] EMPTY_ARRAY = new IUndoableOperation[0];
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_COMMANDS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_COMMANDS);
 
 	private static final String EXT_POINT_ELEMENT_CMDEXECUTOR = "commandExecutor"; //$NON-NLS-1$
 	private static final String EXT_POINT_ATT_CMDEXECUTOR_CLASS = "class"; //$NON-NLS-1$
@@ -48,8 +49,8 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 
 	public void notifyTopLevelStacksCleared(Connection con) {
 		IUndoContext undoContext = ModelManager.getConnectionManager().getUndoContext(con);
-		if (sTracer.debug()) {
-			sTracer.debug(DefaultCommandStackObserver.class, "notifyTopLevelStacksCleared", "Cleared top level stacks"); //$NON-NLS-1$ //$NON-NLS-2$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.logp(Level.FINE, DefaultCommandStackObserver.class.getName(), "notifyTopLevelStacksCleared", "Cleared top level stacks"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		if (undoContext != null) {
 			OperationHistoryFactory.getOperationHistory().dispose(undoContext, true, true, false);
@@ -63,8 +64,8 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 			return;
 		}
 		IStatus result = executor.prepareExecution(cmd.getConnection(), affectedPartitions);
-		if (sTracer.debug()) {
-			sTracer.debug(DefaultCommandStackObserver.class, "notifyBeforeRootCommandExecution", "starting cmd: " + cmd //$NON-NLS-1$ //$NON-NLS-2$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.logp(Level.FINE, DefaultCommandStackObserver.class.getName(), "notifyBeforeRootCommandExecution", "starting cmd: " + cmd //$NON-NLS-1$ //$NON-NLS-2$
 					+ ", result:" + result); //$NON-NLS-1$
 		}
 		if (!result.isOK()) {
@@ -74,7 +75,7 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 
 	public void notifyTopLevelCommandExecuted(CommandHandle cmdHnd, Connection con) {
 		if (cmdHnd == null || con == null) {
-			sTracer.warning(DefaultCommandStackObserver.class, "notifyTopLevelCommandExecuted", //$NON-NLS-1$
+			sTracer.logp(Level.WARNING, DefaultCommandStackObserver.class.getName(), "notifyTopLevelCommandExecuted", //$NON-NLS-1$
 					"CommandHandle or Connection was null: cmdHnd=" + cmdHnd + ", connection=" + con); //$NON-NLS-1$ //$NON-NLS-2$
 			return;
 		}
@@ -87,8 +88,8 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 			if (desc == null || "".equals(desc)) { //$NON-NLS-1$
 				desc = cmdHnd.toString();
 			}
-			if (sTracer.debug()) {
-				sTracer.debug(DefaultCommandStackObserver.class, "notifyTopLevelCommandExecuted", //$NON-NLS-1$
+			if (sTracer.isLoggable(Level.FINE)) {
+				sTracer.logp(Level.FINE, DefaultCommandStackObserver.class.getName(), "notifyTopLevelCommandExecuted", //$NON-NLS-1$
 						"Command on Eclipse undo stack: " + desc); //$NON-NLS-1$
 			}
 
@@ -101,8 +102,8 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 			operation.addContext(undoContext);
 			OperationHistoryFactory.getOperationHistory().add(operation);
 			// editors are notified via IOperationHistoryListener protocol
-		} else if (sTracer.debug()) {
-			sTracer.debug(DefaultCommandStackObserver.class, "notifyTopLevelCommandExecuted", //$NON-NLS-1$
+		} else if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.logp(Level.FINE, DefaultCommandStackObserver.class.getName(), "notifyTopLevelCommandExecuted", //$NON-NLS-1$
 					"No editor found for connection. Operation called from view."); //$NON-NLS-1$
 		}
 	}
@@ -112,8 +113,8 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 		if (undoContext != null) {
 			IUndoableOperation operation = OperationHistoryFactory.getOperationHistory().getRedoOperation(undoContext);
 			if (operation instanceof MoinOperation) {
-				if (sTracer.debug()) {
-					sTracer.debug(DefaultCommandStackObserver.class, "notifyTopLevelCommandRedone", //$NON-NLS-1$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.logp(Level.FINE, DefaultCommandStackObserver.class.getName(), "notifyTopLevelCommandRedone", //$NON-NLS-1$
 							"Command removed from Eclipse redo stack: " + cmdHnd.getDescription()); //$NON-NLS-1$
 				}
 				OperationHistoryFactory.getOperationHistory().replaceOperation(operation, EMPTY_ARRAY);
@@ -126,8 +127,8 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 		if (undoContext != null) {
 			IUndoableOperation operation = OperationHistoryFactory.getOperationHistory().getUndoOperation(undoContext);
 			if (operation instanceof MoinOperation) {
-				if (sTracer.debug()) {
-					sTracer.debug(DefaultCommandStackObserver.class, "notifyTopLevelCommandUndone", //$NON-NLS-1$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.logp(Level.FINE, DefaultCommandStackObserver.class.getName(), "notifyTopLevelCommandUndone", //$NON-NLS-1$
 							"Command removed from Eclipse undo stack: " + cmdHnd.getDescription()); //$NON-NLS-1$
 				}
 				OperationHistoryFactory.getOperationHistory().replaceOperation(operation, EMPTY_ARRAY);
@@ -172,7 +173,7 @@ public final class DefaultCommandStackObserver implements CommandStackObserver {
 			}
 		}
 
-		if (sTracer.info()) {
+		if (sTracer.isLoggable(Level.INFO)) {
 			sTracer.info("No command executor extension found."); //$NON-NLS-1$
 		}
 		return null;

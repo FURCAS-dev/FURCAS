@@ -3,6 +3,8 @@ package com.sap.mi.tools.mmbuilder.internal;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -22,15 +24,13 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * For internal use only, not intended to be used by external clients.
  */
 public final class RemoveNatureHandler extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_METAMODELBUILDER);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_METAMODELBUILDER);
 
 	public Object execute(ExecutionEvent arg0) throws ExecutionException {
 
@@ -54,7 +54,7 @@ public final class RemoveNatureHandler extends AbstractHandler {
 							} catch (OperationCanceledException e) {
 								throw new InterruptedException();
 							} catch (CoreException e) {
-								sTracer.error("Error removing nature for project: " + project.getName(), e); //$NON-NLS-1$
+								stracer.log(Level.SEVERE, "Error removing nature for project: " + project.getName(), e); //$NON-NLS-1$
 							}
 						}
 					}
@@ -69,9 +69,9 @@ public final class RemoveNatureHandler extends AbstractHandler {
 		} catch (InterruptedException e) {
 			// $JL-EXC$
 			// do nothing if user or eclipse cancels
-			sTracer.debug("Operation canceled by user"); //$NON-NLS-1$
+			stracer.log(Level.FINE, "Operation canceled by user"); //$NON-NLS-1$
 		} catch (Exception e) {
-			sTracer.error("Exception during nature removal", e); //$NON-NLS-1$
+			stracer.log(Level.SEVERE, "Exception during nature removal", e); //$NON-NLS-1$
 			final Shell shell = HandlerUtil.getActiveShellChecked(arg0);
 			MessageDialog
 					.openError(shell, MMBuilderMessages.RemoveNatureHandler_errorTitle, MMBuilderMessages.RemoveNatureHandler_errorMsg);

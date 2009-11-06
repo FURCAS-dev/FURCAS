@@ -1,13 +1,13 @@
 package com.sap.mi.tools.diagnostics.internal.model;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.openmbean.CompositeData;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.diagnostics.internal.messages.DiagnosticsMessages;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * <p>Title:       PartitionNode</p>
@@ -19,7 +19,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class PartitionNode extends DelegateNode {
 	
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 
     private final boolean mIsNullPartition;
 
@@ -52,7 +52,7 @@ public class PartitionNode extends DelegateNode {
 			}
 			return children;
 		} catch (IOException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return super.getChildren();
 		}
     }

@@ -37,7 +37,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class BasicMoinDcType extends BasicDcTypeDelegate implements IMoinDcType, IExecutableExtension {
 
-	static final TracerI sTracer = TracingManager.getTracer(BasicMoinDcType.class);
+	static final Logger stracer = Logger.getLogger(BasicMoinDcType.class);
 
 	private MoinDcOptions mOptions;
 

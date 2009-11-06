@@ -1,5 +1,9 @@
 package com.sap.mi.fwk.ui.editor;
 
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -23,8 +27,6 @@ import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.fwk.ui.internal.MiFwkUIPlugin;
 import com.sap.mi.fwk.ui.internal.editor.IRunnableWithError;
 import com.sap.tc.moin.repository.Connection;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Convenience editor base class inheriting from {@link MultiPageEditorPart}. It
@@ -54,7 +56,7 @@ public abstract class ModelMultiPageEditorPart extends MultiPageEditorPart imple
     // a different solution - we register PartitionChangeListeners on
     // DataBoundSectionComposite level.
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+    private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
     private final ModelEditor mEditor;
     // As this may be called quite often, reuse the same instance of the
@@ -115,8 +117,8 @@ public abstract class ModelMultiPageEditorPart extends MultiPageEditorPart imple
      * DataBoundSectionComposite level.
      */
     private void refresh() {
-	if (sTracer.debug()) {
-	    sTracer.debug("refresh", " called for editor <" + getEditorInput().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+	if (sTracer.isLoggable(Level.FINE)) {
+	    sTracer.logp(Level.FINE, "ModelFromMultiPageEditor", "refresh", " called for editor <" + getEditorInput().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -247,8 +249,8 @@ public abstract class ModelMultiPageEditorPart extends MultiPageEditorPart imple
     }
 
     void markStale() {
-	if (sTracer.debug()) {
-	    sTracer.debug("markStale", " called for editor <" + getEditorInput().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$);
+	if (sTracer.isLoggable(Level.FINE)) {
+	    sTracer.logp(Level.FINE, "ModelFromMultiPageEditor", "markStale", " called for editor <" + getEditorInput().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$);
 	}
 	isStale = true;
 	IModelEditor activeModelEditor = ModelManagerUI.getEditorManager().getActiveModelEditor();
@@ -358,7 +360,7 @@ public abstract class ModelMultiPageEditorPart extends MultiPageEditorPart imple
 		    activePage.activate(part);
 		}
 	    } catch (Exception e) {
-		sTracer.warning("Dependent views could not be refreshed", e); //$NON-NLS-1$
+		sTracer.log(Level.WARNING, "Dependent views could not be refreshed", e); //$NON-NLS-1$
 	    }
 	}
     }

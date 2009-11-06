@@ -16,7 +16,6 @@ Export-Package: com.sap.tc.moin.repository.shared.util.db,
  com.sap.tc.moin.repository.shared.logger.impl,
  com.sap.tc.moin.repository.cdam,
  com.sap.tc.moin.xm.cps,
- com.sap.tc.moin.repository.s2x,
  com.sap.tc.moin.xm.kernel.impl.util,
  com.sap.tc.moin.xm.kernel.impl.serializer,
  com.sap.tc.moin.xm.kernel.impl.parser.sax,
@@ -30,4 +29,8 @@ Export-Package: com.sap.tc.moin.repository.shared.util.db,
  com.sap.tc.moin.xm.kernel.impl.parser.util,
  com.sap.tc.moin.repository.shared.util,
  com.sap.tc.moin.repository.runtimehost.deployment
-Require-Bundle: com.sap.tc.moin.libraries.spi,com.sap.tc.moin.libraries.spi.internal,com.sap.base.technology.facade,com.sap.tc.moin.libraries.api
+Require-Bundle: com.sap.tc.moin.libraries.spi,
+ com.sap.tc.moin.libraries.spi.internal,
+ com.sap.tc.moin.libraries.api,
+ com.tssap.sap.libs.logging;bundle-version="2.0.0",
+ com.sap.bl.guidgenerator;bundle-version="2.0.0"

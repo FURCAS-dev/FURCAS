@@ -1,15 +1,14 @@
 package com.sap.mi.fwk.ui.internal.databinding;
 
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.Assert;
 
 import com.sap.mi.fwk.ModelAdapter;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.descriptors.MetamodelElementDescriptor;
 import com.sap.tc.moin.repository.mmi.descriptors.StructuralFeatureDescriptor;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class Utilities {
 	// do not instantiate

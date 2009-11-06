@@ -1,13 +1,12 @@
 package com.sap.mi.fwk.ui.internal.adapter;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.views.tasklist.ITaskListResourceAdapter;
 
 import com.sap.mi.fwk.ModelAdapter;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class PartitionableResourceAdapter implements ITaskListResourceAdapter {
 

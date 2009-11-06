@@ -298,6 +298,7 @@ public final class SingleImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Single> get___JmiInterface() {
         return behavior.expressions.Single.class;
     }

@@ -12,6 +12,9 @@ package com.sap.mi.fwk.ui.internal.consistency;
  */
 
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -31,8 +34,6 @@ import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.consistency.ConsistencyCorrectionHandle;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * This class generates default quickfixes for consistency violation resolutions
@@ -43,7 +44,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class ConsistencyResolutionGenerator implements IMarkerResolutionGenerator2 {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_CONSISTENCY);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_CONSISTENCY);
 
 	public boolean hasResolutions(IMarker marker) {
 		return (DefaultConsistencyListener.getViolationID(marker) != null);
@@ -96,7 +97,7 @@ public class ConsistencyResolutionGenerator implements IMarkerResolutionGenerato
 						con[0].getConsistencyViolationListenerRegistry().applyCorrection(ConsistencyViolationQuickfix.this.id);
 						ConnectionManager.getInstance().save(con[0]);
 					} catch (Exception e) {
-						sTracer.error("Exception during quifix execution : ", e); //$NON-NLS-1$
+						sTracer.log(Level.SEVERE, "Exception during quifix execution : ", e); //$NON-NLS-1$
 					}
 				}
 			};
@@ -115,9 +116,9 @@ public class ConsistencyResolutionGenerator implements IMarkerResolutionGenerato
 			} catch (OperationCanceledException e) {
 				// $JL-EXC$
 				// do nothing if user or eclipse cancels
-				sTracer.debug("Operation canceled by user"); //$NON-NLS-1$
+				sTracer.fine("Operation canceled by user"); //$NON-NLS-1$
 			} catch (Exception e) {
-				sTracer.error("Exception during quickfix execution: ", e); //$NON-NLS-1$
+				sTracer.log(Level.SEVERE, "Exception during quickfix execution: ", e); //$NON-NLS-1$
 			} finally {
 				if (con[0] != null) {
 					con[0].close();

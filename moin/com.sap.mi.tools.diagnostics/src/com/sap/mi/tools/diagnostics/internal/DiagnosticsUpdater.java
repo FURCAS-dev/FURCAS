@@ -1,13 +1,13 @@
 package com.sap.mi.tools.diagnostics.internal;
 
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Control;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Updates the view on a regular basis or on explicit request
@@ -16,7 +16,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class DiagnosticsUpdater extends TimerTask {
 	
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 	
 	private StructuredViewer mViewer;
 	private final Runnable mUpdater = new Updater();
@@ -27,7 +27,7 @@ public class DiagnosticsUpdater extends TimerTask {
 
 	@Override
 	public void run() {
-		sTracer.debug("Update called in thread: " + Thread.currentThread().getName()); //$NON-NLS-1$
+		sTracer.log(Level.FINE, "Update called in thread: " + Thread.currentThread().getName()); //$NON-NLS-1$
 		
 		Control control = mViewer.getControl();
 		if (control.isDisposed()) {
@@ -40,7 +40,7 @@ public class DiagnosticsUpdater extends TimerTask {
 	
 	@Override
 	public boolean cancel() {
-		sTracer.debug("Update cancelled in thread: " + Thread.currentThread().getName()); //$NON-NLS-1$
+		sTracer.log(Level.FINE, "Update cancelled in thread: " + Thread.currentThread().getName()); //$NON-NLS-1$
 		mViewer = null;
 		return super.cancel();
 	}
@@ -50,7 +50,7 @@ public class DiagnosticsUpdater extends TimerTask {
 	 */
 	public void doUpdate() {
 		if (mViewer != null && !mViewer.getControl().isDisposed()) {
-			sTracer.debug("Refreshing viewer"); //$NON-NLS-1$
+			sTracer.log(Level.FINE, "Refreshing viewer"); //$NON-NLS-1$
 			mViewer.refresh(true);
 		}
 	}

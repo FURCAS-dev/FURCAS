@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.operations.IUndoContext;
 import org.eclipse.core.commands.operations.UndoContext;
@@ -59,8 +62,6 @@ import com.sap.tc.moin.repository.events.type.PartitionContentChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionDeleteEvent;
 import com.sap.tc.moin.repository.events.type.PartitionSaveEvent;
 import com.sap.tc.moin.repository.spi.facility.ide.ContainerInitializationState;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Facility to access MOIN connections. The methods for <b>creating</b>
@@ -84,7 +85,8 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class ConnectionManager {
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_CONNECTIONS);
+    private static final Logger sTracer = Logger.getLogger(
+            MiLocations.MI_CONNECTIONS);
     /*
      * To support testing. Keep value in sync with ConnectionManagerTest.
      */
@@ -105,10 +107,10 @@ public final class ConnectionManager {
      * @return the instance of this class
      */
     public static synchronized ConnectionManager getInstance() {
-	if (ConnectionManager.sInstance == null) {
-	    ConnectionManager.sInstance = new ConnectionManager();
-	}
-	return ConnectionManager.sInstance;
+        if (ConnectionManager.sInstance == null) {
+            ConnectionManager.sInstance = new ConnectionManager();
+        }
+        return ConnectionManager.sInstance;
     }
 
     /**
@@ -140,8 +142,8 @@ public final class ConnectionManager {
      */
     @Deprecated
     public Connection getDefaultConnection(final IProject project) {
-	final Connection connection = getDefaultConnection(project, true);
-	return connection;
+        final Connection connection = getDefaultConnection(project, true);
+        return connection;
     }
 
     /**
@@ -161,7 +163,7 @@ public final class ConnectionManager {
      * 
      */
     public Connection getExistingDefaultConnection(final IProject project) {
-	return getDefaultConnection(project, false);
+        return getDefaultConnection(project, false);
     }
 
     /**
@@ -184,12 +186,14 @@ public final class ConnectionManager {
      * @see #createConnection(IProject)
      */
     public Connection getOrCreateDefaultConnection(final IProject project) {
-	final IMiFwkOperationExecutor operationExecutor = ModelManager.getOperationExecutor();
+        final IMiFwkOperationExecutor operationExecutor = ModelManager
+                .getOperationExecutor();
 
-	if (operationExecutor.isInUiThread()) {
-	    throw new IllegalStateException("Must be called from non-UI thread."); //$NON-NLS-1$ 
-	}
-	return getDefaultConnection(project, true);
+        if (operationExecutor.isInUiThread()) {
+            throw new IllegalStateException(
+                    "Must be called from non-UI thread."); //$NON-NLS-1$ 
+        }
+        return getDefaultConnection(project, true);
     }
 
     /**
@@ -225,89 +229,96 @@ public final class ConnectionManager {
      */
     // define private once all stakeholders have migrated to the new methods
     @Deprecated
-    public Connection getDefaultConnection(final IProject project, final boolean createIfNecessary) {
-	/*
-	 * Quick-check in our map if connection is present and alive. If yes, we
-	 * don't need the big workspace lock below. Also is more efficient if
-	 * createIfNecessary==false. However, this includes a certain risk of
-	 * stale data accessed by the following block (see comment on lock
-	 * ordering).
-	 */
-	synchronized (this) {
-	    final Connection connection = this.mProjectToDefaultConnection.get(project);
-	    if (connection != null && connection.isAlive()) {
-		return connection;
-	    }
-	    if (!createIfNecessary) {
-		return null;
-	    }
-	}
+    public Connection getDefaultConnection(final IProject project,
+            final boolean createIfNecessary) {
+        /*
+         * Quick-check in our map if connection is present and alive. If yes, we
+         * don't need the big workspace lock below. Also is more efficient if
+         * createIfNecessary==false. However, this includes a certain risk of
+         * stale data accessed by the following block (see comment on lock
+         * ordering).
+         */
+        synchronized (this) {
+            final Connection connection = this.mProjectToDefaultConnection
+                    .get(project);
+            if (connection != null && connection.isAlive()) {
+                return connection;
+            }
+            if (!createIfNecessary) {
+                return null;
+            }
+        }
 
-	final IMoinOpRunnable<Connection> op = new IMoinOpRunnable<Connection>() {
-	    public Connection run(final ContainerInitializationState initState) throws InvocationTargetException,
-		    InterruptedException {
-		Connection connection = null;
-		synchronized (ConnectionManager.this) {
-		    // Do not check for the project being alive here, since we
-		    // must allow connection lookup even for closed projects in
-		    // order to close them afterwards
-		    // (see #DefaultConnectionCloser).
-		    connection = ConnectionManager.this.mProjectToDefaultConnection.get(project);
-		    if (connection != null && !connection.isAlive()) {
-			connection = null;
-			if (ConnectionManager.sTracer.info()) {
-			    final String msg = "Default connection for project " + project.getName() //$NON-NLS-1$
-				    + " was closed. Creating a new one."; //$NON-NLS-1$
-			    ConnectionManager.sTracer.info(msg);
-			}
-		    }
-		    if (connection != null) {
-			return connection;
-		    }
-		}
-		if (!createIfNecessary) {
-		    return null;
-		}
-		// we can not create a Connection when holding a lock on
-		// ConnectionManager
-		// reason: MOIN calls the DII and the DII goes in the UI thread.
-		// the UI thread might wait for a lock on ConnectionManager
-		// Result: dead lock
-		// workaround: createConnectionInternal is called outside the
-		// synchronized block
-		connection = createConnectionInternal(project, initState, true);
-		synchronized (ConnectionManager.this) {
-		    final Connection projectConnection = ConnectionManager.this.mProjectToDefaultConnection.get(project);
-		    if (projectConnection != null && projectConnection.isAlive()) {
-			// connection for the project was created in the time
-			// between
-			connection.close();
-			return projectConnection;
-		    }
-		    // projectConnection is null or not alive
-		    ConnectionManager.this.mProjectToDefaultConnection.put(project, connection);
-		    return connection;
-		}
-	    }
+        final IMoinOpRunnable<Connection> op = new IMoinOpRunnable<Connection>() {
+            public Connection run(final ContainerInitializationState initState)
+                    throws InvocationTargetException, InterruptedException {
+                Connection connection = null;
+                synchronized (ConnectionManager.this) {
+                    // Do not check for the project being alive here, since we
+                    // must allow connection lookup even for closed projects in
+                    // order to close them afterwards
+                    // (see #DefaultConnectionCloser).
+                    connection = ConnectionManager.this.mProjectToDefaultConnection
+                            .get(project);
+                    if (connection != null && !connection.isAlive()) {
+                        connection = null;
+                        if (ConnectionManager.sTracer.isLoggable(Level.INFO)) {
+                            final String msg = "Default connection for project " + project.getName() //$NON-NLS-1$
+                                    + " was closed. Creating a new one."; //$NON-NLS-1$
+                            ConnectionManager.sTracer.info(msg);
+                        }
+                    }
+                    if (connection != null) {
+                        return connection;
+                    }
+                }
+                if (!createIfNecessary) {
+                    return null;
+                }
+                // we can not create a Connection when holding a lock on
+                // ConnectionManager
+                // reason: MOIN calls the DII and the DII goes in the UI thread.
+                // the UI thread might wait for a lock on ConnectionManager
+                // Result: dead lock
+                // workaround: createConnectionInternal is called outside the
+                // synchronized block
+                connection = createConnectionInternal(project, initState, true);
+                synchronized (ConnectionManager.this) {
+                    final Connection projectConnection = ConnectionManager.this.mProjectToDefaultConnection
+                            .get(project);
+                    if (projectConnection != null
+                            && projectConnection.isAlive()) {
+                        // connection for the project was created in the time
+                        // between
+                        connection.close();
+                        return projectConnection;
+                    }
+                    // projectConnection is null or not alive
+                    ConnectionManager.this.mProjectToDefaultConnection.put(
+                            project, connection);
+                    return connection;
+                }
+            }
 
-	    @Override
-	    public String toString() {
-		return "Get default connection for project " + project.getName(); //$NON-NLS-1$
-	    }
-	};
+            @Override
+            public String toString() {
+                return "Get default connection for project " + project.getName(); //$NON-NLS-1$
+            }
+        };
 
-	/*
-	 * Must aquire a resource lock before our lock to align us with Moin
-	 * lock order (first resource, then Moin). Otherwise deadlocks can
-	 * occur, e.g. a builder runs with the resource lock trying to get a
-	 * ConnectionManager lock, which is held by a connection-creating thread
-	 * calling to Moin, which is waiting for the resource lock. Also we have
-	 * to aquire the resource lock here and not delay it to
-	 * createConnectionInternal (which does the same), as this would lead to
-	 * a wrong order as well (see below).
-	 */
-	final Connection connection = ModelManager.runMoinOpWithResourceLock(project, null, op, null);
-	return connection;
+        /*
+         * Must aquire a resource lock before our lock to align us with Moin
+         * lock order (first resource, then Moin). Otherwise deadlocks can
+         * occur, e.g. a builder runs with the resource lock trying to get a
+         * ConnectionManager lock, which is held by a connection-creating thread
+         * calling to Moin, which is waiting for the resource lock. Also we have
+         * to aquire the resource lock here and not delay it to
+         * createConnectionInternal (which does the same), as this would lead to
+         * a wrong order as well (see below).
+         */
+        final Connection connection = ModelManager.runMoinOpWithResourceLock(
+                project, null, op, null);
+        return connection;
     }
 
     /**
@@ -320,8 +331,9 @@ public final class ConnectionManager {
      * @see #getOrCreateDefaultConnection(IProject)
      */
     public synchronized boolean isDefaultConnection(final Connection connection) {
-	final boolean isDefault = this.mProjectToDefaultConnection.containsValue(connection);
-	return isDefault;
+        final boolean isDefault = this.mProjectToDefaultConnection
+                .containsValue(connection);
+        return isDefault;
     }
 
     /**
@@ -332,14 +344,16 @@ public final class ConnectionManager {
      *            the connection to query the project for
      * @return the project or <code>null</code>
      */
-    public synchronized IProject getProjectForDefaultConnection(final Connection connection) {
-	final Set<Entry<IProject, Connection>> entries = this.mProjectToDefaultConnection.entrySet();
-	for (final Entry<IProject, Connection> entry : entries) {
-	    if (entry.getValue().equals(connection)) {
-		return entry.getKey();
-	    }
-	}
-	return null;
+    public synchronized IProject getProjectForDefaultConnection(
+            final Connection connection) {
+        final Set<Entry<IProject, Connection>> entries = this.mProjectToDefaultConnection
+                .entrySet();
+        for (final Entry<IProject, Connection> entry : entries) {
+            if (entry.getValue().equals(connection)) {
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 
     /**
@@ -361,7 +375,7 @@ public final class ConnectionManager {
     // ATTENTION WITH API CHANGES!!! - Called via reflection from
     // com.sap.mi.fwk.test.service.internal.InvocationHelper
     public Connection createConnection(final IProject project) {
-	return createConnectionInternal(project, null, false);
+        return createConnectionInternal(project, null, false);
     }
 
     /**
@@ -374,11 +388,11 @@ public final class ConnectionManager {
      * @see #isTransient(Connection)
      */
     public Connection createTransientConnection() {
-	final ModelManager modelManager = ModelManager.getInstance();
-	final CompoundClientSpec ccs = modelManager.getTransientClientSpec();
-	final Session session = modelManager.createSession(ccs);
-	final Connection connection = session.createConnection("[transient]"); //$NON-NLS-1$
-	return connection;
+        final ModelManager modelManager = ModelManager.getInstance();
+        final CompoundClientSpec ccs = modelManager.getTransientClientSpec();
+        final Session session = modelManager.createSession(ccs);
+        final Connection connection = session.createConnection("[transient]"); //$NON-NLS-1$
+        return connection;
     }
 
     /**
@@ -393,15 +407,15 @@ public final class ConnectionManager {
      *         connection, <code>false</code> otherwise
      */
     public boolean isDirty(final Connection connection) {
-	if (connection == null) {
-	    throw new IllegalArgumentException("Connection must not be null"); //$NON-NLS-1$
-	}
-	if (!connection.isAlive()) {
-	    return false;
-	}
+        if (connection == null) {
+            throw new IllegalArgumentException("Connection must not be null"); //$NON-NLS-1$
+        }
+        if (!connection.isAlive()) {
+            return false;
+        }
 
-	final boolean isDirty = connection.isDirty();
-	return isDirty;
+        final boolean isDirty = connection.isDirty();
+        return isDirty;
     }
 
     /**
@@ -414,32 +428,35 @@ public final class ConnectionManager {
      * @see #createTransientConnection()
      */
     public boolean isTransient(final Connection connection) {
-	MiFwkPlugin.assertConnectionAlive(connection);
+        MiFwkPlugin.assertConnectionAlive(connection);
 
-	final CompoundClientSpec clientSpecTransient = ModelManager.getInstance().getMoinInstance().getCompoundDataAreaManager()
-		.getCompoundClientSpecTransientOnly();
-	final CompoundClientSpec clientSpec = connection.getSession().getCompoundClientSpec();
-	if (clientSpec.equals(clientSpecTransient)) {
-	    return true;
-	}
-	return false;
+        final CompoundClientSpec clientSpecTransient = ModelManager
+                .getInstance().getMoinInstance().getCompoundDataAreaManager()
+                .getCompoundClientSpecTransientOnly();
+        final CompoundClientSpec clientSpec = connection.getSession()
+                .getCompoundClientSpec();
+        if (clientSpec.equals(clientSpecTransient)) {
+            return true;
+        }
+        return false;
     }
 
     /**
      * @return all connections that lock partitions from the given set
      */
-    private Collection<Connection> getConnectionsWithLocks(final Collection<PRI> pris, final Session session) {
-	final Collection<Connection> connectionWithLocks = new HashSet<Connection>();
-	final LockManager lockManager = session.getLockManager();
+    private Collection<Connection> getConnectionsWithLocks(
+            final Collection<PRI> pris, final Session session) {
+        final Collection<Connection> connectionWithLocks = new HashSet<Connection>();
+        final LockManager lockManager = session.getLockManager();
 
-	for (final PRI pri : pris) {
-	    final Connection owner = lockManager.getLockOwner(pri);
-	    if (owner != null) {
-		connectionWithLocks.add(owner);
-	    }
-	}
+        for (final PRI pri : pris) {
+            final Connection owner = lockManager.getLockOwner(pri);
+            if (owner != null) {
+                connectionWithLocks.add(owner);
+            }
+        }
 
-	return Collections.unmodifiableCollection(connectionWithLocks);
+        return Collections.unmodifiableCollection(connectionWithLocks);
     }
 
     /**
@@ -451,7 +468,7 @@ public final class ConnectionManager {
      * @return The corresponding undo context
      */
     public IUndoContext getUndoContext(final Connection con) {
-	return this.mConnectionToUndoContext.get(con);
+        return this.mConnectionToUndoContext.get(con);
     }
 
     /**
@@ -462,12 +479,12 @@ public final class ConnectionManager {
      * @return The newly created undo context
      */
     public synchronized IUndoContext addUndoContext(final Connection connection) {
-	IUndoContext ctx = this.mConnectionToUndoContext.get(connection);
-	if (ctx == null) {
-	    ctx = new UndoContext();
-	    this.mConnectionToUndoContext.put(connection, ctx);
-	}
-	return ctx;
+        IUndoContext ctx = this.mConnectionToUndoContext.get(connection);
+        if (ctx == null) {
+            ctx = new UndoContext();
+            this.mConnectionToUndoContext.put(connection, ctx);
+        }
+        return ctx;
     }
 
     /**
@@ -477,7 +494,7 @@ public final class ConnectionManager {
      *            The connection for which the undo context should be removed
      */
     public synchronized void removeUndoContext(final Connection connection) {
-	this.mConnectionToUndoContext.remove(connection);
+        this.mConnectionToUndoContext.remove(connection);
     }
 
     /**
@@ -493,47 +510,53 @@ public final class ConnectionManager {
      * @exception ReferencedTransientElementsException
      * 
      */
-    public void save(final Connection connection) throws NullPartitionNotEmptyException, PartitionsNotSavedException,
-	    ReferencedTransientElementsException {
-	if (!connection.isAlive()) {
-	    return;
-	}
-	final IMiFwkOperationExecutor operationExecutor = ModelManager.getOperationExecutor();
-	if (operationExecutor.isInUiThread()) {
-	    operationExecutor.saveConnectionInModalContext(connection);
-	} else {
-	    saveInWorkspaceRunnable(connection);
-	}
+    public void save(final Connection connection)
+            throws NullPartitionNotEmptyException, PartitionsNotSavedException,
+            ReferencedTransientElementsException {
+        if (!connection.isAlive()) {
+            return;
+        }
+        final IMiFwkOperationExecutor operationExecutor = ModelManager
+                .getOperationExecutor();
+        if (operationExecutor.isInUiThread()) {
+            operationExecutor.saveConnectionInModalContext(connection);
+        } else {
+            saveInWorkspaceRunnable(connection);
+        }
     }
 
     /**
      * FOR INTERNAL USE ONLY. NOT TO BE USED BY CLIENTS
      */
-    public void saveInWorkspaceRunnable(final Connection connection) throws NullPartitionNotEmptyException,
-	    PartitionsNotSavedException, ReferencedTransientElementsException {
-	final IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
-	    public void run(final IProgressMonitor monitor) throws CoreException {
-		try {
-		    connection.save();
-		} catch (final PartitionsNotSavedException e) {
-		    throw new CoreException(MiFwkPlugin.createStatus(IStatus.ERROR, e.getMessage(), e));
-		} catch (final RuntimeException e) {
-		    throw new CoreException(MiFwkPlugin.createStatus(IStatus.ERROR, e.getMessage(), e));
-		}
-	    }
-	};
-	try {
-	    ResourcesPlugin.getWorkspace().run(runnable, null);
-	} catch (final CoreException e) {
-	    final Throwable cause = e.getStatus().getException();
-	    if (cause instanceof PartitionsNotSavedException) {
-		throw (PartitionsNotSavedException) cause;
-	    }
-	    if (cause instanceof RuntimeException) {
-		throw (RuntimeException) cause;
-	    }
-	    throw new RuntimeException(e);
-	}
+    public void saveInWorkspaceRunnable(final Connection connection)
+            throws NullPartitionNotEmptyException, PartitionsNotSavedException,
+            ReferencedTransientElementsException {
+        final IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
+            public void run(final IProgressMonitor monitor)
+                    throws CoreException {
+                try {
+                    connection.save();
+                } catch (final PartitionsNotSavedException e) {
+                    throw new CoreException(MiFwkPlugin.createStatus(
+                            IStatus.ERROR, e.getMessage(), e));
+                } catch (final RuntimeException e) {
+                    throw new CoreException(MiFwkPlugin.createStatus(
+                            IStatus.ERROR, e.getMessage(), e));
+                }
+            }
+        };
+        try {
+            ResourcesPlugin.getWorkspace().run(runnable, null);
+        } catch (final CoreException e) {
+            final Throwable cause = e.getStatus().getException();
+            if (cause instanceof PartitionsNotSavedException) {
+                throw (PartitionsNotSavedException) cause;
+            }
+            if (cause instanceof RuntimeException) {
+                throw (RuntimeException) cause;
+            }
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -547,22 +570,27 @@ public final class ConnectionManager {
      * @see #save(Connection) for further details regarding possible error
      *      messages
      */
-    public IStatus save(final Collection<Connection> connections, final IProgressMonitor monitor) {
-	MultiStatus result = null;
-	for (final Connection connection : connections) {
-	    try {
-		save(connection);
-	    } catch (final Exception e) {
-		final IStatus error = MiFwkPlugin.createStatus(IStatus.ERROR, e.getMessage(), e);
-		if (result == null) {
-		    result = new MultiStatus(MiFwkPlugin.PLUGIN_ID, 0, MiFwkMessages.ConnectionManager_StatusErrorDuringSave,
-			    null);
-		}
-		result.add(error);
-	    }
-	}
+    public IStatus save(final Collection<Connection> connections,
+            final IProgressMonitor monitor) {
+        MultiStatus result = null;
+        for (final Connection connection : connections) {
+            try {
+                save(connection);
+            } catch (final Exception e) {
+                final IStatus error = MiFwkPlugin.createStatus(IStatus.ERROR, e
+                        .getMessage(), e);
+                if (result == null) {
+                    result = new MultiStatus(
+                            MiFwkPlugin.PLUGIN_ID,
+                            0,
+                            MiFwkMessages.ConnectionManager_StatusErrorDuringSave,
+                            null);
+                }
+                result.add(error);
+            }
+        }
 
-	return result != null ? result : Status.OK_STATUS;
+        return result != null ? result : Status.OK_STATUS;
     }
 
     /**
@@ -572,8 +600,8 @@ public final class ConnectionManager {
      *            the connection to close
      */
     public void closeConnection(final Connection connection) {
-	connection.close();
-	this.mConnectionToUndoContext.remove(connection);
+        connection.close();
+        this.mConnectionToUndoContext.remove(connection);
     }
 
     /**
@@ -585,18 +613,21 @@ public final class ConnectionManager {
      *         should be used with care - other tools may depend on these
      *         connections.</b>
      */
-    public synchronized Collection<Connection> getConnections(final IProject project) {
-	MiFwkPlugin.assertMoinProjectOpen(project);
+    public synchronized Collection<Connection> getConnections(
+            final IProject project) {
+        MiFwkPlugin.assertMoinProjectOpen(project);
 
-	final Set<Connection> connections = this.mProjectToConnections.get(project);
-	if (connections != null) {
-	    // Do not modify the original connection set as we also need the
-	    // already closed connections.
-	    final Set<Connection> connectionsCopy = new HashSet<Connection>(connections);
-	    removeClosedConnections(connectionsCopy);
-	    return Collections.unmodifiableCollection(connectionsCopy);
-	}
-	return Collections.emptyList();
+        final Set<Connection> connections = this.mProjectToConnections
+                .get(project);
+        if (connections != null) {
+            // Do not modify the original connection set as we also need the
+            // already closed connections.
+            final Set<Connection> connectionsCopy = new HashSet<Connection>(
+                    connections);
+            removeClosedConnections(connectionsCopy);
+            return Collections.unmodifiableCollection(connectionsCopy);
+        }
+        return Collections.emptyList();
     }
 
     /**
@@ -608,16 +639,18 @@ public final class ConnectionManager {
      *         modified partitions
      */
     public Collection<Connection> getDirtyConnections(final IProject project) {
-	final Collection<Connection> allConnections = getConnections(project);
-	final Collection<Connection> result = new HashSet<Connection>(allConnections);
-	for (final Iterator<Connection> iter = result.iterator(); iter.hasNext();) {
-	    final Connection connection = iter.next();
-	    if (!isDirty(connection)) {
-		iter.remove();
-	    }
-	}
+        final Collection<Connection> allConnections = getConnections(project);
+        final Collection<Connection> result = new HashSet<Connection>(
+                allConnections);
+        for (final Iterator<Connection> iter = result.iterator(); iter
+                .hasNext();) {
+            final Connection connection = iter.next();
+            if (!isDirty(connection)) {
+                iter.remove();
+            }
+        }
 
-	return Collections.unmodifiableCollection(result);
+        return Collections.unmodifiableCollection(result);
     }
 
     /**
@@ -629,54 +662,59 @@ public final class ConnectionManager {
      *            if <code>true</code> also closed connections are returned
      * @return the connections
      */
-    public synchronized Collection<Connection> getAllConnections(final boolean includeClosed) {
-	final Collection<Set<Connection>> connectionSets = this.mProjectToConnections.values();
-	final Collection<Connection> result = new HashSet<Connection>(connectionSets.size());
-	for (final Set<Connection> connections : connectionSets) {
-	    if (connections != null) {
-		result.addAll(connections);
-	    }
-	}
-	// Do not modify the original connection set as we also need the
-	// already closed connections.
-	if (!includeClosed) {
-	    removeClosedConnections(result);
-	}
+    public synchronized Collection<Connection> getAllConnections(
+            final boolean includeClosed) {
+        final Collection<Set<Connection>> connectionSets = this.mProjectToConnections
+                .values();
+        final Collection<Connection> result = new HashSet<Connection>(
+                connectionSets.size());
+        for (final Set<Connection> connections : connectionSets) {
+            if (connections != null) {
+                result.addAll(connections);
+            }
+        }
+        // Do not modify the original connection set as we also need the
+        // already closed connections.
+        if (!includeClosed) {
+            removeClosedConnections(result);
+        }
 
-	return Collections.unmodifiableCollection(result);
+        return Collections.unmodifiableCollection(result);
     }
 
     synchronized IProject getProject(final Connection connection) {
-	return this.mConnectionToProject.get(connection);
+        return this.mConnectionToProject.get(connection);
     }
 
     /**
      * For internal use only
      */
     synchronized void dispose() {
-	final Collection<Connection> connections = this.mProjectToDefaultConnection.values();
-	// mClosingConnections = true;
-	try {
-	    for (final Connection connection : connections) {
-		try {
-		    if (!connection.isAlive()) {
-			continue;
-		    }
-		    connection.close();
-		} catch (final Exception e) { // $JL-EXC$
-		    MiFwkPlugin.logError(e, ConnectionManager.sTracer);
-		    // and continue as there is nothing we could do here
-		}
-	    }
-	    this.mConnectionToProject.clear();
-	    this.mProjectToConnections.clear();
-	    this.mProjectToDefaultConnection.clear();
-	    this.mConnectionToUndoContext.clear();
+        final Collection<Connection> connections = this.mProjectToDefaultConnection
+                .values();
+        // mClosingConnections = true;
+        try {
+            for (final Connection connection : connections) {
+                try {
+                    if (!connection.isAlive()) {
+                        continue;
+                    }
+                    connection.close();
+                } catch (final Exception e) { // $JL-EXC$
+                    MiFwkPlugin.logError(e, ConnectionManager.sTracer);
+                    // and continue as there is nothing we could do here
+                }
+            }
+            this.mConnectionToProject.clear();
+            this.mProjectToConnections.clear();
+            this.mProjectToDefaultConnection.clear();
+            this.mConnectionToUndoContext.clear();
 
-	    ResourcesPlugin.getWorkspace().removeResourceChangeListener(this.mProjectListener);
-	} finally {
-	    // mClosingConnections = false;
-	}
+            ResourcesPlugin.getWorkspace().removeResourceChangeListener(
+                    this.mProjectListener);
+        } finally {
+            // mClosingConnections = false;
+        }
     }
 
     /**
@@ -688,89 +726,105 @@ public final class ConnectionManager {
      *                if this method is called from the <b>UI thread</b>
      */
     @SuppressWarnings("unchecked")
-    private Connection createConnectionInternal(final IProject project, final ContainerInitializationState initState,
-	    final boolean isDefault) {
-	final IMoinOpRunnable<Connection> createOp = new IMoinOpRunnable<Connection>() {
-	    public Connection run(final ContainerInitializationState initState) throws InvocationTargetException,
-		    InterruptedException {
-		final Session session = ModelManager.getInstance().createSession(project, initState);
-		String label = project.getName();
-		if (isDefault) {
-		    label += " [default]"; //$NON-NLS-1$
-		}
-		final Connection connection = session.createConnection(label);
-		if (ConnectionManager.sTracer.debug()) {
-		    // trace connection creation
-		    final Exception exception = new Exception("Call Stack"); //$NON-NLS-1$
-		    final String message = "Creating connection: " + connection.getId() //$NON-NLS-1$
-			    + " - " + connection.getLabel(); //$NON-NLS-1$
-		    ConnectionManager.sTracer.log(TracerI.DEBUG, message, exception);
-		}
+    private Connection createConnectionInternal(final IProject project,
+            final ContainerInitializationState initState,
+            final boolean isDefault) {
+        final IMoinOpRunnable<Connection> createOp = new IMoinOpRunnable<Connection>() {
+            public Connection run(final ContainerInitializationState initState)
+                    throws InvocationTargetException, InterruptedException {
+                final Session session = ModelManager.getInstance()
+                        .createSession(project, initState);
+                String label = project.getName();
+                if (isDefault) {
+                    label += " [default]"; //$NON-NLS-1$
+                }
+                final Connection connection = session.createConnection(label);
+                if (ConnectionManager.sTracer.isLoggable(Level.FINE)) {
+                    // trace connection creation
+                    final Exception exception = new Exception("Call Stack"); //$NON-NLS-1$
+                    final String message = "Creating connection: " + connection.getId() //$NON-NLS-1$
+                            + " - " + connection.getLabel(); //$NON-NLS-1$
+                    ConnectionManager.sTracer.log(Level.FINE, message,
+                            exception);
+                }
 
-		synchronized (ConnectionManager.this) {
-		    ConnectionManager.this.mConnectionToProject.put(connection, project);
-		    Set<Connection> connections = ConnectionManager.this.mProjectToConnections.get(project);
-		    if (connections == null) {
-			connections = new HashSet<Connection>();
-			ConnectionManager.this.mProjectToConnections.put(project, connections);
-		    }
-		    connections.add(connection);
-		}
+                synchronized (ConnectionManager.this) {
+                    ConnectionManager.this.mConnectionToProject.put(connection,
+                            project);
+                    Set<Connection> connections = ConnectionManager.this.mProjectToConnections
+                            .get(project);
+                    if (connections == null) {
+                        connections = new HashSet<Connection>();
+                        ConnectionManager.this.mProjectToConnections.put(
+                                project, connections);
+                    }
+                    connections.add(connection);
+                }
 
-		return connection;
-	    }
+                return connection;
+            }
 
-	    @Override
-	    public String toString() {
-		return "Create connection for project " + project.getName(); //$NON-NLS-1$
-	    }
-	};
+            @Override
+            public String toString() {
+                return "Create connection for project " + project.getName(); //$NON-NLS-1$
+            }
+        };
 
-	/*
-	 * Must aquire a resource lock before our lock to align us with Moin
-	 * lock order (first resource, then Moin). Otherwise deadlock can occur,
-	 * e.g. a builder runs with the resource lock trying to get a
-	 * ConnectionManager lock, which is held by a connection-creating thread
-	 * calling to Moin, which is waiting for the resource lock.
-	 */
-	final Connection connection = ModelManager.runMoinOpWithResourceLock(project, initState, createOp, null);
+        /*
+         * Must aquire a resource lock before our lock to align us with Moin
+         * lock order (first resource, then Moin). Otherwise deadlock can occur,
+         * e.g. a builder runs with the resource lock trying to get a
+         * ConnectionManager lock, which is held by a connection-creating thread
+         * calling to Moin, which is waiting for the resource lock.
+         */
+        final Connection connection = ModelManager.runMoinOpWithResourceLock(
+                project, initState, createOp, null);
 
-	final ConnectionUtil connectionUtil = UtilitiesFactory.getConnectionUtil();
-	connectionUtil.setCommandStackObserver(connection, this.cmdStackObserver);
+        final ConnectionUtil connectionUtil = UtilitiesFactory
+                .getConnectionUtil();
+        connectionUtil.setCommandStackObserver(connection,
+                this.cmdStackObserver);
 
-	connection.getConsistencyViolationListenerRegistry().addListener(this.consistencyListener);
+        connection.getConsistencyViolationListenerRegistry().addListener(
+                this.consistencyListener);
 
-	final EventFilter filterElement = new EventTypeFilter(PartitionSaveEvent.class, PartitionDeleteEvent.class,
-		PartitionContentChangeEvent.class);
+        final EventFilter filterElement = new EventTypeFilter(
+                PartitionSaveEvent.class, PartitionDeleteEvent.class,
+                PartitionContentChangeEvent.class);
 
-	// Open a command group to avoid direct JMI call, when
-	// registering event listener
-	final CommandStack cStack = connection.getCommandStack();
-	cStack.openGroup(MiFwkMessages.ConnectionManager_CommandGroupNameListenerRegistration);
+        // Open a command group to avoid direct JMI call, when
+        // registering event listener
+        final CommandStack cStack = connection.getCommandStack();
+        cStack
+                .openGroup(MiFwkMessages.ConnectionManager_CommandGroupNameListenerRegistration);
 
-	connection.getEventRegistry().registerUpdateListener(MarkerManager.getInstance().partitionListener, filterElement);
-	cStack.closeGroup();
-	cStack.clear();
+        connection.getEventRegistry().registerUpdateListener(
+                MarkerManager.getInstance().partitionListener, filterElement);
+        cStack.closeGroup();
+        cStack.clear();
 
-	return connection;
+        return connection;
     }
 
     /**
      * Removes all closed connections from the given collection (which must be
      * modifiable).
      */
-    private void removeClosedConnections(final Collection<Connection> connections) {
-	for (final Iterator<Connection> iter = connections.iterator(); iter.hasNext();) {
-	    final Connection connection = iter.next();
-	    if (!connection.isAlive()) {
-		iter.remove();
-	    }
-	}
+    private void removeClosedConnections(
+            final Collection<Connection> connections) {
+        for (final Iterator<Connection> iter = connections.iterator(); iter
+                .hasNext();) {
+            final Connection connection = iter.next();
+            if (!connection.isAlive()) {
+                iter.remove();
+            }
+        }
     }
 
     ConnectionManager() {
 
-	ResourcesPlugin.getWorkspace().addResourceChangeListener(this.mProjectListener, IResourceChangeEvent.POST_CHANGE);
+        ResourcesPlugin.getWorkspace().addResourceChangeListener(
+                this.mProjectListener, IResourceChangeEvent.POST_CHANGE);
     }
 
     /**
@@ -782,47 +836,51 @@ public final class ConnectionManager {
      *            one connection to exclude
      * @return the dirty connections
      */
-    private Collection<Connection> getOtherDirtyConnectionsInProject(final Connection excluded) {
-	MiFwkPlugin.assertConnectionAlive(excluded);
+    private Collection<Connection> getOtherDirtyConnectionsInProject(
+            final Connection excluded) {
+        MiFwkPlugin.assertConnectionAlive(excluded);
 
-	IProject project = getProject(excluded);
-	Collection<Connection> connectionsInProject = getConnections(project);
-	final Collection<Connection> result = new HashSet<Connection>(connectionsInProject.size());
-	for (Connection connection : connectionsInProject) {
-	    if (!excluded.equals(connection) && isDirty(connection)) {
-		result.add(connection);
-	    }
-	}
+        IProject project = getProject(excluded);
+        Collection<Connection> connectionsInProject = getConnections(project);
+        final Collection<Connection> result = new HashSet<Connection>(
+                connectionsInProject.size());
+        for (Connection connection : connectionsInProject) {
+            if (!excluded.equals(connection) && isDirty(connection)) {
+                result.add(connection);
+            }
+        }
 
-	return result;
+        return result;
     }
 
     /**
      * @return all connections that lock partitions from the given set. The
      *         given connection is excluded
      */
-    private Collection<Connection> getOtherConnectionsWithLocks(final Collection<PartitionOperation> affectedPartitions,
-	    final Connection currentConnection) {
-	if (affectedPartitions == null) {
-	    throw new IllegalStateException("affectedPartitons must not be null"); //$NON-NLS-1$
-	}
+    private Collection<Connection> getOtherConnectionsWithLocks(
+            final Collection<PartitionOperation> affectedPartitions,
+            final Connection currentConnection) {
+        if (affectedPartitions == null) {
+            throw new IllegalStateException(
+                    "affectedPartitons must not be null"); //$NON-NLS-1$
+        }
 
-	final Collection<PRI> pris = new HashSet<PRI>(affectedPartitions.size());
-	for (final PartitionOperation partOp : affectedPartitions) {
-	    final Operation kind = partOp.getOperation();
-	    // Operation.NEW is not relevant here as locks cannot be held for
-	    // partitions yet to create.
-	    if (Operation.EDIT == kind || Operation.DELETE == kind) {
-		final PRI pri = partOp.getPartitionPri();
-		pris.add(pri);
-	    }
-	}
+        final Collection<PRI> pris = new HashSet<PRI>(affectedPartitions.size());
+        for (final PartitionOperation partOp : affectedPartitions) {
+            final Operation kind = partOp.getOperation();
+            // Operation.NEW is not relevant here as locks cannot be held for
+            // partitions yet to create.
+            if (Operation.EDIT == kind || Operation.DELETE == kind) {
+                final PRI pri = partOp.getPartitionPri();
+                pris.add(pri);
+            }
+        }
 
-	final Collection<Connection> connectionWithLocks = new HashSet<Connection>(getConnectionsWithLocks(pris,
-		currentConnection.getSession()));
-	connectionWithLocks.remove(currentConnection);
+        final Collection<Connection> connectionWithLocks = new HashSet<Connection>(
+                getConnectionsWithLocks(pris, currentConnection.getSession()));
+        connectionWithLocks.remove(currentConnection);
 
-	return connectionWithLocks;
+        return connectionWithLocks;
     }
 
     /**
@@ -835,10 +893,11 @@ public final class ConnectionManager {
      *            The affected partitions
      * @return All connections which must be saved
      */
-    public Collection<Connection> getSaveConnections(final Command cmd, final Collection<PartitionOperation> affectedPartitions) {
-	MiFwkPlugin.assertObjectNotNull(cmd);
-	final Connection connection = cmd.getConnection();
-	return getSaveConnections(connection, affectedPartitions);
+    public Collection<Connection> getSaveConnections(final Command cmd,
+            final Collection<PartitionOperation> affectedPartitions) {
+        MiFwkPlugin.assertObjectNotNull(cmd);
+        final Connection connection = cmd.getConnection();
+        return getSaveConnections(connection, affectedPartitions);
     }
 
     /**
@@ -849,19 +908,21 @@ public final class ConnectionManager {
      * @param affectedPartitions
      * @return the connections
      */
-    public Collection<Connection> getSaveConnections(final Connection connection,
-	    final Collection<PartitionOperation> affectedPartitions) {
+    public Collection<Connection> getSaveConnections(
+            final Connection connection,
+            final Collection<PartitionOperation> affectedPartitions) {
 
-	Collection<Connection> connectionsToSave;
-	// in both cases pay attention to exclude the command's/editor's
-	// connection
-	if (affectedPartitions != null) {
-	    connectionsToSave = getOtherConnectionsWithLocks(affectedPartitions, connection);
-	} else {
-	    connectionsToSave = getOtherDirtyConnectionsInProject(connection);
-	}
+        Collection<Connection> connectionsToSave;
+        // in both cases pay attention to exclude the command's/editor's
+        // connection
+        if (affectedPartitions != null) {
+            connectionsToSave = getOtherConnectionsWithLocks(
+                    affectedPartitions, connection);
+        } else {
+            connectionsToSave = getOtherDirtyConnectionsInProject(connection);
+        }
 
-	return connectionsToSave;
+        return connectionsToSave;
     }
 
     /**
@@ -870,80 +931,84 @@ public final class ConnectionManager {
      * currently in the responsibility of the tools that created them.
      */
     private final class ProjectListener implements IResourceChangeListener {
-	public void resourceChanged(final IResourceChangeEvent event) {
-	    final int eventType = event.getType();
-	    // use post change events here to give tools the chance to do
-	    // their disposal with a connection still alive
-	    if (IResourceChangeEvent.POST_CHANGE == eventType) {
-		try {
-		    final IResourceDelta delta = event.getDelta();
-		    if (delta == null) {
-			return;
-		    }
-		    delta.accept(new IResourceDeltaVisitor() {
-			public boolean visit(final IResourceDelta delta) throws CoreException {
-			    final IResource resource = delta.getResource();
-			    if (!(resource instanceof IProject)) {
-				return true;
-			    }
-			    final IProject project = ((IProject) resource);
-			    final int kind = delta.getKind();
-			    final int flags = delta.getFlags();
-			    final boolean deleted = (kind & IResourceDelta.REMOVED) != 0;
-			    final boolean closed = (flags & IResourceDelta.OPEN) != 0 && !project.isAccessible();
-			    if (deleted || closed) {
-				/*
-				 * A synchronous call to getDefaultConnection()
-				 * in this resource listener could produce a
-				 * deadlock if another thread is in the middle
-				 * of creating this connection, which currently
-				 * requires the workspace lock (Moin refreshes
-				 * resources on session creation). This lock
-				 * cannot be obtained since this thread holds it
-				 * while notifying our listener. Fix is to
-				 * decouple things with an asychronous
-				 * submission of the connection closing.
-				 */
-				new DefaultConnectionCloser(resource.getProject()).schedule();
-				return false;
-			    }
-			    return true;
-			}
-		    });
-		} catch (final CoreException e) {
-		    MiFwkPlugin.logError(e, ConnectionManager.sTracer);
-		}
-	    }
-	}
+        public void resourceChanged(final IResourceChangeEvent event) {
+            final int eventType = event.getType();
+            // use post change events here to give tools the chance to do
+            // their disposal with a connection still alive
+            if (IResourceChangeEvent.POST_CHANGE == eventType) {
+                try {
+                    final IResourceDelta delta = event.getDelta();
+                    if (delta == null) {
+                        return;
+                    }
+                    delta.accept(new IResourceDeltaVisitor() {
+                        public boolean visit(final IResourceDelta delta)
+                                throws CoreException {
+                            final IResource resource = delta.getResource();
+                            if (!(resource instanceof IProject)) {
+                                return true;
+                            }
+                            final IProject project = ((IProject) resource);
+                            final int kind = delta.getKind();
+                            final int flags = delta.getFlags();
+                            final boolean deleted = (kind & IResourceDelta.REMOVED) != 0;
+                            final boolean closed = (flags & IResourceDelta.OPEN) != 0
+                                    && !project.isAccessible();
+                            if (deleted || closed) {
+                                /*
+                                 * A synchronous call to getDefaultConnection()
+                                 * in this resource listener could produce a
+                                 * deadlock if another thread is in the middle
+                                 * of creating this connection, which currently
+                                 * requires the workspace lock (Moin refreshes
+                                 * resources on session creation). This lock
+                                 * cannot be obtained since this thread holds it
+                                 * while notifying our listener. Fix is to
+                                 * decouple things with an asychronous
+                                 * submission of the connection closing.
+                                 */
+                                new DefaultConnectionCloser(resource
+                                        .getProject()).schedule();
+                                return false;
+                            }
+                            return true;
+                        }
+                    });
+                } catch (final CoreException e) {
+                    MiFwkPlugin.logError(e, ConnectionManager.sTracer);
+                }
+            }
+        }
     }
 
     private final class DefaultConnectionCloser extends Job {
-	private final IProject mProject;
+        private final IProject mProject;
 
-	private DefaultConnectionCloser(final IProject currentProject) {
-	    super("Close default connection for " + currentProject); //$NON-NLS-1$
-	    setSystem(true);
-	    this.mProject = currentProject;
-	}
+        private DefaultConnectionCloser(final IProject currentProject) {
+            super("Close default connection for " + currentProject); //$NON-NLS-1$
+            setSystem(true);
+            this.mProject = currentProject;
+        }
 
-	@Override
-	protected IStatus run(final IProgressMonitor monitor) {
-	    // It's ok if the project already is deleted/closed here,
-	    // next call returns the connection anyway.
-	    final Connection defConnection = getDefaultConnection(this.mProject, false);
-	    if (defConnection != null) {
-		closeConnection(defConnection);
-	    }
-	    return Status.OK_STATUS;
-	}
+        @Override
+        protected IStatus run(final IProgressMonitor monitor) {
+            // It's ok if the project already is deleted/closed here,
+            // next call returns the connection anyway.
+            final Connection defConnection = getDefaultConnection(
+                    this.mProject, false);
+            if (defConnection != null) {
+                closeConnection(defConnection);
+            }
+            return Status.OK_STATUS;
+        }
 
-	/**
-	 * To support testing
-	 */
-	@Override
-	public boolean belongsTo(final Object family) {
-	    return ConnectionManager.JOB_FAMILY_CLOSE_CONNECTION.equals(family);
-	}
+        /**
+         * To support testing
+         */
+        @Override
+        public boolean belongsTo(final Object family) {
+            return ConnectionManager.JOB_FAMILY_CLOSE_CONNECTION.equals(family);
+        }
     }
 
     /**
@@ -956,34 +1021,39 @@ public final class ConnectionManager {
      * @param excludeCreations
      * @return the partition operations
      */
-    public Collection<PartitionOperation> getPartitionsToBeSaved(final Connection connection, final boolean excludeCreations) {
-	final List<PartitionOperation> result = new ArrayList<PartitionOperation>();
-	final Collection<ModelPartition> partitionsToBeSaved = connection.getPartitionsToBeSaved();
-	for (final ModelPartition modelPartition : partitionsToBeSaved) {
-	    final PRI pri = modelPartition.getPri();
-	    final PartitionOperation.Operation operation = getPartitionOperation(modelPartition);
-	    if (excludeCreations && (operation == PartitionOperation.Operation.CREATE)) {
-		// partition is newly created => ignore it
-	    } else {
-		result.add(new PartitionOperation(operation, pri));
-	    }
-	}
-	return result;
+    public Collection<PartitionOperation> getPartitionsToBeSaved(
+            final Connection connection, final boolean excludeCreations) {
+        final List<PartitionOperation> result = new ArrayList<PartitionOperation>();
+        final Collection<ModelPartition> partitionsToBeSaved = connection
+                .getPartitionsToBeSaved();
+        for (final ModelPartition modelPartition : partitionsToBeSaved) {
+            final PRI pri = modelPartition.getPri();
+            final PartitionOperation.Operation operation = getPartitionOperation(modelPartition);
+            if (excludeCreations
+                    && (operation == PartitionOperation.Operation.CREATE)) {
+                // partition is newly created => ignore it
+            } else {
+                result.add(new PartitionOperation(operation, pri));
+            }
+        }
+        return result;
     }
 
-    private PartitionOperation.Operation getPartitionOperation(final ModelPartition modelPartition) {
-	PartitionOperation.Operation operation;
-	if (!modelPartition.isAlive()) {
-	    // model partition is dirty deleted
-	    operation = PartitionOperation.Operation.DELETE;
-	} else {
-	    final IFile file = ModelAdapter.getInstance().getFile(modelPartition.getPri());
-	    if (file != null) {
-		operation = PartitionOperation.Operation.EDIT;
-	    } else {
-		operation = PartitionOperation.Operation.CREATE;
-	    }
-	}
-	return operation;
+    private PartitionOperation.Operation getPartitionOperation(
+            final ModelPartition modelPartition) {
+        PartitionOperation.Operation operation;
+        if (!modelPartition.isAlive()) {
+            // model partition is dirty deleted
+            operation = PartitionOperation.Operation.DELETE;
+        } else {
+            final IFile file = ModelAdapter.getInstance().getFile(
+                    modelPartition.getPri());
+            if (file != null) {
+                operation = PartitionOperation.Operation.EDIT;
+            } else {
+                operation = PartitionOperation.Operation.CREATE;
+            }
+        }
+        return operation;
     }
 }

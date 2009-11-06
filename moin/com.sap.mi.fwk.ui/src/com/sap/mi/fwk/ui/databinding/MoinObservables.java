@@ -3,14 +3,6 @@ package com.sap.mi.fwk.ui.databinding;
 import java.util.List;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.Observables;
 import org.eclipse.core.databinding.observable.Realm;
@@ -32,6 +24,13 @@ import com.sap.tc.moin.repository.JmiHelper;
 import com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor;
 import com.sap.tc.moin.repository.mmi.descriptors.MetamodelElementDescriptor;
 import com.sap.tc.moin.repository.mmi.descriptors.StructuralFeatureDescriptor;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.Reference;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A factory for creating a MOIN observable.

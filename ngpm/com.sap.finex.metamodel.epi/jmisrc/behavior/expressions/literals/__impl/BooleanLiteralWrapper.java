@@ -24,6 +24,7 @@ public class BooleanLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.literals.__impl.BooleanLiteralImpl getCastWrappedObject() {
         return (behavior.expressions.literals.__impl.BooleanLiteralImpl) getWrappedObject();
     }
@@ -507,6 +508,7 @@ public class BooleanLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.BooleanLiteral> get___JmiInterface() {
         return behavior.expressions.literals.BooleanLiteral.class;
     }

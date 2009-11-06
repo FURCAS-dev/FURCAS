@@ -5,9 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
@@ -31,10 +30,10 @@ import com.sap.mi.tools.cockpit.mql.ui.search.selectionprovider.SelectionProvide
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mql.MQLColumnType;
 import com.sap.tc.moin.repository.mql.MQLResultException;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Instantiates {@link RefObject} from selected {@link MRI}, if it is element of a {@link IProject} with MOIN <code>nature</code>. Model
@@ -46,7 +45,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class ShowInModelBrowserAction extends Action {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private final static String SHOW_IN_MODEL_BROWSER_ACTION_LABEL = Messages.ShowInModelBrowserAction_0_xmit;
 
@@ -101,7 +100,7 @@ public final class ShowInModelBrowserAction extends Action {
 				part = wPage.showView(ShowInModelBrowserAction.MODEL_BROWSER_ID);
 			}
 			catch (final PartInitException e) {
-				ShowInModelBrowserAction.tracer.error(e.getMessage(), e);
+				ShowInModelBrowserAction.tracer.log(Level.SEVERE, e.getMessage(), e);
 				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 						ShowInModelBrowserAction.ERROR_DIALOG_TITLE, ShowInModelBrowserAction.ERROR_MESSAGE_PART_INIT_EXCEPTION);
 			}
@@ -148,7 +147,7 @@ public final class ShowInModelBrowserAction extends Action {
 				}
 			}
 			catch (final Exception e) {
-				ShowInModelBrowserAction.tracer.error(e.getMessage(), e);
+				ShowInModelBrowserAction.tracer.log(Level.SEVERE, e.getMessage(), e);
 				MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 						ShowInModelBrowserAction.ERROR_DIALOG_TITLE, ShowInModelBrowserAction.ERROR_MESSAGE_REFOBJECT_NOT_INSTANTIATED);
 			}

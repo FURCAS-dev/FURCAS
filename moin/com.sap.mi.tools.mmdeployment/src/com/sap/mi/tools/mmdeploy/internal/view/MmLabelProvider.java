@@ -8,14 +8,9 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.graphics.Image;
 
-import com.sap.ide.util.ui.image.IImageKey;
 import com.sap.mi.fwk.ui.mm.MetamodelManagerUI;
-import com.sap.mi.tools.mmdeploy.internal.MmDeploymentPlugin;
 import com.sap.mi.tools.mmdeploy.internal.messages.MmDeploymentMessages;
 import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
-import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentStatus;
-import com.tssap.util.ui.image.ISapImage;
-import com.tssap.util.ui.image.SapImage;
 
 /**
  * The label provider for the deployment view
@@ -85,42 +80,42 @@ class MmLabelProvider extends ColumnLabelProvider {
 	}
 
 	private Image getColumnImage(Object element, int index) {
-		if (element instanceof MmWorkingSetNode && index == 0) {
-			IImageKey imageName = MmDeploymentPlugin.IMAGE_NAME_WORKING_SET;
-			return MmDeploymentPlugin.getSharedImage(imageName);
-		} else if (element instanceof MmNode) {
-			MmNode node = ((MmNode) element);
-			MmDeploymentInfo metamodel = node.getMetamodel();
-			ISapImage imageKey = null;
-			switch (index) {
-				case 0:
-					MmDeploymentStatus status = metamodel.getStatus();
-					switch (status) {
-						case DEPLOYED:
-							imageKey = SapImage.ICON_LED_GREEN;
-							break;
-						case NOT_DEPLOYED:
-							imageKey = SapImage.ICON_LED_RED;
-							break;
-						case VERSION_DIFFER:
-							imageKey = SapImage.ICON_LED_RED;
-							break;
-						case ERROR_NOT_DEPLOYABLE:
-							imageKey = SapImage.ICON_LED_RED;
-							break;
-						case UNKNOWN:
-							imageKey = SapImage.ICON_LED_YELLOW;
-							break;
-						default:
-							imageKey = SapImage.ICON_LED_YELLOW;
-							break;
-					}
-				default:
-					break;
-			}
-			if (imageKey != null)
-				return MmDeploymentPlugin.getSharedImage(imageKey, mViewer.getControl());
-		}
+//		if (element instanceof MmWorkingSetNode && index == 0) {
+//			IImageKey imageName = MmDeploymentPlugin.IMAGE_NAME_WORKING_SET;
+//			return MmDeploymentPlugin.getSharedImage(imageName);
+//		} else if (element instanceof MmNode) {
+//			MmNode node = ((MmNode) element);
+//			MmDeploymentInfo metamodel = node.getMetamodel();
+//			ISapImage imageKey = null;
+//			switch (index) {
+//				case 0:
+//					MmDeploymentStatus status = metamodel.getStatus();
+//					switch (status) {
+//						case DEPLOYED:
+//							imageKey = SapImage.ICON_LED_GREEN;
+//							break;
+//						case NOT_DEPLOYED:
+//							imageKey = SapImage.ICON_LED_RED;
+//							break;
+//						case VERSION_DIFFER:
+//							imageKey = SapImage.ICON_LED_RED;
+//							break;
+//						case ERROR_NOT_DEPLOYABLE:
+//							imageKey = SapImage.ICON_LED_RED;
+//							break;
+//						case UNKNOWN:
+//							imageKey = SapImage.ICON_LED_YELLOW;
+//							break;
+//						default:
+//							imageKey = SapImage.ICON_LED_YELLOW;
+//							break;
+//					}
+//				default:
+//					break;
+//			}
+//			if (imageKey != null)
+//				return MmDeploymentPlugin.getSharedImage(imageKey, mViewer.getControl());
+//		}
 		return null;
 	}
 

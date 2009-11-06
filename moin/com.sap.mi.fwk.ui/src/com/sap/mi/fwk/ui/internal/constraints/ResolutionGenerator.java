@@ -3,6 +3,9 @@ package com.sap.mi.fwk.ui.internal.constraints;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
@@ -12,12 +15,10 @@ import org.eclipse.ui.IMarkerResolutionGenerator2;
 
 import com.sap.mi.fwk.MoinConstraintChecker;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 public class ResolutionGenerator implements IMarkerResolutionGenerator2 {
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_OCL);
+    private static final Logger sTracer = Logger.getLogger(MiLocations.MI_OCL);
 	
 	public boolean hasResolutions(IMarker marker) {
 		String violationID = marker.getAttribute(MoinConstraintChecker.ATT_VIOLATION_ID, null);
@@ -38,7 +39,7 @@ public class ResolutionGenerator implements IMarkerResolutionGenerator2 {
 							.createExecutableExtension(QuickfixManager.ATT_QUICKFIX_CLASS);
 					result.add(qf);
 				} catch (CoreException e) {
-					sTracer.error("Could not instantiate class", e); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Could not instantiate class", e); //$NON-NLS-1$
 				}
 			}
 			return result.toArray(new IMarkerResolution[result.size()]);

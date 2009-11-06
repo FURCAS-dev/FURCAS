@@ -1,10 +1,5 @@
 package com.sap.mi.tools.cockpit.editor.provider;
 
-import com.sap.tc.moin.repository.mmi.model.AliasType;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
-
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.DelegatingStyledCellLabelProvider.IStyledLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -31,6 +26,10 @@ import com.sap.mi.tools.cockpit.editor.model.RefPackageNode;
 import com.sap.mi.tools.cockpit.editor.model.StructureTypeNode;
 import com.sap.mi.tools.cockpit.editor.model.TypeNode;
 import com.sap.mi.tools.cockpit.editor.ui.MOINBrowserView;
+import com.sap.tc.moin.repository.mmi.model.AliasType;
+import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.model.StructureType;
+import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
 
 /**
  * Label provider for the {@link MOINBrowserView}. Assumes elements are instances of {@link ITreeNode}.

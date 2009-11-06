@@ -1,8 +1,7 @@
 package com.sap.mi.fwk.ui.tree.nodes;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * This interface is implemented by tree nodes which hold a value of type

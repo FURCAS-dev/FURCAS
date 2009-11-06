@@ -168,6 +168,7 @@ public final class ForeachImpl extends com.sap.tc.moin.repository.core.jmi.refle
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Foreach> get___JmiInterface() {
         return behavior.actions.Foreach.class;
     }

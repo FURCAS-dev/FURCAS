@@ -24,7 +24,6 @@ import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.fwk.PartitionService;
 import com.sap.mi.fwk.services.local.FileServices;
 import com.sap.mi.fwk.services.local.ZipService;
-import com.sap.mi.fwk.test.service.ProjectBasedTest;
 import com.sap.tc.moin.repository.Connection;
 
 /**

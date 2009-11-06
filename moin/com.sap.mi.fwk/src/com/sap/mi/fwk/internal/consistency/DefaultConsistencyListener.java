@@ -4,8 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -27,8 +28,7 @@ import com.sap.tc.moin.repository.consistency.DanglingLinkConsistencyViolation;
 import com.sap.tc.moin.repository.consistency.DuplicateElementConsistencyViolation;
 import com.sap.tc.moin.repository.consistency.DuplicateParentConsistencyViolation;
 import com.sap.tc.moin.repository.consistency.LinkPermissionConsistencyViolation;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Default listener for model inconsistencies.
@@ -39,7 +39,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class DefaultConsistencyListener implements ConsistencyListener {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_CONSISTENCY);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_CONSISTENCY);
 
 	private static final String ATTR_VIOLATION_ID = DefaultConsistencyListener.class.getName() + "violationid"; //$NON-NLS-1$
 	private static final String ATTR_RESOLUTION_ID = DefaultConsistencyListener.class.getName() + "resolutionid"; //$NON-NLS-1$
@@ -87,7 +87,7 @@ public final class DefaultConsistencyListener implements ConsistencyListener {
 		try {
 			workspace.run(operation, null);
 		} catch (final CoreException e) {
-			DefaultConsistencyListener.sTracer.error("Markers could not be deleted", e); //$NON-NLS-1$
+			DefaultConsistencyListener.sTracer.log(Level.SEVERE, "Markers could not be deleted", e); //$NON-NLS-1$
 		}
 	}
 
@@ -140,7 +140,7 @@ public final class DefaultConsistencyListener implements ConsistencyListener {
 		try {
 			workspace.run(operation, null);
 		} catch (final CoreException e) {
-			DefaultConsistencyListener.sTracer.error("Markers could not be created", e); //$NON-NLS-1$
+			DefaultConsistencyListener.sTracer.log(Level.SEVERE, "Markers could not be created", e); //$NON-NLS-1$
 		}
 	}
 

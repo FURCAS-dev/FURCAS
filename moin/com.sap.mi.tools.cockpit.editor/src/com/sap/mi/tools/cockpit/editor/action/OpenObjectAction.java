@@ -6,13 +6,13 @@ package com.sap.mi.tools.cockpit.editor.action;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Iterator;
 import java.util.List;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IContentProvider;
 import org.eclipse.jface.window.Window;
@@ -30,9 +30,7 @@ import com.sap.mi.tools.cockpit.editor.provider.MOINBrowserContentProvider;
 import com.sap.mi.tools.cockpit.editor.ui.MOINBrowserView;
 import com.sap.mi.tools.cockpit.editor.ui.dialog.select.SelectRefObjectDialog;
 import com.sap.tc.moin.repository.Partitionable;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456
@@ -40,7 +38,7 @@ import com.tssap.util.ui.dialog.ExtendedMessageDialog;
  */
 public class OpenObjectAction extends Action {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	private final static String CONTENT_PROVIDER_NULL_MSG = Messages.OpenObjectAction_0_xmsg;
 
@@ -85,21 +83,21 @@ public class OpenObjectAction extends Action {
 		final RefObjectNodeSearcher refObjectNodeSearcher = new RefObjectNodeSearcher(this.viewer);
 		if (conProv == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (OpenObjectAction.tracer.debug()) {
+			if (OpenObjectAction.tracer.isLoggable(Level.FINE)) {
 				msg = OpenObjectAction.CONTENT_PROVIDER_NULL_MSG;
 			}
-			ExtendedMessageDialog.showError(Display.getCurrent().getActiveShell(), OpenObjectAction.ERROR_DIALOG_TITLE,
-					OpenObjectAction.CONTENT_PROVIDER_NULL_MSG, null, new String[] { IDialogConstants.OK_LABEL });
-			OpenObjectAction.tracer.debug(RefObjectNodeSearcher.class, "findProjectRootNode", msg); //$NON-NLS-1$
+			ErrorDialog.openError(Display.getCurrent().getActiveShell(), OpenObjectAction.ERROR_DIALOG_TITLE,
+					OpenObjectAction.CONTENT_PROVIDER_NULL_MSG, null);
+			OpenObjectAction.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findProjectRootNode", msg); //$NON-NLS-1$
 		} else {
 			final List<ProjectRootNode> rootNodes = ((MOINBrowserContentProvider) conProv).getRootNodes();
 			try {
 				getOrCreateDefaultConnections(rootNodes);
 			}
 			catch (final Exception e) {
-				ExtendedMessageDialog.showError(Display.getCurrent().getActiveShell(), OpenObjectAction.ERROR_GET_OR_CREATE_CONNECTION, e
-						.getMessage(), null, new String[] { IDialogConstants.OK_LABEL }, e);
-				OpenObjectAction.tracer.error(OpenObjectAction.class, "run", OpenObjectAction.ERROR_GET_OR_CREATE_CONNECTION, e); //$NON-NLS-1$
+				ErrorDialog.openError(Display.getCurrent().getActiveShell(), OpenObjectAction.ERROR_GET_OR_CREATE_CONNECTION, e
+						.getMessage(), null);
+				OpenObjectAction.tracer.logp(Level.SEVERE, OpenObjectAction.class.getName(), "run", OpenObjectAction.ERROR_GET_OR_CREATE_CONNECTION, e); //$NON-NLS-1$
 			}
 
 			final SelectRefObjectDialog dialog = new SelectRefObjectDialog(Display.getCurrent().getActiveShell(), false, rootNodes);

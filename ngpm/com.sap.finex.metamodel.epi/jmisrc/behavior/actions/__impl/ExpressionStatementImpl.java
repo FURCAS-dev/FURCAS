@@ -176,6 +176,7 @@ public final class ExpressionStatementImpl extends com.sap.tc.moin.repository.co
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ExpressionStatement> get___JmiInterface() {
         return behavior.actions.ExpressionStatement.class;
     }

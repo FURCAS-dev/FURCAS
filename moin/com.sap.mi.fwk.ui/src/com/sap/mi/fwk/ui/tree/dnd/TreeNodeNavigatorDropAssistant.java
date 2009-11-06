@@ -3,8 +3,6 @@ package com.sap.mi.fwk.ui.tree.dnd;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -26,6 +24,7 @@ import com.sap.mi.fwk.ui.internal.dnd.DefaultTreeNodeTransfer;
 import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransferHandler.TransferOperationEnum;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * PROVISIONAL This API is subject to arbitrary change, including renaming or

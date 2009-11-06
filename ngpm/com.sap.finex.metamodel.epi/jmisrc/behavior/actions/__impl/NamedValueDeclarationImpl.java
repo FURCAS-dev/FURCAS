@@ -176,6 +176,7 @@ public final class NamedValueDeclarationImpl extends com.sap.tc.moin.repository.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.NamedValueDeclaration> get___JmiInterface() {
         return behavior.actions.NamedValueDeclaration.class;
     }

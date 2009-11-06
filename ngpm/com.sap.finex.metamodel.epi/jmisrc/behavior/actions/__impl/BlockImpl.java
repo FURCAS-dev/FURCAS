@@ -195,6 +195,7 @@ public final class BlockImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Block> get___JmiInterface() {
         return behavior.actions.Block.class;
     }

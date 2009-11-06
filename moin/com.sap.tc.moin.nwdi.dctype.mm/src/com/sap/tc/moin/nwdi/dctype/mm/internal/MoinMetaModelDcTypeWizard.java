@@ -20,7 +20,7 @@ import com.tssap.util.ui.dialog.UserDialog;
 
 public class MoinMetaModelDcTypeWizard extends NewMoinDcWizard {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MoinMetaModelDcTypeWizard.class);
+	private static final Logger stracer = Logger.getLogger(MoinMetaModelDcTypeWizard.class);
 
 	public MoinMetaModelDcTypeWizard() {
 		super( );
@@ -51,7 +51,7 @@ public class MoinMetaModelDcTypeWizard extends NewMoinDcWizard {
 			IProject project = DiiResourceService.getProject(getResultDc());
 			if (project == null) {
 				IllegalArgumentException e = new IllegalArgumentException("Project for new DC not found."); //$NON-NLS-X$ //$NON-NLS-1$
-				sTracer.error(e.getMessage(), e);
+				stracer.log(Level.SEVERE, e.getMessage(), e);
 				return false;
 			}
 			
@@ -79,7 +79,7 @@ public class MoinMetaModelDcTypeWizard extends NewMoinDcWizard {
 		if (bundle == null) {	
 			IllegalArgumentException e = new IllegalArgumentException("Bundle not found. Bundle name = " + //$NON-NLS-X$ //$NON-NLS-1$
 					bundleName);
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 				
@@ -88,7 +88,7 @@ public class MoinMetaModelDcTypeWizard extends NewMoinDcWizard {
 			classObject = bundle.loadClass(className);
 		}
 		catch (ClassNotFoundException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 		
@@ -99,19 +99,19 @@ public class MoinMetaModelDcTypeWizard extends NewMoinDcWizard {
 			result = constructor.newInstance(project);
 		}
 		catch (NoSuchMethodException e) {	
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 		catch (InstantiationException e) {	
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 		catch (InvocationTargetException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 		catch (IllegalAccessException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 			return null;
 		}
 		

@@ -2,7 +2,6 @@ package com.sap.mi.fwk.test.service;
 
 import junit.framework.TestSuite;
 
-import com.sap.ide.junit.extensions.PDETestSuite;
 
 /**
  * Test suite that calls {@link DisposableTest#dispose()} for all such tests
@@ -11,7 +10,7 @@ import com.sap.ide.junit.extensions.PDETestSuite;
  * 
  * @author d031150
  */
-public class DisposingTestSuite extends PDETestSuite {
+public class DisposingTestSuite extends TestSuite {
 
 	/**
 	 * @see TestSuite#TestSuite()
@@ -42,7 +41,7 @@ public class DisposingTestSuite extends PDETestSuite {
 	}
 
 	@Override
-	protected void suiteTearDown() throws Exception {
+	protected void tearDown() throws Exception {
 		try {
 			TestUtil.disposeTests(this);
 		} finally {

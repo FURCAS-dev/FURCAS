@@ -1,6 +1,7 @@
 package com.sap.mi.fwk.ui.resolution;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -16,8 +17,7 @@ import com.sap.mi.fwk.ui.internal.MiFwkUIPlugin;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.CommandHandle;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * A quickfix that executes a command. This class will be instantiated directly
@@ -29,7 +29,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class QuickfixCommand implements IMarkerResolution {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_OCL);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_OCL);
 
 	private RefBaseObject modelElement;
 	private IMarker marker;

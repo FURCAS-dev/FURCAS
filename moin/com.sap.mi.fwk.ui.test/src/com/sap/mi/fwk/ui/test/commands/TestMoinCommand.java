@@ -11,7 +11,7 @@ import com.tssap.util.trace.TracingManager;
 
 public class TestMoinCommand extends Command {
 
-    private static final TracerI sTracer = TracingManager.getTracer(TestMoinCommand.class);
+    private static final Logger stracer = Logger.getLogger(TestMoinCommand.class);
 
     private long cycles;
 
@@ -31,7 +31,7 @@ public class TestMoinCommand extends Command {
             try {
                 Thread.sleep(cycles);
             } catch (Exception e) {
-                sTracer.debug("Caught exception." + e);
+                stracer.log(Level.FINE, "Caught exception." + e);
             }
             System.out.println("done");
         }

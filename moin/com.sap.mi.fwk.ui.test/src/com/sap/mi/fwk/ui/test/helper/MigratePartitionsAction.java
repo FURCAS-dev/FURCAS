@@ -71,7 +71,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class MigratePartitionsAction extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MigratePartitionsAction.class);
+	private static final Logger stracer = Logger.getLogger(MigratePartitionsAction.class);
 
 	private final Set<IProject> mTmpProjects = new HashSet<IProject>(2);
 

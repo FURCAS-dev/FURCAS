@@ -7,6 +7,7 @@ Bundle-Activator: com.sap.mi.fwk.services.local.internal.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: com.sap.mi.fwk.services.local,com.sap.mi.fwk.services.local.help,com.sap.mi.fwk.services.local.ui
-Require-Bundle: org.eclipse.ui,com.tssap.util.ui,com.tssap.util.core,com.sap.ide.util.ui
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime;bundle-version="3.5.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

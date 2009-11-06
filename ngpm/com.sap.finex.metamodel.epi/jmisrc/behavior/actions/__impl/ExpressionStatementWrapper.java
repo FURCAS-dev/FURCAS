@@ -20,6 +20,7 @@ public class ExpressionStatementWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.ExpressionStatementImpl getCastWrappedObject() {
         return (behavior.actions.__impl.ExpressionStatementImpl) getWrappedObject();
     }
@@ -204,6 +205,7 @@ public class ExpressionStatementWrapper extends com.sap.tc.moin.repository.core.
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ExpressionStatement> get___JmiInterface() {
         return behavior.actions.ExpressionStatement.class;
     }

@@ -14,6 +14,7 @@ public class SubcomponentWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private runlettest.__impl.SubcomponentImpl getCastWrappedObject() {
         return (runlettest.__impl.SubcomponentImpl) getWrappedObject();
     }
@@ -85,6 +86,7 @@ public class SubcomponentWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.Subcomponent> get___JmiInterface() {
         return runlettest.Subcomponent.class;
     }

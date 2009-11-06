@@ -2,6 +2,10 @@ package com.sap.mi.fwk.internal.testers;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
+import org.eclipse.core.expressions.PropertyTester;
 
 import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
@@ -10,11 +14,6 @@ import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-
-import org.eclipse.core.expressions.PropertyTester;
-
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Property tester for various Moin/JMI-related expressions. See the constants
@@ -25,7 +24,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class MoinObjectPropertyTester extends PropertyTester {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MoinObjectPropertyTester.class);
+	private static final Logger sTracer = Logger.getLogger(MoinObjectPropertyTester.class.getName());
 
 	/**
 	 * A property indicating the immediate package of a {@link RefBaseObject}.
@@ -171,7 +170,7 @@ public class MoinObjectPropertyTester extends PropertyTester {
 				}
 				// exception for an unknown feature
 				catch (RuntimeException e) { // $JL-EXC$
-					sTracer.debug("Feature retrieval of '" + name + //$NON-NLS-1$
+					sTracer.fine("Feature retrieval of '" + name + //$NON-NLS-1$
 							"' for object '" + featured + //$NON-NLS-1$
 							"' failed: " + e.getMessage()); //$NON-NLS-1$
 				}
@@ -186,7 +185,7 @@ public class MoinObjectPropertyTester extends PropertyTester {
 			}
 			// exception for an unknown feature
 			catch (RuntimeException e) { // $JL-EXC$
-				sTracer.debug("Feature retrieval of '" + feature + //$NON-NLS-1$
+				sTracer.fine("Feature retrieval of '" + feature + //$NON-NLS-1$
 						"' for object '" + featured + //$NON-NLS-1$
 						"' failed: " + e.getMessage()); //$NON-NLS-1$
 			}

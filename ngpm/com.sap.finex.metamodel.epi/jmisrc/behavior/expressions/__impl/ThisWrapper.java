@@ -24,6 +24,7 @@ public class ThisWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.ThisImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.ThisImpl) getWrappedObject();
     }
@@ -456,6 +457,7 @@ public class ThisWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.This> get___JmiInterface() {
         return behavior.expressions.This.class;
     }

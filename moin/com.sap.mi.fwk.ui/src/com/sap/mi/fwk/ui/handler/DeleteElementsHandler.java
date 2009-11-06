@@ -14,9 +14,6 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -36,6 +33,8 @@ import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * (c) 2000 - 2009 SAP AG

@@ -1,11 +1,5 @@
 package com.sap.mi.fwk.ui.internal.databinding.observables;
 
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObserving;
@@ -27,6 +21,11 @@ import com.sap.tc.moin.repository.events.filter.AssociationFilter;
 import com.sap.tc.moin.repository.events.filter.AttributeFilter;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.filter.InstanceFilter;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Reference;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * An observable implementation that listens to changes of an {@link Attribute}

@@ -8,6 +8,9 @@ import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.IViewPart;
@@ -24,8 +27,6 @@ import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.mi.fwk.ui.internal.mm.MmElementFactory;
 import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
 import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentStatus;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * UI related services for Moin metamodels
@@ -46,7 +47,7 @@ public final class MetamodelManagerUI {
 	 */
 	public static final String ID_METAMODEL_WORKING_SET = "com.sap.mi.fwk.ui.metamodelWorkingSet"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DEPLOYTOOL);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_DEPLOYTOOL);
 	private static MetamodelManagerUI sInstance;
 
 	/**
@@ -82,7 +83,7 @@ public final class MetamodelManagerUI {
 				try {
 					return page.showView(ID_DEPLOY_VIEW);
 				} catch (PartInitException e) {
-					sTracer.error("Unable to open view " + ID_DEPLOY_VIEW, e); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Unable to open view " + ID_DEPLOY_VIEW, e); //$NON-NLS-1$
 				}
 			}
 		}

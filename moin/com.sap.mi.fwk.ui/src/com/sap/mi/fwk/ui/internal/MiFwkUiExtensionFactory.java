@@ -1,7 +1,5 @@
 package com.sap.mi.fwk.ui.internal;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.IConfigurationElement;
@@ -14,6 +12,7 @@ import com.sap.mi.fwk.commands.ICommandExecutor;
 import com.sap.mi.fwk.internal.uihook.IMiFwkOperationExecutor;
 import com.sap.mi.fwk.ui.CommandManager;
 import com.sap.mi.fwk.ui.properties.RefObjectPropertySourceManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Creates extensions for the UI plugin. Currently used to create

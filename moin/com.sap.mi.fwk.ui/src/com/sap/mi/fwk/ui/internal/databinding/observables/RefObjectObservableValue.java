@@ -3,9 +3,6 @@ package com.sap.mi.fwk.ui.internal.databinding.observables;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 
@@ -18,6 +15,8 @@ import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
 import com.sap.tc.moin.repository.exception.UnrecoverableExecutionException;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * {@inheritDoc} This implementation performs the actual model modification

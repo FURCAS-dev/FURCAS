@@ -3,6 +3,9 @@ package com.sap.mi.fwk.ui.internal;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.FileLocator;
@@ -22,8 +25,6 @@ import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.tc.moin.repository.Moin;
 import com.sap.tc.moin.repository.cdam.ide.IdeCompoundDataAreaManager;
 import com.sap.tc.moin.repository.ide.MoinFactory;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * The plugin class
@@ -32,7 +33,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class MiFwkUIPlugin extends AbstractUIPlugin {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_TOOLMODELING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_TOOLMODELING);
 
 	public static final String PLUGIN_ID = "com.sap.mi.fwk.ui"; //$NON-NLS-1$ 
 	public static final String IMAGE_ID_PROPERTIES = "properties";//$NON-NLS-1$ 
@@ -69,7 +70,7 @@ public final class MiFwkUIPlugin extends AbstractUIPlugin {
 			Bundle bundle = getDefault().getBundle(); // 
 			installURL = FileLocator.resolve(bundle.getEntry("/")); //$NON-NLS-1$
 		} catch (IOException e) {
-			sTracer.error("Exception during initializeImageRegistry", e); //$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Exception during initializeImageRegistry", e); //$NON-NLS-1$
 			return;
 		}
 
@@ -83,7 +84,7 @@ public final class MiFwkUIPlugin extends AbstractUIPlugin {
 			registry.put(HOURGLAS_IMAGE, ImageDescriptor.createFromURL(new URL(installURL,
 					"resources/icons/hourClass.gif"))); //$NON-NLS-1$
 		} catch (MalformedURLException e) {
-			sTracer.error("Exception during initializeImageRegistry", e); //$NON-NLS-1$
+		    sTracer.log(Level.SEVERE, "Exception during initializeImageRegistry", e); //$NON-NLS-1$
 		}
 	}
 
@@ -123,27 +124,27 @@ public final class MiFwkUIPlugin extends AbstractUIPlugin {
 		return ErrorHandling.createStatus(severity, code, message, exception, PLUGIN_ID);
 	}
 
-	public static IStatus showErrorDialog(Throwable e, String message, String title, TracerI tracer) {
+	public static IStatus showErrorDialog(Throwable e, String message, String title, Logger tracer) {
 		return ErrorHandling.showError(message, e, title, tracer, PLUGIN_ID);
 	}
 
-	public static IStatus showErrorDialog(IStatus status, String title, TracerI tracer) {
+	public static IStatus showErrorDialog(IStatus status, String title, Logger tracer) {
 		return ErrorHandling.showStatus(status, title, tracer, PLUGIN_ID);
 	}
 
-	public static void logError(Throwable e, TracerI tracer) {
+	public static void logError(Throwable e, Logger tracer) {
 		logError(e.getMessage(), e, tracer);
 	}
 
-	public static void logError(String message, Throwable e, TracerI tracer) {
+	public static void logError(String message, Throwable e, Logger tracer) {
 		ErrorHandling.logError(message, e, tracer, PLUGIN_ID);
 	}
 
-	public static void logWarning(String message, TracerI tracer) {
+	public static void logWarning(String message, Logger tracer) {
 		logStatus(createStatus(IStatus.WARNING, message, null), tracer);
 	}
 
-	public static void logStatus(IStatus status, TracerI tracer) {
+	public static void logStatus(IStatus status, Logger tracer) {
 		ErrorHandling.logStatus(status, tracer, PLUGIN_ID);
 	}
 

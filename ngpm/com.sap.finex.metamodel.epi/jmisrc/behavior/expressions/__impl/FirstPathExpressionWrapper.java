@@ -24,6 +24,7 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.FirstPathExpressionImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.FirstPathExpressionImpl) getWrappedObject();
     }
@@ -544,6 +545,7 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.FirstPathExpression> get___JmiInterface() {
         return behavior.expressions.FirstPathExpression.class;
     }

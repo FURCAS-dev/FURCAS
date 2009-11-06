@@ -24,6 +24,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -45,22 +47,20 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.osgi.util.NLS;
 
-import com.sap.mi.fwk.dcfwk.DCHelper;
-import com.sap.mi.fwk.dcfwk.MoinProject;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.sap.tc.moin.nwdi.dctype.mm.MoinMetaModelDcType;
 import com.sap.tc.moin.repository.ide.MoinFactory;
 import com.sap.tc.moin.repository.ide.metamodels.MmExecutableInfo;
 import com.sap.tc.moin.repository.ide.metamodels.MmGenerationBaseInfo;
 import com.sap.tc.moin.repository.ide.metamodels.MmGenerationInfo;
 import com.sap.tc.moin.repository.ide.metamodels.MmGenerator;
 import com.sap.tc.moin.repository.metamodels.MetaModelCatalog;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 public final class MetamodelBuilder extends IncrementalProjectBuilder {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_METAMODELBUILDER);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_METAMODELBUILDER);
+	
+	public static final String PROPERTY_NAME_FACILITY_NAME = "facilityName"; //$NON-NLS-1$
+	public static final String PROPERTY_NAME_METAMODEL_VERSION = "metamodelVersion"; //$NON-NLS-1$
 
 	static class XMIFileFinder implements IResourceVisitor, IResourceDeltaVisitor {
 
@@ -221,7 +221,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 							.getProperty(MmGenerator.CONTAINER));
 					additionalMetamodelsToConsider.add(baseInfo);
 				} else {
-					MetamodelBuilder.sTracer.error("Invalid project: " + project.getName()); // TODO//$NON-NLS-1$
+					MetamodelBuilder.stracer.log(Level.SEVERE, "Invalid project: " + project.getName()); // TODO//$NON-NLS-1$
 				}
 			}
 		}
@@ -260,7 +260,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 					new MmGenerationInfo(metamodelPartitionFilesSourcePath, metamodelPartitionFiles, srcFolder, outputLocation,
 							buildFileProperties, generateMof, ignoreMetamodelChecks), additionalMetamodelsToConsider);
 		} catch (final Exception e) {
-			sTracer.error("Exception during jmi java file generation", e); //$NON-NLS-1$
+			stracer.log(Level.SEVERE, "Exception during jmi java file generation", e); //$NON-NLS-1$
 		}
 
 		// TODO remove by christmas eve
@@ -297,30 +297,30 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 		final IFolder moinFolder = getTargetMoinFolder(project);
 		if (moinFolder != null) {
 			final IProject moinProject = moinFolder.getProject();
-			Properties dcInfo = DCHelper.getInstance().getDCInfo(moinProject);
-			if (dcInfo != null) {
-        			String name = (String) dcInfo.get(DCHelper.NAME);
-        			String vendor = (String) dcInfo.get(DCHelper.VENDOR);
-        
-        			String facility = DCHelper.getInstance().getDCProperty(moinProject, MoinProject.PROP_MOIN_NAMESPACE,
-        					MoinMetaModelDcType.PROPERTY_NAME_FACILITY_NAME);
-        			if (facility == null) {
-        				facility = "PF"; //$NON-NLS-1$
-        			}
-        			String metamodelVersion = DCHelper.getInstance().getDCProperty(moinProject, MoinProject.PROP_MOIN_NAMESPACE,
-        					MoinMetaModelDcType.PROPERTY_NAME_METAMODEL_VERSION);
-        			if (metamodelVersion == null) {
-        				metamodelVersion = "1.0"; //$NON-NLS-1$
-        			}
-        
-        			buildFileProperties = new Properties();
-        			buildFileProperties.put(MmGenerator.CONTAINER, vendor + "/" + name); //$NON-NLS-1$
-        			buildFileProperties.put(MmGenerator.DC_DESCRIPTION, dcInfo.get(DCHelper.DESCRIPTION));
-        			buildFileProperties.put(MmGenerator.DC_NAME, name);
-        			buildFileProperties.put(MmGenerator.DC_VENDOR, vendor);
-        			buildFileProperties.put(MmGenerator.FACILITY_NAME, facility);
-        			buildFileProperties.put(MmGenerator.DC_VERSION, metamodelVersion);
-			}
+//			Properties dcInfo = DCHelper.getInstance().getDCInfo(moinProject);
+//			if (dcInfo != null) {
+//        			String name = (String) dcInfo.get(DCHelper.NAME);
+//        			String vendor = (String) dcInfo.get(DCHelper.VENDOR);
+//        
+//        			String facility = DCHelper.getInstance().getDCProperty(moinProject, MoinProject.PROP_MOIN_NAMESPACE,
+//        					PROPERTY_NAME_FACILITY_NAME);
+//        			if (facility == null) {
+//        				facility = "PF"; //$NON-NLS-1$
+//        			}
+//        			String metamodelVersion = DCHelper.getInstance().getDCProperty(moinProject, MoinProject.PROP_MOIN_NAMESPACE,
+//        					PROPERTY_NAME_METAMODEL_VERSION);
+//        			if (metamodelVersion == null) {
+//        				metamodelVersion = "1.0"; //$NON-NLS-1$
+//        			}
+//        
+//        			buildFileProperties = new Properties();
+//        			buildFileProperties.put(MmGenerator.CONTAINER, vendor + "/" + name); //$NON-NLS-1$
+//        			buildFileProperties.put(MmGenerator.DC_DESCRIPTION, dcInfo.get(DCHelper.DESCRIPTION));
+//        			buildFileProperties.put(MmGenerator.DC_NAME, name);
+//        			buildFileProperties.put(MmGenerator.DC_VENDOR, vendor);
+//        			buildFileProperties.put(MmGenerator.FACILITY_NAME, facility);
+//        			buildFileProperties.put(MmGenerator.DC_VERSION, metamodelVersion);
+//			}
 		}
 
 		return buildFileProperties;
@@ -534,7 +534,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 							.getProperty(MmGenerator.CONTAINER));
 					additionalMetamodelsToConsider.add(baseInfo);
 				} else {
-					MetamodelBuilder.sTracer.error(""); //$NON-NLS-1$ //TODO
+					MetamodelBuilder.stracer.log(Level.SEVERE, ""); //$NON-NLS-1$ //TODO
 				}
 			}
 		}
@@ -581,7 +581,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 	// manifest = new Manifest(is);
 	//
 	// } catch (Exception e) {
-	//			sTracer.error("Error while reading manifest file", e);//$NON-NLS-1$
+	//			stracer.log(Level.SEVERE, "Error while reading manifest file", e);//$NON-NLS-1$
 	// // if manifest cannot be parsed, it makes no sense to continue
 	// return;
 	// } finally {
@@ -589,7 +589,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 	// try {
 	// is.close();
 	// } catch (IOException e) {
-	//					sTracer.error("Error while closing input stream");//$NON-NLS-1$
+	//					stracer.log(Level.SEVERE, "Error while closing input stream");//$NON-NLS-1$
 	// }
 	// }
 	// }
@@ -617,7 +617,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 	// IStatus status = ResourcesPlugin.getWorkspace().validateEdit(new IFile[]
 	// { manifestFile }, null);
 	// if (!status.isOK()) {
-	//					sTracer.error("Metamodelbuilder: Manifest file could not be checked out"); //$NON-NLS-1$
+	//					stracer.log(Level.SEVERE, "Metamodelbuilder: Manifest file could not be checked out"); //$NON-NLS-1$
 	// return;
 	// }
 	//
@@ -638,7 +638,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 	// }
 	//
 	// } catch (Exception e) {
-	//			sTracer.error("Error while setting export entry in manifest", e);//$NON-NLS-1$
+	//			stracer.log(Level.SEVERE, "Error while setting export entry in manifest", e);//$NON-NLS-1$
 	// }
 	// }
 
@@ -846,7 +846,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 	// }
 	// }
 	// } catch (CoreException e) {
-	//					sTracer.error("MetamodelBuilder: error while getting folder members", e); //$NON-NLS-1$
+	//					stracer.log(Level.SEVERE, "MetamodelBuilder: error while getting folder members", e); //$NON-NLS-1$
 	// }
 	// }
 	// return true;

@@ -8,7 +8,6 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.swt.graphics.Image;
 
-import com.sap.ap.metamodel.formatter.StringFormatter;
 import com.sap.ide.treeprovider.GenericRefObjectNode;
 import com.sap.ide.treeprovider.TextLabelProvider;
 import com.sap.ide.treeprovider.internal.Activator;
@@ -17,9 +16,6 @@ import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
 import com.sap.mi.fwk.ui.tree.provider.TreeNodeLabelProvider;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
-import data.classes.Signature;
-import data.classes.TypeDefinition;
 
 /**
  * Provides images and texts for the tree nodes. By default, the

@@ -64,6 +64,7 @@ public final class ASubRunletTestImpl extends com.sap.tc.moin.repository.core.jm
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.ASubRunletTest> get___JmiInterface() {
         return runlettest.ASubRunletTest.class;
     }

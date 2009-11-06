@@ -65,7 +65,7 @@ public final class SimpleViewEditor extends ModelMultiPageEditorPart {
 
 	private static boolean sErrorOnSelectionChange;
 
-	private static final TracerI sTracer = TracingManager.getTracer(SimpleViewEditor.class);
+	private static final Logger stracer = Logger.getLogger(SimpleViewEditor.class);
 
 	private ModelEditorInput mModelEditorInput;
 	private View mView;
@@ -280,7 +280,7 @@ public final class SimpleViewEditor extends ModelMultiPageEditorPart {
 	private void registerChangeListeners() {
 		ModelPartition viewPartition = ((Partitionable) mView).get___Partition();
 		if (viewPartition == null) {
-			sTracer.error("could not get View partition");
+			stracer.log(Level.SEVERE, "could not get View partition");
 			return;
 		}
 		// reigister listener for external changes on the view (e.g. save in

@@ -125,6 +125,7 @@ public class ASubRunletTestWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.ASubRunletTest> get___JmiInterface() {
         return runlettest.ASubRunletTest.class;
     }

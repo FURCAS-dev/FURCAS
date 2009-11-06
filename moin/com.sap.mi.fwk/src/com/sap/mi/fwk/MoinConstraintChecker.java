@@ -6,9 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
@@ -31,12 +31,12 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.notification.DeferredConstraintViolationStatus;
 import com.sap.tc.moin.repository.ocl.notification.DeferredConstraintViolationStatusItem;
 import com.sap.tc.moin.repository.ocl.registry.OclRegistrationCategory;
 import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Checks the OCL expressions and the consistency for a given project
@@ -65,7 +65,7 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 	 */
 	public static final String ATT_VIOLATION_ID = "com.sap.mi.fwk.MoinConstraintChecker.violationID"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_OCL);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_OCL);
 
 	private static final Object mutex = new Object();
 
@@ -155,7 +155,7 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 			try {
 				delta.accept(visitor);
 			} catch (final CoreException e) {
-				MoinConstraintChecker.sTracer.error("MOIN Constraint checker encountered a problem while reading resources", e); //$NON-NLS-1$
+				MoinConstraintChecker.sTracer.log(Level.SEVERE, "MOIN Constraint checker encountered a problem while reading resources", e); //$NON-NLS-1$
 				return null;
 			}
 			monitor.worked(1);
@@ -176,7 +176,7 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 		try {
 			isMetaModelProject = getProject().isNatureEnabled(MOIN_META_MODEL_NATURE_ID);
 		} catch (CoreException e1) {
-			sTracer.error("Project nature could not be determined: " + getProject(), e1); //$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Project nature could not be determined: " + getProject(), e1); //$NON-NLS-1$
 			return null;
 		}
 
@@ -223,14 +223,14 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 					createMarkers(status.getAll(), monitor);
 
 				} catch (Exception e) {
-					sTracer.error("Error while checking OCL constraints", e); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Error while checking OCL constraints", e); //$NON-NLS-1$
 				}
 			}
 		}
 		monitor.worked(1);
 
-		if (MoinConstraintChecker.sTracer.debug()) {
-			MoinConstraintChecker.sTracer.debug("Checker [" + this + "] project [" //$NON-NLS-2$ // //$NON-NLS-1$ 
+		if (MoinConstraintChecker.sTracer.isLoggable(Level.FINE)) {
+			MoinConstraintChecker.sTracer.fine("Checker [" + this + "] project [" //$NON-NLS-2$ // //$NON-NLS-1$ 
 					+ project.getName() + "]: " //$NON-NLS-1$  
 					+ (System.nanoTime() - startTime) + 1000000f + "ms"); //$NON-NLS-1$ 
 		}
@@ -339,18 +339,18 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 		synchronized (MoinConstraintChecker.mutex) {
 			if (MoinConstraintChecker.conn == null || !MoinConstraintChecker.conn.isAlive()) {
 				if (project == null || !project.isAccessible()) {
-					sTracer.error("Project must not be null and must be open"); //$NON-NLS-1$
+					sTracer.severe("Project must not be null and must be open"); //$NON-NLS-1$
 					return;
 				}
 				try {
 					MoinConstraintChecker.conn = ModelManager.getConnectionManager().createConnection(project);
 					if (MoinConstraintChecker.conn == null) {
-						MoinConstraintChecker.sTracer.error("Constraint checker connection could not be retrieved. project:" + project); //$NON-NLS-1$
+						MoinConstraintChecker.sTracer.severe("Constraint checker connection could not be retrieved. project:" + project); //$NON-NLS-1$
 						return;
 					}
 					MoinConstraintChecker.conn.setLabel("Background constraint checker"); //$NON-NLS-1$
 				} catch (Exception e) {
-					sTracer.error(
+					sTracer.log(Level.SEVERE,
 							"Connection to MOIN could not be created. Maybe project is not a MOIN project. Consult error log for details.", //$NON-NLS-1$
 							e);
 					MoinConstraintChecker.conn = null;
@@ -365,7 +365,7 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 	@Deprecated
 	public IMarker[] checkElements(final Collection<RefObject> objects, final IProgressMonitor monitor) {
 		RuntimeException e = new RuntimeException();
-		sTracer.error("Method has been deprecated.", e); //$NON-NLS-1$
+		sTracer.log(Level.SEVERE,"Method has been deprecated.", e); //$NON-NLS-1$
 		return EMPTY_MARKER_ARRAY;
 	}
 
@@ -436,7 +436,7 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 						provider = (IOCLCategoryProvider) configurationElement.createExecutableExtension("class"); //$NON-NLS-1$
 						providers.add(provider);
 					} catch (Throwable t) {
-						sTracer.error("OCL Constraint checker: Category provider not instantiated: " + configurationElement, t); //$NON-NLS-1$
+						sTracer.log(Level.SEVERE, "OCL Constraint checker: Category provider not instantiated: " + configurationElement, t); //$NON-NLS-1$
 					}
 				}
 			}
@@ -454,7 +454,7 @@ public class MoinConstraintChecker extends IncrementalProjectBuilder {
 						result.addAll(currentCats);
 					}
 				} catch (Throwable t) {
-					sTracer.error("OCL Constraint checker: Categroy provider threw an exception.", t); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "OCL Constraint checker: Categroy provider threw an exception.", t); //$NON-NLS-1$
 				}
 			}
 			return result;

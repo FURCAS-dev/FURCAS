@@ -38,7 +38,7 @@ public class TestTarjansLCA {
 		lca.lca(p[0], q);
 
 		// dump results
-		assertEquals(2, q.get(0).result);
+		assertEquals(2, (int)q.get(0).result);
 
 	}
 
@@ -107,10 +107,10 @@ public class TestTarjansLCA {
 //		}
 
 		Iterator<SearchSet<Integer>> it = q.iterator();
-		assertEquals(0, it.next().result);
-		assertEquals(10, it.next().result);
-		assertEquals(14, it.next().result);
-		assertEquals(0, it.next().result);
-		assertEquals(3, it.next().result);
+		assertEquals(0, (int)it.next().result);
+		assertEquals(10, (int)it.next().result);
+		assertEquals(14, (int)it.next().result);
+		assertEquals(0, (int)it.next().result);
+		assertEquals(3, (int)it.next().result);
 	}
 }

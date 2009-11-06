@@ -24,6 +24,7 @@ public class BinaryBooleanOperatorWrapper extends com.sap.tc.moin.repository.cor
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.BinaryBooleanOperatorImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.BinaryBooleanOperatorImpl) getWrappedObject();
     }
@@ -595,6 +596,7 @@ public class BinaryBooleanOperatorWrapper extends com.sap.tc.moin.repository.cor
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.BinaryBooleanOperator> get___JmiInterface() {
         return behavior.expressions.BinaryBooleanOperator.class;
     }

@@ -337,6 +337,7 @@ public final class NotImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Not> get___JmiInterface() {
         return behavior.expressions.Not.class;
     }

@@ -29,8 +29,8 @@ public class PrettyPrintContextTest {
 		assertEquals(1, dup.getTypeLast());
 
 		assertEquals(2, dup.getPriorities().size());
-		assertEquals(8, dup.getPriorities().pop());
-		assertEquals(4, dup.getPriorities().pop());
+		assertEquals(8, (int)dup.getPriorities().pop());
+		assertEquals(4, (int)dup.getPriorities().pop());
 
 		assertEquals(2, dup.getCurrentSeparator().size());
 		assertEquals("ee", dup.getCurrentSeparator().pop());

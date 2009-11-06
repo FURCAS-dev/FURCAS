@@ -14,7 +14,7 @@ import org.eclipse.ui.views.properties.PropertyDescriptor;
  */
 public final class ModelElementAttributePropertySource implements IPropertySource2 {
 
-	//private static final TracerI sTracer = TracingManager.getTracer(AttributePropertySource.class);
+	//private static final Logger stracer = Logger.getLogger(AttributePropertySource.class);
 	
 	private final String[][] mAttributes;
 

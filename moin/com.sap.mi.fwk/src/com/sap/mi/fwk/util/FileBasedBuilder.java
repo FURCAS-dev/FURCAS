@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -17,8 +20,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 
 import com.sap.mi.fwk.internal.MiFwkPlugin;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Base class for a builder that provides file-based processing hooks rather
@@ -31,7 +32,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class FileBasedBuilder extends IncrementalProjectBuilder {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI);
 
 	/**
 	 * @return the file extensions this builder wants to process. Files with
@@ -107,8 +108,8 @@ public abstract class FileBasedBuilder extends IncrementalProjectBuilder {
 	 */
 	protected void processFull(IProgressMonitor monitor) throws CoreException {
 		IFile[] files = getAllFiles();
-		if (sTracer.debug())
-			sTracer.debug("Process all resources [value<" + Arrays.toString(files) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
+		if (sTracer.isLoggable(Level.FINE))
+			sTracer.fine("Process all resources [value<" + Arrays.toString(files) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
 
 		if (files.length > 0)
 			processFilesWithChangedContent(files, monitor);
@@ -155,8 +156,8 @@ public abstract class FileBasedBuilder extends IncrementalProjectBuilder {
 	private IProject[] doBuild(int kind, Map args, IProgressMonitor monitor) throws CoreException {
 
 		long startTime = 0L;
-		if (sTracer.debug()) {
-			sTracer.debug("Builder started"); //$NON-NLS-1$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.fine("Builder started"); //$NON-NLS-1$
 			startTime = System.nanoTime();
 		}
 
@@ -179,26 +180,26 @@ public abstract class FileBasedBuilder extends IncrementalProjectBuilder {
 			IFile[] deletedFiles = visitor.getDeletedFiles();
 			try {
 				if (movedFilesNew.length > 0) {
-					if (sTracer.debug())
-						sTracer.debug("Process moved resources [value<" + Arrays.toString(movedFilesNew) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
+					if (sTracer.isLoggable(Level.FINE))
+						sTracer.fine("Process moved resources [value<" + Arrays.toString(movedFilesNew) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
 					processMovedFiles(movedFilesOld, movedFilesNew, monitor);
 				}
 
 				if (changedFiles.length > 0) {
-					if (sTracer.debug())
-						sTracer.debug("Process changed resources [value<" + Arrays.toString(changedFiles) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
+					if (sTracer.isLoggable(Level.FINE))
+						sTracer.fine("Process changed resources [value<" + Arrays.toString(changedFiles) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
 					processFilesWithChangedContent(changedFiles, monitor);
 				}
 
 				if (addedFiles.length > 0) {
-					if (sTracer.debug())
-						sTracer.debug("Process added resources [value<" + Arrays.toString(addedFiles) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
+					if (sTracer.isLoggable(Level.FINE))
+						sTracer.fine("Process added resources [value<" + Arrays.toString(addedFiles) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
 					processAddedFiles(addedFiles, monitor);
 				}
 
 				if (deletedFiles.length > 0) {
-					if (sTracer.debug())
-						sTracer.debug("Process deleted resources [value<" + Arrays.toString(deletedFiles) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
+					if (sTracer.isLoggable(Level.FINE))
+						sTracer.fine("Process deleted resources [value<" + Arrays.toString(deletedFiles) + ">]"); //$NON-NLS-1$ //$NON-NLS-2$
 					processDeletedFiles(deletedFiles, monitor);
 				}
 
@@ -206,8 +207,8 @@ public abstract class FileBasedBuilder extends IncrementalProjectBuilder {
 				MiFwkPlugin.logError(e, sTracer);
 			} finally {
 				monitor.done();
-				if (sTracer.debug()) {
-					sTracer.debug("Builder finished [" + getClass().getName() + "] project [" + project.getName() //$NON-NLS-1$ //$NON-NLS-2$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.fine("Builder finished [" + getClass().getName() + "] project [" + project.getName() //$NON-NLS-1$ //$NON-NLS-2$
 							+ "]: " + (System.nanoTime() - startTime) / 1000000f + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}

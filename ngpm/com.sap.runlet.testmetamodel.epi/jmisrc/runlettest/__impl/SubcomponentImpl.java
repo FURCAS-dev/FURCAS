@@ -120,6 +120,7 @@ public final class SubcomponentImpl extends com.sap.tc.moin.repository.core.jmi.
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.Subcomponent> get___JmiInterface() {
         return runlettest.Subcomponent.class;
     }

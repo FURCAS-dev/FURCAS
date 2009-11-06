@@ -3,8 +3,8 @@ package com.sap.mi.tools.cockpit.editor.ui;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -71,8 +71,7 @@ import com.sap.mi.tools.cockpit.editor.provider.MOINBrowserContentProvider;
 import com.sap.mi.tools.cockpit.editor.provider.MOINBrowserLabelProvider;
 import com.sap.mi.tools.cockpit.editor.ui.listener.ModelBrowserDragSourceListener;
 import com.sap.mi.tools.cockpit.editor.ui.listener.ModelBrowserDropListener;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456
@@ -82,7 +81,7 @@ public class MOINBrowserView extends ViewPart implements ISelectionListener {
 
 	public static final String ID = MOINBrowserView.class.getName();
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	private static final String SEARCH_VIEW_ID = "org.eclipse.search.ui.views.SearchView"; //$NON-NLS-1$
 
@@ -423,10 +422,10 @@ public class MOINBrowserView extends ViewPart implements ISelectionListener {
 			final RefObject refObject = (RefObject) ((IStructuredSelection) selection).getFirstElement();
 			final PropertyHelper helper = new PropertyHelper();
 			String msg = ""; //$NON-NLS-1$
-			if (MOINBrowserView.tracer.debug()) {
+			if (MOINBrowserView.tracer.isLoggable(Level.FINE)) {
 				msg = MOINBrowserView.SEARCH_START + helper.getQualifiedName(refObject);
 			}
-			MOINBrowserView.tracer.debug(MOINBrowserView.class, "selectionChanged", msg); //$NON-NLS-1$
+			MOINBrowserView.tracer.logp(Level.FINE, MOINBrowserView.class.getName(), "selectionChanged", msg); //$NON-NLS-1$
 
 			// reveal RefObject, otherwise display message
 			if (!this.refObjectNodeSearcher.revealRefObjectNodeinModelTree(refObject)) {
@@ -434,7 +433,7 @@ public class MOINBrowserView extends ViewPart implements ISelectionListener {
 				final String name = helper.getQualifiedName(refObject);
 				final String msgPattern = Messages.MOINBrowserView_3_xmsg;
 				msg = MessageFormat.format(msgPattern, new Object[] { name });
-				MOINBrowserView.tracer.debug(MOINBrowserView.class, "selectionChanged", msg); //$NON-NLS-1$
+				MOINBrowserView.tracer.logp(Level.FINE, MOINBrowserView.class.getName(), "selectionChanged", msg); //$NON-NLS-1$
 				MessageDialog.openInformation(getTreeViewer().getControl().getShell(), MOINBrowserView.DIALOG_TITLE_NOT_REVEALED, msg);
 			}
 		}

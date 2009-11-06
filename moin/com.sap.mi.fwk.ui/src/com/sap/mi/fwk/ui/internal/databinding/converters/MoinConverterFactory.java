@@ -1,10 +1,10 @@
 package com.sap.mi.fwk.ui.internal.databinding.converters;
 
+import org.eclipse.core.databinding.conversion.IConverter;
+
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.EnumerationType;
 import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-
-import org.eclipse.core.databinding.conversion.IConverter;
 
 public class MoinConverterFactory {
 	private MoinConverterFactory() {

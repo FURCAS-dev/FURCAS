@@ -2,14 +2,13 @@ package com.sap.mi.fwk.ui.dnd;
 
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.IAdapterManager;
 import org.eclipse.core.runtime.OperationCanceledException;
 
 import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
 import com.sap.tc.moin.repository.ModelPartition;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Protocol for custom operation on the set of objects while they are

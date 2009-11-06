@@ -12,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.ICommand;
 import org.eclipse.core.resources.IContainer;
@@ -118,7 +119,7 @@ public final class MoinProject {
 	// hardcoded to avoid dependency to com.sap.mi.fwk plugin
 	private static final String OCL_CONSTRAINT_CHECKER_ID = "com.sap.mi.fwk.MoinConstraintChecker"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MoinProject.class);
+	private static final Logger stracer = Logger.getLogger(MoinProject.class.getName());
 	private static final String VENDOR_DEFAULT = VENDOR_SAP;
 	private static final String NAME_LOCAL_DEV_CONFIG = "LocalDevelopment"; //$NON-NLS-1$
 	private static final String NAME_LOCAL_SC = "MyComponents"; //$NON-NLS-1$
@@ -1573,7 +1574,7 @@ public final class MoinProject {
 	}
 
 	private static void logFolderRemoval(IPath p1, IPath p2) {
-		sTracer.error("Nested MOIN folders found: '" + p1.toOSString() + //$NON-NLS-1$
+		stracer.log(Level.SEVERE, "Nested MOIN folders found: '" + p1.toOSString() + //$NON-NLS-1$
 				"' and '" + p2.toOSString() +  //$NON-NLS-1$
 				"'. Only the outermost folder will be set for the new DC. " +  //$NON-NLS-1$
 				"This indicates an error in the DC type definition; " +  //$NON-NLS-1$
@@ -1776,14 +1777,14 @@ public final class MoinProject {
 				MoinFolderInfo[] existingFolders = MoinProject.getMoinFolders(mProject);
 				Collection<MoinFolderInfo> condensedExistingFolders = condenseFolders(existingFolders);
 				if (existingFolders.length != condensedExistingFolders.size()) {
-					sTracer.error("Found overlaps in the already existing folder definitions for '" + //$NON-NLS-1$
+					stracer.log(Level.SEVERE, "Found overlaps in the already existing folder definitions for '" + //$NON-NLS-1$
 							mProject.getName() + "'. For details see the errors logged directly before this entry."); //$NON-NLS-1$
 				}
 				// Check new folders for overlaps
 				MoinFolderInfo[] newFolders = mOptions.getFolders();
 				Collection<MoinFolderInfo> condensedNewFolders = condenseFolders(newFolders);
 				if (newFolders.length != condensedNewFolders.size()) {
-					sTracer.error("Found overlaps in the new folder definitions for '" + //$NON-NLS-1$
+					stracer.log(Level.SEVERE, "Found overlaps in the new folder definitions for '" + //$NON-NLS-1$
 							mProject.getName() + "'. For details see the errors logged directly before this entry."); //$NON-NLS-1$
 				}
 				// Check combination for overlaps
@@ -1794,7 +1795,7 @@ public final class MoinProject {
 				allFolders = allFoldersCollection.toArray(allFolders);
 				Collection<MoinFolderInfo> condensedAllFolders = condenseFolders(allFolders);
 				if (allFolders.length != condensedAllFolders.size()) {
-					sTracer.error("Found overlaps in the combination of already existing and new folder definitions for '" + //$NON-NLS-1$
+					stracer.log(Level.SEVERE, "Found overlaps in the combination of already existing and new folder definitions for '" + //$NON-NLS-1$
 							mProject.getName() + "'. For details see the errors logged directly before this entry."); //$NON-NLS-1$
 				}
 				// Add the folders anyway

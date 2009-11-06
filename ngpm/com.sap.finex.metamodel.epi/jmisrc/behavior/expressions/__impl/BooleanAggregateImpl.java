@@ -337,6 +337,7 @@ public final class BooleanAggregateImpl extends com.sap.tc.moin.repository.core.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.BooleanAggregate> get___JmiInterface() {
         return behavior.expressions.BooleanAggregate.class;
     }

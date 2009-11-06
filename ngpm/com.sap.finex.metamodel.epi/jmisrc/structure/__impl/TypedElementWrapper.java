@@ -19,6 +19,7 @@ public class TypedElementWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private structure.__impl.TypedElementImpl getCastWrappedObject() {
         return (structure.__impl.TypedElementImpl) getWrappedObject();
     }
@@ -134,6 +135,7 @@ public class TypedElementWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.TypedElement> get___JmiInterface() {
         return structure.TypedElement.class;
     }

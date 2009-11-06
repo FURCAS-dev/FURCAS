@@ -24,6 +24,7 @@ public class LiteralWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.literals.__impl.LiteralImpl getCastWrappedObject() {
         return (behavior.expressions.literals.__impl.LiteralImpl) getWrappedObject();
     }
@@ -507,6 +508,7 @@ public class LiteralWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.Literal> get___JmiInterface() {
         return behavior.expressions.literals.Literal.class;
     }

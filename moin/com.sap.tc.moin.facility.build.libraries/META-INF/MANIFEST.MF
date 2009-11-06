@@ -6,4 +6,10 @@ Bundle-Version: 2.0.0.090422151846
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: com.sap.tc.moin.facility.primary.ipi.diservice.build,com.sap.tc.moin.facility.primary.build,.,com.sap.tc.moin.facility.primary.diservice.build.impl
-Require-Bundle: com.tssap.ext.libs.j2ee,com.sap.base.technology.facade,com.sap.tc.moin.libraries.api,com.sap.tc.moin.libraries.spi,com.sap.tc.moin.libraries.base,com.sap.tc.moin.facility.primary.libraries.api,com.sap.tc.moin.facility.primary.libraries,com.sap.tc.moin.libraries.spi.internal,com.sap.tc.moin.facility.primary.libraries.fs
+Require-Bundle: com.sap.tc.moin.libraries.api,
+ com.sap.tc.moin.libraries.spi,
+ com.sap.tc.moin.libraries.base,
+ com.sap.tc.moin.facility.primary.libraries.api,
+ com.sap.tc.moin.facility.primary.libraries,
+ com.sap.tc.moin.libraries.spi.internal,
+ com.sap.tc.moin.facility.primary.libraries.fs

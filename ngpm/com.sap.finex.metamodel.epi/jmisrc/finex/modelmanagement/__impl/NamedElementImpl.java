@@ -120,6 +120,7 @@ public final class NamedElementImpl extends com.sap.tc.moin.repository.core.jmi.
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<finex.modelmanagement.NamedElement> get___JmiInterface() {
         return finex.modelmanagement.NamedElement.class;
     }

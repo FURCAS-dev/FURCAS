@@ -24,6 +24,7 @@ public class CountWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.CountImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.CountImpl) getWrappedObject();
     }
@@ -500,6 +501,7 @@ public class CountWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Count> get___JmiInterface() {
         return behavior.expressions.Count.class;
     }

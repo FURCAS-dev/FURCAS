@@ -1,6 +1,9 @@
 package com.sap.mi.fwk.ui.editor;
 
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.operations.IOperationApprover;
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -71,8 +74,6 @@ import com.sap.tc.moin.repository.events.type.PartitionChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionDeleteEvent;
 import com.sap.tc.moin.repository.events.type.PartitionSaveEvent;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Implementation of {@link IModelEditor}. Additionally contains public methods with standard
@@ -86,7 +87,7 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
     private static final String DECORATOR_ID = TreeNodeDecorator.DECORATOR_ID;
     private static final String JOB_FAMILY_CLOSE_CONNECTION = "com.sap.mi.fwk.ui.jobs.CloseConnection"; //$NON-NLS-1$
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+    private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
     private Connection mConnection;
     private boolean mUseExternalConnection;
@@ -717,9 +718,9 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
 
         public void notifyUpdate(EventChain eventChain) {
             final IEditorPart part = ModelEditor.this.getEditorPart();
-            if (sTracer.debug()) {
+            if (sTracer.isLoggable(Level.FINE)) {
                 String editorName = part.getTitle();
-                sTracer.debug("Delete listener called of editor " //$NON-NLS-1$
+                sTracer.fine("Delete listener called of editor " //$NON-NLS-1$
                     + editorName + " with events " + eventChain.getEvents());//$NON-NLS-1$
             }
 
@@ -746,9 +747,9 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
                         if (obj == null || !((Partitionable) obj).is___Alive()) {
                             // object is gone so try to close
                             final IWorkbenchPage page = site.getPage();
-                            if (sTracer.debug()) {
+                            if (sTracer.isLoggable(Level.FINE)) {
                                 String editorName = part.getTitle();
-                                sTracer.debug("Closing editor " + editorName); //$NON-NLS-1$
+                                sTracer.fine("Closing editor " + editorName); //$NON-NLS-1$
                             }
                             page.closeEditor(part, false);
                         }
@@ -767,9 +768,9 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
 
         public void notifyUpdate(EventChain events) {
             doUpdate();
-            if (sTracer.debug()) {
+            if (sTracer.isLoggable(Level.FINE)) {
                 String editorName = mEditorPart != null ? mEditorPart.getTitle() : "<disposed>"; //$NON-NLS-1$
-                sTracer.debug("Update listener called of editor " //$NON-NLS-1$
+                sTracer.fine("Update listener called of editor " //$NON-NLS-1$
                     + editorName + " with events " + events.getEvents()); //$NON-NLS-1$
             }
         }
@@ -851,9 +852,9 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
 
         public void notifyUpdate(EventChain eventChain) {
             final IEditorPart part = ModelEditor.this.getEditorPart();
-            if (sTracer.debug()) {
+            if (sTracer.isLoggable(Level.FINE)) {
                 String editorName = part.getTitle();
-                sTracer.debug("PartitionContentChange listener called of editor " //$NON-NLS-1$
+                sTracer.fine("PartitionContentChange listener called of editor " //$NON-NLS-1$
                     + editorName + " with events " + eventChain.getEvents());//$NON-NLS-1$
             }
 
@@ -874,9 +875,9 @@ public class ModelEditor extends PlatformObject implements IModelEditor {
                         if (shell.isDisposed()) {
                             return; // disposed
                         }
-                        if (sTracer.debug()) {
+                        if (sTracer.isLoggable(Level.FINE)) {
                             String editorName = part.getTitle();
-                            sTracer.debug("Refreshing editor " + editorName); //$NON-NLS-1$
+                            sTracer.fine("Refreshing editor " + editorName); //$NON-NLS-1$
                         }
                         // We only propagate the new input for editors of type
                         // ModelFormEditorPart as Moin Databinding adapter does

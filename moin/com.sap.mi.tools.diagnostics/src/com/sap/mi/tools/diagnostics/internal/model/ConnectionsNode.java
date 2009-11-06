@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.ObjectName;
 
@@ -11,8 +13,6 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.diagnostics.internal.MoinJmxClient;
 import com.sap.mi.tools.diagnostics.internal.messages.DiagnosticsMessages;
 import com.sap.tc.moin.repository.jmx.ConnectionMBean;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Represents the structural "Connections" node
@@ -21,7 +21,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class ConnectionsNode extends StructureNode {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 
 	private final MoinJmxClient mClient;
 
@@ -68,7 +68,7 @@ public class ConnectionsNode extends StructureNode {
 				}
 			}
 			catch (IOException e) {
-				sTracer.error(e.getMessage(), e);
+				stracer.log(Level.SEVERE, e.getMessage(), e);
 			}
 		}
 		return mConnectionNodes.values().toArray(new Object[mConnectionNodes.size()]);

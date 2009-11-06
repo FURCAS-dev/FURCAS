@@ -6,5 +6,8 @@ Bundle-Version: 1.0.0.090422162124
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: com.sap.tc.moin.js.query.service.client
-Require-Bundle: com.sap.tc.moin.libraries.api,com.sap.tc.moin.libraries.base,com.sap.tc.moin.libraries.core,com.sap.tc.moin.libraries.spi.internal,com.sap.engine.webservices.nw07,com.sap.ext.libs.webservices.jee5.api,com.sap.ext.jaxb
+Require-Bundle: com.sap.tc.moin.libraries.api,
+ com.sap.tc.moin.libraries.base,
+ com.sap.tc.moin.libraries.core,
+ com.sap.tc.moin.libraries.spi.internal
 Bundle-ActivationPolicy: lazy

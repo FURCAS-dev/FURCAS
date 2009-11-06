@@ -303,6 +303,7 @@ public final class DateLiteralImpl extends com.sap.tc.moin.repository.core.jmi.r
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.DateLiteral> get___JmiInterface() {
         return behavior.expressions.literals.DateLiteral.class;
     }

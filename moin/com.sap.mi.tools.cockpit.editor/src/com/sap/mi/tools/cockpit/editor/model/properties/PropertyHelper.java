@@ -6,6 +6,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.JmiHelper;
+import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.EnumerationType;
@@ -15,11 +19,6 @@ import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
 
 /**
  * @author d003456

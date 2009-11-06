@@ -20,6 +20,7 @@ public class ParameterWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.functions.__impl.ParameterImpl getCastWrappedObject() {
         return (behavior.functions.__impl.ParameterImpl) getWrappedObject();
     }
@@ -373,6 +374,7 @@ public class ParameterWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.Parameter> get___JmiInterface() {
         return behavior.functions.Parameter.class;
     }

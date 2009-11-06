@@ -1,6 +1,8 @@
 package com.sap.mi.fwk.ui.properties;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.views.properties.tabbed.AdvancedPropertySection;
@@ -14,8 +16,7 @@ import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.filter.EventTypeFilter;
 import com.sap.tc.moin.repository.events.filter.OrFilter;
 import com.sap.tc.moin.repository.events.type.ElementChangeEvent;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * An advanced property section for the tabbed property sheet showing all
@@ -26,7 +27,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class DefaultPropertySection extends AdvancedPropertySection {
 
-	private static final TracerI sTracer = TracingManager.getTracer(DefaultPropertySection.class);
+	private static final Logger sTracer = Logger.getLogger(DefaultPropertySection.class.getName());
 
 	private UpdateListener dirtyChangeListener;
 
@@ -38,7 +39,7 @@ public final class DefaultPropertySection extends AdvancedPropertySection {
 			if (connection != null && connection.isAlive()) {
 				connection.getSession().getEventRegistry().deregister(dirtyChangeListener);
 			} else {
-				sTracer.error(DefaultPropertySection.class, "aboutToBeHidden", //$NON-NLS-1$
+				sTracer.logp(Level.SEVERE, DefaultPropertySection.class.getName(), "aboutToBeHidden", //$NON-NLS-1$
 						"Connection was null or not alive. connection:" + connection + ", editor:" + editor); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}

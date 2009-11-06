@@ -24,6 +24,7 @@ public class BooleanAggregateWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.BooleanAggregateImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.BooleanAggregateImpl) getWrappedObject();
     }
@@ -551,6 +552,7 @@ public class BooleanAggregateWrapper extends com.sap.tc.moin.repository.core.jmi
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.BooleanAggregate> get___JmiInterface() {
         return behavior.expressions.BooleanAggregate.class;
     }

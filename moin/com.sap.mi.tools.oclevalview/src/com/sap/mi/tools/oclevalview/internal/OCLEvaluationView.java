@@ -4,11 +4,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.MessageFormat;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
@@ -43,10 +38,12 @@ import org.eclipse.ui.views.navigator.LocalSelectionTransfer;
 
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
-import com.sap.mi.gfw.mm.pictograms.PictogramElement;
-import com.sap.mi.gfw.util.LinkUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.ocl.exceptions.ParsingException;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 import com.sap.tc.moin.repository.ocl.freestyle.OclFreestyleRegistry;
@@ -420,9 +417,10 @@ public final class OCLEvaluationView extends ViewPart {
 			this.txtProject.setText(""); //$NON-NLS-1$
 		} else {
 
-			if (refBaseObj instanceof PictogramElement && this.checkbox.getSelection()) {
-				refBaseObj = LinkUtil.getBusinessObjectForLinkedPictogramElement((PictogramElement) refBaseObj);
-			}
+		    //TODO uncomment if GFW is added again
+//			if (refBaseObj instanceof PictogramElement && this.checkbox.getSelection()) {
+//				refBaseObj = LinkUtil.getBusinessObjectForLinkedPictogramElement((PictogramElement) refBaseObj);
+//			}
 
 			this.m1Object.setData(refBaseObj);
 			this.m1Object.setText(refBaseObj.toString());

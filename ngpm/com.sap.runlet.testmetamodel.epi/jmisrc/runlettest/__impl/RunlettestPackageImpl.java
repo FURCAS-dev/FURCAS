@@ -71,6 +71,7 @@ public final class RunlettestPackageImpl extends com.sap.tc.moin.repository.core
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.RunlettestPackage> get___JmiInterface() {
         return runlettest.RunlettestPackage.class;
     }
@@ -79,7 +80,9 @@ public final class RunlettestPackageImpl extends com.sap.tc.moin.repository.core
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -105,7 +108,9 @@ public final class RunlettestPackageImpl extends com.sap.tc.moin.repository.core
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(1);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_sub_runletTest"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "runlettest.ASubRunletTest"); //$NON-NLS-1$

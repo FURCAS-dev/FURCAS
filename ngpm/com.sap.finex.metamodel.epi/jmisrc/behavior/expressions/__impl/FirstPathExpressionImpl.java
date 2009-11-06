@@ -332,6 +332,7 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.FirstPathExpression> get___JmiInterface() {
         return behavior.expressions.FirstPathExpression.class;
     }

@@ -131,6 +131,7 @@ public final class StructurePackageImpl extends com.sap.tc.moin.repository.core.
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.StructurePackage> get___JmiInterface() {
         return structure.StructurePackage.class;
     }
@@ -139,7 +140,9 @@ public final class StructurePackageImpl extends com.sap.tc.moin.repository.core.
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -177,7 +180,9 @@ public final class StructurePackageImpl extends com.sap.tc.moin.repository.core.
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(8);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_defaultValue_defaultOf"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "structure.ADefaultValueDefaultOf"); //$NON-NLS-1$

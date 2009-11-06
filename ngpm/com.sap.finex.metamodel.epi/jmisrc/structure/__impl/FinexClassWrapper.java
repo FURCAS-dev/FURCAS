@@ -19,6 +19,7 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private structure.__impl.FinexClassImpl getCastWrappedObject() {
         return (structure.__impl.FinexClassImpl) getWrappedObject();
     }
@@ -330,6 +331,7 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.FinexClass> get___JmiInterface() {
         return structure.FinexClass.class;
     }

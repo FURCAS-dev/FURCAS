@@ -1,14 +1,16 @@
 package com.sap.mi.fwk.dcfwk.internal;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * The activator class for plugin <code>com.sap.mi.fwk.dcfwk</code>
@@ -40,13 +42,13 @@ public final class DcFwkPlugin extends AbstractUIPlugin {
 		return plugin;
 	}
 
-	public static void logError(Throwable e, TracerI tracer) {
+	public static void logError(Throwable e, Logger tracer) {
 		logError(e.getMessage(), e, tracer);
 	}
 	
-	public static void logError(String message, Throwable e, TracerI tracer) {
+	public static void logError(String message, Throwable e, Logger tracer) {
 		if (tracer != null)
-			tracer.error(message != null ? message : e.getMessage(), e);
+			tracer.log(Level.SEVERE, message != null ? message : e.getMessage(), e);
 		else
 			getDefault().getLog().log(createStatus(IStatus.ERROR, message, e));
 	}
@@ -66,11 +68,11 @@ public final class DcFwkPlugin extends AbstractUIPlugin {
 		return status;
 	}
 	
-	public static IStatus showErrorDialog(Throwable e, String message, String title, TracerI tracer) {
+	public static IStatus showErrorDialog(Throwable e, String message, String title, Logger tracer) {
 		IStatus status = createStatus(IStatus.ERROR, message, e);
-		ExtendedMessageDialog.showStatus(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-				title != null ? title : "Internal Error", status.getMessage(), null, //$NON-NLS-1$
-				new String[] { IDialogConstants.OK_LABEL }, status);
+		ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+				title != null ? title : "Internal Error", status.getMessage(), null //$NON-NLS-1$
+			 );
 		return status;
 	}
 

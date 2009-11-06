@@ -3,7 +3,7 @@ package com.sap.mi.tools.cockpit.editor.action;
 import org.eclipse.core.commands.IHandler;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
@@ -12,7 +12,6 @@ import org.eclipse.ui.handlers.IHandlerService;
 
 import com.sap.mi.fwk.ui.handler.DeleteElementsHandler;
 import com.sap.mi.tools.cockpit.editor.Messages;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * @author d003456
@@ -61,8 +60,8 @@ public class DeleteRefObjectAction extends Action {
 			this.handlerService.deactivateHandler(activation);
 		}
 		catch (final Exception e) {
-			ExtendedMessageDialog.showError(Display.getCurrent().getActiveShell(), DeleteRefObjectAction.ERROR_MSG_DELETE, e.getMessage(),
-					null, new String[] { IDialogConstants.OK_LABEL }, e);
+			ErrorDialog.openError(Display.getCurrent().getActiveShell(), DeleteRefObjectAction.ERROR_MSG_DELETE, e.getMessage(),
+					null);
 		}
 	}
 }

@@ -209,6 +209,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ExpressionsPackage> get___JmiInterface() {
         return behavior.expressions.ExpressionsPackage.class;
     }
@@ -217,7 +218,9 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(1);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "literals"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "behavior.expressions.literals.LiteralsPackage", false); //$NON-NLS-1$
@@ -315,7 +318,9 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(6);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_left_leftOf"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.expressions.ALeftLeftOf"); //$NON-NLS-1$

@@ -2,6 +2,8 @@ package com.sap.mi.fwk.ui.internal.mm;
 
 import java.io.IOException;
 import java.util.Collection;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
@@ -14,8 +16,6 @@ import com.sap.mi.fwk.ui.internal.MiFwkUIPlugin;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.mi.fwk.ui.mm.MetamodelManagerUI;
 import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Property source for {@link MmDeploymentInfo} objects
@@ -24,7 +24,7 @@ import com.tssap.util.trace.TracingManager;
  */
 final class MmPropertySource implements IPropertySource2 {
 
-    private static final TracerI sTracer = TracingManager.getTracer( MmPropertySource.class );
+    private static final Logger sTracer = Logger.getLogger( MmPropertySource.class.getName() );
 
     private static final String ID_NAME = "label"; //$NON-NLS-1$
 

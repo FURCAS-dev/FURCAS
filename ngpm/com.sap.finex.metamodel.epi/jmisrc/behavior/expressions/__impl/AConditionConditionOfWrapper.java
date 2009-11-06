@@ -125,6 +125,7 @@ public class AConditionConditionOfWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AConditionConditionOf> get___JmiInterface() {
         return behavior.expressions.AConditionConditionOf.class;
     }

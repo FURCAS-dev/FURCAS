@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.logging.Logger;
 
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
@@ -81,7 +82,7 @@ public final class TestUtil {
 	public static final String PP_NAME_COMPILTATION_MM_TEXTVERTICALIZATION = "MM_Comp"; //$NON-NLS-1$
 
 	// TODO use constant: currently defined in MiLocations.MI_PROJECTS
-	private static final TracerI sTracerProjects = TracingManager.getTracer("com.sap.moin.tooldevelopment.mie.projects"); //$NON-NLS-1$
+	private static final Logger sTracerProjects = Logger.getLogger("com.sap.moin.tooldevelopment.mie.projects"); //$NON-NLS-1$
 
 	/**
 	 * Constant defining the length of the string starting at <pos> and provided

@@ -13,6 +13,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -98,8 +101,6 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Accessor facility for editors based on Moin objects. Operations like opening
@@ -110,7 +111,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class ModelEditorManager {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
 	private static final String EXT_POINT_EDITORS_LEGACY = MiFwkUIPlugin.PLUGIN_ID + ".editorregistry"; //$NON-NLS-1$
 	private static final String ELEM_ADDITIONAL_EDITOR = "additionalEditor";//$NON-NLS-1$
@@ -143,7 +144,7 @@ public final class ModelEditorManager {
 					"Attribute values (only primitive ones)", sCompositeEditorDescription, new String[] { "EditorID" }); //$NON-NLS-1$ //$NON-NLS-2$
 		} catch (OpenDataException e) {
 			// never throw exceptions in static initializer
-			sTracer.error(e.getMessage(), e);
+			sTracer.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 
@@ -392,8 +393,8 @@ public final class ModelEditorManager {
 				}
 			}
 
-			if (sTracer.debug()) {
-				sTracer.debug("ModelEditorManager.openEditor", "Opening editor: " + part); //$NON-NLS-1$ //$NON-NLS-2$
+			if (sTracer.isLoggable(Level.FINE)) {
+				sTracer.logp(Level.FINE, "ModelEditorManager", "openEditor", "Opening editor: " + part); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			return part;
 		}
@@ -478,7 +479,7 @@ public final class ModelEditorManager {
 			try {
 				ps.busyCursorWhile(operation);
 			} catch (Exception e) {
-				sTracer.error("Editor input could not be created", e); //$NON-NLS-1$
+				sTracer.log(Level.SEVERE, "Editor input could not be created", e); //$NON-NLS-1$
 				throw new RuntimeException(e);
 			}
 
@@ -654,7 +655,7 @@ public final class ModelEditorManager {
 						input = (ModelEditorInput) editorInput;
 					}
 				} catch (PartInitException e) {
-					sTracer.error("Error closing editor. " + editor, e);//$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Error closing editor. " + editor, e);//$NON-NLS-1$
 					return false;
 				}
 				if (input != null && object.equals(input.getRefObject())) {
@@ -760,8 +761,8 @@ public final class ModelEditorManager {
 		if (dialog.open() == Window.OK) {
 			if (dialog.getToggleState()) {
 				EditorSavePreferencesHelper.getInstance().setEditorSaveState(false);
-				if (sTracer.debug()) {
-					sTracer.debug("ModelEditorManager.openEditorSaveDialog", "Save dialog disabled by user"); //$NON-NLS-1$ //$NON-NLS-2$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.logp(Level.FINE, "ModelEditorManager", "openEditorSaveDialog", "Save dialog disabled by user"); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 			return true;
@@ -903,7 +904,7 @@ public final class ModelEditorManager {
 			try {
 				mEditorRegistryBean = new EditorRegistryMBeanImpl().getObjectName();
 			} catch (NotCompliantMBeanException e) {
-				sTracer.error(ModelEditorManager.class, "init", "MBean not registered", e); //$NON-NLS-1$ //$NON-NLS-2$
+				sTracer.logp(Level.SEVERE, ModelEditorManager.class.getName(), "init", "MBean not registered", e); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 
@@ -927,7 +928,7 @@ public final class ModelEditorManager {
 				try {
 					bean.delete();
 				} catch (Exception e) {
-					sTracer.error("Bean not unregistered. bean:" + bean, e); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Bean not unregistered. bean:" + bean, e); //$NON-NLS-1$
 				}
 			}
 			mBeanRegistry.clear();
@@ -983,7 +984,7 @@ public final class ModelEditorManager {
 				MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
 				mBeanServer.unregisterMBean(sInstance.mEditorRegistryBean);
 			} catch (Exception e) {
-				sTracer.error("Bean not unregistered. bean:" + sInstance.mEditorRegistryBean, e); //$NON-NLS-1$
+				sTracer.log(Level.SEVERE, "Bean not unregistered. bean:" + sInstance.mEditorRegistryBean, e); //$NON-NLS-1$
 			}
 			sInstance.mEditorRegistryBean = null;
 		}
@@ -998,8 +999,8 @@ public final class ModelEditorManager {
 		// sInstance.mPartListener = null;
 		// }
 
-		if (sTracer.debug()) {
-			sTracer.debug("ModelEditorManager.dispose", "Model Editor Manager disposed"); //$NON-NLS-1$ //$NON-NLS-2$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.logp(Level.FINE, "ModelEditorManager", "dispose", "Model Editor Manager disposed"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		sInstance = null;
 	}
@@ -1544,7 +1545,7 @@ public final class ModelEditorManager {
 					try {
 						input = ref.getEditorInput();
 					} catch (PartInitException e) {
-						sTracer.error("Editor input not retrieved", e); //$NON-NLS-1$
+						sTracer.log(Level.SEVERE, "Editor input not retrieved", e); //$NON-NLS-1$
 						return false;
 					}
 					IProject project = (IProject) input.getAdapter(IProject.class);

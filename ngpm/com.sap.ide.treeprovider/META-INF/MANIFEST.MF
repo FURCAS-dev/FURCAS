@@ -13,7 +13,6 @@ Require-Bundle: org.eclipse.ui,
  com.sap.mi.fwk,
  com.sap.tc.moin.ide.facade,
  org.eclipse.ui.navigator,
- com.sap.ap.metamodel.core;bundle-version="0.0.4",
  com.sap.mi.tools.cockpit.editor;bundle-version="1.0.0",
  com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

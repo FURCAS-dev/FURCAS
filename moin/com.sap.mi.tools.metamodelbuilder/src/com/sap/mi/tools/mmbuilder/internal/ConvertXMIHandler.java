@@ -11,6 +11,9 @@ package com.sap.mi.tools.mmbuilder.internal;
  * 
  */
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -30,15 +33,13 @@ import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * For internal use only, not intended to be use by external clients.
  */
 public final class ConvertXMIHandler extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_METAMODELBUILDER);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_METAMODELBUILDER);
 
 	public Object execute(final ExecutionEvent arg0) throws ExecutionException {
 
@@ -62,7 +63,7 @@ public final class ConvertXMIHandler extends AbstractHandler {
 						try {
 							MetamodelBuilder.convertXMIFiles(project, monitor);
 						} catch (final Exception e) {
-							ConvertXMIHandler.sTracer.error("Failed to convert project: " + project.getName(), e); //$NON-NLS-1$ // TODO
+							ConvertXMIHandler.stracer.log(Level.SEVERE, "Failed to convert project: " + project.getName(), e); //$NON-NLS-1$ // TODO
 							if (sb.length() > 0) {
 								sb.append(", ");//$NON-NLS-1$
 							}
@@ -97,7 +98,7 @@ public final class ConvertXMIHandler extends AbstractHandler {
 		} catch (final OperationCanceledException e) {
 			// $JL-EXC$
 			// do nothing if user or eclipse cancels
-			ConvertXMIHandler.sTracer.debug("Operation canceled by user"); //$NON-NLS-1$
+			ConvertXMIHandler.stracer.log(Level.FINE, "Operation canceled by user"); //$NON-NLS-1$
 		} catch (final Exception e) {
 			throw new ExecutionException("Exception during execution", e); //$NON-NLS-1$
 		}

@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.dnd.DragSourceEvent;
@@ -20,6 +17,8 @@ import org.eclipse.ui.PlatformUI;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.DeepCopyResultSet;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * TODO [ModelDragDropSupport] add description

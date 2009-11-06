@@ -2,6 +2,7 @@ package com.sap.mi.tools.diagnostics.internal.actions;
 
 import java.io.IOException;
 
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -11,7 +12,6 @@ import org.eclipse.swt.widgets.Shell;
 
 import com.sap.mi.tools.diagnostics.internal.messages.DiagnosticsMessages;
 import com.sap.mi.tools.diagnostics.internal.model.ConnectionNode;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * Closes a connection
@@ -75,8 +75,8 @@ public class CloseConnectionAction extends DiagnosticsViewerAction {
 				}
 				connectionNode.close();
 			} catch (IOException e) {
-				ExtendedMessageDialog.showError(mShell, "Error on Close", //$NON-NLS-1$
-						e.getMessage(), null, new String[] { IDialogConstants.OK_LABEL }, e);
+				ErrorDialog.openError(mShell, "Error on Close", //$NON-NLS-1$
+						e.getMessage(), null);
 			}
 		}
 

@@ -371,6 +371,7 @@ public final class BinaryNumericOperatorImpl extends com.sap.tc.moin.repository.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.BinaryNumericOperator> get___JmiInterface() {
         return behavior.expressions.BinaryNumericOperator.class;
     }

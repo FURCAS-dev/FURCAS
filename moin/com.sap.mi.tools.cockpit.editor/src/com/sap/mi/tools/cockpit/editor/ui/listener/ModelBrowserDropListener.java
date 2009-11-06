@@ -3,8 +3,8 @@ package com.sap.mi.tools.cockpit.editor.ui.listener;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
@@ -28,8 +28,7 @@ import com.sap.mi.tools.cockpit.editor.ui.MOINBrowserView;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.Partitionable;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456
@@ -41,7 +40,7 @@ public class ModelBrowserDropListener implements DropTargetListener {
 
 	private final RefObjectNodeSearcher refObjectNodeSearcher;
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	private static final String SEARCH_START = "Search started for "; //$NON-NLS-1$
 
@@ -169,7 +168,7 @@ public class ModelBrowserDropListener implements DropTargetListener {
 
 		if (refObject == null) {
 			event.detail = DND.DROP_NONE;
-			ModelBrowserDropListener.tracer.debug(ModelBrowserDropListener.class, "revealRefObjectFromOtherView", //$NON-NLS-1$
+			ModelBrowserDropListener.tracer.logp(Level.FINE, ModelBrowserDropListener.class.getName(), "revealRefObjectFromOtherView", //$NON-NLS-1$
 					ModelBrowserDropListener.MESSAGE_DIALOG_REF_OBJECT_NULL);
 			MessageDialog.openInformation(this.viewer.getTreeViewer().getControl().getShell(),
 					ModelBrowserDropListener.MESSAGE_DIALOG_TITLE, ModelBrowserDropListener.MESSAGE_DIALOG_REF_OBJECT_NULL);
@@ -177,17 +176,17 @@ public class ModelBrowserDropListener implements DropTargetListener {
 			// trace search is starting
 			final PropertyHelper helper = new PropertyHelper();
 			final String name = helper.getQualifiedName(refObject);
-			if (ModelBrowserDropListener.tracer.debug()) {
+			if (ModelBrowserDropListener.tracer.isLoggable(Level.FINE)) {
 				msg = ModelBrowserDropListener.SEARCH_START + name;
 			}
-			ModelBrowserDropListener.tracer.debug(ModelBrowserDropListener.class, "revealRefObjectFromOtherView", msg); //$NON-NLS-1$
+			ModelBrowserDropListener.tracer.logp(Level.FINE, ModelBrowserDropListener.class.getName(), "revealRefObjectFromOtherView", msg); //$NON-NLS-1$
 
 			// reveal RefObject, otherwise display message and trace
 			if (!this.refObjectNodeSearcher.revealRefObjectNodeinModelTree(refObject)) {
 				msg = ""; //$NON-NLS-1$
 				final String msgPattern = Messages.ModelBrowserDragAndDropListener_2_xmsg;
 				msg = MessageFormat.format(msgPattern, new Object[] { name });
-				ModelBrowserDropListener.tracer.debug(ModelBrowserDropListener.class, "revealRefObjectFromOtherView", msg); //$NON-NLS-1$
+				ModelBrowserDropListener.tracer.logp(Level.FINE, ModelBrowserDropListener.class.getName(), "revealRefObjectFromOtherView", msg); //$NON-NLS-1$
 				MessageDialog.openInformation(this.viewer.getTreeViewer().getControl().getShell(),
 						ModelBrowserDropListener.MESSAGE_DIALOG_TITLE, msg);
 			}
@@ -205,7 +204,7 @@ public class ModelBrowserDropListener implements DropTargetListener {
 				connections.add(refObject.get___Connection());
 				final IStatus status = ConnectionManager.getInstance().save(connections, null);
 				if (status != null && !status.isOK()) {
-					ModelBrowserDropListener.tracer.error(ModelBrowserDropListener.class,
+					ModelBrowserDropListener.tracer.logp(Level.SEVERE, ModelBrowserDropListener.class.getName(),
 							"moveRefObjectFromMyView", status.getMessage(), status.getException()); //$NON-NLS-1$
 				}
 			} else {

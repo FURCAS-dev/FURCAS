@@ -157,7 +157,7 @@ public class IdeRuntimeHostImpl extends AbstractUIPlugin implements IdeRuntimeHo
     public synchronized IdeMoin getMoinInstance( ) {
 
         if ( this.moinInstanceManager == null ) {
-            com.tssap.util.ui.UIPlugin.getDefault( );
+            //com.tssap.util.ui.UIPlugin.getDefault( );
         }
 
         if ( _log.isTraced( MoinSeverity.INFO ) ) {

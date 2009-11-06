@@ -24,6 +24,7 @@ public class PathExpressionWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.PathExpressionImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.PathExpressionImpl) getWrappedObject();
     }
@@ -544,6 +545,7 @@ public class PathExpressionWrapper extends com.sap.tc.moin.repository.core.jmi.r
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.PathExpression> get___JmiInterface() {
         return behavior.expressions.PathExpression.class;
     }

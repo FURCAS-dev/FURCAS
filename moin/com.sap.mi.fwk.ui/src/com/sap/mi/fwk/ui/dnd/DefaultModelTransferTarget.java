@@ -3,16 +3,15 @@ package com.sap.mi.fwk.ui.dnd;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.PlatformObject;
 
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
 import com.sap.tc.moin.repository.ModelPartition;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Default implementation of {@link IModelTransferTarget}. Clients may override

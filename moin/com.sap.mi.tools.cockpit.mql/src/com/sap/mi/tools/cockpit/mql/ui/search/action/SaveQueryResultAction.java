@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.Path;
@@ -17,8 +19,6 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.cockpit.mql.Messages;
 import com.sap.mi.tools.cockpit.mql.QueryConsole;
 import com.sap.mi.tools.cockpit.mql.ui.search.MQLSearchResultPage;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Saves the query as Comma-Separated-Value file with {@link FileDialog} dialog.
@@ -28,7 +28,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class SaveQueryResultAction extends Action {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private final MQLSearchResultPage page;
 
@@ -83,7 +83,7 @@ public final class SaveQueryResultAction extends Action {
 				this.page.getInput().getResult().asCSV(writer);
 			}
 			catch (final Exception ex) {
-				SaveQueryResultAction.tracer.error(ex.getMessage(), ex);
+				SaveQueryResultAction.tracer.log(Level.SEVERE, ex.getMessage(), ex);
 			}
 			finally {
 				if (writer != null) {
@@ -91,7 +91,7 @@ public final class SaveQueryResultAction extends Action {
 						writer.close();
 					}
 					catch (final IOException e) {
-						SaveQueryResultAction.tracer.error(e.getMessage(), e);
+						SaveQueryResultAction.tracer.log(Level.SEVERE, e.getMessage(), e);
 					}
 				}
 			}

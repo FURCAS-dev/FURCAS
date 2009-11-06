@@ -1,5 +1,9 @@
 package com.sap.mi.fwk.ui.editor;
 
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.viewers.ISelection;
@@ -20,8 +24,6 @@ import org.eclipse.ui.views.properties.IPropertySheetPage;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.tc.moin.repository.Connection;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Convenience editor base class inheriting from {@link EditorPart}. It provides a default
@@ -32,7 +34,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class ModelEditorPart extends EditorPart implements INullSelectionListener {
 
-    private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+    private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
     private final ModelEditor mEditor;
 
@@ -302,7 +304,7 @@ public abstract class ModelEditorPart extends EditorPart implements INullSelecti
                     activePage.activate(part);
                 }
             } catch (Exception e) {
-                sTracer.warning("Dependent views could not be refreshed", e); //$NON-NLS-1$
+                sTracer.log(Level.WARNING, "Dependent views could not be refreshed", e); //$NON-NLS-1$
             }
         }
     }

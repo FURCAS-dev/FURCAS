@@ -25,7 +25,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class Activator extends AbstractUIPlugin {
 
-	private final static TracerI sTracer = TracingManager.getTracer( Activator.class );
+	private final static Logger stracer = Logger.getLogger( Activator.class );
 	
     // The plug-in ID
     public static final String PLUGIN_ID = "com.sap.tc.moin.versioning.di.epi"; //$NON-NLS-1$
@@ -91,7 +91,7 @@ public class Activator extends AbstractUIPlugin {
 			Bundle bundle = getDefault().getBundle();
 			lInstallURL = FileLocator.resolve(bundle.getEntry("/")); //$NON-NLS-1$
 		} catch (IOException e) {
-			sTracer.error("IOException occured", e); //$NON-NLS-1$
+			stracer.log(Level.SEVERE, "IOException occured", e); //$NON-NLS-1$
 			return;
 		}
 		ImageDescriptor errorDecorator = null;
@@ -100,7 +100,7 @@ public class Activator extends AbstractUIPlugin {
 			errorDecorator = ImageDescriptor.createFromURL(new URL(lInstallURL, "resources/icons/312_ICON_MESSAGE_ERROR_SMALL.gif")); //$NON-NLS-1$
 			warningDecorator = ImageDescriptor.createFromURL(new URL(lInstallURL, "resources/icons/315_ICON_MESSAGE_WARNING_SMALL.gif")); //$NON-NLS-1$			
 		} catch (MalformedURLException e) {
-			sTracer.error("MalformedURLException occured", e); //$NON-NLS-1$
+			stracer.log(Level.SEVERE, "MalformedURLException occured", e); //$NON-NLS-1$
 		}
 		// file image with warning and error decorator
 		Image fileImage = PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_FILE);

@@ -1,8 +1,5 @@
 package com.sap.mi.fwk.ui.databinding;
 
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-
 import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.UpdateSetStrategy;
 import org.eclipse.core.databinding.UpdateValueStrategy;
@@ -12,6 +9,8 @@ import org.eclipse.core.databinding.observable.set.IObservableSet;
 import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.fwk.ui.internal.databinding.converters.MoinConverterFactory;
 import com.sap.tc.moin.repository.JmiHelper;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.model.StructureType;
 
 /**
  * Customizes a {@link Binding} between two MOIN {@link IObservableSet

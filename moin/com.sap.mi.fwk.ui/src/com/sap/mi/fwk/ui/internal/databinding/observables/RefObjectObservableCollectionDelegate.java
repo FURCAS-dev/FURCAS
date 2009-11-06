@@ -1,11 +1,8 @@
 package com.sap.mi.fwk.ui.internal.databinding.observables;
 
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.databinding.observable.list.ObservableList;
 import org.eclipse.core.databinding.observable.set.ObservableSet;
@@ -27,8 +24,12 @@ import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.filter.InstanceFilter;
 import com.sap.tc.moin.repository.events.type.AttributeMultiValueEvent;
 import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Reference;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * This class contains common functionality for both MOIN
@@ -43,7 +44,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class RefObjectObservableCollectionDelegate {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DATABINDING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_DATABINDING);
 
 	private RefObject refObject = null;
 	private UpdateListener listener = null;
@@ -135,19 +136,19 @@ public class RefObjectObservableCollectionDelegate {
 		// corresponding Java type, for RefObject typed
 		// attributes object is only a LRI --> resolve the LRI
 		// to get the object
-		if (sTracer.debug()) {
-			sTracer.debug("Value of the event is a LRI: " + lri.toString()); //$NON-NLS-1$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.fine("Value of the event is a LRI: " + lri.toString()); //$NON-NLS-1$
 		}
 		retValue = event.getEventTriggerConnection().getElement(lri);
-		if (sTracer.debug()) {
-			sTracer.debug("LRI was resolved to: " //$NON-NLS-1$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.fine("LRI was resolved to: " //$NON-NLS-1$
 					+ (retValue instanceof RefObject ? TracingSupport.getName((RefObject) lri) : "<null>")); //$NON-NLS-1$
 		}
 		if (retValue == null) {
 			// Handle deleted elements, use RefObject dummy
 			retValue = new RefBaseObjectDummyForCollectionAccess(lri);
-			if (sTracer.debug()) {
-				sTracer.debug("Created dummby RefObject: " //$NON-NLS-1$
+			if (sTracer.isLoggable(Level.FINE)) {
+				sTracer.fine("Created dummby RefObject: " //$NON-NLS-1$
 						+ retValue.toString());
 			}
 		}

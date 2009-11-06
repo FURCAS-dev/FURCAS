@@ -147,6 +147,7 @@ public final class TypedElementImpl extends com.sap.tc.moin.repository.core.jmi.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.TypedElement> get___JmiInterface() {
         return structure.TypedElement.class;
     }

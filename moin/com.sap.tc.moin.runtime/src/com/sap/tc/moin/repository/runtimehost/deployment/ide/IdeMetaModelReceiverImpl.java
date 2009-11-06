@@ -348,19 +348,19 @@ public class IdeMetaModelReceiverImpl {
 
 
             if ( overflow != null ) {
-                if ( result.getHost( ).equals( Long.toString( this.bundle.getBundleId( ) ) ) ) {
+                if ( result.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) ) ) {
                     return result;
                 } else {
                     for ( int i = 0; i < overflow.size( ); i++ ) {
                         URL tempResult = overflow.get( i );
-                        if ( tempResult.getHost( ).equals( Long.toString( this.bundle.getBundleId( ) ) ) ) {
+                        if ( tempResult.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) ) ) {
                             return tempResult;
                         }
                     }
                 }
             } else {
                 if ( result != null ) {
-                    if ( result.getHost( ).equals( Long.toString( this.bundle.getBundleId( ) ) ) ) {
+                    if ( result.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) ) ) {
                         return result;
                     }
                 }

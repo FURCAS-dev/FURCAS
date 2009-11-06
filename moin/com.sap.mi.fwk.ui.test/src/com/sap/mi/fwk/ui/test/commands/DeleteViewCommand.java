@@ -16,7 +16,7 @@ import com.sap.tc.moin.repository.commands.PartitionOperation;
 
 public class DeleteViewCommand extends Command {
 
-    //private static final TracerI sTracer = TracingManager.getTracer(DeleteViewCommand.class);
+    //private static final Logger stracer = Logger.getLogger(DeleteViewCommand.class);
 
     private final static String DESCRIPTION = "Delete View";
 

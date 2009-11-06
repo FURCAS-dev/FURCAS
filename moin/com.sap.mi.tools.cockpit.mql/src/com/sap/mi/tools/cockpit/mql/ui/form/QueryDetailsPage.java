@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -70,8 +72,6 @@ import com.sap.tc.moin.js.query.service.client.RemoteMqlProcessor;
 import com.sap.tc.moin.js.query.service.client.RemoteMqlProcessorFactory;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.DataAreaDescriptor;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * @author d003456
@@ -87,7 +87,7 @@ public class QueryDetailsPage implements IDetailsPage {
 
 	private Hyperlink openpreferencepageHyperlink;
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private Button remoteButton;
 
@@ -1000,11 +1000,11 @@ public class QueryDetailsPage implements IDetailsPage {
 			ps.busyCursorWhile(operation);
 		}
 		catch (final InterruptedException e) {
-			QueryDetailsPage.tracer.debug(QueryDetailsPage.DIALOG_USER_CANCELED);
+			QueryDetailsPage.tracer.log(Level.FINE, QueryDetailsPage.DIALOG_USER_CANCELED);
 			return null;
 		}
 		catch (final Exception e) {
-			QueryDetailsPage.tracer.error(QueryDetailsPage.DIALOG_NOT_CREATED, e);
+			QueryDetailsPage.tracer.log(Level.SEVERE, QueryDetailsPage.DIALOG_NOT_CREATED, e);
 			throw new RuntimeException(e);
 		}
 		return connections[0];
@@ -1032,7 +1032,7 @@ public class QueryDetailsPage implements IDetailsPage {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
 
-							QueryDetailsPage.tracer.error(e.getMessage(), e);
+							QueryDetailsPage.tracer.log(Level.SEVERE, e.getMessage(), e);
 							if (e != null && e.getLocalizedMessage() != null && e.getLocalizedMessage().length() > 0) {
 								setError(MessageFormat.format(QueryDetailsPage.ERROR_COULD_NOT_CONNECT_MSG, new Object[] { e
 										.getLocalizedMessage() }));
@@ -1050,11 +1050,11 @@ public class QueryDetailsPage implements IDetailsPage {
 			ps.busyCursorWhile(operation);
 		}
 		catch (final InterruptedException e) {
-			QueryDetailsPage.tracer.debug(QueryDetailsPage.DIALOG_USER_CANCELED);
+			QueryDetailsPage.tracer.log(Level.FINE, QueryDetailsPage.DIALOG_USER_CANCELED);
 			return;
 		}
 		catch (final Exception e) {
-			QueryDetailsPage.tracer.error(QueryDetailsPage.DIALOG_NOT_CREATED, e);
+			QueryDetailsPage.tracer.log(Level.SEVERE, QueryDetailsPage.DIALOG_NOT_CREATED, e);
 			throw new RuntimeException(e);
 		}
 	}

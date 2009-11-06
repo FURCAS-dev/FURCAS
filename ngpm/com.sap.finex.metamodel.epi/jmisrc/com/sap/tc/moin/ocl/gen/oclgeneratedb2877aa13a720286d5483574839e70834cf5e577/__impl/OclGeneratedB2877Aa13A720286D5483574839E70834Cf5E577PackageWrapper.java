@@ -24,6 +24,7 @@ public class OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577PackageWrapper 
     
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577.OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577Package> get___JmiInterface() {
         return com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577.OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577Package.class;
     }

@@ -120,6 +120,7 @@ public final class NamedImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.Named> get___JmiInterface() {
         return runlettest.Named.class;
     }

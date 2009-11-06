@@ -56,7 +56,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class MoinMetaModelDcType extends BasicMoinDcType {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MoinMetaModelDcType.class);
+	private static final Logger stracer = Logger.getLogger(MoinMetaModelDcType.class);
 
 	// DcType for metamodels:
 	public static final String DC_TYPE_ID = "com.sap.tc.moin.nwdi.dctype.mm"; //$NON-NLS-1$
@@ -149,7 +149,7 @@ public final class MoinMetaModelDcType extends BasicMoinDcType {
 			}
 		}
 		if (moinProp == null) {
-			sTracer.error("Parent MOIN DC property not found"); //$NON-NLS-1$
+			stracer.log(Level.SEVERE, "Parent MOIN DC property not found"); //$NON-NLS-1$
 			return;
 		}
 
@@ -393,7 +393,7 @@ public final class MoinMetaModelDcType extends BasicMoinDcType {
 							text.addModifyListener(this);
 							return;
 						} catch (DiiLibraryException e) {
-							sTracer.error("Cannot get changable version property", e); //$NON-NLS-1$
+							stracer.log(Level.SEVERE, "Cannot get changable version property", e); //$NON-NLS-1$
 						}
 						Iterator<?> it = edc.getCustomProperties().iterator();
 						IMeCustomProperty moinProp = null;
@@ -426,9 +426,9 @@ public final class MoinMetaModelDcType extends BasicMoinDcType {
 						try {
 							DiiModelEditService.commitChanges(edc);
 						} catch (DiiConcurrentModelModificationException e) {
-							sTracer.error("Cannot commit changed version", e); //$NON-NLS-1$
+							stracer.log(Level.SEVERE, "Cannot commit changed version", e); //$NON-NLS-1$
 						} catch (DiiLibraryException e) {
-							sTracer.error("Cannot commit changed version", e); //$NON-NLS-1$
+							stracer.log(Level.SEVERE, "Cannot commit changed version", e); //$NON-NLS-1$
 						}
 					}
 				}

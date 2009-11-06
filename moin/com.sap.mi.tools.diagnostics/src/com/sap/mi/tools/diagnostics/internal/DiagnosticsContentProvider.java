@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 import java.util.Map.Entry;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.ObjectName;
 
@@ -22,8 +24,6 @@ import com.sap.mi.tools.diagnostics.internal.model.MoinNode;
 import com.sap.mi.tools.diagnostics.internal.model.NoJmxDummyNode;
 import com.sap.mi.tools.diagnostics.internal.model.TreeNode;
 import com.sap.tc.moin.repository.jmx.MoinMBean;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Content provider of the diagnostic viewer
@@ -34,7 +34,7 @@ public class DiagnosticsContentProvider implements ITreeContentProvider {
 	
 	static final String NAME_DIAGNOSTICS_TREE = "DiagnosticsTree"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 
     private static final Object[] NO_ELEMENTS = new Object[0];
 	private final TreeExpandListener mExpandListener = new TreeExpandListener();
@@ -117,7 +117,7 @@ public class DiagnosticsContentProvider implements ITreeContentProvider {
      */
     public void dispose() {
     	if (mUpdater != null) {
-    		sTracer.debug("Cancelling update for viewer: " + mViewer); //$NON-NLS-1$
+    		sTracer.log(Level.FINE, "Cancelling update for viewer: " + mViewer); //$NON-NLS-1$
     		mUpdater.cancel();
     		mUpdater = null;
     	}
@@ -149,7 +149,7 @@ public class DiagnosticsContentProvider implements ITreeContentProvider {
             	// ignore - we detect absence of MoinJmxClient lateron
             }
             
-            sTracer.debug("Registering update for viewer: " + mViewer); //$NON-NLS-1$
+            sTracer.log(Level.FINE, "Registering update for viewer: " + mViewer); //$NON-NLS-1$
             mUpdater = new DiagnosticsUpdater(mViewer);
             Timer timer = new Timer("Diagnotics View Updater", true); //$NON-NLS-1$
 			timer.schedule(mUpdater, new Date(System.currentTimeMillis()), 10000);
@@ -158,7 +158,7 @@ public class DiagnosticsContentProvider implements ITreeContentProvider {
     
 	private final class MoinBeanChangedListener implements MBeanChangeListener {
 		public void mBeanChanged(ObjectName name) {
-			sTracer.debug("Received notification for name: " + name.toString()); //$NON-NLS-1$
+			sTracer.log(Level.FINE, "Received notification for name: " + name.toString()); //$NON-NLS-1$
 			Control control = mViewer.getControl();
 			// watch out for an already disposed UI
 			if (mMoinClient != null && !control.isDisposed()) {
@@ -168,7 +168,7 @@ public class DiagnosticsContentProvider implements ITreeContentProvider {
 						if (mViewer.getControl().isDisposed())
 							return;
 						mViewer.refresh();
-						sTracer.debug("Refreshed viewer"); //$NON-NLS-1$
+						sTracer.log(Level.FINE, "Refreshed viewer"); //$NON-NLS-1$
 					}
 				});
 			}

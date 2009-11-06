@@ -8,18 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.AliasType;
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.views.properties.IPropertySource;
@@ -31,6 +19,17 @@ import com.sap.mi.tools.cockpit.editor.model.properties.PropertyHelper;
 import com.sap.mi.tools.cockpit.editor.provider.MOINBrowserLabelProvider;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.JmiHelper;
+import com.sap.tc.moin.repository.mmi.model.AliasType;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
+import com.sap.tc.moin.repository.mmi.model.StructureType;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A node in the Model Browser tree that represents and wraps an instance of a RefObject.

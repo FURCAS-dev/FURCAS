@@ -1,9 +1,9 @@
 package com.sap.mi.fwk.ui.dnd;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.core.runtime.IAdapterFactory;
 import org.eclipse.core.runtime.IAdapterManager;
+
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Protocol for extending the set of objects to be transferred via copy/paste or

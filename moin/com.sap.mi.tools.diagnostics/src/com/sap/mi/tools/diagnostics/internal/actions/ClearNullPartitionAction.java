@@ -1,16 +1,15 @@
 package com.sap.mi.tools.diagnostics.internal.actions;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredViewer;
 
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.diagnostics.internal.model.PartitionNode;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * Clears the null partition
@@ -19,7 +18,7 @@ import com.tssap.util.ui.dialog.ExtendedMessageDialog;
  */
 public class ClearNullPartitionAction extends DiagnosticsViewerAction {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 	
     ClearNullPartitionAction(StructuredViewer viewer) {
         super("Clear", viewer); //$NON-NLS-1$
@@ -36,7 +35,7 @@ public class ClearNullPartitionAction extends DiagnosticsViewerAction {
 					    return true;
 					}
 				} catch (IOException e) {
-					sTracer.error(e.getMessage(), e);
+					stracer.log(Level.SEVERE, e.getMessage(), e);
 				}
             }
         }
@@ -66,13 +65,10 @@ public class ClearNullPartitionAction extends DiagnosticsViewerAction {
 				partitionNode.getParent().deleteAllElementsInNullPartition();            
 			} 
             catch (IOException e) {
-                ExtendedMessageDialog.showError(
+                ErrorDialog.openError(
                     mViewer.getControl().getShell(), 
                     "Error while deleting elements",  //$NON-NLS-1$
-                    e.getMessage(), 
-                    null, 
-                    new String[] {IDialogConstants.OK_LABEL}, 
-                    e);
+                    e.getMessage(), null);
             }
             mViewer.refresh();
         }

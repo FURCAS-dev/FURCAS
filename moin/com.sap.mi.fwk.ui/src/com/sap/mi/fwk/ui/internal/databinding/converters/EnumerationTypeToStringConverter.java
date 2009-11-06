@@ -1,11 +1,10 @@
 package com.sap.mi.fwk.ui.internal.databinding.converters;
 
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
-
 import org.eclipse.core.databinding.conversion.Converter;
 
 import com.sap.mi.fwk.ui.databinding.MoinObservables;
+import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 
 /**
  * Converts an enumeration value to the corresponding String representation.

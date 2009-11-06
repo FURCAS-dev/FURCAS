@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Set;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 
@@ -17,6 +17,7 @@ import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mql.FromEntry;
 import com.sap.tc.moin.repository.mql.FromType;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
@@ -25,8 +26,6 @@ import com.sap.tc.moin.repository.mql.MQLResultSet;
 import com.sap.tc.moin.repository.mql.QueryScopeProvider;
 import com.sap.tc.moin.repository.mql.SelectAlias;
 import com.sap.tc.moin.repository.mql.SelectEntry;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Provides convenience utilities for defining and executing MQL-based queries.
@@ -36,7 +35,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class QueryService {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 	private static QueryService sInstance;
 	private IExceptionHandler mExceptionHandler;
 

@@ -98,9 +98,9 @@
 <!-- Tracing  			                                                                     -->
 <!-- ======================================================================================= -->
    <!-- Trace enabling -->
-   <extension point="com.tssap.tools.ui.traceParticipant">
+   <!--<extension point="com.tssap.tools.ui.traceParticipant">
       <traceParticipant file="traceParticipant.properties"/>
-   </extension>
+   </extension>-->
 
 <!-- ======================================================================================= -->
 <!-- Content Types		                                                                     -->

@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
 import javax.management.MBeanNotificationInfo;
 import javax.management.MalformedObjectNameException;
 import javax.management.Notification;
@@ -46,11 +45,11 @@ import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.exception.MoinIllegalArgumentException;
 import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
 import com.sap.tc.moin.repository.jmx.CpsMBean;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.runtimehost.MmInfoConst;
 import com.sap.tc.moin.repository.runtimehost.RuntimehostMessages;
 import com.sap.tc.moin.repository.runtimehost.deployment.ErrorHandlerRegistrationRecord.ErrorHandlerRecord;
 import com.sap.tc.moin.repository.runtimehost.deployment.ErrorHandlerRegistry.VersionInterval;
-import com.sap.tc.moin.repository.s2x.S2XSerializer;
 import com.sap.tc.moin.repository.shared.logger.MoinCategoryEnum;
 import com.sap.tc.moin.repository.shared.logger.MoinLocationEnum;
 import com.sap.tc.moin.repository.shared.logger.MoinLogger;
@@ -821,9 +820,9 @@ public class PartitionSerializationManagerImpl implements SpiPartitionSerializat
     public void serializeTexts( PRI pri, OutputStream outputStream, SpiS2XDocument s2xDocument, SpiSerializerCallback serializerCallback ) throws IOException {
 
         // get S2X serializer
-        SpiCustomSerializer textSerializer = new S2XSerializer( s2xDocument, this );
+        //SpiCustomSerializer textSerializer = new S2XSerializer( s2xDocument, this );
         // serialize
-        textSerializer.serialize( outputStream, serializerCallback );
+        //textSerializer.serialize( outputStream, serializerCallback );
     }
 
     public SpiS2XSerializerCustomCallback getCustomS2XSerializerCallback( String container ) {

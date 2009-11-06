@@ -1,6 +1,8 @@
 package com.sap.mi.fwk.ui.actions;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
@@ -16,8 +18,7 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.mi.fwk.ui.editor.ModelEditorManager;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * This class adds default double click double behavior to a given common
@@ -42,7 +43,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class OpenEditorActionProvider extends CommonActionProvider {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
 	public OpenEditorActionProvider() {
 	}
@@ -79,7 +80,7 @@ public class OpenEditorActionProvider extends CommonActionProvider {
 						ModelEditorManager.getInstance().openEditor(ro);
 					}
 				} catch (PartInitException e) {
-					sTracer.error("Editor could not be started", e); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Editor could not be started", e); //$NON-NLS-1$
 				}
 			}
 

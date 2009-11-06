@@ -1,6 +1,8 @@
 package com.sap.mi.tools.diagnostics.internal.properties;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.ui.views.properties.IPropertyDescriptor;
 import org.eclipse.ui.views.properties.IPropertySource2;
@@ -10,8 +12,6 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.diagnostics.internal.MoinJmxClient;
 import com.sap.mi.tools.diagnostics.internal.messages.DiagnosticsMessages;
 import com.sap.tc.moin.repository.jmx.MoinMBean;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Source for the "Moin" properties
@@ -20,7 +20,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class MoinBeanPropertySource implements IPropertySource2 {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DIAGNOSTICS);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_DIAGNOSTICS);
 
 	static final String PROPERTY_STARTEDAT = "startedAt"; //$NON-NLS-1$
 	static final String PROPERTY_STARTEDAT_LABEL = DiagnosticsMessages.MoinBeanPropertySource_startedAt_label;
@@ -68,7 +68,7 @@ public final class MoinBeanPropertySource implements IPropertySource2 {
 				return new MoinVersionPropertySource(mMoin);
 			}
 		} catch (IOException e) {
-			sTracer.error(e.getMessage(), e);
+			stracer.log(Level.SEVERE, e.getMessage(), e);
 		} catch (RuntimeException e) { // $JL-EXC$
 			// bad response
 			return null;

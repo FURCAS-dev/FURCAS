@@ -2,6 +2,8 @@ package com.sap.mi.tools.cockpit.mql.ui.form;
 
 import java.io.File;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.action.Action;
@@ -48,8 +50,6 @@ import com.sap.mi.tools.cockpit.mql.model.Model;
 import com.sap.mi.tools.cockpit.mql.model.OP;
 import com.sap.mi.tools.cockpit.mql.model.QueryTemplateNode;
 import com.sap.mi.tools.cockpit.mql.wizard.QueryTemplateWizard;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * @author d003456
@@ -57,7 +57,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class QueryMasterDetailPart extends MasterDetailsBlock implements IModelChangedListener {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private final static String FORM_TITLE = Messages.QueryMasterDetailPart_0_xhed;
 
@@ -262,7 +262,7 @@ public final class QueryMasterDetailPart extends MasterDetailsBlock implements I
 			}
 			catch (final Exception ex) {
 				importOK = false;
-				QueryMasterDetailPart.tracer.error(ex.getMessage(), ex);
+				QueryMasterDetailPart.tracer.log(Level.SEVERE, ex.getMessage(), ex);
 			}
 		}
 		if (!importOK) {
@@ -287,7 +287,7 @@ public final class QueryMasterDetailPart extends MasterDetailsBlock implements I
 			}
 			catch (final Exception ex) {
 				exportOK = false;
-				QueryMasterDetailPart.tracer.error(ex.getMessage(), ex);
+				QueryMasterDetailPart.tracer.log(Level.SEVERE, ex.getMessage(), ex);
 			}
 		}
 		if (!exportOK) {

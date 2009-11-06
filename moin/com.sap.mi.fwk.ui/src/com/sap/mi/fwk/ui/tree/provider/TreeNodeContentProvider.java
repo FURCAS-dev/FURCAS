@@ -1,7 +1,5 @@
 package com.sap.mi.fwk.ui.tree.provider;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.viewers.Viewer;
@@ -9,6 +7,7 @@ import org.eclipse.jface.viewers.Viewer;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.mi.fwk.ui.internal.tree.StructuredViewerEventAdapterImpl;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Content provider implementation for editor tree implementations. Methods

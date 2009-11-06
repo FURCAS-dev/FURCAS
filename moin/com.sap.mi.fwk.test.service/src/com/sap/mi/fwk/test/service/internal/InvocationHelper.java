@@ -2,6 +2,7 @@ package com.sap.mi.fwk.test.service.internal;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
 
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
@@ -14,14 +15,12 @@ import org.eclipse.ui.PartInitException;
 import org.osgi.framework.Bundle;
 
 import com.sap.tc.moin.repository.Connection;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 public class InvocationHelper {
 
 	// TODO use constant: currently defined in MiLocations.MI_PROJECTS
-	private static final TracerI sTracerProjects = TracingManager
-			.getTracer("com.sap.moin.tooldevelopment.mie.projects"); //$NON-NLS-1$
+	private static final Logger sTracerProjects = Logger
+			.getLogger("com.sap.moin.tooldevelopment.mie.projects"); //$NON-NLS-1$
 
 	public static IStatus callModelManager_refreshFromFileSystem(IProject project, IProgressMonitor monitor) {
 		Object instance = getModelManagerInstance();

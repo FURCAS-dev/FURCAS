@@ -10,10 +10,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.ui.PlatformUI;
@@ -26,6 +22,9 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
 /**
  * @author d003456

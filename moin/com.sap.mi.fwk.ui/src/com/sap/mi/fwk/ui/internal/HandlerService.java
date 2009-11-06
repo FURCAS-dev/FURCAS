@@ -3,6 +3,8 @@ package com.sap.mi.fwk.ui.internal;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -18,7 +20,6 @@ import org.eclipse.ui.progress.IProgressService;
 import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
 
 import com.sap.mi.fwk.ModelAdapter;
-import com.tssap.util.trace.TracerI;
 
 /**
  * Contains utility methods for {@link IHandler command handlers}
@@ -87,7 +88,7 @@ public final class HandlerService {
 	 *            the tracer to log errors to.
 	 */
 	public static void run(IRunnableWithProgress op, boolean fork, boolean cancelable, ExecutionEvent event,
-			TracerI tracer) {
+			Logger tracer) {
 		try {
 			IWorkbenchPart targetPart = getActivePart(event);
 			if (fork && cancelable) {
@@ -116,9 +117,9 @@ public final class HandlerService {
 	 * Returns the current time. To be used as start time to measure the
 	 * operation.
 	 */
-	public static long startTimer(TracerI tracer) {
+	public static long startTimer(Logger tracer) {
 		long time = 0L;
-		if (tracer.debug())
+		if (tracer.isLoggable(Level.FINE))
 			time = System.currentTimeMillis();
 		return time;
 	}
@@ -127,16 +128,16 @@ public final class HandlerService {
 	 * Logs a message with duration of the executed operation
 	 * 
 	 * @param startTime
-	 *            the time returned by {@link #startTimer(TracerI)}
+	 *            the time returned by {@link #startTimer(Logger)}
 	 * @param taskName
 	 *            the name of the operation
 	 * @param tracer
 	 *            the tracer for logging
 	 */
-	public static void stopTimer(long startTime, String taskName, TracerI tracer) {
-		if (tracer.debug()) {
+	public static void stopTimer(long startTime, String taskName, Logger tracer) {
+	        if (tracer.isLoggable(Level.FINE)) {
 			long duration = System.currentTimeMillis() - startTime;
-			tracer.debug(taskName + " took " + duration + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
+			tracer.fine(taskName + " took " + duration + "ms"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 

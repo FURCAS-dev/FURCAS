@@ -8,23 +8,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 import java.util.concurrent.Callable;
-
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -71,8 +63,6 @@ import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.tc.moin.repository.CRI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.DeepCopyError;
-import com.sap.tc.moin.repository.DeepCopyMap;
-import com.sap.tc.moin.repository.DeepCopyMappingEntry;
 import com.sap.tc.moin.repository.DeepCopyPolicyHandler;
 import com.sap.tc.moin.repository.DeepCopyResultSet;
 import com.sap.tc.moin.repository.InvalidResourceIdentifierException;
@@ -89,8 +79,15 @@ import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
 import com.sap.tc.moin.repository.exception.UnrecoverableExecutionException;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.MultiplicityType;
+import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Provides a clipboard-like storage of Moin-related data. For a complete
@@ -114,7 +111,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class ModelClipboard {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 	private static final String EMPTY_TOSTRING_PLACEHOLDER = "<empty>"; //$NON-NLS-1$
 	private static final RefBaseObject[] NO_REFBASE_OBJECTS = new RefBaseObject[0];
 	private static final RefObject[] NO_REF_OBJECTS = new RefObject[0];
@@ -554,7 +551,7 @@ public final class ModelClipboard {
 				try {
 					ConnectionManager.getInstance().save(targetConnection);
 				} catch (Exception e) {// $JL-EXC$
-					sTracer.error("Exception while saving connection: " + e); //$NON-NLS-1$
+					sTracer.log(Level.SEVERE, "Exception while saving connection: " + e); //$NON-NLS-1$
 				}
 			}
 
@@ -668,18 +665,18 @@ public final class ModelClipboard {
 
 		for (RefBaseObject object : objects) {
 			if (!(object instanceof RefObject)) {
-				if (sTracer.debug()) {
-					sTracer.debug("Ignoring " + toObjectString(object) //$NON-NLS-1$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.fine("Ignoring " + toObjectString(object) //$NON-NLS-1$
 							+ " for parent assignment. Is not a RefObject."); //$NON-NLS-1$
 				}
 				continue;
 			}
 			RefFeatured objectParent = ((RefObject) object).refImmediateComposite();
 			if (objectParent != null) {
-				if (sTracer.debug()) {
+				if (sTracer.isLoggable(Level.FINE)) {
 					String msg = "Ignoring " + toObjectString(object) //$NON-NLS-1$
 							+ " for parent assignment. Already assigned to " + toObjectString(objectParent); //$NON-NLS-1$
-					sTracer.debug(msg);
+					sTracer.fine(msg);
 				}
 				continue;
 			}
@@ -695,7 +692,7 @@ public final class ModelClipboard {
 							+ toObjectString(object.refMetaObject());
 					// CSN I-603447 2008: Don't issue an error here. The client
 					// might already have composed the objects.
-					sTracer.debug(msg);
+					sTracer.fine(msg);
 					continue;
 				case 1:
 					assoc = assocs.get(0);
@@ -879,8 +876,8 @@ public final class ModelClipboard {
 			final ModelPartition targetPart = ((Partitionable) targetElement).get___Partition();
 			final PRI targetPri = targetPart.getPri();
 			if (!targetPri.isVolatilePartition()) {
-				if (sTracer.debug()) {
-					sTracer.debug("No assignment needed for element " + toObjectString(targetElement) //$NON-NLS-1$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.fine("No assignment needed for element " + toObjectString(targetElement) //$NON-NLS-1$
 							+ ".  Assigned to " + targetPri); //$NON-NLS-1$
 				}
 				continue;
@@ -890,8 +887,8 @@ public final class ModelClipboard {
 			// transient partition
 			if (partNewParent != null) {
 				partNewParent.assignElementIncludingChildren(targetElement);
-				if (sTracer.debug()) {
-					sTracer.debug("No assignment needed for element " + toObjectString(targetElement) //$NON-NLS-1$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.fine("No assignment needed for element " + toObjectString(targetElement) //$NON-NLS-1$
 							+ ".  Assigned to " + targetPri); //$NON-NLS-1$
 				}
 				continue;
@@ -914,8 +911,8 @@ public final class ModelClipboard {
 				}
 				targetPartNew = PartitionHelper.findOrCreatePartitionFor(targetElement, srcElement, shell);
 				if (targetPartNew == null) { // user cancelled
-					if (sTracer.debug()) {
-						sTracer.debug("No assignment requested for element " + toObjectString(targetElement)); //$NON-NLS-1$
+					if (sTracer.isLoggable(Level.FINE)) {
+						sTracer.fine("No assignment requested for element " + toObjectString(targetElement)); //$NON-NLS-1$
 					}
 					throw new OperationCanceledException();
 				} else if (!targetPartNew.getPri().equals(targetPri)) {
@@ -924,8 +921,8 @@ public final class ModelClipboard {
 			}
 
 			targetPartNew.assignElementIncludingChildren(targetElement);
-			if (sTracer.debug()) {
-				sTracer.debug("Created partition " + targetPartNew.getPri() + " for element " //$NON-NLS-1$ //$NON-NLS-2$
+			if (sTracer.isLoggable(Level.FINE)) {
+				sTracer.fine("Created partition " + targetPartNew.getPri() + " for element " //$NON-NLS-1$ //$NON-NLS-2$
 						+ toObjectString(targetElement));
 			}
 		}

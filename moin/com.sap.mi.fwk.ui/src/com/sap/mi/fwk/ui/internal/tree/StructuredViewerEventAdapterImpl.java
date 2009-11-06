@@ -5,8 +5,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.widgets.Display;
 
@@ -21,6 +19,7 @@ import com.sap.tc.moin.repository.events.filter.EventTypeFilter;
 import com.sap.tc.moin.repository.events.filter.OrFilter;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionChangeEvent;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * An Event Adapter for the Project Explorer /Navigator <br>

@@ -19,4 +19,14 @@ Export-Package: com.sap.tc.moin.repository.jmigenerator.template,
  com.sap.tc.moin.repository.jmigenerator.template.impl,
  com.sap.tc.moin.repository.runtimehost.filesystem.exception,
  com.sap.tc.moin.xmi
-Require-Bundle: com.tssap.ext.libs.j2ee,com.sap.tc.moin.libraries.jmi,com.sap.tc.moin.libraries.core,com.sap.tc.moin.libraries.base,com.sap.tc.moin.libraries.spi,com.sap.base.technology.facade,com.sap.tc.moin.libraries.api,com.sap.tc.moin.facility.primary.libraries.api,com.sap.tc.moin.facility.primary.libraries,com.sap.tc.moin.facility.build.libraries,com.sap.stringtemplate,com.sap.tc.moin.libraries.spi.internal
+Require-Bundle: com.sap.tc.moin.libraries.jmi,
+ com.sap.tc.moin.libraries.core,
+ com.sap.tc.moin.libraries.base,
+ com.sap.tc.moin.libraries.spi,
+ com.sap.tc.moin.libraries.api,
+ com.sap.tc.moin.facility.primary.libraries.api,
+ com.sap.tc.moin.facility.primary.libraries,
+ com.sap.tc.moin.facility.build.libraries,
+ com.sap.tc.moin.libraries.spi.internal,
+ org.antlr;bundle-version="3.0.0",
+ com.tssap.sap.libs.logging;bundle-version="2.0.0"

@@ -13,11 +13,6 @@ import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.Map.Entry;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -41,6 +36,7 @@ import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -68,9 +64,10 @@ import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
-import com.tssap.util.ui.ITooltipProvider;
-import com.tssap.util.ui.ToolTipSupport;
-import com.tssap.util.ui.reuse.sashform.MaximizableSashForm;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * A dialog that shows the content of the given connection's null partition as
@@ -164,7 +161,7 @@ public final class AssignElementsDialog extends MessageDialog {
 	
 	@Override
 	protected Control createCustomArea(Composite parent) {
-		MaximizableSashForm sashForm = new MaximizableSashForm(parent, SWT.VERTICAL);
+		SashForm sashForm = new SashForm(parent, SWT.VERTICAL);
 		sashForm.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		Composite partitionPane = new Composite(sashForm, SWT.NONE);
@@ -193,7 +190,7 @@ public final class AssignElementsDialog extends MessageDialog {
 		tableDirtyPartitions.setLabelProvider(new PartitionsTableLabelProvider());
 		tableDirtyPartitions.addSelectionChangedListener(new PartitionsTableSelectionChangedListener());
 		tableDirtyPartitions.addDoubleClickListener(new PartitionsDoubleClickListener());
-		ToolTipSupport.activateToolTips(tableDirtyPartitions);
+		//TODO ToolTipSupport.activateToolTips(tableDirtyPartitions);
 		tableDirtyPartitions.setInput(mConnection);
 
 		// Set initial selection async since sel. listener needs complete UI to
@@ -557,8 +554,7 @@ public final class AssignElementsDialog extends MessageDialog {
 		}
 	}
 
-	private static final class PartitionsTableLabelProvider extends LabelProvider implements ITableLabelProvider,
-			ITooltipProvider {
+	private static final class PartitionsTableLabelProvider extends LabelProvider implements ITableLabelProvider {
 		public Image getColumnImage(Object element, int columnIndex) {
 			return null;
 		}

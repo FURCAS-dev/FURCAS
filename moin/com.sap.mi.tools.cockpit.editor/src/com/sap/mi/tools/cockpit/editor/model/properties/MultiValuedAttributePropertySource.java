@@ -5,15 +5,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.ui.views.properties.ComboBoxPropertyDescriptor;
@@ -29,8 +22,14 @@ import com.sap.mi.tools.cockpit.editor.model.command.SetMultiValuedAttributeComm
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.JmiHelper;
 import com.sap.tc.moin.repository.Partitionable;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
+import com.sap.tc.moin.repository.mmi.model.StructureType;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456
@@ -38,7 +37,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class MultiValuedAttributePropertySource implements IPropertySource {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	private Collection<?> coll = null;
 
@@ -257,7 +256,7 @@ public class MultiValuedAttributePropertySource implements IPropertySource {
 
 		}
 		catch (final Exception e) {
-			MultiValuedAttributePropertySource.tracer.error("Error while changing property '" + id + "'. " + e.getLocalizedMessage(), e); //$NON-NLS-1$ //$NON-NLS-2$
+			MultiValuedAttributePropertySource.tracer.log(Level.SEVERE, "Error while changing property '" + id + "'. " + e.getLocalizedMessage(), e); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		finally {
 			this.runningMoinCmd = false;

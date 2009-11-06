@@ -4,9 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
@@ -31,8 +30,8 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456
@@ -40,7 +39,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class RefObjectNodeSearcher {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	private final static String PROJECT_ROOT_NODE_NOT_FOUND = "ProjectRootNode not found for "; //$NON-NLS-1$
 
@@ -99,18 +98,18 @@ public final class RefObjectNodeSearcher {
 		this.projectRootNodeToSearch = findProjectRootNode(refObject);
 		if (this.projectRootNodeToSearch == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.PROJECT_ROOT_NODE_NOT_FOUND + this.propHelper.getQualifiedName(refObject);
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "revealRefObjectNodeinModelTree", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "revealRefObjectNodeinModelTree", msg); //$NON-NLS-1$
 			return false;
 		}
 
 		String msg = ""; //$NON-NLS-1$
-		if (RefObjectNodeSearcher.tracer.debug()) {
+		if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 			msg = RefObjectNodeSearcher.START_RUNNABLE + this.propHelper.getQualifiedName(refObject);
 		}
-		RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "revealRefObjectNodeinModelTree", msg); //$NON-NLS-1$
+		RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "revealRefObjectNodeinModelTree", msg); //$NON-NLS-1$
 
 		// now search RefObjectNode
 		final IRunnableWithProgress operation = new IRunnableWithProgress() {
@@ -131,11 +130,11 @@ public final class RefObjectNodeSearcher {
 			ps.busyCursorWhile(operation);
 		}
 		catch (final InvocationTargetException e) {
-			RefObjectNodeSearcher.tracer.error(e.getMessage(), e);
+			RefObjectNodeSearcher.tracer.log(Level.SEVERE, e.getMessage(), e);
 			return false;
 		}
 		catch (final InterruptedException e) {
-			RefObjectNodeSearcher.tracer.error(e.getMessage(), e);
+			RefObjectNodeSearcher.tracer.log(Level.SEVERE, e.getMessage(), e);
 			return false;
 		}
 
@@ -189,10 +188,10 @@ public final class RefObjectNodeSearcher {
 		final MetaModelNode metaModelNode = findMetaModelNode(projectRootNode, metaModelName);
 		if (metaModelNode == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.META_MODEL_NODE_NOT_FOUND + metaModelName;
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInMetaModelPackageHierarchy", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInMetaModelPackageHierarchy", msg); //$NON-NLS-1$
 			return null;
 		}
 
@@ -205,10 +204,10 @@ public final class RefObjectNodeSearcher {
 		final TypeNode typeNode = findTypeNode(metaModelNode, this.propHelper.getMetaClass(refObject), packagePath);
 		if (typeNode == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.TYPE_NODE_NOT_FOUND + this.propHelper.getMetaClass(refObject).getName();
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInMetaModelPackageHierarchy", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInMetaModelPackageHierarchy", msg); //$NON-NLS-1$
 			return null;
 		}
 
@@ -224,20 +223,20 @@ public final class RefObjectNodeSearcher {
 
 		if (projectRootNode.getModelPartitionByName(partitionName) == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.MODEL_PARTITION_NOT_FOUND + partitionName;
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
 			return null;
 		}
 
 		final ModelPartitionNode modelPartitionNode = findModelPartitionNode(pri, projectRootNode);
 		if (modelPartitionNode == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.MODEL_PARTITION_NODE_NOT_FOUND + partitionName;
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
 			return null;
 		}
 
@@ -245,20 +244,20 @@ public final class RefObjectNodeSearcher {
 		final MetaModelNode metaModelNode = findMetaModelNode(modelPartitionNode, metaModelName);
 		if (metaModelNode == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.META_MODEL_NODE_NOT_FOUND + metaModelName;
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
 			return null;
 		}
 
 		final TypeNode typeNode = findTypeNode(metaModelNode, this.propHelper.getMetaClass(refObject), null);
 		if (typeNode == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.TYPE_NODE_NOT_FOUND + this.propHelper.getMetaClass(refObject).getName();
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInPartitionHierarchy", msg); //$NON-NLS-1$
 			return null;
 		}
 
@@ -283,19 +282,19 @@ public final class RefObjectNodeSearcher {
 		final IProject project = ModelAdapterUI.getInstance().getProject(refObject);
 		if (project == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.PROJECT_NOT_FOUND + this.propHelper.getQualifiedName(refObject);
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findProjectRootNode", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findProjectRootNode", msg); //$NON-NLS-1$
 			return null;
 		}
 		final IContentProvider conProv = this.viewer.getTreeViewer().getContentProvider();
 		if (conProv == null) {
 			String msg = ""; //$NON-NLS-1$
-			if (RefObjectNodeSearcher.tracer.debug()) {
+			if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 				msg = RefObjectNodeSearcher.CONTENT_PROVIDER_NULL;
 			}
-			RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findProjectRootNode", msg); //$NON-NLS-1$
+			RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findProjectRootNode", msg); //$NON-NLS-1$
 			return null;
 		}
 
@@ -490,10 +489,10 @@ public final class RefObjectNodeSearcher {
 			}
 		}
 		String msg = ""; //$NON-NLS-1$
-		if (RefObjectNodeSearcher.tracer.debug()) {
+		if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 			msg = RefObjectNodeSearcher.REF_OBJECT_NODE_NOT_FOUND + this.propHelper.getQualifiedName(refObject);
 		}
-		RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectNodeInCollectionAndCompositeAssociation", msg); //$NON-NLS-1$
+		RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectNodeInCollectionAndCompositeAssociation", msg); //$NON-NLS-1$
 		return null;
 	}
 
@@ -508,10 +507,10 @@ public final class RefObjectNodeSearcher {
 			}
 		}
 		String msg = ""; //$NON-NLS-1$
-		if (RefObjectNodeSearcher.tracer.debug()) {
+		if (RefObjectNodeSearcher.tracer.isLoggable(Level.FINE)) {
 			msg = RefObjectNodeSearcher.REF_OBJECT_NODE_NOT_FOUND + this.propHelper.getQualifiedName(refObject);
 		}
-		RefObjectNodeSearcher.tracer.debug(RefObjectNodeSearcher.class, "findRefObjectInChildList", msg); //$NON-NLS-1$
+		RefObjectNodeSearcher.tracer.logp(Level.FINE, RefObjectNodeSearcher.class.getName(), "findRefObjectInChildList", msg); //$NON-NLS-1$
 		return null;
 
 	}

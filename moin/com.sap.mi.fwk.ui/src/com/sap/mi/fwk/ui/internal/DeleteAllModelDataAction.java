@@ -4,6 +4,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -22,8 +24,6 @@ import com.sap.mi.fwk.PartitionService;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.tc.moin.repository.PRI;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Deletes all model partitions in the selected projects
@@ -32,7 +32,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class DeleteAllModelDataAction extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchPart targetPart = HandlerUtil.getActivePartChecked(event);

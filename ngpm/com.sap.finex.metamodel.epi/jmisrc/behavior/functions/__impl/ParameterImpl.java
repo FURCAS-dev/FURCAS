@@ -317,6 +317,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.Parameter> get___JmiInterface() {
         return behavior.functions.Parameter.class;
     }

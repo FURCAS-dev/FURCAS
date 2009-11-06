@@ -2,6 +2,8 @@ package com.sap.mi.fwk.ui.internal.mm;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -38,8 +40,6 @@ import com.sap.mi.fwk.mm.MetamodelManager;
 import com.sap.mi.fwk.ui.internal.MiFwkUIPlugin;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.tc.moin.repository.ide.metamodels.MmDeploymentInfo;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * The selection page for the metamodels working set
@@ -50,7 +50,7 @@ public final class MmWorkingSetPage extends WizardPage implements IWorkingSetPag
 
 	private static final String WIDGET_DATA_NAME = "name"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MmWorkingSetPage.class);
+	private static final Logger sTracer = Logger.getLogger(MmWorkingSetPage.class.getName());
 
 	private IWorkingSet mWorkingSet;
 	private CheckboxTableViewer mViewer;

@@ -3,8 +3,6 @@ package com.sap.mi.fwk.ui.internal.dnd;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 import com.sap.mi.fwk.ModelAdapter;
@@ -12,6 +10,7 @@ import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransfer;
 import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransferHandler.TransferOperationEnum;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 public class DefaultTreeNodeTransfer implements ITreeNodeTransfer {
 

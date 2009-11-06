@@ -13,7 +13,7 @@ import javax.management.openmbean.TabularData;
 public class PartitionableNode extends DelegateNode {
 	
 	private static final String[][] NO_ATTRIBUTES = new String[0][0];
-	//private static final TracerI sTracer = TracingManager.getTracer(PartitionableNode.class);
+	//private static final Logger stracer = Logger.getLogger(PartitionableNode.class);
 	
 	private final CompositeData mModelElement;
 

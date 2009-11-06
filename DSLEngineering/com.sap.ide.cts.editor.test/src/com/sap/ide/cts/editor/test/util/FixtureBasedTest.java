@@ -29,12 +29,12 @@ public class FixtureBasedTest extends ProjectConnectionBasedTest {
 	}
 		
 	@Override
-	protected String getProjectName() {
+	public String getProjectName() {
 		return "NgpmTestResults";
 	}
 	
 	@Override
-	protected InputStream getProjectContentAsStream() {
+	public InputStream getProjectContentAsStream() {
 		PipedOutputStream pos = new PipedOutputStream();
 		PipedInputStream result;
 

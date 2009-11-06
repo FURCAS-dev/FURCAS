@@ -9,6 +9,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+import java.util.logging.LoggingMXBean;
 
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
@@ -51,8 +55,6 @@ import com.sap.tc.moin.repository.events.type.PartitionChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionContentChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionDeleteEvent;
 import com.sap.tc.moin.repository.events.type.PartitionSaveEvent;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Manages creation, deletion, and returning of markers for model objects.
@@ -104,7 +106,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 	 */
 	private static final String EDITOR_LAUNCHER_ID = "com.sap.mi.fwk.ui.editor.EditorLauncher"; //$NON-NLS-1$
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MARKERS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MARKERS);
 
 	private static MarkerManager sInstance;
 
@@ -180,8 +182,8 @@ public final class MarkerManager extends EventManager implements IResourceChange
 					} catch (InvalidResourceIdentifierException e) {
 						// skip resource, project may not be fully initialized
 						// at this point in time
-						if (sTracer.info()) {
-							sTracer.info(MarkerManager.class,
+						if (sTracer.isLoggable(Level.FINE)) {
+							sTracer.logp(Level.FINE, MarkerManager.class.getName(),
 									"resourceChanged", "Model partition not accessible - skipped. Additional info: " + e.getMessage());//$NON-NLS-1$//$NON-NLS-2$
 						}
 					}
@@ -200,7 +202,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 							try {
 								((MarkerRefreshListener) listener).onMarkerChange(project);
 							} catch (Exception e) {
-								sTracer.error(MarkerManager.class, "resourceChanged", //$NON-NLS-1$
+								sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "resourceChanged", //$NON-NLS-1$
 										"Listener threw exception. listener:" + listener, e);//$NON-NLS-1$
 							}
 						}
@@ -292,7 +294,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 
 		IFile markerFile = ModelAdapter.getInstance().getFile(obj);
 		if (markerFile == null || !markerFile.exists()) {
-			// sTracer.error("Partition file not found. obj:" + obj + ",
+			// sTracer.log(Level.SEVERE, "Partition file not found. obj:" + obj + ",
 			// markerType:" + markerType + ", attributes:"
 			// + attributes);
 			return null;
@@ -303,7 +305,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			marker = markerFile.createMarker(markerType);
 			marker.setAttributes(attributes);
 		} catch (Exception e) {
-			sTracer.error("Marker could not be set. most likely marker file does not exist. see exception.", e);//$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Marker could not be set. most likely marker file does not exist. see exception.", e);//$NON-NLS-1$
 		}
 		markerCache.addMarker(mri, marker);
 		return marker;
@@ -453,7 +455,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			markerFile = ModelAdapter.getInstance().getFile(partition.getPri());
 			markerFile.deleteMarkers(type, includeSubtypes, depth);
 		} catch (Exception e) {
-			sTracer.error("Marker file or markers could not be found. partition:" + partition + ", markerFile: "//$NON-NLS-1$ //$NON-NLS-2$
+			sTracer.log(Level.SEVERE, "Marker file or markers could not be found. partition:" + partition + ", markerFile: "//$NON-NLS-1$ //$NON-NLS-2$
 					+ markerFile, e);
 		}
 	}
@@ -500,7 +502,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 						try {
 							marker.delete();
 						} catch (CoreException e) {
-							sTracer.error(MarkerManager.class, "run", "Marker could not be deleted", e);//$NON-NLS-1$ //$NON-NLS-2$
+							sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "run", "Marker could not be deleted", e);//$NON-NLS-1$ //$NON-NLS-2$
 						}
 					}
 				}
@@ -513,9 +515,9 @@ public final class MarkerManager extends EventManager implements IResourceChange
 		} catch (OperationCanceledException e) {
 			// $JL-EXC$
 			// do nothing if user or eclipse cancels
-			sTracer.debug("Operation canceled");//$NON-NLS-1$
+			sTracer.fine("Operation canceled");//$NON-NLS-1$
 		} catch (CoreException e) {
-			sTracer.error("Not all markers could not be deleted", e);//$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Not all markers could not be deleted", e);//$NON-NLS-1$
 		}
 	}
 
@@ -533,7 +535,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 		try {
 			marker.delete();
 		} catch (Exception e) {
-			sTracer.error("Marker could not be removed. marker:" + marker, e);//$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Marker could not be removed. marker:" + marker, e);//$NON-NLS-1$
 		}
 	}
 
@@ -588,7 +590,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 					}
 				}
 			} catch (CoreException e) {
-				sTracer.error(MarkerManager.class, "findMarkers", "Marker info could not be read", e);//$NON-NLS-1$ //$NON-NLS-2$
+				sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "findMarkers", "Marker info could not be read", e);//$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		return result.toArray(new IMarker[result.size()]);
@@ -640,7 +642,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 
 		Connection connection = ((Partitionable) obj).get___Connection();
 		if (!connection.isAlive()) {
-			sTracer.error(MarkerManager.class, "findMarkersInfinite", "Connection not alive:" + connection); //$NON-NLS-1$ //$NON-NLS-2$
+			sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "findMarkersInfinite", "Connection not alive:" + connection); //$NON-NLS-1$ //$NON-NLS-2$
 			return null;
 		}
 
@@ -728,7 +730,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 					}
 				}
 			} catch (CoreException e) {
-				sTracer.error(MarkerManager.class, "findMarkers", "Marker info could not be read", e);//$NON-NLS-1$ //$NON-NLS-2$
+				sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "findMarkers", "Marker info could not be read", e);//$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 		return result.toArray(new IMarker[result.size()]);
@@ -778,7 +780,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			try {
 				compositeChildren = connection.getJmiHelper().getCompositeChildren(root, infinite);
 			} catch (Exception e) {
-				sTracer.error(MarkerManager.class, "findMaxProblemSeverity", "could not retrieve composite children", //$NON-NLS-1$ //$NON-NLS-2$
+				sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "findMaxProblemSeverity", "could not retrieve composite children", //$NON-NLS-1$ //$NON-NLS-2$
 						e);
 			}
 		}
@@ -851,7 +853,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 				obj = connection.getElement(mri);
 			}
 		} catch (Exception e) {
-			sTracer.error("General exception. marker:" + marker + ", connection:" + connection + ", mriString:"//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+			sTracer.log(Level.SEVERE, "General exception. marker:" + marker + ", connection:" + connection + ", mriString:"//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 					+ mriString + ", mri:" + mri, e);//$NON-NLS-1$
 		}
 		return obj;
@@ -881,7 +883,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 		try {
 			attributes = marker.getAttributes();
 		} catch (CoreException e) {
-			sTracer.error(e.getMessage(), e);
+			sTracer.log(Level.SEVERE, e.getMessage(), e);
 			return new String[0];
 		}
 		int i = 0;
@@ -914,7 +916,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 				mBean = new MarkerManagerMBeanImpl();
 				mBeanName = mBean.getObjectName();
 			} catch (Exception e) { // $JL-EXC$
-				sTracer.error(MarkerManager.class, "Constructor", "MBean not initialized", e);//$NON-NLS-1$ //$NON-NLS-2$
+				sTracer.logp(Level.SEVERE, MarkerManager.class.getName(), "Constructor", "MBean not initialized", e);//$NON-NLS-1$ //$NON-NLS-2$
 			}
 		}
 	}
@@ -929,7 +931,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			try {
 				ManagementFactory.getPlatformMBeanServer().unregisterMBean(mBeanName);
 			} catch (Exception e) {
-				sTracer.error("MBean not unregistered", e);//$NON-NLS-1$
+				sTracer.log(Level.SEVERE, "MBean not unregistered", e);//$NON-NLS-1$
 			}
 		}
 		markerCache.clear();
@@ -994,9 +996,9 @@ public final class MarkerManager extends EventManager implements IResourceChange
 						} catch (OperationCanceledException e) {
 							// $JL-EXC$
 							// do nothing if user or eclipse cancels
-							sTracer.debug("Operation canceled");//$NON-NLS-1$
+							sTracer.fine("Operation canceled");//$NON-NLS-1$
 						} catch (Exception e) {
-							sTracer.error("Markers could not be deleted", e);//$NON-NLS-1$
+							sTracer.log(Level.SEVERE, "Markers could not be deleted", e);//$NON-NLS-1$
 						}
 					}
 				}
@@ -1094,8 +1096,8 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			if (!forceInit) {
 				mrisToMarkers = markerCacheMap.get(pri);
 				if (mrisToMarkers != null) {
-					if (sTracer.debug()) {
-						sTracer.debug("MarkerCache.initCache", "cache hit:" + ModelManager.getInstance().getObjectName(pri)); //$NON-NLS-1$ //$NON-NLS-2$
+					if (sTracer.isLoggable(Level.FINE)) {
+						sTracer.logp(Level.FINE, MarkerCache.class.getName(), "initCache", "cache hit:" + ModelManager.getInstance().getObjectName(pri)); //$NON-NLS-1$ //$NON-NLS-2$
 					}
 					hits++;
 					return mrisToMarkers;
@@ -1114,7 +1116,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 				try {
 					markers = partFile.findMarkers(null, true, IResource.DEPTH_INFINITE);
 				} catch (CoreException e) {
-					sTracer.error(MarkerCache.class, "initCache", "Markers not found", e);//$NON-NLS-1$ //$NON-NLS-2$
+					sTracer.logp(Level.SEVERE, MarkerCache.class.getName(), "initCache", "Markers not found", e);//$NON-NLS-1$ //$NON-NLS-2$
 					return mrisToMarkers;
 				}
 				final Moin moin = ModelManager.getInstance().getMoinInstance();
@@ -1133,17 +1135,17 @@ public final class MarkerManager extends EventManager implements IResourceChange
 								adds++;
 							}
 						} else {
-							if (sTracer.debug()) {
-								sTracer.debug(MarkerCache.class, "init", "Non MOIN marker found:" + markers[i]); //$NON-NLS-1$ //$NON-NLS-2$
+							if (sTracer.isLoggable(Level.FINE)) {
+								sTracer.logp(Level.FINE, MarkerCache.class.getName(), "init", "Non MOIN marker found:" + markers[i]); //$NON-NLS-1$ //$NON-NLS-2$
 							}
 						}
 					}
 				}
 			}
 
-			if (sTracer.debug()) {
+			if (sTracer.isLoggable(Level.FINE)) {
 				long end = System.currentTimeMillis();
-				sTracer.debug("MarkerManager.initCache", "Cache initialized in " + (end - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sTracer.logp(Level.FINE, "MarkerManager", "initCache", "Cache initialized in " + (end - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			return mrisToMarkers;
 		}
@@ -1200,8 +1202,8 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			PRI pri = mri.getPri();
 			Map<MRI, Set<IMarker>> mrisToMarkers = initCache(pri, false);
 			if (mrisToMarkers != null) {
-				if (sTracer.debug()) {
-					sTracer.debug("MarkerCache.getMarkers", "cache hit. pri:" + pri + ", mri:" + mri);//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				if (sTracer.isLoggable(Level.FINE)) {
+					sTracer.logp(Level.FINE, "MarkerCache", "getMarkers", "cache hit. pri:" + pri + ", mri:" + mri);//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				}
 				Set<IMarker> set = mrisToMarkers.get(mri);
 				if (set != null) {

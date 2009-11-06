@@ -14,6 +14,7 @@ public class RunletTestWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private runlettest.__impl.RunletTestImpl getCastWrappedObject() {
         return (runlettest.__impl.RunletTestImpl) getWrappedObject();
     }
@@ -110,6 +111,7 @@ public class RunletTestWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.RunletTest> get___JmiInterface() {
         return runlettest.RunletTest.class;
     }

@@ -318,6 +318,7 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.FinexClass> get___JmiInterface() {
         return structure.FinexClass.class;
     }

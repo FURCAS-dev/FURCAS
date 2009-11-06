@@ -220,6 +220,7 @@ public final class FunctionImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.Function> get___JmiInterface() {
         return behavior.functions.Function.class;
     }

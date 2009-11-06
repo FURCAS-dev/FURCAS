@@ -337,6 +337,7 @@ public final class NumericAggregateImpl extends com.sap.tc.moin.repository.core.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.NumericAggregate> get___JmiInterface() {
         return behavior.expressions.NumericAggregate.class;
     }

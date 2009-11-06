@@ -1,11 +1,12 @@
 package com.sap.mi.fwk.test.service.internal;
 
+import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
 import com.sap.mi.fwk.services.local.ErrorHandling;
-import com.tssap.util.trace.TracerI;
 
 /**
  * The framework plugin class
@@ -32,15 +33,15 @@ public final class TestServicePlugin extends Plugin {
 		super.stop(context);
 	}
 
-	public static void logError(Throwable e, TracerI tracer) {
+	public static void logError(Throwable e, Logger tracer) {
 		logError(e.getMessage(), e, tracer);
 	}
 
-	public static void logError(String message, Throwable e, TracerI tracer) {
+	public static void logError(String message, Throwable e, Logger tracer) {
 		ErrorHandling.logError(message, e, tracer, PLUGIN_ID);
 	}
 
-	public static void logStatus(IStatus status, TracerI tracer) {
+	public static void logStatus(IStatus status, Logger tracer) {
 		ErrorHandling.logStatus(status, tracer, PLUGIN_ID);
 	}
 

@@ -303,6 +303,7 @@ public final class StringLiteralImpl extends com.sap.tc.moin.repository.core.jmi
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.StringLiteral> get___JmiInterface() {
         return behavior.expressions.literals.StringLiteral.class;
     }

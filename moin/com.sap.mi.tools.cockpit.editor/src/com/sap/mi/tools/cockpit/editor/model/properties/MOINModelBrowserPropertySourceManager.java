@@ -2,8 +2,6 @@ package com.sap.mi.tools.cockpit.editor.model.properties;
 
 import java.util.Collection;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.ui.views.properties.IPropertySource;
 import org.eclipse.ui.views.properties.IPropertySourceProvider;
 
@@ -11,6 +9,7 @@ import com.sap.mi.fwk.ui.editor.IModelEditor;
 import com.sap.mi.fwk.ui.editor.ModelEditorManager;
 import com.sap.mi.tools.cockpit.editor.model.RefObjectNode;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Property provider for {@link RefObject RefObjects}

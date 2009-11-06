@@ -11,10 +11,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.TreeSet;
-
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -43,8 +42,9 @@ import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.commands.PartitionOperation.Operation;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
 import com.sap.tc.moin.repository.metamodels.MetaModelCatalog;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Utilities for partition handling
@@ -53,7 +53,7 @@ import com.tssap.util.trace.TracingManager;
  * @author D020964
  */
 public class PartitionService {
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 	private static final String LINE_SEP = System.getProperty("line.separator"); //$NON-NLS-1$
 	private static PartitionService sInstance;
 
@@ -541,20 +541,20 @@ public class PartitionService {
 	private static Set<PRI> getInnerPartitions(Connection connection, CRI container) {
 		Set<PRI> pris = new HashSet<PRI>(connection.getSession().getInnerPartitions(container));
 		pris.add(connection.getNullPartition().getPri());
-		if (sTracer.debug()) {
-			sTracer.debug("inner partitions of " + container); //$NON-NLS-1$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.fine("inner partitions of " + container); //$NON-NLS-1$
 			String rs = dumpArray(pris);
-			sTracer.debug(rs);
+			sTracer.fine(rs);
 		}
 		return pris;
 	}
 
 	private static Set<PRI> getOuterPartitions(Connection connection, CRI container) {
 		Collection<PRI> pris = connection.getSession().getOuterPartitions(container);
-		if (sTracer.debug()) {
-			sTracer.debug("outer partitions of " + container); //$NON-NLS-1$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.fine("outer partitions of " + container); //$NON-NLS-1$
 			String rs = dumpArray(pris);
-			sTracer.debug(rs);
+			sTracer.fine(rs);
 		}
 		return pris instanceof Set ? (Set<PRI>) pris : new HashSet<PRI>(pris);
 	}
@@ -565,10 +565,10 @@ public class PartitionService {
 		Set<PRI> pris = new HashSet<PRI>(inner.size() + outer.size() * 4 / 3);
 		pris.addAll(inner);
 		pris.addAll(outer);
-		if (sTracer.debug()) {
-			sTracer.debug("visible partitions of " + container); //$NON-NLS-1$
+		if (sTracer.isLoggable(Level.FINE)) {
+			sTracer.fine("visible partitions of " + container); //$NON-NLS-1$
 			String rs = dumpArray(pris);
-			sTracer.debug(rs);
+			sTracer.fine(rs);
 		}
 		return pris;
 	}

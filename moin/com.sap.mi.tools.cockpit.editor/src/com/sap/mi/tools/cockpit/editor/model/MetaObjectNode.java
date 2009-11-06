@@ -1,11 +1,10 @@
 package com.sap.mi.tools.cockpit.editor.model;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.runtime.Assert;
 
 import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
 import com.sap.mi.tools.cockpit.editor.provider.MOINBrowserLabelProvider;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456

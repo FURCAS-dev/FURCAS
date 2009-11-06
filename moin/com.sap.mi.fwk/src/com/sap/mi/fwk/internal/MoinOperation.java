@@ -1,5 +1,9 @@
 package com.sap.mi.fwk.internal;
 
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.AbstractOperation;
 import org.eclipse.core.runtime.IAdaptable;
@@ -11,8 +15,6 @@ import com.sap.mi.fwk.internal.messages.MiFwkMessages;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.tc.moin.repository.commands.CommandStack;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Represents a MOIN command in the Eclipse world
@@ -21,7 +23,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class MoinOperation extends AbstractOperation {
 
-	private final static TracerI sTracer = TracingManager.getTracer(MiLocations.MI_COMMANDS);
+	private final static Logger sTracer = Logger.getLogger(MiLocations.MI_COMMANDS);
 	private final CommandStack cmdStack;
 
 	/**
@@ -43,7 +45,7 @@ public class MoinOperation extends AbstractOperation {
 
 	@Override
 	public IStatus execute(IProgressMonitor monitor, IAdaptable info) {
-		sTracer.error(MoinOperation.class, "execute", "This method must not be called"); //$NON-NLS-1$ //$NON-NLS-2$
+		sTracer.logp(Level.SEVERE, MoinOperation.class.getName(), "execute", "This method must not be called"); //$NON-NLS-1$ //$NON-NLS-2$
 		throw new UnsupportedOperationException("Must not be called"); //$NON-NLS-1$
 	}
 

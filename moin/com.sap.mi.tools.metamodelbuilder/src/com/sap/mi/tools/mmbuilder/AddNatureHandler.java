@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -37,15 +39,13 @@ import com.sap.mi.tools.mmbuilder.internal.MMBuilderConstants;
 import com.sap.mi.tools.mmbuilder.internal.MMBuilderHelper;
 import com.sap.mi.tools.mmbuilder.internal.MMBuilderMessages;
 import com.sap.mi.tools.mmbuilder.internal.MetamodelBuildNature;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * @no-implement For internal use only, not intended to be use by external clients.
  */
 public final class AddNatureHandler extends AbstractHandler {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_METAMODELBUILDER);
+	private static final Logger stracer = Logger.getLogger(MiLocations.MI_METAMODELBUILDER);
 
 	public Object execute(final ExecutionEvent arg0) throws ExecutionException {
 
@@ -108,16 +108,16 @@ public final class AddNatureHandler extends AbstractHandler {
 					} catch (InterruptedException e) {
 						// $JL-EXC$
 						// do nothing if user or eclipse cancels
-						sTracer.debug("Operation canceled by user"); //$NON-NLS-1$
+						stracer.log(Level.FINE, "Operation canceled by user"); //$NON-NLS-1$
 					} catch (Exception e) {
-						sTracer.error("Exception during nature removal", e); //$NON-NLS-1$
+						stracer.log(Level.SEVERE, "Exception during nature removal", e); //$NON-NLS-1$
 						final Shell shell = HandlerUtil.getActiveShellChecked(arg0);
 						final String msg = MMBuilderMessages.bind(MMBuilderMessages.AddNatureHandler_errorMsg, project.getName());
 						MessageDialog.openError(shell, MMBuilderMessages.AddNatureHandler_errorTitle, msg);
 					}
 
 				} catch (final Exception e) {
-					AddNatureHandler.sTracer.error("Error adding the nature", e); //$NON-NLS-1$
+					AddNatureHandler.stracer.log(Level.SEVERE, "Error adding the nature", e); //$NON-NLS-1$
 					final Shell shell = HandlerUtil.getActiveShellChecked(arg0);
 					final String msg = NLS.bind(MMBuilderMessages.AddNatureHandler_errorMsg, project.getName());
 					MessageDialog.openError(shell, MMBuilderMessages.AddNatureHandler_errorTitle, msg);

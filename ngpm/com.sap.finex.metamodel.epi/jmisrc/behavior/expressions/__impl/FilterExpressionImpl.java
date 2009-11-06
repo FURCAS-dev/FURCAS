@@ -332,6 +332,7 @@ public final class FilterExpressionImpl extends com.sap.tc.moin.repository.core.
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.FilterExpression> get___JmiInterface() {
         return behavior.expressions.FilterExpression.class;
     }

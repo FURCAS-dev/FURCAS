@@ -1,8 +1,7 @@
 package com.sap.mi.fwk.internal;
 
 import java.util.Collection;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
@@ -19,8 +18,8 @@ import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.ResourceIdentifierFactory;
 import com.sap.tc.moin.repository.cdam.ide.IdeCompoundDataAreaManager;
 import com.sap.tc.moin.repository.ide.MoinFactory;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.spi.facility.ide.ContainerInitializationState;
-import com.tssap.util.trace.TracerI;
 
 /**
  * The framework plugin class
@@ -100,7 +99,8 @@ public final class MiFwkPlugin extends Plugin {
 			throw new IllegalArgumentException("Project is null"); //$NON-NLS-1$
 		}
 		if (!project.isAccessible()) {
-			throw new IllegalArgumentException("Project is not open: " + project.getName()); //$NON-NLS-1$
+			throw new IllegalArgumentException(
+					"Project is not open: " + project.getName()); //$NON-NLS-1$
 		}
 	}
 
@@ -114,11 +114,13 @@ public final class MiFwkPlugin extends Plugin {
 	public static void assertMoinProjectOpen(IProject project) {
 		assertProjectOpen(project);
 		if (!ModelManager.getInstance().isMoinProject(project)) {
-			throw new IllegalArgumentException("Project has no Moin nature: " + project.getName()); //$NON-NLS-1$
+			throw new IllegalArgumentException(
+					"Project has no Moin nature: " + project.getName()); //$NON-NLS-1$
 		}
 	}
 
-	public static void assertIsMoinRelevant(final IProject project, final ContainerInitializationState projectInitState) {
+	public static void assertIsMoinRelevant(final IProject project,
+			final ContainerInitializationState projectInitState) {
 		if (ContainerInitializationState.NOT_MOIN_RELEVANT == projectInitState) {
 			throw new IllegalArgumentException("Not a Moin project: " + project //$NON-NLS-1$
 					+ ". This may happen during project creation, " //$NON-NLS-1$
@@ -126,20 +128,23 @@ public final class MiFwkPlugin extends Plugin {
 		}
 	}
 
-	public static void logError(Throwable e, TracerI tracer) {
+	public static void logError(Throwable e, Logger tracer) {
 		logError(e.getMessage(), e, tracer);
 	}
 
-	public static void logError(String message, Throwable e, TracerI tracer) {
+	public static void logError(String message, Throwable e, Logger tracer) {
 		ErrorHandling.logError(message, e, tracer, PLUGIN_ID);
 	}
 
-	public static IStatus createStatus(int severity, String message, Throwable exception) {
+	public static IStatus createStatus(int severity, String message,
+			Throwable exception) {
 		return createStatus(severity, 0, message, exception);
 	}
 
-	public static IStatus createStatus(int severity, int code, String message, Throwable exception) {
-		return ErrorHandling.createStatus(severity, code, message, exception, PLUGIN_ID);
+	public static IStatus createStatus(int severity, int code, String message,
+			Throwable exception) {
+		return ErrorHandling.createStatus(severity, code, message, exception,
+				PLUGIN_ID);
 	}
 
 	/**
@@ -153,7 +158,8 @@ public final class MiFwkPlugin extends Plugin {
 				return (IdePrimaryFacility) facility;
 			}
 		}
-		throw new IllegalStateException("Bad configuration: Primary Facility not found: " + moin); //$NON-NLS-1$
+		throw new IllegalStateException(
+				"Bad configuration: Primary Facility not found: " + moin); //$NON-NLS-1$
 	}
 
 	/**

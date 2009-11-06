@@ -3,14 +3,13 @@ package com.sap.mi.fwk.ui.internal.properties;
 import java.util.Collection;
 import java.util.Collections;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.fwk.ui.internal.messages.MiFwkUiMessages;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Sets the given attribute in the given object to the given value

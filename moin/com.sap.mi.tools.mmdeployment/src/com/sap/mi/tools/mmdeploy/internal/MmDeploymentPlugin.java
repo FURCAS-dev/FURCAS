@@ -1,17 +1,7 @@
 package com.sap.mi.tools.mmdeploy.internal;
 
-import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-
-import com.sap.ide.util.ui.SapUI;
-import com.sap.ide.util.ui.accessibility.AccessibilityUtil;
-import com.sap.ide.util.ui.image.IImageKey;
-import com.sap.ide.util.ui.image.IImagePool;
-import com.sap.mi.tools.mmdeploy.internal.messages.MmDeploymentMessages;
-import com.tssap.util.ui.image.ISapImage;
-import com.tssap.util.ui.image.SapImageConverter;
 
 /**
  * The activator class for the deployment plugin
@@ -29,10 +19,10 @@ public class MmDeploymentPlugin extends AbstractUIPlugin {
 
 	private static final String PATH_ICONS_UI_PLUGIN = "resources/"; //$NON-NLS-1$
 
-	public static final IImageKey IMAGE_NAME_WORKING_SET = SapUI.getImageServices().registerImage(ID_UI_PLUGIN,
+	/*public static final IImageKey IMAGE_NAME_WORKING_SET = SapUI.getImageServices().registerImage(ID_UI_PLUGIN,
 			PATH_ICONS_UI_PLUGIN + "metamodelWorkingSet.gif", //$NON-NLS-1$
 			AccessibilityUtil.createAccessibleInfo(MmDeploymentMessages.plugin_imageAcc_workingSet));
-
+*/
 	private static MmDeploymentPlugin sPlugin;
 
 	public MmDeploymentPlugin() {
@@ -60,15 +50,15 @@ public class MmDeploymentPlugin extends AbstractUIPlugin {
 		return show;
 	}
 
-	public static Image getSharedImage(ISapImage key, Control parent) {
-		IImageKey imgKey = SapImageConverter.convert(key);
-		IImagePool pool = SapUI.getImageServices().getLocalImagePool(parent);
-		return pool.getImage(imgKey);
-	}
-
-	public static Image getSharedImage(IImageKey imgKey) {
-		IImagePool pool = SapUI.getImageServices().getGlobalImagePool();
-		return pool.getImage(imgKey);
-	}
+//	public static Image getSharedImage(ISapImage key, Control parent) {
+//		IImageKey imgKey = SapImageConverter.convert(key);
+//		IImagePool pool = SapUI.getImageServices().getLocalImagePool(parent);
+//		return pool.getImage(imgKey);
+//	}
+//
+//	public static Image getSharedImage(IImageKey imgKey) {
+//		IImagePool pool = SapUI.getImageServices().getGlobalImagePool();
+//		return pool.getImage(imgKey);
+//	}
 
 }

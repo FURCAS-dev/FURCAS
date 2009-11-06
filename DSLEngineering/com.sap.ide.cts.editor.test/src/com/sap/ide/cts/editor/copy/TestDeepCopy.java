@@ -20,8 +20,8 @@ import com.sap.ide.cts.editor.deepcopy.GenericModelCopyStrategy;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.fwk.PartitionService;
-import com.sap.moin.mm.gfw.graphics.GraphicsPackage;
-import com.sap.moin.mm.gfw.pictograms.Diagram;
+import com.sap.mi.gfw.mm.graphics.GraphicsPackage;
+import com.sap.mi.gfw.mm.pictograms.Diagram;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.DeepCopyError;
 import com.sap.tc.moin.repository.DeepCopyMap;
@@ -1607,7 +1607,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	GraphicsPackage gpackage1 = (GraphicsPackage) (connection.getPackage("sap.com/com/sap/moin/mm/gfw",
 		new String[] { "graphics" }));
 	Diagram gd = (Diagram) gpackage1.getPictograms().getDiagram().refCreateInstance();
-	com.sap.moin.mm.gfw.pictograms.Connection gc = (com.sap.moin.mm.gfw.pictograms.Connection) gpackage1.getPictograms()
+	com.sap.mi.gfw.mm.pictograms.Connection gc =  (com.sap.mi.gfw.mm.pictograms.Connection) gpackage1.getPictograms()
 		.getConnection().refCreateInstance();
 
 	// DiagramAggregatesConnections ass0Comp = gpackage1.getPictograms(
@@ -1636,7 +1636,7 @@ public class TestDeepCopy extends FixtureBasedTest {
 	assertTrue(resultSet.getCopyErrors().isEmpty());
 
 	Diagram gd_copy = (Diagram) (resultSet.getMappingTable().get(gd).getMappingTarget());
-	com.sap.moin.mm.gfw.pictograms.Connection gc_copy = (com.sap.moin.mm.gfw.pictograms.Connection) (resultSet
+	com.sap.mi.gfw.mm.pictograms.Connection gc_copy = (com.sap.mi.gfw.mm.pictograms.Connection) (resultSet
 		.getMappingTable().get(gc).getMappingTarget());
 	assertNotNull(gd_copy);
 	assertNotNull(gc_copy);

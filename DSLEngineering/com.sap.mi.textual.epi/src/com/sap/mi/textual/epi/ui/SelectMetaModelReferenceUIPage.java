@@ -24,6 +24,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Group;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ListDialog;
@@ -271,9 +272,9 @@ private IWorkspaceRoot wsRoot;
 		group.setLayoutData(gridData1);
 		group.setText(Messages.RefProjectLabel);
 		
-//		Label label = new Label(group, SWT.NULL);
-//		label.setText(Messages.RefProjectLabel);
-//		_refProjectMMGroupControls.add(label);
+		Label label = new Label(group, SWT.NULL);
+		label.setText(Messages.MessageRefProjectLabel);
+		myRefProjectMMGroupControls.add(label);
 		
 		final Text metamodelText = new Text(group, SWT.READ_ONLY);
 		myRefProjectMMGroupControls.add(metamodelText);

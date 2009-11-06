@@ -4,8 +4,8 @@ import java.text.MessageFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.databinding.AggregateValidationStatus;
 import org.eclipse.core.databinding.observable.value.IValueChangeListener;
@@ -44,8 +44,7 @@ import com.sap.tc.moin.repository.events.filter.PartitionFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionSaveEvent;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Base class for a UI area that uses MOIN data binding. The area can be used
@@ -73,7 +72,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class DataBoundSectionComposite<T extends RefObject> {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DATABINDING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_DATABINDING);
 	private static final String DESCRIPTION_ERROR_WARNING = "<form><li style=\"image\" value=\"image\"> {0} </li></form>"; //$NON-NLS-1$
 	private static final String DESCRIPTION_INFO = "<form> {0} </form>"; //$NON-NLS-1$
 

@@ -7,6 +7,10 @@ Bundle-Activator: com.sap.tc.moin.nwdi.dctype.mm.internal.MoinMetaModelDCTypePlu
 Bundle-Vendor: %provider.name
 Bundle-Localization: plugin
 Export-Package: com.sap.tc.moin.nwdi.dctype.mm
-Require-Bundle: org.eclipse.core.resources,com.sap.ide.dii05.facade,com.tssap.util.core,com.tssap.util.ui,com.sap.mi.fwk.dcfwk,org.eclipse.ui.navigator
+Require-Bundle: org.eclipse.core.resources,
+ com.tssap.util.core,
+ com.sap.mi.fwk.dcfwk,
+ org.eclipse.ui.navigator,
+ org.eclipse.core.runtime;bundle-version="3.5.0"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

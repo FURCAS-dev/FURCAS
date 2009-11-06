@@ -1,7 +1,5 @@
 package com.sap.mi.fwk.ui.editor;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IAdaptable;
@@ -10,6 +8,7 @@ import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
 
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * An element factory used for creating {@link ModelEditorInput}s out of either

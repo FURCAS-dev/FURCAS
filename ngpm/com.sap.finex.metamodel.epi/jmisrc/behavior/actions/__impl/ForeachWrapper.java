@@ -20,6 +20,7 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.ForeachImpl getCastWrappedObject() {
         return (behavior.actions.__impl.ForeachImpl) getWrappedObject();
     }
@@ -185,6 +186,7 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Foreach> get___JmiInterface() {
         return behavior.actions.Foreach.class;
     }

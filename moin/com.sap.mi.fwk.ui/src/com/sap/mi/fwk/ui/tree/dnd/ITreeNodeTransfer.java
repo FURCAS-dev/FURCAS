@@ -1,11 +1,10 @@
 package com.sap.mi.fwk.ui.tree.dnd;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 import com.sap.mi.fwk.ui.tree.dnd.ITreeNodeTransferHandler.TransferOperationEnum;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * This interfaces transports objects during a drag/drop or copy/paste

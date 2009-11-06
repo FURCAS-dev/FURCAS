@@ -3,6 +3,8 @@ package com.sap.mi.tools.cockpit.mql.search;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.search.ui.ISearchQuery;
@@ -15,8 +17,6 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.tools.cockpit.mql.ui.form.QueryDetailsPage.MODE;
 import com.sap.tc.moin.repository.mql.MQLResultException;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * @author d003456
@@ -24,7 +24,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class MQLSearchResult implements ISearchResult {
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MQLVIEW);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MQLVIEW);
 
 	private MQLSearchQuery query;
 
@@ -176,7 +176,7 @@ public class MQLSearchResult implements ISearchResult {
 					getResult().removeRow(rowIndex - i);
 				}
 				catch (final MQLResultException e) {
-					MQLSearchResult.tracer.error(e.getMessage(), e);
+					MQLSearchResult.tracer.log(Level.SEVERE, e.getMessage(), e);
 					throw new RuntimeException(e);
 				}
 				i = i + 1;
@@ -192,7 +192,7 @@ public class MQLSearchResult implements ISearchResult {
 				getResult().removeRow(0);
 			}
 			catch (final MQLResultException e) {
-				MQLSearchResult.tracer.error(e.getMessage(), e);
+				MQLSearchResult.tracer.log(Level.SEVERE, e.getMessage(), e);
 				throw new RuntimeException(e);
 			}
 		}

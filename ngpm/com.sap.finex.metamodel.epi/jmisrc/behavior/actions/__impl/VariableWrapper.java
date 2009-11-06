@@ -19,6 +19,7 @@ public class VariableWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.VariableImpl getCastWrappedObject() {
         return (behavior.actions.__impl.VariableImpl) getWrappedObject();
     }
@@ -229,6 +230,7 @@ public class VariableWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Variable> get___JmiInterface() {
         return behavior.actions.Variable.class;
     }

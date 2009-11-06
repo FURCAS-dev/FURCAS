@@ -6,8 +6,7 @@ Bundle-Version: 0.0.4
 Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: com.sap.base.technology.facade,
- com.sap.tc.moin.libraries.jmi.facade,
+Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
  com.sap.tc.moin.ide.facade,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,

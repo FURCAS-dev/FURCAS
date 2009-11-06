@@ -45,6 +45,9 @@ public class Messages extends NLS {
 	/** The Workbench property page_ no ref project set message. */
 	public static String WorkbenchPropertyPage_NoRefProjectSetMessage;
 	
+	/** The message beneath Ref project label. */
+	public static String MessageRefProjectLabel;
+	
 	/** The Ref project label. */
 	public static String RefProjectLabel;
 	

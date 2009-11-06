@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdapterFactory;
@@ -37,8 +40,6 @@ import com.sap.tc.moin.repository.mmi.model.EnumerationType;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * Property provider for {@link RefObject RefObjects}
@@ -54,7 +55,7 @@ public final class RefObjectPropertySourceManager implements IPropertySourceProv
     private final static String[] defaultBooleanTypeLabels = { Boolean.TRUE.toString(), Boolean.FALSE.toString() };
     private final static String[] defaultBooleanClassLabels = { "", Boolean.TRUE.toString(), Boolean.FALSE.toString() }; //$NON-NLS-1$
 
-    private static final TracerI sTracer = TracingManager.getTracer(RefObjectPropertySourceManager.class);
+    private static final Logger sTracer = Logger.getLogger(RefObjectPropertySourceManager.class.getName());
 
     /**
      * Creates a property manager. It is able to decide on its own, based on the
@@ -314,13 +315,13 @@ public final class RefObjectPropertySourceManager implements IPropertySourceProv
 		} else {
 		    newValue = ModelManager.getInstance().getRefValueObject(refObj, attr, value.toString());
 		}
-		sTracer.debug(RefObjectPropertySource.class, "setPropertyValue", "Setting value for '" + attrName //$NON-NLS-1$ //$NON-NLS-2$
+		sTracer.logp(Level.FINE, RefObjectPropertySource.class.getName(), "setPropertyValue", "Setting value for '" + attrName //$NON-NLS-1$ //$NON-NLS-2$
 			+ "', using connection: " + con); //$NON-NLS-1$
 		SetAttributeCommand command = new SetAttributeCommand(refObj, attr, newValue);
 		command.execute();
 	    } catch (Exception e) {
 		// newValue is not logged due to security issues
-		sTracer.error(RefObjectPropertySource.class, "setPropertyValue", //$NON-NLS-1$
+		sTracer.logp(Level.SEVERE, RefObjectPropertySource.class.getName(), "setPropertyValue", //$NON-NLS-1$
 			"Property could not be set. connection: " + con + ", id: " + id + ", refObj: " + refObj //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				+ ", attribute: " + attr, e); //$NON-NLS-1$
 		ModelManagerUI.getEditorManager().getActiveStatusLineManager().setErrorMessage(

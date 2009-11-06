@@ -1,7 +1,5 @@
 package com.sap.mi.fwk.ui.databinding;
 
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-
 import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.UpdateListStrategy;
 import org.eclipse.core.databinding.UpdateSetStrategy;
@@ -10,6 +8,8 @@ import org.eclipse.core.databinding.observable.Realm;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.set.IObservableSet;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
+
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 
 /**
  * The {@link MoinDataBindingContext} is the class to contact for managing data

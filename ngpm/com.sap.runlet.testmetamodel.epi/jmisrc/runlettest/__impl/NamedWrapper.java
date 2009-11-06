@@ -14,6 +14,7 @@ public class NamedWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private runlettest.__impl.NamedImpl getCastWrappedObject() {
         return (runlettest.__impl.NamedImpl) getWrappedObject();
     }
@@ -85,6 +86,7 @@ public class NamedWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<runlettest.Named> get___JmiInterface() {
         return runlettest.Named.class;
     }

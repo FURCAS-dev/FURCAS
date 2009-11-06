@@ -298,6 +298,7 @@ public final class CountImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Count> get___JmiInterface() {
         return behavior.expressions.Count.class;
     }

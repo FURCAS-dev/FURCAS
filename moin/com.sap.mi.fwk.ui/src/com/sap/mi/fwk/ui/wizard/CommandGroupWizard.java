@@ -1,6 +1,7 @@
 package com.sap.mi.fwk.ui.wizard;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,8 +28,7 @@ import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.CommandHandle;
 import com.sap.tc.moin.repository.commands.CommandStack;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Convenience base class for wizards that do their work within a command group.
@@ -40,7 +40,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public abstract class CommandGroupWizard extends Wizard implements IWorkbenchWizard {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_COMMANDS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_COMMANDS);
 
 	private Connection mConnection = null;
 	private IProject mProject = null;

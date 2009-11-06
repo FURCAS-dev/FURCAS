@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IAdaptable;
@@ -17,8 +14,10 @@ import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
 import com.sap.mi.fwk.ui.tree.nodes.TreeNodeRefObject;
 import com.sap.mi.tools.cockpit.editor.provider.MOINBrowserLabelProvider;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * @author d003456
@@ -28,7 +27,7 @@ public final class AssociationEndNode extends TreeNodeRefObject<AssociationEnd> 
 
 	private final static String NO_PARENT_ERROR_MESSAGE_PART = "No parent as RefObject found for AssociationEnd: "; //$NON-NLS-1$
 
-	private static final TracerI tracer = TracingManager.getTracer(MiLocations.MI_MODELBROWSER);
+	private static final Logger tracer = Logger.getLogger(MiLocations.MI_MODELBROWSER);
 
 	/**
 	 * Create {@link AssociationEndNode}.
@@ -87,7 +86,7 @@ public final class AssociationEndNode extends TreeNodeRefObject<AssociationEnd> 
 				}
 				catch (final Exception e) {
 					childList = Collections.emptyList();
-					AssociationEndNode.tracer.error(e.getMessage(), e);
+					AssociationEndNode.tracer.log(Level.SEVERE, e.getMessage(), e);
 				}
 			}
 

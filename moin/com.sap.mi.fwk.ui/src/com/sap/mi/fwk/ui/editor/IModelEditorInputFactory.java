@@ -1,10 +1,10 @@
 package com.sap.mi.fwk.ui.editor;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IFileEditorInput;
+
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * Defines a {@link ModelEditorInput} factory for {@link RefBaseObject}s. An

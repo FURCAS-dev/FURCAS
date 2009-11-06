@@ -220,6 +220,7 @@ public final class VariableImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Variable> get___JmiInterface() {
         return behavior.actions.Variable.class;
     }

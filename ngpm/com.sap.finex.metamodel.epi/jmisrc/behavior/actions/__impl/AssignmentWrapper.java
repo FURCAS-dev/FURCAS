@@ -20,6 +20,7 @@ public class AssignmentWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.AssignmentImpl getCastWrappedObject() {
         return (behavior.actions.__impl.AssignmentImpl) getWrappedObject();
     }
@@ -248,6 +249,7 @@ public class AssignmentWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Assignment> get___JmiInterface() {
         return behavior.actions.Assignment.class;
     }

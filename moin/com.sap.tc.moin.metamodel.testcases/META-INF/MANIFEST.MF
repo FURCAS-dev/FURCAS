@@ -119,5 +119,10 @@ Export-Package: com.sap.tc.moin.testcases.case007.importer.__impl,
  com.sap.tc.moin.testcases.case017,
  com.sap.tc.moin.toplevel2.nested2,
  com.sap.tc.moin.testcases.case019
-Require-Bundle: com.sap.tc.moin.ide.facade,com.sap.tc.moin.libraries.jmi.facade,com.sap.tc.moin.libraries.spi.facade,com.sap.base.technology.facade,org.eclipse.core.runtime,org.eclipse.core.resources,com.sap.tc.moin.metamodel.testcases.foundation
+Require-Bundle: com.sap.tc.moin.ide.facade,
+ com.sap.tc.moin.libraries.jmi.facade,
+ com.sap.tc.moin.libraries.spi.facade,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ com.sap.tc.moin.metamodel.testcases.foundation
 Eclipse-LazyStart: true

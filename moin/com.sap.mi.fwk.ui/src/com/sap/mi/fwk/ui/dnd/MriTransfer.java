@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import org.eclipse.swt.dnd.ByteArrayTransfer;
@@ -17,8 +20,6 @@ import org.eclipse.swt.dnd.TransferData;
 import com.sap.mi.fwk.internal.tracing.MiLocations;
 import com.sap.mi.fwk.ui.internal.MiFwkUIPlugin;
 import com.sap.tc.moin.repository.MRI;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
 
 /**
  * SWT {@link Transfer} for transporting a number of {@link MRI}-addressable
@@ -37,7 +38,7 @@ public class MriTransfer extends ByteArrayTransfer {
 
 	private static final MriTransfer sInstance = new MriTransfer();
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_MODELHANDLING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_MODELHANDLING);
 
 	/**
 	 * @return the singleton instance
@@ -110,7 +111,7 @@ public class MriTransfer extends ByteArrayTransfer {
 					dataIn.close();
 				}
 			} catch (final IOException e) {
-				MriTransfer.sTracer.error("Error while reading stream", e); //$NON-NLS-1$
+				MriTransfer.sTracer.log(Level.SEVERE, "Error while reading stream", e); //$NON-NLS-1$
 			}
 		}
 	}

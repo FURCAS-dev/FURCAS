@@ -1,6 +1,8 @@
 package com.sap.mi.fwk.ui.internal;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -23,8 +25,7 @@ import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.Partitionable;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 
 /**
  * This class is used to launch other editors based on marker entries in the
@@ -41,7 +42,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public final class ModelEditorLauncher extends EditorPart implements IGotoMarker {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_EDITORS);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_EDITORS);
 
 	@Override
 	public void createPartControl(Composite parent) {
@@ -68,7 +69,7 @@ public final class ModelEditorLauncher extends EditorPart implements IGotoMarker
 			}
 
 		} catch (Exception ex) {
-			sTracer.error("Could not open editor for marker: " + marker, ex); //$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Could not open editor for marker: " + marker, ex); //$NON-NLS-1$
 		} finally {
 			// close this editor w/o saving
 			// this should happen fast enough so editor won't be noticed by user
@@ -82,7 +83,7 @@ public final class ModelEditorLauncher extends EditorPart implements IGotoMarker
 			MRI mri = ModelManager.getInstance().getMoinInstance().createMri(objMRI);
 			RefBaseObject obj = connection.getElement(mri);
 			if (obj == null) {
-				sTracer.error("Model element with the given mri does not exist. mri:" + objMRI); //$NON-NLS-1$
+				sTracer.log(Level.SEVERE, "Model element with the given mri does not exist. mri:" + objMRI); //$NON-NLS-1$
 				return;
 			}
 
@@ -93,10 +94,10 @@ public final class ModelEditorLauncher extends EditorPart implements IGotoMarker
 			}
 
 			String objName = ModelManager.getInstance().getObjectName(obj);
-			sTracer.error("No editor registered for object. object: " + objName + ", className: " //$NON-NLS-1$ //$NON-NLS-2$
+			sTracer.severe("No editor registered for object. object: " + objName + ", className: " //$NON-NLS-1$ //$NON-NLS-2$
 					+ ((Partitionable) obj).get___JmiInterface());
 		} catch (Exception ex) {
-			sTracer.error("Could not open editor for marker: " + marker, ex); //$NON-NLS-1$
+			sTracer.log(Level.SEVERE, "Could not open editor for marker: " + marker, ex); //$NON-NLS-1$
 		}
 	}
 

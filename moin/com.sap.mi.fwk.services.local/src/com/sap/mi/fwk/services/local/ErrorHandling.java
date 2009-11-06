@@ -1,18 +1,24 @@
 package com.sap.mi.fwk.services.local;
 
+import java.awt.Dialog;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
+
 import org.eclipse.core.runtime.ILog;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Shell;
 import org.osgi.framework.Bundle;
 
 import com.sap.mi.fwk.services.local.internal.Activator;
 import com.sap.mi.fwk.services.local.internal.MiLocations;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
-import com.tssap.util.ui.dialog.ExtendedMessageDialog;
 
 /**
  * Utility for some error handling actions like raising error dialogs or logging
@@ -22,7 +28,7 @@ import com.tssap.util.ui.dialog.ExtendedMessageDialog;
  */
 public final class ErrorHandling {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MIE);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MIE);
 
 	/**
 	 * Raises a dialog for the given status if called from the UI thread.
@@ -39,14 +45,31 @@ public final class ErrorHandling {
 	 *            the id of the plugin where the error occurred
 	 * @return the status for convenience
 	 * 
-	 * @see #logStatus(IStatus, TracerI, String)
+	 * @see #logStatus(IStatus, Logger, String)
 	 */
-	public static IStatus showStatus(IStatus status, String title, TracerI tracer, String pluginId) {
+	public static IStatus showStatus(IStatus status, String title, Logger tracer, String pluginId) {
 		logStatus(status, tracer, pluginId);
 		if (Display.getCurrent() != null) {
-			ExtendedMessageDialog.showStatus(Display.getCurrent().getActiveShell(), title != null ? title
-					: "Internal Error", status.getMessage(), null, new String[] { IDialogConstants.OK_LABEL }, status); //$NON-NLS-1$
-			
+		    Shell shell = Display.getCurrent().getActiveShell();
+		    title = (title != null) ? title
+                            : "Internal Error"; //$NON-NLS-1$
+		    String message = status.getMessage();
+		    int sev = status.getSeverity();
+	                if (sev == IStatus.CANCEL) {
+	                    MessageDialog.openInformation(shell, title, message);
+	                }
+	                if (sev == IStatus.ERROR){
+	                    ErrorDialog.openError(shell, title, message, status);
+	                }
+	                if (sev == IStatus.INFO){
+	                    MessageDialog.openInformation(shell, title, message);
+	                }
+	                if (sev == IStatus.OK){
+	                    MessageDialog.openInformation(shell, title, message);
+	                }
+	                if (sev == IStatus.WARNING){
+	                    MessageDialog.openWarning(shell, title, message);
+	                }			
 		}
 		return status;
 	}
@@ -68,9 +91,9 @@ public final class ErrorHandling {
 	 *            the id of the plugin where the error occurred
 	 * @return the status for convenience
 	 * 
-	 * @see #showStatus(IStatus, String, TracerI, String)
+	 * @see #showStatus(IStatus, String, Logger, String)
 	 */
-	public static IStatus showError(String message, Throwable exception, String title, TracerI tracer, String pluginId) {
+	public static IStatus showError(String message, Throwable exception, String title, Logger tracer, String pluginId) {
 		IStatus status = createStatus(IStatus.ERROR, 0, message, exception, pluginId);
 		return showStatus(status, title, tracer, pluginId);
 	}
@@ -86,9 +109,9 @@ public final class ErrorHandling {
 	 * @param pluginId
 	 *            the id of the plugin where the error occurred
 	 * 
-	 * @see #showStatus(IStatus, String, TracerI, String)
+	 * @see #showStatus(IStatus, String, Logger, String)
 	 */
-	public static void logStatus(IStatus status, TracerI tracer, String pluginId) {
+	public static void logStatus(IStatus status, Logger tracer, String pluginId) {
 		if (tracer == null) {
 			Bundle bundle = Platform.getBundle(pluginId);
 			if (bundle == null) {
@@ -102,10 +125,10 @@ public final class ErrorHandling {
 			String message = status.getMessage();
 			switch (status.getSeverity()) {
 				case IStatus.ERROR:
-					tracer.error(message, status.getException());
+					tracer.log(Level.SEVERE, message, status.getException());
 					break;
 				case IStatus.WARNING:
-					tracer.warning(message, status.getException());
+					tracer.log(Level.WARNING, message, status.getException());
 					break;
 				default:
 					tracer.info(message);
@@ -136,9 +159,9 @@ public final class ErrorHandling {
 	 * @param pluginId
 	 *            the id of the plugin where the error occurred
 	 * 
-	 * @see #showStatus(IStatus, String, TracerI, String)
+	 * @see #showStatus(IStatus, String, Logger, String)
 	 */
-	public static void logError(String message, Throwable exception, TracerI tracer, String pluginId) {
+	public static void logError(String message, Throwable exception, Logger tracer, String pluginId) {
 		IStatus status = createStatus(IStatus.ERROR, 0, message, exception, pluginId);
 		logStatus(status, tracer, pluginId);
 	}

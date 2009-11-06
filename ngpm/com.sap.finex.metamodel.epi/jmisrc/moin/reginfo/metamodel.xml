@@ -6,10 +6,10 @@
   <DeploymentExtension class="com.sap.tc.moin.packageDD4C50ED6C92CD29CB00AA4B65989950FD9AD9F2.MetamodelExtension" />
   <Partitions>
     <Partition name="moin/meta/structure.moinmm"
-      contentHash="CE07E94E71C79FB8CBD18CDD658A97D8" />
+      contentHash="A74F23FAB446D75F38B354423A949E1C" />
     <Partition name="moin/meta/finex.moinmm"
       contentHash="85759E0BA8AA04EFE015E6F45A45B579" />
     <Partition name="moin/meta/behavior.moinmm"
-      contentHash="09637A5D3A892042DB6DC55218EC20DE" />
+      contentHash="039A93CC35B1E8321F71D82E66E5C9E3" />
   </Partitions>
 </MetamodelInf>

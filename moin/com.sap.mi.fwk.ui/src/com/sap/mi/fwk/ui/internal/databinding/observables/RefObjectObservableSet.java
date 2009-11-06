@@ -5,12 +5,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
-
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import java.util.logging.Level;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import org.eclipse.core.databinding.UpdateSetStrategy;
 import org.eclipse.core.databinding.observable.Diffs;
@@ -35,8 +32,11 @@ import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.LinkAddEvent;
 import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
-import com.tssap.util.trace.TracerI;
-import com.tssap.util.trace.TracingManager;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Reference;
+import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * An observable implementation that listens to changes on a
@@ -53,7 +53,7 @@ import com.tssap.util.trace.TracingManager;
  */
 public class RefObjectObservableSet extends ObservableSet implements IObserving {
 
-	private static final TracerI sTracer = TracingManager.getTracer(MiLocations.MI_DATABINDING);
+	private static final Logger sTracer = Logger.getLogger(MiLocations.MI_DATABINDING);
 
 	private RefObjectObservableCollectionDelegate delegate = null;
 
@@ -90,17 +90,17 @@ public class RefObjectObservableSet extends ObservableSet implements IObserving 
 	 */
 	@Override
 	protected void firstListenerAdded() {
-		if (sTracer.debug()) {
+		if (sTracer.isLoggable(Level.FINE)) {
 			sTracer
-					.debug("RefObjectObservableSet.firstListenerAdded() called for <" + TracingSupport.getName(delegate.getRefObject()) + ">, feature <" + delegate.getFeature().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					.fine("RefObjectObservableSet.firstListenerAdded() called for <" + TracingSupport.getName(delegate.getRefObject()) + ">, feature <" + delegate.getFeature().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 
 		UpdateListener listener = new UpdateListener() {
 			public void notifyUpdate(EventChain eventChain) {
 
-				if (sTracer.debug()) {
+				if (sTracer.isLoggable(Level.FINE)) {
 					sTracer
-							.debug("RefObjectObservableSet.notifyUpdate() called for <" + TracingSupport.getName(delegate.getRefObject()) + ">, feature <" + delegate.getFeature().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+							.fine("RefObjectObservableSet.notifyUpdate() called for <" + TracingSupport.getName(delegate.getRefObject()) + ">, feature <" + delegate.getFeature().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 				}
 
 				List<ChangeEvent> events = eventChain.getEvents();
@@ -116,17 +116,17 @@ public class RefObjectObservableSet extends ObservableSet implements IObserving 
 						if (object != null) {
 							if (changeEvent instanceof LinkAddEvent) {
 								additions.add(object);
-								if (sTracer.debug()) {
-									sTracer.debug("Element added"); //$NON-NLS-1$
+								if (sTracer.isLoggable(Level.FINE)) {
+									sTracer.fine("Element added"); //$NON-NLS-1$
 								}
 							} else if (changeEvent instanceof LinkRemoveEvent) {
 								removals.add(object);
-								if (sTracer.debug()) {
-									sTracer.debug("Element removed"); //$NON-NLS-1$
+								if (sTracer.isLoggable(Level.FINE)) {
+									sTracer.fine("Element removed"); //$NON-NLS-1$
 								}
 							} else {
 								String msg = "Unknown subtype of LinkChangeEvent - supported subtypes: LinkAddEvent, LinkRemoveEvent"; //$NON-NLS-1$
-								sTracer.error("notifyUpdate()", msg);//$NON-NLS-1$
+								sTracer.logp(Level.SEVERE, RefObjectObservableSet.class.getName(), "notifyUpdate()", msg);//$NON-NLS-1$
 								Assert.isTrue(false, msg);
 							}
 						}
@@ -147,7 +147,7 @@ public class RefObjectObservableSet extends ObservableSet implements IObserving 
 								removals.add(object);
 							} else {
 								String msg = "Unknown subtype of AttributeChangeEvent - supported subtypes: AttributeValueAddEvent, AttributeValueRemoveEvent"; //$NON-NLS-1$
-								sTracer.error("notifyUpdate()", msg);//$NON-NLS-1$
+								sTracer.logp(Level.SEVERE, RefObjectObservableSet.class.getName(), "notifyUpdate()", msg);//$NON-NLS-1$
 								Assert.isTrue(false, msg);
 							}
 						}
@@ -166,9 +166,9 @@ public class RefObjectObservableSet extends ObservableSet implements IObserving 
 
 	@Override
 	protected void lastListenerRemoved() {
-		if (sTracer.debug()) {
+		if (sTracer.isLoggable(Level.FINE)) {
 			sTracer
-					.debug("RefObjectObservableSet.lastListenerRemoved() called for <" + TracingSupport.getName(delegate.getRefObject()) + ">, feature <" + delegate.getFeature().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					.fine("RefObjectObservableSet.lastListenerRemoved() called for <" + TracingSupport.getName(delegate.getRefObject()) + ">, feature <" + delegate.getFeature().getName() + ">"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		delegate.removeListener();
 	}

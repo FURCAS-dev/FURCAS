@@ -19,6 +19,7 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.functions.__impl.FunctionImpl getCastWrappedObject() {
         return (behavior.functions.__impl.FunctionImpl) getWrappedObject();
     }
@@ -208,6 +209,7 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.Function> get___JmiInterface() {
         return behavior.functions.Function.class;
     }

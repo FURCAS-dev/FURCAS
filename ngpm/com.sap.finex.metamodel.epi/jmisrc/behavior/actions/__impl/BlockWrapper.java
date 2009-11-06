@@ -21,6 +21,7 @@ public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.BlockImpl getCastWrappedObject() {
         return (behavior.actions.__impl.BlockImpl) getWrappedObject();
     }
@@ -238,6 +239,7 @@ public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Block> get___JmiInterface() {
         return behavior.actions.Block.class;
     }
