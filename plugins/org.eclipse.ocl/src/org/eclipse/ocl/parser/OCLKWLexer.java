@@ -14,7 +14,7 @@
 *   E.D.Willink - Bug 285633, 292112
 * </copyright>
 *
-* $Id: OCLKWLexer.java,v 1.10 2009/10/15 19:43:48 ewillink Exp $
+* $Id: OCLKWLexer.java,v 1.11 2009/11/09 22:00:25 ewillink Exp $
 */
 /**
 * Complete OCL Keyword Lexer
@@ -40,7 +40,7 @@ package org.eclipse.ocl.parser;
 public class OCLKWLexer extends OCLKWLexerprs implements OCLParsersym
 {
     private char[] inputChars;
-    private final int keywordKind[] = new int[54 + 1];
+    private final int keywordKind[] = new int[42 + 1];
 
     public int[] getKeywordKinds() { return keywordKind; }
 
@@ -257,213 +257,141 @@ public class OCLKWLexer extends OCLKWLexerprs implements OCLParsersym
 	  
 	
         //
-        // Rule 20:  KeyWord ::= i t e r a t e
+        // Rule 20:  KeyWord ::= S t r i n g
         //
-		keywordKind[20] = (TK_iterate);
+		keywordKind[20] = (TK_String);
 	  
 	
         //
-        // Rule 21:  KeyWord ::= f o r A l l
+        // Rule 21:  KeyWord ::= I n t e g e r
         //
-		keywordKind[21] = (TK_forAll);
+		keywordKind[21] = (TK_Integer);
 	  
 	
         //
-        // Rule 22:  KeyWord ::= e x i s t s
+        // Rule 22:  KeyWord ::= U n l i m i t e d N a t u r a l
         //
-		keywordKind[22] = (TK_exists);
+		keywordKind[22] = (TK_UnlimitedNatural);
 	  
 	
         //
-        // Rule 23:  KeyWord ::= i s U n i q u e
+        // Rule 23:  KeyWord ::= R e a l
         //
-		keywordKind[23] = (TK_isUnique);
+		keywordKind[23] = (TK_Real);
 	  
 	
         //
-        // Rule 24:  KeyWord ::= a n y
+        // Rule 24:  KeyWord ::= B o o l e a n
         //
-		keywordKind[24] = (TK_any);
+		keywordKind[24] = (TK_Boolean);
 	  
 	
         //
-        // Rule 25:  KeyWord ::= o n e
+        // Rule 25:  KeyWord ::= T u p l e
         //
-		keywordKind[25] = (TK_one);
+		keywordKind[25] = (TK_Tuple);
 	  
 	
         //
-        // Rule 26:  KeyWord ::= c o l l e c t
+        // Rule 26:  KeyWord ::= O c l A n y
         //
-		keywordKind[26] = (TK_collect);
+		keywordKind[26] = (TK_OclAny);
 	  
 	
         //
-        // Rule 27:  KeyWord ::= s e l e c t
+        // Rule 27:  KeyWord ::= O c l V o i d
         //
-		keywordKind[27] = (TK_select);
+		keywordKind[27] = (TK_OclVoid);
 	  
 	
         //
-        // Rule 28:  KeyWord ::= r e j e c t
+        // Rule 28:  KeyWord ::= O c l I n v a l i d
         //
-		keywordKind[28] = (TK_reject);
+		keywordKind[28] = (TK_OclInvalid);
 	  
 	
         //
-        // Rule 29:  KeyWord ::= c o l l e c t N e s t e d
+        // Rule 29:  KeyWord ::= n u l l
         //
-		keywordKind[29] = (TK_collectNested);
+		keywordKind[29] = (TK_null);
 	  
 	
         //
-        // Rule 30:  KeyWord ::= s o r t e d B y
+        // Rule 30:  KeyWord ::= i n v a l i d
         //
-		keywordKind[30] = (TK_sortedBy);
+		keywordKind[30] = (TK_invalid);
 	  
 	
         //
-        // Rule 31:  KeyWord ::= c l o s u r e
+        // Rule 31:  KeyWord ::= i n v
         //
-		keywordKind[31] = (TK_closure);
+		keywordKind[31] = (TK_inv);
 	  
 	
         //
-        // Rule 32:  KeyWord ::= S t r i n g
+        // Rule 32:  KeyWord ::= p r e
         //
-		keywordKind[32] = (TK_String);
+		keywordKind[32] = (TK_pre);
 	  
 	
         //
-        // Rule 33:  KeyWord ::= I n t e g e r
+        // Rule 33:  KeyWord ::= p o s t
         //
-		keywordKind[33] = (TK_Integer);
+		keywordKind[33] = (TK_post);
 	  
 	
         //
-        // Rule 34:  KeyWord ::= U n l i m i t e d N a t u r a l
+        // Rule 34:  KeyWord ::= b o d y
         //
-		keywordKind[34] = (TK_UnlimitedNatural);
+		keywordKind[34] = (TK_body);
 	  
 	
         //
-        // Rule 35:  KeyWord ::= R e a l
+        // Rule 35:  KeyWord ::= c o n t e x t
         //
-		keywordKind[35] = (TK_Real);
+		keywordKind[35] = (TK_context);
 	  
 	
         //
-        // Rule 36:  KeyWord ::= B o o l e a n
+        // Rule 36:  KeyWord ::= p a c k a g e
         //
-		keywordKind[36] = (TK_Boolean);
+		keywordKind[36] = (TK_package);
 	  
 	
         //
-        // Rule 37:  KeyWord ::= T u p l e
+        // Rule 37:  KeyWord ::= e n d p a c k a g e
         //
-		keywordKind[37] = (TK_Tuple);
+		keywordKind[37] = (TK_endpackage);
 	  
 	
         //
-        // Rule 38:  KeyWord ::= O c l A n y
+        // Rule 38:  KeyWord ::= d e f
         //
-		keywordKind[38] = (TK_OclAny);
+		keywordKind[38] = (TK_def);
 	  
 	
         //
-        // Rule 39:  KeyWord ::= O c l V o i d
+        // Rule 39:  KeyWord ::= d e r i v e
         //
-		keywordKind[39] = (TK_OclVoid);
+		keywordKind[39] = (TK_derive);
 	  
 	
         //
-        // Rule 40:  KeyWord ::= O c l I n v a l i d
+        // Rule 40:  KeyWord ::= i n i t
         //
-		keywordKind[40] = (TK_OclInvalid);
+		keywordKind[40] = (TK_init);
 	  
 	
         //
-        // Rule 41:  KeyWord ::= n u l l
+        // Rule 41:  KeyWord ::= O c l M e s s a g e
         //
-		keywordKind[41] = (TK_null);
+		keywordKind[41] = (TK_OclMessage);
 	  
 	
         //
-        // Rule 42:  KeyWord ::= i n v a l i d
+        // Rule 42:  KeyWord ::= s t a t i c
         //
-		keywordKind[42] = (TK_invalid);
-	  
-	
-        //
-        // Rule 43:  KeyWord ::= i n v
-        //
-		keywordKind[43] = (TK_inv);
-	  
-	
-        //
-        // Rule 44:  KeyWord ::= p r e
-        //
-		keywordKind[44] = (TK_pre);
-	  
-	
-        //
-        // Rule 45:  KeyWord ::= p o s t
-        //
-		keywordKind[45] = (TK_post);
-	  
-	
-        //
-        // Rule 46:  KeyWord ::= b o d y
-        //
-		keywordKind[46] = (TK_body);
-	  
-	
-        //
-        // Rule 47:  KeyWord ::= c o n t e x t
-        //
-		keywordKind[47] = (TK_context);
-	  
-	
-        //
-        // Rule 48:  KeyWord ::= p a c k a g e
-        //
-		keywordKind[48] = (TK_package);
-	  
-	
-        //
-        // Rule 49:  KeyWord ::= e n d p a c k a g e
-        //
-		keywordKind[49] = (TK_endpackage);
-	  
-	
-        //
-        // Rule 50:  KeyWord ::= d e f
-        //
-		keywordKind[50] = (TK_def);
-	  
-	
-        //
-        // Rule 51:  KeyWord ::= d e r i v e
-        //
-		keywordKind[51] = (TK_derive);
-	  
-	
-        //
-        // Rule 52:  KeyWord ::= i n i t
-        //
-		keywordKind[52] = (TK_init);
-	  
-	
-        //
-        // Rule 53:  KeyWord ::= O c l M e s s a g e
-        //
-		keywordKind[53] = (TK_OclMessage);
-	  
-	
-        //
-        // Rule 54:  KeyWord ::= s t a t i c
-        //
-		keywordKind[54] = (TK_static);
+		keywordKind[42] = (TK_static);
 	  
 	
 
