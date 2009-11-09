@@ -15,7 +15,7 @@
 *   E.D.Willink - Bug 292112
 * </copyright>
 *
-* $Id: OCLBacktrackingLexer.java,v 1.9 2009/10/23 21:26:17 ewillink Exp $
+* $Id: OCLBacktrackingLexer.java,v 1.10 2009/11/09 22:14:06 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -330,15 +330,15 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             }
 	 
             //
-            // Rule 2:  Token ::= EscapedSQ
+            // Rule 2:  Token ::= " SLNotDQ "
             //
             case 2: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(TK_IDENTIFIER);
 	            break;
             }
 	 
             //
-            // Rule 3:  Token ::= SingleQuote SLNotSQ SingleQuote
+            // Rule 3:  Token ::= SingleQuote SLNotSQOpt SingleQuote
             //
             case 3: { 
 				makeToken(TK_STRING_LITERAL);
@@ -624,33 +624,33 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             }
 	 
             //
-            // Rule 269:  Token ::= @
+            // Rule 264:  Token ::= @
             //
-            case 269: { 
+            case 264: { 
 				makeToken(TK_AT);
 	            break;
             }
 	 
             //
-            // Rule 270:  Token ::= ^
+            // Rule 265:  Token ::= ^
             //
-            case 270: { 
+            case 265: { 
 				makeToken(TK_CARET);
 	            break;
             }
 	 
             //
-            // Rule 271:  Token ::= ^ ^
+            // Rule 266:  Token ::= ^ ^
             //
-            case 271: { 
+            case 266: { 
 				makeToken(TK_CARETCARET);
 	            break;
             }
 	 
             //
-            // Rule 272:  Token ::= ?
+            // Rule 267:  Token ::= ?
             //
-            case 272: { 
+            case 267: { 
 				makeToken(TK_QUESTIONMARK);
 	            break;
             }
