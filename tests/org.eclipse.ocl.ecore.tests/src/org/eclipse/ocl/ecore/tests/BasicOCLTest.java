@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.13 2009/10/15 19:46:28 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.14 2009/11/09 22:15:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -461,6 +461,10 @@ public class BasicOCLTest
             
             assertEquals("'", //$NON-NLS-1$
                 evaluate(helper, self, "''''")); //$NON-NLS-1$
+            assertEquals("", //$NON-NLS-1$
+                evaluate(helper, self, "'' ''")); //$NON-NLS-1$
+            assertEquals("string", //$NON-NLS-1$
+                evaluate(helper, self, "'str' 'ing'")); //$NON-NLS-1$
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }

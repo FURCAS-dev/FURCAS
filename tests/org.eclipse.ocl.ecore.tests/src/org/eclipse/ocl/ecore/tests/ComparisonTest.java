@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.10 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: ComparisonTest.java,v 1.11 2009/11/09 22:15:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -43,7 +43,9 @@ import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.expressions.CollectionLiteralExp;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.types.CollectionType;
 
 /**
@@ -435,6 +437,7 @@ public class ComparisonTest
 	}
 	
 	public void test_dotNotationForSymbolicOperationNames() {
+        ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.CONCEPTUAL_OPERATION_NAME, ProblemHandler.Severity.OK);
 		helper.setContext(EcorePackage.Literals.EINT);
 		
 		Integer minusOne = new Integer(-1);
@@ -468,7 +471,9 @@ public class ComparisonTest
 			// unary minus
 			assertEquals(minusOne, evaluate(helper, one, "-1")); //$NON-NLS-1$
 			assertEquals(minusOne, evaluate(helper, one, "-self")); //$NON-NLS-1$
+			assertEquals(minusOne, evaluate(helper, one, "self.\"-\"()")); //$NON-NLS-1$
 			assertEquals(minusOne, evaluate(helper, one, "self.-()")); //$NON-NLS-1$
+			assertEquals(one, evaluate(helper, one, "- self.\"-\"()")); //$NON-NLS-1$
 			assertEquals(one, evaluate(helper, one, "- self.-()")); //$NON-NLS-1$
 			assertEquals(one, evaluate(helper, one, "- -1")); //$NON-NLS-1$
 			assertEquals(one, evaluate(helper, one, "- -self")); //$NON-NLS-1$
@@ -476,12 +481,20 @@ public class ComparisonTest
 			// unary not
 			helper.setContext(EcorePackage.Literals.EBOOLEAN);
 			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "not self")); //$NON-NLS-1$
+			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.\"not\"()")); //$NON-NLS-1$
 			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.not()")); //$NON-NLS-1$
 			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not not self")); //$NON-NLS-1$
+			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self._not()")); //$NON-NLS-1$
 			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.not()")); //$NON-NLS-1$
 			
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+        ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.CONCEPTUAL_OPERATION_NAME, ProblemHandler.Severity.ERROR);
+		try {
+			assertEquals(one, evaluate(helper, one, "3.-(2)")); //$NON-NLS-1$
+			fail("Missing exception"); //$NON-NLS-1$
+		} catch (Exception e) {
 		}
 	}
 	
@@ -535,9 +548,9 @@ public class ComparisonTest
     
     		try {
     			assertTrue(check(helper, ctx,
-    					"ocl::expressions::CollectionKind::" + kind.getLiteral() + " = self.kind")); //$NON-NLS-1$ //$NON-NLS-2$	
+    					"ocl::expressions::CollectionKind::\"" + kind.getLiteral() + "\" = self.kind")); //$NON-NLS-1$ //$NON-NLS-2$	
     			assertTrue(check(helper, ctx,
-    					"self.kind = ocl::expressions::CollectionKind::" + kind.getLiteral())); //$NON-NLS-1$
+    					"self.kind = ocl::expressions::CollectionKind::\"" + kind.getLiteral() + '"')); //$NON-NLS-1$
     		} catch (Exception e) {
     			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
     		}
