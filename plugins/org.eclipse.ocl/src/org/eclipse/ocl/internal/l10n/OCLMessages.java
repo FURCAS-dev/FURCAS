@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLMessages.java,v 1.11 2009/10/02 20:46:34 ewillink Exp $
+ * $Id: OCLMessages.java,v 1.12 2009/11/09 21:57:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.l10n;
@@ -236,6 +236,7 @@ public class OCLMessages {
 	
 	public static String ErrorReport_RowColumn;
 	
+	public static String Conceptual_Operation_Name_;
 	public static String NonStd_DQuote_Escape_;
 	public static String NonStd_SQuote_Escape_;
     public static String NonStd_Operation_;

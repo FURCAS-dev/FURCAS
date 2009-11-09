@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemOption.java,v 1.2 2007/12/03 18:44:40 cdamus Exp $
+ * $Id: ProblemOption.java,v 1.3 2009/11/09 21:57:32 ewillink Exp $
  */
 package org.eclipse.ocl.options;
 
@@ -69,7 +69,15 @@ public enum ProblemOption implements Option<Severity> {
      * strictly speaking, well-formed OCL.
      * The default severity is <tt>WARNING</tt>.
      */
-    INHERITED_FEATURE_CONTEXT("inherited.feature.context", Severity.WARNING); //$NON-NLS-1$
+    INHERITED_FEATURE_CONTEXT("inherited.feature.context", Severity.WARNING), //$NON-NLS-1$
+	
+	/**
+	 * Severity of making use of an operation name conceptually as
+	 * in 7.4.8 .
+	 * The default severity is <tt>OK</tt>.
+	 * @since 3.0
+	 */
+	CONCEPTUAL_OPERATION_NAME("conceptual.operation.name", Severity.ERROR); //$NON-NLS-1$
 	
 	private final String key;
 	private final Severity defaultValue;
