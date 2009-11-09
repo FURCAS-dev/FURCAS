@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLLexer.g,v 1.1 2009/10/15 19:43:12 ewillink Exp $
+-- * $Id: EssentialOCLLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
 -- */
 --
 -- The Essential OCL Lexer
@@ -66,7 +66,7 @@ $Notice
  *   E.D.Willink - Bug 292112
  * </copyright>
  *
- * $Id: EssentialOCLLexer.g,v 1.1 2009/10/15 19:43:12 ewillink Exp $
+ * $Id: EssentialOCLLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
  */
 	./
 $End
@@ -85,9 +85,9 @@ $End
 $Export
 
 	IDENTIFIER
-	STRING_LITERAL
 	INTEGER_LITERAL
 	REAL_LITERAL
+	STRING_LITERAL
 	
 	PLUS
 	MINUS
@@ -205,14 +205,13 @@ $Rules
 		  $EndAction
 		./
 
-	-- an empty String literal looks just like an escaped single-quote
-	Token ::= EscapedSQ
+	Token ::= '"' SLNotDQ '"'
 		/.$BeginAction
-					makeToken($_STRING_LITERAL);
+					makeToken($_IDENTIFIER);
 		  $EndAction
 		./
 
-	Token ::= SingleQuote SLNotSQ SingleQuote
+	Token ::= SingleQuote SLNotSQOpt SingleQuote
 		/.$BeginAction
 					makeToken($_STRING_LITERAL);
 		  $EndAction
@@ -478,7 +477,6 @@ $Rules
                 | Identifier Letter
                 | Identifier Digit
                 | Identifier DollarSign
-                | QuotedName
 
     SpecialNotStar -> '+' | '-' | '/' | '(' | ')' | '"' | '!' | '@' | '`' | '~' |
                       '%' | '&' | '^' | ':' | ';' | "'" | '\' | '|' | '{' | '}' |
@@ -523,20 +521,13 @@ $Rules
            | Digit
            | SpecialNotDQ
            | Space
-           | EscapedDQ
+           | BackslashEscapedSymbol
 
     NotSQ -> Letter
            | Digit
            | SpecialNotSQ
            | Space
-           | EscapedSQ
            | BackslashEscapedSymbol
-
-	EscapedSQ -> SingleQuote SingleQuote
-
-	-- maintain this for compatibility with the "...\"..." escapes in an
-	-- escape mechanism (double-quotes) that isn't compliant, anyway
-	EscapedDQ -> '\' DoubleQuote
 
 	SLNotDQ -> NotDQ
 	         | SLNotDQ NotDQ
@@ -546,7 +537,5 @@ $Rules
 
 	SLNotSQOpt -> $empty
 	            | SLNotSQ
-
-	QuotedName -> '"' SLNotDQ '"'
 
 $End
