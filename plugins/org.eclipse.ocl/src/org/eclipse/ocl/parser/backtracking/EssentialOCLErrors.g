@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.g,v 1.4 2009/10/15 19:41:25 ewillink Exp $
+-- * $Id: EssentialOCLErrors.g,v 1.5 2009/11/09 22:11:45 ewillink Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
@@ -37,19 +37,19 @@ $Rules
 	ERROR_SimpleNameCS ::= ERROR_TOKEN
 		/.$BeginJava
 					int token = $getToken(1);
-					String tokenText = getTokenText(token);
 					reportErrorTokenMessage(token, OCLParserErrors.MISSING_SIMPLE_NAME);
+                    IToken iToken = getIToken(token);
 					SimpleNameCS result = createSimpleNameCS(
 							SimpleTypeEnum.IDENTIFIER_LITERAL,
-							tokenText
+							iToken
 						);
-					setOffsets(result, getIToken(token));
+					setOffsets(result, iToken);
 					$setResult(result);
 		  $EndJava
 		./
 
-	simpleIdentifierCS -> ERROR_SimpleNameCS
---	simpleIdentifierCS -> reservedKeyword ERROR_SimpleNameCS
+	simpleNameCS -> ERROR_SimpleNameCS
+--	simpleNameCS -> reservedKeyword ERROR_SimpleNameCS
 
 -----------------------------------------------------------------------
 --	Types
@@ -108,7 +108,7 @@ $Rules
 -----------------------------------------------------------------------
 --	Calls
 -----------------------------------------------------------------------		
-	AssociationClassCallExpCS ::= notReservedSimpleNameCS '[' argumentsCS ERROR_TOKEN
+	AssociationClassCallExpCS ::= simpleNameCS '[' argumentsCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RBRACK);
 					CSTNode result = createVariableExpCS(
@@ -117,22 +117,6 @@ $Rules
 							null
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
-					$setResult(result);
-		  $EndJava
-		./
-	PropertyCallExpCS ::= primaryExpCS '.' pathNameCS '[' argumentsCS ERROR_TOKEN
-		/.$BeginJava
-					OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-					PathNameCS pathNameCS = (PathNameCS)$getSym(3);
-					SimpleNameCS simpleNameCS = removeLastSimpleNameCS(pathNameCS);
-					CallExpCS result = createFeatureCallExpCS(
-							source,
-							pathNameCS,
-							simpleNameCS,
-							(EList)$getSym(5),
-							null
-						);
-					setOffsets(result, source, getIToken($getToken(6)));
 					$setResult(result);
 		  $EndJava
 		./
