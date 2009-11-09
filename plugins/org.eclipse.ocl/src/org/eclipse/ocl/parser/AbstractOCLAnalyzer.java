@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.35 2009/10/23 21:06:56 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.36 2009/11/09 22:00:09 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -288,18 +288,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			case OCLParsersym.TK_Sequence :
 			case OCLParsersym.TK_Collection :
 			case OCLParsersym.TK_OrderedSet :
-			case OCLParsersym.TK_iterate :
-			case OCLParsersym.TK_forAll :
-			case OCLParsersym.TK_exists :
-			case OCLParsersym.TK_isUnique :
-			case OCLParsersym.TK_any :
-			case OCLParsersym.TK_one :
-			case OCLParsersym.TK_collect :
-			case OCLParsersym.TK_select :
-			case OCLParsersym.TK_reject :
-			case OCLParsersym.TK_collectNested :
-			case OCLParsersym.TK_sortedBy :
-			case OCLParsersym.TK_closure :
 			case OCLParsersym.TK_String :
 			case OCLParsersym.TK_Integer :
 			case OCLParsersym.TK_UnlimitedNatural :
@@ -2085,7 +2073,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 		IsMarkedPreCS atPre = callExp.getIsMarkedPreCS();
 		return atPre != null;
 	}
-
+	
 	/**
 	 * Creates a variable expression with the variable that it references.
 	 * 

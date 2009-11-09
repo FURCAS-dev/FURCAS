@@ -16,14 +16,16 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.10 2009/10/15 19:43:33 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.11 2009/11/09 22:00:09 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import lpg.lpgjavaruntime.IToken;
 import lpg.lpgjavaruntime.NullExportedSymbolsException;
 import lpg.lpgjavaruntime.NullTerminalSymbolsException;
-import lpg.lpgjavaruntime.ParseErrorCodes;
 import lpg.lpgjavaruntime.UndefinedEofSymbolException;
 import lpg.lpgjavaruntime.UnimplementedTerminalsException;
 
@@ -83,7 +85,6 @@ import org.eclipse.ocl.lpg.AbstractLexer;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.BasicEnvironment;
 import org.eclipse.ocl.lpg.ProblemHandler;
-import org.eclipse.ocl.options.ParsingOptions;
 import org.eclipse.ocl.options.ProblemOption;
 
 public abstract class AbstractOCLParser
@@ -211,6 +212,8 @@ public abstract class AbstractOCLParser
 	/**
 	 * Creates a definition constraint.
 	 * 
+	 * @param isStatic
+	 *            true for a static constraint
 	 * @param simpleNameCS
 	 *            the concrete syntax of the constraint name
 	 * @param oclExpressionCS
@@ -218,11 +221,12 @@ public abstract class AbstractOCLParser
 	 * 
 	 * @return the concrete syntax of the definition constraint
 	 * 
-	 * @since 1.3
+	 * @since 3.0
 	 */
-	protected DefCS createDefCS(SimpleNameCS simpleNameCS,
+	protected DefCS createDefCS(boolean isStatic, SimpleNameCS simpleNameCS,		
 			DefExpressionCS defExpressionCS) {
 		DefCS result = CSTFactory.eINSTANCE.createDefCS();
+		result.setStatic(isStatic);
 		result.setSimpleNameCS(simpleNameCS);
 		result.setDefExpressionCS(defExpressionCS);
 		return result;
@@ -268,7 +272,10 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected OperationCS createOperationCS(String simpleName,
+	/**
+	 * @since 3.0
+	 */
+	protected OperationCS createOperationCS(IToken simpleName,
 			EList<VariableCS> list, TypeCS typeCS) {
 		return createOperationCS(null, createSimpleNameCS(
 			SimpleTypeEnum.IDENTIFIER_LITERAL, simpleName), list, typeCS);
@@ -357,10 +364,35 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected SimpleNameCS createSimpleNameCS(SimpleTypeEnum type, String value) {
+	/**
+	 * @since 3.0
+	 */
+	protected SimpleNameCS createConceptualOperationNameCS(IToken token) {
+		SimpleNameCS result = CSTFactory.eINSTANCE.createSimpleNameCS();
+		result.setType(SimpleTypeEnum.KEYWORD_LITERAL);
+		String conceptualName = token.toString();
+		result.setValue(conceptualName);
+		ProblemHandler.Severity sev = ProblemHandler.Severity.OK;
+		BasicEnvironment benv = getEnvironment();
+		if (benv != null) {
+			sev = benv.getValue(ProblemOption.CONCEPTUAL_OPERATION_NAME);
+		}
+		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+			benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+				.bind(OCLMessages.Conceptual_Operation_Name_, conceptualName),
+				"unquote", //$NON-NLS-1$
+				token);
+		}
+		return result;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	protected SimpleNameCS createSimpleNameCS(SimpleTypeEnum type, IToken token) {
 		SimpleNameCS result = CSTFactory.eINSTANCE.createSimpleNameCS();
 		result.setType(type);
-		result.setValue(unquote(value));
+		result.setValue(unDoubleQuote(token));
 		return result;
 	}
 
@@ -368,7 +400,7 @@ public abstract class AbstractOCLParser
 			String value) {
 		PrimitiveTypeCS result = CSTFactory.eINSTANCE.createPrimitiveTypeCS();
 		result.setType(type);
-		result.setValue(unquote(value));
+		result.setValue(value);
 		return result;
 	}
 
@@ -387,16 +419,6 @@ public abstract class AbstractOCLParser
 	protected PathNameCS extendPathNameCS(PathNameCS path, SimpleNameCS name) {
 		path.getSimpleNames().add(name);
 		return path;
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	protected SimpleNameCS removeLastSimpleNameCS(PathNameCS path) {
-		EList<SimpleNameCS> simpleNames = path.getSimpleNames();
-		SimpleNameCS name = simpleNames.remove(simpleNames.size()-1);
-		setOffsets(path, path, simpleNames.size() > 0 ? simpleNames.get(simpleNames.size()-1) : path);
-		return name;
 	}
 
 	protected PathNameCS createPathNameCS() {
@@ -457,23 +479,6 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected IntegerLiteralExpCS createRangeStart(String integerDotDot,
-			boolean isNegative) {
-		String intToken = integerDotDot
-			.substring(0, integerDotDot.indexOf('.'));
-		int intValue = Integer.parseInt(intToken);
-		if (isNegative) {
-			intValue = -intValue;
-		}
-
-		IntegerLiteralExpCS result = CSTFactory.eINSTANCE
-			.createIntegerLiteralExpCS();
-		result.setIntegerSymbol(new Integer(intValue));
-		result.setSymbol(Integer.toString(intValue));
-
-		return result;
-	}
-
 	protected TupleLiteralExpCS createTupleLiteralExpCS(
 			EList<VariableCS> variables) {
 		TupleLiteralExpCS result = CSTFactory.eINSTANCE
@@ -511,12 +516,48 @@ public abstract class AbstractOCLParser
 		return result;
 	}
 
-	protected StringLiteralExpCS createStringLiteralExpCS(String string) {
+	/**
+	 * @since 3.0
+	 */
+	protected StringLiteralExpCS createStringLiteralExpCS(IToken token) {
 		StringLiteralExpCS result = CSTFactory.eINSTANCE
 			.createStringLiteralExpCS();
-		result.setSymbol(string);
-		result.setStringSymbol(string);
+		String unquoted = unSingleQuote(token);
+		result.setSymbol(unquoted);
+		result.setStringSymbol(unquoted);
+		result.setUnescapedStringSymbol(unquoted);
 		return result;
+	}
+
+	/**
+	 * @since 3.0
+	 */
+	protected StringLiteralExpCS extendStringLiteralExpCS(StringLiteralExpCS string, IToken token) {       
+        String oldString = string.getUnescapedStringSymbol();
+        String newString = unSingleQuote(token);
+        int oldFinish = string.getEndOffset();
+        int newStart = token.getStartOffset();
+    	String joinedString;
+        if (newStart - oldFinish > 1) {
+        	joinedString = oldString + newString;
+            }
+        else {
+        	joinedString = oldString + '\'' + newString;
+    		ProblemHandler.Severity sev = getEnvironment().getValue(
+    			ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
+    		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+    			getEnvironment().problem(
+    				sev,
+    				ProblemHandler.Phase.PARSER,
+    				OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_,
+    					joinedString), "STRING_LITERAL", //$NON-NLS-1$
+    					joinedString);
+    		}
+        }
+		string.setSymbol(joinedString);
+    	string.setStringSymbol(joinedString);
+    	string.setUnescapedStringSymbol(joinedString);
+		return string;
 	}
 
 	protected BooleanLiteralExpCS createBooleanLiteralExpCS(String string) {
@@ -584,7 +625,7 @@ public abstract class AbstractOCLParser
 	protected VariableCS createVariableCS(SimpleNameCS varName, TypeCS typeCS,
 			OCLExpressionCS oclExpressionCS) {
 		VariableCS result = CSTFactory.eINSTANCE.createVariableCS();
-		result.setName(unquote(varName.getValue()));
+		result.setName(varName.getValue());
 		result.setTypeCS(typeCS);
 		result.setInitExpression(oclExpressionCS);
 		return result;
@@ -597,7 +638,7 @@ public abstract class AbstractOCLParser
 			CollectionTypeIdentifierEnum collectionType, String value) {
 		CollectionTypeCS result = CSTFactory.eINSTANCE.createCollectionTypeCS();
 		result.setType(SimpleTypeEnum.IDENTIFIER_LITERAL);
-		result.setValue(unquote(value));
+		result.setValue(value);
 		result.setCollectionTypeIdentifier(collectionType);
 		return result;
 	}
@@ -696,160 +737,57 @@ public abstract class AbstractOCLParser
 
 		return result;
 	}
+
+	/**
+	 * @since 3.0
+	 */
+	protected Set<String> iteratorNames = null;
+
+	/**
+	 * @since 3.0
+	 */
+	@SuppressWarnings("nls")
+	protected Set<String> createIteratorNames() {
+		Set<String> iteratorNames = new HashSet<String>();
+		iteratorNames.add("any");
+		iteratorNames.add("collect");
+		iteratorNames.add("collectNested");
+		iteratorNames.add("exists");
+		iteratorNames.add("forAll");
+		iteratorNames.add("isUnique");
+		iteratorNames.add("one");
+		iteratorNames.add("reject");
+		iteratorNames.add("select");
+		iteratorNames.add("sortedBy");
+
+		iteratorNames.add("closure");
+		return iteratorNames;
+	}
+	
+	/**
+	 * @since 3.0
+	 */
+	protected boolean isIterator(String name) {
+		if (iteratorNames == null) {
+			iteratorNames = createIteratorNames();
+		}
+		return iteratorNames.contains(name);
+	}
 	
 	/**
 	 * <p>
 	 * Escaping support based on the QVT specification (8.4.3).
 	 * </p>
-	 * <p>
-	 * All the usual escape characters using backslash can be used including the '\n' new-line character.
-	 *  The list of available escape characters are those defined for the Java language.
-	 *  <p>
-	 *  <p>
-	 *  EscapeSequence:
-	 *  </p>
-	 *  <table border="0" align="left">
-	 *  <tr><td><b><tt>\b</tt></b></td> <td><tt>\u0008</tt>: backspace <tt>BS</tt></td></tr>
-	 *  <tr><td><b><tt>\t</tt></b></td> <td><tt>\u0009</tt>: horizontal tab <tt>HT</tt></td></tr>
-	 *  <tr><td><b><tt>\n</tt></b></td> <td><tt>\u000a</tt>: line feed <tt>LF</tt></td></tr>
-	 *  <tr><td><b><tt>\f</tt></b></td> <td><tt>\u000c</tt>: form feed <tt>FF</tt></td></tr> 
-	 *  <tr><td><b><tt>\r</tt></b></td> <td><tt>\u000d</tt>: carriage return <tt>CR</tt></td></tr>
-	 *  <tr><td><b><tt>\"</tt></b></td> <td><tt>\u0022</tt>: double quote <tt>"</tt></td></tr>
-	 *  <tr><td><b><tt>\'</tt></b></td> <td><tt>\u0027</tt>: single quote <tt>'</tt></td></tr>
-	 *  <tr><td><b><tt>\\</tt></b></td> <td><tt>\u005c</tt>: backslash <tt>\</tt></td></tr>
-	 *  <tr><td rowspan="2" valign="top"><b>OctalEscape</b></td> <td><tt>\u0000</tt> to <tt>\u00ff</tt>: from octal value</td></tr>
-	 *  <tr><td>\ ZeroToThree OctalDigit OctalDigit</td></tr>
-	 *  <tr><td><b>OctalDigit<b></td> <td><tt>0 1 2 3 4 5 6 7</tt></td></tr>
-	 *  <tr><td><b>ZeroToThree</b></td> <td><tt>0 1 2 3</tt></td></tr>
-	 *  </table>
-	 *  
 	 * @param stringLiteral a string literal token with escape notation 
 	 * @return the unescaped string
 	 * 
 	 * @since 1.3
+	 * 
+	 * @deprecated Use decodeString.
 	 */
+	@Deprecated
 	protected String unescape(IToken stringLiteral) {
-		String rawString = stringLiteral.toString();
-		int rawStringLength = rawString.length();
-		if (rawStringLength <= 2) {
-			return ""; //$NON-NLS-1$
-		}
-		StringBuilder unescapedStringBuilder = null;
-		boolean isBackslashEscapeProcessingUsed = getEnvironment().isEnabled(
-			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING);
-		boolean isNonStdSQEscapingUsed = false;
-		int n = rawStringLength - 1;
-		for (int i = 1; i < n; i++) {
-			char ch = rawString.charAt(i);
-			if ((isBackslashEscapeProcessingUsed && (ch == '\\'))
-				|| ((ch == '\'') && isNonStdSQSupported())) {
-				if (unescapedStringBuilder == null) {
-					unescapedStringBuilder = new StringBuilder(rawString
-						.substring(1, i));
-				}
-				i++;
-				if (i >= n) {
-					reportError(
-						ParseErrorCodes.INVALID_CODE,
-						"", stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(), //$NON-NLS-1$
-						OCLMessages.StringNotProperlyClosed_ERROR);
-				}
-				char nextCh = rawString.charAt(i);
-				if (ch == '\\') {
-					switch (nextCh) {
-						case 'b' :
-							unescapedStringBuilder.append('\b');
-							break;
-						case 't' :
-							unescapedStringBuilder.append('\t');
-							break;
-						case 'n' :
-							unescapedStringBuilder.append('\n');
-							break;
-						case 'f' :
-							unescapedStringBuilder.append('\f');
-							break;
-						case 'r' :
-							unescapedStringBuilder.append('\r');
-							break;
-						case '\"' :
-							unescapedStringBuilder.append('\"');
-							break;
-						case '\'' :
-							unescapedStringBuilder.append('\'');
-							break;
-						case '\\' :
-							unescapedStringBuilder.append('\\');
-							break;
-						default :
-							// octal escape check
-							int unescapedChar = -1;
-							if ((nextCh >= '\u0030') && (nextCh <= '\u0037')) { // octal
-																				// digit
-								unescapedChar = Character
-									.getNumericValue(nextCh);
-								if (i + 1 < n) {
-									char tmpCh = rawString.charAt(i + 1);
-									if ((tmpCh >= '\u0030')
-										&& (tmpCh <= '\u0037')) { // octal digit
-										unescapedChar = 8 * unescapedChar
-											+ Character.getNumericValue(tmpCh);
-										i++;
-										if (i + 1 < n) {
-											tmpCh = rawString.charAt(i + 1);
-											if ((tmpCh >= '\u0030')
-												&& (tmpCh <= '\u0037') // octal
-																		// digit
-												&& (nextCh <= '\u0033')) { // most-significant
-																			// digit
-																			// in
-																			// range
-																			// 0..2
-												unescapedChar = 8
-													* unescapedChar
-													+ Character
-														.getNumericValue(tmpCh);
-												i++;
-											}
-										}
-									}
-								}
-								unescapedStringBuilder
-									.append((char) unescapedChar);
-							}
-							if (unescapedChar < 0) {
-								reportError(
-									ParseErrorCodes.INVALID_CODE,
-									"", stringLiteral.getTokenIndex(), stringLiteral.getTokenIndex(), //$NON-NLS-1$
-									OCLMessages.InvalidEscapeSequence_ERROR);
-							}
-							break;
-					}
-				} else { // non-std '' escaping
-					unescapedStringBuilder.append('\'');
-					isNonStdSQEscapingUsed = true;
-					assert nextCh == '\'' : "Unexpected escape sequence in string literal: " + rawString; //$NON-NLS-1$
-				}
-			} else if (unescapedStringBuilder != null) {
-				unescapedStringBuilder.append(ch);
-			}
-		}
-		if (isNonStdSQEscapingUsed) {
-			// check settings for using non-standard closure iterator
-			ProblemHandler.Severity sev = getEnvironment().getValue(
-				ProblemOption.STRING_SINGLE_QUOTE_ESCAPE);
-			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-				getEnvironment().problem(
-					sev,
-					ProblemHandler.Phase.PARSER,
-					OCLMessages.bind(OCLMessages.NonStd_SQuote_Escape_,
-						stringLiteral), "STRING_LITERAL", //$NON-NLS-1$
-					stringLiteral);
-			}
-		}
-		return (unescapedStringBuilder == null)
-			? rawString.substring(1, n)
-			: unescapedStringBuilder.toString();
+		return decodeString(stringLiteral, stringLiteral.toString());
 	}
 
 	/**

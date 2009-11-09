@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.8 2009/10/07 20:41:46 ewillink Exp $
+ * $Id: ComparisonTest.java,v 1.9 2009/11/09 22:16:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -39,6 +39,9 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.expressions.OCLExpression;
+import org.eclipse.ocl.lpg.ProblemHandler;
+import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.types.CollectionType;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -437,6 +440,7 @@ public class ComparisonTest
 	}
 	
 	public void test_dotNotationForSymbolicOperationNames() {
+        ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.CONCEPTUAL_OPERATION_NAME, ProblemHandler.Severity.OK);
 		helper.setContext(getUMLInteger());
 		
 		Integer minusOne = new Integer(-1);
@@ -470,7 +474,9 @@ public class ComparisonTest
 			// unary minus
 			assertEquals(minusOne, evaluate(helper, one, "-1")); //$NON-NLS-1$
 			assertEquals(minusOne, evaluate(helper, one, "-self")); //$NON-NLS-1$
+			assertEquals(minusOne, evaluate(helper, one, "self.\"-\"()")); //$NON-NLS-1$
 			assertEquals(minusOne, evaluate(helper, one, "self.-()")); //$NON-NLS-1$
+			assertEquals(one, evaluate(helper, one, "- self.\"-\"()")); //$NON-NLS-1$
 			assertEquals(one, evaluate(helper, one, "- self.-()")); //$NON-NLS-1$
 			assertEquals(one, evaluate(helper, one, "- -1")); //$NON-NLS-1$
 			assertEquals(one, evaluate(helper, one, "- -self")); //$NON-NLS-1$
@@ -478,12 +484,20 @@ public class ComparisonTest
 			// unary not
 			helper.setContext(getUMLBoolean());
 			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "not self")); //$NON-NLS-1$
+			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.\"not\"()")); //$NON-NLS-1$
 			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.not()")); //$NON-NLS-1$
 			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not not self")); //$NON-NLS-1$
+			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.\"not\"()")); //$NON-NLS-1$
 			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.not()")); //$NON-NLS-1$
 			
 		} catch (Exception e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+		}
+        ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.CONCEPTUAL_OPERATION_NAME, ProblemHandler.Severity.ERROR);
+		try {
+			assertEquals(one, evaluate(helper, one, "3.-(2)")); //$NON-NLS-1$
+			fail("Missing exception"); //$NON-NLS-1$
+		} catch (Exception e) {
 		}
 	}
 	

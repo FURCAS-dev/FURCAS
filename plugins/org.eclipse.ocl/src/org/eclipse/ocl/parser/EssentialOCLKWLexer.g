@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLKWLexer.g,v 1.1 2009/10/15 19:43:12 ewillink Exp $
+-- * $Id: EssentialOCLKWLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
 -- */
 --
 -- The Essential OCL KeyWord Lexer
@@ -54,7 +54,7 @@ $Notice
  *   E.D.Willink - Bug 285633, 292112
  * </copyright>
  *
- * $Id: EssentialOCLKWLexer.g,v 1.1 2009/10/15 19:43:12 ewillink Exp $
+ * $Id: EssentialOCLKWLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
  */
 	./
 $End
@@ -96,24 +96,6 @@ $Export
 	Sequence
 	Collection
 	OrderedSet
-
-	iterate
-	forAll
-	exists
-	isUnique
-	any
-	one
-
-	collect
-	select
-	reject
-	collectNested
-	sortedBy
-
-	--
-	-- the following is an MDT-OCL extension prototyping OMG Issue 13944. 
-	--
-	closure
 
 	String
 	Integer
@@ -256,78 +238,6 @@ $Rules
 		| O r d e r e d S e t
 		/.$BeginAction
 			$setResult($_OrderedSet);
-		  $EndAction
-		./
-
-		| i t e r a t e
-		/.$BeginAction
-			$setResult($_iterate);
-		  $EndAction
-		./
-		
-		| f o r A l l
-		/.$BeginAction
-			$setResult($_forAll);
-		  $EndAction
-		./
-		
-		| e x i s t s
-		/.$BeginAction
-			$setResult($_exists);
-		  $EndAction
-		./
-		
-		| i s U n i q u e
-		/.$BeginAction
-			$setResult($_isUnique);
-		  $EndAction
-		./
-		
-		| a n y
-		/.$BeginAction
-			$setResult($_any);
-		  $EndAction
-		./
-		
-		| o n e
-		/.$BeginAction
-			$setResult($_one);
-		  $EndAction
-		./
-
-		| c o l l e c t
-		/.$BeginAction
-			$setResult($_collect);
-		  $EndAction
-		./
-		
-		| s e l e c t
-		/.$BeginAction
-			$setResult($_select);
-		  $EndAction
-		./
-		
-		| r e j e c t
-		/.$BeginAction
-			$setResult($_reject);
-		  $EndAction
-		./
-		
-		| c o l l e c t N e s t e d
-		/.$BeginAction
-			$setResult($_collectNested);
-		  $EndAction
-		./
-		
-		| s o r t e d B y
-		/.$BeginAction
-			$setResult($_sortedBy);
-		  $EndAction
-		./
-
-		| c l o s u r e
-		/.$BeginAction
-			$setResult($_closure);
 		  $EndAction
 		./
 
