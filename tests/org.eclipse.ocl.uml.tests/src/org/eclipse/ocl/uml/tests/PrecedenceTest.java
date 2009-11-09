@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: PrecedenceTest.java,v 1.9 2009/11/09 22:16:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -29,7 +29,9 @@ import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.OperationCallExp;
 import org.eclipse.ocl.expressions.PropertyCallExp;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
+import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.options.ParsingOptions;
+import org.eclipse.ocl.options.ProblemOption;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -171,28 +173,30 @@ public class PrecedenceTest
     }
         
 	public void test_or_and_precedence() throws ParserException {
+        ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE, ProblemHandler.Severity.OK);
         helper.setContext(class1);
         assertTrueWithoutWarning("(true or (false and false)) = true");
-        assertTrueWithoutWarning("(true or false.and(false)) = true");
+        assertTrueWithoutWarning("(true or false.\"and\"(false)) = true");
         assertTrueWithoutWarning("((true or false) and false) = false");
 		assertTrueWithoutWarning("(true or false and false) = true");
 		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, true);
         assertTrueWithoutWarning("(true or (false and false)) = true");
-        assertTrueWithoutWarning("(true or false.and(false)) = true");
+        assertTrueWithoutWarning("(true or false.\"and\"(false)) = true");
         assertTrueWithoutWarning("((true or false) and false) = false");
 //1.x		assertTrue(check(helper, class1, "(true or false and false) = false"));
 		assertTrueWithWarning("(true or false and false) = true", OCLMessages.XorOrAndPrecedence_WARNING);
     }
     
     public void test_xor_or_precedence() throws ParserException {
+        ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE, ProblemHandler.Severity.OK);
         helper.setContext(class1);
         assertTrueWithoutWarning("(true xor (false or false)) = true");
-        assertTrueWithoutWarning("(true xor false.or(false)) = true");
+        assertTrueWithoutWarning("(true xor false.\"or\"(false)) = true");
         assertTrueWithoutWarning("((true xor false) or true) = true");
 		assertTrueWithoutWarning("(true xor false or true) = false");
 		ParsingOptions.setOption(helper.getEnvironment(), ParsingOptions.WARN_OF_XOR_OR_AND_PRECEDENCE_CHANGE, true);
         assertTrueWithoutWarning("(true xor (false or false)) = true");
-        assertTrueWithoutWarning("(true xor false.or(false)) = true");
+        assertTrueWithoutWarning("(true xor false.\"or\"(false)) = true");
         assertTrueWithoutWarning("((true xor false) or true) = true");
 //1.x		assertTrue(check(helper, class1, "(true xor false or true) = true"));
         assertTrueWithWarning("(true xor false or true) = false", OCLMessages.XorOrAndPrecedence_WARNING);
