@@ -13,12 +13,21 @@
             categoryId="test2.commands.category"
             id="test2.commands.sampleCommand">
       </command>
+      <command
+            categoryId="test2.commands.category"
+            id="test2.commands.sampleCommand2"
+            name="SampleCommand2">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="test2.commands.sampleCommand"
             class="test2.handlers.SampleHandler">
+      </handler>
+      <handler
+            class="test2.handlers.SampleHandler2"
+            commandId="test2.commands.sampleCommand2">
       </handler>
    </extension>
    <extension
@@ -42,6 +51,12 @@
                   commandId="test2.commands.sampleCommand"
                   mnemonic="S"
                   id="test2.menus.sampleCommand">
+            </command>
+            <command
+                  commandId="test2.commands.sampleCommand2"
+                  id="test2.menus.sampleCommand2"
+                  mnemonic="S"
+                  style="push">
             </command>
          </menu>
       </menuContribution>
