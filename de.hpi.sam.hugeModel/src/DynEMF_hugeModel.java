@@ -4,12 +4,66 @@ import org.eclipse.emf.ecore.*;
 
 public class DynEMF_hugeModel {
 	public static void main(String[] args) {
-		createModel();
-
-	}
-	private static EPackage createModel() {
+		boolean blowMetaModel = true;
+		int blowFactor = 73000;
 		
-		//get the instances of EcoreFactory
+		if (blowMetaModel) {
+			// out of memory error at about 73000
+			createHugeMetaModel(blowFactor);
+		} else {
+			// out of memory error at about 111000
+			createHugeModel(blowFactor);
+		}
+	}
+	
+	private static void createHugeMetaModel(int blowFactor) {
+		// set up all the packages and factories
+		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
+		EcorePackage ecorePackage = EcorePackage.eINSTANCE;
+		EPackage metaModelEPackage = ecoreFactory.createEPackage();
+		
+		EClass previousClass = null;
+		System.out.println("Creating EClasses...");
+		for (int i = 0; i < blowFactor; i++) {
+			EClass anEClass = ecoreFactory.createEClass();
+			anEClass.setName("Class" + i);
+			
+			EAttribute anEAttribute = ecoreFactory.createEAttribute();
+			anEAttribute.setName("Attribute" + i);
+			anEAttribute.setEType(ecorePackage.getEInt());
+			
+			anEClass.getEStructuralFeatures().add(anEAttribute);
+			
+			metaModelEPackage.getEClassifiers().add(anEClass);
+			
+			if (previousClass != null) {
+				EReference anEReference = ecoreFactory.createEReference();
+				anEReference.setName("Reference" + i);
+				anEReference.setEType(anEClass);
+				anEReference.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
+				anEReference.setLowerBound(0);
+				
+				EReference anotherEReference = ecoreFactory.createEReference();
+				anotherEReference.setName("Reference" + i);
+				anotherEReference.setEType(previousClass);
+				anotherEReference.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
+				anotherEReference.setLowerBound(0);
+				anotherEReference.setEOpposite(anEReference);
+				anEReference.setEOpposite(anotherEReference);
+				
+				anEClass.getEStructuralFeatures().add(anotherEReference);
+				previousClass.getEStructuralFeatures().add(anEReference);
+			}
+			previousClass = anEClass;
+			if (i % 1000 == 0) {
+				System.out.format("Created %d EClasses\n", i);
+			}
+		}
+	}
+	
+	private static void createHugeModel(int blowFactor) {
+		
+		//get the instance of EcoreFactory
 		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
 			
 		//classes
@@ -111,18 +165,15 @@ public class DynEMF_hugeModel {
 		petriNetEPackage.getEClassifiers().add(placeClass);
 		petriNetEPackage.getEClassifiers().add(transitionClass);
 		petriNetEPackage.getEClassifiers().add(nodeClass);
-
-		//build an instance of the model
 		
-		//save the starting time
-		long start = System.currentTimeMillis();
+		//build an instance of the model
 		EFactory petriFactory = petriNetEPackage.getEFactoryInstance();
 		EObject petrinet = petriFactory.create(petriNetClass);
 		
 		System.out.println("Creating Places...");
 		
 		//OutOfMemoryError bei etwa 111.000 Instanzen
-		for(int i = 1; i <= 111000; i++) {
+		for(int i = 1; i <= blowFactor; i++) {
 			EObject newPlace = petriFactory.create(placeClass);
 			newPlace.eSet(placeTokens, 5);
 			newPlace.eSet(diagramRef, petrinet);
@@ -162,12 +213,7 @@ public class DynEMF_hugeModel {
 			}
 			place = nextPlace;
 		}
-		//save ending time
-		long stop = System.currentTimeMillis();
-		long timedelta = stop - start;
-		System.out.format("ExecutionTime: %d milliseconds", timedelta);
-
-		return ecorePackage;
+		return;
 		
 	}
 }
