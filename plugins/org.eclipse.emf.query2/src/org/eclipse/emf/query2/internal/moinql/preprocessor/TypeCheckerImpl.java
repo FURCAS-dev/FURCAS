@@ -1989,17 +1989,18 @@ final public class TypeCheckerImpl implements TypeChecker {
 			attrType = SpiFqlPrimitiveType.STRING;
 		} else if (attrMofType instanceof EDataType) {
 			String primName = attrMofType.getName();
-			if (primName.equals("EBoolean")) { //$NON-NLS-1$
+			Class<?> instanceClass = attrMofType.getInstanceClass();
+			if (primName.equals("EBoolean") || instanceClass == boolean.class || instanceClass == Boolean.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.BOOLEAN;
-			} else if (primName.equals("EInt")) { //$NON-NLS-1$
+			} else if (primName.equals("EInt") || instanceClass == int.class || instanceClass == Integer.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.INTEGER;
-			} else if (primName.equals("ELong")) { //$NON-NLS-1$
+			} else if (primName.equals("ELong") || instanceClass == long.class || instanceClass == Integer.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.LONG;
-			} else if (primName.equals("EFloat")) { //$NON-NLS-1$
+			} else if (primName.equals("EFloat") || instanceClass == float.class || instanceClass == Float.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.FLOAT;
-			} else if (primName.equals("EDouble")) { //$NON-NLS-1$
+			} else if (primName.equals("EDouble") || instanceClass == double.class || instanceClass == Double.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.DOUBLE;
-			} else if (primName.equals("EString")) { //$NON-NLS-1$
+			} else if (primName.equals("EString") || instanceClass == String.class) { //$NON-NLS-1$
 				attrType = SpiFqlPrimitiveType.STRING;
 			} else {
 				throw new BugException(BugMessages.UNKNOWN_PRIMITIVE_TYPE, primName);
