@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.36 2009/11/09 22:00:09 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.37 2009/11/10 19:15:56 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -233,18 +233,6 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 	protected OCLStandardLibrary<C> getStandardLibrary() {
 		return getOCLEnvironment().getOCLStandardLibrary();
-	}
-
-	/**
-	 * @since 3.0
-	 */
-	public void initPathNameAst(PathNameCS pathNameCS, Object astNode) {
-		pathNameCS.setAst(astNode);
-		List<SimpleNameCS> simpleNames = pathNameCS.getSimpleNames();
-		for (int i = simpleNames.size() - 1; i >= 0; --i) {
-			simpleNames.get(i).setAst(astNode);
-			astNode = astNode instanceof EObject ? ((EObject)astNode).eContainer() : null;
-		}
 	}
 
 	/**
@@ -1754,7 +1742,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 				ERROR(typeCS, "typeCS", message);//$NON-NLS-1$
 				astNode = createDummyInvalidType(env, typeCS, message);
 			}
-			initPathNameAst((PathNameCS)typeCS, astNode);
+			typeCS.setAst(astNode);
 		} else if (typeCS instanceof CollectionTypeCS
 			|| typeCS instanceof TupleTypeCS) {
 			if (typeCS instanceof CollectionTypeCS) {

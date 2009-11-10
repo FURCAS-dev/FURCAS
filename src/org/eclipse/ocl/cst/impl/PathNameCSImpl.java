@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCSImpl.java,v 1.5 2009/10/15 19:38:06 ewillink Exp $
+ * $Id: PathNameCSImpl.java,v 1.6 2009/11/10 19:15:16 ewillink Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
@@ -22,6 +22,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -167,9 +168,17 @@ public class PathNameCSImpl
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * Set the associated AST object to newAst, and set the correspondiing
+	 * AST objects of the child simpleNames to newAst and its containers.
+	 */
 	@Override
 	public void setAst(Object newAst) {
-		// TODO Auto-generated method stub
+		Object node = newAst;
+		for (int i = simpleNames.size() - 1; i >= 0; --i) {
+			simpleNames.get(i).setAst(node);
+			node = node instanceof EObject ? ((EObject)node).eContainer() : null;
+		}
 		super.setAst(newAst);
 	}
 
