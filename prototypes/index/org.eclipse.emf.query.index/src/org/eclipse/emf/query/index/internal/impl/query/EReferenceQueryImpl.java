@@ -268,51 +268,6 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 
 				};
 
-				//				return new FilteredIterableMulti<ReferenceDescriptorImpl>() {
-				//
-				//					private EReferenceDescriptorInternal next;
-				//
-				//					@Override
-				//					protected Iterator<? extends ReferenceDescriptorImpl> getNextIterator() {
-				//						while (scopeIterator.hasNext()) { // FIXME same loop as above
-				//							next = scopeIterator.next();
-				//							if ((getSourceScope() == null || getSourceScope().contains(next.getSourceResourceURI())) && //
-				//									(srcFragment == null || QueryUtil.matchesGlobbing(next.getSourceFragment(), srcFragment)) && //
-				//									(getType() == null || getType() == next.getEReferenceURI())) {
-				//								if (next.isIntraLink()) {
-				//									return Arrays.asList((ReferenceDescriptorImpl) next).iterator();
-				//								} else {
-				//									PageableResourceDescriptorImpl resDesc = globalTables.resourceIndex
-				//											.acquire(next.getSourceResourceURI()); // FIXME
-				//									// is
-				//									// identical
-				//									// key
-				//									Iterable<ReferenceDescriptorImpl> candidates = resDesc.outgoingLinkTable.getAllWithEqualKey(next
-				//											.getSourceFragment());
-				//									globalTables.resourceIndex.release(resDesc);
-				//									if (candidates != null) {
-				//										return candidates.iterator();
-				//									}
-				//								}
-				//							}
-				//						}
-				//						return null;
-				//					}
-				//
-				//					@Override
-				//					protected boolean matches(ReferenceDescriptorImpl e) {
-				//						if (e.getTargetResourceURI() == resDesc.getURI()) {
-				//							if (e.getTargetFragment().equals(next.getTargetFragment())) {
-				//								//								if (refQuery.getType() == null || refQuery.getType() == e.getEReferenceURI()) {
-				//								//								if (tgtFragment == null || QueryUtil.matchesGlobbing(e.getTargetFragment(), tgtFragment)) {
-				//								return true;
-				//								//								}
-				//							}
-				//						}
-				//						return false;
-				//					}
-				//
-				//				};
 			}
 		case FORWARD:
 			if (srcFragment == null || srcFragment.indexOf('*') > -1) {
