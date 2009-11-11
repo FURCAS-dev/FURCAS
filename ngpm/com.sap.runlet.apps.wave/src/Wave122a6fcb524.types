@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
+<M c='1' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
+<modelmanagement.Package m:c='1' m:i='E02C978B02DB9860776D11DE9D8C00155883529C' name='Wave'/>
+<modelmanagement.A_ownedPackages_owner c='1'>
+<L f='E02C978B02DB9860776D11DE9D8C00155883529C' s='local:E02C978B00BE5DB0776D11DEB8C200155883529C'/>
+</modelmanagement.A_ownedPackages_owner>
+</Partition>

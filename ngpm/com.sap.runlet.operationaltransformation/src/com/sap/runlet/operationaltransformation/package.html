@@ -1,0 +1,58 @@
+<body>
+<p>
+Use the contents of this package for so-called <em>operational transformations</em>.
+This can be used to synchronize the states of a number of clients with a single server.
+The synchronization is performed asynchronously. The construction of the transformation
+function guarantees to lead to eventual consistency across clients and server.
+Read more about the general background of the algorithm on which this is based
+<a href="../docs/JupiterCollaborationSystem_Nichols.pdf">here</a>.
+</p>
+
+<p>
+To establish a server to which clients can connect, first decide how your <em>state</em>
+is encoded on which the <em>operations</em> will perform changes to transition from one
+state to the next. Then, design your operations class. The trickiest part comes next. You
+have to define a transformer that maps a pair of your operations to another pair of
+operations of the same type. The transformer has to implement the
+{@link com.sap.runlet.operationaltransformation.Transformer} interface, in particular
+the {@link com.sap.runlet.operationaltransformation.Transformer#transform} method. The
+transformation function assumes that both input operations have been applied to the same
+state, one on a client, the other one on the server. The resulting operation for the client
+applied on the client must lead to a state equal to the state reached on the server by
+applying the resulting operation for the server to the server's state.
+</p>
+
+<p>
+Put formally, if <em>t</em> is a transformer, and
+if we have <em>s_c</em> as the state on the client and <em>s_s</em> as the state
+on the server, and <em>c</em> as the operation that was executed in state <em>s_c</em> on the
+client, and <em>s</em> as the operation executed on the server in state <em>s_s</em>, then the
+following condition must hold:<br>
+<pre>
+	t.transform(c, s).getClientOp().applyTo(c.applyTo(s_c).equals(
+		t.transform(c, s).getServerOp().applyTo(s.applyTo(s_s))
+</pre>
+</p>
+
+<p>
+You can create servers and clients, e.g., as follows:
+<pre>
+	server = new {@link com.sap.runlet.operationaltransformation.PeerImpl PeerImpl}<MyOperationType, MyStateType>(
+		"Server", new MyTransformer(), /* initial state */ new MyStateType(...), /* server */ true);
+	client1 = new {@link com.sap.runlet.operationaltransformation.PeerImpl PeerImpl}<MyOperationType, MyStateType>("Client1", new MyTransformer(), server);
+	client2 = new {@link com.sap.runlet.operationaltransformation.PeerImpl PeerImpl}<MyOperationType, MyStateType>("Client2", new MyTransformer(), server);
+</pre>
+
+After that, you can start sending operations to the clients using the
+{@link com.sap.runlet.operationaltransformation.Peer#apply} method as follows:
+<pre>
+	client1.{@link com.sap.runlet.operationaltransformation.Peer#apply apply}(new MyOperationType(...));
+	client2.{@link com.sap.runlet.operationaltransformation.Peer#apply apply}(new MyOperationType(...));
+	...
+</pre>
+and those changes will eventually get synchronized across all clients and the server. You can
+obtain the current state of a peer using the {@link com.sap.runlet.operationaltransformation.Peer#getCurrentState}
+operation.
+</p>
+
+</body>

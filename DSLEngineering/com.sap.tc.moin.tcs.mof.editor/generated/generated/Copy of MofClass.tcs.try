@@ -1,0 +1,674 @@
+--specify your DSL grammar rules here ...
+
+syntax MofClass(k=0) {
+
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+	
+	primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate annotationSymbol for PrimitiveTypes::String using MULTI_LINE_COMMENT:
+		value = "unescapeString(%token%)",
+		serializer="'/** ' + %value%.toCString() + '\n*/'";
+
+	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+	
+	primitiveTemplate integerAsString for PrimitiveTypes::String using INT:
+		value = "unescapeString(%token%)";
+		
+	primitiveTemplate floatAsString for PrimitiveTypes::String using FLOAT:
+		value = "unescapeString(%token%)";
+		
+	primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+		value = "%token%";
+	
+	primitiveTemplate booleanValueSymbol for PrimitiveTypes::Boolean default using BOOL:
+		value = "Boolean.valueOf(%token%)";
+	
+	primitiveTemplate floatSymbol for PrimitiveTypes::Double default using FLOAT:
+		value = "Double.valueOf(%token%)";
+		
+  ----------------------------- Templates ---------------------------
+
+  ----------------------------- Class Declaration -------------------
+
+  template Class main context(class)
+  	: $annotation
+  	  $visibility
+  	  (isAbstract?"abstract")
+  	  "class" name
+  	  (isDefined(supertypes) ? "extends"
+  	    [[ supertypes{forcedLower=1, as=qualifiedNameSymbol, query="OCL:
+			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=s.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+				t.ns.contents->select(c | c.name=s.subString(t.pos, s.size()))
+  	  		", separator=","}
+  	  	|
+  	  		supertypes{forcedLower=1, as=identifier,
+  	  		query="OCL:Moin::Model::Class.allInstances()", filter="->select(c|c.name=?)",
+  	  		separator=","}
+  	  	]])
+  	  <space> "{" [
+  	      contents
+  	      (isDefined(invariants) ? "invariants" "{" contents{mode=invariants} "}")
+  	  ] "}"
+  	;
+  
+  template GeneralizableElement abstract;
+  template ModelElement abstract;
+  template Feature abstract;
+  template StructuralFeature (disambiguateV3 = "model_structuralfeature") abstract;
+  
+  function scopeAndVisibility(Feature)
+  	: [[ -- empty means the "public" default
+  	       {{ visibility <- 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS' }}
+  	     | "public"
+  	       {{ visibility = 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS' }}
+  	     | "protected"
+  	       {{ visibility = 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PROTECTED_VIS' }}
+  	     | "private"
+  	       {{ visibility = 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PRIVATE_VIS' }}
+  	  ]]
+  	  (scope=#classifier_level ? "static")
+  	;
+  
+  template Attribute
+  	: $annotation
+  	  (isChangeable ? : "readonly")
+  	  $scopeAndVisibility
+  	  --type
+  	  $typeReference
+  	  multiplicity
+  	  name <no_space> ";"
+  	;
+  
+  function typeReference(TypedElement)
+  	:  [[ type{as=qualifiedNameSymbol, query="OCL:
+			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=s.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+				t.ns.contents", filter="->select(c | c.name=s.subString(t.pos, s.size()))"}
+  	  |
+  	  	type{as=identifier, query="OCL:Model::Classifier.allInstances()",
+  	  	     filter="->select(name=?)"}
+  	  ]]
+  	;
+
+-- the hierarchy without mode is used to reference elements only
+	-- A modelClassifier is either its container followed by :: and a name, or just a name
+	template Model::Classifier referenceOnly -- should never be created
+	: ( isDefined(container) ? container   -- is of type Namespace in MM
+	  "::" name : name)
+	;
+	
+	-- Namespace gets operatored using the :: operator to resolve left recursion
+	template Model::Namespace abstract operatored(NAMESPACE_OPS);
+	
+	-- if parsed path has more than one element, 
+	-- the first will be of type Generalizable element
+	-- because that is the type of Mode::ModelElement.container
+	template Model::GeneralizableElement referenceOnly -- should never be created
+		: name
+		;
+				
+	-- any following elements in a package path will be resolved using this
+	operatorTemplate ModelElement(operators = NAMESPACE_DCOLON_OP, source = 'container') referenceOnly
+		: name
+		;
+  
+  template BehavioralFeature (disambiguateV3 = "model_behavioralfeature") abstract;
+  template Operation context(operation)
+  	: $annotation
+  	  $scopeAndVisibility
+  	  contents{mode=returnType, forcedLower=1, forcedUpper=1}
+  	  name
+  	  "("
+  	  contents{mode=parameter}
+  	  ")" "{"
+  	  	body{forcedLower=1}
+  	  "}"
+  	  {{ isQuery='true' }}
+  	;
+  
+  template ModelElement #returnType abstract;
+  template TypedElement #returnType abstract;
+  template Parameter #returnType
+  	: -- type
+  	  $typeReference
+  	  multiplicity
+  	  {{ direction='com.sap.tc.moin.repository.mmi.model.DirectionKindEnum.RETURN_DIR',
+  	     name='"result"' }}
+  	;
+  
+  template ModelElement #parameter abstract;
+  template TypedElement #parameter abstract;
+  template Parameter #parameter addToContext
+  	: $annotation
+  	  $typeReference
+  	  -- type
+  	  multiplicity
+  	  name
+  	  {{ direction='com.sap.tc.moin.repository.mmi.model.DirectionKindEnum.IN_DIR' }}
+    ;
+  
+  template MultiplicityType
+		: [[
+			disambiguate("integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol")
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'false', isOrdered = 'false' }}
+			|
+			disambiguate("LBRACKET integerSymbol DDOT")
+			"["
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique='false', isOrdered='true' }}
+			"]"
+			|
+			disambiguate("LCURL integerSymbol DDOT")
+			"{"
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'true', isOrdered = 'false' }}
+			"}"
+			|
+			disambiguate("LBRACK_LCURL integerSymbol DDOT")
+			"[{"
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'true', isOrdered = 'true' }} 
+			"}]"
+			|
+			disambiguate("LCURL_LBRACK integerSymbol DDOT")
+			"{["
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'true', isOrdered = 'true' }} 
+			"]}"
+			| -- Do we really want to support this? How would a C developer read "String* x"?
+			disambiguate("STAR | integerSymbol ~DDOT")
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'false', isOrdered = 'false' }}
+			|
+			disambiguate("LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET")
+			"["
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique='false', isOrdered='false' }}
+			"]"
+			|
+			disambiguate("LBRACKET RBRACKET")
+			"["
+			{{upper = '-1', lower = '0', isUnique='false', isOrdered='true' }}
+			"]"
+			|
+			disambiguate("LCURL STAR RCURL | LCURL integerSymbol RCURL")
+			"{"
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'true', isOrdered = 'false' }}
+			"}"
+			|
+			disambiguate("LCURL RCURL")
+			"{"
+			{{upper = '-1', lower = '0', isUnique = 'true', isOrdered = 'false' }}
+			"}"
+			|
+			disambiguate("LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK")
+			"[{"
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'true', isOrdered = 'true' }} 
+			"}]"
+			|
+			disambiguate("LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL")
+			"{["
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'true', isOrdered = 'true' }} 
+			"]}"
+			|
+			disambiguate("LCURL_LBRACK RBRACK_RCURL")
+			"{["
+			{{ lower = '0', upper='-1', isUnique = 'true', isOrdered = 'true' }} 
+			"]}"
+			|
+			disambiguate("LBRACK_LCURL RCURL_RBRACK")
+			"[{"
+			{{ lower = '0', upper='-1', isUnique = 'true', isOrdered = 'true' }} 
+			"}]"
+			|
+			{{ lower = '0', upper = '1', isOrdered = 'false', isUnique = 'false' }}
+			]]
+		;
+  
+  enumerationTemplate VisibilityKind
+		:	#public_vis    = "public",
+			#protected_vis = "protected",
+			#private_vis   = "private"
+		;
+
+  function annotation(ModelElement)
+  	: (isDefined(annotation) ? annotation{as=annotationSymbol})
+  	;
+ 
+  function visibility(GeneralizableElement)
+  	: [[ -- empty means the "public" default
+  	       {{ visibility <- 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS' }}
+  	     | "public"
+  	       {{ visibility = 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS' }}
+  	     | "protected"
+  	       {{ visibility = 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PROTECTED_VIS' }}
+  	     | "private"
+  	       {{ visibility = 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PRIVATE_VIS' }}
+  	  ]]
+  	;
+  
+  template ModelElement #invariants abstract;
+  template Constraint #invariants abstract;
+  
+  template OclConstraint #invariants -- (disambiguateV3="NAME COLON")
+  	: name ":" oclExpression <no_space> ";"
+  	  {{ invariantOf = lookIn("#context(class)") }}
+  	;
+  
+  ------------------------------------ OCL ------------------------------------
+  
+  template OclExpression abstract operatored(OclExpressions);
+  template LiteralExp abstract;
+  template PrimitiveLiteralExp abstract;
+  template NumericLiteralExp abstract;
+  template IntegerLiteralExp
+  	: name{as=integerAsString}
+  	  {{ integerSymbol=lookIn("OCL:self.name.toInteger()"),
+  	     type=lookIn("OCL:Classifier.allInstances()->select(c| if c.container->isEmpty() then false else c.qualifiedName->asSequence()->at(1)=\'PrimitiveTypes\' and qualifiedName->asSequence()->at(2)=\'Integer\' endif)") }}
+  	;
+  template StringLiteralExp
+  	: stringSymbol{as=stringSymbol}
+  	  {{ name=lookIn("OCL:self.stringSymbol"),
+  	     type=lookIn("OCL:Classifier.allInstances()->select(c| if c.container->isEmpty() then false else c.qualifiedName->asSequence()->at(1)=\'PrimitiveTypes\' and qualifiedName->asSequence()->at(2)=\'String\' endif)") }}
+  	;
+  template RealLiteralExp
+  	: name{as=floatAsString}
+  	  {{ realSymbol=lookIn("OCL:self.name.toDouble()"),
+  	     type=lookIn("OCL:Classifier.allInstances()->select(c| if c.container->isEmpty() then false else c.qualifiedName->asSequence()->at(1)=\'PrimitiveTypes\' and qualifiedName->asSequence()->at(2)=\'Double\' endif)") }}
+  	;
+  template BooleanLiteralExp
+  	: booleanSymbol
+  	  {{ name=lookIn("OCL:if self.booleanSymbol then \'true\' else \'false\' endif"),
+  	     type=lookIn("OCL:Classifier.allInstances()->select(c| if c.container->isEmpty() then false else c.qualifiedName->asSequence()->at(1)=\'PrimitiveTypes\' and qualifiedName->asSequence()->at(2)=\'Boolean\' endif)") }}
+  	;
+  
+  template EnumLiteralExp
+  	: referredEnum{as=qualifiedNameSymbol, query="OCL:
+			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=s.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+				t.ns.contents",
+		filter="->select(c | c.name=s.subString(t.pos, s.size()))"} "::" literal
+  	;
+  
+  template CollectionLiteralExp context(collectionliteral)
+  	: [[	"Sequence"		type{mode=sequence}		{{ kind='org.omg.ocl.expressions.CollectionKindEnum.SEQUENCE' }}
+  	   |	"Set"			type{mode=set}			{{ kind='org.omg.ocl.expressions.CollectionKindEnum.SET' }}
+  	   |	"Collection"	type{mode=collection}	{{ kind='org.omg.ocl.expressions.CollectionKindEnum.COLLECTION' }}
+  	   |	"Bag"			type{mode=bag}			{{ kind='org.omg.ocl.expressions.CollectionKindEnum.BAG' }}
+  	   |	"OrderedSet"	type{mode=orderedset}	{{ kind='org.omg.ocl.expressions.CollectionKindEnum.ORDERED_SET' }}
+  	  ]]
+  	  "{" parts{separator=","} "}"
+	  {{ name=lookIn("OCL:self.type.name.subString(1, -4+type.name.size()).concat(\'{...}\')") }}
+  	;
+  
+  template Classifier #sequence abstract;
+  template DataType #sequence abstract;
+  template OCL::Types::CollectionType #sequence abstract;
+  template SequenceType #sequence
+  	: $collectionTypeElementType
+  	  {{ name='"SequenceType"' }}
+  	;
+  	
+  template Classifier #set abstract;
+  template DataType #set abstract;
+  template OCL::Types::CollectionType #set abstract;
+  template SetType #set
+  	: $collectionTypeElementType
+  	  {{ name='"SetType"' }}
+  	;
+  	
+  template Classifier #collection abstract;
+  template DataType #collection abstract;
+  template OCL::Types::CollectionType #collection
+  	: $collectionTypeElementType
+  	  {{ name='"CollectionType"' }}
+  	;
+  	
+  template Classifier #bag abstract;
+  template DataType #bag abstract;
+  template OCL::Types::CollectionType #bag abstract;
+  template BagType #bag
+  	: $collectionTypeElementType
+  	  {{ name='"BagType"' }}
+  	;
+  	
+  template Classifier #orderedset abstract;
+  template DataType #orderedset abstract;
+  template OCL::Types::CollectionType #orderedset abstract;
+  template OrderedSetType #orderedset
+  	: $collectionTypeElementType
+  	  {{ name='"OrderedSetType"' }}
+  	;
+  
+  function collectionTypeElementType(OCL::Types::CollectionType)
+  	: {{ elementType=lookIn("OCL:#context(collectionliteral).parts.type->iterate(t; acc:Moin::Model::Classifier=null | if acc->isEmpty() or acc=t then t else if t.allSupertypes()->includes(acc) then acc else if acc.allSupertypes()->includes(t) then t else null endif endif endif)") }}
+  	;
+  	
+  template CollectionLiteralPart abstract;
+  
+  template CollectionItem(disambiguateV3="ocl_expressions_collectionitem")
+  	: item {{ type=lookIn("OCL:self.item.type") }}
+  	;
+  
+  template CollectionRange(disambiguateV3="ocl_expressions_collectionrange")
+  	: first ".." last
+  	  {{ type=lookIn("OCL:if self.first.type=self.last.type then self.first.type else if self.first.type.allSupertypes()->includes(self.last.type) then self.last.type else if self.last.type.allSupertypes()->includes(self.first.type) then self.first.type else null endif endif endif") }}
+  	;
+  
+  enumerationTemplate CollectionKind auto;
+ 
+  template IfExp
+  	: "if" condition "then" [
+  	    thenExpression
+  	  ] "else" [
+  	    elseExpression
+  	  ] "endif"
+  	  {{ name=lookIn("OCL:\\\'if \\\'.concat(self.condition.name)"),
+  	     type=lookIn("OCL:if self.thenExpression.type=self.elseExpression.type then
+  	                          self.thenExpression.type
+  	                      else
+  	                          if self.thenExpression.type.allSupertypes()->includes(self.elseExpression.type) then
+  	                              self.elseExpression.type
+  	                          else
+  	                              if self.elseExpression.type.allSupertypes()->includes(self.thenExpression.type) then
+  	                                  self.thenExpression.type
+  	                              else
+  	                                  null
+  	                              endif
+  	                          endif
+  	                      endif") }}
+  	;
+  
+  template LetExp
+  	: "let" variable{mode=let} "in" [
+  	    in
+  	  ]
+  	  {{ type=lookIn("OCL:self.\\\"in\\\".type"),
+  	     name=lookIn("OCL:\\\'let \\\'.concat(self.variable.name)") }}
+  	;
+  
+  template VariableDeclaration #let addToContext
+  	: varName
+  	  [[ -- default case: infer type from init expression
+  	    {{ type=lookIn("OCL:self.initExpression.type") }}
+  	   |
+  	     ":" type{as=qualifiedNameSymbol, query="OCL:
+			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=s.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+				t.ns.contents", filter="->select(c | c.name=s.subString(t.pos, s.size()))"}
+  	   |
+  	  	":" type{as=identifier, query="OCL:Model::Classifier.allInstances()",
+  	  	     filter="->select(name=?)"}
+  	  ]]
+  	  "=" initExpression{forcedLower=1}
+  	  {{ name=lookIn("OCL:self.varName") }}
+  	;
+  
+  template VariableDeclaration addToContext
+  	: varName
+  	  {{ name=lookIn("OCL:self.varName") }}
+  	  [[
+  	    -- empty; infer type from context
+  	    {{ type=lookIn("OCL:#context(propertyCallExp).source.type") }}
+  	   |
+  	    ":"
+  	    [[ type{as=qualifiedNameSymbol, query="OCL:
+			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=s.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+				t.ns.contents", filter="->select(c | c.name=s.subString(t.pos, s.size()))"}
+  	     |
+  	    	 type{as=identifier, query="OCL:Model::Classifier.allInstances()",
+  	  	     filter="->select(name=?)"}
+  	    ]]
+  	  ]]
+  	  (isDefined(initExpression) ? "=" initExpression)
+  	;
+  
+  template VariableExp
+  	: [[
+  	     referredVariable{mode=self}
+  	  |
+  	     referredVariable{refersTo=name}
+  	  ]]
+  	     {{ type=lookIn("OCL:self.referredVariable.type"),
+  	        name=lookIn("OCL:self.referredVariable.name") }}
+  	;
+  
+  template VariableDeclaration #self
+  	: "self"
+  	  {{ name='"self"', varName='"self"', type=lookIn("#context(class)") }}
+  	;
+  
+  -- template PropertyCallExp abstract;
+  -- template ModelPropertyCallExp abstract;
+  template LoopExp abstract;
+  operatorTemplate IterateExp(operators=arrowOp, source='source') context(propertyCallExp)
+  	: "iterate" "(" iterators
+  	  [[
+  	     -- explicitly-specified accumulator:
+  	     ";" result
+  	   |
+  	     -- implicitly-defined accumulator:
+  	     result{mode=implicitAccumulator}
+  	  ]]
+  	  "|" body ")"
+  	;
+  
+  template VariableDeclaration #implicitAccumulator
+  	: {{ name='"acc"', type=lookIn("OCL:#context(propertyCallExp).\\\"body\\\".type") }}
+  	;
+  
+  operatorTemplate AttributeCallExp(operators=dotOp, source='source', disambiguateV3="identifier ~LPAREN") context(propertyCallExp)
+  	: referredAttribute{as=identifierOrKeyword, query="OCL:self.source.type.allSupertypes()->append(self.source.type).
+  												contents->select(a | a.oclIsKindOf(Attribute))",
+  									   filter="->select(a|a.name=?)"}
+  	  {{ name=lookIn("OCL:self.referredAttribute.name"),
+  	     type=lookIn("OCL:self.referredAttribute.type") }}
+  	;
+  
+  operatorTemplate OperationCallExp(operators=dotOp, source='source') context(propertyCallExp)
+  	: [[ disambiguate("identifier LPAREN")
+  	    referredOperation{as=identifierOrKeyword, query= "OCL:self.source.type.allSupertypes()->append(self.source.type).
+  												contents->select(o | o.oclIsKindOf(Operation))",
+  									   filter="->select(o|o.name=?)"}   -- do mapping to Stdlib types where necessary
+  	    "(" arguments ")"
+  	    {{ name=lookIn("OCL:self.referredOperation.name.concat(\\\'(...)\\\')"),
+  	       type=lookIn("OCL:self.referredOperation.contents->select(p |
+  	       			p.oclIsKindOf(Moin::Model::Parameter))->select(p |
+  	       					p.oclAsType(Moin::Model::Parameter).direction = DirectionKind::return_dir).
+  	       					oclAsType(Moin::Model::Parameter).type") }}
+  	  ]]
+  	;
+  	
+  ---------------------------------- End OCL ----------------------------------
+
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+  
+  symbols {
+    DDOT = "..";
+    LBRACKET = "[";
+    RBRACKET = "]";
+    LCURL = "{";
+    RCURL = "}";
+    STAR = "*";
+    LCURL_LBRACK = "{[";
+    RBRACK_RCURL = "]}";
+    LBRACK_LCURL = "[{";
+    RCURL_RBRACK = "}]";
+    LPAREN = "(";
+    RPAREN = ")";
+    COLON = ":";
+    DCOLON = "::";
+  }
+
+  -- place operatorLists here (optional)
+	operators NAMESPACE_OPS{
+		priority 0 {
+			NAMESPACE_DCOLON_OP = DCOLON, 2;
+		}
+	}
+
+	operators OclExpressions {
+		priority 0 {
+			dotOp		= ".", 2;
+			arrowOp     = "->", 2;
+		}
+		priority 1 {
+			equalsOp	= "=", 2;
+		}
+	}
+  -- place tokens here (optional, except for COMMENT)
+
+	token COMMENT	: endOfLine(start = "//");
+	token MULTI_LINE_COMMENT	: multiLine(start = "/**", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+NAME
+	:	(
+			(SNAME ~DCOLON)=>SNAME
+		|	'\\''!
+			(	
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+QNAME
+	: SNAME DCOLON SNAME (DCOLON SNAME )*
+	;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+	:	DIGIT+ '.' DIGIT*
+	;
+  
+RANGE_OR_INT
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+
+}

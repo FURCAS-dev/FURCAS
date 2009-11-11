@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Moin Plug-in
+Bundle-SymbolicName: com.sap.ide.cts.moin
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Require-Bundle: com.sap.tc.moin.libraries.api,
+ com.sap.ide.cts.editor,
+ com.sap.mi.textual.parsing,
+ com.sap.mi.textual.parsing.textblocks,
+ com.sap.tc.moin.textual.runtime.moin,
+ com.sap.ide.cts.parser,
+ com.sap.mi.textual.tcs.util;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.sap.ide.cts.moin.parserfactory

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<?eclipse version="3.4"?> 
+<plugin> 
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.sap.tc.moin.tcs.mof.editor.MofClassEditor"
+            extensions="moinmm"
+            icon="resources/icons/Model/Class.gif"
+            id="com.sap.tc.moin.tcsmof.editor.MofClassEditor"
+            name="MOF Class Editor">
+      </editor>
+      <editor
+            class="com.sap.tc.moin.tcs.mof.editor.MofPackageEditor"
+            extensions="moinmm"
+            icon="resources/icons/Model/Package.gif"
+            id="com.sap.tc.moin.tcsmof.editor.MofPackageEditor"
+            name="MOF Package Editor">
+      </editor>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="true"
+            editorId="com.sap.tc.moin.tcsmof.editor.MofPackageEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="com.sap.tc.moin.repository.mmi.model.MofPackage">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="true"
+            editorId="com.sap.tc.moin.tcsmof.editor.MofClassEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="com.sap.tc.moin.repository.mmi.model.MofClass">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.rootNodeDefinition">
+        <rootNodeProvider classname="com.sap.tc.moin.tcs.mof.tree.MofRootNodeProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.textLabelProvider">
+        <textLabelProvider classname="com.sap.tc.moin.tcs.mof.tree.MofTreeLabelProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.imageProvider">
+        <imageProvider classname="com.sap.tc.moin.tcs.mof.tree.MofTreeImageProvider" />
+   </extension>
+   <extension
+         point="com.sap.tc.moin.incubation.contentprovider.Content">
+      <ContentDefinition>
+         <Path
+               Value="mappings"
+               Versioned="true">
+         </Path>
+      </ContentDefinition>
+   </extension>
+</plugin> 

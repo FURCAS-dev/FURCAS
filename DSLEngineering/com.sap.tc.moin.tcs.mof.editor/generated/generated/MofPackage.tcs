@@ -1,0 +1,307 @@
+--specify your DSL grammar rules here ...
+
+syntax MofPackage {
+
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
+		value = "unescapeString(%token%)";
+
+	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+
+	primitiveTemplate annotationSymbol for PrimitiveTypes::String using MULTI_LINE_COMMENT:
+		value = "unescapeString(%token%)",
+		serializer="'/** ' + %value%.toCString() + '\n*/'";
+
+	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
+		value = "Integer.valueOf(%token%)";
+		
+	primitiveTemplate longSymbol for PrimitiveTypes::Long default using INT:
+		value = "Long.valueOf(%token%)";
+
+	primitiveTemplate booleanSymbol for PrimitiveTypes::String using BOOL:
+		value = "%token%";
+
+  template Package main 
+  	: $annotation
+  	  "package" name <space> "{" [
+  	  contents{mode=classes}
+  	  contents{mode=associations}
+  	  ] "}"
+  	;
+  
+  template ModelElement #classes abstract;
+  template Namespace #classes abstract;
+  template GeneralizableElement #classes abstract;
+  template Classifier #classes abstract;
+  template Class #classes
+  	: $annotation
+  	  $visibility
+  	  (isAbstract?"abstract") "class" name <no_space> ";"
+  	;
+  
+  template ModelElement #associations abstract;
+  template Namespace #associations abstract;
+  template GeneralizableElement #associations abstract;
+  template Classifier #associations abstract;
+  template Association #associations
+  	: $annotation
+  	  $visibility
+  	  "association" name <space> "{" [
+  	    contents{mode=associationEnds, forcedLower=2, forcedUpper=2, separator=";"} ";"
+  	  ] "}"
+  	;
+
+  template ModelElement #associationEnds abstract;
+  template TypedElement #associationEnds abstract;
+  template AssociationEnd #associationEnds
+  	: $annotation
+  	  (isNavigable ? "->")
+  	  [[
+  	  	  -- empty default means "none" for aggregation kind
+  	  	  {{ aggregation='com.sap.tc.moin.repository.mmi.model.AggregationKindEnum.NONE' }}
+  	  	|
+  	  	  "<>"
+  	  	  {{ aggregation='com.sap.tc.moin.repository.mmi.model.AggregationKindEnum.COMPOSITE' }}
+  	  ]]
+  	  (isChangeable ? : "readonly")
+  	  $typeReference
+  	  multiplicity
+  	  name
+  	;
+  	 
+  function typeReference(TypedElement)
+  	:  [[ type{as=qualifiedNameSymbol, query="OCL:
+			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=s.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+				t.ns.contents",
+		filter="->select(c | c.name=s.subString(t.pos, s.size()))"}
+  	  |
+  	  	type{as=identifier, query="OCL:Model::Classifier.allInstances()",
+  	  		 filter="->select(name=?)"}
+  	  ]]
+  	;
+
+  function visibility(GeneralizableElement)
+  	: [[ -- empty means the "public" default
+  	       {{ visibility <- 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS' }}
+  	     | "public"
+  	       {{ visibility <- 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS' }}
+  	     | "protected"
+  	       {{ visibility <- 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PROTECTED_VIS' }}
+  	     | "private"
+  	       {{ visibility <- 'com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PRIVATE_VIS' }}
+  	  ]]
+  	;
+  
+  function annotation(ModelElement)
+  	: (isDefined(annotation) ? annotation{as=annotationSymbol})
+  	;
+ 
+  template MultiplicityType
+		: [[
+			disambiguate("integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol")
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'false', isOrdered = 'false' }}
+			|
+			disambiguate("LBRACKET integerSymbol DDOT")
+			"["
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique='false', isOrdered='true' }}
+			"]"
+			|
+			disambiguate("LCURL integerSymbol DDOT")
+			"{"
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'true', isOrdered = 'false' }}
+			"}"
+			|
+			disambiguate("LBRACK_LCURL integerSymbol DDOT")
+			"[{"
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'true', isOrdered = 'true' }} 
+			"}]"
+			|
+			disambiguate("LCURL_LBRACK integerSymbol DDOT")
+			"{["
+			lower ".." (upper = -1 ? "*" : upper) {{ isUnique = 'true', isOrdered = 'true' }} 
+			"]}"
+			| -- Do we really want to support this? How would a C developer read "String* x"?
+			disambiguate("STAR | integerSymbol ~DDOT")
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'false', isOrdered = 'false' }}
+			|
+			disambiguate("LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET")
+			"["
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique='false', isOrdered='false' }}
+			"]"
+			|
+			disambiguate("LBRACKET RBRACKET")
+			"["
+			{{upper = '-1', lower = '0', isUnique='false', isOrdered='true' }}
+			"]"
+			|
+			disambiguate("LCURL STAR RCURL | LCURL integerSymbol RCURL")
+			"{"
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'true', isOrdered = 'false' }}
+			"}"
+			|
+			disambiguate("LCURL RCURL")
+			"{"
+			{{upper = '-1', lower = '0', isUnique = 'true', isOrdered = 'false' }}
+			"}"
+			|
+			disambiguate("LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK")
+			"[{"
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'true', isOrdered = 'true' }} 
+			"}]"
+			|
+			disambiguate("LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL")
+			"{["
+			(upper = -1 ? "*" : upper) {{ lower = '0', isUnique = 'true', isOrdered = 'true' }} 
+			"]}"
+			|
+			disambiguate("LCURL_LBRACK RBRACK_RCURL")
+			"{["
+			{{ lower = '0', upper='-1', isUnique = 'true', isOrdered = 'true' }} 
+			"]}"
+			|
+			disambiguate("LBRACK_LCURL RCURL_RBRACK")
+			"[{"
+			{{ lower = '0', upper='-1', isUnique = 'true', isOrdered = 'true' }} 
+			"}]"
+			|
+			{{ lower = '0', upper = '1', isOrdered = 'false', isUnique = 'false' }}
+			]]
+		;
+  
+  -- place keywords here (optional, seldom used)
+
+  -- place symbols here (optional)
+  
+  symbols {
+    DDOT = "..";
+    LBRACKET = "[";
+    RBRACKET = "]";
+    LCURL = "{";
+    RCURL = "}";
+    STAR = "*";
+    LCURL_LBRACK = "{[";
+    RBRACK_RCURL = "]}";
+    LBRACK_LCURL = "[{";
+    RCURL_RBRACK = "}]";
+    LPAREN = "(";
+    RPAREN = ")";
+  }
+
+  -- place operatorLists here (optional)
+
+  -- place tokens here (optional, except for COMMENT)
+
+	token COMMENT	: endOfLine(start = "//");
+	token MULTI_LINE_COMMENT	: multiLine(start = "/**", end = "*/");
+lexer = "
+%options testLiterals = false;
+
+
+NL
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
+		)
+	{newline();$channel=HIDDEN;}
+	;
+
+WS
+	:	(	' '
+		|	'\\t'
+		){$channel=HIDDEN;}
+	;
+
+%protected
+DIGIT
+	:	'0'..'9'
+	;
+
+%protected
+ALPHA
+	:	'a'..'z'
+	|	'A'..'Z'
+	|	'_'
+	//For Unicode compatibility (from 0000 to 00ff)
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
+	;
+
+%protected
+SNAME
+	:	(ALPHA) (ALPHA | DIGIT)*
+;
+
+BOOL	:	'true' | 'false'	;
+
+NAME
+	:	(
+			SNAME
+		|	'\\''!
+			(	
+		//	ESC	|
+			'\\n' {newline();}
+			|	~('\\\\'|'\\\''|'\\n')
+			)*
+			'\\''!
+		)
+	;
+
+QNAME
+	: SNAME ( '::' SNAME )* ;
+
+protected
+INT
+ : (DIGIT)+
+ ;
+
+%protected
+FLOAT
+	:	DIGIT+ '.' DIGIT*
+	;
+  
+RANGE_OR_INT
+    :   ( INT '..' ) => INT  { _type = INT; }
+    |	( INT '.' NAME ) => INT { _type = INT; }
+    |   ( INT '.' ~('.'	|	'a'..'z'
+					   	|	'A'..'Z'
+					   	|	'_'
+						//For Unicode compatibility (from 0000 to 00ff)
+						|	'\\u00C0' .. '\\u00D6'
+						|	'\\u00D8' .. '\\u00F6'
+						|	'\\u00F8' .. '\\u00FF') )  => FLOAT { _type = FLOAT; }
+    |   INT                  { _type = INT; }
+    ;
+
+
+STRING
+	:	'\"'!
+		(	
+		//ESC	|		
+			'\\n' {newline();}
+		|	~('\\\\'|'\"'|'\\n')
+		)*
+		'\"'!
+	;
+
+	"; 
+
+}
