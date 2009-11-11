@@ -205,7 +205,7 @@ public interface IBareModelAdapter extends IModelElementInvestigator { // extend
 	 * @throws ModelAdapterException
 	 */
 	
-	Collection getPredicateOclReference(Object modelElement, String propertyName,
+	Collection<?> getPredicateOclReference(Object modelElement, String propertyName,
 			Object keyValue, String oclQuery, Object contextElement)
 			throws ModelAdapterException;
 

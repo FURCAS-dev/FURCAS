@@ -8,27 +8,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Association;
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Reference;
-import com.sap.tc.moin.repository.mmi.model.__impl.GeneralizableElementInternal;
-import com.sap.tc.moin.repository.mmi.model.__impl.ReferenceInternal;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.LRI;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.events.filter.AndFilter;
 import com.sap.tc.moin.repository.events.filter.AssociationFilter;
 import com.sap.tc.moin.repository.events.filter.AttributeFilter;
 import com.sap.tc.moin.repository.events.filter.ClassFilter;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
+import com.sap.tc.moin.repository.events.filter.EventTypeFilter;
 import com.sap.tc.moin.repository.events.type.AttributeValueEvent;
 import com.sap.tc.moin.repository.events.type.ElementChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementCreateEvent;
@@ -37,6 +27,19 @@ import com.sap.tc.moin.repository.events.type.LinkAddEvent;
 import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
+import com.sap.tc.moin.repository.mmi.model.Association;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.Reference;
+import com.sap.tc.moin.repository.mmi.model.__impl.GeneralizableElementInternal;
+import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
+import com.sap.tc.moin.repository.mmi.model.__impl.ReferenceInternal;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 import com.sap.tc.moin.repository.spi.core.Wrapper;
 
@@ -76,8 +79,8 @@ public class InternalEventFactory {
          */
         @Override
         public EventFilter getFilter( CoreConnection connection ) {
-
-            return new ClassFilter( connection.getWrapperForJmiObject( getMofClass( ) ), true );
+            return new AndFilter(new EventTypeFilter(ElementDeleteEvent.class),
+        	                 new ClassFilter( connection.getWrapperForJmiObject( getMofClass( ) ), true));
         }
 
         /**
@@ -94,6 +97,10 @@ public class InternalEventFactory {
      * An implementation of the abstract class DeleteRT
      */
     private static final class DeleteRTImpl extends DeleteRT {
+	/**
+	 * The optional type of the source expression from where the association end is navigated.
+	 */
+	private MofClass sourceType;
 
         /**
          * @param connection {@link CoreConnection}
@@ -104,14 +111,26 @@ public class InternalEventFactory {
             super( connection, assocEnd );
         }
 
-        /**
+        public DeleteRTImpl(CoreConnection connection, AssociationEnd assocEnd, MofClass sourceType) {
+	    super(connection, assocEnd);
+	    this.sourceType = sourceType;
+	}
+
+	/**
          * @return the filter
          */
         @Override
         public EventFilter getFilter( CoreConnection connection ) {
-
             Association assoc = (Association) ( (RefObjectImpl) this.modelElement ).refImmediateComposite( connection.getSession( ) );
-            return new AssociationFilter( assoc );
+            AssociationFilter assocFilter = new AssociationFilter( assoc );
+            EventFilter result;
+            if (sourceType == null) {
+        	result = assocFilter;
+            } else {
+        	ClassFilter classFilter = new ClassFilter(sourceType, /* includeSubtypes */ true);
+        	result = new AndFilter(assocFilter, classFilter);
+            }
+            return result;
         }
 
         /**
@@ -142,8 +161,8 @@ public class InternalEventFactory {
          */
         @Override
         public EventFilter getFilter( CoreConnection connection ) {
-
-            return new ClassFilter( connection.getWrapperForJmiObject( getMofClass( ) ), true );
+            return new AndFilter(new EventTypeFilter(ElementCreateEvent.class),
+	                 new ClassFilter( connection.getWrapperForJmiObject( getMofClass( ) ), true));
         }
 
         /**
@@ -161,6 +180,10 @@ public class InternalEventFactory {
      * An implementation of the the abstract class InsertRT
      */
     private static final class InsertRTImpl extends InsertRT {
+	/**
+	 * The optional type of the source expression from where the association end is navigated.
+	 */
+	private MofClass sourceType;
 
         /**
          * @param connection {@link CoreConnection}
@@ -171,14 +194,26 @@ public class InternalEventFactory {
             super( connection, assocEnd );
         }
 
-        /**
+        public InsertRTImpl(CoreConnection connection, AssociationEnd assocEnd, MofClass sourceType) {
+            super(connection, assocEnd);
+            this.sourceType = sourceType;
+	}
+
+	/**
          * @return the filter
          */
         @Override
         public EventFilter getFilter( CoreConnection connection ) {
-
             Association assoc = (Association) ( (RefObjectImpl) this.modelElement ).refImmediateComposite( connection.getSession( ) );
-            return new AssociationFilter( assoc );
+            AssociationFilter assocFilter = new AssociationFilter( assoc );
+            EventFilter result;
+            if (sourceType == null) {
+        	result = assocFilter;
+            } else {
+        	ClassFilter classFilter = new ClassFilter(sourceType, /* includeSubtypes */ true);
+        	result = new AndFilter(assocFilter, classFilter);
+            }
+            return result;
         }
 
         /**
@@ -196,7 +231,16 @@ public class InternalEventFactory {
      * An implementation of the the abstract class UpdateAttribute
      */
     private static final class UpdateAttributeImpl extends UpdateAttribute {
+	/**
+	 * The optional type of the source expression on which the attribute is evaluated.
+	 */
+	private MofClass sourceType;
 
+	public UpdateAttributeImpl(CoreConnection connection, Attribute attribute, MofClass sourceType) {
+	    super(connection, attribute);
+	    this.sourceType = sourceType;
+	}
+	
         /**
          * @param connection {@link CoreConnection}
          * @param attribute {@link Attribute}
@@ -212,8 +256,15 @@ public class InternalEventFactory {
 
         @Override
         public EventFilter getFilter( CoreConnection connection ) {
-
-            return new AttributeFilter( getMRI( ) );
+            AttributeFilter attrFilter = new AttributeFilter( getMRI( ) );
+            EventFilter result;
+            if (sourceType == null) {
+        	result = attrFilter;
+            } else {
+        	ClassFilter classFilter = new ClassFilter(sourceType, /* includeSubtypes */ true);
+        	result = new AndFilter(attrFilter, classFilter);
+            }
+            return result;
         }
 
         /**
@@ -233,9 +284,11 @@ public class InternalEventFactory {
     private final Map<String, DeleteET> deleteETMap = new Hashtable<String, DeleteET>( );
 
     /**
-     * This maps from Associations to DeleteRT events MofID is used as key.
+     * This maps from a pair containing the association's and the source type's MOF ID
+     * to DeleteRT events. The source type's MOF ID may be <tt>null</tt> in case the
+     * event is not specific to any source expression / source type.
      */
-    private final Map<String, DeleteRT> deleteRTMap = new Hashtable<String, DeleteRT>( );
+    private final Map<Pair<String, String>, DeleteRT> deleteRTMap = new Hashtable<Pair<String, String>, DeleteRT>( );
 
     /**
      * This maps from MofClasses to InsertET events MofID is used as key.
@@ -243,14 +296,18 @@ public class InternalEventFactory {
     private final Map<String, InsertET> insertETMap = new Hashtable<String, InsertET>( );
 
     /**
-     * This maps from Associations to InsertRT events MofID is used as key.
+     * This maps from a pair containing the association's and the source type's MOF ID
+     * to InsertRT events. The source type's MOF ID may be <tt>null</tt> in case the
+     * event is not specific to any source expression / source type.
      */
-    private final Map<String, InsertRT> insertRTMap = new Hashtable<String, InsertRT>( );
+    private final Map<Pair<String, String>, InsertRT> insertRTMap = new Hashtable<Pair<String, String>, InsertRT>( );
 
     /**
-     * This maps from Attributes to UpdateAttribute events MofID is used as key.
+     * This maps from a pair containing the attribute's and the source type's MOF ID
+     * to UpdateAttribute events. The source type's MOF ID may be <tt>null</tt> in case the
+     * event is not specific to any source expression / source type.
      */
-    private final Map<String, UpdateAttribute> updateAttributeMap = new Hashtable<String, UpdateAttribute>( );
+    private final Map<Pair<String, String>, UpdateAttribute> updateAttributeMap = new Hashtable<Pair<String, String>, UpdateAttribute>( );
 
     /**
      * Used internally
@@ -289,12 +346,20 @@ public class InternalEventFactory {
      * @return the event
      */
     public DeleteRT createDeleteRT( CoreConnection connection, AssociationEnd assocEnd ) {
-
         if ( this.deleteRTMap.containsKey( assocEnd.refMofId( ) ) ) {
             return this.deleteRTMap.get( assocEnd.refMofId( ) );
         }
         DeleteRT dRT = new DeleteRTImpl( connection, assocEnd );
-        this.deleteRTMap.put( assocEnd.refMofId( ), dRT );
+        this.deleteRTMap.put( new Pair<String, String>(assocEnd.refMofId( ), /* source type MOF ID */ null), dRT );
+        return dRT;
+    }
+
+    public InternalEvent createDeleteRT(CoreConnection connection, AssociationEnd assocEnd, MofClassImpl type) {
+        if ( this.deleteRTMap.containsKey( assocEnd.refMofId( ) ) ) {
+            return this.deleteRTMap.get( assocEnd.refMofId( ) );
+        }
+        DeleteRT dRT = new DeleteRTImpl( connection, assocEnd, (MofClass) type.createWrapper(connection, /* synchronize */ true) );
+        this.deleteRTMap.put( new Pair<String, String>(assocEnd.refMofId( ), type.refMofId()), dRT );
         return dRT;
     }
 
@@ -354,14 +419,21 @@ public class InternalEventFactory {
      * @return the event
      */
     public InsertRT createInsertRT( CoreConnection connection, AssociationEnd assocEnd ) {
-
         if ( this.insertRTMap.containsKey( assocEnd.refMofId( ) ) ) {
             return this.insertRTMap.get( assocEnd.refMofId( ) );
         }
         InsertRT dRT = new InsertRTImpl( connection, assocEnd );
-        this.insertRTMap.put( assocEnd.refMofId( ), dRT );
+        this.insertRTMap.put( new Pair<String, String>(assocEnd.refMofId( ), /* source type MOF ID */ null), dRT );
         return dRT;
+    }
 
+    public InternalEvent createInsertRT(CoreConnection connection, AssociationEnd assocEnd, MofClassImpl type) {
+        if ( this.insertRTMap.containsKey( assocEnd.refMofId( ) ) ) {
+            return this.insertRTMap.get( assocEnd.refMofId( ) );
+        }
+        InsertRT dRT = new InsertRTImpl( connection, assocEnd, (MofClass) type.createWrapper(connection, /* synchronize */ true) );
+        this.insertRTMap.put( new Pair<String, String>(assocEnd.refMofId( ), type.refMofId()), dRT );
+        return dRT;
     }
 
     private InsertRT[] createInsertRT( LinkAddEvent event ) {
@@ -399,7 +471,23 @@ public class InternalEventFactory {
             return this.updateAttributeMap.get( attr.refMofId( ) );
         }
         UpdateAttribute updAttr = new UpdateAttributeImpl( connection, attr );
-        this.updateAttributeMap.put( attr.refMofId( ), updAttr );
+        this.updateAttributeMap.put( new Pair<String, String>(attr.refMofId( ), /* source type MOF ID */ null), updAttr );
+        return updAttr;
+    }
+
+    /**
+     * Creates an internal attribute value change event of type {@link UpdateAttribute} specifically
+     * with the source type of the expression on which the attribute is "called." This helps to
+     * produce a more specific event handler that selects change events only if they occur on
+     * the classifier of the source expression (or subtypes thereof). 
+     */
+    public UpdateAttribute createUpdateAttribute( CoreConnection connection, Attribute attr, MofClassImpl sourceType ) {
+
+        if ( this.updateAttributeMap.containsKey( attr.refMofId( ) ) ) {
+            return this.updateAttributeMap.get( attr.refMofId( ) );
+        }
+        UpdateAttribute updAttr = new UpdateAttributeImpl( connection, attr, (MofClass) sourceType.createWrapper(connection, /* synchronize */ true) );
+        this.updateAttributeMap.put( new Pair<String, String>(attr.refMofId( ), sourceType.refMofId()), updAttr );
         return updAttr;
     }
 

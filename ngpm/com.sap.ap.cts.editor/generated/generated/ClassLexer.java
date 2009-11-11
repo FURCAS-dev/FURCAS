@@ -1,4 +1,8 @@
-// $ANTLR 3.1.1 C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g 2009-10-28 10:51:49
+<<<<<<< .mine
+// $ANTLR 3.1.1 C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g 2009-11-03 11:39:54
+=======
+// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g 2009-11-10 12:31:44
+>>>>>>> .r8534
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -225,17 +229,26 @@ public class ClassLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g"; }
+<<<<<<< .mine
+    public String getGrammarFileName() { return "C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g"; }
+=======
+    public String getGrammarFileName() { return "C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g"; }
+>>>>>>> .r8534
 
     // $ANTLR start "T__49"
     public final void mT__49() throws RecognitionException {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:117:7: ( 'native' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:117:9: 'native'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:117:7: ( 'native' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:117:9: 'native'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:117:7: ( 'const' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:117:9: 'const'
+>>>>>>> .r8534
             {
-            match("native"); if (state.failed) return ;
+            match("const"); if (state.failed) return ;
 
 
             }
@@ -253,10 +266,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:118:7: ( 'snapshot' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:118:9: 'snapshot'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:118:7: ( 'replace' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:118:9: 'replace'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:118:7: ( 'return' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:118:9: 'return'
+>>>>>>> .r8534
             {
-            match("snapshot"); if (state.failed) return ;
+<<<<<<< .mine
+            match("replace"); if (state.failed) return ;
+=======
+            match("return"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -274,10 +296,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:119:7: ( 'AddLink' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:119:9: 'AddLink'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:119:7: ( 'function' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:119:9: 'function'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:119:7: ( 'store' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:119:9: 'store'
+>>>>>>> .r8534
             {
-            match("AddLink"); if (state.failed) return ;
+<<<<<<< .mine
+            match("function"); if (state.failed) return ;
+=======
+            match("store"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -295,10 +326,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:120:7: ( 'head' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:120:9: 'head'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:120:7: ( 'var' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:120:9: 'var'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:120:7: ( 'rollback' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:120:9: 'rollback'
+>>>>>>> .r8534
             {
-            match("head"); if (state.failed) return ;
+<<<<<<< .mine
+            match("var"); if (state.failed) return ;
+=======
+            match("rollback"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -316,10 +356,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:121:7: ( '-=' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:121:9: '-='
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:121:7: ( 'else' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:121:9: 'else'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:121:7: ( 'by' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:121:9: 'by'
+>>>>>>> .r8534
             {
-            match("-="); if (state.failed) return ;
+<<<<<<< .mine
+            match("else"); if (state.failed) return ;
+=======
+            match("by"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -337,10 +386,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:122:7: ( 'replace' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:122:9: 'replace'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:122:7: ( 'void' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:122:9: 'void'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:122:7: ( 'RemoveLink' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:122:9: 'RemoveLink'
+>>>>>>> .r8534
             {
-            match("replace"); if (state.failed) return ;
+<<<<<<< .mine
+            match("void"); if (state.failed) return ;
+=======
+            match("RemoveLink"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -358,10 +416,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:123:7: ( 'store' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:123:9: 'store'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:123:7: ( 'dim' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:123:9: 'dim'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:123:7: ( 'snapshot' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:123:9: 'snapshot'
+>>>>>>> .r8534
             {
-            match("store"); if (state.failed) return ;
+<<<<<<< .mine
+            match("dim"); if (state.failed) return ;
+=======
+            match("snapshot"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -379,10 +446,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:124:7: ( 'RemoveLink' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:124:9: 'RemoveLink'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:124:7: ( 'by' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:124:9: 'by'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:124:7: ( 'changed' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:124:9: 'changed'
+>>>>>>> .r8534
             {
-            match("RemoveLink"); if (state.failed) return ;
+<<<<<<< .mine
+            match("by"); if (state.failed) return ;
+=======
+            match("changed"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -400,10 +476,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:125:7: ( 'new' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:125:9: 'new'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:125:7: ( 'aggregate' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:125:9: 'aggregate'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:125:7: ( 'head' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:125:9: 'head'
+>>>>>>> .r8534
             {
-            match("new"); if (state.failed) return ;
+<<<<<<< .mine
+            match("aggregate"); if (state.failed) return ;
+=======
+            match("head"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -421,10 +506,20 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:126:7: ( '?' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:126:9: '?'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:126:7: ( 'rollback' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:126:9: 'rollback'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:126:7: ( ',' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:126:9: ','
+>>>>>>> .r8534
             {
-            match('?'); if (state.failed) return ;
+<<<<<<< .mine
+            match("rollback"); if (state.failed) return ;
+=======
+            match(','); if (state.failed) return ;
+>>>>>>> .r8534
+
 
             }
 
@@ -441,10 +536,20 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:127:7: ( ',' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:127:9: ','
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:127:7: ( 'implements' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:127:9: 'implements'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:127:7: ( '-=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:127:9: '-='
+>>>>>>> .r8534
             {
-            match(','); if (state.failed) return ;
+<<<<<<< .mine
+            match("implements"); if (state.failed) return ;
+=======
+            match("-="); if (state.failed) return ;
+>>>>>>> .r8534
+
 
             }
 
@@ -461,10 +566,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:128:7: ( 'class' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:128:9: 'class'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:128:7: ( 'all' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:128:9: 'all'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:128:7: ( 'function' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:128:9: 'function'
+>>>>>>> .r8534
             {
-            match("class"); if (state.failed) return ;
+<<<<<<< .mine
+            match("all"); if (state.failed) return ;
+=======
+            match("function"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -482,10 +596,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:129:7: ( 'commit' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:129:9: 'commit'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:129:7: ( 'count' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:129:9: 'count'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:129:7: ( 'converter' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:129:9: 'converter'
+>>>>>>> .r8534
             {
-            match("commit"); if (state.failed) return ;
+<<<<<<< .mine
+            match("count"); if (state.failed) return ;
+=======
+            match("converter"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -503,10 +626,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:130:7: ( 'value' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:130:9: 'value'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:130:7: ( 'while' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:130:9: 'while'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:130:7: ( 'owns' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:130:9: 'owns'
+>>>>>>> .r8534
             {
-            match("value"); if (state.failed) return ;
+<<<<<<< .mine
+            match("while"); if (state.failed) return ;
+=======
+            match("owns"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -524,10 +656,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:131:7: ( 'var' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:131:9: 'var'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:131:7: ( 'return' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:131:9: 'return'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:131:7: ( 'implements' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:131:9: 'implements'
+>>>>>>> .r8534
             {
-            match("var"); if (state.failed) return ;
+<<<<<<< .mine
+            match("return"); if (state.failed) return ;
+=======
+            match("implements"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -545,11 +686,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:132:7: ( 'void' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:132:9: 'void'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:132:7: ( 'head' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:132:9: 'head'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:132:7: ( '?' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:132:9: '?'
+>>>>>>> .r8534
             {
-            match("void"); if (state.failed) return ;
-
+<<<<<<< .mine
+            match("head"); if (state.failed) return ;
+=======
+            match('?'); if (state.failed) return ;
+>>>>>>> .r8534
 
             }
 
@@ -566,10 +715,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:133:7: ( 'aggregate' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:133:9: 'aggregate'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:133:7: ( 'if' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:133:9: 'if'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:133:7: ( 'var' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:133:9: 'var'
+>>>>>>> .r8534
             {
-            match("aggregate"); if (state.failed) return ;
+<<<<<<< .mine
+            match("if"); if (state.failed) return ;
+=======
+            match("var"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -587,10 +745,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:134:7: ( 'else' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:134:9: 'else'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:134:7: ( 'foreach' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:134:9: 'foreach'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:134:7: ( 'key' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:134:9: 'key'
+>>>>>>> .r8534
             {
-            match("else"); if (state.failed) return ;
+<<<<<<< .mine
+            match("foreach"); if (state.failed) return ;
+=======
+            match("key"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -608,11 +775,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:135:7: ( 'foreach' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:135:9: 'foreach'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:135:7: ( ',' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:135:9: ','
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:135:7: ( 'this' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:135:9: 'this'
+>>>>>>> .r8534
             {
-            match("foreach"); if (state.failed) return ;
-
+<<<<<<< .mine
+            match(','); if (state.failed) return ;
+=======
+            match("this"); if (state.failed) return ;
+>>>>>>> .r8534
 
             }
 
@@ -629,10 +804,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:136:7: ( '+=' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:136:9: '+='
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:136:7: ( 'changed' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:136:9: 'changed'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:136:7: ( 'else' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:136:9: 'else'
+>>>>>>> .r8534
             {
-            match("+="); if (state.failed) return ;
+<<<<<<< .mine
+            match("changed"); if (state.failed) return ;
+=======
+            match("else"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -650,10 +834,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:137:7: ( 'implements' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:137:9: 'implements'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:137:7: ( '-=' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:137:9: '-='
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:137:7: ( '<$' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:137:9: '<$'
+>>>>>>> .r8534
             {
-            match("implements"); if (state.failed) return ;
+<<<<<<< .mine
+            match("-="); if (state.failed) return ;
+=======
+            match("<$"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -671,10 +864,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:138:7: ( 'const' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:138:9: 'const'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:138:7: ( 'key' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:138:9: 'key'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:138:7: ( 'value' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:138:9: 'value'
+>>>>>>> .r8534
             {
-            match("const"); if (state.failed) return ;
+<<<<<<< .mine
+            match("key"); if (state.failed) return ;
+=======
+            match("value"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -692,10 +894,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:139:7: ( 'tail' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:139:9: 'tail'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:139:7: ( 'store' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:139:9: 'store'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:139:7: ( 'replace' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:139:9: 'replace'
+>>>>>>> .r8534
             {
-            match("tail"); if (state.failed) return ;
+<<<<<<< .mine
+            match("store"); if (state.failed) return ;
+=======
+            match("replace"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -713,10 +924,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:140:7: ( 'NULL' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:140:9: 'NULL'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:140:7: ( 'AddLink' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:140:9: 'AddLink'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:140:7: ( 'tail' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:140:9: 'tail'
+>>>>>>> .r8534
             {
-            match("NULL"); if (state.failed) return ;
+<<<<<<< .mine
+            match("AddLink"); if (state.failed) return ;
+=======
+            match("tail"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -734,10 +954,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:141:7: ( 'count' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:141:9: 'count'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:141:7: ( 'snapshot' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:141:9: 'snapshot'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:141:7: ( 'delete' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:141:9: 'delete'
+>>>>>>> .r8534
             {
-            match("count"); if (state.failed) return ;
+<<<<<<< .mine
+            match("snapshot"); if (state.failed) return ;
+=======
+            match("delete"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -755,10 +984,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:142:7: ( 'dim' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:142:9: 'dim'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:142:7: ( 'delete' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:142:9: 'delete'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:142:7: ( 'if' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:142:9: 'if'
+>>>>>>> .r8534
             {
-            match("dim"); if (state.failed) return ;
+<<<<<<< .mine
+            match("delete"); if (state.failed) return ;
+=======
+            match("if"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -776,10 +1014,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:143:7: ( 'delete' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:143:9: 'delete'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:143:7: ( 'const' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:143:9: 'const'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:143:7: ( 'AddLink' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:143:9: 'AddLink'
+>>>>>>> .r8534
             {
-            match("delete"); if (state.failed) return ;
+<<<<<<< .mine
+            match("const"); if (state.failed) return ;
+=======
+            match("AddLink"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -797,10 +1044,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:144:7: ( 'by' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:144:9: 'by'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:144:7: ( 'tail' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:144:9: 'tail'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:144:7: ( 'class' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:144:9: 'class'
+>>>>>>> .r8534
             {
-            match("by"); if (state.failed) return ;
+<<<<<<< .mine
+            match("tail"); if (state.failed) return ;
+=======
+            match("class"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -818,10 +1074,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:145:7: ( 'if' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:145:9: 'if'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:145:7: ( 'owns' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:145:9: 'owns'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:145:7: ( 'count' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:145:9: 'count'
+>>>>>>> .r8534
             {
-            match("if"); if (state.failed) return ;
+<<<<<<< .mine
+            match("owns"); if (state.failed) return ;
+=======
+            match("count"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -839,11 +1104,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:146:7: ( 'return' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:146:9: 'return'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:146:7: ( '?' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:146:9: '?'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:146:7: ( 'while' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:146:9: 'while'
+>>>>>>> .r8534
             {
-            match("return"); if (state.failed) return ;
-
+<<<<<<< .mine
+            match('?'); if (state.failed) return ;
+=======
+            match("while"); if (state.failed) return ;
+>>>>>>> .r8534
 
             }
 
@@ -860,10 +1133,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:147:7: ( 'key' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:147:9: 'key'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:147:7: ( '<$' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:147:9: '<$'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:147:7: ( 'commit' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:147:9: 'commit'
+>>>>>>> .r8534
             {
-            match("key"); if (state.failed) return ;
+<<<<<<< .mine
+            match("<$"); if (state.failed) return ;
+=======
+            match("commit"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -881,10 +1163,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:148:7: ( 'rollback' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:148:9: 'rollback'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:148:7: ( 'RemoveLink' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:148:9: 'RemoveLink'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:148:7: ( '+=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:148:9: '+='
+>>>>>>> .r8534
             {
-            match("rollback"); if (state.failed) return ;
+<<<<<<< .mine
+            match("RemoveLink"); if (state.failed) return ;
+=======
+            match("+="); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -902,10 +1193,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:149:7: ( 'function' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:149:9: 'function'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:149:7: ( 'commit' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:149:9: 'commit'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:149:7: ( 'aggregate' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:149:9: 'aggregate'
+>>>>>>> .r8534
             {
-            match("function"); if (state.failed) return ;
+<<<<<<< .mine
+            match("commit"); if (state.failed) return ;
+=======
+            match("aggregate"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -923,10 +1223,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:150:7: ( 'all' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:150:9: 'all'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:150:7: ( 'converter' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:150:9: 'converter'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:150:7: ( 'native' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:150:9: 'native'
+>>>>>>> .r8534
             {
-            match("all"); if (state.failed) return ;
+<<<<<<< .mine
+            match("converter"); if (state.failed) return ;
+=======
+            match("native"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -944,10 +1253,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:151:7: ( '<$' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:151:9: '<$'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:151:7: ( 'class' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:151:9: 'class'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:151:7: ( '$>' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:151:9: '$>'
+>>>>>>> .r8534
             {
-            match("<$"); if (state.failed) return ;
+<<<<<<< .mine
+            match("class"); if (state.failed) return ;
+=======
+            match("$>"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -965,10 +1283,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:152:7: ( 'changed' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:152:9: 'changed'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:152:7: ( 'value' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:152:9: 'value'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:152:7: ( 'foreach' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:152:9: 'foreach'
+>>>>>>> .r8534
             {
-            match("changed"); if (state.failed) return ;
+<<<<<<< .mine
+            match("value"); if (state.failed) return ;
+=======
+            match("foreach"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -986,10 +1313,15 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:153:7: ( 'this' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:153:9: 'this'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:153:7: ( 'this' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:153:9: 'this'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:153:7: ( 'dim' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:153:9: 'dim'
+>>>>>>> .r8534
             {
-            match("this"); if (state.failed) return ;
+            match("dim"); if (state.failed) return ;
 
 
             }
@@ -1007,10 +1339,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:154:7: ( 'owns' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:154:9: 'owns'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:154:7: ( 'new' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:154:9: 'new'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:154:7: ( 'void' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:154:9: 'void'
+>>>>>>> .r8534
             {
-            match("owns"); if (state.failed) return ;
+<<<<<<< .mine
+            match("new"); if (state.failed) return ;
+=======
+            match("void"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -1028,10 +1369,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:155:7: ( 'converter' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:155:9: 'converter'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:155:7: ( '+=' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:155:9: '+='
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:155:7: ( 'NULL' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:155:9: 'NULL'
+>>>>>>> .r8534
             {
-            match("converter"); if (state.failed) return ;
+<<<<<<< .mine
+            match("+="); if (state.failed) return ;
+=======
+            match("NULL"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -1049,10 +1399,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:156:7: ( 'while' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:156:9: 'while'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:156:7: ( 'NULL' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:156:9: 'NULL'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:156:7: ( 'new' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:156:9: 'new'
+>>>>>>> .r8534
             {
-            match("while"); if (state.failed) return ;
+<<<<<<< .mine
+            match("NULL"); if (state.failed) return ;
+=======
+            match("new"); if (state.failed) return ;
+>>>>>>> .r8534
 
 
             }
@@ -1070,10 +1429,15 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:157:7: ( '$>' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:157:9: '$>'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:157:7: ( '$>' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:157:9: '$>'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:157:7: ( 'all' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:157:9: 'all'
+>>>>>>> .r8534
             {
-            match("$>"); if (state.failed) return ;
+            match("all"); if (state.failed) return ;
 
 
             }
@@ -1091,8 +1455,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:158:7: ( '1000' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:158:9: '1000'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:158:7: ( '1000' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:158:9: '1000'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:158:7: ( '1000' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:158:9: '1000'
+>>>>>>> .r8534
             {
             match("1000"); if (state.failed) return ;
 
@@ -1112,8 +1481,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:159:7: ( '2000' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:159:9: '2000'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:159:7: ( '2000' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:159:9: '2000'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:159:7: ( '2000' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:159:9: '2000'
+>>>>>>> .r8534
             {
             match("2000"); if (state.failed) return ;
 
@@ -1133,8 +1507,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:160:7: ( '3000' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:160:9: '3000'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:160:7: ( '3000' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:160:9: '3000'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:160:7: ( '3000' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:160:9: '3000'
+>>>>>>> .r8534
             {
             match("3000"); if (state.failed) return ;
 
@@ -1154,8 +1533,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:161:7: ( '1002' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:161:9: '1002'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:161:7: ( '1002' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:161:9: '1002'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:161:7: ( '1002' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:161:9: '1002'
+>>>>>>> .r8534
             {
             match("1002"); if (state.failed) return ;
 
@@ -1175,8 +1559,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:162:7: ( '2002' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:162:9: '2002'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:162:7: ( '2002' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:162:9: '2002'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:162:7: ( '2002' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:162:9: '2002'
+>>>>>>> .r8534
             {
             match("2002"); if (state.failed) return ;
 
@@ -1196,8 +1585,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:163:7: ( '3002' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:163:9: '3002'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:163:7: ( '3002' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:163:9: '3002'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:163:7: ( '3002' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:163:9: '3002'
+>>>>>>> .r8534
             {
             match("3002"); if (state.failed) return ;
 
@@ -1217,21 +1611,45 @@ public class ClassLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2593:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2593:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2623:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:9: '//' (~ ( '\\r' | '\\n' ) )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:9: '//' (~ ( '\\r' | '\\n' ) )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:9: '//' (~ ( '\\r' | '\\n' ) )*
+>>>>>>> .r8534
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:14: (~ ( '\\r' | '\\n' ) )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:14: (~ ( '\\r' | '\\n' ) )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:14: (~ ( '\\r' | '\\n' ) )*
+>>>>>>> .r8534
             loop1:
             do {
                 int alt1=2;
@@ -1244,7 +1662,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:15: ~ ( '\\r' | '\\n' )
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2594:15: ~ ( '\\r' | '\\n' )
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:15: ~ ( '\\r' | '\\n' )
+>>>>>>> .r8534
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1293,21 +1715,45 @@ public class ClassLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2599:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2599:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2629:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+>>>>>>> .r8534
             {
             match("/*"); if (state.failed) return ;
 
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+>>>>>>> .r8534
             loop2:
             do {
                 int alt2=2;
@@ -1332,7 +1778,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:43: ( '\\n' | ~ '\\n' )
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2600:43: ( '\\n' | ~ '\\n' )
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:43: ( '\\n' | ~ '\\n' )
+>>>>>>> .r8534
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1383,8 +1833,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2605:3: ( '[' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2606:3: '['
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2605:3: ( '[' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2606:3: '['
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2635:3: ( '[' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2636:3: '['
+>>>>>>> .r8534
             {
             match('['); if (state.failed) return ;
 
@@ -1403,8 +1858,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2611:3: ( ']' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2612:3: ']'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2611:3: ( ']' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2612:3: ']'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2641:3: ( ']' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2642:3: ']'
+>>>>>>> .r8534
             {
             match(']'); if (state.failed) return ;
 
@@ -1423,8 +1883,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2617:3: ( '{' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2618:3: '{'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2617:3: ( '{' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2618:3: '{'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2647:3: ( '{' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2648:3: '{'
+>>>>>>> .r8534
             {
             match('{'); if (state.failed) return ;
 
@@ -1443,8 +1908,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2623:3: ( '}' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:3: '}'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2623:3: ( '}' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2624:3: '}'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2653:3: ( '}' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2654:3: '}'
+>>>>>>> .r8534
             {
             match('}'); if (state.failed) return ;
 
@@ -1463,8 +1933,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = LANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2629:3: ( '<' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:3: '<'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2629:3: ( '<' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2630:3: '<'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2659:3: ( '<' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2660:3: '<'
+>>>>>>> .r8534
             {
             match('<'); if (state.failed) return ;
 
@@ -1483,8 +1958,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2635:3: ( '>' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2636:3: '>'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2635:3: ( '>' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2636:3: '>'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2665:3: ( '>' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2666:3: '>'
+>>>>>>> .r8534
             {
             match('>'); if (state.failed) return ;
 
@@ -1503,8 +1983,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2641:3: ( '(' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2642:3: '('
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2641:3: ( '(' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2642:3: '('
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2671:3: ( '(' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2672:3: '('
+>>>>>>> .r8534
             {
             match('('); if (state.failed) return ;
 
@@ -1523,8 +2008,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2647:3: ( ')' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2648:3: ')'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2647:3: ( ')' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2648:3: ')'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2677:3: ( ')' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2678:3: ')'
+>>>>>>> .r8534
             {
             match(')'); if (state.failed) return ;
 
@@ -1543,8 +2033,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = EXCL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2653:3: ( '!' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2654:3: '!'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2653:3: ( '!' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2654:3: '!'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2683:3: ( '!' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2684:3: '!'
+>>>>>>> .r8534
             {
             match('!'); if (state.failed) return ;
 
@@ -1563,8 +2058,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2659:3: ( '=' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2660:3: '='
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2659:3: ( '=' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2660:3: '='
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2689:3: ( '=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2690:3: '='
+>>>>>>> .r8534
             {
             match('='); if (state.failed) return ;
 
@@ -1583,8 +2083,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = EQUALSEQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2665:3: ( '==' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2666:3: '=='
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2665:3: ( '==' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2666:3: '=='
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2695:3: ( '==' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2696:3: '=='
+>>>>>>> .r8534
             {
             match("=="); if (state.failed) return ;
 
@@ -1604,8 +2109,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2671:3: ( ':=' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2672:3: ':='
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2671:3: ( ':=' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2672:3: ':='
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2701:3: ( ':=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2702:3: ':='
+>>>>>>> .r8534
             {
             match(":="); if (state.failed) return ;
 
@@ -1625,8 +2135,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2677:3: ( '.' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2678:3: '.'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2677:3: ( '.' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2678:3: '.'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2707:3: ( '.' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2708:3: '.'
+>>>>>>> .r8534
             {
             match('.'); if (state.failed) return ;
 
@@ -1645,8 +2160,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = DDOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2683:3: ( '..' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2684:3: '..'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2683:3: ( '..' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2684:3: '..'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2713:3: ( '..' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2714:3: '..'
+>>>>>>> .r8534
             {
             match(".."); if (state.failed) return ;
 
@@ -1666,8 +2186,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = ARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2689:3: ( '->' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2690:3: '->'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2689:3: ( '->' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2690:3: '->'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2719:3: ( '->' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2720:3: '->'
+>>>>>>> .r8534
             {
             match("->"); if (state.failed) return ;
 
@@ -1687,8 +2212,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = PIPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2695:3: ( '|' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2696:3: '|'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2695:3: ( '|' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2696:3: '|'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2725:3: ( '|' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2726:3: '|'
+>>>>>>> .r8534
             {
             match('|'); if (state.failed) return ;
 
@@ -1707,8 +2237,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2701:3: ( ':' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2702:3: ':'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2701:3: ( ':' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2702:3: ':'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2731:3: ( ':' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2732:3: ':'
+>>>>>>> .r8534
             {
             match(':'); if (state.failed) return ;
 
@@ -1727,8 +2262,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = DCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2707:3: ( '::' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2708:3: '::'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2707:3: ( '::' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2708:3: '::'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2737:3: ( '::' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2738:3: '::'
+>>>>>>> .r8534
             {
             match("::"); if (state.failed) return ;
 
@@ -1748,8 +2288,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2713:3: ( ';' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2714:3: ';'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2713:3: ( ';' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2714:3: ';'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2743:3: ( ';' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2744:3: ';'
+>>>>>>> .r8534
             {
             match(';'); if (state.failed) return ;
 
@@ -1768,8 +2313,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = INCLUDING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2719:3: ( 'including' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2720:3: 'including'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2719:3: ( 'including' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2720:3: 'including'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2749:3: ( 'including' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2750:3: 'including'
+>>>>>>> .r8534
             {
             match("including"); if (state.failed) return ;
 
@@ -1789,8 +2339,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = EXCLUDING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2725:3: ( 'excluding' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2726:3: 'excluding'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2725:3: ( 'excluding' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2726:3: 'excluding'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2755:3: ( 'excluding' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2756:3: 'excluding'
+>>>>>>> .r8534
             {
             match("excluding"); if (state.failed) return ;
 
@@ -1810,8 +2365,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = INCLUDINGAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2731:3: ( 'includingAt' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2732:3: 'includingAt'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2731:3: ( 'includingAt' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2732:3: 'includingAt'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2761:3: ( 'includingAt' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2762:3: 'includingAt'
+>>>>>>> .r8534
             {
             match("includingAt"); if (state.failed) return ;
 
@@ -1831,8 +2391,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = EXCLUDINGAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2737:3: ( 'excludingAt' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2738:3: 'excludingAt'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2737:3: ( 'excludingAt' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2738:3: 'excludingAt'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2767:3: ( 'excludingAt' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2768:3: 'excludingAt'
+>>>>>>> .r8534
             {
             match("excludingAt"); if (state.failed) return ;
 
@@ -1852,8 +2417,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = ITERATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2743:3: ( 'iterate' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2744:3: 'iterate'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2743:3: ( 'iterate' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2744:3: 'iterate'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2773:3: ( 'iterate' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2774:3: 'iterate'
+>>>>>>> .r8534
             {
             match("iterate"); if (state.failed) return ;
 
@@ -1873,8 +2443,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = LCURL_LBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2749:3: ( '{[' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2750:3: '{['
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2749:3: ( '{[' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2750:3: '{['
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2779:3: ( '{[' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2780:3: '{['
+>>>>>>> .r8534
             {
             match("{["); if (state.failed) return ;
 
@@ -1894,8 +2469,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = LBRACK_LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2755:3: ( '[{' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2756:3: '[{'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2755:3: ( '[{' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2756:3: '[{'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2785:3: ( '[{' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2786:3: '[{'
+>>>>>>> .r8534
             {
             match("[{"); if (state.failed) return ;
 
@@ -1915,8 +2495,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RCURL_RBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2761:3: ( '}]' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2762:3: '}]'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2761:3: ( '}]' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2762:3: '}]'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2791:3: ( '}]' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2792:3: '}]'
+>>>>>>> .r8534
             {
             match("}]"); if (state.failed) return ;
 
@@ -1936,8 +2521,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RBRACK_RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2767:3: ( ']}' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2768:3: ']}'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2767:3: ( ']}' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2768:3: ']}'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2797:3: ( ']}' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2798:3: ']}'
+>>>>>>> .r8534
             {
             match("]}"); if (state.failed) return ;
 
@@ -1957,8 +2547,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2773:3: ( '*' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2774:3: '*'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2773:3: ( '*' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2774:3: '*'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2803:3: ( '*' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2804:3: '*'
+>>>>>>> .r8534
             {
             match('*'); if (state.failed) return ;
 
@@ -1977,10 +2572,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2813:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2813:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2813:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+>>>>>>> .r8534
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -2011,7 +2615,11 @@ public class ClassLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:6: '\\r' '\\n'
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2783:6: '\\r' '\\n'
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2813:6: '\\r' '\\n'
+>>>>>>> .r8534
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -2019,7 +2627,11 @@ public class ClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2784:5: '\\n' '\\r'
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2784:5: '\\n' '\\r'
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2814:5: '\\n' '\\r'
+>>>>>>> .r8534
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -2027,14 +2639,22 @@ public class ClassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2785:5: '\\r'
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2785:5: '\\r'
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:5: '\\r'
+>>>>>>> .r8534
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2786:5: '\\n'
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2786:5: '\\n'
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2816:5: '\\n'
+>>>>>>> .r8534
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -2062,8 +2682,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2792:2: ( ( ' ' | '\\t' ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2792:4: ( ' ' | '\\t' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2792:2: ( ( ' ' | '\\t' ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2792:4: ( ' ' | '\\t' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2822:2: ( ( ' ' | '\\t' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2822:4: ( ' ' | '\\t' )
+>>>>>>> .r8534
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2092,8 +2717,13 @@ public class ClassLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2799:2: ( '0' .. '9' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2799:4: '0' .. '9'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2799:2: ( '0' .. '9' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2799:4: '0' .. '9'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2829:2: ( '0' .. '9' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2829:4: '0' .. '9'
+>>>>>>> .r8534
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -2108,8 +2738,13 @@ public class ClassLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2804:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2804:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2834:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:
+>>>>>>> .r8534
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -2133,17 +2768,31 @@ public class ClassLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:4: ( ALPHA ) ( ALPHA | DIGIT )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:4: ( ALPHA ) ( ALPHA | DIGIT )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2845:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2845:4: ( ALPHA ) ( ALPHA | DIGIT )*
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:4: ( ALPHA )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:5: ALPHA
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:4: ( ALPHA )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:5: ALPHA
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2845:4: ( ALPHA )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2845:5: ALPHA
+>>>>>>> .r8534
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:12: ( ALPHA | DIGIT )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2815:12: ( ALPHA | DIGIT )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2845:12: ( ALPHA | DIGIT )*
+>>>>>>> .r8534
             loop4:
             do {
                 int alt4=2;
@@ -2156,7 +2805,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:
+>>>>>>> .r8534
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -2191,7 +2844,11 @@ public class ClassLexer extends Lexer {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2818:6: ( 'true' | 'false' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2818:6: ( 'true' | 'false' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2848:6: ( 'true' | 'false' )
+>>>>>>> .r8534
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2210,7 +2867,11 @@ public class ClassLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2818:8: 'true'
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2818:8: 'true'
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2848:8: 'true'
+>>>>>>> .r8534
                     {
                     match("true"); if (state.failed) return ;
 
@@ -2218,7 +2879,11 @@ public class ClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2818:17: 'false'
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2818:17: 'false'
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2848:17: 'false'
+>>>>>>> .r8534
                     {
                     match("false"); if (state.failed) return ;
 
@@ -2240,8 +2905,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = OBJECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2820:8: ( 'o:' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2820:10: 'o:'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2820:8: ( 'o:' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2820:10: 'o:'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:8: ( 'o:' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:10: 'o:'
+>>>>>>> .r8534
             {
             match("o:"); if (state.failed) return ;
 
@@ -2261,10 +2931,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2823:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2823:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2823:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2823:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2853:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2853:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2823:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2823:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2853:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+>>>>>>> .r8534
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2283,17 +2962,29 @@ public class ClassLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2824:4: SNAME
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2824:4: SNAME
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2854:4: SNAME
+>>>>>>> .r8534
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2825:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2825:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2855:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+>>>>>>> .r8534
                     {
                     match('\''); if (state.failed) return ;
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2826:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2826:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2856:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+>>>>>>> .r8534
                     loop6:
                     do {
                         int alt6=3;
@@ -2309,7 +3000,11 @@ public class ClassLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2828:4: '\\n'
+<<<<<<< .mine
+                    	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2828:4: '\\n'
+=======
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2858:4: '\\n'
+>>>>>>> .r8534
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -2319,7 +3014,11 @@ public class ClassLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2829:6: ~ ( '\\\\' | '\\'' | '\\n' )
+<<<<<<< .mine
+                    	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2829:6: ~ ( '\\\\' | '\\'' | '\\n' )
+=======
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2859:6: ~ ( '\\\\' | '\\'' | '\\n' )
+>>>>>>> .r8534
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2363,12 +3062,21 @@ public class ClassLexer extends Lexer {
         try {
             int _type = BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2866:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2866:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+>>>>>>> .r8534
             {
             match("0x"); if (state.failed) return ;
 
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2866:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+>>>>>>> .r8534
             int cnt8=0;
             loop8:
             do {
@@ -2382,7 +3090,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2836:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2866:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
+>>>>>>> .r8534
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
             	        input.consume();
@@ -2434,10 +3146,19 @@ public class ClassLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:2: ( ( DIGIT )+ )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:4: ( DIGIT )+
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:2: ( ( DIGIT )+ )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:4: ( DIGIT )+
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:2: ( ( DIGIT )+ )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:4: ( DIGIT )+
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:4: ( DIGIT )+
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:4: ( DIGIT )+
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:4: ( DIGIT )+
+>>>>>>> .r8534
             int cnt9=0;
             loop9:
             do {
@@ -2451,7 +3172,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:5: DIGIT
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2841:5: DIGIT
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:5: DIGIT
+>>>>>>> .r8534
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -2482,10 +3207,19 @@ public class ClassLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:2: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:4: ( DIGIT )+ '.' ( DIGIT )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:2: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:4: ( DIGIT )+ '.' ( DIGIT )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2876:2: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2876:4: ( DIGIT )+ '.' ( DIGIT )*
+>>>>>>> .r8534
             {
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:4: ( DIGIT )+
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:4: ( DIGIT )+
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2876:4: ( DIGIT )+
+>>>>>>> .r8534
             int cnt10=0;
             loop10:
             do {
@@ -2499,7 +3233,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:4: DIGIT
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:4: DIGIT
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2876:4: DIGIT
+>>>>>>> .r8534
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -2517,7 +3255,11 @@ public class ClassLexer extends Lexer {
             } while (true);
 
             match('.'); if (state.failed) return ;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:15: ( DIGIT )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:15: ( DIGIT )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2876:15: ( DIGIT )*
+>>>>>>> .r8534
             loop11:
             do {
                 int alt11=2;
@@ -2530,7 +3272,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:15: DIGIT
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2846:15: DIGIT
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2876:15: DIGIT
+>>>>>>> .r8534
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -2556,7 +3302,11 @@ public class ClassLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2880:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+>>>>>>> .r8534
             int alt12=4;
             int LA12_0 = input.LA(1);
 
@@ -2595,7 +3345,11 @@ public class ClassLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:9: ( INT '..' )=> INT
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:9: ( INT '..' )=> INT
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2880:9: ( INT '..' )=> INT
+>>>>>>> .r8534
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2605,7 +3359,11 @@ public class ClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2851:7: ( INT '.' NAME )=> INT
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2851:7: ( INT '.' NAME )=> INT
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2881:7: ( INT '.' NAME )=> INT
+>>>>>>> .r8534
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2615,7 +3373,11 @@ public class ClassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2852:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2852:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2882:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+>>>>>>> .r8534
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2625,7 +3387,11 @@ public class ClassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2859:9: INT
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2859:9: INT
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2889:9: INT
+>>>>>>> .r8534
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2649,8 +3415,13 @@ public class ClassLexer extends Lexer {
         try {
             int _type = DATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2893:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2893:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+>>>>>>> .r8534
             {
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
@@ -2662,7 +3433,11 @@ public class ClassLexer extends Lexer {
             match('-'); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2893:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+>>>>>>> .r8534
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2671,7 +3446,11 @@ public class ClassLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2863:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2893:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+>>>>>>> .r8534
                     {
                     if ( input.LA(1)==' '||input.LA(1)=='T' ) {
                         input.consume();
@@ -2691,7 +3470,11 @@ public class ClassLexer extends Lexer {
                     match(':'); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2864:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2864:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2894:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
+>>>>>>> .r8534
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -2702,10 +3485,19 @@ public class ClassLexer extends Lexer {
                         alt14=2;}
                     switch (alt14) {
                         case 1 :
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
+>>>>>>> .r8534
                             {
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:40: ( ( ',' | '.' ) ( DIGIT )+ )
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:41: ( ',' | '.' ) ( DIGIT )+
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:40: ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:41: ( ',' | '.' ) ( DIGIT )+
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:40: ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:41: ( ',' | '.' ) ( DIGIT )+
+>>>>>>> .r8534
                             {
                             if ( input.LA(1)==','||input.LA(1)=='.' ) {
                                 input.consume();
@@ -2717,7 +3509,11 @@ public class ClassLexer extends Lexer {
                                 recover(mse);
                                 throw mse;}
 
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:53: ( DIGIT )+
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:53: ( DIGIT )+
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:53: ( DIGIT )+
+>>>>>>> .r8534
                             int cnt13=0;
                             loop13:
                             do {
@@ -2731,7 +3527,11 @@ public class ClassLexer extends Lexer {
 
                                 switch (alt13) {
                             	case 1 :
-                            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:54: DIGIT
+<<<<<<< .mine
+                            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:54: DIGIT
+=======
+                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:54: DIGIT
+>>>>>>> .r8534
                             	    {
                             	    mDIGIT(); if (state.failed) return ;
 
@@ -2755,14 +3555,22 @@ public class ClassLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2867:13: 
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2867:13: 
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2897:13: 
+>>>>>>> .r8534
                             {
                             }
                             break;
 
                     }
 
-                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+<<<<<<< .mine
+                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+=======
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2898:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+>>>>>>> .r8534
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2773,16 +3581,28 @@ public class ClassLexer extends Lexer {
                         alt16=2;}
                     switch (alt16) {
                         case 1 :
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:14: 'Z'
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:14: 'Z'
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2898:14: 'Z'
+>>>>>>> .r8534
                             {
                             match('Z'); if (state.failed) return ;
 
                             }
                             break;
                         case 2 :
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2898:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+>>>>>>> .r8534
                             {
-                            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+<<<<<<< .mine
+                            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+=======
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2898:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+>>>>>>> .r8534
                             int alt15=2;
                             int LA15_0 = input.LA(1);
 
@@ -2791,7 +3611,11 @@ public class ClassLexer extends Lexer {
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
+<<<<<<< .mine
+                                    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2868:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
+=======
+                                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2898:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
+>>>>>>> .r8534
                                     {
                                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                                         input.consume();
@@ -2841,11 +3665,20 @@ public class ClassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2871:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2901:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2901:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+>>>>>>> .r8534
             {
             match('\"'); if (state.failed) return ;
-            // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2872:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+<<<<<<< .mine
+            // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2872:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+=======
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2902:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+>>>>>>> .r8534
             loop18:
             do {
                 int alt18=3;
@@ -2861,7 +3694,11 @@ public class ClassLexer extends Lexer {
 
                 switch (alt18) {
             	case 1 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2874:4: '\\n'
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2874:4: '\\n'
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2904:4: '\\n'
+>>>>>>> .r8534
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -2871,7 +3708,11 @@ public class ClassLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2875:5: ~ ( '\\\\' | '\"' | '\\n' )
+<<<<<<< .mine
+            	    // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2875:5: ~ ( '\\\\' | '\"' | '\\n' )
+=======
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2905:5: ~ ( '\\\\' | '\"' | '\\n' )
+>>>>>>> .r8534
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2905,621 +3746,977 @@ public class ClassLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
+<<<<<<< .mine
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
+=======
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
+>>>>>>> .r8534
         int alt19=88;
         alt19 = dfa19.predict(input);
         switch (alt19) {
             case 1 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:10: T__49
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:10: T__49
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:10: T__49
+>>>>>>> .r8534
                 {
                 mT__49(); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:16: T__50
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:16: T__50
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:16: T__50
+>>>>>>> .r8534
                 {
                 mT__50(); if (state.failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:22: T__51
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:22: T__51
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:22: T__51
+>>>>>>> .r8534
                 {
                 mT__51(); if (state.failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:28: T__52
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:28: T__52
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:28: T__52
+>>>>>>> .r8534
                 {
                 mT__52(); if (state.failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:34: T__53
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:34: T__53
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:34: T__53
+>>>>>>> .r8534
                 {
                 mT__53(); if (state.failed) return ;
 
                 }
                 break;
             case 6 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:40: T__54
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:40: T__54
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:40: T__54
+>>>>>>> .r8534
                 {
                 mT__54(); if (state.failed) return ;
 
                 }
                 break;
             case 7 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:46: T__55
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:46: T__55
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:46: T__55
+>>>>>>> .r8534
                 {
                 mT__55(); if (state.failed) return ;
 
                 }
                 break;
             case 8 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:52: T__56
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:52: T__56
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:52: T__56
+>>>>>>> .r8534
                 {
                 mT__56(); if (state.failed) return ;
 
                 }
                 break;
             case 9 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:58: T__57
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:58: T__57
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:58: T__57
+>>>>>>> .r8534
                 {
                 mT__57(); if (state.failed) return ;
 
                 }
                 break;
             case 10 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:64: T__58
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:64: T__58
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:64: T__58
+>>>>>>> .r8534
                 {
                 mT__58(); if (state.failed) return ;
 
                 }
                 break;
             case 11 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:70: T__59
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:70: T__59
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:70: T__59
+>>>>>>> .r8534
                 {
                 mT__59(); if (state.failed) return ;
 
                 }
                 break;
             case 12 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:76: T__60
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:76: T__60
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:76: T__60
+>>>>>>> .r8534
                 {
                 mT__60(); if (state.failed) return ;
 
                 }
                 break;
             case 13 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:82: T__61
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:82: T__61
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:82: T__61
+>>>>>>> .r8534
                 {
                 mT__61(); if (state.failed) return ;
 
                 }
                 break;
             case 14 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:88: T__62
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:88: T__62
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:88: T__62
+>>>>>>> .r8534
                 {
                 mT__62(); if (state.failed) return ;
 
                 }
                 break;
             case 15 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:94: T__63
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:94: T__63
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:94: T__63
+>>>>>>> .r8534
                 {
                 mT__63(); if (state.failed) return ;
 
                 }
                 break;
             case 16 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:100: T__64
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:100: T__64
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:100: T__64
+>>>>>>> .r8534
                 {
                 mT__64(); if (state.failed) return ;
 
                 }
                 break;
             case 17 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:106: T__65
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:106: T__65
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:106: T__65
+>>>>>>> .r8534
                 {
                 mT__65(); if (state.failed) return ;
 
                 }
                 break;
             case 18 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:112: T__66
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:112: T__66
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:112: T__66
+>>>>>>> .r8534
                 {
                 mT__66(); if (state.failed) return ;
 
                 }
                 break;
             case 19 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:118: T__67
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:118: T__67
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:118: T__67
+>>>>>>> .r8534
                 {
                 mT__67(); if (state.failed) return ;
 
                 }
                 break;
             case 20 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:124: T__68
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:124: T__68
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:124: T__68
+>>>>>>> .r8534
                 {
                 mT__68(); if (state.failed) return ;
 
                 }
                 break;
             case 21 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:130: T__69
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:130: T__69
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:130: T__69
+>>>>>>> .r8534
                 {
                 mT__69(); if (state.failed) return ;
 
                 }
                 break;
             case 22 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:136: T__70
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:136: T__70
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:136: T__70
+>>>>>>> .r8534
                 {
                 mT__70(); if (state.failed) return ;
 
                 }
                 break;
             case 23 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:142: T__71
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:142: T__71
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:142: T__71
+>>>>>>> .r8534
                 {
                 mT__71(); if (state.failed) return ;
 
                 }
                 break;
             case 24 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:148: T__72
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:148: T__72
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:148: T__72
+>>>>>>> .r8534
                 {
                 mT__72(); if (state.failed) return ;
 
                 }
                 break;
             case 25 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:154: T__73
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:154: T__73
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:154: T__73
+>>>>>>> .r8534
                 {
                 mT__73(); if (state.failed) return ;
 
                 }
                 break;
             case 26 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:160: T__74
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:160: T__74
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:160: T__74
+>>>>>>> .r8534
                 {
                 mT__74(); if (state.failed) return ;
 
                 }
                 break;
             case 27 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:166: T__75
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:166: T__75
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:166: T__75
+>>>>>>> .r8534
                 {
                 mT__75(); if (state.failed) return ;
 
                 }
                 break;
             case 28 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:172: T__76
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:172: T__76
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:172: T__76
+>>>>>>> .r8534
                 {
                 mT__76(); if (state.failed) return ;
 
                 }
                 break;
             case 29 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:178: T__77
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:178: T__77
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:178: T__77
+>>>>>>> .r8534
                 {
                 mT__77(); if (state.failed) return ;
 
                 }
                 break;
             case 30 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:184: T__78
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:184: T__78
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:184: T__78
+>>>>>>> .r8534
                 {
                 mT__78(); if (state.failed) return ;
 
                 }
                 break;
             case 31 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:190: T__79
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:190: T__79
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:190: T__79
+>>>>>>> .r8534
                 {
                 mT__79(); if (state.failed) return ;
 
                 }
                 break;
             case 32 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:196: T__80
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:196: T__80
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:196: T__80
+>>>>>>> .r8534
                 {
                 mT__80(); if (state.failed) return ;
 
                 }
                 break;
             case 33 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:202: T__81
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:202: T__81
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:202: T__81
+>>>>>>> .r8534
                 {
                 mT__81(); if (state.failed) return ;
 
                 }
                 break;
             case 34 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:208: T__82
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:208: T__82
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:208: T__82
+>>>>>>> .r8534
                 {
                 mT__82(); if (state.failed) return ;
 
                 }
                 break;
             case 35 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:214: T__83
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:214: T__83
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:214: T__83
+>>>>>>> .r8534
                 {
                 mT__83(); if (state.failed) return ;
 
                 }
                 break;
             case 36 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:220: T__84
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:220: T__84
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:220: T__84
+>>>>>>> .r8534
                 {
                 mT__84(); if (state.failed) return ;
 
                 }
                 break;
             case 37 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:226: T__85
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:226: T__85
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:226: T__85
+>>>>>>> .r8534
                 {
                 mT__85(); if (state.failed) return ;
 
                 }
                 break;
             case 38 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:232: T__86
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:232: T__86
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:232: T__86
+>>>>>>> .r8534
                 {
                 mT__86(); if (state.failed) return ;
 
                 }
                 break;
             case 39 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:238: T__87
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:238: T__87
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:238: T__87
+>>>>>>> .r8534
                 {
                 mT__87(); if (state.failed) return ;
 
                 }
                 break;
             case 40 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:244: T__88
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:244: T__88
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:244: T__88
+>>>>>>> .r8534
                 {
                 mT__88(); if (state.failed) return ;
 
                 }
                 break;
             case 41 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:250: T__89
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:250: T__89
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:250: T__89
+>>>>>>> .r8534
                 {
                 mT__89(); if (state.failed) return ;
 
                 }
                 break;
             case 42 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:256: T__90
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:256: T__90
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:256: T__90
+>>>>>>> .r8534
                 {
                 mT__90(); if (state.failed) return ;
 
                 }
                 break;
             case 43 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:262: T__91
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:262: T__91
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:262: T__91
+>>>>>>> .r8534
                 {
                 mT__91(); if (state.failed) return ;
 
                 }
                 break;
             case 44 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:268: T__92
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:268: T__92
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:268: T__92
+>>>>>>> .r8534
                 {
                 mT__92(); if (state.failed) return ;
 
                 }
                 break;
             case 45 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:274: T__93
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:274: T__93
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:274: T__93
+>>>>>>> .r8534
                 {
                 mT__93(); if (state.failed) return ;
 
                 }
                 break;
             case 46 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:280: T__94
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:280: T__94
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:280: T__94
+>>>>>>> .r8534
                 {
                 mT__94(); if (state.failed) return ;
 
                 }
                 break;
             case 47 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:286: T__95
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:286: T__95
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:286: T__95
+>>>>>>> .r8534
                 {
                 mT__95(); if (state.failed) return ;
 
                 }
                 break;
             case 48 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:292: COMMENT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:292: COMMENT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:292: COMMENT
+>>>>>>> .r8534
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
             case 49 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:300: MULTI_LINE_COMMENT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:300: MULTI_LINE_COMMENT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:300: MULTI_LINE_COMMENT
+>>>>>>> .r8534
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
 
                 }
                 break;
             case 50 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:319: LBRACKET
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:319: LBRACKET
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:319: LBRACKET
+>>>>>>> .r8534
                 {
                 mLBRACKET(); if (state.failed) return ;
 
                 }
                 break;
             case 51 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:328: RBRACKET
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:328: RBRACKET
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:328: RBRACKET
+>>>>>>> .r8534
                 {
                 mRBRACKET(); if (state.failed) return ;
 
                 }
                 break;
             case 52 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:337: LCURL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:337: LCURL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:337: LCURL
+>>>>>>> .r8534
                 {
                 mLCURL(); if (state.failed) return ;
 
                 }
                 break;
             case 53 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:343: RCURL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:343: RCURL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:343: RCURL
+>>>>>>> .r8534
                 {
                 mRCURL(); if (state.failed) return ;
 
                 }
                 break;
             case 54 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:349: LANGLE
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:349: LANGLE
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:349: LANGLE
+>>>>>>> .r8534
                 {
                 mLANGLE(); if (state.failed) return ;
 
                 }
                 break;
             case 55 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:356: RANGLE
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:356: RANGLE
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:356: RANGLE
+>>>>>>> .r8534
                 {
                 mRANGLE(); if (state.failed) return ;
 
                 }
                 break;
             case 56 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:363: LPAREN
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:363: LPAREN
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:363: LPAREN
+>>>>>>> .r8534
                 {
                 mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
             case 57 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:370: RPAREN
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:370: RPAREN
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:370: RPAREN
+>>>>>>> .r8534
                 {
                 mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
             case 58 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:377: EXCL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:377: EXCL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:377: EXCL
+>>>>>>> .r8534
                 {
                 mEXCL(); if (state.failed) return ;
 
                 }
                 break;
             case 59 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:382: EQUALS
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:382: EQUALS
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:382: EQUALS
+>>>>>>> .r8534
                 {
                 mEQUALS(); if (state.failed) return ;
 
                 }
                 break;
             case 60 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:389: EQUALSEQUALS
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:389: EQUALSEQUALS
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:389: EQUALSEQUALS
+>>>>>>> .r8534
                 {
                 mEQUALSEQUALS(); if (state.failed) return ;
 
                 }
                 break;
             case 61 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:402: ASSIGN
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:402: ASSIGN
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:402: ASSIGN
+>>>>>>> .r8534
                 {
                 mASSIGN(); if (state.failed) return ;
 
                 }
                 break;
             case 62 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:409: DOT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:409: DOT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:409: DOT
+>>>>>>> .r8534
                 {
                 mDOT(); if (state.failed) return ;
 
                 }
                 break;
             case 63 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:413: DDOT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:413: DDOT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:413: DDOT
+>>>>>>> .r8534
                 {
                 mDDOT(); if (state.failed) return ;
 
                 }
                 break;
             case 64 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:418: ARROW
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:418: ARROW
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:418: ARROW
+>>>>>>> .r8534
                 {
                 mARROW(); if (state.failed) return ;
 
                 }
                 break;
             case 65 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:424: PIPE
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:424: PIPE
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:424: PIPE
+>>>>>>> .r8534
                 {
                 mPIPE(); if (state.failed) return ;
 
                 }
                 break;
             case 66 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:429: COLON
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:429: COLON
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:429: COLON
+>>>>>>> .r8534
                 {
                 mCOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 67 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:435: DCOLON
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:435: DCOLON
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:435: DCOLON
+>>>>>>> .r8534
                 {
                 mDCOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 68 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:442: SEMICOLON
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:442: SEMICOLON
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:442: SEMICOLON
+>>>>>>> .r8534
                 {
                 mSEMICOLON(); if (state.failed) return ;
 
                 }
                 break;
             case 69 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:452: INCLUDING
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:452: INCLUDING
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:452: INCLUDING
+>>>>>>> .r8534
                 {
                 mINCLUDING(); if (state.failed) return ;
 
                 }
                 break;
             case 70 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:462: EXCLUDING
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:462: EXCLUDING
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:462: EXCLUDING
+>>>>>>> .r8534
                 {
                 mEXCLUDING(); if (state.failed) return ;
 
                 }
                 break;
             case 71 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:472: INCLUDINGAT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:472: INCLUDINGAT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:472: INCLUDINGAT
+>>>>>>> .r8534
                 {
                 mINCLUDINGAT(); if (state.failed) return ;
 
                 }
                 break;
             case 72 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:484: EXCLUDINGAT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:484: EXCLUDINGAT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:484: EXCLUDINGAT
+>>>>>>> .r8534
                 {
                 mEXCLUDINGAT(); if (state.failed) return ;
 
                 }
                 break;
             case 73 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:496: ITERATE
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:496: ITERATE
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:496: ITERATE
+>>>>>>> .r8534
                 {
                 mITERATE(); if (state.failed) return ;
 
                 }
                 break;
             case 74 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:504: LCURL_LBRACK
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:504: LCURL_LBRACK
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:504: LCURL_LBRACK
+>>>>>>> .r8534
                 {
                 mLCURL_LBRACK(); if (state.failed) return ;
 
                 }
                 break;
             case 75 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:517: LBRACK_LCURL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:517: LBRACK_LCURL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:517: LBRACK_LCURL
+>>>>>>> .r8534
                 {
                 mLBRACK_LCURL(); if (state.failed) return ;
 
                 }
                 break;
             case 76 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:530: RCURL_RBRACK
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:530: RCURL_RBRACK
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:530: RCURL_RBRACK
+>>>>>>> .r8534
                 {
                 mRCURL_RBRACK(); if (state.failed) return ;
 
                 }
                 break;
             case 77 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:543: RBRACK_RCURL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:543: RBRACK_RCURL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:543: RBRACK_RCURL
+>>>>>>> .r8534
                 {
                 mRBRACK_RCURL(); if (state.failed) return ;
 
                 }
                 break;
             case 78 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:556: STAR
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:556: STAR
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:556: STAR
+>>>>>>> .r8534
                 {
                 mSTAR(); if (state.failed) return ;
 
                 }
                 break;
             case 79 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:561: NL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:561: NL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:561: NL
+>>>>>>> .r8534
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
             case 80 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:564: WS
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:564: WS
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:564: WS
+>>>>>>> .r8534
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
             case 81 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:567: BOOL
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:567: BOOL
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:567: BOOL
+>>>>>>> .r8534
                 {
                 mBOOL(); if (state.failed) return ;
 
                 }
                 break;
             case 82 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:572: OBJECT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:572: OBJECT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:572: OBJECT
+>>>>>>> .r8534
                 {
                 mOBJECT(); if (state.failed) return ;
 
                 }
                 break;
             case 83 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:579: NAME
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:579: NAME
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:579: NAME
+>>>>>>> .r8534
                 {
                 mNAME(); if (state.failed) return ;
 
                 }
                 break;
             case 84 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:584: BINARY
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:584: BINARY
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:584: BINARY
+>>>>>>> .r8534
                 {
                 mBINARY(); if (state.failed) return ;
 
                 }
                 break;
             case 85 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:591: INT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:591: INT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:591: INT
+>>>>>>> .r8534
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
             case 86 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:595: RANGE_OR_INT
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:595: RANGE_OR_INT
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:595: RANGE_OR_INT
+>>>>>>> .r8534
                 {
                 mRANGE_OR_INT(); if (state.failed) return ;
 
                 }
                 break;
             case 87 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:608: DATE
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:608: DATE
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:608: DATE
+>>>>>>> .r8534
                 {
                 mDATE(); if (state.failed) return ;
 
                 }
                 break;
             case 88 :
-                // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:613: STRING
+<<<<<<< .mine
+                // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:613: STRING
+=======
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:1:613: STRING
+>>>>>>> .r8534
                 {
                 mSTRING(); if (state.failed) return ;
 
@@ -3532,8 +4729,13 @@ public class ClassLexer extends Lexer {
 
     // $ANTLR start synpred1_Class
     public final void synpred1_Class_fragment() throws RecognitionException {   
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:9: ( INT '..' )
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:11: INT '..'
+<<<<<<< .mine
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:9: ( INT '..' )
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2850:11: INT '..'
+=======
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2880:9: ( INT '..' )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2880:11: INT '..'
+>>>>>>> .r8534
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
@@ -3545,8 +4747,13 @@ public class ClassLexer extends Lexer {
 
     // $ANTLR start synpred2_Class
     public final void synpred2_Class_fragment() throws RecognitionException {   
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2851:7: ( INT '.' NAME )
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2851:9: INT '.' NAME
+<<<<<<< .mine
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2851:7: ( INT '.' NAME )
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2851:9: INT '.' NAME
+=======
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2881:7: ( INT '.' NAME )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2881:9: INT '.' NAME
+>>>>>>> .r8534
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -3558,8 +4765,13 @@ public class ClassLexer extends Lexer {
 
     // $ANTLR start synpred3_Class
     public final void synpred3_Class_fragment() throws RecognitionException {   
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2852:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2852:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+<<<<<<< .mine
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2852:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2852:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+=======
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2882:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2882:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+>>>>>>> .r8534
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -3580,8 +4792,13 @@ public class ClassLexer extends Lexer {
 
     // $ANTLR start synpred4_Class
     public final void synpred4_Class_fragment() throws RecognitionException {   
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:15: ( ( ',' | '.' ) DIGIT )
-        // C:\\FURCAS\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:17: ( ',' | '.' ) DIGIT
+<<<<<<< .mine
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:15: ( ( ',' | '.' ) DIGIT )
+        // C:\\data\\cts\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2865:17: ( ',' | '.' ) DIGIT
+=======
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:15: ( ( ',' | '.' ) DIGIT )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Class.g:2895:17: ( ',' | '.' ) DIGIT
+>>>>>>> .r8534
         {
         if ( input.LA(1)==','||input.LA(1)=='.' ) {
             input.consume();
@@ -3659,128 +4876,256 @@ public class ClassLexer extends Lexer {
 
     protected DFA19 dfa19 = new DFA19(this);
     static final String DFA19_eotS =
-        "\1\uffff\4\56\1\uffff\2\56\2\uffff\5\56\1\uffff\6\56\1\126\2\56"+
-        "\1\uffff\3\133\1\uffff\1\143\1\145\1\147\1\151\4\uffff\1\153\1\156"+
-        "\1\160\6\uffff\2\133\1\uffff\6\56\2\uffff\20\56\1\u008c\10\56\1"+
-        "\u0095\1\56\2\uffff\1\56\1\uffff\1\56\1\133\2\uffff\3\133\22\uffff"+
-        "\1\56\1\u009e\16\56\1\u00ae\2\56\1\u00b1\6\56\1\uffff\6\56\1\u00be"+
-        "\1\56\1\uffff\1\u00c0\2\56\4\133\1\56\1\uffff\3\56\1\u00ce\13\56"+
-        "\1\uffff\1\u00da\1\56\1\uffff\1\u00dc\7\56\1\u00e4\1\u00e5\1\u00e6"+
-        "\1\u00e7\1\uffff\1\56\1\uffff\1\u00e9\1\56\1\u00eb\1\u00ee\1\133"+
-        "\1\u00ef\1\u00f0\1\u00f1\1\u00f2\2\56\1\u00f5\1\56\1\uffff\4\56"+
-        "\1\u00fb\1\56\1\u00fd\1\56\1\u00ff\1\56\1\u0101\1\uffff\1\56\1\uffff"+
-        "\3\56\1\u00e6\3\56\4\uffff\1\56\1\uffff\1\u010a\1\uffff\1\133\6"+
-        "\uffff\1\u010b\1\56\1\uffff\2\56\1\u010f\2\56\1\uffff\1\u0112\1"+
-        "\uffff\1\56\1\uffff\1\56\1\uffff\7\56\1\u011c\2\uffff\1\56\1\u011e"+
-        "\1\u011f\1\uffff\2\56\1\uffff\1\56\1\u0123\2\56\1\u0126\3\56\1\u012a"+
-        "\1\uffff\1\u012b\2\uffff\1\u012c\2\56\1\uffff\2\56\1\uffff\1\u0131"+
-        "\2\56\3\uffff\1\56\1\u0135\1\u0136\1\u0138\1\uffff\1\56\1\u013b"+
-        "\1\u013c\2\uffff\1\56\1\uffff\1\u013e\1\56\2\uffff\1\u0140\1\uffff"+
+<<<<<<< .mine
+        "\1\uffff\14\56\2\uffff\5\56\1\uffff\1\127\1\56\1\uffff\1\56\1\uffff"+
+        "\3\133\1\uffff\1\143\1\145\1\147\1\151\4\uffff\1\153\1\156\1\160"+
+        "\6\uffff\2\133\1\uffff\15\56\1\u0081\3\56\1\u0085\7\56\2\uffff\10"+
+        "\56\3\uffff\2\56\1\133\2\uffff\3\133\22\uffff\1\56\1\u009e\6\56"+
+        "\1\u00a5\4\56\1\u00aa\1\56\1\uffff\1\56\1\u00ad\1\56\1\uffff\11"+
+        "\56\1\u00b9\11\56\4\133\1\56\1\uffff\6\56\1\uffff\1\56\1\u00d2\1"+
+        "\u00d3\1\56\1\uffff\2\56\1\uffff\12\56\1\u00e1\1\uffff\3\56\1\u00e5"+
+        "\1\u00e6\1\u00e7\1\u00e8\1\56\1\u00ea\1\u00eb\1\u00ee\1\133\1\u00ef"+
+        "\1\u00f0\1\u00f1\1\u00f2\6\56\1\u00e7\1\u00f9\2\uffff\6\56\1\u0100"+
+        "\1\u0101\3\56\1\u0105\1\u0106\1\uffff\1\u0107\2\56\4\uffff\1\56"+
+        "\2\uffff\1\133\6\uffff\1\u010b\1\56\1\u010d\3\56\1\uffff\1\56\1"+
+        "\u0112\4\56\2\uffff\1\56\1\u0118\1\56\3\uffff\3\56\1\uffff\1\u011d"+
+        "\1\uffff\2\56\1\u0120\1\56\1\uffff\3\56\1\u0125\1\56\1\uffff\1\u0127"+
+        "\1\56\1\u0129\1\56\1\uffff\1\u012b\1\u012c\1\uffff\4\56\1\uffff"+
+        "\1\56\1\uffff\1\u0132\1\uffff\1\56\2\uffff\1\u0135\1\u0136\1\56"+
+        "\1\u0139\1\u013a\1\uffff\2\56\2\uffff\1\u013d\1\56\2\uffff\1\u013f"+
+        "\1\u0140\1\uffff\1\u0141\3\uffff";
+=======
+        "\1\uffff\6\56\2\uffff\3\56\1\uffff\4\56\1\120\3\56\1\uffff\2\56"+
+        "\1\uffff\1\56\3\133\1\uffff\1\143\1\145\1\147\1\151\4\uffff\1\153"+
+        "\1\156\1\160\6\uffff\2\133\1\uffff\7\56\1\174\2\56\2\uffff\4\56"+
+        "\1\uffff\1\56\1\u0084\12\56\2\uffff\11\56\1\133\2\uffff\3\133\22"+
+        "\uffff\12\56\1\uffff\7\56\1\uffff\2\56\1\u00b1\2\56\1\u00b4\6\56"+
+        "\1\u00bb\3\56\1\u00bf\1\56\1\u00c1\1\56\4\133\14\56\1\u00d6\3\56"+
+        "\1\u00da\3\56\1\uffff\1\56\1\u00df\1\uffff\1\u00e0\1\u00e1\1\u00e2"+
+        "\1\u00e3\2\56\1\uffff\3\56\1\uffff\1\56\1\uffff\1\u00ea\1\u00eb"+
+        "\1\u00ee\1\133\1\u00ef\1\u00f0\1\u00f1\1\u00f2\1\u00f3\1\56\1\u00f5"+
+        "\2\56\1\u00f8\3\56\1\u00fc\2\56\1\uffff\2\56\1\u00e2\1\uffff\3\56"+
+        "\1\u0104\5\uffff\3\56\1\u0108\2\56\2\uffff\1\133\7\uffff\1\56\1"+
+        "\uffff\1\u010c\1\56\1\uffff\1\u010e\2\56\1\uffff\7\56\1\uffff\1"+
+        "\56\1\u0119\1\56\1\uffff\1\56\1\u011c\1\56\1\uffff\1\u011e\1\uffff"+
+        "\1\u011f\4\56\1\u0124\2\56\1\u0127\1\56\1\uffff\1\u0129\1\56\1\uffff"+
+        "\1\56\2\uffff\1\u012c\1\u012d\1\56\1\u012f\1\uffff\2\56\1\uffff"+
+        "\1\56\1\uffff\1\56\1\u0134\2\uffff\1\56\1\uffff\1\56\1\u0138\1\u013a"+
+        "\1\u013b\1\uffff\1\u013c\1\u013d\1\56\1\uffff\1\56\4\uffff\1\u0140"+
         "\1\u0141\2\uffff";
+>>>>>>> .r8534
     static final String DFA19_eofS =
         "\u0142\uffff";
     static final String DFA19_minS =
-        "\1\11\1\141\1\156\1\144\1\145\1\75\2\145\2\uffff\1\150\1\141\1\147"+
-        "\1\154\1\141\1\uffff\1\146\1\141\1\125\1\145\1\171\1\145\1\44\1"+
-        "\72\1\150\1\uffff\3\56\1\52\1\173\1\175\1\133\1\135\4\uffff\1\75"+
-        "\1\72\1\56\6\uffff\2\56\1\uffff\1\164\1\167\1\141\1\157\1\144\1"+
-        "\141\2\uffff\1\160\1\154\1\155\1\141\1\155\1\141\1\154\1\151\1\147"+
-        "\1\154\1\163\1\143\1\162\1\156\1\154\1\160\1\60\1\143\1\145\2\151"+
-        "\1\165\1\114\1\155\1\154\1\60\1\171\2\uffff\1\156\1\uffff\1\151"+
-        "\1\56\2\uffff\3\56\22\uffff\1\151\1\60\1\160\1\162\1\114\1\144\1"+
-        "\154\1\165\1\154\1\157\1\163\1\155\1\163\2\156\1\165\1\60\1\144"+
-        "\1\162\1\60\1\145\1\154\1\145\1\143\1\163\1\154\1\uffff\1\154\1"+
-        "\162\1\154\1\163\1\145\1\114\1\60\1\145\1\uffff\1\60\1\163\1\154"+
-        "\4\56\1\166\1\uffff\1\163\1\145\1\151\1\60\1\141\1\162\1\142\1\166"+
-        "\1\163\1\151\1\164\1\145\1\164\1\147\1\145\1\uffff\1\60\1\145\1"+
-        "\uffff\1\60\1\165\1\141\1\164\2\145\1\165\1\141\4\60\1\uffff\1\164"+
-        "\1\uffff\1\60\1\145\7\55\1\145\1\150\1\60\1\156\1\uffff\1\143\1"+
-        "\156\1\141\1\145\1\60\1\164\1\60\1\162\1\60\1\145\1\60\1\uffff\1"+
-        "\147\1\uffff\1\144\1\143\1\151\1\60\1\155\1\144\1\164\4\uffff\1"+
-        "\145\1\uffff\1\60\1\uffff\1\56\6\uffff\1\60\1\157\1\uffff\1\153"+
-        "\1\145\1\60\1\143\1\114\1\uffff\1\60\1\uffff\1\164\1\uffff\1\144"+
-        "\1\uffff\1\141\1\151\1\150\1\157\1\145\1\151\1\145\1\60\2\uffff"+
-        "\1\164\2\60\1\uffff\1\153\1\151\1\uffff\1\145\1\60\1\164\1\156\1"+
-        "\60\3\156\1\60\1\uffff\1\60\2\uffff\1\60\1\156\1\162\1\uffff\1\145"+
-        "\1\147\1\uffff\1\60\1\164\1\147\3\uffff\1\153\3\60\1\uffff\1\163"+
-        "\2\60\2\uffff\1\164\1\uffff\1\60\1\164\2\uffff\1\60\1\uffff\1\60"+
-        "\2\uffff";
+<<<<<<< .mine
+        "\1\11\1\141\1\145\2\141\1\154\1\145\1\171\1\147\1\146\2\150\1\145"+
+        "\1\uffff\1\75\1\145\1\156\1\144\1\141\1\72\1\uffff\1\44\1\145\1"+
+        "\uffff\1\125\1\uffff\3\56\1\52\1\173\1\175\1\133\1\135\4\uffff\1"+
+        "\75\1\72\1\56\6\uffff\2\56\1\uffff\1\164\1\167\1\160\1\154\1\156"+
+        "\1\162\2\154\1\151\1\163\1\143\1\155\1\154\1\60\1\147\1\154\1\160"+
+        "\1\60\1\143\1\145\1\155\2\141\1\151\1\141\2\uffff\1\171\1\157\1"+
+        "\141\1\144\2\151\1\165\1\156\3\uffff\1\155\1\114\1\56\2\uffff\3"+
+        "\56\22\uffff\1\151\1\60\1\154\1\165\1\154\1\143\1\145\1\163\1\60"+
+        "\1\165\1\144\1\145\1\154\1\60\1\145\1\uffff\1\162\1\60\1\154\1\uffff"+
+        "\1\154\1\162\1\156\1\163\1\155\1\156\1\163\1\154\1\144\1\60\1\162"+
+        "\1\160\1\114\1\154\1\163\1\145\1\163\1\157\1\114\4\56\1\166\1\uffff"+
+        "\1\141\1\162\1\142\1\164\1\141\1\145\1\uffff\1\145\2\60\1\165\1"+
+        "\uffff\1\164\1\145\1\uffff\1\145\1\165\1\141\2\164\1\145\1\151\1"+
+        "\147\1\163\1\145\1\60\1\uffff\1\145\1\163\1\151\4\60\1\166\1\60"+
+        "\7\55\1\145\1\143\1\156\1\141\1\151\1\143\2\60\2\uffff\1\144\1\145"+
+        "\1\147\1\155\1\144\1\164\2\60\1\162\1\164\1\145\2\60\1\uffff\1\60"+
+        "\1\150\1\156\4\uffff\1\145\2\uffff\1\56\6\uffff\1\60\1\145\1\60"+
+        "\1\143\1\157\1\150\1\uffff\1\151\1\60\1\141\1\145\1\151\1\145\2"+
+        "\uffff\1\164\1\60\1\144\3\uffff\1\157\1\153\1\114\1\uffff\1\60\1"+
+        "\uffff\1\153\1\156\1\60\1\156\1\uffff\1\164\2\156\1\60\1\145\1\uffff"+
+        "\1\60\1\164\1\60\1\151\1\uffff\2\60\1\uffff\1\147\1\145\1\164\1"+
+        "\147\1\uffff\1\162\1\uffff\1\60\1\uffff\1\156\2\uffff\2\60\1\163"+
+        "\2\60\1\uffff\1\153\1\164\2\uffff\1\60\1\164\2\uffff\2\60\1\uffff"+
+        "\1\60\3\uffff";
+=======
+        "\1\11\1\150\1\145\1\156\1\171\2\145\1\uffff\1\75\1\141\1\72\1\146"+
+        "\1\uffff\1\141\1\145\1\141\1\154\1\44\1\145\1\144\1\150\1\uffff"+
+        "\1\147\1\141\1\uffff\1\125\3\56\1\52\1\173\1\175\1\133\1\135\4\uffff"+
+        "\1\75\1\72\1\56\6\uffff\2\56\1\uffff\1\155\2\141\1\160\1\154\1\157"+
+        "\1\141\1\60\1\155\1\141\2\uffff\1\156\1\162\1\154\1\156\1\uffff"+
+        "\1\160\1\60\1\143\1\145\1\154\1\151\1\171\2\151\1\165\1\163\1\143"+
+        "\2\uffff\1\154\1\155\1\144\1\151\1\147\1\154\1\164\1\167\1\114\1"+
+        "\56\2\uffff\3\56\22\uffff\1\163\1\156\1\155\1\156\1\163\1\165\2"+
+        "\154\1\162\1\160\1\uffff\1\157\1\144\1\143\1\145\2\163\1\154\1\uffff"+
+        "\1\154\1\162\1\60\1\165\1\144\1\60\1\163\1\154\2\145\1\154\1\145"+
+        "\1\60\1\114\1\154\1\162\1\60\1\151\1\60\1\114\4\56\1\164\1\145\1"+
+        "\164\1\151\1\147\1\163\1\162\1\141\1\142\1\145\1\163\1\166\1\60"+
+        "\1\164\1\141\1\145\1\60\1\145\1\165\1\141\1\uffff\1\145\1\60\1\uffff"+
+        "\4\60\1\165\1\164\1\uffff\1\151\2\145\1\uffff\1\166\1\uffff\1\60"+
+        "\7\55\1\60\1\162\1\60\1\164\1\145\1\60\1\156\1\143\1\141\1\60\1"+
+        "\150\1\145\1\uffff\1\151\1\143\1\60\1\uffff\1\155\1\144\1\164\1"+
+        "\60\5\uffff\1\144\1\145\1\156\1\60\1\147\1\145\2\uffff\1\56\7\uffff"+
+        "\1\164\1\uffff\1\60\1\144\1\uffff\1\60\1\145\1\143\1\uffff\1\157"+
+        "\1\114\1\157\1\150\1\145\1\151\1\145\1\uffff\1\151\1\60\1\153\1"+
+        "\uffff\1\141\1\60\1\145\1\uffff\1\60\1\uffff\1\60\1\153\1\164\1"+
+        "\151\1\156\1\60\2\156\1\60\1\156\1\uffff\1\60\1\164\1\uffff\1\162"+
+        "\2\uffff\2\60\1\156\1\60\1\uffff\1\164\1\147\1\uffff\1\147\1\uffff"+
+        "\1\145\1\60\2\uffff\1\153\1\uffff\1\163\3\60\1\uffff\2\60\1\164"+
+        "\1\uffff\1\164\4\uffff\2\60\2\uffff";
+>>>>>>> .r8534
     static final String DFA19_maxS =
-        "\1\u00ff\1\145\1\164\1\144\1\145\1\76\1\157\1\145\2\uffff\2\157"+
-        "\1\154\1\170\1\165\1\uffff\1\164\1\162\1\125\1\151\1\171\1\145\1"+
-        "\44\1\167\1\150\1\uffff\3\71\1\57\1\173\1\175\1\133\1\135\4\uffff"+
-        "\2\75\1\56\6\uffff\1\170\1\71\1\uffff\1\164\1\167\1\141\1\157\1"+
-        "\144\1\141\2\uffff\1\164\1\154\1\155\1\141\1\165\1\141\1\162\1\151"+
-        "\1\147\1\154\1\163\1\143\1\162\1\156\1\154\1\160\1\u00ff\1\143\1"+
-        "\145\2\151\1\165\1\114\1\155\1\154\1\u00ff\1\171\2\uffff\1\156\1"+
-        "\uffff\1\151\1\71\2\uffff\3\71\22\uffff\1\151\1\u00ff\1\160\1\162"+
-        "\1\114\1\144\1\154\1\165\1\154\1\157\1\163\1\155\1\166\2\156\1\165"+
-        "\1\u00ff\1\144\1\162\1\u00ff\1\145\1\154\1\145\1\143\1\163\1\154"+
-        "\1\uffff\1\154\1\162\1\154\1\163\1\145\1\114\1\u00ff\1\145\1\uffff"+
-        "\1\u00ff\1\163\1\154\4\71\1\166\1\uffff\1\163\1\145\1\151\1\u00ff"+
-        "\1\141\1\162\1\142\1\166\1\163\1\151\1\164\1\145\1\164\1\147\1\145"+
-        "\1\uffff\1\u00ff\1\145\1\uffff\1\u00ff\1\165\1\141\1\164\2\145\1"+
-        "\165\1\141\4\u00ff\1\uffff\1\164\1\uffff\1\u00ff\1\145\7\71\1\145"+
-        "\1\150\1\u00ff\1\156\1\uffff\1\143\1\156\1\141\1\145\1\u00ff\1\164"+
-        "\1\u00ff\1\162\1\u00ff\1\145\1\u00ff\1\uffff\1\147\1\uffff\1\144"+
-        "\1\143\1\151\1\u00ff\1\155\1\144\1\164\4\uffff\1\145\1\uffff\1\u00ff"+
-        "\1\uffff\1\71\6\uffff\1\u00ff\1\157\1\uffff\1\153\1\145\1\u00ff"+
-        "\1\143\1\114\1\uffff\1\u00ff\1\uffff\1\164\1\uffff\1\144\1\uffff"+
-        "\1\141\1\151\1\150\1\157\1\145\1\151\1\145\1\u00ff\2\uffff\1\164"+
-        "\2\u00ff\1\uffff\1\153\1\151\1\uffff\1\145\1\u00ff\1\164\1\156\1"+
-        "\u00ff\3\156\1\u00ff\1\uffff\1\u00ff\2\uffff\1\u00ff\1\156\1\162"+
-        "\1\uffff\1\145\1\147\1\uffff\1\u00ff\1\164\1\147\3\uffff\1\153\3"+
-        "\u00ff\1\uffff\1\163\2\u00ff\2\uffff\1\164\1\uffff\1\u00ff\1\164"+
-        "\2\uffff\1\u00ff\1\uffff\1\u00ff\2\uffff";
+<<<<<<< .mine
+        "\1\u00ff\1\145\1\157\1\165\1\157\1\170\1\151\1\171\1\154\1\164\1"+
+        "\157\1\150\1\145\1\uffff\1\76\1\145\1\164\1\144\1\162\1\167\1\uffff"+
+        "\1\44\1\145\1\uffff\1\125\1\uffff\3\71\1\57\1\173\1\175\1\133\1"+
+        "\135\4\uffff\2\75\1\56\6\uffff\1\170\1\71\1\uffff\1\164\1\167\1"+
+        "\164\1\154\1\156\1\162\1\154\1\162\1\151\1\163\1\143\1\155\1\154"+
+        "\1\u00ff\1\147\1\154\1\160\1\u00ff\1\143\1\145\1\165\2\141\1\151"+
+        "\1\141\2\uffff\1\171\1\157\1\141\1\144\2\151\1\165\1\156\3\uffff"+
+        "\1\155\1\114\1\71\2\uffff\3\71\22\uffff\1\151\1\u00ff\1\154\1\165"+
+        "\1\154\1\143\1\145\1\163\1\u00ff\1\165\1\144\1\145\1\154\1\u00ff"+
+        "\1\145\1\uffff\1\162\1\u00ff\1\154\1\uffff\1\154\1\162\1\156\1\166"+
+        "\1\155\1\156\1\163\1\154\1\144\1\u00ff\1\162\1\160\1\114\1\154\1"+
+        "\163\1\145\1\163\1\157\1\114\4\71\1\166\1\uffff\1\141\1\162\1\142"+
+        "\1\164\1\141\1\145\1\uffff\1\145\2\u00ff\1\165\1\uffff\1\164\1\145"+
+        "\1\uffff\1\145\1\165\1\141\2\164\1\145\1\151\1\147\1\163\1\145\1"+
+        "\u00ff\1\uffff\1\145\1\163\1\151\4\u00ff\1\166\1\u00ff\7\71\1\145"+
+        "\1\143\1\156\1\141\1\151\1\143\2\u00ff\2\uffff\1\144\1\145\1\147"+
+        "\1\155\1\144\1\164\2\u00ff\1\162\1\164\1\145\2\u00ff\1\uffff\1\u00ff"+
+        "\1\150\1\156\4\uffff\1\145\2\uffff\1\71\6\uffff\1\u00ff\1\145\1"+
+        "\u00ff\1\143\1\157\1\150\1\uffff\1\151\1\u00ff\1\141\1\145\1\151"+
+        "\1\145\2\uffff\1\164\1\u00ff\1\144\3\uffff\1\157\1\153\1\114\1\uffff"+
+        "\1\u00ff\1\uffff\1\153\1\156\1\u00ff\1\156\1\uffff\1\164\2\156\1"+
+        "\u00ff\1\145\1\uffff\1\u00ff\1\164\1\u00ff\1\151\1\uffff\2\u00ff"+
+        "\1\uffff\1\147\1\145\1\164\1\147\1\uffff\1\162\1\uffff\1\u00ff\1"+
+        "\uffff\1\156\2\uffff\2\u00ff\1\163\2\u00ff\1\uffff\1\153\1\164\2"+
+        "\uffff\1\u00ff\1\164\2\uffff\2\u00ff\1\uffff\1\u00ff\3\uffff";
+=======
+        "\1\u00ff\2\157\1\164\1\171\2\145\1\uffff\1\76\1\165\1\167\1\164"+
+        "\1\uffff\1\157\1\145\1\162\1\170\1\44\1\151\1\144\1\150\1\uffff"+
+        "\1\154\1\145\1\uffff\1\125\3\71\1\57\1\173\1\175\1\133\1\135\4\uffff"+
+        "\2\75\1\56\6\uffff\1\170\1\71\1\uffff\1\165\2\141\1\164\1\154\1"+
+        "\157\1\141\1\u00ff\1\155\1\141\2\uffff\1\156\1\162\1\154\1\156\1"+
+        "\uffff\1\160\1\u00ff\1\143\1\145\1\162\1\151\1\171\2\151\1\165\1"+
+        "\163\1\143\2\uffff\1\154\1\155\1\144\1\151\1\147\1\154\1\164\1\167"+
+        "\1\114\1\71\2\uffff\3\71\22\uffff\1\166\1\156\1\155\1\156\1\163"+
+        "\1\165\2\154\1\162\1\160\1\uffff\1\157\1\144\1\143\1\145\2\163\1"+
+        "\154\1\uffff\1\154\1\162\1\u00ff\1\165\1\144\1\u00ff\1\163\1\154"+
+        "\2\145\1\154\1\145\1\u00ff\1\114\1\154\1\162\1\u00ff\1\151\1\u00ff"+
+        "\1\114\4\71\1\164\1\145\1\164\1\151\1\147\1\163\1\162\1\141\1\142"+
+        "\1\145\1\163\1\166\1\u00ff\1\164\1\141\1\145\1\u00ff\1\145\1\165"+
+        "\1\141\1\uffff\1\145\1\u00ff\1\uffff\4\u00ff\1\165\1\164\1\uffff"+
+        "\1\151\2\145\1\uffff\1\166\1\uffff\1\u00ff\7\71\1\u00ff\1\162\1"+
+        "\u00ff\1\164\1\145\1\u00ff\1\156\1\143\1\141\1\u00ff\1\150\1\145"+
+        "\1\uffff\1\151\1\143\1\u00ff\1\uffff\1\155\1\144\1\164\1\u00ff\5"+
+        "\uffff\1\144\1\145\1\156\1\u00ff\1\147\1\145\2\uffff\1\71\7\uffff"+
+        "\1\164\1\uffff\1\u00ff\1\144\1\uffff\1\u00ff\1\145\1\143\1\uffff"+
+        "\1\157\1\114\1\157\1\150\1\145\1\151\1\145\1\uffff\1\151\1\u00ff"+
+        "\1\153\1\uffff\1\141\1\u00ff\1\145\1\uffff\1\u00ff\1\uffff\1\u00ff"+
+        "\1\153\1\164\1\151\1\156\1\u00ff\2\156\1\u00ff\1\156\1\uffff\1\u00ff"+
+        "\1\164\1\uffff\1\162\2\uffff\2\u00ff\1\156\1\u00ff\1\uffff\1\164"+
+        "\1\147\1\uffff\1\147\1\uffff\1\145\1\u00ff\2\uffff\1\153\1\uffff"+
+        "\1\163\3\u00ff\1\uffff\2\u00ff\1\164\1\uffff\1\164\4\uffff\2\u00ff"+
+        "\2\uffff";
+>>>>>>> .r8534
     static final String DFA19_acceptS =
-        "\10\uffff\1\12\1\13\5\uffff\1\24\11\uffff\1\51\10\uffff\1\67\1\70"+
-        "\1\71\1\72\3\uffff\1\101\1\104\1\116\1\117\1\120\1\123\2\uffff\1"+
-        "\130\6\uffff\1\5\1\100\33\uffff\1\43\1\66\1\uffff\1\122\2\uffff"+
+<<<<<<< .mine
+        "\15\uffff\1\23\6\uffff\1\36\2\uffff\1\47\1\uffff\1\51\10\uffff\1"+
+        "\67\1\70\1\71\1\72\3\uffff\1\101\1\104\1\116\1\117\1\120\1\123\2"+
+        "\uffff\1\130\31\uffff\1\25\1\100\10\uffff\1\122\1\37\1\66\3\uffff"+
         "\1\125\1\126\3\uffff\1\60\1\61\1\113\1\62\1\115\1\63\1\112\1\64"+
-        "\1\114\1\65\1\74\1\73\1\75\1\103\1\102\1\77\1\76\1\124\32\uffff"+
-        "\1\35\10\uffff\1\34\10\uffff\1\11\17\uffff\1\17\2\uffff\1\42\14"+
-        "\uffff\1\32\1\uffff\1\37\15\uffff\1\4\13\uffff\1\20\1\uffff\1\22"+
-        "\7\uffff\1\27\1\45\1\121\1\30\1\uffff\1\46\1\uffff\1\52\1\uffff"+
-        "\1\127\1\55\1\53\1\56\1\54\1\57\2\uffff\1\7\5\uffff\1\14\1\uffff"+
-        "\1\26\1\uffff\1\31\1\uffff\1\16\10\uffff\1\50\1\1\3\uffff\1\36\2"+
-        "\uffff\1\15\11\uffff\1\33\1\uffff\1\3\1\6\3\uffff\1\44\2\uffff\1"+
-        "\23\3\uffff\1\111\1\2\1\40\4\uffff\1\41\3\uffff\1\47\1\21\1\uffff"+
-        "\1\106\2\uffff\1\105\1\10\1\uffff\1\25\1\uffff\1\110\1\107";
+        "\1\114\1\65\1\74\1\73\1\75\1\103\1\102\1\77\1\76\1\124\17\uffff"+
+        "\1\10\3\uffff\1\21\30\uffff\1\46\6\uffff\1\4\4\uffff\1\7\2\uffff"+
+        "\1\14\13\uffff\1\26\30\uffff\1\6\1\5\15\uffff\1\20\3\uffff\1\34"+
+        "\1\45\1\121\1\35\1\uffff\1\50\1\52\1\uffff\1\127\1\55\1\53\1\56"+
+        "\1\54\1\57\6\uffff\1\44\6\uffff\1\15\1\33\3\uffff\1\43\1\16\1\27"+
+        "\3\uffff\1\1\1\uffff\1\17\4\uffff\1\32\5\uffff\1\41\4\uffff\1\2"+
+        "\2\uffff\1\22\4\uffff\1\111\1\uffff\1\24\1\uffff\1\30\1\uffff\1"+
+        "\12\1\3\5\uffff\1\31\2\uffff\1\106\1\11\2\uffff\1\105\1\42\2\uffff"+
+        "\1\13\1\uffff\1\40\1\110\1\107";
+=======
+        "\7\uffff\1\12\4\uffff\1\20\10\uffff\1\40\2\uffff\1\43\11\uffff\1"+
+        "\67\1\70\1\71\1\72\3\uffff\1\101\1\104\1\116\1\117\1\120\1\123\2"+
+        "\uffff\1\130\12\uffff\1\13\1\100\4\uffff\1\122\14\uffff\1\25\1\66"+
+        "\12\uffff\1\125\1\126\3\uffff\1\60\1\61\1\113\1\62\1\115\1\63\1"+
+        "\112\1\64\1\114\1\65\1\74\1\73\1\75\1\103\1\102\1\77\1\76\1\124"+
+        "\12\uffff\1\5\7\uffff\1\32\54\uffff\1\21\2\uffff\1\22\6\uffff\1"+
+        "\45\3\uffff\1\51\1\uffff\1\50\24\uffff\1\11\3\uffff\1\16\4\uffff"+
+        "\1\46\1\23\1\30\1\121\1\24\6\uffff\1\47\1\52\1\uffff\1\127\1\55"+
+        "\1\53\1\56\1\54\1\57\1\1\1\uffff\1\35\2\uffff\1\34\3\uffff\1\3\7"+
+        "\uffff\1\26\3\uffff\1\36\3\uffff\1\37\1\uffff\1\2\12\uffff\1\31"+
+        "\2\uffff\1\42\1\uffff\1\10\1\27\4\uffff\1\44\2\uffff\1\111\1\uffff"+
+        "\1\33\2\uffff\1\4\1\7\1\uffff\1\14\4\uffff\1\15\3\uffff\1\105\1"+
+        "\uffff\1\106\1\41\1\6\1\17\2\uffff\1\107\1\110";
+>>>>>>> .r8534
     static final String DFA19_specialS =
         "\u0142\uffff}>";
     static final String[] DFA19_transitionS = {
+<<<<<<< .mine
             "\1\55\1\54\2\uffff\1\54\22\uffff\1\55\1\45\1\61\1\uffff\1\31"+
-            "\2\uffff\1\56\1\43\1\44\1\53\1\17\1\11\1\5\1\50\1\35\1\57\1"+
-            "\32\1\33\1\34\6\60\1\47\1\52\1\26\1\46\1\42\1\10\1\uffff\1\3"+
-            "\14\56\1\22\3\56\1\7\10\56\1\36\1\uffff\1\37\1\uffff\1\56\1"+
-            "\uffff\1\14\1\24\1\12\1\23\1\15\1\16\1\56\1\4\1\20\1\56\1\25"+
-            "\2\56\1\1\1\27\2\56\1\6\1\2\1\21\1\56\1\13\1\30\3\56\1\40\1"+
-            "\51\1\41\102\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\2\uffff\1\56\1\43\1\44\1\53\1\27\1\15\1\16\1\50\1\35\1\57\1"+
+            "\32\1\33\1\34\6\60\1\47\1\52\1\25\1\46\1\42\1\24\1\uffff\1\21"+
+            "\14\56\1\30\3\56\1\26\10\56\1\36\1\uffff\1\37\1\uffff\1\56\1"+
+            "\uffff\1\10\1\7\1\12\1\6\1\5\1\3\1\56\1\14\1\11\1\56\1\17\2"+
+            "\56\1\1\1\23\2\56\1\2\1\20\1\22\1\56\1\4\1\13\3\56\1\40\1\51"+
+            "\1\41\102\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\62\3\uffff\1\63",
-            "\1\64\5\uffff\1\65",
-            "\1\66",
-            "\1\67",
-            "\1\70\1\71",
-            "\1\72\11\uffff\1\73",
-            "\1\74",
+            "\1\64\11\uffff\1\65",
+            "\1\70\15\uffff\1\67\5\uffff\1\66",
+            "\1\71\15\uffff\1\72",
+            "\1\73\13\uffff\1\74",
+            "\1\76\3\uffff\1\75",
+            "\1\77",
+            "\1\100\4\uffff\1\101",
+            "\1\103\6\uffff\1\102\1\104\5\uffff\1\105",
+            "\1\107\3\uffff\1\110\2\uffff\1\106",
+            "\1\111",
+            "\1\112",
+=======
+            "\1\55\1\54\2\uffff\1\54\22\uffff\1\55\1\45\1\61\1\uffff\1\30"+
+            "\2\uffff\1\56\1\43\1\44\1\53\1\25\1\7\1\10\1\50\1\35\1\57\1"+
+            "\32\1\33\1\34\6\60\1\47\1\52\1\21\1\46\1\42\1\14\1\uffff\1\23"+
+            "\14\56\1\31\3\56\1\5\10\56\1\36\1\uffff\1\37\1\uffff\1\56\1"+
+            "\uffff\1\26\1\4\1\1\1\22\1\20\1\11\1\56\1\6\1\13\1\56\1\16\2"+
+            "\56\1\27\1\12\2\56\1\2\1\3\1\17\1\56\1\15\1\24\3\56\1\40\1\51"+
+            "\1\41\102\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\63\3\uffff\1\64\2\uffff\1\62",
+            "\1\65\11\uffff\1\66",
+            "\1\70\5\uffff\1\67",
+            "\1\71",
+            "\1\72",
+            "\1\73",
+>>>>>>> .r8534
             "",
-            "",
-            "\1\77\3\uffff\1\75\2\uffff\1\76",
-            "\1\100\15\uffff\1\101",
-            "\1\102\4\uffff\1\103",
-            "\1\104\13\uffff\1\105",
-            "\1\110\15\uffff\1\106\5\uffff\1\107",
-            "",
-            "\1\112\6\uffff\1\111\1\113\5\uffff\1\114",
-            "\1\115\6\uffff\1\116\11\uffff\1\117",
+<<<<<<< .mine
+            "\1\113\1\114",
+            "\1\115",
+            "\1\117\5\uffff\1\116",
             "\1\120",
-            "\1\122\3\uffff\1\121",
+            "\1\121\6\uffff\1\122\11\uffff\1\123",
+            "\1\125\74\uffff\1\124",
+=======
+            "\1\74\1\75",
+            "\1\100\15\uffff\1\77\5\uffff\1\76",
+            "\1\102\74\uffff\1\101",
+            "\1\104\6\uffff\1\103\1\105\5\uffff\1\106",
+>>>>>>> .r8534
+            "",
+<<<<<<< .mine
+            "\1\126",
+            "\1\130",
+            "",
+            "\1\131",
+=======
+            "\1\107\15\uffff\1\110",
+            "\1\111",
+            "\1\113\6\uffff\1\112\11\uffff\1\114",
+            "\1\115\13\uffff\1\116",
+            "\1\117",
+            "\1\121\3\uffff\1\122",
             "\1\123",
             "\1\124",
-            "\1\125",
-            "\1\130\74\uffff\1\127",
-            "\1\131",
+>>>>>>> .r8534
             "",
+            "\1\125\4\uffff\1\126",
+            "\1\127\3\uffff\1\130",
+            "",
+            "\1\131",
             "\1\134\1\uffff\1\132\11\135",
             "\1\134\1\uffff\1\136\11\135",
             "\1\134\1\uffff\1\137\11\135",
@@ -3805,47 +5150,81 @@ public class ClassLexer extends Lexer {
             "\1\134\1\uffff\12\135\76\uffff\1\161",
             "\1\134\1\uffff\12\135",
             "",
+<<<<<<< .mine
             "\1\162",
             "\1\163",
-            "\1\164",
+            "\1\164\3\uffff\1\165",
+=======
+            "\1\164\1\162\6\uffff\1\163",
             "\1\165",
+>>>>>>> .r8534
             "\1\166",
+<<<<<<< .mine
             "\1\167",
-            "",
-            "",
-            "\1\170\3\uffff\1\171",
+            "\1\170",
+            "\1\171",
+            "\1\173\5\uffff\1\172",
+=======
+            "\1\170\3\uffff\1\167",
+            "\1\171",
             "\1\172",
             "\1\173",
+>>>>>>> .r8534
+<<<<<<< .mine
             "\1\174",
-            "\1\175\1\176\6\uffff\1\177",
-            "\1\u0080",
-            "\1\u0081\5\uffff\1\u0082",
-            "\1\u0083",
-            "\1\u0084",
-            "\1\u0085",
-            "\1\u0086",
-            "\1\u0087",
-            "\1\u0088",
-            "\1\u0089",
-            "\1\u008a",
-            "\1\u008b",
+            "\1\175",
+            "\1\176",
+            "\1\177",
+=======
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\175",
+            "\1\176",
+            "",
+            "",
+            "\1\177",
+>>>>>>> .r8534
+            "\1\u0080",
+<<<<<<< .mine
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0082",
+=======
+            "\1\u0081",
+            "\1\u0082",
+            "",
+>>>>>>> .r8534
+            "\1\u0083",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0086",
+<<<<<<< .mine
+            "\1\u0087",
+            "\1\u008a\1\u0089\6\uffff\1\u0088",
+=======
+            "\1\u0088\5\uffff\1\u0087",
+            "\1\u0089",
+            "\1\u008a",
+>>>>>>> .r8534
+            "\1\u008b",
+            "\1\u008c",
             "\1\u008d",
             "\1\u008e",
+            "",
+            "",
             "\1\u008f",
+            "",
+            "",
             "\1\u0090",
             "\1\u0091",
             "\1\u0092",
             "\1\u0093",
             "\1\u0094",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0095",
             "\1\u0096",
-            "",
-            "",
             "\1\u0097",
-            "",
             "\1\u0098",
             "\1\134\1\uffff\1\u0099\11\u009a",
             "",
@@ -3871,100 +5250,147 @@ public class ClassLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u009d",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u009d\2\uffff\1\u009e",
             "\1\u009f",
             "\1\u00a0",
             "\1\u00a1",
             "\1\u00a2",
             "\1\u00a3",
             "\1\u00a4",
-            "\1\u00a5",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00a6",
             "\1\u00a7",
+            "",
             "\1\u00a8",
-            "\1\u00a9\2\uffff\1\u00aa",
-            "\1\u00ab",
-            "\1\u00ac",
-            "\1\u00ad",
+<<<<<<< .mine
+            "\1\u00a9",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+=======
+            "\1\u00a9",
+            "\1\u00aa",
+>>>>>>> .r8534
+            "\1\u00ab",
+            "",
+            "\1\u00ac",
+            "\1\u00ae",
+            "",
+            "\1\u00ae",
+            "",
             "\1\u00af",
             "\1\u00b0",
+            "\1\u00b1",
+            "\1\u00b2\2\uffff\1\u00b3",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00b2",
-            "\1\u00b3",
-            "\1\u00b4",
             "\1\u00b5",
             "\1\u00b6",
             "\1\u00b7",
-            "",
             "\1\u00b8",
-            "\1\u00b9",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00ba",
-            "\1\u00bb",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00bc",
             "\1\u00bd",
+<<<<<<< .mine
+            "\1\u00be",
+=======
+            "\1\u00be",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
+<<<<<<< .mine
             "\1\u00bf",
-            "",
+            "\1\u00c0",
+=======
+            "\1\u00c0",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00c1",
+>>>>>>> .r8534
             "\1\u00c2",
             "\1\134\1\uffff\1\u00c3\1\u00c5\1\u00c4\7\u00c5",
             "\1\134\1\uffff\12\u00c5",
             "\1\134\1\uffff\1\u00c6\1\u00c5\1\u00c7\7\u00c5",
             "\1\134\1\uffff\1\u00c8\1\u00c5\1\u00c9\7\u00c5",
             "\1\u00ca",
-            "",
             "\1\u00cb",
             "\1\u00cc",
             "\1\u00cd",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00ce",
             "\1\u00cf",
             "\1\u00d0",
+            "",
             "\1\u00d1",
-            "\1\u00d2",
-            "\1\u00d3",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00d4",
+            "",
             "\1\u00d5",
-            "\1\u00d6",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
             "\1\u00d7",
             "\1\u00d8",
             "\1\u00d9",
-            "",
+<<<<<<< .mine
+            "\1\u00da",
+=======
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
             "\1\u00db",
+<<<<<<< .mine
+            "\1\u00dc",
+=======
+            "\1\u00dc",
+            "\1\u00dd",
             "",
+            "\1\u00de",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
+<<<<<<< .mine
             "\1\u00dd",
             "\1\u00de",
             "\1\u00df",
             "\1\u00e0",
-            "\1\u00e1",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
             "\1\u00e2",
             "\1\u00e3",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+=======
             "",
+>>>>>>> .r8534
+            "\1\u00e4",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+            "\1\u00e9",
+=======
+            "\1\u00e4",
+            "\1\u00e5",
+            "",
+            "\1\u00e6",
+            "\1\u00e7",
             "\1\u00e8",
             "",
+>>>>>>> .r8534
+            "\1\u00e9",
+            "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00ea",
             "\1\u00ed\1\134\1\uffff\12\u00ec",
             "\1\u00ed\1\134\1\uffff\12\u00ec",
             "\1\u00ed\1\134\1\uffff\12\u00ec",
@@ -3972,46 +5398,79 @@ public class ClassLexer extends Lexer {
             "\1\u00ed\1\134\1\uffff\12\u00ec",
             "\1\u00ed\1\134\1\uffff\12\u00ec",
             "\1\u00ed\1\134\1\uffff\12\u00ec",
-            "\1\u00f3",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00f4",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00f5",
             "\1\u00f6",
-            "",
             "\1\u00f7",
-            "\1\u00f8",
-            "\1\u00f9",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00fb",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+=======
+            "\1\u00fd",
+>>>>>>> .r8534
+            "",
+            "",
             "\1\u00fa",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00fb",
             "\1\u00fc",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00fd",
             "\1\u00fe",
+<<<<<<< .mine
+            "\1\u00ff",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0100",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+=======
             "",
+            "\1\u00ff",
+>>>>>>> .r8534
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0101",
             "\1\u0102",
-            "",
             "\1\u0103",
+<<<<<<< .mine
             "\1\u0104",
-            "\1\u0105",
+=======
+>>>>>>> .r8534
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0106",
-            "\1\u0107",
+<<<<<<< .mine
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0108",
-            "",
-            "",
-            "",
-            "",
+=======
+>>>>>>> .r8534
             "\1\u0109",
             "",
+            "",
+            "",
+            "",
+<<<<<<< .mine
+            "\1\u010a",
+=======
+>>>>>>> .r8534
+            "",
+<<<<<<< .mine
+=======
+            "\1\u0105",
+            "\1\u0106",
+            "\1\u0107",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
+            "\1\u0109",
+            "\1\u010a",
+            "",
             "",
             "\1\134\1\uffff\12\u00ec",
             "",
@@ -4020,103 +5479,203 @@ public class ClassLexer extends Lexer {
             "",
             "",
             "",
+            "",
+            "\1\u010b",
+            "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
             "\1\u010c",
-            "",
+=======
             "\1\u010d",
+            "",
+>>>>>>> .r8534
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
             "\1\u010e",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u010f",
+=======
+            "\1\u010f",
+>>>>>>> .r8534
             "\1\u0110",
-            "\1\u0111",
             "",
+<<<<<<< .mine
+            "\1\u0111",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "",
+=======
+            "\1\u0111",
+            "\1\u0112",
+>>>>>>> .r8534
             "\1\u0113",
-            "",
             "\1\u0114",
-            "",
             "\1\u0115",
             "\1\u0116",
+            "",
+            "",
             "\1\u0117",
+<<<<<<< .mine
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+=======
+            "",
             "\1\u0118",
-            "\1\u0119",
+>>>>>>> .r8534
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "",
+            "",
             "\1\u011a",
+            "",
             "\1\u011b",
+            "\1\u011c",
+            "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
             "",
-            "",
+            "\1\u011e",
+            "\1\u011f",
+=======
             "\1\u011d",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
             "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+=======
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0120",
+>>>>>>> .r8534
             "\1\u0121",
-            "",
             "\1\u0122",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+            "\1\u0123",
             "\1\u0124",
+=======
+            "\1\u0123",
+>>>>>>> .r8534
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+            "\1\u0126",
+            "",
+=======
             "\1\u0125",
+>>>>>>> .r8534
+            "\1\u0126",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0127",
             "\1\u0128",
-            "\1\u0129",
+<<<<<<< .mine
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+=======
+>>>>>>> .r8534
+            "\1\u012a",
             "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+=======
+            "\1\u012a",
             "",
+            "\1\u012b",
+            "",
+>>>>>>> .r8534
             "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+            "",
             "\1\u012d",
+=======
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
             "\1\u012e",
+<<<<<<< .mine
+=======
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
             "",
-            "\1\u012f",
+>>>>>>> .r8534
             "\1\u0130",
+            "\1\u0131",
+            "",
+<<<<<<< .mine
+            "\1\u0131",
             "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0132",
+=======
+>>>>>>> .r8534
+            "",
+            "",
             "\1\u0133",
-            "",
-            "",
-            "",
-            "\1\u0134",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "",
+<<<<<<< .mine
+            "\12\56\7\uffff\1\u0134\31\56\4\uffff\1\56\1\uffff\32\56\105"+
+            "\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0137",
+            "\12\56\7\uffff\1\u0138\31\56\4\uffff\1\56\1\uffff\32\56\105"+
+=======
+            "\1\u0135",
+            "",
+            "\1\u0136",
             "\12\56\7\uffff\1\u0137\31\56\4\uffff\1\56\1\uffff\32\56\105"+
+>>>>>>> .r8534
             "\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
-            "",
-            "\1\u0139",
-            "\12\56\7\uffff\1\u013a\31\56\4\uffff\1\56\1\uffff\32\56\105"+
+<<<<<<< .mine
+=======
+            "\12\56\7\uffff\1\u0139\31\56\4\uffff\1\56\1\uffff\32\56\105"+
             "\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
+>>>>>>> .r8534
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
             "",
+<<<<<<< .mine
+            "\1\u013b",
+            "\1\u013c",
             "",
-            "\1\u013d",
             "",
+=======
+>>>>>>> .r8534
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+<<<<<<< .mine
+            "\1\u013e",
+=======
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u013e",
+            "",
             "\1\u013f",
+>>>>>>> .r8534
+            "",
+            "",
             "",
             "",
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
-            "",
+<<<<<<< .mine
             "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
             "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+=======
+>>>>>>> .r8534
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
+            "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
             "",
             ""
     };

@@ -227,7 +227,7 @@ public class DefaultTextAwareModelAdapter implements IModelAdapter {
 
 	
 	@Override
-	public Collection getPredicateOclReference(Object modelElement,
+	public Collection<?> getPredicateOclReference(Object modelElement,
 			String propertyName, Object keyValue, String oclQuery,
 			Object contextElement) throws ModelAdapterException {
 		return modelAdapter.getPredicateOclReference(modelElement, propertyName,

@@ -4,7 +4,6 @@ import static com.sap.tc.moin.repository.spi.jmx.SpiJmxHelper.JMX_ENABLED;
 import static com.sap.tc.moin.repository.spi.jmx.SpiJmxHelper.MOIN_DOMAIN;
 import static com.sap.tc.moin.repository.spi.jmx.SpiJmxHelper.registerStandardMBean;
 
-import java.io.IOException;
 import java.lang.ref.ReferenceQueue;
 import java.text.DateFormat;
 import java.util.ArrayList;
@@ -276,7 +275,8 @@ public final class MoinImpl implements CoreMoin {
 
         if ( JMX_ENABLED ) {
             objectName = getObjectName( );
-            new JmxAdapter( this, objectName, this.getReferenceQueue( ) );
+            ReferenceQueue<MoinImpl> rq = this.getReferenceQueue();
+            new JmxAdapter( this, objectName, rq );
         }
 
         metamodelDataArea = null;
@@ -834,7 +834,7 @@ public final class MoinImpl implements CoreMoin {
 
         private final long startTime;
 
-        private JmxAdapter( MoinImpl moin, ObjectName objectName, ReferenceQueue refQueue ) {
+        private JmxAdapter( MoinImpl moin, ObjectName objectName, ReferenceQueue<MoinImpl> refQueue ) {
 
             moinRef = new WeakReferenceWithObjectName<MoinImpl>( moin, objectName, refQueue );
             registerStandardMBean( this, MoinMBean.class, objectName );
@@ -897,12 +897,12 @@ public final class MoinImpl implements CoreMoin {
             return null;
         }
 
-        public String checkConsistencyOfMoinCore( ) throws IOException {
+        public String checkConsistencyOfMoinCore( ) {
 
             return checkCoreConsistency( false /* withoutLocks */);
         }
 
-        public String checkConsistencyOfMoinCoreWithoutLocks( ) throws IOException {
+        public String checkConsistencyOfMoinCoreWithoutLocks( ) {
 
             return checkCoreConsistency( true /* withoutLocks */);
         }
@@ -991,8 +991,8 @@ public final class MoinImpl implements CoreMoin {
         public MofRomPartitionContent( SpiModelPartition partition ) {
 
             this.pri = partition.getPri( );
-            this.elements = new ArrayList( partition.getElements( ) );
-            this.links = new ArrayList( partition.getLinks( ) );
+            this.elements = new ArrayList<Partitionable>( partition.getElements( ) );
+            this.links = new ArrayList<SpiLink>( partition.getLinks( ) );
         }
 
         public List<Partitionable> getElements( ) {
@@ -1022,7 +1022,7 @@ public final class MoinImpl implements CoreMoin {
         return this.evictionThread;
     }
 
-    public ReferenceQueue getReferenceQueue( ) {
+    public <T> ReferenceQueue<T> getReferenceQueue( ) {
 
         return this.housekeepingThread.getReferenceQueue( );
     }

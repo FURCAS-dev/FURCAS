@@ -42,6 +42,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	private ConcreteSyntax syntax;
 	private Map<List<String>, Map<String, ClassTemplate>> classTemplateMap = null;
 	private CtsContentAssistParsingHandler parsingHandler = null;
+	private Connection connection;
 
 	public CtsContentAssistProcessor(Connection connection,
 			Class<? extends Lexer> lexerClass,
@@ -51,6 +52,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		this.lexerClass = lexerClass;
 		this.parserClass = parserClass;
 		this.syntax = getSyntax(connection, language);
+		this.connection = connection;
 
 		if (syntax == null) {
 			throw new IllegalStateException(
@@ -68,6 +70,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		this.syntax = syntax;
 		Assert.isNotNull(syntax, "ConcreteSyntax is null");
 
+		this.connection = TcsUtil.getConnectionFromRefObject(syntax);
+		Assert.isNotNull(connection, "moin connection is null");
 	}
 
 	/**
@@ -276,6 +280,12 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		
+		finally {
+			// clear transient partitions used by content assist
+			TcsUtil.clearTransientPartition(connection);
+			CtsContentAssistParsingHandler.clearTransientPartition(connection);
 		}
 
 		return null;

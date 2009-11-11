@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-10-23 00:56:44 +0200 (Fr, 23 Okt 2009) $
- * Revision: $Revision: 8454 $
+ * Date: $Date: 2009-11-10 14:52:04 +0100 (Di, 10 Nov 2009) $
+ * Revision: $Revision: 8522 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
@@ -113,34 +113,12 @@ public class DelayedReferencesHelper {
 					modelAdapter, contextManager, contextElement);
 
 			// when the element is a Proxy resolve it first
-			if (reference.getModelElement() instanceof ModelElementProxy) {
-				ModelElementProxy proxy = (ModelElementProxy) reference
-						.getModelElement();
-				if (proxy.getRealObject() == null) {
-					Object result;
-					result = modelAdapter.createOrResolveElement(proxy
-							.getType(), proxy.getAttributeMap(), null, null,
-							false, true);
-					if (result instanceof RefObject) {
-						reference.setModelElement(result);
-					}
-				} else {
-					reference.setModelElement(proxy.getRealObject());
-				}
-			}
+			resolveModelElementProxy(reference, modelAdapter);
 			if (reference.getOclQuery() == null) {
-				reportProblem("You must specify an OCL query.", reference
-						.getToken());
+				reportProblem("You must specify an OCL query.", reference.getToken());
 				return false;
 			}
-
-			String flattenOCL = "";
-			if (reference.getOclQuery().startsWith("OCL:")) {
-				flattenOCL = "OCL:(" + reference.getOclQuery().substring(4)
-						+ ")->asSequence()->flatten()";
-			} else {
-				flattenOCL = "(" + reference.getOclQuery() + ")->asSequence()->flatten()";
-			}
+			String flattenOCL = appendFlattenToOclQuery(reference);
 			// evaluate the predicate by OCL, return value is a list of objects
 			Collection<?> result = modelAdapter.getPredicateOclReference(
 					reference.getModelElement(), reference.getPropertyName(),
@@ -157,9 +135,7 @@ public class DelayedReferencesHelper {
 					String ruleName = null;
 					// the type of the element decides how it will be handled
 					if (next instanceof RefObject) {
-
-						MofClass myResultObj = (MofClass) ((RefObject) next)
-								.refMetaObject();
+						MofClass myResultObj = (MofClass) ((RefObject) next).refMetaObject();
 						// get the template
 						// TODO what about the mode? Shouldn't the mode be used for template lookup here?
 						Template tmpl = findTemplate(myResultObj, null, parser
@@ -167,7 +143,6 @@ public class DelayedReferencesHelper {
 								.getPRIPartitions(
 										myResultObj.get___Connection(),
 										parser.getLanguageId()));
-
 						// get the rule name from the template
 						// TODO tmpl lookup above finds un-mode-ed template, appending mode here seems incorrect
 						ruleName = reference.getRuleNameFinder().getRuleName(
@@ -193,7 +168,7 @@ public class DelayedReferencesHelper {
 
 						while (actionListIt.hasNext()) {
 							PredicateSemantic nextPred = actionListIt.next();
-							boolean useRule = true;
+							boolean useRule = true; // covers the no-when case
 							if (nextPred.getWhen() != null) {
 								Collection<?> resultBool = modelAdapter
 										.getPredicateOclReference(reference
@@ -308,6 +283,40 @@ public class DelayedReferencesHelper {
 			return false;
 		}
 		return true;
+	}
+
+	private String appendFlattenToOclQuery(DelayedReference reference) {
+	    String flattenOCL = "";
+	    if (reference.getOclQuery().startsWith("OCL:")) {
+	    	flattenOCL = "OCL:(" + reference.getOclQuery().substring(4)
+	    			+ ")->asSequence()->flatten()";
+	    } else {
+	    	flattenOCL = "(" + reference.getOclQuery() + ")->asSequence()->flatten()";
+	    }
+	    return flattenOCL;
+	}
+
+	/**
+	 * If the <tt>reference</tt>'s {@link DelayedReference#getModelElement() model element}
+	 * is a proxy, resolve it first.
+	 */
+	private void resolveModelElementProxy(DelayedReference reference, IModelAdapter modelAdapter)
+		throws ModelAdapterException, ModelElementCreationException {
+	    if (reference.getModelElement() instanceof ModelElementProxy) {
+	    	ModelElementProxy proxy = (ModelElementProxy) reference
+	    			.getModelElement();
+	    	if (proxy.getRealObject() == null) {
+	    		Object result;
+	    		result = modelAdapter.createOrResolveElement(proxy
+	    				.getType(), proxy.getAttributeMap(), null, null,
+	    				false, true);
+	    		if (result instanceof RefObject) {
+	    			reference.setModelElement(result);
+	    		}
+	    	} else {
+	    		reference.setModelElement(proxy.getRealObject());
+	    	}
+	    }
 	}
 
 	private Template findTemplate(MofClass modelElement, String mode,

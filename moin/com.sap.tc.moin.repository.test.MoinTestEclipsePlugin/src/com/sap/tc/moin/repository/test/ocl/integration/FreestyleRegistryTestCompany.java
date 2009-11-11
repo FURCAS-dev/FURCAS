@@ -467,7 +467,8 @@ public class FreestyleRegistryTestCompany extends BaseOclIntegrationTest {
 
         ExpressionInvalidationListener listener = new ExpressionInvalidationListener( ) {
 
-            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration ) {
+            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration,
+        	    Connection conn) {
 
                 System.out.println( registration.getSeverity( ) + ": Invalidated Objects: " );
                 for ( MRI element : objectsToReEvaluate ) {
@@ -546,7 +547,8 @@ public class FreestyleRegistryTestCompany extends BaseOclIntegrationTest {
 
         ExpressionInvalidationListener listener = new ExpressionInvalidationListener( ) {
 
-            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration ) {
+            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration,
+        	    Connection conn ) {
 
                 System.out.println( registration.getSeverity( ) + ": Invalidated Objects: " );
                 for ( MRI element : objectsToReEvaluate ) {
@@ -621,7 +623,8 @@ public class FreestyleRegistryTestCompany extends BaseOclIntegrationTest {
 
         ExpressionInvalidationListener listener = new ExpressionInvalidationListener( ) {
 
-            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration ) {
+            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration,
+        	    Connection conn ) {
 
                 System.out.println( registration.getSeverity( ).name( ) + " Invalidated Objects: " );
                 for ( MRI element : objectsToReEvaluate ) {
@@ -671,7 +674,8 @@ public class FreestyleRegistryTestCompany extends BaseOclIntegrationTest {
 
         ExpressionInvalidationListener listener = new ExpressionInvalidationListener( ) {
 
-            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration ) {
+            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration,
+        	    Connection conn ) {
 
                 System.out.println( registration.getSeverity( ).name( ) + " Invalidated Objects: " );
                 for ( MRI element : objectsToReEvaluate ) {
@@ -741,7 +745,8 @@ public class FreestyleRegistryTestCompany extends BaseOclIntegrationTest {
 
         ExpressionInvalidationListener listener = new ExpressionInvalidationListener( ) {
 
-            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration ) {
+            public void notify( Collection<MRI> objectsToReEvaluate, OclExpressionRegistration registration,
+        	    Connection conn ) {
 
                 System.out.println( registration.getSeverity( ).name( ) + " Invalidated Objects: " );
                 for ( MRI element : objectsToReEvaluate ) {

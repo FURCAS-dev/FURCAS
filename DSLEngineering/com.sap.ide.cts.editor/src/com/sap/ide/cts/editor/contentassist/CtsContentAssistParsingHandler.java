@@ -32,6 +32,7 @@ import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.ModelPartition;
 
 /**
  * Parsing Observer, that gathers all information necessary for ContentAssist.
@@ -40,6 +41,19 @@ import com.sap.tc.moin.repository.Connection;
  * 
  */
 public class CtsContentAssistParsingHandler implements IParsingObserver {
+	
+	private static final String TRANSIENT_PARTITION_NAME = "ParsingHandlerTransientPartition";
+
+	/**
+	 * clears the parsing handler transient partition on this connection
+	 * 
+	 * @param c
+	 */
+	public static void clearTransientPartition(Connection c) {
+		ModelPartition transientPartition = c
+				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
+		transientPartition.deleteElements();
+	}
 
 	ConcreteSyntax syntax;
 
@@ -572,13 +586,16 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
 	void pushDummySequence(String dummyKeywordName) {
 		Connection c = TcsUtil.getConnectionFromRefObject(syntax);
+		ModelPartition transientPartition = c
+				.getOrCreateTransientPartition(TRANSIENT_PARTITION_NAME);
 		Sequence dummy = (Sequence) c.getClass(tcs.Sequence.CLASS_DESCRIPTOR)
-				.refCreateInstance();
+				.refCreateInstanceInPartition(transientPartition);
 		LiteralRef litRef = (LiteralRef) c.getClass(
-				tcs.LiteralRef.CLASS_DESCRIPTOR).refCreateInstance();
+				tcs.LiteralRef.CLASS_DESCRIPTOR).refCreateInstanceInPartition(
+				transientPartition);
 
 		Keyword keyword = (Keyword) c.getClass(tcs.Keyword.CLASS_DESCRIPTOR)
-				.refCreateInstance();
+				.refCreateInstanceInPartition(transientPartition);
 		keyword.setValue(dummyKeywordName);
 
 		litRef.setReferredLiteral(keyword);

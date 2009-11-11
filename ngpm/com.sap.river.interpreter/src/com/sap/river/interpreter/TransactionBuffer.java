@@ -133,10 +133,12 @@ public class TransactionBuffer implements ChangeSet {
     }
 
     /**
-     * Commits open changes to the {@link Repository}. Returns <code>null</code>
-     * if no open changes exist.
+     * Commits open changes to the {@link Repository}. Returns <code>null</code> if no open changes exist.
+     * 
      * @param repository
-     * @return
+     *            the storage component into which to commit the changes in the current {@link #changeSet}.
+     *            See also {@link Repository#apply(ChangeSet, SnapshotIdentifier)}
+     * @return the snapshot created by committing the change set
      */
     public Snapshot commit(Repository repository) {
 	Snapshot result = null;

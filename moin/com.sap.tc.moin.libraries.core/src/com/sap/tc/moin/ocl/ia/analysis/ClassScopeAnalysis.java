@@ -5,12 +5,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.omg.ocl.attaching.OperationBodyDefinition;
 import org.omg.ocl.attaching.__impl.OperationBodyDefinitionImpl;
 import org.omg.ocl.expressions.AssociationEndCallExp;
@@ -60,6 +54,12 @@ import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.ocl.utils.treewalker.TreeWalker;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.JmiList;
+import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.Operation;
+import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * ClassScopeAnalysis identifies the kind of events (InternalEvents) for which
@@ -153,8 +153,8 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
 
         AssociationEnd assocEnd = ( (AssociationEndCallExpImpl) exp ).getReferredAssociationEnd( this.connection );
-        tag.getEvents( ).add( this.eventFactory.createInsertRT( this.connection, assocEnd ) );
-        tag.getEvents( ).add( this.eventFactory.createDeleteRT( this.connection, assocEnd ) );
+        tag.getEvents( ).add( this.eventFactory.createInsertRT( this.connection, assocEnd, (MofClassImpl) exp.getSource().getType() ) );
+        tag.getEvents( ).add( this.eventFactory.createDeleteRT( this.connection, assocEnd, (MofClassImpl) exp.getSource().getType() ) );
         tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
         // add the child node's events
         NodeTag sourceTag = getTag( ( (AssociationEndCallExpImpl) exp ).getSource( this.connection ) );
@@ -179,7 +179,15 @@ public class ClassScopeAnalysis extends TreeWalker {
 
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the relevant events for this node
-        UpdateAttribute upd = this.eventFactory.createUpdateAttribute( this.connection, ( (AttributeCallExpImpl) exp ).getReferredAttribute( this.connection ) );
+        Classifier sourceType = exp.getSource().getType(); // may be a tuple / structure type or a class
+        UpdateAttribute upd;
+	if (sourceType instanceof MofClassImpl) {
+	    upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)
+		    .getReferredAttribute(this.connection), (MofClassImpl) sourceType);
+	} else {
+	    upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)
+		    .getReferredAttribute( this.connection ));
+        }
         tag.getEvents( ).add( upd );
         tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
         // add the child node's events

@@ -23,8 +23,8 @@ import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 import data.classes.MethodSignature;
-import data.classes.NamedValue;
 import data.classes.SapClass;
+import dataaccess.expressions.MethodCallExpression;
 
 public class FailingEditingActions extends CtsEditorTest {
 
@@ -124,30 +124,26 @@ public class FailingEditingActions extends CtsEditorTest {
     };
 
     /**
-     * The outcommenting doesn't seem to be honored by the incremental parser.
+     * When changing "this" to the identifier denoting a parameter, a method call on "this" which should now have the parameter
+     * VariableExpression as object, has null as the object instead.
      */
     @Test
-    public void testCommentOutVariableDeclaration() throws PartInitException, BadLocationException, CoreException {
-        final RefObject refObject = findClass("RedefineParameterTst2");
-        assertNotNull(refObject); 
-        assertTrue(refObject.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(refObject);
-        CtsDocument document = getDocument(editor);
-        document.replace(61, 0, "/");
-        document.replace(62, 0, "/");
-        document.replace(63, 0, " ");
-        saveAll(editor);
-        //failOnError(editor);
-        assertTrue(refObject.is___Alive());
-        // Your assertions on refObject here 
-        SapClass c = (SapClass) refObject;
-        MethodSignature ms = c.getOwnedSignatures().iterator().next();
-        Block b = (Block) ms.getImplementation();
-        Collection<NamedValue> variables = b.getVariables();
-        assertEquals("Expect to find no declared variables in block because the variable declaration was commented out",
-        	0, variables.size());
-        close(editor);
+    public void testChangeThisToParameter() throws PartInitException, BadLocationException, CoreException {
+	// Source / Copy of: PF.IDE:E03677193DABB480CE4211DE898D0019D29902CC
+	final SapClass refObject = findClass("ThisToParameterChange");
+	assertNotNull(refObject);
+	assertTrue(refObject.is___Alive());
+	AbstractGrammarBasedEditor editor = openEditor(refObject);
+	CtsDocument document = getDocument(editor);
+	document.replace(74, 4, "t");
+	saveAll(editor);
+	// failOnError(editor);
+	assertTrue(refObject.is___Alive());
+	// Your assertions on refObject here
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((Block) m.getImplementation()).getStatements().iterator().next();
+	assertNotNull(mce.getObject());
+	close(editor);
     };
-   
   
 }

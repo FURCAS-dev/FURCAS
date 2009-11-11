@@ -146,7 +146,7 @@ public class SelectionInterpreter implements Interpreter<Selection> {
 	    Iterator iter = selection.getIterator();
 	    frame.enterValue(iter, new EmptyObject(iter.getType())); // create entry in local stack frame
 	    // TODO optionally parallelize because condition is guaranteed to be side effect free
-	    for (RiverObject o : source.flatten()) { // TODO consider not flattening?
+	    for (RiverObject o : source) {
 		frame.setValue(iter, interpreter.convert(o, iter.getType()));
 		if ((Boolean) ((NativeObject) interpreter.evaluate(selection.getSelectionExpr())).getNativeObject()) {
 		    result.add(o);
