@@ -2,11 +2,11 @@ package org.eclipse.emf.query.index.update;
 
 public abstract class UpdateCommandAdapter implements UpdateCommand {
 
-	//	@Override
+	@Override
 	public void postCommitAction() {
 	}
 
-	//	@Override
+	@Override
 	public void preCommitAction() {
 	}
 

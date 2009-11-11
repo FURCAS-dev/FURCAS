@@ -107,7 +107,9 @@ public class PageableIndexImpl implements PageableIndex {
 		command.execute(indexUpdater, this.queryExecutor);
 		this.rwLock.writeLock().lock();
 		try {
+			command.preCommitAction();
 			indexUpdater.commit();
+			command.postCommitAction();
 		} finally { // FIXME rollback handling?
 			this.rwLock.writeLock().unlock();
 		}

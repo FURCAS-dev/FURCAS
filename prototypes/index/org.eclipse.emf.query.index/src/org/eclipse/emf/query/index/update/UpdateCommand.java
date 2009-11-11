@@ -21,8 +21,8 @@ public interface UpdateCommand {
 
 	void execute(IndexUpdater updater, QueryExecutor queryExecutor);
 
-	//	void preCommitAction();
-	//
-	//	void postCommitAction();
+	void preCommitAction();
+
+	void postCommitAction();
 
 }
