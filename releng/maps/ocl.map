@@ -13,7 +13,7 @@ feature@org.eclipse.ocl=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroo
 feature@org.eclipse.ocl.uml=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml-feature
 feature@org.eclipse.ocl.doc=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc-feature
 
-feature@org.eclipse.ocl.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.edit-feature
+feature@org.eclipse.ocl.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit-feature
 
 plugin@org.eclipse.ocl=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
 plugin@org.eclipse.ocl.doc=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
@@ -22,9 +22,9 @@ plugin@org.eclipse.ocl.ecore.tests=v200911042300,:pserver:anonymous@dev.eclipse.
 plugin@org.eclipse.ocl.uml=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml
 plugin@org.eclipse.ocl.uml.tests=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests
 
-plugin@org.eclipse.ocl.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.edit
-plugin@org.eclipse.ocl.ecore.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.ecore.edit
-plugin@org.eclipse.ocl.uml.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.edit
+plugin@org.eclipse.ocl.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit
+plugin@org.eclipse.ocl.ecore.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.ecore.edit
+plugin@org.eclipse.ocl.uml.edit=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml.edit
 
 feature@org.eclipse.emf.ocl.examples=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/examples/org.eclipse.emf.ocl.examples-feature
 feature@org.eclipse.emf.ocl.tests=v200911042300,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.emf.ocl.tests-feature
