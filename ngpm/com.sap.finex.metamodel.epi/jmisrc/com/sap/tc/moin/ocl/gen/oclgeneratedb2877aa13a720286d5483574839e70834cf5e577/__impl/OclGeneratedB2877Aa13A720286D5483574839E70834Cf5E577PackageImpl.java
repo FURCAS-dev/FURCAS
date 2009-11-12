@@ -6,7 +6,7 @@ package com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5
 
 public final class OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577PackageImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefPackageImpl
 {
-    
+
     static {
     }
 

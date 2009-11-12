@@ -6,7 +6,7 @@ package finex.modelmanagement.__impl;
 
 public class NamedElementWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<finex.modelmanagement.__impl.NamedElementImpl> implements finex.modelmanagement.NamedElement,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 

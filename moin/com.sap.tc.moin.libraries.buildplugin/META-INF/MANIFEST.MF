@@ -28,5 +28,5 @@ Require-Bundle: com.sap.tc.moin.libraries.jmi,
  com.sap.tc.moin.facility.primary.libraries,
  com.sap.tc.moin.facility.build.libraries,
  com.sap.tc.moin.libraries.spi.internal,
- org.antlr;bundle-version="3.0.0",
- com.tssap.sap.libs.logging;bundle-version="2.0.0"
+ com.tssap.sap.libs.logging;bundle-version="2.0.0",
+ org.antlr;bundle-version="3.1.1"

@@ -1,9 +1,9 @@
-syntax Bibtext(k = 0) {
+syntax Bibtext {
 
 	-- simple basic syntax containing articles and authors, used as Hello Word example
 
 	primitiveTemplate identifier for ->String default using NAME:
-		value = "%token%";
+		value = "unescapeString(%token%)";
 
 
 	

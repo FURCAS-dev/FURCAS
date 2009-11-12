@@ -18,9 +18,9 @@ public class MockLexerAdapterWithLookaheadLLStar extends ANTLRLexerAdapter {
 		// TODO Auto-generated constructor stub
 	}
 
-	private List<AbstractToken> nextTokens;
-	private ANTLRIncrementalLexerAdapter callbackLexer;
-	private int nextTokenIndex = 0;
+	protected List<AbstractToken> nextTokens;
+	protected ANTLRIncrementalLexerAdapter callbackLexer;
+	protected int nextTokenIndex = 0;
 
 	@Override
 	public int getState(AbstractToken tok) {

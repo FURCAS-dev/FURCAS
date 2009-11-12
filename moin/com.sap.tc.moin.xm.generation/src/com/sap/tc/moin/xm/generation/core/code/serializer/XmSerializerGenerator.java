@@ -4,6 +4,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateErrorListener;
 import org.antlr.stringtemplate.StringTemplateGroup;
 import org.antlr.stringtemplate.StringTemplateGroupLoader;
+import org.antlr.stringtemplate.language.DefaultTemplateLexer;
 
 import com.sap.tc.moin.repository.exception.MoinNullPointerException;
 import com.sap.tc.moin.repository.shared.logger.MoinCategoryEnum;
@@ -31,7 +32,7 @@ public final class XmSerializerGenerator {
         final StringTemplateGroupLoader loader = new CommonClassLoaderGroupLoader( "com/sap/tc/moin/xm/generation/core/code/serializer/template", errorListener, XmSerializerGenerator.class.getClassLoader( ) ); //$NON-NLS-1$
         StringTemplateGroup.registerGroupLoader( loader );
 
-        serializergroup = StringTemplateGroup.loadGroup( "serializer" ); //$NON-NLS-1$
+        serializergroup = StringTemplateGroup.loadGroup( "serializer", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
     }
 
 

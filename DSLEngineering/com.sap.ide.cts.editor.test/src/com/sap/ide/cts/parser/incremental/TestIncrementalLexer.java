@@ -3,6 +3,7 @@ package com.sap.ide.cts.parser.incremental;
 import static junit.framework.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Test;
@@ -14,13 +15,17 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 import textblocks.VersionEnum;
 
+import antlr.Version;
+
 import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
+import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
+import com.sun.xml.internal.ws.util.VersionUtil;
 
 public class TestIncrementalLexer extends TextBlockTest {
 
@@ -91,15 +96,36 @@ public class TestIncrementalLexer extends TextBlockTest {
 		// Set exactly the same tokens as nothing in their structure changed
 		// except BOS token
 		List<AbstractToken> nextTokens = new ArrayList<AbstractToken>(2);
-		nextTokens.add(editedVersion.getTokens().get(1));
+//		AbstractToken tok1 = (AbstractToken) TbUtil.createNewCopy(editedVersion.getTokens().get(1),
+//                        VersionEnum.CURRENT, false, null);
+//		TbUtil.dereferenceVersions(tok1, editedVersion.getTokens().get(1));
+//		tok1.getOtherVersions().clear();
+		
+		LexedToken lt = createToken(editedVersion.getTokens().get(1).getValue());
+		lt.setVersion(VersionEnum.CURRENT);
+		lt.setLength(5);
+		
+		nextTokens.add(lt);
 		nextTokens.add(editedVersion.getTokens().get(2));
+//		
+//		//The following is here to clear
+//		AbstractToken tok1 = (AbstractToken) TbUtil.createNewCopy(editedVersion.getTokens().get(1),
+//                        VersionEnum.CURRENT, false, null);
+//                TbUtil.dereferenceVersions(tok1, editedVersion.getTokens().get(1));
+//                tok1.getOtherVersions().clear();
+//                
+//		
+//		TbVersionUtil.getOtherVersion(editedVersion.getTokens().get(2), VersionEnum.CURRENT).refDelete();
+//		TextBlock currentTB = TbVersionUtil.getOtherVersion(editedVersion, VersionEnum.CURRENT);
+//                TbUtil.dereferenceVersions(editedVersion, currentTB);
+//                currentTB.getOtherVersions().clear();
 
 		mockLexerAdapter.setNextTokens(nextTokens);
 
 		incrementalLexer.lex(editedVersion);
 
-		TextBlock newlyLexedVersion = TbVersionUtil
-				.getOtherVersion(editedVersion, VersionEnum.CURRENT);
+		TextBlock currentTB = TbVersionUtil.getOtherVersion(editedVersion, VersionEnum.CURRENT);
+		TextBlock newlyLexedVersion = currentTB;
 
 		//TODO fix!
 		assertEquals(3, newlyLexedVersion.getTokens().size());
@@ -385,7 +411,29 @@ public class TestIncrementalLexer extends TextBlockTest {
 		// should leave the textblock as it is.
 
 		MockLexerAdapterWithLookaheadLLStar mockLexerAdapter = new MockLexerAdapterWithLookaheadLLStar(
-				null, connection);
+				null, connection){
+
+                    @Override
+                    public List<AbstractToken> moreTokens() {
+                        //simulate a lookahead of 1 within a LL(*) parser
+                        int mark = callbackLexer.mark();
+                        callbackLexer.LA(1);
+                        callbackLexer.consume();
+                        callbackLexer.rewind(mark);
+                        //simulate token consumption on callbacked lexer
+                        callbackLexer.consume();
+                        AbstractToken o = nextTokens.get(nextTokenIndex++);
+                        if(o.getValue().equals("tok3")) {
+                            o = TbVersionUtil.getOtherVersion(o, VersionEnum.CURRENT);
+                            //this needs to be done as tok3 will be simulated as being reused but its offset needs
+                            //to be adapted to the changes
+                            
+                            o.setOffset(1);
+                        }
+                        return Collections.singletonList(o);
+                    }
+		    
+		};
 		ANTLRIncrementalLexerAdapter incrementalLexer = new ANTLRIncrementalLexerAdapter(
 				mockLexerAdapter, null, connection);
 
@@ -418,6 +466,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 		tok3.setLookback(1);
 		subBlock.getTokens().add(tok3);
 
+		root.getTokens().get(root.getTokens().size()-1).setOffset(12);
 		root.setCachedString("tok1tok2tok3");
 		root.setLength(12);
 		TextBlocksModel tbModel = new TextBlocksModel(root, null);
@@ -461,17 +510,17 @@ public class TestIncrementalLexer extends TextBlockTest {
 		newTok2.setOffset(1);
 		newTok2.setLength(4);
 		newTok2.setVersion(VersionEnum.CURRENT);
-		newTok2.setRelexingNeeded(true);
+		newTok2.setRelexingNeeded(false);
 		nextTokens.add(newTok2);
 
-		LexedToken newTok3 = createToken("tok3");
-		// lexer uses offset relative to last constructionlocation
-		// so this has to be simulated here as well which is this tok2
-		newTok3.setOffset(5);
-		newTok3.setLength(4);
-		newTok3.setVersion(VersionEnum.CURRENT);
-		newTok3.setRelexingNeeded(true);
-		nextTokens.add(newTok3);
+//		LexedToken newTok3 = createToken("tok3");
+//		// lexer uses offset relative to last constructionlocation
+//		// so this has to be simulated here as well which is this tok2
+//		newTok3.setOffset(5);
+//		newTok3.setLength(4);
+//		newTok3.setVersion(VersionEnum.CURRENT);
+//		newTok3.setRelexingNeeded(false);
+		nextTokens.add(tok3);
 
 		// add EOS
 		Eostoken eos = IncrementalLexer.createEOSToken(connection
@@ -480,7 +529,7 @@ public class TestIncrementalLexer extends TextBlockTest {
 		eos.setOffsetRelative(true);
 		// lexer uses offset relative to last constructionlocation
 		// so this has to be simulated here as well which is tok3
-		eos.setOffset(6);
+		eos.setOffset(13);
 		nextTokens.add(eos);
 
 		mockLexerAdapter.setNextTokens(nextTokens);
@@ -500,9 +549,9 @@ public class TestIncrementalLexer extends TextBlockTest {
 		assertEquals(newTok2, newlyLexedVersion.getSubBlocks().get(0)
 				.getTokens().get(1));
 
-		assertEquals(1, newTok3.getLookback());
+		assertEquals(1, tok3.getLookback());
 		assertEquals(1, x.getLookback());
-		assertEquals(1, newTok2.getLookback());
+		assertEquals(0, newTok2.getLookback());
 
 		TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion);
 		TbValidationUtil.assertTextBlockConsistency(newlyLexedVersion

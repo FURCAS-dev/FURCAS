@@ -52,6 +52,8 @@ public class JmiGenerator {
         } catch ( InvocationTargetException e ) {
             throw new JmiGeneratorRuntimeException( JmiGeneratorTraces.EXCEPTIONGETTINGGENERATORIMPL, e );
         }
+        //TODO why is this done via reflection?
+//        this.myGeneratorImpl = new JmiGeneratorImpl( connection );
     }
 
     /**

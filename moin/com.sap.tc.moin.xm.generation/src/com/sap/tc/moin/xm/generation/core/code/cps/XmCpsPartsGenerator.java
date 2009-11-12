@@ -4,6 +4,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateErrorListener;
 import org.antlr.stringtemplate.StringTemplateGroup;
 import org.antlr.stringtemplate.StringTemplateGroupLoader;
+import org.antlr.stringtemplate.language.DefaultTemplateLexer;
 
 import com.sap.tc.moin.repository.exception.MoinNullPointerException;
 import com.sap.tc.moin.repository.shared.logger.MoinCategoryEnum;
@@ -44,7 +45,7 @@ public final class XmCpsPartsGenerator {
         final StringTemplateGroupLoader loader = new CommonClassLoaderGroupLoader( "com/sap/tc/moin/xm/generation/core/code/cps", errorListener, XmCpsPartsGenerator.class.getClassLoader( ) ); //$NON-NLS-1$
         StringTemplateGroup.registerGroupLoader( loader );
 
-        xmcps = StringTemplateGroup.loadGroup( "xmcps" ); //$NON-NLS-1$
+        xmcps = StringTemplateGroup.loadGroup( "xmcps", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
     }
 
 

@@ -8,7 +8,7 @@ public final class FinexPackageImpl extends com.sap.tc.moin.repository.core.jmi.
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);

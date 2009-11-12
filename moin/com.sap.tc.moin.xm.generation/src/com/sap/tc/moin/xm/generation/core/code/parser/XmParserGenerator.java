@@ -4,6 +4,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateErrorListener;
 import org.antlr.stringtemplate.StringTemplateGroup;
 import org.antlr.stringtemplate.StringTemplateGroupLoader;
+import org.antlr.stringtemplate.language.DefaultTemplateLexer;
 
 import com.sap.tc.moin.repository.exception.MoinNullPointerException;
 import com.sap.tc.moin.repository.shared.logger.MoinCategoryEnum;
@@ -29,7 +30,7 @@ public final class XmParserGenerator {
         final StringTemplateGroupLoader loader = new CommonClassLoaderGroupLoader( "com/sap/tc/moin/xm/generation/core/code/parser/template", errorListener, XmParserGenerator.class.getClassLoader( ) ); //$NON-NLS-1$
         StringTemplateGroup.registerGroupLoader( loader );
 
-        parsergroup = StringTemplateGroup.loadGroup( "parser" ); //$NON-NLS-1$
+        parsergroup = StringTemplateGroup.loadGroup( "parser", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
     }
 
 

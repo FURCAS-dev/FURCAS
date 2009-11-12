@@ -6,7 +6,7 @@ package structure.__impl;
 
 public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<structure.__impl.AssociationImpl> implements structure.Association,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 

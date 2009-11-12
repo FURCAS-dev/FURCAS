@@ -50,6 +50,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateErrorListener;
 import org.antlr.stringtemplate.StringTemplateGroup;
 import org.antlr.stringtemplate.StringTemplateGroupLoader;
+import org.antlr.stringtemplate.language.DefaultTemplateLexer;
 import org.omg.ocl.attaching.__impl.OclConstraintInternal;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.__impl.BooleanLiteralExpInternal;
@@ -551,12 +552,12 @@ public abstract class JmiGeneratorBaseWrapper implements JmiGeneratorModelElemen
         StringTemplateGroupLoader loader = new JmiGeneratorImpl.CommonClassLoaderGroupLoader( "com/sap/tc/moin/repository/jmigenerator/template", errorListener, JmiGeneratorBaseWrapper.class.getClassLoader( ) ); //$NON-NLS-1$
         StringTemplateGroup.registerGroupLoader( loader );
 
-        pkggroup = StringTemplateGroup.loadGroup( "package" ); //$NON-NLS-1$
-        classgroup = StringTemplateGroup.loadGroup( "class" ); //$NON-NLS-1$
-        enumgroup = StringTemplateGroup.loadGroup( "enum" ); //$NON-NLS-1$
-        stgroup = StringTemplateGroup.loadGroup( "structype" ); //$NON-NLS-1$
-        assocgroup = StringTemplateGroup.loadGroup( "assoc" ); //$NON-NLS-1$
-        exceptiongroup = StringTemplateGroup.loadGroup( "exception" ); //$NON-NLS-1$
+        pkggroup = StringTemplateGroup.loadGroup( "package", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
+        classgroup = StringTemplateGroup.loadGroup( "class", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
+        enumgroup = StringTemplateGroup.loadGroup( "enum", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
+        stgroup = StringTemplateGroup.loadGroup( "structype", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
+        assocgroup = StringTemplateGroup.loadGroup( "assoc", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
+        exceptiongroup = StringTemplateGroup.loadGroup( "exception", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
     }
 
     protected CoreConnection connection = null;

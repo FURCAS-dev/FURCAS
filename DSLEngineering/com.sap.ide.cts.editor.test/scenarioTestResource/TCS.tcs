@@ -1,17 +1,17 @@
--- Test base for modifications to the tcs language
--- !! This file may not reflect the latest coreMonet syntax, look for the one in /bootstrap instead
-
+-- Identifiers are ALPHA (ALPHA | DIGIT)* with a special form between single quote to escape them in case they are the same as a keywords of TCS
+-- Strings are double quoted
+-- Comments begin with -- and end with the end of the line
 syntax TCS {
 
 	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
-		value = "%token%";
+		value = "unescapeString(%token%)";
 
 	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
-		value = "%token%";
+		value = "unescapeString(%token%)";
 
 	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
-		value = "%token%",
-		--serializer="'\\\"' + %value%.toCString() + '\\\"'";
+		value = "unescapeString(%token%)",
+		serializer="'\\\"' + %value%.toCString() + '\\\"'";
 
 	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
 		value = "Integer.valueOf(%token%)";
@@ -19,6 +19,43 @@ syntax TCS {
 	primitiveTemplate floatSymbol for PrimitiveTypes::Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
 
+
+	-- MOF element representation in qualified names
+	
+	-- A modelClassifier is either its container followed by :: and a name, or just a name
+	template Model::Classifier referenceOnly -- should never be created
+	: ( isDefined(container) ? container   -- is of type Namespace in MM
+	  "::" name : name)
+	;
+	
+	
+	-- Namespace gets operatored using the :: operator to resolve left recursion
+	template Model::Namespace abstract operatored(DBLCOLON);
+	
+	-- if parsed path has more than one element, 
+	-- the first will be of type Generalizable element
+	-- because that is the type of Mode::ModelElement.container
+	template Model::GeneralizableElement referenceOnly -- should never be created
+		: name
+		;
+		
+	-- any following elements in a package path will be resolved using this
+	operatorTemplate Model::ModelElement(operators =
+			opDlColon, source = 'container') referenceOnly -- should never be created
+		:
+			name
+		;
+
+	-- end MOF element representation
+
+
+	-- @begin TextBlockDefintion
+	template textblockdefinition::TextBlockDefinition
+		:
+		;
+	-- @end TextBlockDefintion	
+
+	-- the root element of any syntax definition
 	template TCS::ConcreteSyntax main context
 		:	"syntax" name (isDefined(k) ?  "(" "k" "=" k ")") "{" [
 				templates
@@ -30,34 +67,18 @@ syntax TCS {
 			] {nbNL = 2} "}"
 		;
 
--- @begin Templates
-	template TCS::Template abstract;
-	
-	template Model::Namespace abstract operatored(DBLCOLON);
-	
-	template Model::GeneralizableElement referenceOnly -- should never be created
-		: name
-		;
-		
-	operatorTemplate Model::ModelElement(operators =
-			opDlColon, source = 'container') referenceOnly -- should never be created
-		:
-			name
-		;
 
-	template Model::Classifier referenceOnly  -- should never be created
-	: ( isDefined(container) ? container   -- is of type namespace in MM 
-	  "::" name : name)
-	;
 	
-	
+	-- utility for all qualified meta references
 	function reference(TCS::QualifiedNamedElement)
 		: (isDefined(metaReference) 
-		  ? metaReference   -- is assumed to be of type Classifier in MM
-		  : "->" names{separator="::"})
+		  ? metaReference--{refersTo=name}
+		  : "->" names{separator="::"}) -- workaround allowing to specify metatypes without directly referencing them
 		;
-		
-	
+
+-- @begin Templates
+
+	template TCS::Template abstract;
 
 	template TCS::PrimitiveTemplate
 		:	"primitiveTemplate" templateName "for" $reference
@@ -70,6 +91,7 @@ syntax TCS {
 					"," "serializer" "=" serializer{as = stringSymbol}
 				)
 			";"
+			textBlockDefinition{forcedUpper=1}
 		;
 
 	template TCS::EnumerationTemplate context addToContext
@@ -81,6 +103,7 @@ syntax TCS {
 				:
 					";"
 			)
+			textBlockDefinition{forcedUpper=1}
 		;
 
 	template TCS::EnumLiteralMapping
@@ -94,32 +117,34 @@ syntax TCS {
 			  : 
 				(isDefined(mode) ? "#" mode)
 				(isDefined(disambiguate) ? "(" "disambiguate" "=" disambiguate{as = stringSymbol} ")")
+				(isDefined(disambiguateV3) ? "(" "disambiguateV3" "=" disambiguateV3{as = stringSymbol} ")")
 				(isMulti ? "multi")
 				(isMain ? "main")
 				(isAbstract ? (isDeep ? "deep") "abstract")
 				(isOperatored ? "operatored" (isDefined(operatorList) ? "(" operatorList{refersTo = name} ")"))
-				(isContext ? "context")
+				(isContext ? "context" (isDefined(contextTags) ? contextTags))
 				(isAddToContext ? "addToContext")
 				(isNonPrimary ? "nonPrimary")
 				(isDefined(prefixSequence) ? "prefix" [ ":" [ prefixSequence ] {startNL = false} ])
-			)
+			  )
 			(isDefined(templateSequence) ? [ ":" [ templateSequence ] {startNL = false} ";" ] : ";")
+			textBlockDefinition{forcedUpper=1}
 		;
 
 	template TCS::OperatorTemplate context addToContext
-		:	"operatorTemplate" $reference 
-			"("
+		:	"operatorTemplate" $reference "("
 				"operators" "=" operators{refersTo = name}
-				"," "source" "=" source
-				(isDefined(storeOpTo) ? "," "storeOpTo" "=" storeOpTo)
-				(isDefined(storeRightTo) ? "," "storeRightTo" "=" storeRightTo)
+				"," "source" "=" storeLeftSideTo
+				(isDefined(storeOperatorTo) ? "," "storeOpTo" "=" storeOperatorTo)
+				(isDefined(storeRightSideTo) ? "," "storeRightTo" "=" storeRightSideTo)
 				(isDefined(disambiguate) ? "," "disambiguate" "=" disambiguate{as = stringSymbol})
 				(isDefined(disambiguateV3) ? "," "disambiguateV3" "=" disambiguateV3{as = stringSymbol})
 			")"
 			(isReferenceOnly ? "referenceOnly" :
-				(isContext ? "context")
+				(isContext ? "context" (isDefined(contextTags) ? contextTags))
 			)
 			(isDefined(otSequence) ? [ ":" [ otSequence ] {startNL = false} ";" ] : ";")
+			textBlockDefinition{forcedUpper=1}
 		;
 
 	template TCS::FunctionTemplate context addToContext
@@ -127,6 +152,10 @@ syntax TCS {
 				[ ":"
 					[ functionSequence ] {startNL = false}
 				";" ]
+		;
+		
+	template TCS::ContextTags
+		: "(" tags{separator= ","} ")"
 		;
 -- @end Templates
 
@@ -145,38 +174,148 @@ syntax TCS {
 --			|
 --				"@" referredLiteral{refersTo = name}
 --			]]
+			{{ parentTemplate = lookIn("OCL:#context") }}
 		;
 
-	template TCS::Property addToContext
-		: -- for reference, need to look in metareference modelElement of the template this property belongs to	
-		  (isDefined(strucfeature) ? strucfeature{refersTo=name, lookIn='#context.metaReference', as = identifierOrKeyword}
+
+	template TCS::PropertyReference 
+	    :
+	    -- for reference, need to look in metareference modelElement of the template this property belongs to	
+		  (isDefined(strucfeature) ? 
+		  	strucfeature{
+		  		refersTo=name, 
+		  		query="OCL:let c = #context.oclAsType(TCS::Template).metaReference in
+		  				let result = c.lookupElementExtended(?) in
+		  				if not (result.oclIsInvalid()) then
+		  					if(result.oclIsTypeOf(Model::Attribute) or
+		  							result.oclIsTypeOf(Model::Reference)
+		  							or result.oclIsTypeOf(Model::StructureField)) then
+		  						Bag{result}	
+		  					else 		
+		  						c.allSupertypes()->prepend(c)->collect(
+		  							st | st.oclAsType(Model::Classifier).typedElements->select(
+		  								te | 
+		  									if te.oclIsTypeOf(Model::AssociationEnd) then
+		  										te.oclAsType(Model::AssociationEnd).otherEnd().name = ? 
+		  									else		
+		  										false 
+		  									endif
+		  								)->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd())
+		  						)
+		  					endif 
+		  				else	
+		  					c.allSupertypes()->prepend(c)->collect(
+		  						st | st.oclAsType(Model::Classifier).typedElements->select(
+		  							te | 
+		  								if te.oclIsTypeOf(Model::AssociationEnd) then
+		  									te.oclAsType(Model::AssociationEnd).otherEnd().name = ? 
+		  								else
+		  									false 
+		  								endif
+		  							)
+		  						)->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()
+		  					) 
+		  				endif
+		  					", as = identifierOrKeyword}
 		  : "->" name{as = identifierOrKeyword})
-		(isDefined(propertyArgs) ? "{" propertyArgs{separator = ","} "}")
+	    ;
+
+	template TCS::Property
+		: propertyReference
+		  (isDefined(propertyArgs) ? "{" propertyArgs{separator = ","} "}")
+		  {{ parentTemplate = lookIn("OCL:#context") }}
 		;
 
 	template TCS::CustomSeparator
 		:	"<" name ">"
+			{{ parentTemplate = lookIn("OCL:#context") }}
 		;
 
 	template TCS::Block
 		:	"[" blockSequence "]" (isDefined(blockArgs) ? "{" blockArgs{separator = ","} "}")
+			{{ parentTemplate = lookIn("OCL:#context") }}
 		;
 
 	template TCS::ConditionalElement
 		:	"(" condition "?" thenSequence (isDefined(elseSequence) ? ":" elseSequence) ")"
+			{{ parentTemplate = lookIn("OCL:#context") }}
 		;
-
---	template TCS::PropertyInit
---		:	"{{" name "<-" value "}}"
---		;
 
 	template TCS::Alternative
 		:	"[[" sequences{separator = "|"} "]]" (isMulti ? "*")
+			{{ parentTemplate = lookIn("OCL:#context") }}
 		;
-
+		
+	template TCS::SequenceInAlternative
+		:	(isDefined(disambiguate) ? "disambiguate" "(" disambiguate{as = stringSymbol} ")") 
+			elements
+		;
+		
 	template TCS::FunctionCall
 		:	"$" calledFunction{refersTo = functionName}
+			{{ parentTemplate = lookIn("OCL:#context") }}
 		;
+
+	template TCS::InjectorActionsBlock
+		:	"{{" injectorActions{separator = ","} "}}"
+			{{ parentTemplate = lookIn("OCL:#context") }}
+		;
+		
+	template TCS::InjectorAction abstract;
+	
+	template TCS::PropertyInit abstract;
+	
+	template TCS::PrimitivePropertyInit
+		: 	propertyReference (isDefault ? "<-" : "=") value
+		;
+	
+	template TCS::LookupPropertyInit
+		: 	propertyReference (isDefault ? "<-" : "=") "lookIn" "(" value { as = stringSymbol } ")"
+		;
+	template TCS::ForeachPredicatePropertyInit
+		: 	propertyReference (isDefault ? "<-" : "=") "foreach" "(" 
+				value {as = stringSymbol} 
+				(isDefined(mode)? "," "mode" "=" mode {as = stringSymbol})
+				(isDefined(predicatesemantic)? "," predicatesemantic {separator=","})
+				")"
+		;
+	template TCS::PredicateSemantic
+		: (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
+		  (isDefined(mode)?  "mode" "=" mode {as = stringSymbol}",")
+		  "as" "=" as {as = identifierOrKeyword, 
+								query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
+							filter="->select(t | 
+									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+										t.oclAsType(TCS::ClassTemplate).metaReference.name = ?
+										and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
+											->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
+											->includes(self.foreachParent.propertyReference.strucfeature.type)
+										and (
+											if(not self.mode.oclIsUndefined()) then
+												t.oclAsType(TCS::ClassTemplate).mode = self.mode
+											else
+												t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
+											endif
+										)									
+									else
+										if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
+											t.oclAsType(TCS::PrimitiveTemplate).templateName = ?
+										else
+											false
+										endif
+									endif)
+								",
+							invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+											t.oclAsType(TCS::ClassTemplate).metaReference.name
+										else 
+											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+												self.oclAsType(TCS::PrimitiveTemplate).templateName
+											else
+												OclInvalid
+											endif
+										endif"}
+		;
+
 -- @end Sequence Elements
 
 
@@ -196,7 +335,45 @@ syntax TCS {
 		;
 
 	template TCS::AsPArg
-		:	"as" "=" value {as = identifierOrKeyword}
+		:	"as" "=" template {as = identifierOrKeyword, 
+								query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
+								filter="->select(t | 
+									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+										t.oclAsType(TCS::ClassTemplate).metaReference.name = ? 
+										and(self.property.propertyReference.strucfeature.type.allSupertypes()
+											->prepend(self.property.propertyReference.strucfeature.type)
+											->includes(t.oclAsType(TCS::ClassTemplate).metaReference))
+										and (
+											if (not self.property.propertyArgs->select(
+													arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()
+												) 
+											then
+												t.oclAsType(TCS::ClassTemplate).mode = 
+													self.property.propertyArgs->select(
+														arg | arg.oclIsTypeOf(TCS::ModePArg))
+															.oclAsType(TCS::ModePArg)->asSequence()->at(1)
+													.mode
+											else
+												t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()
+											endif
+										)
+									else
+										if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
+											t.oclAsType(TCS::PrimitiveTemplate).templateName = ? 
+										else
+											false
+										endif
+									endif)
+								", 
+								invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+											t.oclAsType(TCS::ClassTemplate).metaReference.name
+										else 
+											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+												self.oclAsType(TCS::PrimitiveTemplate).templateName
+											else
+												OclInvalid
+											endif
+										endif"}
 		;
 
 --	template TCS::RefersToKeyPArg
@@ -205,6 +382,10 @@ syntax TCS {
 
 	template TCS::SeparatorPArg
 		:	"separator" "=" separatorSequence
+		;
+
+	template TCS::DisambiguatePArg
+		:	"disambiguate" "=" disambiguation{as = stringSymbol}
 		;
 
 	template TCS::AutoCreatePArg
@@ -220,9 +401,17 @@ syntax TCS {
 	template TCS::ImportContextPArg
 		:	"importContext"
 		;
+		
+	template TCS::PartialPArg
+		:	"partial"
+		;	
 
 	template TCS::ForcedLowerPArg
 		:	"forcedLower" "=" value
+		;
+		
+	template TCS::ForcedUpperPArg
+		:	"forcedUpper" "=" value
 		;
 
 	template TCS::CreateAsPArg
@@ -230,7 +419,11 @@ syntax TCS {
 		;
 
 	template TCS::QueryPArg
-		:	"query" "=" query{as = identifierOrKeyword}
+		:	"query" "=" query{as = stringSymbol}
+		;
+		
+	template TCS::FilterPArg
+		:	"filter" "=" filter{as = stringSymbol} (isDefined(invert) ? "," "invert" "=" invert{as = stringSymbol})
 		;
 
 	template TCS::ModePArg
@@ -242,30 +435,30 @@ syntax TCS {
 -- @begin Block Arguments
 	template TCS::BlockArg abstract;
 
-	template TCS::NbNLBArg
-		:	"nbNL" "=" value
+	template TCS::NbNLBArg -- Number of New Line
+		:	"nbNL" "=" value --int
 		;
 
 	template TCS::IndentIncrBArg
-		:	"indentIncr" "=" value
+		:	"indentIncr" "=" value --int
 		;
 
-	template TCS::StartNLBArg
-		:	"startNL" "=" (value ? "true" : "false")
+	template TCS::StartNLBArg  -- newlines before block
+		:	"startNL" "=" (value ? "true" : "false")  --boolean
 		;
 
 	template TCS::StartNbNLBArg
-		:	"startNbNL" "=" value
+		:	"startNbNL" "=" value --int 
 		;
 
-	template TCS::EndNLBArg
-		:	"endNL" "=" (value ? "true" : "false")
+	template TCS::EndNLBArg -- one newline after block plus indent -1
+		:	"endNL" "=" (value ? "true" : "false") --boolean
 		;
 -- @end Block Arguments
 
 
 -- @begin Literals
---	template Literal abstract;
+--	template TCS::Literal abstract;
 
 	template TCS::Symbol addToContext
 		:	name "=" value{as = stringSymbol} (isDefined(spaces) ? ":" spaces{separator = ","}) ";"
@@ -328,23 +521,23 @@ syntax TCS {
 	template TCS::AtomExp abstract;
 
 	template TCS::EqualsExp
-		:	propertyName{as = identifierOrKeyword} "=" value
+		:	propertyReference "=" value
 		;
 
 	template TCS::BooleanPropertyExp
-		:	propertyName{as = identifierOrKeyword}
+		:	propertyReference
 		;
 
 	template TCS::IsDefinedExp
-		:	"isDefined" "(" propertyName{as = identifierOrKeyword} ")"
+		:	"isDefined" "(" propertyReference ")"
 		;
 		
 	template TCS::OneExp
-		:	"one" "(" propertyName{as = identifierOrKeyword} ")"
+		:	"one" "(" propertyReference ")"
 		;
 
 	template TCS::InstanceOfExp
-		:	propertyName{as = identifierOrKeyword} "instanceOf" supertype{separator = "::"}
+		:	propertyReference "instanceOf" supertype{separator = "::"}
 		;
 
 --@end Expressions
@@ -372,7 +565,7 @@ syntax TCS {
 
 -- @begin Tokens
 	template TCS::Token
-		:	"token" name ":" pattern ";"
+		:	(isOmitted ? "omitted") "token" name ":" pattern ";"
 		;
 
 	template TCS::OrPattern
@@ -445,7 +638,7 @@ syntax TCS {
 		;
 -- @end Rules
 
---	template TCS::RuleArgument
+--	template RuleArgument
 --		:	name "=" value
 --		;
 
@@ -496,14 +689,15 @@ syntax TCS {
 		ne		= "<>";
 		larrow		= "<-";
 	}
-
+	
+	-- operator for left recursive qualified names
 	operators DBLCOLON{
 		priority 0 {
 			opDlColon = dlcolon, 2;
 		}
 	}
 
-	token COMMENT	: endOfLine(start = "--");
+	omitted token COMMENT	: endOfLine(start = "--");
 
 	lexer = "
 %options testLiterals = false;
@@ -514,13 +708,13 @@ NL
 		|	'\\r'
 		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
 		|	'\\t'
-		)
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -547,16 +741,16 @@ SNAME
 	:	(ALPHA) (ALPHA | DIGIT)* 
 ;
 
+
 NAME
 	:	(   
 		SNAME
-		|	'\\''!
+		|	'\\''!  // exclamation marks means to exclude the char from the token (in theory)
 			(	ESC
 			|	'\\n' {newline();}
-			|	~('\\\\'|'\\''|'\\n')
+			|	~('\\\\'|'\\''|'\\n') // means any other character
 			)*
 			'\\''!
-		{setText(unescapeString(getText(), 1));}
 		)
 	;
 	
@@ -600,11 +794,9 @@ STRING
 	:	'\"'!
 		(	ESC
 		|	'\\n' {newline();}
-		|	~('\\\\'|'\\\"'|'\\n')
+		|	~('\\\\'|'\\\"'|'\\n')  // means any other character
 		)*
 		'\"'!
-		{setText(unescapeString(getText(), 1));}
-
 	;
 
 	";

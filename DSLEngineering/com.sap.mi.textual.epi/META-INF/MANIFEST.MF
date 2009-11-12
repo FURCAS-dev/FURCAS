@@ -31,24 +31,6 @@ Export-Package: com.sap.mi.textual.epi,
  com.sap.mi.textual.epi.filedefinition,
  com.sap.mi.textual.epi.projectwizard,
  com.sap.mi.textual.epi.ui,
- com.sap.mi.textual.epi.util,
- org.antlr;uses:="org.antlr.tool",
- org.antlr.analysis,
- org.antlr.runtime;uses:="org.antlr.runtime.tree",
- org.antlr.stringtemplate,
- org.antlr.stringtemplate.language,
- org.antlr.stringtemplate.misc,
- org.antlr.tool;
-  uses:="org.antlr.codegen,
-   org.antlr.stringtemplate,
-   org.antlr,
-   org.antlr.misc,
-   antlr.collections.impl,
-   org.antlr.runtime.tree,
-   org.antlr.runtime.debug,
-   antlr.collections,
-   org.antlr.runtime,
-   org.antlr.analysis,
-   antlr"
+ com.sap.mi.textual.epi.util
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -28,6 +28,7 @@ import org.antlr.stringtemplate.StringTemplate;
 import org.antlr.stringtemplate.StringTemplateErrorListener;
 import org.antlr.stringtemplate.StringTemplateGroup;
 import org.antlr.stringtemplate.StringTemplateGroupLoader;
+import org.antlr.stringtemplate.language.DefaultTemplateLexer;
 
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.Partitionable;
@@ -75,7 +76,7 @@ public class JmiGeneratorImpl {
         StringTemplateGroupLoader loader = new CommonClassLoaderGroupLoader( "com/sap/tc/moin/repository/jmigenerator/template", errorListener, JmiGeneratorImpl.class.getClassLoader( ) ); //$NON-NLS-1$
         StringTemplateGroup.registerGroupLoader( loader );
 
-        deployextensiongroup = StringTemplateGroup.loadGroup( "deploymentext" ); //$NON-NLS-1$
+        deployextensiongroup = StringTemplateGroup.loadGroup( "deploymentext", DefaultTemplateLexer.class, null ); //$NON-NLS-1$
     }
 
     /**

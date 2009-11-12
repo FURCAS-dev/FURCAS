@@ -202,6 +202,14 @@ public class IncrementalParser extends IncrementalRecognizer {
 								parserTextBlocksHandler);
 						callBatchParser(commonAncestor);
 					}
+					
+					if(batchParser.getInjector().getErrorList().size() > 0) {
+					    StringBuilder errors = new StringBuilder();
+					    for (ParsingError err : batchParser.getInjector().getErrorList()) {
+                                                errors.append(err + "\n");
+                                            }
+                                            throw new IncrementalParsingException("Cannot parse, errors in TB Model:" + errors);
+					}
 
 					TextBlockProxy tbProxy = parserTextBlocksHandler
 							.getCurrentTbProxy();
@@ -425,11 +433,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 		if (resultBean.reuseType
 				.equals(TextBlockReuseStrategy.ReuseType.DELETE)) {
 			// the element that was created for the new textblock has to be
-			// added to the composite
-			// of the old one
-			// i.e., the old element has to be deleted as it is obsol2te now.
-			if (TcsUtil
-					.isStructureTypeTemplate(result.getType().getParseRule())
+			// added to the composite of the old one
+			// i.e., the old element has to be deleted as it is obsolete now.
+			if (TcsUtil.isStructureTypeTemplate(result.getType().getParseRule())
 					|| TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
 				// TODO maybe also do this for non compositely referenced
 				// elements??
@@ -468,8 +474,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 		} else if (resultBean.reuseType
 				.equals(TextBlockReuseStrategy.ReuseType.COMPLETE)) {
 			// no further actions have to be done, the tb was completely re-used
-			// (might not apply to
-			// its subblocks,
+			// (might not apply to its subblocks,
 			// however, all those changes will have been considered already
 		}
 		if (oldVersion.getParentBlock() != null) {
@@ -510,11 +515,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 				.getCorrespondingModelElements();
 		if (!correspondingModelElements.isEmpty()) {
 			// TODO if there is more than one element this seems to be
-			// difficult,
-			// which composite is used then?
+			// difficult, which composite is used then?
 			// some check which parent is in a deeper hierarchy than the other
-			// one
-			// has to be done..
+			// one has to be done..
 			Collection<RefObject> elementsToDelete = new ArrayList<RefObject>(1);
 			for (RefObject correspondingModelElement : correspondingModelElements) {
 

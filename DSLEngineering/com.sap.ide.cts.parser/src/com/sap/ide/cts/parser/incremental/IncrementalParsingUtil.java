@@ -491,7 +491,7 @@ public class IncrementalParsingUtil {
 			// -->search the association and do the check there
 			Object value = referenceHandler.getFeatureValue(parentRefObject,
 				propertyToDeleteFrom);
-			if (value instanceof Collection) {
+			if (value instanceof Collection<?>) {
 				if (((Collection<?>) value).contains(oldModelElement)) {
 					oldModelElement.refDelete();
 				}

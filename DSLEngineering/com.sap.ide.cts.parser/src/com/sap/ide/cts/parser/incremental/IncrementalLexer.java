@@ -561,7 +561,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			
 			currentRoot.getTokens().add(eosTok);
 		}
-		//TODO BOS might have been compromised concering its offset, don't do this here but at a more appropriate point.
+		//TODO BOS might have been compromised concerning its offset, don't do this here but at a more appropriate point.
 		if (currentRoot.getTokens().get(0) instanceof Bostoken) {
 			currentRoot.getTokens().get(0).setOffset(0);
 		}
@@ -652,7 +652,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			//Read over is the case when the token is before the current constructionLocation
 			if(!wasReUsed(deleteToken)) {
 				TextBlock deleteTokenParent = deleteToken.getParentBlock();
-				AbstractToken nextToken = TbNavigationUtil.nextToken(deleteToken);
+//				AbstractToken nextToken = TbNavigationUtil.nextToken(deleteToken);
 //				while(nextToken != null && !nextToken.equals(oldTokenInCurrentBlock)) {
 //					//The new version of the deleteToken was already added to the block
 //					//has still the offset related to the deleteToken therefore we need
