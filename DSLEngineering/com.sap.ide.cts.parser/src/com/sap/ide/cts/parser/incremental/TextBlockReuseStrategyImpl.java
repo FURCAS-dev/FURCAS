@@ -443,7 +443,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						return false;
 					}
 					// if(TcsUtil.isReferenceOnly(newVersion.getTemplate())) {
-					// //a refernce only textblock does not need to be retained
+					// //a reference only textblock does not need to be retained
 					// return false;
 					// }
 					// // if there is a difference in token size the tb has
