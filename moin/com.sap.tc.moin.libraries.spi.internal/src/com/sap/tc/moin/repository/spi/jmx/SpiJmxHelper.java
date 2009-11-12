@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.management.InstanceAlreadyExistsException;
 import javax.management.InstanceNotFoundException;
@@ -42,9 +43,8 @@ import com.sap.tc.moin.repository.jmx.ParameterName;
  * 
  * @author D027299
  */
-@SuppressWarnings( "unchecked" )
 public final class SpiJmxHelper {
-
+    static private Logger logger = Logger.getLogger(SpiJmxHelper.class.getName());
     /**
      * Global variable for JMX activation status.
      * <p>
@@ -401,7 +401,7 @@ public final class SpiJmxHelper {
             AnnotatedBroadcastingStandardMBean mbean = new AnnotatedBroadcastingStandardMBean( mbeanImplementation, mbeanInterface );
             mBeanServer.registerMBean( mbean, objectName );
         } catch ( InstanceAlreadyExistsException e ) {
-            throw new RuntimeException( e );
+            logger.throwing(SpiJmxHelper.class.getName(), "registerBroadcastingMBean", e);
         } catch ( MBeanRegistrationException e ) {
             throw new RuntimeException( e );
         } catch ( NotCompliantMBeanException e ) {
@@ -459,8 +459,7 @@ public final class SpiJmxHelper {
 
     private static final InvocationHandler nullInvocationHandler = new InvocationHandler( ) {
 
-        public Object invoke( Object proxy, Method method, Object[] args ) throws Throwable {
-
+        public Object invoke( Object proxy, Method method, Object[] args ) {
             return null;
         }
     };

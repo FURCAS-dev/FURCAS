@@ -769,4 +769,18 @@ public class GeneralTests extends RiverTestCase {
         assertNOEquals("Axel", result[0]);
     }
 
+    public void testSelectionWithMultiObjects() throws Exception {
+        ExecuteResult executeResult = main.execute(
+            "new SelectionTest.filterNestedMultiplicityElements(2)",
+            "new SelectionTest.filterNestedMultiplicityElements(3)");
+        RiverObject[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(2, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(
+        	new Fraction[] { new Fraction(1) }, result[0]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(
+        	new Fraction[] { new Fraction(1), new Fraction(1), new Fraction(2) },
+        	result[1]);
+    }
 }

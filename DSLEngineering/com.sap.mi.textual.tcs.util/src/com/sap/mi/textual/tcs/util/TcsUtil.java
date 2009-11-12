@@ -294,7 +294,8 @@ public class TcsUtil {
 		}
 
 		// special handling of operatored main template
-		if (current == null && syntax != null) {
+		// don't need to check current == null because current has been used before
+		if (syntax != null) {
 			ClassTemplate main = TcsUtil.getMainClassTemplate(syntax);
 			if (main.isOperatored()) {
 
@@ -1241,6 +1242,18 @@ public class TcsUtil {
 		return results;
 	}
 
+	public static List<ConcreteSyntax> getSyntaxesInConnectionWithName(Connection connection, String syntaxName) {
+	    String query = "select cs from TCS::ConcreteSyntax withoutsubtypes as cs where cs.name = '"+
+	    	syntaxName+"'";
+	    MQLResultSet resultSet = queryConn(connection, query);
+	    RefObject[] resultElements = resultSet.getRefObjects("cs");
+	    List<ConcreteSyntax> results = new ArrayList<ConcreteSyntax>();
+	    for (RefObject elem : resultElements) {
+		results.add((ConcreteSyntax) elem);
+	    }
+	    return results;
+	}
+
 	/**
 	 * Get the build-in TCS ConcreteSyntax.
 	 * 
@@ -1265,7 +1278,7 @@ public class TcsUtil {
 	}
 
 	/**
-	 * Get the ConcreteSyntax with the given name.
+	 * Get the first ConcreteSyntax with the given name.
 	 * 
 	 * @param connection
 	 *            Connection to look in
@@ -1273,14 +1286,12 @@ public class TcsUtil {
 	 */
 	public static ConcreteSyntax getSyntaxByName(Connection connection,
 			String languageId) {
-		List<ConcreteSyntax> syntaxList = getSyntaxesInConnection(connection);
-
-		for (ConcreteSyntax syntax : syntaxList) {
-			if (syntax.getName().equals(languageId)) {
-				return syntax;
-			}
+		List<ConcreteSyntax> syntaxList = getSyntaxesInConnectionWithName(connection, languageId);
+		if (syntaxList == null || syntaxList.size() == 0) {
+		    return null;
+		} else {
+		    return syntaxList.get(0);
 		}
-		return null;
 	}
 
 	/**

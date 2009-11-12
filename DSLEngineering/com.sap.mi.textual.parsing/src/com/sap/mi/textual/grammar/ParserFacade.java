@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-09-21 14:32:09 +0200 (Mo, 21 Sep 2009) $
- * Revision: $Revision: 7911 $
- * Author: $Author: c5126871 $
+ * Date: $Date: 2009-11-10 14:52:04 +0100 (Di, 10 Nov 2009) $
+ * Revision: $Revision: 8522 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar;
 
@@ -38,7 +38,6 @@ public class ParserFacade  {
         wrapper = new GeneratedParserWrapper(parserClass, lexerClass );
     }
     
-    @SuppressWarnings("unchecked")
     public ParserFacade(ObservableInjectingParser parser, Lexer lexer) throws InvalidParserImplementationException  {
         wrapper = new GeneratedParserWrapper(parser, lexer );
     }

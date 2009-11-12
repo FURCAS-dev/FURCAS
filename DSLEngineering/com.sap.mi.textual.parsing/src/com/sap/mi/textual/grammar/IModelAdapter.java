@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-08-30 09:59:50 +0200 (So, 30 Aug 2009) $
- * Revision: $Revision: 7772 $
- * Author: $Author: c5127705 $
+ * Date: $Date: 2009-11-10 14:52:04 +0100 (Di, 10 Nov 2009) $
+ * Revision: $Revision: 8522 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar;
 
@@ -177,7 +177,7 @@ public interface IModelAdapter extends IModelElementInvestigator { // extends In
      * @param contextElement
      * @throws ModelAdapterException
      */
-    Collection getPredicateOclReference(Object modelElement, String propertyName,
+    Collection<?> getPredicateOclReference(Object modelElement, String propertyName,
             Object keyValue, String oclQuery, Object contextElement) throws ModelAdapterException;
 
     Collection<PRI> getPRIPartitions(Connection con, String languageId);

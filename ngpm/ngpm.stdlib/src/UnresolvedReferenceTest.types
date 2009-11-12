@@ -8,7 +8,6 @@
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
-<M c='1' q='textblocks.TextBlockType' i='480716BCBE2DC5530C5F11DD93AC00016CE99C52' se='1' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
 <M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
 <M c='2' q='data.classes.SapClass' i='E0234C8C51E4770E3E4B11DE910A0018DE1146FF' ova='description'/>
@@ -42,7 +41,7 @@
 <textblocks.LexedToken m:c='1' m:i='49B9A9D5906E6B910F6611DE8E750019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='21' length='1' offsetRelative='true' value='{' lookahead='2' lookback='1' state='0' type='12' query='' property='' keyName=''/>
 <textblocks.LexedToken m:c='1' m:i='49B9A9D5906E6B920F6611DEBD320019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='6' length='15' offsetRelative='true' value='ReferenceTarget' lookahead='1' lookback='1' state='0' type='4' query='' property='' keyName=''/>
 <textblocks.LexedToken m:c='1' m:i='49B9A9D5906E6B930F6611DEB8730019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='38' length='1' offsetRelative='true' value='}' lookahead='2' lookback='1' state='0' type='13' query='' property='' keyName=''/>
-<textblocks.LexedToken m:c='1' m:i='49B9A9D5906E6B940F6611DEB0800019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='class' lookahead='2' lookback='0' state='0' type='88' query='' property='' keyName=''/>
+<textblocks.LexedToken m:c='1' m:i='49B9A9D5906E6B940F6611DEB0800019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='class' lookahead='2' lookback='0' state='0' type='70' query='' property='' keyName=''/>
 <textblocks.BOSToken m:c='1' m:i='49B9A9D5906E6B950F6611DE90920019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' value='BOS' lookahead='0' lookback='0' state='0' type='-2'/>
 <textblocks.OmittedToken m:c='1' m:i='49B9A9D5907C9C600F6611DE85DD0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='22' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='0' type='42'/>
 <textblocks.OmittedToken m:c='1' m:i='49B9A9D5907C9C610F6611DE9AA80019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='24' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
@@ -60,7 +59,7 @@
 <textblocks.LexedToken m:c='1' m:i='49B9AAB7170909D50F6711DE809F0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='56' length='1' offsetRelative='true' value='}' lookahead='2' lookback='1' state='0' type='13'/>
 <textblocks.EOSToken m:c='1' m:i='49B9AAB7170909D60F6711DEC4230019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='57' length='0' offsetRelative='true' value='EOS' lookahead='0' lookback='0' state='0' type='-1'/>
 <textblocks.OmittedToken m:c='1' m:i='49B9AAB7170909D70F6711DE97EF0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='54' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='0' type='42'/>
-<textblocks.LexedToken m:c='1' m:i='49B9AAB7170909D80F6711DEA9970019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='class' lookahead='2' lookback='0' state='0' type='88'/>
+<textblocks.LexedToken m:c='1' m:i='49B9AAB7170909D80F6711DEA9970019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='class' lookahead='2' lookback='0' state='0' type='70'/>
 <textblocks.LexedToken m:c='1' m:i='49B9AAB7170909D90F6711DEB4C60019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='6' length='23' offsetRelative='true' value='UnresolvedReferenceTest' lookahead='1' lookback='1' state='0' type='4'/>
 <textblocks.OmittedToken m:c='1' m:i='49B9AAB7170B53C00F6711DEA28C0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='0' type='42'/>
 <textblocks.OmittedToken m:c='1' m:i='49B9AAB7170B53C10F6711DEA60A0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='1' offsetRelative='true' value='&#9;' lookahead='1' lookback='1' state='0' type='43'/>
@@ -131,10 +130,6 @@
 <L f='49B9AAB717173AA20F6711DECDCB0019D29902CC' s='49B9AAB717173AA00F6711DEA45D0019D29902CC'/>
 <L f='49B9AAB717173AA20F6711DECDCB0019D29902CC' s='49B9AAB717173AA10F6711DECCEB0019D29902CC'/>
 </textblocks.DocumentNode_References_CorrespondingModelElement>
-<textblocks.TextBlockType c='1'>
-<L f='local:E0E1B8C66B68F591546E11DEA5BC0019D29902CC' s='49B9AAB717173AA00F6711DEA45D0019D29902CC'/>
-<L f='local:E0E1B8C66C1513FC546E11DE91C40019D29902CC' s='49B9AAB717173AA10F6711DECCEB0019D29902CC'/>
-</textblocks.TextBlockType>
 <data.classes.A_elementsOfType_clazz c='2'>
 <L f='49B9AAB717173AA20F6711DECDCB0019D29902CC' s='49B9A96C51C59E400F6611DE8B7A0019D29902CC'/>
 </data.classes.A_elementsOfType_clazz>

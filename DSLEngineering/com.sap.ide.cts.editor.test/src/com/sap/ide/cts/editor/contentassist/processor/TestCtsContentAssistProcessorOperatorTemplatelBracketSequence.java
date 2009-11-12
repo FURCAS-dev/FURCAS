@@ -47,9 +47,8 @@ public class TestCtsContentAssistProcessorOperatorTemplatelBracketSequence
 	@Test
 	public void afterBracket() {
 		List<String> expected = new ArrayList<String>();
-		expected.add("(");
-		expected.add("-");
-		expected.add("value");
+		expected.add("bracket");
+		expected.add("bracket value )");
 
 		assertDisplayStrings(expected, 0, 11);
 	}
@@ -66,6 +65,6 @@ public class TestCtsContentAssistProcessorOperatorTemplatelBracketSequence
 		expected.add("^^");
 		expected.add("sqrt");
 
-		assertDisplayStrings(expected, 0, 22);
+		assertDisplayStrings(expected, 0, 29);
 	}
 }

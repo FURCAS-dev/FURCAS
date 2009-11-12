@@ -82,7 +82,7 @@ public class ModelElementProxy implements IModelElementProxy {
 			existingList = new ArrayList<Object>();
 		}
 		if(value instanceof Collection) {
-		    existingList.addAll((Collection)value);
+		    existingList.addAll((Collection<?>)value);
 		} else {
 		    existingList.add(value);
 		}
@@ -100,7 +100,7 @@ public class ModelElementProxy implements IModelElementProxy {
 			existingList = new ArrayList<Object>();
 		}
 		if(value instanceof Collection) {
-		    existingList.addAll(index, (Collection)value);
+		    existingList.addAll(index, (Collection<?>)value);
 		} else {
 		    existingList.add(index, value);
 		}
@@ -188,7 +188,7 @@ public class ModelElementProxy implements IModelElementProxy {
 			return;
 		}
 		if(value instanceof Collection) {
-		    existingList.removeAll((Collection)value);
+		    existingList.removeAll((Collection<?>)value);
 		} else {
 		    existingList.remove(value);
 		}

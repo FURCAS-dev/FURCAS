@@ -832,10 +832,36 @@ syntax Class(k=0 ) {
 		: iterator{mode=selection} selectionExpr "]" 
 		;
 	
-	template Iterator #selection addToContext
-		: {{ name='"self"' }}
+	template Iterator #selection context addToContext
+		: {{ name='"self"',
+		     -- If the object from which to select has a NestedTypeDefinition as its type, use the
+		     -- contained type for the "self" iterator, leaving the ownedTypeDefinition empty.
+		     -- Otherwise, if the object has an upper multiplicity
+		     -- greater than 1, create a new (owned) type definition for the "self" iterator with
+		     -- multiplicity 1..1
+		     ownedTypeDefinition=foreach("OCL:self.selection.object.getType()->select(td |
+		                                          td.isMany() and not td.oclIsKindOf(NestedTypeDefinition))", 
+		                                 mode="singleFromMany")
+		  }}
 		;
-
+	
+	template ClassTypeDefinition #singleFromMany
+		: {{ clazz=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).clazz"),
+	         objectParameters=lookIn("OCL:#context.oclAsType(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity='1',
+		     upperMultiplicity='1',
+		     ordered='false',
+		     unique='false' }}
+		;
+	
+	template FunctionSignatureTypeDefinition #singleFromMany
+		: {{ signature=lookIn("OCL:#context.oclAsType(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity='1',
+		     upperMultiplicity='1',
+		     ordered='false',
+		     unique='false' }}
+		;
+		
 -- @end COLLECTION EXPRESSIONS
 
 	operatorTemplate Replace (operators = arrowOp, source = 'object')

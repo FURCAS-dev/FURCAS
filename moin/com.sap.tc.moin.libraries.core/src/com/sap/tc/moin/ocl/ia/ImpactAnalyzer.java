@@ -441,7 +441,12 @@ public class ImpactAnalyzer {
         EventFilter firstFilter = it.next( );
         while ( it.hasNext( ) ) {
             EventFilter nextFilter = it.next( );
-            firstFilter.merge( nextFilter );
+            if (nextFilter.getClass().equals(firstFilter.getClass())) {
+        	firstFilter.merge( nextFilter );
+            } else {
+        	// add instead of merge if filter types are different
+        	mfs.add(x_and(new EventTypeFilter( filterClass ), nextFilter));
+            }
         }
 
         mfs.add( x_and( new EventTypeFilter( filterClass ), firstFilter ) );

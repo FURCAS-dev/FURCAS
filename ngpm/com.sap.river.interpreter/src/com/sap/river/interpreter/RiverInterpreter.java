@@ -918,22 +918,24 @@ public class RiverInterpreter {
      * contained value(s) requiring conversion is replaced in the clone.
      */
     public RiverObject convert(RiverObject ro, TypeDefinition targetType) {
-	// TODO refactor such that this becomes a method on RiverObject that can
-	// be used polymorphically
+	// TODO refactor such that this becomes a method on RiverObject that can be used polymorphically
 	RiverObject result = ro;
 	if (ro instanceof ValueObject) {
-	    if (!(targetType instanceof ClassTypeDefinition)) {
+	    if (!(targetType.getInnermost() instanceof ClassTypeDefinition)) {
 		throw new RuntimeException("Cannot convert a value object into the non class-like type "
 			+ StringFormatter.toString(targetType));
 	    }
 	    try {
-		result = convert((ValueObject) ro, (ClassTypeDefinition) targetType);
+		result = convert((ValueObject) ro, (ClassTypeDefinition) targetType.getInnermost());
 	    } catch (Exception e) {
 		throw new RuntimeException(e);
 	    }
-	} else if (ro instanceof MultiValuedObject && ro.getType() instanceof ClassTypeDefinition
-		&& ((ClassTypeDefinition) ro.getType()).getClazz().isValueType()) {
-	    return new ConvertedMultiObject((MultiValuedObject) ro, targetType, this);
+	} else {
+	    TypeDefinition innermost = ro.getType().getInnermost();
+	    if (ro instanceof MultiValuedObject && innermost instanceof ClassTypeDefinition
+		&& ((ClassTypeDefinition) innermost).getClazz().isValueType()) {
+		return new ConvertedMultiObject((MultiValuedObject) ro, targetType, this);
+	    }
 	}
 	return result;
     }

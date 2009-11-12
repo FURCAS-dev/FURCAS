@@ -1,5 +1,7 @@
 package com.sap.ide.cts.editor.test;
 
+import java.util.Collection;
+
 import modelmanagement.Package;
 import ngpm.NgpmPackage;
 
@@ -37,6 +39,32 @@ import dataaccess.expressions.VariableExpression;
 
 public class TestNgpmEditingActions extends CtsEditorTest {
 
+    /**
+     * The outcommenting doesn't seem to be honored by the incremental parser.
+     */
+    @Test
+    public void testCommentOutVariableDeclaration() throws PartInitException, BadLocationException, CoreException {
+        final RefObject refObject = findClass("RedefineParameterTst2");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(61, 0, "/");
+        document.replace(62, 0, "/");
+        document.replace(63, 0, " ");
+        saveAll(editor);
+        //failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        // Your assertions on refObject here 
+        SapClass c = (SapClass) refObject;
+        MethodSignature ms = c.getOwnedSignatures().iterator().next();
+        Block b = (Block) ms.getImplementation();
+        Collection<NamedValue> variables = b.getVariables();
+        assertEquals("Expect to find no declared variables in block because the variable declaration was commented out",
+        	0, variables.size());
+        close(editor);
+    };
+   
 
     /**
      * Takes an abstract method and makes it concrete by changing its return
