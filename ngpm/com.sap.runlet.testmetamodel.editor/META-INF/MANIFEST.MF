@@ -21,6 +21,7 @@ Require-Bundle: org.eclipse.ui,
  com.sap.mi.textual.parsing.textblocks,
  com.sap.tc.moin.textual.runtime.moin,
  com.sap.ide.treeprovider,
- com.sap.ide.cts.moin
+ com.sap.ide.cts.moin,
+ com.sap.mi.textual.common;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy

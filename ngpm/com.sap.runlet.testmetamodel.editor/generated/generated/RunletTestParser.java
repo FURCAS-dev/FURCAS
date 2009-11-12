@@ -1,8 +1,8 @@
 // $ANTLR 3.1.1 C:\\data\\cts\\FURCAS\\furcas_full\\ngpm\\com.sap.runlet.testmetamodel.editor\\generated\\generated\\RunletTest.g 2009-08-18 08:44:40
 
 package generated;
+import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
-import com.sap.mi.textual.grammar.IModelElementProxy;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
