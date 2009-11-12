@@ -16,6 +16,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 
 import org.eclipse.emf.query.index.internal.PageFileProvider;
 import org.eclipse.emf.query.index.internal.PageableElement;
@@ -87,16 +89,6 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 				list.remove(oldEntry);
 				removeEntry(oldEntry);
 			}
-		}
-
-		// FIXME required?
-		public boolean touch(E e) {
-			Entry<E> entry = list.get(e);
-			if (entry != null) {
-				moveEntryFirstUnlocked(entry);
-				return true;
-			}
-			return false;
 		}
 
 		public boolean lock(E e) {
@@ -242,6 +234,8 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 	private int maxSize;
 	private int tolerance;
 
+	private WriteLock lock = new ReentrantReadWriteLock(true).writeLock();
+
 	public PagingStrategyImpl(PageFileProvider chProv, int normalSize, int additionalTolerance) {
 		this.channelProvider = chProv;
 		this.maxSize = normalSize + additionalTolerance;
@@ -251,6 +245,7 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 
 	@Override
 	public void addLocked(T element) {
+		// no synchronization necessary since only called in write locked update
 		this.addInternal(element, true);
 	}
 
@@ -264,23 +259,9 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 
 	@Override
 	public void remove(T element) {
+		lock.lock();
 		lruList.remove(element);
-	}
-
-	@Override
-	public void touch(T element) {
-		if (lruList.touch(element)) {
-			if (lruList.totalSize() > maxSize) {
-				this.adjust(0);
-			}
-		} else {
-			try {
-				this.loadElement(element);
-				this.addLocked(element);
-			} catch (FileNotFoundException fnf) {
-				throw new RuntimeException(fnf);
-			}
-		}
+		lock.unlock();
 	}
 
 	private void loadElement(T element) throws FileNotFoundException {
@@ -324,37 +305,49 @@ public class PagingStrategyImpl<T extends PageableElement> implements PagingStra
 
 	@Override
 	public void lock(T element) {
-		if (lruList.lock(element)) {
-			if (lruList.totalSize() > maxSize) {
-				this.adjust(0);
+		lock.lock();
+		try {
+			if (lruList.lock(element)) {
+				if (lruList.totalSize() > maxSize) {
+					this.adjust(0);
+				}
+			} else {
+				try {
+					this.loadElement(element);
+					this.addInternal(element, true);
+				} catch (FileNotFoundException fnf) {
+					throw new RuntimeException(fnf);
+				}
 			}
-		} else {
-			try {
-				this.loadElement(element);
-				this.addInternal(element, true);
-			} catch (FileNotFoundException fnf) {
-				throw new RuntimeException(fnf);
-			}
+		} finally {
+			lock.unlock();
 		}
 	}
 
 	@Override
 	public void unlock(T element) {
+		lock.lock();
 		lruList.unlock(element);
+		lock.unlock();
 	}
 
 	@Override
 	public void flush() {
-		if (lruList.hasLockedPages()) {
-			throw new IllegalStateException("Paging strategy has locked pages");
-		} else {
-			try {
-				while (!lruList.isEmpty()) {
-					this.pageOut();
+		lock.lock();
+		try {
+			if (lruList.hasLockedPages()) {
+				throw new IllegalStateException("Paging strategy has locked pages");
+			} else {
+				try {
+					while (!lruList.isEmpty()) {
+						this.pageOut();
+					}
+				} catch (FileNotFoundException e) {
+					throw new RuntimeException(e); // FIXME exception handling
 				}
-			} catch (FileNotFoundException e) {
-				throw new RuntimeException(e); // FIXME exception handling
 			}
+		} finally {
+			lock.unlock();
 		}
 	}
 }
