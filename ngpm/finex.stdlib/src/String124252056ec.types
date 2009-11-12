@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<C n='sap.com/finex/metamodel' i='2' v=''/>
+<M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
+<M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
+<M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
+<M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
+<M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
+<M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
+<M c='2' q='structure.FinexClass' i='E0001D0A1ADC24A8B1B711DEA3C100155883529C'/>
+<textblocks.TextBlock m:c='1' m:i='E012BF1EDA554450B1BD11DEC2FF00155883529C' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='21' offsetRelative='false' isComplete='true' cachedString='value String:&#10;:String'/>
+<textblocks.OmittedToken m:c='1' m:i='E012BF1EDA554451B1BD11DEB5A700155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='5' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='31'/>
+<textblocks.LexedToken m:c='1' m:i='E012BF1EDA554452B1BD11DE917C00155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='15' length='6' offsetRelative='true' value='String' lookahead='1' lookback='1' state='0' type='5' query='' property='' keyName=''/>
+<textblocks.LexedToken m:c='1' m:i='E012BF1EDA554453B1BD11DE908000155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='value' lookahead='2' lookback='0' state='0' type='40'/>
+<textblocks.EOSToken m:c='1' m:i='E012BF1EDA554454B1BD11DE8B0F00155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='21' length='0' offsetRelative='true' value='EOS' lookahead='0' lookback='0' state='0' type='-1'/>
+<textblocks.LexedToken m:c='1' m:i='E012BF1EDA554455B1BD11DE8C3800155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='1' offsetRelative='true' value=':' lookahead='2' lookback='1' state='0' type='12' query='' property='' keyName=''/>
+<textblocks.LexedToken m:c='1' m:i='E012BF1EDA554456B1BD11DE821800155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='6' length='6' offsetRelative='true' value='String' lookahead='1' lookback='1' state='0' type='5' query='' property='' keyName=''/>
+<textblocks.OmittedToken m:c='1' m:i='E012BF1EDA554457B1BD11DEB86500155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='13' length='1' offsetRelative='true' value='&#10;' lookahead='1' lookback='1' state='0' type='30'/>
+<textblocks.LexedToken m:c='1' m:i='E012BF1EDA554458B1BD11DE8B2B00155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='14' length='1' offsetRelative='true' value=':' lookahead='2' lookback='1' state='0' type='12' query='' property='' keyName=''/>
+<textblocks.BOSToken m:c='1' m:i='E012BF1EDA554459B1BD11DE81B100155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' value='BOS' lookahead='0' lookback='0' state='0' type='-2'/>
+<structure.FinexClass m:c='2' m:i='E036771952BFC0C0B1BC11DE8D4800155883529C' name='String' valueType='true'/>
+<textblocks.TextBlock_Contains_Tokens c='1'>
+<L f='E012BF1EDA554459B1BD11DE81B100155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554453B1BD11DE908000155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554451B1BD11DEB5A700155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554456B1BD11DE821800155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554455B1BD11DE8C3800155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554457B1BD11DEB86500155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554458B1BD11DE8B2B00155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554452B1BD11DE917C00155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+<L f='E012BF1EDA554454B1BD11DE8B0F00155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+</textblocks.TextBlock_Contains_Tokens>
+<textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
+<L f='E036771952BFC0C0B1BC11DE8D4800155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
+</textblocks.DocumentNode_References_CorrespondingModelElement>
+</Partition>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<C n='sap.com/moin/mm/ap/core' i='2' v=''/>
+<M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
+<M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
+<M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
+<M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
+<M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
+<M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
+<M c='2' q='data.classes.ClassTypeDefinition' i='E0234C8C51E6C0F73E4B11DEC7320018DE1146FF'/>
+<M c='2' q='data.classes.FunctionSignatureTypeDefinition' i='E0234C8C51E931D13E4B11DEC68A0018DE1146FF'/>
+<M c='2' q='data.classes.FunctionSignature' i='E0234C8C51E931DC3E4B11DEAA070018DE1146FF'/>
+<M c='2' q='data.classes.A_elementsOfType_clazz' i='E0234C8C51EB7BC43E4B11DECAD00018DE1146FF' se='0' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.OutputOfSignature' i='E0234C8C51EB7BD33E4B11DE85C00018DE1146FF' se='1' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.A_ownedTypeDefinition_ownerTypedElement' i='E0234C8C51EB7BD63E4B11DEB7290018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='data.classes.A_ownedTypeDefinitions_ownerSignature' i='E0234C8C51EB7BD93E4B11DEBD740018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='data.classes.A_signature_functionSignatureTypeDefinition' i='E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF' se='1' ce='-1' oe='-1'/>
+<M c='2' q='data.classes.A_ownedSignature_functionSignatureTypeDefinition' i='E0234C8C51EB7BF43E4B11DE9C2C0018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='data.classes.A_implementation_functionSignature' i='E0234C8C51EB7BF73E4B11DECFA20018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
+<M c='2' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.fp.AnonymousFunctionExpr' i='E075D95551F2A7C03E4B11DE874C0018DE1146FF'/>
+<M c='2' q='dataaccess.expressions.MethodCallExpression' i='E075D95551F2A7D43E4B11DEA30B0018DE1146FF'/>
+<M c='2' q='dataaccess.expressions.ObjectCreationExpression' i='E075D95551F2A7D83E4B11DECAAE0018DE1146FF'/>
+<M c='2' q='dataaccess.expressions.A_object_objectBasedExpression' i='E075D95551F518AC3E4B11DE97910018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_classToInstantiate_objectCreationExpression' i='E075D95551F518AF3E4B11DEABE20018DE1146FF' se='1' ce='-1' oe='-1'/>
+<M c='2' q='dataaccess.expressions.A_withArgument_argument' i='E075D95551F518B23E4B11DECC650018DE1146FF' se='0' ce='0' oe='-1'/>
+<M c='2' q='dataaccess.expressions.SignatureCallToSignature' i='E075D95551F518C13E4B11DECF9D0018DE1146FF' se='0' ce='-1' oe='-1'/>
+<M c='2' q='integration.binding.HttpGetBinding' i='E0AD8E325200FF953E4B11DEB0980018DE1146FF' ova='description'/>
+<M c='2' q='integration.binding.SimpleUrlPattern' i='E0AD8E325200FF993E4B11DEB6EF0018DE1146FF'/>
+<M c='2' q='integration.binding.A_function_binding' i='E0AD8E325200FF9D3E4B11DE9BE20018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='integration.binding.A_urlPattern_httpBinding' i='E0AD8E325200FFA03E4B11DE87B60018DE1146FF' se='1' ce='1' oe='-1'/>
+<M c='2' q='integration.binding.A_bindings_package_' i='E0AD8E325200FFA33E4B11DE8B870018DE1146FF' se='0' ce='1' oe='-1'/>
+<M c='2' q='behavioral.actions.Block' i='E0BC871351C09B2F3E4B11DEC6F20018DE1146FF'/>
+<M c='2' q='behavioral.actions.Return' i='E0BC871351C30C2D3E4B11DE89360018DE1146FF'/>
+<M c='2' q='behavioral.actions.A_statements_block' i='E0BC871351C57D323E4B11DE94BD0018DE1146FF' se='1' ce='1' oe='0'/>
+<modelmanagement.Package m:c='2' m:i='E03677198D7A829070A311DEB44400155883529C' name='SampleApp'/>
+<data.classes.ClassTypeDefinition m:c='2' m:i='E0600CBB1E12CE7270A411DEB72200155883529C' lowerMultiplicity='0' upperMultiplicity='1' ordered='false' unique='false'/>
+<data.classes.ClassTypeDefinition m:c='2' m:i='E0600CBB1E12CE7670A411DEA61000155883529C' lowerMultiplicity='1' upperMultiplicity='1' ordered='true' unique='true'/>
+<dataaccess.expressions.ObjectCreationExpression m:c='2' m:i='E0600CBB1E12CE7770A411DE80FF00155883529C'/>
+<dataaccess.expressions.MethodCallExpression m:c='2' m:i='E0600CBB1E12CE7970A411DEB84400155883529C' asynchronous='false'/>
+<behavioral.actions.Return m:c='2' m:i='E0600CBB1E153F7070A411DE80FC00155883529C'/>
+<behavioral.actions.Block m:c='2' m:i='E0600CBB1E153F7170A411DEA93A00155883529C'/>
+<data.classes.FunctionSignature m:c='2' m:i='E0600CBB1E153F7270A411DE8DFF00155883529C' sideEffectFree='false'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CF070B311DEBCA90019D29902CC' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='104' offsetRelative='false' isComplete='true' cachedString='binding ListPersons &quot;/persons&quot; --&gt;&#13;&#10;  function():String {&#13;&#10;    return new PersonView.listPersons();&#13;&#10;  }'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D074CF170B311DE85800019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='31' length='3' offsetRelative='true' value='--&gt;' lookahead='1' lookback='1' state='0' type='77'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CF270B311DEA4C40019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='19' length='11' offsetRelative='true' isComplete='true'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D074CF370B311DECCBE0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D074CF470B311DEB3200019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='1' length='10' offsetRelative='true' value='&quot;/persons&quot;' lookahead='1' lookback='1' state='0' type='5'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D074CF570B311DEBF3D0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='8' length='11' offsetRelative='true' value='ListPersons' lookahead='1' lookback='1' state='0' type='4'/>
+<textblocks.BOSToken m:c='1' m:i='E0982C415D074CF670B311DEB6460019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' value='BOS' lookahead='0' lookback='0' state='0' type='-2'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CF770B311DE9B400019D29902CC' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='34' length='70' offsetRelative='true' isComplete='true'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CF870B311DE98FB0019D29902CC' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='70' offsetRelative='true' isComplete='true'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CF970B311DEB7AE0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='70' offsetRelative='true' isComplete='true'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CFA70B311DEA4D20019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='21' length='49' offsetRelative='true' isComplete='true'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D074CFB70B311DEB85C0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='46' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D074CFC70B311DEB0F80019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='48' length='1' offsetRelative='true' value='}' lookahead='2' lookback='1' state='0' type='13' property='ownedSignature'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D074CFD70B311DEA4920019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='47' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074CFE70B311DEC9D70019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='41' offsetRelative='true' isComplete='true'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D074CFF70B311DE8E760019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D074D0070B311DEBC350019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='15' offsetRelative='true' isComplete='true'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D074D0170B311DEBF870019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDF070B311DE834C0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='4' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF170B311DEA5390019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='1' length='3' offsetRelative='true' value='new' lookahead='2' lookback='1' state='0' type='73'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF270B311DEB8640019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='5' length='10' offsetRelative='true' value='PersonView' lookahead='1' lookback='1' state='0' type='4' property='clazz'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF370B311DEC4F40019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='27' length='1' offsetRelative='true' value='.' lookahead='2' lookback='1' state='0' type='17'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDF470B311DEBAD00019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='4' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D09BDF570B311DEB8510019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='28' length='13' offsetRelative='true' isComplete='true'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF670B311DE952F0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='1' offsetRelative='true' value=')' lookahead='1' lookback='1' state='0' type='15'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF770B311DE97620019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='11' length='1' offsetRelative='true' value='(' lookahead='1' lookback='1' state='0' type='14'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF870B311DECD2A0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='11' offsetRelative='true' value='listPersons' lookahead='1' lookback='1' state='0' type='4' query='OCL:self.object.getType().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()-&gt;select(s | s.name = ?)' property='methodSignature' keyName='name'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDF970B311DEA17A0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='6' length='6' offsetRelative='true' value='return' lookahead='2' lookback='1' state='0' type='50'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDFA70B311DE83DE0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='0' type='42'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDFB70B311DEC95D0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='5' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDFC70B311DE80840019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDFD70B311DEA5230019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BDFE70B311DE9DE90019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='1' length='1' offsetRelative='true' value='{' lookahead='2' lookback='1' state='0' type='11'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D09BDFF70B311DE85340019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='44' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='0' type='42'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D09BE0070B311DEC5C80019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='43' length='1' offsetRelative='true' value=';' lookahead='1' lookback='1' state='0' type='12'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D0C2EF070B311DE9DB70019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='14' length='1' offsetRelative='true' value=':' lookahead='2' lookback='1' state='0' type='21'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D0C2EF170B311DE96C00019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='4' length='8' offsetRelative='true' value='function' lookahead='2' lookback='1' state='0' type='76'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D0C2EF270B311DE89540019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D0C2EF370B311DE8EE80019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.TextBlock m:c='1' m:i='E0982C415D0C2EF470B311DE99230019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='15' length='6' offsetRelative='true' isComplete='true'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D0C2EF570B311DE9B3F0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='6' offsetRelative='true' value='String' lookahead='1' lookback='1' state='0' type='4' property='ownedTypeDefinitions'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D0C2EF670B311DEC6570019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='1' offsetRelative='true' value='(' lookahead='1' lookback='1' state='0' type='14'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D0C2EF770B311DECB350019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='2' offsetRelative='true' value='&#13;&#10;' lookahead='1' lookback='1' state='0' type='42'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D0C2EF870B311DEB0E10019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='13' length='1' offsetRelative='true' value=')' lookahead='1' lookback='1' state='0' type='15'/>
+<textblocks.LexedToken m:c='1' m:i='E0982C415D0C2EF970B311DEC6D30019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='7' offsetRelative='true' value='binding' lookahead='2' lookback='0' state='0' type='62' query='' property='' keyName=''/>
+<textblocks.EOSToken m:c='1' m:i='E0982C415D0C2EFA70B311DE82630019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='104' length='0' offsetRelative='true' value='EOS' lookahead='0' lookback='0' state='0' type='-1'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D0C2EFB70B311DE96CF0019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='7' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<textblocks.OmittedToken m:c='1' m:i='E0982C415D0C2EFC70B311DEB1270019D29902CC' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='30' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='43'/>
+<integration.binding.SimpleUrlPattern m:c='2' m:i='E0A1FE6CF35F68F270A311DEA41900155883529C' baseUrl='/persons'/>
+<data.classes.FunctionSignatureTypeDefinition m:c='2' m:i='E0A1FE6CF361D9F870A311DEACD200155883529C' lowerMultiplicity='0' upperMultiplicity='1' ordered='false' unique='false'/>
+<dataaccess.expressions.fp.AnonymousFunctionExpr m:c='2' m:i='E0A1FE6CF361D9F970A311DECD6600155883529C'/>
+<integration.binding.HttpGetBinding m:c='2' m:i='E0A1FE6CF361D9FA70A311DE83C100155883529C' name='ListPersons'/>
+<textblocks.TextBlock_Contains_Tokens c='1'>
+<L f='E0982C415D074CF670B311DEB6460019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D0C2EF970B311DEC6D30019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D0C2EFB70B311DE96CF0019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D074CF570B311DEBF3D0019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D0C2EFC70B311DEB1270019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D074CF170B311DE85800019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D0C2EFA70B311DE82630019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D074CF370B311DECCBE0019D29902CC' s='E0982C415D074CF270B311DEA4C40019D29902CC'/>
+<L f='E0982C415D074CF470B311DEB3200019D29902CC' s='E0982C415D074CF270B311DEA4C40019D29902CC'/>
+<L f='E0982C415D0C2EF770B311DECB350019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D0C2EF270B311DE89540019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D0C2EF370B311DE8EE80019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D0C2EF170B311DE96C00019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D0C2EF670B311DEC6570019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D0C2EF870B311DEB0E10019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D0C2EF070B311DE9DB70019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D09BDFD70B311DEA5230019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D09BDFE70B311DE9DE90019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D09BE0070B311DEC5C80019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D09BDFF70B311DE85340019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D074CFB70B311DEB85C0019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D074CFD70B311DEA4920019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D074CFC70B311DEB0F80019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D09BDFA70B311DE83DE0019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D09BDFC70B311DE80840019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D074CFF70B311DE8E760019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D09BDF470B311DEBAD00019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D09BDFB70B311DEC95D0019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D09BDF970B311DEA17A0019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D09BDF370B311DEC4F40019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D074D0170B311DEBF870019D29902CC' s='E0982C415D074D0070B311DEBC350019D29902CC'/>
+<L f='E0982C415D09BDF170B311DEA5390019D29902CC' s='E0982C415D074D0070B311DEBC350019D29902CC'/>
+<L f='E0982C415D09BDF070B311DE834C0019D29902CC' s='E0982C415D074D0070B311DEBC350019D29902CC'/>
+<L f='E0982C415D09BDF270B311DEB8640019D29902CC' s='E0982C415D074D0070B311DEBC350019D29902CC'/>
+<L f='E0982C415D09BDF870B311DECD2A0019D29902CC' s='E0982C415D09BDF570B311DEB8510019D29902CC'/>
+<L f='E0982C415D09BDF770B311DE97620019D29902CC' s='E0982C415D09BDF570B311DEB8510019D29902CC'/>
+<L f='E0982C415D09BDF670B311DE952F0019D29902CC' s='E0982C415D09BDF570B311DEB8510019D29902CC'/>
+<L f='E0982C415D0C2EF570B311DE9B3F0019D29902CC' s='E0982C415D0C2EF470B311DE99230019D29902CC'/>
+</textblocks.TextBlock_Contains_Tokens>
+<textblocks.TextBlock_Contains_Subblocks c='1'>
+<L f='E0982C415D074CF270B311DEA4C40019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D074CF770B311DE9B400019D29902CC' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0982C415D074CF870B311DE98FB0019D29902CC' s='E0982C415D074CF770B311DE9B400019D29902CC'/>
+<L f='E0982C415D074CF970B311DEB7AE0019D29902CC' s='E0982C415D074CF870B311DE98FB0019D29902CC'/>
+<L f='E0982C415D0C2EF470B311DE99230019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D074CFA70B311DEA4D20019D29902CC' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0982C415D074CFE70B311DEC9D70019D29902CC' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0982C415D074D0070B311DEBC350019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0982C415D09BDF570B311DEB8510019D29902CC' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+</textblocks.TextBlock_Contains_Subblocks>
+<textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
+<L f='E0A1FE6CF361D9FA70A311DE83C100155883529C' s='E0982C415D074CF070B311DEBCA90019D29902CC'/>
+<L f='E0A1FE6CF35F68F270A311DEA41900155883529C' s='E0982C415D074CF270B311DEA4C40019D29902CC'/>
+<L f='E0A1FE6CF361D9F970A311DECD6600155883529C' s='E0982C415D074CF770B311DE9B400019D29902CC'/>
+<L f='E0A1FE6CF361D9F870A311DEACD200155883529C' s='E0982C415D074CF870B311DE98FB0019D29902CC'/>
+<L f='E0600CBB1E153F7270A411DE8DFF00155883529C' s='E0982C415D074CF870B311DE98FB0019D29902CC'/>
+<L f='E0600CBB1E153F7270A411DE8DFF00155883529C' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0600CBB1E12CE7270A411DEB72200155883529C' s='E0982C415D074CF970B311DEB7AE0019D29902CC'/>
+<L f='E0600CBB1E153F7170A411DEA93A00155883529C' s='E0982C415D074CFA70B311DEA4D20019D29902CC'/>
+<L f='E0600CBB1E153F7070A411DE80FC00155883529C' s='E0982C415D074CFE70B311DEC9D70019D29902CC'/>
+<L f='E0600CBB1E12CE7670A411DEA61000155883529C' s='E0982C415D074D0070B311DEBC350019D29902CC'/>
+<L f='E0600CBB1E12CE7770A411DE80FF00155883529C' s='E0982C415D074D0070B311DEBC350019D29902CC'/>
+<L f='local:E0E7AECED71B8A2870A311DE8CD600155883529C' s='E0982C415D09BDF270B311DEB8640019D29902CC'/>
+<L f='E0600CBB1E12CE7970A411DEB84400155883529C' s='E0982C415D09BDF570B311DEB8510019D29902CC'/>
+<L f='local:E0E7AECED70FA34E70A311DEC45300155883529C' s='E0982C415D09BDF870B311DECD2A0019D29902CC'/>
+<L f='E0600CBB1E12CE7270A411DEB72200155883529C' s='E0982C415D0C2EF470B311DE99230019D29902CC'/>
+<L f='local:E0B91841F0303550560511DECC310019D29902CC' s='E0982C415D0C2EF570B311DE9B3F0019D29902CC'/>
+</textblocks.DocumentNode_References_CorrespondingModelElement>
+<data.classes.A_elementsOfType_clazz c='2'>
+<L f='E0600CBB1E12CE7270A411DEB72200155883529C' s='local:E0B91841F0303550560511DECC310019D29902CC'/>
+<L f='E0600CBB1E12CE7670A411DEA61000155883529C' s='local:E0E7AECED71B8A2870A311DE8CD600155883529C'/>
+</data.classes.A_elementsOfType_clazz>
+<data.classes.OutputOfSignature c='2'>
+<L f='E0600CBB1E12CE7270A411DEB72200155883529C' s='E0600CBB1E153F7270A411DE8DFF00155883529C'/>
+</data.classes.OutputOfSignature>
+<data.classes.A_ownedTypeDefinition_ownerTypedElement c='2'>
+<L f='E0600CBB1E12CE7670A411DEA61000155883529C' s='E0600CBB1E12CE7770A411DE80FF00155883529C'/>
+<L f='E0A1FE6CF361D9F870A311DEACD200155883529C' s='E0A1FE6CF361D9F970A311DECD6600155883529C'/>
+</data.classes.A_ownedTypeDefinition_ownerTypedElement>
+<data.classes.A_ownedTypeDefinitions_ownerSignature c='2'>
+<L f='E0600CBB1E12CE7270A411DEB72200155883529C' s='E0600CBB1E153F7270A411DE8DFF00155883529C'/>
+</data.classes.A_ownedTypeDefinitions_ownerSignature>
+<data.classes.A_signature_functionSignatureTypeDefinition c='2'>
+<L f='E0600CBB1E153F7270A411DE8DFF00155883529C' s='E0A1FE6CF361D9F870A311DEACD200155883529C'/>
+</data.classes.A_signature_functionSignatureTypeDefinition>
+<data.classes.A_ownedSignature_functionSignatureTypeDefinition c='2'>
+<L f='E0600CBB1E153F7270A411DE8DFF00155883529C' s='E0A1FE6CF361D9F870A311DEACD200155883529C'/>
+</data.classes.A_ownedSignature_functionSignatureTypeDefinition>
+<data.classes.A_implementation_functionSignature c='2'>
+<L f='E0600CBB1E153F7170A411DEA93A00155883529C' s='E0600CBB1E153F7270A411DE8DFF00155883529C'/>
+</data.classes.A_implementation_functionSignature>
+<modelmanagement.A_ownedPackages_owner c='2'>
+<L f='E03677198D7A829070A311DEB44400155883529C' s='local:49AC5B4E1D8E5270077811DEBC0C0019D29902CC'/>
+</modelmanagement.A_ownedPackages_owner>
+<dataaccess.expressions.A_object_objectBasedExpression c='2'>
+<L f='E0600CBB1E12CE7770A411DE80FF00155883529C' s='E0600CBB1E12CE7970A411DEB84400155883529C'/>
+</dataaccess.expressions.A_object_objectBasedExpression>
+<dataaccess.expressions.A_classToInstantiate_objectCreationExpression c='2'>
+<L f='local:E0E7AECED71B8A2870A311DE8CD600155883529C' s='E0600CBB1E12CE7770A411DE80FF00155883529C'/>
+</dataaccess.expressions.A_classToInstantiate_objectCreationExpression>
+<dataaccess.expressions.A_withArgument_argument c='2'>
+<L f='E0600CBB1E153F7070A411DE80FC00155883529C' s='E0600CBB1E12CE7970A411DEB84400155883529C'/>
+</dataaccess.expressions.A_withArgument_argument>
+<dataaccess.expressions.SignatureCallToSignature c='2'>
+<L f='E0600CBB1E12CE7970A411DEB84400155883529C' s='local:E0E7AECED70FA34E70A311DEC45300155883529C'/>
+</dataaccess.expressions.SignatureCallToSignature>
+<integration.binding.A_function_binding c='2'>
+<L f='E0A1FE6CF361D9F970A311DECD6600155883529C' s='E0A1FE6CF361D9FA70A311DE83C100155883529C'/>
+</integration.binding.A_function_binding>
+<integration.binding.A_urlPattern_httpBinding c='2'>
+<L f='E0A1FE6CF35F68F270A311DEA41900155883529C' s='E0A1FE6CF361D9FA70A311DE83C100155883529C'/>
+</integration.binding.A_urlPattern_httpBinding>
+<integration.binding.A_bindings_package_ c='2'>
+<L f='E0A1FE6CF361D9FA70A311DE83C100155883529C' s='E03677198D7A829070A311DEB44400155883529C'/>
+</integration.binding.A_bindings_package_>
+<behavioral.actions.A_statements_block c='2'>
+<L f='E0600CBB1E153F7070A411DE80FC00155883529C' s='E0600CBB1E153F7170A411DEA93A00155883529C'/>
+</behavioral.actions.A_statements_block>
+</Partition>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Opportunitymanagement Plug-in
+Bundle-SymbolicName: com.sap.runlet.apps.opportunitymanagement;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime,
+ com.sap.ap.cts.editor,
+ ngpm.stdlib
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

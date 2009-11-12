@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='demo.sap.com/tcsmeta' i='1' v=''/>
+<C n='sap.com/moin/mm/bibtex.metamodel' i='2' v=''/>
+<M c='1' q='textblocks.TextBlock' i='480716BCBE2C3EAC0C5F11DDB70900016CE99C52'/>
+<M c='1' q='textblocks.LexedToken' i='480716BCBE2DC5420C5F11DDA75D00016CE99C52'/>
+<M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
+<M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.TextBlock_Contains_Subblocks' i='480716BCBE2DC5490C5F11DDB5A500016CE99C52' se='1' ce='1' oe='0'/>
+<M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
+<M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
+<M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
+<M c='2' q='Bibtex.Entry' i='E016575CC8BEADC0395011DECA2200016CE99C52'/>
+<M c='2' q='Bibtex.Author' i='E02C978B118CADE0395111DE8BC900016CE99C52'/>
+<M c='2' q='Bibtex.LiteratureDb' i='E02C978B1B44C700395111DEC10600016CE99C52'/>
+<M c='2' q='Bibtex.LitertureDb_Entry' i='E02C978B24982AE0395111DEA43F00016CE99C52' se='0' ce='0' oe='-1'/>
+<M c='2' q='Bibtex.LitertureDb_Author' i='E02C978B281FF210395111DE99CC00016CE99C52' se='0' ce='0' oe='-1'/>
+<M c='2' q='Bibtex.Entry_Author' i='E02C978B3A2F82E0395111DE9DE900016CE99C52' se='0' ce='-1' oe='-1'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42E9D121627C11DE99220013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='3' offsetRelative='true' value='DB:' lookahead='1' lookback='0' state='0' type='15' query='' property='' keyName=''/>
+<textblocks.BOSToken m:c='1' m:i='E000054C42E9D122627C11DE8BC90013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='false' value='BOS' lookahead='0' lookback='0' state='0' type='-2'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42E9D124627C11DEC4AD0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42E9D125627C11DE97E60013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='4' length='15' offsetRelative='true' value='newLiteratureDb' lookahead='1' lookback='1' state='0' type='4'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42E9D126627C11DEB7B70013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='19' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42E9D127627C11DEC77B0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='20' length='1' offsetRelative='true' value='{' lookahead='1' lookback='1' state='0' type='16'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42E9D128627C11DE89D90013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='1' offsetRelative='true' value='&#10;' lookahead='1' lookback='1' state='0' type='7'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42E9D129627C11DE830A0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='1' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B10627C11DEA1370013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42EC1B11627C11DE8D610013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='6' offsetRelative='true' value='&quot;name&quot;' lookahead='1' lookback='1' state='0' type='4'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B12627C11DE97830013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='9' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42EC1B13627C11DE95170013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='10' length='1' offsetRelative='true' value=':' lookahead='1' lookback='1' state='0' type='18'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B14627C11DE896F0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B15627C11DECBB10013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='1' length='1' offsetRelative='true' value='&#10;' lookahead='1' lookback='1' state='0' type='7'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B16627C11DEA7160013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='2' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B17627C11DEA8B90013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='3' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B18627C11DEA3840013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='4' length='1' offsetRelative='true' value='&#9;' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42EC1B19627C11DE914F0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='5' length='6' offsetRelative='true' value='&quot;asdf&quot;' lookahead='1' lookback='1' state='0' type='4'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B1A627C11DEC56F0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='11' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42EC1B1B627C11DEAA870013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='12' length='1' offsetRelative='true' value=':' lookahead='1' lookback='1' state='0' type='18'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B1C627C11DE892F0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='13' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='8'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42EC1B1D627C11DEA20D0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='14' length='5' offsetRelative='true' value='&quot;bla&quot;' lookahead='1' lookback='1' state='0' type='4' property='literturedb'/>
+<textblocks.OmittedToken m:c='1' m:i='E000054C42EC1B1E627C11DEB47D0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='51' length='1' offsetRelative='true' value='&#10;' lookahead='1' lookback='1' state='0' type='7'/>
+<textblocks.LexedToken m:c='1' m:i='E000054C42EC1B1F627C11DEB9AC0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='52' length='1' offsetRelative='true' value='}' lookahead='1' lookback='1' state='0' type='17'/>
+<textblocks.EOSToken m:c='1' m:i='E000054C42EC1B20627C11DEAB5B0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='53' length='0' offsetRelative='true' value='EOS' lookahead='0' lookback='0' state='0' type='-1'/>
+<textblocks.TextBlock m:c='1' m:i='E000054C43DF54B0627C11DEADEC0013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='53' offsetRelative='false' isComplete='true' cachedString='DB: newLiteratureDb {&#10;  &quot;name&quot; : &#10;  &#9;&quot;asdf&quot; : &quot;bla&quot;&#10;}'/>
+<textblocks.TextBlock m:c='1' m:i='E000054C43DF54B1627C11DEBD500013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='21' length='30' offsetRelative='true' isComplete='true'/>
+<textblocks.TextBlock m:c='1' m:i='E000054C43E1C5B0627C11DEB8160013029988A1' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='11' length='19' offsetRelative='true' isComplete='true'/>
+<Bibtex.Entry m:c='2' m:i='E000054C43E1C5B1627C11DEA8670013029988A1' title='&quot;bla&quot;' id='&quot;asdf&quot;'/>
+<Bibtex.Author m:c='2' m:i='E000054C43E40FA0627C11DEA87A0013029988A1' name='&quot;name&quot;'/>
+<Bibtex.LiteratureDb m:c='2' m:i='E000054C43E40FA1627C11DE976B0013029988A1' name='newLiteratureDb'/>
+<textblocks.TextBlock_Contains_Tokens c='1'>
+<L f='E000054C42E9D122627C11DE8BC90013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42E9D121627C11DE99220013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42E9D124627C11DEC4AD0013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42E9D125627C11DE97E60013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42E9D126627C11DEB7B70013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42E9D127627C11DEC77B0013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42EC1B1E627C11DEB47D0013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42EC1B1F627C11DEB9AC0013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42EC1B20627C11DEAB5B0013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C42E9D128627C11DE89D90013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C42E9D129627C11DE830A0013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C42EC1B10627C11DEA1370013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C42EC1B11627C11DE8D610013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C42EC1B12627C11DE97830013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C42EC1B13627C11DE95170013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C42EC1B14627C11DE896F0013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B15627C11DECBB10013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B16627C11DEA7160013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B17627C11DEA8B90013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B18627C11DEA3840013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B19627C11DE914F0013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B1A627C11DEC56F0013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B1B627C11DEAA870013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B1C627C11DE892F0013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+<L f='E000054C42EC1B1D627C11DEA20D0013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+</textblocks.TextBlock_Contains_Tokens>
+<textblocks.TextBlock_Contains_Subblocks c='1'>
+<L f='E000054C43DF54B1627C11DEBD500013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C43E1C5B0627C11DEB8160013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+</textblocks.TextBlock_Contains_Subblocks>
+<textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
+<L f='E000054C43E40FA1627C11DE976B0013029988A1' s='E000054C42EC1B1D627C11DEA20D0013029988A1'/>
+<L f='E000054C43E40FA1627C11DE976B0013029988A1' s='E000054C43DF54B0627C11DEADEC0013029988A1'/>
+<L f='E000054C43E40FA0627C11DEA87A0013029988A1' s='E000054C43DF54B1627C11DEBD500013029988A1'/>
+<L f='E000054C43E1C5B1627C11DEA8670013029988A1' s='E000054C43E1C5B0627C11DEB8160013029988A1'/>
+</textblocks.DocumentNode_References_CorrespondingModelElement>
+<Bibtex.LitertureDb_Entry c='2'>
+<L f='E000054C43E40FA1627C11DE976B0013029988A1' s='E000054C43E1C5B1627C11DEA8670013029988A1'/>
+</Bibtex.LitertureDb_Entry>
+<Bibtex.LitertureDb_Author c='2'>
+<L f='E000054C43E40FA1627C11DE976B0013029988A1' s='E000054C43E40FA0627C11DEA87A0013029988A1'/>
+</Bibtex.LitertureDb_Author>
+<Bibtex.Entry_Author c='2'>
+<L f='E000054C43E1C5B1627C11DEA8670013029988A1' s='E000054C43E40FA0627C11DEA87A0013029988A1'/>
+</Bibtex.Entry_Author>
+</Partition>

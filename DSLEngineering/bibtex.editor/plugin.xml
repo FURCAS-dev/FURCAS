@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<?eclipse version="3.4"?> 
+<plugin> 
+	<extension point="org.eclipse.ui.editors"> 
+		<editor 
+			class="furcas.examples.editor.BibtexEditor"
+			extensions="bib" 
+			id="furcas.examples.editor.BibtexEditor" 
+			name="Bibtex Editor"> 
+		</editor> 
+	</extension> 
+	<extension point="org.eclipse.ui.editors"> 
+		<editor 
+			class="furcas.examples.editor.AlternativeBibtexEditor"
+			extensions="bib" 
+			id="furcas.examples.editor.AlternativeBibtexEditor" 
+			name="Alternative Bibtex Editor"> 
+		</editor> 
+	</extension>
+ 
+ <extension point="com.sap.tc.moin.incubation.contentprovider.Content">  
+   <ContentDefinition>  
+		<Path   
+			Value="mappings"  
+ 			Versioned="true">  
+		</Path>  
+	</ContentDefinition>  
+ </extension> 
+    <extension
+         point="com.sap.ide.treeprovider.rootNodeDefinition">
+        <rootNodeProvider classname="furcas.examples.bibtex.tree.BibtexRootNodeProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.textLabelProvider">
+        <textLabelProvider classname="furcas.examples.bibtex.tree.BibtexTreeLabelProvider" />
+   </extension>
+   <extension
+         point="com.sap.ide.treeprovider.imageProvider">
+        <imageProvider classname="furcas.examples.bibtex.tree.BibtexTreeImageProvider" />
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="true"
+            editorId="furcas.examples.editor.BibtexEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="bibtex.LiteratureDb">
+      </association>
+   </extension>
+   <extension
+         point="com.sap.mi.fwk.ui.modelObjectEditorAssociations">
+      <association
+            canHandleChildren="true"
+            default="false"
+            editorId="furcas.examples.editor.AlternativeBibtexEditor"
+            inputFactory="com.sap.ide.cts.editor.GrammarBasedModelEditorInputFactory"
+            objectClass="bibtex.LiteratureDb">
+      </association>
+   </extension>
+</plugin> 

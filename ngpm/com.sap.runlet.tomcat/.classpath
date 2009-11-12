@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/bin/bootstrap.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/bin/commons-daemon.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/bin/tomcat-juli.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/annotations-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/catalina-ant.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/catalina-ha.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/catalina-tribes.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/catalina.jar" sourcepath="apache-tomcat-6.0.20/src.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/el-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/jasper-el.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/jasper-jdt.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/jasper.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/jsp-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/servlet-api.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/tomcat-coyote.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/tomcat-dbcp.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/tomcat-i18n-es.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/tomcat-i18n-fr.jar"/>
+	<classpathentry exported="true" kind="lib" path="apache-tomcat-6.0.20/lib/tomcat-i18n-ja.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

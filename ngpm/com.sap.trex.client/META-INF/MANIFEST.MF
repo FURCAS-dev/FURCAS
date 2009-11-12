@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: TREX client Plug-in
+Bundle-SymbolicName: com.sap.trex.client
+Bundle-Version: 1.0.0.0
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.trex.client
