@@ -96,6 +96,87 @@ public class TestIndexNotSufficient extends Assert {
 	}
 
 	@Test
+	public void testNonExistingBackwardLink() throws Exception {
+		PageableIndexImpl index = new PageableIndexImpl(getOptions());
+
+		ResourceSet rs = new ResourceSetImpl();
+
+		List<URI> resourceURIs = new ArrayList<URI>();
+
+		System.out.println("Creating resources");
+		long time = System.currentTimeMillis();
+
+		Resource r = rs.createResource(URI.createFileURI(getTempDir() + "/dump_1.xmi"));
+		Resource r2 = rs.createResource(URI.createFileURI(getTempDir() + "/dump_2.xmi"));
+
+		resourceURIs.add(r.getURI());
+		resourceURIs.add(r2.getURI());
+
+		EClass eClass1 = EcoreFactory.eINSTANCE.createEClass();
+		eClass1.setName("EClass1");
+		EClass eClass2 = EcoreFactory.eINSTANCE.createEClass();
+		eClass2.setName("EClass2");
+		r.getContents().add(eClass1);
+		r2.getContents().add(eClass2);
+		eClass1.getESuperTypes().add(eClass2);
+
+		EClass eClass1_2 = EcoreFactory.eINSTANCE.createEClass();
+		eClass1_2.setName("EClass1_2");
+		EClass eClass2_2 = EcoreFactory.eINSTANCE.createEClass();
+		eClass2_2.setName("EClass2_2");
+		r.getContents().add(eClass1_2);
+		r2.getContents().add(eClass2_2);
+
+		URI class1Uri = EcoreUtil.getURI(eClass1);
+		URI class2Uri = EcoreUtil.getURI(eClass2);
+
+		r.save(null);
+		r2.save(null);
+		this.resourceChanged(index, r, r2);
+
+		final EReferenceQuery<EReferenceDescriptor> query = IndexQueryFactory.createEReferenceQuery();
+		query.targetEObject().resource().uri(class2Uri.trimFragment().toString());
+		query.targetEObject().fragment(class2Uri.fragment());
+		index.executeQueryCommand(new QueryCommand() {
+
+			@Override
+			public void execute(QueryExecutor queryExecutor) {
+				QueryResult<EReferenceDescriptor> result = queryExecutor.execute(query);
+				int size = 0;
+				for (EReferenceDescriptor eob : result) {
+					System.out.println(eob.getSourceResourceURI() + "#" + eob.getSourceFragment());
+					size++;
+				}
+				assertEquals(2, size);
+			}
+
+		});
+
+		System.out.println("----");
+		query.targetEObject().resource().uri("find_ich_nich");
+		query.targetEObject().fragment(class2Uri.fragment());
+		index.executeQueryCommand(new QueryCommand() {
+
+			@Override
+			public void execute(QueryExecutor queryExecutor) {
+				QueryResult<EReferenceDescriptor> result = queryExecutor.execute(query);
+				int size = 0;
+				for (EReferenceDescriptor eob : result) {
+					System.out.println(eob.getSourceResourceURI() + "#" + eob.getSourceFragment());
+					size++;
+				}
+				assertEquals(0, size);
+			}
+
+		});
+
+		this.deleteResources(Arrays.asList(r.getURI(), r2.getURI()), index);
+
+		r.delete(null);
+		r2.delete(null);
+	}
+
+	@Test
 	public void testDump() throws Exception {
 		PageableIndexImpl index = new PageableIndexImpl(getOptions());
 

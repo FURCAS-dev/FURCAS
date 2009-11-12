@@ -103,7 +103,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 			tgtFragment = tgtEObjectQuery.getFragment();
 		}
 
-		if ((srcResScope == null || srcResScope.size() == 0) && (tgtResScope == null || tgtResScope.size() == 0)) {
+		if (srcResScope == null && tgtResScope == null) {
 			if (tgtFragment == null || srcFragment != null) {
 				this.direction = Direction.FORWARD;
 			} else {

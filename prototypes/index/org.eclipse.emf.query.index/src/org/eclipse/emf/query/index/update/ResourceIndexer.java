@@ -1,3 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2009 SAP AG and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     SAP AG - initial API and implementation
+ *******************************************************************************/
 package org.eclipse.emf.query.index.update;
 
 import java.util.IdentityHashMap;
@@ -17,6 +27,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+/**
+ * @author Martin Strenge, SAP AG
+ * 
+ */
 public class ResourceIndexer {
 
 	public static final ResourceIndexer INSTANCE = new ResourceIndexer();
