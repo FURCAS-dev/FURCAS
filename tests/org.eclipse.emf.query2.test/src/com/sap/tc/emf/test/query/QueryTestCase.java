@@ -17,7 +17,7 @@ import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Package;
@@ -33,7 +33,7 @@ public class QueryTestCase extends Assert {
 
 	static {
 
-		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommand() {
+		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {

@@ -6,12 +6,12 @@ import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 
 public class IndexerForTest {
 
 	public static void index(Index index, final Resource... resources) {
-		index.executeUpdateCommand(new UpdateCommand() {
+		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
@@ -21,7 +21,7 @@ public class IndexerForTest {
 	}
 
 	public static void delete(Index index, final URI... resources) {
-		index.executeUpdateCommand(new UpdateCommand() {
+		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {

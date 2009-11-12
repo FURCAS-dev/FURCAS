@@ -19,7 +19,7 @@ import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 
 public class QueryIndexBuilder extends IncrementalProjectBuilder {
 
@@ -28,9 +28,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		/*
 		 * (non-Javadoc)
 		 * 
-		 * @see
-		 * org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse
-		 * .core.resources.IResourceDelta)
+		 * @see org.eclipse.core.resources.IResourceDeltaVisitor#visit(org.eclipse .core.resources.IResourceDelta)
 		 */
 		public boolean visit(IResourceDelta delta) throws CoreException {
 			IResource resource = delta.getResource();
@@ -73,8 +71,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int,
-	 * java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
+	 * @see org.eclipse.core.internal.events.InternalBuilder#build(int, java.util.Map, org.eclipse.core.runtime.IProgressMonitor)
 	 */
 	protected IProject[] build(int kind, Map args, IProgressMonitor monitor) throws CoreException {
 		if (kind == FULL_BUILD) {
@@ -91,7 +88,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 	}
 
 	public void removeFile(final IResource resource) {
-		IndexFactory.getInstance().executeUpdateCommand(new UpdateCommand() {
+		IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
@@ -116,7 +113,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		final Set<String> extensions = Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().keySet();
 		String fileExtension = resource.getFileExtension();
 		if ("xmi".equals(fileExtension) || "xml".equals(fileExtension) || extensions.contains(fileExtension)) {
-			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommand() {
+			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
 				@Override
 				public void execute(final IndexUpdater updater, QueryExecutor queryExecutor) {

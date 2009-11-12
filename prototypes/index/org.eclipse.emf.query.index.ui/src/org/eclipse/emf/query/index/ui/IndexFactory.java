@@ -3,7 +3,6 @@ package org.eclipse.emf.query.index.ui;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
@@ -11,7 +10,7 @@ import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 
 public class IndexFactory {
 
@@ -19,7 +18,7 @@ public class IndexFactory {
 
 	static {
 		index = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
-		index.executeUpdateCommand(new UpdateCommand() {
+		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(final IndexUpdater updater, QueryExecutor queryExecutor) {

@@ -44,7 +44,7 @@ import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.query.descriptors.ResourceDescriptor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Test;
@@ -460,7 +460,7 @@ public class TestIndexNotSufficient extends Assert {
 	}
 
 	private void resourceChanged(Index index, final Resource... r) {
-		index.executeUpdateCommand(new UpdateCommand() {
+		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
@@ -486,7 +486,7 @@ public class TestIndexNotSufficient extends Assert {
 	}
 
 	protected void deleteResources(final Collection<URI> uris, Index index) {
-		index.executeUpdateCommand(new UpdateCommand() {
+		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {

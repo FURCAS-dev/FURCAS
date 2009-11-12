@@ -22,7 +22,7 @@ import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.internal.index.IndexQueryService;
 import org.eclipse.emf.query2.test.mm.testcases.case002.B2;
 import org.eclipse.emf.query2.test.mm.testcases.case002.C2;
@@ -104,7 +104,7 @@ public class TestIndexQueryService extends QueryTestCase {
 		linkSourceResource.getContents().add(c);
 		linkSourceResource.getContents().add(e);
 
-		getDefaultIndexStore().executeUpdateCommand(new UpdateCommand() {
+		getDefaultIndexStore().executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {

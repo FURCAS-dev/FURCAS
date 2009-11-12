@@ -40,7 +40,7 @@ import org.eclipse.emf.query.index.query.QueryResult;
 import org.eclipse.emf.query.index.query.descriptors.EReferenceDescriptor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.QueryContext;
 import org.eclipse.emf.query2.internal.index.IndexQueryService;
 
@@ -85,7 +85,7 @@ public class EmfHelper {
 	public void createDirtyIndex() {
 		this.dirtyIndex = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
-		dirtyIndex.executeUpdateCommand(new UpdateCommand() {
+		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
@@ -166,11 +166,11 @@ public class EmfHelper {
 	}
 
 	private void addToIndex(final Resource r) {
-		dirtyIndex.executeUpdateCommand(new UpdateCommand() {
+		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-				ResourceIndexer rd = new ResourceIndexer();
+				ResourceIndexer rd = ResourceIndexer.INSTANCE;
 				rd.resourceChanged(updater, r);
 			}
 

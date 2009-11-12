@@ -27,7 +27,7 @@ import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommand;
+import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.ColumnType;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
@@ -143,7 +143,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		mdi.createData();
 
 		// index all created partitions
-		getDefaultIndexStore().executeUpdateCommand(new UpdateCommand() {
+		getDefaultIndexStore().executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
 			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
@@ -156,9 +156,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		// test setup sanity check
 		/*
-		 * Note: setting the modification tracking to active may be done here
-		 * instead of in the test client, but then the 'withSave' option must
-		 * always be true (?)
+		 * Note: setting the modification tracking to active may be done here instead of in the test client, but then the 'withSave' option
+		 * must always be true (?)
 		 */
 		for (URI uri : mdi.getAllPartitions()) {
 			assertTrue("Modification tracking must be enabled for query tests", myTestClient.getResource(uri).isTrackingModification());
@@ -188,7 +187,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		// remove from index
 		if (deletePartitions && partitionScope != null) {
-			getDefaultIndexStore().executeUpdateCommand(new UpdateCommand() {
+			getDefaultIndexStore().executeUpdateCommand(new UpdateCommandAdapter() {
 
 				@Override
 				public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
@@ -2972,9 +2971,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	// }
 
 	/**
-	 * Verfies the result set based on the String entries. The intended result
-	 * set has to be a list of arrays, which represent the lines of the result
-	 * set.
+	 * Verfies the result set based on the String entries. The intended result set has to be a list of arrays, which represent the lines of
+	 * the result set.
 	 * 
 	 * @param resultSet
 	 * @param intendedResult
@@ -3058,9 +3056,8 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 	}
 
 	/**
-	 * Verfies the result set based on the String entries. The intended result
-	 * set has to be a list of arrays, which represent the lines of the result
-	 * set.
+	 * Verfies the result set based on the String entries. The intended result set has to be a list of arrays, which represent the lines of
+	 * the result set.
 	 * 
 	 * @param resultSet
 	 * @param intendedResult
