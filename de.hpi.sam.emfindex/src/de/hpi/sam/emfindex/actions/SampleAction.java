@@ -2,23 +2,26 @@ package de.hpi.sam.emfindex.actions;
 
 import java.io.IOException;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.emfindex.MemoryIndexImpl;
-import org.eclipse.emf.emfindex.query.EObjectQueryExecutorStrategyImpl;
-import org.eclipse.emf.emfindex.query.EReferenceQueryExecutorStrategyImpl;
-import org.eclipse.emf.emfindex.query.QueryExecutorImpl;
-import org.eclipse.emf.emfindex.query.ResourceQueryExecutorStrategyImpl;
-import org.eclipse.emf.emfindex.store.IndexUpdater;
-import org.eclipse.emf.emfindex.store.IndexUpdaterImpl;
-import org.eclipse.emf.emfindex.store.ResourceIndexer;
+import org.eclipse.emf.emfindex.*;
+import org.eclipse.emf.emfindex.query.*;
+import org.eclipse.emf.emfindex.store.*;
+import org.eclipse.emf.emfindex.ui.EmfIndexUIPlugin;
+import org.eclipse.emf.emfindex.ui.builder.EmfIndexNature;
+import org.eclipse.emf.emfindex.ui.builder.EmfIndexProjectBuilder;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.ui.internal.UIPlugin;
 
 /**
  * Our sample action implements workbench action delegate.
@@ -30,12 +33,10 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  */
 public class SampleAction implements IWorkbenchWindowActionDelegate {
 	private IWorkbenchWindow window;
-
 	/**
 	 * The constructor.
 	 */
 	public SampleAction() {
-
 	}
 
 	/**
@@ -47,11 +48,12 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	public void run(IAction action) {
 			MessageDialog.openInformation(window.getShell(), "Emfindex", "EMF Index executed");
 			System.out.println("EMF Index started");
-			//setup
+			//setup		
+
 			MemoryIndexImpl index = new MemoryIndexImpl();
 			IndexUpdater indexUpdater = new IndexUpdaterImpl(index);
 
-			index.setIndexUpdater(indexUpdater);
+			index.setIndexUpdater(indexUpdater);			
 			QueryExecutorImpl queryExecutor = new QueryExecutorImpl(index);
 			queryExecutor.addQueryExecutorStrategy(
 					new ResourceQueryExecutorStrategyImpl(), 0);
@@ -60,45 +62,87 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 			queryExecutor.addQueryExecutorStrategy(
 					new EReferenceQueryExecutorStrategyImpl(), 0);
 			index.setQueryExecutor(queryExecutor);
-
+			
 			//Zeit für Indizierung beginnt
 			long begin = System.currentTimeMillis();
 			//Datei zum Indizieren laden und diese indizieren
+			
+//			index.executeUpdateCommand(new UpdateCommand<Boolean>() {
+//				public Boolean execute(IndexUpdater indexUpdater, QueryExecutor queryExecutor) {
+//					
+//					return true;
+//				}
+//			});
 
-			//	index.executeUpdateCommand(new UpdateCommand<Boolean>() {
-			//		public Boolean execute(IndexUpdater indexUpdater, QueryExecutor queryExecutor) {
-			//
-			//			return true;
-			//		}
-			//	});
-
+			
 			ResourceIndexer resourceIndexer = new ResourceIndexer();
-			URI resourceURI = URI.createPlatformResourceURI(
-					"/test/My1.vortrag", true);
-			//	System.out.println("Stelle1");
-			//	resourceIndexer.resourceChanged(resourceURI, indexUpdater);
-			//	System.out.println("Stelle2");
+			URI resourceURI = URI.createPlatformResourceURI("/de.hpi.sam.vortrag/model/vortrag.ecore", true);
+//			URI resourceURI = URI.createPlatformResourceURI("vortrag.ecore", true);
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.createResource(resourceURI);
+//			Resource copy = resourceSet.createResource(resourceURI);
+//			
+//			Resource ecoreResource = EcorePackage.eINSTANCE.eResource();
+//			copy.getContents().add(EcorePackage.eINSTANCE);
+//			try {
+//				copy.save(null);
+//			} catch (IOException e3) {
+//				// TODO Auto-generated catch block
+//				e3.printStackTrace();
+//			}
+//			ecoreResource.getContents().add(EcorePackage.eINSTANCE);
+//			copy.unload();
+//			try {
+//				copy.load(null);
+//			} catch (IOException e2) {
+//				// TODO Auto-generated catch block
+//				e2.printStackTrace();
+//			}
+//			Resource resource = new ResourceImpl();
+//			resource.getContents().addAll(copy.getContents());
+//			try {
+//				copy.delete(null);
+//			} catch (IOException e2) {
+//				// TODO Auto-generated catch block
+//				e2.printStackTrace();
+//			}
+			
+			UpdateableIndex index2 = EmfIndexUIPlugin.getDefault().getIndex();
+			
+			try {
+				index2.save();
+			} catch (IOException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 
-			resourceIndexer.createResourceDescriptor(resource, indexUpdater,
-					resourceURI, resourceSet.getURIConverter());
-			resourceIndexer.createEObjectDescriptors(resource, indexUpdater,
-					resourceURI, resourceSet.getURIConverter());
-			resourceIndexer.createEReferenceDescriptors(resource, indexUpdater,
-					resourceURI, resourceSet.getURIConverter());
+//			resourceIndexer.createResourceDescriptor(resource, indexUpdater,
+//					resourceURI, resourceSet.getURIConverter());
+//			resourceIndexer.createEObjectDescriptors(resource, indexUpdater,
+//					resourceURI, resourceSet.getURIConverter());
+//			resourceIndexer.createEReferenceDescriptors(resource, indexUpdater,
+//					resourceURI, resourceSet.getURIConverter());
+//			
+
+//			index.getQueryExecutor().getIndex();
+//			try {
+//				resourceIndexer.resourceChanged(resourceURI, indexUpdater);
+//			} catch (Exception e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
 
 			//Indizierung abgeschlossen
 			long end = System.currentTimeMillis();
 			System.out.println("Total indexing time: " + (end - begin) + "ms.");
 
 			//Index speichern
-			try {
-				index.save();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			try {
+//				index.save();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 			System.out.println("EMF Index finished");
 	}
@@ -127,5 +171,6 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#init
 	 */
 	public void init(IWorkbenchWindow window) {
+		this.window = window;
 	}
 }
