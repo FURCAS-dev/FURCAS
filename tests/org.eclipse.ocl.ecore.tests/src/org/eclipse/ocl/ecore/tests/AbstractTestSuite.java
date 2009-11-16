@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.21 2009/10/15 19:46:28 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.22 2009/11/16 14:23:36 lgoubet Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -544,6 +544,16 @@ public abstract class AbstractTestSuite
 		}
 		
 		return result;
+	}
+	
+	/**
+	 * This can be called by subclasses to provide a meaningful error message
+	 * when the tests are run with an encoding distinct from UTF-8.
+	 */
+	protected void checkForUTF8Encoding() {
+		if (!"´".equals("\u00B4")) { //$NON-NLS-1$ //$NON-NLS-2$
+			fail("The preference for the workspace text file encoding should be set to UTF-8."); //$NON-NLS-1$
+		}
 	}
 	
 	protected Object evaluate(String contextFreeExpression) {
