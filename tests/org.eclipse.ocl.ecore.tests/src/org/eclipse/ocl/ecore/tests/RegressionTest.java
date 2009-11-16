@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.13 2009/10/07 20:39:27 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.14 2009/11/16 14:23:36 lgoubet Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1556,6 +1556,8 @@ public class RegressionTest
 	 * the back-quote (grave accent), as well.
 	 */
 	public void test_hebrew_singleQuote_135321() {
+		checkForUTF8Encoding();
+		
 		parse(
 				// English locale style
 				"package ocltest context Apple " + //$NON-NLS-1$
@@ -1565,13 +1567,13 @@ public class RegressionTest
 		parse(
 				// SuSe Linux in Hebrew Local
 				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel(´foo´)" + //$NON-NLS-1$
+				"inv: preferredLabel(Â´fooÂ´)" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
 		
 		parse(
 				// I've seen this before (esp. in text export from MS Word)
 				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel(`foo´)" + //$NON-NLS-1$
+				"inv: preferredLabel(`fooÂ´)" + //$NON-NLS-1$
 				" endpackage"); //$NON-NLS-1$
 	}
 	
