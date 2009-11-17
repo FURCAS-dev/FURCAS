@@ -270,17 +270,18 @@ public final class BasicQueryProcessorMemoryImpl extends SpiAbstractBasicQueryPr
 	 */
 	public static boolean isInPartitionsOfTypeAndInElements(EObject object, Set<URI> priScope, Set<EClass> mrisOfTypes, Set<URI> elements) {
 
-		// we keep the element if it exists in the fixed element set
-		boolean toBeKept = elements == null || elements.isEmpty() || elements.contains(EcoreUtil.getURI(object));
+		// don't forget Reflect::Element
+		boolean toBeKept = mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(object.eClass());
 
 		// if not, we have to verify the type
 		if (toBeKept) {
-			// don't forget Reflect::Element
-			toBeKept = mrisOfTypes == null || mrisOfTypes.isEmpty() || mrisOfTypes.contains(object.eClass());
+			// we keep the element if it exists in the fixed element set
+			URI objectUri = EcoreUtil.getURI(object);
+			toBeKept = elements == null || elements.isEmpty() || elements.contains(objectUri);
 
 			if (toBeKept) {
 				// if of correct type, then check for partition in scope
-				toBeKept = (priScope != null ? priScope.contains(object.eResource().getURI()) : false);
+				toBeKept = (priScope != null ? priScope.contains(objectUri.trimFragment()) : false);
 			}
 		}
 

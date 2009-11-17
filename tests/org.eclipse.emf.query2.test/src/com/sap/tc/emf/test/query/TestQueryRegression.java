@@ -29,6 +29,10 @@ import org.eclipse.emf.query2.test.mm.testcases.case001.A1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.B1;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Factory;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Package;
+import org.eclipse.emf.query2.test.mm.testcases.case002.B2;
+import org.eclipse.emf.query2.test.mm.testcases.case002.C2;
+import org.eclipse.emf.query2.test.mm.testcases.case002.Case002Factory;
+import org.eclipse.emf.query2.test.mm.testcases.case002.Case002Package;
 import org.eclipse.emf.query2.test.mm.testcases.case004.A4;
 import org.eclipse.emf.query2.test.mm.testcases.case004.B4;
 import org.eclipse.emf.query2.test.mm.testcases.case004.Case004Factory;
@@ -570,5 +574,33 @@ public class TestQueryRegression extends QueryTestCase {
 		IndexerForTest.delete(getDefaultIndexStore(), res.getURI());
 
 		res.delete(null);
+	}
+
+	@Test
+	public void testUnassignedEObject() throws Exception {
+		QueryProcessor mql = this.getMQLProcessor();
+
+		Resource res = this.testClient1.getOrCreateResourceStable("QueryRegressionTests_testUnassignedEObject.xmi");
+		TypeScopeProvider qspOld = mql.getInclusivePartitionScopeProvider(res.getURI());
+		QueryContext qsp = this.getQueryContext(qspOld);
+
+		URI uriC2 = EcoreUtil.getURI(Case002Package.Literals.C2);
+		URI uriB2 = EcoreUtil.getURI(Case002Package.Literals.B2);
+
+		C2 c2 = Case002Factory.eINSTANCE.createC2();
+		B2 b2 = Case002Factory.eINSTANCE.createB2();
+		B2 b2fake = Case002Factory.eINSTANCE.createB2();
+
+		res.getContents().clear();
+		res.getContents().add(c2);
+		res.getContents().add(b2fake);
+		c2.setB(b2);
+
+		String query = String.format("select c from [%s] as c, [%s] as b where c.b = b", uriC2, uriB2);
+
+		ResultSet rs = mql.execute(query, qsp);
+
+		assertEquals(0, rs.getSize());
+
 	}
 }
