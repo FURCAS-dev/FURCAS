@@ -9,9 +9,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
 import java.util.regex.Matcher;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
@@ -147,13 +151,13 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 					Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
 						conn, affectedElements, textBlock);
 					for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-					    reference.setModelElement(ro);
-					    reference.setRealValue(null);
-					    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-							conn, ro);
-					    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(
-						conn, outermostPackage, this.reference, textBlock);
-					    reference.setModelElement(null);
+					    DelayedReference clonedRef = (DelayedReference) reference.clone();
+					    clonedRef.setModelElement(ro);
+					    clonedRef.setRealValue(null);
+					    clonedRef.setTextBlock(textBlock);
+					    clonedRef.setConnection(conn);
+					    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+					    //reference.setModelElement(null);
 					}
 				}
 			    }
@@ -166,22 +170,25 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
 					conn, affectedElements, lt.getParentBlock());
 				for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-				    reference.setModelElement(ro);
-				    reference.setToken(new LexedTokenWrapper(lt));
-				    reference.setKeyValue(lt.getValue());
-				    String oclQuery = reference.getOclQuery();
-				    reference.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-				    reference.setRealValue(null);
-				    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-						conn, ro);
-				    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(
-					conn, outermostPackage, this.reference);
-				    reference.setModelElement(null);
-				    reference.setOclQuery(oclQuery);
+				    DelayedReference clonedRef = (DelayedReference) reference.clone();
+                                    clonedRef.setModelElement(ro);
+                                    clonedRef.setRealValue(null);
+                                    clonedRef.setConnection(conn);
+                                    
+                                    clonedRef.setToken(new LexedTokenWrapper(lt));
+                                    clonedRef.setKeyValue(lt.getValue());
+				    String oclQuery = clonedRef.getOclQuery();
+				    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+				    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
 				}
 			    }
 			 }
 		     }
+                    if (backgroundResolver.getState() != Job.SLEEPING
+                            && backgroundResolver.getState() != Job.WAITING
+                            && backgroundResolver.getState() != Job.RUNNING) {
+                        backgroundResolver.schedule(500);
+                    }
 		 } else {
 
 		RefObject element = (RefObject) conn
@@ -322,11 +329,20 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     private final Map<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>> delayedReference2ReEvaluationListener = new HashMap<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>>();
     private final Set<ConcreteSyntax> registeredSytaxes = new HashSet<ConcreteSyntax>();
+    private Collection<DelayedReference> iaUnresolvedReferences = new Vector<DelayedReference>();
+    private Job backgroundResolver;
 
     public GlobalDelayedReferenceResolver() {
 	// Do the assignment here as the constructor will be invoked by the
 	// extension point.
 	instance = this;
+	backgroundResolver = new Job("Reevaluating OCL References") {
+            @Override
+            public IStatus run(final IProgressMonitor monitor) {
+                resolveReferences(monitor);
+                return Status.OK_STATUS;
+            }
+        };
     }
 
     public static synchronized GlobalDelayedReferenceResolver getInstance() {
@@ -1226,5 +1242,19 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     //    
     // }
     // }
-
+    public void resolveReferences(IProgressMonitor monitor) {
+        Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
+        final String msg = "Reevaluating OCL References...";
+        monitor.beginTask(msg, workingCopy.size());
+        for (DelayedReference ref : workingCopy) {
+            monitor.beginTask(msg, workingCopy.size());
+            RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
+                    ref.getConnection(), (RefBaseObject) ref.getModelElement());
+            reEvaluateUnresolvedRef(
+                    ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
+            monitor.worked(1);
+        }
+        iaUnresolvedReferences.removeAll(workingCopy);
+        monitor.done();
+    }
 }
