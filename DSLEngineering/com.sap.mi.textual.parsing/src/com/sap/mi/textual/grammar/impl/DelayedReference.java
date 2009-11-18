@@ -11,19 +11,23 @@ package com.sap.mi.textual.grammar.impl;
 import java.util.List;
 import java.util.regex.Matcher;
 
+import textblocks.TextBlock;
+
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.context.ContextManager;
+import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
- * a delayed reference is a temporary obect created during parsing. It represents a reference, that
- * cannot instantly be resolved because the object referenced may not exist before the end of
- * parsing. The DelayedReference stores all information necessary to resolve an object and set the
- * reference on a source object.
+ * a delayed reference is a temporary obect created during parsing. It
+ * represents a reference, that cannot instantly be resolved because the object
+ * referenced may not exist before the end of parsing. The DelayedReference
+ * stores all information necessary to resolve an object and set the reference
+ * on a source object.
  */
-public class DelayedReference {
+public class DelayedReference implements Cloneable {
 
     /** The Constant AUTOCREATE_ALWAYS. */
     public static final String AUTOCREATE_ALWAYS = "always";
@@ -33,8 +37,8 @@ public class DelayedReference {
 
     /** The Constant AUTOCREATE_MISSING. */
     public static final String AUTOCREATE_MISSING = "ifmissing";
-    
-    /**Constant for reference type semantic predicate */
+
+    /** Constant for reference type semantic predicate */
     public static final int SEMANTIC_PREDICATE = 1;
 
     /** The current context. */
@@ -78,194 +82,209 @@ public class DelayedReference {
 
     /** The InjectorAction. */
     private Object queryElement;
-    
+
     private String oclQuery;
-    
+
     private String filter;
 
     private boolean isOptional;
-    
+
     private String mode;
-    
+
     private IRuleName ruleNameFinder;
-    
-    /** indicates the type of this reference
-     *  expected to be one of the type constants defined in this class
+
+    /**
+     * indicates the type of this reference expected to be one of the type
+     * constants defined in this class
      */
     private int type;
-    
+
     private List<PredicateSemantic> predicateActionList;
     private boolean isGenericReference = false;
-    
+
     private boolean hasContext;
-    
+
+    private TextBlock textBlock;
+
+    private Connection connection;
 
     /**
-     * Used by {@link ObservableInjectingParser#setRef(Object, String, List, String, Object, String, String, List, boolean, String)}
+     * Used by
+     * {@link ObservableInjectingParser#setRef(Object, String, List, String, Object, String, String, List, boolean, String)}
      * 
      * @param currentContextElement
-     *                Node in the context tree created during parsing (elements are added to such
-     *                nodes)
+     *            Node in the context tree created during parsing (elements are
+     *            added to such nodes)
      * @param object
-     *                Object for which to set a reference
+     *            Object for which to set a reference
      * @param propertyName
-     *                Property referring to something
+     *            Property referring to something
      * @param valueTypeName
-     *                Type of referenced object
+     *            Type of referenced object
      * @param keyName
-     *                id property of referenced object
+     *            id property of referenced object
      * @param keyValue
-     *                id of referenced object
+     *            id of referenced object
      * @param lookIn
-     *                ("#all" for everywhere, null for context, some context path else.) TODO:
-     *                Investigate path notation
+     *            ("#all" for everywhere, null for context, some context path
+     *            else.) TODO: Investigate path notation
      * @param autoCreate
-     *                ("always" | "never" | "ifmissing" )
+     *            ("always" | "never" | "ifmissing" )
      * @param createAs
-     *                Override for valueTypeName (to use SubType?)
+     *            Override for valueTypeName (to use SubType?)
      * @param importContext
-     *                declares context of referred object to become part of referring object context
-     *                (see java imports)
+     *            declares context of referred object to become part of
+     *            referring object context (see java imports)
      * @param createIn
-     *                Where to create the reference if it could not be resolved
-     * @param isOptional 
-     * 			If isOptional the non-resolved reference won't result in an error. 
+     *            Where to create the reference if it could not be resolved
+     * @param isOptional
+     *            If isOptional the non-resolved reference won't result in an
+     *            error.
      * @param token
-     *                used to determine location, which is used for error messages
+     *            used to determine location, which is used for error messages
      */
-    DelayedReference(IModelElementProxy currentContextElement, Object object, String propertyName,
-	    List<String> valueTypeName, String keyName, Object keyValue, String lookIn,
-	    String autoCreate, List<String> createAs, boolean importContext, String createIn, boolean isOptional,
-	    ANTLR3LocationToken token) {
-	this.referenceContextObject = currentContextElement;
-	this.modelElement = object;
-	this.propertyName = propertyName;
-	this.valueTypeName = valueTypeName;
-	this.keyName = keyName;
-	this.keyValue = keyValue;
-	this.lookIn = lookIn;
-	this.autoCreate = autoCreate;
-	this.createAs = createAs;
-	this.importContext = importContext;
-	this.createIn = createIn;
-	this.isOptional = isOptional;
-	this.token = token;
-	this.type = -1;
+    DelayedReference(IModelElementProxy currentContextElement, Object object,
+            String propertyName, List<String> valueTypeName, String keyName,
+            Object keyValue, String lookIn, String autoCreate,
+            List<String> createAs, boolean importContext, String createIn,
+            boolean isOptional, ANTLR3LocationToken token) {
+        this.referenceContextObject = currentContextElement;
+        this.modelElement = object;
+        this.propertyName = propertyName;
+        this.valueTypeName = valueTypeName;
+        this.keyName = keyName;
+        this.keyValue = keyValue;
+        this.lookIn = lookIn;
+        this.autoCreate = autoCreate;
+        this.createAs = createAs;
+        this.importContext = importContext;
+        this.createIn = createIn;
+        this.isOptional = isOptional;
+        this.token = token;
+        this.type = -1;
     }
 
     /**
-     * Used by {@link ObservableInjectingParser#setOclRef(Object, String, String, Object, String)}
+     * Used by
+     * {@link ObservableInjectingParser#setOclRef(Object, String, String, Object, String)}
      * 
      * @param currentContext
-     *                the model element (proxy) that is the innermost context to be used for default
-     *                lookups, such as <tt>refersTo = name</tt> without any further specifications
-     *                or queries.
+     *            the model element (proxy) that is the innermost context to be
+     *            used for default lookups, such as <tt>refersTo = name</tt>
+     *            without any further specifications or queries.
      * 
      * @param object
-     *                the element on which the property identified by <tt>propertyName</tt> is to
-     *                be set
+     *            the element on which the property identified by
+     *            <tt>propertyName</tt> is to be set
      * 
      * @param propertyName
-     *                identifies the property to be set on <tt>object</tt>
+     *            identifies the property to be set on <tt>object</tt>
      * 
      * @param keyName
-     *                feature name given with <tt>refersTo</tt>, e.g., "name" in case
-     *                <tt>refersTo=name</tt> was used.
+     *            feature name given with <tt>refersTo</tt>, e.g., "name" in
+     *            case <tt>refersTo=name</tt> was used.
      * 
      * @param keyValue
-     *                the parameter to be used for the lookup; typically the text parsed as the
-     *                referencing identifier; for the OCL query, this will be substituted for a
-     *                <tt>?</tt> occurring in the OCL expression; for a simple
-     *                <tt>refersTo=someFeature</tt> this value will be compared to the value of
-     *                <tt>someFeature</tt>.
+     *            the parameter to be used for the lookup; typically the text
+     *            parsed as the referencing identifier; for the OCL query, this
+     *            will be substituted for a <tt>?</tt> occurring in the OCL
+     *            expression; for a simple <tt>refersTo=someFeature</tt> this
+     *            value will be compared to the value of <tt>someFeature</tt>.
      * 
      * @param oclQuery
-     *                If provided, a string currently prefixed with "OCL:" whose suffix is parsed
-     *                using the OCL parser of MOIN. It can use "?" anywhere, also multiple times, in
-     *                the query which will then be substituted by <tt>keyValue</tt>; if
-     *                <tt>#context</tt> or <tt>#context(name)</tt> is used in the query, it will
-     *                be substituted by the respective context element.
+     *            If provided, a string currently prefixed with "OCL:" whose
+     *            suffix is parsed using the OCL parser of MOIN. It can use "?"
+     *            anywhere, also multiple times, in the query which will then be
+     *            substituted by <tt>keyValue</tt>; if <tt>#context</tt> or
+     *            <tt>#context(name)</tt> is used in the query, it will be
+     *            substituted by the respective context element.
      * 
      * @param token
-     *                partly redundant to <tt>keyValue</tt>, kept because in some specific cases
-     *                an unescaping from the token is necessary to obtain the <tt>keyValue</tt>.
-     *                
+     *            partly redundant to <tt>keyValue</tt>, kept because in some
+     *            specific cases an unescaping from the token is necessary to
+     *            obtain the <tt>keyValue</tt>.
+     * 
      * @param isOptional
-     * 			If a reference is defined as being optional, if it is optional a not resolving of 
-     * 			the reference won't result in an error.
+     *            If a reference is defined as being optional, if it is optional
+     *            a not resolving of the reference won't result in an error.
      */
-    public DelayedReference(IModelElementProxy currentContext, Object object, String propertyName,
-	    String keyName, Object keyValue, String oclQuery, boolean isOptional, ANTLR3LocationToken token) {
-	this.referenceContextObject = currentContext;
-	this.modelElement = object;
-	this.propertyName = propertyName;
-	this.keyName = keyName;
-	this.keyValue = keyValue;
-	this.oclQuery = oclQuery;
-	this.token = token;
-	this.isOptional = isOptional;
-	this.type = -1;
+    public DelayedReference(IModelElementProxy currentContext, Object object,
+            String propertyName, String keyName, Object keyValue,
+            String oclQuery, boolean isOptional, ANTLR3LocationToken token) {
+        this.referenceContextObject = currentContext;
+        this.modelElement = object;
+        this.propertyName = propertyName;
+        this.keyName = keyName;
+        this.keyValue = keyValue;
+        this.oclQuery = oclQuery;
+        this.token = token;
+        this.isOptional = isOptional;
+        this.type = -1;
     }
 
-	/**
-	 * Used by
-	 * {@link ObservableInjectingParser#setModeRef(Object, String, String, String)}
-	 * 
-	 * @param referenceContextObject
-	 * @param modelElement
-	 * @param propertyName
-	 * @param oclQuery
-	 * @param mode
-	 */
+    /**
+     * Used by
+     * {@link ObservableInjectingParser#setModeRef(Object, String, String, String)}
+     * 
+     * @param referenceContextObject
+     * @param modelElement
+     * @param propertyName
+     * @param oclQuery
+     * @param mode
+     */
 
-    public DelayedReference(Object referenceContextObject, int type, Object modelElement,
-			String propertyName, String oclQuery, String mode, List<PredicateSemantic> list, 
-			IRuleName ruleNameFinder, ANTLR3LocationToken token, boolean hasContext, boolean isOptional) {
-		super();
-		this.referenceContextObject = referenceContextObject;
-		this.modelElement = modelElement;
-		this.propertyName = propertyName;
-		this.oclQuery = oclQuery;
-		this.mode = mode;
-		this.token = token;
-		this.type = type;
-		this.predicateActionList = list;
-		this.ruleNameFinder = ruleNameFinder;
-		this.hasContext = hasContext;
-		this.isOptional = isOptional;
-	}
+    public DelayedReference(Object referenceContextObject, int type,
+            Object modelElement, String propertyName, String oclQuery,
+            String mode, List<PredicateSemantic> list,
+            IRuleName ruleNameFinder, ANTLR3LocationToken token,
+            boolean hasContext, boolean isOptional) {
+        super();
+        this.referenceContextObject = referenceContextObject;
+        this.modelElement = modelElement;
+        this.propertyName = propertyName;
+        this.oclQuery = oclQuery;
+        this.mode = mode;
+        this.token = token;
+        this.type = type;
+        this.predicateActionList = list;
+        this.ruleNameFinder = ruleNameFinder;
+        this.hasContext = hasContext;
+        this.isOptional = isOptional;
+    }
 
-	/**
+    /**
      * Gets the current context.
      * 
      * @return the current context
      */
     public Object getContextElement() {
-	return referenceContextObject;
+        return referenceContextObject;
     }
 
     /**
-     * Gets the model element of from which to set a reference to another element.
+     * Gets the model element of from which to set a reference to another
+     * element.
      * 
      * @return the element
      */
     public Object getModelElement() {
-	return modelElement;
+        return modelElement;
     }
-    
+
     /**
-     * Determines which object will be used as <tt>self</tt> in evaluating the OCL expression.
-     * Can either be a {@link ModelElementProxy proxy} or a {@link RefObject}. If the OCL expression
-     * uses <tt>#context</tt>, the {@link #getContextElement() context element} is used; otherwise
-     * the {@link #getModelElement()} call is used.
+     * Determines which object will be used as <tt>self</tt> in evaluating the
+     * OCL expression. Can either be a {@link ModelElementProxy proxy} or a
+     * {@link RefObject}. If the OCL expression uses <tt>#context</tt>, the
+     * {@link #getContextElement() context element} is used; otherwise the
+     * {@link #getModelElement()} call is used.
      */
     public Object getElementForSelf() {
-	Matcher matcher = ContextManager.contextPattern.matcher(getOclQuery());
-	if (matcher.find()) {
-	    return getContextElement();
-	} else {
-	    return getModelElement();
-	}
+        Matcher matcher = ContextManager.contextPattern.matcher(getOclQuery());
+        if (matcher.find()) {
+            return getContextElement();
+        } else {
+            return getModelElement();
+        }
     }
 
     /**
@@ -274,7 +293,7 @@ public class DelayedReference {
      * @return the property name
      */
     public String getPropertyName() {
-	return propertyName;
+        return propertyName;
     }
 
     /**
@@ -283,7 +302,7 @@ public class DelayedReference {
      * @return the value type name
      */
     public List<String> getValueTypeName() {
-	return valueTypeName;
+        return valueTypeName;
     }
 
     /**
@@ -292,7 +311,7 @@ public class DelayedReference {
      * @return the key name
      */
     public String getKeyName() {
-	return keyName;
+        return keyName;
     }
 
     /**
@@ -301,19 +320,20 @@ public class DelayedReference {
      * @return the key value
      */
     public Object getKeyValue() {
-	return keyValue;
+        return keyValue;
     }
 
-  public void setKeyValue(String value) {
-	this.keyValue = value;
+    public void setKeyValue(String value) {
+        this.keyValue = value;
     }
+
     /**
      * Gets the look in.
      * 
      * @return the look in
      */
     public String getLookIn() {
-	return lookIn;
+        return lookIn;
     }
 
     /**
@@ -322,7 +342,7 @@ public class DelayedReference {
      * @return the auto create
      */
     public String getAutoCreate() {
-	return autoCreate;
+        return autoCreate;
     }
 
     /**
@@ -331,7 +351,7 @@ public class DelayedReference {
      * @return the creates the as
      */
     public List<String> getCreateAs() {
-	return createAs;
+        return createAs;
     }
 
     /**
@@ -340,7 +360,7 @@ public class DelayedReference {
      * @return true, if is import context
      */
     public boolean isImportContext() {
-	return importContext;
+        return importContext;
     }
 
     /**
@@ -349,7 +369,7 @@ public class DelayedReference {
      * @return the creates the in
      */
     public String getCreateIn() {
-	return createIn;
+        return createIn;
     }
 
     /**
@@ -358,25 +378,26 @@ public class DelayedReference {
      * @return the token
      */
     public ANTLR3LocationToken getToken() {
-	return token;
+        return token;
     }
-    
+
     /**
-     * Gets the InjectorAction or SequenceElement from where
-     * the query originates.
+     * Gets the InjectorAction or SequenceElement from where the query
+     * originates.
      * 
      * @return Either a InjectorAction or SequenceElement.
      */
     public Object getQueryElement() {
-	return queryElement;
+        return queryElement;
     }
+
     /**
      * sets the token.
      * 
      * @return the token
      */
     public void setToken(ANTLR3LocationToken token) {
-	this.token = token;
+        this.token = token;
     }
 
     /**
@@ -385,28 +406,30 @@ public class DelayedReference {
      * @return the real value
      */
     public Object getRealValue() {
-	return realValue;
+        return realValue;
     }
 
     /**
      * Sets the real value.
      * 
      * @param realValue
-     *                the new real value
+     *            the new real value
      */
     public void setRealValue(Object realValue) {
-	this.realValue = realValue;
+        this.realValue = realValue;
     }
 
     /**
      * @return the oclQuery
      */
     public String getOclQuery() {
-	return oclQuery;
+        return oclQuery;
     }
-  public void setOclQuery(String query) {
-	this.oclQuery = query;
+
+    public void setOclQuery(String query) {
+        this.oclQuery = query;
     }
+
     /*
      * (non-Javadoc)
      * 
@@ -414,23 +437,23 @@ public class DelayedReference {
      */
     @Override
     public String toString() {
-	String result = modelElement.getClass().getName() + '.' + getPropertyName() + "=>"
-		+ getValueTypeName();
-	if (getCreateAs() != null) {
-	    result += " as " + getCreateAs();
-	}
-	result += " with " + getKeyName() + "=" + getKeyValue();
-	if (getCreateIn() != null) {
-	    result += " to create in " + getCreateIn();
-	}
-	return result;
+        String result = modelElement.getClass().getName() + '.'
+                + getPropertyName() + "=>" + getValueTypeName();
+        if (getCreateAs() != null) {
+            result += " as " + getCreateAs();
+        }
+        result += " with " + getKeyName() + "=" + getKeyValue();
+        if (getCreateIn() != null) {
+            result += " to create in " + getCreateIn();
+        }
+        return result;
     }
 
     /**
      * @param result
      */
     public void setModelElement(Object newObject) {
-	this.modelElement = newObject;
+        this.modelElement = newObject;
 
     }
 
@@ -438,90 +461,116 @@ public class DelayedReference {
      * @param result
      */
     public void setContextElement(Object newContext) {
-	this.referenceContextObject = newContext;
+        this.referenceContextObject = newContext;
     }
 
     /**
-     * Returns whether the reference is optional which means that 
-     * if it is not resolved it won't result in an error.
+     * Returns whether the reference is optional which means that if it is not
+     * resolved it won't result in an error.
      * 
      * @return true if the referencer is optional.
      */
     public boolean isOptional() {
-	return isOptional;
+        return isOptional;
     }
 
     /**
      * 
      * @return mode
      */
-	public String getMode() {
-		return mode;
-	}
-
-	/**
-	 * 
-	 * @param mode
-	 */
-	public void setMode(String mode) {
-		this.mode = mode;
-	}
-
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-
-	public List<PredicateSemantic> getPredicateActionList() {
-		return predicateActionList;
-	}
-
-	public void setPredicateActionList(List<PredicateSemantic> predicateActionList) {
-		this.predicateActionList = predicateActionList;
-	}
-	public void setQueryElement(Object sequenceElementOrInjectorAction) {
-	this.queryElement = sequenceElementOrInjectorAction;
+    public String getMode() {
+        return mode;
     }
-    
+
     /**
-     * Defines whether the reference is defined through a generic property init (being set to true)
-     * or if it is a refernce that was created during a parse run or as an unresolved reference
-     * (being set to false);
+     * 
+     * @param mode
+     */
+    public void setMode(String mode) {
+        this.mode = mode;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public List<PredicateSemantic> getPredicateActionList() {
+        return predicateActionList;
+    }
+
+    public void setPredicateActionList(
+            List<PredicateSemantic> predicateActionList) {
+        this.predicateActionList = predicateActionList;
+    }
+
+    public void setQueryElement(Object sequenceElementOrInjectorAction) {
+        this.queryElement = sequenceElementOrInjectorAction;
+    }
+
+    /**
+     * Defines whether the reference is defined through a generic property init
+     * (being set to true) or if it is a refernce that was created during a
+     * parse run or as an unresolved reference (being set to false);
      */
     public void setGenericReference(boolean value) {
-	this.isGenericReference = value;
+        this.isGenericReference = value;
     }
 
     /**
-     * Defines whether the reference is defined through a generic property init (being set to true)
-     * or if it is a refernce that was created during a parse run or as an unresolved reference
-     * (being set to false);
+     * Defines whether the reference is defined through a generic property init
+     * (being set to true) or if it is a refernce that was created during a
+     * parse run or as an unresolved reference (being set to false);
      */
     public boolean isGenericReference() {
-	return isGenericReference;
+        return isGenericReference;
     }
 
     public void setFilter(String filter) {
-	this.filter = filter;
+        this.filter = filter;
     }
 
     public String getFilter() {
-	return filter;
+        return filter;
     }
 
-	public IRuleName getRuleNameFinder() {
-		return ruleNameFinder;
-	}
+    public IRuleName getRuleNameFinder() {
+        return ruleNameFinder;
+    }
 
-	public void setRuleNameFinder(IRuleName ruleNameFinder) {
-		this.ruleNameFinder = ruleNameFinder;
-	}
+    public void setRuleNameFinder(IRuleName ruleNameFinder) {
+        this.ruleNameFinder = ruleNameFinder;
+    }
 
-	public boolean hasContext() {
-		return hasContext;
-	}
-	
+    public boolean hasContext() {
+        return hasContext;
+    }
+
+    public Object clone() {
+        try {
+            return super.clone();
+        } catch (CloneNotSupportedException e) {
+            // this should never happen.
+            return null;
+        }
+    }
+
+    public void setTextBlock(TextBlock textBlock) {
+        this.textBlock = textBlock;
+    }
+
+    public TextBlock getTextBlock() {
+        return textBlock;
+    }
+
+    public void setConnection(Connection conn) {
+        this.connection = conn;
+    }
+    
+    public Connection getConnection() {
+        return connection;
+    }
 }
