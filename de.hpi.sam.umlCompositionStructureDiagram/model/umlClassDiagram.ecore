@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="umlClassDiagram"
+    nsURI="http://umlClassDiagram/1.0" nsPrefix="umlClassDiagram">
+  <eClassifiers xsi:type="ecore:EClass" name="UmlClassDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//Element" containment="true" eOpposite="#//Element/diagram"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Element" abstract="true" eSuperTypes="compositionStructureDiagram.ecore#//CompositionStructureDiagram">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="diagram" eType="#//UmlClassDiagram"
+        eOpposite="#//UmlClassDiagram/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compositeStructure" eType="ecore:EClass compositionStructureDiagram.ecore#//CompositionStructureDiagram"
+        eOpposite="compositionStructureDiagram.ecore#//CompositionStructureDiagram/elements"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Class" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" upperBound="-1"
+        eType="#//Attribute" containment="true" eOpposite="#//Attribute/attributeOwner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="method" upperBound="-1"
+        eType="#//Method" containment="true" eOpposite="#//Method/methodOwner"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingConnections" upperBound="-1"
+        eType="#//Connection" eOpposite="#//Connection/source"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incomingConnections" upperBound="-1"
+        eType="#//Connection" eOpposite="#//Connection/destination"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isAbstract" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="containedParts" upperBound="-1"
+        eType="ecore:EClass compositionStructureDiagram.ecore#//Part" eOpposite="compositionStructureDiagram.ecore#//Part/containingClass"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributeOwner" eType="#//Class"
+        eOpposite="#//Class/attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Method" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methodOwner" eType="#//Class"
+        eOpposite="#//Class/method"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Connection" abstract="true" eSuperTypes="#//Element">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//Class"
+        eOpposite="#//Class/outgoingConnections"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" eType="#//Class"
+        eOpposite="#//Class/incomingConnections"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="annotation" upperBound="2"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Composition" eSuperTypes="#//Connection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Aggregation" eSuperTypes="#//Connection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Relation" eSuperTypes="#//Connection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Inheritance" eSuperTypes="#//Connection"/>
+</ecore:EPackage>

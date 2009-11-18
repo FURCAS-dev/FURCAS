@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.umlCompositionStructureDiagram/src"
+    modelPluginID="de.hpi.sam.umlCompositionStructureDiagram" modelName="CompositionStructureDiagram"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>compositionStructureDiagram.ecore</foreignModel>
+  <genPackages prefix="CompositionStructureDiagram" disposableProviderFactory="true"
+      ecorePackage="compositionStructureDiagram.ecore#/">
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//CompositionStructureDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//CompositionStructureDiagram/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//Part">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Part/classOfPart"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Part/containingClass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Part/containedPort"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//Port">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Port/EReference0"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Port/containingPart"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Port/connectedBy"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//Connector">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Connector/connectedPorts"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//RoleBinding">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//RoleBinding/boundRole"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//RoleBinding/boundCollaborationUsage"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//Collaboration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Collaboration/collaborationUsage"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//CollaborationUsage">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//CollaborationUsage/usedCollaboration"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//CollaborationUsage/boundBy"/>
+    </genClasses>
+    <genClasses ecoreClass="compositionStructureDiagram.ecore#//Role">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference compositionStructureDiagram.ecore#//Role/boundBy"/>
+    </genClasses>
+  </genPackages>
+  <genPackages prefix="UmlClassDiagram" disposableProviderFactory="true" ecorePackage="umlClassDiagram.ecore#/">
+    <genClasses ecoreClass="umlClassDiagram.ecore#//UmlClassDiagram">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//UmlClassDiagram/elements"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="umlClassDiagram.ecore#//Element">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Element/diagram"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Element/compositeStructure"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Class">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/attribute"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/method"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/outgoingConnections"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/incomingConnections"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Class/isAbstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Class/name"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Class/containedParts"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Attribute/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Attribute/attributeOwner"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Method">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Method/name"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Method/methodOwner"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="umlClassDiagram.ecore#//Connection">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Connection/source"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference umlClassDiagram.ecore#//Connection/destination"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute umlClassDiagram.ecore#//Connection/annotation"/>
+    </genClasses>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Composition"/>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Aggregation"/>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Relation"/>
+    <genClasses ecoreClass="umlClassDiagram.ecore#//Inheritance"/>
+  </genPackages>
+</genmodel:GenModel>
