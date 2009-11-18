@@ -4,4 +4,5 @@ Bundle-SymbolicName: cts.test.fixture;singleton:=true
 Bundle-Version: 1.0.0
 Require-Bundle: com.sap.tc.moin.incubation.contentprovider;bundle-version="1.0.0",
  ngpm.stdlib;bundle-version="1.0.0",
- com.sap.ap.cts.editor;bundle-version="1.0.0"
+ com.sap.ap.cts.editor;bundle-version="1.0.0",
+ com.sap.ap.metamodel.core;bundle-version="0.0.4"
