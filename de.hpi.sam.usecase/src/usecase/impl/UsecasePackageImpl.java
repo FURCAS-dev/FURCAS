@@ -6,6 +6,7 @@
  */
 package usecase.impl;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -182,6 +183,15 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getUsecase_ID() {
+		return (EAttribute)usecaseEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAssociation() {
 		return associationEClass;
 	}
@@ -275,6 +285,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		createEReference(usecaseEClass, USECASE__INCOMING);
 		createEReference(usecaseEClass, USECASE__EXTEND);
 		createEReference(usecaseEClass, USECASE__INCLUDE);
+		createEAttribute(usecaseEClass, USECASE__ID);
 
 		associationEClass = createEClass(ASSOCIATION);
 		createEReference(associationEClass, ASSOCIATION__ACTORS);
@@ -327,6 +338,7 @@ public class UsecasePackageImpl extends EPackageImpl implements UsecasePackage {
 		initEReference(getUsecase_Incoming(), this.getAssociation(), this.getAssociation_Usecase(), "incoming", null, 0, 1, Usecase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUsecase_Extend(), this.getUsecase(), null, "extend", null, 0, 1, Usecase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUsecase_Include(), this.getUsecase(), null, "include", null, 0, 1, Usecase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUsecase_ID(), ecorePackage.getEInt(), "ID", null, 0, 1, Usecase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociation_Actors(), this.getActor(), this.getActor_Outgoing(), "actors", null, 0, -1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

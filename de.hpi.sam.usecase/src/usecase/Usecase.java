@@ -18,6 +18,7 @@ package usecase;
  *   <li>{@link usecase.Usecase#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link usecase.Usecase#getExtend <em>Extend</em>}</li>
  *   <li>{@link usecase.Usecase#getInclude <em>Include</em>}</li>
+ *   <li>{@link usecase.Usecase#getID <em>ID</em>}</li>
  * </ul>
  * </p>
  *
@@ -105,5 +106,31 @@ public interface Usecase extends Element {
 	 * @generated
 	 */
 	void setInclude(Usecase value);
+
+	/**
+	 * Returns the value of the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>ID</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>ID</em>' attribute.
+	 * @see #setID(int)
+	 * @see usecase.UsecasePackage#getUsecase_ID()
+	 * @model
+	 * @generated
+	 */
+	int getID();
+
+	/**
+	 * Sets the value of the '{@link usecase.Usecase#getID <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>ID</em>' attribute.
+	 * @see #getID()
+	 * @generated
+	 */
+	void setID(int value);
 
 } // Usecase

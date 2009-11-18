@@ -28,6 +28,7 @@ import usecase.UsecasePackage;
  *   <li>{@link usecase.impl.UsecaseImpl#getIncoming <em>Incoming</em>}</li>
  *   <li>{@link usecase.impl.UsecaseImpl#getExtend <em>Extend</em>}</li>
  *   <li>{@link usecase.impl.UsecaseImpl#getInclude <em>Include</em>}</li>
+ *   <li>{@link usecase.impl.UsecaseImpl#getID <em>ID</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +64,26 @@ public class UsecaseImpl extends ElementImpl implements Usecase {
 	 * @ordered
 	 */
 	protected Usecase include;
+
+	/**
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int ID_EDEFAULT = 0;
+
+	/**
+	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected int id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -224,6 +245,27 @@ public class UsecaseImpl extends ElementImpl implements Usecase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public int getID() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setID(int newID) {
+		int oldID = id;
+		id = newID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UsecasePackage.USECASE__ID, oldID, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -266,6 +308,8 @@ public class UsecaseImpl extends ElementImpl implements Usecase {
 			case UsecasePackage.USECASE__INCLUDE:
 				if (resolve) return getInclude();
 				return basicGetInclude();
+			case UsecasePackage.USECASE__ID:
+				return getID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -286,6 +330,9 @@ public class UsecaseImpl extends ElementImpl implements Usecase {
 				return;
 			case UsecasePackage.USECASE__INCLUDE:
 				setInclude((Usecase)newValue);
+				return;
+			case UsecasePackage.USECASE__ID:
+				setID((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -308,6 +355,9 @@ public class UsecaseImpl extends ElementImpl implements Usecase {
 			case UsecasePackage.USECASE__INCLUDE:
 				setInclude((Usecase)null);
 				return;
+			case UsecasePackage.USECASE__ID:
+				setID(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -326,8 +376,26 @@ public class UsecaseImpl extends ElementImpl implements Usecase {
 				return extend != null;
 			case UsecasePackage.USECASE__INCLUDE:
 				return include != null;
+			case UsecasePackage.USECASE__ID:
+				return id != ID_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ID: ");
+		result.append(id);
+		result.append(')');
+		return result.toString();
 	}
 
 } //UsecaseImpl

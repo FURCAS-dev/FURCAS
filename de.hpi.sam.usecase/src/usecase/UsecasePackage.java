@@ -6,6 +6,7 @@
  */
 package usecase;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -170,13 +171,22 @@ public interface UsecasePackage extends EPackage {
 	int USECASE__INCLUDE = ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USECASE__ID = ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Usecase</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USECASE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 3;
+	int USECASE_FEATURE_COUNT = ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link usecase.impl.AssociationImpl <em>Association</em>}' class.
@@ -316,6 +326,17 @@ public interface UsecasePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUsecase_Include();
+
+	/**
+	 * Returns the meta object for the attribute '{@link usecase.Usecase#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see usecase.Usecase#getID()
+	 * @see #getUsecase()
+	 * @generated
+	 */
+	EAttribute getUsecase_ID();
 
 	/**
 	 * Returns the meta object for class '{@link usecase.Association <em>Association</em>}'.
@@ -464,6 +485,14 @@ public interface UsecasePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USECASE__INCLUDE = eINSTANCE.getUsecase_Include();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute USECASE__ID = eINSTANCE.getUsecase_ID();
 
 		/**
 		 * The meta object literal for the '{@link usecase.impl.AssociationImpl <em>Association</em>}' class.
