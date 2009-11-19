@@ -8,12 +8,13 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
         FEATURE_IDS.put("name", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("ends", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("clazz", Integer.valueOf(2)); //$NON-NLS-1$
     }
     
     
@@ -60,6 +61,26 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
     }
 
 
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getClazz() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( get___CurrentConnection(), endAndMetaObject );   
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getClazz(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, endAndMetaObject );   
+    }
+    public void setClazz(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB", /* mofId of reference */ "E0001D0AE51CF230D2FA11DE865F0019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setClazz(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB", /* mofId of reference */ "E0001D0AE51CF230D2FA11DE865F0019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
 
     // methods for internal attribute setter
     private void set__Name(java.lang.String newValue) {
@@ -84,12 +105,15 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
             case 1: 
                 result = getEnds(connection);
                 break;
+            case 2: 
+                result = getClazz(connection);
+                break;
         default:
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "refGetValue(String)"); //$NON-NLS-1$
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -107,11 +131,15 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
                 ___changeReference(connection, "E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB" /* mofId of association */, "E0001D0A72D731C7BA4C11DE9E8C001CBF0234BB" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
+            case 2:
+                ___changeReference(connection, "E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB" /* mofId of association */, "E0001D0AE51CF230D2FA11DE865F0019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
         default:
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -121,7 +149,7 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -131,7 +159,7 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -141,7 +169,7 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
@@ -173,7 +201,6 @@ public final class AssociationImpl extends com.sap.tc.moin.repository.core.jmi.r
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Association> get___JmiInterface() {
         return structure.Association.class;
     }

@@ -8,10 +8,10 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(26);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(28);
         FEATURE_IDS.put("Block", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("Statement", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("ExpressionStatement", Integer.valueOf(2)); //$NON-NLS-1$
@@ -24,13 +24,15 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         FEATURE_IDS.put("NamedValueDeclaration", Integer.valueOf(9)); //$NON-NLS-1$
         FEATURE_IDS.put("Assignment", Integer.valueOf(10)); //$NON-NLS-1$
         FEATURE_IDS.put("StatementWithArgument", Integer.valueOf(11)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_statements_block", Integer.valueOf(12)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_expression_expressionStatement", Integer.valueOf(13)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_nestedBlocks_owningStatement", Integer.valueOf(14)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_initExpression_namedValueWithOptionalInitExpression", Integer.valueOf(15)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_namedValue_namedValueDeclaration", Integer.valueOf(16)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_namedValues_block", Integer.valueOf(17)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_assignTo_assignment", Integer.valueOf(18)); //$NON-NLS-1$
+        FEATURE_IDS.put("Manipulator", Integer.valueOf(12)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_statements_block", Integer.valueOf(13)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_expression_expressionStatement", Integer.valueOf(14)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_nestedBlocks_owningStatement", Integer.valueOf(15)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_initExpression_namedValueWithOptionalInitExpression", Integer.valueOf(16)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_namedValue_namedValueDeclaration", Integer.valueOf(17)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_namedValues_block", Integer.valueOf(18)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_assignTo_assignment", Integer.valueOf(19)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_assignments_manipulator", Integer.valueOf(20)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -82,6 +84,9 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getStatementWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "StatementWithArgument"); //$NON-NLS-1$
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getManipulator(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "Manipulator"); //$NON-NLS-1$
+    }
     // associations
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAStatementsBlock(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_statements_block"); //$NON-NLS-1$
@@ -103,6 +108,9 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAAssignToAssignment(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_assignTo_assignment"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAAssignmentsManipulator(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_assignments_manipulator"); //$NON-NLS-1$
     }
     // structure type creators
 
@@ -136,19 +144,23 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
                 case 11:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject);
                 case 12:
-                    return new behavior.actions.__impl.AStatementsBlockImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.actions.__impl.ManipulatorImpl")); //$NON-NLS-1$
                 case 13:
-                    return new behavior.actions.__impl.AExpressionExpressionStatementImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new behavior.actions.__impl.AStatementsBlockImpl(workspace, mofId, immediatePackage, metaObject);
                 case 14:
-                    return new behavior.actions.__impl.ANestedBlocksOwningStatementImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new behavior.actions.__impl.AExpressionExpressionStatementImpl(workspace, mofId, immediatePackage, metaObject);
                 case 15:
-                    return new behavior.actions.__impl.AInitExpressionNamedValueWithOptionalInitExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new behavior.actions.__impl.ANestedBlocksOwningStatementImpl(workspace, mofId, immediatePackage, metaObject);
                 case 16:
-                    return new behavior.actions.__impl.ANamedValueNamedValueDeclarationImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new behavior.actions.__impl.AInitExpressionNamedValueWithOptionalInitExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 case 17:
-                    return new behavior.actions.__impl.ANamedValuesBlockImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new behavior.actions.__impl.ANamedValueNamedValueDeclarationImpl(workspace, mofId, immediatePackage, metaObject);
                 case 18:
+                    return new behavior.actions.__impl.ANamedValuesBlockImpl(workspace, mofId, immediatePackage, metaObject);
+                case 19:
                     return new behavior.actions.__impl.AAssignToAssignmentImpl(workspace, mofId, immediatePackage, metaObject);
+                case 20:
+                    return new behavior.actions.__impl.AAssignmentsManipulatorImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
         }
@@ -161,7 +173,6 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ActionsPackage> get___JmiInterface() {
         return behavior.actions.ActionsPackage.class;
     }
@@ -170,14 +181,12 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
         if (___refClasses == null) {
-            ___refClasses = new java.util.ArrayList<RefClassAndName>(12);
+            ___refClasses = new java.util.ArrayList<RefClassAndName>(13);
             ___refClassesByName = new java.util.HashMap<String, RefClassAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefClassAndName rcan = null;
@@ -229,14 +238,16 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
             rcan = new RefClassAndName(name, "behavior.actions.StatementWithArgument"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
+            name = "Manipulator"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.actions.Manipulator"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
         }
   
         if (___refAssociations == null) {
-            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(7);
+            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(8);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_statements_block"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.actions.AStatementsBlock"); //$NON-NLS-1$
@@ -264,6 +275,10 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
             ___refAssociationsByName.put(name, raan);
             name = "A_assignTo_assignment"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.actions.AAssignToAssignment"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_assignments_manipulator"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.actions.AAssignmentsManipulator"); //$NON-NLS-1$
             ___refAssociations.add(raan);
             ___refAssociationsByName.put(name, raan);
         }

@@ -23,6 +23,8 @@ public interface Association extends finex.modelmanagement.NamedElement {
     
     // references
     public java.util.List<structure.Field> getEnds() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public structure.FinexClass getClazz() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setClazz(structure.FinexClass newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -45,6 +47,17 @@ public interface Association extends finex.modelmanagement.NamedElement {
                 __ends = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Association,java.util.List<structure.Field>>( "E0001D0A72D731C7BA4C11DE9E8C001CBF0234BB", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Association", "ends" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __ends;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Association,structure.FinexClass> __clazz;
+        /**
+         * Returns the descriptor for the <code>clazz</code> reference.
+         * @return  the descriptor for the <code>clazz</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Association,structure.FinexClass> CLAZZ( ) {
+            if ( __clazz == null ) {
+                __clazz = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Association,structure.FinexClass>( "E0001D0AE51CF230D2FA11DE865F0019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Association", "clazz" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __clazz;
         }
     }
 }    

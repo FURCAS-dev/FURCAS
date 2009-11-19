@@ -125,7 +125,6 @@ public class ANestedBlocksOwningStatementWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ANestedBlocksOwningStatement> get___JmiInterface() {
         return behavior.actions.ANestedBlocksOwningStatement.class;
     }

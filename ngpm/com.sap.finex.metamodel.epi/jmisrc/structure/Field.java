@@ -34,6 +34,8 @@ public interface Field extends finex.modelmanagement.NamedElement,structure.Type
     // references
     public behavior.expressions.Expression getDetermination() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setDetermination(behavior.expressions.Expression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public structure.Association getAssociation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setAssociation(structure.Association newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
     // operations
     public structure.Field otherEnd() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
@@ -118,6 +120,17 @@ public interface Field extends finex.modelmanagement.NamedElement,structure.Type
                 __determination = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Field,behavior.expressions.Expression>( "E0001D0AFBB9D030B27511DE887D00155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Field", "determination" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __determination;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Field,structure.Association> __association;
+        /**
+         * Returns the descriptor for the <code>association</code> reference.
+         * @return  the descriptor for the <code>association</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Field,structure.Association> ASSOCIATION( ) {
+            if ( __association == null ) {
+                __association = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Field,structure.Association>( "E0001D0ADE0F7BF0D06311DEC38C0019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Field", "association" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __association;
         }
         /**
          * Returns the descriptor for the <code>getImpliedType</code> operation.

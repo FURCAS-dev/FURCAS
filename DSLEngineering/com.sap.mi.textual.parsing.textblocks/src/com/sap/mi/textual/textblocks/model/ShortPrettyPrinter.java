@@ -88,37 +88,39 @@ public class ShortPrettyPrinter {
 	    // the new value comes from the value of the referenced element;
 	    for (RefObject referencedObject : token
 		    .getReferencedElements()) {
-		RefersToParg refersToArg = TcsUtil.getRefersToParg(se);
-		try {
-		    if (TcsUtil.getFilterParg(se) != null) {
-			// if the string given in the token is changed
-			// within the query to do the matching
-			// with the target element we need to invert this
-			// change to get the actual value
-			return invertOclQuery(referencedObject, token, se,
-				newvalue);
-		    }
-		    Object value = investigator.get(referencedObject,
-			    refersToArg.getPropertyName());
-		    if (value instanceof Collection && ((Collection<?>)value).size() > 0) {
-			value = ((Collection<?>) value).iterator().next();
-		    }
-		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection)) {
-			newvalue = value.toString();
-		    }
-		    
-		    // TODO handle pretty printing and escaping according to
-		    // syntax
-		    return newvalue;
-		} catch (ModelAdapterException e) {
-		    // element does not have this property
-		    System.out.println(e);
-		    continue;
-		} catch (OclManagerException e) {
-		    // element does not have this property
-		    System.out.println(e);
-		    continue;
-		}
+	        if(referencedObject.refIsInstanceOf(se.getPropertyReference().getStrucfeature().getType(), true)) {
+        		RefersToParg refersToArg = TcsUtil.getRefersToParg(se);
+        		try {
+        		    if (TcsUtil.getFilterParg(se) != null) {
+        			// if the string given in the token is changed
+        			// within the query to do the matching
+        			// with the target element we need to invert this
+        			// change to get the actual value
+        			return invertOclQuery(referencedObject, token, se,
+        				newvalue);
+        		    }
+        		    Object value = investigator.get(referencedObject,
+        			    refersToArg.getPropertyName());
+        		    if (value instanceof Collection && ((Collection<?>)value).size() > 0) {
+        			value = ((Collection<?>) value).iterator().next();
+        		    }
+        		    if (value != null && !(value instanceof RefObject) && !(value instanceof Collection)) {
+        			newvalue = value.toString();
+        		    }
+        		    
+        		    // TODO handle pretty printing and escaping according to
+        		    // syntax
+        		    return newvalue;
+        		} catch (ModelAdapterException e) {
+        		    // element does not have this property
+        		    System.out.println(e);
+        		    continue;
+        		} catch (OclManagerException e) {
+        		    // element does not have this property
+        		    System.out.println(e);
+        		    continue;
+        		}
+	        }
 	    }	    
 	} else {
 	    for (RefObject referencedObject : token.getParentBlock()

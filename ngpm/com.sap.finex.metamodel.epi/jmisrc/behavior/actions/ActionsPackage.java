@@ -26,6 +26,7 @@ public interface ActionsPackage extends com.sap.tc.moin.repository.mmi.reflect.R
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getNamedValueDeclaration();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getAssignment();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getStatementWithArgument();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getManipulator();
     // associations
     public behavior.actions.AStatementsBlock getAStatementsBlock();
     public behavior.actions.AExpressionExpressionStatement getAExpressionExpressionStatement();
@@ -34,4 +35,5 @@ public interface ActionsPackage extends com.sap.tc.moin.repository.mmi.reflect.R
     public behavior.actions.ANamedValueNamedValueDeclaration getANamedValueNamedValueDeclaration();
     public behavior.actions.ANamedValuesBlock getANamedValuesBlock();
     public behavior.actions.AAssignToAssignment getAAssignToAssignment();
+    public behavior.actions.AAssignmentsManipulator getAAssignmentsManipulator();
 }

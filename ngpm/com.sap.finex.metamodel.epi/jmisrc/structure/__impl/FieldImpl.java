@@ -10,18 +10,19 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
         FEATURE_IDS.put("name", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("type", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("defaultValue", Integer.valueOf(2)); //$NON-NLS-1$
         FEATURE_IDS.put("determination", Integer.valueOf(3)); //$NON-NLS-1$
-        FEATURE_IDS.put("key", Integer.valueOf(4)); //$NON-NLS-1$
-        FEATURE_IDS.put("mandatory", Integer.valueOf(5)); //$NON-NLS-1$
-        FEATURE_IDS.put("singleMultiplicity", Integer.valueOf(6)); //$NON-NLS-1$
-        FEATURE_IDS.put("navigable", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("association", Integer.valueOf(4)); //$NON-NLS-1$
+        FEATURE_IDS.put("key", Integer.valueOf(5)); //$NON-NLS-1$
+        FEATURE_IDS.put("mandatory", Integer.valueOf(6)); //$NON-NLS-1$
+        FEATURE_IDS.put("singleMultiplicity", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("navigable", Integer.valueOf(8)); //$NON-NLS-1$
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(6);
         OPERATION_IDS.put("getImpliedType", Integer.valueOf(0)); //$NON-NLS-1$
@@ -72,11 +73,11 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     }
     public void setKey(boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(get___CurrentConnection(), 4, "E0001D0A74829D82B1A911DEA6EE00155883529C", __key, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(get___CurrentConnection(), 5, "E0001D0A74829D82B1A911DEA6EE00155883529C", __key, newValue); //$NON-NLS-1$
     }
     public void setKey(com.sap.tc.moin.repository.core.CoreConnection connection, boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(connection, 4, "E0001D0A74829D82B1A911DEA6EE00155883529C", __key, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(connection, 5, "E0001D0A74829D82B1A911DEA6EE00155883529C", __key, newValue); //$NON-NLS-1$
     }
     public boolean isMandatory() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -84,11 +85,11 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     }
     public void setMandatory(boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(get___CurrentConnection(), 5, "E0001D0A74829D83B1A911DE905000155883529C", __mandatory, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(get___CurrentConnection(), 6, "E0001D0A74829D83B1A911DE905000155883529C", __mandatory, newValue); //$NON-NLS-1$
     }
     public void setMandatory(com.sap.tc.moin.repository.core.CoreConnection connection, boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(connection, 5, "E0001D0A74829D83B1A911DE905000155883529C", __mandatory, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(connection, 6, "E0001D0A74829D83B1A911DE905000155883529C", __mandatory, newValue); //$NON-NLS-1$
     }
     public boolean isSingleMultiplicity() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -96,11 +97,11 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     }
     public void setSingleMultiplicity(boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(get___CurrentConnection(), 6, "E0001D0A8C8C54E0B3F511DE88720019D29902CC", __singleMultiplicity, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(get___CurrentConnection(), 7, "E0001D0A8C8C54E0B3F511DE88720019D29902CC", __singleMultiplicity, newValue); //$NON-NLS-1$
     }
     public void setSingleMultiplicity(com.sap.tc.moin.repository.core.CoreConnection connection, boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(connection, 6, "E0001D0A8C8C54E0B3F511DE88720019D29902CC", __singleMultiplicity, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(connection, 7, "E0001D0A8C8C54E0B3F511DE88720019D29902CC", __singleMultiplicity, newValue); //$NON-NLS-1$
     }
     public boolean isNavigable() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -108,11 +109,11 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     }
     public void setNavigable(boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(get___CurrentConnection(), 7, "E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3", __navigable, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(get___CurrentConnection(), 8, "E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3", __navigable, newValue); //$NON-NLS-1$
     }
     public void setNavigable(com.sap.tc.moin.repository.core.CoreConnection connection, boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(connection, 7, "E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3", __navigable, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(connection, 8, "E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3", __navigable, newValue); //$NON-NLS-1$
     }
 
     // methods for references
@@ -129,12 +130,12 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     public void setType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getDefaultValue() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -149,12 +150,12 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     public void setDefaultValue(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0AC44D96B5B74111DE9C7000155883529C", /* mofId of reference */ "E0001D0AF560F7A0B1C511DEBCC3001A6BCDC3B3" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setDefaultValue(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0001D0AC44D96B5B74111DE9C7000155883529C", /* mofId of reference */ "E0001D0AF560F7A0B1C511DEBCC3001A6BCDC3B3" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getDetermination() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -169,12 +170,32 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     public void setDetermination(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0AC45007B2B74111DECA0100155883529C", /* mofId of reference */ "E0001D0AFBB9D030B27511DE887D00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setDetermination(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0001D0AC45007B2B74111DECA0100155883529C", /* mofId of reference */ "E0001D0AFBB9D030B27511DE887D00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAssociation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( get___CurrentConnection(), endAndMetaObject );   
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAssociation(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, endAndMetaObject );   
+    }
+    public void setAssociation(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB", /* mofId of reference */ "E0001D0ADE0F7BF0D06311DEC38C0019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setAssociation(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB", /* mofId of reference */ "E0001D0ADE0F7BF0D06311DEC38C0019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
     }
 
     // methods for internal attribute setter
@@ -223,15 +244,18 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
                 result = getDetermination(connection);
                 break;
             case 4: 
-                result = isKey();
+                result = getAssociation(connection);
                 break;
             case 5: 
-                result = isMandatory();
+                result = isKey();
                 break;
             case 6: 
-                result = isSingleMultiplicity();
+                result = isMandatory();
                 break;
             case 7: 
+                result = isSingleMultiplicity();
+                break;
+            case 8: 
                 result = isNavigable();
                 break;
         default:
@@ -239,7 +263,7 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -266,92 +290,96 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
                 break;
                     
             case 4:
-                ___changeDataTypeAttribute(connection, 4, "E0001D0A74829D82B1A911DEA6EE00155883529C", __key, value); //$NON-NLS-1$
+                ___changeReference(connection, "E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB" /* mofId of association */, "E0001D0ADE0F7BF0D06311DEC38C0019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
             case 5:
-                ___changeDataTypeAttribute(connection, 5, "E0001D0A74829D83B1A911DE905000155883529C", __mandatory, value); //$NON-NLS-1$
+                ___changeDataTypeAttribute(connection, 5, "E0001D0A74829D82B1A911DEA6EE00155883529C", __key, value); //$NON-NLS-1$
                 break;
                     
             case 6:
-                ___changeDataTypeAttribute(connection, 6, "E0001D0A8C8C54E0B3F511DE88720019D29902CC", __singleMultiplicity, value); //$NON-NLS-1$
+                ___changeDataTypeAttribute(connection, 6, "E0001D0A74829D83B1A911DE905000155883529C", __mandatory, value); //$NON-NLS-1$
                 break;
                     
             case 7:
-                ___changeDataTypeAttribute(connection, 7, "E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3", __navigable, value); //$NON-NLS-1$
+                ___changeDataTypeAttribute(connection, 7, "E0001D0A8C8C54E0B3F511DE88720019D29902CC", __singleMultiplicity, value); //$NON-NLS-1$
+                break;
+                    
+            case 8:
+                ___changeDataTypeAttribute(connection, 8, "E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3", __navigable, value); //$NON-NLS-1$
                 break;
                     
         default:
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
                 set__Name((java.lang.String) value);     
                 break;
-            case 4:
+            case 5:
                 set__Key((java.lang.Boolean) value);     
                 break;
-            case 5:
+            case 6:
                 set__Mandatory((java.lang.Boolean) value);     
                 break;
-            case 6:
+            case 7:
                 set__SingleMultiplicity((java.lang.Boolean) value);     
                 break;
-            case 7:
+            case 8:
                 set__Navigable((java.lang.Boolean) value);     
                 break;
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
                 set__Name((java.lang.String) value);     
                 break;
-            case 4:
+            case 5:
                 set__Key((java.lang.Boolean) value);     
                 break;
-            case 5:
+            case 6:
                 set__Mandatory((java.lang.Boolean) value);     
                 break;
-            case 6:
+            case 7:
                 set__SingleMultiplicity((java.lang.Boolean) value);     
                 break;
-            case 7:
+            case 8:
                 set__Navigable((java.lang.Boolean) value);     
                 break;
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
                 set__Name((java.lang.String) value);     
                 break;
-            case 4:
+            case 5:
                 set__Key((java.lang.Boolean) value);     
                 break;
-            case 5:
+            case 6:
                 set__Mandatory((java.lang.Boolean) value);     
                 break;
-            case 6:
+            case 7:
                 set__SingleMultiplicity((java.lang.Boolean) value);     
                 break;
-            case 7:
+            case 8:
                 set__Navigable((java.lang.Boolean) value);     
                 break;
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -393,7 +421,6 @@ public final class FieldImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Field> get___JmiInterface() {
         return structure.Field.class;
     }

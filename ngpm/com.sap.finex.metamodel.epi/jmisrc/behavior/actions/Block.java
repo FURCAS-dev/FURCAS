@@ -7,7 +7,7 @@ package behavior.actions;
 /**
  * This interface is not intended to be implemented by clients.
  */
-public interface Block extends com.sap.tc.moin.repository.mmi.reflect.RefObject {
+public interface Block extends behavior.functions.SignatureImplementation {
 
     /**
      * Descriptors for all features of this MofClass and its supertypes.
@@ -29,12 +29,19 @@ public interface Block extends com.sap.tc.moin.repository.mmi.reflect.RefObject 
 
     // operations
     public structure.Type getEnclosingType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean isSideEffectFree() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public behavior.actions.Block getOuterMostBlock() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
         Descriptors( ) { 
+        }
+        /**
+         * Returns the descriptor for the <code>signature</code> reference.
+         * @return  the descriptor for the <code>signature</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.SignatureImplementation,behavior.functions.Function> SIGNATURE( ) {
+            return behavior.functions.SignatureImplementation.DESCRIPTORS.SIGNATURE( );
         }
         private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.actions.Block,java.util.List<behavior.actions.Statement>> __statements;
         /**
@@ -69,6 +76,13 @@ public interface Block extends com.sap.tc.moin.repository.mmi.reflect.RefObject 
             }
             return __namedValues;
         }
+        /**
+         * Returns the descriptor for the <code>isSideEffectFree</code> operation.
+         * @return  the descriptor for the <code>isSideEffectFree</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.functions.SignatureImplementation,java.lang.Boolean> IS_SIDE_EFFECT_FREE( ) {
+            return behavior.functions.SignatureImplementation.DESCRIPTORS.IS_SIDE_EFFECT_FREE( );
+        }
         private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,structure.Type> __getEnclosingType;
         /**
          * Returns the descriptor for the <code>getEnclosingType</code> operation.
@@ -80,17 +94,6 @@ public interface Block extends com.sap.tc.moin.repository.mmi.reflect.RefObject 
             }
             return __getEnclosingType;
         }
-        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,java.lang.Boolean> __isSideEffectFree;
-        /**
-         * Returns the descriptor for the <code>isSideEffectFree</code> operation.
-         * @return  the descriptor for the <code>isSideEffectFree</code> operation
-         */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,java.lang.Boolean> IS_SIDE_EFFECT_FREE( ) {
-            if ( __isSideEffectFree == null ) {
-                __isSideEffectFree = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,java.lang.Boolean>( "E0003E7BEABB89F1B96811DE96FA001A6BCDC3B3", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Block", "isSideEffectFree" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
-            }
-            return __isSideEffectFree;
-        }
         private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,behavior.actions.Block> __getOuterMostBlock;
         /**
          * Returns the descriptor for the <code>getOuterMostBlock</code> operation.
@@ -101,6 +104,17 @@ public interface Block extends com.sap.tc.moin.repository.mmi.reflect.RefObject 
                 __getOuterMostBlock = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,behavior.actions.Block>( "E0003E7BB1E43BE1BD7D11DE87B2001A6BCDC3B3", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Block", "getOuterMostBlock" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __getOuterMostBlock;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,structure.Type> __getImplicitContextType;
+        /**
+         * Returns the descriptor for the <code>getImplicitContextType</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextType</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,structure.Type> GET_IMPLICIT_CONTEXT_TYPE( ) {
+            if ( __getImplicitContextType == null ) {
+                __getImplicitContextType = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Block,structure.Type>( "E0003E7B984B9B42D29711DEA0A700155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Block", "getImplicitContextType" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getImplicitContextType;
         }
     }
 }    

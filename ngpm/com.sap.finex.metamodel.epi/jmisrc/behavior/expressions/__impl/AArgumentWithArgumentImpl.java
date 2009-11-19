@@ -22,7 +22,7 @@ public final class AArgumentWithArgumentImpl extends com.sap.tc.moin.repository.
     }
     public boolean exists(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Argument, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _WithArgument) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-        return ___existsMult1( connection, _WithArgument, _Argument, "E0003E7B686A75D1BA2411DE8C4C001CBF0234BB"); //$NON-NLS-1$
+        return ___existsMult1( connection, _Argument, _WithArgument, "E0003E7B686A75D2BA2411DE8B69001CBF0234BB"); //$NON-NLS-1$
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getArgument(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _WithArgument) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -30,7 +30,8 @@ public final class AArgumentWithArgumentImpl extends com.sap.tc.moin.repository.
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getArgument(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _WithArgument) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( connection, (com.sap.tc.moin.repository.core.CorePartitionable) _WithArgument, "E0003E7B686A75D1BA2411DE8C4C001CBF0234BB"); //$NON-NLS-1$
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( 1 );
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___queryElementAtOtherLinkEnd( connection, (com.sap.tc.moin.repository.core.CorePartitionable) _WithArgument, endAndMetaObject );
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getWithArgument(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Argument) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -38,8 +39,7 @@ public final class AArgumentWithArgumentImpl extends com.sap.tc.moin.repository.
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Argument) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( 0 );
-        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, _Argument, endAndMetaObject );
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( connection, (com.sap.tc.moin.repository.core.CorePartitionable) _Argument, "E0003E7B686A75D2BA2411DE8B69001CBF0234BB"); //$NON-NLS-1$
     }
     public boolean add(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _Argument, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject _WithArgument) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -64,7 +64,6 @@ public final class AArgumentWithArgumentImpl extends com.sap.tc.moin.repository.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AArgumentWithArgument> get___JmiInterface() {
         return behavior.expressions.AArgumentWithArgument.class;
     }

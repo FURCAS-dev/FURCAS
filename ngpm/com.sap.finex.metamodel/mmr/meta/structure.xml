@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue Oct 27 16:33:16 2009' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Wed Nov 18 20:29:45 2009' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -102,24 +102,6 @@
             <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60392'/>
           </Model:TypedElement.type>
         </Model:Attribute>
-        <!-- ==================== structure.FinexClass.getNavigableFields    [Operation] ==================== -->
-        <Model:Operation xmi.id = 'a4AD8486600CB' 
-          name = 'getNavigableFields' annotation = '' 
-          scope = 'instance_level' visibility = 'public_vis' 
-          isQuery = 'true' >
-          <Model:Namespace.contents>
-            <Model:Parameter xmi.id = 'XX.1' 
-              name = '*return' annotation = '' 
-              direction = 'return_dir' >
-              <Model:Parameter.multiplicity>
-                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'false' />
-              </Model:Parameter.multiplicity>
-              <Model:TypedElement.type>
-                <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
-              </Model:TypedElement.type>
-            </Model:Parameter>
-          </Model:Namespace.contents>
-        </Model:Operation>
         <!-- ==================== structure.FinexClass.OnlyOneUnnamedFunction    [Constraint] ==================== -->
         <Model:Constraint xmi.id = 'a4ACB356D005D' 
           name = 'OnlyOneUnnamedFunction' annotation = '' 
@@ -175,7 +157,7 @@ inv:
       </Model:Namespace.contents>
     </Model:Class>
     <!-- ==================== structure.org.omg.sap2mof.store=no    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.78' 
+    <Model:Tag xmi.id = 'G.96' 
       name = 'org.omg.sap2mof.store=no' annotation = '' 
       tagId = 'org.omg.sap2mof.store' >
       <Model:Tag.values>
@@ -185,35 +167,28 @@ inv:
         <Model:ModelElement xmi.idref = 'ra4AC9BC3A00FA'/>  <!-- structure.FinexClass.invariants -->
         <Model:ModelElement xmi.idref = 'ra4AC9F939007D'/>  <!-- structure.FinexClass.ownedTypes -->
         <Model:ModelElement xmi.idref = 'ra4ACA57A202EB'/>  <!-- structure.FinexClass.functions -->
+        <Model:ModelElement xmi.idref = 'ra4AD84792002E'/>  <!-- structure.FinexClass.associations -->
         <Model:ModelElement xmi.idref = 'ra4ACB3B2803B9'/>  <!-- structure.Field.determination -->
+        <Model:ModelElement xmi.idref = 'ra4AC9F915001F'/>  <!-- structure.TypedElement.type -->
         <Model:ModelElement xmi.idref = 'ra4AC9BBF60119'/>  <!-- structure.Defaultable.defaultValue -->
+        <Model:ModelElement xmi.idref = 'ra4AD83DB10203'/>  <!-- structure.Association.ends -->
         <Model:ModelElement xmi.idref = 'a4AC9BBF60119'/>
         <Model:ModelElement xmi.idref = 'a4AC9BC3A00FA'/>
+        <Model:ModelElement xmi.idref = 'a4AC9F915001F'/>
         <Model:ModelElement xmi.idref = 'a4AC9F939007D'/>
         <Model:ModelElement xmi.idref = 'a4ACA57A202EB'/>
         <Model:ModelElement xmi.idref = 'a4ACB3B2803B9'/>
+        <Model:ModelElement xmi.idref = 'a4AD83DB10203'/>
+        <Model:ModelElement xmi.idref = 'a4AD84792002E'/>
       </Model:Tag.elements>
     </Model:Tag>
-    <Model:Import xmi.id = 'G.79' 
+    <Model:Import xmi.id = 'G.97' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context FinexClass::getNavigableFields():Bag(Field)...    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.80' 
-      name = 'org.omg.sap2mof.OperationCodeOcl=context FinexClass::getNavigableFields():Bag(Field)...' annotation = '' 
-      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
-      <Model:Tag.values>
-        <XMI.any xmi.type = 'string' xmi.name = ''>context FinexClass::getNavigableFields():Bag(Field)
-body:
-  self.typedElement-&gt;select(f | f.oclIsKindOf(Field)).oclAsType(Field).otherEnd()-&gt;select(f | f.navigable)</XMI.any>
-      </Model:Tag.values>
-      <Model:Tag.elements>
-        <Model:ModelElement xmi.idref = 'a4AD8486600CB'/>  <!-- structure.FinexClass.getNavigableFields -->
-      </Model:Tag.elements>
-    </Model:Tag>
     <!-- ==================== structure.Field    [Class] ==================== -->
     <Model:Class xmi.id = 'a4AC9BB240280' 
       name = 'Field' annotation = '' 
@@ -244,6 +219,21 @@ body:
           </Model:TypedElement.type>
           <Model:Reference.referencedEnd>
             <Model:AssociationEnd xmi.idref = 'a4ACB3B2803B9'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
+        <!-- ==================== structure.Field.association    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AD83DB10213' 
+          name = 'association' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AD83D6C029F'/>  <!-- structure.Association -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AD83DB10213'/>
           </Model:Reference.referencedEnd>
         </Model:Reference>
         <!-- ==================== structure.Field.key    [Attribute] ==================== -->
@@ -304,7 +294,7 @@ body:
           scope = 'instance_level' visibility = 'public_vis' 
           isQuery = 'true' >
           <Model:Namespace.contents>
-            <Model:Parameter xmi.id = 'XX.2' 
+            <Model:Parameter xmi.id = 'XX.1' 
               name = '*return' annotation = '' 
               direction = 'return_dir' >
               <Model:Parameter.multiplicity>
@@ -322,7 +312,7 @@ body:
           scope = 'instance_level' visibility = 'public_vis' 
           isQuery = 'true' >
           <Model:Namespace.contents>
-            <Model:Parameter xmi.id = 'XX.3' 
+            <Model:Parameter xmi.id = 'XX.2' 
               name = '*return' annotation = '' 
               direction = 'return_dir' >
               <Model:Parameter.multiplicity>
@@ -388,8 +378,30 @@ inv:
         </Model:Constraint>
       </Model:Namespace.contents>
     </Model:Class>
+    <!-- ==================== structure.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.98' 
+      name = 'org.omg.sap2mof.store=yes' annotation = '' 
+      tagId = 'org.omg.sap2mof.store' >
+      <Model:Tag.values>
+        <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+      </Model:Tag.values>
+      <Model:Tag.elements>
+        <Model:ModelElement xmi.idref = 'ra4AD83DB10213'/>  <!-- structure.Field.association -->
+        <Model:ModelElement xmi.idref = 'ra4AC9F9150021'/>  <!-- structure.Type.typedElement -->
+        <Model:ModelElement xmi.idref = 'ra4AC9F939008C'/>  <!-- structure.Type.owner -->
+        <Model:ModelElement xmi.idref = 'ra4AD847920030'/>  <!-- structure.Association.clazz -->
+        <Model:ModelElement xmi.idref = 'a4AC9BBF6011B'/>
+        <Model:ModelElement xmi.idref = 'a4AC9BC3A00FC'/>
+        <Model:ModelElement xmi.idref = 'a4AC9F9150021'/>
+        <Model:ModelElement xmi.idref = 'a4AC9F939008C'/>
+        <Model:ModelElement xmi.idref = 'a4ACA57A202ED'/>
+        <Model:ModelElement xmi.idref = 'a4ACB3B2803C8'/>
+        <Model:ModelElement xmi.idref = 'a4AD83DB10213'/>
+        <Model:ModelElement xmi.idref = 'a4AD847920030'/>
+      </Model:Tag.elements>
+    </Model:Tag>
     <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Field::otherEnd():Field...    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.81' 
+    <Model:Tag xmi.id = 'G.99' 
       name = 'org.omg.sap2mof.OperationCodeOcl=context Field::otherEnd():Field...' annotation = '' 
       tagId = 'org.omg.sap2mof.OperationCodeOcl' >
       <Model:Tag.values>
@@ -402,7 +414,7 @@ body:
       </Model:Tag.elements>
     </Model:Tag>
     <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Field::getNavigableFrom():Type...    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.82' 
+    <Model:Tag xmi.id = 'G.100' 
       name = 'org.omg.sap2mof.OperationCodeOcl=context Field::getNavigableFrom():Type...' annotation = '' 
       tagId = 'org.omg.sap2mof.OperationCodeOcl' >
       <Model:Tag.values>
@@ -423,6 +435,21 @@ body:
         <Model:GeneralizableElement xml:link = 'simple' href = 'finex.xml|a4AC9F38B02AF'/>
       </Model:GeneralizableElement.supertypes>
       <Model:Namespace.contents>
+        <!-- ==================== structure.Type.typedElement    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AC9F9150021' 
+          name = 'typedElement' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9FB3B00EA'/>  <!-- structure.TypedElement -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AC9F9150021'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
         <!-- ==================== structure.Type.owner    [Reference] ==================== -->
         <Model:Reference xmi.id = 'ra4AC9F939008C' 
           name = 'owner' annotation = '' 
@@ -438,22 +465,41 @@ body:
             <Model:AssociationEnd xmi.idref = 'a4AC9F939008C'/>
           </Model:Reference.referencedEnd>
         </Model:Reference>
+        <!-- ==================== structure.Type.getNavigableFields    [Operation] ==================== -->
+        <Model:Operation xmi.id = 'a4AD8486600CB' 
+          name = 'getNavigableFields' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isQuery = 'true' >
+          <Model:Namespace.contents>
+            <Model:Parameter xmi.id = 'XX.3' 
+              name = '*return' annotation = '' 
+              direction = 'return_dir' >
+              <Model:Parameter.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'false' />
+              </Model:Parameter.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4AC9BB240280'/>  <!-- structure.Field -->
+              </Model:TypedElement.type>
+            </Model:Parameter>
+          </Model:Namespace.contents>
+        </Model:Operation>
       </Model:Namespace.contents>
     </Model:Class>
-    <!-- ==================== structure.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.83' 
-      name = 'org.omg.sap2mof.store=yes' annotation = '' 
-      tagId = 'org.omg.sap2mof.store' >
+    <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Type::getNavigableFields():Bag(Field)...    [Tag] ==================== -->
+    <Model:Tag xmi.id = 'G.101' 
+      name = 'org.omg.sap2mof.OperationCodeOcl=context Type::getNavigableFields():Bag(Field)...' annotation = '' 
+      tagId = 'org.omg.sap2mof.OperationCodeOcl' >
       <Model:Tag.values>
-        <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+        <XMI.any xmi.type = 'string' xmi.name = ''>context Type::getNavigableFields():Bag(Field)
+body:
+  if self.oclIsKindOf(FinexClass) then
+    self.oclAsType(FinexClass).typedElement-&gt;select(f | f.oclIsKindOf(Field)).oclAsType(Field).otherEnd()-&gt;select(f | f.navigable)
+  else
+    Bag{}
+  endif</XMI.any>
       </Model:Tag.values>
       <Model:Tag.elements>
-        <Model:ModelElement xmi.idref = 'ra4AC9F939008C'/>  <!-- structure.Type.owner -->
-        <Model:ModelElement xmi.idref = 'a4AC9BBF6011B'/>
-        <Model:ModelElement xmi.idref = 'a4AC9BC3A00FC'/>
-        <Model:ModelElement xmi.idref = 'a4AC9F939008C'/>
-        <Model:ModelElement xmi.idref = 'a4ACA57A202ED'/>
-        <Model:ModelElement xmi.idref = 'a4ACB3B2803C8'/>
+        <Model:ModelElement xmi.idref = 'a4AD8486600CB'/>  <!-- structure.Type.getNavigableFields -->
       </Model:Tag.elements>
     </Model:Tag>
     <!-- ==================== structure.TypedElement    [Class] ==================== -->
@@ -508,7 +554,7 @@ body:
       </Model:Namespace.contents>
     </Model:Class>
     <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context TypedElement::getImpliedType(name:String):Type...    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.84' 
+    <Model:Tag xmi.id = 'G.102' 
       name = 'org.omg.sap2mof.OperationCodeOcl=context TypedElement::getImpliedType(name:String):Type...' annotation = '' 
       tagId = 'org.omg.sap2mof.OperationCodeOcl' >
       <Model:Tag.values>
@@ -573,7 +619,7 @@ body:
       </Model:Namespace.contents>
     </Model:Class>
     <!-- ==================== structure.org.omg.sap2mof.OperationCodeOcl=context Defaultable::getEnclosingType():Type...    [Tag] ==================== -->
-    <Model:Tag xmi.id = 'G.85' 
+    <Model:Tag xmi.id = 'G.103' 
       name = 'org.omg.sap2mof.OperationCodeOcl=context Defaultable::getEnclosingType():Type...' annotation = '' 
       tagId = 'org.omg.sap2mof.OperationCodeOcl' >
       <Model:Tag.values>
@@ -613,6 +659,21 @@ body:
             <Model:AssociationEnd xmi.idref = 'a4AD83DB10203'/>
           </Model:Reference.referencedEnd>
         </Model:Reference>
+        <!-- ==================== structure.Association.clazz    [Reference] ==================== -->
+        <Model:Reference xmi.id = 'ra4AD847920030' 
+          name = 'clazz' annotation = '' 
+          scope = 'instance_level' visibility = 'public_vis' 
+          isChangeable = 'true' >
+          <Model:StructuralFeature.multiplicity>
+            <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+          </Model:StructuralFeature.multiplicity>
+          <Model:TypedElement.type>
+            <Model:Classifier xmi.idref = 'a4AC9B93102DE'/>  <!-- structure.FinexClass -->
+          </Model:TypedElement.type>
+          <Model:Reference.referencedEnd>
+            <Model:AssociationEnd xmi.idref = 'a4AD847920030'/>
+          </Model:Reference.referencedEnd>
+        </Model:Reference>
       </Model:Namespace.contents>
     </Model:Class>
     <!-- ==================== structure.A_defaultValue_defaultOf    [Association] ==================== -->
@@ -643,7 +704,7 @@ body:
         </Model:AssociationEnd>
       </Model:Namespace.contents>
     </Model:Association>
-    <Model:Import xmi.id = 'G.86' 
+    <Model:Import xmi.id = 'G.104' 
       name = 'behavior' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -696,7 +757,7 @@ body:
         </Model:AssociationEnd>
         <Model:AssociationEnd xmi.id = 'a4AC9F9150021' 
           name = 'typedElement' annotation = '' 
-          isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+          isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
           <Model:AssociationEnd.multiplicity>
             <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
           </Model:AssociationEnd.multiplicity>
@@ -808,7 +869,7 @@ body:
         </Model:AssociationEnd>
         <Model:AssociationEnd xmi.id = 'a4AD83DB10213' 
           name = 'association' annotation = '' 
-          isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
           <Model:AssociationEnd.multiplicity>
             <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
           </Model:AssociationEnd.multiplicity>
@@ -836,7 +897,7 @@ body:
         </Model:AssociationEnd>
         <Model:AssociationEnd xmi.id = 'a4AD847920030' 
           name = 'clazz' annotation = '' 
-          isNavigable = 'false' aggregation = 'composite' isChangeable = 'true' >
+          isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
           <Model:AssociationEnd.multiplicity>
             <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
           </Model:AssociationEnd.multiplicity>
@@ -846,7 +907,7 @@ body:
         </Model:AssociationEnd>
       </Model:Namespace.contents>
     </Model:Association>
-    <Model:Import xmi.id = 'G.87' 
+    <Model:Import xmi.id = 'G.105' 
       name = 'finex' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

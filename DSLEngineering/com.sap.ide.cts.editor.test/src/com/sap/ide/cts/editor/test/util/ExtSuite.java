@@ -17,8 +17,8 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.internal.runners.InitializationError;
 import org.junit.runners.Suite;
-import org.junit.runners.model.InitializationError;
 
 /**
  * Test runner class extending org.junit.runners.Suite. In addition to the

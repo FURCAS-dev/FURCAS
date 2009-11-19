@@ -22,7 +22,7 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
         return (behavior.functions.AImplementationSignature) getWrappedObject();
     }
     
-    public boolean exists(behavior.actions.Block _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public boolean exists(behavior.functions.SignatureImplementation _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -44,7 +44,7 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
             throw ex;
         }
     }
-    public behavior.actions.Block getImplementation(behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public behavior.functions.SignatureImplementation getImplementation(behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -52,7 +52,7 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
                 try {
                     assertConnectionAlive();
                     attachConnectionIfRequired();
-                    return (behavior.actions.Block) wrapResult(getCastWrappedObject().getImplementation(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) _Signature)));
+                    return (behavior.functions.SignatureImplementation) wrapResult(getCastWrappedObject().getImplementation(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) _Signature)));
                 } finally {
                     synchronizationManager.releaseReadLock();
                 }
@@ -60,13 +60,13 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
             }
             assertConnectionAlive();
             attachConnectionIfRequired();
-            return (behavior.actions.Block) wrapResult(getCastWrappedObject().getImplementation(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) _Signature))); 
+            return (behavior.functions.SignatureImplementation) wrapResult(getCastWrappedObject().getImplementation(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) _Signature))); 
         } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
             wrapJmiExceptionArgs(ex);
             throw ex;
         }
     }
-    public behavior.functions.Function getSignature(behavior.actions.Block _Implementation) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public behavior.functions.Function getSignature(behavior.functions.SignatureImplementation _Implementation) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -88,7 +88,7 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
             throw ex;
         }
     }
-    public boolean add(behavior.actions.Block _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public boolean add(behavior.functions.SignatureImplementation _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -106,7 +106,7 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
             throw ex;
         }
     }
-    public boolean remove(behavior.actions.Block _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public boolean remove(behavior.functions.SignatureImplementation _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -125,7 +125,6 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.AImplementationSignature> get___JmiInterface() {
         return behavior.functions.AImplementationSignature.class;
     }

@@ -24,6 +24,11 @@ public interface Assignment extends behavior.actions.StatementWithArgument {
     // references
     public structure.Field getAssignTo() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setAssignTo(structure.Field newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.actions.Manipulator getManipulator() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setManipulator(behavior.actions.Manipulator newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+
+    // operations
+    public structure.FinexClass getOwningClass() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -54,6 +59,17 @@ public interface Assignment extends behavior.actions.StatementWithArgument {
             }
             return __assignTo;
         }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.actions.Assignment,behavior.actions.Manipulator> __manipulator;
+        /**
+         * Returns the descriptor for the <code>manipulator</code> reference.
+         * @return  the descriptor for the <code>manipulator</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.actions.Assignment,behavior.actions.Manipulator> MANIPULATOR( ) {
+            if ( __manipulator == null ) {
+                __manipulator = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.actions.Assignment,behavior.actions.Manipulator>( "E0003E7BDE1B62D0D06311DEB5EC0019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Assignment", "manipulator" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __manipulator;
+        }
         /**
          * Returns the descriptor for the <code>getEnclosingType</code> operation.
          * @return  the descriptor for the <code>getEnclosingType</code> operation
@@ -67,6 +83,38 @@ public interface Assignment extends behavior.actions.StatementWithArgument {
          */
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,java.lang.Boolean> IS_SIDE_EFFECT_FREE( ) {
             return behavior.actions.Statement.DESCRIPTORS.IS_SIDE_EFFECT_FREE( );
+        }
+        /**
+         * Returns the descriptor for the <code>getImplicitContextType</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextType</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,structure.Type> GET_IMPLICIT_CONTEXT_TYPE( ) {
+            return behavior.actions.Statement.DESCRIPTORS.GET_IMPLICIT_CONTEXT_TYPE( );
+        }
+        /**
+         * Returns the descriptor for the <code>getEnclosingTypeFromWithArgument</code> operation.
+         * @return  the descriptor for the <code>getEnclosingTypeFromWithArgument</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type> GET_ENCLOSING_TYPE_FROM_WITH_ARGUMENT( ) {
+            return behavior.expressions.WithArgument.DESCRIPTORS.GET_ENCLOSING_TYPE_FROM_WITH_ARGUMENT( );
+        }
+        /**
+         * Returns the descriptor for the <code>getImplicitContextTypeFromWithArgument</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextTypeFromWithArgument</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type> GET_IMPLICIT_CONTEXT_TYPE_FROM_WITH_ARGUMENT( ) {
+            return behavior.expressions.WithArgument.DESCRIPTORS.GET_IMPLICIT_CONTEXT_TYPE_FROM_WITH_ARGUMENT( );
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Assignment,structure.FinexClass> __getOwningClass;
+        /**
+         * Returns the descriptor for the <code>getOwningClass</code> operation.
+         * @return  the descriptor for the <code>getOwningClass</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Assignment,structure.FinexClass> GET_OWNING_CLASS( ) {
+            if ( __getOwningClass == null ) {
+                __getOwningClass = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Assignment,structure.FinexClass>( "E0003E7BEB60F631D06811DE9E960019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Assignment", "getOwningClass" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getOwningClass;
         }
     }
 }    

@@ -66,6 +66,28 @@ public class FunctionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getSignatureImplementation()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getSignatureImplementation(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getSignatureImplementation(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public behavior.functions.AImplementationSignature getAImplementationSignature()
     {
         try {
@@ -134,7 +156,6 @@ public class FunctionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.FunctionsPackage> get___JmiInterface() {
         return behavior.functions.FunctionsPackage.class;
     }

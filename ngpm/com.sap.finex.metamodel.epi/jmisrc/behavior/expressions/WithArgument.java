@@ -25,6 +25,10 @@ public interface WithArgument extends com.sap.tc.moin.repository.mmi.reflect.Ref
     public behavior.expressions.Expression getArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setArgument(behavior.expressions.Expression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
+    // operations
+    public structure.Type getEnclosingTypeFromWithArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public structure.Type getImplicitContextTypeFromWithArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+
 
     public static final class Descriptors {
         Descriptors( ) { 
@@ -39,6 +43,28 @@ public interface WithArgument extends com.sap.tc.moin.repository.mmi.reflect.Ref
                 __argument = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.WithArgument,behavior.expressions.Expression>( "E0003E7B686804D0BA2411DECAC2001CBF0234BB", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "WithArgument", "argument" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __argument;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type> __getEnclosingTypeFromWithArgument;
+        /**
+         * Returns the descriptor for the <code>getEnclosingTypeFromWithArgument</code> operation.
+         * @return  the descriptor for the <code>getEnclosingTypeFromWithArgument</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type> GET_ENCLOSING_TYPE_FROM_WITH_ARGUMENT( ) {
+            if ( __getEnclosingTypeFromWithArgument == null ) {
+                __getEnclosingTypeFromWithArgument = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type>( "E0003E7B75D804C1D03C11DEB0E70019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "WithArgument", "getEnclosingTypeFromWithArgument" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getEnclosingTypeFromWithArgument;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type> __getImplicitContextTypeFromWithArgument;
+        /**
+         * Returns the descriptor for the <code>getImplicitContextTypeFromWithArgument</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextTypeFromWithArgument</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type> GET_IMPLICIT_CONTEXT_TYPE_FROM_WITH_ARGUMENT( ) {
+            if ( __getImplicitContextTypeFromWithArgument == null ) {
+                __getImplicitContextTypeFromWithArgument = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.WithArgument,structure.Type>( "E0003E7B98495151D29711DE8ADD00155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "WithArgument", "getImplicitContextTypeFromWithArgument" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getImplicitContextTypeFromWithArgument;
         }
     }
 }    

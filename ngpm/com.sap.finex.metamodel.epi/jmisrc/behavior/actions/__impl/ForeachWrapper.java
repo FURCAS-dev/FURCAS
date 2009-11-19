@@ -8,19 +8,19 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
         OPERATION_IDS.put("getEnclosingType", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(1)); //$NON-NLS-1$
+        OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(2)); //$NON-NLS-1$
     }
 
     public ForeachWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, behavior.actions.__impl.ForeachImpl baseObject, boolean synchronize) {
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavior.actions.__impl.ForeachImpl getCastWrappedObject() {
         return (behavior.actions.__impl.ForeachImpl) getWrappedObject();
     }
@@ -123,6 +123,16 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         }
     }
 
+    public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (structure.Type)___invokeOperation(connection, 2, "E0003E7B984E0C42D29711DEAF5100155883529C", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
     private structure.Type invoke__getEnclosingType(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -147,6 +157,17 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
+    private structure.Type invoke__getImplicitContextType(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (structure.Type)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getImplicitContextType", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
 
     // reflective methods
     @Override
@@ -165,11 +186,14 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
                 
             case 1:
                 return ___invokeOperation( connection, operationId, "E0003E7BEABB89F4B96811DEA884001A6BCDC3B3", args ); //$NON-NLS-1$    
+                
+            case 2:
+                return ___invokeOperation( connection, operationId, "E0003E7B984E0C42D29711DEAF5100155883529C", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -179,14 +203,16 @@ public class ForeachWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
                 
             case 1:
                 return invoke__isSideEffectFree(connection);    
+                
+            case 2:
+                return invoke__getImplicitContextType(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Foreach> get___JmiInterface() {
         return behavior.actions.Foreach.class;
     }

@@ -8,10 +8,10 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(36);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(50);
         FEATURE_IDS.put("literals", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("Expression", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("BinaryBooleanOperator", Integer.valueOf(2)); //$NON-NLS-1$
@@ -33,12 +33,22 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         FEATURE_IDS.put("FirstPathExpression", Integer.valueOf(18)); //$NON-NLS-1$
         FEATURE_IDS.put("BinaryOperator", Integer.valueOf(19)); //$NON-NLS-1$
         FEATURE_IDS.put("WithArgument", Integer.valueOf(20)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_left_leftOf", Integer.valueOf(21)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_right_rightOf", Integer.valueOf(22)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_condition_conditionOf", Integer.valueOf(23)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_field_pathExpression", Integer.valueOf(24)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_operandOf_operand", Integer.valueOf(25)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_argument_withArgument", Integer.valueOf(26)); //$NON-NLS-1$
+        FEATURE_IDS.put("ImplicitContext", Integer.valueOf(21)); //$NON-NLS-1$
+        FEATURE_IDS.put("Alias", Integer.valueOf(22)); //$NON-NLS-1$
+        FEATURE_IDS.put("Tuple", Integer.valueOf(23)); //$NON-NLS-1$
+        FEATURE_IDS.put("ObjectCreationExpression", Integer.valueOf(24)); //$NON-NLS-1$
+        FEATURE_IDS.put("FieldInitializer", Integer.valueOf(25)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_left_leftOf", Integer.valueOf(26)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_right_rightOf", Integer.valueOf(27)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_condition_conditionOf", Integer.valueOf(28)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_field_pathExpression", Integer.valueOf(29)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_operandOf_operand", Integer.valueOf(30)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_argument_withArgument", Integer.valueOf(31)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_alias_aliasFor", Integer.valueOf(32)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_classToInstantiate_objectCreationExpression", Integer.valueOf(33)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_fieldToInitialize_fieldInitializer", Integer.valueOf(34)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_fieldInitializers_creationExpression", Integer.valueOf(35)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_initExpression_fieldInitializer", Integer.valueOf(36)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -117,6 +127,21 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "WithArgument"); //$NON-NLS-1$
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getImplicitContext(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "ImplicitContext"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAlias(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "Alias"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getTuple(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "Tuple"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getObjectCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "ObjectCreationExpression"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "FieldInitializer"); //$NON-NLS-1$
+    }
     // associations
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getALeftLeftOf(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_left_leftOf"); //$NON-NLS-1$
@@ -135,6 +160,21 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAArgumentWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_argument_withArgument"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAAliasAliasFor(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_alias_aliasFor"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAClassToInstantiateObjectCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_classToInstantiate_objectCreationExpression"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAFieldToInitializeFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_fieldToInitialize_fieldInitializer"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAFieldInitializersCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_fieldInitializers_creationExpression"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAInitExpressionFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_initExpression_fieldInitializer"); //$NON-NLS-1$
     }
     // structure type creators
 
@@ -186,17 +226,37 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
                 case 20:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject);
                 case 21:
-                    return new behavior.expressions.__impl.ALeftLeftOfImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.__impl.ImplicitContextImpl")); //$NON-NLS-1$
                 case 22:
-                    return new behavior.expressions.__impl.ARightRightOfImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.__impl.AliasImpl")); //$NON-NLS-1$
                 case 23:
-                    return new behavior.expressions.__impl.AConditionConditionOfImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.__impl.TupleImpl")); //$NON-NLS-1$
                 case 24:
-                    return new behavior.expressions.__impl.AFieldPathExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.__impl.ObjectCreationExpressionImpl")); //$NON-NLS-1$
                 case 25:
-                    return new behavior.expressions.__impl.AOperandOfOperandImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.__impl.FieldInitializerImpl")); //$NON-NLS-1$
                 case 26:
+                    return new behavior.expressions.__impl.ALeftLeftOfImpl(workspace, mofId, immediatePackage, metaObject);
+                case 27:
+                    return new behavior.expressions.__impl.ARightRightOfImpl(workspace, mofId, immediatePackage, metaObject);
+                case 28:
+                    return new behavior.expressions.__impl.AConditionConditionOfImpl(workspace, mofId, immediatePackage, metaObject);
+                case 29:
+                    return new behavior.expressions.__impl.AFieldPathExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                case 30:
+                    return new behavior.expressions.__impl.AOperandOfOperandImpl(workspace, mofId, immediatePackage, metaObject);
+                case 31:
                     return new behavior.expressions.__impl.AArgumentWithArgumentImpl(workspace, mofId, immediatePackage, metaObject);
+                case 32:
+                    return new behavior.expressions.__impl.AAliasAliasForImpl(workspace, mofId, immediatePackage, metaObject);
+                case 33:
+                    return new behavior.expressions.__impl.AClassToInstantiateObjectCreationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                case 34:
+                    return new behavior.expressions.__impl.AFieldToInitializeFieldInitializerImpl(workspace, mofId, immediatePackage, metaObject);
+                case 35:
+                    return new behavior.expressions.__impl.AFieldInitializersCreationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                case 36:
+                    return new behavior.expressions.__impl.AInitExpressionFieldInitializerImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
         }
@@ -209,7 +269,6 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ExpressionsPackage> get___JmiInterface() {
         return behavior.expressions.ExpressionsPackage.class;
     }
@@ -218,9 +277,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(1);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "literals"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "behavior.expressions.literals.LiteralsPackage", false); //$NON-NLS-1$
@@ -229,7 +286,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }
   
         if (___refClasses == null) {
-            ___refClasses = new java.util.ArrayList<RefClassAndName>(20);
+            ___refClasses = new java.util.ArrayList<RefClassAndName>(25);
             ___refClassesByName = new java.util.HashMap<String, RefClassAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefClassAndName rcan = null;
@@ -313,14 +370,32 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
             rcan = new RefClassAndName(name, "behavior.expressions.WithArgument"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
+            name = "ImplicitContext"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.expressions.ImplicitContext"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "Alias"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.expressions.Alias"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "Tuple"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.expressions.Tuple"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "ObjectCreationExpression"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.expressions.ObjectCreationExpression"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "FieldInitializer"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.expressions.FieldInitializer"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
         }
   
         if (___refAssociations == null) {
-            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(6);
+            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(11);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_left_leftOf"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.expressions.ALeftLeftOf"); //$NON-NLS-1$
@@ -344,6 +419,26 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
             ___refAssociationsByName.put(name, raan);
             name = "A_argument_withArgument"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.expressions.AArgumentWithArgument"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_alias_aliasFor"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.expressions.AAliasAliasFor"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_classToInstantiate_objectCreationExpression"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.expressions.AClassToInstantiateObjectCreationExpression"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_fieldToInitialize_fieldInitializer"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.expressions.AFieldToInitializeFieldInitializer"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_fieldInitializers_creationExpression"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.expressions.AFieldInitializersCreationExpression"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_initExpression_fieldInitializer"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.expressions.AInitExpressionFieldInitializer"); //$NON-NLS-1$
             ___refAssociations.add(raan);
             ___refAssociationsByName.put(name, raan);
         }
