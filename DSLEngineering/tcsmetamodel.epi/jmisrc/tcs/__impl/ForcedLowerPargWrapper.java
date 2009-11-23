@@ -6,7 +6,11 @@ package tcs.__impl;
 
 public class ForcedLowerPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ForcedLowerPargImpl> implements tcs.ForcedLowerParg,com.sap.tc.moin.repository.Partitionable {
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
     }
 
@@ -14,6 +18,10 @@ public class ForcedLowerPargWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unused")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     private tcs.__impl.ForcedLowerPargImpl getCastWrappedObject() {
         return (tcs.__impl.ForcedLowerPargImpl) getWrappedObject();
     }
@@ -182,6 +190,10 @@ public class ForcedLowerPargWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unchecked")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.ForcedLowerParg> get___JmiInterface() {
         return tcs.ForcedLowerParg.class;
     }

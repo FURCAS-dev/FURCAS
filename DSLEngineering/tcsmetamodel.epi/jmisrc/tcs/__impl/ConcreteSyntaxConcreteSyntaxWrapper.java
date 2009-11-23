@@ -125,6 +125,10 @@ public class ConcreteSyntaxConcreteSyntaxWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unchecked")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.ConcreteSyntaxConcreteSyntax> get___JmiInterface() {
         return tcs.ConcreteSyntaxConcreteSyntax.class;
     }

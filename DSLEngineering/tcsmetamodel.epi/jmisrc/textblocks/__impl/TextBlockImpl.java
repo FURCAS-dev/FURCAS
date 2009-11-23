@@ -10,7 +10,11 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(32);
@@ -312,12 +316,20 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public void setParentBlock(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "480716BCBE2DC5490C5F11DDB5A500016CE99C52", /* mofId of reference */ "480716BCBE2C3EA40C5F11DDAB7500016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setParentBlock(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "480716BCBE2DC5490C5F11DDB5A500016CE99C52", /* mofId of reference */ "480716BCBE2C3EA40C5F11DDAB7500016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public java.util.List getSubBlocks() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -344,12 +356,20 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public void setType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "480716BCBE2DC5530C5F11DD93AC00016CE99C52", /* mofId of reference */ "480716BCBE2C3EA60C5F11DDA55C00016CE99C52" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "480716BCBE2DC5530C5F11DD93AC00016CE99C52", /* mofId of reference */ "480716BCBE2C3EA60C5F11DDA55C00016CE99C52" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getSequenceElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -364,12 +384,20 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public void setSequenceElement(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0677A9A835211504B8911DE94CA00016CE99C52", /* mofId of reference */ "E0677A9A836DAFA04B8911DEA40700016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setSequenceElement(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0677A9A835211504B8911DE94CA00016CE99C52", /* mofId of reference */ "E0677A9A836DAFA04B8911DEA40700016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public java.util.Collection getDocumentnode() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -562,7 +590,11 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
         }
         return result;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -672,7 +704,11 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 2:
@@ -718,7 +754,11 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 2:
@@ -764,7 +804,11 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 2:
@@ -810,7 +854,11 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -888,6 +936,10 @@ public final class TextBlockImpl extends com.sap.tc.moin.repository.core.jmi.ref
 
     }
     // get the JMI interface
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unchecked")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<textblocks.TextBlock> get___JmiInterface() {
         return textblocks.TextBlock.class;
     }

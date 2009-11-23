@@ -125,6 +125,10 @@ public class LiteralRefLiteralWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unchecked")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.LiteralRefLiteral> get___JmiInterface() {
         return tcs.LiteralRefLiteral.class;
     }

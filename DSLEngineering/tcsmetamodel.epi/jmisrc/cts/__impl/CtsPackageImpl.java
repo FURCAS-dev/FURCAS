@@ -8,7 +8,11 @@ public final class CtsPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
@@ -59,6 +63,10 @@ public final class CtsPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
         }        
     }
 
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unchecked")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<cts.CtsPackage> get___JmiInterface() {
         return cts.CtsPackage.class;
     }
@@ -67,7 +75,13 @@ public final class CtsPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(2);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+<<<<<<< HEAD
             java.lang.String name = ""; //$NON-NLS-1$
+=======
+            @SuppressWarnings("unused")
+            java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
             RefPackageAndName rpan = null;
             name = "textblockdefinition"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "textblockdefinition.TextblockdefinitionPackage", true); //$NON-NLS-1$
@@ -89,7 +103,13 @@ public final class CtsPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+<<<<<<< HEAD
             java.lang.String name = ""; //$NON-NLS-1$
+=======
+            @SuppressWarnings("unused")
+            java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
             RefAssociationAndName raan = null;
         }
     }

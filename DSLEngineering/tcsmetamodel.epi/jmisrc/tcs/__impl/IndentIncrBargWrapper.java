@@ -6,7 +6,11 @@ package tcs.__impl;
 
 public class IndentIncrBargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.IndentIncrBargImpl> implements tcs.IndentIncrBarg,com.sap.tc.moin.repository.Partitionable {
 
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
     }
 
@@ -14,6 +18,10 @@ public class IndentIncrBargWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unused")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     private tcs.__impl.IndentIncrBargImpl getCastWrappedObject() {
         return (tcs.__impl.IndentIncrBargImpl) getWrappedObject();
     }
@@ -182,6 +190,10 @@ public class IndentIncrBargWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
+<<<<<<< HEAD
+=======
+    @SuppressWarnings("unchecked")
+>>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.IndentIncrBarg> get___JmiInterface() {
         return tcs.IndentIncrBarg.class;
     }
