@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<MetamodelInf xmlns="http://sap.com/moin/MoinArchive"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://sap.com/moin/MoinArchive metamodel_inf.xsd">
+  <FacilityId>PF</FacilityId>
+  <DeploymentExtension class="com.sap.tc.moin.package6DBFA0FAF73913D04E1A01AB2E5C3D47D568CBAD.MetamodelExtension" />
+  <Partitions>
+    <Partition name="moin/meta/localization.moinmm"
+      contentHash="9C78C891241A3E18F24908C8184FA2F5" />
+    <Partition name="moin/meta/configuration.moinmm"
+      contentHash="4B716A6F9EE7E03ADE647E4461BC46FC" />
+    <Partition name="moin/meta/integration.moinmm"
+      contentHash="46678603ADB9DA6C38776C88EE094BD0" />
+    <Partition name="moin/meta/ui.moinmm"
+      contentHash="C26BA17D21AA9ADDB2BD1B4F0DF2FD45" />
+    <Partition name="moin/meta/persistence.moinmm"
+      contentHash="6C21F774BFD02CF99B7265B7DDEEBF92" />
+    <Partition name="moin/meta/abapMapping.moinmm"
+      contentHash="230F1B3768890D864108A234F7027D8C" />
+    <Partition name="moin/meta/dataaccess.moinmm"
+      contentHash="F49048532A659DFFCA69EA3336E21FB1" />
+    <Partition name="moin/meta/deployment.moinmm"
+      contentHash="BAB8407D2EF272CF4C6479E180F6B28C" />
+    <Partition name="moin/meta/behavioral.moinmm"
+      contentHash="FA320AD0E8E8B138417243DD09C93253" />
+    <Partition name="moin/meta/data.moinmm"
+      contentHash="92F70EC423AAB8D0DECDD41E5BD48E31" />
+    <Partition name="moin/meta/modelmanagement.moinmm"
+      contentHash="90E0434FD007AE2812BEC6D66A9C0927" />
+    <Partition name="moin/meta/ngpm.moinmm"
+      contentHash="538AC241B85A16AD60CA89F7430286A4" />
+  </Partitions>
+</MetamodelInf>
