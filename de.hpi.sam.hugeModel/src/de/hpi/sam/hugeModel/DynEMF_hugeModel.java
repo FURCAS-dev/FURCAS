@@ -1,11 +1,33 @@
+package de.hpi.sam.hugeModel;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EFactory;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
 
 public class DynEMF_hugeModel {
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		boolean blowMetaModel = true;
-		int blowFactor = 73000;
+		boolean blowMetaModel = false;
+		int blowFactor = 730;
 		
 		if (blowMetaModel) {
 			// out of memory error at about 73000
@@ -61,7 +83,11 @@ public class DynEMF_hugeModel {
 		}
 	}
 	
-	private static void createHugeModel(int blowFactor) {
+	/**
+	 * 
+	 * @param blowFactor
+	 */
+	public static Resource createHugeModel(int blowFactor) {
 		
 		//get the instance of EcoreFactory
 		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
@@ -213,7 +239,38 @@ public class DynEMF_hugeModel {
 			}
 			place = nextPlace;
 		}
-		return;
+		// Create a resource set
+		//
+		ResourceSet resourceSet = new ResourceSetImpl();
+
+		// Get the URI of the model file.
+		
+		File file=new File("model.xml");
+		try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		URI fileURI = URI.createPlatformResourceURI(file.getAbsolutePath(), true);
+
+		// Create a resource for this file.
+		
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put("xml", new XMLResourceFactoryImpl());
+        resourceSet.getResourceFactoryRegistry().getExtensionToFactoryMap().put(petriNetEPackage.getNsURI(), petriNetEPackage);
+
+
+
+		Resource resource = resourceSet.createResource(fileURI);
+		resource.getContents().add(petrinet);
+//		try {
+//			resource.save(Collections.EMPTY_MAP);
+//		} catch (IOException e) {
+//			System.err.println("Error during save!");
+//			e.printStackTrace();
+//		}
+		
+		return resource;
 		
 	}
 }
