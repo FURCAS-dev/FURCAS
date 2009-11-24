@@ -1,303 +1,304 @@
-Scoped Symbol Entered (Category): 'Logical View' with id S.321.1353.53.0
+Scoped Symbol Entered (Category): 'Logical View' with id S.323.1704.59.0
 Enter classes at top level
 Enter Category Hierarchy for: Logical View::Reflect
-Scoped Symbol Entered (Category): 'Reflect' with id S.321.1353.53.1
+Scoped Symbol Entered (Category): 'Reflect' with id S.323.1704.59.1
 Metamodel: Reflect hasImplicitReferences = true
-Scoped Symbol Entered (Class): 'Element' with id S.321.1353.53.2
+Scoped Symbol Entered (Class): 'Element' with id S.323.1704.59.2
 Enter Category Hierarchy for: Logical View::PrimitiveTypes
-Scoped Symbol Entered (Category): 'PrimitiveTypes' with id S.321.1353.53.3
+Scoped Symbol Entered (Category): 'PrimitiveTypes' with id S.323.1704.59.3
 Metamodel: PrimitiveTypes hasImplicitReferences = true
-Scoped Symbol Entered (DataType): 'Integer' with id S.321.1353.53.4
-Scoped Symbol Entered (DataType): 'Float' with id S.321.1353.53.5
-Scoped Symbol Entered (DataType): 'Double' with id S.321.1353.53.6
-Scoped Symbol Entered (DataType): 'String' with id S.321.1353.53.7
-Scoped Symbol Entered (DataType): 'Long' with id S.321.1353.53.8
-Scoped Symbol Entered (DataType): 'Boolean' with id S.321.1353.53.9
+Scoped Symbol Entered (DataType): 'Integer' with id S.323.1704.59.4
+Scoped Symbol Entered (DataType): 'Float' with id S.323.1704.59.5
+Scoped Symbol Entered (DataType): 'Double' with id S.323.1704.59.6
+Scoped Symbol Entered (DataType): 'String' with id S.323.1704.59.7
+Scoped Symbol Entered (DataType): 'Long' with id S.323.1704.59.8
+Scoped Symbol Entered (DataType): 'Boolean' with id S.323.1704.59.9
 Enter Category Hierarchy for: Logical View::finex
-Scoped Symbol Entered (Category): 'finex' with id S.321.1353.53.10
+Scoped Symbol Entered (Category): 'finex' with id S.323.1704.59.10
 Metamodel: finex hasImplicitReferences = true
 Enter Category Hierarchy for: Logical View::finex::modelmanagement
-Scoped Symbol Entered (Category): 'modelmanagement' with id S.321.1353.53.11
-Scoped Symbol Entered (Class): 'NamedElement' with id S.321.1353.53.12
-Scoped Symbol Entered (Attribute): 'name' with id S.321.1353.53.13
+Scoped Symbol Entered (Category): 'modelmanagement' with id S.323.1704.59.11
+Scoped Symbol Entered (Class): 'NamedElement' with id S.323.1704.59.12
+Scoped Symbol Entered (Attribute): 'name' with id S.323.1704.59.13
 Enter Category Hierarchy for: Logical View::structure
-Scoped Symbol Entered (Category): 'structure' with id S.321.1353.53.14
+Scoped Symbol Entered (Category): 'structure' with id S.323.1704.59.14
 Metamodel: structure hasImplicitReferences = true
-Scoped Symbol Entered (Class): 'FinexClass' with id S.321.1353.53.15
-Scoped Symbol Entered (Attribute): 'valueType' with id S.321.1353.53.16
-Scoped Symbol Entered (Constraint): 'OnlyOneUnnamedFunction' with id S.321.1353.53.17
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.18
-Scoped Symbol Entered (Constraint): 'InvariantsMustBeBoolean' with id S.321.1353.53.19
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.20
-Scoped Symbol Entered (Constraint): 'InvariantsMustBeSideEffectFree' with id S.321.1353.53.21
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.22
-Scoped Symbol Entered (Constraint): 'FieldsMustHaveUniqueNames' with id S.321.1353.53.23
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.24
-Scoped Symbol Entered (Class): 'Field' with id S.321.1353.53.25
-Scoped Symbol Entered (Attribute): 'key' with id S.321.1353.53.26
-Scoped Symbol Entered (Attribute): 'mandatory' with id S.321.1353.53.27
-Scoped Symbol Entered (Attribute): 'singleMultiplicity' with id S.321.1353.53.28
-Scoped Symbol Entered (Attribute): 'navigable' with id S.321.1353.53.29
-Scoped Symbol Entered (Operation): 'otherEnd' with id S.321.1353.53.30
-Scoped Symbol Entered (Operation): 'getNavigableFrom' with id S.321.1353.53.31
-Scoped Symbol Entered (Constraint): 'NotBothDefaultValueAndDetermination' with id S.321.1353.53.32
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.33
-Scoped Symbol Entered (Constraint): 'DefaultTypeMustMatch' with id S.321.1353.53.34
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.35
-Scoped Symbol Entered (Constraint): 'DeterminationTypeMustMatch' with id S.321.1353.53.36
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.37
-Scoped Symbol Entered (Constraint): 'DeterminationMustBeSideEffectFree' with id S.321.1353.53.38
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.39
-Scoped Symbol Entered (Class): 'Type' with id S.321.1353.53.40
-Scoped Symbol Entered (Operation): 'getNavigableFields' with id S.321.1353.53.41
-Scoped Symbol Entered (Class): 'TypedElement' with id S.321.1353.53.42
-Scoped Symbol Entered (Operation): 'getImpliedType' with id S.321.1353.53.43
-Scoped Symbol Entered (Class): 'Defaultable' with id S.321.1353.53.44
-Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.321.1353.53.45
-Scoped Symbol Entered (Class): 'Association' with id S.321.1353.53.46
-Scoped Symbol Entered (Attribute): 'defaultValue' with id S.321.1353.53.47
+Scoped Symbol Entered (Class): 'FinexClass' with id S.323.1704.59.15
+Scoped Symbol Entered (Attribute): 'valueType' with id S.323.1704.59.16
+Scoped Symbol Entered (Constraint): 'OnlyOneUnnamedFunction' with id S.323.1704.59.17
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.18
+Scoped Symbol Entered (Constraint): 'InvariantsMustBeBoolean' with id S.323.1704.59.19
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.20
+Scoped Symbol Entered (Constraint): 'InvariantsMustBeSideEffectFree' with id S.323.1704.59.21
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.22
+Scoped Symbol Entered (Constraint): 'FieldsMustHaveUniqueNames' with id S.323.1704.59.23
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.24
+Scoped Symbol Entered (Class): 'Field' with id S.323.1704.59.25
+Scoped Symbol Entered (Attribute): 'key' with id S.323.1704.59.26
+Scoped Symbol Entered (Attribute): 'mandatory' with id S.323.1704.59.27
+Scoped Symbol Entered (Attribute): 'singleMultiplicity' with id S.323.1704.59.28
+Scoped Symbol Entered (Attribute): 'navigable' with id S.323.1704.59.29
+Scoped Symbol Entered (Operation): 'otherEnd' with id S.323.1704.59.30
+Scoped Symbol Entered (Operation): 'getNavigableFrom' with id S.323.1704.59.31
+Scoped Symbol Entered (Constraint): 'NotBothDefaultValueAndDetermination' with id S.323.1704.59.32
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.33
+Scoped Symbol Entered (Constraint): 'DefaultTypeMustMatch' with id S.323.1704.59.34
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.35
+Scoped Symbol Entered (Constraint): 'DeterminationTypeMustMatch' with id S.323.1704.59.36
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.37
+Scoped Symbol Entered (Constraint): 'DeterminationMustBeSideEffectFree' with id S.323.1704.59.38
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.39
+Scoped Symbol Entered (Class): 'Type' with id S.323.1704.59.40
+Scoped Symbol Entered (Operation): 'getNavigableFields' with id S.323.1704.59.41
+Scoped Symbol Entered (Class): 'TypedElement' with id S.323.1704.59.42
+Scoped Symbol Entered (Operation): 'getImpliedType' with id S.323.1704.59.43
+Scoped Symbol Entered (Class): 'Defaultable' with id S.323.1704.59.44
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.323.1704.59.45
+Scoped Symbol Entered (Class): 'Association' with id S.323.1704.59.46
+Scoped Symbol Entered (Attribute): 'defaultValue' with id S.323.1704.59.47
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'defaultOf' with id S.321.1353.53.48
+Scoped Symbol Entered (Attribute): 'defaultOf' with id S.323.1704.59.48
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'invariants' with id S.321.1353.53.49
+Scoped Symbol Entered (Attribute): 'invariants' with id S.323.1704.59.49
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'invariantOf' with id S.321.1353.53.50
+Scoped Symbol Entered (Attribute): 'invariantOf' with id S.323.1704.59.50
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'type' with id S.321.1353.53.51
+Scoped Symbol Entered (Attribute): 'type' with id S.323.1704.59.51
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'typedElement' with id S.321.1353.53.52
+Scoped Symbol Entered (Attribute): 'typedElement' with id S.323.1704.59.52
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'ownedTypes' with id S.321.1353.53.53
+Scoped Symbol Entered (Attribute): 'ownedTypes' with id S.323.1704.59.53
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'owner' with id S.321.1353.53.54
+Scoped Symbol Entered (Attribute): 'owner' with id S.323.1704.59.54
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'functions' with id S.321.1353.53.55
+Scoped Symbol Entered (Attribute): 'functions' with id S.323.1704.59.55
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'owner' with id S.321.1353.53.56
+Scoped Symbol Entered (Attribute): 'owner' with id S.323.1704.59.56
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'determination' with id S.321.1353.53.57
+Scoped Symbol Entered (Attribute): 'determination' with id S.323.1704.59.57
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'determinationOf' with id S.321.1353.53.58
+Scoped Symbol Entered (Attribute): 'determinationOf' with id S.323.1704.59.58
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'ends' with id S.321.1353.53.59
+Scoped Symbol Entered (Attribute): 'ends' with id S.323.1704.59.59
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'association' with id S.321.1353.53.60
+Scoped Symbol Entered (Attribute): 'association' with id S.323.1704.59.60
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'associations' with id S.321.1353.53.61
+Scoped Symbol Entered (Attribute): 'associations' with id S.323.1704.59.61
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'clazz' with id S.321.1353.53.62
+Scoped Symbol Entered (Attribute): 'clazz' with id S.323.1704.59.62
 Attribute was created for implicit Ref
 Enter Category Hierarchy for: Logical View::behavior
-Scoped Symbol Entered (Category): 'behavior' with id S.321.1353.53.63
+Scoped Symbol Entered (Category): 'behavior' with id S.323.1704.59.63
 Metamodel: behavior hasImplicitReferences = true
 Enter Category Hierarchy for: Logical View::behavior::expressions
-Scoped Symbol Entered (Category): 'expressions' with id S.321.1353.53.64
-Scoped Symbol Entered (Class): 'Expression' with id S.321.1353.53.65
-Scoped Symbol Entered (Operation): 'isNumeric' with id S.321.1353.53.66
-Scoped Symbol Entered (Operation): 'isBoolean' with id S.321.1353.53.67
-Scoped Symbol Entered (Operation): 'numericPostType' with id S.321.1353.53.68
-Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.321.1353.53.69
-Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.321.1353.53.70
-Scoped Symbol Entered (Operation): 'getImplicitContextType' with id S.321.1353.53.71
-Scoped Symbol Entered (Operation): 'getAllAliases' with id S.321.1353.53.72
-Scoped Symbol Entered (Class): 'BinaryBooleanOperator' with id S.321.1353.53.73
-Scoped Symbol Entered (Constraint): 'OperandsMustBeBoolean' with id S.321.1353.53.74
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.75
-Scoped Symbol Entered (Class): 'Not' with id S.321.1353.53.76
-Scoped Symbol Entered (Class): 'BinaryNumericOperator' with id S.321.1353.53.77
-Scoped Symbol Entered (Constraint): 'OperandsMustBeNumeric' with id S.321.1353.53.78
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.79
-Scoped Symbol Entered (Class): 'UnaryNumericOperator' with id S.321.1353.53.80
-Scoped Symbol Entered (Constraint): 'OperandMustBeNumeric' with id S.321.1353.53.81
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.82
-Scoped Symbol Entered (Class): 'BooleanOperatorExpression' with id S.321.1353.53.83
-Scoped Symbol Entered (Attribute): 'operator' with id S.321.1353.53.84
-Scoped Symbol Entered (Constraint): 'HasBooleanResult' with id S.321.1353.53.85
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.86
-Scoped Symbol Entered (Class): 'NumericOperatorExpression' with id S.321.1353.53.87
-Scoped Symbol Entered (Attribute): 'operator' with id S.321.1353.53.88
-Scoped Symbol Entered (Constraint): 'OperatorResultType' with id S.321.1353.53.89
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.90
-Scoped Symbol Entered (Class): 'FilterExpression' with id S.321.1353.53.91
-Scoped Symbol Entered (Constraint): 'TypeIsSameAsOperand' with id S.321.1353.53.92
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.93
-Scoped Symbol Entered (Constraint): 'ConditionIsSideEffectFree' with id S.321.1353.53.94
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.95
-Scoped Symbol Entered (Class): 'PathExpression' with id S.321.1353.53.96
-Scoped Symbol Entered (Constraint): 'SourceTypeMustHaveField' with id S.321.1353.53.97
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.98
-Scoped Symbol Entered (Constraint): 'PathExpressionTypeIsFieldType' with id S.321.1353.53.99
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.100
-Scoped Symbol Entered (Class): 'Count' with id S.321.1353.53.101
-Scoped Symbol Entered (Constraint): 'CountHasIntegerValue' with id S.321.1353.53.102
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.103
-Scoped Symbol Entered (Class): 'UnaryOperator' with id S.321.1353.53.104
-Scoped Symbol Entered (Class): 'UnaryMinus' with id S.321.1353.53.105
-Scoped Symbol Entered (Class): 'NumericAggregate' with id S.321.1353.53.106
-Scoped Symbol Entered (Class): 'UnaryBooleanOperator' with id S.321.1353.53.107
-Scoped Symbol Entered (Constraint): 'OperandMustBeBoolean' with id S.321.1353.53.108
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.109
-Scoped Symbol Entered (Class): 'BooleanAggregate' with id S.321.1353.53.110
-Scoped Symbol Entered (Class): 'Single' with id S.321.1353.53.111
-Scoped Symbol Entered (Constraint): 'OutputTypeEqualsOperandType' with id S.321.1353.53.112
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.113
-Scoped Symbol Entered (Class): 'This' with id S.321.1353.53.114
-Scoped Symbol Entered (Class): 'FirstPathExpression' with id S.321.1353.53.115
-Scoped Symbol Entered (Class): 'BinaryOperator' with id S.321.1353.53.116
-Scoped Symbol Entered (Class): 'WithArgument' with id S.321.1353.53.117
-Scoped Symbol Entered (Operation): 'getEnclosingTypeFromWithArgument' with id S.321.1353.53.118
-Scoped Symbol Entered (Operation): 'getImplicitContextTypeFromWithArgument' with id S.321.1353.53.119
-Scoped Symbol Entered (Class): 'ImplicitContext' with id S.321.1353.53.120
-Scoped Symbol Entered (Class): 'Alias' with id S.321.1353.53.121
-Scoped Symbol Entered (Class): 'Tuple' with id S.321.1353.53.122
-Scoped Symbol Entered (Constraint): 'TupleTypeHasExactlyOneEquallyNamedFieldPerAlias' with id S.321.1353.53.123
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.124
-Scoped Symbol Entered (Class): 'ObjectCreationExpression' with id S.321.1353.53.125
-Scoped Symbol Entered (Constraint): 'ObjectCreationOnlyAllowedForEntityClasses' with id S.321.1353.53.126
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.127
-Scoped Symbol Entered (Constraint): 'FieldMustOnlyBeInitializedOnce' with id S.321.1353.53.128
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.129
-Scoped Symbol Entered (Class): 'FieldInitializer' with id S.321.1353.53.130
-Scoped Symbol Entered (Constraint): 'InitExpressionTypeMustConformToFieldType' with id S.321.1353.53.131
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.132
-Scoped Symbol Entered (Attribute): 'left' with id S.321.1353.53.133
+Scoped Symbol Entered (Category): 'expressions' with id S.323.1704.59.64
+Scoped Symbol Entered (Class): 'Expression' with id S.323.1704.59.65
+Scoped Symbol Entered (Operation): 'isNumeric' with id S.323.1704.59.66
+Scoped Symbol Entered (Operation): 'isBoolean' with id S.323.1704.59.67
+Scoped Symbol Entered (Operation): 'numericPostType' with id S.323.1704.59.68
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.323.1704.59.69
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.323.1704.59.70
+Scoped Symbol Entered (Operation): 'getImplicitContextType' with id S.323.1704.59.71
+Scoped Symbol Entered (Operation): 'getAllAliases' with id S.323.1704.59.72
+Scoped Symbol Entered (Class): 'BinaryBooleanOperator' with id S.323.1704.59.73
+Scoped Symbol Entered (Constraint): 'OperandsMustBeBoolean' with id S.323.1704.59.74
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.75
+Scoped Symbol Entered (Class): 'Not' with id S.323.1704.59.76
+Scoped Symbol Entered (Class): 'BinaryNumericOperator' with id S.323.1704.59.77
+Scoped Symbol Entered (Constraint): 'OperandsMustBeNumeric' with id S.323.1704.59.78
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.79
+Scoped Symbol Entered (Class): 'UnaryNumericOperator' with id S.323.1704.59.80
+Scoped Symbol Entered (Constraint): 'OperandMustBeNumeric' with id S.323.1704.59.81
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.82
+Scoped Symbol Entered (Class): 'BooleanOperatorExpression' with id S.323.1704.59.83
+Scoped Symbol Entered (Attribute): 'operator' with id S.323.1704.59.84
+Scoped Symbol Entered (Constraint): 'HasBooleanResult' with id S.323.1704.59.85
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.86
+Scoped Symbol Entered (Class): 'NumericOperatorExpression' with id S.323.1704.59.87
+Scoped Symbol Entered (Attribute): 'operator' with id S.323.1704.59.88
+Scoped Symbol Entered (Constraint): 'OperatorResultType' with id S.323.1704.59.89
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.90
+Scoped Symbol Entered (Class): 'FilterExpression' with id S.323.1704.59.91
+Scoped Symbol Entered (Constraint): 'TypeIsSameAsOperand' with id S.323.1704.59.92
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.93
+Scoped Symbol Entered (Constraint): 'ConditionIsSideEffectFree' with id S.323.1704.59.94
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.95
+Scoped Symbol Entered (Class): 'PathExpression' with id S.323.1704.59.96
+Scoped Symbol Entered (Constraint): 'SourceTypeMustHaveField' with id S.323.1704.59.97
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.98
+Scoped Symbol Entered (Constraint): 'PathExpressionTypeIsFieldType' with id S.323.1704.59.99
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.100
+Scoped Symbol Entered (Class): 'Count' with id S.323.1704.59.101
+Scoped Symbol Entered (Constraint): 'CountHasIntegerValue' with id S.323.1704.59.102
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.103
+Scoped Symbol Entered (Class): 'UnaryOperator' with id S.323.1704.59.104
+Scoped Symbol Entered (Class): 'UnaryMinus' with id S.323.1704.59.105
+Scoped Symbol Entered (Class): 'NumericAggregate' with id S.323.1704.59.106
+Scoped Symbol Entered (Class): 'UnaryBooleanOperator' with id S.323.1704.59.107
+Scoped Symbol Entered (Constraint): 'OperandMustBeBoolean' with id S.323.1704.59.108
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.109
+Scoped Symbol Entered (Class): 'BooleanAggregate' with id S.323.1704.59.110
+Scoped Symbol Entered (Class): 'Single' with id S.323.1704.59.111
+Scoped Symbol Entered (Constraint): 'OutputTypeEqualsOperandType' with id S.323.1704.59.112
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.113
+Scoped Symbol Entered (Class): 'This' with id S.323.1704.59.114
+Scoped Symbol Entered (Class): 'FirstPathExpression' with id S.323.1704.59.115
+Scoped Symbol Entered (Class): 'BinaryOperator' with id S.323.1704.59.116
+Scoped Symbol Entered (Class): 'WithArgument' with id S.323.1704.59.117
+Scoped Symbol Entered (Operation): 'getEnclosingTypeFromWithArgument' with id S.323.1704.59.118
+Scoped Symbol Entered (Operation): 'getImplicitContextTypeFromWithArgument' with id S.323.1704.59.119
+Scoped Symbol Entered (Class): 'ImplicitContext' with id S.323.1704.59.120
+Scoped Symbol Entered (Class): 'Alias' with id S.323.1704.59.121
+Scoped Symbol Entered (Class): 'Tuple' with id S.323.1704.59.122
+Scoped Symbol Entered (Constraint): 'TupleTypeHasExactlyOneEquallyNamedFieldPerAlias' with id S.323.1704.59.123
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.124
+Scoped Symbol Entered (Class): 'ObjectCreationExpression' with id S.323.1704.59.125
+Scoped Symbol Entered (Constraint): 'ObjectCreationOnlyAllowedForEntityClasses' with id S.323.1704.59.126
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.127
+Scoped Symbol Entered (Constraint): 'FieldMustOnlyBeInitializedOnce' with id S.323.1704.59.128
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.129
+Scoped Symbol Entered (Class): 'FieldInitializer' with id S.323.1704.59.130
+Scoped Symbol Entered (Constraint): 'InitExpressionTypeMustConformToFieldType' with id S.323.1704.59.131
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.132
+Scoped Symbol Entered (Attribute): 'left' with id S.323.1704.59.133
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'leftOf' with id S.321.1353.53.134
+Scoped Symbol Entered (Attribute): 'leftOf' with id S.323.1704.59.134
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'right' with id S.321.1353.53.135
+Scoped Symbol Entered (Attribute): 'right' with id S.323.1704.59.135
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'rightOf' with id S.321.1353.53.136
+Scoped Symbol Entered (Attribute): 'rightOf' with id S.323.1704.59.136
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'condition' with id S.321.1353.53.137
+Scoped Symbol Entered (Attribute): 'condition' with id S.323.1704.59.137
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'conditionOf' with id S.321.1353.53.138
+Scoped Symbol Entered (Attribute): 'conditionOf' with id S.323.1704.59.138
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'field' with id S.321.1353.53.139
+Scoped Symbol Entered (Attribute): 'field' with id S.323.1704.59.139
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'pathExpression' with id S.321.1353.53.140
+Scoped Symbol Entered (Attribute): 'pathExpression' with id S.323.1704.59.140
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'operandOf' with id S.321.1353.53.141
+Scoped Symbol Entered (Attribute): 'operandOf' with id S.323.1704.59.141
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'operand' with id S.321.1353.53.142
+Scoped Symbol Entered (Attribute): 'operand' with id S.323.1704.59.142
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'argument' with id S.321.1353.53.143
+Scoped Symbol Entered (Attribute): 'argument' with id S.323.1704.59.143
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'withArgument' with id S.321.1353.53.144
+Scoped Symbol Entered (Attribute): 'withArgument' with id S.323.1704.59.144
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'alias' with id S.321.1353.53.145
+Scoped Symbol Entered (Attribute): 'alias' with id S.323.1704.59.145
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'aliasFor' with id S.321.1353.53.146
+Scoped Symbol Entered (Attribute): 'aliasFor' with id S.323.1704.59.146
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'classToInstantiate' with id S.321.1353.53.147
+Scoped Symbol Entered (Attribute): 'classToInstantiate' with id S.323.1704.59.147
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'objectCreationExpression' with id S.321.1353.53.148
+Scoped Symbol Entered (Attribute): 'objectCreationExpression' with id S.323.1704.59.148
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'fieldToInitialize' with id S.321.1353.53.149
+Scoped Symbol Entered (Attribute): 'fieldToInitialize' with id S.323.1704.59.149
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'fieldInitializer' with id S.321.1353.53.150
+Scoped Symbol Entered (Attribute): 'fieldInitializer' with id S.323.1704.59.150
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'fieldInitializers' with id S.321.1353.53.151
+Scoped Symbol Entered (Attribute): 'fieldInitializers' with id S.323.1704.59.151
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'creationExpression' with id S.321.1353.53.152
+Scoped Symbol Entered (Attribute): 'creationExpression' with id S.323.1704.59.152
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'initExpression' with id S.321.1353.53.153
+Scoped Symbol Entered (Attribute): 'initExpression' with id S.323.1704.59.153
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'fieldInitializer' with id S.321.1353.53.154
+Scoped Symbol Entered (Attribute): 'fieldInitializer' with id S.323.1704.59.154
 Attribute was created for implicit Ref
 Enter Category Hierarchy for: Logical View::behavior::expressions::literals
-Scoped Symbol Entered (Category): 'literals' with id S.321.1353.53.155
-Scoped Symbol Entered (Class): 'Literal' with id S.321.1353.53.156
-Scoped Symbol Entered (Attribute): 'literal' with id S.321.1353.53.157
-Scoped Symbol Entered (Class): 'StringLiteral' with id S.321.1353.53.158
-Scoped Symbol Entered (Class): 'BooleanLiteral' with id S.321.1353.53.159
-Scoped Symbol Entered (Class): 'IntegerLiteral' with id S.321.1353.53.160
-Scoped Symbol Entered (Class): 'DecimalLiteral' with id S.321.1353.53.161
-Scoped Symbol Entered (Class): 'DateLiteral' with id S.321.1353.53.162
-Scoped Symbol Entered (Class): 'BinaryLiteral' with id S.321.1353.53.163
+Scoped Symbol Entered (Category): 'literals' with id S.323.1704.59.155
+Scoped Symbol Entered (Class): 'Literal' with id S.323.1704.59.156
+Scoped Symbol Entered (Attribute): 'literal' with id S.323.1704.59.157
+Scoped Symbol Entered (Class): 'StringLiteral' with id S.323.1704.59.158
+Scoped Symbol Entered (Class): 'BooleanLiteral' with id S.323.1704.59.159
+Scoped Symbol Entered (Class): 'IntegerLiteral' with id S.323.1704.59.160
+Scoped Symbol Entered (Class): 'DecimalLiteral' with id S.323.1704.59.161
+Scoped Symbol Entered (Class): 'DateLiteral' with id S.323.1704.59.162
+Scoped Symbol Entered (Class): 'BinaryLiteral' with id S.323.1704.59.163
 Enter Category Hierarchy for: Logical View::behavior::actions
-Scoped Symbol Entered (Category): 'actions' with id S.321.1353.53.164
-Scoped Symbol Entered (Class): 'Block' with id S.321.1353.53.165
-Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.321.1353.53.166
-Scoped Symbol Entered (Operation): 'getOuterMostBlock' with id S.321.1353.53.167
-Scoped Symbol Entered (Operation): 'getImplicitContextType' with id S.321.1353.53.168
-Scoped Symbol Entered (Class): 'Statement' with id S.321.1353.53.169
-Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.321.1353.53.170
-Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.321.1353.53.171
-Scoped Symbol Entered (Operation): 'getImplicitContextType' with id S.321.1353.53.172
-Scoped Symbol Entered (Class): 'ExpressionStatement' with id S.321.1353.53.173
-Scoped Symbol Entered (Class): 'StatementWithNestedBlock' with id S.321.1353.53.174
-Scoped Symbol Entered (Class): 'Foreach' with id S.321.1353.53.175
-Scoped Symbol Entered (Class): 'SingleBlockStatement' with id S.321.1353.53.176
-Scoped Symbol Entered (Class): 'NamedValue' with id S.321.1353.53.177
-Scoped Symbol Entered (Class): 'NamedValueWithOptionalInitExpression' with id S.321.1353.53.178
-Scoped Symbol Entered (Class): 'Variable' with id S.321.1353.53.179
-Scoped Symbol Entered (Class): 'NamedValueDeclaration' with id S.321.1353.53.180
-Scoped Symbol Entered (Class): 'Assignment' with id S.321.1353.53.181
-Scoped Symbol Entered (Operation): 'getOwningClass' with id S.321.1353.53.182
-Scoped Symbol Entered (Constraint): 'NoAssigmentAllowedToFieldsWithDetermination' with id S.321.1353.53.183
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.184
-Scoped Symbol Entered (Constraint): 'ExpressionTypeMustConformToAssignmentTargetType' with id S.321.1353.53.185
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.186
-Scoped Symbol Entered (Class): 'StatementWithArgument' with id S.321.1353.53.187
-Scoped Symbol Entered (Class): 'Manipulator' with id S.321.1353.53.188
-Scoped Symbol Entered (Constraint): 'AllFieldsFromOwningClass' with id S.321.1353.53.189
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.190
-Scoped Symbol Entered (Constraint): 'AllAssignmentExpressionsSideEffectFree' with id S.321.1353.53.191
-Scoped Symbol Entered (Operation): 'OCL' with id S.321.1353.53.192
-Scoped Symbol Entered (Attribute): 'statements' with id S.321.1353.53.193
+Scoped Symbol Entered (Category): 'actions' with id S.323.1704.59.164
+Scoped Symbol Entered (Class): 'Block' with id S.323.1704.59.165
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.323.1704.59.166
+Scoped Symbol Entered (Operation): 'getOuterMostBlock' with id S.323.1704.59.167
+Scoped Symbol Entered (Operation): 'getImplicitContextType' with id S.323.1704.59.168
+Scoped Symbol Entered (Class): 'Statement' with id S.323.1704.59.169
+Scoped Symbol Entered (Operation): 'getEnclosingType' with id S.323.1704.59.170
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.323.1704.59.171
+Scoped Symbol Entered (Operation): 'getImplicitContextType' with id S.323.1704.59.172
+Scoped Symbol Entered (Class): 'ExpressionStatement' with id S.323.1704.59.173
+Scoped Symbol Entered (Class): 'StatementWithNestedBlock' with id S.323.1704.59.174
+Scoped Symbol Entered (Class): 'Foreach' with id S.323.1704.59.175
+Scoped Symbol Entered (Class): 'SingleBlockStatement' with id S.323.1704.59.176
+Scoped Symbol Entered (Class): 'NamedValue' with id S.323.1704.59.177
+Scoped Symbol Entered (Class): 'NamedValueWithOptionalInitExpression' with id S.323.1704.59.178
+Scoped Symbol Entered (Class): 'Variable' with id S.323.1704.59.179
+Scoped Symbol Entered (Class): 'NamedValueDeclaration' with id S.323.1704.59.180
+Scoped Symbol Entered (Class): 'Assignment' with id S.323.1704.59.181
+Scoped Symbol Entered (Operation): 'getOwningClass' with id S.323.1704.59.182
+Scoped Symbol Entered (Constraint): 'NoAssigmentAllowedToFieldsWithDetermination' with id S.323.1704.59.183
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.184
+Scoped Symbol Entered (Constraint): 'ExpressionTypeMustConformToAssignmentTargetType' with id S.323.1704.59.185
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.186
+Scoped Symbol Entered (Class): 'StatementWithArgument' with id S.323.1704.59.187
+Scoped Symbol Entered (Class): 'Manipulator' with id S.323.1704.59.188
+Scoped Symbol Entered (Constraint): 'AllFieldsFromOwningClass' with id S.323.1704.59.189
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.190
+Scoped Symbol Entered (Constraint): 'AllAssignmentExpressionsSideEffectFree' with id S.323.1704.59.191
+Scoped Symbol Entered (Operation): 'OCL' with id S.323.1704.59.192
+Scoped Symbol Entered (Attribute): 'statements' with id S.323.1704.59.193
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'block' with id S.321.1353.53.194
+Scoped Symbol Entered (Attribute): 'block' with id S.323.1704.59.194
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'expression' with id S.321.1353.53.195
+Scoped Symbol Entered (Attribute): 'expression' with id S.323.1704.59.195
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'expressionStatement' with id S.321.1353.53.196
+Scoped Symbol Entered (Attribute): 'expressionStatement' with id S.323.1704.59.196
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'nestedBlocks' with id S.321.1353.53.197
+Scoped Symbol Entered (Attribute): 'nestedBlocks' with id S.323.1704.59.197
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'owningStatement' with id S.321.1353.53.198
+Scoped Symbol Entered (Attribute): 'owningStatement' with id S.323.1704.59.198
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'initExpression' with id S.321.1353.53.199
+Scoped Symbol Entered (Attribute): 'initExpression' with id S.323.1704.59.199
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'namedValueWithOptionalInitExpression' with id S.321.1353.53.200
+Scoped Symbol Entered (Attribute): 'namedValueWithOptionalInitExpression' with id S.323.1704.59.200
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'namedValue' with id S.321.1353.53.201
+Scoped Symbol Entered (Attribute): 'namedValue' with id S.323.1704.59.201
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'namedValueDeclaration' with id S.321.1353.53.202
+Scoped Symbol Entered (Attribute): 'namedValueDeclaration' with id S.323.1704.59.202
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'namedValues' with id S.321.1353.53.203
+Scoped Symbol Entered (Attribute): 'namedValues' with id S.323.1704.59.203
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'block' with id S.321.1353.53.204
+Scoped Symbol Entered (Attribute): 'block' with id S.323.1704.59.204
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'assignTo' with id S.321.1353.53.205
+Scoped Symbol Entered (Attribute): 'assignTo' with id S.323.1704.59.205
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'assignment' with id S.321.1353.53.206
+Scoped Symbol Entered (Attribute): 'assignment' with id S.323.1704.59.206
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'assignments' with id S.321.1353.53.207
+Scoped Symbol Entered (Attribute): 'assignments' with id S.323.1704.59.207
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'manipulator' with id S.321.1353.53.208
+Scoped Symbol Entered (Attribute): 'manipulator' with id S.323.1704.59.208
 Attribute was created for implicit Ref
 Enter Category Hierarchy for: Logical View::behavior::functions
-Scoped Symbol Entered (Category): 'functions' with id S.321.1353.53.209
-Scoped Symbol Entered (Class): 'Function' with id S.321.1353.53.210
-Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.321.1353.53.211
-Scoped Symbol Entered (Class): 'Parameter' with id S.321.1353.53.212
-Scoped Symbol Entered (Attribute): 'direction' with id S.321.1353.53.213
-Scoped Symbol Entered (Class): 'Direction' with id S.321.1353.53.214
-Scoped Symbol Entered (Attribute): 'IN' with id S.321.1353.53.215
-Scoped Symbol Entered (Attribute): 'OUT' with id S.321.1353.53.216
-Scoped Symbol Entered (Class): 'SignatureImplementation' with id S.321.1353.53.217
-Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.321.1353.53.218
-Scoped Symbol Entered (Attribute): 'implementation' with id S.321.1353.53.219
+Scoped Symbol Entered (Category): 'functions' with id S.323.1704.59.209
+Scoped Symbol Entered (Class): 'Function' with id S.323.1704.59.210
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.323.1704.59.211
+Scoped Symbol Entered (Class): 'Parameter' with id S.323.1704.59.212
+Scoped Symbol Entered (Attribute): 'direction' with id S.323.1704.59.213
+Scoped Symbol Entered (Class): 'Direction' with id S.323.1704.59.214
+Scoped Symbol Entered (Attribute): 'IN' with id S.323.1704.59.215
+Scoped Symbol Entered (Attribute): 'OUT' with id S.323.1704.59.216
+Scoped Symbol Entered (Class): 'SignatureImplementation' with id S.323.1704.59.217
+Scoped Symbol Entered (Operation): 'isSideEffectFree' with id S.323.1704.59.218
+Scoped Symbol Entered (Class): 'NativeImpl' with id S.323.1704.59.219
+Scoped Symbol Entered (Attribute): 'implementation' with id S.323.1704.59.220
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'signature' with id S.321.1353.53.220
+Scoped Symbol Entered (Attribute): 'signature' with id S.323.1704.59.221
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'parameters' with id S.321.1353.53.221
+Scoped Symbol Entered (Attribute): 'parameters' with id S.323.1704.59.222
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'signature' with id S.321.1353.53.222
+Scoped Symbol Entered (Attribute): 'signature' with id S.323.1704.59.223
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'expression' with id S.321.1353.53.223
+Scoped Symbol Entered (Attribute): 'expression' with id S.323.1704.59.224
 Attribute was created for implicit Ref
-Scoped Symbol Entered (Attribute): 'parameter' with id S.321.1353.53.224
+Scoped Symbol Entered (Attribute): 'parameter' with id S.323.1704.59.225
 Attribute was created for implicit Ref
 Generate for Model: finex
 Create Package: Logical View::Reflect
@@ -1045,6 +1046,7 @@ Create Class: Logical View::behavior::functions::SignatureImplementation
 Create Reference in Class: Logical View::behavior::functions::SignatureImplementation to Role: Logical View::behavior::functions::<unnamed>::signature
   Class/UseCase/Interface: Function
 Suppressed tag: rose2mof.isQuery
+Create Class: Logical View::behavior::functions::NativeImpl
 Process Association: A_implementation_signature:4ACA029501E3
 *Warning: Association found with no name between 'SignatureImplementation' and 'Function'.  The name 'A_implementation_signature' has been created for it.
 Create Association: A_implementation_signature

@@ -17,20 +17,18 @@ import com.sap.opportunity.ui.client.ExpectedSalesDTO;
 import com.sap.opportunity.ui.client.OpportunityDTO;
 import com.sap.opportunity.ui.client.OpportunityService;
 import com.sap.opportunity.ui.client.SalesByMonthDTO;
-import com.sap.river.interpreter.RiverInterpreter;
-import com.sap.river.interpreter.rucola.Entity;
-import com.sap.river.interpreter.rucola.Function;
-import com.sap.river.interpreter.rucola.Rucola;
-import com.sap.river.interpreter.rucola.RucolaObject;
-import com.sap.river.interpreter.rucola.Value;
+import com.sap.runlet.interpreter.rucola.Entity;
+import com.sap.runlet.interpreter.rucola.Function;
+import com.sap.runlet.interpreter.rucola.Rucola;
+import com.sap.runlet.interpreter.rucola.RucolaObject;
+import com.sap.runlet.interpreter.rucola.Value;
 import com.sap.runlet.tomcat.Activator;
 
 /**
  * The server side implementation of the RPC service.
  */
-@SuppressWarnings("serial")
 public class OpportunityServiceImpl extends RemoteServiceServlet implements OpportunityService {
-
+    private static final long serialVersionUID = -3807719400704313470L;
     List<Value> months = new ArrayList<Value>(4);
     List<String> phases = new ArrayList<String>(3);
     

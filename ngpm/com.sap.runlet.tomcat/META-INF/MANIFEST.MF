@@ -8,9 +8,11 @@ Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.ui,
- com.sap.river.interpreter;bundle-version="1.0.0",
- com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
- com.sap.mi.fwk;bundle-version="1.0.0"
+ com.sap.runlet.interpreter,
+ com.sap.tc.moin.libraries.api,
+ com.sap.mi.fwk,
+ com.sap.runlet.abstractinterpreter,
+ com.sap.ap.metamodel.core;bundle-version="0.0.4"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,

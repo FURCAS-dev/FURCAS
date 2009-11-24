@@ -45,7 +45,7 @@ public class StandaloneConnectionFactory {
        Moin moin = getMoinInstance(optionsBean);
        
        Facility facility = moin.getFacilityById( DEFAULT_PARTITION_NAME );
-       IpiBuildDiService nwdiService = (IpiBuildDiService) ( (BuildPrimaryFacilityImpl) facility ).getBuildDiService( );
+       IpiBuildDiService nwdiService = ( (BuildPrimaryFacilityImpl) facility ).getBuildDiService( );
 
        
        IpiDiConfigurationProvider configurationProvider = StandaloneConnectionFactory.getDiConfigurationProvider( optionsBean );

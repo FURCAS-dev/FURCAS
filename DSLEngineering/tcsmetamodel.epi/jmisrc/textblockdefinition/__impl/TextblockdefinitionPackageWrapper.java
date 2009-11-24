@@ -112,10 +112,6 @@ public class TextblockdefinitionPackageWrapper extends com.sap.tc.moin.repositor
     }
     // methods for structure type creators
     
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<textblockdefinition.TextblockdefinitionPackage> get___JmiInterface() {
         return textblockdefinition.TextblockdefinitionPackage.class;
     }

@@ -6,11 +6,7 @@ package tcs.__impl;
 
 public class MultiLineRuleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.MultiLineRuleImpl> implements tcs.MultiLineRule,com.sap.tc.moin.repository.Partitionable {
 
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
     }
 
@@ -18,10 +14,6 @@ public class MultiLineRuleWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unused")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     private tcs.__impl.MultiLineRuleImpl getCastWrappedObject() {
         return (tcs.__impl.MultiLineRuleImpl) getWrappedObject();
     }
@@ -394,10 +386,6 @@ public class MultiLineRuleWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.MultiLineRule> get___JmiInterface() {
         return tcs.MultiLineRule.class;
     }

@@ -8,11 +8,7 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
@@ -111,20 +107,12 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
     public void setLiteral(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843B5EBE589F140308111DD83D6001742153E0C", /* mofId of reference */ "4843B5EBE589F143308111DDB902001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setLiteral(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843B5EBE589F140308111DD83D6001742153E0C", /* mofId of reference */ "4843B5EBE589F143308111DDB902001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -139,20 +127,12 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
     public void setElement(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843B5EDE6B41960308111DDB37B001742153E0C", /* mofId of reference */ "4843B5EDE6B41963308111DD9DC7001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setElement(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843B5EDE6B41960308111DDB37B001742153E0C", /* mofId of reference */ "4843B5EDE6B41963308111DD9DC7001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
 
     // methods for internal attribute setter
@@ -224,11 +204,7 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
         }
         return result;
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -262,11 +238,7 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -282,11 +254,7 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -302,11 +270,7 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -322,11 +286,7 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -363,10 +323,6 @@ public final class EnumLiteralMappingImpl extends com.sap.tc.moin.repository.cor
 
     }
     // get the JMI interface
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.EnumLiteralMapping> get___JmiInterface() {
         return tcs.EnumLiteralMapping.class;
     }

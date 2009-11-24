@@ -6,11 +6,7 @@ package com.sap.tc.moin.ocl.gen.oclgenerated30f65e44ed243023ad6e2061812c0b9440d3
 
 public final class OclGenerated30F65E44Ed243023Ad6E2061812C0B9440D3B967PackageImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefPackageImpl
 {
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
     }
 
@@ -35,10 +31,6 @@ public final class OclGenerated30F65E44Ed243023Ad6E2061812C0B9440D3B967PackageIm
         throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$        
     }
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<com.sap.tc.moin.ocl.gen.oclgenerated30f65e44ed243023ad6e2061812c0b9440d3b967.OclGenerated30F65E44Ed243023Ad6E2061812C0B9440D3B967Package> get___JmiInterface() {
         return com.sap.tc.moin.ocl.gen.oclgenerated30f65e44ed243023ad6e2061812c0b9440d3b967.OclGenerated30F65E44Ed243023Ad6E2061812C0B9440D3B967Package.class;
     }
@@ -47,13 +39,7 @@ public final class OclGenerated30F65E44Ed243023Ad6E2061812C0B9440D3B967PackageIm
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-<<<<<<< HEAD
             java.lang.String name = ""; //$NON-NLS-1$
-=======
-            @SuppressWarnings("unused")
-            java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
             RefPackageAndName rpan = null;
         }
   
@@ -67,13 +53,7 @@ public final class OclGenerated30F65E44Ed243023Ad6E2061812C0B9440D3B967PackageIm
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-<<<<<<< HEAD
             java.lang.String name = ""; //$NON-NLS-1$
-=======
-            @SuppressWarnings("unused")
-            java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
             RefAssociationAndName raan = null;
         }
     }

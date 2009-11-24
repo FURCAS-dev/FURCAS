@@ -1,10 +1,8 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2009-11-06 10:27:09
+// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g 2009-06-16 20:59:42
 
 package generated;
-import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
-import com.sap.mi.textual.grammar.impl.PredicateSemantic;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
+import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -70,7 +68,7 @@ public class ModuleParser extends ObservableInjectingParser {
     // delegates
     // delegators
 
-    
+
         public ModuleParser(TokenStream input) {
             this(input, new RecognizerSharedState());
         }
@@ -81,13 +79,9 @@ public class ModuleParser extends ObservableInjectingParser {
         
 
     public String[] getTokenNames() { return ModuleParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g"; }
+    public String getGrammarFileName() { return "C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g"; }
 
 
-       private static final String syntaxUUID = "E0E14F868EAB4061CAB611DE9D56FCA40A000109";
-       public String getSyntaxUUID() {
-            return syntaxUUID;
-       }
        /**
          * Unescape string.
          * 
@@ -157,35 +151,34 @@ public class ModuleParser extends ObservableInjectingParser {
 
 
 
-    
-    // $ANTLR start "identifier"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:207:1: identifier returns [Object ret2] : (ast= NAME ) ;
-    public final Object identifier() throws RecognitionException {
 
+    // $ANTLR start "identifier"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:201:1: identifier returns [Object ret2] : (ast= NAME ) ;
+    public final Object identifier() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:208:3: ( (ast= NAME ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:209:3: (ast= NAME )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:202:3: ( (ast= NAME ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:203:3: (ast= NAME )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:209:3: (ast= NAME )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:209:4: ast= NAME
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:203:3: (ast= NAME )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:203:4: ast= NAME
             {
             ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier63); 
             ret = unescapeString( ast.getText());
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -197,35 +190,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "identifier"
 
-    
-    // $ANTLR start "identifierOrKeyword"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME ) ;
-    public final Object identifierOrKeyword() throws RecognitionException {
 
+    // $ANTLR start "identifierOrKeyword"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:211:1: identifierOrKeyword returns [Object ret2] : (ast= NAME ) ;
+    public final Object identifierOrKeyword() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:218:3: ( (ast= NAME ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:219:3: (ast= NAME )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:212:3: ( (ast= NAME ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:213:3: (ast= NAME )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:219:3: (ast= NAME )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:219:4: ast= NAME
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:213:3: (ast= NAME )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:213:4: ast= NAME
             {
             ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifierOrKeyword94); 
             ret = unescapeString( ast.getText());
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -237,35 +229,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "identifierOrKeyword"
 
-    
-    // $ANTLR start "stringSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:227:1: stringSymbol returns [Object ret2] : (ast= STRING ) ;
-    public final Object stringSymbol() throws RecognitionException {
 
+    // $ANTLR start "stringSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:221:1: stringSymbol returns [Object ret2] : (ast= STRING ) ;
+    public final Object stringSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:228:3: ( (ast= STRING ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:229:3: (ast= STRING )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:222:3: ( (ast= STRING ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:223:3: (ast= STRING )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:229:3: (ast= STRING )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:229:4: ast= STRING
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:223:3: (ast= STRING )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:223:4: ast= STRING
             {
             ast=(Token)match(input,STRING,FOLLOW_STRING_in_stringSymbol125); 
             ret = unescapeString( ast.getText());
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -277,35 +268,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "stringSymbol"
 
-    
-    // $ANTLR start "integerSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:237:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
-    public final Object integerSymbol() throws RecognitionException {
 
+    // $ANTLR start "integerSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:231:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
+    public final Object integerSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:238:3: ( (ast= INT ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:239:3: (ast= INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:232:3: ( (ast= INT ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:233:3: (ast= INT )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:239:3: (ast= INT )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:239:4: ast= INT
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:233:3: (ast= INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:233:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol156); 
             ret = Integer.valueOf( ast.getText());
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -317,35 +307,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "integerSymbol"
 
-    
-    // $ANTLR start "longSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:247:1: longSymbol returns [Object ret2] : (ast= INT ) ;
-    public final Object longSymbol() throws RecognitionException {
 
+    // $ANTLR start "longSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:241:1: longSymbol returns [Object ret2] : (ast= INT ) ;
+    public final Object longSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:248:3: ( (ast= INT ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:249:3: (ast= INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:242:3: ( (ast= INT ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:243:3: (ast= INT )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:249:3: (ast= INT )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:249:4: ast= INT
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:243:3: (ast= INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:243:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_longSymbol187); 
             ret = Long.valueOf( ast.getText());
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -357,35 +346,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "longSymbol"
 
-    
-    // $ANTLR start "integerAsStringSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:257:1: integerAsStringSymbol returns [Object ret2] : (ast= INT ) ;
-    public final Object integerAsStringSymbol() throws RecognitionException {
 
+    // $ANTLR start "integerAsStringSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:251:1: integerAsStringSymbol returns [Object ret2] : (ast= INT ) ;
+    public final Object integerAsStringSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:258:3: ( (ast= INT ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:259:3: (ast= INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:252:3: ( (ast= INT ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:253:3: (ast= INT )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:259:3: (ast= INT )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:259:4: ast= INT
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:253:3: (ast= INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:253:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_integerAsStringSymbol218); 
             ret =  ast.getText();
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -397,35 +385,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "integerAsStringSymbol"
 
-    
-    // $ANTLR start "floatAsStringSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:267:1: floatAsStringSymbol returns [Object ret2] : (ast= FLOAT ) ;
-    public final Object floatAsStringSymbol() throws RecognitionException {
 
+    // $ANTLR start "floatAsStringSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:261:1: floatAsStringSymbol returns [Object ret2] : (ast= FLOAT ) ;
+    public final Object floatAsStringSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:268:3: ( (ast= FLOAT ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:269:3: (ast= FLOAT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:262:3: ( (ast= FLOAT ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:263:3: (ast= FLOAT )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:269:3: (ast= FLOAT )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:269:4: ast= FLOAT
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:263:3: (ast= FLOAT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:263:4: ast= FLOAT
             {
             ast=(Token)match(input,FLOAT,FOLLOW_FLOAT_in_floatAsStringSymbol249); 
             ret =  ast.getText();
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -437,35 +424,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "floatAsStringSymbol"
 
-    
-    // $ANTLR start "booleanSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:277:1: booleanSymbol returns [Object ret2] : (ast= BOOL ) ;
-    public final Object booleanSymbol() throws RecognitionException {
 
+    // $ANTLR start "booleanSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:271:1: booleanSymbol returns [Object ret2] : (ast= BOOL ) ;
+    public final Object booleanSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:278:3: ( (ast= BOOL ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:279:3: (ast= BOOL )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:272:3: ( (ast= BOOL ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:273:3: (ast= BOOL )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:279:3: (ast= BOOL )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:279:4: ast= BOOL
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:273:3: (ast= BOOL )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:273:4: ast= BOOL
             {
             ast=(Token)match(input,BOOL,FOLLOW_BOOL_in_booleanSymbol280); 
             ret =  ast.getText();
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -477,35 +463,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "booleanSymbol"
 
-    
-    // $ANTLR start "binarySymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:287:1: binarySymbol returns [Object ret2] : (ast= BINARY ) ;
-    public final Object binarySymbol() throws RecognitionException {
 
+    // $ANTLR start "binarySymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:281:1: binarySymbol returns [Object ret2] : (ast= BINARY ) ;
+    public final Object binarySymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:288:3: ( (ast= BINARY ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:289:3: (ast= BINARY )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:282:3: ( (ast= BINARY ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:283:3: (ast= BINARY )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:289:3: (ast= BINARY )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:289:4: ast= BINARY
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:283:3: (ast= BINARY )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:283:4: ast= BINARY
             {
             ast=(Token)match(input,BINARY,FOLLOW_BINARY_in_binarySymbol311); 
             ret =  ast.getText();
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -517,35 +502,34 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "binarySymbol"
 
-    
-    // $ANTLR start "dateSymbol"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:297:1: dateSymbol returns [Object ret2] : (ast= DATE ) ;
-    public final Object dateSymbol() throws RecognitionException {
 
+    // $ANTLR start "dateSymbol"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:291:1: dateSymbol returns [Object ret2] : (ast= DATE ) ;
+    public final Object dateSymbol() throws RecognitionException {
         Object ret2 = null;
-    
+
         Token ast=null;
-    
+
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:298:3: ( (ast= DATE ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:299:3: (ast= DATE )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:292:3: ( (ast= DATE ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:293:3: (ast= DATE )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:299:3: (ast= DATE )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:299:4: ast= DATE
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:293:3: (ast= DATE )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:293:4: ast= DATE
             {
             ast=(Token)match(input,DATE,FOLLOW_DATE_in_dateSymbol342); 
             ret =  ast.getText();
 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -557,45 +541,44 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "dateSymbol"
 
-    
-    // $ANTLR start "main"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:307:1: main returns [Object ret2] : ( (ret= modelmanagement_module ) EOF ) ;
-    public final Object main() throws RecognitionException {
 
+    // $ANTLR start "main"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:301:1: main returns [Object ret2] : ( (ret= modelmanagement_module ) EOF ) ;
+    public final Object main() throws RecognitionException {
         Object ret2 = null;
-    
+
         Object ret = null;
-        
-    
+
+
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:308:3: ( ( (ret= modelmanagement_module ) EOF ) )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:309:3: ( (ret= modelmanagement_module ) EOF )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:302:3: ( ( (ret= modelmanagement_module ) EOF ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:303:3: ( (ret= modelmanagement_module ) EOF )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:309:3: ( (ret= modelmanagement_module ) EOF )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:309:4: (ret= modelmanagement_module ) EOF
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:303:3: ( (ret= modelmanagement_module ) EOF )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:303:4: (ret= modelmanagement_module ) EOF
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:309:4: (ret= modelmanagement_module )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:309:5: ret= modelmanagement_module
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:303:4: (ret= modelmanagement_module )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:303:5: ret= modelmanagement_module
             {
             pushFollow(FOLLOW_modelmanagement_module_in_main370);
             ret=modelmanagement_module();
-            
+
             checkFollows();
             state._fsp--;
 
-            
+
             }
 
             match(input,EOF,FOLLOW_EOF_in_main373); 
-            
+
             }
 
 
             ret2=ret;
 
-            
+
             }
-    
+
         }
         catch (RecognitionException re) {
             reportError(re);
@@ -607,24 +590,23 @@ public class ModuleParser extends ObservableInjectingParser {
     }
     // $ANTLR end "main"
 
-    
-    // $ANTLR start "modelmanagement_module"
-    // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:316:1: modelmanagement_module returns [Object ret2] : () ;
-    public final Object modelmanagement_module() throws RecognitionException {
 
+    // $ANTLR start "modelmanagement_module"
+    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:310:1: modelmanagement_module returns [Object ret2] : () ;
+    public final Object modelmanagement_module() throws RecognitionException {
         Object ret2 = null;
-    
+
         List<String> metaType=list("modelmanagement","Module");
         onEnterTemplateRule(metaType);
         IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false, new String[]{"root"}) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
-    
+
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:321:3: ( () )
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:322:3: ()
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:315:3: ( () )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:316:3: ()
             {
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:322:3: ()
-            // C:\\_fzi\\projects\\CTS\\git\\ngpm\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:322:4: 
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:316:3: ()
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Module.g:316:4: 
             {
             }
 
@@ -632,9 +614,9 @@ public class ModuleParser extends ObservableInjectingParser {
             ret2 = commitCreation(ret, firstToken, true);
 
              
-            
+
             }
-    
+
         }
         catch (Exception e) {
             handleExceptionInTemplateRule(e, firstToken, ret);

@@ -6,11 +6,7 @@ package tcs.__impl;
 
 public class PropertyReferenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.PropertyReferenceImpl> implements tcs.PropertyReference,com.sap.tc.moin.repository.Partitionable {
 
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
     }
 
@@ -18,10 +14,6 @@ public class PropertyReferenceWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unused")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     private tcs.__impl.PropertyReferenceImpl getCastWrappedObject() {
         return (tcs.__impl.PropertyReferenceImpl) getWrappedObject();
     }
@@ -137,10 +129,6 @@ public class PropertyReferenceWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.PropertyReference> get___JmiInterface() {
         return tcs.PropertyReference.class;
     }

@@ -573,7 +573,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 		}
 		if(!batchLexer.hasErrors()) {
 			for (TextBlock tb : changedBlocks) {
-				TbValidationUtil.assertTextBlockConsistency(tb);//TODO can be removed as soon is consistency is improved
+				TbValidationUtil.assertTextBlockConsistencyRecursive(tb);//TODO can be removed as soon is consistency is improved
 			}
 			return true;
 		} else {

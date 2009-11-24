@@ -8,11 +8,7 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
@@ -112,20 +108,12 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setElementSequence(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843B9951529F330308411DD9172001742153E0C", /* mofId of reference */ "48621EDA145B360042A211DDA8DC001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setElementSequence(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843B9951529F330308411DD9172001742153E0C", /* mofId of reference */ "48621EDA145B360042A211DDA8DC001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getParentTemplate() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -140,20 +128,12 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setParentTemplate(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E03D847172B416B06AEA11DEA60500016CE99C52", /* mofId of reference */ "E03D847172E97E906AEA11DE84AD00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setParentTemplate(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E03D847172B416B06AEA11DEA60500016CE99C52", /* mofId of reference */ "E03D847172E97E906AEA11DE84AD00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getReferredLiteral() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -168,20 +148,12 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setReferredLiteral(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "48440C14410FA0E030B511DDB79B001742153E0C", /* mofId of reference */ "48440C1541145BD030B511DDC310001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
     public void setReferredLiteral(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "48440C14410FA0E030B511DDB79B001742153E0C", /* mofId of reference */ "48440C1541145BD030B511DDC310001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     }
 
     // methods for internal attribute setter
@@ -256,11 +228,7 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
         }
         return result;
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -298,11 +266,7 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -318,11 +282,7 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -338,11 +298,7 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -358,11 +314,7 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -399,10 +351,6 @@ public final class LiteralRefImpl extends com.sap.tc.moin.repository.core.jmi.re
 
     }
     // get the JMI interface
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.LiteralRef> get___JmiInterface() {
         return tcs.LiteralRef.class;
     }

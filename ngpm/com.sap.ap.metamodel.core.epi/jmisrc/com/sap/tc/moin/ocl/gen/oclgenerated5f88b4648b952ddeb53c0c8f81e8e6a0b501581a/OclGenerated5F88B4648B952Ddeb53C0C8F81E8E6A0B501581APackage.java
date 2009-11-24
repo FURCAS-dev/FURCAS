@@ -13,5 +13,5 @@ public interface OclGenerated5F88B4648B952Ddeb53C0C8F81E8E6A0B501581APackage ext
     /**
      * Extent descriptor
      */
-    public final com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<com.sap.tc.moin.ocl.gen.oclgenerated5f88b4648b952ddeb53c0c8f81e8e6a0b501581a.OclGenerated5F88B4648B952Ddeb53C0C8F81E8E6A0B501581APackage> PACKAGE_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<com.sap.tc.moin.ocl.gen.oclgenerated5f88b4648b952ddeb53c0c8f81e8e6a0b501581a.OclGenerated5F88B4648B952Ddeb53C0C8F81E8E6A0B501581APackage>("E0DCF6CD054A26E1CE1E11DEB8E60019D29902CC", "sap.com/moin/mm/ap/core", "OclGenerated_5F88B4648B952DDEB53C0C8F81E8E6A0B501581A"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
+    public final com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<com.sap.tc.moin.ocl.gen.oclgenerated5f88b4648b952ddeb53c0c8f81e8e6a0b501581a.OclGenerated5F88B4648B952Ddeb53C0C8F81E8E6A0B501581APackage> PACKAGE_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<com.sap.tc.moin.ocl.gen.oclgenerated5f88b4648b952ddeb53c0c8f81e8e6a0b501581a.OclGenerated5F88B4648B952Ddeb53C0C8F81E8E6A0B501581APackage>("E0DCF6CD1AFF0E00D5EA11DE8CF600155883529C", "sap.com/moin/mm/ap/core", "OclGenerated_5F88B4648B952DDEB53C0C8F81E8E6A0B501581A"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ 
 }

@@ -8,11 +8,7 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
@@ -231,11 +227,7 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
         }
         return result;
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -273,11 +265,7 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -302,11 +290,7 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -331,11 +315,7 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -360,11 +340,7 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
 
 
     public void set___AttributeLink( String attributeMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -403,10 +379,6 @@ public final class WordRuleImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
     }
     // get the JMI interface
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<tcs.WordRule> get___JmiInterface() {
         return tcs.WordRule.class;
     }

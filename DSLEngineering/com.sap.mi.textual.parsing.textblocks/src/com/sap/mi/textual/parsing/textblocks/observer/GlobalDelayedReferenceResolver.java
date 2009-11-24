@@ -1267,6 +1267,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
             monitor.worked(1);
         }
         iaUnresolvedReferences.removeAll(workingCopy);
+        if(iaUnresolvedReferences.size() > 0) {
+            backgroundResolver.schedule(500);
+        }
         monitor.done();
     }
 }

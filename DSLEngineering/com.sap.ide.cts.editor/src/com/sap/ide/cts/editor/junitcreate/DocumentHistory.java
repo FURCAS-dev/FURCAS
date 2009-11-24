@@ -508,7 +508,7 @@ public class DocumentHistory implements IDocumentListener {
     }
 
     @Override
-    protected void finalize() throws Throwable {
+    protected void finalize() {
 	targetConnection.close();
     }
 

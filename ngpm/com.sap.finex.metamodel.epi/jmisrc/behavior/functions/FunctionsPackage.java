@@ -17,6 +17,7 @@ public interface FunctionsPackage extends com.sap.tc.moin.repository.mmi.reflect
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getFunction();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getParameter();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getSignatureImplementation();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getNativeImpl();
     // associations
     public behavior.functions.AImplementationSignature getAImplementationSignature();
     public behavior.functions.AParametersSignature getAParametersSignature();

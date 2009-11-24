@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Interpreter Plug-in
+Bundle-SymbolicName: com.sap.finex.interpreter
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sap.finex.interpreter.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.core.runtime,
+ com.sap.runlet.abstractinterpreter,
+ com.sap.finex.metamodel,
+ com.sap.tc.moin.libraries.api,
+ com.sap.tc.moin.libraries.base
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.finex.interpreter,
+ com.sap.finex.interpreter.expressions,
+ com.sap.finex.interpreter.objects

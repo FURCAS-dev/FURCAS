@@ -8,11 +8,7 @@ public class LexedTokenWrapper extends com.sap.tc.moin.repository.core.jmi.refle
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -23,10 +19,6 @@ public class LexedTokenWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unused")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     private textblocks.__impl.LexedTokenImpl getCastWrappedObject() {
         return (textblocks.__impl.LexedTokenImpl) getWrappedObject();
     }
@@ -998,11 +990,7 @@ public class LexedTokenWrapper extends com.sap.tc.moin.repository.core.jmi.refle
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -1012,18 +1000,10 @@ public class LexedTokenWrapper extends com.sap.tc.moin.repository.core.jmi.refle
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-<<<<<<< HEAD
     
     }    
 
     // get the JMI interface
-=======
-
-    }    
-
-    // get the JMI interface
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<textblocks.LexedToken> get___JmiInterface() {
         return textblocks.LexedToken.class;
     }

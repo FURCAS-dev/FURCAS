@@ -6,6 +6,7 @@ import static com.sap.mi.textual.parsing.textblocks.TbUtil.getAbsoluteOffset;
 import java.util.Iterator;
 import java.util.List;
 
+import textblockdefinition.TextblockDefinitionGeneralisation;
 import textblocks.AbstractToken;
 import textblocks.Bostoken;
 import textblocks.DocumentNode;
@@ -53,6 +54,14 @@ public class TbValidationUtil {
 	        throw new IllegalTextBlocksStateException("TextBlock length " + currentTextBlock.getLength() + " != "+ tokenLengthSum, currentTextBlock);
 	    }
 	    
+	}
+	
+	public static void assertTextBlockConsistencyRecursive(TextBlock currentTextBlock) {
+		for(TextBlock subBlock : currentTextBlock.getSubBlocks())
+		{
+			assertTextBlockConsistencyRecursive(subBlock);
+		}
+		assertTextBlockConsistency(currentTextBlock);
 	}
 
 	public static boolean hasGap(AbstractToken abstractToken,

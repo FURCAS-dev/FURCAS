@@ -88,6 +88,28 @@ public class FunctionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getNativeImpl()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getNativeImpl(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getNativeImpl(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public behavior.functions.AImplementationSignature getAImplementationSignature()
     {
         try {

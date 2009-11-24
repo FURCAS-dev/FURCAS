@@ -63,10 +63,6 @@ public final class DocumentNodeReferencesCorrespondingModelElementImpl extends c
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<textblocks.DocumentNodeReferencesCorrespondingModelElement> get___JmiInterface() {
         return textblocks.DocumentNodeReferencesCorrespondingModelElement.class;
     }

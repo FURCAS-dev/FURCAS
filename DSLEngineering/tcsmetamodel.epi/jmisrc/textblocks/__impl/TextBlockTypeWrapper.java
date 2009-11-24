@@ -125,10 +125,6 @@ public class TextBlockTypeWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<textblocks.TextBlockType> get___JmiInterface() {
         return textblocks.TextBlockType.class;
     }

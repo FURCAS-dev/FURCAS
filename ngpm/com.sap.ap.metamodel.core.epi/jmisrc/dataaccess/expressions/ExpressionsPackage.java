@@ -38,6 +38,7 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getAsList();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getConditional();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getTernary();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getContentEquals();
     // associations
     public dataaccess.expressions.AVariableVariableExpression getAVariableVariableExpression();
     public dataaccess.expressions.AObjectObjectBasedExpression getAObjectObjectBasedExpression();

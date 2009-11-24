@@ -252,7 +252,7 @@ syntax FinexClass(k=0 ) {
 	
 	-- ----------------------- Predefined Operators ---------------------
 	operatorTemplate behavior::expressions::BinaryBooleanOperator(operators=andOp orOp, source='left',
-																  storeOpTo='operator', storeRightTo='right')
+								      storeOpTo='operator', storeRightTo='right')
 		: $alias
 		  {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
 		;

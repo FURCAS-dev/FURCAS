@@ -8,11 +8,7 @@ public class EostokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -23,10 +19,6 @@ public class EostokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-<<<<<<< HEAD
-=======
-    @SuppressWarnings("unused")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     private textblocks.__impl.EostokenImpl getCastWrappedObject() {
         return (textblocks.__impl.EostokenImpl) getWrappedObject();
     }
@@ -910,11 +902,7 @@ public class EostokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -924,18 +912,10 @@ public class EostokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-<<<<<<< HEAD
     
     }    
 
     // get the JMI interface
-=======
-
-    }    
-
-    // get the JMI interface
-    @SuppressWarnings("unchecked")
->>>>>>> e04eb9c33a214a29f23acac04720aff53a6082b7
     public java.lang.Class<textblocks.Eostoken> get___JmiInterface() {
         return textblocks.Eostoken.class;
     }
