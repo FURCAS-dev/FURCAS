@@ -7,21 +7,18 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Properties;
 
 import org.junit.Test;
-import org.junit.internal.runners.InitializationError;
-import org.junit.internal.runners.TestClassMethodsRunner;
-import org.junit.internal.runners.TestClassRunner;
-import org.junit.internal.runners.TestIntrospector;
-import org.junit.internal.runners.TestMethodRunner;
+import org.junit.internal.runners.statements.Fail;
 import org.junit.runner.Description;
 import org.junit.runner.notification.RunListener;
 import org.junit.runner.notification.RunNotifier;
+import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.runners.model.FrameworkMethod;
+import org.junit.runners.model.Statement;
 
 import com.sap.junit.Staged.StageLevel;
 import com.sap.tc.moin.test.fw.MoinTestHelperSelector;
@@ -31,12 +28,12 @@ import com.sap.tc.moin.test.fw.MoinTestHelperSelector;
  * 
  * @author D048997
  */
-@SuppressWarnings( "nls" )
-public class MoinRunner extends TestClassRunner implements RunnerProxy {
+@SuppressWarnings( { "nls", "restriction" } )
+public class MoinRunner extends BlockJUnit4ClassRunner implements RunnerProxy {
 
-    public MoinRunner( Class<?> clazz ) throws InitializationError {
+    public MoinRunner( Class<?> clazz ) throws org.junit.runners.model.InitializationError {
 
-        super( clazz, new MoinClassMethodRunner( clazz ) );
+        super( clazz );
     }
 
     @Override
@@ -55,26 +52,28 @@ public class MoinRunner extends TestClassRunner implements RunnerProxy {
      * 
      * @author D048997
      */
-    public static class MoinClassMethodRunner extends TestClassMethodsRunner implements RunnerProxy {
+    public static class MoinClassMethodRunner extends BlockJUnit4ClassRunner implements RunnerProxy {
 
-        private final List<Method> fTestMethods;
+private RunNotifier notifier;
 
-        public MoinClassMethodRunner( Class<?> clazz ) {
+//        private final List<Method> fTestMethods;
+
+        public MoinClassMethodRunner( Class<?> clazz ) throws org.junit.runners.model.InitializationError {
 
             super( clazz );
-            fTestMethods = new TestIntrospector( getTestClass( ) ).getTestMethods( Test.class );
+//            fTestMethods = getTestClass( ). ).getTestMethods( Test.class );
 //            filterTests( fTestMethods );
         }
 
-        @Override
-        protected String testName( Method method ) {
+        
+        protected String testName( FrameworkMethod method ) {
 
             Staged staged = method.getAnnotation( Staged.class );
             String result;
             if ( staged != null ) {
-                result = "STAGED - " + super.testName( method );
+                result = "STAGED - " + method.getName();
             } else {
-                result = super.testName( method );
+                result = method.getName();
             }
             return result;
         }
@@ -83,8 +82,8 @@ public class MoinRunner extends TestClassRunner implements RunnerProxy {
         public Description getDescription( ) {
 
             Description spec = Description.createSuiteDescription( getName( ) );
-            List<Method> testMethods = fTestMethods;
-            for ( Method method : testMethods ) {
+            List<FrameworkMethod> testMethods = getTestClass().getAnnotatedMethods(Test.class);
+            for ( FrameworkMethod method : testMethods ) {
                 Repeat repeat = method.getAnnotation( Repeat.class );
                 if ( repeat != null ) {
                     Description desc = Description.createSuiteDescription( testName( method ) + " [repeat=" + repeat.value( ) + "]" );
@@ -99,47 +98,26 @@ public class MoinRunner extends TestClassRunner implements RunnerProxy {
             return spec;
         }
 
-        protected Description methodDescription( Method method, int rep ) {
+        protected Description methodDescription( FrameworkMethod method, int rep ) {
 
-            return Description.createTestDescription( getClass( ), testName( method ) + " [" + rep + "]" );
+            return Description.createTestDescription( getClass( ), testName( method ) );
+        }
+        
+        protected Description methodDescription(FrameworkMethod method) {
+            return Description.createTestDescription(getTestClass().getJavaClass(), testName(method), method.getAnnotations());
         }
 
-        protected TestMethodRunner createMethodRunner( final Object test, final Method method, final RunNotifier notifier, final Description desc ) {
-
-            return new TestMethodRunner( test, method, notifier, desc ) {
-
-                @Override
-                public void run( ) {
-
-                    boolean doExecute = true;
-
-                    StageLevel paramStageType = getStageTypeParameterValue( );
-                    Staged staged = method.getAnnotation( Staged.class );
-                    StageLevel annotStageType = ( staged == null ) ? StageLevel.CENTRAL : staged.value( );
-
-                    // check method should be invoked
-                    if ( paramStageType != StageLevel.ALL ) {
-                        if ( annotStageType != paramStageType ) {
-                            doExecute = false;
-                        }
-                    }
-
-                    CheckPropertyFile usePropertyFile = method.getAnnotation( CheckPropertyFile.class );
-
-                    if ( usePropertyFile == null ) {
-                        // ignore it
-                    } else if ( !loadPropertyFile( usePropertyFile ) ) {
-                        // file has been required but could not be found
-                        doExecute = false;
-                    }
-
-                    if ( doExecute ) {
-                        super.run( );
-                    } else {
-                        notifier.fireTestIgnored( desc );
-                    }
-                }
-            };
+        protected Statement createMethodRunner( final Object test, final FrameworkMethod method ) {
+            Statement statement= new MoinStatement( method, test, notifier, methodDescription( method ) );
+            statement= possiblyExpectingExceptions(method, test, statement);
+            statement= withPotentialTimeout(method, test, statement);
+            statement= withBefores(method, test, statement);
+            statement= withAfters(method, test, statement);
+            return statement;
+        }
+        
+        private Statement createMethodRunner(final Object test, final FrameworkMethod method, int repetitions) {
+            return new MoinRepetitionStatement(createMethodRunner(test, method), repetitions);
         }
 
         @Override
@@ -152,55 +130,52 @@ public class MoinRunner extends TestClassRunner implements RunnerProxy {
 
             RunListener listener = new Junit4AdditionalListener( );
             notifier.addListener( listener );
-            if ( fTestMethods.isEmpty( ) ) {
+            if ( getTestClass().getAnnotatedMethods(Test.class).isEmpty( ) ) {
                 notifier.fireTestIgnored( getDescription( ) );
             }
-            for ( Method method : fTestMethods ) {
-                invokeTestMethod( method, notifier );
+            for ( FrameworkMethod method : getTestClass().getAnnotatedMethods(Test.class) ) {
+                runChild( method, notifier );
             }
         }
 
+        
+        
         @Override
-        protected void invokeTestMethod( Method method, RunNotifier notifier ) {
+        protected void runChild(FrameworkMethod method, RunNotifier notifier) {
+            this.notifier = notifier;
+            super.runChild(method, notifier);
+        }
+
+
+        @SuppressWarnings("restriction")
+        @Override
+        protected Statement methodBlock(FrameworkMethod method) {
+            Object test = null;
+            try {
+                test = createTest();
+            } catch (Throwable e) {
+                    return new Fail(e);
+            }
 
             int methodReps = calcMethodRepetitions( method );
             if ( methodReps == 1 ) {
-                invokeTestMethodOnce( method, notifier );
+                return this.createMethodRunner(test, method);
             } else {
-                invokeTestMethodMultiple( method, notifier, methodReps );
+                return this.createMethodRunner(test, method, methodReps);
             }
-        }
+        }      
+       
 
-        private void invokeTestMethodOnce( Method method, RunNotifier notifier ) {
 
-            Object test;
-            try {
-                test = createTest( );
-            } catch ( InvocationTargetException e ) {
-                notifier.testAborted( methodDescription( method ), e.getCause( ) );
-                return;
-            } catch ( Exception e ) {
-                notifier.testAborted( methodDescription( method ), e );
-                return;
-            }
-            this.createMethodRunner( test, method, notifier, methodDescription( method ) ).run( );
-        }
-
-        private void invokeTestMethodMultiple( Method method, RunNotifier notifier, final int repetitions ) {
-
-            for ( int i = 0; i < repetitions; i++ ) {
-                Object test;
-                try {
-                    test = createTest( );
-                } catch ( InvocationTargetException e ) {
-                    notifier.testAborted( methodDescription( method, i ), e.getCause( ) );
-                    return;
-                } catch ( Exception e ) {
-                    notifier.testAborted( methodDescription( method, i ), e );
-                    return;
-                }
-                this.createMethodRunner( test, method, notifier, methodDescription( method, i ) ).run( );
-            }
+//        private void testAborted(RunNotifier notifier, Description description,
+//                Throwable e) {
+//            notifier.fireTestStarted(description);
+//            notifier.fireTestFailure(new Failure(description, e));
+//            notifier.fireTestFinished(description);
+//        }
+//        
+        protected Object createTest() throws Exception {
+            return getTestClass().getOnlyConstructor().newInstance();
         }
 
 //        private void filterTests( List<Method> methods ) {
@@ -223,7 +198,7 @@ public class MoinRunner extends TestClassRunner implements RunnerProxy {
 
         /* ####################### STATIC METHODS ######################### */
 
-        public static int calcMethodRepetitions( Method method ) {
+        public static int calcMethodRepetitions( FrameworkMethod method ) {
 
             int result;
 
@@ -256,7 +231,7 @@ public class MoinRunner extends TestClassRunner implements RunnerProxy {
             return StageLevel.CENTRAL;
         }
 
-        private static boolean loadPropertyFile( CheckPropertyFile useFile ) {
+        public static boolean loadPropertyFile( CheckPropertyFile useFile ) {
 
             String[] propArr = useFile.value( );
             if ( propArr == null || propArr.length < 1 ) {

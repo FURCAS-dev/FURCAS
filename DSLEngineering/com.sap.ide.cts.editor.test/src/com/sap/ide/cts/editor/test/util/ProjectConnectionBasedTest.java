@@ -1,11 +1,11 @@
 package com.sap.ide.cts.editor.test.util;
 
+import static org.junit.Assert.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Set;
-
-import junit.framework.TestCase;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -33,7 +33,7 @@ import com.sap.tc.moin.repository.Connection;
  *
  */
 @SuppressWarnings("restriction")
-public abstract class ProjectConnectionBasedTest extends TestCase {
+public abstract class ProjectConnectionBasedTest {
 
 	private IProject mProject;
 	private final Set<Connection> mConnections = new HashSet<Connection>();
@@ -42,7 +42,7 @@ public abstract class ProjectConnectionBasedTest extends TestCase {
 	private static final String PLUGIN_NATURE = org.eclipse.pde.internal.core.natures.PDE.PLUGIN_NATURE;
 
 
-	@Override
+	//@Override
 	@Before
 	public void setUp() throws CoreException, IOException, InterruptedException {
 		InputStream data = getProjectContentAsStream();
@@ -50,7 +50,7 @@ public abstract class ProjectConnectionBasedTest extends TestCase {
 		refreshProject(mProject);
 	}
 
-	@Override
+	//@Override
 	@After
 	public void tearDown() throws Exception {		
 		closeConnections();

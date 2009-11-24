@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: QVTEMFTest
+Bundle-SymbolicName: QVTEMFTest
+Bundle-Version: 1.0.0.qualifier
+Export-Package: de.ikv.medini.qvtemf.test

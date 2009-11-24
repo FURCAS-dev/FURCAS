@@ -3,22 +3,21 @@
  */
 package com.sap.tc.moin.repository.test.core;
 
-import com.sap.tc.moin.repository.mmi.model.ModelPackage;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.Operation;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.moin.mm.gfw.graphics.GraphicsPackage;
-import com.sap.moin.mm.gfw.pictograms.ContainerShape;
+import com.sap.mi.gfw.mm.graphics.GraphicsPackage;
+import com.sap.mi.gfw.mm.pictograms.ContainerShape;
 import com.sap.tc.moin.repository.InvalidModelPartitionException;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.exception.MoinBaseRuntimeException;
+import com.sap.tc.moin.repository.mmi.model.ModelPackage;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
+import com.sap.tc.moin.repository.mmi.model.Operation;
 import com.sap.tc.moin.test.fw.TestMetaModels;
 
 /**

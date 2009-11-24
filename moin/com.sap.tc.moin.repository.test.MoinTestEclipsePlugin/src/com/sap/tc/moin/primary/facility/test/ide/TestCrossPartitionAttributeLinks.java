@@ -10,16 +10,13 @@ import java.io.InputStreamReader;
 import java.util.Collection;
 import java.util.List;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefClass;
-
 import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.junit.Staged;
-import com.sap.moin.mm.gfw.datatypes.Color;
-import com.sap.moin.mm.gfw.datatypes.Point;
-import com.sap.moin.mm.gfw.pictograms.Polygon;
+import com.sap.mi.gfw.mm.datatypes.Color;
+import com.sap.mi.gfw.mm.datatypes.Point;
+import com.sap.mi.gfw.mm.pictograms.Polygon;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.ModelPartition;
@@ -30,6 +27,8 @@ import com.sap.tc.moin.repository.core.CoreInstanceManager;
 import com.sap.tc.moin.repository.core.CoreModelPartition;
 import com.sap.tc.moin.repository.core.CorePartitionManager;
 import com.sap.tc.moin.repository.core.CorePartitionable;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.testcases.case004.A4;
 
 /**

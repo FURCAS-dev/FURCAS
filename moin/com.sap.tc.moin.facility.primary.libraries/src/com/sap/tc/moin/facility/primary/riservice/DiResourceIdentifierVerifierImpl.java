@@ -49,7 +49,7 @@ public class DiResourceIdentifierVerifierImpl implements ResourceIdentifierVerif
             // check if the partition name starts with a prefix which is currently backed by a registered resource folder for the given CRI 
             if ( !isPrefixBackedByRegisterdResourceFolder( pri.getCri( ), pri.getPartitionName( ) ) ) {
                 Set<String> resourceFoldersForCri = this.fsResourceHandler.getRegisteredResourceFoldersForContainer( pri.getCri( ) );
-                throw new InvalidResourceIdentifierException( RiServiceMessages.INVALIDRESOURCEFOLDER, pri.getPartitionName( ), pri.getCri( ), resourceFoldersForCri );
+                //throw new InvalidResourceIdentifierException( RiServiceMessages.INVALIDRESOURCEFOLDER, pri.getPartitionName( ), pri.getCri( ), resourceFoldersForCri );
             }
 
             // check if the partition name is formed upon a currently registered name pattern

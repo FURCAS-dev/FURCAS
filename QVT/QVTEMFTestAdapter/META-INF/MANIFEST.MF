@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: QVTEMFTestAdapter
+Bundle-SymbolicName: QVTEMFTestAdapter
+Bundle-Version: 1.0.0.qualifier
+Export-Package: de.ikv.medini.qvt.test

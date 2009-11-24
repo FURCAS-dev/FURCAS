@@ -6,8 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="lib" path="lib/CUPRuntime.jar" sourcepath="C:/Documents and Settings/c5106462/My Documents/java_cup_v10k.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/KMF_Util.jar"/>
-	<classpathentry exported="true" kind="var" path="EMF_COMMON"/>
-	<classpathentry exported="true" kind="var" path="EMF_ECORE"/>
-	<classpathentry exported="true" kind="var" path="EMF_ECORE_XMI"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

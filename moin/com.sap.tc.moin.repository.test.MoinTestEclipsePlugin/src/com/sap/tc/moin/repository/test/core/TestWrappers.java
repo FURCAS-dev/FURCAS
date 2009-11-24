@@ -13,6 +13,21 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+import org.junit.Before;
+import org.junit.Test;
+
+import com.sap.mi.gfw.mm.datatypes.Color;
+import com.sap.mi.gfw.mm.datatypes.Point;
+import com.sap.mi.gfw.mm.graphics.GraphicsPackage;
+import com.sap.mi.gfw.mm.pictograms.Polygon;
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.JmiHelper;
+import com.sap.tc.moin.repository.ModelPartition;
+import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.core.serialization.PartitionReaderImpl;
+import com.sap.tc.moin.repository.core.serialization.PartitionWriterImpl;
+import com.sap.tc.moin.repository.mmi.descriptors.StructureFieldContainer;
 import com.sap.tc.moin.repository.mmi.model.Association;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
@@ -23,21 +38,6 @@ import com.sap.tc.moin.repository.mmi.model.ModelPackage;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.model.Tag;
-
-import org.junit.Before;
-import org.junit.Test;
-
-import com.sap.moin.mm.gfw.datatypes.Color;
-import com.sap.moin.mm.gfw.datatypes.Point;
-import com.sap.moin.mm.gfw.graphics.GraphicsPackage;
-import com.sap.moin.mm.gfw.pictograms.Polygon;
-import com.sap.tc.moin.repository.Connection;
-import com.sap.tc.moin.repository.JmiHelper;
-import com.sap.tc.moin.repository.ModelPartition;
-import com.sap.tc.moin.repository.PRI;
-import com.sap.tc.moin.repository.Partitionable;
-import com.sap.tc.moin.repository.core.serialization.PartitionReaderImpl;
-import com.sap.tc.moin.repository.core.serialization.PartitionWriterImpl;
 import com.sap.tc.moin.repository.spi.core.Wrapper;
 import com.sap.tc.moin.test.fw.TestMetaModels;
 import com.sap.tc.moin.testcases.TestcasesPackage;
@@ -247,15 +247,21 @@ public class TestWrappers extends CoreMoinTest {
         GraphicsPackage graphics = (GraphicsPackage) conn.getPackage( TestMetaModels.GFW_CN, TestMetaModels.GFW_TPE );
         Polygon polygon = getMOINConnection( ).createElementInPartition( Polygon.class, null );
         polygon.setFilled( true );
-        Point p1 = getMOINConnection( ).createElementInPartition( Point.class, null );
-        p1.setX( 10 );
-        p1.setY( 10 );
-        Point p2 = getMOINConnection( ).createElementInPartition( Point.class, null );
-        p2.setX( 20 );
-        p2.setY( 20 );
-        Point p3 = getMOINConnection( ).createElementInPartition( Point.class, null );
-        p3.setX( 30 );
-        p3.setY( 30 );
+        StructureFieldContainer<Point> container = new StructureFieldContainer<Point>();
+        container.put(Point.DESCRIPTORS.X(), 10);
+        container.put(Point.DESCRIPTORS.Y(), 10);
+        Point p1 = graphics.getDatatypes().createPoint(container);
+       
+        container = new StructureFieldContainer<Point>();
+        container.put(Point.DESCRIPTORS.X(), 20);
+        container.put(Point.DESCRIPTORS.Y(), 20);
+        Point p2 = graphics.getDatatypes().createPoint(container);
+        
+        container = new StructureFieldContainer<Point>();
+        container.put(Point.DESCRIPTORS.X(), 30);
+        container.put(Point.DESCRIPTORS.Y(), 30);
+        Point p3 = graphics.getDatatypes().createPoint(container);
+        
         polygon.getPoints( ).add( p1 );
         polygon.getPoints( ).add( p2 );
         polygon.getPoints( ).add( p3 );

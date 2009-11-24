@@ -36,12 +36,12 @@
 		<link>
 			<name>xmisrc/cfg</name>
 			<type>2</type>
-			<location>QVT/LocalDevelopment~LocalDevelopment~testmetamodel~demo.sap.com/cfg</location>
+			<locationURI>QVT/LocalDevelopment~LocalDevelopment~testmetamodel~demo.sap.com/cfg</locationURI>
 		</link>
 		<link>
 			<name>xmisrc/moin</name>
 			<type>2</type>
-			<location>QVT/LocalDevelopment~LocalDevelopment~testmetamodel~demo.sap.com/moin</location>
+			<locationURI>QVT/LocalDevelopment~LocalDevelopment~testmetamodel~demo.sap.com/moin</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>

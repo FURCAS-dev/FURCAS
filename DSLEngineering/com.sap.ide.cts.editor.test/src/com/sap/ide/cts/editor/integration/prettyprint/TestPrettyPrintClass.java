@@ -5,6 +5,8 @@ import ngpm.NgpmPackage;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.*;
+
 import textblocks.TextBlock;
 
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;

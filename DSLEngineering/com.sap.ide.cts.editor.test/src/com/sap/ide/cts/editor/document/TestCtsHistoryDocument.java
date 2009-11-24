@@ -1,5 +1,7 @@
 package com.sap.ide.cts.editor.document;
 
+
+import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collection;
 

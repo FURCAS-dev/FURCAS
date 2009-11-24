@@ -470,8 +470,11 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 			ParsingTextblocksActivator.getDefault().disableMoinLogging(
 					root.get___Connection());
 		}
-		TextBlock currentRoot = (TextBlock) TbUtil.createNewCopy(root,
+		TextBlock currentRoot = getOtherVersion(root, VersionEnum.CURRENT);
+		if(currentRoot == null) {
+		    currentRoot = (TextBlock) TbUtil.createNewCopy(root,
 				VersionEnum.CURRENT, true, shortPrettyPrinter);
+		}
 	    	if (moinLoggingWasEnabled) {
 	    	    ParsingTextblocksActivator.getDefault().enableMoinLogging(root.get___Connection());
 	    	}
@@ -642,7 +645,7 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 				getConstructionLoc().getTok(), VersionEnum.CURRENT);
 		ArrayList<AbstractToken> consumedTokens = new ArrayList<AbstractToken>(2);
 		AbstractToken currentToken = oldTokenInCurrentBlock;
-		while(!currentToken.equals(constructionLocToken)) {
+		while(currentToken != null && !currentToken.equals(constructionLocToken)) {
 			AbstractToken deleteToken= currentToken;
 			//need to navigate using previous version because current might have already been disconnected
 			//from the tree
@@ -675,7 +678,9 @@ public abstract class IncrementalLexer extends IncrementalRecognizer {
 					deleteTokenParent.refDelete();
 				}
 			}
-			consumedTokens.add(currentToken);
+			if(currentToken != null) {
+			    consumedTokens.add(currentToken);
+			}
 		}
 		return consumedTokens;
 	}

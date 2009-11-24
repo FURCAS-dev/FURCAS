@@ -20,8 +20,6 @@ import org.eclipse.core.resources.IProject;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sap.ide.dii05.lib.api.util.DiiResourceService;
-import com.sap.ide.dii05.model.api.IDevelopmentComponent;
 import com.sap.serviceinteractions.ServiceInteractionsPackage;
 import com.sap.tc.moin.primary.facility.test.ide.FacilityIdeMoinTest;
 import com.sap.tc.moin.repository.CRI;
@@ -214,7 +212,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
 
             IProject eclipseProject = MOIN_IDE_TEST_HELPER.getOrCreateLocalDummyDCProject( dcVendor, dcName );
 
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseProject );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseProject );
 
             getIdeFacilityDispatcher( ).refreshFromFileSystem( eclipseProject, true );
 
@@ -304,7 +302,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
 
             IProject eclipseProject = MOIN_IDE_TEST_HELPER.getOrCreateLocalDummyDCProject( dcVendor, dcName );
 
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseProject );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseProject );
 
             getIdeFacilityDispatcher( ).refreshFromFileSystem( eclipseProject, true );
 
@@ -391,7 +389,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomErrorHandler";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -495,7 +493,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParser";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -594,7 +592,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParser";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -720,7 +718,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParser";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -788,7 +786,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParser";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -912,7 +910,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParser";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -1056,7 +1054,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParser";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );
@@ -1138,7 +1136,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
 
             IProject eclipseProject = MOIN_IDE_TEST_HELPER.getOrCreateLocalDummyMoinDCProject( dcVendor, dcName );
 
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseProject );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseProject );
 
 
             getIdeFacilityDispatcher( ).refreshFromFileSystem( eclipseProject, true );
@@ -1229,7 +1227,7 @@ public class TestCustomParserSimple extends FacilityIdeMoinTest {
             String dcName_01 = "moin/pf/srcModelCustomParserReadOnly";
             String fullDcName_01 = dcVendor + "/" + dcName_01;
             IProject eclipseMMProject_01 = MOIN_IDE_TEST_HELPER.getOrCreateLocalMoinDCProject( dcVendor, dcName_01 );
-            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
+//            IDevelopmentComponent srcDc01 = DiiResourceService.getDevelopmentComponent( eclipseMMProject_01 );
             CRI srcDc01Cri = getIdeFacilityDispatcher( ).getContainer( eclipseMMProject_01 );
 
             SpiClientSpec clientSpec = getClientSpec( eclipseMMProject_01 );

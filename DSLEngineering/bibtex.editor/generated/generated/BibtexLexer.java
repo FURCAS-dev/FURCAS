@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g 2009-09-22 12:47:47
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g 2009-11-24 17:17:46
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -14,8 +14,6 @@ import org.antlr.runtime.*;
 import java.util.Stack;
 import java.util.List;
 import java.util.ArrayList;
-import com.sap.mi.textual.grammar.impl.PredicateSemantic;
-import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import java.util.Map;
 import java.util.HashMap;
 public class BibtexLexer extends Lexer {
@@ -156,15 +154,15 @@ public class BibtexLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g"; }
+    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g"; }
 
     // $ANTLR start "T__15"
     public final void mT__15() throws RecognitionException {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:117:7: ( 'Entries:' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:117:9: 'Entries:'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:117:7: ( 'Entries:' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:117:9: 'Entries:'
             {
             match("Entries:"); if (state.failed) return ;
 
@@ -184,8 +182,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:118:7: ( '{' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:118:9: '{'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:118:7: ( '{' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:118:9: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -204,8 +202,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:119:7: ( '}' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:119:9: '}'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:119:7: ( '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:119:9: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -224,8 +222,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:120:7: ( 'Authors:' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:120:9: 'Authors:'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:120:7: ( 'Authors:' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:120:9: 'Authors:'
             {
             match("Authors:"); if (state.failed) return ;
 
@@ -245,8 +243,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:121:7: ( '@article' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:121:9: '@article'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:121:7: ( '@article' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:121:9: '@article'
             {
             match("@article"); if (state.failed) return ;
 
@@ -266,8 +264,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:122:7: ( ',' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:122:9: ','
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:122:7: ( ',' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:122:9: ','
             {
             match(','); if (state.failed) return ;
 
@@ -286,8 +284,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:123:7: ( 'title' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:123:9: 'title'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:123:7: ( 'title' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:123:9: 'title'
             {
             match("title"); if (state.failed) return ;
 
@@ -307,8 +305,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:124:7: ( '=' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:124:9: '='
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:124:7: ( '=' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:124:9: '='
             {
             match('='); if (state.failed) return ;
 
@@ -327,8 +325,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:125:7: ( 'author' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:125:9: 'author'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:125:7: ( 'author' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:125:9: 'author'
             {
             match("author"); if (state.failed) return ;
 
@@ -348,8 +346,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:126:7: ( 'and' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:126:9: 'and'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:126:7: ( 'and' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:126:9: 'and'
             {
             match("and"); if (state.failed) return ;
 
@@ -369,21 +367,21 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:273:3: ( ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:279:3: ( ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:6: ( ( ( '--' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:7: ( ( '--' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:9: '--' (~ ( '\\r' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:8: ( '--' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:9: '--' (~ ( '\\r' | '\\n' ) )*
             {
             match("--"); if (state.failed) return ;
 
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:14: (~ ( '\\r' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -396,7 +394,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:274:15: ~ ( '\\r' | '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -442,10 +440,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:279:5: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:279:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:285:5: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:285:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:279:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:285:9: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt2=4;
             int LA2_0 = input.LA(1);
 
@@ -476,7 +474,7 @@ public class BibtexLexer extends Lexer {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:279:13: '\\r' '\\n'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:285:13: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -484,7 +482,7 @@ public class BibtexLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:280:13: '\\n' '\\r'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:286:13: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -492,14 +490,14 @@ public class BibtexLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:281:13: '\\r'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:287:13: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:282:13: '\\n'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:288:13: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -527,8 +525,8 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:288:5: ( ( ' ' | '\\t' ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:288:9: ( ' ' | '\\t' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:294:5: ( ( ' ' | '\\t' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:294:9: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -557,8 +555,8 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:295:5: ( '0' .. '9' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:295:9: '0' .. '9'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:301:5: ( '0' .. '9' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:301:9: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -573,8 +571,8 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:300:5: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:306:5: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -598,17 +596,17 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:311:5: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:311:9: ( ALPHA ) ( ALPHA | DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:317:5: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:317:9: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:311:9: ( ALPHA )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:311:10: ALPHA
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:317:9: ( ALPHA )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:317:10: ALPHA
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:311:17: ( ALPHA | DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:317:17: ( ALPHA | DIGIT )*
             loop3:
             do {
                 int alt3=2;
@@ -621,7 +619,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -656,10 +654,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:315:5: ( ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:315:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:321:5: ( ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:321:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:315:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:321:9: ( SNAME | '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -678,17 +676,17 @@ public class BibtexLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:316:13: SNAME
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:322:13: SNAME
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:317:13: '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:323:13: '\"' ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )* '\"'
                     {
                     match('\"'); if (state.failed) return ;
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:318:13: ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:324:13: ( ESC | '\\n' | ~ ( '\\\\' | '\\\"' | '\\n' ) )*
                     loop4:
                     do {
                         int alt4=4;
@@ -707,14 +705,14 @@ public class BibtexLexer extends Lexer {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:318:17: ESC
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:324:17: ESC
                     	    {
                     	    mESC(); if (state.failed) return ;
 
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:319:17: '\\n'
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:325:17: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -724,7 +722,7 @@ public class BibtexLexer extends Lexer {
                     	    }
                     	    break;
                     	case 3 :
-                    	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:320:17: ~ ( '\\\\' | '\\\"' | '\\n' )
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:326:17: ~ ( '\\\\' | '\\\"' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -768,10 +766,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:328:5: ( ( DIGIT )+ )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:328:9: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:334:5: ( ( DIGIT )+ )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:334:9: ( DIGIT )+
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:328:9: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:334:9: ( DIGIT )+
             int cnt6=0;
             loop6:
             do {
@@ -785,7 +783,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:328:10: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:334:10: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -818,10 +816,10 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = FLOAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:9: ( ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )? )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:13: ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:9: ( ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:13: ( DIGIT )+ ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
             {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:13: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:13: ( DIGIT )+
             int cnt7=0;
             loop7:
             do {
@@ -835,7 +833,7 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:13: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:13: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -852,7 +850,7 @@ public class BibtexLexer extends Lexer {
                 cnt7++;
             } while (true);
 
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:20: ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:20: ( ( '.' DIGIT )=> '.' ( DIGIT )+ )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -861,10 +859,10 @@ public class BibtexLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:21: ( '.' DIGIT )=> '.' ( DIGIT )+
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:21: ( '.' DIGIT )=> '.' ( DIGIT )+
                     {
                     match('.'); if (state.failed) return ;
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:38: ( DIGIT )+
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:38: ( DIGIT )+
                     int cnt8=0;
                     loop8:
                     do {
@@ -878,7 +876,7 @@ public class BibtexLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:38: DIGIT
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:38: DIGIT
                     	    {
                     	    mDIGIT(); if (state.failed) return ;
 
@@ -915,11 +913,11 @@ public class BibtexLexer extends Lexer {
     // $ANTLR start "ESC"
     public final void mESC() throws RecognitionException {
         try {
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:335:5: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) ) )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:335:9: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:341:5: ( '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:341:9: '\\\\' ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
             {
             match('\\'); if (state.failed) return ;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:336:9: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:342:9: ( 'n' | 'r' | 't' | 'b' | 'f' | '\"' | '\\'' | '\\\\' | ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? ) )
             int alt14=9;
             switch ( input.LA(1) ) {
             case 'n':
@@ -984,65 +982,65 @@ public class BibtexLexer extends Lexer {
 
             switch (alt14) {
                 case 1 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:336:13: 'n'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:342:13: 'n'
                     {
                     match('n'); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:13: 'r'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:343:13: 'r'
                     {
                     match('r'); if (state.failed) return ;
 
                     }
                     break;
                 case 3 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:338:13: 't'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:344:13: 't'
                     {
                     match('t'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:339:13: 'b'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:345:13: 'b'
                     {
                     match('b'); if (state.failed) return ;
 
                     }
                     break;
                 case 5 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:340:13: 'f'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:346:13: 'f'
                     {
                     match('f'); if (state.failed) return ;
 
                     }
                     break;
                 case 6 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:341:13: '\"'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:347:13: '\"'
                     {
                     match('\"'); if (state.failed) return ;
 
                     }
                     break;
                 case 7 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:342:13: '\\''
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:348:13: '\\''
                     {
                     match('\''); if (state.failed) return ;
 
                     }
                     break;
                 case 8 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:343:13: '\\\\'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:349:13: '\\\\'
                     {
                     match('\\'); if (state.failed) return ;
 
                     }
                     break;
                 case 9 :
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:344:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:350:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
                     {
-                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:344:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:350:13: ( ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )? | ( '4' .. '7' ) ( ( '0' .. '7' ) )? )
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -1061,16 +1059,16 @@ public class BibtexLexer extends Lexer {
                     }
                     switch (alt13) {
                         case 1 :
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:345:17: ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )?
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:351:17: ( '0' .. '3' ) ( ( '0' .. '7' ) ( '0' .. '7' )? )?
                             {
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:345:17: ( '0' .. '3' )
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:345:18: '0' .. '3'
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:351:17: ( '0' .. '3' )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:351:18: '0' .. '3'
                             {
                             matchRange('0','3'); if (state.failed) return ;
 
                             }
 
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:346:17: ( ( '0' .. '7' ) ( '0' .. '7' )? )?
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:352:17: ( ( '0' .. '7' ) ( '0' .. '7' )? )?
                             int alt11=2;
                             int LA11_0 = input.LA(1);
 
@@ -1079,16 +1077,16 @@ public class BibtexLexer extends Lexer {
                             }
                             switch (alt11) {
                                 case 1 :
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:347:21: ( '0' .. '7' ) ( '0' .. '7' )?
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:353:21: ( '0' .. '7' ) ( '0' .. '7' )?
                                     {
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:347:21: ( '0' .. '7' )
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:347:22: '0' .. '7'
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:353:21: ( '0' .. '7' )
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:353:22: '0' .. '7'
                                     {
                                     matchRange('0','7'); if (state.failed) return ;
 
                                     }
 
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:348:21: ( '0' .. '7' )?
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:354:21: ( '0' .. '7' )?
                                     int alt10=2;
                                     int LA10_0 = input.LA(1);
 
@@ -1097,7 +1095,7 @@ public class BibtexLexer extends Lexer {
                                     }
                                     switch (alt10) {
                                         case 1 :
-                                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:349:25: '0' .. '7'
+                                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:355:25: '0' .. '7'
                                             {
                                             matchRange('0','7'); if (state.failed) return ;
 
@@ -1116,16 +1114,16 @@ public class BibtexLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:352:17: ( '4' .. '7' ) ( ( '0' .. '7' ) )?
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:358:17: ( '4' .. '7' ) ( ( '0' .. '7' ) )?
                             {
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:352:17: ( '4' .. '7' )
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:352:18: '4' .. '7'
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:358:17: ( '4' .. '7' )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:358:18: '4' .. '7'
                             {
                             matchRange('4','7'); if (state.failed) return ;
 
                             }
 
-                            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:353:17: ( ( '0' .. '7' ) )?
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:359:17: ( ( '0' .. '7' ) )?
                             int alt12=2;
                             int LA12_0 = input.LA(1);
 
@@ -1134,10 +1132,10 @@ public class BibtexLexer extends Lexer {
                             }
                             switch (alt12) {
                                 case 1 :
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:354:21: ( '0' .. '7' )
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:360:21: ( '0' .. '7' )
                                     {
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:354:21: ( '0' .. '7' )
-                                    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:354:22: '0' .. '7'
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:360:21: ( '0' .. '7' )
+                                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:360:22: '0' .. '7'
                                     {
                                     matchRange('0','7'); if (state.failed) return ;
 
@@ -1156,7 +1154,7 @@ public class BibtexLexer extends Lexer {
                     }
 
                     if ( state.backtracking==0 ) {
-                      
+
                                       
                     }
 
@@ -1179,11 +1177,11 @@ public class BibtexLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:363:5: ( '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:363:9: '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:369:5: ( '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:369:9: '\\'' ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
             {
             match('\''); if (state.failed) return ;
-            // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:364:9: ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:370:9: ( ESC | '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
             loop15:
             do {
                 int alt15=4;
@@ -1202,14 +1200,14 @@ public class BibtexLexer extends Lexer {
 
                 switch (alt15) {
             	case 1 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:364:13: ESC
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:370:13: ESC
             	    {
             	    mESC(); if (state.failed) return ;
 
             	    }
             	    break;
             	case 2 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:365:13: '\\n'
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:371:13: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1219,7 +1217,7 @@ public class BibtexLexer extends Lexer {
             	    }
             	    break;
             	case 3 :
-            	    // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:366:13: ~ ( '\\\\' | '\\'' | '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:372:13: ~ ( '\\\\' | '\\'' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1253,124 +1251,124 @@ public class BibtexLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | COMMENT | NL | WS | NAME | INT | FLOAT | STRING )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | COMMENT | NL | WS | NAME | INT | FLOAT | STRING )
         int alt16=17;
         alt16 = dfa16.predict(input);
         switch (alt16) {
             case 1 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:10: T__15
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:10: T__15
                 {
                 mT__15(); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:16: T__16
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:16: T__16
                 {
                 mT__16(); if (state.failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:22: T__17
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:22: T__17
                 {
                 mT__17(); if (state.failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:28: T__18
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:28: T__18
                 {
                 mT__18(); if (state.failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:34: T__19
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:34: T__19
                 {
                 mT__19(); if (state.failed) return ;
 
                 }
                 break;
             case 6 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:40: T__20
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:40: T__20
                 {
                 mT__20(); if (state.failed) return ;
 
                 }
                 break;
             case 7 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:46: T__21
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:46: T__21
                 {
                 mT__21(); if (state.failed) return ;
 
                 }
                 break;
             case 8 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:52: T__22
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:52: T__22
                 {
                 mT__22(); if (state.failed) return ;
 
                 }
                 break;
             case 9 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:58: T__23
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:58: T__23
                 {
                 mT__23(); if (state.failed) return ;
 
                 }
                 break;
             case 10 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:64: T__24
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:64: T__24
                 {
                 mT__24(); if (state.failed) return ;
 
                 }
                 break;
             case 11 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:70: COMMENT
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:70: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
             case 12 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:78: NL
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:78: NL
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
             case 13 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:81: WS
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:81: WS
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
             case 14 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:84: NAME
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:84: NAME
                 {
                 mNAME(); if (state.failed) return ;
 
                 }
                 break;
             case 15 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:89: INT
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:89: INT
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
             case 16 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:93: FLOAT
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:93: FLOAT
                 {
                 mFLOAT(); if (state.failed) return ;
 
                 }
                 break;
             case 17 :
-                // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:99: STRING
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:1:99: STRING
                 {
                 mSTRING(); if (state.failed) return ;
 
@@ -1383,8 +1381,8 @@ public class BibtexLexer extends Lexer {
 
     // $ANTLR start synpred1_Bibtex
     public final void synpred1_Bibtex_fragment() throws RecognitionException {   
-        // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:21: ( '.' DIGIT )
-        // C:\\furcas\\checkout\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:331:22: '.' DIGIT
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:21: ( '.' DIGIT )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:337:22: '.' DIGIT
         {
         match('.'); if (state.failed) return ;
         mDIGIT(); if (state.failed) return ;
@@ -1411,9 +1409,9 @@ public class BibtexLexer extends Lexer {
 
     protected DFA16 dfa16 = new DFA16(this);
     static final String DFA16_eotS =
-        "\1\uffff\1\15\2\uffff\1\15\2\uffff\1\15\1\uffff\1\15\4\uffff\1\25"+
-        "\1\uffff\5\15\2\uffff\4\15\1\40\4\15\1\uffff\2\15\1\47\3\15\1\uffff"+
-        "\1\53\2\15\3\uffff";
+        "\1\uffff\1\15\2\uffff\1\15\2\uffff\1\15\1\uffff\1\15\4\uffff\1"+
+        "\25\1\uffff\5\15\2\uffff\4\15\1\40\4\15\1\uffff\2\15\1\47\3\15\1"+
+        "\uffff\1\53\2\15\3\uffff";
     static final String DFA16_eofS =
         "\56\uffff";
     static final String DFA16_minS =
@@ -1433,10 +1431,11 @@ public class BibtexLexer extends Lexer {
     static final String DFA16_specialS =
         "\56\uffff}>";
     static final String[] DFA16_transitionS = {
-            "\1\14\1\13\2\uffff\1\13\22\uffff\1\14\1\uffff\1\15\4\uffff\1"+
-            "\17\4\uffff\1\6\1\12\2\uffff\12\16\3\uffff\1\10\2\uffff\1\5"+
-            "\1\4\3\15\1\1\25\15\4\uffff\1\15\1\uffff\1\11\22\15\1\7\6\15"+
-            "\1\2\1\uffff\1\3\102\uffff\27\15\1\uffff\37\15\1\uffff\10\15",
+            "\1\14\1\13\2\uffff\1\13\22\uffff\1\14\1\uffff\1\15\4\uffff"+
+            "\1\17\4\uffff\1\6\1\12\2\uffff\12\16\3\uffff\1\10\2\uffff\1"+
+            "\5\1\4\3\15\1\1\25\15\4\uffff\1\15\1\uffff\1\11\22\15\1\7\6"+
+            "\15\1\2\1\uffff\1\3\102\uffff\27\15\1\uffff\37\15\1\uffff\10"+
+            "\15",
             "\1\20",
             "",
             "",
@@ -1463,8 +1462,8 @@ public class BibtexLexer extends Lexer {
             "\1\35",
             "\1\36",
             "\1\37",
-            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff\27"+
-            "\15\1\uffff\37\15\1\uffff\10\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff"+
+            "\27\15\1\uffff\37\15\1\uffff\10\15",
             "\1\41",
             "\1\42",
             "\1\43",
@@ -1472,14 +1471,14 @@ public class BibtexLexer extends Lexer {
             "",
             "\1\45",
             "\1\46",
-            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff\27"+
-            "\15\1\uffff\37\15\1\uffff\10\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff"+
+            "\27\15\1\uffff\37\15\1\uffff\10\15",
             "\1\50",
             "\1\51",
             "\1\52",
             "",
-            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff\27"+
-            "\15\1\uffff\37\15\1\uffff\10\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15\105\uffff"+
+            "\27\15\1\uffff\37\15\1\uffff\10\15",
             "\1\54",
             "\1\55",
             "",

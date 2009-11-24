@@ -1,80 +1,85 @@
 package com.sap.junit;
 
-import static org.junit.Assert.assertEquals;
-
 import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
-import org.junit.internal.runners.CompositeRunner;
-import org.junit.internal.runners.MethodValidator;
-import org.junit.internal.runners.TestClassRunner;
+import org.junit.runner.Runner;
 import org.junit.runner.notification.RunListener;
 import org.junit.runner.notification.RunNotifier;
+import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.runners.Suite;
 import org.junit.runners.Parameterized.Parameters;
+import org.junit.runners.model.FrameworkMethod;
+import org.junit.runners.model.InitializationError;
+import org.junit.runners.model.Statement;
+import org.junit.runners.model.TestClass;
 
-import com.sap.junit.MoinRunner.MoinClassMethodRunner;
 import com.sap.tc.moin.test.fw.MoinTestHelperSelector;
 
 /**
  * copied from junit runner Parameterized and adapted to own requirements
  */
-public class MoinParameterizedRunner extends TestClassRunner implements RunnerProxy {
+public class MoinParameterizedRunner extends Suite implements
+        RunnerProxy {
 
-    @Retention( RetentionPolicy.RUNTIME )
-    @Target( ElementType.METHOD )
+    @Retention(RetentionPolicy.RUNTIME)
+    @Target(ElementType.METHOD)
     public static @interface ParametersDescription {
     }
 
-    public static Collection<Object[]> eachOne( Object... params ) {
+    public static Collection<Object[]> eachOne(Object... params) {
 
-        List<Object[]> results = new ArrayList<Object[]>( );
-        for ( Object param : params ) {
-            results.add( new Object[] { param } );
+        List<Object[]> results = new ArrayList<Object[]>();
+        for (Object param : params) {
+            results.add(new Object[] { param });
         }
         return results;
     }
 
-    // TODO: single-class this extension
-
-    private static class MoinTestClassRunnerForParameters extends MoinClassMethodRunner {
-
-        private final Object[] fParameters;
-
+    private class MoinTestClassRunnerForParameters extends BlockJUnit4ClassRunner {
+        private final int fParameterSetNumber;
+        
         private final String fParametersDescription;
 
-        private final int fParameterSetNumber;
+        private final List<Object[]> fParameterList;
 
-        private final Constructor<?> fConstructor;
-
-        private MoinTestClassRunnerForParameters( Class<?> klass, Object[] parameters, String parametersDescription, int i ) {
-
-            super( klass );
-            fParameters = parameters;
+        MoinTestClassRunnerForParameters(Class<?> type,
+                List<Object[]> parameterList, String parametersDescription, int i) throws InitializationError {
+            super(type);
+            fParameterList = parameterList;
             fParametersDescription = parametersDescription;
             fParameterSetNumber = i;
-            fConstructor = getOnlyConstructor( );
         }
 
         @Override
-        protected Object createTest( ) throws Exception {
+        public Object createTest() throws Exception {
+            return getTestClass().getOnlyConstructor().newInstance(
+                    computeParams());
+        }
 
-            return fConstructor.newInstance( fParameters );
+        private Object[] computeParams() throws Exception {
+            try {
+                return fParameterList.get(fParameterSetNumber);
+            } catch (ClassCastException e) {
+                throw new Exception(String.format(
+                        "%s.%s() must return a Collection of arrays.",
+                        getTestClass().getName(), getParametersMethod(
+                                getTestClass()).getName()));
+            }
         }
 
         @Override
-        protected String getName( ) {
-
+        protected String getName() {
             if ( fParametersDescription == null || fParametersDescription.length( ) == 0 ) {
                 return String.format( "[%s]", fParameterSetNumber ); //$NON-NLS-1$
             }
@@ -83,107 +88,102 @@ public class MoinParameterizedRunner extends TestClassRunner implements RunnerPr
         }
 
         @Override
-        protected String testName( final Method method ) {
-            return String.format( "%s [%s]", super.testName( method ), fParameterSetNumber ); //$NON-NLS-1$
+        protected String testName(final FrameworkMethod method) {
+            return String.format("%s[%s]", method.getName(),
+                    fParameterSetNumber);
         }
 
-        private Constructor<?> getOnlyConstructor( ) {
+        @Override
+        protected void validateZeroArgConstructor(List<Throwable> errors) {
+            // constructor can, nay, should have args.
+        }
 
-            Constructor<?>[] constructors = getTestClass( ).getConstructors( );
-            assertEquals( 1, constructors.length );
-            return constructors[0];
+        @Override
+        protected Statement classBlock(RunNotifier notifier) {
+            return childrenInvoker(notifier);
         }
     }
 
-    // TODO: I think this now eagerly reads parameters, which was never the point.
+    private final ArrayList<Runner> runners = new ArrayList<Runner>();
 
-    public static class MoinRunAllParameterMethods extends CompositeRunner {
+    /**
+     * Only called reflectively. Do not use programmatically.
+     */
+    public MoinParameterizedRunner(Class<?> klass) throws Throwable {
+        super(klass, Collections.<Runner> emptyList());
+        List<Object[]> parametersList = getParametersList(getTestClass());
+        List<String> parametersDescriptionList = ensureFilledParametersDescriptionList( getParametersDescriptionList( getTestClass() ), parametersList );
+        for (int i = 0; i < parametersList.size(); i++)
+            runners.add(new MoinTestClassRunnerForParameters(getTestClass()
+                    .getJavaClass(), parametersList, parametersDescriptionList.get( i ), i));
+    }
 
-        private final Class<?> fKlass;
+    @Override
+    protected List<Runner> getChildren() {
+        return runners;
+    }
+    
+    @SuppressWarnings( "unchecked" )
+    private List<String> getParametersDescriptionList( TestClass klass ) throws IllegalAccessException, InvocationTargetException, Exception {
 
-        public MoinRunAllParameterMethods( Class<?> klass ) throws Exception {
-
-            super( klass.getName( ) );
-            fKlass = klass;
-            int i = 0;
-            List<?> parametersList = getParametersList( );
-            List<String> parametersDescriptionList = ensureFilledParametersDescriptionList( getParametersDescriptionList( ), parametersList );
-            for ( final Object each : parametersList ) {
-                if ( each instanceof Object[] ) {
-                    Object o = parametersDescriptionList.get( i );
-                    super.add( new MoinTestClassRunnerForParameters( klass, (Object[]) each, parametersDescriptionList.get( i ), i++ ) );
-                } else {
-                    throw new Exception( String.format( "%s.%s() must return a Collection of arrays.", fKlass.getName( ), getParametersMethod( ).getName( ) ) ); //$NON-NLS-1$
-                }
-            }
-        }
-
-        private List<?> getParametersList( ) throws IllegalAccessException, InvocationTargetException, Exception {
-
-            return (List<?>) getParametersMethod( ).invoke( null );
-        }
-
-        @SuppressWarnings( "unchecked" )
-        private List<String> getParametersDescriptionList( ) throws IllegalAccessException, InvocationTargetException, Exception {
-
-            Method method = getParametersDescriptionMethod( );
-            if ( method != null ) {
-                Object returnValue = method.invoke( null );
-                if ( returnValue != null && returnValue instanceof List ) {
-                    return (List<String>) returnValue;
-                }
-                return null;
+        FrameworkMethod method = getParametersDescriptionMethod( klass );
+        if ( method != null ) {
+            Object returnValue = method.getMethod().invoke( null );
+            if ( returnValue != null && returnValue instanceof List ) {
+                return (List<String>) returnValue;
             }
             return null;
         }
+        return null;
+    }
 
-        private List<String> ensureFilledParametersDescriptionList( List<String> parametersDescriptionList, List<?> parametersList ) {
-            String[] sArray = new String[parametersList.size( )];
-            Arrays.fill( sArray, "" ); //$NON-NLS-1$
-            if ( parametersDescriptionList != null ) {
-                for ( int i = 0; i < Math.min( parametersDescriptionList.size( ), parametersList.size( ) ); i++ ) {
-                    sArray[i] = parametersDescriptionList.get( i );
-                }
+    private List<String> ensureFilledParametersDescriptionList( List<String> parametersDescriptionList, List<?> parametersList ) {
+        String[] sArray = new String[parametersList.size( )];
+        Arrays.fill( sArray, "" ); //$NON-NLS-1$
+        if ( parametersDescriptionList != null ) {
+            for ( int i = 0; i < Math.min( parametersDescriptionList.size( ), parametersList.size( ) ); i++ ) {
+                sArray[i] = parametersDescriptionList.get( i );
             }
-            return Arrays.asList( sArray );
+        }
+        return Arrays.asList( sArray );
+    }
+
+
+    @SuppressWarnings("unchecked")
+    private List<Object[]> getParametersList(TestClass klass) throws Throwable {
+        return (List<Object[]>) getParametersMethod(klass).invokeExplosively(
+                null);
+    }
+
+    private FrameworkMethod getParametersMethod(TestClass testClass)
+            throws Exception {
+        List<FrameworkMethod> methods = testClass
+                .getAnnotatedMethods(Parameters.class);
+        for (FrameworkMethod each : methods) {
+            int modifiers = each.getMethod().getModifiers();
+            if (Modifier.isStatic(modifiers) && Modifier.isPublic(modifiers))
+                return each;
         }
 
-        private Method getParametersMethod( ) throws Exception {
+        throw new Exception("No public static parameters method on class "
+                + testClass.getName());
+    }
+    
+    private FrameworkMethod getParametersDescriptionMethod(TestClass testClass) throws Exception {
 
-            for ( Method each : fKlass.getMethods( ) ) {
-                if ( Modifier.isStatic( each.getModifiers( ) ) ) {
-                    Annotation[] annotations = each.getAnnotations( );
-                    for ( Annotation annotation : annotations ) {
-                        if ( annotation.annotationType( ) == Parameters.class ) {
-                            return each;
-                        }
+        for ( FrameworkMethod each : testClass.getAnnotatedMethods(ParametersDescription.class) ) {
+            if ( Modifier.isStatic( each.getMethod().getModifiers( ) ) ) {
+                Annotation[] annotations = each.getAnnotations( );
+                for ( Annotation annotation : annotations ) {
+                    if ( annotation.annotationType( ) == ParametersDescription.class ) {
+                        return each;
                     }
                 }
             }
-            throw new Exception( "No public static parameters method on class " + getName( ) ); //$NON-NLS-1$
         }
-
-        private Method getParametersDescriptionMethod( ) throws Exception {
-
-            for ( Method each : fKlass.getMethods( ) ) {
-                if ( Modifier.isStatic( each.getModifiers( ) ) ) {
-                    Annotation[] annotations = each.getAnnotations( );
-                    for ( Annotation annotation : annotations ) {
-                        if ( annotation.annotationType( ) == ParametersDescription.class ) {
-                            return each;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
+        return null;
     }
-
-    public MoinParameterizedRunner( final Class<?> klass ) throws Exception {
-
-        super( klass, new MoinRunAllParameterMethods( klass ) );
-    }
-
+    
     @Override
     public void run( RunNotifier notifier ) {
 
@@ -196,12 +196,5 @@ public class MoinParameterizedRunner extends TestClassRunner implements RunnerPr
         notifier.addListener( listener );
         super.run( notifier );
 
-    }
-
-    @Override
-    protected void validate( MethodValidator methodValidator ) {
-
-        methodValidator.validateStaticMethods( );
-        methodValidator.validateInstanceMethods( );
     }
 }

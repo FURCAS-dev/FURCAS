@@ -1,5 +1,7 @@
 package com.sap.ide.cts.editor.integration.prettyprint;
 
+import static org.junit.Assert.*;
+
 import java.io.InputStream;
 
 import org.junit.Before;

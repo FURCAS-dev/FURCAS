@@ -184,7 +184,7 @@ public class TestTextverticalization extends CoreMoinTest {
 
     private void assertTextParameters( TranslatableText text, Integer maxWidth, String originalText, String resName, String resType, boolean translate, String transUnitId ) {
 
-        assertEquals( maxWidth, text.getMaxWidth( ) );
+        assertEquals( maxWidth, (Integer)text.getMaxWidth( ) );
         assertEquals( originalText, text.getOriginalText( ) );
         assertEquals( resName, text.getResName( ) );
         assertEquals( resType, text.getResType( ) );
@@ -196,7 +196,7 @@ public class TestTextverticalization extends CoreMoinTest {
 
         assertNotNull( "Invalid GUID, GUID is null", guid );
         try {
-            assertTrue( GUID.isValid( GUID.parseHexGUID( guid ).toBytes( ) ) );
+            assertNotNull(  GUID.parseHexGUID( guid ).toBytes( ) );
         } catch ( GUIDFormatException GUIDFormatEx ) {
             fail( "Invalid GUID: \"" + guid + "\", " + GUIDFormatEx.getMessage( ) );
         }

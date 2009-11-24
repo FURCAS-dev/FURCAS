@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/bibtex.metamodel' i='1' v=''/>
+<M c='1' q='Bibtex.LiteratureDb' i='E02C978B1B44C700395111DEC10600016CE99C52'/>
+<Bibtex.LiteratureDb m:c='1' m:i='E012BF1EA4AB5B20D02E11DEB71CEDED8D1505E2' name='newLiteratureDb'/>
+</Partition>

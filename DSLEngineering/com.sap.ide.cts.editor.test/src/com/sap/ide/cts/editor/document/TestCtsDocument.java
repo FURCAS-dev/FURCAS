@@ -3,6 +3,8 @@
  */
 package com.sap.ide.cts.editor.document;
 
+
+import static org.junit.Assert.*;
 import ngpm.NgpmPackage;
 
 import org.junit.Test;

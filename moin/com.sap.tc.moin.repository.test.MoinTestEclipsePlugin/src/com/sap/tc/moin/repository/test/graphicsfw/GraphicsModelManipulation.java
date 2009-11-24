@@ -1376,7 +1376,7 @@ public class GraphicsModelManipulation {
                 // get PictogramLink
                 Collection diagramLinkPictogramLinks = diagramLink.getPictogramLinks( );
                 for ( Iterator iterator2 = diagramLinkPictogramLinks.iterator( ); iterator2.hasNext( ); ) {
-                    Link pictogramLinkWanted = (Link) iterator2.next( );
+                    PictogramLink pictogramLinkWanted = (PictogramLink) iterator2.next( );
                     if ( pictogramLinkWanted.refMofId( ).equals( mapOfElements.get( "pictogramLink" ) ) ) {
                         if ( pictogramLinkWanted instanceof PictogramLink ) {
                             ( (PictogramLink) pictogramLinkWanted ).setPictogramElement( shape2Wanted );

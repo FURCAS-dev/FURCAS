@@ -115,7 +115,7 @@ public class TestTypeMorphing extends CoreMoinTest {
         assertTrue( d4sub.isAttributeBoolean( ) );
         assertTrue( d4sub.isAttributeBooleanOptional( ) );
         assertEquals( d4sub.getAttributeDouble( ), 1.1 );
-        assertEquals( d4sub.getAttributeDoubleOptional( ), 1.2 );
+        assertEquals( d4sub.getAttributeDoubleOptional( ), (Double)1.2 );
     }
 
     @Test
