@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-08-30 09:59:50 +0200 (So, 30 Aug 2009) $
- * Revision: $Revision: 7772 $
- * Author: $Author: c5127705 $
+ * Date: $Date: 2009-11-17 07:26:02 +0100 (Di, 17 Nov 2009) $
+ * Revision: $Revision: 8574 $
+ * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
 
@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.antlr.runtime.BaseRecognizer;
 
@@ -68,7 +69,7 @@ public class ModelInjector extends AbstractModelInjector implements IModelInject
         try {           
 
             Map<String, List<Object>> attributes = proxy.getAttributeMap();
-            
+            resolveAttributeValuesRecursively(proxy, firstToken, lastToken);
             Object createdObject = getModelAdapter().createOrResolveElement(proxy.getType(), attributes, firstToken, lastToken, proxy.isReferenceOnly(), false);
 
             proxy.setRealObject(createdObject);
@@ -76,6 +77,30 @@ public class ModelInjector extends AbstractModelInjector implements IModelInject
         } catch (ModelAdapterException e) {
             // TODO move this to getModelAdapter() and delete ModelElement on errors (?)
             throw new ModelElementCreationException("Exception resolving proxy " + proxy, e);
+        }
+    }
+    
+    /**
+     * Checks if all attribute values for the proxy are either no proxies or have been resolved already.
+     * If an attribute value is encountered that is an unresolved proxy, resolution is triggered
+     * using {@link #createOrResolve(Object, ANTLR3LocationToken, ANTLR3LocationToken)}, recursively.
+     */
+    private void resolveAttributeValuesRecursively(ModelElementProxy proxy, ANTLR3LocationToken firstToken, ANTLR3LocationToken lastToken)
+	    throws ModelElementCreationException {
+        Set<String> features = proxy.getAttributeMap().keySet();
+        for (String prop : features) {
+            List<Object> valueList = proxy.getAttributeMap().get(prop);
+            for (Iterator<Object> iterator = valueList.iterator(); iterator.hasNext();) {
+                // TODO: for single value properties, cause error when trying to set more than once?
+                Object value = iterator.next();
+                if (value instanceof ModelElementProxy) {
+                    ModelElementProxy valueProxy = (ModelElementProxy) value;
+                    value = valueProxy.getRealObject();
+                    if (value == null) {
+                	valueProxy.setRealObject(createOrResolve(valueProxy, firstToken, lastToken));
+                    }
+                }
+            }
         }
     }
 

@@ -6,7 +6,7 @@ package data.timedependency.__impl;
 
 public class TimeDependencyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.timedependency.__impl.TimeDependencyImpl> implements data.timedependency.TimeDependency,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class TimeDependencyWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.timedependency.__impl.TimeDependencyImpl getCastWrappedObject() {
         return (data.timedependency.__impl.TimeDependencyImpl) getWrappedObject();
     }
@@ -268,7 +267,6 @@ public class TimeDependencyWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.timedependency.TimeDependency> get___JmiInterface() {
         return data.timedependency.TimeDependency.class;
     }

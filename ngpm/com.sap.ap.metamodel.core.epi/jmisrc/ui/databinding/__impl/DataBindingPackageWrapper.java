@@ -46,7 +46,6 @@ public class DataBindingPackageWrapper extends com.sap.tc.moin.repository.core.j
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.databinding.DataBindingPackage> get___JmiInterface() {
         return ui.databinding.DataBindingPackage.class;
     }

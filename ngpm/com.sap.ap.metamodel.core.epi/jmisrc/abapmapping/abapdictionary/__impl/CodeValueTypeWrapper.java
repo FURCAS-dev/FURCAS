@@ -125,7 +125,6 @@ public class CodeValueTypeWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.CodeValueType> get___JmiInterface() {
         return abapmapping.abapdictionary.CodeValueType.class;
     }

@@ -125,7 +125,6 @@ public class CategoryForConfigurationWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.CategoryForConfiguration> get___JmiInterface() {
         return configuration.contextdrivers.CategoryForConfiguration.class;
     }

@@ -125,7 +125,6 @@ public class AConstraintsTheContextWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AConstraintsTheContext> get___JmiInterface() {
         return data.classes.AConstraintsTheContext.class;
     }

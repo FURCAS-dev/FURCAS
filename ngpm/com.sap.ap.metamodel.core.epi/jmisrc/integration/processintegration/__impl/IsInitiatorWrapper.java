@@ -125,7 +125,6 @@ public class IsInitiatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.IsInitiator> get___JmiInterface() {
         return integration.processintegration.IsInitiator.class;
     }

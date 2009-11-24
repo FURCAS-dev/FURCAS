@@ -125,7 +125,6 @@ public class AFactsDimensionExpressionWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.AFactsDimensionExpression> get___JmiInterface() {
         return dataaccess.analytics.AFactsDimensionExpression.class;
     }

@@ -125,7 +125,6 @@ public class AImplementationFunctionSignatureWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AImplementationFunctionSignature> get___JmiInterface() {
         return data.classes.AImplementationFunctionSignature.class;
     }

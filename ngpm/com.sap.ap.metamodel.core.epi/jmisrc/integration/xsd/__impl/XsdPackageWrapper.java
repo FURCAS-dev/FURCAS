@@ -618,7 +618,6 @@ public class XsdPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.XsdPackage> get___JmiInterface() {
         return integration.xsd.XsdPackage.class;
     }

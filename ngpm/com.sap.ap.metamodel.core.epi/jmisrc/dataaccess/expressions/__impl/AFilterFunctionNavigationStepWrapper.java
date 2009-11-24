@@ -125,7 +125,6 @@ public class AFilterFunctionNavigationStepWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AFilterFunctionNavigationStep> get___JmiInterface() {
         return dataaccess.expressions.AFilterFunctionNavigationStep.class;
     }

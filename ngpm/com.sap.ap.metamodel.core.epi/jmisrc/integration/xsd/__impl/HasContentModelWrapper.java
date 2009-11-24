@@ -125,7 +125,6 @@ public class HasContentModelWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasContentModel> get___JmiInterface() {
         return integration.xsd.HasContentModel.class;
     }

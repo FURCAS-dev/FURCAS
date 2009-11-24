@@ -125,7 +125,6 @@ public class ANamedValueNamedValueDeclarationWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ANamedValueNamedValueDeclaration> get___JmiInterface() {
         return behavior.actions.ANamedValueNamedValueDeclaration.class;
     }

@@ -125,7 +125,6 @@ public class SignatureCallParametersWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.SignatureCallParameters> get___JmiInterface() {
         return dataaccess.expressions.SignatureCallParameters.class;
     }

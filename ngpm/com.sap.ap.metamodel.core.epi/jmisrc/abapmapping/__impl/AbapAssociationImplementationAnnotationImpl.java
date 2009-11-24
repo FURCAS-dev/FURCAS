@@ -6,7 +6,7 @@ package abapmapping.__impl;
 
 public final class AbapAssociationImplementationAnnotationImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -24,11 +24,10 @@ public final class AbapAssociationImplementationAnnotationImpl extends com.sap.t
 
     // reflective methods
         
-
+    
 
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AbapAssociationImplementationAnnotation> get___JmiInterface() {
         return abapmapping.AbapAssociationImplementationAnnotation.class;
     }

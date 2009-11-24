@@ -125,7 +125,6 @@ public class ATypeTypedElementWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.ATypeTypedElement> get___JmiInterface() {
         return structure.ATypeTypedElement.class;
     }

@@ -125,7 +125,6 @@ public class AFieldPathExpressionWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AFieldPathExpression> get___JmiInterface() {
         return behavior.expressions.AFieldPathExpression.class;
     }

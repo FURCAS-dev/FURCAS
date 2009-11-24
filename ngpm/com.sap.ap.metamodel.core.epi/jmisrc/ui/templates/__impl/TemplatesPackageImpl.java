@@ -8,7 +8,7 @@ public final class TemplatesPackageImpl extends com.sap.tc.moin.repository.core.
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
@@ -59,7 +59,6 @@ public final class TemplatesPackageImpl extends com.sap.tc.moin.repository.core.
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.templates.TemplatesPackage> get___JmiInterface() {
         return ui.templates.TemplatesPackage.class;
     }
@@ -68,9 +67,7 @@ public final class TemplatesPackageImpl extends com.sap.tc.moin.repository.core.
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -88,9 +85,7 @@ public final class TemplatesPackageImpl extends com.sap.tc.moin.repository.core.
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(1);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_expressions_template"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "ui.templates.AExpressionsTemplate"); //$NON-NLS-1$

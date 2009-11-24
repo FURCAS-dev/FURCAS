@@ -125,7 +125,6 @@ public class AFormalObjectParameterActualObjectParameterWrapper extends com.sap.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AFormalObjectParameterActualObjectParameter> get___JmiInterface() {
         return data.classes.AFormalObjectParameterActualObjectParameter.class;
     }

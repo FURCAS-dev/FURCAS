@@ -125,7 +125,6 @@ public class AConversionMethodConverterWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AConversionMethodConverter> get___JmiInterface() {
         return data.classes.AConversionMethodConverter.class;
     }

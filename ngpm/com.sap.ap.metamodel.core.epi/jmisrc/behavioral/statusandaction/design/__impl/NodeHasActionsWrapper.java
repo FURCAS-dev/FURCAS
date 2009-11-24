@@ -125,7 +125,6 @@ public class NodeHasActionsWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.NodeHasActions> get___JmiInterface() {
         return behavioral.statusandaction.design.NodeHasActions.class;
     }

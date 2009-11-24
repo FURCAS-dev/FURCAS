@@ -125,7 +125,6 @@ public class AAbapAnnotationSapClassWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AAbapAnnotationSapClass> get___JmiInterface() {
         return abapmapping.AAbapAnnotationSapClass.class;
     }

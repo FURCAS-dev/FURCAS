@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public final class NeutralStrategyImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -24,11 +24,10 @@ public final class NeutralStrategyImpl extends com.sap.tc.moin.repository.core.j
 
     // reflective methods
         
-
+    
 
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.NeutralStrategy> get___JmiInterface() {
         return behavioral.statusandaction.assembly.NeutralStrategy.class;
     }

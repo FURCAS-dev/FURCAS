@@ -68,7 +68,6 @@ public class TemplatesPackageWrapper extends com.sap.tc.moin.repository.core.jmi
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.templates.TemplatesPackage> get___JmiInterface() {
         return ui.templates.TemplatesPackage.class;
     }

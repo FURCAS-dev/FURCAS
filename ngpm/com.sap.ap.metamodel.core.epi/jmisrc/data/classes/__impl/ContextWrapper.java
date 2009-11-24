@@ -6,7 +6,7 @@ package data.classes.__impl;
 
 public class ContextWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.classes.__impl.ContextImpl> implements data.classes.Context,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ContextWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.classes.__impl.ContextImpl getCastWrappedObject() {
         return (data.classes.__impl.ContextImpl) getWrappedObject();
     }
@@ -243,7 +242,6 @@ public class ContextWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.Context> get___JmiInterface() {
         return data.classes.Context.class;
     }

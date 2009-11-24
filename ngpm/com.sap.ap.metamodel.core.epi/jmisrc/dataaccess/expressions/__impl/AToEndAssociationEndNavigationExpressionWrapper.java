@@ -125,7 +125,6 @@ public class AToEndAssociationEndNavigationExpressionWrapper extends com.sap.tc.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AToEndAssociationEndNavigationExpression> get___JmiInterface() {
         return dataaccess.expressions.AToEndAssociationEndNavigationExpression.class;
     }

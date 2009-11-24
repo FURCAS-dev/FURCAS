@@ -125,7 +125,6 @@ public class AFormalTypeParameterActualTypeParametersWrapper extends com.sap.tc.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.AFormalTypeParameterActualTypeParameters> get___JmiInterface() {
         return data.generics.AFormalTypeParameterActualTypeParameters.class;
     }

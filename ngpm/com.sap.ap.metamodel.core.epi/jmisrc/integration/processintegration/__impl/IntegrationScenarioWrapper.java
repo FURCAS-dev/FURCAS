@@ -6,7 +6,7 @@ package integration.processintegration.__impl;
 
 public class IntegrationScenarioWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.processintegration.__impl.IntegrationScenarioImpl> implements integration.processintegration.IntegrationScenario,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class IntegrationScenarioWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.processintegration.__impl.IntegrationScenarioImpl getCastWrappedObject() {
         return (integration.processintegration.__impl.IntegrationScenarioImpl) getWrappedObject();
     }
@@ -155,7 +154,6 @@ public class IntegrationScenarioWrapper extends com.sap.tc.moin.repository.core.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.IntegrationScenario> get___JmiInterface() {
         return integration.processintegration.IntegrationScenario.class;
     }

@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class ForeachPredicatePropertyInitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ForeachPredicatePropertyInitImpl> implements tcs.ForeachPredicatePropertyInit,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ForeachPredicatePropertyInitWrapper extends com.sap.tc.moin.reposit
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.ForeachPredicatePropertyInitImpl getCastWrappedObject() {
         return (tcs.__impl.ForeachPredicatePropertyInitImpl) getWrappedObject();
     }
@@ -293,7 +292,6 @@ public class ForeachPredicatePropertyInitWrapper extends com.sap.tc.moin.reposit
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ForeachPredicatePropertyInit> get___JmiInterface() {
         return tcs.ForeachPredicatePropertyInit.class;
     }

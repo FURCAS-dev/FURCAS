@@ -125,7 +125,6 @@ public class AAssociationsClazzWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AAssociationsClazz> get___JmiInterface() {
         return structure.AAssociationsClazz.class;
     }

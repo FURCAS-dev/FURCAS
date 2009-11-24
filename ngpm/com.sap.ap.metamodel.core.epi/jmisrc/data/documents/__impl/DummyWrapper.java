@@ -6,7 +6,7 @@ package data.documents.__impl;
 
 public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.documents.__impl.DummyImpl> implements data.documents.Dummy,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.documents.__impl.DummyImpl getCastWrappedObject() {
         return (data.documents.__impl.DummyImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.documents.Dummy> get___JmiInterface() {
         return data.documents.Dummy.class;
     }

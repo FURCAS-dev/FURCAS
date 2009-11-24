@@ -125,7 +125,6 @@ public class NotificationSignaturesWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.NotificationSignatures> get___JmiInterface() {
         return behavioral.events.NotificationSignatures.class;
     }

@@ -63,7 +63,6 @@ public final class HasSimpleTypeContentImpl extends com.sap.tc.moin.repository.c
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasSimpleTypeContent> get___JmiInterface() {
         return integration.xsd.HasSimpleTypeContent.class;
     }

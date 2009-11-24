@@ -125,7 +125,6 @@ public class ContextValueHierarchyWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ContextValueHierarchy> get___JmiInterface() {
         return configuration.contextdrivers.ContextValueHierarchy.class;
     }

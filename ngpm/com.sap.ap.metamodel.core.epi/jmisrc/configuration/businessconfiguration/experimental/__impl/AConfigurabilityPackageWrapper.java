@@ -125,7 +125,6 @@ public class AConfigurabilityPackageWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AConfigurabilityPackage> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AConfigurabilityPackage.class;
     }

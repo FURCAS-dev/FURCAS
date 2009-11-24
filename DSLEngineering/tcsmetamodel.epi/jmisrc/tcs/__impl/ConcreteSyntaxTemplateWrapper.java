@@ -125,7 +125,6 @@ public class ConcreteSyntaxTemplateWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntaxTemplate> get___JmiInterface() {
         return tcs.ConcreteSyntaxTemplate.class;
     }

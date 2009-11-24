@@ -288,7 +288,6 @@ public class GenericsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.GenericsPackage> get___JmiInterface() {
         return data.generics.GenericsPackage.class;
     }

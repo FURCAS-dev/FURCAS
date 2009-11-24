@@ -19,8 +19,14 @@ import org.eclipse.ui.IStartup;
 import org.osgi.framework.BundleContext;
 
 import com.sap.mi.fwk.ConnectionManager;
-import com.sap.river.interpreter.repository.Repository;
+import com.sap.runlet.abstractinterpreter.repository.Repository;
 import com.sap.tc.moin.repository.Connection;
+
+import data.classes.Association;
+import data.classes.AssociationEnd;
+import data.classes.ClassTypeDefinition;
+import data.classes.SapClass;
+import data.classes.TypeDefinition;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -130,8 +136,8 @@ public class Activator extends Plugin implements IStartup {
 	// up Tomcat.
     }
 
-    public Repository getRunletDataStore() {
-	return com.sap.river.interpreter.Activator.getDefault().getRunletDataStore();
+    public Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> getRunletDataStore() {
+	return com.sap.runlet.interpreter.Activator.getDefault().getRunletDataStore();
     }
 
     public static IProject getStdlibProject() {

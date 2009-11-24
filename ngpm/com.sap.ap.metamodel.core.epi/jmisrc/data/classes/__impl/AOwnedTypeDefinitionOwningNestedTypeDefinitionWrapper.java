@@ -125,7 +125,6 @@ public class AOwnedTypeDefinitionOwningNestedTypeDefinitionWrapper extends com.s
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AOwnedTypeDefinitionOwningNestedTypeDefinition> get___JmiInterface() {
         return data.classes.AOwnedTypeDefinitionOwningNestedTypeDefinition.class;
     }

@@ -6,7 +6,7 @@ package data.constraints.__impl;
 
 public class SeverityInStateWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.constraints.__impl.SeverityInStateImpl> implements data.constraints.SeverityInState,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class SeverityInStateWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.constraints.__impl.SeverityInStateImpl getCastWrappedObject() {
         return (data.constraints.__impl.SeverityInStateImpl) getWrappedObject();
     }
@@ -133,7 +132,6 @@ public class SeverityInStateWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.SeverityInState> get___JmiInterface() {
         return data.constraints.SeverityInState.class;
     }

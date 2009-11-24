@@ -6,7 +6,7 @@ package behavioral.statusandaction.design.__impl;
 
 public class StatusValueWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.design.__impl.StatusValueImpl> implements behavioral.statusandaction.design.StatusValue,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StatusValueWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.design.__impl.StatusValueImpl getCastWrappedObject() {
         return (behavioral.statusandaction.design.__impl.StatusValueImpl) getWrappedObject();
     }
@@ -271,7 +270,6 @@ public class StatusValueWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.StatusValue> get___JmiInterface() {
         return behavioral.statusandaction.design.StatusValue.class;
     }

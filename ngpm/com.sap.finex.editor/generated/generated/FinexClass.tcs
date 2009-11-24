@@ -44,8 +44,8 @@ syntax FinexClass(k=0 ) {
 		;
 	
 	function classDeclaration(FinexClass)
-		:  --	(valueType ? "value")  TODO: I [Jan] commented it out as it collieded with the concrete syntax for multiplicities. 
-		   --   as this feature was not (yet) requested by FINEX I left it out. 
+		:  (valueType ? "value")  -- TODO: I [Jan] commented it out as it collieded with the concrete syntax for multiplicities. 
+		                          -- as this feature was not (yet) requested by FINEX I left it out. 
 		    [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} ]] ":" [
 			[[
 			   disambiguate("structure_association")
@@ -147,8 +147,20 @@ syntax FinexClass(k=0 ) {
 		;
 	
 	template behavior::functions::Function
-		: "function"
-		  [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} | {{ name='""' }} ]]
+		: 
+		[[ -- function
+		  "function"
+		  $functionHeader
+		  implementation
+		 | -- manipulator
+		  "manipulator"
+		  $functionHeader
+		  implementation{mode=manipulator}
+		 ]]
+		;
+	
+	function functionHeader(Function)
+		: [[ name{as=firstLowercaseIdentifier} | name{as=firstUppercaseIdentifier} | {{ name='""' }} ]]
 		  "("
 			[[
 			  "IN" parameters{mode=IN, separator=",", forcedLower=1}
@@ -158,7 +170,7 @@ syntax FinexClass(k=0 ) {
 			  ]]
 			 |
 			  "OUT" parameters{mode=OUT, separator=",", forcedLower=1}
-			]] ")" ":" implementation
+			]] ")" ":" 
 		;
 	
 	function parameter(behavior::functions::Parameter)
@@ -184,9 +196,18 @@ syntax FinexClass(k=0 ) {
 		  {{ direction='behavior.functions.DirectionEnum.OUT' }}
 		;
 	
+	template SignatureImplementation abstract;
 	template behavior::actions::Block context
 		: "{" [
 		      statements
+		  ] "}"
+		;
+
+	template SignatureImplementation #manipulator abstract;	
+	-- (disambiguateV3="behavior_actions_manipulator") 
+	template Manipulator #manipulator context
+		: "{" [
+			assignments{mode=manipulator, separator="|"}
 		  ] "}"
 		;
 	
@@ -194,17 +215,25 @@ syntax FinexClass(k=0 ) {
 
 	template behavior::actions::StatementWithArgument abstract;
 	template behavior::actions::Assignment (disambiguateV3 = "DOT NAME EQUALS")
+		: $assignment ";"
+		;
+	
+	template Assignment #manipulator
+		: $assignment
+		;
+	
+	function assignment(Assignment)
 		: "." 
-		  --[[
-			assignTo{as=firstLowercaseIdentifier, 
-		               query="OCL:self.block.getOuterMostBlock().signature.owner.getNavigableFields()",
+		  [[
+			     assignTo{as=firstLowercaseIdentifier, 
+		               query="OCL:self.getOwningClass().getNavigableFields()",
 		               filter="->select(f | f.name = ?)"}
-		   --  |       
-		   --     assignTo{as=firstUppercaseIdentifier, 
-		   --            query="OCL:self.block.getOuterMostBlock().signature.owner.getNavigableFields()", 
-		   --            filter="->select(f | f.name = ?)"}
-		  --]] 
-		  "=" argument ";"
+		     |       
+		         assignTo{as=firstUppercaseIdentifier, 
+		               query="OCL:self.getOwningClass().getNavigableFields()", 
+		               filter="->select(f | f.name = ?)"}
+		  ]] 
+		  "=" argument
 		;
 
 	template behavior::actions::ExpressionStatement
@@ -213,15 +242,24 @@ syntax FinexClass(k=0 ) {
 		
 	
 	template behavior::expressions::Expression abstract operatored(Expressions);
+	function alias(behavior::expressions::Expression)
+		: (isDefined(alias) ? "AS" alias)
+		;
+	
+	template Alias
+		: [[ name{as=firstUppercaseIdentifier} | name{as=firstLowercaseIdentifier} ]]
+		;
 	
 	-- ----------------------- Predefined Operators ---------------------
 	operatorTemplate behavior::expressions::BinaryBooleanOperator(operators=andOp orOp, source='left',
-																  storeOpTo='operator', storeRightTo='right')
-		: {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+								      storeOpTo='operator', storeRightTo='right')
+		: $alias
+		  {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
 		;
 	
 	operatorTemplate behavior::expressions::Not(operators=notOp, source='operand')
-		: {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		: $alias
+		  {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
 		;
 	
 	operatorTemplate behavior::expressions::BooleanAggregate(operators=dotOp, source='operand')
@@ -233,6 +271,7 @@ syntax FinexClass(k=0 ) {
 		     "xor" {{ operator='"xor"' }}
 		  ]]
 		  "(" ")" 
+		  $alias
 		  {{ type=lookIn("OCL:operand.type") }}
 		;
 	
@@ -245,17 +284,58 @@ syntax FinexClass(k=0 ) {
 
 	operatorTemplate behavior::expressions::UnaryMinus(operators=unaryMinusOp,
 			source='operand', storeOpTo='operator')
-		: {{ type=lookIn("OCL:operand.type") }}
+		: $alias
+		  {{ type=lookIn("OCL:operand.type") }}
 		;
 	
 	operatorTemplate behavior::expressions::Count(operators=dotOp, source='operand')
 		: "count" {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')") }}
 		  "(" ")"
+		  $alias
 		;
 
 	operatorTemplate behavior::expressions::Single(operators=dotOp, source='operand')
 		: "single" {{ type=lookIn("OCL:self.operand.type") }}
 		  "(" ")"
+		  $alias
+		;
+	
+	operatorTemplate behavior::expressions::Tuple(operators=dotOp, source='operand')
+		: "tuple" type{mode=tuple}
+		  "(" ")"
+		  $alias
+		;
+	
+	template Type #tuple abstract;
+	template FinexClass #tuple context
+		: {{ associations=foreach("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllAliases()",
+		                          mode="tuple",
+								  as=Association),
+			 name=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllAliases()->iterate(
+			 			a; acc='TupleType_for' | acc.concat('_').concat(a.name))"),
+			 valueType='true',
+			 -- the cast to FinexClass will be somewhat insecure as soon as we'll have other types that may
+			 -- contain the Tuple expression for which this FinexClass is created. 
+			 owner=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").getEnclosingType().oclAsType(FinexClass)") }}
+		;
+	
+	template structure::Association #tuple
+		: ends{forcedLower=1, forcedUpper=1, mode=tupleLocalEnd}
+		  ends{forcedLower=1, forcedUpper=1, mode=tupleOtherEnd}
+		  {{ name=lookIn("OCL:'Tuple_to_'.concat(#context.oclAsType(Alias).name)") }}
+		;
+	
+	template Field #tupleLocalEnd
+		: {{ name='"tuple"', navigable='false', mandatory='false', key='false', singleMultiplicity='true',
+		     type=lookIn("OCL:self.association.clazz")
+		  }}
+		;
+	
+	template Field #tupleOtherEnd
+		: {{ name=lookIn("OCL:#context.oclAsType(Alias).name"),
+		     navigable='true', mandatory='false', key='false', singleMultiplicity='true',
+		     type=lookIn("OCL:#context.oclAsType(Alias).aliasFor.type")
+		  }}
 		;
 	
 	operatorTemplate behavior::expressions::NumericAggregate(operators=dotOp, source='operand')
@@ -268,13 +348,49 @@ syntax FinexClass(k=0 ) {
 		   |
 		     "max" {{ operator='"max"' }}
 		  ]]
-		  "(" ")" {{ type=lookIn("OCL:operand.type") }}
+		  "(" ")"
+		  $alias
+		  {{ type=lookIn("OCL:operand.type") }}
 		;
 	
 	-- ----------------------- Other Expressions --------------
+	
+	template behavior::expressions::ObjectCreationExpression
+		: "create" classToInstantiate{as=firstUppercaseIdentifier, 
+					      query="OCL:structure::FinexClass.allInstances()",
+		    			      filter="->select(c | c.name = ?)", 
+		    			      invert="name"}
+		  {{ type=lookIn("OCL:classToInstantiate") }}
+		  "("
+		  	fieldInitializers{separator=","}
+		  ")"
+		;
+	
+	template behavior::expressions::FieldInitializer
+		: [[
+		      fieldToInitialize{as=firstLowercaseIdentifier, 
+				    query="OCL:self.creationExpression.classToInstantiate.getNavigableFields()", 
+				    filter="->select(f | f.name = ?)",
+				    invert="name"}
+	            |
+	              fieldToInitialize{as=firstUppercaseIdentifier, 
+				    query="OCL:self.creationExpression.classToInstantiate.getNavigableFields()", 
+				    filter="->select(f | f.name = ?)",
+				    invert="name"}
+	          ]]
+		  ":"
+		  initExpression
+		;
+	
+	template This
+		: "this"
+		  $alias
+		  {{ type = lookIn("OCL:self.getEnclosingType()") }}
+		;
+		
 	template behavior::expressions::Expression #pathExpression abstract;
-	template behavior::expressions::This #pathExpression
-		: {{ type = lookIn("OCL:self.getEnclosingType()") }}
+	template behavior::expressions::ImplicitContext #pathExpression
+		: {{ type = lookIn("OCL:self.getImplicitContextType()") }}
 		;
 
 --	template UnaryOperator abstract;
@@ -288,6 +404,7 @@ syntax FinexClass(k=0 ) {
 		     field{as=firstUppercaseIdentifier, query="OCL:self.operand.type.oclAsType(structure::FinexClass).getNavigableFields()",
 		     									filter="->select(f|f.name=?)", invert="name"}
 		  ]]
+		  $alias
 		  {{ type = lookIn("OCL:self.field.type") }}
 		;
 		
@@ -299,13 +416,16 @@ syntax FinexClass(k=0 ) {
 		     field{as=firstUppercaseIdentifier, query="OCL:self.operand.type.oclAsType(structure::FinexClass).getNavigableFields()",
 		     									filter="->select(f|f.name=?)", invert="name"}
 		  ]]
+		  $alias
 		  {{ type = lookIn("OCL:self.field.type") }}
 		;
-		
+	
 	operatorTemplate behavior::expressions::FilterExpression(operators=lBracketOp, source='operand')
 		: condition "]"
+		  $alias
+		  {{ type = lookIn("OCL:self.operand.type") }}
 		;
-		
+	
 	-- ----------------------- LITERALS ---------------------
 	template behavior::expressions::literals::Literal abstract;
 	template behavior::expressions::literals::BooleanLiteral

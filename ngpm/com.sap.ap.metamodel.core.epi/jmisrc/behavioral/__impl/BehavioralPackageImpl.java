@@ -8,7 +8,7 @@ public final class BehavioralPackageImpl extends com.sap.tc.moin.repository.core
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
@@ -95,7 +95,6 @@ public final class BehavioralPackageImpl extends com.sap.tc.moin.repository.core
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.BehavioralPackage> get___JmiInterface() {
         return behavioral.BehavioralPackage.class;
     }
@@ -104,9 +103,7 @@ public final class BehavioralPackageImpl extends com.sap.tc.moin.repository.core
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(8);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "bpdm"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "behavioral.bpdm.BpdmPackage", false); //$NON-NLS-1$
@@ -152,9 +149,7 @@ public final class BehavioralPackageImpl extends com.sap.tc.moin.repository.core
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

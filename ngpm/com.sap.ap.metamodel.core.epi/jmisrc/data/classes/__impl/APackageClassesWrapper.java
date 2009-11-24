@@ -125,7 +125,6 @@ public class APackageClassesWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.APackageClasses> get___JmiInterface() {
         return data.classes.APackageClasses.class;
     }

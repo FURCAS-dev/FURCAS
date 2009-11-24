@@ -125,7 +125,6 @@ public class SampreconditionFromValueToActionWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SampreconditionFromValueToAction> get___JmiInterface() {
         return behavioral.statusandactionold.SampreconditionFromValueToAction.class;
     }

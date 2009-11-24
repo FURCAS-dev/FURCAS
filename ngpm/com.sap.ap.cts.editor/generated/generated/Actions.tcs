@@ -75,7 +75,7 @@ syntax Actions(k=0 ) {
 		     upperMultiplicity='1', 
 		     clazz=lookIn("#context(root)"),
 		     -- iterate over formal parameters of converter method
-		     ownedObjectParameters=foreach("OCL:self.signaturesWithOutput->asSequence()->first().input", mode="converter", as=ActualObjectParameter),
+		     ownedObjectParameters=foreach("OCL:self.signaturesWithOutput->asSequence()->first().input", mode="converter", as="ActualObjectParameter"),
 		     objectParameters=lookIn("OCL:self.ownedObjectParameters")
 		  }}
 		;
@@ -84,7 +84,7 @@ syntax Actions(k=0 ) {
 		:  {{ 
 			formalObjectParameter=lookIn("OCL:let sig=#context.oclAsType(Parameter).ownerSignature.oclAsType(MethodSignature) in
         				sig.owner.oclAsType(SapClass).formalObjectParameters->at(sig.input->indexOf(#context.oclAsType(Parameter)))"),
-			value=foreach("OCL:#context", mode="converter", as=VariableExpression)
+			value=foreach("OCL:#context", mode="converter", as="VariableExpression")
 		   }}
 		;
 		
@@ -223,7 +223,7 @@ syntax Actions(k=0 ) {
 		: associationEnd{mode=property, forcedLower=1}
 		  {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false',
 		     unique=lookIn("OCL:self.associationEnd.otherEnd().type.unique"),
-		     ownedObjectParameters=foreach("OCL:#context(root).oclAsType(data::classes::SapClass).formalObjectParameters", mode="localAssociationEnd", as=ActualObjectParameter),
+		     ownedObjectParameters=foreach("OCL:#context(root).oclAsType(data::classes::SapClass).formalObjectParameters", mode="localAssociationEnd", as="ActualObjectParameter"),
 		     objectParameters=lookIn("OCL:self.ownedObjectParameters")
 		  }}
 		;
@@ -231,7 +231,7 @@ syntax Actions(k=0 ) {
 	template ActualObjectParameter #localAssociationEnd
 		:  {{ 
 			formalObjectParameter=lookIn("OCL:#context"),
-			value=foreach("OCL:#context", mode="localAssociationEnd", as=VariableExpression)
+			value=foreach("OCL:#context", mode="localAssociationEnd", as="VariableExpression")
 		   }}
 		;
 		
@@ -399,10 +399,10 @@ syntax Actions(k=0 ) {
 			-- We must produce a NestedTypeDefinition iff the source object's type isMany() and the called signature's type isMany()
 			-- details: https://research.qkal.sap.corp/mediawiki/index.php?title=Runlet_-_A_Programming_Model_Exploration_Environment/Language_Specification#Method_invocation
 			ownedTypeDefinition = foreach("OCL:methodSignature.output",  
-				when="OCL:methodSignature.output.isMany() and self.object.getType().isMany()", mode="methodCallExpression", as=NestedTypeDefinition,
-				when="OCL:methodSignature.output.oclIsKindOf(ClassTypeDefinition)", mode="methodCallExpression", as=ClassTypeDefinition, 
-				when="OCL:methodSignature.output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="methodCallExpression", as=FunctionSignatureTypeDefinition,
-				when="OCL:methodSignature.output.oclIsKindOf(NestedTypeDefinition)", mode="methodCallExpressionNoFurtherNesting", as=NestedTypeDefinition)
+				when="OCL:methodSignature.output.isMany() and self.object.getType().isMany()", mode="methodCallExpression", as="NestedTypeDefinition",
+				when="OCL:methodSignature.output.oclIsKindOf(ClassTypeDefinition)", mode="methodCallExpression", as="ClassTypeDefinition", 
+				when="OCL:methodSignature.output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="methodCallExpression", as="FunctionSignatureTypeDefinition",
+				when="OCL:methodSignature.output.oclIsKindOf(NestedTypeDefinition)", mode="methodCallExpressionNoFurtherNesting", as="NestedTypeDefinition")
 		}}
 		;
 	

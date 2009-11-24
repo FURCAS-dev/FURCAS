@@ -46,7 +46,6 @@ public class ModelmanagementPackageWrapper extends com.sap.tc.moin.repository.co
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<finex.modelmanagement.ModelmanagementPackage> get___JmiInterface() {
         return finex.modelmanagement.ModelmanagementPackage.class;
     }

@@ -63,7 +63,6 @@ public final class AVariableVariableExpressionImpl extends com.sap.tc.moin.repos
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AVariableVariableExpression> get___JmiInterface() {
         return dataaccess.expressions.AVariableVariableExpression.class;
     }

@@ -8,7 +8,7 @@ public class TailWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -22,7 +22,6 @@ public class TailWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private dataaccess.expressions.__impl.TailImpl getCastWrappedObject() {
         return (dataaccess.expressions.__impl.TailImpl) getWrappedObject();
     }
@@ -242,7 +241,7 @@ public class TailWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -261,11 +260,10 @@ public class TailWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.Tail> get___JmiInterface() {
         return dataaccess.expressions.Tail.class;
     }

@@ -125,7 +125,6 @@ public class ASnapshotIdentifierAllWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<persistence.expressions.ASnapshotIdentifierAll> get___JmiInterface() {
         return persistence.expressions.ASnapshotIdentifierAll.class;
     }

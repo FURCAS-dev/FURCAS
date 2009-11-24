@@ -125,7 +125,6 @@ public class AEventProducersProcessComponentWrapper extends com.sap.tc.moin.repo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.processcomponents.AEventProducersProcessComponent> get___JmiInterface() {
         return modelmanagement.processcomponents.AEventProducersProcessComponent.class;
     }

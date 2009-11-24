@@ -125,7 +125,6 @@ public class ADeterminationDeterminationOfWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.ADeterminationDeterminationOf> get___JmiInterface() {
         return structure.ADeterminationDeterminationOf.class;
     }

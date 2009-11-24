@@ -63,7 +63,6 @@ public final class AProvidedInterfacesProcessComponentImpl extends com.sap.tc.mo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.processcomponents.AProvidedInterfacesProcessComponent> get___JmiInterface() {
         return modelmanagement.processcomponents.AProvidedInterfacesProcessComponent.class;
     }

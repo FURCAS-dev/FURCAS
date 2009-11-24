@@ -125,7 +125,6 @@ public class ADefaultValueParameterWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ADefaultValueParameter> get___JmiInterface() {
         return data.classes.ADefaultValueParameter.class;
     }

@@ -125,7 +125,6 @@ public class ATestFilterWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.ATestFilter> get___JmiInterface() {
         return behavioral.events.ATestFilter.class;
     }

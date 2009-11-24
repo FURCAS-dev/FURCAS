@@ -125,7 +125,6 @@ public class ContextForElementWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ContextForElement> get___JmiInterface() {
         return configuration.contextdrivers.ContextForElement.class;
     }

@@ -53,5 +53,12 @@ public interface Foreach extends behavior.actions.SingleBlockStatement {
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,java.lang.Boolean> IS_SIDE_EFFECT_FREE( ) {
             return behavior.actions.Statement.DESCRIPTORS.IS_SIDE_EFFECT_FREE( );
         }
+        /**
+         * Returns the descriptor for the <code>getImplicitContextType</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextType</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,structure.Type> GET_IMPLICIT_CONTEXT_TYPE( ) {
+            return behavior.actions.Statement.DESCRIPTORS.GET_IMPLICIT_CONTEXT_TYPE( );
+        }
     }
 }    

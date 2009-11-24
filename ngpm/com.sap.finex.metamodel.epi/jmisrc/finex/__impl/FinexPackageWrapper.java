@@ -90,7 +90,6 @@ public class FinexPackageWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<finex.FinexPackage> get___JmiInterface() {
         return finex.FinexPackage.class;
     }

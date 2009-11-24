@@ -63,7 +63,6 @@ public final class ASnapshotIdentifierAllImpl extends com.sap.tc.moin.repository
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<persistence.expressions.ASnapshotIdentifierAll> get___JmiInterface() {
         return persistence.expressions.ASnapshotIdentifierAll.class;
     }

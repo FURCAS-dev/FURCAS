@@ -24,7 +24,6 @@ public class WsdlPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.wsdl.WsdlPackage> get___JmiInterface() {
         return integration.wsdl.WsdlPackage.class;
     }

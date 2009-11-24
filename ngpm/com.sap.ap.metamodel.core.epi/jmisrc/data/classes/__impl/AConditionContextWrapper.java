@@ -125,7 +125,6 @@ public class AConditionContextWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AConditionContext> get___JmiInterface() {
         return data.classes.AConditionContext.class;
     }

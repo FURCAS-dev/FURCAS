@@ -51,6 +51,7 @@ import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.tc.moin.globalmodellistener.Activator;
 import com.sap.tc.moin.globalmodellistener.GlobalEventListener;
 import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
 import com.sap.tc.moin.ocl.ia.Statistics;
@@ -78,6 +79,7 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.model.StructuralFeature;
 import com.sap.tc.moin.repository.mmi.model.TypedElement;
+import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -1248,13 +1250,26 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
         monitor.beginTask(msg, workingCopy.size());
         for (DelayedReference ref : workingCopy) {
             monitor.beginTask(msg, workingCopy.size());
-            RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-                    ref.getConnection(), (RefBaseObject) ref.getModelElement());
-            reEvaluateUnresolvedRef(
-                    ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
+            if(!ref.getConnection().isAlive()) {
+                Activator.logWarning("Could not re-resolve reference: " + ref + 
+                    ". Connection: " + ref.getConnection() + " is not alive anymore!");
+            } else {
+                try {
+                    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
+                            ref.getConnection(), (RefBaseObject) ref.getModelElement());
+                    reEvaluateUnresolvedRef(
+                            ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
+                } catch(InvalidObjectException ex) {
+                    Activator.logWarning("Could not re-resolve reference: " + ref + 
+                        ". Element: " + ref.getModelElement() + " is not alive anymore!");
+                }
+            }
             monitor.worked(1);
         }
         iaUnresolvedReferences.removeAll(workingCopy);
+        if(iaUnresolvedReferences.size() > 0) {
+            backgroundResolver.schedule(500);
+        }
         monitor.done();
     }
 }

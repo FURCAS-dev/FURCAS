@@ -125,7 +125,6 @@ public class HasSimpleTypeContentWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasSimpleTypeContent> get___JmiInterface() {
         return integration.xsd.HasSimpleTypeContent.class;
     }

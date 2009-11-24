@@ -125,7 +125,6 @@ public class AFactsTypeCellSetWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.AFactsTypeCellSet> get___JmiInterface() {
         return dataaccess.analytics.AFactsTypeCellSet.class;
     }

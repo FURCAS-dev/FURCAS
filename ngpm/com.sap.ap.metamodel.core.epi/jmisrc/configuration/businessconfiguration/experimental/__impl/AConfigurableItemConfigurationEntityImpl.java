@@ -63,7 +63,6 @@ public final class AConfigurableItemConfigurationEntityImpl extends com.sap.tc.m
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AConfigurableItemConfigurationEntity> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AConfigurableItemConfigurationEntity.class;
     }

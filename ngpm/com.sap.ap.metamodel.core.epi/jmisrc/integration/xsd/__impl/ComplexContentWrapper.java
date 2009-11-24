@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class ComplexContentWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.ComplexContentImpl> implements integration.xsd.ComplexContent,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ComplexContentWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.ComplexContentImpl getCastWrappedObject() {
         return (integration.xsd.__impl.ComplexContentImpl) getWrappedObject();
     }
@@ -130,7 +129,6 @@ public class ComplexContentWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.ComplexContent> get___JmiInterface() {
         return integration.xsd.ComplexContent.class;
     }

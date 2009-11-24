@@ -6,7 +6,7 @@ package abapmapping.__impl;
 
 public class AbapSignatureImplementationAnnotationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<abapmapping.__impl.AbapSignatureImplementationAnnotationImpl> implements abapmapping.AbapSignatureImplementationAnnotation,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AbapSignatureImplementationAnnotationWrapper extends com.sap.tc.moi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private abapmapping.__impl.AbapSignatureImplementationAnnotationImpl getCastWrappedObject() {
         return (abapmapping.__impl.AbapSignatureImplementationAnnotationImpl) getWrappedObject();
     }
@@ -86,7 +85,6 @@ public class AbapSignatureImplementationAnnotationWrapper extends com.sap.tc.moi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AbapSignatureImplementationAnnotation> get___JmiInterface() {
         return abapmapping.AbapSignatureImplementationAnnotation.class;
     }

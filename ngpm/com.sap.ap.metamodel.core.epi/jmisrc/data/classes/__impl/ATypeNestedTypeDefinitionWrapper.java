@@ -125,7 +125,6 @@ public class ATypeNestedTypeDefinitionWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ATypeNestedTypeDefinition> get___JmiInterface() {
         return data.classes.ATypeNestedTypeDefinition.class;
     }

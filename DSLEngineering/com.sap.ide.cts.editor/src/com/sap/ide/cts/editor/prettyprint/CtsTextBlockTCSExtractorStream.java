@@ -2,6 +2,7 @@ package com.sap.ide.cts.editor.prettyprint;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -269,7 +270,6 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			curBlockLength += parent.getLength();
 			// restore curOffset from curBlockLength
 			curOffset = curBlockLength;
-
 			curBlock = parent;
 		} else {
 			// this is for the rootblock only
@@ -380,9 +380,8 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		// check first if any output was printed
 		if (rootBlock != null) {
 			addEosToken();
-
 			finishTextBlock();
-			TbValidationUtil.assertTextBlockConsistency(rootBlock);
+			TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
 			rootBlock.setCachedString(rootBlockCachedString.toString());
 		}
 	}

@@ -8,7 +8,7 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -19,7 +19,6 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private structure.__impl.FinexClassImpl getCastWrappedObject() {
         return (structure.__impl.FinexClassImpl) getWrappedObject();
     }
@@ -129,6 +128,31 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
 
      
     // methods for references
+    public java.util.Collection<structure.TypedElement> getTypedElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (java.util.Collection<structure.TypedElement>) wrapResult(getCastWrappedObject().getTypedElement(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (java.util.Collection<structure.TypedElement>) wrapResult(getCastWrappedObject().getTypedElement(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+
+
     public structure.FinexClass getOwner() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
@@ -279,7 +303,7 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     {
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
-            return (java.util.Collection<structure.Field>)___invokeOperation(connection, 0, "E0001D0A72D4E7D1BA4C11DEAD02001CBF0234BB", parameterList); //$NON-NLS-1$
+            return (java.util.Collection<structure.Field>)___invokeOperation(connection, 0, "E0001D0AE7D67ED1D2F811DE9FB20019D29902CC", parameterList); //$NON-NLS-1$
         } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
             throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
         }
@@ -312,12 +336,12 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         switch (operationId) {
                 
             case 0:
-                return ___invokeOperation( connection, operationId, "E0001D0A72D4E7D1BA4C11DEAD02001CBF0234BB", args ); //$NON-NLS-1$    
+                return ___invokeOperation( connection, operationId, "E0001D0AE7D67ED1D2F811DE9FB20019D29902CC", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -327,11 +351,10 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.FinexClass> get___JmiInterface() {
         return structure.FinexClass.class;
     }

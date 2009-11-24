@@ -6,7 +6,7 @@ package data.classes.__impl;
 
 public class DelegationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.classes.__impl.DelegationImpl> implements data.classes.Delegation,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DelegationWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.classes.__impl.DelegationImpl getCastWrappedObject() {
         return (data.classes.__impl.DelegationImpl) getWrappedObject();
     }
@@ -130,7 +129,6 @@ public class DelegationWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.Delegation> get___JmiInterface() {
         return data.classes.Delegation.class;
     }

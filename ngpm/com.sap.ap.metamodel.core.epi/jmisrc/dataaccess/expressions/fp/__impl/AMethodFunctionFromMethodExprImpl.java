@@ -63,7 +63,6 @@ public final class AMethodFunctionFromMethodExprImpl extends com.sap.tc.moin.rep
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.fp.AMethodFunctionFromMethodExpr> get___JmiInterface() {
         return dataaccess.expressions.fp.AMethodFunctionFromMethodExpr.class;
     }

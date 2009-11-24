@@ -354,7 +354,6 @@ public class AbapDictionaryPackageWrapper extends com.sap.tc.moin.repository.cor
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.AbapDictionaryPackage> get___JmiInterface() {
         return abapmapping.abapdictionary.AbapDictionaryPackage.class;
     }

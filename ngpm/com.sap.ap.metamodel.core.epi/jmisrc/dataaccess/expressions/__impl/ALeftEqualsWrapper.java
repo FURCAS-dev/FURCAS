@@ -125,7 +125,6 @@ public class ALeftEqualsWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.ALeftEquals> get___JmiInterface() {
         return dataaccess.expressions.ALeftEquals.class;
     }

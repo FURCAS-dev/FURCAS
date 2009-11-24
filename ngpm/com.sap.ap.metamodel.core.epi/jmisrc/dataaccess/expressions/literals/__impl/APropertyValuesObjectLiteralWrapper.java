@@ -125,7 +125,6 @@ public class APropertyValuesObjectLiteralWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.APropertyValuesObjectLiteral> get___JmiInterface() {
         return dataaccess.expressions.literals.APropertyValuesObjectLiteral.class;
     }

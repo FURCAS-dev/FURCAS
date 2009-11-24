@@ -64,7 +64,6 @@ public final class OperatorTemplateSequenceImpl extends com.sap.tc.moin.reposito
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OperatorTemplateSequence> get___JmiInterface() {
         return tcs.OperatorTemplateSequence.class;
     }

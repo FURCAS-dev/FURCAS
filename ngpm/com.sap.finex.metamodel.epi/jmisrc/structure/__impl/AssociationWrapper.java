@@ -6,7 +6,7 @@ package structure.__impl;
 
 public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<structure.__impl.AssociationImpl> implements structure.Association,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private structure.__impl.AssociationImpl getCastWrappedObject() {
         return (structure.__impl.AssociationImpl) getWrappedObject();
     }
@@ -102,6 +101,50 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
 
 
 
+    public structure.FinexClass getClazz() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (structure.FinexClass) wrapResult(getCastWrappedObject().getClazz(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (structure.FinexClass) wrapResult(getCastWrappedObject().getClazz(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setClazz(structure.FinexClass newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setClazz(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setClazz(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
    
     // methods for modeled operations
     
@@ -111,7 +154,6 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Association> get___JmiInterface() {
         return structure.Association.class;
     }

@@ -6,7 +6,7 @@ package dataaccess.analytics.__impl;
 
 public class DimensionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<dataaccess.analytics.__impl.DimensionImpl> implements dataaccess.analytics.Dimension,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DimensionWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private dataaccess.analytics.__impl.DimensionImpl getCastWrappedObject() {
         return (dataaccess.analytics.__impl.DimensionImpl) getWrappedObject();
     }
@@ -218,7 +217,6 @@ public class DimensionWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.Dimension> get___JmiInterface() {
         return dataaccess.analytics.Dimension.class;
     }

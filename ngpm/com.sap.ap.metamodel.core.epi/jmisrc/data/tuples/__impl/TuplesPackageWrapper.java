@@ -90,7 +90,6 @@ public class TuplesPackageWrapper extends com.sap.tc.moin.repository.core.jmi.re
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.tuples.TuplesPackage> get___JmiInterface() {
         return data.tuples.TuplesPackage.class;
     }

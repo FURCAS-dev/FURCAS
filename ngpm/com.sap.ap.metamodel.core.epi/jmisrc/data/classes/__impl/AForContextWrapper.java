@@ -125,7 +125,6 @@ public class AForContextWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AForContext> get___JmiInterface() {
         return data.classes.AForContext.class;
     }

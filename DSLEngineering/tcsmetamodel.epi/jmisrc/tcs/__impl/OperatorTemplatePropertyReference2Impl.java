@@ -64,7 +64,6 @@ public final class OperatorTemplatePropertyReference2Impl extends com.sap.tc.moi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OperatorTemplatePropertyReference2> get___JmiInterface() {
         return tcs.OperatorTemplatePropertyReference2.class;
     }

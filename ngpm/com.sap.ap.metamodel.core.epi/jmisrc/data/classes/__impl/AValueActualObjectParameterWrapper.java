@@ -125,7 +125,6 @@ public class AValueActualObjectParameterWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AValueActualObjectParameter> get___JmiInterface() {
         return data.classes.AValueActualObjectParameter.class;
     }

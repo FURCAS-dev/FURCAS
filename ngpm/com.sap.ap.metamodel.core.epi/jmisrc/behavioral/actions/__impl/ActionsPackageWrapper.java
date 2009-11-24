@@ -728,7 +728,6 @@ public class ActionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.r
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.ActionsPackage> get___JmiInterface() {
         return behavioral.actions.ActionsPackage.class;
     }

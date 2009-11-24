@@ -28,7 +28,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * The text label is determined bz {@link #getText(Object)}. TODO That method
  * needs refactoring. It currently does a set of <tt>instanceof</tt> checks and
  * utilizes {@link StringFormatter} for a few special types such as
- * {@link TypeDefinition} and {@link Signature}.
+ * <tt>TypeDefinition</tt> and <tt>Signature</tt>.
  * 
  * @author D046040
  * 

@@ -64,7 +64,6 @@ public final class TextBlockContainsTokensImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextBlockContainsTokens> get___JmiInterface() {
         return textblocks.TextBlockContainsTokens.class;
     }

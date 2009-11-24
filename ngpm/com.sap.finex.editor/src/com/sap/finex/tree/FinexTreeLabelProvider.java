@@ -17,11 +17,11 @@ public class FinexTreeLabelProvider implements TextLabelProvider {
 	StringBuilder result = new StringBuilder();
 	if (treenode instanceof TreeNodeRefObject) {
 	    TreeNodeRefObject<?> node = (TreeNodeRefObject<?>) treenode;
-	    String roleName = "";
 	    if (node instanceof GenericRefObjectNode) {
 		String nodeRoleName = ((GenericRefObjectNode) node).getRoleName();
 		if (nodeRoleName != null) {
-		    roleName = nodeRoleName+": ";
+		    result.append(nodeRoleName);
+		    result.append(": ");
 		}
 	    }
 	    if (node.getValue() instanceof Parameter) {
@@ -29,14 +29,20 @@ public class FinexTreeLabelProvider implements TextLabelProvider {
 		result.append(' ');
 	    }
 	    if (node.getValue() instanceof NamedElement) {
-		result.append(roleName);
 		result.append(((NamedElement) node.getValue()).getName());
 	    } else if (node.getValue() instanceof Literal) {
-		    result.append(((Literal) node.getValue()).getLiteral());
+		result.append(((Literal) node.getValue()).getLiteral());
+	    }
+	    if (node.getValue() instanceof TypedElement) {
+		if (((TypedElement) node.getValue()).getType() != null) {
+		    result.append(':');
+		    result.append(((TypedElement) node.getValue()).getType().getName());
+		} else {
+		    result.append("<unknown type>");
+		}
 	    }
 	    if (node.getValue() instanceof Field) {
 		Field f = (Field) node.getValue();
-		result.append(roleName);
 		if (f.isMandatory()) {
 		    result.append(" [1..");
 		} else {
@@ -46,21 +52,6 @@ public class FinexTreeLabelProvider implements TextLabelProvider {
 		    result.append("1]");
 		} else {
 		    result.append("*]");
-		}
-		if (f.getType() != null) {
-		    result.append(':');
-		    result.append(f.getType().getName());
-		} else {
-		    result.append("<unknown type>");
-		}
-	    }
-	    else if (node.getValue() instanceof TypedElement) {
-		result.append(roleName);
-		if (((TypedElement) node.getValue()).getType() != null) {
-		    result.append(':');
-		    result.append(((TypedElement) node.getValue()).getType().getName());
-		} else {
-		    result.append("<unknown type>");
 		}
 	    }
 	}

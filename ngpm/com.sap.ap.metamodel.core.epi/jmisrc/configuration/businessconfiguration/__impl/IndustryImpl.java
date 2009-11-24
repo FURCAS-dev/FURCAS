@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public final class IndustryImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -24,11 +24,10 @@ public final class IndustryImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
     // reflective methods
         
-
+    
 
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.Industry> get___JmiInterface() {
         return configuration.businessconfiguration.Industry.class;
     }

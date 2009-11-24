@@ -125,7 +125,6 @@ public class AVariablesOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AVariablesOwner> get___JmiInterface() {
         return behavioral.actions.AVariablesOwner.class;
     }

@@ -2,7 +2,6 @@ package com.sap.mi.fwk.ui.editor;
 
 import java.util.Set;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import org.eclipse.core.commands.operations.IOperationApprover;

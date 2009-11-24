@@ -16,9 +16,9 @@ public interface AImplementationSignature extends com.sap.tc.moin.repository.mmi
 
 
     // association interface
-    public boolean exists(behavior.actions.Block _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public behavior.actions.Block getImplementation(behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public behavior.functions.Function getSignature(behavior.actions.Block _Implementation) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean add(behavior.actions.Block _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public boolean remove(behavior.actions.Block _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public boolean exists(behavior.functions.SignatureImplementation _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.functions.SignatureImplementation getImplementation(behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.functions.Function getSignature(behavior.functions.SignatureImplementation _Implementation) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public boolean add(behavior.functions.SignatureImplementation _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public boolean remove(behavior.functions.SignatureImplementation _Implementation, behavior.functions.Function _Signature) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 }

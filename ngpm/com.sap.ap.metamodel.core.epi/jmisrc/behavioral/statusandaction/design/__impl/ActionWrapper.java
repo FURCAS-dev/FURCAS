@@ -6,7 +6,7 @@ package behavioral.statusandaction.design.__impl;
 
 public class ActionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.design.__impl.ActionImpl> implements behavioral.statusandaction.design.Action,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ActionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.design.__impl.ActionImpl getCastWrappedObject() {
         return (behavioral.statusandaction.design.__impl.ActionImpl) getWrappedObject();
     }
@@ -224,7 +223,6 @@ public class ActionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.Action> get___JmiInterface() {
         return behavioral.statusandaction.design.Action.class;
     }

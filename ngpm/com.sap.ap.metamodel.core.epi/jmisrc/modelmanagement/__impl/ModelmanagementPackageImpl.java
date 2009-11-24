@@ -8,7 +8,7 @@ public final class ModelmanagementPackageImpl extends com.sap.tc.moin.repository
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
@@ -95,7 +95,6 @@ public final class ModelmanagementPackageImpl extends com.sap.tc.moin.repository
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.ModelmanagementPackage> get___JmiInterface() {
         return modelmanagement.ModelmanagementPackage.class;
     }
@@ -104,9 +103,7 @@ public final class ModelmanagementPackageImpl extends com.sap.tc.moin.repository
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(2);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "processcomponents"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "modelmanagement.processcomponents.ProcesscomponentsPackage", false); //$NON-NLS-1$
@@ -148,9 +145,7 @@ public final class ModelmanagementPackageImpl extends com.sap.tc.moin.repository
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(1);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_ownedPackages_owner"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "modelmanagement.AOwnedPackagesOwner"); //$NON-NLS-1$

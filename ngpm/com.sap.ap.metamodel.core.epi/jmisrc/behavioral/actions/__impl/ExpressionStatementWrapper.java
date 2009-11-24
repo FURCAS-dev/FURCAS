@@ -8,7 +8,7 @@ public class ExpressionStatementWrapper extends com.sap.tc.moin.repository.core.
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -21,7 +21,6 @@ public class ExpressionStatementWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.actions.__impl.ExpressionStatementImpl getCastWrappedObject() {
         return (behavioral.actions.__impl.ExpressionStatementImpl) getWrappedObject();
     }
@@ -215,7 +214,7 @@ public class ExpressionStatementWrapper extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -231,11 +230,10 @@ public class ExpressionStatementWrapper extends com.sap.tc.moin.repository.core.
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.ExpressionStatement> get___JmiInterface() {
         return behavioral.actions.ExpressionStatement.class;
     }

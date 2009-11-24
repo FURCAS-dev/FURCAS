@@ -125,7 +125,6 @@ public class AIteratorSelectionWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.query.AIteratorSelection> get___JmiInterface() {
         return dataaccess.query.AIteratorSelection.class;
     }

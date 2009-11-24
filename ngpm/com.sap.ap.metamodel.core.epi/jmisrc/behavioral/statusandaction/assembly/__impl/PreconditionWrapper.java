@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class PreconditionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.PreconditionImpl> implements behavioral.statusandaction.assembly.Precondition,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class PreconditionWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.PreconditionImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.PreconditionImpl) getWrappedObject();
     }
@@ -262,7 +261,6 @@ public class PreconditionWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.Precondition> get___JmiInterface() {
         return behavioral.statusandaction.assembly.Precondition.class;
     }

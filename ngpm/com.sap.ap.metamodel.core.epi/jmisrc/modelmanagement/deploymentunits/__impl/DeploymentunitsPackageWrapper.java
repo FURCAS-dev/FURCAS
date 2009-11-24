@@ -90,7 +90,6 @@ public class DeploymentunitsPackageWrapper extends com.sap.tc.moin.repository.co
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.deploymentunits.DeploymentunitsPackage> get___JmiInterface() {
         return modelmanagement.deploymentunits.DeploymentunitsPackage.class;
     }

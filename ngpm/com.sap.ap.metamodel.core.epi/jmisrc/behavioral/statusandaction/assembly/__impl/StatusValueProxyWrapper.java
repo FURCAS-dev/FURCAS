@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class StatusValueProxyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.StatusValueProxyImpl> implements behavioral.statusandaction.assembly.StatusValueProxy,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StatusValueProxyWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.StatusValueProxyImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.StatusValueProxyImpl) getWrappedObject();
     }
@@ -315,7 +314,6 @@ public class StatusValueProxyWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.StatusValueProxy> get___JmiInterface() {
         return behavioral.statusandaction.assembly.StatusValueProxy.class;
     }

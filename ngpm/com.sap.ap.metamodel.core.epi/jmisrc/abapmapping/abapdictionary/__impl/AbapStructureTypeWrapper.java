@@ -6,7 +6,7 @@ package abapmapping.abapdictionary.__impl;
 
 public class AbapStructureTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<abapmapping.abapdictionary.__impl.AbapStructureTypeImpl> implements abapmapping.abapdictionary.AbapStructureType,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AbapStructureTypeWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private abapmapping.abapdictionary.__impl.AbapStructureTypeImpl getCastWrappedObject() {
         return (abapmapping.abapdictionary.__impl.AbapStructureTypeImpl) getWrappedObject();
     }
@@ -155,7 +154,6 @@ public class AbapStructureTypeWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.AbapStructureType> get___JmiInterface() {
         return abapmapping.abapdictionary.AbapStructureType.class;
     }

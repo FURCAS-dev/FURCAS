@@ -64,7 +64,6 @@ public final class AWithReplaceImpl extends com.sap.tc.moin.repository.core.jmi.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AWithReplace> get___JmiInterface() {
         return dataaccess.expressions.AWithReplace.class;
     }

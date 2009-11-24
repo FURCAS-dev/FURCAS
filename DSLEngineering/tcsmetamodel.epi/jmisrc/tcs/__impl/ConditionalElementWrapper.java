@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ConditionalElementImpl> implements tcs.ConditionalElement,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.j
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.ConditionalElementImpl getCastWrappedObject() {
         return (tcs.__impl.ConditionalElementImpl) getWrappedObject();
     }
@@ -356,7 +355,6 @@ public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.j
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConditionalElement> get___JmiInterface() {
         return tcs.ConditionalElement.class;
     }

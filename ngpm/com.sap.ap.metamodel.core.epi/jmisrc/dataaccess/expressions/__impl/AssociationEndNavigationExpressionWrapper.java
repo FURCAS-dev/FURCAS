@@ -8,7 +8,7 @@ public class AssociationEndNavigationExpressionWrapper extends com.sap.tc.moin.r
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -22,7 +22,6 @@ public class AssociationEndNavigationExpressionWrapper extends com.sap.tc.moin.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private dataaccess.expressions.__impl.AssociationEndNavigationExpressionImpl getCastWrappedObject() {
         return (dataaccess.expressions.__impl.AssociationEndNavigationExpressionImpl) getWrappedObject();
     }
@@ -286,7 +285,7 @@ public class AssociationEndNavigationExpressionWrapper extends com.sap.tc.moin.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -305,11 +304,10 @@ public class AssociationEndNavigationExpressionWrapper extends com.sap.tc.moin.r
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AssociationEndNavigationExpression> get___JmiInterface() {
         return dataaccess.expressions.AssociationEndNavigationExpression.class;
     }

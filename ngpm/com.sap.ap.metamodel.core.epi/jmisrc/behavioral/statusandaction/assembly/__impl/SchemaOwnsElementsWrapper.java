@@ -125,7 +125,6 @@ public class SchemaOwnsElementsWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.SchemaOwnsElements> get___JmiInterface() {
         return behavioral.statusandaction.assembly.SchemaOwnsElements.class;
     }

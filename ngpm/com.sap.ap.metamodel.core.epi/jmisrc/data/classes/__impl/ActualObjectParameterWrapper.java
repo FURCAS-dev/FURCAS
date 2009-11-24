@@ -6,7 +6,7 @@ package data.classes.__impl;
 
 public class ActualObjectParameterWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.classes.__impl.ActualObjectParameterImpl> implements data.classes.ActualObjectParameter,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ActualObjectParameterWrapper extends com.sap.tc.moin.repository.cor
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.classes.__impl.ActualObjectParameterImpl getCastWrappedObject() {
         return (data.classes.__impl.ActualObjectParameterImpl) getWrappedObject();
     }
@@ -192,7 +191,6 @@ public class ActualObjectParameterWrapper extends com.sap.tc.moin.repository.cor
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ActualObjectParameter> get___JmiInterface() {
         return data.classes.ActualObjectParameter.class;
     }

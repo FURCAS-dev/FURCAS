@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public class ValueSetEntryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.__impl.ValueSetEntryImpl> implements configuration.businessconfiguration.ValueSetEntry,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ValueSetEntryWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private configuration.businessconfiguration.__impl.ValueSetEntryImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.__impl.ValueSetEntryImpl) getWrappedObject();
     }
@@ -268,7 +267,6 @@ public class ValueSetEntryWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.ValueSetEntry> get___JmiInterface() {
         return configuration.businessconfiguration.ValueSetEntry.class;
     }

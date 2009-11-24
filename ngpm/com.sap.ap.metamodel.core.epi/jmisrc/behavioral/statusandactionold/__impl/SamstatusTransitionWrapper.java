@@ -125,7 +125,6 @@ public class SamstatusTransitionWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamstatusTransition> get___JmiInterface() {
         return behavioral.statusandactionold.SamstatusTransition.class;
     }

@@ -6,7 +6,7 @@ package behavioral.bpdm.__impl;
 
 public final class DummyImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -24,11 +24,10 @@ public final class DummyImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     // reflective methods
         
-
+    
 
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.bpdm.Dummy> get___JmiInterface() {
         return behavioral.bpdm.Dummy.class;
     }

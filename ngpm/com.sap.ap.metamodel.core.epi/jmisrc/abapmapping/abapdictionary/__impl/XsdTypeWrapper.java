@@ -6,7 +6,7 @@ package abapmapping.abapdictionary.__impl;
 
 public class XsdTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<abapmapping.abapdictionary.__impl.XsdTypeImpl> implements abapmapping.abapdictionary.XsdType,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class XsdTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private abapmapping.abapdictionary.__impl.XsdTypeImpl getCastWrappedObject() {
         return (abapmapping.abapdictionary.__impl.XsdTypeImpl) getWrappedObject();
     }
@@ -274,7 +273,6 @@ public class XsdTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.XsdType> get___JmiInterface() {
         return abapmapping.abapdictionary.XsdType.class;
     }

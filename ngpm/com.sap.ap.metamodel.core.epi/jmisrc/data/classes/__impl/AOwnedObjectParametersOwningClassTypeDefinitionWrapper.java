@@ -125,7 +125,6 @@ public class AOwnedObjectParametersOwningClassTypeDefinitionWrapper extends com.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AOwnedObjectParametersOwningClassTypeDefinition> get___JmiInterface() {
         return data.classes.AOwnedObjectParametersOwningClassTypeDefinition.class;
     }

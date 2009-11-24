@@ -8,7 +8,7 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -18,13 +18,14 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
         OPERATION_IDS.put("numericPostType", Integer.valueOf(3)); //$NON-NLS-1$
         OPERATION_IDS.put("getEnclosingType", Integer.valueOf(4)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(6)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAllAliases", Integer.valueOf(7)); //$NON-NLS-1$
     }
 
     public IntegerLiteralWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, behavior.expressions.literals.__impl.IntegerLiteralImpl baseObject, boolean synchronize) {
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavior.expressions.literals.__impl.IntegerLiteralImpl getCastWrappedObject() {
         return (behavior.expressions.literals.__impl.IntegerLiteralImpl) getWrappedObject();
     }
@@ -307,6 +308,94 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }
 
+    public behavior.expressions.WithArgument getWithArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.WithArgument) wrapResult(getCastWrappedObject().getWithArgument(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.WithArgument) wrapResult(getCastWrappedObject().getWithArgument(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setWithArgument(behavior.expressions.WithArgument newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setWithArgument(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setWithArgument(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public behavior.expressions.Alias getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.Alias) wrapResult(getCastWrappedObject().getAlias(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.Alias) wrapResult(getCastWrappedObject().getAlias(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setAlias(behavior.expressions.Alias newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setAlias(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setAlias(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
    
     // methods for modeled operations
     public structure.Type getImpliedType(java.lang.String name) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -368,6 +457,26 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
             return (java.lang.Boolean)___invokeOperation(connection, 5, "E0003E7BEAB6CF01B96811DEB969001A6BCDC3B3", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
+    public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (structure.Type)___invokeOperation(connection, 6, "E0003E7B9846E051D29711DE801F00155883529C", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
+    public java.util.Collection<behavior.expressions.Alias> getAllAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavior.expressions.Alias>)___invokeOperation(connection, 7, "E0003E7B680E6A22D2F111DE8CC20019D29902CC", parameterList); //$NON-NLS-1$
         } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
             throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
         }
@@ -445,6 +554,28 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
+    private structure.Type invoke__getImplicitContextType(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (structure.Type)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getImplicitContextType", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
+    private java.util.Collection<behavior.expressions.Alias> invoke__getAllAliases(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getAllAliases", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
 
     // reflective methods
     @Override
@@ -475,11 +606,17 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
                 
             case 5:
                 return ___invokeOperation( connection, operationId, "E0003E7BEAB6CF01B96811DEB969001A6BCDC3B3", args ); //$NON-NLS-1$    
+                
+            case 6:
+                return ___invokeOperation( connection, operationId, "E0003E7B9846E051D29711DE801F00155883529C", args ); //$NON-NLS-1$    
+                
+            case 7:
+                return ___invokeOperation( connection, operationId, "E0003E7B680E6A22D2F111DE8CC20019D29902CC", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -501,14 +638,19 @@ public class IntegerLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.r
                 
             case 5:
                 return invoke__isSideEffectFree(connection);    
+                
+            case 6:
+                return invoke__getImplicitContextType(connection);    
+                
+            case 7:
+                return invoke__getAllAliases(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.IntegerLiteral> get___JmiInterface() {
         return behavior.expressions.literals.IntegerLiteral.class;
     }

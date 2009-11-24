@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public class ScopingContextWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.__impl.ScopingContextImpl> implements configuration.businessconfiguration.ScopingContext,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ScopingContextWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private configuration.businessconfiguration.__impl.ScopingContextImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.__impl.ScopingContextImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class ScopingContextWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.ScopingContext> get___JmiInterface() {
         return configuration.businessconfiguration.ScopingContext.class;
     }

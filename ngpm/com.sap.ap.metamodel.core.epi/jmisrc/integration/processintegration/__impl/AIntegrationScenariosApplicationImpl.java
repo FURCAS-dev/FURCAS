@@ -63,7 +63,6 @@ public final class AIntegrationScenariosApplicationImpl extends com.sap.tc.moin.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.AIntegrationScenariosApplication> get___JmiInterface() {
         return integration.processintegration.AIntegrationScenariosApplication.class;
     }

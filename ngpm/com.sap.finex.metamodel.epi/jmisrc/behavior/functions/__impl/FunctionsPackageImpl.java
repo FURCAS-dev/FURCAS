@@ -8,15 +8,17 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
         FEATURE_IDS.put("Function", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("Parameter", Integer.valueOf(1)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_implementation_signature", Integer.valueOf(2)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_parameters_signature", Integer.valueOf(3)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_expression_parameter", Integer.valueOf(4)); //$NON-NLS-1$
+        FEATURE_IDS.put("SignatureImplementation", Integer.valueOf(2)); //$NON-NLS-1$
+        FEATURE_IDS.put("NativeImpl", Integer.valueOf(3)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_implementation_signature", Integer.valueOf(4)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_parameters_signature", Integer.valueOf(5)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_expression_parameter", Integer.valueOf(6)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -46,6 +48,12 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getParameter(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "Parameter"); //$NON-NLS-1$
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getSignatureImplementation(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "SignatureImplementation"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getNativeImpl(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "NativeImpl"); //$NON-NLS-1$
+    }
     // associations
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAImplementationSignature(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_implementation_signature"); //$NON-NLS-1$
@@ -68,10 +76,14 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
                 case 1:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.functions.__impl.ParameterImpl")); //$NON-NLS-1$
                 case 2:
-                    return new behavior.functions.__impl.AImplementationSignatureImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject);
                 case 3:
-                    return new behavior.functions.__impl.AParametersSignatureImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.functions.__impl.NativeImplImpl")); //$NON-NLS-1$
                 case 4:
+                    return new behavior.functions.__impl.AImplementationSignatureImpl(workspace, mofId, immediatePackage, metaObject);
+                case 5:
+                    return new behavior.functions.__impl.AParametersSignatureImpl(workspace, mofId, immediatePackage, metaObject);
+                case 6:
                     return new behavior.functions.__impl.AExpressionParameterImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
@@ -85,7 +97,6 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.FunctionsPackage> get___JmiInterface() {
         return behavior.functions.FunctionsPackage.class;
     }
@@ -94,14 +105,12 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
         if (___refClasses == null) {
-            ___refClasses = new java.util.ArrayList<RefClassAndName>(2);
+            ___refClasses = new java.util.ArrayList<RefClassAndName>(4);
             ___refClassesByName = new java.util.HashMap<String, RefClassAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefClassAndName rcan = null;
@@ -113,14 +122,20 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
             rcan = new RefClassAndName(name, "behavior.functions.Parameter"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
+            name = "SignatureImplementation"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.functions.SignatureImplementation"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "NativeImpl"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.functions.NativeImpl"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
         }
   
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(3);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_implementation_signature"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.functions.AImplementationSignature"); //$NON-NLS-1$

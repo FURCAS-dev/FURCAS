@@ -64,7 +64,6 @@ public final class SamschemaValueForSamschemaVariableImpl extends com.sap.tc.moi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamschemaValueForSamschemaVariable> get___JmiInterface() {
         return behavioral.statusandactionold.SamschemaValueForSamschemaVariable.class;
     }

@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class SequenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.SequenceImpl> implements integration.xsd.Sequence,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class SequenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.SequenceImpl getCastWrappedObject() {
         return (integration.xsd.__impl.SequenceImpl) getWrappedObject();
     }
@@ -249,7 +248,6 @@ public class SequenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.Sequence> get___JmiInterface() {
         return integration.xsd.Sequence.class;
     }

@@ -125,7 +125,6 @@ public class FaultsOfSignatureWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.FaultsOfSignature> get___JmiInterface() {
         return data.classes.FaultsOfSignature.class;
     }

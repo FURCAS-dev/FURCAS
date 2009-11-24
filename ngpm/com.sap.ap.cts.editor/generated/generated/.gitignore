@@ -1,6 +1,8 @@
 /Actions__.g
 /Actions.g
 /Actions.tokens
+/ActionsLexer.java
+/ActionsParser.java
 /Class__.g
 /Class.g
 /Class.tokens

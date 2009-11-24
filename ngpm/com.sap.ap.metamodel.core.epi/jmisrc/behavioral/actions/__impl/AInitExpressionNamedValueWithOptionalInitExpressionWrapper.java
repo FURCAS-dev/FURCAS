@@ -125,7 +125,6 @@ public class AInitExpressionNamedValueWithOptionalInitExpressionWrapper extends 
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AInitExpressionNamedValueWithOptionalInitExpression> get___JmiInterface() {
         return behavioral.actions.AInitExpressionNamedValueWithOptionalInitExpression.class;
     }

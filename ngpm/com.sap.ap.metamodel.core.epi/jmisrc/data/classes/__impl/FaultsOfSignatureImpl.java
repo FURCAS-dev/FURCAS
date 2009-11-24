@@ -63,7 +63,6 @@ public final class FaultsOfSignatureImpl extends com.sap.tc.moin.repository.core
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.FaultsOfSignature> get___JmiInterface() {
         return data.classes.FaultsOfSignature.class;
     }

@@ -64,7 +64,6 @@ public final class DelegationToEndImpl extends com.sap.tc.moin.repository.core.j
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.DelegationToEnd> get___JmiInterface() {
         return data.classes.DelegationToEnd.class;
     }

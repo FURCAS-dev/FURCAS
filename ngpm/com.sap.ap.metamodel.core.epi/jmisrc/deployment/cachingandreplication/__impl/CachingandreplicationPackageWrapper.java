@@ -24,7 +24,6 @@ public class CachingandreplicationPackageWrapper extends com.sap.tc.moin.reposit
     
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<deployment.cachingandreplication.CachingandreplicationPackage> get___JmiInterface() {
         return deployment.cachingandreplication.CachingandreplicationPackage.class;
     }

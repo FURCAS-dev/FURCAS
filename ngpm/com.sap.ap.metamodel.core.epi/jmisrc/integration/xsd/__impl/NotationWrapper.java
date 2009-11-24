@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class NotationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.NotationImpl> implements integration.xsd.Notation,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class NotationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.NotationImpl getCastWrappedObject() {
         return (integration.xsd.__impl.NotationImpl) getWrappedObject();
     }
@@ -271,7 +270,6 @@ public class NotationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.Notation> get___JmiInterface() {
         return integration.xsd.Notation.class;
     }

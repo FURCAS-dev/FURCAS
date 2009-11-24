@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class OperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.OperatorImpl> implements behavioral.statusandaction.assembly.Operator,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class OperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.OperatorImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.OperatorImpl) getWrappedObject();
     }
@@ -130,7 +129,6 @@ public class OperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.Operator> get___JmiInterface() {
         return behavioral.statusandaction.assembly.Operator.class;
     }

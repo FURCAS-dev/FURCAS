@@ -8,7 +8,7 @@ public final class CollectionExpressionsPackageImpl extends com.sap.tc.moin.repo
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(16);
@@ -119,7 +119,6 @@ public final class CollectionExpressionsPackageImpl extends com.sap.tc.moin.repo
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.collectionexpressions.CollectionExpressionsPackage> get___JmiInterface() {
         return dataaccess.expressions.collectionexpressions.CollectionExpressionsPackage.class;
     }
@@ -128,9 +127,7 @@ public final class CollectionExpressionsPackageImpl extends com.sap.tc.moin.repo
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -176,9 +173,7 @@ public final class CollectionExpressionsPackageImpl extends com.sap.tc.moin.repo
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(4);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "SourceOfCollectionExpression"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "dataaccess.expressions.collectionexpressions.SourceOfCollectionExpression"); //$NON-NLS-1$

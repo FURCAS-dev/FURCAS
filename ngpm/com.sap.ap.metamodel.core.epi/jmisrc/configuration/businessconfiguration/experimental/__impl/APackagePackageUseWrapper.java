@@ -125,7 +125,6 @@ public class APackagePackageUseWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.APackagePackageUse> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.APackagePackageUse.class;
     }

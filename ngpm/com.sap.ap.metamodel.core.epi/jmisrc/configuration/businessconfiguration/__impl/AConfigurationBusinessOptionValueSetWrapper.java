@@ -125,7 +125,6 @@ public class AConfigurationBusinessOptionValueSetWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.AConfigurationBusinessOptionValueSet> get___JmiInterface() {
         return configuration.businessconfiguration.AConfigurationBusinessOptionValueSet.class;
     }

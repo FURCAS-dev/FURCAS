@@ -398,7 +398,6 @@ public class BusinessconfigurationPackageWrapper extends com.sap.tc.moin.reposit
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.BusinessconfigurationPackage> get___JmiInterface() {
         return configuration.businessconfiguration.BusinessconfigurationPackage.class;
     }

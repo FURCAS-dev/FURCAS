@@ -125,7 +125,6 @@ public class ATheClassTimeDependencyWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.timedependency.ATheClassTimeDependency> get___JmiInterface() {
         return data.timedependency.ATheClassTimeDependency.class;
     }

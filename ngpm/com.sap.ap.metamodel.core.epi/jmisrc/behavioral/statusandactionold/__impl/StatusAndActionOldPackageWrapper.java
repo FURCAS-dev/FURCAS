@@ -706,7 +706,6 @@ public class StatusAndActionOldPackageWrapper extends com.sap.tc.moin.repository
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.StatusAndActionOldPackage> get___JmiInterface() {
         return behavioral.statusandactionold.StatusAndActionOldPackage.class;
     }

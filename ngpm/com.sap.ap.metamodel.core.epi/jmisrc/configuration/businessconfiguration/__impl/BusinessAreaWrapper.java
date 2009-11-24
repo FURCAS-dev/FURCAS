@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public class BusinessAreaWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.__impl.BusinessAreaImpl> implements configuration.businessconfiguration.BusinessArea,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class BusinessAreaWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private configuration.businessconfiguration.__impl.BusinessAreaImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.__impl.BusinessAreaImpl) getWrappedObject();
     }
@@ -85,7 +84,6 @@ public class BusinessAreaWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.BusinessArea> get___JmiInterface() {
         return configuration.businessconfiguration.BusinessArea.class;
     }

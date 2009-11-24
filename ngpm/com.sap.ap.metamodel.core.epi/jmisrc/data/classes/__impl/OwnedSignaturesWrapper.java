@@ -125,7 +125,6 @@ public class OwnedSignaturesWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.OwnedSignatures> get___JmiInterface() {
         return data.classes.OwnedSignatures.class;
     }

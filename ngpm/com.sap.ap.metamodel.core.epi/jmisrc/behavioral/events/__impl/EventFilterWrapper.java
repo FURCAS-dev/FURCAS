@@ -6,7 +6,7 @@ package behavioral.events.__impl;
 
 public class EventFilterWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.events.__impl.EventFilterImpl> implements behavioral.events.EventFilter,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class EventFilterWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.events.__impl.EventFilterImpl getCastWrappedObject() {
         return (behavioral.events.__impl.EventFilterImpl) getWrappedObject();
     }
@@ -123,7 +122,6 @@ public class EventFilterWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.EventFilter> get___JmiInterface() {
         return behavioral.events.EventFilter.class;
     }

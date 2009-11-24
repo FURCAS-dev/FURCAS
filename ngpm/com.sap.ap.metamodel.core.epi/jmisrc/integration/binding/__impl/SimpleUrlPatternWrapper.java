@@ -6,7 +6,7 @@ package integration.binding.__impl;
 
 public class SimpleUrlPatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.binding.__impl.SimpleUrlPatternImpl> implements integration.binding.SimpleUrlPattern,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class SimpleUrlPatternWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.binding.__impl.SimpleUrlPatternImpl getCastWrappedObject() {
         return (integration.binding.__impl.SimpleUrlPatternImpl) getWrappedObject();
     }
@@ -86,7 +85,6 @@ public class SimpleUrlPatternWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.SimpleUrlPattern> get___JmiInterface() {
         return integration.binding.SimpleUrlPattern.class;
     }

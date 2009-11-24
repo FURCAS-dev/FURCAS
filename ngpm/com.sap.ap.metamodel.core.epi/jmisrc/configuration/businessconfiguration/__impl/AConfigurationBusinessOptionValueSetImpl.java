@@ -63,7 +63,6 @@ public final class AConfigurationBusinessOptionValueSetImpl extends com.sap.tc.m
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.AConfigurationBusinessOptionValueSet> get___JmiInterface() {
         return configuration.businessconfiguration.AConfigurationBusinessOptionValueSet.class;
     }

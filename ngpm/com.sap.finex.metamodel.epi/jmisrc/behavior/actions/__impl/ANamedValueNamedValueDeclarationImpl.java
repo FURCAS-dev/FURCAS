@@ -63,7 +63,6 @@ public final class ANamedValueNamedValueDeclarationImpl extends com.sap.tc.moin.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ANamedValueNamedValueDeclaration> get___JmiInterface() {
         return behavior.actions.ANamedValueNamedValueDeclaration.class;
     }

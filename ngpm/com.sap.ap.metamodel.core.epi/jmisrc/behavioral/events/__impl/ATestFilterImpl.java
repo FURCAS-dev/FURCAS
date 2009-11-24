@@ -64,7 +64,6 @@ public final class ATestFilterImpl extends com.sap.tc.moin.repository.core.jmi.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.ATestFilter> get___JmiInterface() {
         return behavioral.events.ATestFilter.class;
     }

@@ -286,6 +286,28 @@ public class ActionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.r
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getManipulator()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getManipulator(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getManipulator(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public behavior.actions.AStatementsBlock getAStatementsBlock()
     {
         try {
@@ -440,9 +462,30 @@ public class ActionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.r
             throw ex;
         }
     }
+    public behavior.actions.AAssignmentsManipulator getAAssignmentsManipulator()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.actions.AAssignmentsManipulator) wrapResult(getCastWrappedObject().getAAssignmentsManipulator(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.actions.AAssignmentsManipulator) wrapResult(getCastWrappedObject().getAAssignmentsManipulator(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ActionsPackage> get___JmiInterface() {
         return behavior.actions.ActionsPackage.class;
     }

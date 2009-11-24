@@ -125,7 +125,6 @@ public class ATypeAssociationEndWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ATypeAssociationEnd> get___JmiInterface() {
         return data.classes.ATypeAssociationEnd.class;
     }

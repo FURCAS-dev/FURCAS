@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class TransitionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.TransitionImpl> implements behavioral.statusandaction.assembly.Transition,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class TransitionWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.TransitionImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.TransitionImpl) getWrappedObject();
     }
@@ -218,7 +217,6 @@ public class TransitionWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.Transition> get___JmiInterface() {
         return behavioral.statusandaction.assembly.Transition.class;
     }

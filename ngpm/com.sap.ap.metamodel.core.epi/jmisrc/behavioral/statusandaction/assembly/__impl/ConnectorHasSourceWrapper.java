@@ -125,7 +125,6 @@ public class ConnectorHasSourceWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.ConnectorHasSource> get___JmiInterface() {
         return behavioral.statusandaction.assembly.ConnectorHasSource.class;
     }

@@ -8,7 +8,7 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(6);
@@ -85,12 +85,12 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
     public void setNode(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0BC871351E205E93E4B11DEBD2B0018DE1146FF", /* mofId of reference */ "E0BC871351DF94F13E4B11DE97A50018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setNode(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0BC871351E205E93E4B11DEBD2B0018DE1146FF", /* mofId of reference */ "E0BC871351DF94F13E4B11DE97A50018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public java.util.Collection getElements() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -143,7 +143,7 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -173,7 +173,7 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -186,7 +186,7 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -199,7 +199,7 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -212,7 +212,7 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -265,7 +265,6 @@ public final class StatusSchemaImpl extends com.sap.tc.moin.repository.core.jmi.
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.StatusSchema> get___JmiInterface() {
         return behavioral.statusandaction.assembly.StatusSchema.class;
     }

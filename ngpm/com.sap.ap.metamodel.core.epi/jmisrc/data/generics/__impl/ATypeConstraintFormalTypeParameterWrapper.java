@@ -125,7 +125,6 @@ public class ATypeConstraintFormalTypeParameterWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.ATypeConstraintFormalTypeParameter> get___JmiInterface() {
         return data.generics.ATypeConstraintFormalTypeParameter.class;
     }

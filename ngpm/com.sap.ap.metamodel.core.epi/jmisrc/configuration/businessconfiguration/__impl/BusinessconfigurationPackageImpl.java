@@ -8,7 +8,7 @@ public final class BusinessconfigurationPackageImpl extends com.sap.tc.moin.repo
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(23);
@@ -149,7 +149,6 @@ public final class BusinessconfigurationPackageImpl extends com.sap.tc.moin.repo
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.BusinessconfigurationPackage> get___JmiInterface() {
         return configuration.businessconfiguration.BusinessconfigurationPackage.class;
     }
@@ -158,9 +157,7 @@ public final class BusinessconfigurationPackageImpl extends com.sap.tc.moin.repo
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(1);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "experimental"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "configuration.businessconfiguration.experimental.ExperimentalPackage", false); //$NON-NLS-1$
@@ -218,9 +215,7 @@ public final class BusinessconfigurationPackageImpl extends com.sap.tc.moin.repo
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(6);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_businessPackage_businessArea"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "configuration.businessconfiguration.ABusinessPackageBusinessArea"); //$NON-NLS-1$

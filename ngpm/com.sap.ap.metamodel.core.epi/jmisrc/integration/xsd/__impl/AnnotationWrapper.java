@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class AnnotationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.AnnotationImpl> implements integration.xsd.Annotation,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AnnotationWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.AnnotationImpl getCastWrappedObject() {
         return (integration.xsd.__impl.AnnotationImpl) getWrappedObject();
     }
@@ -133,7 +132,6 @@ public class AnnotationWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.Annotation> get___JmiInterface() {
         return integration.xsd.Annotation.class;
     }

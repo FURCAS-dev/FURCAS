@@ -6,7 +6,7 @@ package modelmanagement.deploymentunits.__impl;
 
 public class DeploymentUnitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<modelmanagement.deploymentunits.__impl.DeploymentUnitImpl> implements modelmanagement.deploymentunits.DeploymentUnit,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DeploymentUnitWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private modelmanagement.deploymentunits.__impl.DeploymentUnitImpl getCastWrappedObject() {
         return (modelmanagement.deploymentunits.__impl.DeploymentUnitImpl) getWrappedObject();
     }
@@ -180,7 +179,6 @@ public class DeploymentUnitWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.deploymentunits.DeploymentUnit> get___JmiInterface() {
         return modelmanagement.deploymentunits.DeploymentUnit.class;
     }

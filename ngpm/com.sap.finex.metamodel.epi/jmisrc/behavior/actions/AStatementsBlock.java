@@ -4,6 +4,7 @@
 
 package behavior.actions;
 /**
+ * The block multiplicity is 0..1 because subclasses of Statement, such as Assignment, may occur in other contexts such as a Manipulator as well
  * This interface is not intended to be implemented by clients.
  */
 public interface AStatementsBlock extends com.sap.tc.moin.repository.mmi.reflect.RefAssociation

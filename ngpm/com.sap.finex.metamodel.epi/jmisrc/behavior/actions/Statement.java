@@ -28,6 +28,7 @@ public interface Statement extends com.sap.tc.moin.repository.mmi.reflect.RefObj
     // operations
     public structure.Type getEnclosingType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public boolean isSideEffectFree() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -65,6 +66,17 @@ public interface Statement extends com.sap.tc.moin.repository.mmi.reflect.RefObj
                 __isSideEffectFree = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,java.lang.Boolean>( "E0003E7BEABB89F4B96811DEA884001A6BCDC3B3", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Statement", "isSideEffectFree" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __isSideEffectFree;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,structure.Type> __getImplicitContextType;
+        /**
+         * Returns the descriptor for the <code>getImplicitContextType</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextType</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,structure.Type> GET_IMPLICIT_CONTEXT_TYPE( ) {
+            if ( __getImplicitContextType == null ) {
+                __getImplicitContextType = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.actions.Statement,structure.Type>( "E0003E7B984E0C42D29711DEAF5100155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "actions", "Statement", "getImplicitContextType" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getImplicitContextType;
         }
     }
 }    

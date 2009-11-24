@@ -125,7 +125,6 @@ public class ConstrainsWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.Constrains> get___JmiInterface() {
         return data.constraints.Constrains.class;
     }

@@ -8,7 +8,7 @@ public final class AbapMappingPackageImpl extends com.sap.tc.moin.repository.cor
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(14);
@@ -118,7 +118,6 @@ public final class AbapMappingPackageImpl extends com.sap.tc.moin.repository.cor
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AbapMappingPackage> get___JmiInterface() {
         return abapmapping.AbapMappingPackage.class;
     }
@@ -127,9 +126,7 @@ public final class AbapMappingPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(1);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "AbapDictionary"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "abapmapping.abapdictionary.AbapDictionaryPackage", false); //$NON-NLS-1$
@@ -163,9 +160,7 @@ public final class AbapMappingPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(5);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_abapAnnotation_sapClass"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "abapmapping.AAbapAnnotationSapClass"); //$NON-NLS-1$

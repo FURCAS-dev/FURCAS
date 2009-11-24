@@ -125,7 +125,6 @@ public class AAssignToAssignmentsWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AAssignToAssignments> get___JmiInterface() {
         return behavioral.actions.AAssignToAssignments.class;
     }

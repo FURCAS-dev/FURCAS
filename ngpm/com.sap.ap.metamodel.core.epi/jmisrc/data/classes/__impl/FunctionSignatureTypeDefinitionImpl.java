@@ -10,7 +10,7 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
@@ -134,12 +134,12 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
     public void setOwnerTypedElement(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BD63E4B11DEB7290018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0FB3E4B11DE994D0018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOwnerTypedElement(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BD63E4B11DEB7290018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0FB3E4B11DE994D0018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOwnerSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -154,12 +154,12 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
     public void setOwnerSignature(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BD93E4B11DEBD740018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0FC3E4B11DEB1C20018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOwnerSignature(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BD93E4B11DEBD740018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0FC3E4B11DEB1C20018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -174,12 +174,12 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
     public void setSignature(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF", /* mofId of reference */ "E0234C8C51E931CF3E4B11DE802F0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setSignature(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BEE3E4B11DE976B0018DE1146FF", /* mofId of reference */ "E0234C8C51E931CF3E4B11DE802F0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOwnedSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -194,12 +194,12 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
     public void setOwnedSignature(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BF43E4B11DE9C2C0018DE1146FF", /* mofId of reference */ "E0234C8C51E931D03E4B11DEB1FA0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOwnedSignature(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BF43E4B11DE9C2C0018DE1146FF", /* mofId of reference */ "E0234C8C51E931D03E4B11DEB1FA0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -263,7 +263,7 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -313,7 +313,7 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -332,7 +332,7 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -351,7 +351,7 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -370,7 +370,7 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -412,7 +412,6 @@ public final class FunctionSignatureTypeDefinitionImpl extends com.sap.tc.moin.r
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.FunctionSignatureTypeDefinition> get___JmiInterface() {
         return data.classes.FunctionSignatureTypeDefinition.class;
     }

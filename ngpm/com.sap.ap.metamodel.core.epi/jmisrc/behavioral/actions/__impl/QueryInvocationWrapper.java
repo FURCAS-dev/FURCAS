@@ -6,7 +6,7 @@ package behavioral.actions.__impl;
 
 public class QueryInvocationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.actions.__impl.QueryInvocationImpl> implements behavioral.actions.QueryInvocation,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class QueryInvocationWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.actions.__impl.QueryInvocationImpl getCastWrappedObject() {
         return (behavioral.actions.__impl.QueryInvocationImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class QueryInvocationWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.QueryInvocation> get___JmiInterface() {
         return behavioral.actions.QueryInvocation.class;
     }

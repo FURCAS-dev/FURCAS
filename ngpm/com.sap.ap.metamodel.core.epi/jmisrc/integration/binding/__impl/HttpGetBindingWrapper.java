@@ -6,7 +6,7 @@ package integration.binding.__impl;
 
 public class HttpGetBindingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.binding.__impl.HttpGetBindingImpl> implements integration.binding.HttpGetBinding,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class HttpGetBindingWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.binding.__impl.HttpGetBindingImpl getCastWrappedObject() {
         return (integration.binding.__impl.HttpGetBindingImpl) getWrappedObject();
     }
@@ -218,7 +217,6 @@ public class HttpGetBindingWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.HttpGetBinding> get___JmiInterface() {
         return integration.binding.HttpGetBinding.class;
     }

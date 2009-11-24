@@ -125,7 +125,6 @@ public class AFormalObjectParametersParameterOfClassWrapper extends com.sap.tc.m
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AFormalObjectParametersParameterOfClass> get___JmiInterface() {
         return data.classes.AFormalObjectParametersParameterOfClass.class;
     }

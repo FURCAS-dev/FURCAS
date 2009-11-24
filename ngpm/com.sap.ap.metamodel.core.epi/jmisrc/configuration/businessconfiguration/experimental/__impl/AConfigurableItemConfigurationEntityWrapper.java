@@ -125,7 +125,6 @@ public class AConfigurableItemConfigurationEntityWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AConfigurableItemConfigurationEntity> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AConfigurableItemConfigurationEntity.class;
     }

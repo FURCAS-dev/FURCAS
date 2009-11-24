@@ -90,7 +90,6 @@ public class QueryPackageWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.query.QueryPackage> get___JmiInterface() {
         return dataaccess.query.QueryPackage.class;
     }

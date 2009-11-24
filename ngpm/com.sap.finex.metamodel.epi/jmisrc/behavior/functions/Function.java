@@ -22,8 +22,8 @@ public interface Function extends finex.modelmanagement.NamedElement {
 
     
     // references
-    public behavior.actions.Block getImplementation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public void setImplementation(behavior.actions.Block newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.functions.SignatureImplementation getImplementation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setImplementation(behavior.functions.SignatureImplementation newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public java.util.List<behavior.functions.Parameter> getParameters() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
     // operations
@@ -40,14 +40,14 @@ public interface Function extends finex.modelmanagement.NamedElement {
         public com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,finex.modelmanagement.NamedElement,java.lang.String> NAME( ) {
             return finex.modelmanagement.NamedElement.DESCRIPTORS.NAME( );
         }
-        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.Function,behavior.actions.Block> __implementation;
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.Function,behavior.functions.SignatureImplementation> __implementation;
         /**
          * Returns the descriptor for the <code>implementation</code> reference.
          * @return  the descriptor for the <code>implementation</code> reference
          */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.Function,behavior.actions.Block> IMPLEMENTATION( ) {
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.Function,behavior.functions.SignatureImplementation> IMPLEMENTATION( ) {
             if ( __implementation == null ) {
-                __implementation = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.Function,behavior.actions.Block>( "E0003E7BF56CDE8BB1C511DEC81F001A6BCDC3B3", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "functions", "Function", "implementation" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+                __implementation = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.functions.Function,behavior.functions.SignatureImplementation>( "E0003E7BF56CDE8BB1C511DEC81F001A6BCDC3B3", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "functions", "Function", "implementation" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __implementation;
         }

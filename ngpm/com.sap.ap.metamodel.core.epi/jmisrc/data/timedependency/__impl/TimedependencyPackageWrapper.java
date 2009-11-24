@@ -90,7 +90,6 @@ public class TimedependencyPackageWrapper extends com.sap.tc.moin.repository.cor
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.timedependency.TimedependencyPackage> get___JmiInterface() {
         return data.timedependency.TimedependencyPackage.class;
     }

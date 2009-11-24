@@ -63,7 +63,6 @@ public final class AConfigurationEntityPickListImpl extends com.sap.tc.moin.repo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AConfigurationEntityPickList> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AConfigurationEntityPickList.class;
     }

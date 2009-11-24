@@ -244,7 +244,6 @@ public class ContextDriversPackageWrapper extends com.sap.tc.moin.repository.cor
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ContextDriversPackage> get___JmiInterface() {
         return configuration.contextdrivers.ContextDriversPackage.class;
     }

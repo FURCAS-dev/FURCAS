@@ -63,7 +63,6 @@ public final class SamstatusVariableForBusinessObjectNodeImpl extends com.sap.tc
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamstatusVariableForBusinessObjectNode> get___JmiInterface() {
         return behavioral.statusandactionold.SamstatusVariableForBusinessObjectNode.class;
     }

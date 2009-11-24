@@ -125,7 +125,6 @@ public class AEntityConfigurationSettingWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AEntityConfigurationSetting> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AEntityConfigurationSetting.class;
     }

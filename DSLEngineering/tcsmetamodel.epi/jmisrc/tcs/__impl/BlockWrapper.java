@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.BlockImpl> implements tcs.Block,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.BlockImpl getCastWrappedObject() {
         return (tcs.__impl.BlockImpl) getWrappedObject();
     }
@@ -293,7 +292,6 @@ public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Block> get___JmiInterface() {
         return tcs.Block.class;
     }

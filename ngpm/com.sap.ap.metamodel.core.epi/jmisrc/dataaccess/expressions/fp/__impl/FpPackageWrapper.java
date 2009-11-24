@@ -90,7 +90,6 @@ public class FpPackageWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.fp.FpPackage> get___JmiInterface() {
         return dataaccess.expressions.fp.FpPackage.class;
     }

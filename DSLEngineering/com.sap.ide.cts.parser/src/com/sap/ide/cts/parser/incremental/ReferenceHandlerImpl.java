@@ -268,8 +268,14 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 						if (refToken.getReferencedElements().size() > 0) {
 							for (RefObject value : refToken
 									.getReferencedElements()) {
+							    try {
 								batchParser.getInjector().unset(modelElement,
 										ref.getPropertyName(), value);
+							    } catch(Exception ex) {
+							        // TODO find out which corresponding
+                                                                // element was the correct one
+                                                                // instead of trying this here
+							    }
 							}
 						}
 					}

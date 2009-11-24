@@ -125,7 +125,6 @@ public class SubscriptionsWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.Subscriptions> get___JmiInterface() {
         return behavioral.events.Subscriptions.class;
     }

@@ -8,7 +8,7 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -22,7 +22,6 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private structure.__impl.FieldImpl getCastWrappedObject() {
         return (structure.__impl.FieldImpl) getWrappedObject();
     }
@@ -405,6 +404,50 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         }
     }
 
+    public structure.Association getAssociation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (structure.Association) wrapResult(getCastWrappedObject().getAssociation(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (structure.Association) wrapResult(getCastWrappedObject().getAssociation(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setAssociation(structure.Association newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setAssociation(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setAssociation(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
    
     // methods for modeled operations
     public structure.Type getImpliedType(java.lang.String name) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -523,7 +566,7 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -542,11 +585,10 @@ public class FieldWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.Field> get___JmiInterface() {
         return structure.Field.class;
     }

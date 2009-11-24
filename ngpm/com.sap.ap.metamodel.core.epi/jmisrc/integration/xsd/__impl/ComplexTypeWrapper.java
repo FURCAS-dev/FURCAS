@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class ComplexTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.ComplexTypeImpl> implements integration.xsd.ComplexType,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ComplexTypeWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.ComplexTypeImpl getCastWrappedObject() {
         return (integration.xsd.__impl.ComplexTypeImpl) getWrappedObject();
     }
@@ -246,7 +245,6 @@ public class ComplexTypeWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.ComplexType> get___JmiInterface() {
         return integration.xsd.ComplexType.class;
     }

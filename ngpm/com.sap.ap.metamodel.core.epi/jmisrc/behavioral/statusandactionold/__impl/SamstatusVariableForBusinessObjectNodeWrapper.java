@@ -125,7 +125,6 @@ public class SamstatusVariableForBusinessObjectNodeWrapper extends com.sap.tc.mo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamstatusVariableForBusinessObjectNode> get___JmiInterface() {
         return behavioral.statusandactionold.SamstatusVariableForBusinessObjectNode.class;
     }

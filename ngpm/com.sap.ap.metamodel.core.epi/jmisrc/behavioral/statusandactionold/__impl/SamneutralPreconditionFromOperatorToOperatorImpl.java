@@ -63,7 +63,6 @@ public final class SamneutralPreconditionFromOperatorToOperatorImpl extends com.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamneutralPreconditionFromOperatorToOperator> get___JmiInterface() {
         return behavioral.statusandactionold.SamneutralPreconditionFromOperatorToOperator.class;
     }

@@ -6,7 +6,7 @@ package modelmanagement.processcomponents.__impl;
 
 public class ProcessComponentInsideCompanyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<modelmanagement.processcomponents.__impl.ProcessComponentInsideCompanyImpl> implements modelmanagement.processcomponents.ProcessComponentInsideCompany,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ProcessComponentInsideCompanyWrapper extends com.sap.tc.moin.reposi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private modelmanagement.processcomponents.__impl.ProcessComponentInsideCompanyImpl getCastWrappedObject() {
         return (modelmanagement.processcomponents.__impl.ProcessComponentInsideCompanyImpl) getWrappedObject();
     }
@@ -255,7 +254,6 @@ public class ProcessComponentInsideCompanyWrapper extends com.sap.tc.moin.reposi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.processcomponents.ProcessComponentInsideCompany> get___JmiInterface() {
         return modelmanagement.processcomponents.ProcessComponentInsideCompany.class;
     }

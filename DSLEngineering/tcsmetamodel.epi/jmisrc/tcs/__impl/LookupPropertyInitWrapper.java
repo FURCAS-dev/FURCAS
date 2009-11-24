@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class LookupPropertyInitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.LookupPropertyInitImpl> implements tcs.LookupPropertyInit,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class LookupPropertyInitWrapper extends com.sap.tc.moin.repository.core.j
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.LookupPropertyInitImpl getCastWrappedObject() {
         return (tcs.__impl.LookupPropertyInitImpl) getWrappedObject();
     }
@@ -221,7 +220,6 @@ public class LookupPropertyInitWrapper extends com.sap.tc.moin.repository.core.j
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.LookupPropertyInit> get___JmiInterface() {
         return tcs.LookupPropertyInit.class;
     }

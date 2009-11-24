@@ -6,7 +6,7 @@ package ui.databinding.__impl;
 
 public final class DummyImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -24,11 +24,10 @@ public final class DummyImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     // reflective methods
         
-
+    
 
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.databinding.Dummy> get___JmiInterface() {
         return ui.databinding.Dummy.class;
     }

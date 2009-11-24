@@ -125,7 +125,6 @@ public class AUsesInteractionsWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.AUsesInteractions> get___JmiInterface() {
         return integration.processintegration.AUsesInteractions.class;
     }

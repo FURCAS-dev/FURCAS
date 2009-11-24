@@ -125,7 +125,6 @@ public class OutputOfSignatureWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.OutputOfSignature> get___JmiInterface() {
         return data.classes.OutputOfSignature.class;
     }

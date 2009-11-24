@@ -125,7 +125,6 @@ public class AObjectParametersClassTypeDefinitionsWrapper extends com.sap.tc.moi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AObjectParametersClassTypeDefinitions> get___JmiInterface() {
         return data.classes.AObjectParametersClassTypeDefinitions.class;
     }

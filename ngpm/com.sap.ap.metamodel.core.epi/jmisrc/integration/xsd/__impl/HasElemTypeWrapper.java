@@ -125,7 +125,6 @@ public class HasElemTypeWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasElemType> get___JmiInterface() {
         return integration.xsd.HasElemType.class;
     }

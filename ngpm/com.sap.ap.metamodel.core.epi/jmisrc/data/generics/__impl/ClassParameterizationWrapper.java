@@ -6,7 +6,7 @@ package data.generics.__impl;
 
 public class ClassParameterizationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.generics.__impl.ClassParameterizationImpl> implements data.generics.ClassParameterization,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ClassParameterizationWrapper extends com.sap.tc.moin.repository.cor
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.generics.__impl.ClassParameterizationImpl getCastWrappedObject() {
         return (data.generics.__impl.ClassParameterizationImpl) getWrappedObject();
     }
@@ -148,7 +147,6 @@ public class ClassParameterizationWrapper extends com.sap.tc.moin.repository.cor
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.ClassParameterization> get___JmiInterface() {
         return data.generics.ClassParameterization.class;
     }

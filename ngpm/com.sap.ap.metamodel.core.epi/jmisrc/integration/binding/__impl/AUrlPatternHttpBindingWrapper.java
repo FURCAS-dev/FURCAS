@@ -125,7 +125,6 @@ public class AUrlPatternHttpBindingWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.AUrlPatternHttpBinding> get___JmiInterface() {
         return integration.binding.AUrlPatternHttpBinding.class;
     }

@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class ChoiceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.ChoiceImpl> implements integration.xsd.Choice,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ChoiceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.ChoiceImpl getCastWrappedObject() {
         return (integration.xsd.__impl.ChoiceImpl) getWrappedObject();
     }
@@ -249,7 +248,6 @@ public class ChoiceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.Choice> get___JmiInterface() {
         return integration.xsd.Choice.class;
     }

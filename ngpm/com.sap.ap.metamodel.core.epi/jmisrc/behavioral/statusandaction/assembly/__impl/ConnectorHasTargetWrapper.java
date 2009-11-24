@@ -125,7 +125,6 @@ public class ConnectorHasTargetWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.ConnectorHasTarget> get___JmiInterface() {
         return behavioral.statusandaction.assembly.ConnectorHasTarget.class;
     }

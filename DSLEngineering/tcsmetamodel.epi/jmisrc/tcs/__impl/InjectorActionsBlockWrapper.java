@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class InjectorActionsBlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.InjectorActionsBlockImpl> implements tcs.InjectorActionsBlock,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class InjectorActionsBlockWrapper extends com.sap.tc.moin.repository.core
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.InjectorActionsBlockImpl getCastWrappedObject() {
         return (tcs.__impl.InjectorActionsBlockImpl) getWrappedObject();
     }
@@ -249,7 +248,6 @@ public class InjectorActionsBlockWrapper extends com.sap.tc.moin.repository.core
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.InjectorActionsBlock> get___JmiInterface() {
         return tcs.InjectorActionsBlock.class;
     }

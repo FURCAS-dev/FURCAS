@@ -125,7 +125,6 @@ public class AActualTypeParametersForInstantiationParameterizedClassInstantiatio
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.AActualTypeParametersForInstantiationParameterizedClassInstantiation> get___JmiInterface() {
         return data.generics.AActualTypeParametersForInstantiationParameterizedClassInstantiation.class;
     }

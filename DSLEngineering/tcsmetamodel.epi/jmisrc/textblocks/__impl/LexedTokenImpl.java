@@ -10,7 +10,7 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(28);
@@ -309,12 +309,12 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setParentBlock(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "480716BCBE2DC5460C5F11DD92F600016CE99C52", /* mofId of reference */ "480716BCBE2C3EAF0C5F11DDA6BC00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setParentBlock(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "480716BCBE2DC5460C5F11DD92F600016CE99C52", /* mofId of reference */ "480716BCBE2C3EAF0C5F11DDA6BC00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getSequenceElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -329,12 +329,12 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setSequenceElement(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "48CA4A733499C26080B911DDB0940018DE1146FF", /* mofId of reference */ "48CA4A7334A5A94080B911DDB2150018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setSequenceElement(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "48CA4A733499C26080B911DDB0940018DE1146FF", /* mofId of reference */ "48CA4A7334A5A94080B911DDB2150018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getParentFunctionCall() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -349,12 +349,12 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setParentFunctionCall(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "48CA4AE3778A99A080B911DDC3FB0018DE1146FF", /* mofId of reference */ "48CA4AE3778A99A380B911DDC4490018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setParentFunctionCall(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "48CA4AE3778A99A080B911DDC3FB0018DE1146FF", /* mofId of reference */ "48CA4AE3778A99A380B911DDC4490018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -498,7 +498,7 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -596,7 +596,7 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 2:
@@ -648,7 +648,7 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 2:
@@ -700,7 +700,7 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 2:
@@ -752,7 +752,7 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -810,7 +810,6 @@ public final class LexedTokenImpl extends com.sap.tc.moin.repository.core.jmi.re
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.LexedToken> get___JmiInterface() {
         return textblocks.LexedToken.class;
     }

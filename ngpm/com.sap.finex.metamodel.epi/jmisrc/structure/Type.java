@@ -22,8 +22,12 @@ public interface Type extends finex.modelmanagement.NamedElement {
 
     
     // references
+    public java.util.Collection<structure.TypedElement> getTypedElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public structure.FinexClass getOwner() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setOwner(structure.FinexClass newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+
+    // operations
+    public java.util.Collection<structure.Field> getNavigableFields() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -36,6 +40,17 @@ public interface Type extends finex.modelmanagement.NamedElement {
         public com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,finex.modelmanagement.NamedElement,java.lang.String> NAME( ) {
             return finex.modelmanagement.NamedElement.DESCRIPTORS.NAME( );
         }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,java.util.Collection<structure.TypedElement>> __typedElement;
+        /**
+         * Returns the descriptor for the <code>typedElement</code> reference.
+         * @return  the descriptor for the <code>typedElement</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,java.util.Collection<structure.TypedElement>> TYPED_ELEMENT( ) {
+            if ( __typedElement == null ) {
+                __typedElement = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,java.util.Collection<structure.TypedElement>>( "E0001D0A165C0580D2FA11DEAAE50019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Type", "typedElement" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __typedElement;
+        }
         private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,structure.FinexClass> __owner;
         /**
          * Returns the descriptor for the <code>owner</code> reference.
@@ -46,6 +61,17 @@ public interface Type extends finex.modelmanagement.NamedElement {
                 __owner = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,structure.FinexClass>( "E0001D0A0E057B80B1B911DEA88A00155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Type", "owner" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __owner;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> __getNavigableFields;
+        /**
+         * Returns the descriptor for the <code>getNavigableFields</code> operation.
+         * @return  the descriptor for the <code>getNavigableFields</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_NAVIGABLE_FIELDS( ) {
+            if ( __getNavigableFields == null ) {
+                __getNavigableFields = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>>( "E0001D0AE7D67ED1D2F811DE9FB20019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Type", "getNavigableFields" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __getNavigableFields;
         }
     }
 }    

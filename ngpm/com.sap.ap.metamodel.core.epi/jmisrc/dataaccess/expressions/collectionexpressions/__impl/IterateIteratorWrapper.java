@@ -125,7 +125,6 @@ public class IterateIteratorWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.collectionexpressions.IterateIterator> get___JmiInterface() {
         return dataaccess.expressions.collectionexpressions.IterateIterator.class;
     }

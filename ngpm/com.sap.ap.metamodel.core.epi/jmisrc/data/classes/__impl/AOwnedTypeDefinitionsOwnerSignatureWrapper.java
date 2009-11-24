@@ -125,7 +125,6 @@ public class AOwnedTypeDefinitionsOwnerSignatureWrapper extends com.sap.tc.moin.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AOwnedTypeDefinitionsOwnerSignature> get___JmiInterface() {
         return data.classes.AOwnedTypeDefinitionsOwnerSignature.class;
     }

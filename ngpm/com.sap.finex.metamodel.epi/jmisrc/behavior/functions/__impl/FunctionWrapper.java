@@ -8,7 +8,7 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -19,7 +19,6 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavior.functions.__impl.FunctionImpl getCastWrappedObject() {
         return (behavior.functions.__impl.FunctionImpl) getWrappedObject();
     }
@@ -82,7 +81,7 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
 
      
     // methods for references
-    public behavior.actions.Block getImplementation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public behavior.functions.SignatureImplementation getImplementation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -90,7 +89,7 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
                 try {
                     assertConnectionAlive();
                     attachConnectionIfRequired();
-                    return (behavior.actions.Block) wrapResult(getCastWrappedObject().getImplementation(connection));
+                    return (behavior.functions.SignatureImplementation) wrapResult(getCastWrappedObject().getImplementation(connection));
                 } finally {
                     synchronizationManager.releaseReadLock();
                 }
@@ -98,14 +97,14 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
             }
             assertConnectionAlive();
             attachConnectionIfRequired();
-            return (behavior.actions.Block) wrapResult(getCastWrappedObject().getImplementation(connection)); 
+            return (behavior.functions.SignatureImplementation) wrapResult(getCastWrappedObject().getImplementation(connection)); 
         } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
             wrapJmiExceptionArgs(ex);
             throw ex;
         }
     }
 
-    public void setImplementation(behavior.actions.Block newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public void setImplementation(behavior.functions.SignatureImplementation newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             if (synchronize) {
@@ -195,7 +194,7 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -205,11 +204,10 @@ public class FunctionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.Function> get___JmiInterface() {
         return behavior.functions.Function.class;
     }

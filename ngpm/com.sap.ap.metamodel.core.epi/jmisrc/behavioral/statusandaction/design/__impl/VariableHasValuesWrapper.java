@@ -125,7 +125,6 @@ public class VariableHasValuesWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.VariableHasValues> get___JmiInterface() {
         return behavioral.statusandaction.design.VariableHasValues.class;
     }

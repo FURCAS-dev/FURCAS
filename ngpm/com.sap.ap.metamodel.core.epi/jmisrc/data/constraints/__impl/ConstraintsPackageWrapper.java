@@ -178,7 +178,6 @@ public class ConstraintsPackageWrapper extends com.sap.tc.moin.repository.core.j
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.ConstraintsPackage> get___JmiInterface() {
         return data.constraints.ConstraintsPackage.class;
     }

@@ -46,7 +46,6 @@ public class BusinesstasksPackageWrapper extends com.sap.tc.moin.repository.core
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.businesstasks.BusinesstasksPackage> get___JmiInterface() {
         return behavioral.businesstasks.BusinesstasksPackage.class;
     }

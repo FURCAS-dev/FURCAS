@@ -64,7 +64,6 @@ public final class ADefaultValueDefaultOfImpl extends com.sap.tc.moin.repository
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.ADefaultValueDefaultOf> get___JmiInterface() {
         return structure.ADefaultValueDefaultOf.class;
     }

@@ -6,7 +6,7 @@ package data.classes.__impl;
 
 public class ConverterBetweenParametrizationsWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.classes.__impl.ConverterBetweenParametrizationsImpl> implements data.classes.ConverterBetweenParametrizations,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ConverterBetweenParametrizationsWrapper extends com.sap.tc.moin.rep
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.classes.__impl.ConverterBetweenParametrizationsImpl getCastWrappedObject() {
         return (data.classes.__impl.ConverterBetweenParametrizationsImpl) getWrappedObject();
     }
@@ -123,7 +122,6 @@ public class ConverterBetweenParametrizationsWrapper extends com.sap.tc.moin.rep
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ConverterBetweenParametrizations> get___JmiInterface() {
         return data.classes.ConverterBetweenParametrizations.class;
     }

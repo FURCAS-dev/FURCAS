@@ -36,6 +36,11 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getFirstPathExpression();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getBinaryOperator();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getWithArgument();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getImplicitContext();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAlias();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getTuple();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getObjectCreationExpression();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getFieldInitializer();
     // associations
     public behavior.expressions.ALeftLeftOf getALeftLeftOf();
     public behavior.expressions.ARightRightOf getARightRightOf();
@@ -43,4 +48,9 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public behavior.expressions.AFieldPathExpression getAFieldPathExpression();
     public behavior.expressions.AOperandOfOperand getAOperandOfOperand();
     public behavior.expressions.AArgumentWithArgument getAArgumentWithArgument();
+    public behavior.expressions.AAliasAliasFor getAAliasAliasFor();
+    public behavior.expressions.AClassToInstantiateObjectCreationExpression getAClassToInstantiateObjectCreationExpression();
+    public behavior.expressions.AFieldToInitializeFieldInitializer getAFieldToInitializeFieldInitializer();
+    public behavior.expressions.AFieldInitializersCreationExpression getAFieldInitializersCreationExpression();
+    public behavior.expressions.AInitExpressionFieldInitializer getAInitExpressionFieldInitializer();
 }

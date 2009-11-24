@@ -125,7 +125,6 @@ public class AOwnedTypeDefinitionOwnerTypedElementWrapper extends com.sap.tc.moi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AOwnedTypeDefinitionOwnerTypedElement> get___JmiInterface() {
         return data.classes.AOwnedTypeDefinitionOwnerTypedElement.class;
     }

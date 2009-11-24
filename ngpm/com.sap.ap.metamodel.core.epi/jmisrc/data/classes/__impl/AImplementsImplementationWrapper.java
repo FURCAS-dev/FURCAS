@@ -125,7 +125,6 @@ public class AImplementsImplementationWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AImplementsImplementation> get___JmiInterface() {
         return data.classes.AImplementsImplementation.class;
     }

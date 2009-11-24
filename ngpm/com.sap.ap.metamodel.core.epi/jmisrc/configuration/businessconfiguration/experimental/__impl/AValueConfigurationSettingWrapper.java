@@ -125,7 +125,6 @@ public class AValueConfigurationSettingWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AValueConfigurationSetting> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AValueConfigurationSetting.class;
     }

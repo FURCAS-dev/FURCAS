@@ -10,7 +10,7 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
@@ -62,12 +62,12 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
     public void setImplements(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BDF3E4B11DEB2830018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0E23E4B11DEBAD20018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setImplements(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BDF3E4B11DEB2830018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0E23E4B11DEBAD20018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getFunctionSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -82,12 +82,12 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
     public void setFunctionSignature(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BF73E4B11DECFA20018DE1146FF", /* mofId of reference */ "E0234C8C51E932023E4B11DE99BE0018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setFunctionSignature(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BF73E4B11DECFA20018DE1146FF", /* mofId of reference */ "E0234C8C51E932023E4B11DE99BE0018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public java.util.List getDimensions() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -114,12 +114,12 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
     public void setValueFunction(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E075D95551F7629B3E4B11DEAA2A0018DE1146FF", /* mofId of reference */ "E075D95551F518DD3E4B11DE9FEC0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setValueFunction(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E075D95551F7629B3E4B11DEAA2A0018DE1146FF", /* mofId of reference */ "E075D95551F518DD3E4B11DE9FEC0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAggregationFunction() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -134,12 +134,12 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
     public void setAggregationFunction(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E075D95551F762A13E4B11DEA8840018DE1146FF", /* mofId of reference */ "E075D95551F518DF3E4B11DECD0E0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setAggregationFunction(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E075D95551F762A13E4B11DEA8840018DE1146FF", /* mofId of reference */ "E075D95551F518DF3E4B11DECD0E0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getFactsType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -154,12 +154,12 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
     public void setFactsType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E075D95513BEA0925AA411DEC29B0019D29902CC", /* mofId of reference */ "E075D95513BC56A05AA411DE95560019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setFactsType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E075D95513BEA0925AA411DEC29B0019D29902CC", /* mofId of reference */ "E075D95513BC56A05AA411DE95560019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -198,7 +198,7 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -236,28 +236,28 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -315,7 +315,6 @@ public final class CellSetImpl extends com.sap.tc.moin.repository.core.jmi.refle
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.CellSet> get___JmiInterface() {
         return dataaccess.analytics.CellSet.class;
     }

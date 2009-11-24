@@ -125,7 +125,6 @@ public class AForVariableBoundToForWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AForVariableBoundToFor> get___JmiInterface() {
         return behavioral.actions.AForVariableBoundToFor.class;
     }

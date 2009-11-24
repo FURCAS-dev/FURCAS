@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.text.ITextListener;
@@ -468,6 +469,13 @@ public abstract class AbstractGrammarBasedEditor extends
 				
 		// Initialize the document
 		ConcreteSyntax syntax = EditorUtil.getActiveSyntax(this);
+		if(syntax == null) {
+		    IStatus status = new Status(IStatus.ERROR, CtsActivator.PLUGIN_ID, "");
+		    ErrorDialog.openError(getSite().getShell(), "Error loading syntax definition", "No syntax definition for language \"" +
+		        getLanguageId() + "\" found. Make sure the editor project is correctly referenced and the mapping model is available.",
+		        status);
+		    return;
+		}
 		ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
 		
 		CtsDocument document = (CtsDocument) getDocumentProvider().getDocument(input);

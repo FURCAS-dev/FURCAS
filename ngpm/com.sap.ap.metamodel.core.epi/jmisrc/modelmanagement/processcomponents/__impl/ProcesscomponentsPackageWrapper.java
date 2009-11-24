@@ -134,7 +134,6 @@ public class ProcesscomponentsPackageWrapper extends com.sap.tc.moin.repository.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.processcomponents.ProcesscomponentsPackage> get___JmiInterface() {
         return modelmanagement.processcomponents.ProcesscomponentsPackage.class;
     }

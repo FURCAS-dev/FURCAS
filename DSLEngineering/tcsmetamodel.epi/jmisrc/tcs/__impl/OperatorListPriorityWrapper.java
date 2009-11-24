@@ -125,7 +125,6 @@ public class OperatorListPriorityWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OperatorListPriority> get___JmiInterface() {
         return tcs.OperatorListPriority.class;
     }

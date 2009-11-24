@@ -63,7 +63,6 @@ public final class AbapStructureFieldTypeImpl extends com.sap.tc.moin.repository
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.AbapStructureFieldType> get___JmiInterface() {
         return abapmapping.abapdictionary.AbapStructureFieldType.class;
     }

@@ -596,7 +596,6 @@ public class AssemblyPackageWrapper extends com.sap.tc.moin.repository.core.jmi.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.AssemblyPackage> get___JmiInterface() {
         return behavioral.statusandaction.assembly.AssemblyPackage.class;
     }

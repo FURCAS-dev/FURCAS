@@ -10,29 +10,34 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
         FEATURE_IDS.put("type", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("leftOf", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("rightOf", Integer.valueOf(2)); //$NON-NLS-1$
         FEATURE_IDS.put("conditionOf", Integer.valueOf(3)); //$NON-NLS-1$
         FEATURE_IDS.put("operandOf", Integer.valueOf(4)); //$NON-NLS-1$
-        FEATURE_IDS.put("operand", Integer.valueOf(5)); //$NON-NLS-1$
-        FEATURE_IDS.put("field", Integer.valueOf(6)); //$NON-NLS-1$
+        FEATURE_IDS.put("withArgument", Integer.valueOf(5)); //$NON-NLS-1$
+        FEATURE_IDS.put("alias", Integer.valueOf(6)); //$NON-NLS-1$
+        FEATURE_IDS.put("operand", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("field", Integer.valueOf(8)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
         OPERATION_IDS.put("getImpliedType", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("isNumeric", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isBoolean", Integer.valueOf(2)); //$NON-NLS-1$
         OPERATION_IDS.put("numericPostType", Integer.valueOf(3)); //$NON-NLS-1$
         OPERATION_IDS.put("getEnclosingType", Integer.valueOf(4)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(6)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAllAliases", Integer.valueOf(7)); //$NON-NLS-1$
     }
     
     // links for multiplicity-1 association ends
     private com.sap.tc.moin.repository.core.EndStorageLink __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C;
+    private com.sap.tc.moin.repository.core.EndStorageLink __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB;
     private com.sap.tc.moin.repository.core.EndStorageLink __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C;
     private com.sap.tc.moin.repository.core.EndStorageLink __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C;
 
@@ -60,12 +65,12 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getLeftOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -80,12 +85,12 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setLeftOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC460A984B74111DE8E5600155883529C", /* mofId of reference */ "E0003E7BC45007B3B74111DEA08B00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setLeftOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC460A984B74111DE8E5600155883529C", /* mofId of reference */ "E0003E7BC45007B3B74111DEA08B00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getRightOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -100,12 +105,12 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setRightOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC460A987B74111DE831200155883529C", /* mofId of reference */ "E0003E7BC45007B4B74111DEB1BC00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setRightOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC460A987B74111DE831200155883529C", /* mofId of reference */ "E0003E7BC45007B4B74111DEB1BC00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getConditionOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -120,12 +125,12 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setConditionOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC460A98AB74111DEB31900155883529C", /* mofId of reference */ "E0003E7BC45007B5B74111DEB3B900155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setConditionOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC460A98AB74111DEB31900155883529C", /* mofId of reference */ "E0003E7BC45007B5B74111DEB3B900155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOperandOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -140,12 +145,54 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setOperandOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC4631A81B74111DEABD500155883529C", /* mofId of reference */ "E0003E7BC45007B6B74111DE96FF00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOperandOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC4631A81B74111DEABD500155883529C", /* mofId of reference */ "E0003E7BC45007B6B74111DE96FF00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getWithArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( get___CurrentConnection(), __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB);
+       
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( connection, __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB);
+       
+    }
+    public void setWithArgument(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B686A75D3BA2411DEAACD001CBF0234BB", /* mofId of reference */ "E0003E7B75D349D0D03C11DEB3B80019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0003E7B686A75D3BA2411DEAACD001CBF0234BB", /* mofId of reference */ "E0003E7B75D349D0D03C11DEB3B80019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0003E7B68132514D2F111DE8E690019D29902CC" /* attribute or association */, 0 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___queryElementAtOtherLinkEnd( get___CurrentConnection(), this, endAndMetaObject );
+       
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAlias(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0003E7B68132514D2F111DE8E690019D29902CC" /* attribute or association */, 0 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___queryElementAtOtherLinkEnd( connection, this, endAndMetaObject );
+       
+    }
+    public void setAlias(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B68132514D2F111DE8E690019D29902CC", /* mofId of reference */ "E0003E7B680E6A20D2F111DEC0770019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setAlias(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0003E7B68132514D2F111DE8E690019D29902CC", /* mofId of reference */ "E0003E7B680E6A20D2F111DEC0770019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOperand() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -160,12 +207,12 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setOperand(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC4631A81B74111DEABD500155883529C", /* mofId of reference */ "E0003E7BB308C962B4A311DEC1680019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOperand(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC4631A81B74111DEABD500155883529C", /* mofId of reference */ "E0003E7BB308C962B4A311DEC1680019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getField() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -180,12 +227,12 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public void setField(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BA21E5A02B74811DEBA0100155883529C", /* mofId of reference */ "E0003E7BA2127320B74811DE9B7400155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setField(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BA21E5A02B74811DEBA0100155883529C", /* mofId of reference */ "E0003E7BA2127320B74811DE9B7400155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -217,9 +264,15 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
                 result = getOperandOf(connection);
                 break;
             case 5: 
-                result = getOperand(connection);
+                result = getWithArgument(connection);
                 break;
             case 6: 
+                result = getAlias(connection);
+                break;
+            case 7: 
+                result = getOperand(connection);
+                break;
+            case 8: 
                 result = getField(connection);
                 break;
         default:
@@ -227,7 +280,7 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -258,10 +311,18 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
                 break;
                     
             case 5:
-                ___changeReference(connection, "E0003E7BC4631A81B74111DEABD500155883529C" /* mofId of association */, "E0003E7BB308C962B4A311DEC1680019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                ___changeReference(connection, "E0003E7B686A75D3BA2411DEAACD001CBF0234BB" /* mofId of association */, "E0003E7B75D349D0D03C11DEB3B80019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
             case 6:
+                ___changeReference(connection, "E0003E7B68132514D2F111DE8E690019D29902CC" /* mofId of association */, "E0003E7B680E6A20D2F111DEC0770019D29902CC" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 7:
+                ___changeReference(connection, "E0003E7BC4631A81B74111DEABD500155883529C" /* mofId of association */, "E0003E7BB308C962B4A311DEC1680019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 8:
                 ___changeReference(connection, "E0003E7BA21E5A02B74811DEBA0100155883529C" /* mofId of association */, "E0003E7BA2127320B74811DE9B7400155883529C" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
@@ -269,38 +330,40 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
         if ( associationEndMofId == "E0001D0A1ADE95A8B1B711DEA82800155883529C" ) { __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C = value; return; } //$NON-NLS-1$ 
+        if ( associationEndMofId == "E0003E7B686A75D2BA2411DE8B69001CBF0234BB" ) { __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB = value; return; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E0003E7BA21E5A00B74811DE9DB300155883529C" ) { __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C = value; return; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E0003E7BC4631A80B74111DEC5CF00155883529C" ) { __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C = value; return; } //$NON-NLS-1$ 
     }
     
     public com.sap.tc.moin.repository.core.EndStorageLink get___AssociationLink( String associationEndMofId ) {
         if ( associationEndMofId == "E0001D0A1ADE95A8B1B711DEA82800155883529C" ) { return __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C; } //$NON-NLS-1$ 
+        if ( associationEndMofId == "E0003E7B686A75D2BA2411DE8B69001CBF0234BB" ) { return __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E0003E7BA21E5A00B74811DE9DB300155883529C" ) { return __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E0003E7BC4631A80B74111DEC5CF00155883529C" ) { return __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C; } //$NON-NLS-1$ 
         return null;
@@ -308,6 +371,7 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
         if ( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C); } 
+        if ( __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB); } 
         if ( __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C); } 
         if ( __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C); } 
         return result;
@@ -317,6 +381,7 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredAssociationLinks( ) {
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
         if ( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C); } 
+        if ( __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB); } 
         if ( __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C); } 
         if ( __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C); } 
         return result;
@@ -326,13 +391,13 @@ public final class FirstPathExpressionImpl extends com.sap.tc.moin.repository.co
         reset___CompositeParentLink( );
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
         if ( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C); __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C = null; } 
+        if ( __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB); __A_argument_withArgument_withArgument_E0003E7B686A75D2BA2411DE8B69001CBF0234BB = null; } 
         if ( __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C); __A_field_pathExpression_field_E0003E7BA21E5A00B74811DE9DB300155883529C = null; } 
         if ( __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C); __A_operandOf_operand_operand_E0003E7BC4631A80B74111DEC5CF00155883529C = null; } 
         return result;
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.FirstPathExpression> get___JmiInterface() {
         return behavior.expressions.FirstPathExpression.class;
     }

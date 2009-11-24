@@ -1,0 +1,12 @@
+How to refactor the existing Runlet/River interpreter into an abstract
+interpreter that can also be used to implement essential parts of the
+FINEX interpreter:
+
+The interpreter objects currently implemented by RiverObject, EntityObject, ValueObject and
+MultiValuedObject would remain in place but would need parameterization because their
+types will be described by meta-objects coming from the respective metamodel, such as
+TypeDefinition, ClassTypeDefinition and FunctionSignatureTypeDefinition in Runlet.
+
+The Repository interface makes reference to ClassTypedObject which according to the above
+would remain in place in a parameterized version, and AssociationEnd which has to be
+changed into a type parameter because it depends on the metamodel.

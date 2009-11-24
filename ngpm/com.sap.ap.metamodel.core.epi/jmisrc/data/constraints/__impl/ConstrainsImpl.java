@@ -63,7 +63,6 @@ public final class ConstrainsImpl extends com.sap.tc.moin.repository.core.jmi.re
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.Constrains> get___JmiInterface() {
         return data.constraints.Constrains.class;
     }

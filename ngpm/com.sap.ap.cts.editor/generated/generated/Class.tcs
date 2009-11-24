@@ -499,6 +499,10 @@ syntax Class(k=0 ) {
 		: ownedTypeDefinition{mode=BooleanLiteral, forcedLower=1}
 		;
 		
+	operatorTemplate ContentEquals(operators = equivalenceOp, source='left', storeRightTo='right')
+		: ownedTypeDefinition{mode=BooleanLiteral, forcedLower=1}
+		;
+		
 	template fp::AnonymousFunctionExpr context
 		:	
 		       (ownedTypeDefinition instanceOf FunctionSignatureTypeDefinition ?
@@ -1214,7 +1218,8 @@ syntax Class(k=0 ) {
 			lbracketOp  = "[", 2;
 		}
 		priority 1 {
-			equalsOp	= "==", 2;
+			equalsOp	  = "==", 2;
+			equivalenceOp = "<=>", 2;
 		}
 		priority 2 {
 			questionmark = "?", 2;

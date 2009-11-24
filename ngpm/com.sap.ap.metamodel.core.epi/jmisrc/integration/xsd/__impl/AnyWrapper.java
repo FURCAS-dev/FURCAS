@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class AnyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.AnyImpl> implements integration.xsd.Any,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AnyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefO
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.xsd.__impl.AnyImpl getCastWrappedObject() {
         return (integration.xsd.__impl.AnyImpl) getWrappedObject();
     }
@@ -224,7 +223,6 @@ public class AnyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefO
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.Any> get___JmiInterface() {
         return integration.xsd.Any.class;
     }

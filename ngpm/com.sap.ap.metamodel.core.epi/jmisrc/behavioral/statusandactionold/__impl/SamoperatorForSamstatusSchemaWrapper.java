@@ -125,7 +125,6 @@ public class SamoperatorForSamstatusSchemaWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamoperatorForSamstatusSchema> get___JmiInterface() {
         return behavioral.statusandactionold.SamoperatorForSamstatusSchema.class;
     }

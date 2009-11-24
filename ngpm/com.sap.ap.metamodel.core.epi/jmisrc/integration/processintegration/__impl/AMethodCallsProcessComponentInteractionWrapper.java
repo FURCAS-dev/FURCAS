@@ -125,7 +125,6 @@ public class AMethodCallsProcessComponentInteractionWrapper extends com.sap.tc.m
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.AMethodCallsProcessComponentInteraction> get___JmiInterface() {
         return integration.processintegration.AMethodCallsProcessComponentInteraction.class;
     }

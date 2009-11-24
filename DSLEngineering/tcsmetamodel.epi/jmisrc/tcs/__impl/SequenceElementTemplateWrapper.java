@@ -125,7 +125,6 @@ public class SequenceElementTemplateWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.SequenceElementTemplate> get___JmiInterface() {
         return tcs.SequenceElementTemplate.class;
     }

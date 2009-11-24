@@ -6,7 +6,7 @@ package abapmapping.abapdictionary.__impl;
 
 public class DataElementWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<abapmapping.abapdictionary.__impl.DataElementImpl> implements abapmapping.abapdictionary.DataElement,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DataElementWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private abapmapping.abapdictionary.__impl.DataElementImpl getCastWrappedObject() {
         return (abapmapping.abapdictionary.__impl.DataElementImpl) getWrappedObject();
     }
@@ -174,7 +173,6 @@ public class DataElementWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.DataElement> get___JmiInterface() {
         return abapmapping.abapdictionary.DataElement.class;
     }

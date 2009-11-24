@@ -125,7 +125,6 @@ public class DataElementAbapTypeWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.DataElementAbapType> get___JmiInterface() {
         return abapmapping.abapdictionary.DataElementAbapType.class;
     }

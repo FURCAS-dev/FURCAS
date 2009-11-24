@@ -529,7 +529,7 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 
 					}
 					if (newTokens.size() == getTokenSize(newVersion)
-						&& oldVersion.getTokens().size() > newTokens.size()) {
+						&& getTokenSize(oldVersion) > newTokens.size()) {
 						// there are ONLY new tokens in the new block AND
 						// there are still tokens in the oldVersion block
 						// so oldVersion block will be reused later and a
@@ -573,6 +573,16 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	private int getTokenSize(TextBlockProxy newVersion) {
 		int size = 0;
 		for (Object subNode : newVersion.getSubNodes()) {
+			if (subNode instanceof LexedToken) {
+				size++;
+			}
+		}
+		return size;
+	}
+	
+	private int getTokenSize(TextBlock tb) {
+		int size = 0;
+		for (Object subNode : tb.getTokens()) {
 			if (subNode instanceof LexedToken) {
 				size++;
 			}

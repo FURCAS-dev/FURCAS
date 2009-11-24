@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public class CountryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.__impl.CountryImpl> implements configuration.businessconfiguration.Country,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class CountryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private configuration.businessconfiguration.__impl.CountryImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.__impl.CountryImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class CountryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.Country> get___JmiInterface() {
         return configuration.businessconfiguration.Country.class;
     }

@@ -125,7 +125,6 @@ public class TextblockDefinitionReferencesProductionWrapper extends com.sap.tc.m
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<textblockdefinition.TextblockDefinitionReferencesProduction> get___JmiInterface() {
         return textblockdefinition.TextblockDefinitionReferencesProduction.class;
     }

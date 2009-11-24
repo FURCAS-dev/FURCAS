@@ -125,7 +125,6 @@ public class APreconditionsPreconditionForSignatureWrapper extends com.sap.tc.mo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.APreconditionsPreconditionForSignature> get___JmiInterface() {
         return data.constraints.APreconditionsPreconditionForSignature.class;
     }

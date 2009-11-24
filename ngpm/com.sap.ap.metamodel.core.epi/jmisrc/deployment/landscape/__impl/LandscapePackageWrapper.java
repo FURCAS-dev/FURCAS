@@ -24,7 +24,6 @@ public class LandscapePackageWrapper extends com.sap.tc.moin.repository.core.jmi
     
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<deployment.landscape.LandscapePackage> get___JmiInterface() {
         return deployment.landscape.LandscapePackage.class;
     }

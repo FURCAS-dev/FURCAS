@@ -125,7 +125,6 @@ public class AIteratorExpressionInIteratorWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.collectionexpressions.AIteratorExpressionInIterator> get___JmiInterface() {
         return dataaccess.expressions.collectionexpressions.AIteratorExpressionInIterator.class;
     }

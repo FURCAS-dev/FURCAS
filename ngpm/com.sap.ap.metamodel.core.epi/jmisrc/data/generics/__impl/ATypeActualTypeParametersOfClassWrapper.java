@@ -125,7 +125,6 @@ public class ATypeActualTypeParametersOfClassWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.ATypeActualTypeParametersOfClass> get___JmiInterface() {
         return data.generics.ATypeActualTypeParametersOfClass.class;
     }

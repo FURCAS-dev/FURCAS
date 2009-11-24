@@ -125,7 +125,6 @@ public class ADeploymentUnitsApplicationWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.deploymentunits.ADeploymentUnitsApplication> get___JmiInterface() {
         return modelmanagement.deploymentunits.ADeploymentUnitsApplication.class;
     }

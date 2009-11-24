@@ -125,7 +125,6 @@ public class ASelectionExprSelectionWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.query.ASelectionExprSelection> get___JmiInterface() {
         return dataaccess.query.ASelectionExprSelection.class;
     }

@@ -6,7 +6,7 @@ package integration.binding.__impl;
 
 public class RestUrlPatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.binding.__impl.RestUrlPatternImpl> implements integration.binding.RestUrlPattern,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class RestUrlPatternWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private integration.binding.__impl.RestUrlPatternImpl getCastWrappedObject() {
         return (integration.binding.__impl.RestUrlPatternImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class RestUrlPatternWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.RestUrlPattern> get___JmiInterface() {
         return integration.binding.RestUrlPattern.class;
     }

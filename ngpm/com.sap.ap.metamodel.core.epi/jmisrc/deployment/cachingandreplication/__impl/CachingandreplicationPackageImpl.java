@@ -6,7 +6,7 @@ package deployment.cachingandreplication.__impl;
 
 public final class CachingandreplicationPackageImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefPackageImpl
 {
-
+    
     static {
     }
 
@@ -31,7 +31,6 @@ public final class CachingandreplicationPackageImpl extends com.sap.tc.moin.repo
         throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<deployment.cachingandreplication.CachingandreplicationPackage> get___JmiInterface() {
         return deployment.cachingandreplication.CachingandreplicationPackage.class;
     }
@@ -40,9 +39,7 @@ public final class CachingandreplicationPackageImpl extends com.sap.tc.moin.repo
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -56,9 +53,7 @@ public final class CachingandreplicationPackageImpl extends com.sap.tc.moin.repo
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

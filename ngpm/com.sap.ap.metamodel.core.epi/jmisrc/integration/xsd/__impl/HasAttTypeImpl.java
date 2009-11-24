@@ -63,7 +63,6 @@ public final class HasAttTypeImpl extends com.sap.tc.moin.repository.core.jmi.re
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasAttType> get___JmiInterface() {
         return integration.xsd.HasAttType.class;
     }

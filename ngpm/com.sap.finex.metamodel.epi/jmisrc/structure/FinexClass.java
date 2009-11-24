@@ -31,9 +31,6 @@ public interface FinexClass extends structure.Type {
     public java.util.Collection<behavior.functions.Function> getFunctions() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public java.util.Collection<structure.Association> getAssociations() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
-    // operations
-    public java.util.Collection<structure.Field> getNavigableFields() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-
 
     public static final class Descriptors {
         Descriptors( ) { 
@@ -55,6 +52,13 @@ public interface FinexClass extends structure.Type {
                 __valueType = new com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,structure.FinexClass,java.lang.Boolean>( "E0001D0A1ADC24A7B1B711DE87D400155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "FinexClass", "valueType" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __valueType;
+        }
+        /**
+         * Returns the descriptor for the <code>typedElement</code> reference.
+         * @return  the descriptor for the <code>typedElement</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,java.util.Collection<structure.TypedElement>> TYPED_ELEMENT( ) {
+            return structure.Type.DESCRIPTORS.TYPED_ELEMENT( );
         }
         /**
          * Returns the descriptor for the <code>owner</code> reference.
@@ -107,16 +111,12 @@ public interface FinexClass extends structure.Type {
             }
             return __associations;
         }
-        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.FinexClass,java.util.Collection<structure.Field>> __getNavigableFields;
         /**
          * Returns the descriptor for the <code>getNavigableFields</code> operation.
          * @return  the descriptor for the <code>getNavigableFields</code> operation
          */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.FinexClass,java.util.Collection<structure.Field>> GET_NAVIGABLE_FIELDS( ) {
-            if ( __getNavigableFields == null ) {
-                __getNavigableFields = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.FinexClass,java.util.Collection<structure.Field>>( "E0001D0A72D4E7D1BA4C11DEAD02001CBF0234BB", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "FinexClass", "getNavigableFields" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
-            }
-            return __getNavigableFields;
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_NAVIGABLE_FIELDS( ) {
+            return structure.Type.DESCRIPTORS.GET_NAVIGABLE_FIELDS( );
         }
     }
 }    

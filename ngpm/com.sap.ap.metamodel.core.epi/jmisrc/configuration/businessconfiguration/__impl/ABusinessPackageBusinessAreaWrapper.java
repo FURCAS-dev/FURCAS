@@ -125,7 +125,6 @@ public class ABusinessPackageBusinessAreaWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.ABusinessPackageBusinessArea> get___JmiInterface() {
         return configuration.businessconfiguration.ABusinessPackageBusinessArea.class;
     }

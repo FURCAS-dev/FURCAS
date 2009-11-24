@@ -63,7 +63,6 @@ public final class ASettingPackageUseImpl extends com.sap.tc.moin.repository.cor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.ASettingPackageUse> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.ASettingPackageUse.class;
     }

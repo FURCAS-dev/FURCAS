@@ -13,12 +13,17 @@ import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.ui.PartInitException;
 import org.junit.Test;
 
+import textblocks.TextBlock;
+
 import behavioral.actions.Block;
 import behavioral.actions.Return;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
+import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
+import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.mi.fwk.ModelManager;
+import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.LRI;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.Partitionable;
@@ -109,9 +114,9 @@ public class TestNgpmEditingActions extends CtsEditorTest {
 
     @Test
     public void testPrettyPrintAssoc() throws NullPartitionNotEmptyException, ReferencedTransientElementsException,
-            PartitionsNotSavedException, BadLocationException, CoreException {
+            PartitionsNotSavedException, BadLocationException, CoreException, SyntaxAndModelMismatchException {
 
-        NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
+    	NgpmPackage rootPkg = connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
         final SapClass clazz = (SapClass) rootPkg.getData().getClasses().getSapClass().refCreateInstanceInPartition(
                 ModelManager.getPartitionService().getPartition(connection, getProject(),
                         new Path("src/Package1235568260162.types")));
@@ -122,7 +127,8 @@ public class TestNgpmEditingActions extends CtsEditorTest {
         AssociationEnd a1 = (AssociationEnd) rootPkg.getData().getClasses().getAssociationEnd().refCreateInstance();
         AssociationEnd a2 = (AssociationEnd) rootPkg.getData().getClasses().getAssociationEnd().refCreateInstance();
         a1.setName("a1");
-        a2.setName("a2");
+        a1.setNavigable(true); // complemented for test purpose
+        //a2.setName("a2");
         a2.setNavigable(true);
         ClassTypeDefinition a1ctd = (ClassTypeDefinition) rootPkg.getData().getClasses().getClassTypeDefinition()
                 .refCreateInstance();
@@ -139,7 +145,8 @@ public class TestNgpmEditingActions extends CtsEditorTest {
         assoc.getEnds().add(a1);
         assoc.getEnds().add(a2);
         connection.save();
-
+        TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(clazz, TcsUtil.getSyntaxByName(connection, "Class"));
+		System.out.println(output.getCachedString());
         AbstractGrammarBasedEditor editor = openEditor(clazz);
 
         CtsDocument document = getDocument(editor);

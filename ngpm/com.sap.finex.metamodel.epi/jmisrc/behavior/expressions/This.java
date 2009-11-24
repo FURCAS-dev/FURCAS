@@ -5,7 +5,7 @@
 package behavior.expressions;
 
 /**
- * Evaluates to the object on which a function/method is currently being evaluated.
+ * Evaluates to the object of the enclosing entity/class on which the currently executing function, action, determination, validation, each block or condition is being executed. Its type can be determined by calling getEnclosingType().
  * This interface is not intended to be implemented by clients.
  */
 public interface This extends behavior.expressions.Expression {
@@ -62,6 +62,20 @@ public interface This extends behavior.expressions.Expression {
             return behavior.expressions.Expression.DESCRIPTORS.OPERAND_OF( );
         }
         /**
+         * Returns the descriptor for the <code>withArgument</code> reference.
+         * @return  the descriptor for the <code>withArgument</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.WithArgument> WITH_ARGUMENT( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.WITH_ARGUMENT( );
+        }
+        /**
+         * Returns the descriptor for the <code>alias</code> reference.
+         * @return  the descriptor for the <code>alias</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.Alias> ALIAS( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.ALIAS( );
+        }
+        /**
          * Returns the descriptor for the <code>getImpliedType</code> operation.
          * @return  the descriptor for the <code>getImpliedType</code> operation
          */
@@ -102,6 +116,20 @@ public interface This extends behavior.expressions.Expression {
          */
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.lang.Boolean> IS_SIDE_EFFECT_FREE( ) {
             return behavior.expressions.Expression.DESCRIPTORS.IS_SIDE_EFFECT_FREE( );
+        }
+        /**
+         * Returns the descriptor for the <code>getImplicitContextType</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextType</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,structure.Type> GET_IMPLICIT_CONTEXT_TYPE( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_IMPLICIT_CONTEXT_TYPE( );
+        }
+        /**
+         * Returns the descriptor for the <code>getAllAliases</code> operation.
+         * @return  the descriptor for the <code>getAllAliases</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_ALIASES( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_ALL_ALIASES( );
         }
     }
 }    

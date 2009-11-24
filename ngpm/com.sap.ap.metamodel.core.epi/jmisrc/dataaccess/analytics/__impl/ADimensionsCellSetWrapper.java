@@ -125,7 +125,6 @@ public class ADimensionsCellSetWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.ADimensionsCellSet> get___JmiInterface() {
         return dataaccess.analytics.ADimensionsCellSet.class;
     }

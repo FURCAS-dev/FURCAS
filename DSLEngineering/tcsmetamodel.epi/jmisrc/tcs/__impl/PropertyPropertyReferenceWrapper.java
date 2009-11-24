@@ -125,7 +125,6 @@ public class PropertyPropertyReferenceWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PropertyPropertyReference> get___JmiInterface() {
         return tcs.PropertyPropertyReference.class;
     }

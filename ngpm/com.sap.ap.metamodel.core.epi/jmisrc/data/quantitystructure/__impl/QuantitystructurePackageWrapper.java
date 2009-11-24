@@ -46,7 +46,6 @@ public class QuantitystructurePackageWrapper extends com.sap.tc.moin.repository.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.quantitystructure.QuantitystructurePackage> get___JmiInterface() {
         return data.quantitystructure.QuantitystructurePackage.class;
     }

@@ -63,7 +63,6 @@ public final class ASubscriptionsProcessComponentInteractionImpl extends com.sap
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.ASubscriptionsProcessComponentInteraction> get___JmiInterface() {
         return integration.processintegration.ASubscriptionsProcessComponentInteraction.class;
     }

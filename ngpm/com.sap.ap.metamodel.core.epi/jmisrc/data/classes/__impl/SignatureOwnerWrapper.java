@@ -6,7 +6,7 @@ package data.classes.__impl;
 
 public class SignatureOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.classes.__impl.SignatureOwnerImpl> implements data.classes.SignatureOwner,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class SignatureOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private data.classes.__impl.SignatureOwnerImpl getCastWrappedObject() {
         return (data.classes.__impl.SignatureOwnerImpl) getWrappedObject();
     }
@@ -155,7 +154,6 @@ public class SignatureOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.SignatureOwner> get___JmiInterface() {
         return data.classes.SignatureOwner.class;
     }

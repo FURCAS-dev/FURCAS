@@ -8,7 +8,7 @@ public final class AssemblyPackageImpl extends com.sap.tc.moin.repository.core.j
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(35);
@@ -203,7 +203,6 @@ public final class AssemblyPackageImpl extends com.sap.tc.moin.repository.core.j
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.AssemblyPackage> get___JmiInterface() {
         return behavioral.statusandaction.assembly.AssemblyPackage.class;
     }
@@ -212,9 +211,7 @@ public final class AssemblyPackageImpl extends com.sap.tc.moin.repository.core.j
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -300,9 +297,7 @@ public final class AssemblyPackageImpl extends com.sap.tc.moin.repository.core.j
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(8);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "ProxyRepresentsAction"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavioral.statusandaction.assembly.ProxyRepresentsAction"); //$NON-NLS-1$

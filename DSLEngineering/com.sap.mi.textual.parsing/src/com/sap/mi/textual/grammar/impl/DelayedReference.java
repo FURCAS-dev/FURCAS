@@ -21,7 +21,7 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
- * a delayed reference is a temporary obect created during parsing. It
+ * a delayed reference is a temporary object created during parsing. It
  * represents a reference, that cannot instantly be resolved because the object
  * referenced may not exist before the end of parsing. The DelayedReference
  * stores all information necessary to resolve an object and set the reference
@@ -549,6 +549,7 @@ public class DelayedReference implements Cloneable {
         return hasContext;
     }
 
+    @Override
     public Object clone() {
         try {
             return super.clone();

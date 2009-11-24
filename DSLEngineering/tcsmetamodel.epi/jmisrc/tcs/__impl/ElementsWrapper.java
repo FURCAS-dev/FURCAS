@@ -125,7 +125,6 @@ public class ElementsWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Elements> get___JmiInterface() {
         return tcs.Elements.class;
     }

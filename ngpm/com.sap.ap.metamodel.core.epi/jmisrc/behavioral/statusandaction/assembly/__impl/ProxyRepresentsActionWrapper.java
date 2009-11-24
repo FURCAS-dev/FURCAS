@@ -125,7 +125,6 @@ public class ProxyRepresentsActionWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.ProxyRepresentsAction> get___JmiInterface() {
         return behavioral.statusandaction.assembly.ProxyRepresentsAction.class;
     }

@@ -64,7 +64,6 @@ public final class APreconditionsPreconditionForSignatureImpl extends com.sap.tc
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.APreconditionsPreconditionForSignature> get___JmiInterface() {
         return data.constraints.APreconditionsPreconditionForSignature.class;
     }

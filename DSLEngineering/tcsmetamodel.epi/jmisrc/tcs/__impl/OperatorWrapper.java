@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class OperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.OperatorImpl> implements tcs.Operator,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class OperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.OperatorImpl getCastWrappedObject() {
         return (tcs.__impl.OperatorImpl) getWrappedObject();
     }
@@ -346,7 +345,6 @@ public class OperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Operator> get___JmiInterface() {
         return tcs.Operator.class;
     }

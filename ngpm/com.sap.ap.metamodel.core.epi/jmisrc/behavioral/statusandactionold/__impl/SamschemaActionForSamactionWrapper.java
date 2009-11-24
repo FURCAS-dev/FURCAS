@@ -125,7 +125,6 @@ public class SamschemaActionForSamactionWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamschemaActionForSamaction> get___JmiInterface() {
         return behavioral.statusandactionold.SamschemaActionForSamaction.class;
     }

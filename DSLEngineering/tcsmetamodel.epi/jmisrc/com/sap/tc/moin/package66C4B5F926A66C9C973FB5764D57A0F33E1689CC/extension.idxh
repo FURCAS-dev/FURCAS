@@ -121,17 +121,17 @@ E03D847172B416B06AEA11DEA60500016CE99C52 -> tcs.__impl.SequenceElementTemplateIm
 4912CBC19B596250ABF011DD8575001742153E0C -> tcs.__impl.PropertyInitPropertyReferenceImpl
 4840070CE73447402E4F11DD873F001742153E0C -> tcs.__impl.ClassTemplatePrefixSequenceImpl
 483FE093F87275C42E3811DDABA7001742153E0C -> tcs.__impl.StartNbNlbargImpl
-49257A4E3A3FBC20B71311DDCC9D00016CE99C52 -> tcs.__impl.PrimitivePropertyInitImpl
 4850EADF1A241B73386111DDAC42001742153E0C -> textblockdefinition.__impl.TextblockDefinitionReferencesProductionImpl
 4850EADF1A241B63386111DDCC02001742153E0C -> cts.__impl.CtsPackageImpl
+49257A4E3A3FBC20B71311DDCC9D00016CE99C52 -> tcs.__impl.PrimitivePropertyInitImpl
 480716BCBE2C3EAC0C5F11DDB70900016CE99C52 -> textblocks.__impl.TextBlockImpl
 483FE093F86D93C32E3811DDAC7C001742153E0C -> tcs.__impl.FunctionCallImpl
 E0469530E7243E2088AF11DEB9E0001CBF7437BB -> tcs.__impl.PredicateSemanticImpl
 4843D098CC37E7F0309111DD807F001742153E0C -> tcs.__impl.OrPatternSimplePatternImpl
+4850EADF1A241B70386111DDB9A6001742153E0C -> textblockdefinition.FormatPolicyEnum
 483FE093F879A1C02E3811DDA4C1001742153E0C -> tcs.__impl.SimpleMappingImpl
 483FE093F874BFB82E3811DD9272001742153E0C -> tcs.__impl.OneExpImpl
 483FE093F85A80F22E3811DD99D7001742153E0C -> tcs.__impl.ConcreteSyntaxImpl
-4850EADF1A241B70386111DDB9A6001742153E0C -> textblockdefinition.FormatPolicyEnum
 E000054CC3C682806A7811DEB92500016CE99C52 -> tcs.__impl.AsPargTemplateImpl
 483FE093F87730BC2E3811DD9AFA001742153E0C -> tcs.__impl.WordRuleImpl
 48400506B29D41402E4E11DDA9CA001742153E0C -> tcs.__impl.FunctionTemplateSequenceImpl
@@ -192,8 +192,8 @@ textblocks.OmittedToken -> textblocks.__impl.OmittedTokenImpl
 textblocks.EOSToken -> textblocks.__impl.EostokenImpl
 OclGenerated_4A553B19052C2CA68C32D8D872EB25A6208EDA58 -> com.sap.tc.moin.ocl.gen.oclgenerated4a553b19052c2ca68c32d8d872eb25a6208eda58.__impl.OclGenerated4A553B19052C2Ca68C32D8D872Eb25A6208Eda58PackageImpl
 textblocks.Version -> textblocks.VersionEnum
-TCS.Block_BlockArg -> tcs.__impl.BlockBlockArgImpl
 cts -> cts.__impl.CtsPackageImpl
+TCS.Block_BlockArg -> tcs.__impl.BlockBlockArgImpl
 TCS.LookInPArg -> tcs.__impl.LookInPargImpl
 TCS.PrimitiveTemplate -> tcs.__impl.PrimitiveTemplateImpl
 textblocks.TextBlock_Contains_Subblocks -> textblocks.__impl.TextBlockContainsSubblocksImpl
@@ -208,8 +208,8 @@ TCS.SequenceInAlternative -> tcs.__impl.SequenceInAlternativeImpl
 TCS.InjectorActionsBlock -> tcs.__impl.InjectorActionsBlockImpl
 TCS.Expression -> tcs.__impl.ExpressionImpl
 textblockdefinition.TextblockDefinition_Has_SubDefinitions -> textblockdefinition.__impl.TextblockDefinitionHasSubDefinitionsImpl
-TCS.Priority_Operator -> tcs.__impl.PriorityOperatorImpl
 textblockdefinition.TextBlockDefinition -> textblockdefinition.__impl.TextBlockDefinitionImpl
+TCS.Priority_Operator -> tcs.__impl.PriorityOperatorImpl
 TCS.OperatorTemplate_PropertyReference -> tcs.__impl.OperatorTemplatePropertyReferenceImpl
 TCS.InjectorActionsBlock_InjectorAction -> tcs.__impl.InjectorActionsBlockInjectorActionImpl
 textblocks.LexedToken_Referenes_SequenceElement -> textblocks.__impl.LexedTokenReferenesSequenceElementImpl
@@ -267,8 +267,8 @@ TCS.Property -> tcs.__impl.PropertyImpl
 TCS.RefersToPArg -> tcs.__impl.RefersToPargImpl
 TCS.ClassPattern -> tcs.__impl.ClassPatternImpl
 TCS.ConcreteSyntax_Token -> tcs.__impl.ConcreteSyntaxTokenImpl
-TCS.RulePattern -> tcs.__impl.RulePatternImpl
 textblockdefinition.TextblockDefinition_Generalisation -> textblockdefinition.__impl.TextblockDefinitionGeneralisationImpl
+TCS.RulePattern -> tcs.__impl.RulePatternImpl
 TCS.NamedElement -> tcs.__impl.NamedElementImpl
 TCS.AtomExp_PropertyReference -> tcs.__impl.AtomExpPropertyReferenceImpl
 TCS.NegativeIntegerVal -> tcs.__impl.NegativeIntegerValImpl
@@ -360,13 +360,6 @@ com.sap.tc.moin.ocl.gen.oclgenerated4a553b19052c2ca68c32d8d872eb25a6208eda58.__i
 textblocks.__impl.TextBlockSequenceElementImpl
 textblocks.__impl.TextBlockElementsInContextImpl
 textblocks.__impl.TextBlockAdditionalTemplatesImpl
-cts.__impl.CtsPackageImpl
-textblockdefinition.__impl.TextBlockDefinitionImpl
-textblockdefinition.FormatPolicyEnum
-textblockdefinition.__impl.TextblockDefinitionReferencesProductionImpl
-textblockdefinition.__impl.TextblockDefinitionGeneralisationImpl
-textblockdefinition.__impl.TextblockDefinitionHasSubDefinitionsImpl
-textblockdefinition.__impl.TextblockdefinitionPackageImpl
 tcs.__impl.TcsPackageImpl
 tcs.__impl.LocatedElementImpl
 tcs.__impl.NamedElementImpl
@@ -505,6 +498,13 @@ tcs.__impl.PredicateSemanticImpl
 tcs.__impl.ContextTemplateContextTagsImpl
 tcs.__impl.ContextTemplateImpl
 tcs.__impl.ConcreteSyntaxConcreteSyntaxImpl
+cts.__impl.CtsPackageImpl
+textblockdefinition.__impl.TextBlockDefinitionImpl
+textblockdefinition.FormatPolicyEnum
+textblockdefinition.__impl.TextblockDefinitionReferencesProductionImpl
+textblockdefinition.__impl.TextblockDefinitionGeneralisationImpl
+textblockdefinition.__impl.TextblockDefinitionHasSubDefinitionsImpl
+textblockdefinition.__impl.TextblockdefinitionPackageImpl
 mofid -> qname mapping
 4843CAC553574360308E11DDCF5D001742153E0C -> [TCS,NegativeIntegerVal,symbol]
 4843CD7DF2330770308F11DDADA4001742153E0C -> [TCS,ModePArg,mode]
@@ -614,10 +614,10 @@ E0EE4DB258B2C2C059B011DE8ECE001CBF745635 -> [TCS,ConcreteSyntax_ConcreteSyntax,i
 4843B5EDE6B41962308111DDB94E001742153E0C -> [TCS,EnumLiteralMapping_LiteralRef,element]
 4840070CE73447402E4F11DD873F001742153E0C -> [TCS,ClassTemplate_PrefixSequence]
 483FE093F87275C42E3811DDABA7001742153E0C -> [TCS,StartNbNLBArg]
-4843B83A46332973308311DD9554001742153E0C -> [TCS,OperatorList,priorities]
-4850EADF1A241B73386111DDAC42001742153E0C -> [textblockdefinition,TextblockDefinition_References_Production]
 4843B9951529F332308411DD8DA3001742153E0C -> [TCS,elements,sequenceelement]
+4843B83A46332973308311DD9554001742153E0C -> [TCS,OperatorList,priorities]
 49257A4E3A3FBC20B71311DDCC9D00016CE99C52 -> [TCS,PrimitivePropertyInit]
+4850EADF1A241B73386111DDAC42001742153E0C -> [textblockdefinition,TextblockDefinition_References_Production]
 484006A8ABA42BA02E4F11DDB4C1001742153E0C -> [TCS,ClassTemplate,isAddToContext]
 480716BCBE2AB80E0C5F11DDC5CA00016CE99C52 -> [textblocks,DocumentNode,relexingNeeded]
 4843CF0EE135DB91309011DDA6B5001742153E0C -> [TCS,Block_BlockArg,block]
@@ -669,8 +669,8 @@ E012BF1ED4EE3590B73E11DE8FF400155883529C -> [TCS,PredicateSemantic_Template]
 4864C8654F7C81C0443811DDA3B1001742153E0C -> [TCS,Alternative,isMulti]
 48CA4A73349C336080B911DDA2080018DE1146FF -> [textblocks,LexedToken_Referenes_SequenceElement,lexedtoken]
 4843BB7633B07991308511DDC720001742153E0C -> [TCS,Block_Sequence,block]
-484006E8D1A6DA522E4F11DDA36E001742153E0C -> [TCS,ClassTemplate_Sequence,templatesequence]
 4843BB7E38111492308511DD98AE001742153E0C -> [TCS,SeparatorPArg_Sequence,separatorSequence]
+484006E8D1A6DA522E4F11DDA36E001742153E0C -> [TCS,ClassTemplate_Sequence,templatesequence]
 4914224BC658F250ACBC11DD8929001742153E0C -> [TCS,OperatorTemplate_PropertyReference,operatortemplate]
 4843B5DFDE7F6BF0308111DDCDAA001742153E0C -> [TCS,EnumerationTemplate_EnumLiteralMapping]
 483FE093F85A80FA2E3811DD8484001742153E0C -> [TCS,Template]
@@ -741,8 +741,8 @@ E012BF1E5F6BA821CD8C11DE9609F1937F000001 -> [OclGenerated_4A553B19052C2CA68C32D8
 E0E1B8C637DB3031B18211DEA4CC00016CE99C52 -> [textblocks,TextBlock_AdditionalTemplates,textblock]
 E007956AE44F03204AAB11DE8AA200016CE99C52 -> [textblocks,DocumentNode_ReferencedElement,referencedElements]
 48B5573C7AF68920743C11DDA054001742153E0C -> [TCS,QualifiedNamedElement,metaReference]
-4850EADF1A268C63386111DD8418001742153E0C -> [textblockdefinition,TextblockDefinition_Has_SubDefinitions,subDefinitions]
 4864C49006916EA0443611DDA1CD001742153E0C -> [TCS,FunctionCall_FunctionTemplate]
+4850EADF1A268C63386111DD8418001742153E0C -> [textblockdefinition,TextblockDefinition_Has_SubDefinitions,subDefinitions]
 4843BB7E38111493308511DDB6A2001742153E0C -> [TCS,SeparatorPArg,separatorSequence]
 486CFBF9C2089576491B11DD851D00016CE99C52 -> [OclGenerated_4165798EF9E6092F16235813BA64F12750E8EAA3,Sequence([textblocks, AbstractToken])]
 4843B83A46332971308311DD929E001742153E0C -> [TCS,OperatorList_Priority,list]
@@ -833,14 +833,14 @@ E012BF1E5F5FE851CD8C11DE8407F1937F000001 -> [OclGenerated_30F65E44ED243023AD6E20
 483FE093F8668EE62E3811DDB6E2001742153E0C -> [TCS,SequenceElement]
 480716BCBE2C3EB30C5F11DDAF8E00016CE99C52 -> [textblocks,AbstractToken,state]
 48B5573C7AF43F31743C11DD8D7E001742153E0C -> [TCS,QualifiedNamedElement_ModelElement,qualifiednamedelement]
-483FE093F85A80FE2E3811DD917A001742153E0C -> [TCS,FunctionTemplate]
 4843B9951529F331308411DDA2BB001742153E0C -> [TCS,elements,sequence]
+483FE093F85A80FE2E3811DD917A001742153E0C -> [TCS,FunctionTemplate]
 4843BC3FAB9FE7B2308511DDC68E001742153E0C -> [TCS,thenSequence,thenSequence]
 480716BCBE2DC5460C5F11DD92F600016CE99C52 -> [textblocks,TextBlock_Contains_Tokens]
 E0E14F86442AC8306B2511DEB3A30018DE1146FF -> [TCS,PropertyInit,isDefault]
 480716BCBE2C3EB00C5F11DD8C7200016CE99C52 -> [textblocks,AbstractToken,value]
-4850EADF1A268C60386111DDB879001742153E0C -> [textblockdefinition,TextblockDefinition_Generalisation,generalisation]
 480716BCBE2C3EA10C5F11DD969D00016CE99C52 -> [textblocks,PrimitiveTypes]
+4850EADF1A268C60386111DDB879001742153E0C -> [textblockdefinition,TextblockDefinition_Generalisation,generalisation]
 E012BF1E5F593191CD8C11DEC7FBF1937F000001 -> [OclGenerated_30F65E44ED243023AD6E2061812C0B9440D3B967,Set([TCS, SequenceElement])]
 4860F5D10869860041F111DDB6FF001742153E0C -> [TCS,Operator,templates]
 4843B5EDE6B41961308111DDA5CB001742153E0C -> [TCS,EnumLiteralMapping_LiteralRef,enumliteralmapping]
@@ -865,8 +865,8 @@ E000054CC3D5C4C06A7811DE924F00016CE99C52 -> [TCS,AsPArg,template]
 E007956AE468F3C04AAB11DE836D00016CE99C52 -> [textblocks,DocumentNode,referencedElements]
 E0C4897F9D88D090C79411DEC78400016CE99C52 -> [textblocks,lookInContext]
 483FE093F879A1C02E3811DDA4C1001742153E0C -> [TCS,SimpleMapping]
-480716BCBE2AB80D0C5F11DDBB0900016CE99C52 -> [textblocks,DocumentNode,version]
 4843BC3FAB9FE7B1308511DD81BD001742153E0C -> [TCS,thenSequence,thenContainer]
+480716BCBE2AB80D0C5F11DDBB0900016CE99C52 -> [textblocks,DocumentNode,version]
 E000054CC3C682806A7811DEB92500016CE99C52 -> [TCS,AsPArg_Template]
 48400488674AE0312E4E11DDA34D001742153E0C -> [TCS,ConcreteSyntax_Token,concretesyntax]
 4912CBBD989C6530ABF011DDAEF5001742153E0C -> [TCS,Property,propertyReference]
@@ -878,8 +878,8 @@ E012BF1E5F676261CD8C11DE9581F1937F000001 -> [OclGenerated_4A553B19052C2CA68C32D8
 49CB834E2E8978D01A0A11DE835300016CE99C52 -> [TCS,Token,isOmitted]
 E0469530FA5C707088AF11DE852D001CBF7437BB -> [TCS,PredicateSemantic,when]
 480716BCBE2DC5480C5F11DD83FA00016CE99C52 -> [textblocks,TextBlock_Contains_Subblocks,parentBlock]
-4850EADF1A268C66386111DD9D7A001742153E0C -> [textblockdefinition]
 E0E1B8C637DB3030B18211DE8FA200016CE99C52 -> [textblocks,TextBlock_AdditionalTemplates]
+4850EADF1A268C66386111DD9D7A001742153E0C -> [textblockdefinition]
 496F6B77E31C9820E32511DDB13100016CE99C52 -> [TCS,Alternative_Sequence]
 E0356A04559CE0806B2511DE8FD70018DE1146FF -> [TCS,PartialPArg]
 4843B85656BDC7F0308311DD9BE3001742153E0C -> [TCS,Priority,value]
@@ -925,8 +925,8 @@ E012BF1E5F6120D0CD8C11DEB96AF1937F000001 -> [OclGenerated_30F65E44ED243023AD6E20
 4840048B690B2DD22E4E11DD857F001742153E0C -> [TCS,ConcreteSyntax_Symbol,symbol]
 4843CCC383C18FA0308F11DDC781001742153E0C -> [TCS,Property_PropertyArg]
 49142A5892BE17E1ACC111DDCE57001742153E0C -> [TCS,OperatorTemplate_PropertyReference2,operatortemplate]
-483FE093F87275C82E3811DDB361001742153E0C -> [TCS,Expression]
 4843BB7E38111491308511DDAC1F001742153E0C -> [TCS,SeparatorPArg_Sequence,separatorContainer]
+483FE093F87275C82E3811DDB361001742153E0C -> [TCS,Expression]
 480716BCBE2DC54E0C5F11DD905D00016CE99C52 -> [textblocks,DocumentNode_Has_DocumentNodeVersions,otherVersions]
 48621EDA145B360042A211DDA8DC001742153E0C -> [TCS,SequenceElement,elementSequence]
 480716BCBE2DC5450C5F11DDA82A00016CE99C52 -> [textblocks,TextBlock_Contains_Tokens,parentBlock]

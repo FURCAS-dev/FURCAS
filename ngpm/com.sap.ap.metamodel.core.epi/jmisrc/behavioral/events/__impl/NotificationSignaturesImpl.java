@@ -63,7 +63,6 @@ public final class NotificationSignaturesImpl extends com.sap.tc.moin.repository
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.NotificationSignatures> get___JmiInterface() {
         return behavioral.events.NotificationSignatures.class;
     }

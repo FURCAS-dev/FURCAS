@@ -125,7 +125,6 @@ public class AElementsOfTypeClazzWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AElementsOfTypeClazz> get___JmiInterface() {
         return data.classes.AElementsOfTypeClazz.class;
     }

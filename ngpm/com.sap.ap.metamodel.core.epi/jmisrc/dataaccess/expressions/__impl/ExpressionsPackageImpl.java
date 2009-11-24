@@ -8,10 +8,10 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(52);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(54);
         FEATURE_IDS.put("literals", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("collectionExpressions", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("fp", Integer.valueOf(2)); //$NON-NLS-1$
@@ -34,23 +34,24 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         FEATURE_IDS.put("AsList", Integer.valueOf(19)); //$NON-NLS-1$
         FEATURE_IDS.put("Conditional", Integer.valueOf(20)); //$NON-NLS-1$
         FEATURE_IDS.put("Ternary", Integer.valueOf(21)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_variable_variableExpression", Integer.valueOf(22)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_object_objectBasedExpression", Integer.valueOf(23)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_classToInstantiate_objectCreationExpression", Integer.valueOf(24)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_withArgument_argument", Integer.valueOf(25)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_calledBlock_functionCallExpression", Integer.valueOf(26)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_left_equals", Integer.valueOf(27)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_toEnd_associationEndNavigationExpression", Integer.valueOf(28)); //$NON-NLS-1$
-        FEATURE_IDS.put("SignatureCallParameters", Integer.valueOf(29)); //$NON-NLS-1$
-        FEATURE_IDS.put("SignatureCallToSignature", Integer.valueOf(30)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_right_equals", Integer.valueOf(31)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_steps_replace", Integer.valueOf(32)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_to_navigationStep", Integer.valueOf(33)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_filterFunction_navigationStep", Integer.valueOf(34)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_with_replace", Integer.valueOf(35)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_falseExpr_ternary", Integer.valueOf(36)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_trueExpr_ternary", Integer.valueOf(37)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_condition_conditional", Integer.valueOf(38)); //$NON-NLS-1$
+        FEATURE_IDS.put("ContentEquals", Integer.valueOf(22)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_variable_variableExpression", Integer.valueOf(23)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_object_objectBasedExpression", Integer.valueOf(24)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_classToInstantiate_objectCreationExpression", Integer.valueOf(25)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_withArgument_argument", Integer.valueOf(26)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_calledBlock_functionCallExpression", Integer.valueOf(27)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_left_equals", Integer.valueOf(28)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_toEnd_associationEndNavigationExpression", Integer.valueOf(29)); //$NON-NLS-1$
+        FEATURE_IDS.put("SignatureCallParameters", Integer.valueOf(30)); //$NON-NLS-1$
+        FEATURE_IDS.put("SignatureCallToSignature", Integer.valueOf(31)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_right_equals", Integer.valueOf(32)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_steps_replace", Integer.valueOf(33)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_to_navigationStep", Integer.valueOf(34)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_filterFunction_navigationStep", Integer.valueOf(35)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_with_replace", Integer.valueOf(36)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_falseExpr_ternary", Integer.valueOf(37)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_trueExpr_ternary", Integer.valueOf(38)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_condition_conditional", Integer.valueOf(39)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -131,6 +132,9 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getTernary(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "Ternary"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getContentEquals(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "ContentEquals"); //$NON-NLS-1$
     }
     // associations
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAVariableVariableExpression(com.sap.tc.moin.repository.core.CoreConnection connection) {
@@ -236,38 +240,40 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
                 case 21:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("dataaccess.expressions.__impl.TernaryImpl")); //$NON-NLS-1$
                 case 22:
-                    return new dataaccess.expressions.__impl.AVariableVariableExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("dataaccess.expressions.__impl.ContentEqualsImpl")); //$NON-NLS-1$
                 case 23:
-                    return new dataaccess.expressions.__impl.AObjectObjectBasedExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AVariableVariableExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 case 24:
-                    return new dataaccess.expressions.__impl.AClassToInstantiateObjectCreationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AObjectObjectBasedExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 case 25:
-                    return new dataaccess.expressions.__impl.AWithArgumentArgumentImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AClassToInstantiateObjectCreationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 case 26:
-                    return new dataaccess.expressions.__impl.ACalledBlockFunctionCallExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AWithArgumentArgumentImpl(workspace, mofId, immediatePackage, metaObject);
                 case 27:
-                    return new dataaccess.expressions.__impl.ALeftEqualsImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.ACalledBlockFunctionCallExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 case 28:
-                    return new dataaccess.expressions.__impl.AToEndAssociationEndNavigationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.ALeftEqualsImpl(workspace, mofId, immediatePackage, metaObject);
                 case 29:
-                    return new dataaccess.expressions.__impl.SignatureCallParametersImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AToEndAssociationEndNavigationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 case 30:
-                    return new dataaccess.expressions.__impl.SignatureCallToSignatureImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.SignatureCallParametersImpl(workspace, mofId, immediatePackage, metaObject);
                 case 31:
-                    return new dataaccess.expressions.__impl.ARightEqualsImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.SignatureCallToSignatureImpl(workspace, mofId, immediatePackage, metaObject);
                 case 32:
-                    return new dataaccess.expressions.__impl.AStepsReplaceImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.ARightEqualsImpl(workspace, mofId, immediatePackage, metaObject);
                 case 33:
-                    return new dataaccess.expressions.__impl.AToNavigationStepImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AStepsReplaceImpl(workspace, mofId, immediatePackage, metaObject);
                 case 34:
-                    return new dataaccess.expressions.__impl.AFilterFunctionNavigationStepImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AToNavigationStepImpl(workspace, mofId, immediatePackage, metaObject);
                 case 35:
-                    return new dataaccess.expressions.__impl.AWithReplaceImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AFilterFunctionNavigationStepImpl(workspace, mofId, immediatePackage, metaObject);
                 case 36:
-                    return new dataaccess.expressions.__impl.AFalseExprTernaryImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AWithReplaceImpl(workspace, mofId, immediatePackage, metaObject);
                 case 37:
-                    return new dataaccess.expressions.__impl.ATrueExprTernaryImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new dataaccess.expressions.__impl.AFalseExprTernaryImpl(workspace, mofId, immediatePackage, metaObject);
                 case 38:
+                    return new dataaccess.expressions.__impl.ATrueExprTernaryImpl(workspace, mofId, immediatePackage, metaObject);
+                case 39:
                     return new dataaccess.expressions.__impl.AConditionConditionalImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
@@ -281,7 +287,6 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.ExpressionsPackage> get___JmiInterface() {
         return dataaccess.expressions.ExpressionsPackage.class;
     }
@@ -290,9 +295,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(3);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "literals"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "dataaccess.expressions.literals.LiteralsPackage", false); //$NON-NLS-1$
@@ -309,7 +312,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }
   
         if (___refClasses == null) {
-            ___refClasses = new java.util.ArrayList<RefClassAndName>(19);
+            ___refClasses = new java.util.ArrayList<RefClassAndName>(20);
             ___refClassesByName = new java.util.HashMap<String, RefClassAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefClassAndName rcan = null;
@@ -389,14 +392,16 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
             rcan = new RefClassAndName(name, "dataaccess.expressions.Ternary"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
+            name = "ContentEquals"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "dataaccess.expressions.ContentEquals"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
         }
   
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(17);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_variable_variableExpression"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "dataaccess.expressions.AVariableVariableExpression"); //$NON-NLS-1$

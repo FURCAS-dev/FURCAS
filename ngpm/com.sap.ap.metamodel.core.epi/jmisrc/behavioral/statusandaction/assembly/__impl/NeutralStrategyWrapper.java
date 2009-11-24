@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class NeutralStrategyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.NeutralStrategyImpl> implements behavioral.statusandaction.assembly.NeutralStrategy,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class NeutralStrategyWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.NeutralStrategyImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.NeutralStrategyImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class NeutralStrategyWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.NeutralStrategy> get___JmiInterface() {
         return behavioral.statusandaction.assembly.NeutralStrategy.class;
     }

@@ -125,7 +125,6 @@ public class SignatureCallToSignatureWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.SignatureCallToSignature> get___JmiInterface() {
         return dataaccess.expressions.SignatureCallToSignature.class;
     }

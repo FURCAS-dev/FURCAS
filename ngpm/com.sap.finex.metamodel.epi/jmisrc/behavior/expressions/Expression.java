@@ -30,13 +30,29 @@ public interface Expression extends structure.TypedElement {
     public void setConditionOf(behavior.expressions.FilterExpression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public behavior.expressions.UnaryOperator getOperandOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setOperandOf(behavior.expressions.UnaryOperator newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.expressions.WithArgument getWithArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setWithArgument(behavior.expressions.WithArgument newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.expressions.Alias getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setAlias(behavior.expressions.Alias newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
     // operations
     public boolean isNumeric() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public boolean isBoolean() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public structure.Type numericPostType(java.lang.String operator, structure.Type preType1, structure.Type preType2) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * Determines the class within which this expression occurs. Usually, the class's fields and methods are in scope for an expression definition.
+     */
     public structure.Type getEnclosingType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public boolean isSideEffectFree() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * An expression occurs at some place in a program. This place (usually lexically) determines what the implicit context is for the expression. This implicit context is the object on which unqualified function or action calls as well as field accesses are based on. It's a bit like the implicit "this" pointer in languages such as Java or C++. However, other than in Java or C++ (and more like in OCL), there can be language constructs within an entity (class) that change what the implicit context is.
+     * <p>
+     * For example, if there is a .each() construct that executes a block for each element of a multi-object, the block's implicit context is determined by the value on which .each() is invoked. If in a path expression a condition is specified, inside the condition the implicit context is the element to which the condition will be applied.
+     * <p>
+     * This method determines the implicit context's type for this expression.
+     */
+    public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public java.util.Collection<behavior.expressions.Alias> getAllAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -92,6 +108,28 @@ public interface Expression extends structure.TypedElement {
                 __operandOf = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.UnaryOperator>( "E0003E7BC45007B6B74111DE96FF00155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "operandOf" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __operandOf;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.WithArgument> __withArgument;
+        /**
+         * Returns the descriptor for the <code>withArgument</code> reference.
+         * @return  the descriptor for the <code>withArgument</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.WithArgument> WITH_ARGUMENT( ) {
+            if ( __withArgument == null ) {
+                __withArgument = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.WithArgument>( "E0003E7B75D349D0D03C11DEB3B80019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "withArgument" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __withArgument;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.Alias> __alias;
+        /**
+         * Returns the descriptor for the <code>alias</code> reference.
+         * @return  the descriptor for the <code>alias</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.Alias> ALIAS( ) {
+            if ( __alias == null ) {
+                __alias = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.Alias>( "E0003E7B680E6A20D2F111DEC0770019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "alias" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __alias;
         }
         /**
          * Returns the descriptor for the <code>getImpliedType</code> operation.
@@ -154,6 +192,28 @@ public interface Expression extends structure.TypedElement {
                 __isSideEffectFree = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.lang.Boolean>( "E0003E7BEAB6CF01B96811DEB969001A6BCDC3B3", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "isSideEffectFree" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __isSideEffectFree;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,structure.Type> __getImplicitContextType;
+        /**
+         * Returns the descriptor for the <code>getImplicitContextType</code> operation.
+         * @return  the descriptor for the <code>getImplicitContextType</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,structure.Type> GET_IMPLICIT_CONTEXT_TYPE( ) {
+            if ( __getImplicitContextType == null ) {
+                __getImplicitContextType = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,structure.Type>( "E0003E7B9846E051D29711DE801F00155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getImplicitContextType" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getImplicitContextType;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> __getAllAliases;
+        /**
+         * Returns the descriptor for the <code>getAllAliases</code> operation.
+         * @return  the descriptor for the <code>getAllAliases</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_ALIASES( ) {
+            if ( __getAllAliases == null ) {
+                __getAllAliases = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>>( "E0003E7B680E6A22D2F111DE8CC20019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getAllAliases" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getAllAliases;
         }
     }
 }    

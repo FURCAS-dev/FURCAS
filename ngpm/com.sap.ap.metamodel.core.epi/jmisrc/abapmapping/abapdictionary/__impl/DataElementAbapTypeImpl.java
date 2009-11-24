@@ -63,7 +63,6 @@ public final class DataElementAbapTypeImpl extends com.sap.tc.moin.repository.co
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.DataElementAbapType> get___JmiInterface() {
         return abapmapping.abapdictionary.DataElementAbapType.class;
     }

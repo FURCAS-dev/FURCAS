@@ -125,7 +125,6 @@ public class AInvariantsInvariantOfWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AInvariantsInvariantOf> get___JmiInterface() {
         return structure.AInvariantsInvariantOf.class;
     }

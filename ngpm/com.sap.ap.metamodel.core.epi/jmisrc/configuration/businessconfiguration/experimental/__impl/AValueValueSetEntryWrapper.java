@@ -125,7 +125,6 @@ public class AValueValueSetEntryWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AValueValueSetEntry> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AValueValueSetEntry.class;
     }

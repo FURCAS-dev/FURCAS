@@ -6,7 +6,7 @@ package configuration.contextdrivers.__impl;
 
 public class ContextCategoryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.contextdrivers.__impl.ContextCategoryImpl> implements configuration.contextdrivers.ContextCategory,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ContextCategoryWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private configuration.contextdrivers.__impl.ContextCategoryImpl getCastWrappedObject() {
         return (configuration.contextdrivers.__impl.ContextCategoryImpl) getWrappedObject();
     }
@@ -155,7 +154,6 @@ public class ContextCategoryWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ContextCategory> get___JmiInterface() {
         return configuration.contextdrivers.ContextCategory.class;
     }

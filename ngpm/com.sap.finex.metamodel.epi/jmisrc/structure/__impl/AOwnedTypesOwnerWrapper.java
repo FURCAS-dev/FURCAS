@@ -125,7 +125,6 @@ public class AOwnedTypesOwnerWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AOwnedTypesOwner> get___JmiInterface() {
         return structure.AOwnedTypesOwner.class;
     }
