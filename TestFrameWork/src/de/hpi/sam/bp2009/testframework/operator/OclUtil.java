@@ -1,4 +1,4 @@
-package de.hpi.sam.bp2009.testframework.operation.ocl;
+package de.hpi.sam.bp2009.testframework.operator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
@@ -7,6 +7,9 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
@@ -16,6 +19,7 @@ import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.emf.common.notify.Notifier;
 
 
 /**
@@ -36,7 +40,7 @@ public class OclUtil {
 	 * @throws InvocationTargetException
 	 * @throws NoSuchMethodException
 	 */
-	public static IQueryResult executeQueryOn(String completeConstraint, Resource resource, EObject packageInstance)
+	public static IQueryResult executeQueryOn(String completeConstraint, Resource resource)
 	throws IllegalAccessException, InvocationTargetException,
 	NoSuchMethodException {
 		Pattern pattern=Pattern.compile(regex);
@@ -49,6 +53,16 @@ public class OclUtil {
 		String queryInvariant=completeConstraint.substring(completeConstraint.indexOf("inv:")+4);
 		queryInvariant=queryInvariant.trim();
 		IQueryResult results= null;
+		Registry registry = resource.getResourceSet().getPackageRegistry();
+		EPackage packageInstance=null;
+		for(String key: registry.keySet()){
+			EPackage current = registry.getEPackage(key);
+			if(current.getEClassifier(queryContext)!=null)
+				packageInstance=current;
+		}
+		if(packageInstance==null)
+			throw new IllegalArgumentException("Context not found!");
+		
 		EClass context=getEClassForContext(queryContext, packageInstance);
 		if(context==null){
 			throw new IllegalArgumentException("Context not found!");

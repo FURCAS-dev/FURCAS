@@ -1,8 +1,6 @@
 package de.hpi.sam.bp2009.testframework.generator.dynamicemf;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
 
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -19,6 +17,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
+import de.hpi.sam.bp2009.testframework.OptionObject;
 
 
 public class HugeModel implements Generator {
@@ -278,6 +277,11 @@ public class HugeModel implements Generator {
 	public Resource generate(Object options) {
 		if(options instanceof Integer)
 			return createHugeModel((Integer)options);
+		return null;
+	}
+
+	@Override
+	public Class<? extends OptionObject> getOptionObjectClass() {
 		return null;
 	}
 }

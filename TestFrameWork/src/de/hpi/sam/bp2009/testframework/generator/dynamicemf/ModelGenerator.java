@@ -4,12 +4,11 @@ import java.util.Random;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import de.hpi.sam.bp2009.testframework.generator.dynamicemf.ModelGeneratorOptions.EAttributeOption;
 import de.hpi.sam.bp2009.testframework.generator.dynamicemf.ModelGeneratorOptions.EReferenceOption;
+import de.hpi.sam.bp2009.testframework.OptionObject;
 
 public class ModelGenerator implements Generator{
 	
@@ -111,5 +110,9 @@ public class ModelGenerator implements Generator{
 			return generate(metaModel, modelStructure);
 		}
 		return null;
+	}
+	@Override
+	public Class<? extends OptionObject> getOptionObjectClass() {
+		return ModelGeneratorOptions.class;
 	}
 }

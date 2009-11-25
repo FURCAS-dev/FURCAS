@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.ecore_2.5.0.v200906151043.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.ecore.source_2.5.0.v200906151043.jar">
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.ecore_2.5.0.v200906151043.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.ecore.source_2.5.0.v200906151043.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.emf.doc_2.5.0.v200906151043.jar!/references/javadoc"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.emf.doc_2.5.0.v200906151043.jar!/references/javadoc"/>
 		</attributes>
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/*"/>
@@ -23,32 +23,9 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.common_2.5.0.v200906151043.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.common.source_2.5.0.v200906151043.jar">
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.query_1.2.100.v200903190031.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.query.source_1.2.100.v200903190031.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.emf.doc_2.5.0.v200906151043.jar!/references/javadoc"/>
-		</attributes>
-		<accessrules>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/common/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/common/archive/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/common/command/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/common/notify/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/common/notify/impl/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/common/util/*"/>
-			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.ecore.xmi.source_2.5.0.v200906151043.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.emf.doc_2.5.0.v200906151043.jar!/references/javadoc"/>
-		</attributes>
-		<accessrules>
-			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/impl/*"/>
-			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.query_1.2.100.v200903190031.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.query.source_1.2.100.v200903190031.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.emf.query.doc_1.2.0.v200901271643.jar!/references/javadoc"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.emf.query.doc_1.2.0.v200901271643.jar!/references/javadoc"/>
 		</attributes>
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/query/*"/>
@@ -67,21 +44,9 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.ocl.ecore_1.3.0.v200905271400.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.ocl.ecore.source_1.3.0.v200905271400.jar">
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.ocl_1.3.0.v200905271400.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.ocl.source_1.3.0.v200905271400.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.ocl.doc_1.3.0.v200906151230.jar!/references/javadoc"/>
-		</attributes>
-		<accessrules>
-			<accessrule kind="accessible" pattern="org/eclipse/ocl/ecore/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/ocl/ecore/impl/*"/>
-			<accessrule kind="discouraged" pattern="org/eclipse/ocl/ecore/internal/*"/>
-			<accessrule kind="accessible" pattern="org/eclipse/ocl/ecore/util/*"/>
-			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
-		</accessrules>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.ocl_1.3.0.v200905271400.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.ocl.source_1.3.0.v200905271400.jar">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.ocl.doc_1.3.0.v200906151230.jar!/references/javadoc"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.ocl.doc_1.3.0.v200906151230.jar!/references/javadoc"/>
 		</attributes>
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/ocl/*"/>
@@ -112,14 +77,51 @@
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.query.ocl_1.2.0.v200903190031.jar" sourcepath="C:/MartinHanysz/Bachelorprojekt 2009/Software/eclipse/plugins/org.eclipse.emf.query.ocl.source_1.2.0.v200903190031.jar">
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.ocl.ecore_1.3.0.v200905271400.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.ocl.ecore.source_1.3.0.v200905271400.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/MartinHanysz/Bachelorprojekt%202009/Software/eclipse/plugins/org.eclipse.emf.query.doc_1.2.0.v200901271643.jar!/references/javadoc"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.ocl.doc_1.3.0.v200906151230.jar!/references/javadoc"/>
+		</attributes>
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/ocl/ecore/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/ocl/ecore/impl/*"/>
+			<accessrule kind="discouraged" pattern="org/eclipse/ocl/ecore/internal/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/ocl/ecore/util/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.common_2.5.0.v200906151043.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.common.source_2.5.0.v200906151043.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.emf.doc_2.5.0.v200906151043.jar!/references/javadoc"/>
+		</attributes>
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/common/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/common/archive/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/common/command/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/common/notify/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/common/notify/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/common/util/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.query.ocl_1.2.0.v200903190031.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.query.ocl.source_1.2.0.v200903190031.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.emf.query.doc_1.2.0.v200901271643.jar!/references/javadoc"/>
 		</attributes>
 		<accessrules>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/query/ocl/*"/>
 			<accessrule kind="accessible" pattern="org/eclipse/emf/query/ocl/conditions/*"/>
 			<accessrule kind="discouraged" pattern="org/eclipse/emf/query/ocl/internal/*"/>
+			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
+		</accessrules>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.ecore.xmi_2.5.0.v200906151043.jar" sourcepath="C:/Program Files/eclipse/eclipse/plugins/org.eclipse.emf.ecore.xmi.source_2.5.0.v200906151043.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Program%20Files/eclipse/eclipse/plugins/org.eclipse.emf.doc_2.5.0.v200906151043.jar!/references/javadoc"/>
+		</attributes>
+		<accessrules>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/impl/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/emf/ecore/xmi/util/*"/>
 			<accessrule ignoreifbetter="true" kind="nonaccessible" pattern="**/*"/>
 		</accessrules>
 	</classpathentry>
