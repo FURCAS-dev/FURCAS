@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.internal.runners.InitializationError;
+import org.junit.runners.model.InitializationError;
 import org.junit.runners.Suite;
 
 /**
@@ -28,7 +28,6 @@ import org.junit.runners.Suite;
  * @author C5126871
  * 
  */
-@SuppressWarnings("restriction")
 public class ExtSuite extends Suite {
 
 	/**
@@ -49,7 +48,7 @@ public class ExtSuite extends Suite {
 		public String[] value();
 	}
 
-	public ExtSuite(Class<?> klass) throws InitializationError {
+	public ExtSuite(Class<?> klass) throws InitializationError  {
 		super(klass, getAllClasses(klass));
 	}
 
