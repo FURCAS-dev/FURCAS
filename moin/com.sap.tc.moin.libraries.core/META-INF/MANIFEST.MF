@@ -84,4 +84,11 @@ Export-Package: com.sap.tc.moin.repository.core.transactions.transactionables,
  com.sap.tc.moin.repository.core.serialization,
  com.sap.tc.moin.repository.core.xmi.util,
  com.sap.tc.moin.repository.core.query.moinql.parser.gen
-Require-Bundle: com.sap.tc.moin.libraries.jmi,com.sap.tc.moin.libraries.base,com.sap.tc.moin.libraries.spi,com.sap.tc.moin.libraries.spi.internal,com.sap.tc.moin.libraries.api,com.sap.lalrparsergenerator,com.sap.tc.moin.friends.api
+Require-Bundle: com.sap.tc.moin.libraries.jmi,
+ com.sap.tc.moin.libraries.base,
+ com.sap.tc.moin.libraries.spi,
+ com.sap.tc.moin.libraries.spi.internal,
+ com.sap.tc.moin.libraries.api,
+ com.sap.tc.moin.friends.api
+Bundle-ClassPath: lib/com.sap.lalrparsergenerator_2.0.0.090407122151.jar,
+ .
