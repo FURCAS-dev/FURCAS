@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironment.java,v 1.15 2008/11/02 17:52:19 cdamus Exp $
+ * $Id: UMLEnvironment.java,v 1.16 2009/11/26 20:43:07 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml;
@@ -25,6 +25,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAnnotation;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -42,6 +43,7 @@ import org.eclipse.ocl.types.OCLStandardLibrary;
 import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
 import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
 import org.eclipse.ocl.uml.internal.UMLForeignMethods;
+import org.eclipse.ocl.uml.internal.UMLReflectionImpl;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.utilities.OCLFactory;
 import org.eclipse.ocl.utilities.UMLReflection;
@@ -60,6 +62,7 @@ import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Parameter;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.ParameterEffectKind;
+import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.SendSignalAction;
@@ -205,17 +208,35 @@ public class UMLEnvironment
             EnvironmentFactory<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> factory) {
         this.factory = factory;
     }
-    
+
     /**
-     * Obtains my EPackage registry, for looking up the Ecore correspondents
-     * of UML metamodel elements when working with instances of generated Java
-     * types.
+     * Looks up the Ecore definition of the specified UML classifier, using the
+     * specified <code>element</code> as a context for finding profile
+     * applications in the case that the classifier is a stereotype or some
+     * other type in a {@link Profile}.  Finding the Ecore definition of a profile
+     * type requires finding the actual applied version of the profile.
      * 
-     * @return my EPackage registry
+     * @param umlClassifier a UML classifier
+     * @param element an element in the context of which the OCL evaluation
+     *     is being performed
+     * @return the corresponding Ecore classifier, or <code>null</code> if not
+     *     found
+     * @since 3.0
      */
-    EPackage.Registry getEPackageRegistry() {
-        return registry;
-    }
+	public EClassifier getEClassifier(Classifier type, Object element) {
+		return OCLUMLUtil.getEClassifier(type, element, registry);
+	}
+    
+//    /**
+//     * Obtains my EPackage registry, for looking up the Ecore correspondents
+//     * of UML metamodel elements when working with instances of generated Java
+//     * types.
+//     * 
+//     * @return my EPackage registry
+//     */
+//    EPackage.Registry getEPackageRegistry() {
+//        return registry;
+//    }
 
     // implements the inherited specification
     public void setParent(

@@ -13,10 +13,10 @@
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.12 2009/09/04 08:27:36 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.1 2009/11/26 20:43:07 ewillink Exp $
  */
 
-package org.eclipse.ocl.uml;
+package org.eclipse.ocl.uml.internal;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,8 +35,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
-import org.eclipse.ocl.uml.internal.OCLFactoryImpl;
-import org.eclipse.ocl.uml.internal.OCLStandardLibraryImpl;
+import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.options.UMLParsingOptions;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
 import org.eclipse.ocl.util.ObjectUtil;
@@ -76,7 +75,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * 
  * @author Christian W. Damus (cdamus)
  */
-class UMLReflectionImpl
+public class UMLReflectionImpl
     implements
     UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> {
 
@@ -102,7 +101,7 @@ class UMLReflectionImpl
 	
     private final UMLEnvironment env;
     
-    UMLReflectionImpl(UMLEnvironment env) {
+    public UMLReflectionImpl(UMLEnvironment env) {
         this.env = env;
     }
     
@@ -450,8 +449,7 @@ class UMLReflectionImpl
             return true;
         }
         
-        EClassifier eclassifier = OCLUMLUtil.getEClassifier(type, null,
-            env.getEPackageRegistry());
+        EClassifier eclassifier = env.getEClassifier(type, null);
         
         return (eclassifier != null)
             && Comparable.class.isAssignableFrom(eclassifier.getInstanceClass());
