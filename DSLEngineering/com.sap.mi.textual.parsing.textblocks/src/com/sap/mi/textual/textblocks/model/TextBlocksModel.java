@@ -15,6 +15,8 @@ import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.modifyTokenO
 import static com.sap.mi.textual.textblocks.model.TbReplacingHelper.updateBlockCachedString;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +36,11 @@ import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.commands.Command;
+import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.mmi.reflect.InvalidObjectException;
 
 /**
@@ -346,21 +353,41 @@ public class TextBlocksModel {
 	 * parent textblock. Now empty textblocks are removed recursively as well.
 	 * 
 	 */
-	public void replace(int replacedRegionOffset, int replacedRegionLength,
-			String newText) {
-		TextBlock workingcopy = (TextBlock) TbReplacingHelper
-				.getOrCreateWorkingCopy(rootBlock);
-		setRootTextBlock(workingcopy);
-		if (ParsingTextblocksActivator.getDefault() != null) {
-			ParsingTextblocksActivator.getDefault().enableMoinLogging(
-					workingcopy.get___Connection());
-		}
-		replace(workingcopy, replacedRegionOffset, replacedRegionLength,
-				newText);
-		if (ParsingTextblocksActivator.getDefault() != null) {
-			ParsingTextblocksActivator.getDefault().disableMoinLogging(
-					workingcopy.get___Connection());
-		}
+	public void replace(final int replacedRegionOffset, final int replacedRegionLength,
+			final String newText) {
+	        final Connection conn = ((Partitionable) rootBlock).get___Connection();
+	        conn.getCommandStack().execute(new Command(conn){
+
+                @Override
+                public boolean canExecute() {
+                    return true;
+                }
+
+                @Override
+                public void doExecute() {
+                    TextBlock workingcopy = (TextBlock) TbReplacingHelper
+                            .getOrCreateWorkingCopy(rootBlock);
+                    setRootTextBlock(workingcopy);
+                    if (ParsingTextblocksActivator.getDefault() != null) {
+                        ParsingTextblocksActivator.getDefault().enableMoinLogging(
+                                workingcopy.get___Connection());
+                    }
+                    replace(workingcopy, replacedRegionOffset,
+                            replacedRegionLength, newText);
+                    if (ParsingTextblocksActivator.getDefault() != null) {
+                        ParsingTextblocksActivator.getDefault().disableMoinLogging(
+                                workingcopy.get___Connection());
+                    }
+                }
+
+                @Override
+                public Collection<PartitionOperation> getAffectedPartitions() {
+                    PRI pri = ((Partitionable) rootBlock).get___Partition().getPri();
+                    PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
+                    return Collections.singleton(editOperation);
+                }
+                
+            });
 	}
 
 	

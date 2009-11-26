@@ -20,6 +20,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
 import tcs.ConcreteSyntax;
+import tcs.ContextTemplate;
 import tcs.FilterParg;
 import tcs.ForeachPredicatePropertyInit;
 import tcs.InjectorAction;
@@ -58,7 +59,10 @@ import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.InvalidConnectionException;
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.commands.Command;
+import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.EventListener;
 import com.sap.tc.moin.repository.events.PreChangeListener;
@@ -140,9 +144,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 				for (AbstractToken tok : textBlock.getTokens()) {
 					if(tok instanceof LexedToken) {
 						LexedToken lt = (LexedToken)tok;
+						//check if injectoraction was in chosen alternative or directly in in the template
 						if(lt.getSequenceElement() != null &&
-							lt.getSequenceElement().getElementSequence().equals(
-								injectorActionsBlock.getElementSequence())) {
+							(lt.getSequenceElement().getElementSequence().equals(
+								injectorActionsBlock.getElementSequence())
+								|| injectorActionsBlock.getElementSequence().refImmediateComposite() instanceof ContextTemplate)) {
 							wasInChosenAlternative = true;
 							break;
 						}
@@ -1248,17 +1254,37 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
         Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
         final String msg = "Reevaluating OCL References...";
         monitor.beginTask(msg, workingCopy.size());
-        for (DelayedReference ref : workingCopy) {
+        for (final DelayedReference ref : workingCopy) {
             monitor.beginTask(msg, workingCopy.size());
             if(!ref.getConnection().isAlive()) {
                 Activator.logWarning("Could not re-resolve reference: " + ref + 
                     ". Connection: " + ref.getConnection() + " is not alive anymore!");
             } else {
                 try {
-                    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
+                    final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
                             ref.getConnection(), (RefBaseObject) ref.getModelElement());
-                    reEvaluateUnresolvedRef(
-                            ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
+                    ref.getConnection().getCommandStack().execute(new Command(ref.getConnection()){
+
+                        @Override
+                        public boolean canExecute() {
+                            return true;
+                        }
+
+                        @Override
+                        public void doExecute() {
+                            reEvaluateUnresolvedRef(
+                                    ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
+                        }
+
+                        @Override
+                        public Collection<PartitionOperation> getAffectedPartitions() {
+                            PRI pri = ((Partitionable)ref.getModelElement()).get___Partition().getPri();
+                            PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
+                            return Collections.singleton(editOperation);
+                        }
+                        
+                    });
+                    
                 } catch(InvalidObjectException ex) {
                     Activator.logWarning("Could not re-resolve reference: " + ref + 
                         ". Element: " + ref.getModelElement() + " is not alive anymore!");
