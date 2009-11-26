@@ -17,7 +17,6 @@
       </library>
    </runtime>
    <requires>
-      <import plugin="com.tssap.sap.libs.xmltoolkit"/>
    </requires>
 
 
