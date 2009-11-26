@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.expressions,
  com.sap.tc.moin.friends.ide.facade,
  com.sap.mi.fwk.services.local,
  com.sap.mi.fwk.test.service,
- org.junit4;bundle-version="4.5.0",
+ org.junit4,
  com.sap.tc.webdynpro.metamodel.eclipse,
  com.sap.tc.webdynpro.metamodel.test
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

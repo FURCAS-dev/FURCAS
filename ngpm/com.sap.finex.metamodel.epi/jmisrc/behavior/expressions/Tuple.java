@@ -5,7 +5,7 @@
 package behavior.expressions;
 
 /**
- * Takes the operand expression and turns it into a tuple set, based on the definition of aliases along the expression hierarchy. The tuple expression's type is expected to have exactly one navigable field per alias where the field's name equals the alias name, respectively.
+ * Takes the operand expression and turns it into a tuple set. The tuple expression for each element of the operand (which may be a single "empty left outer join object") constructs a value object of the tupleType and by this initializes all fields which all have to have a default value expression defined.
  * This interface is not intended to be implemented by clients.
  */
 public interface Tuple extends behavior.expressions.UnaryOperator {
@@ -137,6 +137,13 @@ public interface Tuple extends behavior.expressions.UnaryOperator {
          */
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_ALIASES( ) {
             return behavior.expressions.Expression.DESCRIPTORS.GET_ALL_ALIASES( );
+        }
+        /**
+         * Returns the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation.
+         * @return  the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>> GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( );
         }
     }
 }    

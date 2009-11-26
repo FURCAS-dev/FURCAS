@@ -1,12 +1,14 @@
 package com.sap.finex.interpreter;
 
 import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import structure.Association;
 import structure.Field;
 import structure.FinexClass;
 import structure.Type;
+import structure.TypedElement;
 
 import com.sap.runlet.abstractinterpreter.Side;
 import com.sap.runlet.abstractinterpreter.util.ModelAdapter;
@@ -35,8 +37,16 @@ public class FinexModelAdapter implements ModelAdapter<Association, Field, Finex
 
     @Override
     public Collection<Field> getConformsToCompositeChildAssociationEnds(FinexClass clazz) {
-	// TODO Auto-generated method stub
-	return null;
+	Collection<Field> result = new LinkedHashSet<Field>();
+	for (TypedElement te : clazz.getTypedElement()) {
+	    if (te instanceof Field) {
+		Field f = (Field) te;
+		if (isComposite(f.otherEnd())) {
+		    result.add(f);
+		}
+	    }
+	}
+	return result;
     }
 
     @Override
@@ -66,8 +76,13 @@ public class FinexModelAdapter implements ModelAdapter<Association, Field, Finex
 
     @Override
     public Collection<Field> getConformsToAssociationEnds(FinexClass clazz) {
-	// TODO Auto-generated method stub
-	return null;
+	Collection<Field> result = new LinkedHashSet<Field>();
+	for (TypedElement te : clazz.getTypedElement()) {
+	    if (te instanceof Field) {
+		result.add((Field) te);
+	    }
+	}
+	return result;
     }
 
     @Override
@@ -106,7 +121,7 @@ public class FinexModelAdapter implements ModelAdapter<Association, Field, Finex
 
     @Override
     public boolean isContributesToEquality(Field end) {
-	return end.isNavigable();
+	return end.otherEnd().isNavigable();
     }
 
     @Override

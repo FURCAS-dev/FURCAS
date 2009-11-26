@@ -16,5 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  com.sap.tc.moin.ide.facade,
  com.sap.mi.fwk.test.service,
  com.sap.mi.tools.oclevalview,
- org.junit4;bundle-version="4.5.0"
+ org.junit4
 Eclipse-LazyStart: true

@@ -33,3 +33,5 @@ Require-Bundle: org.eclipse.ui,
  com.sap.mi.textual.moinlookup,
  com.sap.finex.metamodel
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.sap.finex.editor,
+ generated

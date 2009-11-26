@@ -12,8 +12,8 @@ Require-Bundle: org.eclipse.core.resources,
  abbot.swt.eclipse,
  com.sap.tc.moin.friends.ide.facade,
  com.sap.mi.fwk.services.local,
- org.eclipse.core.runtime;bundle-version="3.5.0",
- org.eclipse.ui;bundle-version="3.5.1",
+ org.eclipse.core.runtime,
+ org.eclipse.ui,
  org.junit;bundle-version="3.8.2"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy

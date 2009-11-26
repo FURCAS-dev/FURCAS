@@ -20,6 +20,7 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(5)); //$NON-NLS-1$
         OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(6)); //$NON-NLS-1$
         OPERATION_IDS.put("getAllAliases", Integer.valueOf(7)); //$NON-NLS-1$
+        OPERATION_IDS.put("getTuplesWhereThisIsFieldInitializer", Integer.valueOf(8)); //$NON-NLS-1$
     }
 
     public SingleWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, behavior.expressions.__impl.SingleImpl baseObject, boolean synchronize) {
@@ -475,6 +476,16 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         }
     }
 
+    public java.util.Collection<behavior.expressions.Tuple> getTuplesWhereThisIsFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavior.expressions.Tuple>)___invokeOperation(connection, 8, "E0003E7B9B8C5CA0DA1111DEB6820019D29902CC", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
     private structure.Type invoke__getImpliedType(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String name) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -569,6 +580,17 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
+    private java.util.Collection<behavior.expressions.Tuple> invoke__getTuplesWhereThisIsFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getTuplesWhereThisIsFieldInitializer", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
 
     // reflective methods
     @Override
@@ -605,6 +627,9 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 
             case 7:
                 return ___invokeOperation( connection, operationId, "E0003E7B680E6A22D2F111DE8CC20019D29902CC", args ); //$NON-NLS-1$    
+                
+            case 8:
+                return ___invokeOperation( connection, operationId, "E0003E7B9B8C5CA0DA1111DEB6820019D29902CC", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
@@ -637,6 +662,9 @@ public class SingleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 
             case 7:
                 return invoke__getAllAliases(connection);    
+                
+            case 8:
+                return invoke__getTuplesWhereThisIsFieldInitializer(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }

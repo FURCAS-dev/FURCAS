@@ -41,6 +41,9 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getTuple();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getObjectCreationExpression();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getFieldInitializer();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getEquals();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getUnequals();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getNamedValueExpression();
     // associations
     public behavior.expressions.ALeftLeftOf getALeftLeftOf();
     public behavior.expressions.ARightRightOf getARightRightOf();
@@ -53,4 +56,5 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public behavior.expressions.AFieldToInitializeFieldInitializer getAFieldToInitializeFieldInitializer();
     public behavior.expressions.AFieldInitializersCreationExpression getAFieldInitializersCreationExpression();
     public behavior.expressions.AInitExpressionFieldInitializer getAInitExpressionFieldInitializer();
+    public behavior.expressions.ANamedValueNamedValueExpression getANamedValueNamedValueExpression();
 }

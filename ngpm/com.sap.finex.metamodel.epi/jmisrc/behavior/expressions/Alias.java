@@ -8,7 +8,7 @@ package behavior.expressions;
  * An expression can be given an alias name which later can be used in a .tuple() expression when converting an expression tree into a tuple.
  * This interface is not intended to be implemented by clients.
  */
-public interface Alias extends finex.modelmanagement.NamedElement {
+public interface Alias extends behavior.actions.NamedValue {
 
     /**
      * Descriptors for all features of this MofClass and its supertypes.
@@ -37,6 +37,13 @@ public interface Alias extends finex.modelmanagement.NamedElement {
         public com.sap.tc.moin.repository.mmi.descriptors.AttributeDescriptor<com.sap.tc.moin.repository.mmi.model.Attribute,finex.modelmanagement.NamedElement,java.lang.String> NAME( ) {
             return finex.modelmanagement.NamedElement.DESCRIPTORS.NAME( );
         }
+        /**
+         * Returns the descriptor for the <code>type</code> reference.
+         * @return  the descriptor for the <code>type</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.TypedElement,structure.Type> TYPE( ) {
+            return structure.TypedElement.DESCRIPTORS.TYPE( );
+        }
         private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Alias,behavior.expressions.Expression> __aliasFor;
         /**
          * Returns the descriptor for the <code>aliasFor</code> reference.
@@ -47,6 +54,13 @@ public interface Alias extends finex.modelmanagement.NamedElement {
                 __aliasFor = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Alias,behavior.expressions.Expression>( "E0003E7B68132510D2F111DE88120019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Alias", "aliasFor" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __aliasFor;
+        }
+        /**
+         * Returns the descriptor for the <code>getImpliedType</code> operation.
+         * @return  the descriptor for the <code>getImpliedType</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.TypedElement,structure.Type> GET_IMPLIED_TYPE( ) {
+            return structure.TypedElement.DESCRIPTORS.GET_IMPLIED_TYPE( );
         }
     }
 }    

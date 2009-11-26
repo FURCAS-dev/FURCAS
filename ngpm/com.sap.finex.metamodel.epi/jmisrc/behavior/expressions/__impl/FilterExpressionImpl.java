@@ -24,7 +24,7 @@ public final class FilterExpressionImpl extends com.sap.tc.moin.repository.core.
         FEATURE_IDS.put("operand", Integer.valueOf(7)); //$NON-NLS-1$
         FEATURE_IDS.put("condition", Integer.valueOf(8)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
         OPERATION_IDS.put("getImpliedType", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("isNumeric", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isBoolean", Integer.valueOf(2)); //$NON-NLS-1$
@@ -33,6 +33,7 @@ public final class FilterExpressionImpl extends com.sap.tc.moin.repository.core.
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(5)); //$NON-NLS-1$
         OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(6)); //$NON-NLS-1$
         OPERATION_IDS.put("getAllAliases", Integer.valueOf(7)); //$NON-NLS-1$
+        OPERATION_IDS.put("getTuplesWhereThisIsFieldInitializer", Integer.valueOf(8)); //$NON-NLS-1$
     }
     
     // links for multiplicity-1 association ends
