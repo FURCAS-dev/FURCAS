@@ -594,6 +594,72 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getEquals()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getEquals(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getEquals(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getUnequals()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getUnequals(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getUnequals(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getNamedValueExpression()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getNamedValueExpression(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getNamedValueExpression(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public behavior.expressions.ALeftLeftOf getALeftLeftOf()
     {
         try {
@@ -831,6 +897,28 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
             assertConnectionAlive();
             attachConnectionIfRequired();
             return (behavior.expressions.AInitExpressionFieldInitializer) wrapResult(getCastWrappedObject().getAInitExpressionFieldInitializer(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public behavior.expressions.ANamedValueNamedValueExpression getANamedValueNamedValueExpression()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.ANamedValueNamedValueExpression) wrapResult(getCastWrappedObject().getANamedValueNamedValueExpression(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.ANamedValueNamedValueExpression) wrapResult(getCastWrappedObject().getANamedValueNamedValueExpression(connection)); 
         } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
             wrapJmiExceptionArgs(ex);
             throw ex;

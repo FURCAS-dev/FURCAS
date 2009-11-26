@@ -145,5 +145,12 @@ public interface BooleanOperatorExpression extends behavior.expressions.Expressi
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_ALIASES( ) {
             return behavior.expressions.Expression.DESCRIPTORS.GET_ALL_ALIASES( );
         }
+        /**
+         * Returns the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation.
+         * @return  the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>> GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( );
+        }
     }
 }    

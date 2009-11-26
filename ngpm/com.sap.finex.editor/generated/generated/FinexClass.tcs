@@ -133,7 +133,7 @@ syntax FinexClass(k=0 ) {
 	template structure::Field #nondeclaredOpposite
 		:
 		  {{
-		  	name      = '""', 				 -- no name
+		  	name      = '""', 				 	 -- no name
 		  	navigable = 'false',				 -- this end is not navigable
 		  	mandatory = 'false',				 -- match as non-mandatory fields for the opposite direction
 		  	singleMultiplicity='true',			 -- always multiplicity 0..1
@@ -214,7 +214,7 @@ syntax FinexClass(k=0 ) {
 	template behavior::actions::Statement abstract;
 
 	template behavior::actions::StatementWithArgument abstract;
-	template behavior::actions::Assignment (disambiguateV3 = "DOT NAME EQUALS")
+	template behavior::actions::Assignment (disambiguateV3 = "DOT (FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME) EQUALS")
 		: $assignment ";"
 		;
 	
@@ -248,11 +248,12 @@ syntax FinexClass(k=0 ) {
 	
 	template Alias
 		: [[ name{as=firstUppercaseIdentifier} | name{as=firstLowercaseIdentifier} ]]
+		  {{ type=lookIn("OCL:aliasFor.type") }}
 		;
 	
 	-- ----------------------- Predefined Operators ---------------------
 	operatorTemplate behavior::expressions::BinaryBooleanOperator(operators=andOp orOp, source='left',
-								      storeOpTo='operator', storeRightTo='right')
+																  storeOpTo='operator', storeRightTo='right')
 		: $alias
 		  {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
 		;
@@ -275,11 +276,33 @@ syntax FinexClass(k=0 ) {
 		  {{ type=lookIn("OCL:operand.type") }}
 		;
 	
+	operatorTemplate behavior::expressions::Equals(
+					operators=equalsOp,
+					source='left', storeRightTo='right')
+		: $alias
+  		  {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		;
+	
+	operatorTemplate behavior::expressions::Unequals(
+					operators=unequalsOp,
+					source='left', storeRightTo='right')
+		: $alias
+  		  {{ type=lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
+		;
+	
 	operatorTemplate behavior::expressions::BinaryNumericOperator(
 					operators=plusOp minusOp timesOp dividedOp greaterOp lessOp
-					          greaterEqualsOp lessEqualsOp equalsOp unequalsOp,
+					          greaterEqualsOp lessEqualsOp,
 					source='left', storeOpTo='operator', storeRightTo='right')
-		: {{ type=lookIn("OCL:self.numericPostType(self.operator, self.left.type, self.right.type)") }}
+		: $alias
+		  {{ type=lookIn("OCL:if self.operator = '+' or
+		                         self.operator = '-' or
+		                         self.operator = '*' or
+		                         self.operator = '/' then
+		                            self.numericPostType(self.operator, self.left.type, self.right.type)
+		                      else
+		                        structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')->asSequence()->first()
+		                      endif") }}
 		;
 
 	operatorTemplate behavior::expressions::UnaryMinus(operators=unaryMinusOp,
@@ -301,40 +324,48 @@ syntax FinexClass(k=0 ) {
 		;
 	
 	operatorTemplate behavior::expressions::Tuple(operators=dotOp, source='operand')
-		: "tuple" type{mode=tuple}
-		  "(" ")"
+		: "(" type{mode=tuple}
+		  ")"
 		  $alias
 		;
 	
 	template Type #tuple abstract;
 	template FinexClass #tuple context
-		: {{ associations=foreach("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllAliases()",
-		                          mode="tuple",
-								  as=Association),
-			 name=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllAliases()->iterate(
+		: associations{forcedLower=1, separator=",", mode=tuple}
+		  {{ name=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllAliases()->iterate(
 			 			a; acc='TupleType_for' | acc.concat('_').concat(a.name))"),
 			 valueType='true',
-			 -- the cast to FinexClass will be somewhat insecure as soon as we'll have other types that may
-			 -- contain the Tuple expression for which this FinexClass is created. 
-			 owner=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").getEnclosingType().oclAsType(FinexClass)") }}
+			 owner=lookIn("OCL:self.typedElement->select(te | te.oclIsKindOf(Expression)).
+			                   oclAsType(Expression).getEnclosingType()")
+		  }}
 		;
 	
 	template structure::Association #tuple
-		: ends{forcedLower=1, forcedUpper=1, mode=tupleLocalEnd}
-		  ends{forcedLower=1, forcedUpper=1, mode=tupleOtherEnd}
-		  {{ name=lookIn("OCL:'Tuple_to_'.concat(#context.oclAsType(Alias).name)") }}
+		: ends {forcedLower=1, forcedUpper=1, mode=tuple}
+		  -- force creation of non-declared opposite end
+		  ends {forcedLower=1, forcedUpper=1, mode=nondeclaredOpposite} 
+		  {{ name=lookIn("OCL:'Tuple_to_'.concat(self.ends->first().name)") 
+		  }}
+		;
+	
+	template structure::Field #tuple
+		: [[
+		     name{as=firstUppercaseIdentifier}
+		     {{ mandatory='true' }}
+		   |
+		     name{as=firstLowercaseIdentifier}
+		     {{ mandatory='false' }}
+		  ]]
+		  ":" defaultValue{forcedLower=1}
+		  {{ type=lookIn("OCL:self.defaultValue.type"),
+		     navigable='true',
+		     singleMultiplicity='true'
+		  }}
 		;
 	
 	template Field #tupleLocalEnd
 		: {{ name='"tuple"', navigable='false', mandatory='false', key='false', singleMultiplicity='true',
 		     type=lookIn("OCL:self.association.clazz")
-		  }}
-		;
-	
-	template Field #tupleOtherEnd
-		: {{ name=lookIn("OCL:#context.oclAsType(Alias).name"),
-		     navigable='true', mandatory='false', key='false', singleMultiplicity='true',
-		     type=lookIn("OCL:#context.oclAsType(Alias).aliasFor.type")
 		  }}
 		;
 	
@@ -364,6 +395,7 @@ syntax FinexClass(k=0 ) {
 		  "("
 		  	fieldInitializers{separator=","}
 		  ")"
+		  $alias
 		;
 	
 	template behavior::expressions::FieldInitializer
@@ -387,6 +419,21 @@ syntax FinexClass(k=0 ) {
 		  $alias
 		  {{ type = lookIn("OCL:self.getEnclosingType()") }}
 		;
+	
+	template NamedValueExpression
+		:  [[
+		      namedValue{as=firstLowercaseIdentifier, 
+				    query="OCL:self.getAllAliases()", 
+				    filter="->select(a | a.name = ?)",
+				    invert="name"}
+	            |
+	          namedValue{as=firstUppercaseIdentifier, 
+				    query="OCL:self.getAllAliases()", 
+				    filter="->select(a | a.name = ?)",
+				    invert="name"}
+	       ]]
+	       {{ type=lookIn("OCL:namedValue.type") }}
+	    ;
 		
 	template behavior::expressions::Expression #pathExpression abstract;
 	template behavior::expressions::ImplicitContext #pathExpression
@@ -430,31 +477,37 @@ syntax FinexClass(k=0 ) {
 	template behavior::expressions::literals::Literal abstract;
 	template behavior::expressions::literals::BooleanLiteral
 		: literal{as = booleanSymbol}
+		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Boolean')") }}
 		; 
 	
 	template behavior::expressions::literals::StringLiteral
 		: literal{as = stringSymbol}
+		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'String')") }}
 		; 
 
 	template behavior::expressions::literals::DecimalLiteral
 		: literal{as = floatAsStringSymbol}
+		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Decimal')") }}
 		; 
 	
 	template behavior::expressions::literals::IntegerLiteral
 		: literal{as = integerAsStringSymbol}
+		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Integer')") }}
 		; 
 	
 	template behavior::expressions::literals::DateLiteral
 		: literal{as = dateSymbol}
+		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Date')") }}
 		; 
 	
 	template behavior::expressions::literals::BinaryLiteral
 		: literal{as = binarySymbol}
+		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Binary')") }}
 		; 
 	
@@ -499,7 +552,7 @@ syntax FinexClass(k=0 ) {
 			lessOp			= "<", 2;
 			greaterEqualsOp = ">=", 2;
 			lessEqualsOp	= "<=", 2;
-			equalsOp		= "=", 2;
+			equalsOp		= "==", 2;
 			unequalsOp		= "!=", 2;
 		}
 	}

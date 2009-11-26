@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin
+   id="com.tssap.sap.libs.logging"
+   name="%plugin.name"
+   version="2.0.0"
+   provider-name="Borland/SAP AG">
+
+   <runtime>
+      <library name="lib/logging.jar">
+         <export name="*"/>
+      </library>
+      <library name="lib/loggingStandard.jar">
+         <export name="*"/>
+      </library>
+      <library name="lib/jARM.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="com.tssap.sap.libs.xmltoolkit"/>
+   </requires>
+
+
+</plugin>

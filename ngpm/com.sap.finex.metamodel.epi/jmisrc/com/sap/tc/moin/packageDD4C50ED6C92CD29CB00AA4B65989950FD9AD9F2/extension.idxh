@@ -4,6 +4,7 @@ E0001D0AF565B290B1C511DEB4E3001A6BCDC3B3 -> structure.__impl.DefaultableImpl
 E0003E7BF5682394B1C511DEA438001A6BCDC3B3 -> behavior.expressions.literals.__impl.BooleanLiteralImpl
 E0001D0A1ADE95AAB1B711DE8D3900155883529C -> structure.__impl.ATypeTypedElementImpl
 E0003E7B686CE6D1BA2411DEB395001CBF0234BB -> behavior.actions.__impl.AssignmentImpl
+E0DCF6CDCBE78DB6DA1211DEA4710019D29902CC -> com.sap.tc.moin.ocl.gen.oclgenerated65ad403e2928d0f059e4333c52fda8bc094e6577.__impl.OclGenerated65Ad403E2928D0F059E4333C52Fda8Bc094E6577PackageImpl
 E0003E7B5D1E41F3B18E11DEA8C500155883529C -> behavior.__impl.BehaviorPackageImpl
 E0003E7B8C9AACC2B3F511DE801B0019D29902CC -> behavior.expressions.__impl.FilterExpressionImpl
 E0003E7BF56A6D87B1C511DE9220001A6BCDC3B3 -> behavior.actions.__impl.StatementWithNestedBlockImpl
@@ -34,19 +35,20 @@ E0003E7BF56CDE8AB1C511DEBCF8001A6BCDC3B3 -> behavior.actions.__impl.ANamedValues
 E0003E7B7484E777B1A911DEADF900155883529C -> behavior.expressions.literals.__impl.LiteralImpl
 E0B7C2A21ADC24A2B1B711DEAF4B00155883529C -> finex.modelmanagement.__impl.ModelmanagementPackageImpl
 E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB -> structure.__impl.AAssociationsClazzImpl
-E0DCF6CD82CCDBD1D5EE11DEBB4F00155883529C -> com.sap.tc.moin.ocl.gen.oclgenerated65ad403e2928d0f059e4333c52fda8bc094e6577.__impl.OclGenerated65Ad403E2928D0F059E4333C52Fda8Bc094E6577PackageImpl
 E0003E7B7484E77CB1A911DEBA5500155883529C -> behavior.expressions.__impl.ExpressionImpl
 E0001D0A5D1E41F2B18E11DEC25100155883529C -> structure.__impl.StructurePackageImpl
 E0001D0AC2538122B26F11DEADE600155883529C -> structure.__impl.AFunctionsOwnerImpl
 E0003E7BF56A6D85B1C511DEA5E2001A6BCDC3B3 -> behavior.actions.__impl.ExpressionStatementImpl
 E0003E7B2B5FC101B4A611DEC4980019D29902CC -> behavior.expressions.__impl.NumericAggregateImpl
 E0001D0AEEAAE371B18F11DEC91800155883529C -> structure.__impl.TypeImpl
+E0003E7B8A9C6750D93A11DE8C430019D29902CC -> behavior.expressions.__impl.EqualsImpl
 E0003E7BF5682395B1C511DE9DE2001A6BCDC3B3 -> behavior.expressions.literals.__impl.IntegerLiteralImpl
 E0003E7B68132514D2F111DE8E690019D29902CC -> behavior.expressions.__impl.AAliasAliasForImpl
 E0B7C2A21ADC24A1B1B711DE904B00155883529C -> finex.modelmanagement.__impl.NamedElementImpl
 E0003E7BC4631A81B74111DEABD500155883529C -> behavior.expressions.__impl.AOperandOfOperandImpl
 E0003E7BF56A6D8FB1C511DEA4D1001A6BCDC3B3 -> behavior.actions.__impl.NamedValueDeclarationImpl
 E0003E7B2B5FC100B4A611DEB2420019D29902CC -> behavior.expressions.__impl.UnaryMinusImpl
+E0003E7B0520A952D9B811DEC86D00155883529C -> behavior.expressions.__impl.ANamedValueNamedValueExpressionImpl
 E0003E7B68132511D2F111DEC86C0019D29902CC -> behavior.expressions.__impl.AliasImpl
 E0001D0A1ADC24A8B1B711DEA3C100155883529C -> structure.__impl.FinexClassImpl
 E0003E7BDE1B62D2D06311DEAD510019D29902CC -> behavior.actions.__impl.ManipulatorImpl
@@ -57,17 +59,19 @@ E0003E7BF56A6D82B1C511DE954A001A6BCDC3B3 -> behavior.actions.__impl.BlockImpl
 E0003E7BF56F4F85B1C511DE8763001A6BCDC3B3 -> behavior.functions.__impl.AExpressionParameterImpl
 E0003E7BF5682393B1C511DE8A94001A6BCDC3B3 -> behavior.expressions.literals.__impl.StringLiteralImpl
 E0003E7B7484E780B1A911DECCB100155883529C -> behavior.functions.__impl.FunctionImpl
+E0003E7BFA1256D0D93A11DE80100019D29902CC -> behavior.expressions.__impl.UnequalsImpl
 E0003E7BC460A98AB74111DEB31900155883529C -> behavior.expressions.__impl.AConditionConditionOfImpl
 E0001D0AC44D96B5B74111DE9C7000155883529C -> structure.__impl.ADefaultValueDefaultOfImpl
 E0003E7BDB8D8F84B27C11DEBBB100155883529C -> behavior.expressions.__impl.NumericOperatorExpressionImpl
 E0003E7BDB8D8F79B27C11DEAB1300155883529C -> behavior.expressions.__impl.NotImpl
 E0003E7BEDA04EA2B1FA11DE93660019D29902CC -> behavior.functions.__impl.AParametersSignatureImpl
-E0B7C2A25D1E41F1B18E11DE9A5400155883529C -> finex.__impl.FinexPackageImpl
 E0003E7BC460A981B74111DE92C200155883529C -> behavior.expressions.__impl.BinaryOperatorImpl
+E0B7C2A25D1E41F1B18E11DE9A5400155883529C -> finex.__impl.FinexPackageImpl
 E0003E7BD53A9290B4A611DEC16B0019D29902CC -> behavior.expressions.__impl.BooleanAggregateImpl
 E0003E7BDB8D8F7CB27C11DEAA1C00155883529C -> behavior.expressions.__impl.BinaryNumericOperatorImpl
 E0001D0A72D731C8BA4C11DE9793001CBF0234BB -> structure.__impl.AssociationImpl
 E0001D0A1ADE95A1B1B711DECB0B00155883529C -> structure.__impl.TypedElementImpl
+E0003E7B051E3850D9B811DECA0A00155883529C -> behavior.expressions.__impl.NamedValueExpressionImpl
 E0003E7BC460A987B74111DE831200155883529C -> behavior.expressions.__impl.ARightRightOfImpl
 E0003E7B686A75D0BA2411DEC697001CBF0234BB -> behavior.expressions.__impl.WithArgumentImpl
 E0003E7B7484E77BB1A911DEB81B00155883529C -> behavior.expressions.literals.__impl.LiteralsPackageImpl
@@ -86,6 +90,7 @@ E0003E7BF56CDE87B1C511DE936B001A6BCDC3B3 -> behavior.actions.__impl.ANamedValueN
 E0003E7BF56A6D83B1C511DEB2CC001A6BCDC3B3 -> behavior.actions.__impl.StatementImpl
 E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3 -> behavior.expressions.__impl.AFieldInitializersCreationExpressionImpl
 E0003E7BDE1DD3D6D06311DEB4900019D29902CC -> behavior.functions.__impl.SignatureImplementationImpl
+E0DCF6CDCBE061C2DA1211DEC4260019D29902CC -> com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577.__impl.OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577PackageImpl
 E0001D0A74829D85B1A911DE8A7600155883529C -> structure.__impl.FieldImpl
 E0003E7B218D9BF0B73211DE91F500155883529C -> behavior.expressions.__impl.FirstPathExpressionImpl
 E0003E7BF56CDE92B1C511DE9BEA001A6BCDC3B3 -> behavior.functions.DirectionEnum
@@ -94,11 +99,11 @@ E0003E7B821EC180D5EE11DEA4A800155883529C -> behavior.functions.__impl.NativeImpl
 E0003E7B686A75D3BA2411DEAACD001CBF0234BB -> behavior.expressions.__impl.AArgumentWithArgumentImpl
 E0003E7BF5682396B1C511DECE88001A6BCDC3B3 -> behavior.expressions.literals.__impl.DecimalLiteralImpl
 E0001D0A0E07C572B1B911DEB1D000155883529C -> structure.__impl.AOwnedTypesOwnerImpl
-E0DCF6CD82F30176D5EE11DEB41400155883529C -> com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577.__impl.OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577PackageImpl
 E0003E7BF56CDE95B1C511DEA9D4001A6BCDC3B3 -> behavior.functions.__impl.AImplementationSignatureImpl
 MOF name -> class name mapping
 behavior.expressions.A_fieldInitializers_creationExpression -> behavior.expressions.__impl.AFieldInitializersCreationExpressionImpl
 structure.Defaultable -> structure.__impl.DefaultableImpl
+behavior.expressions.NamedValueExpression -> behavior.expressions.__impl.NamedValueExpressionImpl
 structure.A_type_typedElement -> structure.__impl.ATypeTypedElementImpl
 behavior.expressions.ImplicitContext -> behavior.expressions.__impl.ImplicitContextImpl
 structure.A_ownedTypes_owner -> structure.__impl.AOwnedTypesOwnerImpl
@@ -133,6 +138,7 @@ behavior.expressions.NumericOperatorExpression -> behavior.expressions.__impl.Nu
 behavior.functions.A_parameters_signature -> behavior.functions.__impl.AParametersSignatureImpl
 behavior.expressions.Alias -> behavior.expressions.__impl.AliasImpl
 behavior.actions.SingleBlockStatement -> behavior.actions.__impl.SingleBlockStatementImpl
+behavior.expressions.Unequals -> behavior.expressions.__impl.UnequalsImpl
 behavior.functions.Parameter -> behavior.functions.__impl.ParameterImpl
 finex.modelmanagement -> finex.modelmanagement.__impl.ModelmanagementPackageImpl
 behavior.actions.ExpressionStatement -> behavior.actions.__impl.ExpressionStatementImpl
@@ -160,8 +166,8 @@ behavior.expressions.PathExpression -> behavior.expressions.__impl.PathExpressio
 behavior.expressions.BinaryOperator -> behavior.expressions.__impl.BinaryOperatorImpl
 behavior.actions.Variable -> behavior.actions.__impl.VariableImpl
 behavior.expressions.FirstPathExpression -> behavior.expressions.__impl.FirstPathExpressionImpl
-finex -> finex.__impl.FinexPackageImpl
 behavior.expressions.A_right_rightOf -> behavior.expressions.__impl.ARightRightOfImpl
+finex -> finex.__impl.FinexPackageImpl
 behavior.expressions.A_fieldToInitialize_fieldInitializer -> behavior.expressions.__impl.AFieldToInitializeFieldInitializerImpl
 behavior.actions.A_initExpression_namedValueWithOptionalInitExpression -> behavior.actions.__impl.AInitExpressionNamedValueWithOptionalInitExpressionImpl
 behavior.actions.A_assignments_manipulator -> behavior.actions.__impl.AAssignmentsManipulatorImpl
@@ -172,6 +178,7 @@ behavior.actions.A_nestedBlocks_owningStatement -> behavior.actions.__impl.ANest
 behavior.actions.NamedValueWithOptionalInitExpression -> behavior.actions.__impl.NamedValueWithOptionalInitExpressionImpl
 behavior.functions.Function -> behavior.functions.__impl.FunctionImpl
 behavior.expressions.UnaryOperator -> behavior.expressions.__impl.UnaryOperatorImpl
+behavior.expressions.A_namedValue_namedValueExpression -> behavior.expressions.__impl.ANamedValueNamedValueExpressionImpl
 structure.A_defaultValue_defaultOf -> structure.__impl.ADefaultValueDefaultOfImpl
 behavior.expressions.Count -> behavior.expressions.__impl.CountImpl
 behavior.expressions.A_condition_conditionOf -> behavior.expressions.__impl.AConditionConditionOfImpl
@@ -180,6 +187,7 @@ behavior.functions.A_expression_parameter -> behavior.functions.__impl.AExpressi
 behavior.actions.A_expression_expressionStatement -> behavior.actions.__impl.AExpressionExpressionStatementImpl
 behavior.actions.Block -> behavior.actions.__impl.BlockImpl
 behavior.expressions.BooleanOperatorExpression -> behavior.expressions.__impl.BooleanOperatorExpressionImpl
+behavior.expressions.Equals -> behavior.expressions.__impl.EqualsImpl
 OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577 -> com.sap.tc.moin.ocl.gen.oclgenerated65ad403e2928d0f059e4333c52fda8bc094e6577.__impl.OclGenerated65Ad403E2928D0F059E4333C52Fda8Bc094E6577PackageImpl
 behavior.actions.Manipulator -> behavior.actions.__impl.ManipulatorImpl
 behavior.expressions.A_alias_aliasFor -> behavior.expressions.__impl.AAliasAliasForImpl
@@ -195,6 +203,11 @@ behavior.expressions.Single -> behavior.expressions.__impl.SingleImpl
 behavior.expressions.Tuple -> behavior.expressions.__impl.TupleImpl
 structure.A_invariants_invariantOf -> structure.__impl.AInvariantsInvariantOfImpl
 All contained JMI class names
+finex.modelmanagement.__impl.NamedElementImpl
+finex.modelmanagement.__impl.ModelmanagementPackageImpl
+finex.__impl.FinexPackageImpl
+behavior.expressions.__impl.NamedValueExpressionImpl
+behavior.expressions.__impl.ANamedValueNamedValueExpressionImpl
 behavior.expressions.__impl.FirstPathExpressionImpl
 behavior.expressions.__impl.UnaryMinusImpl
 behavior.expressions.__impl.NumericAggregateImpl
@@ -216,6 +229,7 @@ behavior.actions.__impl.ActionsPackageImpl
 behavior.functions.__impl.FunctionImpl
 behavior.functions.__impl.FunctionsPackageImpl
 behavior.functions.__impl.NativeImplImpl
+behavior.expressions.__impl.EqualsImpl
 behavior.expressions.__impl.FilterExpressionImpl
 behavior.expressions.__impl.PathExpressionImpl
 behavior.expressions.__impl.FieldInitializerImpl
@@ -272,10 +286,8 @@ behavior.functions.__impl.ParameterImpl
 behavior.functions.DirectionEnum
 behavior.functions.__impl.AImplementationSignatureImpl
 behavior.functions.__impl.AExpressionParameterImpl
+behavior.expressions.__impl.UnequalsImpl
 com.sap.tc.moin.ocl.gen.oclgenerated65ad403e2928d0f059e4333c52fda8bc094e6577.__impl.OclGenerated65Ad403E2928D0F059E4333C52Fda8Bc094E6577PackageImpl
-finex.modelmanagement.__impl.NamedElementImpl
-finex.modelmanagement.__impl.ModelmanagementPackageImpl
-finex.__impl.FinexPackageImpl
 structure.__impl.AOwnedTypesOwnerImpl
 structure.__impl.FinexClassImpl
 structure.__impl.TypedElementImpl
@@ -294,26 +306,28 @@ structure.__impl.DefaultableImpl
 com.sap.tc.moin.ocl.gen.oclgeneratedb2877aa13a720286d5483574839e70834cf5e577.__impl.OclGeneratedB2877Aa13A720286D5483574839E70834Cf5E577PackageImpl
 mofid -> qname mapping
 E0003E7B686F30C1BA2411DEB565001CBF0234BB -> [behavior,actions,A_assignTo_assignment,assignment]
+E0DCF6CDCC5543B1DA1211DE96740019D29902CC -> [behavior,actions,Assignment,ExpressionTypeMustConformToAssignmentTargetType]
+E0DCF6CDCBE51CB1DA1211DE87260019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Sequence([structure, FinexClass])]
 E0001D0A1ADE95AAB1B711DE8D3900155883529C -> [structure,A_type_typedElement]
 E0001D0A72D9A2C3BA4C11DEBE01001CBF0234BB -> [structure,A_associations_clazz,associations]
 E0003E7B5D1E41F3B18E11DEA8C500155883529C -> [behavior]
 E0003E7B90B46761D43911DECDF9001CBF0234BB -> [behavior,expressions,A_initExpression_fieldInitializer,fieldInitializer]
 E0003E7BDE1DD3D2D06311DEA69E0019D29902CC -> [behavior,actions,A_assignments_manipulator]
 E0003E7BBEBAE0F0B4A711DEC56F0019D29902CC -> [behavior,expressions,Single]
-E0DCF6CD83788527D5EE11DEC3BF00155883529C -> [structure,FinexClass,InvariantsMustBeBoolean]
-E0003E7BF56A6D80B1C511DEB409001A6BCDC3B3 -> [behavior,actions,Block,statements]
+E0DCF6CDCC258114DA1211DE80A20019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([structure, TypedElement])]
 E0003E7BA21E5A02B74811DEBA0100155883529C -> [behavior,expressions,A_field_pathExpression]
+E0003E7BF56A6D80B1C511DEB409001A6BCDC3B3 -> [behavior,actions,Block,statements]
 E0003E7BF56A6D8AB1C511DEBC18001A6BCDC3B3 -> [behavior,actions,NamedValue]
-E0DCF6CD8381FB03D5EE11DECA6B00155883529C -> [behavior,expressions,BinaryBooleanOperator,OperandsMustBeBoolean]
 E0003E7BF56A6D85B1C511DEA5E2001A6BCDC3B3 -> [behavior,actions,ExpressionStatement]
+E0DCF6CDCBE2D2C3DA1211DEBA460019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([structure, FinexClass])]
 E0003E7BC45BEE93B74111DEC52500155883529C -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...]
 E0003E7BDB8D8F70B27C11DEB87100155883529C -> [behavior,expressions,Expression,isBoolean]
+E0DCF6CDCC1E552FDA1211DE98010019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,OrderedSet([structure, Field])]
 E0003E7B9846E051D29711DE801F00155883529C -> [behavior,expressions,Expression,getImplicitContextType]
-E0DCF6CD83950DE1D5EE11DEA83300155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, FieldInitializer])]
+E0DCF6CDCBF5E59FDA1211DEA1DE0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, Expression])]
 E0001D0A74829D83B1A911DE905000155883529C -> [structure,Field,mandatory]
 E0003E7BC460A988B74111DE981A00155883529C -> [behavior,expressions,A_condition_conditionOf,condition]
 E0003E7B0133A970B3E111DE98160019D29902CC -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...]
-E0DCF6CD831B9821D5EE11DEC19E00155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Bag([OCL, StdLibrary, OclVoidStdLib])]
 E0001D0AEEAAE372B18F11DE8D7F00155883529C -> [structure,PrimitiveTypes]
 E0003E7BDE1DD3D1D06311DECE1C0019D29902CC -> [behavior,actions,A_assignments_manipulator,manipulator]
 E0003E7B680E6A22D2F111DE8CC20019D29902CC -> [behavior,expressions,Expression,getAllAliases]
@@ -322,94 +336,102 @@ E0001D0A72D731C8BA4C11DE9793001CBF0234BB -> [structure,Association]
 E0003E7BC460A982B74111DE81E000155883529C -> [behavior,expressions,A_left_leftOf,left]
 E0003E7B984E0C42D29711DEAF5100155883529C -> [behavior,actions,Statement,getImplicitContextType]
 E0003E7B68132510D2F111DE88120019D29902CC -> [behavior,expressions,Alias,aliasFor]
-E0003E7BF56A6D84B1C511DE927C001A6BCDC3B3 -> [behavior,actions,ExpressionStatement,expression]
 E0003E7BC4631A8BB74111DECEC600155883529C -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...]
-E0DCF6CD83950DD9D5EE11DEC78300155883529C -> [behavior,expressions,Tuple,TupleTypeHasExactlyOneEquallyNamedFieldPerAlias]
+E0003E7BF56A6D84B1C511DE927C001A6BCDC3B3 -> [behavior,actions,ExpressionStatement,expression]
 E0003E7BF56A6D89B1C511DECC48001A6BCDC3B3 -> [behavior,actions,SingleBlockStatement]
 E0003E7BF5682398B1C511DEACE0001A6BCDC3B3 -> [behavior,expressions,literals,BinaryLiteral]
 E0001D0AC45007B1B74111DEAAB800155883529C -> [structure,A_determination_determinationOf,determinationOf]
-E0DCF6CD839052E3D5EE11DE9C4100155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Bag([structure, Field])]
 E0003E7BF56CDE87B1C511DE936B001A6BCDC3B3 -> [behavior,actions,A_namedValue_namedValueDeclaration]
-E0DCF6CD82D407C3D5EE11DEA29F00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, StatementWithNestedBlock])]
-E0DCF6CD83950DDFD5EE11DE899400155883529C -> [behavior,expressions,ObjectCreationExpression,ObjectCreationOnlyAllowedForEntityClasses]
+E0DCF6CDCC495CCCDA1211DE8DB30019D29902CC -> [behavior,expressions,FilterExpression,TypeIsSameAsOperand]
+E0DCF6CDCBE061C2DA1211DEC4260019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577]
+E0DCF6CDCC3B04F0DA1211DE92CF0019D29902CC -> [structure,FinexClass,InvariantsMustBeSideEffectFree]
+E0003E7B051BC750D9B811DEA56D00155883529C -> [behavior,expressions,NamedValueExpression,namedValue]
 E0003E7B680E6A21D2F111DEA9CA0019D29902CC -> [behavior,expressions,Expression,getAllAliases,*return]
 E0003E7BDE1DD3D4D06311DE8CCE0019D29902CC -> [behavior,functions,SignatureImplementation,isSideEffectFree,*return]
 E0003E7BC460A989B74111DEBE1700155883529C -> [behavior,expressions,A_condition_conditionOf,conditionOf]
 E0003E7BF56CDE80B1C511DE9B69001A6BCDC3B3 -> [behavior,actions,A_nestedBlocks_owningStatement,owningStatement]
 E0003E7BEDA04EA1B1FA11DEAB520019D29902CC -> [behavior,functions,A_parameters_signature,signature]
+E0DCF6CDCC4230D2DA1211DEC99E0019D29902CC -> [structure,Field,DefaultTypeMustMatch]
 E0003E7BA21E5A00B74811DE9DB300155883529C -> [behavior,expressions,A_field_pathExpression,field]
 E0003E7BDE1DD3D3D06311DECDFB0019D29902CC -> [behavior,functions,SignatureImplementation,signature]
-E0DCF6CD837D4021D5EE11DEB56800155883529C -> [structure,Field,DefaultTypeMustMatch]
 E0001D0AFBB9D030B27511DE887D00155883529C -> [structure,Field,determination]
 E0003E7B90B46762D43911DEB8DA001CBF0234BB -> [behavior,expressions,A_initExpression_fieldInitializer]
+E0DCF6CDCC578D92DA1211DEB4800019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, Assignment])]
 E0003E7BDB8D8F77B27C11DEC1CD00155883529C -> [behavior,expressions,BinaryBooleanOperator]
 E0001D0A72D731C2BA4C11DE838E001CBF0234BB -> [structure,Field,otherEnd]
-E0DCF6CD82F30178D5EE11DE85DB00155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Sequence([PrimitiveTypes, Integer])]
+E0DCF6CDCC46EBC0DA1211DECE7F0019D29902CC -> [behavior,expressions,BinaryNumericOperator,OperandsMustBeNumeric]
 E0001D0AE51CF230D2FA11DE865F0019D29902CC -> [structure,Association,clazz]
 E0003E7BF56A6D8DB1C511DE8446001A6BCDC3B3 -> [behavior,actions,Variable]
 E0001D0AC44D96B7B74111DE9E0900155883529C -> [structure,A_invariants_invariantOf,invariantOf]
+E0001D0A975BBDD2D9BA11DE868100155883529C -> [structure,org.omg.sap2mof.OperationCodeOcl=context Type::getFieldsWithDefaultValue():Bag(Field)...]
 E0B7C2A21ADC24A2B1B711DEAF4B00155883529C -> [finex,modelmanagement]
 E0003E7B2B5FC101B4A611DEC4980019D29902CC -> [behavior,expressions,NumericAggregate]
-E0DCF6CD83015951D5EE11DECA0C00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, ExpressionStatement])]
 E0B7C2A21ADC24A1B1B711DE904B00155883529C -> [finex,modelmanagement,NamedElement]
 E0001D0AF446B590B1E711DE90550019D29902CC -> [structure,TypedElement,getImpliedType,name]
+E0DCF6CDCC3FBFDBDA1211DEB4440019D29902CC -> [structure,Field,NotBothDefaultValueAndDetermination]
 E0001D0A72D731C7BA4C11DE9E8C001CBF0234BB -> [structure,Association,ends]
 E0001D0A1ADE95A0B1B711DE829B00155883529C -> [structure,TypedElement,type]
-E0DCF6CD83192718D5EE11DEBF7200155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([structure, TypedElement])]
 E0003E7BEABB89F5B96811DE9BAA001A6BCDC3B3 -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...]
-E0DCF6CD82F57275D5EE11DE89B000155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([structure, FinexClass])]
 E0003E7BD53848A0B4A611DEB5300019D29902CC -> [behavior,expressions,UnaryBooleanOperator]
+E0DCF6CDCC5088C0DA1211DEC0D90019D29902CC -> [behavior,expressions,ObjectCreationExpression,ObjectCreationOnlyAllowedForEntityClasses]
+E0003E7B9B89EBA0DA1111DE96B50019D29902CC -> [behavior,expressions,Expression,getTuplesWhereThisIsFieldInitializer,*return]
 E0B7C2A21ADC24A0B1B711DEB25600155883529C -> [finex,modelmanagement,NamedElement,name]
 E0003E7B75D804C1D03C11DEB0E70019D29902CC -> [behavior,expressions,WithArgument,getEnclosingTypeFromWithArgument]
 E0003E7BC4631A89B74111DEA14600155883529C -> [behavior,actions,Statement,getEnclosingType,*return]
 E0003E7BF56F4F85B1C511DE8763001A6BCDC3B3 -> [behavior,functions,A_expression_parameter]
+E0DCF6CDCC4BA6BDDA1211DE99F70019D29902CC -> [behavior,expressions,PathExpression,PathExpressionTypeIsFieldType]
+E0003E7BFA1256D0D93A11DE80100019D29902CC -> [behavior,expressions,Unequals]
+E0DCF6CDCC5543A9DA1211DE800D0019D29902CC -> [behavior,actions,Assignment,NoAssigmentAllowedToFieldsWithDetermination]
+E0DCF6CDCC5088BADA1211DECF950019D29902CC -> [behavior,expressions,Tuple,AllFieldsOfTupleTypeMustHaveDefaultValue]
 E0B7C2A25D198700B18E11DEAF4000155883529C -> [finex,structure]
 E0003E7BEB60F631D06811DE9E960019D29902CC -> [behavior,actions,Assignment,getOwningClass]
 E0003E7B9846E052D29711DEAD8100155883529C -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...]
-E0DCF6CD83192710D5EE11DECB8900155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Bag([structure, Field])]
 E0001D0A8C8C54E0B3F511DE88720019D29902CC -> [structure,Field,singleMultiplicity]
 E0001D0A72D276D0BA4C11DEA655001CBF0234BB -> [structure,FinexClass,associations]
-E0DCF6CD8399EFDCD5EE11DEB7A400155883529C -> [behavior,actions,Assignment,ExpressionTypeMustConformToAssignmentTargetType]
-E0DCF6CD8360B764D5EE11DE9EAB00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, Alias])]
-E0DCF6CD83977EE2D5EE11DEC6E700155883529C -> [behavior,expressions,FieldInitializer,InitExpressionTypeMustConformToFieldType]
-E0DCF6CD82CCDBD2D5EE11DE9CCD00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,packagePrefix]
-E0DCF6CD8373CA30D5EE11DEABB000155883529C -> [structure,FinexClass,OnlyOneUnnamedFunction]
+E0DCF6CDCBF5E595DA1211DECCA00019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, WithArgument])]
+E0DCF6CDCBEEB9A4DA1211DECAEE0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, StatementWithNestedBlock])]
+E0DCF6CDCBE061C3DA1211DEC3280019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,packagePrefix]
 E0001D0A72D9A2C2BA4C11DEAA9F001CBF0234BB -> [structure,AssociationEnds]
-E0DCF6CD83657260D5EE11DEA76E00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([OCL, StdLibrary, OclVoidStdLib])]
-E0DCF6CD835E4661D5EE11DEAC6F00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Sequence([structure, FinexClass])]
+E0DCF6CDCC495CD0DA1211DE898A0019D29902CC -> [behavior,expressions,FilterExpression,ConditionIsSideEffectFree]
 E0003E7BC4631A86B74111DECDD100155883529C -> [behavior,actions,org.omg.sap2mof.store=yes]
 E0003E7BB308C960B4A311DE888A0019D29902CC -> [behavior,expressions,NumericOperatorExpression,operator]
 E0003E7BC45007B5B74111DEB3B900155883529C -> [behavior,expressions,Expression,conditionOf]
+E0001D0AE5767BC2D9BC11DE81E800155883529C -> [structure,org.omg.sap2mof.OperationCodeOcl=context Type::getAllFields():Bag(Field)...]
+E0DCF6CDCC0DB360DA1211DEC91C0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([OCL, StdLibrary, OclVoidStdLib])]
 E0001D0AF565B290B1C511DEB4E3001A6BCDC3B3 -> [structure,Defaultable]
+E0DCF6CDCBF374A0DA1211DE8D800019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, FinexClass])]
 E0003E7B68132513D2F111DE90D50019D29902CC -> [behavior,expressions,A_alias_aliasFor,aliasFor]
 E0003E7B7484E77FB1A911DE8B9400155883529C -> [behavior,actions]
+E0DCF6CDCBE9FEB0DA1211DEA3800019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Bag([behavior, expressions, Tuple])]
 E0003E7B75D804C2D03C11DE9A930019D29902CC -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...]
 E0001D0AC44D96B8B74111DE90D000155883529C -> [structure,A_invariants_invariantOf]
 E0003E7BE7E01BC0D2F811DE8EA60019D29902CC -> [behavior,expressions,Tuple]
-E0DCF6CD82FEE854D5EE11DE816400155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, FilterExpression])]
 E0001D0AC44D96B4B74111DEC85400155883529C -> [structure,A_defaultValue_defaultOf,defaultOf]
 E0003E7B90B1F660D43911DE99FE001CBF0234BB -> [behavior,expressions,FieldInitializer,initExpression]
-E0DCF6CD82F7BC61D5EE11DEBB5200155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Sequence([structure, FinexClass])]
 E0003E7BF56A6D8CB1C511DEA053001A6BCDC3B3 -> [behavior,actions,NamedValueWithOptionalInitExpression]
 E0003E7B7484E777B1A911DEADF900155883529C -> [behavior,expressions,literals,Literal]
-E0DCF6CD82CCDBD1D5EE11DEBB4F00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577]
 E0001D0A5D1E41F2B18E11DEC25100155883529C -> [structure]
 E0003E7BF56A6D8EB1C511DE8600001A6BCDC3B3 -> [behavior,actions,NamedValueDeclaration,namedValue]
 E0003E7B984B9B41D29711DE8C7000155883529C -> [behavior,actions,Block,getImplicitContextType,*return]
+E0DCF6CDCC578D9DDA1211DEBAC50019D29902CC -> [behavior,actions,Manipulator,AllFieldsFromOwningClass]
 E0003E7BC45BEE90B74111DE8DE200155883529C -> [behavior,expressions,Expression,getEnclosingType,*return]
-E0DCF6CD837D4015D5EE11DE90E600155883529C -> [structure,Field,NotBothDefaultValueAndDetermination]
 E0001D0A72D731C4BA4C11DEC93C001CBF0234BB -> [structure,Field,getNavigableFrom]
-E0DCF6CD83788521D5EE11DE994900155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([behavior, expressions, Expression])]
+E0003E7B0520A952D9B811DEC86D00155883529C -> [behavior,expressions,A_namedValue_namedValueExpression]
 E0003E7BEB60F630D06811DE92B50019D29902CC -> [behavior,actions,Assignment,getOwningClass,*return]
 E0001D0AC44D96B2B74111DEA70B00155883529C -> [structure,org.omg.sap2mof.OperationCodeOcl=context Defaultable::getEnclosingType():Type...]
-E0DCF6CD838B9802D5EE11DE8F2E00155883529C -> [behavior,expressions,Single,OutputTypeEqualsOperandType]
+E0DCF6CDCC5543A3DA1211DEC5260019D29902CC -> [behavior,expressions,NamedValueExpression,TypeMatchesNamedValueType]
 E0003E7BF56CDE83B1C511DEC750001A6BCDC3B3 -> [behavior,actions,A_initExpression_namedValueWithOptionalInitExpression,namedValueWithOptionalInitExpression]
-E0DCF6CD8381FB0CD5EE11DE970800155883529C -> [behavior,expressions,BinaryNumericOperator,OperandsMustBeNumeric]
+E0001D0A975BBDD0D9BA11DEAB4600155883529C -> [structure,Type,getFieldsWithDefaultValue,*return]
 E0003E7B7484E780B1A911DECCB100155883529C -> [behavior,functions,Function]
+E0DCF6CDCC3167FADA1211DEB7180019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Sequence([structure, FinexClass])]
+E0DCF6CDCC3B04E7DA1211DEC1C90019D29902CC -> [structure,FinexClass,InvariantsMustBeBoolean]
 E0003E7BF56A6D86B1C511DEAC14001A6BCDC3B3 -> [behavior,actions,StatementWithNestedBlock,nestedBlocks]
 E0003E7BC460A986B74111DE8ADC00155883529C -> [behavior,expressions,A_right_rightOf,rightOf]
 E0003E7BDB8B1E70B27C11DE842300155883529C -> [behavior,expressions,Expression,isNumeric,*return]
+E0DCF6CDCC14DF50DA1211DEBD340019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, FilterExpression])]
 E0003E7BF56CDE88B1C511DEC97F001A6BCDC3B3 -> [behavior,actions,A_namedValues_block,namedValues]
+E0DCF6CDCBEC48ADDA1211DEB4830019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Bag([structure, TypedElement])]
+E0DCF6CDCC4E17BEDA1211DE92E40019D29902CC -> [behavior,expressions,UnaryBooleanOperator,OperandMustBeBoolean]
 E0003E7B7484E781B1A911DE82A900155883529C -> [behavior,functions]
 E0003E7BC45007B6B74111DE96FF00155883529C -> [behavior,expressions,Expression,operandOf]
 E0001D0A72D731C3BA4C11DEB14B001CBF0234BB -> [structure,Field,getNavigableFrom,*return]
@@ -418,40 +440,38 @@ E0001D0A72D9A2C1BA4C11DE81E2001CBF0234BB -> [structure,AssociationEnds,associati
 E0003E7BB1E43BE2BD7D11DEC098001A6BCDC3B3 -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...]
 E0003E7BB308C963B4A311DE81E10019D29902CC -> [behavior,expressions,UnaryOperator]
 E0B7C2A21ADC24A3B1B711DE98E600155883529C -> [finex,PrimitiveTypes]
-E0DCF6CD83061443D5EE11DE8E4300155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, Expression])]
-E0DCF6CD838B97F5D5EE11DEA3A200155883529C -> [behavior,expressions,Count,CountHasIntegerValue]
 E0001D0A1ADC24A6B1B711DEBBE000155883529C -> [structure,FinexClass,ownedTypes]
 E0003E7B686A75D3BA2411DEAACD001CBF0234BB -> [behavior,expressions,A_argument_withArgument]
 E0003E7BDE1DD3D5D06311DECC540019D29902CC -> [behavior,functions,SignatureImplementation,isSideEffectFree]
 E0003E7BF56A6D93B1C511DEA9AC001A6BCDC3B3 -> [behavior,actions,A_expression_expressionStatement,expression]
 E0003E7BF56A6D92B1C511DE91B8001A6BCDC3B3 -> [behavior,actions,A_statements_block]
 E0001D0A7484E772B1A911DEBCC700155883529C -> [structure,behavior]
-E0DCF6CD839C39C9D5EE11DE81EF00155883529C -> [behavior,actions,Manipulator,AllFieldsFromOwningClass]
+E0DCF6CDCC46EBC9DA1211DE93FA0019D29902CC -> [behavior,expressions,BooleanOperatorExpression,HasBooleanResult]
 E0001D0AC2538121B26F11DE811300155883529C -> [structure,A_functions_owner,owner]
+E0DCF6CDCC126E43DA1211DE9F7D0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, Block])]
+E0DCF6CDCBEC48A7DA1211DECB320019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Bag([structure, Type])]
 E0003E7B8C9AACC5B3F511DEA1EA0019D29902CC -> [behavior,expressions,PathExpression]
 E0003E7BF56A6D8BB1C511DE8069001A6BCDC3B3 -> [behavior,actions,NamedValueWithOptionalInitExpression,initExpression]
-E0DCF6CD83788530D5EE11DEB5C600155883529C -> [structure,FinexClass,InvariantsMustBeSideEffectFree]
 E0003E7BF56CDE90B1C511DEADE4001A6BCDC3B3 -> [behavior,functions,Parameter,direction]
 E0003E7BB308C962B4A311DEC1680019D29902CC -> [behavior,expressions,UnaryOperator,operand]
-E0DCF6CD8303A34ED5EE11DE893200155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, WithArgument])]
+E0DCF6CDCBE9FEBFDA1211DEA20F0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Bag([structure, Field])]
 E0003E7BB308C961B4A311DE80380019D29902CC -> [behavior,expressions,Count]
 E0003E7B75D349D0D03C11DEB3B80019D29902CC -> [behavior,expressions,Expression,withArgument]
 E0003E7B7484E77CB1A911DEBA5500155883529C -> [behavior,expressions,Expression]
+E0DCF6CDCBEC48ABDA1211DECE810019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, TypedElement])]
 E0003E7B9F8BB600D38811DE88C9001A6BCDC3B3 -> [behavior,expressions,ObjectCreationExpression,fieldInitializers]
 E0001D0AC2538122B26F11DEADE600155883529C -> [structure,A_functions_owner]
 E0001D0A74829D82B1A911DEA6EE00155883529C -> [structure,Field,key]
+E0003E7B8A9C6750D93A11DE8C430019D29902CC -> [behavior,expressions,Equals]
 E0003E7B68132514D2F111DE8E690019D29902CC -> [behavior,expressions,A_alias_aliasFor]
-E0DCF6CD8386DD0DD5EE11DEBD5B00155883529C -> [behavior,expressions,FilterExpression,ConditionIsSideEffectFree]
-E0DCF6CD834407AAD5EE11DE9E2B00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,OrderedSet([behavior, actions, Statement])]
 E0003E7BF56A6D94B1C511DECA3A001A6BCDC3B3 -> [behavior,actions,A_expression_expressionStatement,expressionStatement]
-E0DCF6CD82D651B0D5EE11DE912100155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, functions, Function])]
 E0003E7B2B5FC100B4A611DEB2420019D29902CC -> [behavior,expressions,UnaryMinus]
 E0003E7B90B46760D43911DEC436001CBF0234BB -> [behavior,expressions,A_initExpression_fieldInitializer,initExpression]
-E0DCF6CD82F30177D5EE11DE923200155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,packagePrefix]
 E0001D0A72D731C5BA4C11DE84DF001CBF0234BB -> [structure,org.omg.sap2mof.OperationCodeOcl=context Field::otherEnd():Field...]
 E0003E7BDE1B62D2D06311DEAD510019D29902CC -> [behavior,actions,Manipulator]
 E0001D0A72D731C1BA4C11DEBC0E001CBF0234BB -> [structure,Field,otherEnd,*return]
 E0003E7BEABB89F3B96811DEBF60001A6BCDC3B3 -> [behavior,actions,Statement,isSideEffectFree,*return]
+E0DCF6CDCC2CAD0ADA1211DE90BE0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,OrderedSet([behavior, actions, Statement])]
 E0003E7BC460A985B74111DE9AAA00155883529C -> [behavior,expressions,A_right_rightOf,right]
 E0003E7BDB8D8F71B27C11DEA1C600155883529C -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...]
 E0003E7B680E6A23D2F111DEC9A50019D29902CC -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::getAllAliases():Set(Alias)...]
@@ -461,29 +481,26 @@ E0003E7BB1E43BE1BD7D11DE87B2001A6BCDC3B3 -> [behavior,actions,Block,getOuterMost
 E0003E7B686CE6D0BA2411DE9D90001CBF0234BB -> [behavior,actions,Assignment,assignTo]
 E0001D0AE7D67ED1D2F811DE9FB20019D29902CC -> [structure,Type,getNavigableFields]
 E0003E7BF56F4F83B1C511DE9AC0001A6BCDC3B3 -> [behavior,functions,A_expression_parameter,expression]
-E0DCF6CD83229CF7D5EE11DEC97000155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,OrderedSet([behavior, actions, Block])]
 E0003E7B984B9B42D29711DEA0A700155883529C -> [behavior,actions,Block,getImplicitContextType]
+E0DCF6CDCBE78DB7DA1211DE89440019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,packagePrefix]
+E0DCF6CDCBEEB9ACDA1211DE8EC60019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, functions, Function])]
 E0003E7BDB6760A2B2BA11DE93790019D29902CC -> [behavior,expressions,Expression,numericPostType,preType2]
 E0001D0A74829D85B1A911DE8A7600155883529C -> [structure,Field]
-E0DCF6CD8399EFD4D5EE11DE948500155883529C -> [behavior,actions,Assignment,NoAssigmentAllowedToFieldsWithDetermination]
 E0001D0A72D9A2C0BA4C11DEB6AC001CBF0234BB -> [structure,AssociationEnds,ends]
 E0003E7B9F8E2701D38811DEAEFD001A6BCDC3B3 -> [behavior,expressions,A_fieldInitializers_creationExpression,creationExpression]
-E0DCF6CD8367E35ED5EE11DEBA4C00155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([behavior, functions, Function])]
 E0003E7BB1E43BE0BD7D11DEA0BD001A6BCDC3B3 -> [behavior,actions,Block,getOuterMostBlock,*return]
 E0003E7B7E47C4A0B96D11DE813E001A6BCDC3B3 -> [behavior,functions,Function,isSideEffectFree,*return]
-E0003E7BF56A6D87B1C511DE9220001A6BCDC3B3 -> [behavior,actions,StatementWithNestedBlock]
+E0DCF6CDCC46EBC5DA1211DECA720019D29902CC -> [behavior,expressions,UnaryNumericOperator,OperandMustBeNumeric]
 E0003E7BC45BEE92B74111DEBF9C00155883529C -> [behavior,expressions,org.omg.sap2mof.store=yes]
+E0003E7BF56A6D87B1C511DE9220001A6BCDC3B3 -> [behavior,actions,StatementWithNestedBlock]
 E0003E7BC460A984B74111DE8E5600155883529C -> [behavior,expressions,A_left_leftOf]
 E0001D0AC45007B0B74111DEB4DC00155883529C -> [structure,A_determination_determinationOf,determination]
 E0003E7BC4631A8AB74111DEB0CE00155883529C -> [behavior,actions,Statement,getEnclosingType]
-E0DCF6CD830F8A22D5EE11DE9A6E00155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,OrderedSet([structure, Field])]
 E0003E7BEAB6CF00B96811DE9597001A6BCDC3B3 -> [behavior,expressions,Expression,isSideEffectFree,*return]
 E0001D0AE7D67ED0D2F811DEC79B0019D29902CC -> [structure,Type,getNavigableFields,*return]
 E0003E7BF56CDE82B1C511DE8AAB001A6BCDC3B3 -> [behavior,actions,A_initExpression_namedValueWithOptionalInitExpression,initExpression]
-E0DCF6CD8381FB11D5EE11DE811300155883529C -> [behavior,expressions,UnaryNumericOperator,OperandMustBeNumeric]
 E0003E7B5D7C25C2D38211DEC5AE001A6BCDC3B3 -> [behavior,expressions,A_classToInstantiate_objectCreationExpression,objectCreationExpression]
 E0003E7BF56A6D91B1C511DECF02001A6BCDC3B3 -> [behavior,actions,A_statements_block,block]
-E0DCF6CD83846C03D5EE11DE89D800155883529C -> [behavior,expressions,BooleanOperatorExpression,HasBooleanResult]
 E0001D0A1ADC24A8B1B711DEA3C100155883529C -> [structure,FinexClass]
 E0003E7BC4631A82B74111DEBC6600155883529C -> [behavior,actions,Block,owningStatement]
 E0003E7BB3040E70B4A311DE8DD40019D29902CC -> [behavior,expressions,UnaryNumericOperator]
@@ -494,25 +511,27 @@ E0003E7BC45007B3B74111DEA08B00155883529C -> [behavior,expressions,Expression,lef
 E0001D0A72D731C6BA4C11DEA528001CBF0234BB -> [structure,org.omg.sap2mof.OperationCodeOcl=context Field::getNavigableFrom():Type...]
 E0001D0A0E057B81B1B911DE9B9F00155883529C -> [structure,org.omg.sap2mof.store=yes]
 E0003E7BD53A9290B4A611DEC16B0019D29902CC -> [behavior,expressions,BooleanAggregate]
+E0DCF6CDCC4230DEDA1211DEC1D00019D29902CC -> [structure,Field,DeterminationTypeMustMatch]
+E0DCF6CDCC52D2A9DA1211DEA9E70019D29902CC -> [behavior,expressions,ObjectCreationExpression,FieldMustOnlyBeInitializedOnce]
 E0003E7B984B9B40D29711DE8D8F00155883529C -> [behavior,expressions,ImplicitContext]
 E0003E7BC4631A88B74111DE845100155883529C -> [behavior,actions,Statement,block]
 E0003E7B686CE6D2BA2411DE9EEB001CBF0234BB -> [behavior,actions,StatementWithArgument]
 E0001D0A1D2C1C60B1E911DEA3920019D29902CC -> [structure,org.omg.sap2mof.OperationCodeOcl=context TypedElement::getImpliedType(name:String):Type...]
 E0003E7BC4631A87B74111DEBDD500155883529C -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...]
-E0DCF6CD8386DD09D5EE11DE962D00155883529C -> [behavior,expressions,FilterExpression,TypeIsSameAsOperand]
 E0003E7BC4631A85B74111DE8B4C00155883529C -> [behavior,actions,org.omg.sap2mof.store=no]
 E0003E7BA2127320B74811DE9B7400155883529C -> [behavior,expressions,PathExpression,field]
 E0003E7BDE1DD3D6D06311DEB4900019D29902CC -> [behavior,functions,SignatureImplementation]
 E0003E7BDE1B62D1D06311DE90840019D29902CC -> [behavior,actions,Manipulator,assignments]
+E0DCF6CDCC447ACDDA1211DEA9570019D29902CC -> [behavior,expressions,BinaryBooleanOperator,OperandsMustBeBoolean]
 E0001D0A0E057B80B1B911DEA88A00155883529C -> [structure,Type,owner]
 E0B7C2A25D1E41F0B18E11DEA01000155883529C -> [finex,behavior]
 E0001D0A1ADE95A9B1B711DEC94C00155883529C -> [structure,A_type_typedElement,typedElement]
 E0003E7BF5682394B1C511DEA438001A6BCDC3B3 -> [behavior,expressions,literals,BooleanLiteral]
 E0001D0AF4444490B1E711DE923C0019D29902CC -> [structure,TypedElement,getImpliedType,*return]
 E0003E7BC45E3880B74111DE814500155883529C -> [behavior,expressions,org.omg.sap2mof.store=no]
-E0DCF6CD839C39D1D5EE11DEA61B00155883529C -> [behavior,actions,Manipulator,AllAssignmentExpressionsSideEffectFree]
+E0001D0AE5767BC1D9BC11DEC0CB00155883529C -> [structure,Type,getAllFields]
 E0001D0A7B3F7560BE4911DE8DD7001A6BCDC3B3 -> [structure,Field,navigable]
-E0DCF6CD8386DD01D5EE11DEAF0E00155883529C -> [behavior,expressions,NumericOperatorExpression,OperatorResultType]
+E0DCF6CDCC233720DA1211DE82B30019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,OrderedSet([behavior, actions, Block])]
 E0003E7B90A88080D43911DEA82A001CBF0234BB -> [behavior,expressions,FieldInitializer,fieldToInitialize]
 E0003E7B984E0C40D29711DE9AED00155883529C -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...]
 E0003E7BDE1DD3D0D06311DEC9C40019D29902CC -> [behavior,actions,A_assignments_manipulator,assignments]
@@ -521,7 +540,6 @@ E0001D0AC44D96B1B74111DEACE300155883529C -> [structure,Defaultable,getEnclosingT
 E0003E7BF56CDE81B1C511DEB2F8001A6BCDC3B3 -> [behavior,actions,A_nestedBlocks_owningStatement]
 E0003E7B75D804C0D03C11DEAF7A0019D29902CC -> [behavior,expressions,WithArgument,getEnclosingTypeFromWithArgument,*return]
 E0003E7BF56CDE89B1C511DECFB7001A6BCDC3B3 -> [behavior,actions,A_namedValues_block,block]
-E0DCF6CD8399EFDFD5EE11DEBF7F00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, Assignment])]
 E0001D0A1ADE95A8B1B711DEA82800155883529C -> [structure,A_type_typedElement,type]
 E0003E7B98495151D29711DE8ADD00155883529C -> [behavior,expressions,WithArgument,getImplicitContextTypeFromWithArgument]
 E0003E7B90B1F662D43911DE90E2001CBF0234BB -> [behavior,expressions,A_fieldToInitialize_fieldInitializer,fieldToInitialize]
@@ -531,26 +549,31 @@ E0003E7BC4631A81B74111DEABD500155883529C -> [behavior,expressions,A_operandOf_op
 E0003E7BED9E04B0B1FA11DEA2F90019D29902CC -> [behavior,functions,Function,parameters]
 E0003E7BEABB89F4B96811DEA884001A6BCDC3B3 -> [behavior,actions,Statement,isSideEffectFree]
 E0003E7BC45E3881B74111DEBBB700155883529C -> [behavior,expressions,BinaryOperator,left]
+E0DCF6CDCC2F1E16DA1211DE81460019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([PrimitiveTypes, String])]
 E0003E7B68132511D2F111DEC86C0019D29902CC -> [behavior,expressions,Alias]
 E0003E7B98495152D29711DEB4CF00155883529C -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...]
+E0DCF6CDCC3649FFDA1211DEAF3F0019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([behavior, expressions, Expression])]
 E0003E7BF56A6D82B1C511DE954A001A6BCDC3B3 -> [behavior,actions,Block]
-E0DCF6CD838B97FAD5EE11DE84B500155883529C -> [behavior,expressions,UnaryBooleanOperator,OperandMustBeBoolean]
+E0DCF6CDCC52D2B2DA1211DE88DC0019D29902CC -> [behavior,expressions,FieldInitializer,InitExpressionTypeMustConformToFieldType]
+E0003E7B9B8C5CA1DA1111DEAA6E0019D29902CC -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...]
+E0DCF6CDCC495CC4DA1211DE847F0019D29902CC -> [behavior,expressions,NumericOperatorExpression,OperatorResultType]
 E0B7C2A25D1E41F1B18E11DE9A5400155883529C -> [finex]
 E0001D0A0E07C570B1B911DEB76500155883529C -> [structure,A_ownedTypes_owner,ownedTypes]
-E0DCF6CD835BD572D5EE11DECB7300155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([PrimitiveTypes, String])]
+E0DCF6CDCC102452DA1211DE8ECD0019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Bag([behavior, expressions, Alias])]
 E0003E7B686A75D2BA2411DE8B69001CBF0234BB -> [behavior,expressions,A_argument_withArgument,withArgument]
 E0003E7BDB8D8F7CB27C11DEAA1C00155883529C -> [behavior,expressions,BinaryNumericOperator]
 E0003E7BF56CDE94B1C511DE99D0001A6BCDC3B3 -> [behavior,functions,A_implementation_signature,signature]
 E0001D0A1ADE95A1B1B711DECB0B00155883529C -> [structure,TypedElement]
-E0DCF6CD82CCDBD3D5EE11DEA40E00155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, Block])]
 E0003E7B984E0C41D29711DEC13B00155883529C -> [behavior,actions,Statement,getImplicitContextType,*return]
 E0003E7BA21E5A01B74811DEA23700155883529C -> [behavior,expressions,A_field_pathExpression,pathExpression]
 E0003E7BC460A98BB74111DE933C00155883529C -> [behavior,expressions,A_operandOf_operand,operandOf]
+E0DCF6CDCC08F86CDA1211DEC5480019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, Alias])]
 E0003E7BF5682397B1C511DE8C86001A6BCDC3B3 -> [behavior,expressions,literals,DateLiteral]
 E0003E7B9F8E2700D38811DEC8EC001A6BCDC3B3 -> [behavior,expressions,A_fieldInitializers_creationExpression,fieldInitializers]
-E0DCF6CD83015961D5EE11DEB13000155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, Defaultable])]
 E0003E7BF56F4F84B1C511DEAFFE001A6BCDC3B3 -> [behavior,functions,A_expression_parameter,parameter]
 E0003E7B5D7C25C3D38211DEA788001A6BCDC3B3 -> [behavior,expressions,A_classToInstantiate_objectCreationExpression]
+E0DCF6CDCC1E5525DA1211DEA4CE0019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Bag([structure, Field])]
+E0DCF6CDCC4E17C6DA1211DE84D70019D29902CC -> [behavior,expressions,Single,OutputTypeEqualsOperandType]
 E0001D0A1ADC24A7B1B711DE87D400155883529C -> [structure,FinexClass,valueType]
 E0003E7BF56CDE8BB1C511DEC81F001A6BCDC3B3 -> [behavior,functions,Function,implementation]
 E0003E7BF56CDE92B1C511DE9BEA001A6BCDC3B3 -> [behavior,functions,Direction]
@@ -565,20 +588,19 @@ E0003E7BC4656471B74111DEA22300155883529C -> [behavior,functions,Parameter,signat
 E0001D0ADE0F7BF0D06311DEC38C0019D29902CC -> [structure,Field,association]
 E0003E7BF56A6D90B1C511DEBA3C001A6BCDC3B3 -> [behavior,actions,A_statements_block,statements]
 E0001D0A1ADC24A5B1B711DEC35C00155883529C -> [structure,FinexClass,invariants]
+E0DCF6CDCBE78DB6DA1211DEA4710019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577]
 E0001D0AC45007B2B74111DECA0100155883529C -> [structure,A_determination_determinationOf]
 E0003E7BDB8D8F83B27C11DEBD1B00155883529C -> [behavior,expressions,BooleanOperatorExpression]
-E0DCF6CD83015959D5EE11DEB49000155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, Field])]
+E0DCF6CDCC4BA6B6DA1211DEAD4F0019D29902CC -> [behavior,expressions,PathExpression,SourceTypeMustHaveField]
 E0003E7BF56A6D96B1C511DE923B001A6BCDC3B3 -> [behavior,actions,A_nestedBlocks_owningStatement,nestedBlocks]
 E0003E7BDB8D8F72B27C11DE82EE00155883529C -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...]
 E0001D0AC44D96B0B74111DE8B0800155883529C -> [structure,Defaultable,getEnclosingType,*return]
 E0003E7BF56CDE91B1C511DE87B1001A6BCDC3B3 -> [behavior,functions,Parameter]
 E0003E7BF56CDE8AB1C511DEBCF8001A6BCDC3B3 -> [behavior,actions,A_namedValues_block]
+E0DCF6CDCC578DA5DA1211DEA1170019D29902CC -> [behavior,actions,Manipulator,AllAssignmentExpressionsSideEffectFree]
+E0001D0AE5767BC0D9BC11DE990800155883529C -> [structure,Type,getAllFields,*return]
 E0001D0AEEAAE371B18F11DEC91800155883529C -> [structure,Type]
-E0DCF6CD837FB116D5EE11DE823900155883529C -> [structure,Field,DeterminationTypeMustMatch]
 E0003E7BF56A6D8FB1C511DEA4D1001A6BCDC3B3 -> [behavior,actions,NamedValueDeclaration]
-E0DCF6CD837FB11FD5EE11DE9C5600155883529C -> [structure,Field,DeterminationMustBeSideEffectFree]
-E0DCF6CD8303A347D5EE11DEA38400155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, FinexClass])]
-E0DCF6CD83977ED9D5EE11DE894C00155883529C -> [behavior,expressions,ObjectCreationExpression,FieldMustOnlyBeInitializedOnce]
 E0003E7B984E0C43D29711DE919F00155883529C -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...]
 E0003E7BB92CE450B72A11DE971700155883529C -> [behavior,expressions,This]
 E0003E7BC460A983B74111DEC9BA00155883529C -> [behavior,expressions,A_left_leftOf,leftOf]
@@ -590,17 +612,20 @@ E0001D0AC44D96B5B74111DE9C7000155883529C -> [structure,A_defaultValue_defaultOf]
 E0003E7B98495150D29711DEC52000155883529C -> [behavior,expressions,WithArgument,getImplicitContextTypeFromWithArgument,*return]
 E0001D0A72D9A2C4BA4C11DEAB14001CBF0234BB -> [structure,A_associations_clazz,clazz]
 E0003E7B686A75D0BA2411DEC697001CBF0234BB -> [behavior,expressions,WithArgument]
-E0DCF6CD838926FAD5EE11DEAB2400155883529C -> [behavior,expressions,PathExpression,PathExpressionTypeIsFieldType]
+E0DCF6CDCC4E17B9DA1211DEC7470019D29902CC -> [behavior,expressions,Count,CountHasIntegerValue]
 E0003E7B7E47C4A2B96D11DECBE8001A6BCDC3B3 -> [behavior,functions,org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...]
 E0001D0A1ADE95AEB1B711DE91E500155883529C -> [structure,finex]
 E0003E7B5D7C25C0D38211DEC97A001A6BCDC3B3 -> [behavior,expressions,ObjectCreationExpression]
 E0003E7BC4631A80B74111DEC5CF00155883529C -> [behavior,expressions,A_operandOf_operand,operand]
+E0DCF6CDCBE9FEB4DA1211DEBC180019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, Defaultable])]
 E0003E7BEAB6CF02B96811DEABAF001A6BCDC3B3 -> [behavior,expressions,org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...]
 E0003E7BF56A6D83B1C511DEB2CC001A6BCDC3B3 -> [behavior,actions,Statement]
 E0003E7BEB60F632D06811DE83B90019D29902CC -> [behavior,actions,org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...]
 E0003E7B218D9BF0B73211DE91F500155883529C -> [behavior,expressions,FirstPathExpression]
 E0003E7BC4656472B74111DE98D900155883529C -> [behavior,functions,org.omg.sap2mof.store=yes]
+E0DCF6CDCBF12AA5DA1211DEC9A40019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, actions, ExpressionStatement])]
 E0003E7B821EC180D5EE11DEA4A800155883529C -> [behavior,functions,NativeImpl]
+E0003E7B0520A950D9B811DE991E00155883529C -> [behavior,expressions,A_namedValue_namedValueExpression,namedValue]
 E0003E7BEDA04EA0B1FA11DECD4D0019D29902CC -> [behavior,functions,A_parameters_signature,parameters]
 E0001D0A0E07C571B1B911DE964A00155883529C -> [structure,A_ownedTypes_owner,owner]
 E0001D0A0E07C572B1B911DEB1D000155883529C -> [structure,A_ownedTypes_owner]
@@ -610,21 +635,27 @@ E0001D0AC24EC630B26F11DEC31B00155883529C -> [structure,FinexClass,functions]
 E0003E7B686CE6D1BA2411DEB395001CBF0234BB -> [behavior,actions,Assignment]
 E0003E7BEAB6CF01B96811DEB969001A6BCDC3B3 -> [behavior,expressions,Expression,isSideEffectFree]
 E0003E7B8C9AACC2B3F511DE801B0019D29902CC -> [behavior,expressions,FilterExpression]
+E0DCF6CDCC3D75EEDA1211DE921B0019D29902CC -> [structure,FinexClass,FieldsMustHaveUniqueNames]
 E0003E7BF56CDE84B1C511DEA6EB001A6BCDC3B3 -> [behavior,actions,A_initExpression_namedValueWithOptionalInitExpression]
+E0DCF6CDCC5088C2DA1211DE90A80019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([behavior, expressions, FieldInitializer])]
 E0003E7B686F30C2BA2411DECBFE001CBF0234BB -> [behavior,actions,A_assignTo_assignment]
-E0DCF6CD83088546D5EE11DEAA0500155883529C -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Sequence([behavior, expressions, Expression])]
 E0003E7BF56A6D88B1C511DE8034001A6BCDC3B3 -> [behavior,actions,Foreach]
 E0003E7B7484E77DB1A911DEA33C00155883529C -> [behavior,expressions]
 E0003E7BF56A6D95B1C511DEC0BF001A6BCDC3B3 -> [behavior,actions,A_expression_expressionStatement]
+E0003E7B9B8C5CA0DA1111DEB6820019D29902CC -> [behavior,expressions,Expression,getTuplesWhereThisIsFieldInitializer]
+E0DCF6CDCBFAA087DA1211DEB8340019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Sequence([behavior, expressions, Expression])]
 E0001D0A72D9A2C5BA4C11DE81AB001CBF0234BB -> [structure,A_associations_clazz]
 E0003E7B8C9AACC1B3F511DEADE60019D29902CC -> [behavior,expressions,FilterExpression,condition]
 E0003E7BDB6760A1B2BA11DE9E3F0019D29902CC -> [behavior,expressions,Expression,numericPostType,preType1]
 E0003E7BF5682395B1C511DE9DE2001A6BCDC3B3 -> [behavior,expressions,literals,IntegerLiteral]
+E0003E7B0520A951D9B811DEB4B100155883529C -> [behavior,expressions,A_namedValue_namedValueExpression,namedValueExpression]
 E0003E7B7E47C4A1B96D11DE932A001A6BCDC3B3 -> [behavior,functions,Function,isSideEffectFree]
 E0001D0AF446B591B1E711DECB850019D29902CC -> [structure,TypedElement,getImpliedType]
 E0003E7BF56CDE86B1C511DE9CFB001A6BCDC3B3 -> [behavior,actions,A_namedValue_namedValueDeclaration,namedValueDeclaration]
 E0003E7B7484E776B1A911DEB12900155883529C -> [behavior,expressions,literals,Literal,literal]
+E0DCF6CDCC3893E0DA1211DE950C0019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Set([behavior, functions, Function])]
 E0003E7BC4631A84B74111DE9A7B00155883529C -> [behavior,actions,Block,getEnclosingType]
+E0DCF6CDCC447AC4DA1211DE9A730019D29902CC -> [structure,Field,DeterminationMustBeSideEffectFree]
 E0003E7B01313870B3E111DEAFE70019D29902CC -> [behavior,expressions,Expression,numericPostType,operator]
 E0001D0A0E009980B1B911DEA55100155883529C -> [structure,org.omg.sap2mof.store=no]
 E0001D0AF560F7A0B1C511DEBCC3001A6BCDC3B3 -> [structure,Defaultable,defaultValue]
@@ -636,24 +667,26 @@ E0003E7BF56CDE8FB1C511DEC76A001A6BCDC3B3 -> [behavior,functions,Parameter,expres
 E0003E7BDB6760A3B2BA11DEB0810019D29902CC -> [behavior,expressions,Expression,numericPostType]
 E0003E7BC460A980B74111DE8A7200155883529C -> [behavior,expressions,BinaryOperator,right]
 E0003E7BF56CDE93B1C511DEC683001A6BCDC3B3 -> [behavior,functions,A_implementation_signature,implementation]
-E0DCF6CD837AF62CD5EE11DEB5F700155883529C -> [structure,FinexClass,FieldsMustHaveUniqueNames]
+E0003E7B051E3850D9B811DECA0A00155883529C -> [behavior,expressions,NamedValueExpression]
 E0003E7BC460A987B74111DE831200155883529C -> [behavior,expressions,A_right_rightOf]
+E0DCF6CDCC3B04E0DA1211DEC4880019D29902CC -> [structure,FinexClass,OnlyOneUnnamedFunction]
 E0003E7B7484E77BB1A911DEB81B00155883529C -> [behavior,expressions,literals]
 E0003E7B686A75D1BA2411DE8C4C001CBF0234BB -> [behavior,expressions,A_argument_withArgument,argument]
 E0003E7B90B1F663D43911DECEFA001CBF0234BB -> [behavior,expressions,A_fieldToInitialize_fieldInitializer,fieldInitializer]
 E0003E7BDB8B1E72B27C11DEC4DD00155883529C -> [behavior,expressions,Expression,isBoolean,*return]
 E0003E7B90B1F664D43911DE8B14001CBF0234BB -> [behavior,expressions,A_fieldToInitialize_fieldInitializer]
 E0003E7B7484E77EB1A911DE8C8200155883529C -> [behavior,PrimitiveTypes]
+E0001D0A975BBDD1D9BA11DEB80800155883529C -> [structure,Type,getFieldsWithDefaultValue]
 E0003E7B686F30C0BA2411DEB3AA001CBF0234BB -> [behavior,actions,A_assignTo_assignment,assignTo]
-E0DCF6CD838926F3D5EE11DEAE5300155883529C -> [behavior,expressions,PathExpression,SourceTypeMustHaveField]
 E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3 -> [behavior,expressions,A_fieldInitializers_creationExpression]
 E0003E7B5D7C25C1D38211DEB385001A6BCDC3B3 -> [behavior,expressions,A_classToInstantiate_objectCreationExpression,classToInstantiate]
 E0001D0A165C0580D2FA11DEAAE50019D29902CC -> [structure,Type,typedElement]
 E0003E7BF56CDE85B1C511DECE42001A6BCDC3B3 -> [behavior,actions,A_namedValue_namedValueDeclaration,namedValue]
 E0003E7BC4656470B74111DE8E6B00155883529C -> [behavior,functions,org.omg.sap2mof.store=no]
+E0DCF6CDCBE061C4DA1211DEC9EF0019D29902CC -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577,Sequence([PrimitiveTypes, Integer])]
 E0003E7BC45007B4B74111DEB1BC00155883529C -> [behavior,expressions,Expression,rightOf]
 E0003E7B686804D0BA2411DECAC2001CBF0234BB -> [behavior,expressions,WithArgument,argument]
-E0DCF6CD82F30176D5EE11DEB41400155883529C -> [OclGenerated_B2877AA13A720286D5483574839E70834CF5E577]
+E0DCF6CDCBF37491DA1211DECA820019D29902CC -> [OclGenerated_65AD403E2928D0F059E4333C52FDA8BC094E6577,Set([structure, Field])]
 type mofid -> super type mofids mapping
 E0003E7BBEBAE0F0B4A711DEC56F0019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0003E7BF56A6D8AB1C511DEBC18001A6BCDC3B3 -> [E0B7C2A21ADC24A1B1B711DE904B00155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
@@ -666,6 +699,7 @@ E0003E7BF56A6D8DB1C511DE8446001A6BCDC3B3 -> [E0003E7BF56A6D8AB1C511DEBC18001A6BC
 E0003E7B2B5FC101B4A611DEC4980019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0003E7BB3040E70B4A311DE8DD40019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7BDB8D8F84B27C11DEBBB100155883529C]
 E0B7C2A21ADC24A1B1B711DE904B00155883529C -> []
 E0003E7BD53848A0B4A611DEB5300019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7BDB8D8F83B27C11DEBD1B00155883529C]
+E0003E7BFA1256D0D93A11DE80100019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BC460A981B74111DE92C200155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0001D0AF565B290B1C511DEB4E3001A6BCDC3B3 -> []
 E0003E7BE7E01BC0D2F811DE8EA60019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0003E7BF56A6D8CB1C511DEA053001A6BCDC3B3 -> [E0003E7BF56A6D8AB1C511DEBC18001A6BCDC3B3,E0B7C2A21ADC24A1B1B711DE904B00155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
@@ -676,6 +710,7 @@ E0003E7BB308C963B4A311DE81E10019D29902CC -> [E0003E7B7484E77CB1A911DEBA550015588
 E0003E7B8C9AACC5B3F511DEA1EA0019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0003E7BB308C961B4A311DE80380019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0003E7B7484E77CB1A911DEBA5500155883529C -> [E0001D0A1ADE95A1B1B711DECB0B00155883529C]
+E0003E7B8A9C6750D93A11DE8C430019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BC460A981B74111DE92C200155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0003E7B2B5FC100B4A611DEB2420019D29902CC -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0003E7BB3040E70B4A311DE8DD40019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7BDB8D8F84B27C11DEBBB100155883529C]
 E0003E7BDE1B62D2D06311DEAD510019D29902CC -> [E0003E7BDE1DD3D6D06311DEB4900019D29902CC]
 E0001D0A74829D85B1A911DE8A7600155883529C -> [E0001D0AF565B290B1C511DEB4E3001A6BCDC3B3,E0B7C2A21ADC24A1B1B711DE904B00155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
@@ -688,7 +723,7 @@ E0003E7B984B9B40D29711DE8D8F00155883529C -> [E0003E7B7484E77CB1A911DEBA550015588
 E0003E7B686CE6D2BA2411DE9EEB001CBF0234BB -> [E0003E7B686A75D0BA2411DEC697001CBF0234BB,E0003E7BF56A6D83B1C511DEB2CC001A6BCDC3B3]
 E0003E7BDE1DD3D6D06311DEB4900019D29902CC -> []
 E0003E7BF5682394B1C511DEA438001A6BCDC3B3 -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7B7484E777B1A911DEADF900155883529C]
-E0003E7B68132511D2F111DEC86C0019D29902CC -> [E0B7C2A21ADC24A1B1B711DE904B00155883529C]
+E0003E7B68132511D2F111DEC86C0019D29902CC -> [E0003E7BF56A6D8AB1C511DEBC18001A6BCDC3B3,E0B7C2A21ADC24A1B1B711DE904B00155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
 E0003E7BF56A6D82B1C511DE954A001A6BCDC3B3 -> [E0003E7BDE1DD3D6D06311DEB4900019D29902CC]
 E0003E7BDB8D8F7CB27C11DEAA1C00155883529C -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BC460A981B74111DE92C200155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7BDB8D8F84B27C11DEBBB100155883529C]
 E0001D0A1ADE95A1B1B711DECB0B00155883529C -> []
@@ -711,3 +746,4 @@ E0003E7BF56A6D88B1C511DE8034001A6BCDC3B3 -> [E0003E7BF56A6D87B1C511DE9220001A6BC
 E0003E7BF5682395B1C511DE9DE2001A6BCDC3B3 -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7B7484E777B1A911DEADF900155883529C]
 E0003E7BDB8D8F79B27C11DEAB1300155883529C -> [E0003E7BD53848A0B4A611DEB5300019D29902CC,E0003E7B7484E77CB1A911DEBA5500155883529C,E0003E7BB308C963B4A311DE81E10019D29902CC,E0001D0A1ADE95A1B1B711DECB0B00155883529C,E0003E7BDB8D8F83B27C11DEBD1B00155883529C]
 E0003E7BC460A981B74111DE92C200155883529C -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]
+E0003E7B051E3850D9B811DECA0A00155883529C -> [E0003E7B7484E77CB1A911DEBA5500155883529C,E0001D0A1ADE95A1B1B711DECB0B00155883529C]

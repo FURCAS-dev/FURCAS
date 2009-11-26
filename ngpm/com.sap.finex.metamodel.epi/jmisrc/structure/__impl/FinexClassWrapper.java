@@ -13,6 +13,8 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
         OPERATION_IDS.put("getNavigableFields", Integer.valueOf(0)); //$NON-NLS-1$
+        OPERATION_IDS.put("getFieldsWithDefaultValue", Integer.valueOf(1)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAllFields", Integer.valueOf(2)); //$NON-NLS-1$
     }
 
     public FinexClassWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, structure.__impl.FinexClassImpl baseObject, boolean synchronize) {
@@ -309,6 +311,26 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         }
     }
 
+    public java.util.Collection<structure.Field> getFieldsWithDefaultValue() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<structure.Field>)___invokeOperation(connection, 1, "E0001D0A975BBDD1D9BA11DEB80800155883529C", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
+    public java.util.Collection<structure.Field> getAllFields() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<structure.Field>)___invokeOperation(connection, 2, "E0001D0AE5767BC1D9BC11DEC0CB00155883529C", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
     private java.util.Collection<structure.Field> invoke__getNavigableFields(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -317,6 +339,28 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
             // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
             java.util.Map operationParameters = new java.util.HashMap();
             return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getNavigableFields", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
+    private java.util.Collection<structure.Field> invoke__getFieldsWithDefaultValue(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getFieldsWithDefaultValue", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
+    private java.util.Collection<structure.Field> invoke__getAllFields(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getAllFields", getCastWrappedObject( ), operationParameters));
             // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
         } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
@@ -337,6 +381,12 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
                 
             case 0:
                 return ___invokeOperation( connection, operationId, "E0001D0AE7D67ED1D2F811DE9FB20019D29902CC", args ); //$NON-NLS-1$    
+                
+            case 1:
+                return ___invokeOperation( connection, operationId, "E0001D0A975BBDD1D9BA11DEB80800155883529C", args ); //$NON-NLS-1$    
+                
+            case 2:
+                return ___invokeOperation( connection, operationId, "E0001D0AE5767BC1D9BC11DEC0CB00155883529C", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
@@ -348,6 +398,12 @@ public class FinexClassWrapper extends com.sap.tc.moin.repository.core.jmi.refle
                 
             case 0:
                 return invoke__getNavigableFields(connection);    
+                
+            case 1:
+                return invoke__getFieldsWithDefaultValue(connection);    
+                
+            case 2:
+                return invoke__getAllFields(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }

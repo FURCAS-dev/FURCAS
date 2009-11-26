@@ -23,8 +23,10 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
         FEATURE_IDS.put("associations", Integer.valueOf(6)); //$NON-NLS-1$
         FEATURE_IDS.put("valueType", Integer.valueOf(7)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(2);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
         OPERATION_IDS.put("getNavigableFields", Integer.valueOf(0)); //$NON-NLS-1$
+        OPERATION_IDS.put("getFieldsWithDefaultValue", Integer.valueOf(1)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAllFields", Integer.valueOf(2)); //$NON-NLS-1$
     }
     
     

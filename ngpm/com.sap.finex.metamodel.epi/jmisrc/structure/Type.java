@@ -28,6 +28,11 @@ public interface Type extends finex.modelmanagement.NamedElement {
 
     // operations
     public java.util.Collection<structure.Field> getNavigableFields() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public java.util.Collection<structure.Field> getFieldsWithDefaultValue() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * Returns the opposites of all fields whose type is this type.
+     */
+    public java.util.Collection<structure.Field> getAllFields() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -72,6 +77,28 @@ public interface Type extends finex.modelmanagement.NamedElement {
                 __getNavigableFields = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>>( "E0001D0AE7D67ED1D2F811DE9FB20019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Type", "getNavigableFields" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __getNavigableFields;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> __getFieldsWithDefaultValue;
+        /**
+         * Returns the descriptor for the <code>getFieldsWithDefaultValue</code> operation.
+         * @return  the descriptor for the <code>getFieldsWithDefaultValue</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_FIELDS_WITH_DEFAULT_VALUE( ) {
+            if ( __getFieldsWithDefaultValue == null ) {
+                __getFieldsWithDefaultValue = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>>( "E0001D0A975BBDD1D9BA11DEB80800155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Type", "getFieldsWithDefaultValue" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __getFieldsWithDefaultValue;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> __getAllFields;
+        /**
+         * Returns the descriptor for the <code>getAllFields</code> operation.
+         * @return  the descriptor for the <code>getAllFields</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_ALL_FIELDS( ) {
+            if ( __getAllFields == null ) {
+                __getAllFields = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>>( "E0001D0AE5767BC1D9BC11DEC0CB00155883529C", "sap.com/finex/metamodel", new java.lang.String[] { "structure", "Type", "getAllFields" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __getAllFields;
         }
     }
 }    

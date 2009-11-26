@@ -133,6 +133,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 import com.sap.tc.moin.repository.mmi.reflect.RefException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
+import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
 import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode;
 import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode.NodeRoleTypes;
 import com.sap.tc.moin.repository.ocl.exceptions.InvalidValueException;
@@ -1259,7 +1260,8 @@ public class StackedEvaluator extends ExpressionEvaluator {
                         contextStack.pop( OclInvalidImpl.OCL_INVALID );
                         continue;
                     }
-                    if ( OclVoidImpl.OCL_UNDEFINED.equals( src ) ) {
+                    if ( OclVoidImpl.OCL_UNDEFINED.equals( src ) ||
+                	    (src instanceof OclCollection && ((OclCollection) src).getWrappedCollection().size() == 0)) {
                         contextStack.pop( OclVoidImpl.OCL_UNDEFINED );
                         continue;
                     }
@@ -1428,41 +1430,47 @@ public class StackedEvaluator extends ExpressionEvaluator {
         if ( refAssoc == null ) {
             throw new MoinLocalizedBaseRuntimeException( MoinOclEvaluatorMessages.EXTRACTREFASSOCFAILED, assoc.getName( ) );
         }
-        JmiList<RefObject> associationValues = refAssoc.refQuery( connection, MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ), srcRefObject );
-
-        // If the association can have at most one value, return a single value
-        MultiplicityType assocEndMultiplicity = assocEnd.getMultiplicity( );
-        if ( assocEndMultiplicity.getUpper( ) == 1 ) {
-            OclAny any = convertToSingleValue( session, associationValues );
-            if ( any != null ) {
-                return any;
-            }
-            LOGGER.logAndTrace( MoinSeverity.ERROR, MoinOclEvaluatorMessages.ASSOCVALUEQUERYFAILED, MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ).getName( ), assoc.getName( ), srcRefObject.refMofId( ), srcRefObject.get___Mri( ).getPartitionName( ) );
-            throw new EvaluatorException( MoinOclEvaluatorMessages.ASSOCVALUEQUERYFAILED, new String[] { MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ).getName( ), assoc.getName( ), srcRefObject.refMofId( ), srcRefObject.get___Mri( ).getPartitionName( ) } );
-        }
-
-        // Otherwise, the association can have multiple values - return a Set
-        // (or OrderedSet if necessary)
-
-        // Build a new collection, since OclFactory does not know about
-        // CoreConnection.
-
-        int size = associationValues.size( session );
-        Collection<RefObject> refObjs = new ArrayList<RefObject>( size );
-
-        for ( Iterator<RefObject> it = associationValues.iteratorReadOnly( session ); it.hasNext( ); ) {
-            RefObject next = it.next( );
-            if ( next == null ) {
+        JmiList<RefObject> associationValues;
+        try {
+            associationValues = refAssoc.refQuery( connection, MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ), srcRefObject );
+            // If the association can have at most one value, return a single value
+            MultiplicityType assocEndMultiplicity = assocEnd.getMultiplicity( );
+            if ( assocEndMultiplicity.getUpper( ) == 1 ) {
+                OclAny any = convertToSingleValue( session, associationValues );
+                if ( any != null ) {
+                    return any;
+                }
                 LOGGER.logAndTrace( MoinSeverity.ERROR, MoinOclEvaluatorMessages.ASSOCVALUEQUERYFAILED, MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ).getName( ), assoc.getName( ), srcRefObject.refMofId( ), srcRefObject.get___Mri( ).getPartitionName( ) );
                 throw new EvaluatorException( MoinOclEvaluatorMessages.ASSOCVALUEQUERYFAILED, new String[] { MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ).getName( ), assoc.getName( ), srcRefObject.refMofId( ), srcRefObject.get___Mri( ).getPartitionName( ) } );
             }
-            refObjs.add( next );
+            // Otherwise, the association can have multiple values - return a Set
+            // (or OrderedSet if necessary)
+
+            // Build a new collection, since OclFactory does not know about
+            // CoreConnection.
+            int size = associationValues.size( session );
+            Collection<RefObject> refObjs = new ArrayList<RefObject>( size );
+
+            for ( Iterator<RefObject> it = associationValues.iteratorReadOnly( session ); it.hasNext( ); ) {
+                RefObject next = it.next( );
+                if ( next == null ) {
+                    LOGGER.logAndTrace( MoinSeverity.ERROR, MoinOclEvaluatorMessages.ASSOCVALUEQUERYFAILED, MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ).getName( ), assoc.getName( ), srcRefObject.refMofId( ), srcRefObject.get___Mri( ).getPartitionName( ) );
+                    throw new EvaluatorException( MoinOclEvaluatorMessages.ASSOCVALUEQUERYFAILED, new String[] { MoinMetamodelCode.otherEnd( connection, (AssociationEndImpl) assocEnd ).getName( ), assoc.getName( ), srcRefObject.refMofId( ), srcRefObject.get___Mri( ).getPartitionName( ) } );
+                }
+                refObjs.add( next );
+            }
+            if ( assocEndMultiplicity.isOrdered( ) ) {
+                return this.oclFactory.createOrderedSetFromRefObjects( refObjs );
+            }
+            return this.oclFactory.createSetFromRefObjects( refObjs );
+        } catch (TypeMismatchException e) {
+            // FIXME this exception currently may occur based on what I consider a bug in the impact analysis
+            // Obviously, for OperationCallExp elements the derivation of the reverse path doesn't work properly.
+            System.err.println("Caught exception "+e.getMessage()+
+        	    ", probably because of bug in OCL Impact Analysis");
+            return this.oclFactory.createOrderedSetFromRefObjects(new ArrayList<RefObject>());
         }
 
-        if ( assocEndMultiplicity.isOrdered( ) ) {
-            return this.oclFactory.createOrderedSetFromRefObjects( refObjs );
-        }
-        return this.oclFactory.createSetFromRefObjects( refObjs );
     }
 
     private OclAny convertToSingleValue( CoreSession session, JmiList<RefObject> associationValues ) {

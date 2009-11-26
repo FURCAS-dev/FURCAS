@@ -1,17 +1,29 @@
 package com.sap.finex.interpreter;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import structure.Association;
 import structure.Field;
 import structure.FinexClass;
 import structure.Type;
+import behavior.actions.ExpressionStatement;
 import behavior.actions.Statement;
 import behavior.expressions.BinaryBooleanOperator;
 import behavior.expressions.BinaryNumericOperator;
+import behavior.expressions.Count;
+import behavior.expressions.Equals;
 import behavior.expressions.Expression;
+import behavior.expressions.FilterExpression;
+import behavior.expressions.ImplicitContext;
+import behavior.expressions.NamedValueExpression;
 import behavior.expressions.Not;
+import behavior.expressions.ObjectCreationExpression;
+import behavior.expressions.PathExpression;
+import behavior.expressions.This;
+import behavior.expressions.Tuple;
+import behavior.expressions.Unequals;
 import behavior.expressions.literals.BinaryLiteral;
 import behavior.expressions.literals.BooleanLiteral;
 import behavior.expressions.literals.DateLiteral;
@@ -25,14 +37,27 @@ import com.sap.finex.interpreter.expressions.BinaryBooleanOperatorInterpreter;
 import com.sap.finex.interpreter.expressions.BinaryLiteralInterpreter;
 import com.sap.finex.interpreter.expressions.BinaryNumericOperatorInterpreter;
 import com.sap.finex.interpreter.expressions.BooleanLiteralInterpreter;
+import com.sap.finex.interpreter.expressions.CountInterpreter;
 import com.sap.finex.interpreter.expressions.DateLiteralInterpreter;
 import com.sap.finex.interpreter.expressions.DecimalLiteralInterpreter;
+import com.sap.finex.interpreter.expressions.EqualsInterpreter;
+import com.sap.finex.interpreter.expressions.FilterExpressionInterpreter;
+import com.sap.finex.interpreter.expressions.ImplicitContextInterpreter;
 import com.sap.finex.interpreter.expressions.IntegerLiteralInterpreter;
+import com.sap.finex.interpreter.expressions.NamedValueInterpreter;
 import com.sap.finex.interpreter.expressions.NotInterpreter;
+import com.sap.finex.interpreter.expressions.ObjectCreationInterpreter;
+import com.sap.finex.interpreter.expressions.PathExpressionInterpreter;
 import com.sap.finex.interpreter.expressions.StringLiteralInterpreter;
+import com.sap.finex.interpreter.expressions.ThisInterpreter;
+import com.sap.finex.interpreter.expressions.TupleInterpreter;
+import com.sap.finex.interpreter.expressions.UnequalsInterpreter;
+import com.sap.finex.interpreter.statements.ExpressionStatementInterpreter;
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
-import com.sap.runlet.abstractinterpreter.objects.AbstractValueObject;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
+import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
+import com.sap.runlet.abstractinterpreter.objects.MultiValuedObject;
+import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.repository.Repository;
 import com.sap.tc.moin.repository.Connection;
 
@@ -72,9 +97,15 @@ public class FinexInterpreter
     }
 
     @Override
-    protected AbstractValueObject<Association, Field, FinexClass, Type, FinexClass> createValueObjectWithoutEqualityRelevantLinks(
+    protected FinexValueObject createValueObjectWithoutEqualityRelevantLinks(
 	    FinexClass type, Map<Field, Collection<ClassTypedObject<Field, Type, FinexClass>>> propertyValues) {
 	return new FinexValueObject(type, propertyValues, getUpdatingTag(), this);
+    }
+    
+    @Override
+    public FinexValueObject createValueObject(
+	    FinexClass type, Map<Field, Collection<ClassTypedObject<Field, Type, FinexClass>>> propertyValues) {
+	return (FinexValueObject) super.createValueObject(type, propertyValues);
     }
 
     @Override
@@ -97,6 +128,26 @@ public class FinexInterpreter
 		conn.getClass(Not.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(BinaryNumericOperatorInterpreter.class,
 		conn.getClass(BinaryNumericOperator.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(ObjectCreationInterpreter.class,
+		conn.getClass(ObjectCreationExpression.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(CountInterpreter.class,
+		conn.getClass(Count.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(PathExpressionInterpreter.class,
+		conn.getClass(PathExpression.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(FilterExpressionInterpreter.class,
+		conn.getClass(FilterExpression.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(ImplicitContextInterpreter.class,
+		conn.getClass(ImplicitContext.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(ThisInterpreter.class,
+		conn.getClass(This.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(EqualsInterpreter.class,
+		conn.getClass(Equals.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(UnequalsInterpreter.class,
+		conn.getClass(Unequals.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(TupleInterpreter.class,
+		conn.getClass(Tuple.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(NamedValueInterpreter.class,
+		conn.getClass(NamedValueExpression.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override
@@ -113,13 +164,35 @@ public class FinexInterpreter
 
     @Override
     protected void initStatementInterpreterFactory(Connection conn) {
-	// TODO Auto-generated method stub
-	
+	getStatementInterpreterFactory().registerInterpreter(ExpressionStatementInterpreter.class,
+		conn.getClass(ExpressionStatement.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override
     public FinexInterpreter spawn() {
 	return new FinexInterpreter(this);
+    }
+
+    /**
+     * If <tt>isMany</tt> is <tt>true</tt>, the result will be a {@link MultiValuedObject}. Otherwise,
+     * the result will be an {@link EmptyObject} if the <tt>source</tt> object contains no objects,
+     * or the single first object of <tt>source</tt> otherwise.
+     */
+    public static RunletObject<Field, Type, FinexClass> turnIntoObjectOfAppropriateMultiplicity(
+            Type type, FinexInterpreter interpreter,
+            List<RunletObject<Field, Type, FinexClass>> source, boolean isMany) {
+        RunletObject<Field, Type, FinexClass> result;
+        if (isMany) {
+            // TODO what about ordering and uniqueness?
+            result = new MultiValuedObject<Field, Type, FinexClass>(type, source, /* ordered */ false, /* unique */ false);
+        } else {
+            if (source.size() > 0) {
+        	result = source.iterator().next();
+            } else {
+        	result = new EmptyObject<Field, FinexClass, Type, FinexClass>(type, interpreter.getModelAdapter());
+            }
+        }
+        return result;
     }
 
 }

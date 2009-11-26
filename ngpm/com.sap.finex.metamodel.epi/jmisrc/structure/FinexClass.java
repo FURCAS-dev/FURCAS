@@ -118,5 +118,19 @@ public interface FinexClass extends structure.Type {
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_NAVIGABLE_FIELDS( ) {
             return structure.Type.DESCRIPTORS.GET_NAVIGABLE_FIELDS( );
         }
+        /**
+         * Returns the descriptor for the <code>getFieldsWithDefaultValue</code> operation.
+         * @return  the descriptor for the <code>getFieldsWithDefaultValue</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_FIELDS_WITH_DEFAULT_VALUE( ) {
+            return structure.Type.DESCRIPTORS.GET_FIELDS_WITH_DEFAULT_VALUE( );
+        }
+        /**
+         * Returns the descriptor for the <code>getAllFields</code> operation.
+         * @return  the descriptor for the <code>getAllFields</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,structure.Type,java.util.Collection<structure.Field>> GET_ALL_FIELDS( ) {
+            return structure.Type.DESCRIPTORS.GET_ALL_FIELDS( );
+        }
     }
 }    

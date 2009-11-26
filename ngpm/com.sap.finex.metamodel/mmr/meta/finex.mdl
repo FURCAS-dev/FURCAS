@@ -750,7 +750,7 @@
 		    (object Attribute
 			tool       	"Java"
 			name       	"ClassPath"
-			value      	".;C:\\Program Files\\Java\\jre1.6.0_03\\lib\\ext\\QTJava.zip")
+			value      	"")
 		    (object Attribute
 			tool       	"Java"
 			name       	"ReferenceClasspath"

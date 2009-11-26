@@ -124,9 +124,36 @@ public class BinaryNumericOperatorInterpreter
 		    result = result.minus(new Fraction((Long) next));
 		}
 	    }
+	} else if (opName.equals(">") || opName.equals(">=") || opName.equals("<") ||
+		opName.equals("<=") || opName.equals("==")) {
+	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
+	    Object nextLeft = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
+	    if (nextLeft instanceof Long) {
+		nextLeft = new Fraction((Long) nextLeft);
+	    }
+	    Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
+	    Object nextRight = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
+	    if (nextRight instanceof Long) {
+		nextRight = new Fraction((Long) nextRight);
+	    }
+	    int comparison = ((Fraction) nextLeft).compareTo((Fraction) nextRight);
+	    boolean boolResult = false;
+	    if (opName.equals(">")) {
+		boolResult = comparison > 0;
+	    } else if (opName.equals(">=")) {
+		boolResult = comparison >= 0;
+	    } else if (opName.equals("<")) {
+		boolResult = comparison < 0;
+	    } else if (opName.equals("<=")) {
+		boolResult = comparison <= 0;
+	    } else if (opName.equals("==")) {
+		boolResult = comparison == 0;
+	    }
+	    return new FinexNativeObject((FinexClass) op.getType(), boolResult,
+		    interpreter.getDefaultSnapshot(), interpreter);
 	} else {
 	    // TODO add support for less, greater, equals, lessEquals, greaterEquals
-	    throw new RuntimeException("Unknown binary boolean operator " + opName);
+	    throw new RuntimeException("Unknown binary numeric operator " + opName);
 	}
 	if (op.getType().equals(MetamodelUtils.findClass(interpreter.getConnection(), "Decimal"))) {
 	    // decimals are represented as Fractions, we're okay

@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Nov 20 17:05:01 2009' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Wed Nov 25 23:35:04 2009' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -209,7 +209,7 @@
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'false' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.7' 
+                <Model:Parameter xmi.id = 'XX.9' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -227,7 +227,7 @@
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'false' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.8' 
+                <Model:Parameter xmi.id = 'XX.10' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -245,7 +245,7 @@
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.9' 
+                <Model:Parameter xmi.id = 'XX.11' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -255,7 +255,7 @@
                     <Model:Classifier xml:link = 'simple' href = 'structure.xml|a4AC9BE620186'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.10' 
+                <Model:Parameter xmi.id = 'XX.12' 
                   name = 'operator' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -265,7 +265,7 @@
                     <Model:Classifier xml:link = 'simple' href = 'PrimitiveTypes.xml|a39A2BDA60394'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.11' 
+                <Model:Parameter xmi.id = 'XX.13' 
                   name = 'preType1' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -275,7 +275,7 @@
                     <Model:Classifier xml:link = 'simple' href = 'structure.xml|a4AC9BE620186'/>
                   </Model:TypedElement.type>
                 </Model:Parameter>
-                <Model:Parameter xmi.id = 'XX.12' 
+                <Model:Parameter xmi.id = 'XX.14' 
                   name = 'preType2' annotation = '' 
                   direction = 'in_dir' >
                   <Model:Parameter.multiplicity>
@@ -293,7 +293,7 @@
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.13' 
+                <Model:Parameter xmi.id = 'XX.15' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -311,7 +311,7 @@
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.14' 
+                <Model:Parameter xmi.id = 'XX.16' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -334,7 +334,7 @@ For example, if there is a .each() construct that executes a block for each elem
 
 This method determines the implicit context's type for this expression.</Model:ModelElement.annotation>
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.15' 
+                <Model:Parameter xmi.id = 'XX.17' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -352,7 +352,7 @@ This method determines the implicit context's type for this expression.</Model:M
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.16' 
+                <Model:Parameter xmi.id = 'XX.18' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -364,10 +364,28 @@ This method determines the implicit context's type for this expression.</Model:M
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
+            <!-- ==================== behavior.expressions.Expression.getTuplesWhereThisIsFieldInitializer    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B0DAB1F0384' 
+              name = 'getTuplesWhereThisIsFieldInitializer' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.19' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B01C42A020B'/>  <!-- behavior.expressions.Tuple -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.107' 
+        <Model:Tag xmi.id = 'G.112' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -389,7 +407,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.108' 
+        <Model:Tag xmi.id = 'G.113' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -411,7 +429,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.109' 
+        <Model:Tag xmi.id = 'G.114' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -424,7 +442,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.110' 
+        <Model:Tag xmi.id = 'G.115' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -437,7 +455,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.111' 
+        <Model:Tag xmi.id = 'G.116' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -462,7 +480,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.113' 
+        <Model:Tag xmi.id = 'G.118' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -503,29 +521,36 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.114' 
+        <Model:Tag xmi.id = 'G.119' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
             <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::isSideEffectFree():Boolean
 body:
   if self.oclIsKindOf(This) or
+     self.oclIsKindOf(ImplicitContext) or
      self.oclIsKindOf(Literal) or
-     self.oclIsKindOf(FilterExpression) or
-     self.oclIsKindOf(PathExpression) or
-     self.oclIsKindOf(FirstPathExpression) or
      self.oclIsKindOf(NumericAggregate) or
-     self.oclIsKindOf(BinaryBooleanOperator) or
-     self.oclIsKindOf(BinaryNumericOperator) or
      self.oclIsKindOf(Count) or
-     self.oclIsKindOf(Not) or
-     self.oclIsKindOf(BooleanAggregate) or
-     self.oclIsKindOf(UnaryMinus) or
      self.oclIsKindOf(Single)
   then
       true
   else
-    false
+    if self.oclIsKindOf(FilterExpression) then
+      self.oclAsType(FilterExpression).condition.isSideEffectFree() and
+      self.oclAsType(FilterExpression).operand.isSideEffectFree()
+    else
+      if self.oclIsKindOf(UnaryOperator) then
+        self.oclAsType(UnaryOperator).operand.isSideEffectFree()
+      else
+        if self.oclIsKindOf(BinaryOperator) then
+          self.oclAsType(BinaryOperator).left.isSideEffectFree() and
+          self.oclAsType(BinaryOperator).right.isSideEffectFree()
+        else
+          false
+        endif
+      endif
+    endif
   endif</XMI.any>
           </Model:Tag.values>
           <Model:Tag.elements>
@@ -533,7 +558,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.115' 
+        <Model:Tag xmi.id = 'G.120' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -579,7 +604,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getAllAliases():Set(Alias)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.116' 
+        <Model:Tag xmi.id = 'G.121' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getAllAliases():Set(Alias)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -598,10 +623,25 @@ body:
     else
       Set{}
     endif
-  endif)-&gt;union(self.alias-&gt;asSet())</XMI.any>
+  endif)-&gt;union(self.getTuplesWhereThisIsFieldInitializer().getAllAliases()-&gt;flatten()-&gt;asSet())-&gt;union(self.alias-&gt;asSet())</XMI.any>
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a4B01B53D0382'/>  <!-- behavior.expressions.Expression.getAllAliases -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.122' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")
+body:
+  self.defaultOf-&gt;select(d | d.oclIsKindOf(Field)).oclAsType(structure::Field).
+  otherEnd().type.typedElement-&gt;select(t |
+      t.oclIsKindOf("Tuple")).oclAsType("Tuple")</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B0DAB1F0384'/>  <!-- behavior.expressions.Expression.getTuplesWhereThisIsFieldInitializer -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.BinaryBooleanOperator    [Class] ==================== -->
@@ -1114,7 +1154,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.17' 
+                <Model:Parameter xmi.id = 'XX.20' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1132,7 +1172,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.18' 
+                <Model:Parameter xmi.id = 'XX.21' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1147,7 +1187,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.117' 
+        <Model:Tag xmi.id = 'G.123' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1164,7 +1204,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.118' 
+        <Model:Tag xmi.id = 'G.124' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1195,7 +1235,7 @@ body:
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
           isSingleton = 'false' >
           <Model:GeneralizableElement.supertypes>
-            <Model:GeneralizableElement xml:link = 'simple' href = 'finex.xml|a4AC9F38B02AF'/>
+            <Model:GeneralizableElement xmi.idref = 'a4ACA102202D4'/>  <!-- behavior.actions.NamedValue -->
           </Model:GeneralizableElement.supertypes>
           <Model:Namespace.contents>
             <!-- ==================== behavior.expressions.Alias.aliasFor    [Reference] ==================== -->
@@ -1217,28 +1257,24 @@ body:
         </Model:Class>
         <!-- ==================== behavior.expressions.Tuple    [Class] ==================== -->
         <Model:Class xmi.id = 'a4B01C42A020B' 
-          name = 'Tuple' annotation = 'Takes the operand expression and turns it into a tuple set, based on the definition of aliases along the expression hierarchy. The tuple expression&apos;s type is expected to have exactly one navigable field per alias where the field&apos;s name equals the alias name, respectively.' 
+          name = 'Tuple' annotation = 'Takes the operand expression and turns it into a tuple set. The tuple expression for each element of the operand (which may be a single "empty left outer join object") constructs a value object of the tupleType and by this initializes all fields which all have to have a default value expression defined.' 
           isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
           isSingleton = 'false' >
           <Model:ModelElement.constraints>
-            <Model:Constraint xmi.idref = 'a4B01C4CF0278'/>  <!-- behavior.expressions.Tuple.TupleTypeHasExactlyOneEquallyNamedFieldPerAlias -->
+            <Model:Constraint xmi.idref = 'a4B0D1FE301A5'/>  <!-- behavior.expressions.Tuple.AllFieldsOfTupleTypeMustHaveDefaultValue -->
           </Model:ModelElement.constraints>
           <Model:GeneralizableElement.supertypes>
             <Model:GeneralizableElement xmi.idref = 'a4ACDC44C001F'/>  <!-- behavior.expressions.UnaryOperator -->
           </Model:GeneralizableElement.supertypes>
           <Model:Namespace.contents>
-            <!-- ==================== behavior.expressions.Tuple.TupleTypeHasExactlyOneEquallyNamedFieldPerAlias    [Constraint] ==================== -->
-            <Model:Constraint xmi.id = 'a4B01C4CF0278' 
-              name = 'TupleTypeHasExactlyOneEquallyNamedFieldPerAlias' annotation = '' 
+            <!-- ==================== behavior.expressions.Tuple.AllFieldsOfTupleTypeMustHaveDefaultValue    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B0D1FE301A5' 
+              name = 'AllFieldsOfTupleTypeMustHaveDefaultValue' annotation = '' 
               language = 'OCL' evaluationPolicy = 'deferred' >
               <Model:Constraint.expression>
                 <XMI.any xmi.type = 'string' xmi.name = ''>context "Tuple"
 inv:
-  let navigableFields = self.type.getNavigableFields() in
-  let allAliases = self.operand.getAllAliases() in
-  allAliases-&gt;forAll(a | navigableFields-&gt;exists(f | f.name = a.name and f.type=a.aliasFor.type))
-  and
-  navigableFields-&gt;size() = self.operand.getAllAliases()-&gt;size()</XMI.any>
+  self.type.getAllFields()-&gt;forAll(f | f.defaultValue-&gt;notEmpty())</XMI.any>
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B01C42A020B'/>  <!-- behavior.expressions.Tuple -->
@@ -1367,6 +1403,66 @@ inv:
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B02B0BC01EB'/>  <!-- behavior.expressions.FieldInitializer -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== behavior.expressions.Equals    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B0C462E0187' 
+          name = 'Equals' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a4AD32F310222'/>  <!-- behavior.expressions.BinaryOperator -->
+          </Model:GeneralizableElement.supertypes>
+        </Model:Class>
+        <!-- ==================== behavior.expressions.Unequals    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B0C46EF0148' 
+          name = 'Unequals' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a4AD32F310222'/>  <!-- behavior.expressions.BinaryOperator -->
+          </Model:GeneralizableElement.supertypes>
+        </Model:Class>
+        <!-- ==================== behavior.expressions.NamedValueExpression    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B0D175400BA' 
+          name = 'NamedValueExpression' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:ModelElement.constraints>
+            <Model:Constraint xmi.idref = 'a4B0D17A90231'/>  <!-- behavior.expressions.NamedValueExpression.TypeMatchesNamedValueType -->
+          </Model:ModelElement.constraints>
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== behavior.expressions.NamedValueExpression.namedValue    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B0D1783036A' 
+              name = 'namedValue' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4ACA102202D4'/>  <!-- behavior.actions.NamedValue -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B0D1783036A'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== behavior.expressions.NamedValueExpression.TypeMatchesNamedValueType    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B0D17A90231' 
+              name = 'TypeMatchesNamedValueType' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context NamedValueExpression
+inv:
+  self.namedValue.type = self.type</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a4B0D175400BA'/>  <!-- behavior.expressions.NamedValueExpression -->
               </Model:Constraint.constrainedElements>
             </Model:Constraint>
           </Model:Namespace.contents>
@@ -1679,16 +1775,44 @@ inv:
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
+        <!-- ==================== behavior.expressions.A_namedValue_namedValueExpression    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B0D178301D4' 
+          name = 'A_namedValue_namedValueExpression' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B0D1783036A' 
+              name = 'namedValue' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4ACA102202D4'/>  <!-- behavior.actions.NamedValue -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B0D1783036C' 
+              name = 'namedValueExpression' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B0D175400BA'/>  <!-- behavior.expressions.NamedValueExpression -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.106' 
+    <Model:Import xmi.id = 'G.111' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.112' 
+    <Model:Import xmi.id = 'G.117' 
       name = 'structure' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -1760,7 +1884,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.19' 
+                <Model:Parameter xmi.id = 'XX.22' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1778,7 +1902,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.20' 
+                <Model:Parameter xmi.id = 'XX.23' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1796,7 +1920,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.21' 
+                <Model:Parameter xmi.id = 'XX.24' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1811,7 +1935,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.119' 
+        <Model:Tag xmi.id = 'G.125' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1829,7 +1953,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.120' 
+        <Model:Tag xmi.id = 'G.126' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -1846,7 +1970,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.121' 
+        <Model:Tag xmi.id = 'G.127' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1867,7 +1991,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.122' 
+        <Model:Tag xmi.id = 'G.128' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1884,7 +2008,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.123' 
+        <Model:Tag xmi.id = 'G.129' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1931,7 +2055,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.22' 
+                <Model:Parameter xmi.id = 'XX.25' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1949,7 +2073,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.23' 
+                <Model:Parameter xmi.id = 'XX.26' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1967,7 +2091,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.24' 
+                <Model:Parameter xmi.id = 'XX.27' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1982,7 +2106,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.124' 
+        <Model:Tag xmi.id = 'G.130' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1999,7 +2123,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.125' 
+        <Model:Tag xmi.id = 'G.131' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2024,7 +2148,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.126' 
+        <Model:Tag xmi.id = 'G.132' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2230,7 +2354,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.25' 
+                <Model:Parameter xmi.id = 'XX.28' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2271,7 +2395,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.127' 
+        <Model:Tag xmi.id = 'G.133' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2629,7 +2753,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.26' 
+                <Model:Parameter xmi.id = 'XX.29' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2644,7 +2768,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.128' 
+        <Model:Tag xmi.id = 'G.134' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2658,7 +2782,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.functions.org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.129' 
+        <Model:Tag xmi.id = 'G.135' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2726,7 +2850,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.130' 
+        <Model:Tag xmi.id = 'G.136' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2779,7 +2903,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.27' 
+                <Model:Parameter xmi.id = 'XX.30' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2794,7 +2918,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.131' 
+        <Model:Tag xmi.id = 'G.137' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2909,7 +3033,7 @@ body:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.132' 
+    <Model:Import xmi.id = 'G.138' 
       name = 'finex' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

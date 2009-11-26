@@ -53,6 +53,7 @@ public interface Expression extends structure.TypedElement {
      */
     public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public java.util.Collection<behavior.expressions.Alias> getAllAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public java.util.Collection<behavior.expressions.Tuple> getTuplesWhereThisIsFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -214,6 +215,17 @@ public interface Expression extends structure.TypedElement {
                 __getAllAliases = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>>( "E0003E7B680E6A22D2F111DE8CC20019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getAllAliases" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __getAllAliases;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>> __getTuplesWhereThisIsFieldInitializer;
+        /**
+         * Returns the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation.
+         * @return  the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>> GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( ) {
+            if ( __getTuplesWhereThisIsFieldInitializer == null ) {
+                __getTuplesWhereThisIsFieldInitializer = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>>( "E0003E7B9B8C5CA0DA1111DEB6820019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getTuplesWhereThisIsFieldInitializer" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getTuplesWhereThisIsFieldInitializer;
         }
     }
 }    

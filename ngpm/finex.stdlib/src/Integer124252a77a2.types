@@ -7,8 +7,10 @@
 <M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
+<M c='1' q='textblocks.TextBlockType' i='480716BCBE2DC5530C5F11DD93AC00016CE99C52' se='1' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
 <M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
+<M c='1' q='textblocks.LexedToken_Referenes_SequenceElement' i='48CA4A733499C26080B911DDB0940018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='structure.FinexClass' i='E0001D0A1ADC24A8B1B711DEA3C100155883529C'/>
 <structure.FinexClass m:c='2' m:i='E0367719DE626820B1BD11DE9DA900155883529C' name='Integer' valueType='true'/>
 <textblocks.TextBlock m:c='1' m:i='E0E1B8C6E12DBD20B1BD11DEB67800155883529C' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='23' offsetRelative='false' isComplete='true' cachedString='value Integer:&#10;:Integer'/>
@@ -18,7 +20,7 @@
 <textblocks.OmittedToken m:c='1' m:i='E0E1B8C6E12DBD24B1BD11DE975600155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='14' length='1' offsetRelative='true' value='&#10;' lookahead='1' lookback='1' state='0' type='30'/>
 <textblocks.LexedToken m:c='1' m:i='E0E1B8C6E12DBD25B1BD11DE88A400155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='6' length='7' offsetRelative='true' value='Integer' lookahead='1' lookback='1' state='0' type='5'/>
 <textblocks.BOSToken m:c='1' m:i='E0E1B8C6E12DBD26B1BD11DE808300155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='0' offsetRelative='true' value='BOS' lookahead='0' lookback='0' state='0' type='-2'/>
-<textblocks.LexedToken m:c='1' m:i='E0E1B8C6E1300710B1BD11DEA17600155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='value' lookahead='2' lookback='0' state='0' type='41'/>
+<textblocks.LexedToken m:c='1' m:i='E0E1B8C6E1300710B1BD11DEA17600155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='5' offsetRelative='true' value='value' lookahead='2' lookback='0' state='0' type='40'/>
 <textblocks.OmittedToken m:c='1' m:i='E0E1B8C6E1300711B1BD11DEA73000155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='5' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='31'/>
 <textblocks.EOSToken m:c='1' m:i='E0E1B8C6E1327810B1BD11DEB75500155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='23' length='0' offsetRelative='true' value='EOS' lookahead='0' lookback='0' state='0' type='-1'/>
 <textblocks.TextBlock_Contains_Tokens c='1'>
@@ -35,4 +37,14 @@
 <textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
 <L f='E0367719DE626820B1BD11DE9DA900155883529C' s='E0E1B8C6E12DBD20B1BD11DEB67800155883529C'/>
 </textblocks.DocumentNode_References_CorrespondingModelElement>
+<textblocks.TextBlockType c='1'>
+<L f='local:E0B91841E988B0F3DA7211DEB6F900155883529C' s='E0E1B8C6E12DBD20B1BD11DEB67800155883529C'/>
+</textblocks.TextBlockType>
+<textblocks.LexedToken_Referenes_SequenceElement c='1'>
+<L f='E0E1B8C6E12DBD21B1BD11DE921A00155883529C' s='local:E0B91841E9924DE5DA7211DE969D00155883529C'/>
+<L f='E0E1B8C6E12DBD22B1BD11DE9AD000155883529C' s='local:E0B91841E99497D2DA7211DE918200155883529C'/>
+<L f='E0E1B8C6E12DBD23B1BD11DEB99000155883529C' s='local:E0B91841E9924DFADA7211DEB58800155883529C'/>
+<L f='E0E1B8C6E12DBD25B1BD11DE88A400155883529C' s='local:E0B91841E9924DE2DA7211DE893700155883529C'/>
+<L f='E0E1B8C6E1300710B1BD11DEA17600155883529C' s='local:E0B91841E98FDCE1DA7211DE836000155883529C'/>
+</textblocks.LexedToken_Referenes_SequenceElement>
 </Partition>

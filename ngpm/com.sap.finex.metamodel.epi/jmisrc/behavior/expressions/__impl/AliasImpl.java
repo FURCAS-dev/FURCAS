@@ -8,12 +8,18 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
+        
+    private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
     
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
         FEATURE_IDS.put("name", Integer.valueOf(0)); //$NON-NLS-1$
-        FEATURE_IDS.put("aliasFor", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("type", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("aliasFor", Integer.valueOf(2)); //$NON-NLS-1$
+        
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(2);
+        OPERATION_IDS.put("getImpliedType", Integer.valueOf(0)); //$NON-NLS-1$
     }
     
     
@@ -21,6 +27,7 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     private java.lang.String __name = null;
 
     // links for multiplicity-1 association ends
+    private com.sap.tc.moin.repository.core.EndStorageLink __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C;
     private com.sap.tc.moin.repository.core.EndStorageLink __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC;
 
     // default constructor
@@ -48,6 +55,26 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     }
 
     // methods for references
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( get___CurrentConnection(), __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C);
+       
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getType(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( connection, __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C);
+       
+    }
+    public void setType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAliasFor() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( get___CurrentConnection(), __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC);
@@ -90,6 +117,9 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
                 result = getName();
                 break;
             case 1: 
+                result = getType(connection);
+                break;
+            case 2: 
                 result = getAliasFor(connection);
                 break;
         default:
@@ -112,6 +142,10 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
                 break;
                     
             case 1:
+                ___changeReference(connection, "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* mofId of association */, "E0001D0A1ADE95A0B1B711DE829B00155883529C" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 2:
                 ___changeReference(connection, "E0003E7B68132514D2F111DE8E690019D29902CC" /* mofId of association */, "E0003E7B68132510D2F111DE88120019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
@@ -153,15 +187,18 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
+        if ( associationEndMofId == "E0001D0A1ADE95A8B1B711DEA82800155883529C" ) { __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C = value; return; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E0003E7B68132513D2F111DE90D50019D29902CC" ) { __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC = value; return; } //$NON-NLS-1$ 
     }
     
     public com.sap.tc.moin.repository.core.EndStorageLink get___AssociationLink( String associationEndMofId ) {
+        if ( associationEndMofId == "E0001D0A1ADE95A8B1B711DEA82800155883529C" ) { return __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E0003E7B68132513D2F111DE90D50019D29902CC" ) { return __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC; } //$NON-NLS-1$ 
         return null;
     }
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
+        if ( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C); } 
         if ( __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC); } 
         return result;
 
@@ -169,6 +206,7 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
 
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredAssociationLinks( ) {
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
+        if ( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C); } 
         if ( __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC); } 
         return result;
 
@@ -176,6 +214,7 @@ public final class AliasImpl extends com.sap.tc.moin.repository.core.jmi.reflect
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> clear___AllLinks( ) {
         reset___CompositeParentLink( );
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
+        if ( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C); __A_type_typedElement_type_E0001D0A1ADE95A8B1B711DEA82800155883529C = null; } 
         if ( __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC); __A_alias_aliasFor_aliasFor_E0003E7B68132513D2F111DE90D50019D29902CC = null; } 
         return result;
 

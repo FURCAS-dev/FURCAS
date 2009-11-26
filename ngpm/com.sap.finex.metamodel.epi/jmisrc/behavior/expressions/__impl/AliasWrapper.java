@@ -6,8 +6,13 @@ package behavior.expressions.__impl;
 
 public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavior.expressions.__impl.AliasImpl> implements behavior.expressions.Alias,com.sap.tc.moin.repository.Partitionable {
 
+        
+    private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
     
     static {
+        
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
+        OPERATION_IDS.put("getImpliedType", Integer.valueOf(0)); //$NON-NLS-1$
     }
 
     public AliasWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, behavior.expressions.__impl.AliasImpl baseObject, boolean synchronize) {
@@ -76,6 +81,50 @@ public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
 
      
     // methods for references
+    public structure.Type getType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (structure.Type) wrapResult(getCastWrappedObject().getType(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (structure.Type) wrapResult(getCastWrappedObject().getType(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setType(structure.Type newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setType(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setType(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
     public behavior.expressions.Expression getAliasFor() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
@@ -122,11 +171,62 @@ public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
 
    
     // methods for modeled operations
+    public structure.Type getImpliedType(java.lang.String name) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(1);
+        try {
+            parameterList.add(name);
+            return (structure.Type)___invokeOperation(connection, 0, "E0001D0AF446B591B1E711DECB850019D29902CC", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
+    private structure.Type invoke__getImpliedType(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String name) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            operationParameters.put("name", unwrapArg(name));
+            return (structure.Type)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getImpliedType", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
 
     // reflective methods
+    @Override
+    public Object refInvokeOperation(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String requestedOperation, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
+        if (requestedOperation == null) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(requestedOperation);
+        }
+        java.lang.Integer operationId = OPERATION_IDS.get(requestedOperation);
+        if (operationId == null) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
+        }
+        switch (operationId) {
+                
+            case 0:
+                return ___invokeOperation( connection, operationId, "E0001D0AF446B591B1E711DECB850019D29902CC", args ); //$NON-NLS-1$    
+            default:
+                throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
+        }
+    }
     
+    @Override
+    public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
+        switch (operationId) {
+                
+            case 0:
+                return invoke__getImpliedType(connection, (java.lang.String) args.get(0));    
+            default:
+                throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
+        }
+    
+    }    
 
     // get the JMI interface
     public java.lang.Class<behavior.expressions.Alias> get___JmiInterface() {
