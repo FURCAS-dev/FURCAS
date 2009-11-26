@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionsTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: CollectionsTest.java,v 1.9 2009/11/26 20:46:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -747,7 +747,7 @@ public class CollectionsTest
                 .getType();
             assertSame(getMetaclass("Type"), collType.getElementType()); //$NON-NLS-1$
 
-            Object result = ocl.evaluate(umlMetamodel, expr);
+            Object result = ocl.evaluate(getUMLMetamodel(), expr);
             assertTrue(result instanceof Tuple<?, ?>);
 
             @SuppressWarnings("unchecked")
@@ -786,7 +786,7 @@ public class CollectionsTest
             assertSame(getOCLStandardLibrary().getString(), collType
                 .getElementType());
 
-            Object result = ocl.evaluate(umlMetamodel, expr);
+            Object result = ocl.evaluate(getUMLMetamodel(), expr);
             assertTrue(result instanceof Tuple<?, ?>);
 
             @SuppressWarnings("unchecked")
@@ -811,7 +811,7 @@ public class CollectionsTest
                 .createQuery("self.getKeywords()"); //$NON-NLS-1$
 
             // the UML Metamodel, itself, is an element. What are its keywords?
-            Object value = ocl.evaluate(umlMetamodel, expr);
+            Object value = ocl.evaluate(getUMLMetamodel(), expr);
 
             // should be a set, not an EList
             assertTrue(value instanceof Set<?>);
@@ -833,7 +833,7 @@ public class CollectionsTest
                 .createQuery("self.ownedComment"); //$NON-NLS-1$
 
             // the UML Metamodel, itself, is an element. What are its comments?
-            Object value = ocl.evaluate(umlMetamodel, expr);
+            Object value = ocl.evaluate(getUMLMetamodel(), expr);
 
             // should be a set, not an EList
             assertTrue(value instanceof Set<?>);

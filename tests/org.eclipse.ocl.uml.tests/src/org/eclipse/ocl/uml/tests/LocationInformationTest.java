@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.5 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: LocationInformationTest.java,v 1.6 2009/11/26 20:46:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -438,6 +438,7 @@ public class LocationInformationTest
 	// Framework methods
 	//
 	
+	@Override
 	protected OCLExpression<Classifier> createQuery(Class context, String text) {
 		OCLExpression<Classifier> result = super.createQuery(context, text);
 		

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,65 +11,41 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 245897, 179990
  *   Radek Dvorak - Bug 261128
+ *   Ed Willink - Bug 254919
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.19 2009/11/16 14:23:45 lgoubet Exp $
+ * $Id: AbstractTestSuite.java,v 1.20 2009/11/26 20:46:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ocl.Environment;
-import org.eclipse.ocl.EnvironmentFactory;
-import org.eclipse.ocl.OCLInput;
-import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.SemanticException;
-import org.eclipse.ocl.expressions.OCLExpression;
-import org.eclipse.ocl.helper.Choice;
-import org.eclipse.ocl.helper.ChoiceKind;
-import org.eclipse.ocl.helper.OCLHelper;
-import org.eclipse.ocl.lpg.ProblemHandler;
-import org.eclipse.ocl.parser.OCLProblemHandler;
-import org.eclipse.ocl.types.OCLStandardLibrary;
-import org.eclipse.ocl.uml.ExpressionInOCL;
-import org.eclipse.ocl.uml.OCL;
-import org.eclipse.ocl.uml.UMLEnvironmentFactory;
+import org.eclipse.ocl.tests.GenericFruitTestSuite;
 import org.eclipse.ocl.uml.util.OCLUMLUtil;
-import org.eclipse.ocl.util.OCLUtil;
-import org.eclipse.ocl.utilities.Visitable;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -87,43 +63,23 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.SendSignalAction;
 import org.eclipse.uml2.uml.Slot;
 import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.ValueSpecification;
-import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * Mini-framework for the OCL tests.
+ * Extended test framework for tests using the UML binding and the Fruit meta-model.
  *
  * @author Christian W. Damus (cdamus)
  */
 public abstract class AbstractTestSuite
-	extends TestCase {
-	
-    protected static final class CheckedTestSuite extends TestSuite {
-
-		public CheckedTestSuite(String name) {
-			super(name);
-		}
-
-		public void createTestSuite(java.lang.Class<? extends AbstractTestSuite> testClass, String testName) {
-	        addTest(new TestSuite(testClass, testName));
-		}
-
-		public void addTestSuite(CheckedTestSuite suite) {
-	        addTest(suite);
-		}
-	}
-
-    // set this variable true when testing for memory leaks
-    private static boolean DISPOSE_UML_METAMODEL = false;
+	extends GenericFruitTestSuite<EObject, Package, Type, Classifier, Class, DataType, PrimitiveType, Enumeration, Operation, Parameter, Property,
+	Property, Property, EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint> {
     
 	protected static final ExecutorService exec = Executors
 		.newSingleThreadExecutor();
-
-	protected static ResourceSet resourceSet;
-	private static ArrayList<Resource> standardResources;
 	
 	protected static org.eclipse.ocl.uml.UMLPackage ocltypes =
         org.eclipse.ocl.uml.UMLPackage.eINSTANCE;
@@ -131,31 +87,6 @@ public abstract class AbstractTestSuite
 	protected static UMLPackage uml = UMLPackage.eINSTANCE;
 	protected static UMLFactory umlf = uml.getUMLFactory();
 	
-	protected static Package umlMetamodel;
-	protected static Package umlPrimitiveTypes;
-	protected static Package ecorePrimitiveTypes;
-
-	private static void initializeResourceSet() {
-		Environment.Registry.INSTANCE.registerEnvironment(
-			new UMLEnvironmentFactory().createEnvironment());
-	    resourceSet = new ResourceSetImpl();
-	    OCL.initialize(resourceSet);
-		// Make sure that the UML metamodel and primitive types
-		//   libraries are loaded
-		umlMetamodel = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.UML_METAMODEL_URI),
-				true).getContents().get(0);
-		umlPrimitiveTypes = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.UML_PRIMITIVE_TYPES_LIBRARY_URI),
-				true).getContents().get(0);
-		ecorePrimitiveTypes = (Package) resourceSet.getResource(
-				URI.createURI(UMLResource.ECORE_PRIMITIVE_TYPES_LIBRARY_URI),
-				true).getContents().get(0);
-		//
-		standardResources = new ArrayList<Resource>(resourceSet.getResources());
-	}
-	
-	protected Package fruitPackage;
 	protected EPackage fruitEPackage;
 	protected EFactory fruitEFactory;
 	
@@ -208,14 +139,6 @@ public abstract class AbstractTestSuite
 	protected Operation util_processSet;
 	protected Operation util_processBag;
 	protected Operation util_processSequence;
-	
-	protected OCL ocl;
-	protected OCLHelper<Classifier, Operation, Property, Constraint> helper;
-
-	/**
-	 * Set this true to suppress a failure from modifying the fruitPackage
-	 */
-	protected boolean expectModified = false;
 
 	/**
 	 * Creates the test suite.
@@ -261,55 +184,10 @@ public abstract class AbstractTestSuite
 	//
 	// Framework methods
 	//
-	
-	@Override
-    protected void setUp() {
-		
-		System.out.println("==> Start  " + getName()); //$NON-NLS-1$
-		
-        if ((resourceSet != null) && DISPOSE_UML_METAMODEL) {
-        	disposeResourceSet();
-        }
-		if (!initialized) {
-			boolean isRunning = false;
-			try {
-				java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
-				Method isRunningMethod = platformClass.getDeclaredMethod("isRunning"); //$NON-NLS-1$
-				isRunning = Boolean.TRUE.equals(isRunningMethod.invoke(null));
-			} catch (Exception e) {
-			}
-			if (!isRunning) {
-				initializeStandalone();
-			}
-		}		
-		if (resourceSet == null) {
-			initializeResourceSet();
-		}
-		initFruitPackage();
 
-		assertSame(
-			fruitPackage,
-			OCLUMLUtil.findPackage(
-					Collections.singletonList(fruitPackage.getName()),
-					resourceSet));
-		
-		ocl = createOCL();
-//        ocl.setParseTracingEnabled(true);
-//        ocl.setEvaluationTracingEnabled(true);
-		
-		helper = createHelper();
-	}
-	
-	protected OCL createOCL() {
-		OCL newInstance = OCL.newInstance(resourceSet);
-		String repairs = System.getProperty("org.eclipse.ocl.uml.tests.repairs"); //$NON-NLS-1$
-		if (repairs != null)
-			newInstance.setParserRepairCount(Integer.parseInt(repairs));
-		return newInstance;
-	}
-	
-	protected OCLHelper<Classifier, Operation, Property, Constraint> createHelper() {
-		return ocl.createOCLHelper();
+	@Override
+	public UMLTestReflection.Static getStaticReflection() {
+		return UMLTestReflection.Static.INSTANCE;
 	}
 	
 	/**
@@ -320,7 +198,7 @@ public abstract class AbstractTestSuite
 	 * 
 	 * This method is final to force invocation. Provide a tearDown_xxx method to do
 	 * some derived action during tearDown.
-	 */
+	 *
 	@Override
     protected final void tearDown()
 		throws Exception {
@@ -352,13 +230,13 @@ public abstract class AbstractTestSuite
 					if (Object.class.isAssignableFrom(fieldType)) {
 						String fieldName = field.getName();
 						try {
-							String tearDownName = "tearDown_" + fieldName; //$NON-NLS-1$
+							String tearDownName = "tearDown_" + fieldName;
 							Method method = aClass.getDeclaredMethod(tearDownName);
 							try {
 								method.invoke(this);
 							} catch (Exception e) {
 								// tearDown_xxx must be public
-								fail("Failed to invoke " + getClass().getSimpleName() + "." + tearDownName + " : " + e);   //$NON-NLS-1$//$NON-NLS-2$//$NON-NLS-3$
+								fail("Failed to invoke " + getClass().getSimpleName() + "." + tearDownName + " : " + e);  //$NON-NLS-2$//$NON-NLS-3$
 							}
 						}
 						catch (NoSuchMethodException e) {
@@ -366,527 +244,47 @@ public abstract class AbstractTestSuite
 								field.set(this, null);
 							} catch (Exception e1) {
 								// xxx without a tearDown_xxx must be public to ensure that leakage can be stopped
-								fail("Failed to set " + getClass().getSimpleName() + "." + fieldName + " to null : " + e1);  //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
+								fail("Failed to set " + getClass().getSimpleName() + "." + fieldName + " to null : " + e1); //$NON-NLS-2$ //$NON-NLS-3$
 							}
 						}
 					}
 				}
 				else if (aClass != AbstractTestSuite.class) {
 					// Tests may not have statics since they are prone to memory leakage
-					fail("static test variable:" + field);  //$NON-NLS-1$
+					fail("static test variable:" + field); 
 				}
 			}
 		}
 		assertTrue(isModified == expectIsModified  );	    
-		System.out.println("==> Finish " + getName()); //$NON-NLS-1$
+		System.out.println("==> Finish " + getName());
+	} */
+
+	@Override
+	protected void tearDownField(Field field) throws IllegalAccessException {
+		field.set(this, null);
 	}
 
-	protected void tearDown_ocl() {
-		ocl.dispose();
-		ocl = null;
+	@Override
+	protected final void tearDownStatic(java.lang.Class<?> aClass, Field field) {
+		if (aClass != AbstractTestSuite.class) {
+			super.tearDownStatic(aClass, field);
+		}
+	}
+
+	@Override
+	protected void tearDownUsing(Method method)
+			throws IllegalAccessException, InvocationTargetException {
+		method.invoke(this);
 	}
 
 	public void tearDown_fruitEPackage() {
 		resourceSet.getPackageRegistry().remove(fruitEPackage.getNsURI());
 		fruitEPackage = null;
 	}
-    
-    protected final Classifier getMetaclass(String name) {
-        return (Classifier) umlMetamodel.getOwnedType(name);
-    }
-	
-	/**
-	 * Parses the specified <code>text</code>.
-	 * 
-	 * @param text the OCL text
-	 * @return the OCL expression
-	 */
-	protected OCLExpression<Classifier> parse(String text) {
-		OCLExpression<Classifier> result = parseUnvalidated(text);
-		validate(result);
-		
-		assertValidToString(result);
-		
-		return result;
-	}
-	/**
-	 * Parses the specified <code>text</code> without validating it.
-	 * 
-	 * @param text the OCL text
-	 *    
-	 * @return the OCL expression, unvalidated
-	 */
-	protected OCLExpression<Classifier> parseUnvalidated(String text) {
-		OCLExpression<Classifier> result = parseConstraintUnvalidated(text);
-		
-		// forget the constraint because it interferes with validation
-		EcoreUtil.remove(result);
-		
-		assertValidToString(result);
-		
-		return result;
-	}
-    
-    /**
-     * Validates an OCL expression, asserting that it is valid.
-     * 
-     * @param expr the OCL expression to validate
-     * @param env an environment to use for validation
-     */
-    protected void validate(Constraint constraint) {
-        try {
-            ocl.validate(constraint);
-        } catch (SemanticException e) {
-            fail("Validation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-        }
-    }
-    
-	/**
-	 * Validates an OCL expression, asserting that it is valid.
-	 * 
-	 * @param expr the OCL expression to validate
-	 * @param env an environment to use for validation
-	 */
-	protected void validate(OCLExpression<Classifier> expr) {
-		try {
-			if ((expr.eContainer() != null)
-					&& (expr.eContainer().eContainer() instanceof Constraint)) {
-				// start validation from the constraint, for good measure
-				validate((Constraint) expr.eContainer().eContainer());
-			} else {
-				ocl.validate(expr);
-			}
-		} catch (SemanticException e) {
-			fail("Validation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-	}
-	
-	/**
-	 * Parses the specified <code>text</code> as an OCL constraint.
-	 * 
-	 * @param text the OCL text
-	 * @return the OCL constraint expression
-	 */
-	protected OCLExpression<Classifier> parseConstraint(String text) {
-		OCLExpression<Classifier> result = parseConstraintUnvalidated(text);
-		validate(result);
-		
-		assertValidToString(result);
-		
-		return result;
-	}
-	
-	/**
-	 * Parses the specified <code>text</code> as an OCL constraint, without
-	 * validating it.
-	 * 
-	 * @param text the OCL text
-	 * @return the OCL constraint expression, unvalidated
-	 */
-	protected OCLExpression<Classifier> parseConstraintUnvalidated(String text) {
-		List<Constraint> constraints;
-		Constraint constraint = null;
-		
-		try {
-			constraints = ocl.parse(new OCLInput(text));
-			constraint = constraints.get(0);
-		} catch (ParserException e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} catch (IllegalArgumentException e) {
-			fail("Parse failed (illegal argument): " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		OCLExpression<Classifier> result = null;
-		result = getBodyExpression(constraint);
-		
-		assertNotNull(result);
-		
-		assertValidToString(result);
-		
-		return result;
-	}
-	
-	protected final OCLExpression<Classifier> getBodyExpression(
-			Constraint constraint) {
-		
-		return ((ExpressionInOCL) constraint.getSpecification()).getBodyExpression();
-	}
 	
 	protected final String getStereotype(Constraint constraint) {
 		EList<String> keywords = constraint.getKeywords();
 		return keywords.isEmpty()? null : keywords.get(0);
-	}
-    
-    protected Object evaluate(
-            OCLHelper<Classifier, Operation, Property, Constraint> aHelper,
-            Object context,
-            String expression) throws ParserException {
-        
-        OCLExpression<Classifier> query = aHelper.createQuery(expression);
-        return ocl.evaluate(context, query);
-    }
-    
-    protected boolean check(
-            OCLHelper<Classifier, Operation, Property, Constraint> aHelper,
-            Object context,
-            String expression) throws ParserException {
-        
-        Constraint constraint = aHelper.createInvariant(expression);
-        return ocl.check(context, constraint);
-    }
-	
-	protected Object evaluate(OCLExpression<Classifier> expr) {
-		Object result = null;
-		
-		try {
-			result = ocl.evaluate(null, expr);
-		} catch (RuntimeException e) {
-			fail("Evaluation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected Object evaluate(OCLExpression<Classifier> expr, Object self) {
-		Object result = null;
-		
-		try {
-			result = ocl.evaluate(self, expr);
-		} catch (RuntimeException e) {
-			fail("Evaluation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected boolean check(String contextFreeExpression) {
-		boolean result = false;
-		
-		try {
-			OCLExpression<Classifier> expr = parse(
-					"package UMLPrimitiveTypes context \"String\" inv: " + //$NON-NLS-1$
-					contextFreeExpression + " endpackage"); //$NON-NLS-1$
-			
-			result = check(expr, ""); //$NON-NLS-1$
-		} catch (Exception e) {
-			fail("Check failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * This can be called by subclasses to provide a meaningful error message
-	 * when the tests are run with an encoding distinct from UTF-8.
-	 */
-	protected void checkForUTF8Encoding() {
-		if (!"´".equals("\u00B4")) { //$NON-NLS-1$ //$NON-NLS-2$
-			fail("The preference for the workspace text file encoding should be set to UTF-8."); //$NON-NLS-1$
-		}
-	}
-	
-	protected Object evaluate(String contextFreeExpression) {
-		Object result = null;
-		
-		try {
-			OCLExpression<Classifier> expr = parse(
-					"package UMLPrimitiveTypes context \"String\" inv: " + //$NON-NLS-1$
-					contextFreeExpression + " endpackage"); //$NON-NLS-1$
-			
-			result = evaluate(expr, ""); //$NON-NLS-1$
-		} catch (Exception e) {
-			fail("Evaluation failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected boolean check(OCLExpression<Classifier> expr, Object self) {
-		boolean result = false;
-		
-		try {
-			result = ocl.check(self, expr);
-		} catch (RuntimeException e) {
-			fail("Check failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Parses the specified <code>text</code> as a def expression.  This differs
-	 * from the {@link #parse} method in not separating the expression from its
-	 * constraint, which is critically important to the structure of the defined
-	 * feature.
-	 * 
-	 * @param env the environment in which the operation or property is to be defined
-	 * @param text the OCL text
-	 * @return the OCL def expression
-	 */
-	protected OCLExpression<Classifier> parseDef(String text) {
-		List<Constraint> constraints ;
-		Constraint constraint = null;
-		
-		try {
-			constraints = ocl.parse(new OCLInput(text));
-			constraint = constraints.get(0);
-		} catch (ParserException e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		} catch (IllegalArgumentException e) {
-			fail("Parse failed (illegal argument): " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		OCLExpression<Classifier> result = null;
-		result = getBodyExpression(constraint);
-		
-		validate(result);
-		
-		assertNotNull(result);
-		
-		assertValidToString(result);
-		
-		return result;
-	}
-	
-	protected OCLExpression<Classifier> createQuery(Classifier context, String text) {
-		OCLHelper<Classifier, Operation, Property, Constraint> helper =
-			ocl.createOCLHelper();
-		helper.setContext(context);
-		
-		OCLExpression<Classifier> result = null;
-		
-		try {
-			result = helper.createQuery(text);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected OCLExpression<Classifier> createQuery(
-			EnvironmentFactory<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> envFactory,
-			Classifier context, String text) {
-		
-		OCL localOcl = OCL.newInstance(envFactory);
-		OCLHelper<Classifier, Operation, Property, Constraint> helper =
-			localOcl.createOCLHelper();
-		helper.setContext(context);
-		
-		OCLExpression<Classifier> result = null;
-		
-		try {
-			result = helper.createQuery(text);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected OCLExpression<Classifier> createInvariant(Classifier context, String text) {
-		OCLHelper<Classifier, Operation, Property, Constraint> helper =
-			ocl.createOCLHelper();
-		helper.setContext(context);
-		
-		OCLExpression<Classifier> result = null;
-		
-		try {
-			result = getBodyExpression(helper.createInvariant(text));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected OCLExpression<Classifier> createPrecondition(Operation context, String text) {
-		OCLHelper<Classifier, Operation, Property, Constraint> helper =
-			ocl.createOCLHelper();
-		helper.setOperationContext((Classifier) context.getOwner(), context);
-		
-		OCLExpression<Classifier> result = null;
-		
-		try {
-			result = getBodyExpression(helper.createPrecondition(text));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected OCLExpression<Classifier> createPostcondition(Operation context, String text) {
-		OCLHelper<Classifier, Operation, Property, Constraint> helper =
-			ocl.createOCLHelper();
-		helper.setOperationContext((Classifier) context.getOwner(), context);
-		
-		OCLExpression<Classifier> result = null;
-		
-		try {
-			result = getBodyExpression(helper.createPostcondition(text));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected OCLExpression<Classifier> createBodyCondition(Operation context, String text) {
-		OCLHelper<Classifier, Operation, Property, Constraint> helper =
-			ocl.createOCLHelper();
-		helper.setOperationContext((Classifier) context.getOwner(), context);
-		
-		OCLExpression<Classifier> result = null;
-		
-		try {
-			result = getBodyExpression(helper.createBodyCondition(text));
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-		
-		return result;
-	}
-	
-	protected Choice findChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
-		Choice result = null;
-		
-		for (Choice c : choices) {
-			if (c.getKind() == kind && name.equals(c.getName())) {
-				result = c;
-				break;
-			}
-		}
-		
-		return result;
-	}
-	
-	/**
-	 * Asserts that the <code>toString</code> representation of an AST node as
-	 * generated by the toString visitor does not throw a run-time exception
-	 * and is not <code>null</code>.
-	 * 
-	 * @param node a visitable AST node
-	 */
-	void assertValidToString(Visitable node) {
-		try {
-			String toString = node.toString();
-			assertNotNull("ToStringVisitorImpl returned null", toString); //$NON-NLS-1$
-		} catch (RuntimeException e) {
-			e.printStackTrace();
-			fail("ToStringVisitorImpl threw an exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
-		}
-	}
-	
-	/**
-	 * Asserts that the specified choice is to be found in the collection of
-	 * <code>choices</code>.
-	 * 
-	 * @param choices a collection of {@link Choice}s
-	 * @param kind the kind of choice to find
-	 * @param name the name of the choice to find
-	 */
-	protected void assertChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
-		assertNotNull("Choice not found: " + name + ", " + kind, //$NON-NLS-1$ //$NON-NLS-2$
-			findChoice(choices, kind, name));
-	}
-	
-	/**
-	 * Asserts that the specified choice is <em>not</em> to be found in the
-	 * collection of <code>choices</code>.
-	 * 
-	 * @param choices a collection of {@link Choice}s
-	 * @param kind the kind of choice not to find
-	 * @param name the name of the choice not to find
-	 */
-	protected void assertNotChoice(Collection<Choice> choices, ChoiceKind kind, String name) {
-		assertNull("Choice found: " + name + ", " + kind, //$NON-NLS-1$ //$NON-NLS-2$
-			findChoice(choices, kind, name));
-	}
-
-	/**
-	 * Asserts that a exception of the specified kind is not signalled by
-	 * the a given diagnostic or (recursively) its children.
-	 * 
-	 * @param diagnostic a diagnostic
-	 * @param excType an exception that must not be indicated by the diagnostic
-	 * 
-	 * @since 1.2
-	 */
-    protected void assertNoException(Diagnostic diagnostic, java.lang.Class<? extends Throwable> excType) {
-    	if (excType.isInstance(diagnostic.getException())) {
-    		fail("Diagnostic signals a(n) " + excType.getSimpleName()); //$NON-NLS-1$
-    	}
-    	
-    	for (Diagnostic nested : diagnostic.getChildren()) {
-    		assertNoException(nested, excType);
-    	}
-    }
-    
-    /**
-     * Obtains the diagnostic describing the problem in the last failed parse,
-     * asserting that it is not <code>null</code>.
-     * 
-     * @return the diagnostic
-     */
-    protected Diagnostic getDiagnostic() {
-    	OCLProblemHandler handler = (OCLProblemHandler) OCLUtil.getAdapter(
-    		ocl.getEnvironment(), ProblemHandler.class);
-    	
-    	Diagnostic result = handler.getDiagnostic();
-    	if (result == null) {
-    		result = helper.getProblems();
-    	}
-    	
-    	assertNotNull("No diagnostic", result); //$NON-NLS-1$
-    	
-    	return result;
-    }
-	
-	protected OCLStandardLibrary<Classifier> getOCLStandardLibrary() {
-		return ocl.getEnvironment().getOCLStandardLibrary();
-	}
-	
-	protected Object getInvalid() {
-		return getOCLStandardLibrary().getInvalid();
-	}
-	
-	protected void assertInvalid(Object value) {
-		assertTrue("Expected invalid", ocl.isInvalid(value)); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getUMLBoolean() {
-		return (PrimitiveType) umlPrimitiveTypes.getOwnedType("Boolean"); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getUMLString() {
-		return (PrimitiveType) umlPrimitiveTypes.getOwnedType("String"); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getUMLInteger() {
-		return (PrimitiveType) umlPrimitiveTypes.getOwnedType("Integer"); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getUMLUnlimitedNatural() {
-		return (PrimitiveType) umlPrimitiveTypes.getOwnedType("UnlimitedNatural"); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getEcoreLong() {
-		return (PrimitiveType) ecorePrimitiveTypes.getOwnedType("ELong"); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getEcoreBigDecimal() {
-		return (PrimitiveType) ecorePrimitiveTypes.getOwnedType("EBigDecimal"); //$NON-NLS-1$
-	}
-	
-	protected PrimitiveType getEcoreBigInteger() {
-		return (PrimitiveType) ecorePrimitiveTypes.getOwnedType("EBigInteger"); //$NON-NLS-1$
 	}
 	
 	protected InstanceSpecification instantiate(Package pkg, Classifier classifier) {
@@ -1106,51 +504,9 @@ public abstract class AbstractTestSuite
 	    }
 	}
 	
-	private static void disposeResourceSet() {
-        for (Resource res : resourceSet.getResources()) {
-            res.unload();
-            res.eAdapters().clear();
-        }
-        resourceSet.getResources().clear();
-        resourceSet.eAdapters().clear();
-        resourceSet = null;
-        umlMetamodel = null;
-        umlPrimitiveTypes = null;
-        ecorePrimitiveTypes = null;
-		standardResources = null;
-	}
-	
-	public static URI getTestModelURI(String localFileName) {
-		String testPlugInId = "org.eclipse.ocl.uml.tests"; //$NON-NLS-1$
-		try {
-			java.lang.Class<?> platformClass = java.lang.Class.forName("org.eclipse.core.runtime.Platform"); //$NON-NLS-1$
-			Method getBundle = platformClass.getDeclaredMethod("getBundle", new java.lang.Class[] {String.class}); //$NON-NLS-1$
-			Object bundle = getBundle.invoke(null, new Object[] {testPlugInId});
-			
-			if (bundle != null) {
-				Method getEntry = bundle.getClass().getMethod("getEntry", new java.lang.Class[] {String.class}); //$NON-NLS-1$
-				URL url = (URL) getEntry.invoke(bundle, new Object[] {localFileName});
-				return URI.createURI(url.toString());
-			}
-		} catch (Exception e) {
-			// not running in Eclipse
-		}
-		String urlString = System.getProperty(testPlugInId);
-		if (urlString == null)
-			TestCase.fail("'" + testPlugInId + "' property not defined; use the launch configuration to define it"); //$NON-NLS-1$ //$NON-NLS-2$
-		return URI.createFileURI(urlString + "/" + localFileName); //$NON-NLS-1$
-	}
-
-	private static boolean initialized = false;
-
-	public static void initializeStandalone() {
-		if (initialized)
-			return;
-		initialized = true;
-	}
-	
-	private void initFruitPackage() {
-		URI uri = getTestModelURI("/model/OCLTest.uml"); //$NON-NLS-1$		
+	@Override
+	protected void initFruitPackage() {
+		URI uri = getTestModelURI("/model/OCLTest.uml"); //$NON-NLS-1$
 		Resource res = resourceSet.getResource(uri, true);
 		
 		fruitPackage = (Package) res.getContents().get(0);
@@ -1211,5 +567,11 @@ public abstract class AbstractTestSuite
 		resourceSet.getPackageRegistry().put(fruitEPackage.getNsURI(), fruitEPackage);
 		fruitEFactory = fruitEPackage.getEFactoryInstance();
 		res.setTrackingModification(true);
+
+		assertSame(
+			fruitPackage,
+			OCLUMLUtil.findPackage(
+					Collections.singletonList(fruitPackage.getName()),
+					resourceSet));
 	}
 }

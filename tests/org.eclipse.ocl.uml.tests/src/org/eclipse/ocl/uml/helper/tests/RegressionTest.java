@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.4 2009/10/07 20:42:33 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.5 2009/11/26 20:46:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
@@ -150,7 +150,7 @@ public class RegressionTest
 	 * a sequence.
 	 */
 	public void test_completionOnIterator_sequence_RATLC00537918() {
-		helper.setContext((Classifier) umlMetamodel.getOwnedType("Class")); //$NON-NLS-1$
+		helper.setContext((Classifier) getUMLMetamodel().getOwnedType("Class")); //$NON-NLS-1$
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
 				"Sequence{'abc', 'a', 'ab'}->"); //$NON-NLS-1$
