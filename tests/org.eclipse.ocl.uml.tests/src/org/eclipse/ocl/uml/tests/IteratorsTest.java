@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2006, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.9 2009/11/26 20:46:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -803,14 +803,14 @@ public class IteratorsTest
         helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
 
         try {
-            Object result = evaluate(helper, umlMetamodel,
+            Object result = evaluate(helper, getUMLMetamodel(),
                 "let c : Type = invalid in ownedType->closure(c)"); //$NON-NLS-1$
 
             assertInvalid(result);
 
             // in the case of a null value, null is allowed in a collection, so
             // it does not result in invalid
-            result = evaluate(helper, umlMetamodel,
+            result = evaluate(helper, getUMLMetamodel(),
                 "let c : Set(Type) = Set{null} in ownedType->closure(c)"); //$NON-NLS-1$
 
             assertTrue(result instanceof Collection<?>);
@@ -822,7 +822,7 @@ public class IteratorsTest
         }
     }
 
-    /**
+	/**
      * Tests that when the body of an iterator results in invalid, the entire
      * iterator expression's value is invalid.
      */

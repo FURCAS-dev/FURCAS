@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2008 IBM Corporation and others.
+ * Copyright (c) 2007, 2009 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: UMLTest.java,v 1.9 2009/11/26 20:46:38 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -328,7 +328,7 @@ public class UMLTest
             " endpackage"); //$NON-NLS-1$
         
         try {
-            assertNotSame(getInvalid(), evaluate(expr, umlMetamodel));
+            assertNotSame(getInvalid(), evaluate(expr, getUMLMetamodel()));
         } catch (RuntimeException e) {
             fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
         }

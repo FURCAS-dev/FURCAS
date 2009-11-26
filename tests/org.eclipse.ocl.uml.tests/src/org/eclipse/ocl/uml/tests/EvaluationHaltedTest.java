@@ -33,6 +33,7 @@ import org.eclipse.ocl.uml.OCL;
 import org.eclipse.ocl.uml.UMLEnvironment;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 import org.eclipse.ocl.uml.UMLEvaluationEnvironment;
+import org.eclipse.ocl.uml.OCL.Query;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
@@ -82,7 +83,7 @@ public class EvaluationHaltedTest
 			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 
-		query = ocl.createQuery(queryExp);
+		query = (Query) ocl.createQuery(queryExp);
 	}
 
 	public void testBasicEvaluationHalted() {
@@ -466,7 +467,7 @@ public class EvaluationHaltedTest
 
 	private org.eclipse.ocl.uml.OCL.Query createQuery(String expression) {
 		try {
-			return ocl.createQuery(helper.createQuery(expression));
+			return (Query) ocl.createQuery(helper.createQuery(expression));
 		} catch (ParserException e) {
 			// processed bellow
 			fail(e.getLocalizedMessage());

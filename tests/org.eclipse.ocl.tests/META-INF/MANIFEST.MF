@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Plugin.name
+Bundle-SymbolicName: org.eclipse.ocl.tests
+Bundle-Version: 3.0.0.qualifier
+Require-Bundle: org.junit;bundle-version="[3.8.0,4.0.0)";visibility:=reexport,
+ org.eclipse.core.runtime;bundle-version="[3.5.0,4.0.0)";resolution:=optional,
+ org.eclipse.emf.ecore.xmi;bundle-version="[2.2.0,3.0.0)";visibility:=reexport,
+ org.eclipse.ocl;bundle-version="[3.0.0,4.0.0)";visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %Plugin.providerName
+Export-Package: org.eclipse.ocl.tests

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.7 2009/10/23 21:06:10 ewillink Exp $
+ * $Id: LocationInformationTest.java,v 1.8 2009/11/26 20:45:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -496,7 +496,7 @@ public class LocationInformationTest
 	@Override
     protected OCLExpression<EClassifier> createQuery(
 			EnvironmentFactory<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> envFactory,
-			EClass context, String text) {
+			EClassifier context, String text) {
 		
 		OCLExpression<EClassifier> result = super.createQuery(
 				envFactory, context, text);
@@ -507,7 +507,7 @@ public class LocationInformationTest
 	}
 	
 	@Override
-    protected OCLExpression<EClassifier> createInvariant(EClass context, String text) {
+    protected OCLExpression<EClassifier> createInvariant(EClassifier context, String text) {
 		OCLExpression<EClassifier> result = super.createInvariant(context, text);
 		
 		assertAllPositionsSet(result);

@@ -42,6 +42,7 @@ import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
 import org.eclipse.ocl.ecore.EcoreEvaluationEnvironment;
 import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.OCL.Query;
 import org.eclipse.ocl.util.OCLUtil;
 
 /**
@@ -84,7 +85,7 @@ public class EvaluationHaltedTest
 			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
 		}
 
-		query = ocl.createQuery(queryExp);
+		query = (Query) ocl.createQuery(queryExp);
 	}
 
 	public void testBasicEvaluationHalted() {
@@ -466,7 +467,7 @@ public class EvaluationHaltedTest
 
 	private org.eclipse.ocl.ecore.OCL.Query createQuery(String expression) {
 		try {
-			return ocl.createQuery(helper.createQuery(expression));
+			return (Query) ocl.createQuery(helper.createQuery(expression));
 		} catch (ParserException e) {
 			// processed bellow
 			fail(e.getLocalizedMessage());

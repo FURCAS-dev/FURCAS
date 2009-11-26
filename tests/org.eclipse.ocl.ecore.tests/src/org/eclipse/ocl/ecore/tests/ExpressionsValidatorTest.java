@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2008 IBM Corporation, Zeligsoft Inc., Open Canarias S.L. and others.
+ * Copyright (c) 2008,2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.5 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.6 2009/11/26 20:45:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -544,6 +544,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		ocl.dispose();
 		ocl = OCL.newInstance(envFactory);
 		helper = ocl.createOCLHelper();
+		((InitEnvironment) ocl.getEnvironment()).init();
 		
 		MessageExp m = factory.createMessageExp();
 		
