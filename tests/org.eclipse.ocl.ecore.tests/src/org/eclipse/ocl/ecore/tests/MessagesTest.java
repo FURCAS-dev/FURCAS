@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessagesTest.java,v 1.5 2009/10/07 20:39:27 ewillink Exp $
+ * $Id: MessagesTest.java,v 1.6 2009/11/26 20:45:49 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -522,7 +522,7 @@ public class MessagesTest
 		}
 	}
 	
-	private static class MessagingFruitEnvironment extends EcoreEnvironment {
+	private static class MessagingFruitEnvironment extends EcoreEnvironment implements InitEnvironment {
 		protected final AbstractTestSuite suite;
 		private EClass dropSignal;
 		
@@ -534,7 +534,7 @@ public class MessagesTest
 			setFactory(factory);
 			setContextPackage(suite.fruitPackage);
 
-			init();
+//			init();
 		}
 		
 		public MessagingFruitEnvironment(
@@ -547,7 +547,7 @@ public class MessagesTest
 			init();
 		}
 		
-		private void init() {
+		public void init() {
 			dropSignal = EcoreFactory.eINSTANCE.createEClass();
 			dropSignal.setName("Drop"); //$NON-NLS-1$
 			
