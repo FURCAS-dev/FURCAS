@@ -47,7 +47,7 @@ public class ResourceIndexer {
 				resourceCache.put(resource, resourceUri = uriConverter.normalize(resource.getURI()));
 			}
 
-			updater.insertResource(resourceUri, resource.getTimeStamp(), getResourceUserData(resource));
+			updater.insertResource(resourceUri, this.getVersion(resource), getResourceUserData(resource));
 
 			for (EObject child : resource.getContents()) {
 				addContent(updater, uriConverter, resourceCache, typeCache, objectCache, resource, resourceUri, child);
@@ -137,6 +137,10 @@ public class ResourceIndexer {
 
 	protected boolean isIndexElement(EObject element) {
 		return true;
+	}
+
+	protected long getVersion(Resource resource) {
+		return resource.getTimeStamp();
 	}
 
 	protected Map<String, String> getEObjectUserData(EObject element) {
