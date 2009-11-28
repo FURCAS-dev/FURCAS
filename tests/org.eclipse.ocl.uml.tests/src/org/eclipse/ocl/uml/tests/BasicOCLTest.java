@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.8 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.9 2009/11/28 18:16:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -43,6 +43,7 @@ import org.eclipse.uml2.uml.VisibilityKind;
  * @author Chris McGee (cbmcgee)
  * @author Christian W. Damus (cwdamus)
  */
+@SuppressWarnings("nls")
 public class BasicOCLTest
 	extends AbstractTestSuite {
     
@@ -50,7 +51,7 @@ public class BasicOCLTest
         Resource res = ocl.getEnvironment().getOCLStandardLibrary().getOclAny().eResource();
         URI oldURI = res.getURI();
         
-        res.setURI(URI.createFileURI("c:/temp/oclstdlib.uml")); //$NON-NLS-1$
+        res.setURI(URI.createFileURI("c:/temp/oclstdlib.uml"));
         try {
             res.save(Collections.EMPTY_MAP);
         } catch (IOException e) {
@@ -83,17 +84,17 @@ public class BasicOCLTest
 	
 	public void testTrivialExpressions() {
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: true " +
+			"endpackage");
 		
 		Object result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
@@ -101,73 +102,73 @@ public class BasicOCLTest
 	
 	public void testLogicalConnectives() {
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: true and true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: true and true " +
+			"endpackage");
 		
 		Object result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: false or false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: false or false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: true and false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: true and false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: true or false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: true or false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: not true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: not true " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: true implies true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: true implies true " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: true implies false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: true implies false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: false implies true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: false implies true " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: false implies false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: false implies false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
@@ -175,59 +176,59 @@ public class BasicOCLTest
 	
 	public void testSimpleAttributeExpressions() {
 		Class eCls = umlf.createClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: self.name <> 'foo' " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: self.name <> 'foo' " +
+			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		assertFalse(check(constraint, eCls));
 	}
 	
 	public void testCollectionExpressions() {
 		DataType eCls = umlf.createDataType();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
-		eCls.createOwnedAttribute("att1", null); //$NON-NLS-1$
-		eCls.createOwnedAttribute("att2", null); //$NON-NLS-1$
+		eCls.createOwnedAttribute("att1", null);
+		eCls.createOwnedAttribute("att2", null);
 		
 		assertEquals(eCls.getOwnedAttributes().size(),2);
 		
 		OCLExpression<Classifier> constraint = parseConstraint(
-			"package uml context DataType " + //$NON-NLS-1$
-			"inv: self.ownedAttribute->size() = 2 " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context DataType " +
+			"inv: self.ownedAttribute->size() = 2 " +
+			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 		
 		constraint = parseConstraint(
-			"package uml context DataType " + //$NON-NLS-1$
-			"inv: self.ownedAttribute->forAll(a: Property | not a.isDerived) " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context DataType " +
+			"inv: self.ownedAttribute->forAll(a: Property | not a.isDerived) " +
+			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 	}
 	
 	public void testNonBooleansExpressions() {
 		Enumeration eCls = umlf.createEnumeration();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<Classifier> expr = parse(
-			"package uml context Enumeration " + //$NON-NLS-1$
-			"inv: self.name " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package uml context Enumeration " +
+			"inv: self.name " +
+			"endpackage ");
 		
 		Object result = evaluate(expr, eCls);
-		assertEquals("bar", result); //$NON-NLS-1$
+		assertEquals("bar", result);
 		
 		expr = parse(
-			"package uml context Enumeration " + //$NON-NLS-1$
-			"inv: self " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package uml context Enumeration " +
+			"inv: self " +
+			"endpackage");
 		
 		result = evaluate(expr, eCls);
 		assertSame(eCls, result);
@@ -235,12 +236,12 @@ public class BasicOCLTest
 	
 	public void testIfExpressions() {
 		Class eCls = umlf.createClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<Classifier> expr = parse(
-			"package uml context Class " + //$NON-NLS-1$
-			"inv: if self.isAbstract then name = 'bar' else name <> 'bar' endif " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package uml context Class " +
+			"inv: if self.isAbstract then name = 'bar' else name <> 'bar' endif " +
+			"endpackage ");
 		
 		assertFalse(check(expr, eCls));
 		
@@ -248,32 +249,32 @@ public class BasicOCLTest
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		assertFalse(check(expr, eCls));
 	}
 	
 	public void testLetExpressions() {
 		DataType eCls = umlf.createDataType();
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		OCLExpression<Classifier> expr = parse(
-			"package uml context DataType " + //$NON-NLS-1$
-			"inv: let feats : OrderedSet(Property) = self.ownedAttribute in " + //$NON-NLS-1$
-			"  feats->isEmpty() implies name <> 'bar' " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package uml context DataType " +
+			"inv: let feats : OrderedSet(Property) = self.ownedAttribute in " +
+			"  feats->isEmpty() implies name <> 'bar' " +
+			"endpackage ");
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		assertFalse(check(expr, eCls));
 		
-		eCls.createOwnedAttribute("att1", null); //$NON-NLS-1$
+		eCls.createOwnedAttribute("att1", null);
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		assertTrue(check(expr, eCls));
 	}
@@ -284,19 +285,19 @@ public class BasicOCLTest
 	 */
 	public void test_dataTypeAsContext() {
 		OCLExpression<Classifier> expr = parse(
-			"package UMLPrimitiveTypes context \"String\" " + //$NON-NLS-1$
-			"inv: self.toUpper() <> self.toLower() " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package UMLPrimitiveTypes context \"String\" " +
+			"inv: self.toUpper() <> self.toLower() " +
+			"endpackage ");
 		
-		assertTrue(check(expr, "anything")); //$NON-NLS-1$
-		assertTrue(check(expr, "ANYTHING")); //$NON-NLS-1$
+		assertTrue(check(expr, "anything"));
+		assertTrue(check(expr, "ANYTHING"));
 		
 		expr = parse(
-			"package UMLPrimitiveTypes context \"String\" " + //$NON-NLS-1$
-			"inv: self.toUpper() " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package UMLPrimitiveTypes context \"String\" " +
+			"inv: self.toUpper() " +
+			"endpackage ");
 		
-		assertEquals("ANYTHING", evaluate(expr, "anything")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals("ANYTHING", evaluate(expr, "anything"));
 	}
 	
 	/**
@@ -304,24 +305,24 @@ public class BasicOCLTest
 	 * can equal integers, but not in Java.
 	 */
 	public void test_equals_primitives() {
-		assertTrue(check("1 = 1")); //$NON-NLS-1$
-		assertTrue(check("1 = 1.0")); //$NON-NLS-1$
-		assertTrue(check("1.0 = 1")); //$NON-NLS-1$
-		assertTrue(check("1.0 = 1.0")); //$NON-NLS-1$
+		assertTrue(check("1 = 1"));
+		assertTrue(check("1 = 1.0"));
+		assertTrue(check("1.0 = 1"));
+		assertTrue(check("1.0 = 1.0"));
 		
-		assertTrue(check("'foo' = 'foo'")); //$NON-NLS-1$
+		assertTrue(check("'foo' = 'foo'"));
 		
-		assertTrue(check("ocltest::Color::red = ocltest::Color::red")); //$NON-NLS-1$
-		assertFalse(check("ocltest::Color::red = ocltest::Color::black")); //$NON-NLS-1$
+		assertTrue(check("ocltest::Color::red = ocltest::Color::red"));
+		assertFalse(check("ocltest::Color::red = ocltest::Color::black"));
 	}
     
     public void test_evaluationEnvironment_getType_178901() {
         EvaluationEnvironment<Classifier, Operation, Property, Class, EObject>
         evalEnv = ocl.getEvaluationEnvironment();
         
-        assertSame(getMetaclass("Package"), evalEnv.getType(fruitPackage)); //$NON-NLS-1$
-        assertSame(getMetaclass("Class"), evalEnv.getType(fruit)); //$NON-NLS-1$
-        assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo")); //$NON-NLS-1$
+        assertSame(getMetaclass("Package"), evalEnv.getType(fruitPackage));
+        assertSame(getMetaclass("Class"), evalEnv.getType(fruit));
+        assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo"));
         assertSame(getOCLStandardLibrary().getOclAny(), evalEnv.getType(this));
     }
     
@@ -329,15 +330,15 @@ public class BasicOCLTest
      * Tests the OclAny::oclIsKindOf() operation.
      */
     public void test_oclIsKindOf() {
-        helper.setContext(getMetaclass("Stereotype")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Stereotype"));
         Stereotype stereo = umlf.createStereotype();
         
         try {
-            assertTrue(check(helper, stereo, "self.oclIsKindOf(Class)")); //$NON-NLS-1$
-            assertTrue(check(helper, stereo, "self.oclIsKindOf(Stereotype)")); //$NON-NLS-1$
-            assertFalse(check(helper, stereo, "self.oclIsKindOf(Connector)")); //$NON-NLS-1$
+            assertTrue(check(helper, stereo, "self.oclIsKindOf(Class)"));
+            assertTrue(check(helper, stereo, "self.oclIsKindOf(Stereotype)"));
+            assertFalse(check(helper, stereo, "self.oclIsKindOf(Connector)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -345,15 +346,15 @@ public class BasicOCLTest
      * Tests the OclAny::oclIsTypeOf() operation.
      */
     public void test_oclIsTypeOf_196264() {
-        helper.setContext(getMetaclass("Stereotype")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Stereotype"));
         Stereotype stereo = umlf.createStereotype();
         
         try {
-            assertFalse(check(helper, stereo, "self.oclIsTypeOf(Class)")); //$NON-NLS-1$
-            assertTrue(check(helper, stereo, "self.oclIsTypeOf(Stereotype)")); //$NON-NLS-1$
-            assertFalse(check(helper, stereo, "self.oclIsTypeOf(Connector)")); //$NON-NLS-1$
+            assertFalse(check(helper, stereo, "self.oclIsTypeOf(Class)"));
+            assertTrue(check(helper, stereo, "self.oclIsTypeOf(Stereotype)"));
+            assertFalse(check(helper, stereo, "self.oclIsTypeOf(Connector)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -362,13 +363,13 @@ public class BasicOCLTest
      * enumerated type instance, not the <tt>EnumerationLiteral</tt> model element.
      */
     public void test_enumerationLiteralValue_198945() {
-    	helper.setContext(getMetaclass("VisibilityKind")); //$NON-NLS-1$
+    	helper.setContext(getMetaclass("VisibilityKind"));
         
         try {
             assertSame(VisibilityKind.PROTECTED_LITERAL,
-                evaluate(helper, VisibilityKind.PUBLIC_LITERAL, "VisibilityKind::protected")); //$NON-NLS-1$
+                evaluate(helper, VisibilityKind.PUBLIC_LITERAL, "VisibilityKind::protected"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 }
