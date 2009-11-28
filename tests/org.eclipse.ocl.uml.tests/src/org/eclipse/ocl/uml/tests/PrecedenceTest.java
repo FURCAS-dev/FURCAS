@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.9 2009/11/09 22:16:00 ewillink Exp $
+ * $Id: PrecedenceTest.java,v 1.10 2009/11/28 18:15:55 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -238,6 +238,6 @@ public class PrecedenceTest
         res.getContents().add(pkg);
         
         class1 = pkg.createOwnedClass("Class1", false);
-        class1.createOwnedAttribute("base_Property", getMetaclass("Property")); //$NON-NLS-2$
+        class1.createOwnedAttribute("base_Property", getMetaclass("Property"));
     }
 }
