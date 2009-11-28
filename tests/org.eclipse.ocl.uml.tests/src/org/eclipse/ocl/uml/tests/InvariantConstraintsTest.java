@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvariantConstraintsTest.java,v 1.4 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: InvariantConstraintsTest.java,v 1.5 2009/11/28 18:09:33 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -34,6 +34,7 @@ import org.eclipse.uml2.uml.Property;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class InvariantConstraintsTest extends AbstractTestSuite {
 	
 	/**
@@ -42,9 +43,9 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simpleInvariant() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -53,9 +54,9 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simpleInvariantWithSelf() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: self.color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: self.color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -63,9 +64,9 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simpleInvariantWithLet() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: let myColor : Color = self.color in myColor <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: let myColor : Color = self.color in myColor <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -74,10 +75,10 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_variablesHidingAttributes() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: let color : Boolean = (not self.color.oclIsUndefined()) in " + //$NON-NLS-1$
-			"  color implies self.color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: let color : Boolean = (not self.color.oclIsUndefined()) in " +
+			"  color implies self.color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -87,13 +88,13 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	public void test_propertyNameCoincidesWithTypeName_140347() {
         expectModified = true;
 		Property myFruit = apple.createOwnedAttribute(
-				"Fruit", fruit); //$NON-NLS-1$
+				"Fruit", fruit);
 		
 		try {
 			OCLExpression<Classifier> expr = parseConstraint(
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: self.Fruit <> self implies self.Fruit.oclIsKindOf(Fruit) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: self.Fruit <> self implies self.Fruit.oclIsKindOf(Fruit) " +
+				"endpackage");
 			
 			int propertyCalls = 0;
 			int typeCalls = 0;
@@ -104,21 +105,21 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 					PropertyCallExp<Classifier, Property> pc =
 						(PropertyCallExp<Classifier, Property>) next;
 					
-					if ("Fruit".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
+					if ("Fruit".equals(pc.getReferredProperty().getName())) {
 						propertyCalls++;
 					}
 				} else if (next instanceof TypeExp<?>) {
 					@SuppressWarnings("unchecked")
 					TypeExp<Classifier> te = (TypeExp<Classifier>) next;
 					
-					if ("Fruit".equals(te.getReferredType().getName())) { //$NON-NLS-1$
+					if ("Fruit".equals(te.getReferredType().getName())) {
 						typeCalls++;
 					}
 				}
 			}
 			
-			assertEquals("property calls", 2, propertyCalls); //$NON-NLS-1$
-			assertEquals("type calls", 1, typeCalls); //$NON-NLS-1$
+			assertEquals("property calls", 2, propertyCalls);
+			assertEquals("type calls", 1, typeCalls);
 		} finally {
 			apple.getOwnedAttributes().remove(myFruit);
 		}
@@ -134,10 +135,10 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 		//    access features of the interface because they are not inherited
 		//    in UML
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv only_tasty_fruit: self.oclAsType(Edible).isTasty implies " + //$NON-NLS-1$
-			"  Edible.allInstances()->excluding(self)->forAll(e | not e.isTasty) " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv only_tasty_fruit: self.oclAsType(Edible).isTasty implies " +
+			"  Edible.allInstances()->excluding(self)->forAll(e | not e.isTasty) " +
+			"endpackage");
 	}
     
     /**
@@ -145,34 +146,34 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
      */
     public void test_nestedClassifiers() {
         expectModified = true;
-        Class seed = (Class) apple.createNestedClassifier("Seed", uml.getClass_()); //$NON-NLS-1$
-        seed.createOwnedAttribute("fruit", apple); //$NON-NLS-1$
+        Class seed = (Class) apple.createNestedClassifier("Seed", uml.getClass_());
+        seed.createOwnedAttribute("fruit", apple);
         
         try {
             // try different usages of the qualified class name
             parseConstraint(
-                "package ocltest context Fruit" + //$NON-NLS-1$
-                " inv: Apple::Seed.allInstances()->forAll(fruit.color <> Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Fruit" +
+                " inv: Apple::Seed.allInstances()->forAll(fruit.color <> Color::black)" +
+                " endpackage");
             
             parseConstraint(
-                "package ocltest context Apple::Seed" + //$NON-NLS-1$
-                " inv: not fruit.oclIsUndefined()" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Apple::Seed" +
+                " inv: not fruit.oclIsUndefined()" +
+                " endpackage");
             
             parseConstraint(
-                "context ocltest::Apple::Seed" + //$NON-NLS-1$
-                " inv: fruit.color <> Color::black"); //$NON-NLS-1$
+                "context ocltest::Apple::Seed" +
+                " inv: fruit.color <> Color::black");
             
             parseDef(
-                "package ocltest context Apple::Seed" + //$NON-NLS-1$
-                " def: getColor() : Color = fruit.color" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Apple::Seed" +
+                " def: getColor() : Color = fruit.color" +
+                " endpackage");
             
             parseConstraint(
-                "package ocltest context Apple::Seed::getColor() : Color" + //$NON-NLS-1$
-                " pre: not fruit.oclIsUndefined()" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Apple::Seed::getColor() : Color" +
+                " pre: not fruit.oclIsUndefined()" +
+                " endpackage");
         } finally {
             seed.destroy();
         }
