@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InvariantConstraintsTest.java,v 1.3 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: InvariantConstraintsTest.java,v 1.4 2009/11/28 17:46:56 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -35,6 +35,7 @@ import org.eclipse.ocl.expressions.TypeExp;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class InvariantConstraintsTest extends AbstractTestSuite {
 	
 	/**
@@ -43,9 +44,9 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simpleInvariant() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -54,9 +55,9 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simpleInvariantWithSelf() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: self.color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: self.color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -64,9 +65,9 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simpleInvariantWithLet() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: let myColor : Color = self.color in myColor <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: let myColor : Color = self.color in myColor <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -75,10 +76,10 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_variablesHidingAttributes() {
 		parseConstraint(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: let color : Boolean = (not self.color.oclIsUndefined()) in " + //$NON-NLS-1$
-			"  color implies self.color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: let color : Boolean = (not self.color.oclIsUndefined()) in " +
+			"  color implies self.color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -88,15 +89,15 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 	public void test_propertyNameCoincidesWithTypeName_140347() {
 		expectModified = true;
 		EReference myFruit = EcoreFactory.eINSTANCE.createEReference();
-		myFruit.setName("Fruit"); //$NON-NLS-1$
+		myFruit.setName("Fruit");
 		myFruit.setEType(fruit);
 		apple.getEStructuralFeatures().add(myFruit);
 		
 		try {
 			OCLExpression<EClassifier> expr = parseConstraint(
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: self.Fruit <> self implies self.Fruit.oclIsKindOf(Fruit) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: self.Fruit <> self implies self.Fruit.oclIsKindOf(Fruit) " +
+				"endpackage");
 			
 			int propertyCalls = 0;
 			int typeCalls = 0;
@@ -107,21 +108,21 @@ public class InvariantConstraintsTest extends AbstractTestSuite {
 					PropertyCallExp<EClassifier, EStructuralFeature> pc =
 						(PropertyCallExp<EClassifier, EStructuralFeature>) next;
 					
-					if ("Fruit".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
+					if ("Fruit".equals(pc.getReferredProperty().getName())) {
 						propertyCalls++;
 					}
 				} else if (next instanceof TypeExp<?>) {
 					@SuppressWarnings("unchecked")
 					TypeExp<EClassifier> te = (TypeExp<EClassifier>) next;
 					
-					if ("Fruit".equals(te.getReferredType().getName())) { //$NON-NLS-1$
+					if ("Fruit".equals(te.getReferredType().getName())) {
 						typeCalls++;
 					}
 				}
 			}
 			
-			assertEquals("property calls", 2, propertyCalls); //$NON-NLS-1$
-			assertEquals("type calls", 1, typeCalls); //$NON-NLS-1$
+			assertEquals("property calls", 2, propertyCalls);
+			assertEquals("type calls", 1, typeCalls);
 		} finally {
 			apple.getEStructuralFeatures().remove(myFruit);
 		}
