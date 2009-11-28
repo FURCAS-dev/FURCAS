@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.10 2009/10/07 20:41:44 ewillink Exp $
+ * $Id: SerializationTest.java,v 1.11 2009/11/28 18:10:47 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -53,6 +53,7 @@ import org.eclipse.uml2.uml.Property;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class SerializationTest
 	extends AbstractTestSuite {
 
@@ -63,8 +64,8 @@ public class SerializationTest
 	 */
 	public void test_basicSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.nestingPackage"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.nestingPackage");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -79,8 +80,8 @@ public class SerializationTest
 	 */
 	public void test_primitiveTypeSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.nestedPackage->size() > 2"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.nestedPackage->size() > 2");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -96,8 +97,8 @@ public class SerializationTest
 	 */
 	public void test_primitiveCollectionTypeSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.nestedPackage->collect(ownedType->size())"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.nestedPackage->collect(ownedType->size())");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -113,8 +114,8 @@ public class SerializationTest
 	 */
 	public void test_modelCollectionTypeSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"let subs : Collection(Package) = self.nestedPackage in subs->size() > 2"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"let subs : Collection(Package) = self.nestedPackage in subs->size() > 2");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -130,9 +131,9 @@ public class SerializationTest
 	 */
 	public void test_typeExpSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.ownedType->forAll(c | " + //$NON-NLS-1$
-				"c.oclIsKindOf(Class) implies Class.allInstances()->includes(c.oclAsType(Class)))"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.ownedType->forAll(c | " +
+				"c.oclIsKindOf(Class) implies Class.allInstances()->includes(c.oclAsType(Class)))");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -147,9 +148,9 @@ public class SerializationTest
 	 */
 	public void test_tupleSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.nestedPackage->collect(" + //$NON-NLS-1$
-				"Tuple{pkg = name, size = ownedType->size()})"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.nestedPackage->collect(" +
+				"Tuple{pkg = name, size = ownedType->size()})");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -166,8 +167,8 @@ public class SerializationTest
 	public void test_operationMessageSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
 				fruit,
-				"let msgs : Sequence(OclMessage) = self^^ripen(?) in " + //$NON-NLS-1$
-				"msgs->forAll(m | m.hasReturned() implies m.color <> Color::black)"); //$NON-NLS-1$
+				"let msgs : Sequence(OclMessage) = self^^ripen(?) in " +
+				"msgs->forAll(m | m.hasReturned() implies m.color <> Color::black)");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -184,8 +185,8 @@ public class SerializationTest
 	public void test_signalMessageSerialization() {
 		OCLExpression<Classifier> expr = parseExpression(
 				fruit,
-				"let msgs : Sequence(OclMessage) = self^^Drop(?, ?) in " + //$NON-NLS-1$
-				"msgs->forAll(m | m.delay = 0 implies m.stem.oclIsUndefined())"); //$NON-NLS-1$
+				"let msgs : Sequence(OclMessage) = self^^Drop(?, ?) in " +
+				"msgs->forAll(m | m.delay = 0 implies m.stem.oclIsUndefined())");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -199,25 +200,25 @@ public class SerializationTest
 	 * Tests the serialization of an expression referencing an additional operation.
 	 */
 	public void test_additionalOperationSerialization() {
-		helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Package"));
 		
 		Operation oper = null;
 		
 		try {
 			oper = helper.defineOperation(
-					"getUniqueClassifierNames() : Set(String) = " + //$NON-NLS-1$
-					"self.ownedType->collect(name)->asSet()"); //$NON-NLS-1$
+					"getUniqueClassifierNames() : Set(String) = " +
+					"self.ownedType->collect(name)->asSet()");
 			
 			assertSame(oper,
 					ocl.getEnvironment().getTypeResolver().resolveAdditionalOperation(
-							getMetaclass("Package"), oper)); //$NON-NLS-1$
+							getMetaclass("Package"), oper));
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.getUniqueClassifierNames()->size()"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.getUniqueClassifierNames()->size()");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -233,7 +234,7 @@ public class SerializationTest
 				ocl.getEnvironment().getTypeResolver().getResource());
 		
 		Operation newOper = newOCL.getEnvironment().getTypeResolver().resolveAdditionalOperation(
-                getMetaclass("Package"), oper); //$NON-NLS-1$
+                getMetaclass("Package"), oper);
 		assertNotSame(oper, newOper);
 	}
 	
@@ -241,25 +242,25 @@ public class SerializationTest
 	 * Tests the serialization of an expression referencing an additional property.
 	 */
 	public void test_additionalPropertySerialization() {
-		helper.setContext(getMetaclass("Package")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Package"));
 		
 		Property prop = null;
 		
 		try {
 			prop = helper.defineAttribute(
-					"uniqueClassifierNames : Set(String) = " + //$NON-NLS-1$
-					"self.ownedType->collect(name)->asSet()"); //$NON-NLS-1$
+					"uniqueClassifierNames : Set(String) = " +
+					"self.ownedType->collect(name)->asSet()");
 			
 			assertSame(prop,
 					ocl.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
-							getMetaclass("Package"), prop)); //$NON-NLS-1$
+							getMetaclass("Package"), prop));
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		OCLExpression<Classifier> expr = parseExpression(
-				getMetaclass("Package"), //$NON-NLS-1$
-				"self.uniqueClassifierNames->size()"); //$NON-NLS-1$
+				getMetaclass("Package"),
+				"self.uniqueClassifierNames->size()");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -275,7 +276,7 @@ public class SerializationTest
 				ocl.getEnvironment().getTypeResolver().getResource());
 		
 		Property newProp = newOCL.getEnvironment().getTypeResolver().resolveAdditionalAttribute(
-                getMetaclass("Package"), prop); //$NON-NLS-1$
+                getMetaclass("Package"), prop);
 		assertNotSame(prop, newProp);
 	}
     
@@ -284,8 +285,8 @@ public class SerializationTest
      */
     public void test_typeTypeSerialization_183494() {
         OCLExpression<Classifier> expr = parseExpression(
-                getMetaclass("Package"), //$NON-NLS-1$
-                "Package.allInstances()"); //$NON-NLS-1$
+                getMetaclass("Package"),
+                "Package.allInstances()");
 
         String toStringForm = expr.toString();
         String serialForm = serialize(expr);
@@ -301,7 +302,7 @@ public class SerializationTest
         assertTrue(expr.getType() instanceof TypeType);
         
         TypeType typeType = (TypeType) expr.getType();
-        assertSame(getMetaclass("Package"), typeType.getReferredType()); //$NON-NLS-1$
+        assertSame(getMetaclass("Package"), typeType.getReferredType());
     }
     
     /**
@@ -321,14 +322,14 @@ public class SerializationTest
      */
     public void test_typespec_resolution_226455() {
         parseExpression(
-                getMetaclass("Package"), //$NON-NLS-1$
-                "self.ownedType->any(oclIsKindOf(Class))"); //$NON-NLS-1$
+                getMetaclass("Package"),
+                "self.ownedType->any(oclIsKindOf(Class))");
 
         Resource res = ocl.getEnvironment().getTypeResolver().getResource();
         Package typesPackage = null;
         for (EObject next : res.getContents()) {
         	if ((next instanceof Package)
-        			&& "types".equals(((Package) next).getName())) { //$NON-NLS-1$
+        			&& "types".equals(((Package) next).getName())) {
         		typesPackage = (Package) next;
         		break;
         	}
@@ -339,30 +340,30 @@ public class SerializationTest
         
         Classifier first = (Classifier) typesPackage.getOwnedTypes().get(0);
         assertTrue(first instanceof TypeType);
-        assertSame(getMetaclass("Class"), ((TypeType) first).getReferredType()); //$NON-NLS-1$
+        assertSame(getMetaclass("Class"), ((TypeType) first).getReferredType());
     }
     
     public void test_referenceToOCLEcoreMetamodel_214878() {
         EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-        epackage.setName("foo"); //$NON-NLS-1$
+        epackage.setName("foo");
         
         EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-        eclass.setName("Foo"); //$NON-NLS-1$
+        eclass.setName("Foo");
         epackage.getEClassifiers().add(eclass);
         
         EReference ref = EcoreFactory.eINSTANCE.createEReference();
-        ref.setName("expr"); //$NON-NLS-1$
+        ref.setName("expr");
         ref.setEType(UMLPackage.Literals.OCL_EXPRESSION);
         eclass.getEStructuralFeatures().add(ref);
         
         String serialForm = serialize(epackage);
         
         epackage = load(serialForm, EPackage.class);
-        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        eclass = (EClass) epackage.getEClassifier("Foo");
         assertNotNull(eclass);
         assertFalse(eclass.eIsProxy());
         
-        ref = (EReference) eclass.getEStructuralFeature("expr"); //$NON-NLS-1$
+        ref = (EReference) eclass.getEStructuralFeature("expr");
         assertNotNull(ref);
         assertFalse(ref.eIsProxy());
         
@@ -370,8 +371,8 @@ public class SerializationTest
         
         // correct loading is one thing.  but the reference must look
         // correct in the serial form, also
-        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//uml/OCLExpression")); //$NON-NLS-1$
-        assertTrue(serialForm.contains(UMLPackage.eNS_URI + "#//OCLExpression")); //$NON-NLS-1$
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//uml/OCLExpression"));
+        assertTrue(serialForm.contains(UMLPackage.eNS_URI + "#//OCLExpression"));
     }
 	
 	//
@@ -393,8 +394,8 @@ public class SerializationTest
 			protected boolean useUUIDs() {
 				return true;
 			}};
-		res.setURI(URI.createFileURI("/tmp/ocltest.xmi")); //$NON-NLS-1$
-		((XMLResource) res).setEncoding("UTF-8"); //$NON-NLS-1$
+		res.setURI(URI.createFileURI("/tmp/ocltest.xmi"));
+		((XMLResource) res).setEncoding("UTF-8");
 		
         super.setUp();  // among other things, creates our resource set
         
@@ -418,7 +419,7 @@ public class SerializationTest
 		try {
 			result = helper.createQuery(expr);
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(result);
@@ -433,13 +434,13 @@ public class SerializationTest
 			res.getContents().add(eobject);
 			res.save(output,
 					Collections.singletonMap(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE));
-			result = output.toString("UTF-8"); //$NON-NLS-1$
+			result = output.toString("UTF-8");
 		} catch (Exception e) {
-			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Exception serializing AST: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(result);
-		assertFalse(result.contains("ocl://")); //$NON-NLS-1$
+		assertFalse(result.contains("ocl://"));
 		
 		return result;
 	}
@@ -456,12 +457,12 @@ public class SerializationTest
 			ocl = createOCL();
 			helper = createHelper();
 			
-			assertFalse("No contents in serial data", res.getContents().isEmpty()); //$NON-NLS-1$
+			assertFalse("No contents in serial data", res.getContents().isEmpty());
 			assertNoProxies(res);
 			
 			result = res.getContents();
 		} catch (Exception e) {
-			fail("Exception deserializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Exception deserializing AST: " + e.getLocalizedMessage());
 			result = Collections.emptyList();  // fail will throw
 		}
 		
@@ -491,7 +492,7 @@ public class SerializationTest
             }
         }
         
-        assertNotNull("Did not deserialize a " + expectedType.getSimpleName(), result); //$NON-NLS-1$
+        assertNotNull("Did not deserialize a " + expectedType.getSimpleName(), result);
         
         return result;
     }
@@ -499,7 +500,7 @@ public class SerializationTest
 	protected void assertNoProxies(Resource res) {
 		for (Iterator<EObject> iter = res.getAllContents(); iter.hasNext();) {
 			for (EObject xref : iter.next().eCrossReferences()) {
-				assertFalse("Unresolved reference: " + xref, xref.eIsProxy()); //$NON-NLS-1$
+				assertFalse("Unresolved reference: " + xref, xref.eIsProxy());
 			}
 		}
 	}
