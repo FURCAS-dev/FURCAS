@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UtilitiesTest.java,v 1.2 2009/10/07 20:41:46 ewillink Exp $
+ * $Id: UtilitiesTest.java,v 1.3 2009/11/28 18:17:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -25,6 +25,7 @@ import org.eclipse.ocl.uml.util.OCLUMLUtil;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class UtilitiesTest extends AbstractTestSuite {
 
     /**
@@ -34,17 +35,17 @@ public class UtilitiesTest extends AbstractTestSuite {
         // no resource set ==> no metaclass
         assertNull(OCLUMLUtil.getMetaclass(umlf.createActivity()));
         
-        assertSame(getMetaclass("Class"), //$NON-NLS-1$
+        assertSame(getMetaclass("Class"),
             OCLUMLUtil.getMetaclass(fruit));
-        assertSame(getMetaclass("AssociationClass"), //$NON-NLS-1$
+        assertSame(getMetaclass("AssociationClass"),
             OCLUMLUtil.getMetaclass(stem));
-        assertSame(getMetaclass("Property"), //$NON-NLS-1$
+        assertSame(getMetaclass("Property"),
             OCLUMLUtil.getMetaclass(apple_label));
-        assertSame(getMetaclass("Operation"), //$NON-NLS-1$
+        assertSame(getMetaclass("Operation"),
             OCLUMLUtil.getMetaclass(fruit_preferredColor));
-        assertSame(getMetaclass("EnumerationLiteral"), //$NON-NLS-1$
+        assertSame(getMetaclass("EnumerationLiteral"),
             OCLUMLUtil.getMetaclass(color_black));
-        assertSame(getMetaclass("Package"), //$NON-NLS-1$
+        assertSame(getMetaclass("Package"),
             OCLUMLUtil.getMetaclass(fruitPackage));
     }
 }
