@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractVisitorTest.java,v 1.4 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: AbstractVisitorTest.java,v 1.5 2009/11/28 17:37:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -38,6 +38,7 @@ import org.eclipse.ocl.utilities.ExpressionInOCL;
  *
  * @author Christian W. Damus (cwdamus)
  */
+@SuppressWarnings("nls")
 public class AbstractVisitorTest
 	extends AbstractTestSuite {
    
@@ -47,10 +48,10 @@ public class AbstractVisitorTest
      */
     public void test_visitResults() {
         OCLExpression<EClassifier> expression = parse(
-            "package ocltest context Apple " + //$NON-NLS-1$
-            "inv: Apple.allInstances()->select(label->notEmpty())->forAll(" + //$NON-NLS-1$
-            "a1, a2 | a1 <> a2 implies a1.label <> a2.label) " + //$NON-NLS-1$
-            "endpackage"); //$NON-NLS-1$
+            "package ocltest context Apple " +
+            "inv: Apple.allInstances()->select(label->notEmpty())->forAll(" +
+            "a1, a2 | a1 <> a2 implies a1.label <> a2.label) " +
+            "endpackage");
         
         TestVisitor<Integer> visitor = new TestVisitor<Integer>(0) {
             @Override
@@ -77,12 +78,12 @@ public class AbstractVisitorTest
         
         try {
             Constraint constraint = helper.createInvariant(
-                "Apple.allInstances()->select(label->notEmpty())->forAll(" + //$NON-NLS-1$
-                "a1, a2 | a1 <> a2 implies a1.label <> a2.label)"); //$NON-NLS-1$
+                "Apple.allInstances()->select(label->notEmpty())->forAll(" +
+                "a1, a2 | a1 <> a2 implies a1.label <> a2.label)");
             
             assertEquals(this, new TestVisitor<AbstractVisitorTest>(this).visitConstraint(constraint));
         } catch (Exception e) {
-            fail("Should not have thrown: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Should not have thrown: " + e.getLocalizedMessage());
         }
     }
 

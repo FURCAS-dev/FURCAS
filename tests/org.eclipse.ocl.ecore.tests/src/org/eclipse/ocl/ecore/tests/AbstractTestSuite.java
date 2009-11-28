@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.23 2009/11/26 20:45:48 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.24 2009/11/28 17:37:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -55,6 +55,7 @@ import org.eclipse.ocl.utilities.OCLFactory;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public abstract class AbstractTestSuite
 	extends GenericFruitTestSuite<EObject, EPackage, EClassifier, EClassifier, EClass, EDataType, EClassifier, EEnum, EOperation, EParameter, EStructuralFeature,
 	EAttribute, EReference, EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint> {
@@ -107,46 +108,46 @@ public abstract class AbstractTestSuite
 	 * @return the suite
 	 */
 	public static Test suite() {
-		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for Ecore Metamodel"); //$NON-NLS-1$
+		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for Ecore Metamodel");
 		
-		result.createTestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
-		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests"); //$NON-NLS-1$
-		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests"); //$NON-NLS-1$
-        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests"); //$NON-NLS-1$
+		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
+		result.createTestSuite(KeywordsTest.class, "OCL Keyword Tests");
+		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
+        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
         result.createTestSuite(PredefinedSuperTypeInheritedOperationTest.class,
-        	"Inheritance of additional operations"); //$NON-NLS-1$
-		result.createTestSuite(CollectionsTest.class, "Collection Type Tests"); //$NON-NLS-1$
-		result.createTestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
-		result.createTestSuite(TuplesTest.class, "Tuple Tests"); //$NON-NLS-1$
-		result.createTestSuite(AssociationTest.class, "Association Tests"); //$NON-NLS-1$
-		result.createTestSuite(StatesTest.class, "State Expression Tests"); //$NON-NLS-1$
-		result.createTestSuite(MessagesTest.class, "Message Expression Tests"); //$NON-NLS-1$
-		result.createTestSuite(InvariantConstraintsTest.class, "Invariant Constraints"); //$NON-NLS-1$
-		result.createTestSuite(OperationConstraintsTest.class, "Operation Constraints"); //$NON-NLS-1$
-		result.createTestSuite(LocationInformationTest.class, "Location Information Tests"); //$NON-NLS-1$
-		result.createTestSuite(DefExpressionTest.class, "Def Expression Tests"); //$NON-NLS-1$
+        	"Inheritance of additional operations");
+		result.createTestSuite(CollectionsTest.class, "Collection Type Tests");
+		result.createTestSuite(IteratorsTest.class, "Iterator Tests");
+		result.createTestSuite(TuplesTest.class, "Tuple Tests");
+		result.createTestSuite(AssociationTest.class, "Association Tests");
+		result.createTestSuite(StatesTest.class, "State Expression Tests");
+		result.createTestSuite(MessagesTest.class, "Message Expression Tests");
+		result.createTestSuite(InvariantConstraintsTest.class, "Invariant Constraints");
+		result.createTestSuite(OperationConstraintsTest.class, "Operation Constraints");
+		result.createTestSuite(LocationInformationTest.class, "Location Information Tests");
+		result.createTestSuite(DefExpressionTest.class, "Def Expression Tests");
 		result.createTestSuite(OCLOperationCollisionTest.class,
-			"Collision with OCL Standard Operation"); //$NON-NLS-1$
-		result.createTestSuite(FeatureRedefinitionTest.class, "Feature redefinition tests"); //$NON-NLS-1$
-		result.createTestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests"); //$NON-NLS-1$
-		result.createTestSuite(OCLDocumentTest.class, "OCL Document Parsing Tests"); //$NON-NLS-1$
-		result.createTestSuite(AbstractVisitorTest.class, "AbstractVisitor Tests"); //$NON-NLS-1$
-		result.createTestSuite(TypeConformanceTests.class, "Primitive Type Conformance Tests"); //$NON-NLS-1$
+			"Collision with OCL Standard Operation");
+		result.createTestSuite(FeatureRedefinitionTest.class, "Feature redefinition tests");
+		result.createTestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests");
+		result.createTestSuite(OCLDocumentTest.class, "OCL Document Parsing Tests");
+		result.createTestSuite(AbstractVisitorTest.class, "AbstractVisitor Tests");
+		result.createTestSuite(TypeConformanceTests.class, "Primitive Type Conformance Tests");
 		result.addTestSuite(org.eclipse.ocl.ecore.helper.tests.AbstractTestSuite.suite());
-		result.createTestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
-		result.createTestSuite(EcoreEnvironmentTest.class, "Ecore Environment Tests"); //$NON-NLS-1$
-        result.createTestSuite(ExtensibilityTest.class, "Extensibility Tests"); //$NON-NLS-1$
-		result.createTestSuite(ValidationTest.class, "Expression Validation Tests"); //$NON-NLS-1$
-		result.createTestSuite(ProblemOptionTest.class, "Problem Option Tests"); //$NON-NLS-1$
-		result.createTestSuite(ParsingOptionsTest.class, "Parsing Options Tests"); //$NON-NLS-1$
-		result.createTestSuite(TypesValidatorTest.class, "Types Validator Tests"); //$NON-NLS-1$
-		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests"); //$NON-NLS-1$
-		result.createTestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
-		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests"); //$NON-NLS-1$
+		result.createTestSuite(RegressionTest.class, "Regression Tests");
+		result.createTestSuite(EcoreEnvironmentTest.class, "Ecore Environment Tests");
+        result.createTestSuite(ExtensibilityTest.class, "Extensibility Tests");
+		result.createTestSuite(ValidationTest.class, "Expression Validation Tests");
+		result.createTestSuite(ProblemOptionTest.class, "Problem Option Tests");
+		result.createTestSuite(ParsingOptionsTest.class, "Parsing Options Tests");
+		result.createTestSuite(TypesValidatorTest.class, "Types Validator Tests");
+		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests");
+		result.createTestSuite(SerializationTest.class, "Serialization Tests");
+		result.createTestSuite(EvaluationHaltedTest.class, "Ecore Halted Evaluation Tests");
 		
-		String repairs = System.getProperty("org.eclipse.ocl.ecore.tests.repairs"); //$NON-NLS-1$
+		String repairs = System.getProperty("org.eclipse.ocl.ecore.tests.repairs");
 		if (repairs != null) {
-			result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests"); //$NON-NLS-1$
+			result.createTestSuite(ParserBacktrackingTest.class, "Parser Backtracking Tests");
 		}
 		
 		return result;
@@ -181,7 +182,7 @@ public abstract class AbstractTestSuite
 	
 	@Override
 	protected void initFruitPackage() {
-		URI uri = getTestModelURI("/model/OCLTest.ecore"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/OCLTest.ecore");
 		Resource res = resourceSet.getResource(uri, true);
 		
 		fruitPackage = (EPackage) res.getContents().get(0);
@@ -189,35 +190,35 @@ public abstract class AbstractTestSuite
 		
 		fruitFactory = fruitPackage.getEFactoryInstance();
 		
-		fruit = (EClass) fruitPackage.getEClassifier("Fruit"); //$NON-NLS-1$
+		fruit = (EClass) fruitPackage.getEClassifier("Fruit");
 		fruit_ripen = fruit.getEOperations().get(0);
 		fruit_preferredColor = fruit.getEOperations().get(1);
 		fruit_newFruit = fruit.getEOperations().get(2);
 		fruit_setColor = fruit.getEOperations().get(3);
-		fruit_color = (EAttribute) fruit.getEStructuralFeature("color"); //$NON-NLS-1$
+		fruit_color = (EAttribute) fruit.getEStructuralFeature("color");
 		
-		apple = (EClass) fruitPackage.getEClassifier("Apple"); //$NON-NLS-1$
-		apple_label = (EAttribute) apple.getEStructuralFeature("label"); //$NON-NLS-1$
-		apple_stem = (EReference) apple.getEStructuralFeature("stem"); //$NON-NLS-1$
+		apple = (EClass) fruitPackage.getEClassifier("Apple");
+		apple_label = (EAttribute) apple.getEStructuralFeature("label");
+		apple_stem = (EReference) apple.getEStructuralFeature("stem");
 		apple_labelOper = apple.getEOperations().get(0);
 		apple_newApple = apple.getEOperations().get(1);
 		
-		stem = (EClass) fruitPackage.getEClassifier("Stem"); //$NON-NLS-1$
+		stem = (EClass) fruitPackage.getEClassifier("Stem");
 		
-		color = (EEnum) fruitPackage.getEClassifier("Color"); //$NON-NLS-1$
-		color_black = color.getEEnumLiteral("black"); //$NON-NLS-1$
-		color_red = color.getEEnumLiteral("red"); //$NON-NLS-1$
-		color_green = color.getEEnumLiteral("green"); //$NON-NLS-1$
-		color_yellow = color.getEEnumLiteral("yellow"); //$NON-NLS-1$
-		color_orange = color.getEEnumLiteral("orange"); //$NON-NLS-1$
-		color_brown = color.getEEnumLiteral("brown"); //$NON-NLS-1$
-		color_pink = color.getEEnumLiteral("pink"); //$NON-NLS-1$
+		color = (EEnum) fruitPackage.getEClassifier("Color");
+		color_black = color.getEEnumLiteral("black");
+		color_red = color.getEEnumLiteral("red");
+		color_green = color.getEEnumLiteral("green");
+		color_yellow = color.getEEnumLiteral("yellow");
+		color_orange = color.getEEnumLiteral("orange");
+		color_brown = color.getEEnumLiteral("brown");
+		color_pink = color.getEEnumLiteral("pink");
 		
-		util = (EClass) fruitPackage.getEClassifier("FruitUtil"); //$NON-NLS-1$
-		util_orderedSet = (EReference) util.getEStructuralFeature("orderedSet"); //$NON-NLS-1$
-		util_set = (EReference) util.getEStructuralFeature("set"); //$NON-NLS-1$
-		util_bag = (EReference) util.getEStructuralFeature("bag"); //$NON-NLS-1$
-		util_sequence = (EReference) util.getEStructuralFeature("sequence"); //$NON-NLS-1$
+		util = (EClass) fruitPackage.getEClassifier("FruitUtil");
+		util_orderedSet = (EReference) util.getEStructuralFeature("orderedSet");
+		util_set = (EReference) util.getEStructuralFeature("set");
+		util_bag = (EReference) util.getEStructuralFeature("bag");
+		util_sequence = (EReference) util.getEStructuralFeature("sequence");
 		util_processOrderedSet = util.getEOperations().get(0);
 		util_processSet = util.getEOperations().get(1);
 		util_processBag = util.getEOperations().get(2);
