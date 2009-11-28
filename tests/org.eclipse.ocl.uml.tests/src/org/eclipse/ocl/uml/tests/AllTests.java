@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.2 2007/02/14 14:46:16 cdamus Exp $
+ * $Id: AllTests.java,v 1.3 2009/11/28 18:18:14 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -31,15 +31,16 @@ import org.eclipse.ocl.uml.UMLEnvironmentFactory;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class AllTests
 	extends TestCase {
 
 	public AllTests() {
-		super(""); //$NON-NLS-1$
+		super("");
 	}
 
 	public static Test suite() {
-		if (System.getProperty("standalone") != null) { //$NON-NLS-1$
+		if (System.getProperty("standalone") != null) {
 			// running tests stand-alone:  must set up the environment registry
 			Environment.Registry.INSTANCE.registerEnvironment(
 					new UMLEnvironmentFactory().createEnvironment());
@@ -53,6 +54,6 @@ public class AllTests
 
 		TestRunner.run(suite());
 		return Arrays
-			.asList(new String[] {"Please see raw test suite output for details."}); //$NON-NLS-1$
+			.asList(new String[] {"Please see raw test suite output for details."});
 	}
 }

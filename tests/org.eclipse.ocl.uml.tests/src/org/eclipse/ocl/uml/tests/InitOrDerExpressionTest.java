@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerExpressionTest.java,v 1.4 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: InitOrDerExpressionTest.java,v 1.5 2009/11/28 18:10:10 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class InitOrDerExpressionTest
 	extends AbstractTestSuite {
 	
@@ -51,9 +52,9 @@ public class InitOrDerExpressionTest
 	public void test_init_attribute_raw() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"init: ''" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"init: ''" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -61,7 +62,7 @@ public class InitOrDerExpressionTest
 			assertEquals(UMLReflection.INITIAL, getStereotype(constraint));
 			assertSame(getOCLStandardLibrary().getString(), expr.getType());
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -71,9 +72,9 @@ public class InitOrDerExpressionTest
 	public void test_derive_attribute_raw() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -83,15 +84,15 @@ public class InitOrDerExpressionTest
 			assertSame(getOCLStandardLibrary().getString(), expr.getType());
 			
 			expr = parse(
-					"package ocltest context Fruit " + //$NON-NLS-1$
-					"inv: name" + //$NON-NLS-1$
-					" endpackage"); //$NON-NLS-1$
+					"package ocltest context Fruit " +
+					"inv: name" +
+					" endpackage");
 			
-			assertEquals("unknown fruit", ocl.evaluate(aFruit, expr)); //$NON-NLS-1$
+			assertEquals("unknown fruit", ocl.evaluate(aFruit, expr));
 			
-			assertEquals("apple", ocl.evaluate(anApple, expr)); //$NON-NLS-1$
+			assertEquals("apple", ocl.evaluate(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -102,9 +103,9 @@ public class InitOrDerExpressionTest
 	public void test_init_reference_raw() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Fruit::relatedFruits : Set(Fruit) " + //$NON-NLS-1$
-				"init: Set{self}" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::relatedFruits : Set(Fruit) " +
+				"init: Set{self}" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -113,7 +114,7 @@ public class InitOrDerExpressionTest
 			assertTrue(expr.getType() instanceof SetType);
 			assertSame(fruit, ((SetType) expr.getType()).getElementType());
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -123,11 +124,11 @@ public class InitOrDerExpressionTest
 	public void test_derive_reference_raw() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Fruit::relatedFruits : Set(Fruit) " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then " + //$NON-NLS-1$
-					"Apple.allInstances()->excluding(self.oclAsType(Apple)) " + //$NON-NLS-1$
-					"else Fruit.allInstances()->excluding(self) endif" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::relatedFruits : Set(Fruit) " +
+				"derive: if self.oclIsKindOf(Apple) then " +
+					"Apple.allInstances()->excluding(self.oclAsType(Apple)) " +
+					"else Fruit.allInstances()->excluding(self) endif" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -138,16 +139,16 @@ public class InitOrDerExpressionTest
 			assertSame(fruit, ((SetType) expr.getType()).getElementType());
 			
 			expr = parse(
-					"package ocltest context Fruit " + //$NON-NLS-1$
-					"inv: relatedFruits" + //$NON-NLS-1$
-					" endpackage"); //$NON-NLS-1$
+					"package ocltest context Fruit " +
+					"inv: relatedFruits" +
+					" endpackage");
 			
 			assertEquals(allApples, ocl.evaluate(aFruit, expr));
 			
 			assertEquals(Collections.singleton(anotherApple),
 					ocl.evaluate(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -156,17 +157,17 @@ public class InitOrDerExpressionTest
 	 * Tests the parsing the init expression for an attribute using the helper.
 	 */
 	public void test_init_attribute_helper() {
-		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("name", null)); //$NON-NLS-1$
+		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("name", null));
 		
 		try {
-			Constraint constraint = helper.createInitialValueExpression("''"); //$NON-NLS-1$
+			Constraint constraint = helper.createInitialValueExpression("''");
 			
 			assertNotNull(constraint);
 			
 			assertEquals(UMLReflection.INITIAL, getStereotype(constraint));
 			assertSame(getOCLStandardLibrary().getString(), getBodyExpression(constraint).getType());
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -174,11 +175,11 @@ public class InitOrDerExpressionTest
 	 * Tests the parsing the derive expression for an attribute using the helper.
 	 */
 	public void test_derive_attribute_helper() {
-		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("name", null)); //$NON-NLS-1$
+		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("name", null));
 		
 		try {
 			Constraint constraint = helper.createDerivedValueExpression(
-				"if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif"); //$NON-NLS-1$
+				"if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif");
 			
 			assertNotNull(constraint);
 			
@@ -186,13 +187,13 @@ public class InitOrDerExpressionTest
 			
 			assertSame(getOCLStandardLibrary().getString(), getBodyExpression(constraint).getType());
 			
-			OCLExpression<Classifier> expr = helper.createQuery("name"); //$NON-NLS-1$
+			OCLExpression<Classifier> expr = helper.createQuery("name");
 			
-			assertEquals("unknown fruit", ocl.evaluate(aFruit, expr)); //$NON-NLS-1$
+			assertEquals("unknown fruit", ocl.evaluate(aFruit, expr));
 			
-			assertEquals("apple", ocl.evaluate(anApple, expr)); //$NON-NLS-1$
+			assertEquals("apple", ocl.evaluate(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -201,10 +202,10 @@ public class InitOrDerExpressionTest
 	 * Tests the parsing the init expression for a reference using the helper.
 	 */
 	public void test_init_reference_helper() {
-		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null)); //$NON-NLS-1$
+		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null));
 		
 		try {
-			Constraint constraint = helper.createInitialValueExpression("Set{self}"); //$NON-NLS-1$
+			Constraint constraint = helper.createInitialValueExpression("Set{self}");
 			
 			assertNotNull(constraint);
 			OCLExpression<Classifier> expr = getBodyExpression(constraint);
@@ -213,7 +214,7 @@ public class InitOrDerExpressionTest
 			assertTrue(expr.getType() instanceof SetType);
 			assertSame(fruit, ((SetType) expr.getType()).getElementType());
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -221,13 +222,13 @@ public class InitOrDerExpressionTest
 	 * Tests the parsing the derive expression for a reference using the helper.
 	 */
 	public void test_derive_reference_helper() {
-		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null)); //$NON-NLS-1$
+		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null));
 		
 		try {
 			Constraint constraint = helper.createDerivedValueExpression(
-				"if self.oclIsKindOf(Apple) then " + //$NON-NLS-1$
-					"Apple.allInstances()->excluding(self.oclAsType(Apple)) " + //$NON-NLS-1$
-					"else Fruit.allInstances()->excluding(self) endif"); //$NON-NLS-1$
+				"if self.oclIsKindOf(Apple) then " +
+					"Apple.allInstances()->excluding(self.oclAsType(Apple)) " +
+					"else Fruit.allInstances()->excluding(self) endif");
 			
 			assertNotNull(constraint);
 			OCLExpression<Classifier> expr = getBodyExpression(constraint);
@@ -237,60 +238,60 @@ public class InitOrDerExpressionTest
 			assertTrue(expr.getType() instanceof SetType);
 			assertSame(fruit, ((SetType) expr.getType()).getElementType());
 			
-			expr = helper.createQuery("relatedFruits"); //$NON-NLS-1$
+			expr = helper.createQuery("relatedFruits");
 			
 			assertEquals(allApples, ocl.evaluate(aFruit, expr));
 			
 			assertEquals(Collections.singleton(anotherApple), ocl.evaluate(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_malformedInitExpression() {
-		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null)); //$NON-NLS-1$
+		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null));
 		
 		try {
 			helper.createInitialValueExpression(
-				"if self.oclIsKindOf(Apple) then 'apple' else 'fruit' endif"); //$NON-NLS-1$
+				"if self.oclIsKindOf(Apple) then 'apple' else 'fruit' endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_malformedDeriveExpression() {
-		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null)); //$NON-NLS-1$
+		helper.setAttributeContext(fruit, fruit.getOwnedAttribute("relatedFruits", null));
 		
 		try {
 			helper.createDerivedValueExpression(
-				"if self.oclIsKindOf(Apple) then 'apple' else 'fruit' endif"); //$NON-NLS-1$
+				"if self.oclIsKindOf(Apple) then 'apple' else 'fruit' endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_bothInitAndDeriveExpressions() {
 		try {
 			parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"init: 'not a fruit' " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				" endpackage");
 			
 			// either order is OK
 			parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				"init: 'not a fruit' " +
+				" endpackage");
 		} catch (Exception e) {
-			fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Should not have failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -299,64 +300,64 @@ public class InitOrDerExpressionTest
 		
 		try {
 			parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"init: 'not a fruit' " +
+				"init: 'not a fruit' " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have successfully parsed", err); //$NON-NLS-1$
+		assertNotNull("Should not have successfully parsed", err);
 		err = null;
 		
 		try {
 			parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have successfully parsed", err); //$NON-NLS-1$
+		assertNotNull("Should not have successfully parsed", err);
 		err = null;
 		
 		try {
 			parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"init: 'not a fruit' " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				"init: 'not a fruit' " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have successfully parsed", err); //$NON-NLS-1$
+		assertNotNull("Should not have successfully parsed", err);
 		err = null;
 		
 		try {
 			parseDef(
-				"package ocltest context Fruit::name : String " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				"init: 'not a fruit' " + //$NON-NLS-1$
-				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::name : String " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				"init: 'not a fruit' " +
+				"derive: if self.oclIsKindOf(Apple) then 'apple' else 'unknown fruit' endif " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have successfully parsed", err); //$NON-NLS-1$
+		assertNotNull("Should not have successfully parsed", err);
 		err = null;
 	}
 	
@@ -368,7 +369,7 @@ public class InitOrDerExpressionTest
     protected void setUp() {
 		super.setUp();
 		
-		banana = fruitPackage.createOwnedClass("Banana", false); //$NON-NLS-1$
+		banana = fruitPackage.createOwnedClass("Banana", false);
 		banana.createGeneralization(fruit);
 		
 		aFruit = instantiate(fruitPackage, banana);

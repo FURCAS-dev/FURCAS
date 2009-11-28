@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ComparisonTest.java,v 1.10 2009/11/26 20:46:38 ewillink Exp $
+ * $Id: ComparisonTest.java,v 1.11 2009/11/28 18:11:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -92,16 +92,16 @@ public class ComparisonTest
 		
 		try {
 			// primitives
-			assertTrue(check(helper, thing, "1 < 2")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21 < 2")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1 < 2.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21 < 2.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1.0 < 2")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21.0 < 2")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1.0 < 2.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21.0 < 2.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "'a' < 'b'")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "'ba' < 'b'")); //$NON-NLS-1$
+			assertTrue(check(helper, thing, "1 < 2"));
+			assertFalse(check(helper, thing, "21 < 2"));
+			assertTrue(check(helper, thing, "1 < 2.0"));
+			assertFalse(check(helper, thing, "21 < 2.0"));
+			assertTrue(check(helper, thing, "1.0 < 2"));
+			assertFalse(check(helper, thing, "21.0 < 2"));
+			assertTrue(check(helper, thing, "1.0 < 2.0"));
+			assertFalse(check(helper, thing, "21.0 < 2.0"));
+			assertTrue(check(helper, thing, "'a' < 'b'"));
+			assertFalse(check(helper, thing, "'ba' < 'b'"));
 
 			// BigDecimal tests
 			thing.eSet(ebdValue, new BigDecimal("1"));
@@ -125,16 +125,16 @@ public class ComparisonTest
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
 			
-			valuesList.add(new Value("a")); //$NON-NLS-1$
-			valuesList.add(new Value("b")); //$NON-NLS-1$
+			valuesList.add(new Value("a"));
+			valuesList.add(new Value("b"));
 			
 			assertTrue(check(helper, thing,
-				"values->at(1) < values->at(2)")); //$NON-NLS-1$
+				"values->at(1) < values->at(2)"));
 
 			assertFalse(check(helper, thing,
-				"values->at(2) < values->at(1)")); //$NON-NLS-1$
+				"values->at(2) < values->at(1)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -146,21 +146,21 @@ public class ComparisonTest
 		
 		try {
 			// primitives
-			assertTrue(check(helper, thing, "1 <= 2")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1 <= 1")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21 <= 2")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1 <= 2.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1 <= 1.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21 <= 2.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1.0 <= 2")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1.0 <= 1")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21.0 <= 2")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1.0 <= 2.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "1.0 <= 1.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "21.0 <= 2.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "'a' <= 'b'")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "'a' <= 'a'")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "'ba' <= 'b'")); //$NON-NLS-1$
+			assertTrue(check(helper, thing, "1 <= 2"));
+			assertTrue(check(helper, thing, "1 <= 1"));
+			assertFalse(check(helper, thing, "21 <= 2"));
+			assertTrue(check(helper, thing, "1 <= 2.0"));
+			assertTrue(check(helper, thing, "1 <= 1.0"));
+			assertFalse(check(helper, thing, "21 <= 2.0"));
+			assertTrue(check(helper, thing, "1.0 <= 2"));
+			assertTrue(check(helper, thing, "1.0 <= 1"));
+			assertFalse(check(helper, thing, "21.0 <= 2"));
+			assertTrue(check(helper, thing, "1.0 <= 2.0"));
+			assertTrue(check(helper, thing, "1.0 <= 1.0"));
+			assertFalse(check(helper, thing, "21.0 <= 2.0"));
+			assertTrue(check(helper, thing, "'a' <= 'b'"));
+			assertTrue(check(helper, thing, "'a' <= 'a'"));
+			assertFalse(check(helper, thing, "'ba' <= 'b'"));
 
 			// BigDecimal tests
 			thing.eSet(ebdValue, new BigDecimal("1"));
@@ -185,19 +185,19 @@ public class ComparisonTest
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
 			
-			valuesList.add(new Value("a")); //$NON-NLS-1$
-			valuesList.add(new Value("b")); //$NON-NLS-1$
+			valuesList.add(new Value("a"));
+			valuesList.add(new Value("b"));
 			
 			assertTrue(check(helper, thing,
-				"values->at(1) <= values->at(2)")); //$NON-NLS-1$
+				"values->at(1) <= values->at(2)"));
 
 			assertTrue(check(helper, thing,
-				"values->at(1) <= values->at(1)")); //$NON-NLS-1$
+				"values->at(1) <= values->at(1)"));
 
 			assertFalse(check(helper, thing,
-				"values->at(2) <= values->at(1)")); //$NON-NLS-1$
+				"values->at(2) <= values->at(1)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -209,16 +209,16 @@ public class ComparisonTest
 		
 		try {
 			// primitives
-			assertTrue(check(helper, thing, "2 > 1")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2 > 21")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2 > 1.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2 > 21.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2.0 > 1")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2.0 > 21")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2.0 > 1.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2.0 > 21.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "'b' > 'a'")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "'a' > 'b'")); //$NON-NLS-1$
+			assertTrue(check(helper, thing, "2 > 1"));
+			assertFalse(check(helper, thing, "2 > 21"));
+			assertTrue(check(helper, thing, "2 > 1.0"));
+			assertFalse(check(helper, thing, "2 > 21.0"));
+			assertTrue(check(helper, thing, "2.0 > 1"));
+			assertFalse(check(helper, thing, "2.0 > 21"));
+			assertTrue(check(helper, thing, "2.0 > 1.0"));
+			assertFalse(check(helper, thing, "2.0 > 21.0"));
+			assertTrue(check(helper, thing, "'b' > 'a'"));
+			assertFalse(check(helper, thing, "'a' > 'b'"));
 
 			// BigDecimal tests
 			thing.eSet(ebdValue, new BigDecimal("1"));
@@ -242,16 +242,16 @@ public class ComparisonTest
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
 			
-			valuesList.add(new Value("b")); //$NON-NLS-1$
-			valuesList.add(new Value("a")); //$NON-NLS-1$
+			valuesList.add(new Value("b"));
+			valuesList.add(new Value("a"));
 			
 			assertTrue(check(helper, thing,
-				"values->at(1) > values->at(2)")); //$NON-NLS-1$
+				"values->at(1) > values->at(2)"));
 
 			assertFalse(check(helper, thing,
-				"values->at(2) > values->at(1)")); //$NON-NLS-1$
+				"values->at(2) > values->at(1)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -263,21 +263,21 @@ public class ComparisonTest
 		
 		try {
 			// primitives
-			assertTrue(check(helper, thing, "2 >= 1")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2 >= 2")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2 >= 21")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2 >= 1.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2 >= 2.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2 >= 21.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2.0 >= 1")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2.0 >= 2")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2.0 >= 21")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2.0 >= 1.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "2.0 >= 2.0")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "2.0 >= 21.0")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "'b' >= 'a'")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "'b' >= 'b'")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "'a' >= 'b'")); //$NON-NLS-1$
+			assertTrue(check(helper, thing, "2 >= 1"));
+			assertTrue(check(helper, thing, "2 >= 2"));
+			assertFalse(check(helper, thing, "2 >= 21"));
+			assertTrue(check(helper, thing, "2 >= 1.0"));
+			assertTrue(check(helper, thing, "2 >= 2.0"));
+			assertFalse(check(helper, thing, "2 >= 21.0"));
+			assertTrue(check(helper, thing, "2.0 >= 1"));
+			assertTrue(check(helper, thing, "2.0 >= 2"));
+			assertFalse(check(helper, thing, "2.0 >= 21"));
+			assertTrue(check(helper, thing, "2.0 >= 1.0"));
+			assertTrue(check(helper, thing, "2.0 >= 2.0"));
+			assertFalse(check(helper, thing, "2.0 >= 21.0"));
+			assertTrue(check(helper, thing, "'b' >= 'a'"));
+			assertTrue(check(helper, thing, "'b' >= 'b'"));
+			assertFalse(check(helper, thing, "'a' >= 'b'"));
 
 			// BigDecimal tests
 			thing.eSet(ebdValue, new BigDecimal("1"));
@@ -302,19 +302,19 @@ public class ComparisonTest
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
 			
-			valuesList.add(new Value("b")); //$NON-NLS-1$
-			valuesList.add(new Value("a")); //$NON-NLS-1$
+			valuesList.add(new Value("b"));
+			valuesList.add(new Value("a"));
 			
 			assertTrue(check(helper, thing,
-				"values->at(1) >= values->at(2)")); //$NON-NLS-1$
+				"values->at(1) >= values->at(2)"));
 
 			assertTrue(check(helper, thing,
-				"values->at(1) >= values->at(1)")); //$NON-NLS-1$
+				"values->at(1) >= values->at(1)"));
 
 			assertFalse(check(helper, thing,
-				"values->at(2) >= values->at(1)")); //$NON-NLS-1$
+				"values->at(2) >= values->at(1)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -328,9 +328,9 @@ public class ComparisonTest
 			@SuppressWarnings("unchecked")
 			List<Value> valuesList = (List<Value>) thing.eGet(evalues);
 			
-			valuesList.add(new Value("b")); //$NON-NLS-1$
-			valuesList.add(new Value("c")); //$NON-NLS-1$
-			valuesList.add(new Value("a")); //$NON-NLS-1$
+			valuesList.add(new Value("b"));
+			valuesList.add(new Value("c"));
+			valuesList.add(new Value("a"));
 			
 			LinkedHashSet<Value> expected = new LinkedHashSet<Value>();
 			expected.add(valuesList.get(2));
@@ -338,9 +338,9 @@ public class ComparisonTest
 			expected.add(valuesList.get(1));
 			
 			assertEquals(expected, evaluate(helper, thing,
-				"values->sortedBy(e | e)")); //$NON-NLS-1$
+				"values->sortedBy(e | e)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -352,12 +352,12 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertFalse(check(helper, thing, "OclInvalid = 'a'")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "OclInvalid <> 'a'")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "OclInvalid = OclInvalid")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "OclInvalid <> OclInvalid")); //$NON-NLS-1$
+			assertFalse(check(helper, thing, "OclInvalid = 'a'"));
+			assertTrue(check(helper, thing, "OclInvalid <> 'a'"));
+			assertTrue(check(helper, thing, "OclInvalid = OclInvalid"));
+			assertFalse(check(helper, thing, "OclInvalid <> OclInvalid"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -369,12 +369,12 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertFalse(check(helper, thing, "null = 'a'")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "null <> 'a'")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "null = null")); //$NON-NLS-1$
-			assertFalse(check(helper, thing, "null <> null")); //$NON-NLS-1$
+			assertFalse(check(helper, thing, "null = 'a'"));
+			assertTrue(check(helper, thing, "null <> 'a'"));
+			assertTrue(check(helper, thing, "null = null"));
+			assertFalse(check(helper, thing, "null <> null"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -385,18 +385,18 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertEquals(new Integer(1), evaluate(helper, thing, "3 - 2")); //$NON-NLS-1$
-			assertEquals(new Integer(3), evaluate(helper, thing, "1 + 2")); //$NON-NLS-1$
-			assertEquals(new Double(2.0), evaluate(helper, thing, "6 / 3")); //$NON-NLS-1$
-			assertEquals(new Integer(6), evaluate(helper, thing, "2 * 3")); //$NON-NLS-1$
-			assertEquals(new Integer(-1), evaluate(helper, thing, "- 1")); //$NON-NLS-1$
-			assertEquals(new Integer(3), evaluate(helper, thing, "(2 - 5).abs()")); //$NON-NLS-1$
-			assertEquals(new Integer(3), evaluate(helper, thing, "3.max(2)")); //$NON-NLS-1$
-			assertEquals(new Integer(2), evaluate(helper, thing, "3.min(2)")); //$NON-NLS-1$
-			assertEquals(new Integer(3), evaluate(helper, thing, "7.div(2)")); //$NON-NLS-1$
-			assertEquals(new Integer(1), evaluate(helper, thing, "7.mod(2)")); //$NON-NLS-1$
+			assertEquals(new Integer(1), evaluate(helper, thing, "3 - 2"));
+			assertEquals(new Integer(3), evaluate(helper, thing, "1 + 2"));
+			assertEquals(new Double(2.0), evaluate(helper, thing, "6 / 3"));
+			assertEquals(new Integer(6), evaluate(helper, thing, "2 * 3"));
+			assertEquals(new Integer(-1), evaluate(helper, thing, "- 1"));
+			assertEquals(new Integer(3), evaluate(helper, thing, "(2 - 5).abs()"));
+			assertEquals(new Integer(3), evaluate(helper, thing, "3.max(2)"));
+			assertEquals(new Integer(2), evaluate(helper, thing, "3.min(2)"));
+			assertEquals(new Integer(3), evaluate(helper, thing, "7.div(2)"));
+			assertEquals(new Integer(1), evaluate(helper, thing, "7.mod(2)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -407,16 +407,16 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertEquals(new Double(1.0), evaluate(helper, thing, "3.0 - 2.0")); //$NON-NLS-1$
-			assertEquals(new Double(3.0), evaluate(helper, thing, "1.0 + 2.0")); //$NON-NLS-1$
-			assertEquals(new Double(2.0), evaluate(helper, thing, "6.0 / 3.0")); //$NON-NLS-1$
-			assertEquals(new Double(6.0), evaluate(helper, thing, "2.0 * 3.0")); //$NON-NLS-1$
-			assertEquals(new Double(-1.0), evaluate(helper, thing, "- 1.0")); //$NON-NLS-1$
-			assertEquals(new Double(3.0), evaluate(helper, thing, "(2.0 - 5.0).abs()")); //$NON-NLS-1$
-			assertEquals(new Double(3.0), evaluate(helper, thing, "3.0.max(2.0)")); //$NON-NLS-1$
-			assertEquals(new Double(2.0), evaluate(helper, thing, "3.0.min(2.0)")); //$NON-NLS-1$
+			assertEquals(new Double(1.0), evaluate(helper, thing, "3.0 - 2.0"));
+			assertEquals(new Double(3.0), evaluate(helper, thing, "1.0 + 2.0"));
+			assertEquals(new Double(2.0), evaluate(helper, thing, "6.0 / 3.0"));
+			assertEquals(new Double(6.0), evaluate(helper, thing, "2.0 * 3.0"));
+			assertEquals(new Double(-1.0), evaluate(helper, thing, "- 1.0"));
+			assertEquals(new Double(3.0), evaluate(helper, thing, "(2.0 - 5.0).abs()"));
+			assertEquals(new Double(3.0), evaluate(helper, thing, "3.0.max(2.0)"));
+			assertEquals(new Double(2.0), evaluate(helper, thing, "3.0.min(2.0)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -428,14 +428,14 @@ public class ComparisonTest
 		helper.setContext(thingType);
 		
 		try {
-			assertEquals(new Double(1.0), evaluate(helper, thing, "3 - 2.0")); //$NON-NLS-1$
-			assertEquals(new Double(3.0), evaluate(helper, thing, "1 + 2.0")); //$NON-NLS-1$
-			assertEquals(new Double(2.0), evaluate(helper, thing, "6 / 3.0")); //$NON-NLS-1$
-			assertEquals(new Double(6.0), evaluate(helper, thing, "2 * 3.0")); //$NON-NLS-1$
-			assertEquals(new Double(3.0), evaluate(helper, thing, "3.max(2.0)")); //$NON-NLS-1$
-			assertEquals(new Double(2.0), evaluate(helper, thing, "3.min(2.0)")); //$NON-NLS-1$
+			assertEquals(new Double(1.0), evaluate(helper, thing, "3 - 2.0"));
+			assertEquals(new Double(3.0), evaluate(helper, thing, "1 + 2.0"));
+			assertEquals(new Double(2.0), evaluate(helper, thing, "6 / 3.0"));
+			assertEquals(new Double(6.0), evaluate(helper, thing, "2 * 3.0"));
+			assertEquals(new Double(3.0), evaluate(helper, thing, "3.max(2.0)"));
+			assertEquals(new Double(2.0), evaluate(helper, thing, "3.min(2.0)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -452,51 +452,51 @@ public class ComparisonTest
 		
 		try {
 			// new NUMERIC_OPERATION token
-			assertEquals(one, evaluate(helper, one, "3.-(2)")); //$NON-NLS-1$
-			assertEquals(three, evaluate(helper, one, "1.+(2)")); //$NON-NLS-1$
-			assertEquals(doubleTwo, evaluate(helper, one, "6./(3)")); //$NON-NLS-1$
-			assertEquals(six, evaluate(helper, one, "2.*(3)")); //$NON-NLS-1$
-			assertTrue(check(helper, one, "1.<(2)")); //$NON-NLS-1$
-			assertTrue(check(helper, one, "1.<=(2)")); //$NON-NLS-1$
-			assertTrue(check(helper, one, "2.>=(1)")); //$NON-NLS-1$
-			assertTrue(check(helper, one, "2.>(1)")); //$NON-NLS-1$
+			assertEquals(one, evaluate(helper, one, "3.-(2)"));
+			assertEquals(three, evaluate(helper, one, "1.+(2)"));
+			assertEquals(doubleTwo, evaluate(helper, one, "6./(3)"));
+			assertEquals(six, evaluate(helper, one, "2.*(3)"));
+			assertTrue(check(helper, one, "1.<(2)"));
+			assertTrue(check(helper, one, "1.<=(2)"));
+			assertTrue(check(helper, one, "2.>=(1)"));
+			assertTrue(check(helper, one, "2.>(1)"));
 			
 			// new operationCallExpCS rule
-			assertEquals(one, evaluate(helper, three, "self.-(2)")); //$NON-NLS-1$
-			assertEquals(three, evaluate(helper, one, "self.+(2)")); //$NON-NLS-1$
-			assertEquals(doubleTwo, evaluate(helper, six, "self./(3)")); //$NON-NLS-1$
-			assertEquals(six, evaluate(helper, two, "self.*(3)")); //$NON-NLS-1$
-			assertTrue(check(helper, one, "self.<(2)")); //$NON-NLS-1$
-			assertTrue(check(helper, one, "self.<=(2)")); //$NON-NLS-1$
-			assertTrue(check(helper, two, "self.>=(1)")); //$NON-NLS-1$
-			assertTrue(check(helper, two, "self.>(1)")); //$NON-NLS-1$
+			assertEquals(one, evaluate(helper, three, "self.-(2)"));
+			assertEquals(three, evaluate(helper, one, "self.+(2)"));
+			assertEquals(doubleTwo, evaluate(helper, six, "self./(3)"));
+			assertEquals(six, evaluate(helper, two, "self.*(3)"));
+			assertTrue(check(helper, one, "self.<(2)"));
+			assertTrue(check(helper, one, "self.<=(2)"));
+			assertTrue(check(helper, two, "self.>=(1)"));
+			assertTrue(check(helper, two, "self.>(1)"));
 			
 			// unary minus
-			assertEquals(minusOne, evaluate(helper, one, "-1")); //$NON-NLS-1$
-			assertEquals(minusOne, evaluate(helper, one, "-self")); //$NON-NLS-1$
-			assertEquals(minusOne, evaluate(helper, one, "self.\"-\"()")); //$NON-NLS-1$
-			assertEquals(minusOne, evaluate(helper, one, "self.-()")); //$NON-NLS-1$
-			assertEquals(one, evaluate(helper, one, "- self.\"-\"()")); //$NON-NLS-1$
-			assertEquals(one, evaluate(helper, one, "- self.-()")); //$NON-NLS-1$
-			assertEquals(one, evaluate(helper, one, "- -1")); //$NON-NLS-1$
-			assertEquals(one, evaluate(helper, one, "- -self")); //$NON-NLS-1$
+			assertEquals(minusOne, evaluate(helper, one, "-1"));
+			assertEquals(minusOne, evaluate(helper, one, "-self"));
+			assertEquals(minusOne, evaluate(helper, one, "self.\"-\"()"));
+			assertEquals(minusOne, evaluate(helper, one, "self.-()"));
+			assertEquals(one, evaluate(helper, one, "- self.\"-\"()"));
+			assertEquals(one, evaluate(helper, one, "- self.-()"));
+			assertEquals(one, evaluate(helper, one, "- -1"));
+			assertEquals(one, evaluate(helper, one, "- -self"));
 			
 			// unary not
 			helper.setContext(getUMLBoolean());
-			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "not self")); //$NON-NLS-1$
-			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.\"not\"()")); //$NON-NLS-1$
-			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.not()")); //$NON-NLS-1$
-			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not not self")); //$NON-NLS-1$
-			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.\"not\"()")); //$NON-NLS-1$
-			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.not()")); //$NON-NLS-1$
+			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "not self"));
+			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.\"not\"()"));
+			assertEquals(Boolean.FALSE, evaluate(helper, Boolean.TRUE, "self.not()"));
+			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not not self"));
+			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.\"not\"()"));
+			assertEquals(Boolean.TRUE, evaluate(helper, Boolean.TRUE, "not self.not()"));
 			
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
         ParsingOptions.setOption(helper.getEnvironment(), ProblemOption.CONCEPTUAL_OPERATION_NAME, ProblemHandler.Severity.ERROR);
 		try {
-			assertEquals(one, evaluate(helper, one, "3.-(2)")); //$NON-NLS-1$
-			fail("Missing exception"); //$NON-NLS-1$
+			assertEquals(one, evaluate(helper, one, "3.-(2)"));
+			fail("Missing exception");
 		} catch (Exception e) {
 		}
 	}
@@ -510,35 +510,35 @@ public class ComparisonTest
 		Numero twelve = new Numero(12);
 		
 		try {
-			assertEquals(four, evaluate(helper, thing, "numeros->at(1) - numeros->at(2)")); //$NON-NLS-1$
-			assertEquals(eight, evaluate(helper, thing, "numeros->at(1) + numeros->at(2)")); //$NON-NLS-1$
-			assertEquals(three, evaluate(helper, thing, "numeros->at(1) / numeros->at(2)")); //$NON-NLS-1$
-			assertEquals(twelve, evaluate(helper, thing, "numeros->at(1) * numeros->at(2)")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "numeros->at(2) < numeros->at(1)")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "numeros->at(2) <= numeros->at(1)")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "numeros->at(1) > numeros->at(2)")); //$NON-NLS-1$
-			assertTrue(check(helper, thing, "numeros->at(1) >= numeros->at(2)")); //$NON-NLS-1$
+			assertEquals(four, evaluate(helper, thing, "numeros->at(1) - numeros->at(2)"));
+			assertEquals(eight, evaluate(helper, thing, "numeros->at(1) + numeros->at(2)"));
+			assertEquals(three, evaluate(helper, thing, "numeros->at(1) / numeros->at(2)"));
+			assertEquals(twelve, evaluate(helper, thing, "numeros->at(1) * numeros->at(2)"));
+			assertTrue(check(helper, thing, "numeros->at(2) < numeros->at(1)"));
+			assertTrue(check(helper, thing, "numeros->at(2) <= numeros->at(1)"));
+			assertTrue(check(helper, thing, "numeros->at(1) > numeros->at(2)"));
+			assertTrue(check(helper, thing, "numeros->at(1) >= numeros->at(2)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_comparisonOfBooleanOperations_137487() {
-		Class ctx = (Class) getUMLMetamodel().getOwnedType("Class"); //$NON-NLS-1$      
+		Class ctx = (Class) getUMLMetamodel().getOwnedType("Class");      
 		helper.setContext(ctx); 
 
 		try {
-			assertTrue(check(helper, ctx, "self.conformsTo(self)")); //$NON-NLS-1$
+			assertTrue(check(helper, ctx, "self.conformsTo(self)"));
 			
-			assertTrue(check(helper, ctx, "self.conformsTo(self) and true"));  //$NON-NLS-1$
-			assertTrue(check(helper, ctx, "self.conformsTo(self) or false")); //$NON-NLS-1$
-			assertTrue(check(helper, ctx, "self.conformsTo(self) xor false")); //$NON-NLS-1$
-			assertTrue(check(helper, ctx, "self.conformsTo(self) implies true")); //$NON-NLS-1$
-			assertFalse(check(helper, ctx, "self.conformsTo(self) implies false")); //$NON-NLS-1$
-			assertTrue(check(helper, ctx, "self.conformsTo(self) = true")); //$NON-NLS-1$
-			assertTrue(check(helper, ctx, "self.conformsTo(self) <> false")); //$NON-NLS-1$
+			assertTrue(check(helper, ctx, "self.conformsTo(self) and true"));
+			assertTrue(check(helper, ctx, "self.conformsTo(self) or false"));
+			assertTrue(check(helper, ctx, "self.conformsTo(self) xor false"));
+			assertTrue(check(helper, ctx, "self.conformsTo(self) implies true"));
+			assertFalse(check(helper, ctx, "self.conformsTo(self) implies false"));
+			assertTrue(check(helper, ctx, "self.conformsTo(self) = true"));
+			assertTrue(check(helper, ctx, "self.conformsTo(self) <> false"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -553,11 +553,11 @@ public class ComparisonTest
 
 		try {
 			assertTrue(check(helper, ctx,
-					"ocltest::Color::green = self.color")); //$NON-NLS-1$	
+					"ocltest::Color::green = self.color"));	
 			assertTrue(check(helper, ctx,
-					"self.color = ocltest::Color::green")); //$NON-NLS-1$	
+					"self.color = ocltest::Color::green"));	
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -567,23 +567,23 @@ public class ComparisonTest
 	 */
 	public void test_dataTypes_137158() {
 		Package upackage = umlf.createPackage();
-		upackage.setName("mypkg"); //$NON-NLS-1$
-		Class uclass = upackage.createOwnedClass("B", false); //$NON-NLS-1$
-		DataType datatype = (DataType) pkg.createOwnedType("Thread", uml.getDataType()); //$NON-NLS-1$
-		Operation operation = uclass.createOwnedOperation("f", null, null, datatype); //$NON-NLS-1$
+		upackage.setName("mypkg");
+		Class uclass = upackage.createOwnedClass("B", false);
+		DataType datatype = (DataType) pkg.createOwnedType("Thread", uml.getDataType());
+		Operation operation = uclass.createOwnedOperation("f", null, null, datatype);
 		operation.setIsQuery(true);
 		
 		helper.setContext(uclass);
 		
 		try {
-			OCLExpression<Classifier> expr = helper.createQuery("self.f()"); //$NON-NLS-1$
+			OCLExpression<Classifier> expr = helper.createQuery("self.f()");
 			
 			Classifier type = expr.getType();
 			assertSame(datatype, type);
 			
 			operation.setUpper(LiteralUnlimitedNatural.UNLIMITED);
 			
-			expr = helper.createQuery("self.f()"); //$NON-NLS-1$
+			expr = helper.createQuery("self.f()");
 			
 			type = expr.getType();
 			assertTrue(type instanceof CollectionType<?, ?>);
@@ -593,12 +593,12 @@ public class ComparisonTest
 			operation.setUpper(1);
 			operation.setType(ocl.getEnvironment().getOCLStandardLibrary().getOclAny());
 			
-			expr = helper.createQuery("self.f()"); //$NON-NLS-1$
+			expr = helper.createQuery("self.f()");
 			
 			type = expr.getType();
 			assertSame(getOCLStandardLibrary().getOclAny(), type);
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -627,28 +627,28 @@ public class ComparisonTest
         
         try {
             // this should be OK because both values can be represented as integers
-            assertEquals(1, evaluate(helper, thing, "numeros->at(1).asLong() - numeros->at(2).asLong()")); //$NON-NLS-1$
+            assertEquals(1, evaluate(helper, thing, "numeros->at(1).asLong() - numeros->at(2).asLong()"));
             
             // same number represented in different precision
-            assertTrue(check(helper, thing, "numeros->at(4).asLong() = 1")); //$NON-NLS-1$
+            assertTrue(check(helper, thing, "numeros->at(4).asLong() = 1"));
             
             // different numbers represented in different precision
-            assertTrue(check(helper, thing, "numeros->at(4).asLong() <> 2")); //$NON-NLS-1$
+            assertTrue(check(helper, thing, "numeros->at(4).asLong() <> 2"));
             
             // this is also OK, because we compute in high precision and coerce
             // the result to lower precision
-            assertEquals(quotient, evaluate(helper, thing, "numeros->at(3).asLong() / numeros->at(2).asLong()")); //$NON-NLS-1$
+            assertEquals(quotient, evaluate(helper, thing, "numeros->at(3).asLong() / numeros->at(2).asLong()"));
             
             // this is another case where the intermediate result is high-precision but
             // the result is low
             assertEquals((int) maxIntMinusOne, evaluate(helper, thing,
-                String.format("(%d + %d).div(2) - 1", maxInt, maxInt))); //$NON-NLS-1$
+                String.format("(%d + %d).div(2) - 1", maxInt, maxInt)));
             
             // finally, a case where the result is in high precision (new capability)
             assertEquals(maxIntSquared, evaluate(helper, thing,
-                String.format("%d * %d", maxInt, maxInt))); //$NON-NLS-1$
+                String.format("%d * %d", maxInt, maxInt)));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -662,12 +662,12 @@ public class ComparisonTest
         try {
             // this should be OK anyways
             helper.createInvariant(
-                "not Apple.allInstances()->exists(a | a = self)"); //$NON-NLS-1$
+                "not Apple.allInstances()->exists(a | a = self)");
             
             helper.createInvariant(
-                "not uml::Class.allInstances()->exists(c | c = self)"); //$NON-NLS-1$
+                "not uml::Class.allInstances()->exists(c | c = self)");
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
 	}
     
@@ -681,12 +681,12 @@ public class ComparisonTest
         try {
             // this should be OK anyways
             helper.createInvariant(
-                "Apple.allInstances()->forAll(a | a <> self)"); //$NON-NLS-1$
+                "Apple.allInstances()->forAll(a | a <> self)");
             
             helper.createInvariant(
-                "uml::Class.allInstances()->forAll(c | c <> self)"); //$NON-NLS-1$
+                "uml::Class.allInstances()->forAll(c | c <> self)");
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -700,14 +700,14 @@ public class ComparisonTest
         try {
             // this should not parse because the >= operation is not defined
             helper.createInvariant(
-                "Comparable.allInstances()->forAll(c | self >= c)"); //$NON-NLS-1$
+                "Comparable.allInstances()->forAll(c | self >= c)");
             
-            fail("Should not have parsed"); //$NON-NLS-1$
+            fail("Should not have parsed");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected exception: " + e.getLocalizedMessage());
         } catch (Exception e) {
-            fail("Unexpected exception during parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Unexpected exception during parse: " + e.getLocalizedMessage());
         }
     }
 	
@@ -720,104 +720,104 @@ public class ComparisonTest
 		super.setUp();
 		
 		pkg = umlf.createPackage();
-		pkg.setName("pkg"); //$NON-NLS-1$
+		pkg.setName("pkg");
 		
-		valueType = pkg.createOwnedPrimitiveType("Value"); //$NON-NLS-1$
+		valueType = pkg.createOwnedPrimitiveType("Value");
         valueType.createOwnedOperation(
-            "<", //$NON-NLS-1$
-            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            "<",
+            new BasicEList<String>(Collections.singleton("v")),
             new BasicEList<Type>(Collections.singleton(valueType)),
             getUMLBoolean()).setIsQuery(true);
         valueType.createOwnedOperation(
-            "<=", //$NON-NLS-1$
-            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            "<=",
+            new BasicEList<String>(Collections.singleton("v")),
             new BasicEList<Type>(Collections.singleton(valueType)),
             getUMLBoolean()).setIsQuery(true);
         valueType.createOwnedOperation(
-            ">", //$NON-NLS-1$
-            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            ">",
+            new BasicEList<String>(Collections.singleton("v")),
             new BasicEList<Type>(Collections.singleton(valueType)),
             getUMLBoolean()).setIsQuery(true);
         valueType.createOwnedOperation(
-            ">=", //$NON-NLS-1$
-            new BasicEList<String>(Collections.singleton("v")), //$NON-NLS-1$
+            ">=",
+            new BasicEList<String>(Collections.singleton("v")),
             new BasicEList<Type>(Collections.singleton(valueType)),
             getUMLBoolean()).setIsQuery(true);
 		
-		thingType = pkg.createOwnedClass("Thing", false); //$NON-NLS-1$
+		thingType = pkg.createOwnedClass("Thing", false);
 		
-		values = thingType.createOwnedAttribute("values", valueType); //$NON-NLS-1$
+		values = thingType.createOwnedAttribute("values", valueType);
 		values.setUpper(LiteralUnlimitedNatural.UNLIMITED);
 		values.setIsOrdered(true);
 		values.setIsUnique(true);
 		
-		bdValue = thingType.createOwnedAttribute("bdValue", getEcoreBigDecimal()); //$NON-NLS-1$
-		biValue = thingType.createOwnedAttribute("biValue", getEcoreBigInteger()); //$NON-NLS-1$
+		bdValue = thingType.createOwnedAttribute("bdValue", getEcoreBigDecimal());
+		biValue = thingType.createOwnedAttribute("biValue", getEcoreBigInteger());
 		
-		numeroType = pkg.createOwnedClass("Numero", false); //$NON-NLS-1$
-		
-		numeroType.createOwnedOperation(
-				"+", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
-				new BasicEList<Type>(Collections.singleton(numeroType)),
-				numeroType).setIsQuery(true);
-		numeroType.createOwnedOperation(
-				"-", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
-				new BasicEList<Type>(Collections.singleton(numeroType)),
-				numeroType).setIsQuery(true);
-		numeroType.createOwnedOperation(
-				"*", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
-				new BasicEList<Type>(Collections.singleton(numeroType)),
-				numeroType).setIsQuery(true);
-		numeroType.createOwnedOperation(
-				"/", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
-				new BasicEList<Type>(Collections.singleton(numeroType)),
-				numeroType).setIsQuery(true);
+		numeroType = pkg.createOwnedClass("Numero", false);
 		
 		numeroType.createOwnedOperation(
-				"-", //$NON-NLS-1$
+				"+",
+				new BasicEList<String>(Collections.singleton("n")),
+				new BasicEList<Type>(Collections.singleton(numeroType)),
+				numeroType).setIsQuery(true);
+		numeroType.createOwnedOperation(
+				"-",
+				new BasicEList<String>(Collections.singleton("n")),
+				new BasicEList<Type>(Collections.singleton(numeroType)),
+				numeroType).setIsQuery(true);
+		numeroType.createOwnedOperation(
+				"*",
+				new BasicEList<String>(Collections.singleton("n")),
+				new BasicEList<Type>(Collections.singleton(numeroType)),
+				numeroType).setIsQuery(true);
+		numeroType.createOwnedOperation(
+				"/",
+				new BasicEList<String>(Collections.singleton("n")),
+				new BasicEList<Type>(Collections.singleton(numeroType)),
+				numeroType).setIsQuery(true);
+		
+		numeroType.createOwnedOperation(
+				"-",
 				ECollections.<String> emptyEList(),
 				ECollections.<Type> emptyEList(),
 				numeroType).setIsQuery(true);
 		
 		numeroType.createOwnedOperation(
-				"<", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
+				"<",
+				new BasicEList<String>(Collections.singleton("n")),
 				new BasicEList<Type>(Collections.singleton(numeroType)),
 				getUMLBoolean()).setIsQuery(true);
 		numeroType.createOwnedOperation(
-				"<=", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
+				"<=",
+				new BasicEList<String>(Collections.singleton("n")),
 				new BasicEList<Type>(Collections.singleton(numeroType)),
 				getUMLBoolean()).setIsQuery(true);
 		numeroType.createOwnedOperation(
-				">", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
+				">",
+				new BasicEList<String>(Collections.singleton("n")),
 				new BasicEList<Type>(Collections.singleton(numeroType)),
 				getUMLBoolean()).setIsQuery(true);
 		numeroType.createOwnedOperation(
-				">=", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("n")), //$NON-NLS-1$
+				">=",
+				new BasicEList<String>(Collections.singleton("n")),
 				new BasicEList<Type>(Collections.singleton(numeroType)),
 				getUMLBoolean()).setIsQuery(true);
 		numeroType.createOwnedOperation(
-				"asLong", //$NON-NLS-1$
+				"asLong",
 				ECollections.<String> emptyEList(),
 				ECollections.<Type> emptyEList(),
 				getEcoreLong()).setIsQuery(true);
 		
-		numeros = thingType.createOwnedAttribute("numeros", numeroType); //$NON-NLS-1$
+		numeros = thingType.createOwnedAttribute("numeros", numeroType);
 		numeros.setUpper(LiteralUnlimitedNatural.UNLIMITED);
 		numeros.setIsOrdered(true);
 		numeros.setIsUnique(true);
 		
-		comparable = pkg.createOwnedClass("Comparable", true); //$NON-NLS-1$
+		comparable = pkg.createOwnedClass("Comparable", true);
 		comparable.createOwnedOperation(
-            "compareTo", //$NON-NLS-1$
-            new BasicEList<String>(Collections.singleton("c")), //$NON-NLS-1$
+            "compareTo",
+            new BasicEList<String>(Collections.singleton("c")),
             new BasicEList<Type>(Collections.singleton(comparable)),
             getUMLInteger()).setIsQuery(true);
 		
@@ -969,7 +969,7 @@ public class ComparisonTest
 		
 		@Override
         public String toString() {
-			return "Numero(" + value + ")"; //$NON-NLS-1$ //$NON-NLS-2$
+			return "Numero(" + value + ")";
 		}
 	}
 }

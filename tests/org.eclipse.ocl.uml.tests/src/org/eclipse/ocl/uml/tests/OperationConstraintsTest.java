@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.7 2009/10/23 21:25:25 ewillink Exp $
+ * $Id: OperationConstraintsTest.java,v 1.8 2009/11/28 18:17:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -43,6 +43,7 @@ import org.eclipse.uml2.uml.Type;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class OperationConstraintsTest extends AbstractTestSuite {
 	
 	/**
@@ -50,9 +51,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simplePrecondition() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(color : Color) : Boolean " + //$NON-NLS-1$
-			"pre: color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(color : Color) : Boolean " +
+			"pre: color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -61,9 +62,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_simplePostcondition() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(color : Color) : Boolean " + //$NON-NLS-1$
-			"post: self.color = color " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(color : Color) : Boolean " +
+			"post: self.color = color " +
+			"endpackage");
 	}
 	
 	/**
@@ -71,9 +72,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_postcondition_atPre() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"post: color <> color@ pre implies color = c " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"post: color <> color@ pre implies color = c " +
+			"endpackage");
 	}
 	
 	/**
@@ -81,9 +82,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_postcondition_atPre_operation() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"post: preferredColor() <> preferredColor@pre() implies color = c " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"post: preferredColor() <> preferredColor@pre() implies color = c " +
+			"endpackage");
 	}
 	
 	/**
@@ -91,9 +92,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_postcondition_result() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"post: result implies color <> color@pre " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"post: result implies color <> color@pre " +
+			"endpackage");
 	}
 	
 	/**
@@ -102,15 +103,15 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_namespaces() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"pre notBlack: let ok : Boolean = c <> Color::black in " + //$NON-NLS-1$
-			"  ok " + //$NON-NLS-1$
-			"pre different: let ok : Boolean = c <> color in " + //$NON-NLS-1$
-			"  ok " + //$NON-NLS-1$
-			"body: let b : Boolean = c <> color in " + //$NON-NLS-1$
-			"  result = b implies color <> Color::black " + //$NON-NLS-1$
-			"post worked: result implies color <> color@pre " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"pre notBlack: let ok : Boolean = c <> Color::black in " +
+			"  ok " +
+			"pre different: let ok : Boolean = c <> color in " +
+			"  ok " +
+			"body: let b : Boolean = c <> color in " +
+			"  result = b implies color <> Color::black " +
+			"post worked: result implies color <> color@pre " +
+			"endpackage");
 	}
 	
 	/**
@@ -122,16 +123,16 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			parseConstraint(
-				"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-				"pre: c <> color@pre " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+				"pre: c <> color@pre " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal @pre", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal @pre", err);
 	}
 	
 	/**
@@ -143,16 +144,16 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			parseConstraint(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: color@pre <> Color::black " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: color@pre <> Color::black " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal @pre", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal @pre", err);
 	}
 	
 	/**
@@ -164,15 +165,15 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			parseConstraint(
-				"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-				"post: let oldColor : Color = color in c <> oldColor@pre " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+				"post: let oldColor : Color = color in c <> oldColor@pre " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal @pre", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal @pre", err);
 	}
 	
 	/**
@@ -181,10 +182,10 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_variablesHidingAttributes() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"pre: let color : Boolean = (c = self.color) in " + //$NON-NLS-1$
-			"  color implies c <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"pre: let color : Boolean = (c = self.color) in " +
+			"  color implies c <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -196,13 +197,13 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			parseConstraint(
-				"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-				"pre: color : Boolean = (c = self.color) in " + //$NON-NLS-1$
-				"  color implies c <> Color::black " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+				"pre: color : Boolean = (c = self.color) in " +
+				"  color implies c <> Color::black " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(err);
@@ -218,12 +219,12 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		try {
 			// try a scenario with no common supertype
 			parseConstraint(
-				"package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
-				"body: result = (if true then 'red' else 'brown' endif) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit::preferredColor() : Color " +
+				"body: result = (if true then 'red' else 'brown' endif) " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(err);
@@ -232,12 +233,12 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		try {
 			// try a scenario with a common supertype
 			parseConstraint(
-				"package ocltest context Apple::newApple() : Apple " + //$NON-NLS-1$
-				"body: result = self.newFruit() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple::newApple() : Apple " +
+				"body: result = self.newFruit() " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(err);
@@ -246,12 +247,12 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		try {
 			// this scenario is OK
 			parseConstraint(
-				"package ocltest context Apple::newFruit() : Fruit " + //$NON-NLS-1$
-				"body: result = self.newApple() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple::newFruit() : Fruit " +
+				"body: result = self.newApple() " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			err = e;
-			System.err.println("Got unexpected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.err.println("Got unexpected error: " + e.getLocalizedMessage());
 		}
 		
 		assertNull(err);
@@ -265,12 +266,12 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		
 		try {
 			parseConstraint(
-				"package ocltest context Apple::label(newLabel : String) : " + //$NON-NLS-1$
-				"body: result = (if true then 'Spy' else 'Spartan' endif) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple::label(newLabel : String) : " +
+				"body: result = (if true then 'Spy' else 'Spartan' endif) " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(err);
@@ -283,17 +284,17 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	 */
 	public void test_parameterNameCoincidesWithAttributeName_140008() {
         expectModified = true;
-		Operation foo = apple.createOwnedOperation("foo", //$NON-NLS-1$
-			new BasicEList<String>(Collections.singleton("str")), //$NON-NLS-1$
+		Operation foo = apple.createOwnedOperation("foo",
+			new BasicEList<String>(Collections.singleton("str")),
 			new BasicEList<Type>(Collections.singleton((Type) getUMLString())),
 			getUMLString());
-		Property myStr = apple.createOwnedAttribute("str", getUMLString()); //$NON-NLS-1$
+		Property myStr = apple.createOwnedAttribute("str", getUMLString());
 		
 		try {
 			OCLExpression<Classifier> expr = parseConstraint(
-				"package ocltest context Apple::foo(str : String) : String " + //$NON-NLS-1$
-				"body: result = (if str = self.str then '' else str endif) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple::foo(str : String) : String " +
+				"body: result = (if str = self.str then '' else str endif) " +
+				"endpackage");
 			
 			int propertyCalls = 0;
 			int variableCalls = 0;
@@ -303,21 +304,21 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 					@SuppressWarnings("unchecked")
 					PropertyCallExp<Classifier, Property> pc =
 						(PropertyCallExp<Classifier, Property>) next;
-					if ("str".equals(pc.getReferredProperty().getName())) { //$NON-NLS-1$
+					if ("str".equals(pc.getReferredProperty().getName())) {
 						propertyCalls++;
 					}
 				} else if (next instanceof VariableExp<?, ?>) {
 					@SuppressWarnings("unchecked")
 					VariableExp<Classifier, Parameter> v =
 						(VariableExp<Classifier, Parameter>) next;
-					if ("str".equals(v.getReferredVariable().getName())) { //$NON-NLS-1$
+					if ("str".equals(v.getReferredVariable().getName())) {
 						variableCalls++;
 					}
 				}
 			}
 			
-			assertEquals("property calls", 1, propertyCalls); //$NON-NLS-1$
-			assertEquals("variable calls", 2, variableCalls); //$NON-NLS-1$
+			assertEquals("property calls", 1, propertyCalls);
+			assertEquals("variable calls", 2, variableCalls);
 		} finally {
 			apple.getOwnedOperations().remove(foo);
 			apple.getOwnedAttributes().remove(myStr);
@@ -332,9 +333,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	@SuppressWarnings("unchecked")
 	public void test_implicitPropertySourceLookup_raw_151234() {
 		OCLExpression<Classifier> expr = parseConstraint(
-			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
-			"pre: color <> newColor " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " +
+			"pre: color <> newColor " +
+			"endpackage");
 
 		assertTrue(expr instanceof OperationCallExp);
 		OperationCallExp<Classifier, Operation> notEquals =
@@ -348,13 +349,13 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			(VariableExp<Classifier, Parameter>) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
+		assertEquals("self", var.getReferredVariable().getName());
 		
 		// now check the resolution of implicit iterator variables as sources
 		expr = parseConstraint(
-				"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
-				"pre: Fruit.allInstances()->forAll(color <> newColor) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " +
+				"pre: Fruit.allInstances()->forAll(color <> newColor) " +
+				"endpackage");
 
 		assertTrue(expr instanceof IteratorExp);
 		IteratorExp<Classifier, Parameter> forAll =
@@ -368,7 +369,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		var = (VariableExp<Classifier, Parameter>) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
+		assertTrue(var.getReferredVariable().getName().startsWith("temp"));
 	}
 	
 	/**
@@ -381,7 +382,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		try {
 			helper.setOperationContext(fruit, fruit_setColor);
 			OCLExpression<Classifier> expr =
-				getBodyExpression(helper.createPrecondition("color <> newColor")); //$NON-NLS-1$
+				getBodyExpression(helper.createPrecondition("color <> newColor"));
 	
 			assertTrue(expr instanceof OperationCallExp);
 			OperationCallExp<Classifier, Operation> notEquals =
@@ -395,11 +396,11 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 				(VariableExp<Classifier, Parameter>) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
+			assertEquals("self", var.getReferredVariable().getName());
 			
 			// now check the resolution of implicit iterator variables as sources
 			expr = getBodyExpression(helper.createPrecondition(
-					"Fruit.allInstances()->forAll(color <> newColor)")); //$NON-NLS-1$
+					"Fruit.allInstances()->forAll(color <> newColor)"));
 	
 			assertTrue(expr instanceof IteratorExp);
 			IteratorExp<Classifier, Parameter> forAll = (IteratorExp<Classifier, Parameter>) expr;
@@ -412,9 +413,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			var = (VariableExp<Classifier, Parameter>) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
+			assertTrue(var.getReferredVariable().getName().startsWith("temp"));
 		} catch (ParserException e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -426,9 +427,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 	@SuppressWarnings("unchecked")
 	public void test_implicitOperationSourceLookup_raw_151234() {
 		OCLExpression<Classifier> expr = parseConstraint(
-			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
-			"pre: preferredColor() <> newColor " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " +
+			"pre: preferredColor() <> newColor " +
+			"endpackage");
 
 		assertTrue(expr instanceof OperationCallExp);
 		OperationCallExp<Classifier, Operation> notEquals =
@@ -441,13 +442,13 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		VariableExp<Classifier, Parameter> var = (VariableExp<Classifier, Parameter>) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
+		assertEquals("self", var.getReferredVariable().getName());
 		
 		// now check the resolution of implicit iterator variables as sources
 		expr = parseConstraint(
-				"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " + //$NON-NLS-1$
-				"pre: Fruit.allInstances()->forAll(preferredColor() <> newColor) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple::setColor(fruit : Fruit, newColor : Color) : " +
+				"pre: Fruit.allInstances()->forAll(preferredColor() <> newColor) " +
+				"endpackage");
 
 		assertTrue(expr instanceof IteratorExp);
 		IteratorExp<Classifier, Parameter> forAll = (IteratorExp<Classifier, Parameter>) expr;
@@ -460,7 +461,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		var = (VariableExp<Classifier, Parameter>) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
-		assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
+		assertTrue(var.getReferredVariable().getName().startsWith("temp"));
 	}
 	
 	/**
@@ -473,7 +474,7 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 		try {
 			helper.setOperationContext(fruit, fruit_setColor);
 			OCLExpression<Classifier> expr = getBodyExpression(
-					helper.createPrecondition("preferredColor() <> newColor")); //$NON-NLS-1$
+					helper.createPrecondition("preferredColor() <> newColor"));
 	
 			assertTrue(expr instanceof OperationCallExp);
 			OperationCallExp<Classifier, Operation> notEquals =
@@ -487,11 +488,11 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 				(VariableExp<Classifier, Parameter>) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertEquals("self", var.getReferredVariable().getName()); //$NON-NLS-1$
+			assertEquals("self", var.getReferredVariable().getName());
 			
 			// now check the resolution of implicit iterator variables as sources
 			expr = getBodyExpression(helper.createPrecondition(
-					"Fruit.allInstances()->forAll(preferredColor() <> newColor)")); //$NON-NLS-1$
+					"Fruit.allInstances()->forAll(preferredColor() <> newColor)"));
 	
 			assertTrue(expr instanceof IteratorExp);
 			IteratorExp<Classifier, Parameter> forAll = (IteratorExp<Classifier, Parameter>) expr;
@@ -504,9 +505,9 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			var = (VariableExp<Classifier, Parameter>) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
-			assertTrue(var.getReferredVariable().getName().startsWith("temp")); //$NON-NLS-1$
+			assertTrue(var.getReferredVariable().getName().startsWith("temp"));
 		} catch (ParserException e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 }
