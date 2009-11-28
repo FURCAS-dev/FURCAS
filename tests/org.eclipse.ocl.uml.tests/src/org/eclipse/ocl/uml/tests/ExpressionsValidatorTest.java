@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionsValidatorTest.java,v 1.4 2009/10/07 20:41:46 ewillink Exp $
+ * $Id: ExpressionsValidatorTest.java,v 1.5 2009/11/28 18:16:05 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -68,6 +68,7 @@ import org.eclipse.uml2.uml.Signal;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ExpressionsValidatorTest extends AbstractTestSuite {
 
 	UMLFactory factory = UMLFactory.eINSTANCE;
@@ -341,17 +342,17 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		IteratorExp i = factory.createIteratorExp();
 		i.setType(apple);
 		
-		i.setName("select"); //$NON-NLS-1$
+		i.setName("select");
 		assertOK(i, ExpressionsValidator.ITERATOR_EXP__BOOLEAN_TYPE);
 		
-		for (String name : Arrays.asList("forAll", "exists", "isUnique")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		for (String name : Arrays.asList("forAll", "exists", "isUnique")) {
 			i.setName(name);
 			assertProblem(i, ExpressionsValidator.ITERATOR_EXP__BOOLEAN_TYPE);
 		}
 		
 		i.setType(getOCLStandardLibrary().getBoolean());
 		
-		for (String name : Arrays.asList("forAll", "exists", "isUnique")) { //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		for (String name : Arrays.asList("forAll", "exists", "isUnique")) {
 			i.setName(name);
 			assertOK(i, ExpressionsValidator.ITERATOR_EXP__BOOLEAN_TYPE);
 		}
@@ -375,7 +376,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		goodPairs.add(new Classifier[] {orderedSet, sequence});
 		
 		IteratorExp i = factory.createIteratorExp();
-		i.setName("collect"); //$NON-NLS-1$
+		i.setName("collect");
 		
 		OCLExpression source = factory.createBooleanLiteralExp();
 		i.setSource(source);
@@ -401,21 +402,20 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		source.setType(getOCLStandardLibrary().getBag());
 		i.setSource(source);
 				
-		for (String name : Arrays.asList("select", "reject")) { //$NON-NLS-1$ //$NON-NLS-2$
+		for (String name : Arrays.asList("select", "reject")) {
 			i.setName(name);
 			assertProblem(i, ExpressionsValidator.ITERATOR_EXP__SELECT_REJECT_TYPE);
 		}
 		
 		i.setType(getOCLStandardLibrary().getBag());
 		
-		for (String name : Arrays.asList("select", "reject")) { //$NON-NLS-1$ //$NON-NLS-2$
+		for (String name : Arrays.asList("select", "reject")) {
 			i.setName(name);
 			assertOK(i, ExpressionsValidator.ITERATOR_EXP__SELECT_REJECT_TYPE);
 		}
 	}
 	
 	public void test_IteratorExp_checkBooleanBodyType() {
-		@SuppressWarnings("nls")
 		List<String> names = Arrays.asList("select", "reject", "forAll", "exists", "any", "one");
 		IteratorExp i = factory.createIteratorExp();
 		i.setType(getOCLStandardLibrary().getSet());
@@ -424,7 +424,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		body.setType(getOCLStandardLibrary().getBag());
 		i.setBody(body);
 		
-		i.setName("collect"); //$NON-NLS-1$
+		i.setName("collect");
 		assertOK(i, ExpressionsValidator.ITERATOR_EXP__BOOLEAN_BODY_TYPE);
 				
 		for (String name : names) {
@@ -544,7 +544,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		SendSignalAction action = umlFactory.createSendSignalAction();
 		m.setSentSignal(action);
 		
-		Signal drop = (Signal) fruitPackage.getOwnedType("Drop"); //$NON-NLS-1$
+		Signal drop = (Signal) fruitPackage.getOwnedType("Drop");
 		assertNotNull(drop);
 		action.setSignal(drop);
 		
@@ -597,7 +597,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		coa.setOperation(fruit_ripen);
 		
 		SendSignalAction ssa = umlFactory.createSendSignalAction();
-		Signal drop = (Signal) fruitPackage.getOwnedType("Drop"); //$NON-NLS-1$
+		Signal drop = (Signal) fruitPackage.getOwnedType("Drop");
 		assertNotNull(drop);
 		ssa.setSignal(drop);
 		
@@ -644,8 +644,8 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	public void test_OperationCallExp_checkArgumentsConform() {
 		OperationCallExp o = factory.createOperationCallExp();
 		
-		Class fruitUtil = (Class) fruitPackage.getOwnedType("FruitUtil"); //$NON-NLS-1$
-		Operation oper = fruitUtil.getOwnedOperation("processOrderedSet", null, null); //$NON-NLS-1$
+		Class fruitUtil = (Class) fruitPackage.getOwnedType("FruitUtil");
+		Operation oper = fruitUtil.getOwnedOperation("processOrderedSet", null, null);
 		o.setReferredOperation(oper);
 		
 		OCLExpression arg = factory.createUnspecifiedValueExp();
@@ -672,7 +672,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_OperationCallExp_checkArgumentsConform_generic_232028() {
 		OperationCallExp o = (OperationCallExp) parseUnvalidated(
-			"context uml::String inv: Set{}->including('foo')"); //$NON-NLS-1$
+			"context uml::String inv: Set{}->including('foo')");
 		
 		OCLExpression arg = factory.createUnspecifiedValueExp();
 		arg.setType(getOCLStandardLibrary().getInteger());
@@ -697,15 +697,15 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_OperationCallExp_checkArgumentsConform_generic_collections_232028() {
 		OperationCallExp o = (OperationCallExp) parseUnvalidated(
-		"context uml::String inv: Set{'foo'}->includesAll(Set{'bar'})"); //$NON-NLS-1$		
+		"context uml::String inv: Set{'foo'}->includesAll(Set{'bar'})");		
 		assertOK(o);
 	}
 	
 	public void test_OperationCallExp_checkArgumentCount() {
 		OperationCallExp o = factory.createOperationCallExp();
 		
-		Class fruitUtil = (Class) fruitPackage.getOwnedType("FruitUtil"); //$NON-NLS-1$
-		Operation oper = fruitUtil.getOwnedOperation("processOrderedSet", null, null); //$NON-NLS-1$
+		Class fruitUtil = (Class) fruitPackage.getOwnedType("FruitUtil");
+		Operation oper = fruitUtil.getOwnedOperation("processOrderedSet", null, null);
 		o.setReferredOperation(oper);
 		
 		OCLExpression arg = factory.createUnspecifiedValueExp();
@@ -760,7 +760,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	
 	public void test_StringLiteralExp_checkStringType() {
 		StringLiteralExp sl = factory.createStringLiteralExp();
-		sl.setStringSymbol("42"); //$NON-NLS-1$
+		sl.setStringSymbol("42");
 		sl.setType(apple);
 		
 		assertProblem(sl, ExpressionsValidator.STRING_LITERAL_EXP__STRING_TYPE);
@@ -777,11 +777,11 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	public void test_TupleLiteralExp_checkTupleType() {
 		TupleLiteralExp t = factory.createTupleLiteralExp();
 		TupleLiteralPart part1 = factory.createTupleLiteralPart();
-		part1.setName("a"); //$NON-NLS-1$
+		part1.setName("a");
 		part1.setType(getOCLStandardLibrary().getString());
 		t.getPart().add(part1);
 		TupleLiteralPart part2 = factory.createTupleLiteralPart();
-		part2.setName("b"); //$NON-NLS-1$
+		part2.setName("b");
 		part2.setType(getOCLStandardLibrary().getInteger());
 		t.getPart().add(part2);
 		
@@ -795,14 +795,14 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		assertProblem(t, ExpressionsValidator.TUPLE_LITERAL_EXP__TUPLE_TYPE);
 		
 		Property a = ocl.getEnvironment().getUMLReflection()
-				.createProperty("a", getOCLStandardLibrary().getString()); //$NON-NLS-1$
+				.createProperty("a", getOCLStandardLibrary().getString());
 		tt.getOwnedAttributes().add(a);
 		part1.setAttribute(a);
 		
 		assertProblem(t, ExpressionsValidator.TUPLE_LITERAL_EXP__TUPLE_TYPE);
 		
 		Property b = ocl.getEnvironment().getUMLReflection()
-				.createProperty("b", getOCLStandardLibrary().getInteger()); //$NON-NLS-1$
+				.createProperty("b", getOCLStandardLibrary().getInteger());
 		tt.getOwnedAttributes().add(b);
 		part2.setAttribute(b);
 		
@@ -812,24 +812,24 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	public void test_TupleLiteralExp_checkPartsUnique() {
 		TupleLiteralExp t = factory.createTupleLiteralExp();
 		TupleLiteralPart part1 = factory.createTupleLiteralPart();
-		part1.setName("a"); //$NON-NLS-1$
+		part1.setName("a");
 		part1.setType(getOCLStandardLibrary().getString());
 		t.getPart().add(part1);
 		TupleLiteralPart part2 = factory.createTupleLiteralPart();
-		part2.setName("a"); //$NON-NLS-1$
+		part2.setName("a");
 		part2.setType(getOCLStandardLibrary().getInteger());
 		t.getPart().add(part2);
 		
 		assertProblem(t, ExpressionsValidator.TUPLE_LITERAL_EXP__PARTS_UNIQUE);
 		
-		part2.setName("b"); //$NON-NLS-1$
+		part2.setName("b");
 		
 		assertOK(t, ExpressionsValidator.TUPLE_LITERAL_EXP__PARTS_UNIQUE);
 	}
 	
 	public void test_TupleLiteralExp_checkValueType() {
 		TupleLiteralPart p = factory.createTupleLiteralPart();
-		p.setName("a"); //$NON-NLS-1$
+		p.setName("a");
 		p.setType(fruit);
 		
 		OCLExpression value = factory.createUnspecifiedValueExp();
@@ -837,7 +837,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		p.setValue(value);
 		
 		Property a = ocl.getEnvironment().getUMLReflection()
-				.createProperty("a", fruit); //$NON-NLS-1$
+				.createProperty("a", fruit);
 		p.setAttribute(a);
 		
 		assertProblem(p, ExpressionsValidator.TUPLE_LITERAL_PART__VALUE_TYPE);
@@ -868,7 +868,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 		v.setType(fruit);
 		
 		Variable var = factory.createVariable();
-		var.setName("a"); //$NON-NLS-1$
+		var.setName("a");
 		var.setType(apple);
 		v.setReferredVariable(var);
 		
@@ -881,7 +881,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	
 	public void test_Variable_checknitType() {
 		Variable v = factory.createVariable();
-		v.setName("a"); //$NON-NLS-1$
+		v.setName("a");
 		v.setType(fruit);
 
 		assertOK(v, ExpressionsValidator.VARIABLE__INIT_TYPE);
@@ -913,8 +913,8 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	
 	protected void assertProblem(Diagnostic diagnostic, EObject target, int code) {
 		Diagnostic problem = findProblem(diagnostic, target, code);
-		assertNotNull("Problem not found", problem); //$NON-NLS-1$
-		System.out.println("Found expected problem: " + problem.getMessage()); //$NON-NLS-1$
+		assertNotNull("Problem not found", problem);
+		System.out.println("Found expected problem: " + problem.getMessage());
 	}
 	
 	protected Diagnostic findProblem(Diagnostic diagnostic, EObject target, int code) {
@@ -961,7 +961,7 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	}
 	
 	protected void assertOK(Diagnostic diagnostic, EObject target, int code) {
-		assertNull("Problem found", findProblem(diagnostic, target, code)); //$NON-NLS-1$
+		assertNull("Problem found", findProblem(diagnostic, target, code));
 	}
 	
 	protected void assertOK(EObject target) {
@@ -969,6 +969,6 @@ public class ExpressionsValidatorTest extends AbstractTestSuite {
 	}
 	
 	protected void assertOK(Diagnostic diagnostic, EObject target) {
-		assertNull("Problem found", findProblem(diagnostic, target)); //$NON-NLS-1$
+		assertNull("Problem found", findProblem(diagnostic, target));
 	}
 }
