@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.6 2009/10/07 20:39:26 ewillink Exp $
+ * $Id: ValidationTest.java,v 1.7 2009/11/28 17:47:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -45,6 +45,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ValidationTest extends AbstractTestSuite {
 	
 	/**
@@ -53,16 +54,16 @@ public class ValidationTest extends AbstractTestSuite {
 	public void test_callNonQueryOperation_136778() {
 		// newApple() is not a query operation
 		OCLExpression<EClassifier> expr = parseConstraintUnvalidated(
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: Apple.allInstances()->includes(self.newApple()) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: Apple.allInstances()->includes(self.newApple()) " +
+				"endpackage");
 		
 		try {
 			ocl.validate(expr);
-			fail("Should not have successfully validated"); //$NON-NLS-1$
+			fail("Should not have successfully validated");
 		} catch (SemanticException e) {
 			// success
-			System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected exception: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -75,8 +76,8 @@ public class ValidationTest extends AbstractTestSuite {
 		
 		try {
 			helper.createInvariant(
-				"noSuchVariable.noSuchProperty->includes(self.noSuchOperation())"); //$NON-NLS-1$
-			fail("Should not have successfully parsed"); //$NON-NLS-1$
+				"noSuchVariable.noSuchProperty->includes(self.noSuchOperation())");
+			fail("Should not have successfully parsed");
 		} catch (SemanticException e) {
 			// success: semantic parse failed (not concrete parse)
 			Diagnostic diagnostic = e.getDiagnostic();
@@ -84,17 +85,17 @@ public class ValidationTest extends AbstractTestSuite {
 			assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
 			
 			// the problem reported is the unrecognized 'noSuchVariable'
-			assertTrue(diagnostic.getMessage().contains("noSuchVariable")); //$NON-NLS-1$
+			assertTrue(diagnostic.getMessage().contains("noSuchVariable"));
 			
 			// there is no complaint about the 'noSuchProperty' but there
 			// is a complaint about 'noSuchOperation'
 			boolean found = false;
 			for (Diagnostic child : diagnostic.getChildren()) {
-				assertFalse(child.getMessage().contains("noSuchProperty")); //$NON-NLS-1$
-				found = found || child.getMessage().contains("noSuchOperation"); //$NON-NLS-1$
+				assertFalse(child.getMessage().contains("noSuchProperty"));
+				found = found || child.getMessage().contains("noSuchOperation");
 			}
 		} catch (ParserException e) {
-			fail("Wrong kind of parse failure: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Wrong kind of parse failure: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -107,8 +108,8 @@ public class ValidationTest extends AbstractTestSuite {
 		
 		try {
 			helper.createInvariant(
-				"Set{noSuchVariable}->forAll(e | e.noSuchOperation())"); //$NON-NLS-1$
-			fail("Should not have successfully parsed"); //$NON-NLS-1$
+				"Set{noSuchVariable}->forAll(e | e.noSuchOperation())");
+			fail("Should not have successfully parsed");
 		} catch (SemanticException e) {
 			// success: semantic parse failed (not concrete parse)
 			Diagnostic diagnostic = e.getDiagnostic();
@@ -116,13 +117,13 @@ public class ValidationTest extends AbstractTestSuite {
 			assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
 			
 			// the problem reported is the unrecognized 'noSuchVariable'
-			assertTrue(diagnostic.getMessage().contains("noSuchVariable")); //$NON-NLS-1$
+			assertTrue(diagnostic.getMessage().contains("noSuchVariable"));
 			
 			// only one problem was reported, not two (the noSuchOperation
 			// operation was not attempted)
 			assertEquals(0, diagnostic.getChildren().size());
 		} catch (ParserException e) {
-			fail("Wrong kind of parse failure: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Wrong kind of parse failure: " + e.getLocalizedMessage());
 		}
 	}
 
