@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: KeywordsTest.java,v 1.6 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: KeywordsTest.java,v 1.7 2009/11/28 18:07:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class KeywordsTest
 	extends AbstractTestSuite {
 
@@ -50,48 +51,48 @@ public class KeywordsTest
     Class elseClass;
 	
 	public void test_isUnique_162300() {
-		helper.setContext(getMetaclass("Property")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Property"));
 		
 		try {
-			helper.createInvariant("self.isUnique implies self.upper > 1"); //$NON-NLS-1$
-            helper.createInvariant("isUnique implies self.upper > 1"); //$NON-NLS-1$
+			helper.createInvariant("self.isUnique implies self.upper > 1");
+            helper.createInvariant("isUnique implies self.upper > 1");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
     
 	public void test_package_162300() {
-        helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Class"));
         
         try {
             helper.createInvariant(
-                "self._package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)"); //$NON-NLS-1$
+                "self._package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)");
             helper.createInvariant(
-                "_package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)"); //$NON-NLS-1$
+                "_package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
     public void test_context_162300() {
-        helper.setContext(getMetaclass("Constraint")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Constraint"));
         
         try {
-            helper.createInvariant("self._context <> null implies _context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
-            helper.createInvariant("_context <> null implies self._context.oclIsKindOf(Classifier)"); //$NON-NLS-1$
+            helper.createInvariant("self._context <> null implies _context.oclIsKindOf(Classifier)");
+            helper.createInvariant("_context <> null implies self._context.oclIsKindOf(Classifier)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
     public void test_body_162300() {
-        helper.setContext(getMetaclass("OpaqueExpression")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("OpaqueExpression"));
         
         try {
-            helper.createInvariant("self.language->includes('OCL') implies self._body->notEmpty()"); //$NON-NLS-1$
-            helper.createInvariant("language->includes('OCL') implies _body->notEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("self.language->includes('OCL') implies self._body->notEmpty()");
+            helper.createInvariant("language->includes('OCL') implies _body->notEmpty()");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -99,16 +100,16 @@ public class KeywordsTest
         helper.setContext(collection);
         
         Variable<Classifier, Parameter> var = ocl.getEnvironment().getOCLFactory().createVariable();
-        var.setName("aBlock"); //$NON-NLS-1$
+        var.setName("aBlock");
         var.setType(block);
         
         ocl.getEnvironment().addElement(var.getName(), var, true);
         
         try {
-            helper.createInvariant("self.isUnique(aBlock)"); //$NON-NLS-1$
-            helper.createInvariant("isUnique(aBlock)"); //$NON-NLS-1$
+            helper.createInvariant("self.isUnique(aBlock)");
+            helper.createInvariant("isUnique(aBlock)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -116,16 +117,16 @@ public class KeywordsTest
         helper.setContext(collection);
         
         Variable<Classifier, Parameter> var = ocl.getEnvironment().getOCLFactory().createVariable();
-        var.setName("aBlock"); //$NON-NLS-1$
+        var.setName("aBlock");
         var.setType(block);
         
         ocl.getEnvironment().addElement(var.getName(), var, true);
         
         try {
-            helper.createInvariant("self.select(aBlock).isEmpty()"); //$NON-NLS-1$
-            helper.createInvariant("select(aBlock).isEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("self.select(aBlock).isEmpty()");
+            helper.createInvariant("select(aBlock).isEmpty()");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -133,10 +134,10 @@ public class KeywordsTest
         helper.setContext(block);
         
         try {
-            helper.createInvariant("self._context(self).name = 'Block'"); //$NON-NLS-1$
-            helper.createInvariant("_context(self).name = 'Block'"); //$NON-NLS-1$
+            helper.createInvariant("self._context(self).name = 'Block'");
+            helper.createInvariant("_context(self).name = 'Block'");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -145,18 +146,18 @@ public class KeywordsTest
         
         try {
             helper.createInvariant(
-                "Smalltalk::runtime::_context::language.allInstances()->notEmpty()"); //$NON-NLS-1$
+                "Smalltalk::runtime::_context::language.allInstances()->notEmpty()");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
     public void test_reservedPackageName_packageContext_183362() {
         try {
             ocl.parse(new OCLInput(
-                "package Smalltalk::runtime::_context context language inv: true endpackage")); //$NON-NLS-1$
+                "package Smalltalk::runtime::_context context language inv: true endpackage"));
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -165,27 +166,27 @@ public class KeywordsTest
         
         try {
             helper.createInvariant(
-                "let e : _else = self in _else.allInstances()->forAll(oclIsKindOf(_else))"); //$NON-NLS-1$
+                "let e : _else = self in _else.allInstances()->forAll(oclIsKindOf(_else))");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
         try {
             helper.createInvariant(
-                "self.oclIsKindOf(_context::_else)"); //$NON-NLS-1$
+                "self.oclIsKindOf(_context::_else)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
     public void test_reservedClassName_operationContext_183362() {
         try {
             ocl.parse(new OCLInput(
-                "package Smalltalk context runtime::_context::_else::doIt() : pre: true endpackage")); //$NON-NLS-1$
+                "package Smalltalk context runtime::_context::_else::doIt() : pre: true endpackage"));
             ocl.parse(new OCLInput(
-                "package Smalltalk::runtime::_context context _else::doIt() : pre: true endpackage")); //$NON-NLS-1$
+                "package Smalltalk::runtime::_context context _else::doIt() : pre: true endpackage"));
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -194,9 +195,9 @@ public class KeywordsTest
         
         try {
             helper.createInvariant(
-                "not self.oclIsInState(_init::_body)"); //$NON-NLS-1$
+                "not self.oclIsInState(_init::_body)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -212,55 +213,55 @@ public class KeywordsTest
         // create a little test model for a Smalltalk-like collection class that
         //    defines operations corresponding to OCL iterators
         
-        res = new ResourceImpl(URI.createURI("foo://uml")); //$NON-NLS-1$
+        res = new ResourceImpl(URI.createURI("foo://uml"));
         resourceSet.getResources().add(res);
         
         smalltalk = UMLFactory.eINSTANCE.createPackage();
-        smalltalk.setName("Smalltalk"); //$NON-NLS-1$
+        smalltalk.setName("Smalltalk");
         
         res.getContents().add(smalltalk);
         
-        Class object = smalltalk.createOwnedClass("Object", false); //$NON-NLS-1$
-        collection = smalltalk.createOwnedClass("Collection", false); //$NON-NLS-1$
-        block = smalltalk.createOwnedClass("Block", false); //$NON-NLS-1$
-        Class clazz = smalltalk.createOwnedClass("Class", false); //$NON-NLS-1$
+        Class object = smalltalk.createOwnedClass("Object", false);
+        collection = smalltalk.createOwnedClass("Collection", false);
+        block = smalltalk.createOwnedClass("Block", false);
+        Class clazz = smalltalk.createOwnedClass("Class", false);
         
         clazz.createGeneralization(object);
         block.createGeneralization(object);
         collection.createGeneralization(object);
         
-        clazz.createOwnedAttribute("name", getUMLString()); //$NON-NLS-1$
+        clazz.createOwnedAttribute("name", getUMLString());
         
         EList<String> names = new BasicEList<String>(1);
         EList<Type> types = new BasicEList<Type>(1);
         
-        names.add("object"); //$NON-NLS-1$
+        names.add("object");
         types.add(object);
-        block.createOwnedOperation("context", names, types, clazz).setIsQuery(true); //$NON-NLS-1$
+        block.createOwnedOperation("context", names, types, clazz).setIsQuery(true);
         
-        names.set(0, "block"); //$NON-NLS-1$
+        names.set(0, "block");
         types.set(0, block);
-        collection.createOwnedOperation("isUnique", names, types, getUMLBoolean()).setIsQuery(true); //$NON-NLS-1$
-        collection.createOwnedOperation("select", names, types, collection).setIsQuery(true); //$NON-NLS-1$
+        collection.createOwnedOperation("isUnique", names, types, getUMLBoolean()).setIsQuery(true);
+        collection.createOwnedOperation("select", names, types, collection).setIsQuery(true);
         
         names.clear();
         types.clear();
-        collection.createOwnedOperation("isEmpty", names, types, getUMLBoolean()).setIsQuery(true); //$NON-NLS-1$
+        collection.createOwnedOperation("isEmpty", names, types, getUMLBoolean()).setIsQuery(true);
         
         // create some qualified classifier and package names that need
         //    escaping of one or more segments.  Likewise state names
-        Package contextPackage = smalltalk.createNestedPackage("runtime") //$NON-NLS-1$
-            .createNestedPackage("context"); //$NON-NLS-1$
-        contextPackage.createOwnedClass("language", false); //$NON-NLS-1$
-        elseClass = contextPackage.createOwnedClass("else", false); //$NON-NLS-1$
+        Package contextPackage = smalltalk.createNestedPackage("runtime")
+            .createNestedPackage("context");
+        contextPackage.createOwnedClass("language", false);
+        elseClass = contextPackage.createOwnedClass("else", false);
         
-        elseClass.createOwnedOperation("doIt", null, null); //$NON-NLS-1$
+        elseClass.createOwnedOperation("doIt", null, null);
         
         StateMachine machine = (StateMachine) elseClass.createOwnedBehavior(
-            "StateMachine", UMLPackage.Literals.STATE_MACHINE); //$NON-NLS-1$
-        State state = (State) machine.createRegion("region").createSubvertex( //$NON-NLS-1$
-            "init", UMLPackage.Literals.STATE); //$NON-NLS-1$
-        state.createRegion("region").createSubvertex("body", //$NON-NLS-1$ //$NON-NLS-2$
+            "StateMachine", UMLPackage.Literals.STATE_MACHINE);
+        State state = (State) machine.createRegion("region").createSubvertex(
+            "init", UMLPackage.Literals.STATE);
+        state.createRegion("region").createSubvertex("body",
             UMLPackage.Literals.STATE);
     }
 }
