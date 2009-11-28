@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentTest.java,v 1.7 2009/10/07 20:39:28 ewillink Exp $
+ * $Id: OCLDocumentTest.java,v 1.8 2009/11/28 17:48:35 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -46,20 +46,21 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class OCLDocumentTest extends AbstractTestSuite {
 
 	Map<String, Constraint> constraints;
 	
 	public void test_multipleInvariants() {
-		Constraint notBlack = getConstraint("not_black"); //$NON-NLS-1$
-		Constraint notFoo = getConstraint("not_foo"); //$NON-NLS-1$
+		Constraint notBlack = getConstraint("not_black");
+		Constraint notFoo = getConstraint("not_foo");
 		
 		assertMatchingContextVariables(fruit, notBlack);
 		assertMatchingContextVariables(fruit, notFoo);
 		
 		EObject anApple = fruitFactory.create(apple);
 		anApple.eSet(fruit_color, color_black);
-		anApple.eSet(apple_label, "Foo"); //$NON-NLS-1$
+		anApple.eSet(apple_label, "Foo");
 		
 		// this constraint actually uses the derivation of the Fruit::name
 		//    property, defined in the Apple context  :-)
@@ -67,23 +68,23 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		assertFalse(ocl.check(anApple, notBlack));
 		
 		anApple.eSet(fruit_color, color_red);
-		anApple.eSet(apple_label, "Bar"); //$NON-NLS-1$
+		anApple.eSet(apple_label, "Bar");
 		
 		assertTrue(ocl.check(anApple, notFoo));
 		assertTrue(ocl.check(anApple, notBlack));
 	}
 	
 	public void test_multipleDefExpressions() {
-		assertMatchingContextVariables(fruit, getConstraint("property_helper")); //$NON-NLS-1$
-		assertMatchingContextVariables(fruit, getConstraint("operation_helper")); //$NON-NLS-1$
+		assertMatchingContextVariables(fruit, getConstraint("property_helper"));
+		assertMatchingContextVariables(fruit, getConstraint("operation_helper"));
 		
 		EObject anApple = fruitFactory.create(apple);
 		anApple.eSet(fruit_color, color_black);
-		anApple.eSet(apple_label, "Foo"); //$NON-NLS-1$
+		anApple.eSet(apple_label, "Foo");
 		
 		EObject anotherApple = fruitFactory.create(apple);
 		anotherApple.eSet(fruit_color, color_red);
-		anotherApple.eSet(apple_label, "Bar"); //$NON-NLS-1$
+		anotherApple.eSet(apple_label, "Bar");
 		
 		Set<EObject> apples = new java.util.HashSet<EObject>();
 		apples.add(anApple);
@@ -98,29 +99,29 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		
 		try {
 			// test the additional property
-			Object value = evaluate(helper, anApple, "self.otherFruits"); //$NON-NLS-1$
+			Object value = evaluate(helper, anApple, "self.otherFruits");
 			assertEquals(Collections.singleton(anotherApple), value);
 			
 			// test the additional operation
-			value = evaluate(helper, anotherApple, "self.getOtherFruits(false)"); //$NON-NLS-1$
+			value = evaluate(helper, anotherApple, "self.getOtherFruits(false)");
 			assertEquals(Collections.singleton(anApple), value);
 		} catch (ParserException e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_multipleInvariantsAndDefExpressions() {
-		Constraint notBlack = getConstraint("not_black1"); //$NON-NLS-1$
-		Constraint notFoo = getConstraint("not_foo1"); //$NON-NLS-1$
+		Constraint notBlack = getConstraint("not_black1");
+		Constraint notFoo = getConstraint("not_foo1");
 		
 		assertMatchingContextVariables(fruit, notBlack);
 		assertMatchingContextVariables(fruit, notFoo);
-		assertMatchingContextVariables(fruit, getConstraint("property_helper")); //$NON-NLS-1$
-		assertMatchingContextVariables(fruit, getConstraint("operation_helper")); //$NON-NLS-1$
+		assertMatchingContextVariables(fruit, getConstraint("property_helper"));
+		assertMatchingContextVariables(fruit, getConstraint("operation_helper"));
 		
 		EObject anApple = fruitFactory.create(apple);
 		anApple.eSet(fruit_color, color_black);
-		anApple.eSet(apple_label, "Foo"); //$NON-NLS-1$
+		anApple.eSet(apple_label, "Foo");
 		
 		// this constraint actually uses the derivation of the Fruit::name
 		//    property, defined in the Apple context  :-)
@@ -128,17 +129,17 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		assertFalse(ocl.check(anApple, notBlack));
 		
 		anApple.eSet(fruit_color, color_red);
-		anApple.eSet(apple_label, "Bar"); //$NON-NLS-1$
+		anApple.eSet(apple_label, "Bar");
 		
 		assertTrue(ocl.check(anApple, notFoo));
 		assertTrue(ocl.check(anApple, notBlack));
 		
 		anApple.eSet(fruit_color, color_black);
-		anApple.eSet(apple_label, "Foo"); //$NON-NLS-1$
+		anApple.eSet(apple_label, "Foo");
 		
 		EObject anotherApple = fruitFactory.create(apple);
 		anotherApple.eSet(fruit_color, color_red);
-		anotherApple.eSet(apple_label, "Bar"); //$NON-NLS-1$
+		anotherApple.eSet(apple_label, "Bar");
 		
 		Set<EObject> apples = new java.util.HashSet<EObject>();
 		apples.add(anApple);
@@ -153,23 +154,23 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		
 		try {
 			// test the additional property
-			Object value = evaluate(helper, anApple, "self.otherFruits1"); //$NON-NLS-1$
+			Object value = evaluate(helper, anApple, "self.otherFruits1");
 			assertEquals(Collections.singleton(anotherApple), value);
 			
 			// test the additional operation
-			value = evaluate(helper, anotherApple, "self.getOtherFruits1(false)"); //$NON-NLS-1$
+			value = evaluate(helper, anotherApple, "self.getOtherFruits1(false)");
 			assertEquals(Collections.singleton(anApple), value);
 		} catch (ParserException e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_multipleMixedOperationConstraints() {
-		Constraint textNotNull = getConstraint("text_not_null"); //$NON-NLS-1$
-		Constraint textNotLabel = getConstraint("text_not_label"); //$NON-NLS-1$
-		Constraint computeLabel = getConstraint("compute_label"); //$NON-NLS-1$
-		Constraint labelIsChanged = getConstraint("label_is_changed"); //$NON-NLS-1$
-		Constraint labelIsSet = getConstraint("label_is_set"); //$NON-NLS-1$
+		Constraint textNotNull = getConstraint("text_not_null");
+		Constraint textNotLabel = getConstraint("text_not_label");
+		Constraint computeLabel = getConstraint("compute_label");
+		Constraint labelIsChanged = getConstraint("label_is_changed");
+		Constraint labelIsSet = getConstraint("label_is_set");
 		
 		assertEquals(1, textNotNull.getConstrainedElements().size());
 		EOperation oper = (EOperation) textNotNull.getConstrainedElements().get(0);
@@ -208,15 +209,15 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		
 		try {
 			EObject anApple = fruitFactory.create(apple);
-			anApple.eSet(apple_label, "Foo"); //$NON-NLS-1$
+			anApple.eSet(apple_label, "Foo");
 			
-			assertEquals("Foo", evaluate(helper, anApple, "self.name")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertEquals("Foo", evaluate(helper, anApple, "self.name"));
 			
 			anApple.eUnset(apple_label);
 			
-			assertEquals("", evaluate(helper, anApple, "self.name")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertEquals("", evaluate(helper, anApple, "self.name"));
 		} catch (ParserException e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
     
@@ -227,14 +228,14 @@ public class OCLDocumentTest extends AbstractTestSuite {
     public void test_operationContextWithoutClassifierName_182286() {
         try {
             ocl.parse(new OCLInput(
-                "context label(s : String) : \n" + //$NON-NLS-1$
-                "  pre: true" //$NON-NLS-1$
+                "context label(s : String) : \n" +
+                "  pre: true"
                 ));
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected exception: " + e.getLocalizedMessage());
         } catch (RuntimeException e) {
-            fail("Got runtime exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Got runtime exception: " + e.getLocalizedMessage());
         }
     }
     
@@ -245,15 +246,15 @@ public class OCLDocumentTest extends AbstractTestSuite {
     public void test_dependenciesOnDefExpressions_packageContext_176109() {
         try {
             ocl.parse(new OCLInput(
-                "package ecore context EClassifier \n" + //$NON-NLS-1$
-                "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
-                "endpackage \n" + //$NON-NLS-1$
-                "package ecore context ETypedElement \n" + //$NON-NLS-1$
-                "inv: eType <> null implies eType.isHappy() \n" + //$NON-NLS-1$
-                "endpackage \n" //$NON-NLS-1$
+                "package ecore context EClassifier \n" +
+                "def: isHappy() : Boolean = true \n" +
+                "endpackage \n" +
+                "package ecore context ETypedElement \n" +
+                "inv: eType <> null implies eType.isHappy() \n" +
+                "endpackage \n"
                 ));
         } catch (ParserException e) {
-            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Should not have failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -264,15 +265,15 @@ public class OCLDocumentTest extends AbstractTestSuite {
     public void test_dependenciesOnDefExpressions_classifierContext_176109() {
         try {
             ocl.parse(new OCLInput(
-                "package ecore \n" + //$NON-NLS-1$
-                "context EClassifier \n" + //$NON-NLS-1$
-                "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
-                "context ETypedElement \n" + //$NON-NLS-1$
-                "inv: eType <> null implies eType.isHappy() \n" + //$NON-NLS-1$
-                "endpackage \n" //$NON-NLS-1$
+                "package ecore \n" +
+                "context EClassifier \n" +
+                "def: isHappy() : Boolean = true \n" +
+                "context ETypedElement \n" +
+                "inv: eType <> null implies eType.isHappy() \n" +
+                "endpackage \n"
                 ));
         } catch (ParserException e) {
-            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Should not have failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -283,14 +284,14 @@ public class OCLDocumentTest extends AbstractTestSuite {
     public void test_dependenciesOnDefExpressions_withinClassifierContext_176109() {
         try {
             ocl.parse(new OCLInput(
-                "package ecore \n" + //$NON-NLS-1$
-                "context EClassifier \n" + //$NON-NLS-1$
-                "def: isHappy() : Boolean = true \n" + //$NON-NLS-1$
-                "inv: self.isHappy() \n" + //$NON-NLS-1$
-                "endpackage \n" //$NON-NLS-1$
+                "package ecore \n" +
+                "context EClassifier \n" +
+                "def: isHappy() : Boolean = true \n" +
+                "inv: self.isHappy() \n" +
+                "endpackage \n"
                 ));
         } catch (ParserException e) {
-            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Should not have failed to parse: " + e.getLocalizedMessage());
         }
     }
 	
@@ -303,7 +304,7 @@ public class OCLDocumentTest extends AbstractTestSuite {
 		super.setUp();
 		
 		constraints = new java.util.HashMap<String, Constraint>();
-		URI uri = getTestModelURI("/model/test_constraints.ocl"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/test_constraints.ocl");
 		try {
 			URL url = new URL(uri.toString());
 			InputStream is = url.openStream();
@@ -315,13 +316,13 @@ public class OCLDocumentTest extends AbstractTestSuite {
 				constraints.put(ct.getName(), ct);
 			}
 		} catch (Exception e) {
-			fail("Failed to parse " + uri + " : " + e.getMessage()); //$NON-NLS-1$ //$NON-NLS-2$
+			fail("Failed to parse " + uri + " : " + e.getMessage());
 		}		
 	}
 	
 	Constraint getConstraint(String name) {
 		Constraint result = constraints.get(name);
-		assertNotNull("Did not find constraint " + name, result); //$NON-NLS-1$
+		assertNotNull("Did not find constraint " + name, result);
 		return result;
 	}
 	
