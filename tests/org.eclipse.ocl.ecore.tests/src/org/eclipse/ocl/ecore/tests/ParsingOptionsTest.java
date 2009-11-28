@@ -33,6 +33,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ParsingOptionsTest
 		extends AbstractTestSuite {
 
@@ -41,16 +42,16 @@ public class ParsingOptionsTest
 	 */
 	public void test_implicitRootClass_option_operations() {
 		helper.setContext(apple);
-		final String text = "not self.eIsProxy()"; //$NON-NLS-1$
+		final String text = "not self.eIsProxy()";
 
 		// parse without the option
 		try {
 			helper.createInvariant(text);
-			fail("Should not have successfully parsed."); //$NON-NLS-1$
+			fail("Should not have successfully parsed.");
 		} catch (ParserException e) {
 			// success
 			System.out
-				.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+				.println("Got expected exception: " + e.getLocalizedMessage());
 		}
 
 		ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions
@@ -67,10 +68,10 @@ public class ParsingOptionsTest
 			assertTrue(ocl.check(anApple, constraint));
 
 			((InternalEObject) anApple).eSetProxyURI(URI
-				.createURI("http://foo#proxy")); //$NON-NLS-1$
+				.createURI("http://foo#proxy"));
 			assertFalse(ocl.check(anApple, constraint));
 		} catch (ParserException e) {
-			fail("Should not have failed to parse:" + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Should not have failed to parse:" + e.getLocalizedMessage());
 		}
 	}
 
@@ -79,16 +80,16 @@ public class ParsingOptionsTest
 	 */
 	public void test_implicitRootClass_option_attributes() {
 		helper.setContext(EcorePackage.Literals.EPACKAGE);
-		final String text = "self.relatedFruits->isEmpty()"; //$NON-NLS-1$
+		final String text = "self.relatedFruits->isEmpty()";
 
 		// parse without the option
 		try {
 			helper.createInvariant(text);
-			fail("Should not have successfully parsed."); //$NON-NLS-1$
+			fail("Should not have successfully parsed.");
 		} catch (ParserException e) {
 			// success
 			System.out
-				.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+				.println("Got expected exception: " + e.getLocalizedMessage());
 		}
 
 		ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions
@@ -99,7 +100,7 @@ public class ParsingOptionsTest
 		try {
 			helper.createInvariant(text);
 		} catch (ParserException e) {
-			fail("Should not have failed to parse:" + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Should not have failed to parse:" + e.getLocalizedMessage());
 		}
 	}
 
