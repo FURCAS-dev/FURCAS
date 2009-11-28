@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AssociationTest.java,v 1.9 2009/10/07 20:41:44 ewillink Exp $
+ * $Id: AssociationTest.java,v 1.10 2009/11/28 18:13:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -76,6 +76,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class AssociationTest
 	extends AbstractTestSuite {
 
@@ -99,21 +100,21 @@ public class AssociationTest
 		
 		link(instancePackage,
 				aForest, forest_trees,
-				new Object[] {"foo", 3}, //$NON-NLS-1$
+				new Object[] {"foo", 3},
 				aTree, a_forest_tree_forest,
 				a_forest_tree);
 		
 		link(instancePackage,
 				aForest, forest_trees,
-				new Object[] {"bar", 2}, //$NON-NLS-1$
+				new Object[] {"bar", 2},
 				anotherTree, a_forest_tree_forest,
 				a_forest_tree);
 		
 		// allowed to specify no qualifiers
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Forest " + //$NON-NLS-1$
-			"inv: self.trees->asSet()" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Forest " +
+			"inv: self.trees->asSet()" +
+			" endpackage");
 		
 		Object result = evaluate(expr, aForest);
 		
@@ -121,9 +122,9 @@ public class AssociationTest
 		
 		// allowed to specify both qualifiers
 		expr = parse(
-			"package ocltest context Forest " + //$NON-NLS-1$
-			"inv: self.trees['bar', 2]" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Forest " +
+			"inv: self.trees['bar', 2]" +
+			" endpackage");
 		
 		result = evaluate(expr, aForest);
 		
@@ -134,41 +135,41 @@ public class AssociationTest
 		try {
 			// must specify both qualifiers or none
 			parse(
-				"package ocltest context Forest " + //$NON-NLS-1$
-				"inv: not self.trees['foo'].apples->isEmpty()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Forest " +
+				"inv: not self.trees['foo'].apples->isEmpty()" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		try {
 			// qualifiers must conform
 			parse(
-				"package ocltest context Forest " + //$NON-NLS-1$
-				"inv: not self.trees[3, 'foo'].apples->isEmpty()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Forest " +
+				"inv: not self.trees[3, 'foo'].apples->isEmpty()" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		try {
 			// too many qualifiers
 			parse(
-				"package ocltest context Forest " + //$NON-NLS-1$
-				"inv: not self.trees['foo', 3, 'bar'].apples->isEmpty()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Forest " +
+				"inv: not self.trees['foo', 3, 'bar'].apples->isEmpty()" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -197,9 +198,9 @@ public class AssociationTest
 		
 		// navigate the association end as usual
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Tree " + //$NON-NLS-1$
-			"inv: self.apples->forAll(a : Apple | a.color <> Color::black)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Tree " +
+			"inv: self.apples->forAll(a : Apple | a.color <> Color::black)" +
+			" endpackage");
 		
 		assertTrue(check(expr, aTree));
 		
@@ -208,9 +209,9 @@ public class AssociationTest
 		
 		// navigate to the association class, itself
 		expr = parse(
-			"package ocltest context Tree " + //$NON-NLS-1$
-			"inv: self.stem->forAll(s : Stem | s.length > 0)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Tree " +
+			"inv: self.stem->forAll(s : Stem | s.length > 0)" +
+			" endpackage");
 		
 		assertTrue(check(expr, aTree));
 		
@@ -246,9 +247,9 @@ public class AssociationTest
         
         // navigate the association end as usual
         OCLExpression<Classifier> expr = parse(
-            "package ocltest context Apple " + //$NON-NLS-1$
-            "inv: self.tree.height > 20" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package ocltest context Apple " +
+            "inv: self.tree.height > 20" +
+            " endpackage");
         
         assertTrue(check(expr, anApple));
         
@@ -257,9 +258,9 @@ public class AssociationTest
         
         // navigate to the association class, itself
         expr = parse(
-            "package ocltest context Apple " + //$NON-NLS-1$
-            "inv: self.stem.length > 0" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package ocltest context Apple " +
+            "inv: self.stem.length > 0" +
+            " endpackage");
         
         assertTrue(check(expr, anApple));
         
@@ -293,9 +294,9 @@ public class AssociationTest
 		
 		// navigate to the association class using the optional qualifier
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Tree " + //$NON-NLS-1$
-			"inv: self.stem[apples]->forAll(s : Stem | s.length > 0)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Tree " +
+			"inv: self.stem[apples]->forAll(s : Stem | s.length > 0)" +
+			" endpackage");
 		
 		assertTrue(check(expr, aTree));
 		
@@ -304,41 +305,41 @@ public class AssociationTest
 		try {
 			// cannot use role name "tree" as a qualifier
 			parse(
-				"package ocltest context Tree " + //$NON-NLS-1$
-				"inv: self.stem[tree]->forAll(s : Stem | s.length > 0)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Tree " +
+				"inv: self.stem[tree]->forAll(s : Stem | s.length > 0)" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 			
 		try {
 			// cannot use other expressions as qualifiers
 			parse(
-				"package ocltest context Tree " + //$NON-NLS-1$
-				"inv: self.stem[3]->forAll(s : Stem | s.length > 0)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Tree " +
+				"inv: self.stem[3]->forAll(s : Stem | s.length > 0)" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		try {
 			// only one qualifier is allowed
 			parse(
-				"package ocltest context Tree " + //$NON-NLS-1$
-				"inv: self.stem[apples, apples]->forAll(s : Stem | s.length > 0)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Tree " +
+				"inv: self.stem[apples, apples]->forAll(s : Stem | s.length > 0)" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -348,19 +349,19 @@ public class AssociationTest
 	public void test_associationClass_reflexive_RATLC00538077() {
 		expectModified = true;
 		// set up a reflexive association class for this test case
-		AssociationClass ac = (AssociationClass) fruitPackage.createOwnedType("AC", //$NON-NLS-1$
+		AssociationClass ac = (AssociationClass) fruitPackage.createOwnedType("AC",
 				uml.getAssociationClass());
 		
-		Property x = ac.createOwnedAttribute("x", //$NON-NLS-1$
+		Property x = ac.createOwnedAttribute("x",
 				getUMLInteger());
 		
-		Property parent = tree.createOwnedAttribute("parent", //$NON-NLS-1$
+		Property parent = tree.createOwnedAttribute("parent",
 				tree);
 		parent.setLower(0);
 		parent.setIsUnique(true);
 		parent.setIsOrdered(false);
 		
-		Property children = tree.createOwnedAttribute("children", //$NON-NLS-1$
+		Property children = tree.createOwnedAttribute("children",
 				tree);
 		children.setLower(0);
 		children.setUpper(LiteralUnlimitedNatural.UNLIMITED);
@@ -390,9 +391,9 @@ public class AssociationTest
 		
 		// navigate the association end as usual
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Tree " + //$NON-NLS-1$
-			"inv: self.children->forAll(t : Tree | t.apples->isEmpty())" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Tree " +
+			"inv: self.children->forAll(t : Tree | t.apples->isEmpty())" +
+			" endpackage");
 		
 		assertTrue(check(expr, aTree));
 		
@@ -405,9 +406,9 @@ public class AssociationTest
 		
 		// navigate to the association class, itself, using the role qualifier
 		expr = parse(
-			"package ocltest context Tree " + //$NON-NLS-1$
-			"inv: self.aC[children]->forAll(ac : AC | ac.x > 0)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Tree " +
+			"inv: self.aC[children]->forAll(ac : AC | ac.x > 0)" +
+			" endpackage");
 		
 		assertTrue(check(expr, aTree));
 		
@@ -416,9 +417,9 @@ public class AssociationTest
 		
 		// this direction is a scalar reference
 		expr = parse(
-			"package ocltest context Tree " + //$NON-NLS-1$
-			"inv: self.aC[parent].x > 0" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Tree " +
+			"inv: self.aC[parent].x > 0" +
+			" endpackage");
 		
 		assertTrue(check(expr, aChild));
 		assertFalse(check(expr, anotherChild));
@@ -428,15 +429,15 @@ public class AssociationTest
 		try {
 			// ambiguous navigation to association class
 			parse(
-				"package ocltest context Tree " + //$NON-NLS-1$
-				"inv: self.aC->forAll(ac : AC | ac.x > 0)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Tree " +
+				"inv: self.aC->forAll(ac : AC | ac.x > 0)" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -467,18 +468,18 @@ public class AssociationTest
 		// navigate the association end.  This end is multiplicity 1..1 by
 		//    definition
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Stem " + //$NON-NLS-1$
-			"inv: self.apples.color <> Color::black" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Stem " +
+			"inv: self.apples.color <> Color::black" +
+			" endpackage");
 		
 		assertTrue(check(expr, aStem));
 		assertFalse(check(expr, anotherStem));
 		
 		// this end, too, is 1..1
 		expr = parse(
-			"package ocltest context Stem " + //$NON-NLS-1$
-			"inv: self.tree.height > 20" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Stem " +
+			"inv: self.tree.height > 20" +
+			" endpackage");
 		
 		assertFalse(check(expr, aStem));
 		assertFalse(check(expr, anotherStem));
@@ -489,9 +490,9 @@ public class AssociationTest
 		
 		// I have my own attributes, too
 		expr = parse(
-			"package ocltest context Stem " + //$NON-NLS-1$
-			"inv: self.length > 0" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Stem " +
+			"inv: self.length > 0" +
+			" endpackage");
 		
 		assertTrue(check(expr, aStem));
 		assertFalse(check(expr, anotherStem));
@@ -505,16 +506,16 @@ public class AssociationTest
 		
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.");
 			assertNotNull(choices);
 			
 			// regular reference feature
-			assertChoice(choices, ChoiceKind.PROPERTY, "apples"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.PROPERTY, "apples");
 			
 			// association class navigation
-			assertChoice(choices, ChoiceKind.ASSOCIATION_CLASS, "stem"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.ASSOCIATION_CLASS, "stem");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -524,7 +525,7 @@ public class AssociationTest
 	 */
 	public void test_propertyPositions_associationClassEndCall() {
 		final String exprString =
-			"self.apples->notEmpty()"; //$NON-NLS-1$
+			"self.apples->notEmpty()";
 		OCLExpression<Classifier> constraint = createQuery(tree, exprString);
 		
 		OperationCallExp<Classifier, Operation> notEmptyExp = LocationInformationTest.asOperationCall(
@@ -533,8 +534,8 @@ public class AssociationTest
 			notEmptyExp.getSource());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
-			exprString.indexOf("apples"), //$NON-NLS-1$
-			exprString.indexOf("->")); //$NON-NLS-1$
+			exprString.indexOf("apples"),
+			exprString.indexOf("->"));
 	}
 
 	/**
@@ -543,7 +544,7 @@ public class AssociationTest
 	 */
 	public void test_propertyPositions_associationClassCall() {
 		final String exprString =
-			"self.stem[apples]->notEmpty()"; //$NON-NLS-1$
+			"self.stem[apples]->notEmpty()";
 		OCLExpression<Classifier> constraint = createQuery(tree, exprString);
 		
 		OperationCallExp<Classifier, Operation> notEmptyExp = LocationInformationTest.asOperationCall(
@@ -553,8 +554,8 @@ public class AssociationTest
 			notEmptyExp.getSource());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
-			exprString.indexOf("stem"), //$NON-NLS-1$
-			exprString.indexOf("[")); //$NON-NLS-1$
+			exprString.indexOf("stem"),
+			exprString.indexOf("["));
 	}
 
 	/**
@@ -564,7 +565,7 @@ public class AssociationTest
 	 */
 	public void test_propertyPositions_associationClassCall_implicitCollect() {
 		final String exprString =
-			"Tree.allInstances().stem[apples]->notEmpty()"; //$NON-NLS-1$
+			"Tree.allInstances().stem[apples]->notEmpty()";
 		OCLExpression<Classifier> constraint = createQuery(tree, exprString);
 		
 		OperationCallExp<Classifier, Operation> notEmptyExp = LocationInformationTest.asOperationCall(
@@ -578,8 +579,8 @@ public class AssociationTest
 			loopExp.getBody());
 		
 		LocationInformationTest.assertPropertyLocation(mpcExp,
-			exprString.indexOf("stem"), //$NON-NLS-1$
-			exprString.indexOf("[")); //$NON-NLS-1$
+			exprString.indexOf("stem"),
+			exprString.indexOf("["));
 	}
 
 	/**
@@ -588,7 +589,7 @@ public class AssociationTest
 	 */
 	public void test_propertyPositions_associationClassQualified() {
 		final String exprString =
-			"self.stem[apples]->notEmpty()"; //$NON-NLS-1$
+			"self.stem[apples]->notEmpty()";
 		OCLExpression<Classifier> constraint = createQuery(tree, exprString);
 		
 		OperationCallExp<Classifier, Operation> notEmptyExp = LocationInformationTest.asOperationCall(
@@ -603,8 +604,8 @@ public class AssociationTest
 		OCLExpression<Classifier> qualifier = qualifiers.get(0);
 		
 		LocationInformationTest.assertLocation(qualifier,
-			exprString.indexOf("apples"), //$NON-NLS-1$
-			exprString.indexOf("]->")); //$NON-NLS-1$
+			exprString.indexOf("apples"),
+			exprString.indexOf("]->"));
 	}
 
 	/**
@@ -614,7 +615,7 @@ public class AssociationTest
 	 */
 	public void test_propertyPositions_associationClassQualified_implicitCollect() {
 		final String exprString =
-			"Tree.allInstances().stem[apples]->notEmpty()"; //$NON-NLS-1$
+			"Tree.allInstances().stem[apples]->notEmpty()";
 		OCLExpression<Classifier> constraint = createQuery(tree, exprString);
 		
 		OperationCallExp<Classifier, Operation> notEmptyExp = LocationInformationTest.asOperationCall(
@@ -633,8 +634,8 @@ public class AssociationTest
 		OCLExpression<Classifier> qualifier = qualifiers.get(0);
 		
 		LocationInformationTest.assertLocation(qualifier,
-			exprString.indexOf("apples"), //$NON-NLS-1$
-			exprString.indexOf("]->")); //$NON-NLS-1$
+			exprString.indexOf("apples"),
+			exprString.indexOf("]->"));
 	}
 	
 	/**
@@ -644,19 +645,19 @@ public class AssociationTest
 	 */
 	public void test_associationNullContext_bugzilla121614() {
 		// Employee class
-		Class employee = instancePackage.createOwnedClass("Employee", false); //$NON-NLS-1$
+		Class employee = instancePackage.createOwnedClass("Employee", false);
 		
 		// manager reference
-		employee.createOwnedAttribute("manager", employee); //$NON-NLS-1$
+		employee.createOwnedAttribute("manager", employee);
 				
 		// create our test instance
 		InstanceSpecification emp1 = instantiate(instancePackage, employee);
 
 		// parse & evaluate expression
 		OCLExpression<Classifier> expr = parse(
-				"package instances context Employee " + //$NON-NLS-1$
-				"inv: self.manager.manager" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package instances context Employee " +
+				"inv: self.manager.manager" +
+				" endpackage");
 
 		Object result = evaluate(expr, emp1);
 		assertInvalid(result);
@@ -669,9 +670,9 @@ public class AssociationTest
 	public void test_qualifiedAssociation_scalar_133435() {
 		// unqualified navigation
 		OCLExpression<Classifier> expr = parse(
-				"package ocltest context Forest " + //$NON-NLS-1$
-				"inv: self.trees" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Forest " +
+				"inv: self.trees" +
+				" endpackage");
 			
 		assertTrue(expr.getType() instanceof CollectionType);
 		CollectionType collType = (CollectionType) expr.getType();
@@ -679,32 +680,32 @@ public class AssociationTest
 		
 		// qualified navigation
 		expr = parse(
-			"package ocltest context Forest " + //$NON-NLS-1$
-			"inv: self.trees['foo', 3]" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Forest " +
+			"inv: self.trees['foo', 3]" +
+			" endpackage");
 		
 		assertSame(tree, expr.getType());
 	}
 
     public void test_nonNavigableAttribute() {
-        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " +
+            "inv: forest.trees->includes(self)" +
+            " endpackage");
 
         EPackage epackage = UMLUtil.convertToEcore(fruitPackage, null)
             .iterator().next();
         EFactory factory = epackage.getEFactoryInstance();
 
         // create a resource to provide the context of instance searches
-        Resource res = new ResourceImpl(URI.createURI("test://foo")); //$NON-NLS-1$
+        Resource res = new ResourceImpl(URI.createURI("test://foo"));
         res.eAdapters().add(new ECrossReferenceAdapter());
 
         resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 
         try {
-            EClass eTree = (EClass) epackage.getEClassifier("Tree"); //$NON-NLS-1$
-            EClass eForest = (EClass) epackage.getEClassifier("Forest"); //$NON-NLS-1$
-            EStructuralFeature eTrees = eForest.getEStructuralFeature("trees"); //$NON-NLS-1$
+            EClass eTree = (EClass) epackage.getEClassifier("Tree");
+            EClass eForest = (EClass) epackage.getEClassifier("Forest");
+            EStructuralFeature eTrees = eForest.getEStructuralFeature("trees");
 
             EObject aForest = factory.create(eForest);
             res.getContents().add(aForest);
@@ -728,9 +729,9 @@ public class AssociationTest
     }
 
     public void test_nonNavigableAttribute_instanceSpecification() {
-        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " +
+            "inv: forest.trees->includes(self)" +
+            " endpackage");
 
         InstanceSpecification aForest = instantiate(instancePackage, forest);
 
@@ -752,12 +753,12 @@ public class AssociationTest
         tree_forest.setName(null); // unnamed end
         
         // create a resource to provide the context of instance searches
-        Resource res = new ResourceImpl(URI.createURI("test://foo")); //$NON-NLS-1$
+        Resource res = new ResourceImpl(URI.createURI("test://foo"));
         res.eAdapters().add(new ECrossReferenceAdapter());
 
-        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " +
+            "inv: forest.trees->includes(self)" +
+            " endpackage");
 
         EPackage epackage = UMLUtil.convertToEcore(fruitPackage, null)
             .iterator().next();
@@ -765,9 +766,9 @@ public class AssociationTest
 
         resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 
-        EClass eTree = (EClass) epackage.getEClassifier("Tree"); //$NON-NLS-1$
-        EClass eForest = (EClass) epackage.getEClassifier("Forest"); //$NON-NLS-1$
-        EStructuralFeature eTrees = eForest.getEStructuralFeature("trees"); //$NON-NLS-1$
+        EClass eTree = (EClass) epackage.getEClassifier("Tree");
+        EClass eForest = (EClass) epackage.getEClassifier("Forest");
+        EStructuralFeature eTrees = eForest.getEStructuralFeature("trees");
 
         EObject aForest = factory.create(eForest);
         res.getContents().add(aForest);
@@ -794,9 +795,9 @@ public class AssociationTest
         assertNotNull(tree_forest.getName());
         tree_forest.setName(null); // unnamed end
         
-        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        OCLExpression<Classifier> expr = parseConstraint("package ocltest context Tree " +
+            "inv: forest.trees->includes(self)" +
+            " endpackage");
 
         InstanceSpecification aForest = instantiate(instancePackage, forest);
 
@@ -814,22 +815,22 @@ public class AssociationTest
         expectModified = true;
         // create a duplicate end
         forest.createAssociation(
-            true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree, //$NON-NLS-1$
-            false, AggregationKind.SHARED_LITERAL, "forest", 0, 1); //$NON-NLS-1$
+            true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree,
+            false, AggregationKind.SHARED_LITERAL, "forest", 0, 1);
         
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(),
             BasicEnvironment.class);
         benv.setOption(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
             ProblemHandler.Severity.WARNING);
         
-        parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        parseConstraint("package ocltest context Tree " +
+            "inv: forest.trees->includes(self)" +
+            " endpackage");
 
         Diagnostic diag = ocl.getProblems();
         assertNotNull(diag);
         assertEquals(Diagnostic.WARNING, diag.getSeverity());
-        System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
+        System.out.println("Got expected warning: " + diag.getMessage());
     }
 
     public void test_associationEndAmbiguity_unnamed_194245() {
@@ -841,7 +842,7 @@ public class AssociationTest
         
         // create a duplicate end
         forest.createAssociation(
-            true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree, //$NON-NLS-1$
+            true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree,
             false, AggregationKind.SHARED_LITERAL, null, 0, 1); // unnamed
         
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(),
@@ -849,46 +850,46 @@ public class AssociationTest
         benv.setOption(ProblemOption.AMBIGUOUS_ASSOCIATION_ENDS,
             ProblemHandler.Severity.WARNING);
         
-        parseConstraint("package ocltest context Tree " + //$NON-NLS-1$
-            "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        parseConstraint("package ocltest context Tree " +
+            "inv: forest.trees->includes(self)" +
+            " endpackage");
 
         Diagnostic diag = ocl.getProblems();
         assertNotNull(diag);
         assertEquals(Diagnostic.WARNING, diag.getSeverity());
-        System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
+        System.out.println("Got expected warning: " + diag.getMessage());
     }
 
     public void test_associationEndAmbiguity_errorSeverity_194245() {
         expectModified = true;
         // create a duplicate end
         forest.createAssociation(
-            true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree, //$NON-NLS-1$
-            false, AggregationKind.SHARED_LITERAL, "forest", 0, 1); //$NON-NLS-1$
+            true, AggregationKind.SHARED_LITERAL, "someTrees", 0, -1, tree,
+            false, AggregationKind.SHARED_LITERAL, "forest", 0, 1);
         
         try {
-            ocl.parse(new OCLInput("package ocltest context Tree " + //$NON-NLS-1$
-                "inv: forest.trees->includes(self)" + //$NON-NLS-1$
-                " endpackage")); //$NON-NLS-1$
+            ocl.parse(new OCLInput("package ocltest context Tree " +
+                "inv: forest.trees->includes(self)" +
+                " endpackage"));
     
-            fail("Should not have parsed"); //$NON-NLS-1$
+            fail("Should not have parsed");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected exception: " + e.getLocalizedMessage());
         }
     }
 
     public void test_nonNavigableAttribute_inheritedAssociation_194245() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package uml context LiteralNull " + //$NON-NLS-1$
-            "inv: not owningProperty.type.oclIsUndefined()" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package uml context LiteralNull " +
+            "inv: not owningProperty.type.oclIsUndefined()" +
+            " endpackage");
 
         Package pkg = UMLFactory.eINSTANCE.createPackage();
-        pkg.setName("pkg"); //$NON-NLS-1$
+        pkg.setName("pkg");
         
-        Class a = pkg.createOwnedClass("A", false); //$NON-NLS-1$
-        Property foo = a.createOwnedAttribute("foo", null); //$NON-NLS-1$
+        Class a = pkg.createOwnedClass("A", false);
+        Property foo = a.createOwnedAttribute("foo", null);
         
         LiteralNull nullVal = (LiteralNull) foo.createDefaultValue(null, null,
             UMLPackage.Literals.LITERAL_NULL);
@@ -902,24 +903,24 @@ public class AssociationTest
 
     public void test_unnamedAttribute_inheritedAssociation_194245() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package uml context Class " + //$NON-NLS-1$
-            "inv: instanceSpecification.classifier->excluding(self)->isEmpty()" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package uml context Class " +
+            "inv: instanceSpecification.classifier->excluding(self)->isEmpty()" +
+            " endpackage");
 
         Package pkg = UMLFactory.eINSTANCE.createPackage();
-        pkg.setName("pkg"); //$NON-NLS-1$
+        pkg.setName("pkg");
         
-        Class a = pkg.createOwnedClass("A", false); //$NON-NLS-1$
-        Class b = pkg.createOwnedClass("B", false); //$NON-NLS-1$
+        Class a = pkg.createOwnedClass("A", false);
+        Class b = pkg.createOwnedClass("B", false);
 
         InstanceSpecification instance = (InstanceSpecification) pkg.createPackagedElement(
-            "anA", UMLPackage.Literals.INSTANCE_SPECIFICATION); //$NON-NLS-1$
+            "anA", UMLPackage.Literals.INSTANCE_SPECIFICATION);
         instance.getClassifiers().add(a);
 
         assertTrue(check(expr, a));
         
         instance = (InstanceSpecification) pkg.createPackagedElement(
-            "anotherA", UMLPackage.Literals.INSTANCE_SPECIFICATION); //$NON-NLS-1$
+            "anotherA", UMLPackage.Literals.INSTANCE_SPECIFICATION);
         instance.getClassifiers().add(a);
         
         assertTrue(check(expr, a));
@@ -958,18 +959,18 @@ public class AssociationTest
         // navigate the association end.  This end is multiplicity 1..1 by
         //    definition
         OCLExpression<Classifier> expr = parse(
-            "package ocltest context A_Forest_Tree " + //$NON-NLS-1$
-            "inv: self.trees.height > 0" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package ocltest context A_Forest_Tree " +
+            "inv: self.trees.height > 0" +
+            " endpackage");
         
         assertTrue(check(expr, aLink));
         assertFalse(check(expr, anotherLink));
         
         // this end, too, is 1..1
         expr = parse(
-            "package ocltest context A_Forest_Tree " + //$NON-NLS-1$
-            "inv: self.forest.area > 1000" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package ocltest context A_Forest_Tree " +
+            "inv: self.forest.area > 1000" +
+            " endpackage");
         
         assertFalse(check(expr, aLink));
         assertFalse(check(expr, anotherLink));
@@ -988,20 +989,20 @@ public class AssociationTest
     public void test_classGeneralResolvesToNothing_251808() {
     	try {
     		assertNull(
-				"Should not find redefined property Classifier::general", //$NON-NLS-1$
+				"Should not find redefined property Classifier::general",
 				OCLUtil.getAdapter(ocl.getEnvironment(),
 					Environment.Lookup.class).tryLookupProperty(
-					getMetaclass("Class"), "general")); //$NON-NLS-1$//$NON-NLS-2$
+					getMetaclass("Class"), "general"));
     	} catch (AmbiguousLookupException e) {
-    		fail("Should not be an ambiguous look-up"); //$NON-NLS-1$
+    		fail("Should not be an ambiguous look-up");
     	} catch (LookupException e) {
-    		fail("Should not be a look-up exception"); //$NON-NLS-1$
+    		fail("Should not be a look-up exception");
     	}
     	
     	// this should parse OK, though
-        parseConstraint("package uml context Class " + //$NON-NLS-1$
-            "inv: self.oclAsType(Classifier).general->isEmpty()" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        parseConstraint("package uml context Class " +
+            "inv: self.oclAsType(Classifier).general->isEmpty()" +
+            " endpackage");
     }
 
 	//
@@ -1013,10 +1014,10 @@ public class AssociationTest
 		super.setUp();
 		
 		instanceResource = resourceSet.createResource(
-				URI.createFileURI("/tmp/instances.uml")); //$NON-NLS-1$
+				URI.createFileURI("/tmp/instances.uml"));
 		
 		instancePackage = umlf.createPackage();
-		instancePackage.setName("instances"); //$NON-NLS-1$
+		instancePackage.setName("instances");
 		instanceResource.getContents().add(instancePackage);
 	}
 }
