@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExtensibilityTest.java,v 1.2 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: ExtensibilityTest.java,v 1.3 2009/11/28 17:47:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -59,6 +59,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ExtensibilityTest
     extends AbstractTestSuite {
 
@@ -70,17 +71,17 @@ public class ExtensibilityTest
         helper.setContext(EcorePackage.Literals.EPACKAGE);
         
         try {
-            helper.createInvariant("not self.eClassifiers->isEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("not self.eClassifiers->isEmpty()");
         } catch (ParserException e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
         try {
             ocl.parse(new OCLInput(
-                "context ecore::EPackage\n" + //$NON-NLS-1$
-                "inv: not self.eClassifiers->isEmpty()")); //$NON-NLS-1$
+                "context ecore::EPackage\n" +
+                "inv: not self.eClassifiers->isEmpty()"));
         } catch (ParserException e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
 
@@ -92,29 +93,29 @@ public class ExtensibilityTest
         helper.setContext(EcorePackage.Literals.EPACKAGE);
         
         try {
-            helper.createInvariant("not self.\"eClassifiers\"->isEmpty()"); //$NON-NLS-1$
+            helper.createInvariant("not self.\"eClassifiers\"->isEmpty()");
             
             Diagnostic diag = helper.getProblems();
             assertNotNull(diag);
             assertEquals(Diagnostic.WARNING, diag.getSeverity());
             
-            System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
+            System.out.println("Got expected warning: " + diag.getMessage());
         } catch (ParserException e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
         try {
             ocl.parse(new OCLInput(
-                "context ecore::EPackage\n" + //$NON-NLS-1$
-                "inv: not self.\"eClassifiers\"->isEmpty()")); //$NON-NLS-1$
+                "context ecore::EPackage\n" +
+                "inv: not self.\"eClassifiers\"->isEmpty()"));
             
             Diagnostic diag = ocl.getProblems();
             assertNotNull(diag);
             assertEquals(Diagnostic.WARNING, diag.getSeverity());
             
-            System.out.println("Got expected warning: " + diag.getMessage()); //$NON-NLS-1$
+            System.out.println("Got expected warning: " + diag.getMessage());
         } catch (ParserException e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
 
@@ -126,21 +127,21 @@ public class ExtensibilityTest
         helper.setContext(EcorePackage.Literals.EPACKAGE);
         
         try {
-            helper.createInvariant("not self.classifiers->isEmpty()"); //$NON-NLS-1$
-            fail("Should not have parsed"); //$NON-NLS-1$
+            helper.createInvariant("not self.classifiers->isEmpty()");
+            fail("Should not have parsed");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected error: " + e.getLocalizedMessage());
         }
         
         try {
             ocl.parse(new OCLInput(
-                "context ecore::EPackage\n" + //$NON-NLS-1$
-                "inv: not self.classifiers->isEmpty()")); //$NON-NLS-1$
-            fail("Should not have parsed"); //$NON-NLS-1$
+                "context ecore::EPackage\n" +
+                "inv: not self.classifiers->isEmpty()"));
+            fail("Should not have parsed");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected error: " + e.getLocalizedMessage());
         }
     }
 
@@ -152,21 +153,21 @@ public class ExtensibilityTest
         helper.setContext(EcorePackage.Literals.EPACKAGE);
         
         try {
-            helper.createInvariant("not self.;->isEmpty()"); //$NON-NLS-1$
-            fail("Should not have parsed"); //$NON-NLS-1$
+            helper.createInvariant("not self.;->isEmpty()");
+            fail("Should not have parsed");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected error: " + e.getLocalizedMessage());
         }
         
         try {
             ocl.parse(new OCLInput(
-                "context ecore::EPackage\n" + //$NON-NLS-1$
-                "inv: not self.;->isEmpty()")); //$NON-NLS-1$
-            fail("Should not have parsed"); //$NON-NLS-1$
+                "context ecore::EPackage\n" +
+                "inv: not self.;->isEmpty()"));
+            fail("Should not have parsed");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected error: " + e.getLocalizedMessage());
         }
     }
     
