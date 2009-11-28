@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationTest.java,v 1.3 2009/10/07 20:41:44 ewillink Exp $
+ * $Id: ValidationTest.java,v 1.4 2009/11/28 18:17:32 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ValidationTest extends AbstractTestSuite {
 	
 	/**
@@ -36,16 +37,16 @@ public class ValidationTest extends AbstractTestSuite {
         expectModified = true;
 		// newApple() is not a query operation
 		OCLExpression<Classifier> expr = parseConstraintUnvalidated(
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: Apple.allInstances()->includes(self.newApple()) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: Apple.allInstances()->includes(self.newApple()) " +
+				"endpackage");
 		
 		try {
 			ocl.validate(expr);
-			fail("Should not have successfully validated"); //$NON-NLS-1$
+			fail("Should not have successfully validated");
 		} catch (SemanticException e) {
 			// success
-			System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected exception: " + e.getLocalizedMessage());
 		}
 	}
 
