@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.9 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.10 2009/11/28 18:08:20 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -68,6 +68,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class UMLEnvironmentTest
     extends AbstractTestSuite {
     
@@ -84,14 +85,14 @@ public class UMLEnvironmentTest
         
         try {
             constraint = helper.createInvariant(
-                    "self.regexMatch('\\d{3}-\\d{3}-\\d{3}') <> null"); //$NON-NLS-1$
+                    "self.regexMatch('\\d{3}-\\d{3}-\\d{3}') <> null");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
-        assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
-        assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
-        assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
+        assertTrue(ocl.check("123-456-789", constraint));
+        assertFalse(ocl.check("123-4567-890", constraint));
+        assertFalse(ocl.check("123-abc-456", constraint));
     }
     
     /**
@@ -107,15 +108,15 @@ public class UMLEnvironmentTest
             EvaluationMode.INSTANCE_MODEL);
 
         OCL.Helper helper = ocl.createOCLHelper();
-        helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Element"));
 
         Constraint constraint = null;
         
         try {
             constraint = helper.createInvariant(
-                    "self.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+                    "self.oclIsKindOf(InstanceSpecification)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
         InstanceSpecification instance1 = (InstanceSpecification) fruitPackage.createPackagedElement(
@@ -127,7 +128,7 @@ public class UMLEnvironmentTest
             // then this would have checked true
             assertFalse(ocl.check(instance1, constraint));
             
-            instance1.getClassifiers().add(getMetaclass("InstanceSpecification")); //$NON-NLS-1$
+            instance1.getClassifiers().add(getMetaclass("InstanceSpecification"));
             
             // now we really are an instance of InstanceSpecification
             assertTrue(ocl.check(instance1, constraint));
@@ -150,18 +151,18 @@ public class UMLEnvironmentTest
             EvaluationMode.RUNTIME_OBJECTS);
 
         OCL.Helper helper = ocl.createOCLHelper();
-        helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Element"));
 
         Constraint constraint1 = null;
         Constraint constraint2 = null;
         
         try {
             constraint1 = helper.createInvariant(
-                    "self.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+                    "self.oclIsKindOf(InstanceSpecification)");
             constraint2 = helper.createInvariant(
-                    "self.oclIsKindOf(ocltest::Apple)"); //$NON-NLS-1$
+                    "self.oclIsKindOf(ocltest::Apple)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
         InstanceSpecification instance1 = (InstanceSpecification) fruitPackage.createPackagedElement(
@@ -194,18 +195,18 @@ public class UMLEnvironmentTest
             EvaluationMode.ADAPTIVE);
 
         OCL.Helper helper = ocl.createOCLHelper();
-        helper.setContext(getMetaclass("Element")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Element"));
 
         Constraint constraint = null;
         Constraint ownerConstraint = null;
         
         try {
             constraint = helper.createInvariant(
-            	"self.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+            	"self.oclIsKindOf(InstanceSpecification)");
             ownerConstraint = helper.createInvariant(
-            	"self.owner.oclIsKindOf(InstanceSpecification)"); //$NON-NLS-1$
+            	"self.owner.oclIsKindOf(InstanceSpecification)");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
         InstanceSpecification instance1 = (InstanceSpecification) fruitPackage.createPackagedElement(
@@ -214,7 +215,7 @@ public class UMLEnvironmentTest
         Comment comment = instance1.createOwnedComment();
         InstanceSpecification instance2 = (InstanceSpecification) fruitPackage.createPackagedElement(
             null, UMLPackage.Literals.INSTANCE_SPECIFICATION);
-        instance2.getClassifiers().add(getMetaclass("InstanceSpecification")); //$NON-NLS-1$
+        instance2.getClassifiers().add(getMetaclass("InstanceSpecification"));
         
         try {
             // adaptive mode handles instance specification (M1 level) when it
@@ -291,40 +292,40 @@ public class UMLEnvironmentTest
 			.setOption(ocl.getEvaluationEnvironment(),
 				UMLEvaluationOptions.EVALUATION_MODE,
 				EvaluationMode.INSTANCE_MODEL);
-		URI uri = getTestModelURI("/model/instances.uml"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/instances.uml");
 		Resource res = resourceSet.getResource(uri, true);
 		Package instancesPkg = (Package) EcoreUtil.getObjectByType(res
 			.getContents(), UMLPackage.Literals.PACKAGE);
 
-		Class classA = (Class) instancesPkg.getOwnedType("A"); //$NON-NLS-1$
-		Class classB = (Class) instancesPkg.getOwnedType("B"); //$NON-NLS-1$
+		Class classA = (Class) instancesPkg.getOwnedType("A");
+		Class classB = (Class) instancesPkg.getOwnedType("B");
 		InstanceSpecification anA = (InstanceSpecification) instancesPkg
-			.getPackagedElement("anA"); //$NON-NLS-1$
+			.getPackagedElement("anA");
 		InstanceSpecification anotherA = (InstanceSpecification) instancesPkg
-			.getPackagedElement("anotherA"); //$NON-NLS-1$
+			.getPackagedElement("anotherA");
 		InstanceSpecification aB = (InstanceSpecification) instancesPkg
-			.getPackagedElement("aB"); //$NON-NLS-1$
+			.getPackagedElement("aB");
 
 		// test forward navigation to be sure
 		OCL.Helper helper = ocl.createOCLHelper();
 		helper.setContext(classA);
 		OCLExpression<Classifier> query = null;
 		try {
-			query = helper.createQuery("self.b"); //$NON-NLS-1$
+			query = helper.createQuery("self.b");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 
 		Object result = ocl.evaluate(anA, query);
 		assertEquals(
-			"Wrong result in forward direction", Collections.singleton(aB), result); //$NON-NLS-1$
+			"Wrong result in forward direction", Collections.singleton(aB), result);
 
 		// now for the interesting test: inverse navigation
 		helper.setContext(classB);
 		try {
-			query = helper.createQuery("self.a"); //$NON-NLS-1$
+			query = helper.createQuery("self.a");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 
 		result = ocl.evaluate(aB, query);
@@ -332,9 +333,9 @@ public class UMLEnvironmentTest
 		assertTrue(result instanceof Collection<?>);
 
 		Collection<?> collection = (Collection<?>) result;
-		assertEquals("Wrong number of results", 2, collection.size()); //$NON-NLS-1$
-		assertTrue("anA not in the results", collection.contains(anA)); //$NON-NLS-1$
-		assertTrue("anotherA not in the results", collection.contains(anotherA)); //$NON-NLS-1$
+		assertEquals("Wrong number of results", 2, collection.size());
+		assertTrue("anA not in the results", collection.contains(anA));
+		assertTrue("anotherA not in the results", collection.contains(anotherA));
 	}
     
     //
@@ -370,13 +371,13 @@ public class UMLEnvironmentTest
         private void defineCustomOperations() {
             // pattern-matching operation
             regexMatch = UMLFactory.eINSTANCE.createOperation();
-            regexMatch.setName("regexMatch"); //$NON-NLS-1$
+            regexMatch.setName("regexMatch");
             regexMatch.setType(getOCLStandardLibrary().getString());
-            regexMatch.createOwnedParameter("pattern", getOCLStandardLibrary().getString()); //$NON-NLS-1$
+            regexMatch.createOwnedParameter("pattern", getOCLStandardLibrary().getString());
             regexMatch.setIsQuery(true);
             
             // annotate it so that we will recognize it in the evaluation environment
-            regexMatch.addKeyword("MyEnvironment"); //$NON-NLS-1$
+            regexMatch.addKeyword("MyEnvironment");
             
             // define it as an additional operation on OCL String
             addHelperOperation(getOCLStandardLibrary().getString(), regexMatch);
@@ -395,12 +396,12 @@ public class UMLEnvironmentTest
         
         @Override
         public Object callOperation(Operation operation, int opcode, Object source, Object[] args) {
-            if (!operation.getKeywords().contains("MyEnvironment")) { //$NON-NLS-1$
+            if (!operation.getKeywords().contains("MyEnvironment")) {
                 // not our custom regex operation
                 return super.callOperation(operation, opcode, source, args);
             }
             
-            if ("regexMatch".equals(operation.getName())) { //$NON-NLS-1$
+            if ("regexMatch".equals(operation.getName())) {
                 Pattern pattern = Pattern.compile((String) args[0]);
                 Matcher matcher = pattern.matcher((String) source);
                 
@@ -424,7 +425,7 @@ public class UMLEnvironmentTest
         createEnvironment(Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> parent) {
             if (!(parent instanceof MyEnvironment)) {
                 throw new IllegalArgumentException(
-                    "Parent environment must be my environment: " + parent); //$NON-NLS-1$
+                    "Parent environment must be my environment: " + parent);
             }
             
             MyEnvironment result = new MyEnvironment((MyEnvironment) parent);
