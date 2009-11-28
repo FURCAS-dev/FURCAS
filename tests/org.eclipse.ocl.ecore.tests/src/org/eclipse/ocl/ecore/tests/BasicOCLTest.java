@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.14 2009/11/09 22:15:53 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.15 2009/11/28 17:40:23 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -44,6 +44,7 @@ import org.eclipse.ocl.types.CollectionType;
  * Basic tests for OCL engine.
  *
  */
+@SuppressWarnings("nls")
 public class BasicOCLTest
 	extends AbstractTestSuite {
     
@@ -51,7 +52,7 @@ public class BasicOCLTest
         Resource res = ocl.getEnvironment().getOCLStandardLibrary().getOclAny().eResource();
         URI oldURI = res.getURI();
         
-        res.setURI(URI.createFileURI("c:/temp/oclstdlib.ecore")); //$NON-NLS-1$
+        res.setURI(URI.createFileURI("c:/temp/oclstdlib.ecore"));
         try {
             res.save(Collections.EMPTY_MAP);
         } catch (IOException e) {
@@ -84,17 +85,17 @@ public class BasicOCLTest
 	
 	public void testTrivialExpressions() {
 		OCLExpression<EClassifier> constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: true " +
+			"endpackage");
 		
 		Object result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
@@ -102,73 +103,73 @@ public class BasicOCLTest
 	
 	public void testLogicalConnectives() {
 		OCLExpression<EClassifier> constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: true and true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: true and true " +
+			"endpackage");
 		
 		Object result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: false or false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: false or false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: true and false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: true and false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: true or false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: true or false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: not true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: not true " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: true implies true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: true implies true " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: true implies false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: true implies false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.FALSE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: false implies true " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: false implies true " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: false implies false " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: false implies false " +
+			"endpackage");
 		
 		result = evaluate(constraint);
 		assertEquals(Boolean.TRUE, result);
@@ -176,63 +177,63 @@ public class BasicOCLTest
 	
 	public void testSimpleAttributeExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<EClassifier> constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: self.name <> 'foo' " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: self.name <> 'foo' " +
+			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		assertFalse(check(constraint, eCls));
 	}
 	
 	public void testCollectionExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		EAttribute eAttr = EcoreFactory.eINSTANCE.createEAttribute();
-		eAttr.setName("att1"); //$NON-NLS-1$
+		eAttr.setName("att1");
 		eCls.getEStructuralFeatures().add(eAttr);
 		eAttr = EcoreFactory.eINSTANCE.createEAttribute();
-		eAttr.setName("att2"); //$NON-NLS-1$
+		eAttr.setName("att2");
 		eCls.getEStructuralFeatures().add(eAttr);
 		
 		assertEquals(eCls.getEAttributes().size(),2);
 		
 		OCLExpression<EClassifier> constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: self.eAttributes->size() = 2 " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: self.eAttributes->size() = 2 " +
+			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 		
 		constraint = parseConstraint(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: self.eAttributes->forAll(a: EAttribute | not a.derived) " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: self.eAttributes->forAll(a: EAttribute | not a.derived) " +
+			"endpackage");
 		
 		assertTrue(check(constraint, eCls));
 	}
 	
 	public void testNonBooleansExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<EClassifier> expr = parse(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: self.name " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: self.name " +
+			"endpackage ");
 		
 		Object result = evaluate(expr, eCls);
-		assertEquals("bar", result); //$NON-NLS-1$
+		assertEquals("bar", result);
 		
 		expr = parse(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: self " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: self " +
+			"endpackage");
 		
 		result = evaluate(expr, eCls);
 		assertSame(eCls, result);
@@ -240,12 +241,12 @@ public class BasicOCLTest
 	
 	public void testIfExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<EClassifier> expr = parse(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: if self.abstract then name = 'bar' else name <> 'bar' endif " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: if self.abstract then name = 'bar' else name <> 'bar' endif " +
+			"endpackage ");
 		
 		assertFalse(check(expr, eCls));
 		
@@ -253,19 +254,19 @@ public class BasicOCLTest
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		assertFalse(check(expr, eCls));
 	}
 	
 	public void testIfExpressions_184048() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		OCLExpression<EClassifier> expr = parse(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: if self.abstract then name = 'bar' else name <> 'bar' endif ->asSequence()->at(1)" + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: if self.abstract then name = 'bar' else name <> 'bar' endif ->asSequence()->at(1)" +
+			"endpackage ");
 		
 		assertFalse(check(expr, eCls));
 		
@@ -273,30 +274,30 @@ public class BasicOCLTest
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		assertFalse(check(expr, eCls));
 		
 		OCLExpression<EClassifier> expr2 = parse(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: 7 = 1 + let a : String = invalid in 1 + if self.oclIsUndefined() then 1 else 5 endif " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: 7 = 1 + let a : String = invalid in 1 + if self.oclIsUndefined() then 1 else 5 endif " +
+			"endpackage ");
 		assertTrue(check(expr2, eCls));
 	}
 	
 	public void testLetExpressions() {
 		EClass eCls = EcoreFactory.eINSTANCE.createEClass();
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		OCLExpression<EClassifier> expr = parse(
-			"package ecore context EClass " + //$NON-NLS-1$
-			"inv: let feats : OrderedSet(EStructuralFeature) = self.eAllStructuralFeatures in " + //$NON-NLS-1$
-			"  feats->isEmpty() implies name <> 'bar' " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EClass " +
+			"inv: let feats : OrderedSet(EStructuralFeature) = self.eAllStructuralFeatures in " +
+			"  feats->isEmpty() implies name <> 'bar' " +
+			"endpackage ");
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("bar"); //$NON-NLS-1$
+		eCls.setName("bar");
 		
 		assertFalse(check(expr, eCls));
 		
@@ -304,7 +305,7 @@ public class BasicOCLTest
 		
 		assertTrue(check(expr, eCls));
 		
-		eCls.setName("foo"); //$NON-NLS-1$
+		eCls.setName("foo");
 		
 		assertTrue(check(expr, eCls));
 	}
@@ -315,19 +316,19 @@ public class BasicOCLTest
 	 */
 	public void test_dataTypeAsContext() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ecore context EString " + //$NON-NLS-1$
-			"inv: self.toUpper() <> self.toLower() " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EString " +
+			"inv: self.toUpper() <> self.toLower() " +
+			"endpackage ");
 		
-		assertTrue(check(expr, "anything")); //$NON-NLS-1$
-		assertTrue(check(expr, "ANYTHING")); //$NON-NLS-1$
+		assertTrue(check(expr, "anything"));
+		assertTrue(check(expr, "ANYTHING"));
 		
 		expr = parse(
-			"package ecore context EString " + //$NON-NLS-1$
-			"inv: self.toUpper() " + //$NON-NLS-1$
-			"endpackage "); //$NON-NLS-1$
+			"package ecore context EString " +
+			"inv: self.toUpper() " +
+			"endpackage ");
 		
-		assertEquals("ANYTHING", evaluate(expr, "anything")); //$NON-NLS-1$ //$NON-NLS-2$
+		assertEquals("ANYTHING", evaluate(expr, "anything"));
 	}
 	
 	/**
@@ -335,15 +336,15 @@ public class BasicOCLTest
 	 * can equal integers, but not in Java.
 	 */
 	public void test_equals_primitives() {
-		assertTrue(check("1 = 1")); //$NON-NLS-1$
-		assertTrue(check("1 = 1.0")); //$NON-NLS-1$
-		assertTrue(check("1.0 = 1")); //$NON-NLS-1$
-		assertTrue(check("1.0 = 1.0")); //$NON-NLS-1$
+		assertTrue(check("1 = 1"));
+		assertTrue(check("1 = 1.0"));
+		assertTrue(check("1.0 = 1"));
+		assertTrue(check("1.0 = 1.0"));
 		
-		assertTrue(check("'foo' = 'foo'")); //$NON-NLS-1$
+		assertTrue(check("'foo' = 'foo'"));
 		
-		assertTrue(check("ocltest::Color::red = ocltest::Color::red")); //$NON-NLS-1$
-		assertFalse(check("ocltest::Color::red = ocltest::Color::black")); //$NON-NLS-1$
+		assertTrue(check("ocltest::Color::red = ocltest::Color::red"));
+		assertFalse(check("ocltest::Color::red = ocltest::Color::black"));
 	}
     
 	/**
@@ -352,20 +353,20 @@ public class BasicOCLTest
 	 */
     public void test_backslashes_184948() {
         helper.setContext(EcorePackage.Literals.ESTRING);
-        String self = ""; //$NON-NLS-1$
+        String self = "";
         
         try {
-            assertEquals("str\\ning", //$NON-NLS-1$
-                evaluate(helper, self, "'str\\ning'")); //$NON-NLS-1$
+            assertEquals("str\\ning",
+                evaluate(helper, self, "'str\\ning'"));
             
-            assertEquals("str\\(ing", //$NON-NLS-1$
-                evaluate(helper, self, "'str\\(ing'")); //$NON-NLS-1$
+            assertEquals("str\\(ing",
+                evaluate(helper, self, "'str\\(ing'"));
             
-            assertEquals("string", //$NON-NLS-1$
-                evaluate(helper, self, "let \"s\\\"g\" : String = 'string' in " + //$NON-NLS-1$
-                    "\"s\\\"g\"")); //$NON-NLS-1$
+            assertEquals("string",
+                evaluate(helper, self, "let \"s\\\"g\" : String = 'string' in " +
+                    "\"s\\\"g\""));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -380,67 +381,67 @@ public class BasicOCLTest
 		ParsingOptions.setOption(ocl.getEnvironment(),
 			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING, true);
 
-		String self = ""; //$NON-NLS-1$
+		String self = "";
 
 		try {
-			assertInvalidString("'\\\\\\ '"); //$NON-NLS-1$
-			assertInvalidString("'str\\(ing'"); //$NON-NLS-1$
+			assertInvalidString("'\\\\\\ '");
+			assertInvalidString("'str\\(ing'");
 			// a comment
-			assertInvalidString("'string\\'"); //$NON-NLS-1$
-			assertInvalidString("'string\\9'"); //$NON-NLS-1$
+			assertInvalidString("'string\\'");
+			assertInvalidString("'string\\9'");
 
-			assertEquals("\\", //$NON-NLS-1$
-				evaluate(helper, self, "'\\\\'")); //$NON-NLS-1$
+			assertEquals("\\",
+				evaluate(helper, self, "'\\\\'"));
 
-			assertEquals("str\ning", //$NON-NLS-1$
-				evaluate(helper, self, "'str\\ning'")); //$NON-NLS-1$
+			assertEquals("str\ning",
+				evaluate(helper, self, "'str\\ning'"));
 
-			assertEquals("str\\(ing", //$NON-NLS-1$
-				evaluate(helper, self, "'str\\\\(ing'")); //$NON-NLS-1$
+			assertEquals("str\\(ing",
+				evaluate(helper, self, "'str\\\\(ing'"));
 
-			assertEquals("string", //$NON-NLS-1$
+			assertEquals("string",
 				evaluate(helper, self,
-					"let \"s\\\"g\" : String = 'string' in " + //$NON-NLS-1$
-						"\"s\\\"g\"")); //$NON-NLS-1$
+					"let \"s\\\"g\" : String = 'string' in " +
+						"\"s\\\"g\""));
 
-			assertEquals("str\b \t \n \f \r \" \' \\ing", //$NON-NLS-1$
+			assertEquals("str\b \t \n \f \r \" \' \\ing",
 				evaluate(helper, self,
-					"'str\\b \\t \\n \\f \\r \\\" \\\' \\\\ing'")); //$NON-NLS-1$
+					"'str\\b \\t \\n \\f \\r \\\" \\\' \\\\ing'"));
 
-			assertEquals("\123tring", //$NON-NLS-1$
-				evaluate(helper, self, "'\\123tring'")); //$NON-NLS-1$
+			assertEquals("\123tring",
+				evaluate(helper, self, "'\\123tring'"));
 
-			assertEquals("\0123tring", //$NON-NLS-1$
-				evaluate(helper, self, "'\\0123tring'")); //$NON-NLS-1$
+			assertEquals("\0123tring",
+				evaluate(helper, self, "'\\0123tring'"));
 
-			assertEquals("\70123tring", //$NON-NLS-1$
-				evaluate(helper, self, "'\\70123tring'")); //$NON-NLS-1$
+			assertEquals("\70123tring",
+				evaluate(helper, self, "'\\70123tring'"));
 
-			assertEquals("\70\123tring", //$NON-NLS-1$
-				evaluate(helper, self, "'\\70\\123tring'")); //$NON-NLS-1$
+			assertEquals("\70\123tring",
+				evaluate(helper, self, "'\\70\\123tring'"));
 
-			assertEquals("\70\123tring", //$NON-NLS-1$
-				evaluate(helper, self, "'\\70\\123tring'")); //$NON-NLS-1$
+			assertEquals("\70\123tring",
+				evaluate(helper, self, "'\\70\\123tring'"));
 
-			assertEquals("\345string", //$NON-NLS-1$
-				evaluate(helper, self, "'\\345string'")); //$NON-NLS-1$
+			assertEquals("\345string",
+				evaluate(helper, self, "'\\345string'"));
 
-			assertEquals("\456string", //$NON-NLS-1$
-				evaluate(helper, self, "'\\456string'")); //$NON-NLS-1$
+			assertEquals("\456string",
+				evaluate(helper, self, "'\\456string'"));
 
-			assertEquals("\12", //$NON-NLS-1$
-				evaluate(helper, self, "'\\12'")); //$NON-NLS-1$
+			assertEquals("\12",
+				evaluate(helper, self, "'\\12'"));
 
-			assertEquals("string\12", //$NON-NLS-1$
-				evaluate(helper, self, "'string\\12'")); //$NON-NLS-1$
+			assertEquals("string\12",
+				evaluate(helper, self, "'string\\12'"));
 
-			assertEquals("string\377", //$NON-NLS-1$
-				evaluate(helper, self, "'string\\377'")); //$NON-NLS-1$
+			assertEquals("string\377",
+				evaluate(helper, self, "'string\\377'"));
 
-			assertEquals("string\t\378", //$NON-NLS-1$
-				evaluate(helper, self, "'string\\t\\378'")); //$NON-NLS-1$
+			assertEquals("string\t\378",
+				evaluate(helper, self, "'string\\t\\378'"));
 		} catch (ParserException e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		} finally {
 			ParsingOptions.setOption(ocl.getEnvironment(),
 				ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
@@ -450,23 +451,23 @@ public class BasicOCLTest
     
     public void test_stringEscapes_184948() {
         helper.setContext(EcorePackage.Literals.ESTRING);
-        String self = ""; //$NON-NLS-1$
+        String self = "";
         
         try {
-            assertEquals("str'ing", //$NON-NLS-1$
-                evaluate(helper, self, "'str''ing'")); //$NON-NLS-1$
+            assertEquals("str'ing",
+                evaluate(helper, self, "'str''ing'"));
             
-            assertEquals("", //$NON-NLS-1$
-                evaluate(helper, self, "''")); //$NON-NLS-1$
+            assertEquals("",
+                evaluate(helper, self, "''"));
             
-            assertEquals("'", //$NON-NLS-1$
-                evaluate(helper, self, "''''")); //$NON-NLS-1$
-            assertEquals("", //$NON-NLS-1$
-                evaluate(helper, self, "'' ''")); //$NON-NLS-1$
-            assertEquals("string", //$NON-NLS-1$
-                evaluate(helper, self, "'str' 'ing'")); //$NON-NLS-1$
+            assertEquals("'",
+                evaluate(helper, self, "''''"));
+            assertEquals("",
+                evaluate(helper, self, "'' ''"));
+            assertEquals("string",
+                evaluate(helper, self, "'str' 'ing'"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -479,9 +480,9 @@ public class BasicOCLTest
         
         try {
             assertSame(CollectionKind.SEQUENCE_LITERAL,
-                evaluate(helper, CollectionKind.BAG_LITERAL, "CollectionKind::Sequence")); //$NON-NLS-1$
+                evaluate(helper, CollectionKind.BAG_LITERAL, "CollectionKind::Sequence"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -496,27 +497,27 @@ public class BasicOCLTest
             // lax null handling on for literal nulls (which are handled
             // separately from null values in non-OclVoid expressions)
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)"));
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)"));
             assertNull(
-                evaluate(helper, annotation, "null.oclAsType(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclAsType(OclVoid)"));
             assertNull(
-                evaluate(helper, annotation, "null.oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclAsType(EAnnotation)"));
             assertNull(
-                evaluate(helper, annotation, "null.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclAsType(String)"));
             
             // lax null handling on for null values in non-OclVoid expressions)
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "source.oclIsTypeOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclIsTypeOf(OclVoid)"));
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "source.oclIsKindOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclIsKindOf(OclVoid)"));
             assertNull(
-                evaluate(helper, annotation, "source.oclAsType(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclAsType(OclVoid)"));
             assertNull(
-                evaluate(helper, annotation, "source.oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclAsType(EAnnotation)"));
             assertNull(
-                evaluate(helper, annotation, "source.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclAsType(String)"));
             
             
             EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
@@ -525,29 +526,29 @@ public class BasicOCLTest
             // strict null handling on for literal nulls (which are handled
             // separately from null values in non-OclVoid expressions)
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclIsTypeOf(OclVoid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclIsKindOf(OclVoid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "null.oclAsType(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclAsType(OclVoid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "null.oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclAsType(EAnnotation)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "null.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "null.oclAsType(String)"));
             
             // strict null handling on for null values in non-OclVoid expressions)
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.oclIsTypeOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclIsTypeOf(OclVoid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.oclIsKindOf(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclIsKindOf(OclVoid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.oclAsType(OclVoid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclAsType(OclVoid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclAsType(EAnnotation)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.oclAsType(String)"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -562,27 +563,27 @@ public class BasicOCLTest
             // lax null handling on for literal invalids (which are handled
             // separately from invalid values in non-OclInvalid expressions)
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)"));
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclAsType(EAnnotation)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclAsType(String)"));
             
             // lax null handling on for invalid values in non-OclInvalid expressions)
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)"));
             assertEquals(Boolean.TRUE,
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)"));
             
             
             EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
@@ -591,29 +592,29 @@ public class BasicOCLTest
             // strict null handling on for literal invalids (which are handled
             // separately from invalid values in non-OclInvalid expressions)
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclIsTypeOf(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclAsType(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclAsType(EAnnotation)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "invalid.oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "invalid.oclAsType(String)"));
             
             // strict null handling on for invalid values in non-OclInvalid expressions)
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsTypeOf(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclIsKindOf(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(OclInvalid)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(EAnnotation)"));
             assertEquals(getInvalid(),
-                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)")); //$NON-NLS-1$
+                evaluate(helper, annotation, "source.substring(1, 1).oclAsType(String)"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -628,16 +629,16 @@ public class BasicOCLTest
         try {
             // lax null handling on for invalid values in non-OclInvalid expressions)
             assertEquals(null,
-                evaluate(helper, eclassifier, "self.oclAsType(EClass)")); //$NON-NLS-1$
+                evaluate(helper, eclassifier, "self.oclAsType(EClass)"));
             
             EvaluationOptions.setOption(ocl.getEvaluationEnvironment(),
                 EvaluationOptions.LAX_NULL_HANDLING, false);
             
             // strict null handling on for invalid values in non-OclInvalid expressions)
             assertEquals(getInvalid(),
-                evaluate(helper, eclassifier, "self.oclAsType(EClass)")); //$NON-NLS-1$
+                evaluate(helper, eclassifier, "self.oclAsType(EClass)"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -650,23 +651,23 @@ public class BasicOCLTest
         
         try {
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "null <> Set{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null <> Set{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "null = Set{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null = Set{'foo'}"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "null <> Sequence{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null <> Sequence{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "null = Sequence{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null = Sequence{'foo'}"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "null <> OrderedSet{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null <> OrderedSet{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "null = OrderedSet{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null = OrderedSet{'foo'}"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "null <> Bag{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null <> Bag{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "null = Bag{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "null = Bag{'foo'}"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -679,30 +680,30 @@ public class BasicOCLTest
         
         try {
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Set{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> Set{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Set{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = Set{'foo'}"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Sequence{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> Sequence{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Sequence{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = Sequence{'foo'}"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> OrderedSet{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> OrderedSet{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = OrderedSet{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = OrderedSet{'foo'}"));
             assertTrue(
-                check(helper, EcorePackage.eNS_URI, "invalid <> Bag{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid <> Bag{'foo'}"));
             assertFalse(
-                check(helper, EcorePackage.eNS_URI, "invalid = Bag{'foo'}")); //$NON-NLS-1$
+                check(helper, EcorePackage.eNS_URI, "invalid = Bag{'foo'}"));
         } catch (ParserException e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
 	private void assertInvalidString(String input) {
 		boolean isParserError = false;
 		try {
-			evaluate(helper, "", input); //$NON-NLS-1$
+			evaluate(helper, "", input);
 		} catch (ParserException e) {
 			isParserError = true;
 		}

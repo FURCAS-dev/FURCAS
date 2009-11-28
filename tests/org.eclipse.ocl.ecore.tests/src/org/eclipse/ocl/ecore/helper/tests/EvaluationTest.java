@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationTest.java,v 1.3 2009/10/07 20:38:54 ewillink Exp $
+ * $Id: EvaluationTest.java,v 1.4 2009/11/28 17:36:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -28,6 +28,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class EvaluationTest
 	extends AbstractTestSuite {
 	
@@ -36,7 +37,7 @@ public class EvaluationTest
 		
 		try {
 			String expr =
-				"Fruit.allInstances()->select(f : Fruit | f.color = Color::black)->isEmpty()"; //$NON-NLS-1$
+				"Fruit.allInstances()->select(f : Fruit | f.color = Color::black)->isEmpty()";
 			
 			Resource res = new ResourceImpl();
 			
@@ -69,7 +70,7 @@ public class EvaluationTest
 			
 			assertFalse(evaluate(helper, aFruit, expr));
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -82,7 +83,7 @@ public class EvaluationTest
 		
 		try {
 			OCLExpression<EClassifier> constraint = helper.createInvariant(
-					"color <> Color::black").getSpecification().getBodyExpression(); //$NON-NLS-1$
+					"color <> Color::black").getSpecification().getBodyExpression();
 			
 			assertNotNull(constraint);
 			
@@ -95,7 +96,7 @@ public class EvaluationTest
 			
 			assertTrue(ocl.check(instance, constraint));
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 

@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.8 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.9 2009/11/28 17:41:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -57,6 +57,7 @@ import org.eclipse.ocl.options.ParsingOptions;
  *
  * @author Christian Vogt (cvogt)
  */
+@SuppressWarnings("nls")
 public class EcoreEnvironmentTest
 	extends AbstractTestSuite {
 
@@ -67,13 +68,13 @@ public class EcoreEnvironmentTest
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
 
-		final String EXPRESSION = "ocltest::Color::"; //$NON-NLS-1$
+		final String EXPRESSION = "ocltest::Color::";
 
 		// choices should be returned
 		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, EXPRESSION);
 		assertNotNull(choices);
 		assertFalse(choices.isEmpty());
-		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "green"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "green");
 		
 		// remove the package from the global registry
 		resourceSet.getPackageRegistry().remove(fruitPackage.getNsURI());
@@ -99,7 +100,7 @@ public class EcoreEnvironmentTest
 		// add a context which we won't use
 		helper.setContext(EcorePackage.eINSTANCE.getEClassifier());
 
-		final String EXPRESSION = "ocltest::Color::"; //$NON-NLS-1$
+		final String EXPRESSION = "ocltest::Color::";
 
 		// registry is empty, no choices should be returned
 		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, EXPRESSION); 
@@ -113,7 +114,7 @@ public class EcoreEnvironmentTest
 		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, EXPRESSION);
 		assertNotNull(choices);
 		assertFalse(choices.isEmpty());
-		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "green"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "green");
 	}
     
     public void test_evaluationEnvironment_getType_178901() {
@@ -123,7 +124,7 @@ public class EcoreEnvironmentTest
         assertSame(EcorePackage.Literals.EPACKAGE, evalEnv.getType(fruitPackage));
         assertSame(EcorePackage.Literals.ECLASS, evalEnv.getType(fruit));
         assertSame(EcorePackage.Literals.ERESOURCE_SET, evalEnv.getType(new ResourceSetImpl()));
-        assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo")); //$NON-NLS-1$
+        assertSame(getOCLStandardLibrary().getString(), evalEnv.getType("foo"));
         assertSame(getOCLStandardLibrary().getOclAny(), evalEnv.getType(this));
     }
     
@@ -141,14 +142,14 @@ public class EcoreEnvironmentTest
         
         try {
             constraint = helper.createInvariant(
-                    "self.regexMatch('\\d{3}-\\d{3}-\\d{3}') <> null"); //$NON-NLS-1$
+                    "self.regexMatch('\\d{3}-\\d{3}-\\d{3}') <> null");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
         
-        assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
-        assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
-        assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
+        assertTrue(ocl.check("123-456-789", constraint));
+        assertFalse(ocl.check("123-4567-890", constraint));
+        assertFalse(ocl.check("123-abc-456", constraint));
     }
 	
     /**
@@ -171,18 +172,18 @@ public class EcoreEnvironmentTest
 
 		try {
 			constraint = helper
-				.createInvariant("self.regexMatch('\\\\d{3}-\\\\d{3}-\\\\d{3}') <> null"); //$NON-NLS-1$
+				.createInvariant("self.regexMatch('\\\\d{3}-\\\\d{3}-\\\\d{3}') <> null");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		} finally {
 			ParsingOptions.setOption(ocl.getEnvironment(),
 				ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
 				oldBackslashProcessingEnabled);
 		}
 
-		assertTrue(ocl.check("123-456-789", constraint)); //$NON-NLS-1$
-		assertFalse(ocl.check("123-4567-890", constraint)); //$NON-NLS-1$
-		assertFalse(ocl.check("123-abc-456", constraint)); //$NON-NLS-1$
+		assertTrue(ocl.check("123-456-789", constraint));
+		assertFalse(ocl.check("123-4567-890", constraint));
+		assertFalse(ocl.check("123-abc-456", constraint));
 	}
 	
 	class MyEnvironment extends EcoreEnvironment {
@@ -214,16 +215,16 @@ public class EcoreEnvironmentTest
 	    private void defineCustomOperations() {
 	        // pattern-matching operation
 	        regexMatch = EcoreFactory.eINSTANCE.createEOperation();
-	        regexMatch.setName("regexMatch"); //$NON-NLS-1$
+	        regexMatch.setName("regexMatch");
 	        regexMatch.setEType(getOCLStandardLibrary().getString());
 	        EParameter parm = EcoreFactory.eINSTANCE.createEParameter();
-	        parm.setName("pattern"); //$NON-NLS-1$
+	        parm.setName("pattern");
 	        parm.setEType(getOCLStandardLibrary().getString());
 	        regexMatch.getEParameters().add(parm);
 	        
 	        // annotate it so that we will recognize it in the evaluation environment
 	        EAnnotation annotation = EcoreFactory.eINSTANCE.createEAnnotation();
-	        annotation.setSource("MyEnvironment"); //$NON-NLS-1$
+	        annotation.setSource("MyEnvironment");
 	        regexMatch.getEAnnotations().add(annotation);
 	        
 	        // define it as an additional operation on OCL String
@@ -243,12 +244,12 @@ public class EcoreEnvironmentTest
 	    
 	    @Override
         public Object callOperation(EOperation operation, int opcode, Object source, Object[] args) {
-	        if (operation.getEAnnotation("MyEnvironment") == null) { //$NON-NLS-1$
+	        if (operation.getEAnnotation("MyEnvironment") == null) {
 	            // not our custom regex operation
 	            return super.callOperation(operation, opcode, source, args);
 	        }
 	        
-	        if ("regexMatch".equals(operation.getName())) { //$NON-NLS-1$
+	        if ("regexMatch".equals(operation.getName())) {
 	            Pattern pattern = Pattern.compile((String) args[0]);
 	            Matcher matcher = pattern.matcher((String) source);
 	            
@@ -273,7 +274,7 @@ public class EcoreEnvironmentTest
 	    createEnvironment(Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> parent) {
 	        if (!(parent instanceof MyEnvironment)) {
 	            throw new IllegalArgumentException(
-	                "Parent environment must be my environment: " + parent); //$NON-NLS-1$
+	                "Parent environment must be my environment: " + parent);
 	        }
 	        
 	        MyEnvironment result = new MyEnvironment((MyEnvironment) parent);

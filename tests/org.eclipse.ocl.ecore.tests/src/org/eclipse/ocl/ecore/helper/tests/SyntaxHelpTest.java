@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: SyntaxHelpTest.java,v 1.4 2009/10/07 20:38:54 ewillink Exp $
+ * $Id: SyntaxHelpTest.java,v 1.5 2009/11/28 17:37:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -33,6 +33,7 @@ import org.eclipse.ocl.helper.ConstraintKind;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class SyntaxHelpTest
 	extends AbstractTestSuite {
 	
@@ -41,13 +42,13 @@ public class SyntaxHelpTest
 	 */
 	public void testMetaModelCompletions() {
 		helper.setContext(EcorePackage.eINSTANCE.getEClass());
-		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
 		
-		assertChoice(choices, ChoiceKind.PROPERTY, "eAttributes"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.PROPERTY, "eAttributes");
 		
-		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.name."); //$NON-NLS-1$
+		choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.name.");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "toLower"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "toLower");
 	}
 	
 	/**
@@ -60,13 +61,13 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.INVARIANT,
-					"color <> Color::"); //$NON-NLS-1$
+					"color <> Color::");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "red"); //$NON-NLS-1$
-			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "brown"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "red");
+			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "brown");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -78,12 +79,12 @@ public class SyntaxHelpTest
 		helper.setContext(fruit);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.PROPERTY, "color"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.PROPERTY, "color");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -95,12 +96,12 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.PROPERTY, "stem"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.PROPERTY, "stem");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -112,12 +113,12 @@ public class SyntaxHelpTest
 		helper.setContext(fruit);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.OPERATION, "preferredColor"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.OPERATION, "preferredColor");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -131,13 +132,13 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.PRECONDITION,
-					"color <> Color::"); //$NON-NLS-1$
+					"color <> Color::");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "red"); //$NON-NLS-1$
-			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "brown"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "red");
+			assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "brown");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -150,12 +151,12 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.BODYCONDITION,
-					"self."); //$NON-NLS-1$
+					"self.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.PROPERTY, "color"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.PROPERTY, "color");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -169,12 +170,12 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.PRECONDITION,
-					"self."); //$NON-NLS-1$
+					"self.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.PROPERTY, "stem"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.PROPERTY, "stem");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -188,12 +189,12 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.POSTCONDITION,
-					"self."); //$NON-NLS-1$
+					"self.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.OPERATION, "preferredColor"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.OPERATION, "preferredColor");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -207,12 +208,12 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.PRECONDITION,
-					"text."); //$NON-NLS-1$
+					"text.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.OPERATION, "toLower"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.OPERATION, "toLower");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -226,12 +227,12 @@ public class SyntaxHelpTest
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
 					ConstraintKind.POSTCONDITION,
-					"result."); //$NON-NLS-1$
+					"result.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.OPERATION, "oclIsUndefined"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.OPERATION, "oclIsUndefined");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -242,17 +243,17 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
 			assertNotNull(choices);
 			
-			assertNotChoice(choices, ChoiceKind.OPERATION, "allInstances"); //$NON-NLS-1$
+			assertNotChoice(choices, ChoiceKind.OPERATION, "allInstances");
 			
-			choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Apple."); //$NON-NLS-1$
+			choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Apple.");
 			assertNotNull(choices);
 			
-			assertChoice(choices, ChoiceKind.OPERATION, "allInstances"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.OPERATION, "allInstances");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -263,10 +264,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.oclAsType(OclAny)."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.oclAsType(OclAny).");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -277,10 +278,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -292,10 +293,10 @@ public class SyntaxHelpTest
 		
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT,
-					"Tuple{s : String = null, a : Apple = null}."); //$NON-NLS-1$
+					"Tuple{s : String = null, a : Apple = null}.");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -306,10 +307,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Apple."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Apple.");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -320,10 +321,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "1."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "1.");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -334,10 +335,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "1.0."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "1.0.");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -348,10 +349,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "'foo'."); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "'foo'.");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -362,14 +363,14 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Set{self}->"); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Set{self}->");
             assertNotNull(choices);
 			dumpChoices(choices);
             
-            assertChoice(choices, ChoiceKind.OPERATION, "union"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "forAll"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "union");
+            assertChoice(choices, ChoiceKind.OPERATION, "forAll");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -380,14 +381,14 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "OrderedSet{self}->"); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "OrderedSet{self}->");
             assertNotNull(choices);
 			dumpChoices(choices);
             
-            assertChoice(choices, ChoiceKind.OPERATION, "subOrderedSet"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "forAll"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "subOrderedSet");
+            assertChoice(choices, ChoiceKind.OPERATION, "forAll");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -398,14 +399,14 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Sequence{self}->"); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Sequence{self}->");
             assertNotNull(choices);
             dumpChoices(choices);
             
-            assertChoice(choices, ChoiceKind.OPERATION, "subSequence"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "forAll"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "subSequence");
+            assertChoice(choices, ChoiceKind.OPERATION, "forAll");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -416,14 +417,14 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Bag{self}->"); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Bag{self}->");
             assertNotNull(choices);
             dumpChoices(choices);
             
-            assertChoice(choices, ChoiceKind.OPERATION, "intersection"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "forAll"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "intersection");
+            assertChoice(choices, ChoiceKind.OPERATION, "forAll");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -434,10 +435,10 @@ public class SyntaxHelpTest
 		helper.setContext(apple);
 		
 		try {
-			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Set{Sequence{self}}->"); //$NON-NLS-1$
+			List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "Set{Sequence{self}}->");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -453,16 +454,16 @@ public class SyntaxHelpTest
 		
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self.oclIsInState("); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.oclIsInState(");
 			dumpChoices(choices);
 			
-			System.out.println("----"); //$NON-NLS-1$
+			System.out.println("----");
 			
 			choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self.oclIsInState(Bad::"); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.oclIsInState(Bad::");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -479,10 +480,10 @@ public class SyntaxHelpTest
 		
 		try {
 			List<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.POSTCONDITION, "self^^"); //$NON-NLS-1$
+					ConstraintKind.POSTCONDITION, "self^^");
 			dumpChoices(choices);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
     
@@ -491,17 +492,17 @@ public class SyntaxHelpTest
         
         try {
             List<Choice> choices = helper.getSyntaxHelp(
-                    ConstraintKind.INVARIANT, "true and false implies preferredLabel(label)->"); //$NON-NLS-1$
+                    ConstraintKind.INVARIANT, "true and false implies preferredLabel(label)->");
             
             // iterators and collection operations
-            assertChoice(choices, ChoiceKind.OPERATION, "forAll"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "forAll");
+            assertChoice(choices, ChoiceKind.OPERATION, "size");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
         } catch (Exception e) {
-            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed: " + e.getLocalizedMessage());
         }
     }
     
@@ -510,44 +511,44 @@ public class SyntaxHelpTest
         
         try {
             List<Choice> choices = helper.getSyntaxHelp(
-                    ConstraintKind.INVARIANT, "preferredLabel((label)."); //$NON-NLS-1$
+                    ConstraintKind.INVARIANT, "preferredLabel((label).");
             
             // features of String
-            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "toUpper"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "concat");
+            assertChoice(choices, ChoiceKind.OPERATION, "toUpper");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
             
             // try unmatched brace
             choices = helper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "Set{label."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "Set{label.");
             
             // features of String
-            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "toUpper"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "concat");
+            assertChoice(choices, ChoiceKind.OPERATION, "toUpper");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
             
             // a little more complex
             choices = helper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "preferredLabel(Set{label}->"); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "preferredLabel(Set{label}->");
         
             // iterators and collection operations
-            assertChoice(choices, ChoiceKind.OPERATION, "union"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "union");
+            assertChoice(choices, ChoiceKind.OPERATION, "size");
             
             // not features of String
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "concat"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "concat");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
         } catch (Exception e) {
-            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed: " + e.getLocalizedMessage());
         }
     }
     
@@ -556,20 +557,20 @@ public class SyntaxHelpTest
         
         try {
             List<Choice> choices = helper.getSyntaxHelp(
-                    ConstraintKind.INVARIANT, "true and 3 * label."); //$NON-NLS-1$
+                    ConstraintKind.INVARIANT, "true and 3 * label.");
             
             // String operations
-            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "concat");
+            assertChoice(choices, ChoiceKind.OPERATION, "size");
             
             // not numeric operations
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "abs"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "abs");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
         } catch (Exception e) {
-            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed: " + e.getLocalizedMessage());
         }
     }
     
@@ -579,17 +580,17 @@ public class SyntaxHelpTest
         try {
             // note that 'foo' isn't even valid; it is irrelevant
             List<Choice> choices = helper.getSyntaxHelp(
-                    ConstraintKind.INVARIANT, "if foo then label."); //$NON-NLS-1$
+                    ConstraintKind.INVARIANT, "if foo then label.");
             
             // String operations
-            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "concat");
+            assertChoice(choices, ChoiceKind.OPERATION, "size");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
         } catch (Exception e) {
-            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed: " + e.getLocalizedMessage());
         }
     }
     
@@ -599,17 +600,17 @@ public class SyntaxHelpTest
         try {
             // note that 'and' isn't even valid here; it is irrelevant
             List<Choice> choices = helper.getSyntaxHelp(
-                    ConstraintKind.INVARIANT, "and (if true then (label) else '' endif)."); //$NON-NLS-1$
+                    ConstraintKind.INVARIANT, "and (if true then (label) else '' endif).");
             
             // String operations
-            assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
-            assertChoice(choices, ChoiceKind.OPERATION, "size"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "concat");
+            assertChoice(choices, ChoiceKind.OPERATION, "size");
             
             // not features of Apple
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "label"); //$NON-NLS-1$
-            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "label");
+            assertNotChoice(choices, ChoiceKind.OPERATION, "preferredLabel");
         } catch (Exception e) {
-            fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed: " + e.getLocalizedMessage());
         }
     }
 	
@@ -621,7 +622,7 @@ public class SyntaxHelpTest
 		assertNotNull(choices);
 		
 		for (Choice next : choices) {
-			System.out.println("    " + next); //$NON-NLS-1$
+			System.out.println("    " + next);
 		}
 	}
 }
