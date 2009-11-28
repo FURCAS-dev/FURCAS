@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParsingTest.java,v 1.4 2009/10/07 20:38:54 ewillink Exp $
+ * $Id: ParsingTest.java,v 1.5 2009/11/28 17:37:01 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -28,6 +28,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ParsingTest
 	extends AbstractTestSuite {
 	
@@ -36,20 +37,20 @@ public class ParsingTest
 		
 		try {
 			// constraint-type expressions (boolean-valued) are OK
-			OCLExpression<EClassifier> expr = helper.createQuery("color <> Color::black"); //$NON-NLS-1$
+			OCLExpression<EClassifier> expr = helper.createQuery("color <> Color::black");
 			
 			assertNotNull(expr);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// as are non-booleans
-			OCLExpression<EClassifier> expr = helper.createQuery("color"); //$NON-NLS-1$
+			OCLExpression<EClassifier> expr = helper.createQuery("color");
 			
 			assertNotNull(expr);
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -57,12 +58,12 @@ public class ParsingTest
 		helper.setContext(fruit);
 		
 		try {
-			Constraint constraint = helper.createInvariant("color <> Color::black"); //$NON-NLS-1$
+			Constraint constraint = helper.createInvariant("color <> Color::black");
 			
 			assertNotNull(constraint);
 			assertNotNull(constraint.getSpecification().getBodyExpression());
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -70,12 +71,12 @@ public class ParsingTest
 		helper.setContext(fruit);
 		
 		try {
-			helper.createInvariant("color"); //$NON-NLS-1$
+			helper.createInvariant("color");
 			
-			fail("Parse should not have succeeded"); //$NON-NLS-1$
+			fail("Parse should not have succeeded");
 		} catch (Exception e) {
 			// success case
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -84,12 +85,12 @@ public class ParsingTest
 		
 		try {
 			Constraint constraint = helper.createPrecondition(
-				"color <> Color::black"); //$NON-NLS-1$
+				"color <> Color::black");
 			
 			assertNotNull(constraint);
 			assertNotNull(constraint.getSpecification().getBodyExpression());
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -98,12 +99,12 @@ public class ParsingTest
 		
 		try {
 			Constraint constraint = helper.createPostcondition(
-				"color <> self.color@pre implies self.color = color "); //$NON-NLS-1$
+				"color <> self.color@pre implies self.color = color ");
 			
 			assertNotNull(constraint);
 			assertNotNull(constraint.getSpecification().getBodyExpression());
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -112,12 +113,12 @@ public class ParsingTest
 		
 		try {
 			Constraint constraint = helper.createBodyCondition(
-				"result = (if true then Color::red else Color::brown endif)"); //$NON-NLS-1$
+				"result = (if true then Color::red else Color::brown endif)");
 			
 			assertNotNull(constraint);
 			assertNotNull(constraint.getSpecification().getBodyExpression());
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -129,15 +130,15 @@ public class ParsingTest
 		helper.setContext(ecore.getEString());
 		
 		try {
-			final String constraint = "self.toUpper() <> self.toLower()"; //$NON-NLS-1$
+			final String constraint = "self.toUpper() <> self.toLower()";
 			
-			assertTrue(check(helper, "anything", constraint)); //$NON-NLS-1$
-			assertTrue(check(helper, "ANYTHING", constraint)); //$NON-NLS-1$
+			assertTrue(check(helper, "anything", constraint));
+			assertTrue(check(helper, "ANYTHING", constraint));
 			
-			assertEquals("ANYTHING", //$NON-NLS-1$
-				evaluate(helper, "anything", "self.toUpper()")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertEquals("ANYTHING",
+				evaluate(helper, "anything", "self.toUpper()"));
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -148,20 +149,20 @@ public class ParsingTest
 	public void test_dataTypeAsContext_inferred() {
         EcoreEnvironment env =
             (EcoreEnvironment) EcoreEnvironmentFactory.INSTANCE.createInstanceContext(
-                ocl.getEnvironment(), "anything"); // inferred type is EString //$NON-NLS-1$
+                ocl.getEnvironment(), "anything"); // inferred type is EString
 		
         helper.setContext(env.getContextClassifier());
         
 		try {
-			final String constraint = "self.toUpper() <> self.toLower()"; //$NON-NLS-1$
+			final String constraint = "self.toUpper() <> self.toLower()";
 			
-			assertTrue(check(helper, "anything", constraint)); //$NON-NLS-1$
-			assertTrue(check(helper, "ANYTHING", constraint)); //$NON-NLS-1$
+			assertTrue(check(helper, "anything", constraint));
+			assertTrue(check(helper, "ANYTHING", constraint));
 			
-			assertEquals("ANYTHING", //$NON-NLS-1$
-				evaluate(helper, "anything", "self.toUpper()")); //$NON-NLS-1$ //$NON-NLS-2$
+			assertEquals("ANYTHING",
+				evaluate(helper, "anything", "self.toUpper()"));
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
