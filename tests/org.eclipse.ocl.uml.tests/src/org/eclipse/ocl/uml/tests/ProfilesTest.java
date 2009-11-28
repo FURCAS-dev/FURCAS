@@ -13,7 +13,7 @@
  *   
  * </copyright>
  *
- * $Id: ProfilesTest.java,v 1.9 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: ProfilesTest.java,v 1.10 2009/11/28 18:12:30 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -48,6 +48,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ProfilesTest
     extends AbstractTestSuite {
 
@@ -74,8 +75,8 @@ public class ProfilesTest
 
         try {
             Constraint constraint = helper
-                .createInvariant("base_Classifier.name = 'Fruit' implies" + //$NON-NLS-1$
-                    " (x > 0 or yesno = YesNo::yes)"); //$NON-NLS-1$
+                .createInvariant("base_Classifier.name = 'Fruit' implies" +
+                    " (x > 0 or yesno = YesNo::yes)");
 
             // set up a couple of stereotyped classes to test the constraint on
             fruit.applyStereotype(testStereotype);
@@ -101,7 +102,7 @@ public class ProfilesTest
             fruit.setValue(testStereotype, stereoEnum.getName(), yes);
             assertTrue(ocl.check(fruit, constraint));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -117,8 +118,8 @@ public class ProfilesTest
 
         try {
             Constraint constraint = helper
-                .createInvariant("base_Classifier.name = 'Fruit' implies" + //$NON-NLS-1$
-                    " (x > 0 or yesno = YesNo::yes)"); //$NON-NLS-1$
+                .createInvariant("base_Classifier.name = 'Fruit' implies" +
+                    " (x > 0 or yesno = YesNo::yes)");
 
             // set up a couple of stereotyped classes to test the constraint on
             fruit.applyStereotype(testSubStereotype);
@@ -144,7 +145,7 @@ public class ProfilesTest
             fruit.setValue(testSubStereotype, stereoEnum.getName(), yes);
             assertTrue(ocl.check(fruit, constraint));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -155,12 +156,12 @@ public class ProfilesTest
     public void test_navigateToStereotypeApplication() {
         // this is metamodel-level OCL that we're dealing with where
         // stereotypes are concerned
-        helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Classifier"));
 
         try {
             Constraint constraint = helper
-                .createInvariant("let st : TestProfile::Stereo1 = self.extension_Stereo1 in " + //$NON-NLS-1$
-                    "st <> null implies st.x > 0 or st.yesno = TestProfile::YesNo::yes"); //$NON-NLS-1$
+                .createInvariant("let st : TestProfile::Stereo1 = self.extension_Stereo1 in " +
+                    "st <> null implies st.x > 0 or st.yesno = TestProfile::YesNo::yes");
 
             // constraint passes because the implication is trivially true
             assertTrue(ocl.check(fruit, constraint));
@@ -182,7 +183,7 @@ public class ProfilesTest
             fruit.setValue(testStereotype, stereoEnum.getName(), yes);
             assertTrue(ocl.check(fruit, constraint));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -194,7 +195,7 @@ public class ProfilesTest
 
 		try {
 			OCLExpression<Classifier> expr = helper
-				.createQuery("Stereo1.allInstances().base_Classifier.name"); //$NON-NLS-1$
+				.createQuery("Stereo1.allInstances().base_Classifier.name");
 
 			// set up a couple of stereotyped classes to test the query on
 			fruit.applyStereotype(testStereotype);
@@ -202,12 +203,12 @@ public class ProfilesTest
 			tree.applyStereotype(testStereotype);
 
 			Bag<String> expectedValue = CollectionUtil.createNewBag();
-			expectedValue.add("Fruit"); //$NON-NLS-1$
-			expectedValue.add("Tree"); //$NON-NLS-1$
+			expectedValue.add("Fruit");
+			expectedValue.add("Tree");
 
 			assertEquals(expectedValue, evaluate(expr, fruit));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -220,7 +221,7 @@ public class ProfilesTest
 
 		try {
 			OCLExpression<Classifier> expr = helper
-				.createQuery("Tag.allInstances()"); //$NON-NLS-1$
+				.createQuery("Tag.allInstances()");
 
 			// set up a couple of stereotyped classes to test the query on
 			fruit.applyStereotype(testStereotype);
@@ -228,29 +229,29 @@ public class ProfilesTest
 			List<EObject> tags = (List<EObject>) fruit.getValue(testStereotype,
 				stereoTag.getName());
 			tags.add(tag1);
-			tag1.eSet(eTagName, "myTag"); //$NON-NLS-1$
+			tag1.eSet(eTagName, "myTag");
 
 			tree.applyStereotype(testStereotype);
 			EObject tag2 = EcoreUtil.create(eTag);
 			tags = (List<EObject>) tree.getValue(testStereotype, stereoTag
 				.getName());
 			tags.add(tag2);
-			tag2.eSet(eTagName, "anotherTag"); //$NON-NLS-1$
+			tag2.eSet(eTagName, "anotherTag");
 
 			Set<EObject> expectedInstances = new java.util.HashSet<EObject>();
 			expectedInstances.add(tag1);
 			expectedInstances.add(tag2);
 			assertEquals(expectedInstances, evaluate(expr, fruit));
 
-			expr = helper.createQuery("Tag.allInstances().name"); //$NON-NLS-1$
+			expr = helper.createQuery("Tag.allInstances().name");
 
 			Bag<String> expectedValue = CollectionUtil.createNewBag();
-			expectedValue.add("myTag"); //$NON-NLS-1$
-			expectedValue.add("anotherTag"); //$NON-NLS-1$
+			expectedValue.add("myTag");
+			expectedValue.add("anotherTag");
 
 			assertEquals(expectedValue, evaluate(expr, fruit));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -261,10 +262,10 @@ public class ProfilesTest
     public void test_navigateToStereotypeApplication_247079() {
         // this is metamodel-level OCL that we're dealing with where
         // stereotypes are concerned
-        helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Classifier"));
 
         // move the Fruit class into a nested package
-        final Package nested = fruitPackage.createNestedPackage("nested"); //$NON-NLS-1$
+        final Package nested = fruitPackage.createNestedPackage("nested");
         nested.getPackagedElements().add(fruit);
         
     	try {
@@ -273,8 +274,8 @@ public class ProfilesTest
 				public Void call()
 						throws Exception {
 		            Constraint constraint = helper
-		                .createInvariant("let st : TestProfile::Stereo1 = self.extension_Stereo1 in " + //$NON-NLS-1$
-		                    "st <> null implies st.x > 0 or st.yesno = TestProfile::YesNo::yes"); //$NON-NLS-1$
+		                .createInvariant("let st : TestProfile::Stereo1 = self.extension_Stereo1 in " +
+		                    "st <> null implies st.x > 0 or st.yesno = TestProfile::YesNo::yes");
 	
 		            // constraint passes because the implication is trivially true
 		            assertTrue(ocl.check(fruit, constraint));
@@ -300,9 +301,9 @@ public class ProfilesTest
         	
         	exec.submit(call).get(60l, TimeUnit.SECONDS);
         } catch (TimeoutException e) {
-            fail("Timed out waiting for evaluation"); //$NON-NLS-1$
+            fail("Timed out waiting for evaluation");
          } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         } finally {
         	// re-initialize the Fruit model for the next test
         	fruitPackage.getPackagedElements().add(fruit);
@@ -334,38 +335,38 @@ public class ProfilesTest
     private void initTestProfile() {
         Resource res = fruitPackage.eResource();
         URI uri = res.getURI().trimSegments(1).appendSegment(
-            "OCLTest.profile.uml"); //$NON-NLS-1$
+            "OCLTest.profile.uml");
 
         res = resourceSet.getResource(uri, true);
 
         testProfile = (Profile) res.getContents().get(0);
 
-        testStereotype = testProfile.getOwnedStereotype("Stereo1"); //$NON-NLS-1$
+        testStereotype = testProfile.getOwnedStereotype("Stereo1");
         assertNotNull(testStereotype);
-        stereoEnum = testStereotype.getOwnedAttribute("yesno", null); //$NON-NLS-1$
+        stereoEnum = testStereotype.getOwnedAttribute("yesno", null);
         assertNotNull(stereoEnum);
-        stereoX = testStereotype.getOwnedAttribute("x", null); //$NON-NLS-1$
+        stereoX = testStereotype.getOwnedAttribute("x", null);
         assertNotNull(stereoX);
-        stereoTag = testStereotype.getOwnedAttribute("tag", null); //$NON-NLS-1$
+        stereoTag = testStereotype.getOwnedAttribute("tag", null);
         assertNotNull(stereoTag);
 
-        testSubStereotype = testProfile.getOwnedStereotype("SubStereo1"); //$NON-NLS-1$
+        testSubStereotype = testProfile.getOwnedStereotype("SubStereo1");
         assertNotNull(testSubStereotype);
 
-        testEnumeration = (Enumeration) testProfile.getOwnedType("YesNo"); //$NON-NLS-1$
+        testEnumeration = (Enumeration) testProfile.getOwnedType("YesNo");
         assertNotNull(testEnumeration);
-        maybe = testEnumeration.getOwnedLiteral("maybe"); //$NON-NLS-1$
+        maybe = testEnumeration.getOwnedLiteral("maybe");
         assertNotNull(maybe);
-        no = testEnumeration.getOwnedLiteral("no"); //$NON-NLS-1$
+        no = testEnumeration.getOwnedLiteral("no");
         assertNotNull(no);
-        yes = testEnumeration.getOwnedLiteral("yes"); //$NON-NLS-1$
+        yes = testEnumeration.getOwnedLiteral("yes");
         assertNotNull(yes);
         
-        tag = (Class) testProfile.getOwnedType("Tag"); //$NON-NLS-1$
+        tag = (Class) testProfile.getOwnedType("Tag");
         assertNotNull(tag);
         eTag = (EClass) testProfile.getDefinition(tag);
         assertNotNull(eTag);
-        tagName = tag.getOwnedAttribute("name", null);  //$NON-NLS-1$
+        tagName = tag.getOwnedAttribute("name", null);
         assertNotNull(tagName);
         eTagName = (EAttribute) eTag.getEStructuralFeature(tagName.getName());
         assertNotNull(eTagName);

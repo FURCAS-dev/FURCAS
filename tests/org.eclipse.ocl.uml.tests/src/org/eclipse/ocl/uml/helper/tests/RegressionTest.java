@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.5 2009/11/26 20:46:38 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.6 2009/11/28 18:01:12 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.helper.tests;
@@ -30,6 +30,7 @@ import org.eclipse.uml2.uml.Classifier;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class RegressionTest
 	extends AbstractTestSuite {
 
@@ -40,16 +41,16 @@ public class RegressionTest
 	 * completed).
 	 */
 	public void test_completionOfRightmostSubexpression_RATLC00537918() {
-		helper.setContext(getMetaclass("Property")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Property"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.opposite = self."); //$NON-NLS-1$
+				"self.opposite = self.");
 		
 		// formerly, the choices offered would be the choices appropriate to
 		//    the OCL Boolean type, because that is the type of
 		//    "self.eOpposite = self".  We want, instead, completions for
 		//    "self" which is the right-most minimal subexpression
-		assertChoice(choices, ChoiceKind.PROPERTY, "opposite"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.PROPERTY, "opposite");
 	}
 	
 	/**
@@ -58,16 +59,16 @@ public class RegressionTest
 	 * parentheses.
 	 */
 	public void test_completionOfRightmost_parentheses_RATLC00537918() {
-		helper.setContext(getMetaclass("Property")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Property"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"(self.opposite = self)."); //$NON-NLS-1$
+				"(self.opposite = self).");
 		
 		// in this case, the right-most subexpression really is the entire
 		//    "self.eOpposite = self" because of the parenthesization, so we
 		//    should get the Boolean choices, not EReference choices
-		assertNotChoice(choices, ChoiceKind.PROPERTY, "opposite"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.OPERATION, "oclIsUndefined"); //$NON-NLS-1$
+		assertNotChoice(choices, ChoiceKind.PROPERTY, "opposite");
+		assertChoice(choices, ChoiceKind.OPERATION, "oclIsUndefined");
 	}
 	
 	/**
@@ -75,13 +76,13 @@ public class RegressionTest
 	 * the let variables in a let expression.
 	 */
 	public void test_completionOnLetVariable_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"let p : Package = self.getNearestPackage() in 'foo_'.concat(p."); //$NON-NLS-1$
+				"let p : Package = self.getNearestPackage() in 'foo_'.concat(p.");
 		
-		assertChoice(choices, ChoiceKind.PROPERTY, "ownedType"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "nestedPackage"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.PROPERTY, "ownedType");
+		assertChoice(choices, ChoiceKind.PROPERTY, "nestedPackage");
 	}
 	
 	/**
@@ -89,12 +90,12 @@ public class RegressionTest
 	 * let expressions as a whole.
 	 */
 	public void test_completionOnLetExpression_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"(let p : Package = self.getNearestPackage() in p.name)."); //$NON-NLS-1$
+				"(let p : Package = self.getNearestPackage() in p.name).");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "toLower"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "toLower");
 	}
 	
 	/**
@@ -102,13 +103,13 @@ public class RegressionTest
 	 * the iterator variables in a loop expression.
 	 */
 	public void test_completionOnIteratorVariable_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.superClass->collect(i : Class | i."); //$NON-NLS-1$
+				"self.superClass->collect(i : Class | i.");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "getNearestPackage"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "package"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "getNearestPackage");
+		assertChoice(choices, ChoiceKind.PROPERTY, "package");
 	}
 	
 	/**
@@ -116,19 +117,19 @@ public class RegressionTest
 	 * the accumulator (second iterator variable) in "iterate" expressions.
 	 */
 	public void test_completionOnAccumulator_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.superClass->iterate(i : Class; a : String = '' | a."); //$NON-NLS-1$
+				"self.superClass->iterate(i : Class; a : String = '' | a.");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "concat");
 		
 		// try completion on the iterator variable, also
 		choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.superClass->iterate(i : Class; a : String = '' | a.concat(i."); //$NON-NLS-1$
+				"self.superClass->iterate(i : Class; a : String = '' | a.concat(i.");
 	
-		assertChoice(choices, ChoiceKind.PROPERTY, "name"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.PROPERTY, "name");
 	}
 	
 	/**
@@ -136,12 +137,12 @@ public class RegressionTest
 	 * the an "iterate" expression (which formerly would be empty).
 	 */
 	public void test_completionOnIterate_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.superClass->iterate(i : Class; a : String = '' | a.concat(i.name))."); //$NON-NLS-1$
+				"self.superClass->iterate(i : Class; a : String = '' | a.concat(i.name)).");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "concat");
 	}
 	
 	/**
@@ -150,12 +151,12 @@ public class RegressionTest
 	 * a sequence.
 	 */
 	public void test_completionOnIterator_sequence_RATLC00537918() {
-		helper.setContext((Classifier) getUMLMetamodel().getOwnedType("Class")); //$NON-NLS-1$
+		helper.setContext((Classifier) getUMLMetamodel().getOwnedType("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"Sequence{'abc', 'a', 'ab'}->"); //$NON-NLS-1$
+				"Sequence{'abc', 'a', 'ab'}->");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "subSequence"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "subSequence");
 	}
 	
 	/**
@@ -164,12 +165,12 @@ public class RegressionTest
 	 * an ordered set.
 	 */
 	public void test_completionOnIterator_orderedSet_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.ownedAttribute->select(i : Property | i.redefinedProperty->isEmpty())->"); //$NON-NLS-1$
+				"self.ownedAttribute->select(i : Property | i.redefinedProperty->isEmpty())->");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "subOrderedSet"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "subOrderedSet");
 	}
 	
 	/**
@@ -178,13 +179,13 @@ public class RegressionTest
 	 * a bag.
 	 */
 	public void test_completionOnIterator_bag_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"Set{'abc', 'a', 'ab'}->collect(i : String | i.size())->"); //$NON-NLS-1$
+				"Set{'abc', 'a', 'ab'}->collect(i : String | i.size())->");
 		
 		// bags do not support symmetricDifference as sets do
-		assertNotChoice(choices, ChoiceKind.OPERATION, "symmetricDifference"); //$NON-NLS-1$
+		assertNotChoice(choices, ChoiceKind.OPERATION, "symmetricDifference");
 	}
 	
 	/**
@@ -192,19 +193,19 @@ public class RegressionTest
 	 * an if expression if it is eclosed in parentheses.
 	 */
 	public void test_completionOnIfExpression_RATLC00537918() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"(if true then 'a' else 'b' endif)."); //$NON-NLS-1$
+				"(if true then 'a' else 'b' endif).");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "concat");
 		
 		choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"if true then 'a' else 'b' endif."); //$NON-NLS-1$
+				"if true then 'a' else 'b' endif.");
 	
 		// we don't support completion of the "endif" token, though
-		assertNotChoice(choices, ChoiceKind.OPERATION, "concat"); //$NON-NLS-1$
+		assertNotChoice(choices, ChoiceKind.OPERATION, "concat");
 	}
 	
 	/**
@@ -213,29 +214,29 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_variables_RATLC00535552() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"let pkgName : String = getNearestPackage().name in"); //$NON-NLS-1$
+				"let pkgName : String = getNearestPackage().name in");
 		
-		assertChoice(choices, ChoiceKind.VARIABLE, "pkgName"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.VARIABLE, "pkgName");
 		
 		// also should get "self"
-		assertChoice(choices, ChoiceKind.VARIABLE, "self"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.VARIABLE, "self");
 		
 		// also should get suggestions of structural features of "self"
-		assertChoice(choices, ChoiceKind.PROPERTY, "superClass"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.PROPERTY, "superClass");
 		
 		// also should get suggestions of behavioral features of "self"
-		assertChoice(choices, ChoiceKind.OPERATION, "allParents"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.OPERATION, "oclAsType"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "allParents");
+		assertChoice(choices, ChoiceKind.OPERATION, "oclAsType");
 		
 		choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"superClass->collect(sc : Class | "); //$NON-NLS-1$
+				"superClass->collect(sc : Class | ");
 	
 		// loop variables
-		assertChoice(choices, ChoiceKind.VARIABLE, "sc"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.VARIABLE, "sc");
 	}
 	
 	/**
@@ -247,10 +248,10 @@ public class RegressionTest
 		helper.setOperationContext(apple, apple_labelOper);
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"'' <> "); //$NON-NLS-1$
+				"'' <> ");
 		
 		// operation parameter
-		assertChoice(choices, ChoiceKind.VARIABLE, "text"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.VARIABLE, "text");
 	}
 	
 	/**
@@ -259,14 +260,14 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_property_RATLC00535552() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.gen"); //$NON-NLS-1$
+				"self.gen");
 		
-		assertChoice(choices, ChoiceKind.PROPERTY, "general"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "generalization"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "getNearestPackage"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.PROPERTY, "general");
+		assertChoice(choices, ChoiceKind.PROPERTY, "generalization");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "getNearestPackage");
 	}
 	
 	/**
@@ -275,14 +276,14 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_operation_RATLC00535552() {
-		helper.setContext(getMetaclass("Class")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Class"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"self.allP"); //$NON-NLS-1$
+				"self.allP");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "allParents"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "allFeatures"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "oclAsType"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "allParents");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "allFeatures");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "oclAsType");
 	}
 	
 	/**
@@ -291,13 +292,13 @@ public class RegressionTest
 	 * in invariant constraints.
 	 */
 	public void test_partial_type_RATLC00535552() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"if self.oclIsKindOf(uml::Cl"); //$NON-NLS-1$
+				"if self.oclIsKindOf(uml::Cl");
 		
-		assertChoice(choices, ChoiceKind.TYPE, "Class"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.TYPE, "Enumeration"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.TYPE, "Class");
+		assertNotChoice(choices, ChoiceKind.TYPE, "Enumeration");
 	}
 	
 	/**
@@ -309,10 +310,10 @@ public class RegressionTest
 		helper.setContext(apple);
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"if color <> Color::bl"); //$NON-NLS-1$
+				"if color <> Color::bl");
 		
-		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "black"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "red"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "black");
+		assertNotChoice(choices, ChoiceKind.ENUMERATION_LITERAL, "red");
 	}
 	
 	/**
@@ -324,10 +325,10 @@ public class RegressionTest
 		helper.setContext(apple);
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"Apple.allInstances()->symm"); //$NON-NLS-1$
+				"Apple.allInstances()->symm");
 		
-		assertChoice(choices, ChoiceKind.OPERATION, "symmetricDifference"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "collect"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.OPERATION, "symmetricDifference");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "collect");
 	}
 	
 	/**
@@ -338,12 +339,12 @@ public class RegressionTest
 		helper.setContext(apple);
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				""); //$NON-NLS-1$
+				"");
 		
-		assertChoice(choices, ChoiceKind.VARIABLE, "self"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "tree"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.ASSOCIATION_CLASS, "stem"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "color"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.VARIABLE, "self");
+		assertChoice(choices, ChoiceKind.PROPERTY, "tree");
+		assertChoice(choices, ChoiceKind.ASSOCIATION_CLASS, "stem");
+		assertChoice(choices, ChoiceKind.PROPERTY, "color");
 	}
 	
 	/**
@@ -354,12 +355,12 @@ public class RegressionTest
 		helper.setContext(apple);
 		List<Choice> choices = helper.getSyntaxHelp(
 				ConstraintKind.INVARIANT,
-				"{@grr!"); //$NON-NLS-1$
+				"{@grr!");
 		
-		assertChoice(choices, ChoiceKind.VARIABLE, "self"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "tree"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.ASSOCIATION_CLASS, "stem"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.PROPERTY, "color"); //$NON-NLS-1$
+		assertChoice(choices, ChoiceKind.VARIABLE, "self");
+		assertChoice(choices, ChoiceKind.PROPERTY, "tree");
+		assertChoice(choices, ChoiceKind.ASSOCIATION_CLASS, "stem");
+		assertChoice(choices, ChoiceKind.PROPERTY, "color");
 	}
 	
 	/**
@@ -369,19 +370,19 @@ public class RegressionTest
 	public void test_oclIsNewOnlyInPostconditions_116664() {
 		helper.setContext(apple);
 		
-		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.ocl"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "oclIsNew"); //$NON-NLS-1$
+		List<Choice> choices = helper.getSyntaxHelp(ConstraintKind.INVARIANT, "self.ocl");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "oclIsNew");
 		
 		helper.setOperationContext(apple, apple_newApple);
 		
-		choices = helper.getSyntaxHelp(ConstraintKind.PRECONDITION, "self.ocl"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "oclIsNew"); //$NON-NLS-1$
+		choices = helper.getSyntaxHelp(ConstraintKind.PRECONDITION, "self.ocl");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "oclIsNew");
 		
-		choices = helper.getSyntaxHelp(ConstraintKind.BODYCONDITION, "self.ocl"); //$NON-NLS-1$
-		assertNotChoice(choices, ChoiceKind.OPERATION, "oclIsNew"); //$NON-NLS-1$
+		choices = helper.getSyntaxHelp(ConstraintKind.BODYCONDITION, "self.ocl");
+		assertNotChoice(choices, ChoiceKind.OPERATION, "oclIsNew");
 		
 		// this time we should find this choice
-		choices = helper.getSyntaxHelp(ConstraintKind.POSTCONDITION, "self.ocl"); //$NON-NLS-1$
-		assertChoice(choices, ChoiceKind.OPERATION, "oclIsNew"); //$NON-NLS-1$
+		choices = helper.getSyntaxHelp(ConstraintKind.POSTCONDITION, "self.ocl");
+		assertChoice(choices, ChoiceKind.OPERATION, "oclIsNew");
 	}
 }

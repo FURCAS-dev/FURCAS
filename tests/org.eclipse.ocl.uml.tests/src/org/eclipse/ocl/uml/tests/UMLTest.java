@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLTest.java,v 1.9 2009/11/26 20:46:38 ewillink Exp $
+ * $Id: UMLTest.java,v 1.10 2009/11/28 18:17:53 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -40,6 +40,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * 
  * @author Christian W. Damus (cwdamus)
  */
+@SuppressWarnings("nls")
 public class UMLTest
     extends AbstractTestSuite {
 
@@ -53,13 +54,13 @@ public class UMLTest
         expectModified = true;
         Package imported = UMLFactory.eINSTANCE.createPackage();
         imported
-            .createOwnedClass("Foo", false).createOwnedAttribute("boo", getUMLBoolean()); //$NON-NLS-1$//$NON-NLS-2$
+            .createOwnedClass("Foo", false).createOwnedAttribute("boo", getUMLBoolean());
 
         fruitPackage.createPackageImport(imported);
 
-        parseConstraint("package ocltest context Fruit " + //$NON-NLS-1$
-            "inv: self.oclIsKindOf(Foo) implies self.oclAsType(Foo).boo " + //$NON-NLS-1$
-            "endpackage"); //$NON-NLS-1$
+        parseConstraint("package ocltest context Fruit " +
+            "inv: self.oclIsKindOf(Foo) implies self.oclAsType(Foo).boo " +
+            "endpackage");
     }
 
     /**
@@ -83,9 +84,9 @@ public class UMLTest
         addValue(anApple, apple_appleFriends, apple3);
 
         // access the redefined property
-        OCLExpression<Classifier> expr = parse("package ocltest context Fruit " + //$NON-NLS-1$
-            "inv: self.friends" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+        OCLExpression<Classifier> expr = parse("package ocltest context Fruit " +
+            "inv: self.friends" +
+            " endpackage");
 
         // check that we got the value of the slot for the redefining property
         assertEquals(apples, evaluate(expr, anApple));
@@ -100,19 +101,19 @@ public class UMLTest
             fruit_ripen.setIsStatic(true);
 
             // access via an instance
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: self.ripen(Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: self.ripen(Color::black)" +
+                " endpackage");
 
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit.ripen(Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit.ripen(Color::black)" +
+                " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit.ripen(ocltest::Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit.ripen(ocltest::Color::black)" +
+                " endpackage");
         } finally {
             fruit_ripen.setIsStatic(false);
         }
@@ -127,14 +128,14 @@ public class UMLTest
             fruit_ripen.setIsStatic(true);
 
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit::ripen(Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit::ripen(Color::black)" +
+                " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit::ripen(ocltest::Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit::ripen(ocltest::Color::black)" +
+                " endpackage");
         } finally {
             fruit_ripen.setIsStatic(false);
         }
@@ -149,19 +150,19 @@ public class UMLTest
             fruit_color.setIsStatic(true);
 
             // access via an instance
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: self.color = Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: self.color = Color::black" +
+                " endpackage");
 
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit.color = Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit.color = Color::black" +
+                " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit.color = ocltest::Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit.color = ocltest::Color::black" +
+                " endpackage");
         } finally {
             fruit_color.setIsStatic(false);
         }
@@ -176,14 +177,14 @@ public class UMLTest
             fruit_color.setIsStatic(true);
 
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit::color = Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit::color = Color::black" +
+                " endpackage");
 
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit::color = ocltest::Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit::color = ocltest::Color::black" +
+                " endpackage");
         } finally {
             fruit_color.setIsStatic(false);
         }
@@ -196,28 +197,28 @@ public class UMLTest
     public void test_staticOperations_dot_val_bug164887() {
         try {
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit.ripen(Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit.ripen(Color::black)" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit.ripen(ocltest::Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit.ripen(ocltest::Color::black)" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
     }
 
@@ -228,28 +229,28 @@ public class UMLTest
     public void test_staticOperations_colonColon_val_bug164887() {
         try {
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit::ripen(Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit::ripen(Color::black)" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit::ripen(ocltest::Color::black)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit::ripen(ocltest::Color::black)" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
     }
 
@@ -260,28 +261,28 @@ public class UMLTest
     public void test_staticAttributes_dot_val_bug164887() {
         try {
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit.color = Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit.color = Color::black" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit.color = ocltest::Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit.color = ocltest::Color::black" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
     }
 
@@ -292,28 +293,28 @@ public class UMLTest
     public void test_staticAttributes_colonColon_val_bug164887() {
         try {
             // access via an unqualified type name
-            parseConstraint("package ocltest context Apple " + //$NON-NLS-1$
-                "inv: Fruit::color = Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package ocltest context Apple " +
+                "inv: Fruit::color = Color::black" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
             // access via a qualified type name
-            parseConstraint("package uml context Classifier " + //$NON-NLS-1$
-                "inv: ocltest::Fruit::color = ocltest::Color::black" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+            parseConstraint("package uml context Classifier " +
+                "inv: ocltest::Fruit::color = ocltest::Color::black" +
+                " endpackage");
 
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            fail("Should have failed to parse");
         } catch (AssertionFailedError e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
     }
 
@@ -323,14 +324,14 @@ public class UMLTest
      */
     public void test_aliasedOperation_bug184753() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package uml context Namespace " + //$NON-NLS-1$
-            "inv:  self.importedMember()->isEmpty()" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package uml context Namespace " +
+            "inv:  self.importedMember()->isEmpty()" +
+            " endpackage");
         
         try {
             assertNotSame(getInvalid(), evaluate(expr, getUMLMetamodel()));
         } catch (RuntimeException e) {
-            fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -340,9 +341,9 @@ public class UMLTest
      */
     public void test_aliasedAttribute_bug184753() {
         OCLExpression<Classifier> expr = parseConstraint(
-            "package ocltest context Aliased " + //$NON-NLS-1$
-            "inv:  self.isAliased" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package ocltest context Aliased " +
+            "inv:  self.isAliased" +
+            " endpackage");
         
         Map<String, String> options = new java.util.HashMap<String, String>();
         options.put(UMLUtil.UML2EcoreConverter.OPTION__ECORE_TAGGED_VALUES,
@@ -354,15 +355,15 @@ public class UMLTest
             
             // create an instance.  Note that the class name is aliased, too
             EObject instance = epkg.getEFactoryInstance().create(
-                (EClass) epkg.getEClassifier("HasAliases")); //$NON-NLS-1$
+                (EClass) epkg.getEClassifier("HasAliases"));
             
             // the attribute alias
-            instance.eSet(instance.eClass().getEStructuralFeature("aliased"), //$NON-NLS-1$
+            instance.eSet(instance.eClass().getEStructuralFeature("aliased"),
                 Boolean.TRUE);
             
             assertEquals(Boolean.TRUE, evaluate(expr, instance));
         } catch (RuntimeException e) {
-            fail("Failed to evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to evaluate: " + e.getLocalizedMessage());
         } finally {
             resourceSet.getPackageRegistry().remove(epkg.getNsURI());
         }
@@ -381,17 +382,17 @@ public class UMLTest
             resourceSet.getPackageRegistry().put(epkg.getNsURI(), epkg);
             
             OCLExpression<Classifier> expr = parseConstraint(
-                "package ocltest context Apple " + //$NON-NLS-1$
-                "inv:  self.color <> Color::brown" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Apple " +
+                "inv:  self.color <> Color::brown" +
+                " endpackage");
             
             // create an instance
             EObject instance = epkg.getEFactoryInstance().create(
-                (EClass) epkg.getEClassifier("Apple")); //$NON-NLS-1$
+                (EClass) epkg.getEClassifier("Apple"));
             
             assertEquals(Boolean.TRUE, evaluate(expr, instance));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -408,23 +409,23 @@ public class UMLTest
             resourceSet.getPackageRegistry().put(epkg.getNsURI(), epkg);
             
             OCLExpression<Classifier> expr = parseConstraint(
-                "package ocltest context Apple " + //$NON-NLS-1$
-                "inv:  self.preferredColor() <> Color::brown" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Apple " +
+                "inv:  self.preferredColor() <> Color::brown" +
+                " endpackage");
             
             // provide a body for the private operation 
             parseConstraint(
-                "package ocltest context Fruit::preferredColor() : Color " + //$NON-NLS-1$
-                "body: Color::red" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Fruit::preferredColor() : Color " +
+                "body: Color::red" +
+                " endpackage");
             
             // create an instance
             EObject instance = epkg.getEFactoryInstance().create(
-                (EClass) epkg.getEClassifier("Apple")); //$NON-NLS-1$
+                (EClass) epkg.getEClassifier("Apple"));
             
             assertEquals(Boolean.TRUE, evaluate(expr, instance));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -437,11 +438,11 @@ public class UMLTest
         
         try {
             parseConstraint(
-                "package ocltest context Apple " + //$NON-NLS-1$
-                "inv:  not self^Drop(?, ?)" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Apple " +
+                "inv:  not self^Drop(?, ?)" +
+                " endpackage");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
 
@@ -454,10 +455,10 @@ public class UMLTest
         super.setUp();
 
         instanceResource = resourceSet.createResource(URI
-            .createFileURI("/tmp/instances.uml")); //$NON-NLS-1$
+            .createFileURI("/tmp/instances.uml"));
 
         instancePackage = umlf.createPackage();
-        instancePackage.setName("instances"); //$NON-NLS-1$
+        instancePackage.setName("instances");
         instanceResource.getContents().add(instancePackage);
     }
 }

@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: StatesTest.java,v 1.3 2009/10/07 20:41:46 ewillink Exp $
+ * $Id: StatesTest.java,v 1.4 2009/11/28 18:10:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.StateMachine;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class StatesTest
 	extends AbstractTestSuite {
 	
@@ -41,25 +42,25 @@ public class StatesTest
 		try {
 			// test implicit and explicit source
 			helper.createInvariant(
-					"oclIsInState(Ripe) implies not self.oclIsInState(Bad)"); //$NON-NLS-1$
+					"oclIsInState(Ripe) implies not self.oclIsInState(Bad)");
 
 			// test source of different type than context (and also implicit)
 			helper.createInvariant(
-				"Apple.allInstances()->forAll(not oclIsInState(Bad::Rotten))"); //$NON-NLS-1$
+				"Apple.allInstances()->forAll(not oclIsInState(Bad::Rotten))");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// just to make sure that the second test, above, wasn't a fluke.
 			// Fruit doesn't have this state
 			helper.createInvariant(
-				"Fruit.allInstances()->forAll(not oclIsInState(Bad::Rotten))"); //$NON-NLS-1$
+				"Fruit.allInstances()->forAll(not oclIsInState(Bad::Rotten))");
 			
-			fail("Should have failed to parse non-existent state"); //$NON-NLS-1$
+			fail("Should have failed to parse non-existent state");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -72,45 +73,45 @@ public class StatesTest
 		try {
 			// not enough arguments
 			helper.createInvariant(
-				"self.oclIsInState()"); //$NON-NLS-1$
+				"self.oclIsInState()");
 			
-			fail("Should have failed to parse empty arglist"); //$NON-NLS-1$
+			fail("Should have failed to parse empty arglist");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// too many arguments
 			helper.createInvariant(
-				"Apple.allInstances()->forAll(oclIsInState(Bad, Rotten))"); //$NON-NLS-1$
+				"Apple.allInstances()->forAll(oclIsInState(Bad, Rotten))");
 			
-			fail("Should have failed to parse overabundant arglist"); //$NON-NLS-1$
+			fail("Should have failed to parse overabundant arglist");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// wrong kind of argument
 			helper.createInvariant(
-				"self.oclIsInState(color <> Color::black)"); //$NON-NLS-1$
+				"self.oclIsInState(color <> Color::black)");
 			
-			fail("Should have failed to parse arg of wrong type"); //$NON-NLS-1$
+			fail("Should have failed to parse arg of wrong type");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// another kind of wrong kind of argument
 			helper.createInvariant(
-				"self.oclIsInState(OclTest::Fruit)"); //$NON-NLS-1$
+				"self.oclIsInState(OclTest::Fruit)");
 			
-			fail("Should have failed to parse arg of wrong type"); //$NON-NLS-1$
+			fail("Should have failed to parse arg of wrong type");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -123,42 +124,42 @@ public class StatesTest
 		try {
 			// simplest case of first path name part completion
 			List<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self.oclIsInState("); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.oclIsInState(");
 			assertNotNull(choices);
-			assertChoice(choices, ChoiceKind.STATE, "Ripe"); //$NON-NLS-1$
-			assertChoice(choices, ChoiceKind.STATE, "Bad"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.STATE, "Ripe");
+			assertChoice(choices, ChoiceKind.STATE, "Bad");
 
 			// case of no more completions (path is already complete)
 			choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self.oclIsInState(Ripe::"); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.oclIsInState(Ripe::");
 			assertNotNull(choices);
 			assertTrue(choices.isEmpty());
 			
 			// explicit source of non-self type
 			choices = helper.getSyntaxHelp(
 					ConstraintKind.INVARIANT,
-					"Apple.allInstances()->forAll(a : Apple | a.oclIsInState("); //$NON-NLS-1$
+					"Apple.allInstances()->forAll(a : Apple | a.oclIsInState(");
 			assertNotNull(choices);
-			assertChoice(choices, ChoiceKind.STATE, "Ripe"); //$NON-NLS-1$
-			assertChoice(choices, ChoiceKind.STATE, "Bad"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.STATE, "Ripe");
+			assertChoice(choices, ChoiceKind.STATE, "Bad");
 			
 			// implicit source of non-self type
 //			choices = helper.getSyntaxHelp(
 //					ConstraintType.INVARIANT,
-//					"Apple.allInstances()->forAll(oclIsInState("); //$NON-NLS-1$
+//					"Apple.allInstances()->forAll(oclIsInState(");
 //			assertNotNull(choices);
-//			assertChoice(choices, ChoiceType.STATE, "Ripe"); //$NON-NLS-1$
-//			assertChoice(choices, ChoiceType.STATE, "Bad"); //$NON-NLS-1$
+//			assertChoice(choices, ChoiceType.STATE, "Ripe");
+//			assertChoice(choices, ChoiceType.STATE, "Bad");
 			
 			// available second-level completions
 			choices = helper.getSyntaxHelp(
 					ConstraintKind.INVARIANT,
-					"Apple.allInstances()->forAll(a : Apple | a.oclIsInState(Bad::"); //$NON-NLS-1$
+					"Apple.allInstances()->forAll(a : Apple | a.oclIsInState(Bad::");
 			assertNotNull(choices);
-			assertChoice(choices, ChoiceKind.STATE, "Bruised"); //$NON-NLS-1$
-			assertChoice(choices, ChoiceKind.STATE, "Rotten"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.STATE, "Bruised");
+			assertChoice(choices, ChoiceKind.STATE, "Rotten");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -168,31 +169,31 @@ public class StatesTest
 	public void test_multipleStateMachines() {
         expectModified = true;
 		helper.setContext(fruit);
-		StateMachine machine2 = (StateMachine) fruit.createOwnedBehavior("Machine2", uml.getStateMachine()); //$NON-NLS-1$
-		machine2.createRegion("Region1").createSubvertex("Ripe", uml.getState()); //$NON-NLS-1$ //$NON-NLS-2$
+		StateMachine machine2 = (StateMachine) fruit.createOwnedBehavior("Machine2", uml.getStateMachine());
+		machine2.createRegion("Region1").createSubvertex("Ripe", uml.getState());
 		
 		try {
 			try {
 				// qualify reference with first machine name
 				helper.createInvariant(
-						"oclIsInState(Lifecycle::Ripe) implies not self.oclIsInState(Bad)"); //$NON-NLS-1$
+						"oclIsInState(Lifecycle::Ripe) implies not self.oclIsInState(Bad)");
 
 				// qualify reference with second machine name
 				helper.createInvariant(
-						"oclIsInState(Machine2::Ripe) implies not self.oclIsInState(Bad)"); //$NON-NLS-1$
+						"oclIsInState(Machine2::Ripe) implies not self.oclIsInState(Bad)");
 			} catch (Exception e) {
-				fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+				fail("Failed to parse: " + e.getLocalizedMessage());
 			}
 			
 			try {
 				// ambiguous reference
 				helper.createInvariant(
-					"oclIsInState(Ripe) implies not self.oclIsInState(Bad)"); //$NON-NLS-1$
+					"oclIsInState(Ripe) implies not self.oclIsInState(Bad)");
 				
-				fail("Should have failed to parse ambiguous state"); //$NON-NLS-1$
+				fail("Should have failed to parse ambiguous state");
 			} catch (Exception e) {
 				// success
-				System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+				System.out.println("Got expected error: " + e.getLocalizedMessage());
 			}
 		} finally {
 			machine2.destroy();

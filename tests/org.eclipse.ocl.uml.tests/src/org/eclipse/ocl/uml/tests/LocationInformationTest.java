@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LocationInformationTest.java,v 1.6 2009/11/26 20:46:38 ewillink Exp $
+ * $Id: LocationInformationTest.java,v 1.7 2009/11/28 18:08:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -70,6 +70,7 @@ import org.eclipse.uml2.uml.State;
  *
  * @author Christian W. Damus (cwdamus)
  */
+@SuppressWarnings("nls")
 public class LocationInformationTest
 	extends AbstractTestSuite {
 	
@@ -79,29 +80,29 @@ public class LocationInformationTest
 	 * constraint.
 	 */
 	public void test_invariant() {
-		final String exprString = "true implies self.color <> Color::black"; //$NON-NLS-1$
+		final String exprString = "true implies self.color <> Color::black";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 		
 		OperationCallExp<Classifier, Operation> impliesExp = asOperationCall(constraint);
 		assertLocation(impliesExp, 0, exprString.length());
 		
 		BooleanLiteralExp<Classifier> bl = asBooleanLiteral(impliesExp.getSource());
-		assertLocation(bl, 0, "true".length()); //$NON-NLS-1$
+		assertLocation(bl, 0, "true".length());
 		
-		int selfPos = exprString.indexOf("self"); //$NON-NLS-1$
+		int selfPos = exprString.indexOf("self");
 		
 		OperationCallExp<Classifier, Operation> notEqualsExp = asOperationCall(
 			impliesExp.getArgument().get(0));
 		assertLocation(notEqualsExp, selfPos, exprString.length());
 		
 		PropertyCallExp<Classifier, Property> attrCall = asPropertyCall(notEqualsExp.getSource());
-		assertLocation(attrCall, selfPos, selfPos + "self.color".length()); //$NON-NLS-1$
+		assertLocation(attrCall, selfPos, selfPos + "self.color".length());
 		
 		VariableExp<Classifier, Parameter> selfVar = asVariable(attrCall.getSource());
-		assertLocation(selfVar, selfPos, selfPos + "self".length()); //$NON-NLS-1$
+		assertLocation(selfVar, selfPos, selfPos + "self".length());
 		
 		EnumLiteralExp<Classifier, EnumerationLiteral> enumLiteral = asEnumLiteral(notEqualsExp.getArgument().get(0));
-		assertLocation(enumLiteral, exprString.indexOf("Color"), exprString.length()); //$NON-NLS-1$
+		assertLocation(enumLiteral, exprString.indexOf("Color"), exprString.length());
 	}
 	
 	/**
@@ -110,52 +111,52 @@ public class LocationInformationTest
 	 */
 	public void test_query() {
 		final String exprString =
-			"if false then 'Spy' else " + //$NON-NLS-1$
-			"Set{'Spartan', 'GrannySmith', 'Macintosh'}->any(i : String | i <> '')" + //$NON-NLS-1$
-			" endif"; //$NON-NLS-1$
+			"if false then 'Spy' else " +
+			"Set{'Spartan', 'GrannySmith', 'Macintosh'}->any(i : String | i <> '')" +
+			" endif";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 		
 		IfExp<Classifier> ifExp = asIf(constraint);
 		assertLocation(ifExp, 0, exprString.length());
 		
-		int falsePos = exprString.indexOf("false"); //$NON-NLS-1$
+		int falsePos = exprString.indexOf("false");
 		
 		BooleanLiteralExp<Classifier> bl = asBooleanLiteral(ifExp.getCondition());
-		assertLocation(bl, falsePos, falsePos + "false".length()); //$NON-NLS-1$
+		assertLocation(bl, falsePos, falsePos + "false".length());
 		
-		int spyPos = exprString.indexOf("'Spy'"); //$NON-NLS-1$
+		int spyPos = exprString.indexOf("'Spy'");
 		
 		StringLiteralExp<Classifier> stringLiteral = asStringLiteral(ifExp.getThenExpression());
-		assertLocation(stringLiteral, spyPos, spyPos + "'Spy'".length()); //$NON-NLS-1$
+		assertLocation(stringLiteral, spyPos, spyPos + "'Spy'".length());
 		
 		IteratorExp<Classifier, Parameter> anyIterator = asIterator(ifExp.getElseExpression());
 		assertLocation(anyIterator,
-			exprString.indexOf("Set"), //$NON-NLS-1$
-			exprString.indexOf("endif") - 1); //$NON-NLS-1$
+			exprString.indexOf("Set"),
+			exprString.indexOf("endif") - 1);
 		
 		Variable<Classifier, Parameter> vdecl = asVariableDeclaration(anyIterator.getIterator().get(0));
 		assertLocation(vdecl,
-			exprString.indexOf("i :"), //$NON-NLS-1$
-			exprString.indexOf("|") - 1); //$NON-NLS-1$
+			exprString.indexOf("i :"),
+			exprString.indexOf("|") - 1);
 		
 		OCLExpression<Classifier> anyBody = anyIterator.getBody();
 		assertLocation(anyBody,
-			exprString.indexOf("i <>"), //$NON-NLS-1$
-			exprString.indexOf(")")); //$NON-NLS-1$
+			exprString.indexOf("i <>"),
+			exprString.indexOf(")"));
 		
 		CollectionLiteralExp<Classifier> collLiteral = asCollectionLiteral(anyIterator.getSource());
 		assertLocation(collLiteral,
-			exprString.indexOf("Set"), //$NON-NLS-1$
-			exprString.indexOf("->")); //$NON-NLS-1$
+			exprString.indexOf("Set"),
+			exprString.indexOf("->"));
 		
-		int grannyPos = exprString.indexOf("'GrannySmith'"); //$NON-NLS-1$
+		int grannyPos = exprString.indexOf("'GrannySmith'");
 		
 		// get the second item
 		CollectionItem<Classifier> item = asCollectionItem(collLiteral.getPart().get(1));
 		stringLiteral = asStringLiteral(item.getItem());
 		assertLocation(stringLiteral,
 			grannyPos,
-			grannyPos + "'GrannySmith'".length()); //$NON-NLS-1$
+			grannyPos + "'GrannySmith'".length());
 	}
 	
 	/**
@@ -164,7 +165,7 @@ public class LocationInformationTest
 	 */
 	public void test_postcondition() {
 		final String exprString =
-			"let oldColor : Color = self.color@pre in oldColor <> self.color"; //$NON-NLS-1$
+			"let oldColor : Color = self.color@pre in oldColor <> self.color";
 		OCLExpression<Classifier> constraint = createPostcondition(
 				fruit_ripen, exprString);
 		
@@ -173,17 +174,17 @@ public class LocationInformationTest
 		
 		Variable<Classifier, Parameter> vdecl = letExp.getVariable();
 		assertLocation(vdecl,
-			exprString.indexOf("oldColor :"), //$NON-NLS-1$
-			exprString.indexOf(" in ")); //$NON-NLS-1$
+			exprString.indexOf("oldColor :"),
+			exprString.indexOf(" in "));
 		
 		PropertyCallExp<Classifier, Property> attrExp = asPropertyCall(vdecl.getInitExpression());
 		assertLocation(attrExp,
-			exprString.indexOf("self"), //$NON-NLS-1$
-			exprString.indexOf(" in ")); //$NON-NLS-1$
+			exprString.indexOf("self"),
+			exprString.indexOf(" in "));
 		
 		OperationCallExp<Classifier, Operation> notEqualExp = asOperationCall(letExp.getIn());
 		assertLocation(notEqualExp,
-			exprString.indexOf("oldColor <>"), //$NON-NLS-1$
+			exprString.indexOf("oldColor <>"),
 			exprString.length());
 	}
 	
@@ -192,7 +193,7 @@ public class LocationInformationTest
 	 */
 	public void test_parentheses() {
 		final String exprString =
-			"( (true) implies ( (false) or ((true)) ) )"; //$NON-NLS-1$
+			"( (true) implies ( (false) or ((true)) ) )";
 		OCLExpression<Classifier> constraint = createQuery(fruit, exprString);
 		
 		OperationCallExp<Classifier, Operation> operCall = asOperationCall(constraint);
@@ -200,22 +201,22 @@ public class LocationInformationTest
 		
 		BooleanLiteralExp<Classifier> literal = asBooleanLiteral(operCall.getSource());
 		assertLocation(literal,
-			exprString.indexOf("(true) imp"), //$NON-NLS-1$
-			exprString.indexOf(" imp")); //$NON-NLS-1$
+			exprString.indexOf("(true) imp"),
+			exprString.indexOf(" imp"));
 		
 		operCall = asOperationCall(operCall.getArgument().get(0));
 		assertLocation(operCall,
-			exprString.indexOf("( (false"), //$NON-NLS-1$
+			exprString.indexOf("( (false"),
 			exprString.length() - 2);
 		
 		literal = asBooleanLiteral(operCall.getSource());
 		assertLocation(literal,
-			exprString.indexOf("(false) or"), //$NON-NLS-1$
-			exprString.indexOf(" or")); //$NON-NLS-1$
+			exprString.indexOf("(false) or"),
+			exprString.indexOf(" or"));
 		
 		literal = asBooleanLiteral(operCall.getArgument().get(0));
 		assertLocation(literal,
-			exprString.indexOf("((true)) )"), //$NON-NLS-1$
+			exprString.indexOf("((true)) )"),
 			exprString.length() - 4);
 	}
 	
@@ -224,8 +225,8 @@ public class LocationInformationTest
 	 */
 	public void test_typePositions() {
 		final String exprString =
-			"let isApple : Boolean = self.oclIsKindOf(Apple) in " + //$NON-NLS-1$
-			"isApple implies Apple.allInstances()->includes(self.oclAsType(Apple))"; //$NON-NLS-1$
+			"let isApple : Boolean = self.oclIsKindOf(Apple) in " +
+			"isApple implies Apple.allInstances()->includes(self.oclAsType(Apple))";
 		OCLExpression<Classifier> constraint = createQuery(fruit, exprString);
 		
 		LetExp<Classifier, Parameter> letExp = asLet(constraint);
@@ -233,14 +234,14 @@ public class LocationInformationTest
 		
 		Variable<Classifier, Parameter> vdecl = letExp.getVariable();
 		assertTypeLocation(vdecl,
-			exprString.indexOf("Boolean"), //$NON-NLS-1$
-			exprString.indexOf(" = ")); //$NON-NLS-1$
+			exprString.indexOf("Boolean"),
+			exprString.indexOf(" = "));
 		
 		TypeExp<Classifier> typeExp = asType(
 			asOperationCall(vdecl.getInitExpression()).getArgument().get(0));
 		assertLocation(typeExp,
-			exprString.indexOf("Apple) in "), //$NON-NLS-1$
-			exprString.indexOf(") in ")); //$NON-NLS-1$
+			exprString.indexOf("Apple) in "),
+			exprString.indexOf(") in "));
 		
 		OperationCallExp<Classifier, Operation> operCall = asOperationCall(
 			asOperationCall(letExp.getIn()).getArgument().get(0));
@@ -248,8 +249,8 @@ public class LocationInformationTest
 		operCall = asOperationCall(operCall.getSource());
 		typeExp = asType(operCall.getSource());
 		assertLocation(typeExp,
-			exprString.indexOf("Apple.all"), //$NON-NLS-1$
-			exprString.indexOf(".all")); //$NON-NLS-1$
+			exprString.indexOf("Apple.all"),
+			exprString.indexOf(".all"));
 	}
 	
 	/**
@@ -257,8 +258,8 @@ public class LocationInformationTest
 	 */
 	public void test_elementTypePositions() {
 		final String exprString =
-			"let allApples : Set(Apple) = Apple.allInstances() in " + //$NON-NLS-1$
-			"allApples->includes(self)"; //$NON-NLS-1$
+			"let allApples : Set(Apple) = Apple.allInstances() in " +
+			"allApples->includes(self)";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 		
 		LetExp<Classifier, Parameter> letExp = asLet(constraint);
@@ -266,13 +267,13 @@ public class LocationInformationTest
 		
 		Variable<Classifier, Parameter> vdecl = letExp.getVariable();
 		assertTypeLocation(vdecl,
-			exprString.indexOf("Set("), //$NON-NLS-1$
-			exprString.indexOf(" = ")); //$NON-NLS-1$
+			exprString.indexOf("Set("),
+			exprString.indexOf(" = "));
 		
 		CollectionType collType = (CollectionType) vdecl.getType();
 		assertTypeLocation(collType,
-			exprString.indexOf("Apple) = "), //$NON-NLS-1$
-			exprString.indexOf(") = ")); //$NON-NLS-1$
+			exprString.indexOf("Apple) = "),
+			exprString.indexOf(") = "));
 	}
 
 	/**
@@ -281,21 +282,21 @@ public class LocationInformationTest
 	 */
 	public void test_propertyPositions_operationCall() {
 		final String exprString =
-			"Apple.allInstances()->includes(self)"; //$NON-NLS-1$
+			"Apple.allInstances()->includes(self)";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 
 		// collection operation (arrow)
 		OperationCallExp<Classifier, Operation> includesExp = asOperationCall(constraint);
 		assertPropertyLocation(includesExp,
-			exprString.indexOf("includes"), //$NON-NLS-1$
-			exprString.indexOf("(self)")); //$NON-NLS-1$
+			exprString.indexOf("includes"),
+			exprString.indexOf("(self)"));
 
 		// element operation (dot)
 		FeatureCallExp<Classifier> mpcExp = asFeatureCall(
 			includesExp.getSource());
 		assertPropertyLocation(mpcExp,
-			exprString.indexOf("allInst"), //$NON-NLS-1$
-			exprString.indexOf("()")); //$NON-NLS-1$
+			exprString.indexOf("allInst"),
+			exprString.indexOf("()"));
 
 
 	}
@@ -307,7 +308,7 @@ public class LocationInformationTest
 	public void test_propertyPositions_attributeCall() {
 		// throw in spaces for fun
 		final String exprString =
-			"not ripen(self. color )"; //$NON-NLS-1$
+			"not ripen(self. color )";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 
 		OperationCallExp<Classifier, Operation> notExp = asOperationCall(constraint);
@@ -316,8 +317,8 @@ public class LocationInformationTest
 		FeatureCallExp<Classifier> mpcExp = asFeatureCall(
 			ripenExp.getArgument().get(0));
 		assertPropertyLocation(mpcExp,
-			exprString.indexOf("color "), //$NON-NLS-1$
-			exprString.indexOf(" )")); //$NON-NLS-1$
+			exprString.indexOf("color "),
+			exprString.indexOf(" )"));
 	}
 
 	/**
@@ -326,7 +327,7 @@ public class LocationInformationTest
 	 */
 	public void test_propertyPositions_associationEndCall() {
 		final String exprString =
-			"self.stem->notEmpty()"; //$NON-NLS-1$
+			"self.stem->notEmpty()";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 		
 		OperationCallExp<Classifier, Operation> notEmptyExp = asOperationCall(constraint);
@@ -337,8 +338,8 @@ public class LocationInformationTest
 		FeatureCallExp<Classifier> mpcExp = asFeatureCall(
 			((CollectionItem<Classifier>) setExp.getPart().get(0)).getItem());
 		assertPropertyLocation(mpcExp,
-			exprString.indexOf("stem"), //$NON-NLS-1$
-			exprString.indexOf("->")); //$NON-NLS-1$
+			exprString.indexOf("stem"),
+			exprString.indexOf("->"));
 	}
 
 	/**
@@ -347,9 +348,9 @@ public class LocationInformationTest
 	 */
 	public void test_propertyPositions_implicitCollect() {
 		final String exprString =
-			"orderedSet.color->asSet()->size() = 1"; //$NON-NLS-1$
+			"orderedSet.color->asSet()->size() = 1";
 		OCLExpression<Classifier> constraint = createQuery(
-			(Class) fruitPackage.getOwnedType("FruitUtil"), //$NON-NLS-1$
+			(Class) fruitPackage.getOwnedType("FruitUtil"),
 			exprString);
 		
 		OperationCallExp<Classifier, Operation> eqExp = asOperationCall(constraint);
@@ -361,8 +362,8 @@ public class LocationInformationTest
 
 		FeatureCallExp<Classifier> mpcExp = asFeatureCall(iterExp.getBody());
 		assertPropertyLocation(mpcExp,
-			exprString.indexOf("color"), //$NON-NLS-1$
-			exprString.indexOf("->asSet")); //$NON-NLS-1$
+			exprString.indexOf("color"),
+			exprString.indexOf("->asSet"));
 	}
 	
 	/**
@@ -372,7 +373,7 @@ public class LocationInformationTest
 	 */
 	public void test_referencePositions_implicitCollect() {
 		final String exprString =
-			"Apple.allInstances().stem->asSet()->size() > 1"; //$NON-NLS-1$
+			"Apple.allInstances().stem->asSet()->size() > 1";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 
 		OperationCallExp<Classifier, Operation> eqExp = asOperationCall(constraint);
@@ -384,8 +385,8 @@ public class LocationInformationTest
 
 		FeatureCallExp<Classifier> mpcExp = asFeatureCall(iterExp.getBody());
 		assertPropertyLocation(mpcExp,
-			exprString.indexOf("stem"), //$NON-NLS-1$
-			exprString.indexOf("->asSet")); //$NON-NLS-1$
+			exprString.indexOf("stem"),
+			exprString.indexOf("->asSet"));
 	}
 	
 	/**
@@ -394,26 +395,26 @@ public class LocationInformationTest
 	 */
 	public void test_messageExp_positions() {
 		final String exprString =
-			"self^ripen(? : Color)"; //$NON-NLS-1$
+			"self^ripen(? : Color)";
 		OCLExpression<Classifier> constraint = createQuery(fruit, exprString);
 		
 		MessageExp<Classifier, ?, ?> msgExp = asMessage(constraint);
 		assertLocation(msgExp, 0, exprString.length());
 		assertPropertyLocation(msgExp,
-				exprString.indexOf("ripen"), //$NON-NLS-1$
-				exprString.indexOf("(")); //$NON-NLS-1$
+				exprString.indexOf("ripen"),
+				exprString.indexOf("("));
 		
 		VariableExp<Classifier, Parameter> var = asVariable(msgExp.getTarget());
-		assertLocation(var,	0, exprString.indexOf("^")); //$NON-NLS-1$
+		assertLocation(var,	0, exprString.indexOf("^"));
 		
 		UnspecifiedValueExp<Classifier> unspecExp = asUnspecifiedValue(
 			msgExp.getArgument().get(0));
 		assertLocation(unspecExp,
-			exprString.indexOf("?"), //$NON-NLS-1$
-			exprString.indexOf(")")); //$NON-NLS-1$
+			exprString.indexOf("?"),
+			exprString.indexOf(")"));
 		assertTypeLocation(unspecExp,
-			exprString.indexOf("Color"), //$NON-NLS-1$
-			exprString.indexOf(")")); //$NON-NLS-1$
+			exprString.indexOf("Color"),
+			exprString.indexOf(")"));
 	}
 	
 	/**
@@ -421,7 +422,7 @@ public class LocationInformationTest
 	 */
 	public void test_stateExp_positions() {
 		final String exprString =
-			"self.oclIsInState(Bad::Rotten)"; //$NON-NLS-1$
+			"self.oclIsInState(Bad::Rotten)";
 		OCLExpression<Classifier> constraint = createQuery(apple, exprString);
 		
 		OperationCallExp<Classifier, Operation> callExp = asOperationCall(constraint);
@@ -430,8 +431,8 @@ public class LocationInformationTest
 		
 		StateExp<Classifier, ?> state = asState(callExp.getArgument().get(0));
 		assertLocation(state,
-				exprString.indexOf("Bad"), //$NON-NLS-1$
-				exprString.indexOf(")")); //$NON-NLS-1$
+				exprString.indexOf("Bad"),
+				exprString.indexOf(")"));
 	}
 	
 	//
@@ -572,7 +573,7 @@ public class LocationInformationTest
 	
 	@SuppressWarnings("unchecked")
 	static <T> T cast(Object obj, java.lang.Class<?> expectedClass) {
-		assertTrue("Expected type: " + expectedClass + ", got: " + obj.getClass(),  //$NON-NLS-1$//$NON-NLS-2$
+		assertTrue("Expected type: " + expectedClass + ", got: " + obj.getClass(),
 			expectedClass.isInstance(obj));
 		
 		return (T) obj;
@@ -584,18 +585,18 @@ public class LocationInformationTest
 	}
 	
 	static void assertLocation(ASTNode node, int start, int end) {
-		assertEquals("Wrong start position", start, node.getStartPosition()); //$NON-NLS-1$
-		assertEquals("Wrong end position", end, node.getEndPosition()); //$NON-NLS-1$
+		assertEquals("Wrong start position", start, node.getStartPosition());
+		assertEquals("Wrong end position", end, node.getEndPosition());
 	}
 	
 	static void assertTypeLocation(TypedASTNode node, int start, int end) {
-		assertEquals("Wrong type start position", start, node.getTypeStartPosition()); //$NON-NLS-1$
-		assertEquals("Wrong type end position", end, node.getTypeEndPosition()); //$NON-NLS-1$
+		assertEquals("Wrong type start position", start, node.getTypeStartPosition());
+		assertEquals("Wrong type end position", end, node.getTypeEndPosition());
 	}
 
 	static void assertPropertyLocation(CallingASTNode node, int start, int end) {
-		assertEquals("Wrong property start position", start, node.getPropertyStartPosition()); //$NON-NLS-1$
-		assertEquals("Wrong property end position", end, node.getPropertyEndPosition()); //$NON-NLS-1$
+		assertEquals("Wrong property start position", start, node.getPropertyStartPosition());
+		assertEquals("Wrong property end position", end, node.getPropertyEndPosition());
 	}
 	
 	/**
@@ -624,31 +625,31 @@ public class LocationInformationTest
 			String name = vdecl.getName();
 
 			return (name == null)
-				|| name.equals("self") //$NON-NLS-1$
-				|| name.startsWith("temp"); //$NON-NLS-1$
+				|| name.equals("self")
+				|| name.startsWith("temp");
 		}
 
 		private void assertPositions(OCLExpression<Classifier> expr) {
 			if (!isExempt(expr)) {
-				assertFalse("Start not set: " + expr, expr.getStartPosition() < 0); //$NON-NLS-1$
-				assertFalse("End not set: " + expr, expr.getEndPosition() < 0); //$NON-NLS-1$
-				assertTrue("End not after start: " + expr, expr.getEndPosition() > expr.getStartPosition()); //$NON-NLS-1$
+				assertFalse("Start not set: " + expr, expr.getStartPosition() < 0);
+				assertFalse("End not set: " + expr, expr.getEndPosition() < 0);
+				assertTrue("End not after start: " + expr, expr.getEndPosition() > expr.getStartPosition());
 			}
 		}
 
 		private void assertPositions(Variable<Classifier, Parameter> vdecl) {
 			if (!isImplicit(vdecl)) {
-				assertFalse("Start not set: " + vdecl, vdecl.getStartPosition() < 0); //$NON-NLS-1$
-				assertFalse("End not set: " + vdecl, vdecl.getEndPosition() < 0); //$NON-NLS-1$
-				assertTrue("End not after start: " + vdecl, //$NON-NLS-1$
+				assertFalse("Start not set: " + vdecl, vdecl.getStartPosition() < 0);
+				assertFalse("End not set: " + vdecl, vdecl.getEndPosition() < 0);
+				assertTrue("End not after start: " + vdecl,
 					vdecl.getEndPosition() > vdecl.getStartPosition());
 			}
 		}
 		
 		private void assertPositions(TupleLiteralPart<Classifier, Property> tp) {
-			assertFalse("Start not set: " + tp, tp.getStartPosition() < 0); //$NON-NLS-1$
-			assertFalse("End not set: " + tp, tp.getEndPosition() < 0); //$NON-NLS-1$
-			assertTrue("End not after start: " + tp, tp.getEndPosition() > tp.getStartPosition()); //$NON-NLS-1$
+			assertFalse("Start not set: " + tp, tp.getStartPosition() < 0);
+			assertFalse("End not set: " + tp, tp.getEndPosition() < 0);
+			assertTrue("End not after start: " + tp, tp.getEndPosition() > tp.getStartPosition());
 		}
 
 		@Override
@@ -683,7 +684,7 @@ public class LocationInformationTest
         public Object visitVariable(Variable<Classifier, Parameter> vd) {
 			// the 'self' variable is often implicit, in which case it is not
 			//    in the input at all, so don't verify it
-			if (!"self".equals(vd.getName())) { //$NON-NLS-1$
+			if (!"self".equals(vd.getName())) {
 				assertPositions(vd);
 			}
 			

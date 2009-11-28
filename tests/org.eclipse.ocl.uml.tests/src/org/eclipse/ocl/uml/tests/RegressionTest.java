@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.9 2009/11/16 14:23:45 lgoubet Exp $
+ * $Id: RegressionTest.java,v 1.10 2009/11/28 18:07:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -65,6 +65,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class RegressionTest
 	extends AbstractTestSuite {
 	
@@ -75,19 +76,19 @@ public class RegressionTest
 	public void test_quoteReservedWords_RATLC00527506() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class eclass = epackage.createOwnedClass("MyType", false); //$NON-NLS-1$
+		Class eclass = epackage.createOwnedClass("MyType", false);
 		
 		// "context" is an OCL reserved word
-		eclass.createOwnedAttribute("context", getUMLString()); //$NON-NLS-1$
+		eclass.createOwnedAttribute("context", getUMLString());
 		
 		try {
 			parseConstraint(
-				"package MyPackage context MyType " + //$NON-NLS-1$
-				"inv: self.\"context\"->notEmpty() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context MyType " +
+				"inv: self.\"context\"->notEmpty() " +
+				"endpackage");
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -100,19 +101,19 @@ public class RegressionTest
 	public void test_quoteWhitespace_RATLC00527509() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class eclass = epackage.createOwnedClass("MyType", false); //$NON-NLS-1$
+		Class eclass = epackage.createOwnedClass("MyType", false);
 		
 		// "context" is an OCL reserved word
-		eclass.createOwnedAttribute("an attribute", getUMLString()); //$NON-NLS-1$
+		eclass.createOwnedAttribute("an attribute", getUMLString());
 		
 		try {
 			parseConstraint(
-				"package MyPackage context MyType " + //$NON-NLS-1$
-				"inv: self.\"an attribute\"->notEmpty() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context MyType " +
+				"inv: self.\"an attribute\"->notEmpty() " +
+				"endpackage");
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -125,20 +126,20 @@ public class RegressionTest
 	public void test_quoteQuote_RATLC00527509() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class eclass = epackage.createOwnedClass("MyType", false); //$NON-NLS-1$
+		Class eclass = epackage.createOwnedClass("MyType", false);
 		
 		// "context" is an OCL reserved word
-		eclass.createOwnedAttribute("an\"attribute", getUMLString()); //$NON-NLS-1$
+		eclass.createOwnedAttribute("an\"attribute", getUMLString());
 		
 		try {
 			// try first to parse within surrounding double-quotes
 			parseConstraint(
-				"package MyPackage context MyType " + //$NON-NLS-1$
-				"inv: self.\"an\\\"attribute\"->notEmpty() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context MyType " +
+				"inv: self.\"an\\\"attribute\"->notEmpty() " +
+				"endpackage");
 
 			AssertionFailedError err = null;
 			
@@ -146,16 +147,16 @@ public class RegressionTest
 				// also try to parse without the surrounding double-quotes.
 				//   This is not allowed
 				parseConstraint(
-					"package MyPackage context MyType " + //$NON-NLS-1$
-					"inv: self.an\\\"attribute->notEmpty() " + //$NON-NLS-1$
-					"endpackage"); //$NON-NLS-1$
+					"package MyPackage context MyType " +
+					"inv: self.an\\\"attribute->notEmpty() " +
+					"endpackage");
 			} catch (AssertionFailedError e) {
 				// success
 				err = e;
-				System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+				System.out.println("Got expected error: " + e.getLocalizedMessage());
 			}
 			
-			assertNotNull("Should not have parsed.", err); //$NON-NLS-1$
+			assertNotNull("Should not have parsed.", err);
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -168,20 +169,20 @@ public class RegressionTest
 	public void test_internationalCharacters_RATLC01080816() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class eclass = epackage.createOwnedClass("MyType", false); //$NON-NLS-1$
+		Class eclass = epackage.createOwnedClass("MyType", false);
 		
 		// "context" is an OCL reserved word
-		eclass.createOwnedAttribute("\u0160\u01d6\u0429\u0639", getUMLString()); //$NON-NLS-1$
+		eclass.createOwnedAttribute("\u0160\u01d6\u0429\u0639", getUMLString());
 		
 		try {
 			// try these characters in the attribute name and string literal
 			parseConstraint(
-				"package MyPackage context MyType " + //$NON-NLS-1$
-				"inv: self.\u0160\u01d6\u0429\u0639 <> '\u0160\u01d6\u0429\u0639' " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context MyType " +
+				"inv: self.\u0160\u01d6\u0429\u0639 <> '\u0160\u01d6\u0429\u0639' " +
+				"endpackage");
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -195,37 +196,37 @@ public class RegressionTest
 	public void test_oclIsKindOf_RATLC01087664() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
 		// create three classes.  A and B are unrelated, but C extends
 		//   both.  Therefore, it is possible to cast a variable of type
 		//   A to type B where the run-time type is C
-		Class a = epackage.createOwnedClass("A", false); //$NON-NLS-1$
-		Class b = epackage.createOwnedClass("B", false); //$NON-NLS-1$
+		Class a = epackage.createOwnedClass("A", false);
+		Class b = epackage.createOwnedClass("B", false);
 		
-		Class c = epackage.createOwnedClass("C", false); //$NON-NLS-1$
+		Class c = epackage.createOwnedClass("C", false);
 		c.createGeneralization(a);
 		c.createGeneralization(b);
 		
-		Property attrA = a.createOwnedAttribute("a", getUMLBoolean()); //$NON-NLS-1$
-		Property attrB = b.createOwnedAttribute("b", getUMLBoolean()); //$NON-NLS-1$
+		Property attrA = a.createOwnedAttribute("a", getUMLBoolean());
+		Property attrB = b.createOwnedAttribute("b", getUMLBoolean());
 		
 		try {
 			OCLExpression<Classifier> constraint = parseConstraint(
-				"package MyPackage context A " + //$NON-NLS-1$
-				"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context A " +
+				"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " +
+				"endpackage");
 			
 			InstanceSpecification eobj = instantiate(epackage, c);
 			setValue(eobj, attrA, Boolean.TRUE);
 			setValue(eobj, attrB, Boolean.TRUE);
 			
-			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertFalse("Should have failed the check", check(constraint, eobj));
 			
 			setValue(eobj, attrB, Boolean.FALSE);
 			
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -237,21 +238,21 @@ public class RegressionTest
 	public void test_shortcircuitAnd_RATLC00536528() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class a = epackage.createOwnedClass("A", false); //$NON-NLS-1$
-		Class b = epackage.createOwnedClass("B", false); //$NON-NLS-1$
+		Class a = epackage.createOwnedClass("A", false);
+		Class b = epackage.createOwnedClass("B", false);
 		b.createGeneralization(a);
 		
-		Property attrA = a.createOwnedAttribute("a", getUMLBoolean()); //$NON-NLS-1$
-		Property attrB = b.createOwnedAttribute("b", getUMLBoolean()); //$NON-NLS-1$
+		Property attrA = a.createOwnedAttribute("a", getUMLBoolean());
+		Property attrB = b.createOwnedAttribute("b", getUMLBoolean());
 		
 		try {
 			OCLExpression<Classifier> constraint = parseConstraint(
-				"package MyPackage context A " + //$NON-NLS-1$
-				"inv: self.oclIsKindOf(B) and self.oclAsType(B).b " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context A " +
+				"inv: self.oclIsKindOf(B) and self.oclAsType(B).b " +
+				"endpackage");
 			
 			// create an A
 			InstanceSpecification eobj = instantiate(epackage, a);
@@ -259,16 +260,16 @@ public class RegressionTest
 			
 			// this would fail with an NPE on the access to '.b' when
 			//    'self.oclAsType(B)' evaluates to null, if we didn't short-circuit
-			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertFalse("Should have failed the check", check(constraint, eobj));
 			
 			// create a B this time
 			eobj = instantiate(epackage, b);
 			setValue(eobj, attrA, Boolean.TRUE);
 			setValue(eobj, attrB, Boolean.TRUE);
 			
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -280,21 +281,21 @@ public class RegressionTest
 	public void test_shortcircuitOr_RATLC00536528() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class a = epackage.createOwnedClass("A", false); //$NON-NLS-1$
-		Class b = epackage.createOwnedClass("B", false); //$NON-NLS-1$
+		Class a = epackage.createOwnedClass("A", false);
+		Class b = epackage.createOwnedClass("B", false);
 		b.createGeneralization(a);
 		
-		Property attrA = a.createOwnedAttribute("a", getUMLBoolean()); //$NON-NLS-1$
-		Property attrB = b.createOwnedAttribute("b", getUMLBoolean()); //$NON-NLS-1$
+		Property attrA = a.createOwnedAttribute("a", getUMLBoolean());
+		Property attrB = b.createOwnedAttribute("b", getUMLBoolean());
 		
 		try {
 			OCLExpression<Classifier> constraint = parseConstraint(
-				"package MyPackage context A " + //$NON-NLS-1$
-				"inv: (not self.oclIsKindOf(B)) or self.oclAsType(B).b " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package MyPackage context A " +
+				"inv: (not self.oclIsKindOf(B)) or self.oclAsType(B).b " +
+				"endpackage");
 			
 			// create an A
 			InstanceSpecification eobj = instantiate(epackage, a);
@@ -302,16 +303,16 @@ public class RegressionTest
 			
 			// this would fail with an NPE on the access to '.b' when
 			//    'self.oclAsType(B)' evaluates to null, if we didn't short-circuit
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 			
 			// create a B this time
 			eobj = instantiate(epackage, b);
 			setValue(eobj, attrA, Boolean.TRUE);
 			setValue(eobj, attrB, Boolean.TRUE);
 			
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -323,21 +324,21 @@ public class RegressionTest
 	public void test_shortcircuitImplies_RATLC00536528() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
-		Class a = epackage.createOwnedClass("A", false); //$NON-NLS-1$
-		Class b = epackage.createOwnedClass("B", false); //$NON-NLS-1$
+		Class a = epackage.createOwnedClass("A", false);
+		Class b = epackage.createOwnedClass("B", false);
 		b.createGeneralization(a);
 		
-		Property attrA = a.createOwnedAttribute("a", getUMLBoolean()); //$NON-NLS-1$
-		Property attrB = b.createOwnedAttribute("b", getUMLBoolean()); //$NON-NLS-1$
+		Property attrA = a.createOwnedAttribute("a", getUMLBoolean());
+		Property attrB = b.createOwnedAttribute("b", getUMLBoolean());
 		
 		try {
 			OCLExpression<Classifier> constraint = parseConstraint(
-				"package MyPackage context A " + //$NON-NLS-1$
-				"inv: self.oclIsKindOf(B) implies self.oclAsType(B).b " + //$NON-NLS-1$
-				"endpackage "); //$NON-NLS-1$
+				"package MyPackage context A " +
+				"inv: self.oclIsKindOf(B) implies self.oclAsType(B).b " +
+				"endpackage ");
 			
 			// create an A
 			InstanceSpecification eobj = instantiate(epackage, a);
@@ -345,16 +346,16 @@ public class RegressionTest
 			
 			// this would fail with an NPE on the access to '.b' when
 			//    'self.oclAsType(B)' evaluates to null, if we didn't short-circuit
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 			
 			// create a B this time
 			eobj = instantiate(epackage, b);
 			setValue(eobj, attrA, Boolean.TRUE);
 			setValue(eobj, attrB, Boolean.FALSE);
 			
-			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertFalse("Should have failed the check", check(constraint, eobj));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -366,9 +367,9 @@ public class RegressionTest
 	 */
 	public void test_oclIsNew_invariant_RATLC00529981() {
 		OCLExpression<Classifier> constraint = parseConstraintUnvalidated(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: color.oclIsNew() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: color.oclIsNew() " +
+			"endpackage");
 		
 		AssertionFailedError err = null;
 		
@@ -377,10 +378,10 @@ public class RegressionTest
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err);
 	}
 	
 	/**
@@ -389,9 +390,9 @@ public class RegressionTest
 	 */
 	public void test_oclIsNew_precondition_RATLC00529981() {
 		OCLExpression<Classifier> constraint = parseConstraintUnvalidated(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"pre: c.oclIsNew() implies c <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"pre: c.oclIsNew() implies c <> Color::black " +
+			"endpackage");
 		
 		AssertionFailedError err = null;
 		
@@ -400,10 +401,10 @@ public class RegressionTest
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err);
 	}
 	
 	/**
@@ -412,9 +413,9 @@ public class RegressionTest
 	 */
 	public void test_oclIsNew_postcondition_RATLC00529981() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"post: color.oclIsNew() implies color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"post: color.oclIsNew() implies color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -423,13 +424,13 @@ public class RegressionTest
 	 */
 	public void test_toLower_RATLC00529981() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: 'AlPHaBet'.toLower() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: 'AlPHaBet'.toLower() " +
+			"endpackage");
 		
 		Object value = evaluate(expr);
 		
-		assertEquals("alphabet", value); //$NON-NLS-1$
+		assertEquals("alphabet", value);
 	}
 	
 	/**
@@ -438,13 +439,13 @@ public class RegressionTest
 	 */
 	public void test_toUpper_RATLC00529981() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: 'AlPHaBet'.toUpper() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: 'AlPHaBet'.toUpper() " +
+			"endpackage");
 		
 		Object value = evaluate(expr);
 		
-		assertEquals("ALPHABET", value); //$NON-NLS-1$
+		assertEquals("ALPHABET", value);
 	}
 	
 	/**
@@ -454,13 +455,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_orderedSet_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.orderedSet" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.orderedSet" +
+			" endpackage");
 		
 		// check that the result type is an ordered set type
 		assertTrue(
-			"Not an ordered set type", //$NON-NLS-1$
+			"Not an ordered set type",
 			expr.getType() instanceof OrderedSetType);
 	}
 	
@@ -471,13 +472,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_set_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.set" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.set" +
+			" endpackage");
 		
 		// check that the result type is a set type
 		assertTrue(
-			"Not a set type", //$NON-NLS-1$
+			"Not a set type",
 			(expr.getType() instanceof SetType)
 				&& !(expr.getType() instanceof OrderedSetType));
 	}
@@ -489,13 +490,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_sequence_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.sequence" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.sequence" +
+			" endpackage");
 		
 		// check that the result type is a sequence set type
 		assertTrue(
-			"Not a sequence type", //$NON-NLS-1$
+			"Not a sequence type",
 			expr.getType() instanceof SequenceType);
 	}
 	
@@ -506,13 +507,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_bag_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.bag" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.bag" +
+			" endpackage");
 		
 		// check that the result type is a bag set type
 		assertTrue(
-			"Not a bag type", //$NON-NLS-1$
+			"Not a bag type",
 			expr.getType() instanceof BagType);
 	}
 	
@@ -523,13 +524,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_orderedSet_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processOrderedSet(FruitUtil.orderedSet)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processOrderedSet(FruitUtil.orderedSet)" +
+			" endpackage");
 		
 		// now also check that the result type is an ordered set type
 		assertTrue(
-			"Not an ordered set type", //$NON-NLS-1$
+			"Not an ordered set type",
 			expr.getType() instanceof OrderedSetType);
 	}
 	
@@ -540,13 +541,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_set_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processSet(FruitUtil.set)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processSet(FruitUtil.set)" +
+			" endpackage");
 		
 		// now also check that the result type is a set type
 		assertTrue(
-			"Not a set type", //$NON-NLS-1$
+			"Not a set type",
 			(expr.getType() instanceof SetType)
 				&& !(expr.getType() instanceof OrderedSetType));
 	}
@@ -558,13 +559,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_sequence_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processSequence(FruitUtil.sequence)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processSequence(FruitUtil.sequence)" +
+			" endpackage");
 		
 		// now also check that the result type is a sequence type
 		assertTrue(
-			"Not a sequence type", //$NON-NLS-1$
+			"Not a sequence type",
 			expr.getType() instanceof SequenceType);
 	}
 	
@@ -575,13 +576,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_bag_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processBag(FruitUtil.bag)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processBag(FruitUtil.bag)" +
+			" endpackage");
 		
 		// now also check that the result type is a bag type
 		assertTrue(
-			"Not a bag type", //$NON-NLS-1$
+			"Not a bag type",
 			expr.getType() instanceof BagType);
 	}
 	
@@ -591,13 +592,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_orderedSet_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processOrderedSet(FruitUtil.processOrderedSet(FruitUtil.orderedSet))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processOrderedSet(FruitUtil.processOrderedSet(FruitUtil.orderedSet))" +
+			" endpackage");
 		
 		// now also check that the result type is an ordered set type
 		assertTrue(
-			"Not an ordered set type", //$NON-NLS-1$
+			"Not an ordered set type",
 			expr.getType() instanceof OrderedSetType);
 	}
 	
@@ -607,13 +608,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_set_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processSet(FruitUtil.processSet(FruitUtil.set))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processSet(FruitUtil.processSet(FruitUtil.set))" +
+			" endpackage");
 		
 		// now also check that the result type is a set type
 		assertTrue(
-			"Not a set type", //$NON-NLS-1$
+			"Not a set type",
 			(expr.getType() instanceof SetType)
 				&& !(expr.getType() instanceof OrderedSetType));
 	}
@@ -624,13 +625,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_sequence_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processSequence(FruitUtil.processSequence(FruitUtil.sequence))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processSequence(FruitUtil.processSequence(FruitUtil.sequence))" +
+			" endpackage");
 		
 		// now also check that the result type is a sequence type
 		assertTrue(
-			"Not a sequence type", //$NON-NLS-1$
+			"Not a sequence type",
 			expr.getType() instanceof SequenceType);
 	}
 	
@@ -640,13 +641,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_bag_RATLC00538035() {
 		OCLExpression<Classifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: FruitUtil.processBag(FruitUtil.processBag(FruitUtil.bag))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: FruitUtil.processBag(FruitUtil.processBag(FruitUtil.bag))" +
+			" endpackage");
 		
 		// now also check that the result type is a bag type
 		assertTrue(
-			"Not a bag type", //$NON-NLS-1$
+			"Not a bag type",
 			expr.getType() instanceof BagType);
 	}
 	
@@ -660,23 +661,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processOrderedSet(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processOrderedSet(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processOrderedSet(x : OrderedSet(Fruit)) : OrderedSet(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processOrderedSet(x : OrderedSet(Fruit)) : OrderedSet(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -689,23 +690,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processSet(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processSet(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processSet(x : Set(Fruit)) : Set(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processSet(x : Set(Fruit)) : Set(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -718,23 +719,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processSequence(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processSequence(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processSequence(x : Sequence(Fruit)) : Sequence(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processSequence(x : Sequence(Fruit)) : Sequence(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -747,23 +748,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processBag(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processBag(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -772,9 +773,9 @@ public class RegressionTest
 	 */
 	public void test_allInstances_enumeration_RATLC00538079() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: Color.allInstances() " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: Color.allInstances() " +
+			" endpackage"));
 		
 		Set<EnumerationLiteral> expected = new java.util.HashSet<EnumerationLiteral>(
 				color.getOwnedLiterals());
@@ -788,9 +789,9 @@ public class RegressionTest
 	 */
 	public void test_allInstances_voidType_RATLC00538079() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: OclVoid.allInstances() " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: OclVoid.allInstances() " +
+			" endpackage"));
 		
 		Set<Object> expected = new java.util.HashSet<Object>();
 		expected.add(null);
@@ -804,9 +805,9 @@ public class RegressionTest
 	 */
 	public void test_allInstances_primitive_RATLC00538079() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: UMLPrimitiveTypes::\"String\".allInstances() " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: UMLPrimitiveTypes::\"String\".allInstances() " +
+			" endpackage"));
 		
 		assertEquals(Collections.EMPTY_SET, result);
 	}
@@ -822,15 +823,15 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: self)garbage " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: self)garbage " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -843,12 +844,12 @@ public class RegressionTest
 		
 		try {
 			// this should not work
-			helper.createInvariant("self)garbage"); //$NON-NLS-1$
+			helper.createInvariant("self)garbage");
 			
-			fail("Parse should have failed"); //$NON-NLS-1$
+			fail("Parse should have failed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -862,12 +863,12 @@ public class RegressionTest
 		
 		try {
 			// this should not work
-			helper.createPrecondition("self)garbage"); //$NON-NLS-1$
+			helper.createPrecondition("self)garbage");
 			
-			fail("Parse should have failed"); //$NON-NLS-1$
+			fail("Parse should have failed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -876,42 +877,42 @@ public class RegressionTest
 		
 		// this should work
 		parseConstraint(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: result = x->asSet()->asBag()" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: result = x->asSet()->asBag()" +
+			" endpackage");
 		
 		// as should this
 		parseConstraint(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: x->asSet()->asBag() = result" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: x->asSet()->asBag() = result" +
+			" endpackage");
 		
 		// and this (allow any number of lets to wrap the expression)
 		parseConstraint(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: let set : Set(Fruit) = x->asSet() in" + //$NON-NLS-1$
-			" let bag : Bag(Fruit) = set->asBag() in" + //$NON-NLS-1$
-			" result = bag" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: let set : Set(Fruit) = x->asSet() in" +
+			" let bag : Bag(Fruit) = set->asBag() in" +
+			" result = bag" +
+			" endpackage");
 		
 		// this should not work, however, because it has the result in the
 		//    body expression part of the constraint
 		err = null;
 		try {
 			parseConstraint(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-				"body: result = result->asSet()->union(x)->asBag()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+				"body: result = result->asSet()->union(x)->asBag()" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -924,26 +925,26 @@ public class RegressionTest
 	public void test_innerScopeFeatureResolution_bugzilla113355() {
         expectModified = true;
 		Package epackage = umlf.createPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
 		fruitPackage.eResource().getContents().add(epackage);
 		
 		// Library1
 		//  - Library2
 		//    - Writer1
 		//    - Writer2
-		Class libraryClass = epackage.createOwnedClass("Library", false); //$NON-NLS-1$
+		Class libraryClass = epackage.createOwnedClass("Library", false);
 		
-		Class writerClass = epackage.createOwnedClass("Writer", false); //$NON-NLS-1$
+		Class writerClass = epackage.createOwnedClass("Writer", false);
 
-		Property branchesRef = libraryClass.createOwnedAttribute("branches", libraryClass); //$NON-NLS-1$
+		Property branchesRef = libraryClass.createOwnedAttribute("branches", libraryClass);
 		branchesRef.setUpper(LiteralUnlimitedNatural.UNLIMITED);
 		branchesRef.setIsOrdered(true);
 		
-		Property writersRef = libraryClass.createOwnedAttribute("writers", writerClass); //$NON-NLS-1$
+		Property writersRef = libraryClass.createOwnedAttribute("writers", writerClass);
 		writersRef.setUpper(LiteralUnlimitedNatural.UNLIMITED);
 		writersRef.setIsOrdered(true);
 		
-		Property writerName = writerClass.createOwnedAttribute("name", getUMLString()); //$NON-NLS-1$
+		Property writerName = writerClass.createOwnedAttribute("name", getUMLString());
 
 		// create our test instance
 		InstanceSpecification library1 = instantiate(epackage, libraryClass);
@@ -951,8 +952,8 @@ public class RegressionTest
 		InstanceSpecification writer1 = instantiate(epackage, writerClass);
 		InstanceSpecification writer2 = instantiate(epackage, writerClass);
 		
-		setValue(writer1, writerName, "Joe"); //$NON-NLS-1$
-		setValue(writer2, writerName, "Jane"); //$NON-NLS-1$
+		setValue(writer1, writerName, "Joe");
+		setValue(writer2, writerName, "Jane");
 		
 		addValue(library1, branchesRef, library2);
 		addValue(library2, writersRef, writer1);
@@ -961,19 +962,19 @@ public class RegressionTest
 		// parse expression
 		try {
 			OCLExpression<Classifier> expr = parse(
-					"package MyPackage context Library " + //$NON-NLS-1$
-					"inv: branches->collect(writers->collect(w : Writer | w))->flatten()" + //$NON-NLS-1$
-					"endpackage"); //$NON-NLS-1$
+					"package MyPackage context Library " +
+					"inv: branches->collect(writers->collect(w : Writer | w))->flatten()" +
+					"endpackage");
 					
 			@SuppressWarnings("unchecked")
 			List<InstanceSpecification> result =
 				(List<InstanceSpecification>) evaluate(expr, library1);
 			
 			assertTrue(result.size() == 2);
-			assertTrue(getValue(result.get(0), writerName).equals("Joe")); //$NON-NLS-1$
-			assertTrue(getValue(result.get(1), writerName).equals("Jane")); //$NON-NLS-1$
+			assertTrue(getValue(result.get(0), writerName).equals("Joe"));
+			assertTrue(getValue(result.get(1), writerName).equals("Jane"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		} finally {
 			EcoreUtil.remove(epackage);
 		}
@@ -989,7 +990,7 @@ public class RegressionTest
 		
 		try {
 			OCLExpression<Classifier> expr = helper.createQuery(
-					"Set{'foo', 'bar'}->product(Sequence{1, 2, 3})"); //$NON-NLS-1$
+					"Set{'foo', 'bar'}->product(Sequence{1, 2, 3})");
 
 			Classifier resultType = expr.getType();
 			assertTrue(resultType instanceof CollectionType);
@@ -1003,10 +1004,10 @@ public class RegressionTest
 			
 			@SuppressWarnings("unchecked")
 			Set<Tuple<Operation, Property>> resultValue =
-				(Set<Tuple<Operation, Property>>) ocl.evaluate("", expr); //$NON-NLS-1$
+				(Set<Tuple<Operation, Property>>) ocl.evaluate("", expr);
 			product = resultValue;
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(product);
@@ -1021,17 +1022,17 @@ public class RegressionTest
 		values.add(2);
 		values.add(3);
 		
-		expectedTuples.put("foo", new java.util.HashSet<Integer>(values)); //$NON-NLS-1$
-		expectedTuples.put("bar", new java.util.HashSet<Integer>(values)); //$NON-NLS-1$
+		expectedTuples.put("foo", new java.util.HashSet<Integer>(values));
+		expectedTuples.put("bar", new java.util.HashSet<Integer>(values));
 		
 		for (Tuple<Operation, Property> tuple : product) {
-			values = expectedTuples.get(tuple.getValue("first")); //$NON-NLS-1$
+			values = expectedTuples.get(tuple.getValue("first"));
 			
 			// every "first" value must hit
 			assertNotNull(values);
 			
 			// every "second" must remove a different mapping
-			assertTrue(values.remove(tuple.getValue("second"))); //$NON-NLS-1$
+			assertTrue(values.remove(tuple.getValue("second")));
 		}
 	}
 	
@@ -1042,9 +1043,9 @@ public class RegressionTest
 	 */
 	public void test_iterationToString_126454() {
 		Package fakePkg = umlf.createPackage();
-		fakePkg.setName("fake"); //$NON-NLS-1$
-		Class fake = fakePkg.createOwnedClass("Fake", false); //$NON-NLS-1$
-		Property eattr = fake.createOwnedAttribute("e", getUMLInteger()); //$NON-NLS-1$
+		fakePkg.setName("fake");
+		Class fake = fakePkg.createOwnedClass("Fake", false);
+		Property eattr = fake.createOwnedAttribute("e", getUMLInteger());
 		eattr.setUpper(1);  // not a collection
 		
 		InstanceSpecification aFake = instantiate(fakePkg, fake);
@@ -1053,7 +1054,7 @@ public class RegressionTest
 		helper.setContext(fake);
 		
 		try {
-			OCLExpression<Classifier> expr = helper.createQuery("self.e->sum()"); //$NON-NLS-1$
+			OCLExpression<Classifier> expr = helper.createQuery("self.e->sum()");
 			
 			// convert to string and re-parse
 			String toStringResult = expr.toString();
@@ -1061,7 +1062,7 @@ public class RegressionTest
 			
 			assertEquals(getValue(aFake, eattr), ocl.evaluate(aFake, expr));
 		} catch (Exception exc) {
-			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
 		}
 	}
 	
@@ -1070,30 +1071,30 @@ public class RegressionTest
 	 */
 	public void test_null() {
 		Object result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclIsTypeOf(OclVoid) " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclIsTypeOf(OclVoid) " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclIsUndefined() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclIsUndefined() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclIsInvalid() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclIsInvalid() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.FALSE, result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Integer) " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Integer) " +
+				" endpackage"));
 			
 		assertNull(result);
 	}
@@ -1103,53 +1104,53 @@ public class RegressionTest
 	 */
 	public void test_oclInvalid() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: invalid.oclIsTypeOf(OclInvalid) " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: invalid.oclIsTypeOf(OclInvalid) " +
+			" endpackage"));
 		
 		assertEquals(Boolean.TRUE, result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: invalid.oclIsUndefined() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: invalid.oclIsUndefined() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: invalid.oclIsInvalid() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: invalid.oclIsInvalid() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: invalid.oclAsType(Integer) " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: invalid.oclAsType(Integer) " +
+				" endpackage"));
 			
 		assertInvalid(result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Apple).color " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Apple).color " +
+				" endpackage"));
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Apple).tree " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Apple).tree " +
+				" endpackage"));
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Apple).preferredLabel('foo') " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Apple).preferredLabel('foo') " +
+				" endpackage"));
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
@@ -1165,15 +1166,15 @@ public class RegressionTest
 		// this should not work (failure in parse, not validation)
 		try {
 			parseUnvalidated(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: FruitUtil.processOrderedSet(1) = 0 " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: FruitUtil.processOrderedSet(1) = 0 " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -1183,21 +1184,21 @@ public class RegressionTest
 	@SuppressWarnings("unchecked")
 	public void test_operationSignatureMatching() {
 		Package pkg = umlf.createPackage();
-		Class a = pkg.createOwnedClass("A", false); //$NON-NLS-1$
-		Class b = pkg.createOwnedClass("B", false); //$NON-NLS-1$
-		Class c = pkg.createOwnedClass("C", false); //$NON-NLS-1$
+		Class a = pkg.createOwnedClass("A", false);
+		Class b = pkg.createOwnedClass("B", false);
+		Class c = pkg.createOwnedClass("C", false);
 		c.createGeneralization(b);
 		
-		a.createOwnedAttribute("b", b); //$NON-NLS-1$
-		a.createOwnedAttribute("c", c); //$NON-NLS-1$
+		a.createOwnedAttribute("b", b);
+		a.createOwnedAttribute("c", c);
 		
-		Operation foo1 = a.createOwnedOperation("foo", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("c")), //$NON-NLS-1$
+		Operation foo1 = a.createOwnedOperation("foo",
+				new BasicEList<String>(Collections.singleton("c")),
 				new BasicEList<Type>(Collections.singleton((Type) c)),
 				getUMLBoolean());
 		foo1.setIsQuery(true);
-		Operation foo2 = a.createOwnedOperation("foo", //$NON-NLS-1$
-				new BasicEList<String>(Collections.singleton("b")), //$NON-NLS-1$
+		Operation foo2 = a.createOwnedOperation("foo",
+				new BasicEList<String>(Collections.singleton("b")),
 				new BasicEList<Type>(Collections.singleton((Type) b)),
 				getUMLBoolean());
 		foo2.setIsQuery(true);
@@ -1205,7 +1206,7 @@ public class RegressionTest
 		helper.setContext(a);
 		
 		try {
-			OCLExpression<Classifier> expr = helper.createQuery("self.foo(c)"); //$NON-NLS-1$
+			OCLExpression<Classifier> expr = helper.createQuery("self.foo(c)");
 			
 			assertTrue(expr instanceof OperationCallExp);
 			OperationCallExp<Classifier, Operation> oc =
@@ -1214,7 +1215,7 @@ public class RegressionTest
 			// foo1's parameter type is c
 			assertSame(foo1, oc.getReferredOperation());
 			
-			expr = helper.createQuery("self.foo(b)"); //$NON-NLS-1$
+			expr = helper.createQuery("self.foo(b)");
 			
 			assertTrue(expr instanceof OperationCallExp);
 			oc = (OperationCallExp<Classifier, Operation>) expr;
@@ -1223,7 +1224,7 @@ public class RegressionTest
 			//    (we skipped the foo having parameter type c)
 			assertSame(foo2, oc.getReferredOperation());
 			
-			expr = helper.createQuery("self.foo(b.oclAsType(C))"); //$NON-NLS-1$
+			expr = helper.createQuery("self.foo(b.oclAsType(C))");
 			
 			assertTrue(expr instanceof OperationCallExp);
 			oc = (OperationCallExp<Classifier, Operation>) expr;
@@ -1231,7 +1232,7 @@ public class RegressionTest
 			// coerced the arg to type C to find the correct foo
 			assertSame(foo1, oc.getReferredOperation());
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1246,27 +1247,27 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Apple.allInstances()->collect(preferredLabel())" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: Apple.allInstances()->collect(preferredLabel())" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: Apple.allInstances()->collect(preferredLabel('foo'))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: Apple.allInstances()->collect(preferredLabel('foo'))" +
+			" endpackage");
 		
 		// and this
 		parse(
-			"package ocltest context Apple " + //$NON-NLS-1$
-			"inv: preferredLabel('foo')" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Apple " +
+			"inv: preferredLabel('foo')" +
+			" endpackage");
 	}
 	
 	/**
@@ -1287,23 +1288,23 @@ public class RegressionTest
 	 */
 	public void test_enclosingPackage_unqualifiedName() {
 		Package level1 = umlf.createPackage();
-		level1.setName("level1"); //$NON-NLS-1$
-		Package level2 = level1.createNestedPackage("level2"); //$NON-NLS-1$
+		level1.setName("level1");
+		Package level2 = level1.createNestedPackage("level2");
 		
-		Enumeration enum1 = level1.createOwnedEnumeration("Enum1"); //$NON-NLS-1$
+		Enumeration enum1 = level1.createOwnedEnumeration("Enum1");
 		
-		enum1.createOwnedLiteral("Enum1Literal1"); //$NON-NLS-1$
+		enum1.createOwnedLiteral("Enum1Literal1");
 		
-		Class class1 = level2.createOwnedClass("Class1", false); //$NON-NLS-1$
+		Class class1 = level2.createOwnedClass("Class1", false);
 
-		class1.createOwnedAttribute("attr1", enum1); //$NON-NLS-1$
+		class1.createOwnedAttribute("attr1", enum1);
 		
 		helper.setContext(class1);
 		
 		try {
-			helper.createInvariant("attr1 = Enum1::Enum1Literal1"); //$NON-NLS-1$
+			helper.createInvariant("attr1 = Enum1::Enum1Literal1");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1317,21 +1318,21 @@ public class RegressionTest
 		
 		parse(
 				// English locale style
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel('foo')" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: preferredLabel('foo')" +
+				" endpackage");
 		
 		parse(
 				// SuSe Linux in Hebrew Local
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel(´foo´)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: preferredLabel(´foo´)" +
+				" endpackage");
 		
 		parse(
 				// I've seen this before (esp. in text export from MS Word)
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel(`foo´)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: preferredLabel(`foo´)" +
+				" endpackage");
 	}
 	
 	/**
@@ -1342,30 +1343,30 @@ public class RegressionTest
 		org.eclipse.ocl.uml.Variable var =
 			UMLFactory.eINSTANCE.createVariable();
 		
-		assertEquals("\"<null>\"", var.toString()); //$NON-NLS-1$
+		assertEquals("\"<null>\"", var.toString());
 		
 		VariableExp<Classifier, Parameter> exp =
 			UMLFactory.eINSTANCE.createVariableExp();
 		exp.setReferredVariable(var);
 		
-		assertEquals("\"<null>\"", exp.toString()); //$NON-NLS-1$
+		assertEquals("\"<null>\"", exp.toString());
 		
-		var.setName("foo"); //$NON-NLS-1$
+		var.setName("foo");
 		
-		assertEquals("foo", var.toString()); //$NON-NLS-1$
-		assertEquals("foo", exp.toString()); //$NON-NLS-1$
+		assertEquals("foo", var.toString());
+		assertEquals("foo", exp.toString());
 		
 		// recreate to avoid caching of names
 		
 		var = UMLFactory.eINSTANCE.createVariable();
-		var.setName("foo"); //$NON-NLS-1$
+		var.setName("foo");
 		var.setType(getUMLString());
 		
 		exp = UMLFactory.eINSTANCE.createVariableExp();
 		exp.setReferredVariable(var);
 		
-		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
-		assertEquals("foo", exp.toString()); //$NON-NLS-1$
+		assertEquals("foo : String", var.toString());
+		assertEquals("foo", exp.toString());
 	}
     
     /**
@@ -1386,10 +1387,10 @@ public class RegressionTest
      * CacheAdapter in UML.
      */
     public void test_dispose_resourceOwnedByOCL_213045() {
-        helper.setContext(getMetaclass("Action")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Action"));
         
         try {
-            Constraint constraint = helper.createInvariant("self.owner <> null"); //$NON-NLS-1$
+            Constraint constraint = helper.createInvariant("self.owner <> null");
             
             Resource res = constraint.eResource();
             assertSame(ocl.getEnvironment().getTypeResolver().getResource(), res);
@@ -1405,7 +1406,7 @@ public class RegressionTest
             assertNull(constraint.eResource());
             assertNull(adapter.getTarget());
         } catch (ParserException e) {
-            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Should not have failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -1419,15 +1420,15 @@ public class RegressionTest
         ocl.dispose();
         
         Resource res = UMLResource.Factory.INSTANCE.createResource(
-            URI.createURI("foo://foo")); //$NON-NLS-1$
+            URI.createURI("foo://foo"));
         
         ocl = OCL.newInstance(factory.loadEnvironment(res));
         helper = ocl.createOCLHelper();
         
-        helper.setContext(getMetaclass("Action")); //$NON-NLS-1$
+        helper.setContext(getMetaclass("Action"));
         
         try {
-            Constraint constraint = helper.createInvariant("self.owner <> null"); //$NON-NLS-1$
+            Constraint constraint = helper.createInvariant("self.owner <> null");
             
             assertSame(res, constraint.eResource());
             
@@ -1442,7 +1443,7 @@ public class RegressionTest
             assertSame(res, constraint.eResource());
             assertSame(constraint.getSpecification(), adapter.getTarget());
         } catch (ParserException e) {
-            fail("Should not have failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Should not have failed to parse: " + e.getLocalizedMessage());
         }
     }
 }

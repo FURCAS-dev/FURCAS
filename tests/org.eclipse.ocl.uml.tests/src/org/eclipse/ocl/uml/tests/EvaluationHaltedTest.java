@@ -53,6 +53,7 @@ import org.eclipse.uml2.uml.UMLFactory;
  * 
  * @author radvorak
  */
+@SuppressWarnings("nls")
 public class EvaluationHaltedTest
 		extends AbstractTestSuite {
 
@@ -76,11 +77,11 @@ public class EvaluationHaltedTest
 			// testing on iteration to check exception propagation through
 			// nested #visitExpression() and operation call
 			this.queryExp = helper
-				.createQuery("Sequence { self }->collect(i | i.halt(self))"); //$NON-NLS-1$
+				.createQuery("Sequence { self }->collect(i | i.halt(self))");
 			assertNull(helper.getProblems());
 
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 
 		query = (Query) ocl.createQuery(queryExp);
@@ -161,7 +162,7 @@ public class EvaluationHaltedTest
 		assertInvalid(query.evaluate());
 		assertNotNull(OCLUtil.getEvaluationProblems(query));
 		assertNotNull(OCLUtil.getEvaluationProblems(query).getMessage().equals(
-			"Halt")); //$NON-NLS-1$
+			"Halt"));
 		envFactory.haltOnContextLessExecution = false;
 		// check we clear the problems on next evaluate
 		query.evaluate();
@@ -195,7 +196,7 @@ public class EvaluationHaltedTest
 	}
 
 	public void testSelectListHaltedQuery() {
-		query = createQuery("Sequence { self }->exists(i | i.halt(self) = 'none')"); //$NON-NLS-1$
+		query = createQuery("Sequence { self }->exists(i | i.halt(self) = 'none')");
 		assertNull(OCLUtil.getEvaluationProblems(query));
 
 		List<?> listResult = query.select(Arrays.asList(HALT_KIND_BASIC,
@@ -220,7 +221,7 @@ public class EvaluationHaltedTest
 	}
 
 	public void testRejectListHaltedQuery() {
-		query = createQuery("Sequence { self }->one(i | i.halt(self) = 'none')"); //$NON-NLS-1$
+		query = createQuery("Sequence { self }->one(i | i.halt(self) = 'none')");
 		assertNull(OCLUtil.getEvaluationProblems(query));
 
 		List<?> listResult = query.reject(Arrays.asList(HALT_KIND_BASIC,
@@ -247,44 +248,44 @@ public class EvaluationHaltedTest
 
 	public void testVariablesCleanup() {
 		// let expression
-		assertCleanupAfterHaltedEvaluation("let i : OclAny = true in halt('basic')"); //$NON-NLS-1$
-		assertCleanupAfterHaltedEvaluation("let i : OclAny = halt('basic') in true"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("let i : OclAny = true in halt('basic')");
+		assertCleanupAfterHaltedEvaluation("let i : OclAny = halt('basic') in true");
 		// any
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->any(i | i.halt('basic').size() > 0)"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->any(i | i.halt('basic').size() > 0)");
 		// collect
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->collect(i | i.halt('basic'))"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->collect(i | i.halt('basic'))");
 		// collectNested
-		assertCleanupAfterHaltedEvaluation("Bag { Bag{ 'foo'} }->collectNested(i | i.halt('basic'))"); //$NON-NLS-1$		
+		assertCleanupAfterHaltedEvaluation("Bag { Bag{ 'foo'} }->collectNested(i | i.halt('basic'))");		
 		// exists
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->exists(i | i.halt('basic').size() > 0)"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->exists(i | i.halt('basic').size() > 0)");
 		// forAll
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->forAll(i1, i2 | i1.halt('basic').size() > 0)"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->forAll(i1, i2 | i1.halt('basic').size() > 0)");
 		// isUnique
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->isUnique(i | i.halt('basic'))"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->isUnique(i | i.halt('basic'))");
 		// one
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->one(i | i.halt('basic').size() > 0)"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->one(i | i.halt('basic').size() > 0)");
 		// reject
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->reject(i | i.halt('basic').size() > 0)"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->reject(i | i.halt('basic').size() > 0)");
 		// select
-		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->select(i | i.halt('basic').size() > 0)"); //$NON-NLS-1$
+		assertCleanupAfterHaltedEvaluation("Bag { 'foo' }->select(i | i.halt('basic').size() > 0)");
 		// sortedBy
-		assertCleanupAfterHaltedEvaluation("Bag { 'a', 'b' }->sortedBy(i | i.halt('basic'))"); //$NON-NLS-1$		
+		assertCleanupAfterHaltedEvaluation("Bag { 'a', 'b' }->sortedBy(i | i.halt('basic'))");		
 	}
 
 	//
 	// Framework part
 	//
-	static final String HALT_OPERATION_NAME = "halt"; //$NON-NLS-1$
+	static final String HALT_OPERATION_NAME = "halt";
 
-	static final String HALT_KIND_BASIC = "basic"; //$NON-NLS-1$	
+	static final String HALT_KIND_BASIC = "basic";	
 
-	static final String HALT_KIND_ON_ERROR = "error"; //$NON-NLS-1$	
+	static final String HALT_KIND_ON_ERROR = "error";	
 
-	static final String HALT_KIND_CUSTOM = "custom"; //$NON-NLS-1$
+	static final String HALT_KIND_CUSTOM = "custom";
 
-	static final String HALT_KIND_NONE = "none"; //$NON-NLS-1$	
+	static final String HALT_KIND_NONE = "none";	
 
-	static final String OCL_CATCHED_EXC = "ocl.catch"; //$NON-NLS-1$	
+	static final String OCL_CATCHED_EXC = "ocl.catch";	
 
 	static final Diagnostic CUSTOM_DIAGNOSTIC_INSTANCE = new BasicDiagnostic(
 		HALT_KIND_CUSTOM, 0, HALT_KIND_CUSTOM, null);
@@ -320,7 +321,7 @@ public class EvaluationHaltedTest
 			haltOperation.setName(HALT_OPERATION_NAME);
 			haltOperation.setType(getOCLStandardLibrary().getString());
 			Parameter parm = UMLFactory.eINSTANCE.createParameter();
-			parm.setName("kind"); //$NON-NLS-1$
+			parm.setName("kind");
 			parm.setType(getOCLStandardLibrary().getString());
 			haltOperation.getOwnedParameters().add(parm);
 			haltOperation.setIsQuery(true);
@@ -409,7 +410,7 @@ public class EvaluationHaltedTest
 				Environment<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint, Class, EObject> parent) {
 			if (!(parent instanceof InterruptibleEnv)) {
 				throw new IllegalArgumentException(
-					"Parent environment must be my environment: " + parent); //$NON-NLS-1$
+					"Parent environment must be my environment: " + parent);
 			}
 
 			InterruptibleEnv result = new InterruptibleEnv(
@@ -444,7 +445,7 @@ public class EvaluationHaltedTest
 					@Override
 					public Object visitExpression(
 							org.eclipse.ocl.expressions.OCLExpression<Classifier> expression) {
-						throw new EvaluationHaltedException("Halt"); //$NON-NLS-1$
+						throw new EvaluationHaltedException("Halt");
 					}
 				};
 			}
@@ -493,8 +494,8 @@ public class EvaluationHaltedTest
 	}
 
 	private static void assertListResult(Object result, List<?> expectedElements) {
-		assertTrue("result must be a List", result instanceof List<?>); //$NON-NLS-1$
-		assertNotNull("expectedElements must be a List", result instanceof List<?>); //$NON-NLS-1$		
+		assertTrue("result must be a List", result instanceof List<?>);
+		assertNotNull("expectedElements must be a List", result instanceof List<?>);		
 		List<?> resultCollection = (List<?>) result;
 		assertEquals(expectedElements, resultCollection);
 	}

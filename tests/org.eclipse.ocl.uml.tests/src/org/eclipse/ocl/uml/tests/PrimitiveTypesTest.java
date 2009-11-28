@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PrimitiveTypesTest.java,v 1.4 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: PrimitiveTypesTest.java,v 1.5 2009/11/28 18:09:44 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -27,6 +27,7 @@ import org.eclipse.uml2.uml.Classifier;
  * 
  * @author Christian W. Damus (cwdamus)
  */
+@SuppressWarnings("nls")
 public class PrimitiveTypesTest
 		extends AbstractTestSuite {
 
@@ -35,9 +36,9 @@ public class PrimitiveTypesTest
 	 * type.
 	 */
 	public void test_unlimitedNaturalType() {
-		OCLExpression<Classifier> expression = parse("package uml context MultiplicityElement " + //$NON-NLS-1$
-			"inv: self.upper " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+		OCLExpression<Classifier> expression = parse("package uml context MultiplicityElement " +
+			"inv: self.upper " +
+			"endpackage");
 
 		assertSame(ocl.getEnvironment().getOCLStandardLibrary()
 			.getUnlimitedNatural(), expression.getType());
@@ -48,9 +49,9 @@ public class PrimitiveTypesTest
 	 * unlimited value.
 	 */
 	public void test_unlimitedValue() {
-		OCLExpression<Classifier> expression = parse("package uml context Class " + //$NON-NLS-1$
-			"inv: let x : UnlimitedNatural = * in x " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+		OCLExpression<Classifier> expression = parse("package uml context Class " +
+			"inv: let x : UnlimitedNatural = * in x " +
+			"endpackage");
 
 		assertSame(ocl.getEnvironment().getOCLStandardLibrary()
 			.getUnlimitedNatural(), expression.getType());
@@ -66,23 +67,23 @@ public class PrimitiveTypesTest
 		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
 
 		try {
-			assertFalse(check(helper, 1, "2 = *")); //$NON-NLS-1$
-			assertTrue(check(helper, 1, "2 <> *")); //$NON-NLS-1$
+			assertFalse(check(helper, 1, "2 = *"));
+			assertTrue(check(helper, 1, "2 <> *"));
 
-			assertTrue(check(helper, 1, "2 < *")); //$NON-NLS-1$
-			assertTrue(check(helper, 1, "2 <= *")); //$NON-NLS-1$
-			assertTrue(check(helper, 1, "* > 2")); //$NON-NLS-1$
-			assertTrue(check(helper, 1, "* >= 2")); //$NON-NLS-1$
+			assertTrue(check(helper, 1, "2 < *"));
+			assertTrue(check(helper, 1, "2 <= *"));
+			assertTrue(check(helper, 1, "* > 2"));
+			assertTrue(check(helper, 1, "* >= 2"));
 
-			assertTrue(check(helper, 1, "* = *")); //$NON-NLS-1$
-			assertFalse(check(helper, 1, "* <> *")); //$NON-NLS-1$
+			assertTrue(check(helper, 1, "* = *"));
+			assertFalse(check(helper, 1, "* <> *"));
 
-			assertFalse(check(helper, 1, "* < *")); //$NON-NLS-1$
-			assertFalse(check(helper, 1, "* <= *")); //$NON-NLS-1$
-			assertFalse(check(helper, 1, "* > *")); //$NON-NLS-1$
-			assertFalse(check(helper, 1, "* >= *")); //$NON-NLS-1$
+			assertFalse(check(helper, 1, "* < *"));
+			assertFalse(check(helper, 1, "* <= *"));
+			assertFalse(check(helper, 1, "* > *"));
+			assertFalse(check(helper, 1, "* >= *"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -94,15 +95,15 @@ public class PrimitiveTypesTest
 		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
 
 		try {
-			assertInvalid(evaluate(helper, 1, "2 + *")); //$NON-NLS-1$
+			assertInvalid(evaluate(helper, 1, "2 + *"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 
 		try {
-			assertInvalid(evaluate(helper, 1, "* + 2")); //$NON-NLS-1$
+			assertInvalid(evaluate(helper, 1, "* + 2"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -114,21 +115,21 @@ public class PrimitiveTypesTest
 		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
 
 		try {
-			assertInvalid(evaluate(helper, 1, "2.0 + *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "2.0 - *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "2.0 / *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "2.0 * *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "2.0.min(*)")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "2.0.max(*)")); //$NON-NLS-1$
+			assertInvalid(evaluate(helper, 1, "2.0 + *"));
+			assertInvalid(evaluate(helper, 1, "2.0 - *"));
+			assertInvalid(evaluate(helper, 1, "2.0 / *"));
+			assertInvalid(evaluate(helper, 1, "2.0 * *"));
+			assertInvalid(evaluate(helper, 1, "2.0.min(*)"));
+			assertInvalid(evaluate(helper, 1, "2.0.max(*)"));
 
-			assertInvalid(evaluate(helper, 1, "* + 2.0")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* - 2.0")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* / 2.0")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* * 2.0")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.min(2.0)")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.max(2.0)")); //$NON-NLS-1$
+			assertInvalid(evaluate(helper, 1, "* + 2.0"));
+			assertInvalid(evaluate(helper, 1, "* - 2.0"));
+			assertInvalid(evaluate(helper, 1, "* / 2.0"));
+			assertInvalid(evaluate(helper, 1, "* * 2.0"));
+			assertInvalid(evaluate(helper, 1, "*.min(2.0)"));
+			assertInvalid(evaluate(helper, 1, "*.max(2.0)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 
@@ -140,19 +141,19 @@ public class PrimitiveTypesTest
 		helper.setContext(getOCLStandardLibrary().getUnlimitedNatural());
 
 		try {
-			assertInvalid(evaluate(helper, 1, "*.round()")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.floor()")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.abs()")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* + *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* - *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* / *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "* * *")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.min(*)")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.max(*)")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.mod(*)")); //$NON-NLS-1$
-			assertInvalid(evaluate(helper, 1, "*.div(*)")); //$NON-NLS-1$
+			assertInvalid(evaluate(helper, 1, "*.round()"));
+			assertInvalid(evaluate(helper, 1, "*.floor()"));
+			assertInvalid(evaluate(helper, 1, "*.abs()"));
+			assertInvalid(evaluate(helper, 1, "* + *"));
+			assertInvalid(evaluate(helper, 1, "* - *"));
+			assertInvalid(evaluate(helper, 1, "* / *"));
+			assertInvalid(evaluate(helper, 1, "* * *"));
+			assertInvalid(evaluate(helper, 1, "*.min(*)"));
+			assertInvalid(evaluate(helper, 1, "*.max(*)"));
+			assertInvalid(evaluate(helper, 1, "*.mod(*)"));
+			assertInvalid(evaluate(helper, 1, "*.div(*)"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 }

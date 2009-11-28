@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: DefExpressionTest.java,v 1.9 2009/10/07 20:41:45 ewillink Exp $
+ * $Id: DefExpressionTest.java,v 1.10 2009/11/28 18:04:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -70,10 +70,10 @@ public class DefExpressionTest
 	public void test_defExpression_raw_operation() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"def: bestColor(c : Color) : Color = " + //$NON-NLS-1$
-				"if self.color = Color::black then c else self.color endif" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"def: bestColor(c : Color) : Color = " +
+				"if self.color = Color::black then c else self.color endif" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -83,9 +83,9 @@ public class DefExpressionTest
 			assertSame(color, expr.getType());
 			
 			expr = parse(
-					"package ocltest context Fruit " + //$NON-NLS-1$
-					"inv: bestColor(Color::red) = Color::red" + //$NON-NLS-1$
-					" endpackage"); //$NON-NLS-1$
+					"package ocltest context Fruit " +
+					"inv: bestColor(Color::red) = Color::red" +
+					" endpackage");
 			
 			InstanceSpecification anApple = instantiate(instancePackage, apple);
 			setValue(anApple, fruit_color, color_black);
@@ -96,7 +96,7 @@ public class DefExpressionTest
 			
 			assertFalse(ocl.check(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -108,11 +108,11 @@ public class DefExpressionTest
 		
 		try {
 			helper.defineOperation(
-					"bestColor(c : Color) : Color = " + //$NON-NLS-1$
-					"if self.color = Color::black then c else self.color endif"); //$NON-NLS-1$
+					"bestColor(c : Color) : Color = " +
+					"if self.color = Color::black then c else self.color endif");
 			
 			Constraint expr = helper.createInvariant(
-					"bestColor(Color::red) = Color::red"); //$NON-NLS-1$
+					"bestColor(Color::red) = Color::red");
 			
 			InstanceSpecification anApple = instantiate(instancePackage, apple);
 			setValue(anApple, fruit_color, color_black);
@@ -123,7 +123,7 @@ public class DefExpressionTest
 			
 			assertFalse(ocl.check(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -133,9 +133,9 @@ public class DefExpressionTest
 	public void test_defExpression_raw_attribute() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"def: fallen : Boolean = tree.oclIsUndefined()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"def: fallen : Boolean = tree.oclIsUndefined()" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -145,9 +145,9 @@ public class DefExpressionTest
 			assertSame(getOCLStandardLibrary().getBoolean(), expr.getType());
 			
 			expr = parse(
-					"package ocltest context Apple " + //$NON-NLS-1$
-					"inv: not fallen" + //$NON-NLS-1$
-					" endpackage"); //$NON-NLS-1$
+					"package ocltest context Apple " +
+					"inv: not fallen" +
+					" endpackage");
 			
 			InstanceSpecification anApple = instantiate(instancePackage, apple);
 			setValue(anApple, apple_tree, instantiate(instancePackage, tree));
@@ -158,7 +158,7 @@ public class DefExpressionTest
 			
 			assertFalse(ocl.check(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -170,10 +170,10 @@ public class DefExpressionTest
 		
 		try {
 			helper.defineAttribute(
-					"fallen : Boolean = " + //$NON-NLS-1$
-					"tree.oclIsUndefined()"); //$NON-NLS-1$
+					"fallen : Boolean = " +
+					"tree.oclIsUndefined()");
 			
-			Constraint expr = helper.createInvariant("not fallen"); //$NON-NLS-1$
+			Constraint expr = helper.createInvariant("not fallen");
 			
 			InstanceSpecification anApple = instantiate(instancePackage, apple);
 			setValue(anApple, apple_tree, instantiate(instancePackage, tree));
@@ -184,7 +184,7 @@ public class DefExpressionTest
 			
 			assertFalse(ocl.check(anApple, expr));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -194,9 +194,9 @@ public class DefExpressionTest
 	public void test_defExpression_raw_reference() {
 		try {
 			OCLExpression<Classifier> expr = parseDef(
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"def: otherApples : Set(Apple) = Apple.allInstances()->excluding(self)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"def: otherApples : Set(Apple) = Apple.allInstances()->excluding(self)" +
+				" endpackage");
 			
 			Constraint constraint = (Constraint) expr.eContainer().eContainer();
 			assertNotNull(constraint);
@@ -209,9 +209,9 @@ public class DefExpressionTest
 					apple);
 			
 			expr = parse(
-					"package ocltest context Apple " + //$NON-NLS-1$
-					"inv: self.otherApples" + //$NON-NLS-1$
-					" endpackage"); //$NON-NLS-1$
+					"package ocltest context Apple " +
+					"inv: self.otherApples" +
+					" endpackage");
 			
 			InstanceSpecification anApple = instantiate(instancePackage, apple);
 			InstanceSpecification anotherApple = instantiate(instancePackage, apple);
@@ -227,19 +227,19 @@ public class DefExpressionTest
 			
 			assertEquals(Collections.singleton(anotherApple), otherApples);
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_defExpression_inheritance_operation() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			helper.defineOperation(
-					"oclAllParents() : Set(Classifier) = " + //$NON-NLS-1$
-					"self->closure(generalization.general)"); //$NON-NLS-1$
+					"oclAllParents() : Set(Classifier) = " +
+					"self->closure(generalization.general)");
 			
-			OCLExpression<Classifier> expr = helper.createQuery("self.oclAllParents()"); //$NON-NLS-1$
+			OCLExpression<Classifier> expr = helper.createQuery("self.oclAllParents()");
 			
 			Object oclAllParents = ocl.evaluate(apple, expr);
 			assertTrue(oclAllParents instanceof Set<?>);
@@ -249,19 +249,19 @@ public class DefExpressionTest
 			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).isEmpty());
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_defExpression_inheritance_attribute() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			helper.defineAttribute(
-					"oclAllParents : Set(Classifier) = " + //$NON-NLS-1$
-					"self->closure(generalization.general)"); //$NON-NLS-1$
+					"oclAllParents : Set(Classifier) = " +
+					"self->closure(generalization.general)");
 			
-			OCLExpression<Classifier> expr = helper.createQuery("self.oclAllParents"); //$NON-NLS-1$
+			OCLExpression<Classifier> expr = helper.createQuery("self.oclAllParents");
 			
 			Object oclAllParents = ocl.evaluate(apple, expr);
 			assertTrue(oclAllParents instanceof Set<?>);
@@ -271,7 +271,7 @@ public class DefExpressionTest
 			assertTrue(oclAllParents instanceof Set<?>);
 			assertTrue(((Set<?>) oclAllParents).isEmpty());
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -284,12 +284,12 @@ public class DefExpressionTest
 			UMLReflection<Package, Classifier, Operation, Property, EnumerationLiteral, Parameter, State, CallOperationAction, SendSignalAction, Constraint> umlReflection = env.getUMLReflection();
 
 			ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.SUPPORT_STATIC_FEATURES, true);
-			parseDef("package ocltest context Fruit " + //$NON-NLS-1$
-				"def: bestColor1() : Color = null " + //$NON-NLS-1$
-				"static def: bestColor2() : Color = null " + //$NON-NLS-1$
-				"def: goodColor1 : Color = null " + //$NON-NLS-1$
-				"static def: goodColor2 : Color = null " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$			
+			parseDef("package ocltest context Fruit " +
+				"def: bestColor1() : Color = null " +
+				"static def: bestColor2() : Color = null " +
+				"def: goodColor1 : Color = null " +
+				"static def: goodColor2 : Color = null " +
+				"endpackage");			
 			Operation operation1 = env.lookupOperation(fruit, "bestColor1", null);
 			assertNotNull(operation1);
 			assertEquals(false, umlReflection.isStatic(operation1));
@@ -305,114 +305,114 @@ public class DefExpressionTest
 			
 			ParsingOptions.setOption(ocl.getEnvironment(), ParsingOptions.SUPPORT_STATIC_FEATURES, false);
 			try {
-				ocl.parse(new OCLInput("package ocltest context Fruit " + //$NON-NLS-1$
-					"def: bestColor3() : Color = null " + //$NON-NLS-1$
-					"static def: bestColor4() : Color = null " + //$NON-NLS-1$
-					"endpackage")); //$NON-NLS-1$			
-	            fail("Should have failed to parse the unsupported static"); //$NON-NLS-1$
+				ocl.parse(new OCLInput("package ocltest context Fruit " +
+					"def: bestColor3() : Color = null " +
+					"static def: bestColor4() : Color = null " +
+					"endpackage"));			
+	            fail("Should have failed to parse the unsupported static");
 	        } catch (ParserException e) {
 	            // success!
 	        	assertEquals(OCLMessages.UnsupportedStatic_ERROR_, e.getMessage());
-	            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
 	        }
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_malformedDefExpression_attribute() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			// non-conformant expression type
 			helper.defineAttribute(
-				"oclAllParents : Set(Classifier) = " + //$NON-NLS-1$
-				"self.name"); //$NON-NLS-1$
+				"oclAllParents : Set(Classifier) = " +
+				"self.name");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// missing type declaration
 			helper.defineAttribute(
-				"myName = " + //$NON-NLS-1$
-				"self.name"); //$NON-NLS-1$
+				"myName = " +
+				"self.name");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_malformedDefExpression_operation() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			// non-conformant expression type
 			helper.defineOperation(
-				"oclAllParents() : Set(Classifier) = " + //$NON-NLS-1$
-				"self.name"); //$NON-NLS-1$
+				"oclAllParents() : Set(Classifier) = " +
+				"self.name");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// missing type declaration
 			helper.defineOperation(
-				"bestName(s : String) = " + //$NON-NLS-1$
-				"if self.oclIsKindOf(Class) then self.name else s endif"); //$NON-NLS-1$
+				"bestName(s : String) = " +
+				"if self.oclIsKindOf(Class) then self.name else s endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// missing type declaration in parameter
 			helper.defineOperation(
-				"bestName(s) : String = " + //$NON-NLS-1$
-				"if self.oclIsKindOf(Class) then self.name else s endif"); //$NON-NLS-1$
+				"bestName(s) : String = " +
+				"if self.oclIsKindOf(Class) then self.name else s endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_duplicateDefinition_attribute() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			// same name and type as existing property
 			helper.defineAttribute(
-				"name : String = " + //$NON-NLS-1$
-				"if self.oclIsKindOf(Class) then 'foo' else '' endif"); //$NON-NLS-1$
+				"name : String = " +
+				"if self.oclIsKindOf(Class) then 'foo' else '' endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// same name but different type
 			helper.defineAttribute(
-				"generalization : Set(String) = " + //$NON-NLS-1$
-				"Set{'a', 'b', 'c'}"); //$NON-NLS-1$
+				"generalization : Set(String) = " +
+				"Set{'a', 'b', 'c'}");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -422,49 +422,49 @@ public class DefExpressionTest
 		try {
 			// same signature as existing operation (note different param name)
 			helper.defineOperation(
-				"preferredLabel(s : String) : String = " + //$NON-NLS-1$
-				"if s.oclIsUndefined() then 'foo' else s endif"); //$NON-NLS-1$
+				"preferredLabel(s : String) : String = " +
+				"if s.oclIsUndefined() then 'foo' else s endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// same signature as existing operation (note different return type)
 			helper.defineOperation(
-				"preferredLabel(s : String) : Integer = " + //$NON-NLS-1$
-				"if s.oclIsUndefined() then 0 else s.size() endif"); //$NON-NLS-1$
+				"preferredLabel(s : String) : Integer = " +
+				"if s.oclIsUndefined() then 0 else s.size() endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
 			// same name but different signature is OK
 			helper.defineOperation(
-				"preferredLabel(text : Integer) : String = " + //$NON-NLS-1$
-				"if text > 0 then 'foo' else 'bar' endif"); //$NON-NLS-1$
+				"preferredLabel(text : Integer) : String = " +
+				"if text > 0 then 'foo' else 'bar' endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_undefine_property_152018() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		Property property = null;
 		
 		try {
 			// define some additional property
 			property = helper.defineAttribute(
-				"other : Classifier = " + //$NON-NLS-1$
-				"if general->notEmpty() then general->asSequence()->first() else null endif"); //$NON-NLS-1$
+				"other : Classifier = " +
+				"if general->notEmpty() then general->asSequence()->first() else null endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(property);
@@ -478,25 +478,25 @@ public class DefExpressionTest
 		try {
 			// try to define this property again.  We should succeed
 			property = helper.defineAttribute(
-					"other : Classifier = " + //$NON-NLS-1$
-					"if general->notEmpty() then general->asSequence()->first() else null endif"); //$NON-NLS-1$
+					"other : Classifier = " +
+					"if general->notEmpty() then general->asSequence()->first() else null endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_undefine_operation_152018() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		Operation operation = null;
 		
 		try {
 			// define some additional property
 			operation = helper.defineOperation(
-				"other(x : Integer) : Classifier = " + //$NON-NLS-1$
-				"if general->size() >= x then general->asSequence()->at(x) else null endif"); //$NON-NLS-1$
+				"other(x : Integer) : Classifier = " +
+				"if general->size() >= x then general->asSequence()->at(x) else null endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(operation);
@@ -510,28 +510,28 @@ public class DefExpressionTest
 		try {
 			// try to define this property again.  We should succeed
 			operation = helper.defineOperation(
-					"other(x : Integer) : Classifier = " + //$NON-NLS-1$
-					"if general->size() >= x then general->asSequence()->at(x) else null endif"); //$NON-NLS-1$
+					"other(x : Integer) : Classifier = " +
+					"if general->size() >= x then general->asSequence()->at(x) else null endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_recursive_property_152018() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		Property property = null;
 		
 		try {
 			// first, attempt a definition with an invalid body
 			property = helper.defineAttribute(
-					"friend : Classifier = " + //$NON-NLS-1$
-					"if general->notEmpty() then getNearestPackage() else self endif"); //$NON-NLS-1$
+					"friend : Classifier = " +
+					"if general->notEmpty() then getNearestPackage() else self endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
@@ -539,10 +539,10 @@ public class DefExpressionTest
 			//   'other' is already defined, because it should have been
 			//   undefined when we failed to parse, above
 			property = helper.defineAttribute(
-				"friend : Classifier = " + //$NON-NLS-1$
-				"if general->notEmpty() then general->asSequence()->first().friend else self endif"); //$NON-NLS-1$
+				"friend : Classifier = " +
+				"if general->notEmpty() then general->asSequence()->first().friend else self endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(property);
@@ -550,27 +550,27 @@ public class DefExpressionTest
 		try {
 			// now, attempt to use this additional property
 			helper.createInvariant(
-					"not friend.oclIsUndefined() implies friend = self"); //$NON-NLS-1$
+					"not friend.oclIsUndefined() implies friend = self");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_recursive_operation_152018() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		Operation operation = null;
 		
 		try {
 			// first, attempt a definition with an invalid body
 			operation = helper.defineOperation(
-					"friend(x : Integer) : Classifier = " + //$NON-NLS-1$
-					"if general->size() >= x then getNearestPackage() else self endif"); //$NON-NLS-1$
+					"friend(x : Integer) : Classifier = " +
+					"if general->size() >= x then getNearestPackage() else self endif");
 			
-			fail("Should not have parsed"); //$NON-NLS-1$
+			fail("Should not have parsed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
 		try {
@@ -578,10 +578,10 @@ public class DefExpressionTest
 			//   'other' is already defined, because it should have been
 			//   undefined when we failed to parse, above
 			operation = helper.defineOperation(
-				"friend(x : Integer) : Classifier = " + //$NON-NLS-1$
-				"if general->size() >= x then general->asSequence()->at(x).friend(x) else self endif"); //$NON-NLS-1$
+				"friend(x : Integer) : Classifier = " +
+				"if general->size() >= x then general->asSequence()->at(x).friend(x) else self endif");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(operation);
@@ -589,43 +589,43 @@ public class DefExpressionTest
 		try {
 			// now, attempt to use this additional property
 			helper.createInvariant(
-					"not friend(1).oclIsUndefined() implies friend(1) = self"); //$NON-NLS-1$
+					"not friend(1).oclIsUndefined() implies friend(1) = self");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_defExpression_completion_operation() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			helper.defineOperation(
-					"oclAllParents() : Set(Classifier) = " + //$NON-NLS-1$
-					"self->closure(generalization.general)"); //$NON-NLS-1$
+					"oclAllParents() : Set(Classifier) = " +
+					"self->closure(generalization.general)");
 			
 			Collection<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.");
 			
-			assertChoice(choices, ChoiceKind.OPERATION, "oclAllParents"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.OPERATION, "oclAllParents");
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
 	public void test_defExpression_completion_attribute() {
-		helper.setContext(getMetaclass("Classifier")); //$NON-NLS-1$
+		helper.setContext(getMetaclass("Classifier"));
 		
 		try {
 			helper.defineAttribute(
-					"oclAllParents : Set(Classifier) = " + //$NON-NLS-1$
-					"self->closure(generalization.general)"); //$NON-NLS-1$
+					"oclAllParents : Set(Classifier) = " +
+					"self->closure(generalization.general)");
 			
 			Collection<Choice> choices = helper.getSyntaxHelp(
-					ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+					ConstraintKind.INVARIANT, "self.");
 			
-			assertChoice(choices, ChoiceKind.PROPERTY, "oclAllParents"); //$NON-NLS-1$
+			assertChoice(choices, ChoiceKind.PROPERTY, "oclAllParents");
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
     
@@ -639,24 +639,24 @@ public class DefExpressionTest
         
         try {
             Property feature = helper.defineAttribute(
-                "reverse : String = " + //$NON-NLS-1$
-                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
-                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+                "reverse : String = " +
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" +
+                " s.concat(self.substring(i, i)))");
             
             // the other representation of 'String'
             helper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
         
             Collection<Choice> choices = helper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.PROPERTY, "reverse");
             
             OCLExpression<Classifier> expr = helper.createQuery(
-                "self.reverse"); //$NON-NLS-1$
+                "self.reverse");
             
             assertEquals(
-                "ablE was i ere I saw elbA", //$NON-NLS-1$
-                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+                "ablE was i ere I saw elbA",
+                ocl.evaluate("Able was I ere i saw Elba", expr));
             
             // verify that TypeUtil produces the correct result
             assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
@@ -664,7 +664,7 @@ public class DefExpressionTest
             assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), getUMLString())
                 .contains(feature));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         // now, make sure that this definition was local to the OCL that
@@ -675,16 +675,16 @@ public class DefExpressionTest
         
         try {
             Collection<Choice> choices = localHelper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "reverse");
             
-            localHelper.createQuery("self.reverse"); //$NON-NLS-1$
+            localHelper.createQuery("self.reverse");
             
-            fail("Should have failed to parse the undefined attribute"); //$NON-NLS-1$
+            fail("Should have failed to parse the undefined attribute");
         } catch (ParserException e) {
             // success!
-            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
         }
     }
     
@@ -698,24 +698,24 @@ public class DefExpressionTest
         
         try {
             Operation feature = helper.defineOperation(
-                "reversed() : String = " + //$NON-NLS-1$
-                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
-                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+                "reversed() : String = " +
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" +
+                " s.concat(self.substring(i, i)))");
         
             // the other representation of 'String'
             helper.setContext(ocl.getEnvironment().getOCLStandardLibrary().getString());
             
             Collection<Choice> choices = helper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "reversed");
             
             OCLExpression<Classifier> expr = helper.createQuery(
-                "self.reversed()"); //$NON-NLS-1$
+                "self.reversed()");
             
             assertEquals(
-                "ablE was i ere I saw elbA", //$NON-NLS-1$
-                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+                "ablE was i ere I saw elbA",
+                ocl.evaluate("Able was I ere i saw Elba", expr));
             
             // verify that TypeUtil produces the correct result
             assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
@@ -723,7 +723,7 @@ public class DefExpressionTest
             assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), getUMLString())
                 .contains(feature));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         // now, make sure that this definition was local to the OCL that
@@ -734,16 +734,16 @@ public class DefExpressionTest
         
         try {
             Collection<Choice> choices = localHelper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertNotChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "reversed");
             
-            localHelper.createQuery("self.reversed()"); //$NON-NLS-1$
+            localHelper.createQuery("self.reversed()");
             
-            fail("Should have failed to parse the undefined operation"); //$NON-NLS-1$
+            fail("Should have failed to parse the undefined operation");
         } catch (ParserException e) {
             // success!
-            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
         }
     }
     
@@ -756,24 +756,24 @@ public class DefExpressionTest
         
         try {
             Property feature = helper.defineAttribute(
-                "reverse : String = " + //$NON-NLS-1$
-                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
-                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+                "reverse : String = " +
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" +
+                " s.concat(self.substring(i, i)))");
         
             // the other representation of 'String'
             helper.setContext(getUMLString());
             
             Collection<Choice> choices = helper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.PROPERTY, "reverse");
             
             OCLExpression<Classifier> expr = helper.createQuery(
-                "self.reverse"); //$NON-NLS-1$
+                "self.reverse");
             
             assertEquals(
-                "ablE was i ere I saw elbA", //$NON-NLS-1$
-                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+                "ablE was i ere I saw elbA",
+                ocl.evaluate("Able was I ere i saw Elba", expr));
             
             // verify that TypeUtil produces the correct result
             assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
@@ -781,7 +781,7 @@ public class DefExpressionTest
             assertTrue(TypeUtil.getAttributes(ocl.getEnvironment(), getUMLString())
                 .contains(feature));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         // now, make sure that this definition was local to the OCL that
@@ -792,16 +792,16 @@ public class DefExpressionTest
         
         try {
             Collection<Choice> choices = localHelper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertNotChoice(choices, ChoiceKind.PROPERTY, "reverse"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.PROPERTY, "reverse");
             
-            localHelper.createQuery("self.reverse"); //$NON-NLS-1$
+            localHelper.createQuery("self.reverse");
             
-            fail("Should have failed to parse the undefined attribute"); //$NON-NLS-1$
+            fail("Should have failed to parse the undefined attribute");
         } catch (ParserException e) {
             // success!
-            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
         }
     }
     
@@ -814,24 +814,24 @@ public class DefExpressionTest
         
         try {
             Operation feature = helper.defineOperation(
-                "reversed() : String = " + //$NON-NLS-1$
-                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" + //$NON-NLS-1$
-                " s.concat(self.substring(i, i)))"); //$NON-NLS-1$
+                "reversed() : String = " +
+                "Sequence{1..size()}->sortedBy(i | -i)->iterate(i; s : String = '' |" +
+                " s.concat(self.substring(i, i)))");
         
             // the other representation of 'String'
             helper.setContext(getUMLString());
             
             Collection<Choice> choices = helper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            assertChoice(choices, ChoiceKind.OPERATION, "reversed");
             
             OCLExpression<Classifier> expr = helper.createQuery(
-                "self.reversed()"); //$NON-NLS-1$
+                "self.reversed()");
             
             assertEquals(
-                "ablE was i ere I saw elbA", //$NON-NLS-1$
-                ocl.evaluate("Able was I ere i saw Elba", expr)); //$NON-NLS-1$
+                "ablE was i ere I saw elbA",
+                ocl.evaluate("Able was I ere i saw Elba", expr));
             
             // verify that TypeUtil produces the correct result
             assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), ocl.getEnvironment().getOCLStandardLibrary().getString())
@@ -839,7 +839,7 @@ public class DefExpressionTest
             assertTrue(TypeUtil.getOperations(ocl.getEnvironment(), getUMLString())
                 .contains(feature));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         // now, make sure that this definition was local to the OCL that
@@ -850,16 +850,16 @@ public class DefExpressionTest
         
         try {
             Collection<Choice> choices = localHelper.getSyntaxHelp(
-                ConstraintKind.INVARIANT, "self."); //$NON-NLS-1$
+                ConstraintKind.INVARIANT, "self.");
         
-            assertNotChoice(choices, ChoiceKind.OPERATION, "reversed"); //$NON-NLS-1$
+            assertNotChoice(choices, ChoiceKind.OPERATION, "reversed");
             
-            localHelper.createQuery("self.reversed()"); //$NON-NLS-1$
+            localHelper.createQuery("self.reversed()");
             
-            fail("Should have failed to parse the undefined operation"); //$NON-NLS-1$
+            fail("Should have failed to parse the undefined operation");
         } catch (ParserException e) {
             // success!
-            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
         }
     }
     
@@ -872,8 +872,8 @@ public class DefExpressionTest
         
         try {
             Operation o = helper.defineOperation(
-                    "bestColor(c : Color) : Color = " + //$NON-NLS-1$
-                    "if self.color = Color::black then c else self.color endif"); //$NON-NLS-1$
+                    "bestColor(c : Color) : Color = " +
+                    "if self.color = Color::black then c else self.color endif");
             
             UMLReflection<?, Classifier, ?, ?, ?, ?, ?, ?, ?, ?> uml =
                 ocl.getEnvironment().getUMLReflection();
@@ -884,7 +884,7 @@ public class DefExpressionTest
             // check the owner of the additional operation
             assertSame(fruit, uml.getOwningClassifier(o));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -897,8 +897,8 @@ public class DefExpressionTest
         
         try {
             Property p = helper.defineAttribute(
-                    "fallen : Boolean = " + //$NON-NLS-1$
-                    "tree.oclIsUndefined()"); //$NON-NLS-1$
+                    "fallen : Boolean = " +
+                    "tree.oclIsUndefined()");
             
             UMLReflection<?, Classifier, ?, ?, ?, ?, ?, ?, ?, ?> uml =
                 ocl.getEnvironment().getUMLReflection();
@@ -909,7 +909,7 @@ public class DefExpressionTest
             // check the owner of the additional operation
             assertSame(apple, uml.getOwningClassifier(p));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -922,9 +922,9 @@ public class DefExpressionTest
         helper.setContext(getOCLStandardLibrary().getOclAny());
         
         try {
-            helper.defineOperation("isBlack() : Boolean = true"); //$NON-NLS-1$
+            helper.defineOperation("isBlack() : Boolean = true");
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         // switch to context of a user model classifier
@@ -932,9 +932,9 @@ public class DefExpressionTest
         
         try {
             InstanceSpecification anApple = instantiate(instancePackage, apple);
-            assertTrue(check(helper, anApple, "self.isBlack()")); //$NON-NLS-1$
+            assertTrue(check(helper, anApple, "self.isBlack()"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
     
@@ -947,9 +947,9 @@ public class DefExpressionTest
         helper.setContext(getOCLStandardLibrary().getOclAny());
         
         try {
-            helper.defineAttribute("isBlack : Boolean = true"); //$NON-NLS-1$
+            helper.defineAttribute("isBlack : Boolean = true");
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         // switch to context of a user model classifier
@@ -957,9 +957,9 @@ public class DefExpressionTest
         
         try {
             InstanceSpecification anApple = instantiate(instancePackage, apple);
-            assertTrue(check(helper, anApple, "self.isBlack")); //$NON-NLS-1$
+            assertTrue(check(helper, anApple, "self.isBlack"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 	
@@ -1000,10 +1000,10 @@ public class DefExpressionTest
 		super.setUp();
 		
 		instanceResource = resourceSet.createResource(
-				URI.createFileURI("/tmp/instances.uml")); //$NON-NLS-1$
+				URI.createFileURI("/tmp/instances.uml"));
 		
 		instancePackage = umlf.createPackage();
-		instancePackage.setName("instances"); //$NON-NLS-1$
+		instancePackage.setName("instances");
 		instanceResource.getContents().add(instancePackage);
 	}
 }

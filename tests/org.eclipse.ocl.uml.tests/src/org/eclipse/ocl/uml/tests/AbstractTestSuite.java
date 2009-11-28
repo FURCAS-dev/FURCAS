@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.20 2009/11/26 20:46:38 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.21 2009/11/28 18:03:26 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -74,6 +74,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public abstract class AbstractTestSuite
 	extends GenericFruitTestSuite<EObject, Package, Type, Classifier, Class, DataType, PrimitiveType, Enumeration, Operation, Parameter, Property,
 	Property, Property, EnumerationLiteral, State, CallOperationAction, SendSignalAction, Constraint> {
@@ -146,37 +147,37 @@ public abstract class AbstractTestSuite
 	 * @return the suite
 	 */
 	public static CheckedTestSuite suite() {
-		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel"); //$NON-NLS-1$
+		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel");
 		
-		result.createTestSuite(BasicOCLTest.class, "Basic Tests"); //$NON-NLS-1$
-        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests"); //$NON-NLS-1$
-		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests"); //$NON-NLS-1$
-		result.createTestSuite(CollectionsTest.class, "Collection Type Tests"); //$NON-NLS-1$
-		result.createTestSuite(AssociationTest.class, "Association Tests"); //$NON-NLS-1$
-		result.createTestSuite(IteratorsTest.class, "Iterator Tests"); //$NON-NLS-1$
-        result.createTestSuite(KeywordsTest.class, "LPG and OCL Keyword Tests"); //$NON-NLS-1$
-        result.createTestSuite(PrecedenceTest.class, "Operator Precedence Tests"); //$NON-NLS-1$
-		result.createTestSuite(TuplesTest.class, "Tuple Tests"); //$NON-NLS-1$
-		result.createTestSuite(StatesTest.class, "State Expression Tests"); //$NON-NLS-1$
-		result.createTestSuite(MessagesTest.class, "Message Expression Tests"); //$NON-NLS-1$
-		result.createTestSuite(ProfilesTest.class, "Profile Constraint Tests"); //$NON-NLS-1$
-		result.createTestSuite(InvariantConstraintsTest.class, "Invariant Constraints"); //$NON-NLS-1$
-		result.createTestSuite(OperationConstraintsTest.class, "Operation Constraints"); //$NON-NLS-1$
-		result.createTestSuite(LocationInformationTest.class, "Location Information Tests"); //$NON-NLS-1$
-		result.createTestSuite(FeatureRedefinitionTest.class, "Feature redefinition tests"); //$NON-NLS-1$
-		result.createTestSuite(DefExpressionTest.class, "Def Expression Tests"); //$NON-NLS-1$
-		result.createTestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests"); //$NON-NLS-1$
-        result.createTestSuite(UMLTest.class, "UML-Specific Tests"); //$NON-NLS-1$
-		result.createTestSuite(OCLDocumentTest.class, "OCL Document Parsing Tests"); //$NON-NLS-1$
-        result.createTestSuite(UtilitiesTest.class, "OCLUMLUtil Utility Class Tests"); //$NON-NLS-1$
-        result.createTestSuite(UMLEnvironmentTest.class, "UML Environment Tests"); //$NON-NLS-1$
+		result.createTestSuite(BasicOCLTest.class, "Basic Tests");
+        result.createTestSuite(PrimitiveTypesTest.class, "Primitive Type Tests");
+		result.createTestSuite(ComparisonTest.class, "Comparison/Ordering Tests");
+		result.createTestSuite(CollectionsTest.class, "Collection Type Tests");
+		result.createTestSuite(AssociationTest.class, "Association Tests");
+		result.createTestSuite(IteratorsTest.class, "Iterator Tests");
+        result.createTestSuite(KeywordsTest.class, "LPG and OCL Keyword Tests");
+        result.createTestSuite(PrecedenceTest.class, "Operator Precedence Tests");
+		result.createTestSuite(TuplesTest.class, "Tuple Tests");
+		result.createTestSuite(StatesTest.class, "State Expression Tests");
+		result.createTestSuite(MessagesTest.class, "Message Expression Tests");
+		result.createTestSuite(ProfilesTest.class, "Profile Constraint Tests");
+		result.createTestSuite(InvariantConstraintsTest.class, "Invariant Constraints");
+		result.createTestSuite(OperationConstraintsTest.class, "Operation Constraints");
+		result.createTestSuite(LocationInformationTest.class, "Location Information Tests");
+		result.createTestSuite(FeatureRedefinitionTest.class, "Feature redefinition tests");
+		result.createTestSuite(DefExpressionTest.class, "Def Expression Tests");
+		result.createTestSuite(InitOrDerExpressionTest.class, "Initial and Derivation Expression Tests");
+        result.createTestSuite(UMLTest.class, "UML-Specific Tests");
+		result.createTestSuite(OCLDocumentTest.class, "OCL Document Parsing Tests");
+        result.createTestSuite(UtilitiesTest.class, "OCLUMLUtil Utility Class Tests");
+        result.createTestSuite(UMLEnvironmentTest.class, "UML Environment Tests");
 		result.addTestSuite(org.eclipse.ocl.uml.helper.tests.AbstractTestSuite.suite());
-		result.createTestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
-		result.createTestSuite(ValidationTest.class, "Expression Validation Tests"); //$NON-NLS-1$
-		result.createTestSuite(TypesValidatorTest.class, "Types Validator Tests"); //$NON-NLS-1$
-		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests"); //$NON-NLS-1$
-		result.createTestSuite(SerializationTest.class, "Serialization Tests"); //$NON-NLS-1$
-		result.createTestSuite(EvaluationHaltedTest.class, "UML Halted Evaluation Tests"); //$NON-NLS-1$
+		result.createTestSuite(RegressionTest.class, "Regression Tests");
+		result.createTestSuite(ValidationTest.class, "Expression Validation Tests");
+		result.createTestSuite(TypesValidatorTest.class, "Types Validator Tests");
+		result.createTestSuite(ExpressionsValidatorTest.class, "Expressions Validator Tests");
+		result.createTestSuite(SerializationTest.class, "Serialization Tests");
+		result.createTestSuite(EvaluationHaltedTest.class, "UML Halted Evaluation Tests");
 		
 		return result;
 	}
@@ -236,7 +237,7 @@ public abstract class AbstractTestSuite
 								method.invoke(this);
 							} catch (Exception e) {
 								// tearDown_xxx must be public
-								fail("Failed to invoke " + getClass().getSimpleName() + "." + tearDownName + " : " + e);  //$NON-NLS-2$//$NON-NLS-3$
+								fail("Failed to invoke " + getClass().getSimpleName() + "." + tearDownName + " : " + e);
 							}
 						}
 						catch (NoSuchMethodException e) {
@@ -244,7 +245,7 @@ public abstract class AbstractTestSuite
 								field.set(this, null);
 							} catch (Exception e1) {
 								// xxx without a tearDown_xxx must be public to ensure that leakage can be stopped
-								fail("Failed to set " + getClass().getSimpleName() + "." + fieldName + " to null : " + e1); //$NON-NLS-2$ //$NON-NLS-3$
+								fail("Failed to set " + getClass().getSimpleName() + "." + fieldName + " to null : " + e1);
 							}
 						}
 					}
@@ -400,7 +401,7 @@ public abstract class AbstractTestSuite
 					null, null, uml.getLiteralNull());
 			result = valueSpec;
 		} else {
-			throw new IllegalArgumentException("Unrecognized slot value: " + value); //$NON-NLS-1$
+			throw new IllegalArgumentException("Unrecognized slot value: " + value);
 		}
 		
 		return result;
@@ -425,7 +426,7 @@ public abstract class AbstractTestSuite
 			}
 		}
 		
-		fail("No such property value: " + property.getName()); //$NON-NLS-1$
+		fail("No such property value: " + property.getName());
 		return null;
 	}
 	
@@ -445,7 +446,7 @@ public abstract class AbstractTestSuite
 		} else if (value instanceof LiteralNull) {
 			result = null;
 		} else {
-			throw new IllegalArgumentException("Unrecognized slot value: " + value); //$NON-NLS-1$
+			throw new IllegalArgumentException("Unrecognized slot value: " + value);
 		}
 		
 		return result;
@@ -506,60 +507,60 @@ public abstract class AbstractTestSuite
 	
 	@Override
 	protected void initFruitPackage() {
-		URI uri = getTestModelURI("/model/OCLTest.uml"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/OCLTest.uml");
 		Resource res = resourceSet.getResource(uri, true);
 		
 		fruitPackage = (Package) res.getContents().get(0);
 		
-		fruit = (Class) fruitPackage.getOwnedType("Fruit"); //$NON-NLS-1$
-		fruit_ripen = fruit.getOwnedOperation("ripen", null, null); //$NON-NLS-1$
-		fruit_preferredColor = fruit.getOwnedOperation("preferredColor", null, null); //$NON-NLS-1$
-		fruit_newFruit = fruit.getOwnedOperation("newFruit", null, null); //$NON-NLS-1$
-		fruit_setColor = fruit.getOwnedOperation("setColor", null, null); //$NON-NLS-1$
-        fruit_color = fruit.getOwnedAttribute("color", null); //$NON-NLS-1$
-        fruit_friends = fruit.getOwnedAttribute("friends", null); //$NON-NLS-1$
+		fruit = (Class) fruitPackage.getOwnedType("Fruit");
+		fruit_ripen = fruit.getOwnedOperation("ripen", null, null);
+		fruit_preferredColor = fruit.getOwnedOperation("preferredColor", null, null);
+		fruit_newFruit = fruit.getOwnedOperation("newFruit", null, null);
+		fruit_setColor = fruit.getOwnedOperation("setColor", null, null);
+        fruit_color = fruit.getOwnedAttribute("color", null);
+        fruit_friends = fruit.getOwnedAttribute("friends", null);
 		
-		apple = (Class) fruitPackage.getOwnedType("Apple"); //$NON-NLS-1$
-		apple_label = apple.getOwnedAttribute("label", null); //$NON-NLS-1$
-		apple_tree = apple.getOwnedAttribute("tree", null); //$NON-NLS-1$
-        apple_appleFriends = apple.getOwnedAttribute("appleFriends", null); //$NON-NLS-1$
-		apple_labelOper = apple.getOwnedOperation("label", null, null); //$NON-NLS-1$
-		apple_newApple = apple.getOwnedOperation("newApple", null, null); //$NON-NLS-1$
+		apple = (Class) fruitPackage.getOwnedType("Apple");
+		apple_label = apple.getOwnedAttribute("label", null);
+		apple_tree = apple.getOwnedAttribute("tree", null);
+        apple_appleFriends = apple.getOwnedAttribute("appleFriends", null);
+		apple_labelOper = apple.getOwnedOperation("label", null, null);
+		apple_newApple = apple.getOwnedOperation("newApple", null, null);
 		
-		stem = (AssociationClass) fruitPackage.getOwnedType("Stem"); //$NON-NLS-1$
-		stem_length = stem.getOwnedAttribute("length", null); //$NON-NLS-1$
+		stem = (AssociationClass) fruitPackage.getOwnedType("Stem");
+		stem_length = stem.getOwnedAttribute("length", null);
 		
-		tree = (Class) fruitPackage.getOwnedType("Tree"); //$NON-NLS-1$
-		tree_apples = tree.getOwnedAttribute("apples", null); //$NON-NLS-1$
-		tree_height = tree.getOwnedAttribute("height", null); //$NON-NLS-1$
+		tree = (Class) fruitPackage.getOwnedType("Tree");
+		tree_apples = tree.getOwnedAttribute("apples", null);
+		tree_height = tree.getOwnedAttribute("height", null);
         
-		color = (Enumeration) fruitPackage.getOwnedType("Color"); //$NON-NLS-1$
-		color_black = color.getOwnedLiteral("black"); //$NON-NLS-1$
-		color_red = color.getOwnedLiteral("red"); //$NON-NLS-1$
-		color_green = color.getOwnedLiteral("green"); //$NON-NLS-1$
-		color_yellow = color.getOwnedLiteral("yellow"); //$NON-NLS-1$
-		color_orange = color.getOwnedLiteral("orange"); //$NON-NLS-1$
-		color_brown = color.getOwnedLiteral("brown"); //$NON-NLS-1$
-		color_pink = color.getOwnedLiteral("pink"); //$NON-NLS-1$
+		color = (Enumeration) fruitPackage.getOwnedType("Color");
+		color_black = color.getOwnedLiteral("black");
+		color_red = color.getOwnedLiteral("red");
+		color_green = color.getOwnedLiteral("green");
+		color_yellow = color.getOwnedLiteral("yellow");
+		color_orange = color.getOwnedLiteral("orange");
+		color_brown = color.getOwnedLiteral("brown");
+		color_pink = color.getOwnedLiteral("pink");
 		
-		forest = (Class) fruitPackage.getOwnedType("Forest"); //$NON-NLS-1$
-		forest_trees = forest.getOwnedAttribute("trees", null); //$NON-NLS-1$
-		forest_trees_zoneQualifier = forest_trees.getQualifier("zone", null); //$NON-NLS-1$
-		forest_trees_indexQualifier = forest_trees.getQualifier("index", null); //$NON-NLS-1$
-        forest_area = forest.getOwnedAttribute("area", null); //$NON-NLS-1$
+		forest = (Class) fruitPackage.getOwnedType("Forest");
+		forest_trees = forest.getOwnedAttribute("trees", null);
+		forest_trees_zoneQualifier = forest_trees.getQualifier("zone", null);
+		forest_trees_indexQualifier = forest_trees.getQualifier("index", null);
+        forest_area = forest.getOwnedAttribute("area", null);
 		
-		a_forest_tree = (Association) fruitPackage.getOwnedType("A_Forest_Tree"); //$NON-NLS-1$
-		a_forest_tree_forest = a_forest_tree.getOwnedEnd("forest", null); //$NON-NLS-1$
+		a_forest_tree = (Association) fruitPackage.getOwnedType("A_Forest_Tree");
+		a_forest_tree_forest = a_forest_tree.getOwnedEnd("forest", null);
 		
-		util = (Class) fruitPackage.getOwnedType("FruitUtil"); //$NON-NLS-1$
-		util_orderedSet = util.getOwnedAttribute("orderedSet", null); //$NON-NLS-1$
-		util_set = util.getOwnedAttribute("set", null); //$NON-NLS-1$
-		util_bag = util.getOwnedAttribute("bag", null); //$NON-NLS-1$
-		util_sequence = util.getOwnedAttribute("sequence", null); //$NON-NLS-1$
-		util_processOrderedSet = util.getOwnedOperation("processOrderedSet", null, null); //$NON-NLS-1$
-		util_processSet = util.getOwnedOperation("processSet", null, null); //$NON-NLS-1$
-		util_processBag = util.getOwnedOperation("processBag", null, null); //$NON-NLS-1$
-		util_processSequence = util.getOwnedOperation("processSequence", null, null); //$NON-NLS-1$
+		util = (Class) fruitPackage.getOwnedType("FruitUtil");
+		util_orderedSet = util.getOwnedAttribute("orderedSet", null);
+		util_set = util.getOwnedAttribute("set", null);
+		util_bag = util.getOwnedAttribute("bag", null);
+		util_sequence = util.getOwnedAttribute("sequence", null);
+		util_processOrderedSet = util.getOwnedOperation("processOrderedSet", null, null);
+		util_processSet = util.getOwnedOperation("processSet", null, null);
+		util_processBag = util.getOwnedOperation("processBag", null, null);
+		util_processSequence = util.getOwnedOperation("processSequence", null, null);
 		
 		
 		// convert the Package to Ecore for evaluation on instances
