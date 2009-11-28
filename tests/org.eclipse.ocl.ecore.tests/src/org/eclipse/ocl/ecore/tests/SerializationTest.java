@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: SerializationTest.java,v 1.10 2009/10/07 20:39:27 ewillink Exp $
+ * $Id: SerializationTest.java,v 1.11 2009/11/28 17:47:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -55,6 +55,7 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class SerializationTest
 	extends AbstractTestSuite {
 
@@ -66,7 +67,7 @@ public class SerializationTest
 	public void test_basicSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.eSuperPackage"); //$NON-NLS-1$
+				"self.eSuperPackage");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -82,7 +83,7 @@ public class SerializationTest
 	public void test_primitiveTypeSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.eSubpackages->size() > 2"); //$NON-NLS-1$
+				"self.eSubpackages->size() > 2");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -99,7 +100,7 @@ public class SerializationTest
 	public void test_primitiveCollectionTypeSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.eSubpackages->collect(eClassifiers->size())"); //$NON-NLS-1$
+				"self.eSubpackages->collect(eClassifiers->size())");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -116,7 +117,7 @@ public class SerializationTest
 	public void test_modelCollectionTypeSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"let subs : Collection(EPackage) = self.eSubpackages in subs->size() > 2"); //$NON-NLS-1$
+				"let subs : Collection(EPackage) = self.eSubpackages in subs->size() > 2");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -133,8 +134,8 @@ public class SerializationTest
 	public void test_typeExpSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.eClassifiers->forAll(c | " + //$NON-NLS-1$
-				"c.oclIsKindOf(EClass) implies EClass.allInstances()->includes(c.oclAsType(EClass)))"); //$NON-NLS-1$
+				"self.eClassifiers->forAll(c | " +
+				"c.oclIsKindOf(EClass) implies EClass.allInstances()->includes(c.oclAsType(EClass)))");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -150,8 +151,8 @@ public class SerializationTest
 	public void test_tupleSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.eSubpackages->collect(" + //$NON-NLS-1$
-				"Tuple{pkg = name, size = eClassifiers->size()})"); //$NON-NLS-1$
+				"self.eSubpackages->collect(" +
+				"Tuple{pkg = name, size = eClassifiers->size()})");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -168,8 +169,8 @@ public class SerializationTest
 	public void test_operationMessageSerialization() {
 		OCLExpression<EClassifier> expr = parseExpression(
 				fruit,
-				"let msgs : Sequence(OclMessage) = self^^ripen(?) in " + //$NON-NLS-1$
-				"msgs->forAll(m | m.hasReturned() implies m.color <> Color::black)"); //$NON-NLS-1$
+				"let msgs : Sequence(OclMessage) = self^^ripen(?) in " +
+				"msgs->forAll(m | m.hasReturned() implies m.color <> Color::black)");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -192,8 +193,8 @@ public class SerializationTest
 		
 		OCLExpression<EClassifier> expr = parseExpression(
 				fruit,
-				"let msgs : Sequence(OclMessage) = self^^Drop(?, ?) in " + //$NON-NLS-1$
-				"msgs->forAll(m | m.delay = 0 implies m.stem.oclIsUndefined())"); //$NON-NLS-1$
+				"let msgs : Sequence(OclMessage) = self^^Drop(?, ?) in " +
+				"msgs->forAll(m | m.delay = 0 implies m.stem.oclIsUndefined())");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -214,19 +215,19 @@ public class SerializationTest
 		
 		try {
 			eoper = helper.defineOperation(
-					"getUniqueClassifierNames() : Set(String) = " + //$NON-NLS-1$
-					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
+					"getUniqueClassifierNames() : Set(String) = " +
+					"self.eClassifiers->collect(name)->asSet()");
 			
 			assertSame(eoper,
 					env.getTypeResolver().resolveAdditionalOperation(
 							EcorePackage.Literals.EPACKAGE, eoper));
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.getUniqueClassifierNames()->size()"); //$NON-NLS-1$
+				"self.getUniqueClassifierNames()->size()");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -257,19 +258,19 @@ public class SerializationTest
 		
 		try {
 			esf = helper.defineAttribute(
-					"uniqueClassifierNames : Set(String) = " + //$NON-NLS-1$
-					"self.eClassifiers->collect(name)->asSet()"); //$NON-NLS-1$
+					"uniqueClassifierNames : Set(String) = " +
+					"self.eClassifiers->collect(name)->asSet()");
 			
 			assertSame(esf,
 					env.getTypeResolver().resolveAdditionalAttribute(
 							EcorePackage.Literals.EPACKAGE, esf));
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		OCLExpression<EClassifier> expr = parseExpression(
 				EcorePackage.Literals.EPACKAGE,
-				"self.uniqueClassifierNames->size()"); //$NON-NLS-1$
+				"self.uniqueClassifierNames->size()");
 
 		String toStringForm = expr.toString();
 		String serialForm = serialize(expr);
@@ -295,7 +296,7 @@ public class SerializationTest
     public void test_typeTypeSerialization_183494() {
         OCLExpression<EClassifier> expr = parseExpression(
                 EcorePackage.Literals.EPACKAGE,
-                "EPackage.allInstances()"); //$NON-NLS-1$
+                "EPackage.allInstances()");
 
         String toStringForm = expr.toString();
         String serialForm = serialize(expr);
@@ -332,13 +333,13 @@ public class SerializationTest
     public void test_typespec_resolution_226455() {
         parseExpression(
                 EcorePackage.Literals.EPACKAGE,
-                "self.eClassifiers->any(oclIsKindOf(EClass))"); //$NON-NLS-1$
+                "self.eClassifiers->any(oclIsKindOf(EClass))");
 
         Resource res = ocl.getEnvironment().getTypeResolver().getResource();
         EPackage typesPackage = null;
         for (EObject next : res.getContents()) {
         	if ((next instanceof EPackage)
-        			&& "types".equals(((EPackage) next).getName())) { //$NON-NLS-1$
+        			&& "types".equals(((EPackage) next).getName())) {
         		typesPackage = (EPackage) next;
         		break;
         	}
@@ -354,25 +355,25 @@ public class SerializationTest
     
     public void test_referenceToGenericOCLExpressionsPackage_214878() {
         EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-        epackage.setName("foo"); //$NON-NLS-1$
+        epackage.setName("foo");
         
         EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-        eclass.setName("Foo"); //$NON-NLS-1$
+        eclass.setName("Foo");
         epackage.getEClassifiers().add(eclass);
         
         EReference ref = EcoreFactory.eINSTANCE.createEReference();
-        ref.setName("expr"); //$NON-NLS-1$
+        ref.setName("expr");
         ref.setEType(ExpressionsPackage.Literals.OCL_EXPRESSION);
         eclass.getEStructuralFeatures().add(ref);
         
         String serialForm = serialize(epackage);
         
         epackage = load(serialForm, EPackage.class);
-        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        eclass = (EClass) epackage.getEClassifier("Foo");
         assertNotNull(eclass);
         assertFalse(eclass.eIsProxy());
         
-        ref = (EReference) eclass.getEStructuralFeature("expr"); //$NON-NLS-1$
+        ref = (EReference) eclass.getEStructuralFeature("expr");
         assertNotNull(ref);
         assertFalse(ref.eIsProxy());
         
@@ -380,31 +381,31 @@ public class SerializationTest
         
         // correct loading is one thing.  but the reference must look
         // correct in the serial form, also
-        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//expressions/OCLExpression")); //$NON-NLS-1$
-        assertTrue(serialForm.contains(ExpressionsPackage.eNS_URI + "#//OCLExpression")); //$NON-NLS-1$
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//expressions/OCLExpression"));
+        assertTrue(serialForm.contains(ExpressionsPackage.eNS_URI + "#//OCLExpression"));
     }
     
     public void test_referenceToGenericOCLTypesPackage_214878() {
         EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-        epackage.setName("foo"); //$NON-NLS-1$
+        epackage.setName("foo");
         
         EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-        eclass.setName("Foo"); //$NON-NLS-1$
+        eclass.setName("Foo");
         epackage.getEClassifiers().add(eclass);
         
         EReference ref = EcoreFactory.eINSTANCE.createEReference();
-        ref.setName("any"); //$NON-NLS-1$
+        ref.setName("any");
         ref.setEType(TypesPackage.Literals.ANY_TYPE);
         eclass.getEStructuralFeatures().add(ref);
         
         String serialForm = serialize(epackage);
         
         epackage = load(serialForm, EPackage.class);
-        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        eclass = (EClass) epackage.getEClassifier("Foo");
         assertNotNull(eclass);
         assertFalse(eclass.eIsProxy());
         
-        ref = (EReference) eclass.getEStructuralFeature("any"); //$NON-NLS-1$
+        ref = (EReference) eclass.getEStructuralFeature("any");
         assertNotNull(ref);
         assertFalse(ref.eIsProxy());
         
@@ -412,31 +413,31 @@ public class SerializationTest
         
         // correct loading is one thing.  but the reference must look
         // correct in the serial form, also
-        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//types/AnyType")); //$NON-NLS-1$
-        assertTrue(serialForm.contains(TypesPackage.eNS_URI + "#//AnyType")); //$NON-NLS-1$
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//types/AnyType"));
+        assertTrue(serialForm.contains(TypesPackage.eNS_URI + "#//AnyType"));
     }
     
     public void test_referenceToGenericOCLUtilitiesPackage_214878() {
         EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-        epackage.setName("foo"); //$NON-NLS-1$
+        epackage.setName("foo");
         
         EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-        eclass.setName("Foo"); //$NON-NLS-1$
+        eclass.setName("Foo");
         epackage.getEClassifiers().add(eclass);
         
         EReference ref = EcoreFactory.eINSTANCE.createEReference();
-        ref.setName("ast"); //$NON-NLS-1$
+        ref.setName("ast");
         ref.setEType(UtilitiesPackage.Literals.AST_NODE);
         eclass.getEStructuralFeatures().add(ref);
         
         String serialForm = serialize(epackage);
         
         epackage = load(serialForm, EPackage.class);
-        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        eclass = (EClass) epackage.getEClassifier("Foo");
         assertNotNull(eclass);
         assertFalse(eclass.eIsProxy());
         
-        ref = (EReference) eclass.getEStructuralFeature("ast"); //$NON-NLS-1$
+        ref = (EReference) eclass.getEStructuralFeature("ast");
         assertNotNull(ref);
         assertFalse(ref.eIsProxy());
         
@@ -444,31 +445,31 @@ public class SerializationTest
         
         // correct loading is one thing.  but the reference must look
         // correct in the serial form, also
-        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//utilities/ASTNode")); //$NON-NLS-1$
-        assertTrue(serialForm.contains(UtilitiesPackage.eNS_URI + "#//ASTNode")); //$NON-NLS-1$
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//utilities/ASTNode"));
+        assertTrue(serialForm.contains(UtilitiesPackage.eNS_URI + "#//ASTNode"));
     }
     
     public void test_referenceToOCLEcoreMetamodel_214878() {
         EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-        epackage.setName("foo"); //$NON-NLS-1$
+        epackage.setName("foo");
         
         EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-        eclass.setName("Foo"); //$NON-NLS-1$
+        eclass.setName("Foo");
         epackage.getEClassifiers().add(eclass);
         
         EReference ref = EcoreFactory.eINSTANCE.createEReference();
-        ref.setName("expr"); //$NON-NLS-1$
+        ref.setName("expr");
         ref.setEType(org.eclipse.ocl.ecore.EcorePackage.Literals.OCL_EXPRESSION);
         eclass.getEStructuralFeatures().add(ref);
         
         String serialForm = serialize(epackage);
         
         epackage = load(serialForm, EPackage.class);
-        eclass = (EClass) epackage.getEClassifier("Foo"); //$NON-NLS-1$
+        eclass = (EClass) epackage.getEClassifier("Foo");
         assertNotNull(eclass);
         assertFalse(eclass.eIsProxy());
         
-        ref = (EReference) eclass.getEStructuralFeature("expr"); //$NON-NLS-1$
+        ref = (EReference) eclass.getEStructuralFeature("expr");
         assertNotNull(ref);
         assertFalse(ref.eIsProxy());
         
@@ -476,8 +477,8 @@ public class SerializationTest
         
         // correct loading is one thing.  but the reference must look
         // correct in the serial form, also
-        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//ecore/OCLExpression")); //$NON-NLS-1$
-        assertTrue(serialForm.contains(org.eclipse.ocl.ecore.EcorePackage.eNS_URI + "#//OCLExpression")); //$NON-NLS-1$
+        assertFalse(serialForm.contains(Environment.OCL_NAMESPACE_URI + "#//ecore/OCLExpression"));
+        assertTrue(serialForm.contains(org.eclipse.ocl.ecore.EcorePackage.eNS_URI + "#//OCLExpression"));
     }
 	
 	//
@@ -499,8 +500,8 @@ public class SerializationTest
                 return true;
             }
         };
-		res.setURI(URI.createFileURI("/tmp/ocltest.xmi")); //$NON-NLS-1$
-        ((XMLResource) res).setEncoding("UTF-8"); //$NON-NLS-1$
+		res.setURI(URI.createFileURI("/tmp/ocltest.xmi"));
+        ((XMLResource) res).setEncoding("UTF-8");
 		
         super.setUp();
 
@@ -535,7 +536,7 @@ public class SerializationTest
 		try {
 			result = helper.createQuery(expr);
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(result);
@@ -550,13 +551,13 @@ public class SerializationTest
 			res.getContents().add(eobject);
 			res.save(output,
 					Collections.singletonMap(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE));
-			result = output.toString("UTF-8"); //$NON-NLS-1$
+			result = output.toString("UTF-8");
 		} catch (Exception e) {
-			fail("Exception serializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Exception serializing AST: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(result);
-        assertFalse(result.contains("ocl://")); //$NON-NLS-1$
+        assertFalse(result.contains("ocl://"));
 		
 		return result;
 	}
@@ -573,12 +574,12 @@ public class SerializationTest
             ocl = createOCL();
             helper = createHelper();
             
-            assertFalse("No contents in serial data", res.getContents().isEmpty()); //$NON-NLS-1$
+            assertFalse("No contents in serial data", res.getContents().isEmpty());
             assertNoProxies(res);
             
             result = res.getContents();
         } catch (Exception e) {
-            fail("Exception deserializing AST: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Exception deserializing AST: " + e.getLocalizedMessage());
             result = Collections.emptyList();  // fail will throw
         }
         
@@ -608,7 +609,7 @@ public class SerializationTest
             }
         }
         
-        assertNotNull("Did not deserialize a " + expectedType.getSimpleName(), result); //$NON-NLS-1$
+        assertNotNull("Did not deserialize a " + expectedType.getSimpleName(), result);
         
         return result;
 	}
@@ -616,7 +617,7 @@ public class SerializationTest
 	protected void assertNoProxies(Resource res) {
 		for (Iterator<EObject> iter = res.getAllContents(); iter.hasNext();) {
 			for (EObject xref : iter.next().eCrossReferences()) {
-				assertFalse("Unresolved reference: " + xref, xref.eIsProxy()); //$NON-NLS-1$
+				assertFalse("Unresolved reference: " + xref, xref.eIsProxy());
 			}
 		}
 	}

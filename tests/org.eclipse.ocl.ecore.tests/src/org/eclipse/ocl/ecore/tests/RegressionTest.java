@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.14 2009/11/16 14:23:36 lgoubet Exp $
+ * $Id: RegressionTest.java,v 1.15 2009/11/28 17:53:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -71,6 +71,7 @@ import org.eclipse.ocl.utilities.UMLReflection;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class RegressionTest
 	extends AbstractTestSuite {
 	
@@ -80,24 +81,24 @@ public class RegressionTest
 	 */
 	public void test_quoteReservedWords_RATLC00527506() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-		eclass.setName("MyType"); //$NON-NLS-1$
+		eclass.setName("MyType");
 		epackage.getEClassifiers().add(eclass);
 		
 		// "context" is an OCL reserved word
 		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
-		eattr.setName("context"); //$NON-NLS-1$
+		eattr.setName("context");
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
 		parseConstraint(
-			"package mypkg context MyType " + //$NON-NLS-1$
-			"inv: self.\"context\"->notEmpty() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package mypkg context MyType " +
+			"inv: self.\"context\"->notEmpty() " +
+			"endpackage");
 	}
 	
 	/**
@@ -106,23 +107,23 @@ public class RegressionTest
 	 */
 	public void test_quoteWhitespace_RATLC00527509() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-		eclass.setName("MyType"); //$NON-NLS-1$
+		eclass.setName("MyType");
 		epackage.getEClassifiers().add(eclass);
 		
 		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
-		eattr.setName("an attribute"); //$NON-NLS-1$
+		eattr.setName("an attribute");
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
 		parseConstraint(
-			"package mypkg context MyType " + //$NON-NLS-1$
-			"inv: self.\"an attribute\"->notEmpty() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package mypkg context MyType " +
+			"inv: self.\"an attribute\"->notEmpty() " +
+			"endpackage");
 	}
 	
 	/**
@@ -131,24 +132,24 @@ public class RegressionTest
 	 */
 	public void test_quoteQuote_RATLC00527509() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-		eclass.setName("MyType"); //$NON-NLS-1$
+		eclass.setName("MyType");
 		epackage.getEClassifiers().add(eclass);
 		
 		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
-		eattr.setName("an\"attribute"); //$NON-NLS-1$
+		eattr.setName("an\"attribute");
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
 		// try first to parse within surrounding double-quotes
 		parseConstraint(
-			"package mypkg context MyType " + //$NON-NLS-1$
-			"inv: self.\"an\\\"attribute\"->notEmpty() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package mypkg context MyType " +
+			"inv: self.\"an\\\"attribute\"->notEmpty() " +
+			"endpackage");
 
 		AssertionFailedError err = null;
 		
@@ -156,16 +157,16 @@ public class RegressionTest
 			// also try to parse without the surrounding double-quotes.
 			//   This is not allowed
 			parseConstraint(
-				"package ecore context EClass " + //$NON-NLS-1$
-				"inv: self.an\\\"attribute->notEmpty() " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package ecore context EClass " +
+				"inv: self.an\\\"attribute->notEmpty() " +
+				"endpackage");
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have parsed.", err); //$NON-NLS-1$
+		assertNotNull("Should not have parsed.", err);
 	}
 	
 	/**
@@ -174,25 +175,25 @@ public class RegressionTest
 	 */
 	public void test_internationalCharacters_RATLC01080816() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass eclass = EcoreFactory.eINSTANCE.createEClass();
-		eclass.setName("MyType"); //$NON-NLS-1$
+		eclass.setName("MyType");
 		epackage.getEClassifiers().add(eclass);
 		
 		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
 		// try some extended latin, cyrillic, and arabic
-		eattr.setName("\u0160\u01d6\u0429\u0639"); //$NON-NLS-1$
+		eattr.setName("\u0160\u01d6\u0429\u0639");
 		eattr.setEType(EcorePackage.eINSTANCE.getEString());
 		eclass.getEStructuralFeatures().add(eattr);
 		// try these characters in the attribute name and string literal
 		parseConstraint(
-			"package mypkg context MyType " + //$NON-NLS-1$
-			"inv: self.\u0160\u01d6\u0429\u0639 <> '\u0160\u01d6\u0429\u0639' " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package mypkg context MyType " +
+			"inv: self.\u0160\u01d6\u0429\u0639 <> '\u0160\u01d6\u0429\u0639' " +
+			"endpackage");
 	}
 	
 	/**
@@ -202,51 +203,51 @@ public class RegressionTest
 	 */
 	public void test_oclIsKindOf_RATLC01087664() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		// create three classes.  A and B are unrelated, but C extends
 		//   both.  Therefore, it is possible to cast a variable of type
 		//   A to type B where the run-time type is C
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		epackage.getEClassifiers().add(a);
 		
 		EClass b = EcoreFactory.eINSTANCE.createEClass();
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		epackage.getEClassifiers().add(b);
 		
 		EClass c = EcoreFactory.eINSTANCE.createEClass();
-		c.setName("C"); //$NON-NLS-1$
+		c.setName("C");
 		epackage.getEClassifiers().add(c);
 		c.getESuperTypes().add(a);
 		c.getESuperTypes().add(b);
 		
 		EAttribute attrA = EcoreFactory.eINSTANCE.createEAttribute();
-		attrA.setName("a"); //$NON-NLS-1$
+		attrA.setName("a");
 		attrA.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		a.getEStructuralFeatures().add(attrA);
 		
 		EAttribute attrB = EcoreFactory.eINSTANCE.createEAttribute();
-		attrB.setName("b"); //$NON-NLS-1$
+		attrB.setName("b");
 		attrB.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		b.getEStructuralFeatures().add(attrB);
 		OCLExpression<EClassifier> constraint = parseConstraint(
-			"package mypkg context A " + //$NON-NLS-1$
-			"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package mypkg context A " +
+			"inv: self.oclIsKindOf(B) implies (self.oclAsType(B).b <> self.a) " +
+			"endpackage");
 		
 		EObject eobj = epackage.getEFactoryInstance().create(c);
 		eobj.eSet(attrA, Boolean.TRUE);
 		eobj.eSet(attrB, Boolean.TRUE);
 		
-		assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+		assertFalse("Should have failed the check", check(constraint, eobj));
 		
 		eobj.eSet(attrB, Boolean.FALSE);
 		
-		assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+		assertTrue("Should not have failed the check", check(constraint, eobj));
 	}
 	
 	/**
@@ -254,35 +255,35 @@ public class RegressionTest
 	 */
 	public void test_shortcircuitAnd_RATLC00536528() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		epackage.getEClassifiers().add(a);
 		
 		EClass b = EcoreFactory.eINSTANCE.createEClass();
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		epackage.getEClassifiers().add(b);
 		b.getESuperTypes().add(a);
 		
 		EAttribute attrA = EcoreFactory.eINSTANCE.createEAttribute();
-		attrA.setName("a"); //$NON-NLS-1$
+		attrA.setName("a");
 		attrA.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		a.getEStructuralFeatures().add(attrA);
 		
 		EAttribute attrB = EcoreFactory.eINSTANCE.createEAttribute();
-		attrB.setName("b"); //$NON-NLS-1$
+		attrB.setName("b");
 		attrB.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
 			OCLExpression<EClassifier> constraint = parseConstraint(
-				"package mypkg context A " + //$NON-NLS-1$
-				"inv: self.oclIsKindOf(B) and self.oclAsType(B).b " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package mypkg context A " +
+				"inv: self.oclIsKindOf(B) and self.oclAsType(B).b " +
+				"endpackage");
 			
 			// create an A
 			EObject eobj = epackage.getEFactoryInstance().create(a);
@@ -290,16 +291,16 @@ public class RegressionTest
 			
 			// this would fail with an NPE on the access to '.b' when
 			//    'self.oclAsType(B)' evaluates to null, if we didn't short-circuit
-			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertFalse("Should have failed the check", check(constraint, eobj));
 			
 			// create a B this time
 			eobj = epackage.getEFactoryInstance().create(b);
 			eobj.eSet(attrA, Boolean.TRUE);
 			eobj.eSet(attrB, Boolean.TRUE);
 			
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -308,35 +309,35 @@ public class RegressionTest
 	 */
 	public void test_shortcircuitOr_RATLC00536528() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		epackage.getEClassifiers().add(a);
 		
 		EClass b = EcoreFactory.eINSTANCE.createEClass();
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		epackage.getEClassifiers().add(b);
 		b.getESuperTypes().add(a);
 		
 		EAttribute attrA = EcoreFactory.eINSTANCE.createEAttribute();
-		attrA.setName("a"); //$NON-NLS-1$
+		attrA.setName("a");
 		attrA.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		a.getEStructuralFeatures().add(attrA);
 		
 		EAttribute attrB = EcoreFactory.eINSTANCE.createEAttribute();
-		attrB.setName("b"); //$NON-NLS-1$
+		attrB.setName("b");
 		attrB.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
 			OCLExpression<EClassifier> constraint = parseConstraint(
-				"package mypkg context A " + //$NON-NLS-1$
-				"inv: (not self.oclIsKindOf(B)) or self.oclAsType(B).b " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+				"package mypkg context A " +
+				"inv: (not self.oclIsKindOf(B)) or self.oclAsType(B).b " +
+				"endpackage");
 			
 			// create an A
 			EObject eobj = epackage.getEFactoryInstance().create(a);
@@ -344,16 +345,16 @@ public class RegressionTest
 			
 			// this would fail with an NPE on the access to '.b' when
 			//    'self.oclAsType(B)' evaluates to null, if we didn't short-circuit
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 			
 			// create a B this time
 			eobj = epackage.getEFactoryInstance().create(b);
 			eobj.eSet(attrA, Boolean.TRUE);
 			eobj.eSet(attrB, Boolean.TRUE);
 			
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -362,35 +363,35 @@ public class RegressionTest
 	 */
 	public void test_shortcircuitImplies_RATLC00536528() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		epackage.getEClassifiers().add(a);
 		
 		EClass b = EcoreFactory.eINSTANCE.createEClass();
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		epackage.getEClassifiers().add(b);
 		b.getESuperTypes().add(a);
 		
 		EAttribute attrA = EcoreFactory.eINSTANCE.createEAttribute();
-		attrA.setName("a"); //$NON-NLS-1$
+		attrA.setName("a");
 		attrA.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		a.getEStructuralFeatures().add(attrA);
 		
 		EAttribute attrB = EcoreFactory.eINSTANCE.createEAttribute();
-		attrB.setName("b"); //$NON-NLS-1$
+		attrB.setName("b");
 		attrB.setEType(EcorePackage.eINSTANCE.getEBoolean());
 		b.getEStructuralFeatures().add(attrB);
 		
 		try {
 			OCLExpression<EClassifier> constraint = parseConstraint(
-				"package mypkg context A " + //$NON-NLS-1$
-				"inv: self.oclIsKindOf(B) implies self.oclAsType(B).b " + //$NON-NLS-1$
-				"endpackage "); //$NON-NLS-1$
+				"package mypkg context A " +
+				"inv: self.oclIsKindOf(B) implies self.oclAsType(B).b " +
+				"endpackage ");
 			
 			// create an A
 			EObject eobj = epackage.getEFactoryInstance().create(a);
@@ -398,16 +399,16 @@ public class RegressionTest
 			
 			// this would fail with an NPE on the access to '.b' when
 			//    'self.oclAsType(B)' evaluates to null, if we didn't short-circuit
-			assertTrue("Should not have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertTrue("Should not have failed the check", check(constraint, eobj));
 			
 			// create a B this time
 			eobj = epackage.getEFactoryInstance().create(b);
 			eobj.eSet(attrA, Boolean.TRUE);
 			eobj.eSet(attrB, Boolean.FALSE);
 			
-			assertFalse("Should have failed the check", check(constraint, eobj)); //$NON-NLS-1$
+			assertFalse("Should have failed the check", check(constraint, eobj));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -417,9 +418,9 @@ public class RegressionTest
 	 */
 	public void test_oclIsNew_invariant_RATLC00529981() {
 		OCLExpression<EClassifier> constraint = parseConstraintUnvalidated(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: color.oclIsNew() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: color.oclIsNew() " +
+			"endpackage");
 		
 		AssertionFailedError err = null;
 		
@@ -428,10 +429,10 @@ public class RegressionTest
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err);
 	}
 	
 	/**
@@ -440,9 +441,9 @@ public class RegressionTest
 	 */
 	public void test_oclIsNew_precondition_RATLC00529981() {
 		OCLExpression<EClassifier> constraint = parseConstraintUnvalidated(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"pre: c.oclIsNew() implies c <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"pre: c.oclIsNew() implies c <> Color::black " +
+			"endpackage");
 		
 		AssertionFailedError err = null;
 		
@@ -451,10 +452,10 @@ public class RegressionTest
 		} catch (AssertionFailedError e) {
 			// success
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 		
-		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err); //$NON-NLS-1$
+		assertNotNull("Should not have succeeded in validating illegal oclIsNew", err);
 	}
 	
 	/**
@@ -463,9 +464,9 @@ public class RegressionTest
 	 */
 	public void test_oclIsNew_postcondition_RATLC00529981() {
 		parseConstraint(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"post: color.oclIsNew() implies color <> Color::black " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"post: color.oclIsNew() implies color <> Color::black " +
+			"endpackage");
 	}
 	
 	/**
@@ -474,13 +475,13 @@ public class RegressionTest
 	 */
 	public void test_toLower_RATLC00529981() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: 'AlPHaBet'.toLower() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: 'AlPHaBet'.toLower() " +
+			"endpackage");
 		
 		Object value = evaluate(expr);
 		
-		assertEquals("alphabet", value); //$NON-NLS-1$
+		assertEquals("alphabet", value);
 	}
 	
 	/**
@@ -489,13 +490,13 @@ public class RegressionTest
 	 */
 	public void test_toUpper_RATLC00529981() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: 'AlPHaBet'.toUpper() " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: 'AlPHaBet'.toUpper() " +
+			"endpackage");
 		
 		Object value = evaluate(expr);
 		
-		assertEquals("ALPHABET", value); //$NON-NLS-1$
+		assertEquals("ALPHABET", value);
 	}
 	
 	/**
@@ -504,13 +505,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_orderedSet_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.orderedSet" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.orderedSet" +
+			" endpackage");
 		
 		// check that the result type is an ordered set type
 		assertTrue(
-			"Not an ordered set type", //$NON-NLS-1$
+			"Not an ordered set type",
 			expr.getType() instanceof OrderedSetType);
 	}
 	
@@ -520,13 +521,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_set_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.set" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.set" +
+			" endpackage");
 		
 		// check that the result type is a set type
 		assertTrue(
-			"Not a set type", //$NON-NLS-1$
+			"Not a set type",
 			(expr.getType() instanceof SetType)
 				&& !(expr.getType() instanceof OrderedSetType));
 	}
@@ -537,13 +538,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_sequence_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.sequence" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.sequence" +
+			" endpackage");
 		
 		// check that the result type is a sequence set type
 		assertTrue(
-			"Not a sequence type", //$NON-NLS-1$
+			"Not a sequence type",
 			expr.getType() instanceof SequenceType);
 	}
 	
@@ -553,13 +554,13 @@ public class RegressionTest
 	 */
 	public void test_referenceMultiplicity_bag_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.bag" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.bag" +
+			" endpackage");
 		
 		// check that the result type is a bag set type
 		assertTrue(
-			"Not a bag type", //$NON-NLS-1$
+			"Not a bag type",
 			expr.getType() instanceof BagType);
 	}
 	
@@ -569,13 +570,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_orderedSet_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processOrderedSet(self.orderedSet)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processOrderedSet(self.orderedSet)" +
+			" endpackage");
 		
 		// now also check that the result type is an ordered set type
 		assertTrue(
-			"Not an ordered set type", //$NON-NLS-1$
+			"Not an ordered set type",
 			expr.getType() instanceof OrderedSetType);
 	}
 	
@@ -585,13 +586,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_set_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processSet(self.set)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processSet(self.set)" +
+			" endpackage");
 		
 		// now also check that the result type is a set type
 		assertTrue(
-			"Not a set type", //$NON-NLS-1$
+			"Not a set type",
 			(expr.getType() instanceof SetType)
 				&& !(expr.getType() instanceof OrderedSetType));
 	}
@@ -602,13 +603,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_sequence_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processSequence(self.sequence)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processSequence(self.sequence)" +
+			" endpackage");
 		
 		// now also check that the result type is a sequence type
 		assertTrue(
-			"Not a sequence type", //$NON-NLS-1$
+			"Not a sequence type",
 			expr.getType() instanceof SequenceType);
 	}
 	
@@ -618,13 +619,13 @@ public class RegressionTest
 	 */
 	public void test_parameterMultiplicity_bag_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processBag(self.bag)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processBag(self.bag)" +
+			" endpackage");
 		
 		// now also check that the result type is a bag type
 		assertTrue(
-			"Not a bag type", //$NON-NLS-1$
+			"Not a bag type",
 			expr.getType() instanceof BagType);
 	}
 	
@@ -634,13 +635,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_orderedSet_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processOrderedSet(self.processOrderedSet(self.orderedSet))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processOrderedSet(self.processOrderedSet(self.orderedSet))" +
+			" endpackage");
 		
 		// now also check that the result type is an ordered set type
 		assertTrue(
-			"Not an ordered set type", //$NON-NLS-1$
+			"Not an ordered set type",
 			expr.getType() instanceof OrderedSetType);
 	}
 	
@@ -650,13 +651,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_set_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processSet(self.processSet(self.set))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processSet(self.processSet(self.set))" +
+			" endpackage");
 		
 		// now also check that the result type is a set type
 		assertTrue(
-			"Not a set type", //$NON-NLS-1$
+			"Not a set type",
 			(expr.getType() instanceof SetType)
 				&& !(expr.getType() instanceof OrderedSetType));
 	}
@@ -667,13 +668,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_sequence_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processSequence(self.processSequence(self.sequence))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processSequence(self.processSequence(self.sequence))" +
+			" endpackage");
 		
 		// now also check that the result type is a sequence type
 		assertTrue(
-			"Not a sequence type", //$NON-NLS-1$
+			"Not a sequence type",
 			expr.getType() instanceof SequenceType);
 	}
 	
@@ -683,13 +684,13 @@ public class RegressionTest
 	 */
 	public void test_operationMultiplicity_bag_RATLC00538035() {
 		OCLExpression<EClassifier> expr = parse(
-			"package ocltest context FruitUtil " + //$NON-NLS-1$
-			"inv: self.processBag(self.processBag(self.bag))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context FruitUtil " +
+			"inv: self.processBag(self.processBag(self.bag))" +
+			" endpackage");
 		
 		// now also check that the result type is a bag type
 		assertTrue(
-			"Not a bag type", //$NON-NLS-1$
+			"Not a bag type",
 			expr.getType() instanceof BagType);
 	}
 	
@@ -703,23 +704,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processOrderedSet(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processOrderedSet(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processOrderedSet(x : OrderedSet(Fruit)) : OrderedSet(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processOrderedSet(x : OrderedSet(Fruit)) : OrderedSet(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -732,23 +733,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processSet(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processSet(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processSet(x : Set(Fruit)) : Set(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processSet(x : Set(Fruit)) : Set(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -761,23 +762,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processSequence(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processSequence(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processSequence(x : Sequence(Fruit)) : Sequence(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processSequence(x : Sequence(Fruit)) : Sequence(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -790,23 +791,23 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processBag(x : Fruit) : Fruit " + //$NON-NLS-1$
-				"body: result = x" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processBag(x : Fruit) : Fruit " +
+				"body: result = x" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: result = x" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: result = x" +
+			" endpackage");
 	}
 	
 	/**
@@ -815,9 +816,9 @@ public class RegressionTest
 	 */
 	public void test_allInstances_enumeration_RATLC00538079() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: Color.allInstances() " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: Color.allInstances() " +
+			" endpackage"));
 		
 		Set<EEnumLiteral> expected = new java.util.HashSet<EEnumLiteral>(
 				color.getELiterals());
@@ -831,9 +832,9 @@ public class RegressionTest
 	 */
 	public void test_allInstances_voidType_RATLC00538079() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: OclVoid.allInstances() " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: OclVoid.allInstances() " +
+			" endpackage"));
 		
 		Set<Object> expected = new java.util.HashSet<Object>();
 		expected.add(null);
@@ -847,9 +848,9 @@ public class RegressionTest
 	 */
 	public void test_allInstances_primitive_RATLC00538079() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: ecore::EMap.allInstances() " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: ecore::EMap.allInstances() " +
+			" endpackage"));
 		
 		assertEquals(Collections.EMPTY_SET, result);
 	}
@@ -865,15 +866,15 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: self)garbage " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: self)garbage " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -886,12 +887,12 @@ public class RegressionTest
 		
 		try {
 			// this should not work
-			helper.createInvariant("self)garbage"); //$NON-NLS-1$
+			helper.createInvariant("self)garbage");
 			
-			fail("Parse should have failed"); //$NON-NLS-1$
+			fail("Parse should have failed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -905,12 +906,12 @@ public class RegressionTest
 		
 		try {
 			// this should not work
-			helper.createPrecondition("self)garbage"); //$NON-NLS-1$
+			helper.createPrecondition("self)garbage");
 			
-			fail("Parse should have failed"); //$NON-NLS-1$
+			fail("Parse should have failed");
 		} catch (Exception e) {
 			// success
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -919,42 +920,42 @@ public class RegressionTest
 		
 		// this should work
 		parseConstraint(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: result = x->asSet()->asBag()" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: result = x->asSet()->asBag()" +
+			" endpackage");
 		
 		// as should this
 		parseConstraint(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: x->asSet()->asBag() = result" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: x->asSet()->asBag() = result" +
+			" endpackage");
 		
 		// and this (allow any number of lets to wrap the expression)
 		parseConstraint(
-			"package ocltest context " + //$NON-NLS-1$
-			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-			"body: let set : Set(Fruit) = x->asSet() in" + //$NON-NLS-1$
-			" let bag : Bag(Fruit) = set->asBag() in" + //$NON-NLS-1$
-			" result = bag" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context " +
+			"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+			"body: let set : Set(Fruit) = x->asSet() in" +
+			" let bag : Bag(Fruit) = set->asBag() in" +
+			" result = bag" +
+			" endpackage");
 		
 		// this should not work, however, because it has the result in the
 		//    body expression part of the constraint
 		err = null;
 		try {
 			parseConstraint(
-				"package ocltest context " + //$NON-NLS-1$
-				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " + //$NON-NLS-1$
-				"body: result = result->asSet()->union(x)->asBag()" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context " +
+				"FruitUtil::processBag(x : Bag(Fruit)) : Bag(Fruit) " +
+				"body: result = result->asSet()->union(x)->asBag()" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -966,9 +967,9 @@ public class RegressionTest
 	 */
 	public void test_innerScopeFeatureResolution_bugzilla113355() {
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("MyPackage"); //$NON-NLS-1$
-		epackage.setNsPrefix("mypkg"); //$NON-NLS-1$
-		epackage.setNsURI("http:///mypkg.ecore"); //$NON-NLS-1$
+		epackage.setName("MyPackage");
+		epackage.setNsPrefix("mypkg");
+		epackage.setNsURI("http:///mypkg.ecore");
 		resourceSet.getPackageRegistry().put(epackage.getNsURI(), epackage);
 		
 		// Library1
@@ -976,25 +977,25 @@ public class RegressionTest
 		//    - Writer1
 		//    - Writer2
 		EClass libraryClass = EcoreFactory.eINSTANCE.createEClass();
-		libraryClass.setName("Library"); //$NON-NLS-1$
+		libraryClass.setName("Library");
 		epackage.getEClassifiers().add(libraryClass);
 
 		EClass writerClass = EcoreFactory.eINSTANCE.createEClass();
-		writerClass.setName("Writer"); //$NON-NLS-1$
+		writerClass.setName("Writer");
 		epackage.getEClassifiers().add(writerClass);
 
 		EReference branchesRef = EcoreFactory.eINSTANCE.createEReference();
 		branchesRef.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
-		branchesRef.setName("branches"); //$NON-NLS-1$
+		branchesRef.setName("branches");
 		branchesRef.setEType(libraryClass);
 		
 		EReference writersRef = EcoreFactory.eINSTANCE.createEReference();
 		writersRef.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
-		writersRef.setName("writers"); //$NON-NLS-1$
+		writersRef.setName("writers");
 		writersRef.setEType(writerClass);
 		
 		EAttribute writerName = EcoreFactory.eINSTANCE.createEAttribute();
-		writerName.setName("name"); //$NON-NLS-1$
+		writerName.setName("name");
 		writerName.setEType(EcorePackage.eINSTANCE.getEString());
 
 		libraryClass.getEStructuralFeatures().add(branchesRef);
@@ -1009,8 +1010,8 @@ public class RegressionTest
 		EObject writer1 = efactory.create(writerClass);
 		EObject writer2 = efactory.create(writerClass);
 		
-		writer1.eSet(writerName, "Joe"); //$NON-NLS-1$
-		writer2.eSet(writerName, "Jane"); //$NON-NLS-1$
+		writer1.eSet(writerName, "Joe");
+		writer2.eSet(writerName, "Jane");
 		
 		EList<EObject> branches = new BasicEList<EObject>();
 		branches.add(library2);
@@ -1024,18 +1025,18 @@ public class RegressionTest
 		// parse expression
 		try {
 			OCLExpression<EClassifier> expr = parse(
-					"package mypkg context Library " + //$NON-NLS-1$
-					"inv: branches->collect(writers->collect(w : Writer | w))->flatten()" + //$NON-NLS-1$
-					"endpackage"); //$NON-NLS-1$
+					"package mypkg context Library " +
+					"inv: branches->collect(writers->collect(w : Writer | w))->flatten()" +
+					"endpackage");
 					
 			@SuppressWarnings("unchecked")
 			List<EObject> result = (List<EObject>)evaluate(expr, library1);
 			
 			assertTrue(result.size() == 2);
-			assertTrue(result.get(0).eGet(writerName).equals("Joe")); //$NON-NLS-1$
-			assertTrue(result.get(1).eGet(writerName).equals("Jane")); //$NON-NLS-1$
+			assertTrue(result.get(0).eGet(writerName).equals("Joe"));
+			assertTrue(result.get(1).eGet(writerName).equals("Jane"));
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1049,7 +1050,7 @@ public class RegressionTest
 		
 		try {
 			OCLExpression<EClassifier> expr = helper.createQuery(
-					"Set{'foo', 'bar'}->product(Sequence{1, 2, 3})"); //$NON-NLS-1$
+					"Set{'foo', 'bar'}->product(Sequence{1, 2, 3})");
 
 			EClassifier resultType = expr.getType();
 			assertTrue(resultType instanceof CollectionType);
@@ -1063,10 +1064,10 @@ public class RegressionTest
 			
 			@SuppressWarnings("unchecked")
 			Set<Tuple<EOperation, EStructuralFeature>> evalResult =
-				(Set<Tuple<EOperation, EStructuralFeature>>) ocl.evaluate("", expr); //$NON-NLS-1$
+				(Set<Tuple<EOperation, EStructuralFeature>>) ocl.evaluate("", expr);
 			product = evalResult;
 		} catch (Exception e) {
-			fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(product);
@@ -1081,17 +1082,17 @@ public class RegressionTest
 		values.add(2);
 		values.add(3);
 		
-		expectedTuples.put("foo", new java.util.HashSet<Integer>(values)); //$NON-NLS-1$
-		expectedTuples.put("bar", new java.util.HashSet<Integer>(values)); //$NON-NLS-1$
+		expectedTuples.put("foo", new java.util.HashSet<Integer>(values));
+		expectedTuples.put("bar", new java.util.HashSet<Integer>(values));
 		
 		for (Tuple<EOperation, EStructuralFeature> tuple : product) {
-			values = expectedTuples.get(tuple.getValue("first")); //$NON-NLS-1$
+			values = expectedTuples.get(tuple.getValue("first"));
 			
 			// every "first" value must hit
 			assertNotNull(values);
 			
 			// every "second" must remove a different mapping
-			assertTrue(values.remove(tuple.getValue("second"))); //$NON-NLS-1$
+			assertTrue(values.remove(tuple.getValue("second")));
 		}
 	}
 	
@@ -1102,12 +1103,12 @@ public class RegressionTest
 	 */
 	public void test_iterationToString_126454() {
 		EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
-		fakePkg.setName("fake"); //$NON-NLS-1$
+		fakePkg.setName("fake");
 		EClass fake = EcoreFactory.eINSTANCE.createEClass();
-		fake.setName("Fake"); //$NON-NLS-1$
+		fake.setName("Fake");
 		fakePkg.getEClassifiers().add(fake);
 		EAttribute eattr = EcoreFactory.eINSTANCE.createEAttribute();
-		eattr.setName("e"); //$NON-NLS-1$
+		eattr.setName("e");
 		eattr.setEType(EcorePackage.Literals.EINT);
 		eattr.setUpperBound(1);  // not a collection
 		fake.getEStructuralFeatures().add(eattr);
@@ -1118,7 +1119,7 @@ public class RegressionTest
 		helper.setContext(fake);
 		
 		try {
-			OCLExpression<EClassifier> expr = helper.createQuery("self.e->sum()"); //$NON-NLS-1$
+			OCLExpression<EClassifier> expr = helper.createQuery("self.e->sum()");
 			
 			// convert to string and re-parse
 			String toStringResult = expr.toString();
@@ -1126,7 +1127,7 @@ public class RegressionTest
 			
 			assertEquals(aFake.eGet(eattr), ocl.evaluate(aFake, expr));
 		} catch (Exception exc) {
-			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
 		}
 	}
 	
@@ -1135,30 +1136,30 @@ public class RegressionTest
 	 */
 	public void test_null() {
 		Object result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclIsTypeOf(OclVoid) " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclIsTypeOf(OclVoid) " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclIsUndefined() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclIsUndefined() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclIsInvalid() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclIsInvalid() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.FALSE, result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Integer) " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Integer) " +
+				" endpackage"));
 			
 		assertNull(result);
 	}
@@ -1168,53 +1169,53 @@ public class RegressionTest
 	 */
 	public void test_oclInvalid() {
 		Object result = evaluate(parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: invalid.oclIsTypeOf(OclInvalid) " + //$NON-NLS-1$
-			" endpackage")); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: invalid.oclIsTypeOf(OclInvalid) " +
+			" endpackage"));
 		
 		assertEquals(Boolean.TRUE, result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: invalid.oclIsUndefined() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: invalid.oclIsUndefined() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 			
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: invalid.oclIsInvalid() " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: invalid.oclIsInvalid() " +
+				" endpackage"));
 			
 		assertEquals(Boolean.TRUE, result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: invalid.oclAsType(Integer) " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: invalid.oclAsType(Integer) " +
+				" endpackage"));
 			
 		assertInvalid(result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Apple).color " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Apple).color " +
+				" endpackage"));
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Apple).stem " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Apple).stem " +
+				" endpackage"));
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
 		
 		result = evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: null.oclAsType(Apple).preferredLabel('foo') " + //$NON-NLS-1$
-				" endpackage")); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: null.oclAsType(Apple).preferredLabel('foo') " +
+				" endpackage"));
 		
 		// feature calls on null result in invalid
 		assertInvalid(result);
@@ -1230,15 +1231,15 @@ public class RegressionTest
 		// this should not work (failure in parse, not validation)
 		try {
 			parseUnvalidated(
-				"package ocltest context FruitUtil " + //$NON-NLS-1$
-				"inv: self.processOrderedSet(1) = 0 " + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context FruitUtil " +
+				"inv: self.processOrderedSet(1) = 0 " +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 	}
 	
 	/**
@@ -1249,27 +1250,27 @@ public class RegressionTest
 	public void test_operationSignatureMatching() {
 		EPackage pkg = EcoreFactory.eINSTANCE.createEPackage();
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		pkg.getEClassifiers().add(a);
 		EClass b = EcoreFactory.eINSTANCE.createEClass();
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		pkg.getEClassifiers().add(b);
 		EClass c = EcoreFactory.eINSTANCE.createEClass();
-		c.setName("C"); //$NON-NLS-1$
+		c.setName("C");
 		c.getESuperTypes().add(b);
 		pkg.getEClassifiers().add(c);
 		
 		EReference ref = EcoreFactory.eINSTANCE.createEReference();
 		ref.setEType(b);
-		ref.setName("b"); //$NON-NLS-1$
+		ref.setName("b");
 		a.getEStructuralFeatures().add(ref);
 		ref = EcoreFactory.eINSTANCE.createEReference();
 		ref.setEType(c);
-		ref.setName("c"); //$NON-NLS-1$
+		ref.setName("c");
 		a.getEStructuralFeatures().add(ref);
 		
 		EOperation foo1 = EcoreFactory.eINSTANCE.createEOperation();
-		foo1.setName("foo"); //$NON-NLS-1$
+		foo1.setName("foo");
 		foo1.setEType(EcorePackage.Literals.EBOOLEAN);
 		EParameter param = EcoreFactory.eINSTANCE.createEParameter();
 		param.setEType(c);
@@ -1277,7 +1278,7 @@ public class RegressionTest
 		a.getEOperations().add(foo1);
 		
 		EOperation foo2 = EcoreFactory.eINSTANCE.createEOperation();
-		foo2.setName("foo"); //$NON-NLS-1$
+		foo2.setName("foo");
 		foo2.setEType(EcorePackage.Literals.EBOOLEAN);
 		param = EcoreFactory.eINSTANCE.createEParameter();
 		param.setEType(b);
@@ -1287,7 +1288,7 @@ public class RegressionTest
 		helper.setContext(a);
 		
 		try {
-			OCLExpression<EClassifier> expr = helper.createQuery("self.foo(c)"); //$NON-NLS-1$
+			OCLExpression<EClassifier> expr = helper.createQuery("self.foo(c)");
 			
 			assertTrue(expr instanceof OperationCallExp);
 			OperationCallExp<EClassifier, EOperation> oc =
@@ -1296,7 +1297,7 @@ public class RegressionTest
 			// foo1's parameter type is c
 			assertSame(foo1, oc.getReferredOperation());
 			
-			expr = helper.createQuery("self.foo(b)"); //$NON-NLS-1$
+			expr = helper.createQuery("self.foo(b)");
 			
 			assertTrue(expr instanceof OperationCallExp);
 			oc = (OperationCallExp<EClassifier, EOperation>) expr;
@@ -1305,7 +1306,7 @@ public class RegressionTest
 			//    (we skipped the foo having parameter type c)
 			assertSame(foo2, oc.getReferredOperation());
 			
-			expr = helper.createQuery("self.foo(b.oclAsType(C))"); //$NON-NLS-1$
+			expr = helper.createQuery("self.foo(b.oclAsType(C))");
 			
 			assertTrue(expr instanceof OperationCallExp);
 			oc = (OperationCallExp<EClassifier, EOperation>) expr;
@@ -1313,7 +1314,7 @@ public class RegressionTest
 			// coerced the arg to type C to find the correct foo
 			assertSame(foo1, oc.getReferredOperation());
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1328,27 +1329,27 @@ public class RegressionTest
 		// this should not work
 		try {
 			parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Apple.allInstances()->collect(preferredLabel())" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: Apple.allInstances()->collect(preferredLabel())" +
+				" endpackage");
 		} catch (AssertionFailedError e) {
 			// this is expected (success case)
 			err = e;
-			System.out.println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			System.out.println("Got expected error: " + e.getLocalizedMessage());
 		}
-		assertNotNull("Parse should have failed", err); //$NON-NLS-1$
+		assertNotNull("Parse should have failed", err);
 		
 		// this should work
 		parse(
-			"package ocltest context Fruit " + //$NON-NLS-1$
-			"inv: Apple.allInstances()->collect(preferredLabel('foo'))" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit " +
+			"inv: Apple.allInstances()->collect(preferredLabel('foo'))" +
+			" endpackage");
 		
 		// and this
 		parse(
-			"package ocltest context Apple " + //$NON-NLS-1$
-			"inv: preferredLabel('foo')" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Apple " +
+			"inv: preferredLabel('foo')" +
+			" endpackage");
 	}
 	
 	/**
@@ -1358,23 +1359,23 @@ public class RegressionTest
 	 */
 	public void test_nestedPackages_129769() {
 		EPackage rootPackage = EcoreFactory.eINSTANCE.createEPackage();
-		rootPackage.setName("foo"); //$NON-NLS-1$
-		rootPackage.setNsPrefix("a.b.c.foo"); //$NON-NLS-1$
-		rootPackage.setNsURI("http:///foo.ecore"); //$NON-NLS-1$
+		rootPackage.setName("foo");
+		rootPackage.setNsPrefix("a.b.c.foo");
+		rootPackage.setNsURI("http:///foo.ecore");
 		
 		EClass a = EcoreFactory.eINSTANCE.createEClass();
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		rootPackage.getEClassifiers().add(a);
 		
 		EPackage nestedPackage = EcoreFactory.eINSTANCE.createEPackage();
-		nestedPackage.setName("bar"); //$NON-NLS-1$
-		nestedPackage.setNsPrefix("a.b.c.foo.bar"); //$NON-NLS-1$
-		nestedPackage.setNsURI("http:///foo/bar.ecore"); //$NON-NLS-1$
+		nestedPackage.setName("bar");
+		nestedPackage.setNsPrefix("a.b.c.foo.bar");
+		nestedPackage.setNsURI("http:///foo/bar.ecore");
 		
 		rootPackage.getESubpackages().add(nestedPackage);
 		
 		EClass b = EcoreFactory.eINSTANCE.createEClass();
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		nestedPackage.getEClassifiers().add(b);
 		
 		EPackage.Registry reg = new EPackageRegistryImpl(resourceSet.getPackageRegistry());
@@ -1389,23 +1390,23 @@ public class RegressionTest
 		
 		try {
 			// look up by name
-			helper.createInvariant("not self.oclIsKindOf(foo::A)"); //$NON-NLS-1$
+			helper.createInvariant("not self.oclIsKindOf(foo::A)");
 			
 			// for compatibility, NS prefix also works
-			helper.createInvariant("not self.oclIsKindOf(a::b::c::foo::A)"); //$NON-NLS-1$
+			helper.createInvariant("not self.oclIsKindOf(a::b::c::foo::A)");
 		
 			helper.setContext(a);
 		
 			// look-up relative to context package
-			helper.createInvariant("not self.oclIsKindOf(bar::B)"); //$NON-NLS-1$
+			helper.createInvariant("not self.oclIsKindOf(bar::B)");
 			
 			// absolute look-up by name
-			helper.createInvariant("not self.oclIsKindOf(foo::bar::B)"); //$NON-NLS-1$
+			helper.createInvariant("not self.oclIsKindOf(foo::bar::B)");
 			
 			// and by NS prefix
-			helper.createInvariant("not self.oclIsKindOf(a::b::c::foo::bar::B)"); //$NON-NLS-1$
+			helper.createInvariant("not self.oclIsKindOf(a::b::c::foo::bar::B)");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1431,29 +1432,29 @@ public class RegressionTest
 		}
 		
 		EPackage epackage = EcoreFactory.eINSTANCE.createEPackage();
-		epackage.setName("foo"); //$NON-NLS-1$
+		epackage.setName("foo");
 		
 		EClass a = new EqualsEClass(1);
-		a.setName("A"); //$NON-NLS-1$
+		a.setName("A");
 		epackage.getEClassifiers().add(a);
 		
 		EClass b = new EqualsEClass(1); // same key as a, so b.equals(a)
-		b.setName("B"); //$NON-NLS-1$
+		b.setName("B");
 		epackage.getEClassifiers().add(b);
 		
 		EClass c = new EqualsEClass(2);
-		c.setName("C"); //$NON-NLS-1$
+		c.setName("C");
 		epackage.getEClassifiers().add(b);
 		
 		EReference ref = EcoreFactory.eINSTANCE.createEReference();
-		ref.setName("a"); //$NON-NLS-1$
+		ref.setName("a");
 		ref.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
 		ref.setOrdered(false);
 		ref.setUnique(true);
 		ref.setEType(a);
 		c.getEStructuralFeatures().add(ref);
 		ref = EcoreFactory.eINSTANCE.createEReference();
-		ref.setName("b"); //$NON-NLS-1$
+		ref.setName("b");
 		ref.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
 		ref.setOrdered(false);
 		ref.setUnique(true);
@@ -1464,9 +1465,9 @@ public class RegressionTest
 		OCLExpression<EClassifier> expr = null;
 		
 		try {
-			expr = helper.createQuery("a->union(b)"); //$NON-NLS-1$
+			expr = helper.createQuery("a->union(b)");
 		} catch (Exception e) {
-			fail("Parse failed: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Parse failed: " + e.getLocalizedMessage());
 		}
 		
 		assertNotNull(expr);
@@ -1493,7 +1494,7 @@ public class RegressionTest
 			assertEquals(a, TypeUtil.commonSuperType(env, b, a));
 			assertEquals(b, TypeUtil.commonSuperType(env, b, a));
 		} catch (Exception e) {
-			fail("No common super type: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("No common super type: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1515,25 +1516,25 @@ public class RegressionTest
 	 */
 	public void test_enclosingPackage_unqualifiedName() {
 		EPackage level1 = EcoreFactory.eINSTANCE.createEPackage();
-		level1.setName("level1"); //$NON-NLS-1$
+		level1.setName("level1");
 		EPackage level2 = EcoreFactory.eINSTANCE.createEPackage();
-		level2.setName("level2"); //$NON-NLS-1$
+		level2.setName("level2");
 		
 		level1.getESubpackages().add(level2);
 		
 		EEnum enum1 = EcoreFactory.eINSTANCE.createEEnum();
-		enum1.setName("Enum1"); //$NON-NLS-1$
+		enum1.setName("Enum1");
 		
 		EEnumLiteral enum1Literal1 = EcoreFactory.eINSTANCE.createEEnumLiteral();
-		enum1Literal1.setName("Enum1Literal1"); //$NON-NLS-1$
+		enum1Literal1.setName("Enum1Literal1");
 		
 		enum1.getELiterals().add(enum1Literal1);
 		
 		EClass class1 = EcoreFactory.eINSTANCE.createEClass();
-		class1.setName("Class1"); //$NON-NLS-1$
+		class1.setName("Class1");
 
 		EAttribute attr1 = EcoreFactory.eINSTANCE.createEAttribute();
-		attr1.setName("attr1"); //$NON-NLS-1$
+		attr1.setName("attr1");
 		attr1.setEType(enum1);
 
 		class1.getEStructuralFeatures().add(attr1);
@@ -1544,9 +1545,9 @@ public class RegressionTest
 		helper.setContext(class1);
 		
 		try {
-			helper.createInvariant("attr1 = Enum1::Enum1Literal1"); //$NON-NLS-1$
+			helper.createInvariant("attr1 = Enum1::Enum1Literal1");
 		} catch (Exception e) {
-			fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+			fail("Failed to parse: " + e.getLocalizedMessage());
 		}
 	}
 	
@@ -1560,21 +1561,21 @@ public class RegressionTest
 		
 		parse(
 				// English locale style
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel('foo')" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: preferredLabel('foo')" +
+				" endpackage");
 		
 		parse(
 				// SuSe Linux in Hebrew Local
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel(´foo´)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: preferredLabel(´foo´)" +
+				" endpackage");
 		
 		parse(
 				// I've seen this before (esp. in text export from MS Word)
-				"package ocltest context Apple " + //$NON-NLS-1$
-				"inv: preferredLabel(`foo´)" + //$NON-NLS-1$
-				" endpackage"); //$NON-NLS-1$
+				"package ocltest context Apple " +
+				"inv: preferredLabel(`foo´)" +
+				" endpackage");
 	}
 	
 	/**
@@ -1585,23 +1586,23 @@ public class RegressionTest
 		org.eclipse.ocl.ecore.Variable var =
 			(org.eclipse.ocl.ecore.Variable) oclFactory.<EClassifier, EParameter>createVariable();
 		
-		assertEquals("\"<null>\"", var.toString()); //$NON-NLS-1$
+		assertEquals("\"<null>\"", var.toString());
 		
 		VariableExp<EClassifier, EParameter> exp =
 			oclFactory.createVariableExp();
 		exp.setReferredVariable(var);
 		
-		assertEquals("\"<null>\"", exp.toString()); //$NON-NLS-1$
+		assertEquals("\"<null>\"", exp.toString());
 		
-		var.setName("foo"); //$NON-NLS-1$
+		var.setName("foo");
 		
-		assertEquals("foo", var.toString()); //$NON-NLS-1$
-		assertEquals("foo", exp.toString()); //$NON-NLS-1$
+		assertEquals("foo", var.toString());
+		assertEquals("foo", exp.toString());
 		
 		var.setEType(getOCLStandardLibrary().getString());
 		
-		assertEquals("foo : String", var.toString()); //$NON-NLS-1$
-		assertEquals("foo", exp.toString()); //$NON-NLS-1$
+		assertEquals("foo : String", var.toString());
+		assertEquals("foo", exp.toString());
 	}
     
     /**
@@ -1611,9 +1612,9 @@ public class RegressionTest
     @SuppressWarnings("unchecked")
 	public void test_letWithMultipleVariables_bug164503() {
         OCLExpression<EClassifier> expr = parse(
-            "package ocltest context Fruit " + //$NON-NLS-1$
-            " inv: let s : String = '', i : Set(Integer) = Set{1}, n : UnlimitedNatural = * in true" + //$NON-NLS-1$
-            " endpackage"); //$NON-NLS-1$
+            "package ocltest context Fruit " +
+            " inv: let s : String = '', i : Set(Integer) = Set{1}, n : UnlimitedNatural = * in true" +
+            " endpackage");
         
         // verify the structure of the nested let expression
         
@@ -1621,21 +1622,21 @@ public class RegressionTest
         assertTrue(expr instanceof LetExp);
         LetExp<EClassifier, ?> letExp = (LetExp<EClassifier, ?>) expr;
         Variable<EClassifier, ?> var = letExp.getVariable();
-        assertEquals("s", var.getName()); //$NON-NLS-1$
+        assertEquals("s", var.getName());
         assertSame(getOCLStandardLibrary().getString(), var.getType());
         
         // second level is the Set(Integer)
         assertTrue(letExp.getIn() instanceof LetExp);
         letExp = (LetExp<EClassifier, ?>) letExp.getIn();
         var = letExp.getVariable();
-        assertEquals("i", var.getName()); //$NON-NLS-1$
+        assertEquals("i", var.getName());
         assertTrue(var.getType() instanceof SetType);
         
         // third level is the UnlimitedNatural
         assertTrue(letExp.getIn() instanceof LetExp);
         letExp = (LetExp<EClassifier, ?>) letExp.getIn();
         var = letExp.getVariable();
-        assertEquals("n", var.getName()); //$NON-NLS-1$
+        assertEquals("n", var.getName());
         assertSame(getOCLStandardLibrary().getUnlimitedNatural(), var.getType());
         
         // now we have a real "in"
@@ -1651,16 +1652,16 @@ public class RegressionTest
         
         try {
             parse(
-                "package ocltest context Fruit " + //$NON-NLS-1$
-                " inv: let s : String = '', i : Set(Integer) in true" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package ocltest context Fruit " +
+                " inv: let s : String = '', i : Set(Integer) in true" +
+                " endpackage");
             
-            fail("Should have failed to parse or validate"); //$NON-NLS-1$
+            fail("Should have failed to parse or validate");
         } catch (AssertionFailedError e) {
             // success
-            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
         } catch (Exception e) {
-            fail("Parse failed with run-time exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed with run-time exception: " + e.getLocalizedMessage());
         }
     }
     
@@ -1670,31 +1671,31 @@ public class RegressionTest
      */
     public void test_repeatedNamesInPath_176308() {
         EPackage rootpkg = EcoreFactory.eINSTANCE.createEPackage();
-        rootpkg.setName("rootpkg"); //$NON-NLS-1$
+        rootpkg.setName("rootpkg");
         EPackage first = EcoreFactory.eINSTANCE.createEPackage();
-        first.setName("repeated"); //$NON-NLS-1$
+        first.setName("repeated");
         EPackage second = EcoreFactory.eINSTANCE.createEPackage();
-        second.setName("repeated"); //$NON-NLS-1$
+        second.setName("repeated");
         
         rootpkg.getESubpackages().add(first);
         first.getESubpackages().add(second);
         
         EEnum enum1 = EcoreFactory.eINSTANCE.createEEnum();
-        enum1.setName("Enum1"); //$NON-NLS-1$
+        enum1.setName("Enum1");
         
         EEnumLiteral enum1Literal1 = EcoreFactory.eINSTANCE.createEEnumLiteral();
-        enum1Literal1.setName("Enum1Literal1"); //$NON-NLS-1$
+        enum1Literal1.setName("Enum1Literal1");
         
         enum1.getELiterals().add(enum1Literal1);
         
         second.getEClassifiers().add(enum1);
         
         EClass dummy = EcoreFactory.eINSTANCE.createEClass();
-        dummy.setName("Dummy"); //$NON-NLS-1$
+        dummy.setName("Dummy");
         rootpkg.getEClassifiers().add(dummy);
         
         EAttribute attr1 = EcoreFactory.eINSTANCE.createEAttribute();
-        attr1.setName("attr1"); //$NON-NLS-1$
+        attr1.setName("attr1");
         attr1.setEType(enum1);
         dummy.getEStructuralFeatures().add(attr1);
         
@@ -1703,9 +1704,9 @@ public class RegressionTest
         try {
             // should not attempt to look up "repeated::Enum1"
             helper.createInvariant(
-                "attr1 = repeated::repeated::Enum1::Enum1Literal1"); //$NON-NLS-1$
+                "attr1 = repeated::repeated::Enum1::Enum1Literal1");
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -1715,20 +1716,20 @@ public class RegressionTest
      */
     public void test_dollarSignInStrings_163542() {
         EPackage rootpkg = EcoreFactory.eINSTANCE.createEPackage();
-        rootpkg.setName("rootpkg"); //$NON-NLS-1$
-        rootpkg.setNsURI("http:///rootpkg.ecore"); //$NON-NLS-1$
+        rootpkg.setName("rootpkg");
+        rootpkg.setNsURI("http:///rootpkg.ecore");
         
         EClass superclass = EcoreFactory.eINSTANCE.createEClass();
-        superclass.setName("Superclass"); //$NON-NLS-1$
+        superclass.setName("Superclass");
         EClass subclass = EcoreFactory.eINSTANCE.createEClass();
-        subclass.setName("Sub$Class"); //$NON-NLS-1$
+        subclass.setName("Sub$Class");
         subclass.getESuperTypes().add(superclass);
         
         rootpkg.getEClassifiers().add(superclass);
         rootpkg.getEClassifiers().add(subclass);
         
         EAttribute attr1 = EcoreFactory.eINSTANCE.createEAttribute();
-        attr1.setName("attr$1"); //$NON-NLS-1$
+        attr1.setName("attr$1");
         attr1.setEType(EcorePackage.Literals.ESTRING);
         superclass.getEStructuralFeatures().add(attr1);
         
@@ -1737,12 +1738,12 @@ public class RegressionTest
         try {
             // parse dollar sign in comments, element names, and string literals
             ocl.parse(new OCLInput(
-                "package rootpkg context Superclass\n" + //$NON-NLS-1$
-                "-- this comment has a $ in it\n" + //$NON-NLS-1$
-                "inv: attr$1 = 'dollar$sign' implies self.oclIsKindOf(Sub$Class)\n" + //$NON-NLS-1$
-                "endpackage")); //$NON-NLS-1$
+                "package rootpkg context Superclass\n" +
+                "-- this comment has a $ in it\n" +
+                "inv: attr$1 = 'dollar$sign' implies self.oclIsKindOf(Sub$Class)\n" +
+                "endpackage"));
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
     
@@ -1763,9 +1764,9 @@ public class RegressionTest
      */
     public void test_variableExpName_243526() {
 		OCLExpression<EClassifier> constraint = parseConstraintUnvalidated(
-			"package ocltest context Fruit::ripen(c : Color) : Boolean " + //$NON-NLS-1$
-			"pre: c.oclIsUndefined() implies Fruit.allInstances()->forAll(color <> self.color) " + //$NON-NLS-1$
-			"endpackage"); //$NON-NLS-1$
+			"package ocltest context Fruit::ripen(c : Color) : Boolean " +
+			"pre: c.oclIsUndefined() implies Fruit.allInstances()->forAll(color <> self.color) " +
+			"endpackage");
 		
 		for (Iterator<EObject> iter = constraint.eAllContents(); iter.hasNext();) {
 			EObject next = iter.next();
@@ -1783,14 +1784,14 @@ public class RegressionTest
      */
     public void test_refToUnlimitedNaturalType_259740() {
 		parse(
-			"package ocltest context Apple " + //$NON-NLS-1$
-			"inv: let u : UnlimitedNatural = * in u.abs()" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Apple " +
+			"inv: let u : UnlimitedNatural = * in u.abs()" +
+			" endpackage");
 
 		parse(
-			"package ocltest context Apple " + //$NON-NLS-1$
-			"inv: let i : Integer = -1 in not i.oclIsKindOf(UnlimitedNatural)" + //$NON-NLS-1$
-			" endpackage"); //$NON-NLS-1$
+			"package ocltest context Apple " +
+			"inv: let i : Integer = -1 in not i.oclIsKindOf(UnlimitedNatural)" +
+			" endpackage");
     }
     
     /**
@@ -1800,16 +1801,16 @@ public class RegressionTest
     public void test_nullPackageEnvironment_259818() {
         try {
             parse(
-                "package NOSUCHPACKAGE context ocltest::Fruit " + //$NON-NLS-1$
-                " inv: true" + //$NON-NLS-1$
-                " endpackage"); //$NON-NLS-1$
+                "package NOSUCHPACKAGE context ocltest::Fruit " +
+                " inv: true" +
+                " endpackage");
             
-            fail("Should have failed to parse or validate"); //$NON-NLS-1$
+            fail("Should have failed to parse or validate");
         } catch (AssertionFailedError e) {
             // success
-            System.out.println("Got the expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got the expected exception: " + e.getLocalizedMessage());
         } catch (Exception e) {
-            fail("Parse failed with run-time exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Parse failed with run-time exception: " + e.getLocalizedMessage());
         }
     }
 }

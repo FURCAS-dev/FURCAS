@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IteratorsTest.java,v 1.8 2009/10/07 20:39:27 ewillink Exp $
+ * $Id: IteratorsTest.java,v 1.9 2009/11/28 17:51:06 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -39,6 +39,7 @@ import org.eclipse.ocl.ParserException;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class IteratorsTest
     extends AbstractTestSuite {
 
@@ -58,23 +59,23 @@ public class IteratorsTest
         helper.setContext(EcorePackage.Literals.EPACKAGE);
 
         try {
-            String expected = "pkg2bobpkg3"; //$NON-NLS-1$
+            String expected = "pkg2bobpkg3";
 
             // complete form
             assertEquals(
                 expected,
                 evaluate(helper, pkg1,
-                    "eSubpackages->iterate(p : EPackage; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+                    "eSubpackages->iterate(p : EPackage; s : String = '' | s.concat(p.name))"));
 
             // shorter form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->iterate(p; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+                "eSubpackages->iterate(p; s : String = '' | s.concat(p.name))"));
 
             // shortest form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->iterate(s : String = ''| s.concat(name))")); //$NON-NLS-1$
+                "eSubpackages->iterate(s : String = ''| s.concat(name))"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -91,17 +92,17 @@ public class IteratorsTest
 
             // complete form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->select(p : EPackage | p.name <> 'bob')")); //$NON-NLS-1$
+                "eSubpackages->select(p : EPackage | p.name <> 'bob')"));
 
             // shorter form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->select(p | p.name <> 'bob')")); //$NON-NLS-1$
+                "eSubpackages->select(p | p.name <> 'bob')"));
 
             // shortest form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->select(name <> 'bob')")); //$NON-NLS-1$
+                "eSubpackages->select(name <> 'bob')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -118,17 +119,17 @@ public class IteratorsTest
 
             // complete form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->reject(p : EPackage | p.name = 'bob')")); //$NON-NLS-1$
+                "eSubpackages->reject(p : EPackage | p.name = 'bob')"));
 
             // shorter form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->reject(p | p.name = 'bob')")); //$NON-NLS-1$
+                "eSubpackages->reject(p | p.name = 'bob')"));
 
             // shortest form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->reject(name = 'bob')")); //$NON-NLS-1$
+                "eSubpackages->reject(name = 'bob')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -141,21 +142,21 @@ public class IteratorsTest
         try {
             // complete form
             assertSame(bob, evaluate(helper, pkg1,
-                "eSubpackages->any(p : EPackage | p.name = 'bob')")); //$NON-NLS-1$
+                "eSubpackages->any(p : EPackage | p.name = 'bob')"));
 
             // shorter form
             assertSame(bob, evaluate(helper, pkg1,
-                "eSubpackages->any(p | p.name = 'bob')")); //$NON-NLS-1$
+                "eSubpackages->any(p | p.name = 'bob')"));
 
             // shortest form
             assertSame(bob, evaluate(helper, pkg1,
-                "eSubpackages->any(name = 'bob')")); //$NON-NLS-1$
+                "eSubpackages->any(name = 'bob')"));
 
             // negative
             assertNotSame(bob, evaluate(helper, pkg1,
-                "eSubpackages->any(name = 'pkg2')")); //$NON-NLS-1$
+                "eSubpackages->any(name = 'pkg2')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -167,16 +168,16 @@ public class IteratorsTest
 
         try {
             assertTrue(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'd', 'e'}->isUnique(e | e)")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'd', 'e'}->isUnique(e | e)"));
 
             assertFalse(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'c', 'e'}->isUnique(e | e)")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'c', 'e'}->isUnique(e | e)"));
 
             // when there are no values, they implicitly all evaluate to a
             // different result
-            assertTrue(check(helper, pkg1, "Sequence{}->isUnique(e | e)")); //$NON-NLS-1$
+            assertTrue(check(helper, pkg1, "Sequence{}->isUnique(e | e)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -188,19 +189,19 @@ public class IteratorsTest
 
         try {
             assertTrue(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'd', 'e'}->exists(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'd', 'e'}->exists(e | e = 'c')"));
 
             assertTrue(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'c', 'e'}->exists(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'c', 'e'}->exists(e | e = 'c')"));
 
             assertFalse(check(helper, pkg1,
-                "Sequence{'a', 'b', 'd', 'e'}->exists(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'd', 'e'}->exists(e | e = 'c')"));
 
             // when there are no values, they the desired result implictly
             // does not occur
-            assertFalse(check(helper, pkg1, "Sequence{}->exists(e | e = 'c')")); //$NON-NLS-1$
+            assertFalse(check(helper, pkg1, "Sequence{}->exists(e | e = 'c')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -212,21 +213,21 @@ public class IteratorsTest
 
         try {
             assertFalse(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'd', 'e'}->forAll(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'd', 'e'}->forAll(e | e = 'c')"));
 
             assertFalse(check(helper, pkg1,
-                "Sequence{'a', 'b', 'd', 'e'}->forAll(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'd', 'e'}->forAll(e | e = 'c')"));
 
             assertTrue(check(helper, pkg1,
-                "Sequence{'c', 'c', 'c', 'c'}->forAll(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'c', 'c', 'c', 'c'}->forAll(e | e = 'c')"));
 
-            assertTrue(check(helper, pkg1, "Sequence{'c'}->forAll(e | e = 'c')")); //$NON-NLS-1$
+            assertTrue(check(helper, pkg1, "Sequence{'c'}->forAll(e | e = 'c')"));
 
             // when there are no values, they implicitly all evaluate to the
             // desired result
-            assertTrue(check(helper, pkg1, "Sequence{}->forAll(e | e = 'c')")); //$NON-NLS-1$
+            assertTrue(check(helper, pkg1, "Sequence{}->forAll(e | e = 'c')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -238,15 +239,15 @@ public class IteratorsTest
 
         try {
             assertTrue(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'd', 'e'}->one(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'd', 'e'}->one(e | e = 'c')"));
 
             assertFalse(check(helper, pkg1,
-                "Sequence{'a', 'b', 'c', 'c', 'e'}->one(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'c', 'c', 'e'}->one(e | e = 'c')"));
 
             assertFalse(check(helper, pkg1,
-                "Sequence{'a', 'b', 'd', 'e'}->one(e | e = 'c')")); //$NON-NLS-1$
+                "Sequence{'a', 'b', 'd', 'e'}->one(e | e = 'c')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -258,24 +259,24 @@ public class IteratorsTest
 
         try {
             List<Object> expected = new java.util.ArrayList<Object>();
-            expected.add("pkg2"); //$NON-NLS-1$
-            expected.add("bob"); //$NON-NLS-1$
-            expected.add("pkg3"); //$NON-NLS-1$
+            expected.add("pkg2");
+            expected.add("bob");
+            expected.add("pkg3");
 
             // complete form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collect(p : EPackage | p.name)")); //$NON-NLS-1$
+                "eSubpackages->collect(p : EPackage | p.name)"));
 
             // shorter form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collect(p | p.name)")); //$NON-NLS-1$
+                "eSubpackages->collect(p | p.name)"));
 
             // yet shorter form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collect(name)")); //$NON-NLS-1$
+                "eSubpackages->collect(name)"));
 
             // shortest form
-            assertEquals(expected, evaluate(helper, pkg1, "eSubpackages.name")); //$NON-NLS-1$
+            assertEquals(expected, evaluate(helper, pkg1, "eSubpackages.name"));
 
             // flattening of nested collections
             expected.clear();
@@ -284,9 +285,9 @@ public class IteratorsTest
             expected.add(pkg5);
 
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages.eSubpackages")); //$NON-NLS-1$
+                "eSubpackages.eSubpackages"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -300,9 +301,9 @@ public class IteratorsTest
 
         try {
             // this shouldn't parse, anyway
-            helper.createInvariant("eSubpackages.unknownAttribute"); //$NON-NLS-1$
+            helper.createInvariant("eSubpackages.unknownAttribute");
 
-            fail("Should not have parsed"); //$NON-NLS-1$
+            fail("Should not have parsed");
         } catch (ParserException e) {
         	// should have a diagnostic describing the problem if it is a
         	// "normal" parse failure
@@ -320,9 +321,9 @@ public class IteratorsTest
 
         try {
             // this shouldn't parse, anyway
-        	helper.createInvariant("eSubpackages.unknownOperation(self)"); //$NON-NLS-1$
+        	helper.createInvariant("eSubpackages.unknownOperation(self)");
 
-            fail("Should not have parsed"); //$NON-NLS-1$
+            fail("Should not have parsed");
         } catch (ParserException e) {
         	// should have a diagnostic describing the problem if it is a
         	// "normal" parse failure
@@ -335,18 +336,18 @@ public class IteratorsTest
      */
     public void test_collect_flattens_217461() {
         helper.setContext(EcorePackage.Literals.ESTRING);
-        String self = "foo"; //$NON-NLS-1$
+        String self = "foo";
         
         try {
             List<String> expected = new java.util.ArrayList<String>(3);
-            expected.add("THIS AND"); //$NON-NLS-1$
-            expected.add("THAT"); //$NON-NLS-1$
-            expected.add("THE OTHER"); //$NON-NLS-1$
+            expected.add("THIS AND");
+            expected.add("THAT");
+            expected.add("THE OTHER");
 
             assertEquals(expected, evaluate(helper, self,
-                "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpper())")); //$NON-NLS-1$
+                "Sequence{Sequence{'this and', 'that'}, Sequence{'the other'}}->collect(s : Sequence(String) | s.toUpper())"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -355,15 +356,15 @@ public class IteratorsTest
      */
     public void test_collect_empty_217461() {
         helper.setContext(EcorePackage.Literals.ESTRING);
-        String self = "foo"; //$NON-NLS-1$
+        String self = "foo";
         
         try {
             List<String> expected = Collections.emptyList();
 
             assertEquals(expected, evaluate(helper, self,
-                "let c : Sequence(OrderedSet(String)) = Sequence{} in c->collect(s : OrderedSet(String) | s.toUpper())")); //$NON-NLS-1$
+                "let c : Sequence(OrderedSet(String)) = Sequence{} in c->collect(s : OrderedSet(String) | s.toUpper())"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -375,21 +376,21 @@ public class IteratorsTest
 
         try {
             List<Object> expected = new java.util.ArrayList<Object>();
-            expected.add("pkg2"); //$NON-NLS-1$
-            expected.add("bob"); //$NON-NLS-1$
-            expected.add("pkg3"); //$NON-NLS-1$
+            expected.add("pkg2");
+            expected.add("bob");
+            expected.add("pkg3");
 
             // complete form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collectNested(p : EPackage | p.name)")); //$NON-NLS-1$
+                "eSubpackages->collectNested(p : EPackage | p.name)"));
 
             // shorter form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collectNested(p | p.name)")); //$NON-NLS-1$
+                "eSubpackages->collectNested(p | p.name)"));
 
             // shortest form
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collectNested(name)")); //$NON-NLS-1$
+                "eSubpackages->collectNested(name)"));
 
             // nested collections not flattened
             expected.clear();
@@ -399,9 +400,9 @@ public class IteratorsTest
                 .asList(new Object[] {pkg4, pkg5})));
 
             assertEquals(expected, evaluate(helper, pkg1,
-                "eSubpackages->collectNested(eSubpackages)")); //$NON-NLS-1$
+                "eSubpackages->collectNested(eSubpackages)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -419,27 +420,27 @@ public class IteratorsTest
 
             // complete form
             assertEquals(expectedSet, evaluate(helper, pkg1,
-                "eSubpackages->sortedBy(p : EPackage | p.name)")); //$NON-NLS-1$
+                "eSubpackages->sortedBy(p : EPackage | p.name)"));
 
             // shorter form
             assertEquals(expectedSet, evaluate(helper, pkg1,
-                "eSubpackages->sortedBy(p | p.name)")); //$NON-NLS-1$
+                "eSubpackages->sortedBy(p | p.name)"));
 
             // shortest form
             assertEquals(expectedSet, evaluate(helper, pkg1,
-                "eSubpackages->sortedBy(name)")); //$NON-NLS-1$
+                "eSubpackages->sortedBy(name)"));
 
             List<String> expected = new java.util.ArrayList<String>();
-            expected.add("a"); //$NON-NLS-1$
-            expected.add("b"); //$NON-NLS-1$
-            expected.add("c"); //$NON-NLS-1$
-            expected.add("d"); //$NON-NLS-1$
-            expected.add("e"); //$NON-NLS-1$
+            expected.add("a");
+            expected.add("b");
+            expected.add("c");
+            expected.add("d");
+            expected.add("e");
 
             assertEquals(expected, evaluate(helper, pkg1,
-                "Bag{'d', 'b', 'e', 'a', 'c'}->sortedBy(e | e)")); //$NON-NLS-1$
+                "Bag{'d', 'b', 'e', 'a', 'c'}->sortedBy(e | e)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -457,7 +458,7 @@ public class IteratorsTest
             // closure does not include self (george)
 
             assertEquals(expected, evaluate(helper, george,
-                "self->closure(eSuperPackage)")); //$NON-NLS-1$
+                "self->closure(eSuperPackage)"));
 
             expected.remove(pkg1); // closure does not include self (pkg1)
             expected.add(pkg2);
@@ -467,14 +468,14 @@ public class IteratorsTest
             expected.add(george);
 
             assertEquals(expected, evaluate(helper, pkg1,
-                "self->closure(eSubpackages)")); //$NON-NLS-1$
+                "self->closure(eSubpackages)"));
 
             // empty closure
             expected.clear();
             assertEquals(expected, evaluate(helper, pkg1,
-                "self->closure(eSuperPackage)")); //$NON-NLS-1$
+                "self->closure(eSuperPackage)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -492,13 +493,13 @@ public class IteratorsTest
 
             assertEquals(expected, evaluate(helper,
                 EcorePackage.Literals.EPACKAGE__ESUPER_PACKAGE,
-                "self->closure(eOpposite)")); //$NON-NLS-1$
+                "self->closure(eOpposite)"));
 
             assertEquals(expected, evaluate(helper,
                 EcorePackage.Literals.EPACKAGE__ESUBPACKAGES,
-                "self->closure(eOpposite)")); //$NON-NLS-1$
+                "self->closure(eOpposite)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -507,12 +508,12 @@ public class IteratorsTest
      */
     public void test_closure_operations() {
         EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
-        fakePkg.setName("fake"); //$NON-NLS-1$
+        fakePkg.setName("fake");
         EClass fake = EcoreFactory.eINSTANCE.createEClass();
-        fake.setName("Fake"); //$NON-NLS-1$
+        fake.setName("Fake");
         fakePkg.getEClassifiers().add(fake);
         EOperation getFakes = EcoreFactory.eINSTANCE.createEOperation();
-        getFakes.setName("getFakes"); //$NON-NLS-1$
+        getFakes.setName("getFakes");
         getFakes.setEType(fake);
         getFakes.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
         fake.getEOperations().add(getFakes);
@@ -520,9 +521,9 @@ public class IteratorsTest
         helper.setContext(fake);
 
         try {
-            helper.createQuery("self->closure(getFakes())"); //$NON-NLS-1$
+            helper.createQuery("self->closure(getFakes())");
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -534,13 +535,13 @@ public class IteratorsTest
 
         try {
             // non-recursive reference
-            helper.createQuery("self->closure(eClassifiers)"); //$NON-NLS-1$
+            helper.createQuery("self->closure(eClassifiers)");
 
-            fail("Validation should have failed"); //$NON-NLS-1$
+            fail("Validation should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
     }
 
@@ -550,25 +551,25 @@ public class IteratorsTest
      */
     public void test_closureValidation_typeConformance_154695() {
         EPackage fakePkg = EcoreFactory.eINSTANCE.createEPackage();
-        fakePkg.setName("fake"); //$NON-NLS-1$
+        fakePkg.setName("fake");
         EClass fake = EcoreFactory.eINSTANCE.createEClass();
-        fake.setName("Fake"); //$NON-NLS-1$
+        fake.setName("Fake");
         fakePkg.getEClassifiers().add(fake);
         EOperation getFakes = EcoreFactory.eINSTANCE.createEOperation();
-        getFakes.setName("getFakes"); //$NON-NLS-1$
+        getFakes.setName("getFakes");
         getFakes.setEType(fake);
         getFakes.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
         fake.getEOperations().add(getFakes);
 
         // subclass the Fake class
         EClass subFake = EcoreFactory.eINSTANCE.createEClass();
-        subFake.setName("Subfake"); //$NON-NLS-1$
+        subFake.setName("Subfake");
         fakePkg.getEClassifiers().add(subFake);
         subFake.getESuperTypes().add(fake);
 
         // get sub-fakes from a fake
         EOperation getSubFakes = EcoreFactory.eINSTANCE.createEOperation();
-        getSubFakes.setName("getSubFakes"); //$NON-NLS-1$
+        getSubFakes.setName("getSubFakes");
         getSubFakes.setEType(subFake);
         getSubFakes.setUpperBound(ETypedElement.UNBOUNDED_MULTIPLICITY);
         fake.getEOperations().add(getSubFakes);
@@ -580,12 +581,12 @@ public class IteratorsTest
             // expression
             // is more general than the iterator variable, so cannot be
             // assigned recursively
-            helper.createQuery("self->closure(getFakes())"); //$NON-NLS-1$
-            fail("Validation should have failed"); //$NON-NLS-1$
+            helper.createQuery("self->closure(getFakes())");
+            fail("Validation should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         helper.setContext(fake);
@@ -594,9 +595,9 @@ public class IteratorsTest
             // this should parse OK because the result of the closure expression
             // is more specific than the iterator variable, so it can be
             // assigned recursively
-            helper.createQuery("self->closure(getSubFakes())"); //$NON-NLS-1$
+            helper.createQuery("self->closure(getSubFakes())");
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -609,22 +610,22 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->forAll(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->forAll(b and b)");
 
             assertInvalid(result);
 
             // check that the "check" API interprets invalid as a constraint
             // violation
             assertFalse(check(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1}->forAll(b and b)")); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1}->forAll(b and b)"));
 
             // same deal for a null value (in the forAll case)
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->forAll(null.oclAsType(Boolean))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->forAll(null.oclAsType(Boolean))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -637,17 +638,17 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->exists(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->exists(b and b)");
 
             assertInvalid(result);
 
             // same deal for a null value (in the exists case)
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->exists(null.oclAsType(Boolean))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->exists(null.oclAsType(Boolean))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -660,17 +661,17 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->one(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->one(b and b)");
 
             assertInvalid(result);
 
             // same deal for a null value (in the one case)
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->one(null.oclAsType(Boolean))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->one(null.oclAsType(Boolean))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -683,17 +684,17 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->any(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->any(b and b)");
 
             assertInvalid(result);
 
             // same deal for a null value (in the any case)
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->any(null.oclAsType(Boolean))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->any(null.oclAsType(Boolean))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -706,17 +707,17 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->select(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->select(b and b)");
 
             assertInvalid(result);
 
             // same deal for a null value (in the exists case)
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->select(null.oclAsType(Boolean))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->select(null.oclAsType(Boolean))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -729,17 +730,17 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->reject(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->reject(b and b)");
 
             assertInvalid(result);
 
             // same deal for a null value (in the exists case)
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->reject(null.oclAsType(Boolean))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->reject(null.oclAsType(Boolean))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -753,16 +754,16 @@ public class IteratorsTest
         try {
             // invalid supports the = operation
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->isUnique(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->isUnique(b and b)");
 
             assertEquals(Boolean.FALSE, result);
 
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->isUnique(null)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->isUnique(null)");
 
             assertEquals(Boolean.FALSE, result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -775,14 +776,14 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->collect(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->collect(b and b)");
 
             assertInvalid(result);
 
             // in the case of a null value, null is allowed in a collection, so
             // it does not result in invalid
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->collect(null)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->collect(null)");
 
             assertTrue(result instanceof Collection<?>);
 
@@ -792,7 +793,7 @@ public class IteratorsTest
                 assertNull(iter.next());
             }
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -805,7 +806,7 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->collectNested(b and b)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->collectNested(b and b)");
 
             assertInvalid(result);
 
@@ -814,7 +815,7 @@ public class IteratorsTest
             result = evaluate(
                 helper,
                 EcorePackage.eINSTANCE,
-                "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)"); //$NON-NLS-1$
+                "let b:Boolean = null in Bag{1, 2, 3}->collectNested(e | if e = 2 then null else Set{e} endif)");
 
             assertTrue(result instanceof Collection<?>);
 
@@ -827,7 +828,7 @@ public class IteratorsTest
                     || next.equals(Collections.singleton(new Integer(3))));
             }
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -840,21 +841,21 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let c : EClassifier = invalid in eClassifiers->closure(c)"); //$NON-NLS-1$
+                "let c : EClassifier = invalid in eClassifiers->closure(c)");
 
             assertInvalid(result);
 
             // in the case of a null value, null is allowed in a collection, so
             // it does not result in invalid
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let c : Set(EClassifier) = Set{null} in eClassifiers->closure(c)"); //$NON-NLS-1$
+                "let c : Set(EClassifier) = Set{null} in eClassifiers->closure(c)");
 
             assertTrue(result instanceof Collection<?>);
 
             Collection<?> collResult = (Collection<?>) result;
             assertTrue(collResult.isEmpty());
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -867,17 +868,17 @@ public class IteratorsTest
 
         try {
             Object result = evaluate(helper, EcorePackage.eINSTANCE,
-                "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())"); //$NON-NLS-1$
+                "let s : String = null in Bag{1, 2, 3}->sortedBy(s.size())");
 
             assertInvalid(result);
 
             // same deal for null values
             result = evaluate(helper, EcorePackage.eINSTANCE,
-                "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))"); //$NON-NLS-1$
+                "Bag{1, 2, 3}->sortedBy(null.oclAsType(Integer))");
 
             assertInvalid(result);
         } catch (Exception exc) {
-            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + exc.getLocalizedMessage());
         }
     }
 
@@ -890,14 +891,14 @@ public class IteratorsTest
 
         try {
             assertInvalid(evaluate(helper, pkg1,
-                "let e : Collection(EPackage) = null in e->iterate(" + //$NON-NLS-1$
-                    "p : EPackage; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+                "let e : Collection(EPackage) = null in e->iterate(" +
+                    "p : EPackage; s : String = '' | s.concat(p.name))"));
 
             assertInvalid(evaluate(helper, pkg1,
-                "let e : Collection(EPackage) = invalid in e->iterate(" + //$NON-NLS-1$
-                    "p : EPackage; s : String = '' | s.concat(p.name))")); //$NON-NLS-1$
+                "let e : Collection(EPackage) = invalid in e->iterate(" +
+                    "p : EPackage; s : String = '' | s.concat(p.name))"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -910,14 +911,14 @@ public class IteratorsTest
 
         try {
             assertInvalid(evaluate(helper, pkg1,
-                "let e : Collection(EPackage) = null in e->exists(" + //$NON-NLS-1$
-                    "p : EPackage | p.name = 'bob')")); //$NON-NLS-1$
+                "let e : Collection(EPackage) = null in e->exists(" +
+                    "p : EPackage | p.name = 'bob')"));
 
             assertInvalid(evaluate(helper, pkg1,
-                "let e : Collection(EPackage) = invalid in e->exists(" + //$NON-NLS-1$
-                    "p : EPackage | p.name = 'bob')")); //$NON-NLS-1$
+                "let e : Collection(EPackage) = invalid in e->exists(" +
+                    "p : EPackage | p.name = 'bob')"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -929,17 +930,17 @@ public class IteratorsTest
 
         try {
             assertTrue(check(helper, pkg1,
-                "Sequence{1, 2, 3, 4}->exists(e1, e2 | e1 = e2)")); //$NON-NLS-1$
+                "Sequence{1, 2, 3, 4}->exists(e1, e2 | e1 = e2)"));
 
             assertFalse(check(helper, pkg1,
-                "Sequence{1, 2, 3, 4}->exists(e1, e2 | (e1 + e2) = 0)")); //$NON-NLS-1$
+                "Sequence{1, 2, 3, 4}->exists(e1, e2 | (e1 + e2) = 0)"));
 
             // when there are no values, the the desired result implictly
             // does not occur
             assertFalse(check(helper, pkg1,
-                "Sequence{}->exists(e1, e2 | e1 = e2)")); //$NON-NLS-1$
+                "Sequence{}->exists(e1, e2 | e1 = e2)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -951,16 +952,16 @@ public class IteratorsTest
 
         try {
             assertFalse(check(helper, pkg1,
-                "Sequence{1, 2, 3, 4}->forAll(e1, e2 | e1 = e2)")); //$NON-NLS-1$
+                "Sequence{1, 2, 3, 4}->forAll(e1, e2 | e1 = e2)"));
 
             assertTrue(check(helper, pkg1,
-                "Sequence{1, 2, 3, 4}->forAll(e1, e2 | (e1 + e2) > e1)")); //$NON-NLS-1$
+                "Sequence{1, 2, 3, 4}->forAll(e1, e2 | (e1 + e2) > e1)"));
 
             // when there are no values, the the desired result implictly occurs
             assertTrue(check(helper, pkg1,
-                "Sequence{}->forAll(e1, e2 | e1 = e2)")); //$NON-NLS-1$
+                "Sequence{}->forAll(e1, e2 | e1 = e2)"));
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -972,91 +973,91 @@ public class IteratorsTest
         helper.setContext(EcorePackage.Literals.EPACKAGE);
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->exists(e1, e2, e3 |" +
+                " e1 = e2)");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->forAll(e1, e2, e3 |" +
+                " e1 = e2)");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->collect(e1, e2 |" + //$NON-NLS-1$
-                " Tuple{a : String = e1, b : String = e2})"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->collect(e1, e2 |" +
+                " Tuple{a : String = e1, b : String = e2})");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->any(e1, e2 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->any(e1, e2 |" +
+                " e1 = e2)");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->one(e1, e2 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->one(e1, e2 |" +
+                " e1 = e2)");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->select(e1, e2 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->select(e1, e2 |" +
+                " e1 = e2)");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->reject(e1, e2 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->reject(e1, e2 |" +
+                " e1 = e2)");
 
-            fail("v should have failed"); //$NON-NLS-1$
+            fail("v should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
 
         try {
-            helper.createQuery("Sequence{'a', 'b', 'c'}->isUnique(e1, e2 |" + //$NON-NLS-1$
-                " e1 = e2)"); //$NON-NLS-1$
+            helper.createQuery("Sequence{'a', 'b', 'c'}->isUnique(e1, e2 |" +
+                " e1 = e2)");
 
-            fail("Parse should have failed"); //$NON-NLS-1$
+            fail("Parse should have failed");
         } catch (ParserException e) {
             // success
             System.out
-                .println("Got expected error: " + e.getLocalizedMessage()); //$NON-NLS-1$
+                .println("Got expected error: " + e.getLocalizedMessage());
         }
     }
     
@@ -1069,27 +1070,27 @@ public class IteratorsTest
         
         try {
             // should fail to parse because EClassifier does not define '<'
-            helper.createQuery("eClassifiers->sortedBy(e | e)"); //$NON-NLS-1$
-            fail("Should have failed to parse"); //$NON-NLS-1$
+            helper.createQuery("eClassifiers->sortedBy(e | e)");
+            fail("Should have failed to parse");
         } catch (ParserException e) {
             // success
-            System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            System.out.println("Got expected exception: " + e.getLocalizedMessage());
         }
         
         try {
             // should parse because String defines '<'
-            helper.createQuery("eClassifiers->sortedBy(e | e.name)"); //$NON-NLS-1$
+            helper.createQuery("eClassifiers->sortedBy(e | e.name)");
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
         
         helper.setContext(EcorePackage.Literals.EDATE);
         try {
             // EDate defines '<' by having a Comparable instance class
             helper.createQuery(
-                "let dates : Sequence(EDate) = Sequence{} in dates->sortedBy(e | e)"); //$NON-NLS-1$
+                "let dates : Sequence(EDate) = Sequence{} in dates->sortedBy(e | e)");
         } catch (Exception e) {
-            fail("Failed to parse or evaluate: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
         }
     }
 
@@ -1113,34 +1114,34 @@ public class IteratorsTest
         // george
 
         pkg1 = EcoreFactory.eINSTANCE.createEPackage();
-        pkg1.setName("pkg1"); //$NON-NLS-1$
+        pkg1.setName("pkg1");
 
         pkg2 = EcoreFactory.eINSTANCE.createEPackage();
-        pkg2.setName("pkg2"); //$NON-NLS-1$
+        pkg2.setName("pkg2");
         pkg1.getESubpackages().add(pkg2);
 
         jim = EcoreFactory.eINSTANCE.createEPackage();
-        jim.setName("jim"); //$NON-NLS-1$
+        jim.setName("jim");
         pkg2.getESubpackages().add(jim);
 
         bob = EcoreFactory.eINSTANCE.createEPackage();
-        bob.setName("bob"); //$NON-NLS-1$
+        bob.setName("bob");
         pkg1.getESubpackages().add(bob);
 
         pkg3 = EcoreFactory.eINSTANCE.createEPackage();
-        pkg3.setName("pkg3"); //$NON-NLS-1$
+        pkg3.setName("pkg3");
         pkg1.getESubpackages().add(pkg3);
 
         pkg4 = EcoreFactory.eINSTANCE.createEPackage();
-        pkg4.setName("pkg4"); //$NON-NLS-1$
+        pkg4.setName("pkg4");
         pkg3.getESubpackages().add(pkg4);
 
         pkg5 = EcoreFactory.eINSTANCE.createEPackage();
-        pkg5.setName("pkg5"); //$NON-NLS-1$
+        pkg5.setName("pkg5");
         pkg3.getESubpackages().add(pkg5);
 
         george = EcoreFactory.eINSTANCE.createEPackage();
-        george.setName("george"); //$NON-NLS-1$
+        george.setName("george");
         pkg5.getESubpackages().add(george);
     }
 }

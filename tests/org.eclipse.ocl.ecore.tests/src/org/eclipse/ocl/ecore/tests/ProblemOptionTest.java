@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ProblemOptionTest.java,v 1.3 2009/10/07 20:39:29 ewillink Exp $
+ * $Id: ProblemOptionTest.java,v 1.4 2009/11/28 17:49:06 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -30,6 +30,7 @@ import org.eclipse.ocl.util.OCLUtil;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class ProblemOptionTest
     extends AbstractTestSuite {
 
@@ -43,18 +44,18 @@ public class ProblemOptionTest
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(), BasicEnvironment.class);
         
     	// default severity is warning
-    	assertWarning("self.toUpper()"); //$NON-NLS-1$
-    	assertWarning("self.toLower()"); //$NON-NLS-1$
+    	assertWarning("self.toUpper()");
+    	assertWarning("self.toLower()");
         
     	// ignore the operation
     	benv.setOption(ProblemOption.STRING_CASE_CONVERSION, ProblemHandler.Severity.OK);
-    	assertOK("self.toUpper()"); //$NON-NLS-1$
-    	assertOK("self.toLower()"); //$NON-NLS-1$
+    	assertOK("self.toUpper()");
+    	assertOK("self.toLower()");
         
        	// the operation fails to parse
        	benv.setOption(ProblemOption.STRING_CASE_CONVERSION, ProblemHandler.Severity.ERROR);
-       	assertError("self.toUpper()"); //$NON-NLS-1$
-       	assertError("self.toLower()"); //$NON-NLS-1$
+       	assertError("self.toUpper()");
+       	assertError("self.toLower()");
     }
 
     /**
@@ -66,15 +67,15 @@ public class ProblemOptionTest
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(), BasicEnvironment.class);
         
     	// default severity is warning
-    	assertWarning("self->closure(eSuperPackage)"); //$NON-NLS-1$
+    	assertWarning("self->closure(eSuperPackage)");
         
     	// ignore the closure iterator
     	benv.setOption(ProblemOption.CLOSURE_ITERATOR, ProblemHandler.Severity.OK);
-    	assertOK("self->closure(eSuperPackage)"); //$NON-NLS-1$
+    	assertOK("self->closure(eSuperPackage)");
         
        	// the closure iterator fails to parse
        	benv.setOption(ProblemOption.CLOSURE_ITERATOR, ProblemHandler.Severity.ERROR);
-       	assertError("self->closure(eSuperPackage)"); //$NON-NLS-1$
+       	assertError("self->closure(eSuperPackage)");
     }
 
     /**
@@ -86,16 +87,16 @@ public class ProblemOptionTest
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(), BasicEnvironment.class);
         
     	// default severity is warning
-    	assertWarning("'this isn''t a nice string'"); //$NON-NLS-1$
+    	assertWarning("'this isn''t a nice string'");
         
     	// ignore the single-quote
     	benv.setOption(ProblemOption.STRING_SINGLE_QUOTE_ESCAPE, ProblemHandler.Severity.OK);
     	
-    	assertOK("'this isn''t a nice string'"); //$NON-NLS-1$
+    	assertOK("'this isn''t a nice string'");
         
        	// the single-quote escape fails to parse
        	benv.setOption(ProblemOption.STRING_SINGLE_QUOTE_ESCAPE, ProblemHandler.Severity.ERROR);
-       	assertError("'this isn''t a nice string'"); //$NON-NLS-1$
+       	assertError("'this isn''t a nice string'");
     }
 
     /**
@@ -107,16 +108,16 @@ public class ProblemOptionTest
         BasicEnvironment benv = OCLUtil.getAdapter(ocl.getEnvironment(), BasicEnvironment.class);
         
     	// default severity is warning
-    	assertWarning("self.\"eClassifiers\""); //$NON-NLS-1$
+    	assertWarning("self.\"eClassifiers\"");
         
     	// ignore the double-quote
     	benv.setOption(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE, ProblemHandler.Severity.OK);
     	
-    	assertOK("self.\"eClassifiers\""); //$NON-NLS-1$
+    	assertOK("self.\"eClassifiers\"");
         
        	// the double-quote escape fails to parse
        	benv.setOption(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE, ProblemHandler.Severity.ERROR);
-       	assertError("self.\"eClassifiers\""); //$NON-NLS-1$
+       	assertError("self.\"eClassifiers\"");
     }
     
     //
@@ -130,7 +131,7 @@ public class ProblemOptionTest
 	    	Diagnostic problem = helper.getProblems();
 	    	assertNull(problem);
 	    } catch (Exception e) {
-	        fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	        fail("Failed to parse: " + e.getLocalizedMessage());
 	    }
     }
     
@@ -142,7 +143,7 @@ public class ProblemOptionTest
         	assertNotNull(problem);
         	assertEquals(Diagnostic.WARNING, problem.getSeverity());
 	    } catch (Exception e) {
-	        fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+	        fail("Failed to parse: " + e.getLocalizedMessage());
 	    }
     }
     
@@ -150,12 +151,12 @@ public class ProblemOptionTest
         try {
         	helper.createQuery(oclQuery);
         	
-        	fail("Should have failed to parse"); //$NON-NLS-1$
+        	fail("Should have failed to parse");
         } catch (ParserException e) {
             // success
-        	System.out.println("Got expected exception: " + e.getLocalizedMessage()); //$NON-NLS-1$
+        	System.out.println("Got expected exception: " + e.getLocalizedMessage());
         } catch (Exception e) {
-            fail("Failed to parse for unexpected reason: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse for unexpected reason: " + e.getLocalizedMessage());
         }
     }
 }
