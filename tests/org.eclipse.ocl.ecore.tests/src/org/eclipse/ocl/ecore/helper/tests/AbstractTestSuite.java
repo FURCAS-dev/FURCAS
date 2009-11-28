@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractTestSuite.java,v 1.3 2009/10/07 20:38:54 ewillink Exp $
+ * $Id: AbstractTestSuite.java,v 1.4 2009/11/28 17:36:04 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.helper.tests;
@@ -23,17 +23,18 @@ package org.eclipse.ocl.ecore.helper.tests;
  * 
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public abstract class AbstractTestSuite
 	extends org.eclipse.ocl.ecore.tests.AbstractTestSuite {
 
 	public static CheckedTestSuite suite() {
-		CheckedTestSuite result = new CheckedTestSuite("OCL Helper Tests"); //$NON-NLS-1$
+		CheckedTestSuite result = new CheckedTestSuite("OCL Helper Tests");
 		
-		result.createTestSuite(OCLHelperTest.class, "Basic Tests"); //$NON-NLS-1$
-		result.createTestSuite(ParsingTest.class, "Constraint Parsing Tests"); //$NON-NLS-1$
-		result.createTestSuite(SyntaxHelpTest.class, "Syntax Help Tests"); //$NON-NLS-1$
-		result.createTestSuite(EvaluationTest.class, "Constraint Evaluation Tests"); //$NON-NLS-1$
-		result.createTestSuite(RegressionTest.class, "Regression Tests"); //$NON-NLS-1$
+		result.createTestSuite(OCLHelperTest.class, "Basic Tests");
+		result.createTestSuite(ParsingTest.class, "Constraint Parsing Tests");
+		result.createTestSuite(SyntaxHelpTest.class, "Syntax Help Tests");
+		result.createTestSuite(EvaluationTest.class, "Constraint Evaluation Tests");
+		result.createTestSuite(RegressionTest.class, "Regression Tests");
 		
 		return result;
 	}
