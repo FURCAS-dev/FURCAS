@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TuplesTest.java,v 1.6 2009/10/07 20:41:46 ewillink Exp $
+ * $Id: TuplesTest.java,v 1.7 2009/11/28 18:14:48 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -38,14 +38,14 @@ public class TuplesTest
 	 */
 	public void test_tupleLiteral_withTypes() {
 		// one part
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a : Integer = 1} " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: Tuple{a : Integer = 1} " +
+				"endpackage");
 		
 		// multiple parts
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a : Integer = 1, b : String = 'foo', c : Color = Color::red} " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: Tuple{a : Integer = 1, b : String = 'foo', c : Color = Color::red} " +
+				"endpackage");
 	}
 	
 	/**
@@ -53,14 +53,14 @@ public class TuplesTest
 	 */
 	public void test_tupleLiteral_noTypes() {
 		// one part
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a = 1} " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: Tuple{a = 1} " +
+				"endpackage");
 		
 		// multiple parts
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
+				"endpackage");
 	}
 	
 	/**
@@ -68,35 +68,35 @@ public class TuplesTest
 	 * implicit part types.
 	 */
 	public void test_tupleLiteral_mixedTypes() {
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a : Integer = 1, b = 'foo', c : Color = Color::red} " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: Tuple{a : Integer = 1, b = 'foo', c : Color = Color::red} " +
+				"endpackage");
 		
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a = 1, b : String = 'foo', c = Color::red} " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: Tuple{a = 1, b : String = 'foo', c = Color::red} " +
+				"endpackage");
 	}
 	
 	/**
 	 * Tests the parsing of initialization of variables of tuple type.
 	 */
 	public void test_tupleAssignment() {
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: let t : Tuple(a : Integer, b : String, c : Color) " + //$NON-NLS-1$
-					" = Tuple{a = 1, b = 'foo', c = Color::red} " + //$NON-NLS-1$
-					" in t " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: let t : Tuple(a : Integer, b : String, c : Color) " +
+					" = Tuple{a = 1, b = 'foo', c = Color::red} " +
+					" in t " +
+				"endpackage");
 	}
 	
 	/**
 	 * Tests the parsing of collections of tuple types.
 	 */
 	public void test_tupleCollections() {
-		parse("package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: let ts : Set(Tuple(a : Integer, b : String, c : Color)) " + //$NON-NLS-1$
-					" = Set{}->including(Tuple{a = 1, b = 'foo', c = Color::red}) " + //$NON-NLS-1$
-					" in ts " + //$NON-NLS-1$
-				"endpackage"); //$NON-NLS-1$
+		parse("package ocltest context Fruit " +
+				"inv: let ts : Set(Tuple(a : Integer, b : String, c : Color)) " +
+					" = Set{}->including(Tuple{a = 1, b = 'foo', c = Color::red}) " +
+					" in ts " +
+				"endpackage");
 	}
 	
 	/**
@@ -106,31 +106,31 @@ public class TuplesTest
 	public void test_tupleEquivalence() {
 		// different value in one part
 		assertEquals(Boolean.FALSE, evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " + //$NON-NLS-1$
-					" = Tuple{b = 'foo', c = Color::black, a = 1} " + //$NON-NLS-1$
-				"endpackage"))); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
+					" = Tuple{b = 'foo', c = Color::black, a = 1} " +
+				"endpackage")));
 		
 		// test the inequality operator
 		assertEquals(Boolean.TRUE, evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " + //$NON-NLS-1$
-					" <> Tuple{b = 'foo', c = Color::black, a = 1} " + //$NON-NLS-1$
-				"endpackage"))); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
+					" <> Tuple{b = 'foo', c = Color::black, a = 1} " +
+				"endpackage")));
 		
 		// all parts have same value
 		assertEquals(Boolean.TRUE, evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " + //$NON-NLS-1$
-					" = Tuple{b = 'foo', c = Color::red, a = 1} " + //$NON-NLS-1$
-				"endpackage"))); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: Tuple{a = 1, b = 'foo', c = Color::red} " +
+					" = Tuple{b = 'foo', c = Color::red, a = 1} " +
+				"endpackage")));
 		
 		// equality of collections of tuples
 		assertEquals(Boolean.TRUE, evaluate(parse(
-				"package ocltest context Fruit " + //$NON-NLS-1$
-				"inv: Set{Tuple{a = 1, b = 'foo'}, Tuple{a = 5, b = 'bar'}} " + //$NON-NLS-1$
-					" = Set{Tuple{b = 'bar', a = 5}, Tuple{b = 'foo', a = 1}} " + //$NON-NLS-1$
-				"endpackage"))); //$NON-NLS-1$
+				"package ocltest context Fruit " +
+				"inv: Set{Tuple{a = 1, b = 'foo'}, Tuple{a = 5, b = 'bar'}} " +
+					" = Set{Tuple{b = 'bar', a = 5}, Tuple{b = 'foo', a = 1}} " +
+				"endpackage")));
 	}
     
     /**
@@ -139,31 +139,31 @@ public class TuplesTest
      */
     public void test_tupleTypeDistinction_192832() {
         OCLInput doc = new OCLInput(
-            "package ocltest context Fruit " + //$NON-NLS-1$
-            "def: foo : Tuple(a : String) = Tuple{a = 'foo'} " + //$NON-NLS-1$
-            "def: bar : Tuple(a : Integer) = Tuple{a = 100} " + //$NON-NLS-1$
-            "endpackage"); //$NON-NLS-1$
+            "package ocltest context Fruit " +
+            "def: foo : Tuple(a : String) = Tuple{a = 'foo'} " +
+            "def: bar : Tuple(a : Integer) = Tuple{a = 100} " +
+            "endpackage");
         
         try {
             ocl.parse(doc);
             
             helper.setContext(fruit);
-            OCLExpression<Classifier> expr1 = helper.createQuery("self.foo"); //$NON-NLS-1$
-            OCLExpression<Classifier> expr2 = helper.createQuery("self.bar"); //$NON-NLS-1$
+            OCLExpression<Classifier> expr1 = helper.createQuery("self.foo");
+            OCLExpression<Classifier> expr2 = helper.createQuery("self.bar");
             
             assertNotSame(expr1.getType(), expr2.getType());
             
             TupleType type = (TupleType) expr1.getType();
-            Property a = type.getAttribute("a", null); //$NON-NLS-1$
+            Property a = type.getAttribute("a", null);
             assertNotNull(a);
             assertEquals(getOCLStandardLibrary().getString(), a.getType());
             
             type = (TupleType) expr2.getType();
-            a = type.getAttribute("a", null); //$NON-NLS-1$
+            a = type.getAttribute("a", null);
             assertNotNull(a);
             assertEquals(getOCLStandardLibrary().getInteger(), a.getType());
         } catch (Exception e) {
-            fail("Failed to parse: " + e.getLocalizedMessage()); //$NON-NLS-1$
+            fail("Failed to parse: " + e.getLocalizedMessage());
         }
     }
 	
