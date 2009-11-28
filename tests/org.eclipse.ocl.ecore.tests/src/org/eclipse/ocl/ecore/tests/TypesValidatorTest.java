@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: TypesValidatorTest.java,v 1.6 2009/10/07 20:39:26 ewillink Exp $
+ * $Id: TypesValidatorTest.java,v 1.7 2009/11/28 17:52:46 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -42,6 +42,7 @@ import org.eclipse.ocl.types.util.TypesValidator;
  *
  * @author Christian W. Damus (cdamus)
  */
+@SuppressWarnings("nls")
 public class TypesValidatorTest extends AbstractTestSuite {
 
 	private final EcoreFactory factory = EcoreFactory.eINSTANCE;
@@ -52,11 +53,11 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		
 		assertOK(type, TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Collection(Integer)"); //$NON-NLS-1$
+		type.setName("Collection(Integer)");
 		
 		assertProblem(type, TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Sequence(Fruit)"); //$NON-NLS-1$
+		type.setName("Sequence(Fruit)");
 		
 		assertProblem(type, TypesValidator.COLLECTION_TYPE__COLLECTION_TYPE_NAME);
 		
@@ -69,11 +70,11 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		
 		assertOK(type, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Bag(Integer)"); //$NON-NLS-1$
+		type.setName("Bag(Integer)");
 		
 		assertProblem(type, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Collection(Fruit)"); //$NON-NLS-1$
+		type.setName("Collection(Fruit)");
 		
 		assertProblem(type, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
 		
@@ -86,11 +87,11 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		
 		assertOK(type, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Set(Integer)"); //$NON-NLS-1$
+		type.setName("Set(Integer)");
 		
 		assertProblem(type, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Collection(Fruit)"); //$NON-NLS-1$
+		type.setName("Collection(Fruit)");
 		
 		assertProblem(type, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
 		
@@ -103,11 +104,11 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		
 		assertOK(type, TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Sequence(Integer)"); //$NON-NLS-1$
+		type.setName("Sequence(Integer)");
 		
 		assertProblem(type, TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Collection(Fruit)"); //$NON-NLS-1$
+		type.setName("Collection(Fruit)");
 		
 		assertProblem(type, TypesValidator.SEQUENCE_TYPE__COLLECTION_TYPE_NAME);
 		
@@ -120,11 +121,11 @@ public class TypesValidatorTest extends AbstractTestSuite {
 		
 		assertOK(type, TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("OrderedSet(Integer)"); //$NON-NLS-1$
+		type.setName("OrderedSet(Integer)");
 		
 		assertProblem(type, TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
 		
-		type.setName("Collection(Fruit)"); //$NON-NLS-1$
+		type.setName("Collection(Fruit)");
 		
 		assertProblem(type, TypesValidator.ORDERED_SET_TYPE__COLLECTION_TYPE_NAME);
 		
@@ -137,17 +138,17 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	 */
 	public void test_emptyCollectionType_196972() {
 		// load our test resource
-		URI uri = getTestModelURI("/model/VoidCollectionTypes.ecore"); //$NON-NLS-1$
+		URI uri = getTestModelURI("/model/VoidCollectionTypes.ecore");
 		Resource res = resourceSet.getResource(uri, true);
 		EPackage epackage = (EPackage) res.getContents().get(0);
 		
 		// this one is ill-named
-		CollectionType setType = (CollectionType) epackage.getEClassifier("Set(T)"); //$NON-NLS-1$
+		CollectionType setType = (CollectionType) epackage.getEClassifier("Set(T)");
 		assertSame(getOCLStandardLibrary().getOclVoid(), setType.getElementType());
 		assertProblem(setType, TypesValidator.SET_TYPE__COLLECTION_TYPE_NAME);
 		
 		// this one is well-named
-		CollectionType bagType = (CollectionType) epackage.getEClassifier("Bag(OclVoid)"); //$NON-NLS-1$
+		CollectionType bagType = (CollectionType) epackage.getEClassifier("Bag(OclVoid)");
 		assertSame(getOCLStandardLibrary().getOclVoid(), bagType.getElementType());
 		assertOK(setType, TypesValidator.BAG_TYPE__COLLECTION_TYPE_NAME);
 		
@@ -183,7 +184,7 @@ public class TypesValidatorTest extends AbstractTestSuite {
 
 		// neither do some other demand-created types
 		Variable<EClassifier, EParameter> v = oclFactory.createVariable();
-		v.setName("a"); //$NON-NLS-1$
+		v.setName("a");
 		v.setType(fruit);
 		assertWellFormedName(oclFactory.createTupleType(Collections
 			.singletonList(v)));
@@ -209,7 +210,7 @@ public class TypesValidatorTest extends AbstractTestSuite {
 
 		// neither do some other demand-created types
 		Variable<EClassifier, EParameter> v = oclFactory.createVariable();
-		v.setName("a"); //$NON-NLS-1$
+		v.setName("a");
 		v.setType(fruit);
 		assertWellFormedInstanceTypeName(oclFactory.createTupleType(Collections
 			.singletonList(v)));
@@ -238,8 +239,8 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	
 	protected void assertProblem(Diagnostic diagnostic, EObject target, int code) {
 		Diagnostic problem = findProblem(diagnostic, target, code);
-		assertNotNull("Problem not found", problem); //$NON-NLS-1$
-		System.out.println("Found expected problem: " + problem.getMessage()); //$NON-NLS-1$
+		assertNotNull("Problem not found", problem);
+		System.out.println("Found expected problem: " + problem.getMessage());
 	}
 	
 	protected Diagnostic findProblem(Diagnostic diagnostic, EObject target,
@@ -296,14 +297,14 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	}
 	
 	protected void assertOK(Diagnostic diagnostic, EObject target, int code) {
-		assertNull("Problem found", findProblem(diagnostic, target, code)); //$NON-NLS-1$
+		assertNull("Problem found", findProblem(diagnostic, target, code));
 	}
 	
 	protected void assertOK(Diagnostic diagnostic, EObject target, int code,
 			String source) {
 		
 		assertNull(
-			"Problem found", findProblem(diagnostic, target, code, source)); //$NON-NLS-1$
+			"Problem found", findProblem(diagnostic, target, code, source));
 	}
 	
 	protected void assertOK(EObject target) {
@@ -311,6 +312,6 @@ public class TypesValidatorTest extends AbstractTestSuite {
 	}
 	
 	protected void assertOK(Diagnostic diagnostic, EObject target) {
-		assertNull("Problem found", findProblem(diagnostic, target)); //$NON-NLS-1$
+		assertNull("Problem found", findProblem(diagnostic, target));
 	}
 }
