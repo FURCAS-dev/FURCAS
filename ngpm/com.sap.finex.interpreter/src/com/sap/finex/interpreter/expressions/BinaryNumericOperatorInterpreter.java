@@ -16,7 +16,6 @@ import behavior.functions.SignatureImplementation;
 import com.sap.finex.interpreter.FinexInterpreter;
 import com.sap.finex.interpreter.FinexStackFrame;
 import com.sap.finex.interpreter.objects.FinexNativeObject;
-import com.sap.finex.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
@@ -37,95 +36,13 @@ public class BinaryNumericOperatorInterpreter
 	    IllegalArgumentException, JmiException, NoSuchMethodException, InstantiationException, IllegalAccessException,
 	    InvocationTargetException {
 	Fraction result;
+	FinexNativeObject runletResult;
 	String opName = op.getOperator();
 	RunletObject<Field, Type, FinexClass> left = interpreter.evaluate(op.getLeft());
 	RunletObject<Field, Type, FinexClass> right = interpreter.evaluate(op.getRight());
-	if (opName.equals("*")) {
-	    result = Fraction.ONE;
-	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
-	    while (!result.equals(Fraction.ZERO)&& leftFlatIter.hasNext()) {
-		Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
-		if (next instanceof Fraction) {
-		    result = result.times((Fraction) next);
-		} else {
-		    result = result.times(new Fraction((Long) next));
-		}
-	    }
-	    if (!result.equals(Fraction.ZERO)) {
-		Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
-		while (!result.equals(Fraction.ZERO) && rightFlatIter.hasNext()) {
-		    Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
-		    if (next instanceof Fraction) {
-			result = result.times((Fraction) next);
-		    } else {
-			result = result.times(new Fraction((Long) next));
-		    }
-		}
-	    }
-	} else if (opName.equals("/")) {
-	    result = Fraction.ONE;
-	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
-	    while (!result.equals(Fraction.ZERO)&& leftFlatIter.hasNext()) {
-		Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
-		if (next instanceof Fraction) {
-		    result = result.times((Fraction) next);
-		} else {
-		    result = result.times(new Fraction((Long) next));
-		}
-	    }
-	    if (!result.equals(Fraction.ZERO)) {
-		Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
-		while (!result.equals(Fraction.ZERO) && rightFlatIter.hasNext()) {
-		    Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
-		    if (next instanceof Fraction) {
-			result = result.dividedBy((Fraction) next);
-		    } else {
-			result = result.dividedBy(new Fraction((Long) next));
-		    }
-		}
-	    }
-	} else if (opName.equals("+")) {
-	    result = Fraction.ZERO;
-	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
-	    while (leftFlatIter.hasNext()) {
-		Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
-		if (next instanceof Fraction) {
-		    result = result.plus((Fraction) next);
-		} else {
-		    result = result.plus(new Fraction((Long) next));
-		}
-	    }
-	    Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
-	    while (rightFlatIter.hasNext()) {
-		Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
-		if (next instanceof Fraction) {
-		    result = result.plus((Fraction) next);
-		} else {
-		    result = result.plus(new Fraction((Long) next));
-		}
-	    }
-	} else if (opName.equals("-")) {
-	    result = Fraction.ZERO;
-	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
-	    while (leftFlatIter.hasNext()) {
-		Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
-		if (next instanceof Fraction) {
-		    result = result.plus((Fraction) next);
-		} else {
-		    result = result.plus(new Fraction((Long) next));
-		}
-	    }
-	    Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
-	    while (rightFlatIter.hasNext()) {
-		Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
-		if (next instanceof Fraction) {
-		    result = result.minus((Fraction) next);
-		} else {
-		    result = result.minus(new Fraction((Long) next));
-		}
-	    }
-	} else if (opName.equals(">") || opName.equals(">=") || opName.equals("<") ||
+	if (opName.equals(">") || opName.equals(">=") || opName.equals("<") ||
 		opName.equals("<=") || opName.equals("==")) {
+	    // comparison operators with boolean result
 	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
 	    Object nextLeft = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
 	    if (nextLeft instanceof Long) {
@@ -149,20 +66,103 @@ public class BinaryNumericOperatorInterpreter
 	    } else if (opName.equals("==")) {
 		boolResult = comparison == 0;
 	    }
-	    return new FinexNativeObject((FinexClass) op.getType(), boolResult,
+	    runletResult = new FinexNativeObject((FinexClass) op.getType(), boolResult,
 		    interpreter.getDefaultSnapshot(), interpreter);
 	} else {
-	    // TODO add support for less, greater, equals, lessEquals, greaterEquals
-	    throw new RuntimeException("Unknown binary numeric operator " + opName);
+	    // non-comparison operators with numeric result:
+	    if (opName.equals("*")) {
+		result = Fraction.ONE;
+		Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
+		while (!result.equals(Fraction.ZERO) && leftFlatIter.hasNext()) {
+		    Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
+		    if (next instanceof Fraction) {
+			result = result.times((Fraction) next);
+		    } else {
+			result = result.times(new Fraction((Long) next));
+		    }
+		}
+		if (!result.equals(Fraction.ZERO)) {
+		    Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
+		    while (!result.equals(Fraction.ZERO) && rightFlatIter.hasNext()) {
+			Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
+			if (next instanceof Fraction) {
+			    result = result.times((Fraction) next);
+			} else {
+			    result = result.times(new Fraction((Long) next));
+			}
+		    }
+		}
+	    } else if (opName.equals("/")) {
+		result = Fraction.ONE;
+		Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
+		while (!result.equals(Fraction.ZERO) && leftFlatIter.hasNext()) {
+		    Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
+		    if (next instanceof Fraction) {
+			result = result.times((Fraction) next);
+		    } else {
+			result = result.times(new Fraction((Long) next));
+		    }
+		}
+		if (!result.equals(Fraction.ZERO)) {
+		    Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
+		    while (!result.equals(Fraction.ZERO) && rightFlatIter.hasNext()) {
+			Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
+			if (next instanceof Fraction) {
+			    result = result.dividedBy((Fraction) next);
+			} else {
+			    result = result.dividedBy(new Fraction((Long) next));
+			}
+		    }
+		}
+	    } else if (opName.equals("+")) {
+		result = Fraction.ZERO;
+		Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
+		while (leftFlatIter.hasNext()) {
+		    Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
+		    if (next instanceof Fraction) {
+			result = result.plus((Fraction) next);
+		    } else {
+			result = result.plus(new Fraction((Long) next));
+		    }
+		}
+		Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
+		while (rightFlatIter.hasNext()) {
+		    Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
+		    if (next instanceof Fraction) {
+			result = result.plus((Fraction) next);
+		    } else {
+			result = result.plus(new Fraction((Long) next));
+		    }
+		}
+	    } else if (opName.equals("-")) {
+		result = Fraction.ZERO;
+		Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
+		while (leftFlatIter.hasNext()) {
+		    Object next = ((FinexNativeObject) leftFlatIter.next()).getNativeObject();
+		    if (next instanceof Fraction) {
+			result = result.plus((Fraction) next);
+		    } else {
+			result = result.plus(new Fraction((Long) next));
+		    }
+		}
+		Iterator<RunletObject<Field, Type, FinexClass>> rightFlatIter = right.flatten().iterator();
+		while (rightFlatIter.hasNext()) {
+		    Object next = ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
+		    if (next instanceof Fraction) {
+			result = result.minus((Fraction) next);
+		    } else {
+			result = result.minus(new Fraction((Long) next));
+		    }
+		}
+	    } else {
+		// TODO add support for less, greater, equals, lessEquals, greaterEquals
+		throw new RuntimeException("Unknown binary numeric operator " + opName);
+	    }
+	    runletResult = interpreter.convertFractionToNativeObject(result, op.getType());
 	}
-	if (op.getType().equals(MetamodelUtils.findClass(interpreter.getConnection(), "Decimal"))) {
-	    // decimals are represented as Fractions, we're okay
-	    return new FinexNativeObject((FinexClass) op.getType(), result, interpreter.getDefaultSnapshot(), interpreter);
-	} else {
-	    // Integers are represented as long; convert
-	    return new FinexNativeObject((FinexClass) op.getType(), result.asLong(), interpreter.getDefaultSnapshot(),
-		    interpreter);
-	}
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(left, op.getLeft(), runletResult, op);
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(right, op.getRight(), runletResult, op);
+	return runletResult;
     }
 
 }

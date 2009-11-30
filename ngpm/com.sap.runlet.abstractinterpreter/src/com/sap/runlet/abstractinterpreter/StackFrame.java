@@ -131,6 +131,22 @@ public class StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage extends TypeUsa
 	if (getVariableValues().containsKey(variableName)) {
 	    throw new RuntimeException("Cannot enter the same variable twice into the same StackFrame");
 	}
+	setOrEnterValue(variableName, value);
+    }
+    
+    /**
+     * Stores the variable into this particular frame. This will hide any definitions under the same
+     * key in any parent frame. If a definition by that key is already known by this very frame
+     * (not ascending to parent frames), its value will be overwritten and no exception will be thrown
+     * (as opposed to the behavior of {@link #enterValue}, which would throw an exception in this case).
+     */
+    public void setOrEnterValue(String variableName, RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> value) {
+	if (variableName == null) {
+	    throw new RuntimeException("Cannot create unnamed variable on StackFrame");
+	}
+	if (value == null) {
+	    throw new RuntimeException("Cannot create variable with value <null> on StackFrame");
+	}
 	getVariableValues().put(variableName, value);
     }
     

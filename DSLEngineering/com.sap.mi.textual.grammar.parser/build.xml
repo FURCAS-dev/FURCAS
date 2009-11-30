@@ -5,15 +5,16 @@
     <property name="target" value="1.5"/>
     <property name="source" value="1.5"/>
     <path id="ANTLR_Test.classpath">
+    	<!--    	<pathelement path="/{$antlr.loc}"/> -->
         <pathelement location="bin"/>
-        <!--<pathelement location="lib/antlr-3.1.1.jar"/>-->
-    	<pathelement location="../com.sap.mi.textual.parsing/bin"/>
+    	<pathelement location="c:/data/cts/FURCAS/furcas_full/MOIN/org.antlr/bin"/>
+        <pathelement location="lib/antlr-3.1.1.jar"/>
     	<pathelement location="lib/antlr-2.7.7.jar"/>
-        <pathelement location="lib/stringtemplate.jar"/>
+    	<pathelement location="lib/stringtemplate.jar"/>
     </path>
    
     <target name="BuildParser" >
-        <java classname="org.antlr.Tool" failonerror="true" fork="yes">
+        <java classname="org.antlr.Tool" failonerror="true" fork="true">
             <arg line="parser/TCS.g -o src/com/sap/mi/textual/grammar"/>
             <classpath refid="ANTLR_Test.classpath"/>
         </java>

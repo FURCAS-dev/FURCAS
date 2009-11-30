@@ -12,7 +12,7 @@ Require-Bundle: org.junit,
  com.sap.mi.fwk,
  com.sap.mi.fwk.test.service,
  com.sap.tc.moin.ide.facade,
- org.junit4;bundle-version="4.5.0",
- org.eclipse.core.resources;bundle-version="3.5.1"
-Eclipse-LazyStart: true
+ org.junit4,
+ org.eclipse.core.resources
+Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.tc.webdynpro.metamodel.test

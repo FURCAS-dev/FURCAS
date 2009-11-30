@@ -11,7 +11,7 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
     
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
         FEATURE_IDS.put("Literal", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("StringLiteral", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("BooleanLiteral", Integer.valueOf(2)); //$NON-NLS-1$
@@ -19,6 +19,8 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
         FEATURE_IDS.put("DecimalLiteral", Integer.valueOf(4)); //$NON-NLS-1$
         FEATURE_IDS.put("DateLiteral", Integer.valueOf(5)); //$NON-NLS-1$
         FEATURE_IDS.put("BinaryLiteral", Integer.valueOf(6)); //$NON-NLS-1$
+        FEATURE_IDS.put("MultiObjectLiteral", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_elements_literal", Integer.valueOf(8)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -55,7 +57,13 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getBinaryLiteral(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "BinaryLiteral"); //$NON-NLS-1$
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getMultiObjectLiteral(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "MultiObjectLiteral"); //$NON-NLS-1$
+    }
     // associations
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAElementsLiteral(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_elements_literal"); //$NON-NLS-1$
+    }
     // structure type creators
 
     protected java.lang.Object create___Extent(java.lang.Object workspace, java.lang.String mofId, com.sap.tc.moin.repository.mmi.reflect.RefPackage immediatePackage, com.sap.tc.moin.repository.mmi.reflect.RefObject metaObject) {
@@ -77,6 +85,10 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.literals.__impl.DateLiteralImpl")); //$NON-NLS-1$
                 case 6:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.literals.__impl.BinaryLiteralImpl")); //$NON-NLS-1$
+                case 7:
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("behavior.expressions.literals.__impl.MultiObjectLiteralImpl")); //$NON-NLS-1$
+                case 8:
+                    return new behavior.expressions.literals.__impl.AElementsLiteralImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
         }
@@ -102,7 +114,7 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
         }
   
         if (___refClasses == null) {
-            ___refClasses = new java.util.ArrayList<RefClassAndName>(7);
+            ___refClasses = new java.util.ArrayList<RefClassAndName>(8);
             ___refClassesByName = new java.util.HashMap<String, RefClassAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefClassAndName rcan = null;
@@ -134,13 +146,21 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
             rcan = new RefClassAndName(name, "behavior.expressions.literals.BinaryLiteral"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
+            name = "MultiObjectLiteral"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "behavior.expressions.literals.MultiObjectLiteral"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
         }
   
         if (___refAssociations == null) {
-            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
+            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(1);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefAssociationAndName raan = null;
+            name = "A_elements_literal"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "behavior.expressions.literals.AElementsLiteral"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
         }
     }
     

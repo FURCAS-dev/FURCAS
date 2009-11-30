@@ -37,6 +37,7 @@ public class BinaryBooleanOperatorInterpreter
 	String opName = op.getOperator();
 	RunletObject<Field, Type, FinexClass> left = interpreter.evaluate(op.getLeft());
 	RunletObject<Field, Type, FinexClass> right = interpreter.evaluate(op.getRight());
+	FinexNativeObject runletResult;
 	if (opName.equals("and")) {
 	    boolean result = true;
 	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
@@ -49,7 +50,7 @@ public class BinaryBooleanOperatorInterpreter
 		    result = result && (Boolean) ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
 		}
 	    }
-	    return new FinexNativeObject((FinexClass) op.getType(), result, interpreter.getDefaultSnapshot(), interpreter);
+	    runletResult = new FinexNativeObject((FinexClass) op.getType(), result, interpreter.getDefaultSnapshot(), interpreter);
 	} else if (opName.equals("or")) {
 	    boolean result = false;
 	    Iterator<RunletObject<Field, Type, FinexClass>> leftFlatIter = left.flatten().iterator();
@@ -62,10 +63,13 @@ public class BinaryBooleanOperatorInterpreter
 		    result = result || (Boolean) ((FinexNativeObject) rightFlatIter.next()).getNativeObject();
 		}
 	    }
-	    return new FinexNativeObject((FinexClass) op.getType(), result, interpreter.getDefaultSnapshot(), interpreter);
+	    runletResult = new FinexNativeObject((FinexClass) op.getType(), result, interpreter.getDefaultSnapshot(), interpreter);
 	} else {
 	    throw new RuntimeException("Unknown binary boolean operator " + opName);
 	}
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(left, op.getLeft(), runletResult, op);
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(right, op.getRight(), runletResult, op);
+	return runletResult;
     }
 
 }

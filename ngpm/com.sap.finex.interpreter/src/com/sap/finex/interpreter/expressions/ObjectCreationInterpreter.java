@@ -37,6 +37,7 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
     public ClassTypedObject<Field, Type, FinexClass> evaluate(FinexInterpreter interpreter)
     throws JmiException, SecurityException, IllegalArgumentException, NoSuchMethodException,
     InstantiationException, IllegalAccessException, InvocationTargetException {
+	FinexStackFrame frame = interpreter.getCallstack().peek();
 	EntityObject<Association, Field, FinexClass, Type, FinexClass> result =
 	    interpreter.createEntityObject(oce.getClassToInstantiate());
 	Set<Field> allFieldsWithDefault = new HashSet<Field>(oce.getClassToInstantiate().getFieldsWithDefaultValue());
@@ -52,6 +53,7 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
 		} else {
 		    interpreter.addLink(result, (ClassTypedObject<Field, Type, FinexClass>) o, fieldToInitialize.getAssociation(), null);
 		}
+		frame.getAliasValues().used(o, fieldInitializer.getInitExpression(), result, oce);
 	    }
 	}
 	// fill remaining fields with their default values

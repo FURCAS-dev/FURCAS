@@ -34,6 +34,8 @@ public interface Expression extends structure.TypedElement {
     public void setWithArgument(behavior.expressions.WithArgument newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public behavior.expressions.Alias getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setAlias(behavior.expressions.Alias newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.expressions.FieldInitializer getFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setFieldInitializer(behavior.expressions.FieldInitializer newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
     // operations
     public boolean isNumeric() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
@@ -52,8 +54,15 @@ public interface Expression extends structure.TypedElement {
      * This method determines the implicit context's type for this expression.
      */
     public structure.Type getImplicitContextType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
-    public java.util.Collection<behavior.expressions.Alias> getAllAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * When the expression is evaluated, afterwards the set of aliases returned by this method will be defined.
+     */
+    public java.util.Collection<behavior.expressions.Alias> getAliasesDefinedByEvaluating() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public java.util.Collection<behavior.expressions.Tuple> getTuplesWhereThisIsFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * Determines the aliases that for the evaluation of this expression are in scope and therefore can be used, particularly, by NamedValueExpressions.
+     */
+    public java.util.Collection<behavior.expressions.Alias> getAllVisibleAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -132,6 +141,17 @@ public interface Expression extends structure.TypedElement {
             }
             return __alias;
         }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.FieldInitializer> __fieldInitializer;
+        /**
+         * Returns the descriptor for the <code>fieldInitializer</code> reference.
+         * @return  the descriptor for the <code>fieldInitializer</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.FieldInitializer> FIELD_INITIALIZER( ) {
+            if ( __fieldInitializer == null ) {
+                __fieldInitializer = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.FieldInitializer>( "E0003E7BFA3C00B0DB7011DECF13FDBA0A140E7A", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "fieldInitializer" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __fieldInitializer;
+        }
         /**
          * Returns the descriptor for the <code>getImpliedType</code> operation.
          * @return  the descriptor for the <code>getImpliedType</code> operation
@@ -205,16 +225,16 @@ public interface Expression extends structure.TypedElement {
             }
             return __getImplicitContextType;
         }
-        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> __getAllAliases;
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> __getAliasesDefinedByEvaluating;
         /**
-         * Returns the descriptor for the <code>getAllAliases</code> operation.
-         * @return  the descriptor for the <code>getAllAliases</code> operation
+         * Returns the descriptor for the <code>getAliasesDefinedByEvaluating</code> operation.
+         * @return  the descriptor for the <code>getAliasesDefinedByEvaluating</code> operation
          */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_ALIASES( ) {
-            if ( __getAllAliases == null ) {
-                __getAllAliases = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>>( "E0003E7B680E6A22D2F111DE8CC20019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getAllAliases" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALIASES_DEFINED_BY_EVALUATING( ) {
+            if ( __getAliasesDefinedByEvaluating == null ) {
+                __getAliasesDefinedByEvaluating = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>>( "E0003E7B66275F61DAAC11DE96EEF8E30A140E7A", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getAliasesDefinedByEvaluating" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
-            return __getAllAliases;
+            return __getAliasesDefinedByEvaluating;
         }
         private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>> __getTuplesWhereThisIsFieldInitializer;
         /**
@@ -226,6 +246,17 @@ public interface Expression extends structure.TypedElement {
                 __getTuplesWhereThisIsFieldInitializer = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>>( "E0003E7B9B8C5CA0DA1111DEB6820019D29902CC", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getTuplesWhereThisIsFieldInitializer" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __getTuplesWhereThisIsFieldInitializer;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> __getAllVisibleAliases;
+        /**
+         * Returns the descriptor for the <code>getAllVisibleAliases</code> operation.
+         * @return  the descriptor for the <code>getAllVisibleAliases</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_VISIBLE_ALIASES( ) {
+            if ( __getAllVisibleAliases == null ) {
+                __getAllVisibleAliases = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>>( "E0003E7B8F9FED32DAA711DE9206D77E0A140E7A", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "Expression", "getAllVisibleAliases" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getAllVisibleAliases;
         }
     }
 }    

@@ -37,6 +37,8 @@ public class EqualsInterpreter
 	RunletObject<Field, Type, FinexClass> right = interpreter.evaluate(eq.getRight());
 	FinexNativeObject result = new FinexNativeObject((FinexClass) eq.getType(),
 		left.logicallyEquals(right), interpreter.getDefaultSnapshot(), interpreter);
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(left, eq.getLeft(), result, eq);
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(right, eq.getRight(), result, eq);
 	return result; 
     }
 

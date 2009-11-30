@@ -110,6 +110,8 @@ syntax TCS {
 		:	literal "=" element
 		;
 
+        template TCS::ContextTemplate abstract;
+
 	template TCS::ClassTemplate context addToContext
 		:	"template" $reference
 			(isReferenceOnly 

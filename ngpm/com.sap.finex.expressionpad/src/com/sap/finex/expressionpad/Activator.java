@@ -8,7 +8,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends Plugin {
 
-	// The plug-in ID
+    	// The plug-in ID
 	public static final String PLUGIN_ID = "com.sap.finex.expressionpad";
 
 	// The shared instance

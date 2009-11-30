@@ -1,5 +1,6 @@
 package com.sap.finex.interpreter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import structure.FinexClass;
 import structure.Type;
 import behavior.actions.ExpressionStatement;
 import behavior.actions.Statement;
+import behavior.expressions.Alias;
 import behavior.expressions.BinaryBooleanOperator;
 import behavior.expressions.BinaryNumericOperator;
 import behavior.expressions.Count;
@@ -19,6 +21,7 @@ import behavior.expressions.FilterExpression;
 import behavior.expressions.ImplicitContext;
 import behavior.expressions.NamedValueExpression;
 import behavior.expressions.Not;
+import behavior.expressions.NumericAggregate;
 import behavior.expressions.ObjectCreationExpression;
 import behavior.expressions.PathExpression;
 import behavior.expressions.This;
@@ -29,6 +32,7 @@ import behavior.expressions.literals.BooleanLiteral;
 import behavior.expressions.literals.DateLiteral;
 import behavior.expressions.literals.DecimalLiteral;
 import behavior.expressions.literals.IntegerLiteral;
+import behavior.expressions.literals.MultiObjectLiteral;
 import behavior.expressions.literals.StringLiteral;
 import behavior.functions.NativeImpl;
 import behavior.functions.SignatureImplementation;
@@ -44,21 +48,27 @@ import com.sap.finex.interpreter.expressions.EqualsInterpreter;
 import com.sap.finex.interpreter.expressions.FilterExpressionInterpreter;
 import com.sap.finex.interpreter.expressions.ImplicitContextInterpreter;
 import com.sap.finex.interpreter.expressions.IntegerLiteralInterpreter;
+import com.sap.finex.interpreter.expressions.MultiObjectLiteralInterpreter;
 import com.sap.finex.interpreter.expressions.NamedValueInterpreter;
 import com.sap.finex.interpreter.expressions.NotInterpreter;
+import com.sap.finex.interpreter.expressions.NumericAggregateInterpreter;
 import com.sap.finex.interpreter.expressions.ObjectCreationInterpreter;
 import com.sap.finex.interpreter.expressions.PathExpressionInterpreter;
 import com.sap.finex.interpreter.expressions.StringLiteralInterpreter;
 import com.sap.finex.interpreter.expressions.ThisInterpreter;
 import com.sap.finex.interpreter.expressions.TupleInterpreter;
 import com.sap.finex.interpreter.expressions.UnequalsInterpreter;
+import com.sap.finex.interpreter.objects.FinexNativeObject;
 import com.sap.finex.interpreter.statements.ExpressionStatementInterpreter;
+import com.sap.finex.metamodel.utils.MetamodelUtils;
 import com.sap.runlet.abstractinterpreter.AbstractRunletInterpreter;
+import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
 import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.MultiValuedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.repository.Repository;
+import com.sap.runlet.abstractinterpreter.util.Fraction;
 import com.sap.tc.moin.repository.Connection;
 
 public class FinexInterpreter
@@ -148,6 +158,10 @@ public class FinexInterpreter
 		conn.getClass(Tuple.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(NamedValueInterpreter.class,
 		conn.getClass(NamedValueExpression.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(MultiObjectLiteralInterpreter.class, 
+		conn.getClass(MultiObjectLiteral.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(NumericAggregateInterpreter.class, 
+		conn.getClass(NumericAggregate.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override
@@ -193,6 +207,43 @@ public class FinexInterpreter
             }
         }
         return result;
+    }
+
+    /**
+     * In addition to calling the superclass method, if an {@link Alias} is defined for <tt>e</tt>, then for each object of the
+     * flattened results adds an entry to the current stack frame's {@link AliasValues} map.
+     * <p>
+     * 
+     * Implementations of the micro-{@link Interpreter}s for expression types must ensure that for any operand they compute they
+     * enter alias values for the operand's evaluation onto the operand evaluation's stack frame.
+     */
+    @Override
+    public RunletObject<Field, Type, FinexClass> evaluate(Expression e) throws SecurityException,
+	    IllegalArgumentException, NoSuchMethodException, InstantiationException, IllegalAccessException,
+	    InvocationTargetException {
+	RunletObject<Field, Type, FinexClass> result = super.evaluate(e);
+	Alias a = e.getAlias();
+	if (a != null) {
+	    AliasValues aliasValues = getCallstack().peek().getAliasValues();
+	    for (RunletObject<Field, Type, FinexClass> o:result.flatten()) {
+		aliasValues.enterAliasValue(e, o, a, o);
+	    }
+	}
+	return result;
+    }
+
+    public FinexNativeObject convertFractionToNativeObject(Fraction result, Type targetType) {
+        FinexNativeObject runletResult;
+        if (targetType.equals(MetamodelUtils.findClass(getConnection(), "Decimal"))) {
+        // decimals are represented as Fractions, we're okay
+        runletResult = new FinexNativeObject((FinexClass) targetType, result, getDefaultSnapshot(),
+        	this);
+        } else {
+        // Integers are represented as long; convert
+        runletResult = new FinexNativeObject((FinexClass) targetType, result.asLong(),
+        	getDefaultSnapshot(), this);
+        }
+        return runletResult;
     }
 
 }

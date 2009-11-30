@@ -69,6 +69,50 @@ public class FieldInitializerWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }
 
+    public behavior.expressions.ObjectCreationExpression getCreationExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.ObjectCreationExpression) wrapResult(getCastWrappedObject().getCreationExpression(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.ObjectCreationExpression) wrapResult(getCastWrappedObject().getCreationExpression(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setCreationExpression(behavior.expressions.ObjectCreationExpression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setCreationExpression(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setCreationExpression(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
     public behavior.expressions.Expression getInitExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {

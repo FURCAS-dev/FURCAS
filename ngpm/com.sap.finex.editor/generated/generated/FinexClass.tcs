@@ -332,7 +332,7 @@ syntax FinexClass(k=0 ) {
 	template Type #tuple abstract;
 	template FinexClass #tuple context
 		: associations{forcedLower=1, separator=",", mode=tuple}
-		  {{ name=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllAliases()->iterate(
+		  {{ name=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllVisibleAliases()->iterate(
 			 			a; acc='TupleType_for' | acc.concat('_').concat(a.name))"),
 			 valueType='true',
 			 owner=lookIn("OCL:self.typedElement->select(te | te.oclIsKindOf(Expression)).
@@ -399,8 +399,8 @@ syntax FinexClass(k=0 ) {
 		;
 	
 	template behavior::expressions::FieldInitializer
-		: [[
-		      fieldToInitialize{as=firstLowercaseIdentifier, 
+		: "." [[
+		      	  fieldToInitialize{as=firstLowercaseIdentifier, 
 				    query="OCL:self.creationExpression.classToInstantiate.getNavigableFields()", 
 				    filter="->select(f | f.name = ?)",
 				    invert="name"}
@@ -423,12 +423,12 @@ syntax FinexClass(k=0 ) {
 	template NamedValueExpression
 		:  [[
 		      namedValue{as=firstLowercaseIdentifier, 
-				    query="OCL:self.getAllAliases()", 
+				    query="OCL:self.getAllVisibleAliases()",
 				    filter="->select(a | a.name = ?)",
 				    invert="name"}
 	            |
 	          namedValue{as=firstUppercaseIdentifier, 
-				    query="OCL:self.getAllAliases()", 
+				    query="OCL:self.getAllVisibleAliases()", 
 				    filter="->select(a | a.name = ?)",
 				    invert="name"}
 	       ]]
@@ -510,6 +510,12 @@ syntax FinexClass(k=0 ) {
 		  $alias
 		  {{ type = lookIn("OCL:structure::FinexClass.allInstances()->select(c | c.name = 'Binary')") }}
 		; 
+		
+	template behavior::expressions::literals::MultiObjectLiteral
+		: "[" elements{separator=","} "]"
+		  $alias
+		  {{ type = lookIn("OCL:self.elements->asSequence()->first().type") }}
+		;
 	
 	symbols {
 		lbracket	= "[";

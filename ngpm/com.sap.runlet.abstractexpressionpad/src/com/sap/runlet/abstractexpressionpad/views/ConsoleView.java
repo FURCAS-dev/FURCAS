@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 import org.eclipse.jface.resource.FontRegistry;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.Clipboard;
 import org.eclipse.swt.dnd.TextTransfer;
@@ -124,7 +125,7 @@ VariableType extends RefObject> extends ViewPart {
 	output.setFont(fontRegistry.get("code")); //$NON-NLS-1$
 	output.setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 	output.setForeground(parent.getDisplay().getSystemColor(SWT.COLOR_GREEN));
-	output.setText(Messages.RunletConsoleView_3);
+	output.setText(NLS.bind(Messages.RunletConsoleView_3, getLanguageName()));
 
 	output.addKeyListener(new KeyAdapter() {
 	    @Override
@@ -293,9 +294,9 @@ VariableType extends RefObject> extends ViewPart {
 		    createEvaluator();
 		    initializeHTTPServer();
 		    evaluateButton.setEnabled(true);
-		    output.setText(Messages.RunletConsoleView_7);
+		    output.setText(NLS.bind(Messages.RunletConsoleView_7, getLanguageName()));
 		} catch (Exception e) {
-		    output.setText(Messages.RunletConsoleView_8);
+		    output.setText(NLS.bind(Messages.RunletConsoleView_8, getLanguageName()));
 		    StringWriter stackTrace = new StringWriter();
 		    e.printStackTrace(new PrintWriter(stackTrace));
 		    output.append(stackTrace.getBuffer().toString());
@@ -440,4 +441,6 @@ VariableType extends RefObject> extends ViewPart {
 	evaluateButton.setEnabled(true);
 	errorOutput.setText("");
     }
+
+    protected abstract String getLanguageName();
 }

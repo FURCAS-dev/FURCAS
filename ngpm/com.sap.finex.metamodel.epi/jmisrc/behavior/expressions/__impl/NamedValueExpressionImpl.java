@@ -13,7 +13,7 @@ public final class NamedValueExpressionImpl extends com.sap.tc.moin.repository.c
     
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
         FEATURE_IDS.put("type", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("leftOf", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("rightOf", Integer.valueOf(2)); //$NON-NLS-1$
@@ -21,9 +21,10 @@ public final class NamedValueExpressionImpl extends com.sap.tc.moin.repository.c
         FEATURE_IDS.put("operandOf", Integer.valueOf(4)); //$NON-NLS-1$
         FEATURE_IDS.put("withArgument", Integer.valueOf(5)); //$NON-NLS-1$
         FEATURE_IDS.put("alias", Integer.valueOf(6)); //$NON-NLS-1$
-        FEATURE_IDS.put("namedValue", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("fieldInitializer", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("namedValue", Integer.valueOf(8)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(14);
         OPERATION_IDS.put("getImpliedType", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("isNumeric", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isBoolean", Integer.valueOf(2)); //$NON-NLS-1$
@@ -31,8 +32,9 @@ public final class NamedValueExpressionImpl extends com.sap.tc.moin.repository.c
         OPERATION_IDS.put("getEnclosingType", Integer.valueOf(4)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(5)); //$NON-NLS-1$
         OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(6)); //$NON-NLS-1$
-        OPERATION_IDS.put("getAllAliases", Integer.valueOf(7)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAliasesDefinedByEvaluating", Integer.valueOf(7)); //$NON-NLS-1$
         OPERATION_IDS.put("getTuplesWhereThisIsFieldInitializer", Integer.valueOf(8)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAllVisibleAliases", Integer.valueOf(9)); //$NON-NLS-1$
     }
     
     // links for multiplicity-1 association ends
@@ -193,6 +195,26 @@ public final class NamedValueExpressionImpl extends com.sap.tc.moin.repository.c
           ___changeReference(connection, /* mofId of association */ "E0003E7B68132514D2F111DE8E690019D29902CC", /* mofId of reference */ "E0003E7B680E6A20D2F111DEC0770019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
     
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0003E7B90B46762D43911DEB8DA001CBF0234BB" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( get___CurrentConnection(), endAndMetaObject );   
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0003E7B90B46762D43911DEB8DA001CBF0234BB" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, endAndMetaObject );   
+    }
+    public void setFieldInitializer(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B90B46762D43911DEB8DA001CBF0234BB", /* mofId of reference */ "E0003E7BFA3C00B0DB7011DECF13FDBA0A140E7A" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0003E7B90B46762D43911DEB8DA001CBF0234BB", /* mofId of reference */ "E0003E7BFA3C00B0DB7011DECF13FDBA0A140E7A" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getNamedValue() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( get___CurrentConnection(), __A_namedValue_namedValueExpression_namedValue_E0003E7B0520A950D9B811DE991E00155883529C);
@@ -249,6 +271,9 @@ public final class NamedValueExpressionImpl extends com.sap.tc.moin.repository.c
                 result = getAlias(connection);
                 break;
             case 7: 
+                result = getFieldInitializer(connection);
+                break;
+            case 8: 
                 result = getNamedValue(connection);
                 break;
         default:
@@ -295,6 +320,10 @@ public final class NamedValueExpressionImpl extends com.sap.tc.moin.repository.c
                 break;
                     
             case 7:
+                ___changeReference(connection, "E0003E7B90B46762D43911DEB8DA001CBF0234BB" /* mofId of association */, "E0003E7BFA3C00B0DB7011DECF13FDBA0A140E7A" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 8:
                 ___changeReference(connection, "E0003E7B0520A952D9B811DEC86D00155883529C" /* mofId of association */, "E0003E7B051BC750D9B811DEA56D00155883529C" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     

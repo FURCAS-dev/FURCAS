@@ -57,10 +57,10 @@ public class GeneralTests extends FinexTestCase {
     
     public void testDefaultValueForField() throws Exception {
         ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
-            "create A(a: \"abc\").a",
-            "create A(a: \"abc\").c",
-            "create A(a: \"abc\", c:234).c",
-            "create A(a: \"abc\", c:234).a");
+            "create A(.a: \"abc\").a",
+            "create A(.a: \"abc\").c",
+            "create A(.a: \"abc\", .c:234).c",
+            "create A(.a: \"abc\", .c:234).a");
         RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(4, result.length);
@@ -69,5 +69,71 @@ public class GeneralTests extends FinexTestCase {
         assertNOEquals(123l, result[1]);
         assertNOEquals(234l, result[2]);
         assertNOEquals("abc", result[3]);
+    }
+
+    public void testTupleOverMultipleEntities() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "[create A(.b: 1), create A(.b: 2), create A(.b: 3)].(b: .b).b");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Long[] { 1l, 2l, 3l }, result[0]);
+    }
+
+    public void testTupleOverMultipleAliasedEntities() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "[create A(.b: 1), create A(.b: 2), create A(.b: 3)] AS e.(b: e.b).b");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Long[] { 1l, 2l, 3l }, result[0]);
+    }
+    
+    public void testAdditionWithAliasAndTuple() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "(1 AS eins + 2).(x: eins, y: 2*eins).x",
+            "(1 AS eins + 2).(x: eins, y: 2*eins).y");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(2, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(1l, result[0]);
+        assertNOEquals(2l, result[1]);
+    }
+    
+    public void testTupleOverMultiObjectWithAlias() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "[create A(.b: 1), create A(.b: 2 AS two), create A(.b: 3)].(z: two).z");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Long[] { 2l, 2l, 2l }, result[0]);
+    }
+
+    public void testAliasOnLiteralInSumWithTuple() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "(1 + 2 AS x).(x1: x).x1");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(2l, result[0]);
+    }
+
+    public void test() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "[1 AS one, 2 AS two].sum() AS s.(a: one, b: two, c: s).a",
+            "[1 AS one, 2 AS two].sum() AS s.(a: one, b: two, c: s).b",
+            "[1 AS one, 2 AS two].sum() AS s.(a: one, b: two, c: s).c");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(3, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(1l, result[0]);
+        assertNOEquals(2l, result[1]);
+        assertNOEquals(3l, result[2]);
     }
 }

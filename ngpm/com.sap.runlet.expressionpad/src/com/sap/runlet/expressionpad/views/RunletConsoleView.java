@@ -94,4 +94,8 @@ NativeImpl, RunletInterpreter, Block, NamedValue> {
 	}
     }
 
+    @Override
+    protected String getLanguageName() {
+	return "Runlet";
+    }
 }

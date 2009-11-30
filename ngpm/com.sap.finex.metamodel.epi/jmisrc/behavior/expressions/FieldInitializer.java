@@ -24,6 +24,8 @@ public interface FieldInitializer extends com.sap.tc.moin.repository.mmi.reflect
     // references
     public structure.Field getFieldToInitialize() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setFieldToInitialize(structure.Field newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public behavior.expressions.ObjectCreationExpression getCreationExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setCreationExpression(behavior.expressions.ObjectCreationExpression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public behavior.expressions.Expression getInitExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setInitExpression(behavior.expressions.Expression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
@@ -41,6 +43,17 @@ public interface FieldInitializer extends com.sap.tc.moin.repository.mmi.reflect
                 __fieldToInitialize = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.FieldInitializer,structure.Field>( "E0003E7B90A88080D43911DEA82A001CBF0234BB", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "FieldInitializer", "fieldToInitialize" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __fieldToInitialize;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.FieldInitializer,behavior.expressions.ObjectCreationExpression> __creationExpression;
+        /**
+         * Returns the descriptor for the <code>creationExpression</code> reference.
+         * @return  the descriptor for the <code>creationExpression</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.FieldInitializer,behavior.expressions.ObjectCreationExpression> CREATION_EXPRESSION( ) {
+            if ( __creationExpression == null ) {
+                __creationExpression = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.FieldInitializer,behavior.expressions.ObjectCreationExpression>( "E0003E7BFA3E4AA0DB7011DEA340FDBA0A140E7A", "sap.com/finex/metamodel", new java.lang.String[] { "behavior", "expressions", "FieldInitializer", "creationExpression" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __creationExpression;
         }
         private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.FieldInitializer,behavior.expressions.Expression> __initExpression;
         /**

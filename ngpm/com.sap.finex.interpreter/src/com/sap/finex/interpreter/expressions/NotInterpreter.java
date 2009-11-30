@@ -45,6 +45,7 @@ public class NotInterpreter
 	    MultiValuedObject<Field, Type, FinexClass> mvo = (MultiValuedObject<Field, Type, FinexClass>) operand;
 	    result = new NegatingRunletObject(mvo, interpreter);
 	}
+	interpreter.getCallstack().peek().getAliasValues().usedAllOf(operand, op.getOperand(), result, op);
 	return result;
     }
     

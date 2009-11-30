@@ -19,8 +19,9 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
         OPERATION_IDS.put("getEnclosingType", Integer.valueOf(4)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(5)); //$NON-NLS-1$
         OPERATION_IDS.put("getImplicitContextType", Integer.valueOf(6)); //$NON-NLS-1$
-        OPERATION_IDS.put("getAllAliases", Integer.valueOf(7)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAliasesDefinedByEvaluating", Integer.valueOf(7)); //$NON-NLS-1$
         OPERATION_IDS.put("getTuplesWhereThisIsFieldInitializer", Integer.valueOf(8)); //$NON-NLS-1$
+        OPERATION_IDS.put("getAllVisibleAliases", Integer.valueOf(9)); //$NON-NLS-1$
     }
 
     public FirstPathExpressionWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, behavior.expressions.__impl.FirstPathExpressionImpl baseObject, boolean synchronize) {
@@ -346,6 +347,50 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
         }
     }
 
+    public behavior.expressions.FieldInitializer getFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.FieldInitializer) wrapResult(getCastWrappedObject().getFieldInitializer(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.FieldInitializer) wrapResult(getCastWrappedObject().getFieldInitializer(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setFieldInitializer(behavior.expressions.FieldInitializer newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setFieldInitializer(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setFieldInitializer(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
     public behavior.expressions.Expression getOperand() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
@@ -510,11 +555,11 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
         }
     }
 
-    public java.util.Collection<behavior.expressions.Alias> getAllAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public java.util.Collection<behavior.expressions.Alias> getAliasesDefinedByEvaluating() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
-            return (java.util.Collection<behavior.expressions.Alias>)___invokeOperation(connection, 7, "E0003E7B680E6A22D2F111DE8CC20019D29902CC", parameterList); //$NON-NLS-1$
+            return (java.util.Collection<behavior.expressions.Alias>)___invokeOperation(connection, 7, "E0003E7B66275F61DAAC11DE96EEF8E30A140E7A", parameterList); //$NON-NLS-1$
         } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
             throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
         }
@@ -525,6 +570,16 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
             return (java.util.Collection<behavior.expressions.Tuple>)___invokeOperation(connection, 8, "E0003E7B9B8C5CA0DA1111DEB6820019D29902CC", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
+    public java.util.Collection<behavior.expressions.Alias> getAllVisibleAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavior.expressions.Alias>)___invokeOperation(connection, 9, "E0003E7B8F9FED32DAA711DE9206D77E0A140E7A", parameterList); //$NON-NLS-1$
         } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
             throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
         }
@@ -613,12 +668,12 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
-    private java.util.Collection<behavior.expressions.Alias> invoke__getAllAliases(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    private java.util.Collection<behavior.expressions.Alias> invoke__getAliasesDefinedByEvaluating(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
             java.util.Map operationParameters = new java.util.HashMap();
-            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getAllAliases", getCastWrappedObject( ), operationParameters));
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getAliasesDefinedByEvaluating", getCastWrappedObject( ), operationParameters));
             // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
         } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
@@ -630,6 +685,17 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
             // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
             java.util.Map operationParameters = new java.util.HashMap();
             return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getTuplesWhereThisIsFieldInitializer", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
+    private java.util.Collection<behavior.expressions.Alias> invoke__getAllVisibleAliases(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getAllVisibleAliases", getCastWrappedObject( ), operationParameters));
             // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
         } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
@@ -670,10 +736,13 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
                 return ___invokeOperation( connection, operationId, "E0003E7B9846E051D29711DE801F00155883529C", args ); //$NON-NLS-1$    
                 
             case 7:
-                return ___invokeOperation( connection, operationId, "E0003E7B680E6A22D2F111DE8CC20019D29902CC", args ); //$NON-NLS-1$    
+                return ___invokeOperation( connection, operationId, "E0003E7B66275F61DAAC11DE96EEF8E30A140E7A", args ); //$NON-NLS-1$    
                 
             case 8:
                 return ___invokeOperation( connection, operationId, "E0003E7B9B8C5CA0DA1111DEB6820019D29902CC", args ); //$NON-NLS-1$    
+                
+            case 9:
+                return ___invokeOperation( connection, operationId, "E0003E7B8F9FED32DAA711DE9206D77E0A140E7A", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
@@ -705,10 +774,13 @@ public class FirstPathExpressionWrapper extends com.sap.tc.moin.repository.core.
                 return invoke__getImplicitContextType(connection);    
                 
             case 7:
-                return invoke__getAllAliases(connection);    
+                return invoke__getAliasesDefinedByEvaluating(connection);    
                 
             case 8:
                 return invoke__getTuplesWhereThisIsFieldInitializer(connection);    
+                
+            case 9:
+                return invoke__getAllVisibleAliases(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }

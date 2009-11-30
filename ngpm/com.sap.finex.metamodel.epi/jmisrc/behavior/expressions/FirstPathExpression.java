@@ -75,6 +75,13 @@ public interface FirstPathExpression extends behavior.expressions.PathExpression
             return behavior.expressions.Expression.DESCRIPTORS.ALIAS( );
         }
         /**
+         * Returns the descriptor for the <code>fieldInitializer</code> reference.
+         * @return  the descriptor for the <code>fieldInitializer</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.FieldInitializer> FIELD_INITIALIZER( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.FIELD_INITIALIZER( );
+        }
+        /**
          * Returns the descriptor for the <code>operand</code> reference.
          * @return  the descriptor for the <code>operand</code> reference
          */
@@ -138,11 +145,11 @@ public interface FirstPathExpression extends behavior.expressions.PathExpression
             return behavior.expressions.Expression.DESCRIPTORS.GET_IMPLICIT_CONTEXT_TYPE( );
         }
         /**
-         * Returns the descriptor for the <code>getAllAliases</code> operation.
-         * @return  the descriptor for the <code>getAllAliases</code> operation
+         * Returns the descriptor for the <code>getAliasesDefinedByEvaluating</code> operation.
+         * @return  the descriptor for the <code>getAliasesDefinedByEvaluating</code> operation
          */
-        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_ALIASES( ) {
-            return behavior.expressions.Expression.DESCRIPTORS.GET_ALL_ALIASES( );
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALIASES_DEFINED_BY_EVALUATING( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_ALIASES_DEFINED_BY_EVALUATING( );
         }
         /**
          * Returns the descriptor for the <code>getTuplesWhereThisIsFieldInitializer</code> operation.
@@ -150,6 +157,13 @@ public interface FirstPathExpression extends behavior.expressions.PathExpression
          */
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Tuple>> GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( ) {
             return behavior.expressions.Expression.DESCRIPTORS.GET_TUPLES_WHERE_THIS_IS_FIELD_INITIALIZER( );
+        }
+        /**
+         * Returns the descriptor for the <code>getAllVisibleAliases</code> operation.
+         * @return  the descriptor for the <code>getAllVisibleAliases</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_VISIBLE_ALIASES( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_ALL_VISIBLE_ALIASES( );
         }
     }
 }    

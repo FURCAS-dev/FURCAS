@@ -37,8 +37,13 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
     InstantiationException, IllegalAccessException, InvocationTargetException {
 	RunletObject<Field, Type, FinexClass> operand = interpreter.evaluate(pe.getOperand());
 	List<RunletObject<Field, Type, FinexClass>> resultList = new LinkedList<RunletObject<Field, Type, FinexClass>>();
-	for (RunletObject<Field, Type, FinexClass> o : operand) {
-	    resultList.add(interpreter.navigate((ClassTypedObject<Field, Type, FinexClass>) o, pe.getField()));
+	for (RunletObject<Field, Type, FinexClass> o : operand.flatten()) {
+	    RunletObject<Field, Type, FinexClass> navigationResult = interpreter.navigate(
+		    (ClassTypedObject<Field, Type, FinexClass>) o, pe.getField());
+	    resultList.add(navigationResult);
+	    for (RunletObject<Field, Type, FinexClass> singleResultObject : navigationResult) {
+		interpreter.getCallstack().peek().getAliasValues().used(o, pe.getOperand(), singleResultObject, pe);
+	    }
 	}
 	// TODO what about orderedness and uniqueness?
 	return FinexInterpreter.turnIntoObjectOfAppropriateMultiplicity(pe.getType(), interpreter,

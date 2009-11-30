@@ -225,7 +225,7 @@ public class ParserGenerationTestHelper {
 				generationDirectory + languageName + "Lexer.java",
 				generationDirectory + languageName + "Parser.java",
 				"-cp",
-				"../com.sap.mi.textual.parsing/lib/antlr-3.1.1.jar;"
+				"../com.sap.mi.textual.grammar.parser/lib/antlr-3.1.1.jar;"
 						+ "../com.sap.mi.textual.parsing/bin;"
 						+ "../com.sap.mi.textual.common/bin;"
 						+ "../com.sap.mi.textual.moinlookup/bin" });

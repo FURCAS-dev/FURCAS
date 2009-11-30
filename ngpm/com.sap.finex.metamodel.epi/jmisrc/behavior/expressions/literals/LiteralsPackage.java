@@ -21,4 +21,7 @@ public interface LiteralsPackage extends com.sap.tc.moin.repository.mmi.reflect.
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getDecimalLiteral();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getDateLiteral();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getBinaryLiteral();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getMultiObjectLiteral();
+    // associations
+    public behavior.expressions.literals.AElementsLiteral getAElementsLiteral();
 }

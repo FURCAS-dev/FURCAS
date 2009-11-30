@@ -61,4 +61,8 @@ NativeImpl, FinexInterpreter, Block, NamedValue> {
     protected void initializeHTTPServer() {
     }
 
+    @Override
+    protected String getLanguageName() {
+	return "Paradigm5";
+    }
 }

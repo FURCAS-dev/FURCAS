@@ -8,7 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: com.sap.tc.moin.libraries.jmi.facade,
  com.sap.tc.moin.ide.facade
-Eclipse-LazyStart: true
+Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.ide.metamodel.common,
  com.sap.ide.metamodel.common.__impl,
  com.sap.ide.metamodel.common.diagram,

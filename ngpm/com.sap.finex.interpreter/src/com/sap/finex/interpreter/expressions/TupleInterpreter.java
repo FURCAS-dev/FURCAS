@@ -13,7 +13,6 @@ import structure.Field;
 import structure.FinexClass;
 import structure.Type;
 import behavior.actions.Statement;
-import behavior.expressions.Alias;
 import behavior.expressions.Expression;
 import behavior.expressions.Tuple;
 import behavior.functions.NativeImpl;
@@ -24,7 +23,6 @@ import com.sap.finex.interpreter.FinexStackFrame;
 import com.sap.finex.interpreter.FinexValueObject;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.ClassTypedObject;
-import com.sap.runlet.abstractinterpreter.objects.EmptyObject;
 import com.sap.runlet.abstractinterpreter.objects.MultiValuedObject;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
@@ -44,22 +42,16 @@ public class TupleInterpreter
 	    InvocationTargetException {
 	List<RunletObject<Field, Type, FinexClass>> resultObjects = new ArrayList<RunletObject<Field, Type, FinexClass>>();
 	RunletObject<Field, Type, FinexClass> operand = interpreter.evaluate(tuple.getOperand());
-	Alias operandAlias = tuple.getOperand().getAlias();
 	FinexStackFrame currentStackFrame = interpreter.getCallstack().peek();
-	if (operandAlias != null) {
-	    currentStackFrame.enterValue(operandAlias.getName(), new EmptyObject<Field, FinexClass, Type, FinexClass>(
-		    operandAlias.getType(), interpreter.getModelAdapter()));
-	}
 	// TODO can there be outer joins for Tuple expressions such that when no operand results, there shall still be one tuple?
-	for (RunletObject<Field, Type, FinexClass> o : operand) {
-	    if (operandAlias != null) {
-		currentStackFrame.setValue(operandAlias.getName(), o);
-	    }
+	for (RunletObject<Field, Type, FinexClass> o : operand.flatten()) {
 	    HashMap<Field, Collection<ClassTypedObject<Field, Type, FinexClass>>> fieldValues = new HashMap<Field, Collection<ClassTypedObject<Field, Type, FinexClass>>>();
 	    Set<Field> allFieldsWithDefault = new HashSet<Field>(tuple.getType().getFieldsWithDefaultValue());
 	    for (Field fieldWithDefault : allFieldsWithDefault) {
 		try {
 		    FinexStackFrame frame = new FinexStackFrame(interpreter.getCallstack().peek());
+		    frame.setImplicitContext(o);
+		    frame.enterCurrentAliasValues(tuple.getOperand(), o);
 		    interpreter.push(frame);
 		    RunletObject<Field, Type, FinexClass> value = interpreter.evaluate(fieldWithDefault.getDefaultValue());
 		    Collection<ClassTypedObject<Field, Type, FinexClass>> flattenedValues = new ArrayList<ClassTypedObject<Field, Type, FinexClass>>();
@@ -72,6 +64,7 @@ public class TupleInterpreter
 		}
 	    }
 	    FinexValueObject singleResult = interpreter.createValueObject((FinexClass) tuple.getType(), fieldValues);
+	    currentStackFrame.getAliasValues().used(o, tuple.getOperand(), singleResult, tuple);
 	    resultObjects.add(singleResult);
 	}
 	return FinexInterpreter.turnIntoObjectOfAppropriateMultiplicity(tuple.getType(), interpreter,

@@ -37,15 +37,20 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
     InstantiationException, IllegalAccessException, InvocationTargetException {
 	RunletObject<Field, Type, FinexClass> operand = interpreter.evaluate(fe.getOperand());
 	Expression condition = fe.getCondition();
+	FinexStackFrame currentStackFrame = interpreter.getCallstack().peek();
+	// TODO can there be outer joins for filter expressions such that when no operand results, there shall still be one tuple?
 	RunletObject<Field, Type, FinexClass> result;
 	List<RunletObject<Field, Type, FinexClass>> filteredResults = new LinkedList<RunletObject<Field, Type, FinexClass>>();
-	for (RunletObject<Field, Type, FinexClass> o : operand) {
+	for (RunletObject<Field, Type, FinexClass> o : operand.flatten()) {
+	    // TODO if o has alias, put alias value on stack frame
 	    FinexStackFrame conditionFrame = new FinexStackFrame(interpreter.getCallstack().peek());
 	    conditionFrame.setImplicitContext(o);
+	    conditionFrame.enterCurrentAliasValues(fe.getOperand(), o);
 	    interpreter.push(conditionFrame);
 	    try {
 		if ((Boolean) ((FinexNativeObject) interpreter.evaluate(condition)).getNativeObject()) {
 		    filteredResults.add(o);
+		    currentStackFrame.getAliasValues().used(o, fe.getOperand(), o, fe);
 		}
 	    } finally {
 		interpreter.pop();

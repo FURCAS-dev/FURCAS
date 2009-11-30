@@ -176,6 +176,50 @@ public class LiteralsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getMultiObjectLiteral()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getMultiObjectLiteral(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getMultiObjectLiteral(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public behavior.expressions.literals.AElementsLiteral getAElementsLiteral()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.literals.AElementsLiteral) wrapResult(getCastWrappedObject().getAElementsLiteral(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.literals.AElementsLiteral) wrapResult(getCastWrappedObject().getAElementsLiteral(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     // methods for structure type creators
     
     public java.lang.Class<behavior.expressions.literals.LiteralsPackage> get___JmiInterface() {

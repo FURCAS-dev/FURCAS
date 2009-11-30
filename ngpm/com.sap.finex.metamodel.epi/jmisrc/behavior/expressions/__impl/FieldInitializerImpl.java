@@ -11,9 +11,10 @@ public final class FieldInitializerImpl extends com.sap.tc.moin.repository.core.
     
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
         FEATURE_IDS.put("fieldToInitialize", Integer.valueOf(0)); //$NON-NLS-1$
-        FEATURE_IDS.put("initExpression", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("creationExpression", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("initExpression", Integer.valueOf(2)); //$NON-NLS-1$
     }
     
     // links for multiplicity-1 association ends
@@ -49,6 +50,26 @@ public final class FieldInitializerImpl extends com.sap.tc.moin.repository.core.
     public void setFieldToInitialize(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7B90B1F664D43911DE8B14001CBF0234BB", /* mofId of reference */ "E0003E7B90A88080D43911DEA82A001CBF0234BB" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getCreationExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( get___CurrentConnection(), endAndMetaObject );   
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3" /* attribute or association */, 1 ); //$NON-NLS-1$
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) get___CompositeParentForEndAndMetaObject( connection, endAndMetaObject );   
+    }
+    public void setCreationExpression(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3", /* mofId of reference */ "E0003E7BFA3E4AA0DB7011DEA340FDBA0A140E7A" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3", /* mofId of reference */ "E0003E7BFA3E4AA0DB7011DEA340FDBA0A140E7A" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
     
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getInitExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -89,6 +110,9 @@ public final class FieldInitializerImpl extends com.sap.tc.moin.repository.core.
                 result = getFieldToInitialize(connection);
                 break;
             case 1: 
+                result = getCreationExpression(connection);
+                break;
+            case 2: 
                 result = getInitExpression(connection);
                 break;
         default:
@@ -111,6 +135,10 @@ public final class FieldInitializerImpl extends com.sap.tc.moin.repository.core.
                 break;
                     
             case 1:
+                ___changeReference(connection, "E0003E7B9F8E2702D38811DEADFA001A6BCDC3B3" /* mofId of association */, "E0003E7BFA3E4AA0DB7011DEA340FDBA0A140E7A" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 2:
                 ___changeReference(connection, "E0003E7B90B46762D43911DEB8DA001CBF0234BB" /* mofId of association */, "E0003E7B90B1F660D43911DE99FE001CBF0234BB" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
