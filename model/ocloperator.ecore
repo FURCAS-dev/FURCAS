@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclOperator"
+    nsURI="http://de.hpi.sam.bp2009.benchframework.oclOperator" nsPrefix="oclOperator">
+  <eClassifiers xsi:type="ecore:EClass" name="OclOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
+    <eOperations name="execute">
+      <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+      <eParameters name="options" eType="ecore:EClass ../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject"/>
+    </eOperations>
+    <eOperations name="executeQueries">
+      <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+      <eParameters name="option" eType="#//OclOptionObject"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OclOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OclUtil">
+    <eOperations name="executeQueryOn" eType="#//IQueryResult">
+      <eParameters name="completeConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="IQueryResult" instanceClassName="org.eclipse.emf.query.statements.IQueryResult"/>
+</ecore:EPackage>
