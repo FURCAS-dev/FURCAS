@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+   <extension-point id="generatorExtensionPointID" name="Generator Extension Point" schema="schema/generatorExtensionPointID.exsd"/>
+   <extension-point id="operatorExtensionPointID" name="Operator Extension Point" schema="schema/operatorExtensionPointID.exsd"/>
+   <extension-point id="resultExtensionPointID" name="Result Extension Point" schema="schema/resultExtensionPointID.exsd"/>
+   <extension-point id="benchmarkExtensionPointID" name="Benchmark Extension Point" schema="schema/benchmarkExtensionPointID.exsd"/>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://de.hpi.sam.bp2009.benchframework"
+            class="de.hpi.sam.bp2009.benchframework.BenchframeworkPackage"
+            genModel="model/benchframework.genmodel"/>
+   </extension>
+
+</plugin>
