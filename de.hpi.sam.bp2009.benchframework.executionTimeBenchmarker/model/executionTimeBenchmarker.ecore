@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionTimeBenchmarker"
+    nsURI="http://de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker" nsPrefix="executionTimeBenchmarker">
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionTimeBenchmarker" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//BenchMarker"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JETMResultObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultObject">
+    <eOperations name="getDuration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="endTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ticks" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="transactionTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
+  </eClassifiers>
+</ecore:EPackage>
