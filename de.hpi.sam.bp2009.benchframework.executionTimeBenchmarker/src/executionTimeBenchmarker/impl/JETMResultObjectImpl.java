@@ -6,6 +6,9 @@
  */
 package executionTimeBenchmarker.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
 
 import executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
@@ -254,6 +257,16 @@ public class JETMResultObjectImpl extends ResultObjectImpl implements JETMResult
 				return getTransactionTime();
 		}
 		return super.eGet(featureID, resolve, coreType);
+	}
+	@Override
+	public Map<?, ?> getPropertyMap() {
+		Map<String, Number> result= new HashMap<String, Number>();
+		result.put("StartTime", getStartTime());
+		result.put("EndTime", getEndTime());
+		result.put("Ticks", getTicks());
+		result.put("TransactionTime", getTransactionTime());
+		
+		return result;
 	}
 
 	/**
