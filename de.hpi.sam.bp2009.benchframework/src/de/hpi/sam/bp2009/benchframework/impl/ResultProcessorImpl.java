@@ -9,7 +9,6 @@ package de.hpi.sam.bp2009.benchframework.impl;
 import de.hpi.sam.bp2009.benchframework.BenchMarker;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
-import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
 import java.io.OutputStream;
@@ -54,7 +53,7 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean add(Resource resource, OptionObject generatorOption, OptionObject operatorOption, ResultObject result, BenchMarker benchmarker) {
+	public boolean addRun(Resource resource, OptionObject generatorOption, OptionObject operatorOption, BenchMarker benchmarker) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -65,7 +64,7 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void show(OutputStream out) {
+	public void streamTo(OutputStream out) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

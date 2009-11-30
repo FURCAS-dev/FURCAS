@@ -20,6 +20,7 @@ import java.io.OutputStream;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -392,19 +393,34 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		op = addEOperation(resultProcessorEClass, ecorePackage.getEBoolean(), "add", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(resultProcessorEClass, ecorePackage.getEBoolean(), "addRun", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEResource(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOptionObject(), "generatorOption", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOptionObject(), "operatorOption", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getResultObject(), "result", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getBenchMarker(), "benchmarker", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(resultProcessorEClass, null, "show", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(resultProcessorEClass, null, "streamTo", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOutputStream(), "out", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(optionObjectEClass, OptionObject.class, "OptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
+		op = addEOperation(optionObjectEClass, null, "getPropertyMap", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(resultObjectEClass, null, "getPropertyMap", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		initEClass(benchMarkerEClass, BenchMarker.class, "BenchMarker", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBenchMarker_Result(), this.getResultObject(), null, "result", null, 0, 1, BenchMarker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

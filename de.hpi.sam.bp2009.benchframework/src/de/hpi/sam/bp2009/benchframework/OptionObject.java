@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,4 +20,12 @@ import org.eclipse.emf.ecore.EObject;
  * @generated
  */
 public interface OptionObject extends EObject {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation"
+	 * @generated
+	 */
+	Map<?, ?> getPropertyMap();
 } // OptionObject

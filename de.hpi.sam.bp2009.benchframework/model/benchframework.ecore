@@ -30,19 +30,32 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultOption" eType="#//OptionObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultProcessor" abstract="true">
-    <eOperations name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+    <eOperations name="addRun" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
       <eParameters name="generatorOption" eType="#//OptionObject"/>
       <eParameters name="operatorOption" eType="#//OptionObject"/>
-      <eParameters name="result" eType="#//ResultObject"/>
       <eParameters name="benchmarker" eType="#//BenchMarker"/>
     </eOperations>
-    <eOperations name="show">
+    <eOperations name="streamTo">
       <eParameters name="out" eType="#//OutputStream"/>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OptionObject"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ResultObject"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionObject">
+    <eOperations name="getPropertyMap">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments/>
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ResultObject">
+    <eOperations name="getPropertyMap">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments/>
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="OutputStream" instanceClassName="java.io.OutputStream"/>
   <eClassifiers xsi:type="ecore:EClass" name="BenchMarker">
     <eOperations name="start"/>

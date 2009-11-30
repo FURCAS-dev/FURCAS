@@ -191,14 +191,14 @@ public class EngineImpl extends EObjectImpl implements Engine {
 					
 					// Add test results
 					for(ResultProcessor proc:resultProcessors)
-						proc.add(resource, resources.get(resource), optObj, marker.getResult(), marker);
+						proc.addRun(resource, resources.get(resource), optObj, marker);
 					
 				}
 			}
 		}
 		
 		for(ResultProcessor proc: resultProcessors)
-			proc.show(outputStream);
+			proc.streamTo(outputStream);
 
 
 	}

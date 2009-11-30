@@ -29,7 +29,7 @@ public interface ResultProcessor extends EObject {
 	 * @model
 	 * @generated
 	 */
-	boolean add(Resource resource, OptionObject generatorOption, OptionObject operatorOption, ResultObject result, BenchMarker benchmarker);
+	boolean addRun(Resource resource, OptionObject generatorOption, OptionObject operatorOption, BenchMarker benchmarker);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -37,6 +37,6 @@ public interface ResultProcessor extends EObject {
 	 * @model outDataType="de.hpi.sam.bp2009.benchframework.OutputStream"
 	 * @generated
 	 */
-	void show(OutputStream out);
+	void streamTo(OutputStream out);
 
 } // ResultProcessor

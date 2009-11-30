@@ -9,6 +9,7 @@ package de.hpi.sam.bp2009.benchframework.impl;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
+import java.util.Map;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
@@ -40,6 +41,17 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	@Override
 	protected EClass eStaticClass() {
 		return BenchframeworkPackage.Literals.RESULT_OBJECT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Map<?, ?> getPropertyMap() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 } //ResultObjectImpl
