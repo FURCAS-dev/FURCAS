@@ -111,11 +111,11 @@ public interface EnumerationTemplate extends tcs.Template {
             return __mappings;
         }
         /**
-         * Returns the descriptor for the <code>hasSyntaxContribution</code> operation.
-         * @return  the descriptor for the <code>hasSyntaxContribution</code> operation
+         * Returns the descriptor for the <code>hasSyntaxContributions</code> operation.
+         * @return  the descriptor for the <code>hasSyntaxContributions</code> operation
          */
-        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTION( ) {
-            return tcs.Template.DESCRIPTORS.HAS_SYNTAX_CONTRIBUTION( );
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTIONS( ) {
+            return tcs.Template.DESCRIPTORS.HAS_SYNTAX_CONTRIBUTIONS( );
         }
         /**
          * Returns the descriptor for the <code>getCalledTemplates</code> operation.

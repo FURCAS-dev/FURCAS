@@ -30,7 +30,7 @@ public final class PrimitiveTemplateImpl extends com.sap.tc.moin.repository.core
         FEATURE_IDS.put("orKeyword", Integer.valueOf(13)); //$NON-NLS-1$
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
-        OPERATION_IDS.put("hasSyntaxContribution", Integer.valueOf(0)); //$NON-NLS-1$
+        OPERATION_IDS.put("hasSyntaxContributions", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getCalledTemplates", Integer.valueOf(1)); //$NON-NLS-1$
     }
     

@@ -8,6 +8,8 @@ public final class AlternativeImpl extends com.sap.tc.moin.repository.core.jmi.r
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
+        
+    private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
     
     static {
         
@@ -19,6 +21,9 @@ public final class AlternativeImpl extends com.sap.tc.moin.repository.core.jmi.r
         FEATURE_IDS.put("parentTemplate", Integer.valueOf(4)); //$NON-NLS-1$
         FEATURE_IDS.put("isMulti", Integer.valueOf(5)); //$NON-NLS-1$
         FEATURE_IDS.put("sequences", Integer.valueOf(6)); //$NON-NLS-1$
+        
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(2);
+        OPERATION_IDS.put("hasSyntaxContributions", Integer.valueOf(0)); //$NON-NLS-1$
     }
     
     

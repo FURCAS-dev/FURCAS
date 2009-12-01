@@ -6,8 +6,13 @@ package tcs.__impl;
 
 public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.BlockImpl> implements tcs.Block,com.sap.tc.moin.repository.Partitionable {
 
+        
+    private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
     
     static {
+        
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
+        OPERATION_IDS.put("hasSyntaxContributions", Integer.valueOf(0)); //$NON-NLS-1$
     }
 
     public BlockWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, tcs.__impl.BlockImpl baseObject, boolean synchronize) {
@@ -285,11 +290,54 @@ public class BlockWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
 
    
     // methods for modeled operations
+    public boolean hasSyntaxContributions() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.lang.Boolean)___invokeOperation(connection, 0, "E000054C0CF26230DDC911DE9FE100016CE99C52", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
+    private boolean invoke__hasSyntaxContributions(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        // missing an implementation provided in either tag org.omg.sap2mof.OperationCodeJava or org.omg.sap2mof.OperationCodeOcl
+        return false;
+    }
 
     // reflective methods
+    @Override
+    public Object refInvokeOperation(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String requestedOperation, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
+        if (requestedOperation == null) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(requestedOperation);
+        }
+        java.lang.Integer operationId = OPERATION_IDS.get(requestedOperation);
+        if (operationId == null) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
+        }
+        switch (operationId) {
+                
+            case 0:
+                return ___invokeOperation( connection, operationId, "E000054C0CF26230DDC911DE9FE100016CE99C52", args ); //$NON-NLS-1$    
+            default:
+                throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
+        }
+    }
     
+    @Override
+    public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
+        switch (operationId) {
+                
+            case 0:
+                return invoke__hasSyntaxContributions(connection);    
+            default:
+                throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
+        }
+    
+    }    
 
     // get the JMI interface
     public java.lang.Class<tcs.Block> get___JmiInterface() {

@@ -75,5 +75,12 @@ public interface CustomSeparator extends tcs.SequenceElement {
         public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,tcs.SequenceElement,tcs.Template> PARENT_TEMPLATE( ) {
             return tcs.SequenceElement.DESCRIPTORS.PARENT_TEMPLATE( );
         }
+        /**
+         * Returns the descriptor for the <code>hasSyntaxContributions</code> operation.
+         * @return  the descriptor for the <code>hasSyntaxContributions</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.SequenceElement,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTIONS( ) {
+            return tcs.SequenceElement.DESCRIPTORS.HAS_SYNTAX_CONTRIBUTIONS( );
+        }
     }
 }    

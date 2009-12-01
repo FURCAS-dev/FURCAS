@@ -27,6 +27,9 @@ public interface SequenceElement extends tcs.LocatedElement {
     public tcs.Template getParentTemplate() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setParentTemplate(tcs.Template newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
+    // operations
+    public boolean hasSyntaxContributions() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+
 
     public static final class Descriptors {
         Descriptors( ) { 
@@ -73,6 +76,17 @@ public interface SequenceElement extends tcs.LocatedElement {
                 __parentTemplate = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,tcs.SequenceElement,tcs.Template>( "E03D847172E97E906AEA11DE84AD00016CE99C52", "demo.sap.com/tcsmeta", new java.lang.String[] { "TCS", "SequenceElement", "parentTemplate" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
             return __parentTemplate;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.SequenceElement,java.lang.Boolean> __hasSyntaxContributions;
+        /**
+         * Returns the descriptor for the <code>hasSyntaxContributions</code> operation.
+         * @return  the descriptor for the <code>hasSyntaxContributions</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.SequenceElement,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTIONS( ) {
+            if ( __hasSyntaxContributions == null ) {
+                __hasSyntaxContributions = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.SequenceElement,java.lang.Boolean>( "E000054C0CF26230DDC911DE9FE100016CE99C52", "demo.sap.com/tcsmeta", new java.lang.String[] { "TCS", "SequenceElement", "hasSyntaxContributions" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+            }
+            return __hasSyntaxContributions;
         }
     }
 }    

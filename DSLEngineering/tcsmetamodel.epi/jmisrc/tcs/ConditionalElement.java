@@ -101,5 +101,12 @@ public interface ConditionalElement extends tcs.SequenceElement {
             }
             return __condition;
         }
+        /**
+         * Returns the descriptor for the <code>hasSyntaxContributions</code> operation.
+         * @return  the descriptor for the <code>hasSyntaxContributions</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.SequenceElement,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTIONS( ) {
+            return tcs.SequenceElement.DESCRIPTORS.HAS_SYNTAX_CONTRIBUTIONS( );
+        }
     }
 }    

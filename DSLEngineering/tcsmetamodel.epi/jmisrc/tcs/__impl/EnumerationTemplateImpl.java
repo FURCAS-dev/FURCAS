@@ -26,7 +26,7 @@ public final class EnumerationTemplateImpl extends com.sap.tc.moin.repository.co
         FEATURE_IDS.put("mappings", Integer.valueOf(9)); //$NON-NLS-1$
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
-        OPERATION_IDS.put("hasSyntaxContribution", Integer.valueOf(0)); //$NON-NLS-1$
+        OPERATION_IDS.put("hasSyntaxContributions", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getCalledTemplates", Integer.valueOf(1)); //$NON-NLS-1$
     }
     

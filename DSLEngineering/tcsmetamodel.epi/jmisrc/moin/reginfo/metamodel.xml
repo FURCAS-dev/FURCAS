@@ -12,6 +12,6 @@
     <Partition name="moin/meta/cts.moinmm"
       contentHash="33EF94B58A4AA528FDB743EB18A48746" />
     <Partition name="moin/meta/Metamodel.moinmm"
-      contentHash="1C771AEF3F2BA7FF2C6B425381866F11" />
+      contentHash="427974AAB7FD3B47B328636C1409ACD5" />
   </Partitions>
 </MetamodelInf>

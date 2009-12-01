@@ -12,7 +12,7 @@ public class OperatorTemplateWrapper extends com.sap.tc.moin.repository.core.jmi
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
-        OPERATION_IDS.put("hasSyntaxContribution", Integer.valueOf(0)); //$NON-NLS-1$
+        OPERATION_IDS.put("hasSyntaxContributions", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getCalledTemplates", Integer.valueOf(1)); //$NON-NLS-1$
     }
 
@@ -680,7 +680,7 @@ public class OperatorTemplateWrapper extends com.sap.tc.moin.repository.core.jmi
 
    
     // methods for modeled operations
-    public boolean hasSyntaxContribution() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    public boolean hasSyntaxContributions() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
@@ -702,12 +702,12 @@ public class OperatorTemplateWrapper extends com.sap.tc.moin.repository.core.jmi
 
     
     // methods for internal modeled operations
-    private boolean invoke__hasSyntaxContribution(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    private boolean invoke__hasSyntaxContributions(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
             // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
             java.util.Map operationParameters = new java.util.HashMap();
-            return ((java.lang.Boolean)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "hasSyntaxContribution", getCastWrappedObject( ), operationParameters))).booleanValue();
+            return ((java.lang.Boolean)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "hasSyntaxContributions", getCastWrappedObject( ), operationParameters))).booleanValue();
             // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
         } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
@@ -752,7 +752,7 @@ public class OperatorTemplateWrapper extends com.sap.tc.moin.repository.core.jmi
         switch (operationId) {
                 
             case 0:
-                return invoke__hasSyntaxContribution(connection);    
+                return invoke__hasSyntaxContributions(connection);    
                 
             case 1:
                 return invoke__getCalledTemplates(connection);    

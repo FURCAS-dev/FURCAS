@@ -38,7 +38,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
         FEATURE_IDS.put("operatorList", Integer.valueOf(21)); //$NON-NLS-1$
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
-        OPERATION_IDS.put("hasSyntaxContribution", Integer.valueOf(0)); //$NON-NLS-1$
+        OPERATION_IDS.put("hasSyntaxContributions", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getCalledTemplates", Integer.valueOf(1)); //$NON-NLS-1$
     }
     

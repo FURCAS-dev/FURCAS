@@ -32,7 +32,7 @@ public interface Template extends tcs.QualifiedNamedElement {
     public void setConcretesyntax(tcs.ConcreteSyntax newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
     // operations
-    public boolean hasSyntaxContribution() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public boolean hasSyntaxContributions() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public java.util.Collection<tcs.Template> getCalledTemplates() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
@@ -107,16 +107,16 @@ public interface Template extends tcs.QualifiedNamedElement {
             }
             return __concretesyntax;
         }
-        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean> __hasSyntaxContribution;
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean> __hasSyntaxContributions;
         /**
-         * Returns the descriptor for the <code>hasSyntaxContribution</code> operation.
-         * @return  the descriptor for the <code>hasSyntaxContribution</code> operation
+         * Returns the descriptor for the <code>hasSyntaxContributions</code> operation.
+         * @return  the descriptor for the <code>hasSyntaxContributions</code> operation
          */
-        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTION( ) {
-            if ( __hasSyntaxContribution == null ) {
-                __hasSyntaxContribution = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean>( "E0356A04EB4F13D0B1C711DEC27B00016CE99C52", "demo.sap.com/tcsmeta", new java.lang.String[] { "TCS", "Template", "hasSyntaxContribution" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean> HAS_SYNTAX_CONTRIBUTIONS( ) {
+            if ( __hasSyntaxContributions == null ) {
+                __hasSyntaxContributions = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.lang.Boolean>( "E0356A04EB4F13D0B1C711DEC27B00016CE99C52", "demo.sap.com/tcsmeta", new java.lang.String[] { "TCS", "Template", "hasSyntaxContributions" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ 
             }
-            return __hasSyntaxContribution;
+            return __hasSyntaxContributions;
         }
         private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,tcs.Template,java.util.Collection<tcs.Template>> __getCalledTemplates;
         /**
