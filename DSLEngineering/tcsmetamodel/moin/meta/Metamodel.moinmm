@@ -800,6 +800,11 @@
 <Model.Attribute m:c='1' m:i='49CB834E2E8978D01A0A11DE835300016CE99C52' name='isOmitted' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
+<Model.Operation m:c='1' m:i='E000054C0CF26230DDC911DE9FE100016CE99C52' name='hasSyntaxContributions' annotation='' scope='instance_level' visibility='public_vis' isQuery='true'/>
+<Model.Parameter m:c='1' m:i='E000054C17A7C710DDC911DE9B4100016CE99C52' name='newParameter' annotation='' direction='return_dir'>
+<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Parameter>
+<Model.Tag m:c='1' m:i='E000054C1A97BB10DDC911DEB2F500016CE99C52' name='hasSyntaxContributions_opCodeOcl' annotation='' tagId='org.omg.sap2mof.OperationCodeOcl' values='context SequenceElement::hasSyntaxContributions():Boolean&#13;&#10;body:&#13;&#10;if self.oclIsTypeOf(Alternative) then&#13;&#10;&#9;self.oclAsType(Alternative).sequences-&gt;exists(s | s.elements-&gt;exists(se | se.hasSyntaxContribution()))&#13;&#10;else&#13;&#10;&#9;if self.oclIsTypeOf(FunctionCall) then&#13;&#10;&#9;&#9;self.oclAsType(FunctionCall).calledFunction.sequence.elements-&gt;exists(se | se.hasSyntaxContribution())&#13;&#10;&#9;else&#13;&#10;&#9;&#9;if self.oclIsTypeOf(Property) then&#13;&#10;&#9;&#9;&#9;true&#13;&#10;&#9;&#9;else&#13;&#10;&#9;&#9;&#9;if self.oclIsTypeOf(LiteralRef) then&#13;&#10;&#9;&#9;&#9;&#9;true&#13;&#10;&#9;&#9;&#9;else&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;if self.oclIsTypeOf(InjectorActionsBlock) then&#13;&#10;&#9;&#9;&#9;&#9;&#9;false&#13;&#10;&#9;&#9;&#9;&#9;else&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;if self.oclIsTypeOf(ConditionalElement) then&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;self.oclAsType(ConditionalElement).thenSequence.elements-&gt;exists(se | se.hasSyntaxContributions()) &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;or &#9;self.oclAsType(ConditionalElement).elseSequence.elements-&gt;exists(se | se.hasSyntaxContributions())&#13;&#10;&#9;&#9;&#9;&#9;&#9;else&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;if self.oclIsTypeOf(Block) then&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;self.oclAsType(Block).blockSequence.elements-&gt;exists(se | se.hasSyntaxContributions()) &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;else&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;false&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;endif&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;endif&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;endif&#9;&#13;&#10;&#9;&#9;&#9;endif&#9;&#13;&#10;&#9;&#9;endif&#9;&#9;&#9;&#13;&#10;&#9;endif&#9;&#13;&#10;endif'/>
 <Model.Association m:c='1' m:i='E000054CC3C682806A7811DEB92500016CE99C52' name='AsPArg_Template' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
 <Model.AssociationEnd m:c='1' m:i='E000054CC3D43E206A7811DE8D0C00016CE99C52' name='asPArg' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
@@ -817,6 +822,7 @@
 <Model.Attribute m:c='1' m:i='E007956A717A11B065A811DE8FAE00016CE99C52' name='invert' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
+<Model.Tag m:c='1' m:i='E009322EE89B1990DDC811DEAFAC00016CE99C52' name='hasSyntaxContributions_opCodeOcl' annotation='' tagId='org.omg.sap2mof.OperationCodeOcl' values='context Template::hasSyntaxContributions():Boolean&#13;&#10;body:&#13;&#10;self.templateSequence.elements-&gt;exists(e | e.hasSyntaxContribution())'/>
 <OCL.Expressions.VariableDeclaration m:c='1' m:i='E012BF1E5F58E370CD8C11DEB108F1937F000001' name='invalid' varName='invalid'/>
 <OCL.Expressions.VariableDeclaration m:c='1' m:i='E012BF1E5F590A80CD8C11DEB333F1937F000001' name='null' varName='null'/>
 <OCL.Types.SetType m:c='1' m:i='E012BF1E5F590A81CD8C11DEC7B2F1937F000001' name='Set([TCS, Template])' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
@@ -957,7 +963,7 @@
 <OCL.Attaching.OclConstraint m:c='1' m:i='E0356A04BCB800A0BCED11DEA5270019D29902CC' name='OnlyOnePredicateWithoutWhen' annotation='' expression='context ForeachPredicatePropertyInit&#13;&#10;inv:&#13;&#10;  self.predicatesemantic-&gt;select(ps | ps.when-&gt;isEmpty()&#13;&#10;                                                            or ps.when=&apos;&apos;)-&gt;size() &lt;= 1' language='OCL' evaluationPolicy='deferred'/>
 <Model.Package m:c='1' m:i='E0356A04C04B87A2BCED11DE88080019D29902CC' name='OclGenerated_30F65E44ED243023AD6E2061812C0B9440D3B967' annotation='This holds the OCL generated stuff for partition tcsmetamodel_moin/meta/Metamodel.moinmm' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
 <Model.Tag m:c='1' m:i='E0356A04C04B87A3BCED11DEA8F70019D29902CC' name='packagePrefix' annotation='' tagId='javax.jmi.packagePrefix' values='com.sap.tc.moin.ocl.gen'/>
-<Model.Operation m:c='1' m:i='E0356A04EB4F13D0B1C711DEC27B00016CE99C52' name='hasSyntaxContribution' annotation='' scope='instance_level' visibility='public_vis' isQuery='true'/>
+<Model.Operation m:c='1' m:i='E0356A04EB4F13D0B1C711DEC27B00016CE99C52' name='hasSyntaxContributions' annotation='' scope='instance_level' visibility='public_vis' isQuery='true'/>
 <Model.Parameter m:c='1' m:i='E0356A04F4C82820B1C711DEB9AE00016CE99C52' name='newParameter' annotation='' direction='return_dir'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Parameter>
@@ -1118,6 +1124,8 @@
 <L f='E046953010C6A8D188B011DE82EC001CBF7437BB' s='484003027F0582D02E4D11DD8FDD001742153E0C'/>
 <L f='E0677A9A1E7ED260C7A611DE939A00016CE99C52' s='484003027F0582D02E4D11DD8FDD001742153E0C'/>
 <L f='E0EE4DB258B2C2C059B011DE8ECE001CBF745635' s='484003027F0582D02E4D11DD8FDD001742153E0C'/>
+<L f='483FE093F8668EE62E3811DDB6E2001742153E0C' s='E000054C1A97BB10DDC911DEB2F500016CE99C52'/>
+<L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E009322EE89B1990DDC811DEAFAC00016CE99C52'/>
 <L f='E0356A043DF05630B1C811DEB49000016CE99C52' s='E0356A0454BD9620B1C811DEB11400016CE99C52'/>
 <L f='E0356A04C04B87A2BCED11DE88080019D29902CC' s='E0356A04C04B87A3BCED11DEA8F70019D29902CC'/>
 <L f='E0356A04EB4F13D0B1C711DEC27B00016CE99C52' s='E0356A04F78413D0B1C711DE82EB00016CE99C52'/>
@@ -1509,6 +1517,7 @@
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='4862240025FA4A6042A511DDADC6001742153E0C'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E0356A04EB4F13D0B1C711DEC27B00016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E0356A043DF05630B1C811DEB49000016CE99C52'/>
+<L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E009322EE89B1990DDC811DEAFAC00016CE99C52'/>
 <L f='483FE093F85A80FE2E3811DD917A001742153E0C' s='48400507B29FB2422E4E11DDC815001742153E0C'/>
 <L f='483FE093F85A80FE2E3811DD917A001742153E0C' s='48400552DFD30BE02E4E11DDB5BE001742153E0C'/>
 <L f='483FE093F85CF1F02E3811DD822D001742153E0C' s='4840063F6D2C32502E4F11DDBCA6001742153E0C'/>
@@ -1555,6 +1564,8 @@
 <L f='483FE093F8641DE52E3811DDA866001742153E0C' s='48621E63CD45BB5042A111DD8560001742153E0C'/>
 <L f='483FE093F8668EE62E3811DDB6E2001742153E0C' s='48621EDA145B360042A211DDA8DC001742153E0C'/>
 <L f='483FE093F8668EE62E3811DDB6E2001742153E0C' s='E03D847172E97E906AEA11DE84AD00016CE99C52'/>
+<L f='483FE093F8668EE62E3811DDB6E2001742153E0C' s='E000054C0CF26230DDC911DE9FE100016CE99C52'/>
+<L f='483FE093F8668EE62E3811DDB6E2001742153E0C' s='E000054C1A97BB10DDC911DEB2F500016CE99C52'/>
 <L f='483FE093F868D8D02E3811DDC44A001742153E0C' s='48440C1541145BD030B511DDC310001742153E0C'/>
 <L f='483FE093F868D8D22E3811DDBC2E001742153E0C' s='4843CCC383C18FA3308F11DDC25B001742153E0C'/>
 <L f='483FE093F868D8D22E3811DDBC2E001742153E0C' s='4912CBBD989C6530ABF011DDAEF5001742153E0C'/>
@@ -1699,6 +1710,7 @@
 <L f='496F6B77E31C9820E32511DDB13100016CE99C52' s='496F6B77E31C9821E32511DDB51E00016CE99C52'/>
 <L f='496F6B77E31C9820E32511DDB13100016CE99C52' s='496F6B77E31C9822E32511DD904E00016CE99C52'/>
 <L f='49CA5AF68C492080195911DEBD8200016CE99C52' s='49CA5B059589BFB0195911DEA47D00016CE99C52'/>
+<L f='E000054C0CF26230DDC911DE9FE100016CE99C52' s='E000054C17A7C710DDC911DE9B4100016CE99C52'/>
 <L f='E000054CC3C682806A7811DEB92500016CE99C52' s='E000054CC3D43E206A7811DE8D0C00016CE99C52'/>
 <L f='E000054CC3C682806A7811DEB92500016CE99C52' s='E000054CC3D43E216A7811DEB28700016CE99C52'/>
 <L f='E007956A4F5400F065A811DE877100016CE99C52' s='E007956A56F4D2D065A811DE8F3300016CE99C52'/>
@@ -2108,6 +2120,7 @@
 <L f='496F03BE10363160E2E811DD834C00016CE99C52' s='496F6B77E31E1EC0E32511DD9AFC00016CE99C52'/>
 <L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='49CA5B059589BFB0195911DEA47D00016CE99C52'/>
 <L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='49CB834E2E8978D01A0A11DE835300016CE99C52'/>
+<L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='E000054C17A7C710DDC911DE9B4100016CE99C52'/>
 <L f='483FE093F87004C82E3811DDBD9A001742153E0C' s='E000054CC3D43E206A7811DE8D0C00016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E000054CC3D43E216A7811DEB28700016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E000054CC3D5C4C06A7811DE924F00016CE99C52'/>
