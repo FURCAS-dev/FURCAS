@@ -10,14 +10,16 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 237205
+ *   Patrick Könemann - Bug 294200 (history)
  *
  * </copyright>
  *
- * $Id: OCLConsolePage.java,v 1.21 2008/10/05 14:35:44 cdamus Exp $
+ * $Id: OCLConsolePage.java,v 1.22 2009/12/01 07:33:49 ewillink Exp $
  */
 
 package org.eclipse.emf.ocl.examples.interpreter.console;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -588,7 +590,9 @@ public class OCLConsolePage
 	 * expression.
 	 */
 	private class InputKeyListener implements KeyListener {
-		private boolean evaluationSuccess = false;;
+		private boolean evaluationSuccess = false;		
+		private List<String> history = new ArrayList<String>();
+		private int currentHistoryPointer = 0;
 		
 		public void keyPressed(KeyEvent e) {
 			switch (e.keyCode) {
@@ -596,9 +600,35 @@ public class OCLConsolePage
 			    if (!input.isContentAssistActive()
 			            && (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {
 					String text = document.get();
-					evaluationSuccess = evaluate(text);
-				}
-				
+					evaluationSuccess = evaluate(text.trim());
+				}				
+				break;
+			case SWT.PAGE_UP :
+				if (!input.isContentAssistActive()
+						&& (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
+					// history
+					if (currentHistoryPointer == 0 && history.size() > 0) {
+						if (history.size() > 0 && history.get(0).length() == 0) {
+							history.remove(0);
+						}
+						history.add(0, document.get().trim());
+						currentHistoryPointer = 1;
+						document.set(history.get(currentHistoryPointer));
+					} else if (currentHistoryPointer < history.size() - 1) {
+						currentHistoryPointer++;
+						document.set(history.get(currentHistoryPointer));
+					}
+				}				
+				break;
+			case SWT.PAGE_DOWN :
+				if (!input.isContentAssistActive()
+						&& (e.stateMask & (SWT.CTRL | SWT.SHIFT)) == 0) {					
+					// history
+					if (currentHistoryPointer > 0) {
+						currentHistoryPointer--;
+						document.set(history.get(currentHistoryPointer));
+					}
+				}				
 				break;
 			}
 		}
@@ -609,11 +639,17 @@ public class OCLConsolePage
 				if ((e.stateMask & SWT.CTRL) == 0) {
 					if (evaluationSuccess) {
 						document.set(""); //$NON-NLS-1$
-					}
-					
+						// history
+						if (history.size() > 0 && history.get(0).trim().length() == 0) {
+							history.remove(0);
+						}
+						if (history.size() == 0 || !history.get(0).equals(lastOCLExpression.trim())) {
+							history.add(0, lastOCLExpression.trim());
+						}
+						currentHistoryPointer = 0;
+					}					
 					evaluationSuccess = false;
-				}
-				
+				}				
 				break;
 			case ' ':
 			    if ((e.stateMask & SWT.CTRL) == SWT.CTRL) {
