@@ -92,6 +92,7 @@ public class MultiLineInputDialog extends Dialog {
     /*
      * (non-Javadoc) Method declared on Dialog.
      */
+    @Override
     protected void buttonPressed(int buttonId) {
         if (buttonId == IDialogConstants.OK_ID) {
             value = text.getText();
@@ -108,6 +109,7 @@ public class MultiLineInputDialog extends Dialog {
      * org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets
      * .Shell)
      */
+    @Override
     protected void configureShell(Shell shell) {
         super.configureShell(shell);
         if (title != null) {
@@ -122,6 +124,7 @@ public class MultiLineInputDialog extends Dialog {
      * org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse
      * .swt.widgets.Composite)
      */
+    @Override
     protected void createButtonsForButtonBar(Composite parent) {
         // create OK and Cancel buttons by default
         okButton = createButton(parent, IDialogConstants.OK_ID,
@@ -140,6 +143,7 @@ public class MultiLineInputDialog extends Dialog {
     /*
      * (non-Javadoc) Method declared on Dialog.
      */
+    @Override
     protected Control createDialogArea(Composite parent) {
         // create composite
         Composite composite = (Composite) super.createDialogArea(parent);
@@ -148,7 +152,7 @@ public class MultiLineInputDialog extends Dialog {
             Label label = new Label(composite, SWT.WRAP);
             label.setText(message);
             GridData data = new GridData(GridData.GRAB_HORIZONTAL
-                    | GridData.GRAB_VERTICAL | GridData.HORIZONTAL_ALIGN_FILL
+                    | GridData.HORIZONTAL_ALIGN_FILL
                     | GridData.VERTICAL_ALIGN_FILL);
             data.widthHint = convertHorizontalDLUsToPixels(IDialogConstants.MINIMUM_MESSAGE_AREA_WIDTH);
             label.setLayoutData(data);
@@ -183,6 +187,7 @@ public class MultiLineInputDialog extends Dialog {
      * @return the error message label
      * @deprecated use setErrorMessage(String) instead
      */
+    @Deprecated
     protected Label getErrorMessageLabel() {
         return null;
     }

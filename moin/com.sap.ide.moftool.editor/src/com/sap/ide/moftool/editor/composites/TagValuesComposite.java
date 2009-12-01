@@ -2,8 +2,6 @@ package com.sap.ide.moftool.editor.composites;
 
 import java.util.Iterator;
 
-import com.sap.tc.moin.repository.mmi.model.Tag;
-
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.jface.databinding.viewers.ObservableListContentProvider;
@@ -37,6 +35,7 @@ import com.sap.mi.fwk.ui.databinding.MoinDataBindingContext;
 import com.sap.mi.fwk.ui.databinding.MoinObservables;
 import com.sap.tc.moin.repository.commands.CommandHandle;
 import com.sap.tc.moin.repository.exception.ExecutionCancelledException;
+import com.sap.tc.moin.repository.mmi.model.Tag;
 
 public class TagValuesComposite extends TagValuesCompositeBase {
 	
@@ -93,10 +92,11 @@ public class TagValuesComposite extends TagValuesCompositeBase {
 			@Override
 			public String getText(Object element) {
 				if (element instanceof String) {
-				    if(((String)element).length() > 50)
-					return ((String)element).substring(0, 50) + "...";
-				    else
-				        return (String)element;
+				    if(((String)element).length() > 50) {
+                        return ((String)element).substring(0, 50) + "...";
+                    } else {
+                        return (String)element;
+                    }
 				}
 				return super.getText(element);
 			}
@@ -117,7 +117,8 @@ public class TagValuesComposite extends TagValuesCompositeBase {
 		mAddButton.setLayoutData(data);
 		mAddButton.setToolTipText(LocalizationMessages.TagValuesComposite_1_XTOL);
 		mAddButton.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
+			@Override
+            public void widgetSelected(SelectionEvent e) {
 				mAddValueHandler.execute(null);
 			}
 		});
@@ -130,7 +131,8 @@ public class TagValuesComposite extends TagValuesCompositeBase {
 		mEditButton.setLayoutData(data);
 		mEditButton.setToolTipText(LocalizationMessages.TagValuesComposite_3_XTOL);
 		mEditButton.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
+			@Override
+            public void widgetSelected(SelectionEvent e) {
 				mEditValueHandler.execute(mValuesList.getSelection());
 			}
 		});
@@ -143,7 +145,8 @@ public class TagValuesComposite extends TagValuesCompositeBase {
 		mRemoveButton.setLayoutData(data);
 		mRemoveButton.setToolTipText(LocalizationMessages.TagValuesComposite_5_XTOL);
 		mRemoveButton.addSelectionListener(new SelectionAdapter() {
-			public void widgetSelected(SelectionEvent e) {
+			@Override
+            public void widgetSelected(SelectionEvent e) {
 				mRemoveValueHandler.execute(mValuesList.getSelection());
 			}
 		});
@@ -180,7 +183,7 @@ public class TagValuesComposite extends TagValuesCompositeBase {
 		}
 
 		public Object execute(ExecutionEvent e) {			
-			InputDialog dialog = new InputDialog(mShell,
+		        MultiLineInputDialog dialog = new MultiLineInputDialog(mShell,
 					LocalizationMessages.TagValuesComposite_6_XMSG,
 					LocalizationMessages.TagValuesComposite_7_XGRP, "", null);   //$NON-NLS-1$
 			if (dialog.open() == InputDialog.OK) {
