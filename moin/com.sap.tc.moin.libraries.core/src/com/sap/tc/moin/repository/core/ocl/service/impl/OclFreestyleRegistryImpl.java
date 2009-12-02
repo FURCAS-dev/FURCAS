@@ -29,6 +29,7 @@ import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.exception.MoinIllegalArgumentException;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -368,7 +369,6 @@ public class OclFreestyleRegistryImpl implements OclFreestyleRegistry {
         }
     }
 
-
     /**
      * @param actRegistryService service
      * @param actConnection connection
@@ -402,6 +402,26 @@ public class OclFreestyleRegistryImpl implements OclFreestyleRegistry {
                 throw new OclManagerException( OclServiceExceptions.REGISTRATIONEXISTS, name );
             }
             OclExpressionRegistrationImpl registration = new OclExpressionRegistrationImpl( this.connection, name, oclExpression, severity, categories, contextMetaClass, typesPackages );
+            this.categoryRegistrationMap.put( name, registration );
+            for ( String category : categories ) {
+                Set<OclExpressionRegistrationImpl> registrations = this.categoryExpressionRegistrationMapping.get( category );
+                if ( registrations == null ) {
+                    registrations = new HashSet<OclExpressionRegistrationImpl>( );
+                    this.categoryExpressionRegistrationMapping.put( category, registrations );
+                }
+                registrations.add( registration );
+            }
+            return registration;
+        }
+    }
+    
+    public OclExpressionRegistration createExpressionRegistration( String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject contextMetaClass, MofPackage[] packages) throws OclManagerException {
+
+        synchronized ( this.categoryRegistrationMap ) {
+            if ( this.categoryRegistrationMap.containsKey( name ) ) {
+                throw new OclManagerException( OclServiceExceptions.REGISTRATIONEXISTS, name );
+            }
+            OclExpressionRegistrationImpl registration = new OclExpressionRegistrationImpl( this.connection, name, oclExpression, severity, categories, contextMetaClass, packages);
             this.categoryRegistrationMap.put( name, registration );
             for ( String category : categories ) {
                 Set<OclExpressionRegistrationImpl> registrations = this.categoryExpressionRegistrationMapping.get( category );

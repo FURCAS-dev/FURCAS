@@ -1449,7 +1449,8 @@ public class PrettyPrinter
 					String invertQuery = filter.getInvert();
 					try
 					{
-						String refValue = (String) oclHelper.findElementWithOCLQuery(valueME,null, null, invertQuery, null);
+						String refValue = (String) oclHelper.findElementWithOCLQuery(valueME,null, null, invertQuery, null, 
+						        valueME.get___Connection().getJmiHelper().getRefClassForMofClass((MofClass) property.getPropertyReference().getStrucfeature().getType()));
 						this.serializePrimitive(refValue, null);
 					}
 					catch(Exception e)

@@ -614,6 +614,12 @@ public class AdapterJMIHelper {
 					+ queryToExecute, e);
 		}
 	}
+	
+	public Object findElementWithOCLQuery(RefObject sourceModelElement,
+                String referencePropertyName, Object keyValue, String oclQuery,
+                Object contextObject) throws ModelAdapterException {
+	    return findElementWithOCLQuery(sourceModelElement, referencePropertyName, keyValue, oclQuery, contextObject, null);
+	}
 
 	/**
 	 * It is possible to define an OCL QUery to find Elements. For multi-valued results a
@@ -621,7 +627,7 @@ public class AdapterJMIHelper {
 	 */
 	public Object findElementWithOCLQuery(RefObject sourceModelElement,
 			String referencePropertyName, Object keyValue, String oclQuery,
-			Object contextObject) throws ModelAdapterException {
+			Object contextObject, RefClass registerForBaseClass) throws ModelAdapterException {
 
 		String queryToExecute = oclQuery;
 		Boolean useContextInsteadOfSelf = false;
@@ -635,7 +641,11 @@ public class AdapterJMIHelper {
 					.getOclRegistryService().getFreestyleRegistry()
 					.getRegistration(queryToExecute);
 			if (reg == null) {
-
+			        if(registerForBaseClass == null) {
+			            registerForBaseClass = useContextInsteadOfSelf ? contextRefObject
+                                            .refClass() : sourceModelElement
+                                            .refClass();
+			        }
 				// TODO usage of query string as reg name ok?
 				reg = connection.getOclRegistryService().getFreestyleRegistry()
 						.createExpressionRegistration(
@@ -643,9 +653,7 @@ public class AdapterJMIHelper {
 								queryToExecute,
 								OclRegistrationSeverity.Warning,
 								new String[] { "TCSPropertyQuery" },
-								useContextInsteadOfSelf ? contextRefObject
-										.refClass() : sourceModelElement
-										.refClass(),
+								registerForBaseClass,
 								packagesForLookup.toArray(new RefPackage[] {}));
 				// new RefPackage[0]);
 

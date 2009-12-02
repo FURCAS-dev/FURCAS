@@ -963,6 +963,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
                 for (RefObject result : resultSet.getRefObjects("instance")) {
                     monitor.worked(1);
                     InjectorAction injectorActionBase = (InjectorAction) result;
+                    //check if metamodel element is present
+                    if(injectorActionBase.getInjectorActionsBlockReference().getParentTemplate().getMetaReference() == null) {
+                        throw new RuntimeException("Cannot resolve reference to metamodel for template:\n" +
+                                injectorActionBase.getInjectorActionsBlockReference().getParentTemplate().get___Mri() + "\n" +
+                                "Make sure the metamodel is correctly referenced and loaded.");
+                    }
                     if (injectorActionBase instanceof LookupPropertyInit) {
                         LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
                         Template template = ((InjectorActionsBlock) injectorAction

@@ -3,6 +3,7 @@ package com.sap.tc.moin.repository.core;
 import java.util.Set;
 
 import com.sap.tc.moin.repository.exception.MoinIllegalStateException;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -59,6 +60,20 @@ public class OclFreestyleRegistryWrapper extends AbstractConnectionAwareWrapper<
                 unwrappedPackages[i] = ( (Wrapper<RefPackage>) typesPackages[i] ).unwrap( );
             }
             return new OclExpressionRegistrationWrapper( this.oclFreestyleRegistry.createExpressionRegistration( name, oclExpression, severity, categories, unwrappedContext, unwrappedPackages ), this.connection );
+        }
+    }
+    
+    public OclExpressionRegistration createExpressionRegistration( String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject contextMetaClass, MofPackage[] typesPackages) throws OclManagerException {
+
+        synchronized ( this.synchronizationManager.getProhibitWriteSyncObject( ) ) {
+            assertConnectionAlive( );
+            attachConnectionIfRequired( );
+            RefObject unwrappedContext = ( (Wrapper<RefObject>) contextMetaClass ).unwrap( );
+            MofPackage[] unwrappedPackages = new MofPackage[typesPackages.length];
+            for ( int i = 0; i < typesPackages.length; i++ ) {
+                unwrappedPackages[i] = ( (Wrapper<MofPackage>) typesPackages[i] ).unwrap( );
+            }
+            return new OclExpressionRegistrationWrapper( this.oclFreestyleRegistry.createExpressionRegistration( name, oclExpression, severity, categories, unwrappedContext, unwrappedPackages), this.connection );
         }
     }
 

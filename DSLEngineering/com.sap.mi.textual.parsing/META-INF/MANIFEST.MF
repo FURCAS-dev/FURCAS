@@ -5,8 +5,7 @@ Bundle-SymbolicName: com.sap.mi.textual.parsing
 Bundle-Version: 1.0.0
 Bundle-ClassPath: 
  bin/,
- .,
- jar/DSLParsing.jar
+ .
 Export-Package: 
  com.sap.mi.textual.grammar,
  com.sap.mi.textual.grammar.antlr3,

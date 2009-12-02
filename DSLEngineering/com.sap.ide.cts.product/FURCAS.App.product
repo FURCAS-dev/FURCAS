@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?pde version="3.5"?>
+
+<product name="FURCAS" uid="com.sap.ide.cts.product" id="com.sap.ide.cts.product.FURCAS" application="org.eclipse.ui.ide.workbench" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true">
+
+   <aboutInfo>
+      <image path="/com.sap.ide.cts.product/images/about.png"/>
+      <text>
+         %productBlurb
+      </text>
+   </aboutInfo>
+
+   <configIni use="default">
+   </configIni>
+
+   <launcherArgs>
+      <programArgs>-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl}</programArgs>
+      <vmArgs>-XX:PermSize=32m
+-XX:MaxPermSize=256m
+-Xmx1024m
+-Xms128m
+-ea</vmArgs>
+      <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+   </launcherArgs>
+
+   <windowImages i16="images\furclipse_transparent_16.png" i32="images\furclipse_transparent_32.png" i48="images\furclipse_transparent_48.png" i64="images\furclipse_transparent_64.png" i128="images\furclipse_transparent_128.png"/>
+
+   <splash
+      location="com.sap.ide.cts.product"
+      startupProgressRect="0,150,455,15"
+      startupMessageRect="7,130,240,20"
+      startupForegroundColor="C0C0C0" />
+   <launcher>
+      <solaris/>
+      <win useIco="true">
+         <ico path="/com.sap.ide.cts.product/images/FURCAS256.ico"/>
+         <bmp/>
+      </win>
+   </launcher>
+
+
+   <vm>
+   </vm>
+
+   <plugins>
+      <plugin id="bibtex.editor"/>
+      <plugin id="bibtex.metamodel"/>
+      <plugin id="bibtex.metamodel.epi"/>
+      <plugin id="com.ibm.icu"/>
+      <plugin id="com.sap.ap.metamodel.core"/>
+      <plugin id="com.sap.bl.guidgenerator"/>
+      <plugin id="com.sap.ide.cts.UnresolvedReferencesView"/>
+      <plugin id="com.sap.ide.cts.editor"/>
+      <plugin id="com.sap.ide.cts.moin"/>
+      <plugin id="com.sap.ide.cts.parser"/>
+      <plugin id="com.sap.ide.cts.product"/>
+      <plugin id="com.sap.ide.moftool.editor"/>
+      <plugin id="com.sap.ide.moftool.editor.graphics"/>
+      <plugin id="com.sap.ide.moftool.editor.graphics.eclipse"/>
+      <plugin id="com.sap.ide.treeprovider"/>
+      <plugin id="com.sap.mi.basic.facade"/>
+      <plugin id="com.sap.mi.facade"/>
+      <plugin id="com.sap.mi.fwk"/>
+      <plugin id="com.sap.mi.fwk.services.local"/>
+      <plugin id="com.sap.mi.fwk.ui"/>
+      <plugin id="com.sap.mi.gfw"/>
+      <plugin id="com.sap.mi.gfw.eclipse"/>
+      <plugin id="com.sap.mi.gfw.mm.eclipse"/>
+      <plugin id="com.sap.mi.graphics.facade"/>
+      <plugin id="com.sap.mi.textual"/>
+      <plugin id="com.sap.mi.textual.common"/>
+      <plugin id="com.sap.mi.textual.epi"/>
+      <plugin id="com.sap.mi.textual.grammar.parser"/>
+      <plugin id="com.sap.mi.textual.moinlookup"/>
+      <plugin id="com.sap.mi.textual.parsing"/>
+      <plugin id="com.sap.mi.textual.parsing.textblocks"/>
+      <plugin id="com.sap.mi.textual.syntaxmodel.moinadapter"/>
+      <plugin id="com.sap.mi.textual.tcs.editor"/>
+      <plugin id="com.sap.mi.textual.tcs.util"/>
+      <plugin id="com.sap.mi.tools.cockpit.editor"/>
+      <plugin id="com.sap.mi.tools.cockpit.mql"/>
+      <plugin id="com.sap.mi.tools.diagnostics"/>
+      <plugin id="com.sap.mi.tools.metamodelbuilder"/>
+      <plugin id="com.sap.mi.tools.mmdeployment"/>
+      <plugin id="com.sap.mi.tools.oclevalview"/>
+      <plugin id="com.sap.tc.moin.facility.build.libraries"/>
+      <plugin id="com.sap.tc.moin.facility.primary"/>
+      <plugin id="com.sap.tc.moin.facility.primary.generic.facade"/>
+      <plugin id="com.sap.tc.moin.facility.primary.ide.facade"/>
+      <plugin id="com.sap.tc.moin.facility.primary.internal"/>
+      <plugin id="com.sap.tc.moin.facility.primary.libraries"/>
+      <plugin id="com.sap.tc.moin.facility.primary.libraries.api"/>
+      <plugin id="com.sap.tc.moin.facility.primary.libraries.fs"/>
+      <plugin id="com.sap.tc.moin.facility.primary.spi"/>
+      <plugin id="com.sap.tc.moin.friends.api"/>
+      <plugin id="com.sap.tc.moin.friends.factory"/>
+      <plugin id="com.sap.tc.moin.friends.ide.facade"/>
+      <plugin id="com.sap.tc.moin.friends.ide.factory"/>
+      <plugin id="com.sap.tc.moin.globalmodellistener"/>
+      <plugin id="com.sap.tc.moin.ide.facade"/>
+      <plugin id="com.sap.tc.moin.incubation.contentprovider"/>
+      <plugin id="com.sap.tc.moin.incubation.jdfacility"/>
+      <plugin id="com.sap.tc.moin.incubation.mm"/>
+      <plugin id="com.sap.tc.moin.incubation.sampledata.epi"/>
+      <plugin id="com.sap.tc.moin.jmi"/>
+      <plugin id="com.sap.tc.moin.libraries.api"/>
+      <plugin id="com.sap.tc.moin.libraries.base"/>
+      <plugin id="com.sap.tc.moin.libraries.buildplugin"/>
+      <plugin id="com.sap.tc.moin.libraries.core"/>
+      <plugin id="com.sap.tc.moin.libraries.generic.facade"/>
+      <plugin id="com.sap.tc.moin.libraries.jmi"/>
+      <plugin id="com.sap.tc.moin.libraries.jmi.facade"/>
+      <plugin id="com.sap.tc.moin.libraries.spi"/>
+      <plugin id="com.sap.tc.moin.libraries.spi.facade"/>
+      <plugin id="com.sap.tc.moin.libraries.spi.internal"/>
+      <plugin id="com.sap.tc.moin.metamodel.generatedmetamodel"/>
+      <plugin id="com.sap.tc.moin.metamodel.testcases"/>
+      <plugin id="com.sap.tc.moin.metamodel.testcases.foundation"/>
+      <plugin id="com.sap.tc.moin.metamodel.textverticalization"/>
+      <plugin id="com.sap.tc.moin.metamodel.util"/>
+      <plugin id="com.sap.tc.moin.query.client"/>
+      <plugin id="com.sap.tc.moin.runtime"/>
+      <plugin id="com.sap.tc.moin.standalone"/>
+      <plugin id="com.sap.tc.moin.tcs.mof.editor"/>
+      <plugin id="com.sap.tc.moin.textual.runtime.moin"/>
+      <plugin id="com.sap.tc.moin.xm.generation"/>
+      <plugin id="com.sap.tcsmeta.mm.eclipse"/>
+      <plugin id="com.tssap.sap.libs.logging"/>
+      <plugin id="editor.test.metamodel"/>
+      <plugin id="generatedmetamodel"/>
+      <plugin id="org.antlr"/>
+      <plugin id="org.apache.ant"/>
+      <plugin id="org.apache.lucene"/>
+      <plugin id="org.easymock"/>
+      <plugin id="org.eclipse.ant.core"/>
+      <plugin id="org.eclipse.ant.ui"/>
+      <plugin id="org.eclipse.compare"/>
+      <plugin id="org.eclipse.compare.core"/>
+      <plugin id="org.eclipse.core.commands"/>
+      <plugin id="org.eclipse.core.contenttype"/>
+      <plugin id="org.eclipse.core.databinding"/>
+      <plugin id="org.eclipse.core.databinding.observable"/>
+      <plugin id="org.eclipse.core.databinding.property"/>
+      <plugin id="org.eclipse.core.expressions"/>
+      <plugin id="org.eclipse.core.filebuffers"/>
+      <plugin id="org.eclipse.core.filesystem"/>
+      <plugin id="org.eclipse.core.filesystem.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.jobs"/>
+      <plugin id="org.eclipse.core.net"/>
+      <plugin id="org.eclipse.core.net.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.resources"/>
+      <plugin id="org.eclipse.core.resources.compatibility" fragment="true"/>
+      <plugin id="org.eclipse.core.resources.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.core.runtime"/>
+      <plugin id="org.eclipse.core.runtime.compatibility"/>
+      <plugin id="org.eclipse.core.runtime.compatibility.registry" fragment="true"/>
+      <plugin id="org.eclipse.core.variables"/>
+      <plugin id="org.eclipse.debug.core"/>
+      <plugin id="org.eclipse.debug.ui"/>
+      <plugin id="org.eclipse.draw2d"/>
+      <plugin id="org.eclipse.ecf"/>
+      <plugin id="org.eclipse.ecf.filetransfer"/>
+      <plugin id="org.eclipse.ecf.identity"/>
+      <plugin id="org.eclipse.ecf.provider.filetransfer"/>
+      <plugin id="org.eclipse.ecf.provider.filetransfer.ssl" fragment="true"/>
+      <plugin id="org.eclipse.ecf.ssl" fragment="true"/>
+      <plugin id="org.eclipse.emf.common"/>
+      <plugin id="org.eclipse.emf.common.ui"/>
+      <plugin id="org.eclipse.emf.ecore"/>
+      <plugin id="org.eclipse.emf.ecore.xmi"/>
+      <plugin id="org.eclipse.equinox.app"/>
+      <plugin id="org.eclipse.equinox.common"/>
+      <plugin id="org.eclipse.equinox.frameworkadmin"/>
+      <plugin id="org.eclipse.equinox.frameworkadmin.equinox"/>
+      <plugin id="org.eclipse.equinox.p2.artifact.repository"/>
+      <plugin id="org.eclipse.equinox.p2.core"/>
+      <plugin id="org.eclipse.equinox.p2.director"/>
+      <plugin id="org.eclipse.equinox.p2.engine"/>
+      <plugin id="org.eclipse.equinox.p2.exemplarysetup"/>
+      <plugin id="org.eclipse.equinox.p2.garbagecollector"/>
+      <plugin id="org.eclipse.equinox.p2.jarprocessor"/>
+      <plugin id="org.eclipse.equinox.p2.metadata"/>
+      <plugin id="org.eclipse.equinox.p2.metadata.repository"/>
+      <plugin id="org.eclipse.equinox.p2.repository"/>
+      <plugin id="org.eclipse.equinox.p2.ui"/>
+      <plugin id="org.eclipse.equinox.preferences"/>
+      <plugin id="org.eclipse.equinox.registry"/>
+      <plugin id="org.eclipse.equinox.security"/>
+      <plugin id="org.eclipse.equinox.security.ui"/>
+      <plugin id="org.eclipse.equinox.security.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.equinox.simpleconfigurator"/>
+      <plugin id="org.eclipse.equinox.simpleconfigurator.manipulator"/>
+      <plugin id="org.eclipse.gef"/>
+      <plugin id="org.eclipse.help"/>
+      <plugin id="org.eclipse.jdt.compiler.apt" fragment="true"/>
+      <plugin id="org.eclipse.jdt.compiler.tool" fragment="true"/>
+      <plugin id="org.eclipse.jdt.core"/>
+      <plugin id="org.eclipse.jdt.core.manipulation"/>
+      <plugin id="org.eclipse.jdt.debug"/>
+      <plugin id="org.eclipse.jdt.debug.ui"/>
+      <plugin id="org.eclipse.jdt.junit"/>
+      <plugin id="org.eclipse.jdt.junit.runtime"/>
+      <plugin id="org.eclipse.jdt.launching"/>
+      <plugin id="org.eclipse.jdt.ui"/>
+      <plugin id="org.eclipse.jface"/>
+      <plugin id="org.eclipse.jface.databinding"/>
+      <plugin id="org.eclipse.jface.text"/>
+      <plugin id="org.eclipse.ltk.core.refactoring"/>
+      <plugin id="org.eclipse.ltk.ui.refactoring"/>
+      <plugin id="org.eclipse.osgi"/>
+      <plugin id="org.eclipse.osgi.services"/>
+      <plugin id="org.eclipse.pde.build"/>
+      <plugin id="org.eclipse.pde.core"/>
+      <plugin id="org.eclipse.pde.ui"/>
+      <plugin id="org.eclipse.search"/>
+      <plugin id="org.eclipse.swt"/>
+      <plugin id="org.eclipse.swt.win32.win32.x86" fragment="true"/>
+      <plugin id="org.eclipse.team.core"/>
+      <plugin id="org.eclipse.team.ui"/>
+      <plugin id="org.eclipse.text"/>
+      <plugin id="org.eclipse.ui"/>
+      <plugin id="org.eclipse.ui.cheatsheets"/>
+      <plugin id="org.eclipse.ui.console"/>
+      <plugin id="org.eclipse.ui.editors"/>
+      <plugin id="org.eclipse.ui.externaltools"/>
+      <plugin id="org.eclipse.ui.forms"/>
+      <plugin id="org.eclipse.ui.ide"/>
+      <plugin id="org.eclipse.ui.ide.application"/>
+      <plugin id="org.eclipse.ui.intro"/>
+      <plugin id="org.eclipse.ui.navigator"/>
+      <plugin id="org.eclipse.ui.navigator.resources"/>
+      <plugin id="org.eclipse.ui.views"/>
+      <plugin id="org.eclipse.ui.views.log"/>
+      <plugin id="org.eclipse.ui.views.properties.tabbed"/>
+      <plugin id="org.eclipse.ui.win32" fragment="true"/>
+      <plugin id="org.eclipse.ui.workbench"/>
+      <plugin id="org.eclipse.ui.workbench.texteditor"/>
+      <plugin id="org.eclipse.update.configurator"/>
+      <plugin id="org.eclipse.update.core"/>
+      <plugin id="org.eclipse.update.core.win32" fragment="true"/>
+      <plugin id="org.eclipse.xsd"/>
+      <plugin id="org.hamcrest.core"/>
+      <plugin id="org.junit"/>
+      <plugin id="org.junit4"/>
+      <plugin id="org.sat4j.core"/>
+      <plugin id="org.sat4j.pb"/>
+      <plugin id="tcsmetamodel"/>
+   </plugins>
+
+
+</product>

@@ -79,6 +79,8 @@ syntax TCS {
 -- @begin Templates
 
 	template TCS::Template abstract;
+	
+	template TCS::ContextTemplate abstract;
 
 	template TCS::PrimitiveTemplate
 		:	"primitiveTemplate" templateName "for" $reference
@@ -109,8 +111,6 @@ syntax TCS {
 	template TCS::EnumLiteralMapping
 		:	literal "=" element
 		;
-		
-	template TCS::ContextTemplate abstract;
 
 	template TCS::ClassTemplate context addToContext
 		:	"template" $reference
@@ -218,7 +218,8 @@ syntax TCS {
 		  						)->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()
 		  					) 
 		  				endif
-		  					", as = identifierOrKeyword}
+		  					",
+		  				filter="", invert="name", as = identifierOrKeyword}
 		  : "->" name{as = identifierOrKeyword})
 	    ;
 
@@ -308,12 +309,12 @@ syntax TCS {
 									endif)
 								",
 							invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
-											t.oclAsType(TCS::ClassTemplate).metaReference.name
+											self.oclAsType(TCS::ClassTemplate).metaReference.name
 										else 
 											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
 												self.oclAsType(TCS::PrimitiveTemplate).templateName
 											else
-												OclInvalid
+												'<no name?>'
 											endif
 										endif"}
 		;
@@ -368,12 +369,12 @@ syntax TCS {
 									endif)
 								", 
 								invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
-											t.oclAsType(TCS::ClassTemplate).metaReference.name
+											self.oclAsType(TCS::ClassTemplate).metaReference.name
 										else 
 											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
 												self.oclAsType(TCS::PrimitiveTemplate).templateName
 											else
-												OclInvalid
+												'<no name?>'
 											endif
 										endif"}
 		;

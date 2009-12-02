@@ -2,6 +2,7 @@ package com.sap.tc.moin.repository.ocl.freestyle;
 
 import java.util.Set;
 
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -70,6 +71,23 @@ public interface OclFreestyleRegistry {
      * provided
      */
     public OclExpressionRegistration createExpressionRegistration( String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject parsingContextMetaClass, RefPackage[] typesPackages ) throws OclManagerException;
+    
+    /**
+     * Creates an OclExpressionRegistration.
+     * 
+     * @param name the application defined name, must be unique within the
+     * session
+     * @param oclExpression the OCL expression as String
+     * @param severity will be reported to the listeners
+     * @param categories the categories for this registration, must not be empty
+     * @param parsingContextMetaClass the context used to parse the OCL expression
+     * @param typesPackages
+     * @return the registration
+     * @throws OclManagerException if the expression can not be parsed or if a
+     * registration with this name already exists of if no categories are
+     * provided
+     */
+    public OclExpressionRegistration createExpressionRegistration( String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject contextMetaClass, MofPackage[] typesPackages) throws OclManagerException;
     
     /**
      * Creates an OclExpressionRegistration.

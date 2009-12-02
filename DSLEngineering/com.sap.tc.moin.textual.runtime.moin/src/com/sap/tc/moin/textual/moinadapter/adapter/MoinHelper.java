@@ -57,6 +57,25 @@ public class MoinHelper {
 		// }
 		return packages;
 	}
+	
+	public static Collection<MofPackage> getImportedMofPackages(
+                MofPackage root) {
+            Collection<MofPackage> packages = new ArrayList<MofPackage>();
+            List<ModelElement> contents = root.getContents();
+            // if (contents != null) { // possible with mock objects
+            for (ModelElement element : contents) {
+                    if (element instanceof Import) {
+                            if (((Import) element).isClustered()) {
+                                    packages.add((MofPackage) ((Import) element)
+                                                    .getImportedNamespace());
+                            } else {
+                                    packages.add((MofPackage) ((Import) element).getImportedNamespace());
+                            }
+                    }
+            }
+            // }
+            return packages;
+	}
 
 	public static boolean usesContext(String queryToExecute) {
 		Matcher matcher = ContextManager.contextPattern.matcher(queryToExecute);

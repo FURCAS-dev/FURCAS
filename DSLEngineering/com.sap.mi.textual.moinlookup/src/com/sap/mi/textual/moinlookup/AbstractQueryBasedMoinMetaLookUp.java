@@ -26,6 +26,7 @@ import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -42,7 +43,7 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
  *
  */
 public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLookup {
-    
+
     private final Connection connection;
 
     private static final String MOF14_CONTAINER_NAME = "sap.com/tc/moin/mof_1.4";
@@ -274,24 +275,15 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
 
         return result;
 	}
+	
+    
 	 
     @Override
     public List<String> validateOclQuery(Object template1, String query, Object context) {
 	if (context instanceof RefObject && template1 instanceof Template) {
 	    Template template = (Template)template1;
 	    Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
-	    RefPackage outermostPackageOfMetamodel = connection.getJmiHelper().
-	    	getRefClassForMofClass((MofClass) context).refOutermostPackage();
-	    packagesForLookup.addAll(MoinHelper
-		    .getImportedRefPackages(outermostPackageOfMetamodel));
-	    packagesForLookup.add(outermostPackageOfMetamodel);
-
-	    MQLResultSet resultSet = connection
-		    .getMQLProcessor()
-		    .execute(
-			    "select instance from \""
-				    + "PF.MetaModelDataArea:DCs/sap.com/tc/moin/mof_1.4/_comp/moin/meta/Reflect.moinmm"
-				    + "#45ED2E29000DEAF733A545E62844AF3FC5E44767\" as instance");
+	    
 	    MofClass elementClass = MoinHelper.getReflectElement(connection);
 
 	    RefObject parsingContext = null;
@@ -317,17 +309,44 @@ public abstract class AbstractQueryBasedMoinMetaLookUp extends AbstractMoinLooku
 				.getFreestyleRegistry()
 				.deleteRegistration(name);
 		    }
-		    registration = connection
-			    .getOclRegistryService()
-			    .getFreestyleRegistry()
-			    .createExpressionRegistration(
-				    name,
-				    query,
-				    OclRegistrationSeverity.Info,
-				    new String[] { "TCS Syntax Check" },
-				    parsingContext,
-				    packagesForLookup
-					    .toArray(new RefPackage[] {}));
+		    
+		    if( connection.getJmiHelper().
+	                        getRefClassForMofClass((MofClass) context) != null) {
+		        RefPackage outermostPackageOfMetamodel = connection.getJmiHelper().
+                            getRefClassForMofClass((MofClass) context).refOutermostPackage();
+                        packagesForLookup.addAll(MoinHelper
+                                .getImportedRefPackages(outermostPackageOfMetamodel));
+                        packagesForLookup.add(outermostPackageOfMetamodel);
+                        registration = connection
+                            .getOclRegistryService()
+                            .getFreestyleRegistry()
+                            .createExpressionRegistration(
+                                    name,
+                                    query,
+                                    OclRegistrationSeverity.Info,
+                                    new String[] { "TCS Syntax Check" },
+                                    parsingContext,
+                                    packagesForLookup
+                                            .toArray(new RefPackage[] {}));
+		    } else {
+		        ArrayList<MofPackage> packages = new ArrayList<MofPackage>(MoinHelper
+                            .getImportedMofPackages((MofPackage) ((MofClass) context).refOutermostComposite()));
+		        packages.add((MofPackage) ((MofClass) context).refOutermostComposite());
+		        
+		        registration = connection
+                            .getOclRegistryService()
+                            .getFreestyleRegistry()
+                            .createExpressionRegistration(
+                                    name,
+                                    query,
+                                    OclRegistrationSeverity.Info,
+                                    new String[] { "TCS Syntax Check" },
+                                    parsingContext,
+                                    packages.toArray(new MofPackage[] {}));
+		    }
+		    
+		    
+		    
 		}
 		return Collections.emptyList();
 	    } catch (OclManagerException e) {

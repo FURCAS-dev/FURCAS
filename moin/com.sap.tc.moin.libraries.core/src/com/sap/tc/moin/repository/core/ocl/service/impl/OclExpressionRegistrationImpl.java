@@ -1,12 +1,18 @@
 package com.sap.tc.moin.repository.core.ocl.service.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
+import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -62,6 +68,8 @@ import com.sap.tc.moin.repository.shared.logger.MoinSeverity;
 public class OclExpressionRegistrationImpl extends OclRegistrationImpl implements OclExpressionRegistration, ChangeListener {
 
     private final static MoinLogger LOGGER = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_CORE_OCL, OclExpressionRegistrationImpl.class );
+    
+    private static final String PATHSEP = "::";
 
     private final Map<String, Map<ExpressionInvalidationListener, Set<MRI>>> myCategoryListeners = new HashMap<String, Map<ExpressionInvalidationListener, Set<MRI>>>( );
 
@@ -150,6 +158,89 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         } catch ( ParsingException e ) {
             throw new OclConstraintManagerException( (Throwable) e, OclServiceExceptions.EXPRESSIONNOTPARSABLE, this.getOclExpression( ) );
         }
+    }
+    
+    /**
+     * @param connection Connection
+     * @param name Name
+     * @param oclExpression Expression
+     * @param severity Severity
+     * @param categories categories
+     * @param context context
+     * @param typesPackages typesPackages
+     * @param modelElementsByName 
+     * @param modelElementsByOclQualifiedName 
+     * @param oclDefinedFeatures 
+     * @throws OclManagerException Exception
+     */
+    public OclExpressionRegistrationImpl( CoreConnection connection, String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject context, MofPackage[] packages) throws OclManagerException {
+
+        super( connection, name, OclRegistrationType.Expression, severity, categories, oclExpression, context, "ExpressionRegistration" ); //$NON-NLS-1$
+        this.evalHelper = new EvaluationHelper( );
+        IOclParser parser = OclParserFactory.create( this.myJmiCreator );
+        try {
+            ModelElementsByQualifiedNamesResult modelElementsByName = getModelElementsByQualifiedNamesList(packages, connection);
+            Set<OclStatement> parserResult = parser.parseString(oclExpression, context, modelElementsByName.modelElementsByName, modelElementsByName.modelElementsByOclQualifiedName, null);
+            if ( parserResult.size( ) != 1 ) {
+                throw new OclManagerException( OclServiceExceptions.MUSTPARSETOONE, name, parserResult.size( ), this.getOclExpression( ) );
+            }
+            for ( OclStatement theStmt : parserResult ) {
+                if ( theStmt.getKind( ) != OclStatement.EXPRESSION ) {
+                    throw new OclManagerException( OclServiceExceptions.OCLEXPRDOESNOTEVALUATETOEXPR );
+                }
+                this.statement = theStmt;
+            }
+        } catch ( ParsingException e ) {
+            throw new OclConstraintManagerException( (Throwable) e, OclServiceExceptions.EXPRESSIONNOTPARSABLE, this.getOclExpression( ) );
+        }
+    }
+
+    private final class ModelElementsByQualifiedNamesResult {
+        Map<String, List<ModelElement>> modelElementsByName = new HashMap<String, List<ModelElement>>();
+        Map<String, ModelElement> modelElementsByOclQualifiedName = new HashMap<String, ModelElement>();
+    }
+    
+    private ModelElementsByQualifiedNamesResult getModelElementsByQualifiedNamesList(MofPackage[] modelPackages, CoreConnection connection) {
+        ModelElementsByQualifiedNamesResult result = new ModelElementsByQualifiedNamesResult();
+        
+
+        StringBuilder qname = new StringBuilder();
+        for (MofPackage modelPackage : modelPackages) {        
+            ModelPartition mp = ((Partitionable) modelPackage).get___Partition();
+            for (Partitionable p : mp.getElements()) {
+                RefObject element;
+                if (p instanceof RefObject) {
+                    element = (RefObject) p;
+                } else {
+                    continue;
+                }
+                if (element instanceof ModelElement) {
+                    ModelElement me = (ModelElement) element;
+    
+                    String name = me.getName();
+                    qname.setLength(0);
+                    List<String> qnamelist = ((ModelElementInternal) me).getQualifiedName( connection );
+                    for (Iterator<String> it = qnamelist.iterator(); it.hasNext();) {
+                        qname.append(it.next());
+                        if (it.hasNext()) {
+                            qname.append(PATHSEP);
+                        }
+                    }
+                    List<ModelElement> elements = result.modelElementsByName.get(name);
+                    if (elements == null) {
+                        elements = new ArrayList<ModelElement>();
+                        result.modelElementsByName.put(name, elements);
+                    }
+                    // TODO why do we encounter "Package" twice, for example?
+                    if (!elements.contains(me)) {
+                        elements.add(me);
+                    }
+                    result.modelElementsByOclQualifiedName.put(qname.toString(), me);
+    
+                }
+            }
+        }
+        return result;
     }
 
     public Object evaluateExpression( RefObject context ) throws OclManagerException {
