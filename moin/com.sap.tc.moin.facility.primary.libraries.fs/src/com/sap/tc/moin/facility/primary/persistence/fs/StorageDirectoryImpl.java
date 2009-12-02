@@ -159,7 +159,7 @@ public class StorageDirectoryImpl extends AbstractStorageImpl implements IpiStor
             throw new MoinLocalizedBaseRuntimeException( PersistenceFsMessages.FOLDER_DOES_NOT_EXIST, this.getSourcePath( ) );
         }
         String canonicalSourcePath = sourcePathFolder.getCanonicalPath( );
-        String pathToCreate = canonicalSourcePath + "\\" + relativePath; //$NON-NLS-1$
+        String pathToCreate = canonicalSourcePath + File.separator + relativePath; //$NON-NLS-1$
 
         // use java.io means to determine the canonical path
         // (possibly already existing parts of the path are converted to their actual case)

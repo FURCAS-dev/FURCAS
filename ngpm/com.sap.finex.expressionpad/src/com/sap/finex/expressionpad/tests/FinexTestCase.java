@@ -44,7 +44,7 @@ public abstract class FinexTestCase extends TestCase {
         Set<Object> found = new HashSet<Object>();
         assertEquals("Expected same size of "+multiObjectOfNativeObjects+" and "+expected+" but were "+
         	multiObjectOfNativeObjects.size()+" and "+expected.length+", respectively",
-        	multiObjectOfNativeObjects.size(), expected.length);
+        	expected.length, multiObjectOfNativeObjects.size());
         for (RunletObject<Field, Type, FinexClass> o : multiObjectOfNativeObjects) {
             if (o.size() > 0) { // not empty object?
         	found.add(((FinexNativeObject) o).getNativeObject());

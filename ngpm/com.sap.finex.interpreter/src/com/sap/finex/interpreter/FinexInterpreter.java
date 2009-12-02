@@ -12,6 +12,7 @@ import structure.Type;
 import behavior.actions.ExpressionStatement;
 import behavior.actions.Statement;
 import behavior.expressions.Alias;
+import behavior.expressions.All;
 import behavior.expressions.BinaryBooleanOperator;
 import behavior.expressions.BinaryNumericOperator;
 import behavior.expressions.Count;
@@ -37,6 +38,7 @@ import behavior.expressions.literals.StringLiteral;
 import behavior.functions.NativeImpl;
 import behavior.functions.SignatureImplementation;
 
+import com.sap.finex.interpreter.expressions.AllInterpreter;
 import com.sap.finex.interpreter.expressions.BinaryBooleanOperatorInterpreter;
 import com.sap.finex.interpreter.expressions.BinaryLiteralInterpreter;
 import com.sap.finex.interpreter.expressions.BinaryNumericOperatorInterpreter;
@@ -79,8 +81,7 @@ public class FinexInterpreter
 	    Connection conn,
 	    Repository<Association, Field, FinexClass, Type, FinexClass> repository) {
 	super(conn, repository, new FinexModelAdapter(), new NativeInterpreterFactory(), new FinexLinkContainer(
-		Activator.getDefault().getModelAdapter(),
-		new FinexInMemoryRepository(Activator.getDefault().getModelAdapter())));
+		Activator.getDefault().getModelAdapter(), repository));
     }
 
     /**
@@ -162,6 +163,8 @@ public class FinexInterpreter
 		conn.getClass(MultiObjectLiteral.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(NumericAggregateInterpreter.class, 
 		conn.getClass(NumericAggregate.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(AllInterpreter.class, 
+		conn.getClass(All.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override

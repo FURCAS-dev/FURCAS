@@ -136,4 +136,39 @@ public class GeneralTests extends FinexTestCase {
         assertNOEquals(2l, result[1]);
         assertNOEquals(3l, result[2]);
     }
+
+    public void testComplexPathExpressionWithAliasInTheMiddle() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "[create SalesOrder(.Type: \"Type1\", .SOItem: ["+
+              "create SOItem(.Quantity: 1., .Product: create Product(.Color: \"Blue\"), .Price: 10.), "+
+              "create SOItem(.Quantity: 2., .Product: create Product(.Color: \"Green\"), .Price: 22.)]),"+
+             "create SalesOrder(.Type: \"Type1\", .SOItem: ["+
+              "create SOItem(.Quantity: 1., .Product: create Product(.Color: \"Blue\"), .Price: 10.), "+
+              "create SOItem(.Quantity: 3., .Product: create Product(.Color: \"Blue\"), .Price: 33.)]), "+
+             "create SalesOrder(.Type: \"Type2\", .SOItem: ["+
+              "create SOItem(.Quantity: 1., .Product: create Product(.Color: \"Blue\"), .Price: 10.), "+
+              "create SOItem(.Quantity: 4., .Product: create Product(.Color: \"Yellow\"), .Price: 44.)])]"+
+                    "[.Type==\"Type1\"].SOItem AS i.Product[.Color==\"Blue\"].(item: i).item.Price");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(10), new Fraction(33), new Fraction(10) }, result[0]);
+    }
+
+    public void testSimpleAll() throws Exception {
+	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "create Product(.Color: \"Blue\")",
+            "create Product(.Color: \"Green\")",
+            "create Product(.Color: \"Yellow\")",
+            "create Product(.Color: \"Red\")",
+            "all Product.Color");
+	RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(5, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] {
+        	"Blue", "Red", "Green", "Yellow" }, result[4]);
+    }
 }

@@ -15,7 +15,7 @@ public class FinexTreeLabelProvider implements TextLabelProvider {
     @Override
     public String getText(Object treenode) {
 	StringBuilder result = new StringBuilder();
-	if (treenode instanceof TreeNodeRefObject) {
+	if (treenode instanceof TreeNodeRefObject<?>) {
 	    TreeNodeRefObject<?> node = (TreeNodeRefObject<?>) treenode;
 	    if (node instanceof GenericRefObjectNode) {
 		String nodeRoleName = ((GenericRefObjectNode) node).getRoleName();

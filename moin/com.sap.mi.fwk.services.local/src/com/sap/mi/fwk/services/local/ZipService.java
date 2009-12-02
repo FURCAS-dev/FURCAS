@@ -91,7 +91,7 @@ public class ZipService {
 			if (en.isDirectory()) {
 				File dir = new File(en.getName());
 				if (!dir.isAbsolute()) {
-					String odirn = targetDirectory.getAbsolutePath() + "\\" + en.getName();//$NON-NLS-1$
+					String odirn = targetDirectory.getAbsolutePath() + File.separator + en.getName();
 					dir = new File(odirn);
 				}
 				dir.mkdirs();
@@ -99,7 +99,7 @@ public class ZipService {
 				String fn = en.getName();
 				InputStream is;
 				is = f.getInputStream(en);
-				String ofn = targetDirectory.getAbsoluteFile() + "\\" + fn;//$NON-NLS-1$
+				String ofn = targetDirectory.getAbsoluteFile() + File.separator + fn;
 				File on = new File(ofn);
 				on.getPath();
 				File pth = new File(on.getParent());

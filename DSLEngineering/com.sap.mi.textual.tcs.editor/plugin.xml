@@ -41,5 +41,12 @@
             objectClass="tcs.ConcreteSyntax">
       </association>
    </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            dynamicParserFactoryClass="com.sap.mi.tcs.parser.TcsParserFactory"
+            languageID="TCS">
+      </configuration>
+   </extension>
 
 </plugin>

@@ -7,10 +7,8 @@
 <M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
-<M c='1' q='textblocks.TextBlockType' i='480716BCBE2DC5530C5F11DD93AC00016CE99C52' se='1' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
 <M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
-<M c='1' q='textblocks.LexedToken_Referenes_SequenceElement' i='48CA4A733499C26080B911DDB0940018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='structure.FinexClass' i='E0001D0A1ADC24A8B1B711DEA3C100155883529C'/>
 <structure.FinexClass m:c='2' m:i='E0367719E71C7230B1BD11DECA2D00155883529C' name='Binary' valueType='true'/>
 <textblocks.TextBlock m:c='1' m:i='E0E14F86EA3D8850B1BD11DECE2400155883529C' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='21' offsetRelative='false' isComplete='true' cachedString='value Binary:&#10;:Binary'/>
@@ -37,14 +35,4 @@
 <textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
 <L f='E0367719E71C7230B1BD11DECA2D00155883529C' s='E0E14F86EA3D8850B1BD11DECE2400155883529C'/>
 </textblocks.DocumentNode_References_CorrespondingModelElement>
-<textblocks.TextBlockType c='1'>
-<L f='local:E02C978BF2D45990DAA711DEAA1B00155883529C' s='E0E14F86EA3D8850B1BD11DECE2400155883529C'/>
-</textblocks.TextBlockType>
-<textblocks.LexedToken_Referenes_SequenceElement c='1'>
-<L f='E0E14F86EA3D8851B1BD11DEC26300155883529C' s='local:E02C978BF2F35342DAA711DEBE2100155883529C'/>
-<L f='E0E14F86EA3FD240B1BD11DE883300155883529C' s='local:E02C978BF2FA7F38DAA711DE828800155883529C'/>
-<L f='E0E14F86EA3FD242B1BD11DEC29700155883529C' s='local:E02C978BF2F5C440DAA711DEC6E300155883529C'/>
-<L f='E0E14F86EA3FD245B1BD11DE8A6F00155883529C' s='local:E02C978BF2FA7F31DAA711DEA1D400155883529C'/>
-<L f='E0E14F86EA3FD246B1BD11DE9F2300155883529C' s='local:E02C978BF2E76C60DAA711DEC67B00155883529C'/>
-</textblocks.LexedToken_Referenes_SequenceElement>
 </Partition>

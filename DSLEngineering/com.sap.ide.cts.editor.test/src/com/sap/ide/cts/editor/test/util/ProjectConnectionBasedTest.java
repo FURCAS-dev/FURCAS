@@ -2,6 +2,7 @@ package com.sap.ide.cts.editor.test.util;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashSet;
@@ -121,9 +122,8 @@ public abstract class ProjectConnectionBasedTest {
 	}
 	
 	private static void loadData(InputStream data, IProject project) throws IOException {
-		String zipFilename = FileServices.getTempDir() + "moin_sample_data.zip"; //$NON-NLS-1$
-		FileServices.streamToFile(FileServices.getTempDir()
-				+ "moin_sample_data.zip", data); //$NON-NLS-1$
+		String zipFilename = FileServices.getTempDir() + File.separator + "moin_sample_data.zip"; //$NON-NLS-1$
+		FileServices.streamToFile(zipFilename, data); //$NON-NLS-1$
 		
 		// unzip into the project directory:
 		String targetDirectory = project.getLocation().toOSString();

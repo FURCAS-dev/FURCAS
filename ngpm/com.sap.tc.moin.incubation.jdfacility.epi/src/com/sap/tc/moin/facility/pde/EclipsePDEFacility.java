@@ -96,14 +96,14 @@ public class EclipsePDEFacility extends FileSystemFacility {
     protected static String grantIndexBasePath( ) {
 
         String wsdir = ResourcesPlugin.getWorkspace( ).getRoot( ).getLocation( ).toOSString( );
-        wsdir = wsdir + "\\.metadata\\.plugins\\com.sap.tc.moin.facility.primary"; //$NON-NLS-1$
+        wsdir = wsdir + File.separator + ".metadata" + File.separator + ".plugins" + File.separator + "com.sap.tc.moin.facility.primary"; //$NON-NLS-1$
         assureDirExists( wsdir );
         return wsdir;
     }
 
     private static String getIndexLocation( ) {
 
-        String wsfile = grantIndexBasePath( ) + "\\moin_fsidx.dat"; //$NON-NLS-1$
+        String wsfile = grantIndexBasePath( ) + File.separator + "moin_fsidx.dat"; //$NON-NLS-1$
         return wsfile;
     }
 }

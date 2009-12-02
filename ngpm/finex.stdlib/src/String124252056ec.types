@@ -7,10 +7,8 @@
 <M c='1' q='textblocks.OmittedToken' i='480716BCBE2DC5430C5F11DD998800016CE99C52'/>
 <M c='1' q='textblocks.TextBlock_Contains_Tokens' i='480716BCBE2DC5460C5F11DD92F600016CE99C52' se='1' ce='1' oe='0'/>
 <M c='1' q='textblocks.DocumentNode_References_CorrespondingModelElement' i='480716BCBE2DC54C0C5F11DD9AE700016CE99C52' se='1' ce='-1' oe='0'/>
-<M c='1' q='textblocks.TextBlockType' i='480716BCBE2DC5530C5F11DD93AC00016CE99C52' se='1' ce='-1' oe='-1'/>
 <M c='1' q='textblocks.EOSToken' i='48905AE9EB52DBA05E3011DD907900016CE99C52'/>
 <M c='1' q='textblocks.BOSToken' i='48905AF7F403BDF05E3011DD9CB200016CE99C52'/>
-<M c='1' q='textblocks.LexedToken_Referenes_SequenceElement' i='48CA4A733499C26080B911DDB0940018DE1146FF' se='0' ce='-1' oe='-1'/>
 <M c='2' q='structure.FinexClass' i='E0001D0A1ADC24A8B1B711DEA3C100155883529C'/>
 <textblocks.TextBlock m:c='1' m:i='E012BF1EDA554450B1BD11DEC2FF00155883529C' childrenChanged='true' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='0' length='21' offsetRelative='false' isComplete='true' cachedString='value String:&#10;:String'/>
 <textblocks.OmittedToken m:c='1' m:i='E012BF1EDA554451B1BD11DEB5A700155883529C' childrenChanged='false' version='REFERENCE' relexingNeeded='false' startRow='0' startColumn='0' endRow='0' endColumn='0' offset='5' length='1' offsetRelative='true' value=' ' lookahead='1' lookback='1' state='0' type='31'/>
@@ -37,14 +35,4 @@
 <textblocks.DocumentNode_References_CorrespondingModelElement c='1'>
 <L f='E036771952BFC0C0B1BC11DE8D4800155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
 </textblocks.DocumentNode_References_CorrespondingModelElement>
-<textblocks.TextBlockType c='1'>
-<L f='local:E02C978BF2D45990DAA711DEAA1B00155883529C' s='E012BF1EDA554450B1BD11DEC2FF00155883529C'/>
-</textblocks.TextBlockType>
-<textblocks.LexedToken_Referenes_SequenceElement c='1'>
-<L f='E012BF1EDA554452B1BD11DE917C00155883529C' s='local:E02C978BF2FA7F38DAA711DE828800155883529C'/>
-<L f='E012BF1EDA554453B1BD11DE908000155883529C' s='local:E02C978BF2E76C60DAA711DEC67B00155883529C'/>
-<L f='E012BF1EDA554455B1BD11DE8C3800155883529C' s='local:E02C978BF2F5C440DAA711DEC6E300155883529C'/>
-<L f='E012BF1EDA554456B1BD11DE821800155883529C' s='local:E02C978BF2F35342DAA711DEBE2100155883529C'/>
-<L f='E012BF1EDA554458B1BD11DE8B2B00155883529C' s='local:E02C978BF2FA7F31DAA711DEA1D400155883529C'/>
-</textblocks.LexedToken_Referenes_SequenceElement>
 </Partition>
