@@ -4,30 +4,33 @@
  *
  * $Id$
  */
-package oclOperator.impl;
+package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import oclOperator.OclOperatorPackage;
-import oclOperator.OclUtil;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.resource.Resource;
+
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
-import org.eclipse.ocl.ecore.OCL;
 import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +41,6 @@ import org.eclipse.ocl.ParserException;
  *
  * @generated
  */
-
 public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	/**
 	 * <!-- begin-user-doc -->
@@ -61,11 +63,6 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		return OclOperatorPackage.Literals.OCL_UTIL;
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 */
 	public IQueryResult executeQueryOn(String completeConstraint, Resource resource) {
 		
 		Pattern pattern=Pattern.compile(regex);

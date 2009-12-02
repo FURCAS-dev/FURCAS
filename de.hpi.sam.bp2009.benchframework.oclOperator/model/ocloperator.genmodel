@@ -5,7 +5,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     usedGenPackages="../../de.hpi.sam.bp2009.benchframework/model/benchframework.genmodel#//benchframework">
   <foreignModel>ocloperator.ecore</foreignModel>
-  <genPackages prefix="OclOperator" disposableProviderFactory="true" ecorePackage="ocloperator.ecore#/">
+  <genPackages prefix="OclOperator" basePackage="de.hpi.sam.bp2009.benchframework"
+      disposableProviderFactory="true" ecorePackage="ocloperator.ecore#/">
     <genDataTypes ecoreDataType="ocloperator.ecore#//IQueryResult"/>
     <genClasses ecoreClass="ocloperator.ecore#//OclOperator">
       <genOperations ecoreOperation="ocloperator.ecore#//OclOperator/execute">

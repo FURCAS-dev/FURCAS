@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package oclOperator.impl;
+package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
 
-import oclOperator.OclOperator;
-import oclOperator.OclOperatorPackage;
-import oclOperator.OclOptionObject;
-import oclOperator.OclUtil;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 import org.eclipse.emf.ecore.EClass;
 
@@ -46,6 +46,12 @@ public class OclOperatorImpl extends OperatorImpl implements OclOperator {
 		return OclOperatorPackage.Literals.OCL_OPERATOR;
 	}
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 */
+	
 	public void execute(Resource resource, Object option) {
 		if (option instanceof OclOptionObject){
 			executeQueries(resource, (OclOptionObject) option);

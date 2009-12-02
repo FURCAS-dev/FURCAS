@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclOperator;
+package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see oclOperator.OclOperatorPackage
+ * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage
  * @generated
  */
 public interface OclOperatorFactory extends EFactory {
@@ -23,7 +23,7 @@ public interface OclOperatorFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OclOperatorFactory eINSTANCE = oclOperator.impl.OclOperatorFactoryImpl.init();
+	OclOperatorFactory eINSTANCE = de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Ocl Operator</em>'.

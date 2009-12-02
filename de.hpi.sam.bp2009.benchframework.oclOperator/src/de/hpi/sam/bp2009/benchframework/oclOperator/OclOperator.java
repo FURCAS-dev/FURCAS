@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclOperator;
+package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <!-- end-user-doc -->
  *
  *
- * @see oclOperator.OclOperatorPackage#getOclOperator()
+ * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage#getOclOperator()
  * @model
  * @generated
  */

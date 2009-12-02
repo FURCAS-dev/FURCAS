@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package oclOperator.impl;
+package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import oclOperator.*;
+import de.hpi.sam.bp2009.benchframework.oclOperator.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;

@@ -4,14 +4,14 @@
  *
  * $Id$
  */
-package oclOperator.util;
+package de.hpi.sam.bp2009.benchframework.oclOperator.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
-
 import de.hpi.sam.bp2009.benchframework.OptionObject;
-import java.util.List;
 
-import oclOperator.*;
+import de.hpi.sam.bp2009.benchframework.oclOperator.*;
+
+import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see oclOperator.OclOperatorPackage
+ * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage
  * @generated
  */
 public class OclOperatorSwitch<T> {

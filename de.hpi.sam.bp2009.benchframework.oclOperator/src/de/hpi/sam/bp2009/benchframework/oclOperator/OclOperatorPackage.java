@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclOperator;
+package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see oclOperator.OclOperatorFactory
+ * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory
  * @model kind="package"
  * @generated
  */
@@ -58,14 +58,14 @@ public interface OclOperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	OclOperatorPackage eINSTANCE = oclOperator.impl.OclOperatorPackageImpl.init();
+	OclOperatorPackage eINSTANCE = de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link oclOperator.impl.OclOperatorImpl <em>Ocl Operator</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl <em>Ocl Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see oclOperator.impl.OclOperatorImpl
-	 * @see oclOperator.impl.OclOperatorPackageImpl#getOclOperator()
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclOperator()
 	 * @generated
 	 */
 	int OCL_OPERATOR = 0;
@@ -89,11 +89,11 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link oclOperator.impl.OclOptionObjectImpl <em>Ocl Option Object</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl <em>Ocl Option Object</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see oclOperator.impl.OclOptionObjectImpl
-	 * @see oclOperator.impl.OclOperatorPackageImpl#getOclOptionObject()
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclOptionObject()
 	 * @generated
 	 */
 	int OCL_OPTION_OBJECT = 1;
@@ -108,11 +108,11 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see oclOperator.impl.OclUtilImpl
-	 * @see oclOperator.impl.OclOperatorPackageImpl#getOclUtil()
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclUtil()
 	 * @generated
 	 */
 	int OCL_UTIL = 2;
@@ -131,38 +131,38 @@ public interface OclOperatorPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.query.statements.IQueryResult
-	 * @see oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
 	 * @generated
 	 */
 	int IQUERY_RESULT = 3;
 
 
 	/**
-	 * Returns the meta object for class '{@link oclOperator.OclOperator <em>Ocl Operator</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator <em>Ocl Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ocl Operator</em>'.
-	 * @see oclOperator.OclOperator
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator
 	 * @generated
 	 */
 	EClass getOclOperator();
 
 	/**
-	 * Returns the meta object for class '{@link oclOperator.OclOptionObject <em>Ocl Option Object</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject <em>Ocl Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ocl Option Object</em>'.
-	 * @see oclOperator.OclOptionObject
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject
 	 * @generated
 	 */
 	EClass getOclOptionObject();
 
 	/**
-	 * Returns the meta object for class '{@link oclOperator.OclUtil <em>Ocl Util</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil <em>Ocl Util</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Ocl Util</em>'.
-	 * @see oclOperator.OclUtil
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil
 	 * @generated
 	 */
 	EClass getOclUtil();
@@ -201,31 +201,31 @@ public interface OclOperatorPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link oclOperator.impl.OclOperatorImpl <em>Ocl Operator</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl <em>Ocl Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see oclOperator.impl.OclOperatorImpl
-		 * @see oclOperator.impl.OclOperatorPackageImpl#getOclOperator()
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclOperator()
 		 * @generated
 		 */
 		EClass OCL_OPERATOR = eINSTANCE.getOclOperator();
 
 		/**
-		 * The meta object literal for the '{@link oclOperator.impl.OclOptionObjectImpl <em>Ocl Option Object</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl <em>Ocl Option Object</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see oclOperator.impl.OclOptionObjectImpl
-		 * @see oclOperator.impl.OclOperatorPackageImpl#getOclOptionObject()
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclOptionObject()
 		 * @generated
 		 */
 		EClass OCL_OPTION_OBJECT = eINSTANCE.getOclOptionObject();
 
 		/**
-		 * The meta object literal for the '{@link oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see oclOperator.impl.OclUtilImpl
-		 * @see oclOperator.impl.OclOperatorPackageImpl#getOclUtil()
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclUtil()
 		 * @generated
 		 */
 		EClass OCL_UTIL = eINSTANCE.getOclUtil();
@@ -235,7 +235,7 @@ public interface OclOperatorPackage extends EPackage {
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.emf.query.statements.IQueryResult
-		 * @see oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
 		 * @generated
 		 */
 		EDataType IQUERY_RESULT = eINSTANCE.getIQueryResult();

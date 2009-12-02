@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package oclOperator;
+package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -18,7 +18,7 @@ import org.eclipse.emf.query.statements.IQueryResult;
  * <!-- end-user-doc -->
  *
  *
- * @see oclOperator.OclOperatorPackage#getOclUtil()
+ * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage#getOclUtil()
  * @model
  * @generated
  */
@@ -26,7 +26,7 @@ public interface OclUtil extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model dataType="oclOperator.IQueryResult"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.oclOperator.IQueryResult"
 	 * @generated
 	 */
 	IQueryResult executeQueryOn(String completeConstraint, Resource resource);

@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package oclOperator.util;
+package de.hpi.sam.bp2009.benchframework.oclOperator.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
-
 import de.hpi.sam.bp2009.benchframework.OptionObject;
-import oclOperator.*;
+
+import de.hpi.sam.bp2009.benchframework.oclOperator.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see oclOperator.OclOperatorPackage
+ * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage
  * @generated
  */
 public class OclOperatorAdapterFactory extends AdapterFactoryImpl {
@@ -115,13 +115,13 @@ public class OclOperatorAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link oclOperator.OclOperator <em>Ocl Operator</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator <em>Ocl Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see oclOperator.OclOperator
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator
 	 * @generated
 	 */
 	public Adapter createOclOperatorAdapter() {
@@ -129,13 +129,13 @@ public class OclOperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link oclOperator.OclOptionObject <em>Ocl Option Object</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject <em>Ocl Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see oclOperator.OclOptionObject
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject
 	 * @generated
 	 */
 	public Adapter createOclOptionObjectAdapter() {
@@ -143,13 +143,13 @@ public class OclOperatorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link oclOperator.OclUtil <em>Ocl Util</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil <em>Ocl Util</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see oclOperator.OclUtil
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil
 	 * @generated
 	 */
 	public Adapter createOclUtilAdapter() {

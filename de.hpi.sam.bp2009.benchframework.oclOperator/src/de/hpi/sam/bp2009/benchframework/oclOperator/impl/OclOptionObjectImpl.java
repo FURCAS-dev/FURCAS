@@ -4,13 +4,13 @@
  *
  * $Id$
  */
-package oclOperator.impl;
-
-import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
-import oclOperator.OclOperatorPackage;
-import oclOperator.OclOptionObject;
+package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
+import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,8 +27,6 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	 * <!-- end-user-doc -->
 	 * 
 	 */
-	
-	
 	public OclOptionObjectImpl() {
 		
 	}

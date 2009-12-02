@@ -4,15 +4,15 @@
  *
  * $Id$
  */
-package oclOperator.impl;
+package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
-import oclOperator.OclOperator;
-import oclOperator.OclOperatorFactory;
-import oclOperator.OclOperatorPackage;
-import oclOperator.OclOptionObject;
-import oclOperator.OclUtil;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -69,7 +69,7 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see oclOperator.OclOperatorPackage#eNS_URI
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
