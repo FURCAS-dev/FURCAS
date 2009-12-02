@@ -5,7 +5,8 @@
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
     usedGenPackages="../../de.hpi.sam.bp2009.benchframework/model/benchframework.genmodel#//benchframework">
   <foreignModel>XMLResultProcessor.ecore</foreignModel>
-  <genPackages prefix="Xmlresultprocessor" disposableProviderFactory="true" ecorePackage="XMLResultProcessor.ecore#/">
+  <genPackages prefix="Xmlresultprocessor" basePackage="de.hpi.sam.bp2009.benchframework"
+      disposableProviderFactory="true" ecorePackage="XMLResultProcessor.ecore#/">
     <genClasses ecoreClass="XMLResultProcessor.ecore#//XMLResultProcessor"/>
   </genPackages>
 </genmodel:GenModel>

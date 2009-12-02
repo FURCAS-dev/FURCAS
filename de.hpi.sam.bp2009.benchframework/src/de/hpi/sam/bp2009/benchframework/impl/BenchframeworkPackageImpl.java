@@ -16,6 +16,7 @@ import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
+import de.hpi.sam.bp2009.benchframework.UserInterface;
 import java.io.OutputStream;
 
 import org.eclipse.emf.ecore.EClass;
@@ -82,6 +83,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	private EClass benchMarkerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass userInterfaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,6 +209,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEngine_UserInterfaces() {
+		return (EReference)engineEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOperator() {
 		return operatorEClass;
 	}
@@ -282,6 +299,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getUserInterface() {
+		return userInterfaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getOutputStream() {
 		return outputStreamEDataType;
 	}
@@ -319,6 +345,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEReference(engineEClass, ENGINE__RESULTS);
 		createEReference(engineEClass, ENGINE__GENERATORS);
 		createEReference(engineEClass, ENGINE__BENCH_MARKERS);
+		createEReference(engineEClass, ENGINE__USER_INTERFACES);
 
 		operatorEClass = createEClass(OPERATOR);
 		createEReference(operatorEClass, OPERATOR__DEFAULT_OPTION);
@@ -334,6 +361,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		benchMarkerEClass = createEClass(BENCH_MARKER);
 		createEReference(benchMarkerEClass, BENCH_MARKER__RESULT);
+
+		userInterfaceEClass = createEClass(USER_INTERFACE);
 
 		// Create data types
 		outputStreamEDataType = createEDataType(OUTPUT_STREAM);
@@ -374,6 +403,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEReference(getEngine_Results(), this.getResultProcessor(), null, "results", null, 0, -1, Engine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEngine_Generators(), this.getGenerator(), null, "generators", null, 0, -1, Engine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getEngine_BenchMarkers(), this.getBenchMarker(), null, "benchMarkers", null, 0, -1, Engine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEngine_UserInterfaces(), this.getUserInterface(), null, "userInterfaces", null, 0, -1, Engine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(engineEClass, null, "benchmark", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOutputStream(), "outputStream", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -422,12 +452,22 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		initEClass(benchMarkerEClass, BenchMarker.class, "BenchMarker", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(benchMarkerEClass, BenchMarker.class, "BenchMarker", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getBenchMarker_Result(), this.getResultObject(), null, "result", null, 0, 1, BenchMarker.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(benchMarkerEClass, null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		addEOperation(benchMarkerEClass, null, "end", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(userInterfaceEClass, null, "startUI", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType();
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		// Initialize data types
 		initEDataType(outputStreamEDataType, OutputStream.class, "OutputStream", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

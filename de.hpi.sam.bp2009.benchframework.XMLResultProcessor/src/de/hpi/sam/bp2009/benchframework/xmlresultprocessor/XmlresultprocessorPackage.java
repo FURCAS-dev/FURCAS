@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package xmlresultprocessor;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
@@ -22,7 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see xmlresultprocessor.XmlresultprocessorFactory
+ * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorFactory
  * @model kind="package"
  * @generated
  */
@@ -57,14 +57,14 @@ public interface XmlresultprocessorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	XmlresultprocessorPackage eINSTANCE = xmlresultprocessor.impl.XmlresultprocessorPackageImpl.init();
+	XmlresultprocessorPackage eINSTANCE = de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XmlresultprocessorPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link xmlresultprocessor.impl.XMLResultProcessorImpl <em>XML Result Processor</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XMLResultProcessorImpl <em>XML Result Processor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see xmlresultprocessor.impl.XMLResultProcessorImpl
-	 * @see xmlresultprocessor.impl.XmlresultprocessorPackageImpl#getXMLResultProcessor()
+	 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XMLResultProcessorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XmlresultprocessorPackageImpl#getXMLResultProcessor()
 	 * @generated
 	 */
 	int XML_RESULT_PROCESSOR = 0;
@@ -80,11 +80,11 @@ public interface XmlresultprocessorPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link xmlresultprocessor.XMLResultProcessor <em>XML Result Processor</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XMLResultProcessor <em>XML Result Processor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for class '<em>XML Result Processor</em>'.
-	 * @see xmlresultprocessor.XMLResultProcessor
+	 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XMLResultProcessor
 	 * @generated
 	 */
 	EClass getXMLResultProcessor();
@@ -112,11 +112,11 @@ public interface XmlresultprocessorPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link xmlresultprocessor.impl.XMLResultProcessorImpl <em>XML Result Processor</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XMLResultProcessorImpl <em>XML Result Processor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see xmlresultprocessor.impl.XMLResultProcessorImpl
-		 * @see xmlresultprocessor.impl.XmlresultprocessorPackageImpl#getXMLResultProcessor()
+		 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XMLResultProcessorImpl
+		 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XmlresultprocessorPackageImpl#getXMLResultProcessor()
 		 * @generated
 		 */
 		EClass XML_RESULT_PROCESSOR = eINSTANCE.getXMLResultProcessor();

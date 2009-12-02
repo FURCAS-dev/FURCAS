@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://de.hpi.sam.benchframework.xmlresultprocessor"
-            class="xmlresultprocessor.XmlresultprocessorPackage"
+            class="de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage"
             genModel="model/XMLResultProcessor.genmodel"/>
    </extension>
 

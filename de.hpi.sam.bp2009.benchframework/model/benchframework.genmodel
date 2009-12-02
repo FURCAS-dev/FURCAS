@@ -12,6 +12,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/operators"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/results"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/generators"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/benchMarkers"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/userInterfaces"/>
+      <genOperations ecoreOperation="benchframework.ecore#//Engine/benchmark">
+        <genParameters ecoreParameter="benchframework.ecore#//Engine/benchmark/outputStream"/>
+      </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="benchframework.ecore#//Operator">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Operator/defaultOption"/>
@@ -27,17 +32,29 @@
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="benchframework.ecore#//ResultProcessor">
-      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/add">
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/add/resource"/>
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/add/generatorOption"/>
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/add/operatorOption"/>
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/add/result"/>
+      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/addRun">
+        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/resource"/>
+        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/generatorOption"/>
+        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/operatorOption"/>
+        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/benchmarker"/>
       </genOperations>
-      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/show">
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/show/out"/>
+      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/streamTo">
+        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/streamTo/out"/>
       </genOperations>
     </genClasses>
-    <genClasses ecoreClass="benchframework.ecore#//OptionObject"/>
-    <genClasses ecoreClass="benchframework.ecore#//ResultObject"/>
+    <genClasses ecoreClass="benchframework.ecore#//OptionObject">
+      <genOperations ecoreOperation="benchframework.ecore#//OptionObject/getPropertyMap"/>
+    </genClasses>
+    <genClasses ecoreClass="benchframework.ecore#//ResultObject">
+      <genOperations ecoreOperation="benchframework.ecore#//ResultObject/getPropertyMap"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="benchframework.ecore#//BenchMarker">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//BenchMarker/result"/>
+      <genOperations ecoreOperation="benchframework.ecore#//BenchMarker/start"/>
+      <genOperations ecoreOperation="benchframework.ecore#//BenchMarker/end"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="benchframework.ecore#//UserInterface">
+      <genOperations ecoreOperation="benchframework.ecore#//UserInterface/startUI"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

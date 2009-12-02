@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Engine#getResults <em>Results</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Engine#getGenerators <em>Generators</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Engine#getBenchMarkers <em>Bench Markers</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.Engine#getUserInterfaces <em>User Interfaces</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,6 +95,22 @@ public interface Engine extends EObject {
 	 * @generated
 	 */
 	EList<BenchMarker> getBenchMarkers();
+
+	/**
+	 * Returns the value of the '<em><b>User Interfaces</b></em>' reference list.
+	 * The list contents are of type {@link de.hpi.sam.bp2009.benchframework.UserInterface}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User Interfaces</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>User Interfaces</em>' reference list.
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getEngine_UserInterfaces()
+	 * @model
+	 * @generated
+	 */
+	EList<UserInterface> getUserInterfaces();
 
 	/**
 	 * <!-- begin-user-doc -->

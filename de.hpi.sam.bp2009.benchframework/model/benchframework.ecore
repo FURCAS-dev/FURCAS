@@ -15,6 +15,8 @@
         eType="#//Generator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="benchMarkers" upperBound="-1"
         eType="#//BenchMarker"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="userInterfaces" upperBound="-1"
+        eType="#//UserInterface"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true">
     <eOperations name="execute">
@@ -57,9 +59,17 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="OutputStream" instanceClassName="java.io.OutputStream"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BenchMarker">
+  <eClassifiers xsi:type="ecore:EClass" name="BenchMarker" abstract="true">
     <eOperations name="start"/>
     <eOperations name="end"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//ResultObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
+    <eOperations name="startUI">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments/>
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
   </eClassifiers>
 </ecore:EPackage>

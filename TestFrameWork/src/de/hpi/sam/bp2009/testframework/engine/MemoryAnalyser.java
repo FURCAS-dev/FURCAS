@@ -4,7 +4,6 @@
 package de.hpi.sam.bp2009.testframework.engine;
 
 import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * @author tobias.hoppe

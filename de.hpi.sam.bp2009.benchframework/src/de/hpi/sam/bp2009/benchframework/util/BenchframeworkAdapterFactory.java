@@ -100,6 +100,10 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 				return createBenchMarkerAdapter();
 			}
 			@Override
+			public Adapter caseUserInterface(UserInterface object) {
+				return createUserInterfaceAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -214,6 +218,20 @@ public class BenchframeworkAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBenchMarkerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.UserInterface <em>User Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.UserInterface
+	 * @generated
+	 */
+	public Adapter createUserInterfaceAdapter() {
 		return null;
 	}
 

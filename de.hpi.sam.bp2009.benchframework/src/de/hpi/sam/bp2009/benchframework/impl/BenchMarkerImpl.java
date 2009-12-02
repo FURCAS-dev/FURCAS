@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class BenchMarkerImpl extends EObjectImpl implements BenchMarker {
+public abstract class BenchMarkerImpl extends EObjectImpl implements BenchMarker {
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
 	 * <!-- begin-user-doc -->

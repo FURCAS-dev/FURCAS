@@ -66,7 +66,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 			case BenchframeworkPackage.ENGINE: return createEngine();
 			case BenchframeworkPackage.OPTION_OBJECT: return createOptionObject();
 			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
-			case BenchframeworkPackage.BENCH_MARKER: return createBenchMarker();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -130,16 +129,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public ResultObject createResultObject() {
 		ResultObjectImpl resultObject = new ResultObjectImpl();
 		return resultObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public BenchMarker createBenchMarker() {
-		BenchMarkerImpl benchMarker = new BenchMarkerImpl();
-		return benchMarker;
 	}
 
 	/**

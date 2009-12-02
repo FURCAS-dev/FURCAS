@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package xmlresultprocessor.impl;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl;
 
 import java.io.OutputStream;
 import java.util.Map;
@@ -24,13 +24,13 @@ import de.hpi.sam.bp2009.benchframework.BenchMarker;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl;
 
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XMLResultProcessor;
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-
-import xmlresultprocessor.XMLResultProcessor;
-import xmlresultprocessor.XmlresultprocessorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,7 +56,7 @@ public class XMLResultProcessorImpl extends ResultProcessorImpl implements XMLRe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public XMLResultProcessorImpl() {
+	protected XMLResultProcessorImpl() {
 		super();
 	}
 
@@ -69,6 +69,7 @@ public class XMLResultProcessorImpl extends ResultProcessorImpl implements XMLRe
 	protected EClass eStaticClass() {
 		return XmlresultprocessorPackage.Literals.XML_RESULT_PROCESSOR;
 	}
+	
 	@Override
 	public boolean addRun(Resource resource, OptionObject generatorOption,
 			OptionObject operatorOption, BenchMarker benchmarker) {
@@ -95,7 +96,7 @@ public class XMLResultProcessorImpl extends ResultProcessorImpl implements XMLRe
 		document.appendChild(em);
 		return true;
 	}
-
+	
 	private Element generatePropertyMap(String parentName, String childName, Map<?, ?> map) {
 		Element genOptElement=document.createElement(parentName);
 		for(Entry<?, ?> entry:map.entrySet()){

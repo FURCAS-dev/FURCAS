@@ -21,7 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getBenchMarker()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface BenchMarker extends EObject {

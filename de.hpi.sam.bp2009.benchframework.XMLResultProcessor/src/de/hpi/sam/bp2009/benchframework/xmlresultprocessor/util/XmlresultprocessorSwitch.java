@@ -4,16 +4,16 @@
  *
  * $Id$
  */
-package xmlresultprocessor.util;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor.util;
 
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.*;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-import xmlresultprocessor.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +25,7 @@ import xmlresultprocessor.*;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see xmlresultprocessor.XmlresultprocessorPackage
+ * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage
  * @generated
  */
 public class XmlresultprocessorSwitch<T> {

@@ -4,9 +4,11 @@
  *
  * $Id$
  */
-package xmlresultprocessor.util;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor.util;
 
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -15,14 +17,12 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import xmlresultprocessor.*;
-
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see xmlresultprocessor.XmlresultprocessorPackage
+ * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage
  * @generated
  */
 public class XmlresultprocessorAdapterFactory extends AdapterFactoryImpl {
@@ -102,13 +102,13 @@ public class XmlresultprocessorAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link xmlresultprocessor.XMLResultProcessor <em>XML Result Processor</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XMLResultProcessor <em>XML Result Processor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see xmlresultprocessor.XMLResultProcessor
+	 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XMLResultProcessor
 	 * @generated
 	 */
 	public Adapter createXMLResultProcessorAdapter() {

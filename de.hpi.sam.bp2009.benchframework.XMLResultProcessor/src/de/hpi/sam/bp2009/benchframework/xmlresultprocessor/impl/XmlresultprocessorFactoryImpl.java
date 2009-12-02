@@ -4,7 +4,9 @@
  *
  * $Id$
  */
-package xmlresultprocessor.impl;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl;
+
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -13,8 +15,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import xmlresultprocessor.*;
 
 /**
  * <!-- begin-user-doc -->

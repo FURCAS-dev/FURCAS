@@ -4,18 +4,18 @@
  *
  * $Id$
  */
-package xmlresultprocessor.impl;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XMLResultProcessor;
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorFactory;
+import de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import xmlresultprocessor.XMLResultProcessor;
-import xmlresultprocessor.XmlresultprocessorFactory;
-import xmlresultprocessor.XmlresultprocessorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,7 +42,7 @@ public class XmlresultprocessorPackageImpl extends EPackageImpl implements Xmlre
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see xmlresultprocessor.XmlresultprocessorPackage#eNS_URI
+	 * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */

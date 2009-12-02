@@ -106,13 +106,22 @@ public interface BenchframeworkPackage extends EPackage {
 	int ENGINE__BENCH_MARKERS = 3;
 
 	/**
+	 * The feature id for the '<em><b>User Interfaces</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENGINE__USER_INTERFACES = 4;
+
+	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENGINE_FEATURE_COUNT = 4;
+	int ENGINE_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl <em>Operator</em>}' class.
@@ -256,6 +265,25 @@ public interface BenchframeworkPackage extends EPackage {
 	int BENCH_MARKER_FEATURE_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUserInterface()
+	 * @generated
+	 */
+	int USER_INTERFACE = 7;
+
+	/**
+	 * The number of structural features of the '<em>User Interface</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE_FEATURE_COUNT = 0;
+
+	/**
 	 * The meta object id for the '<em>Output Stream</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -263,7 +291,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOutputStream()
 	 * @generated
 	 */
-	int OUTPUT_STREAM = 7;
+	int OUTPUT_STREAM = 8;
 
 
 	/**
@@ -319,6 +347,17 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEngine_BenchMarkers();
+
+	/**
+	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getUserInterfaces <em>User Interfaces</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>User Interfaces</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Engine#getUserInterfaces()
+	 * @see #getEngine()
+	 * @generated
+	 */
+	EReference getEngine_UserInterfaces();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
@@ -414,6 +453,16 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getBenchMarker_Result();
 
 	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.UserInterface <em>User Interface</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>User Interface</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.UserInterface
+	 * @generated
+	 */
+	EClass getUserInterface();
+
+	/**
 	 * Returns the meta object for data type '{@link java.io.OutputStream <em>Output Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -487,6 +536,14 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENGINE__BENCH_MARKERS = eINSTANCE.getEngine_BenchMarkers();
+
+		/**
+		 * The meta object literal for the '<em><b>User Interfaces</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ENGINE__USER_INTERFACES = eINSTANCE.getEngine_UserInterfaces();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl <em>Operator</em>}' class.
@@ -571,6 +628,16 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EReference BENCH_MARKER__RESULT = eINSTANCE.getBenchMarker_Result();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUserInterface()
+		 * @generated
+		 */
+		EClass USER_INTERFACE = eINSTANCE.getUserInterface();
 
 		/**
 		 * The meta object literal for the '<em>Output Stream</em>' data type.

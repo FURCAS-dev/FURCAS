@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package xmlresultprocessor;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see xmlresultprocessor.XmlresultprocessorPackage
+ * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage
  * @generated
  */
 public interface XmlresultprocessorFactory extends EFactory {
@@ -23,7 +23,7 @@ public interface XmlresultprocessorFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	XmlresultprocessorFactory eINSTANCE = xmlresultprocessor.impl.XmlresultprocessorFactoryImpl.init();
+	XmlresultprocessorFactory eINSTANCE = de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl.XmlresultprocessorFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>XML Result Processor</em>'.

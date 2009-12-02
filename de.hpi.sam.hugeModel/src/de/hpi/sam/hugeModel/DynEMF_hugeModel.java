@@ -1,9 +1,6 @@
 package de.hpi.sam.hugeModel;
 import java.io.File;
 import java.io.IOException;
-import java.util.Collection;
-import java.util.Collections;
-
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
@@ -20,25 +17,63 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceFactoryImpl;
 
+//copyright für runtime measurement library: http://jetm.void.fm/license.html
+
+import etm.core.configuration.BasicEtmConfigurator;
+import etm.core.configuration.EtmManager;
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
+import etm.core.renderer.SimpleTextRenderer;
+
 
 public class DynEMF_hugeModel {
+	
+	private static EtmMonitor monitor;
+	private static final EtmMonitor etmMonitor = EtmManager.getEtmMonitor();
+		 
+	private static void setup() {
+		BasicEtmConfigurator.configure();
+		monitor = EtmManager.getEtmMonitor();
+		monitor.start();
+	}
+
+	private static void tearDown() {
+		monitor.stop();
+	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		boolean blowMetaModel = false;
-		int blowFactor = 730;
 		
+		setup();
+		
+		boolean blowMetaModel = false;
+		int blowFactor = 20000;
+		
+		EtmPoint point = etmMonitor.createPoint("DynEMF_hugeModel:main");
+
 		if (blowMetaModel) {
 			// out of memory error at about 73000
 			createHugeMetaModel(blowFactor);
 		} else {
 			// out of memory error at about 111000
 			createHugeModel(blowFactor);
+			createHugeModel(blowFactor);
+			createHugeModel(blowFactor);
+			createHugeModel(blowFactor);
 		}
+		point.collect();
+		
+		etmMonitor.render(new SimpleTextRenderer());
+
+		tearDown();
 	}
 	
 	private static void createHugeMetaModel(int blowFactor) {
+		
+		EtmPoint point = etmMonitor.createPoint("DynEMF_hugeModel:createHugeMetaModel");
+		
 		// set up all the packages and factories
 		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
 		EcorePackage ecorePackage = EcorePackage.eINSTANCE;
@@ -81,6 +116,7 @@ public class DynEMF_hugeModel {
 				System.out.format("Created %d EClasses\n", i);
 			}
 		}
+		point.collect();
 	}
 	
 	/**
@@ -88,6 +124,8 @@ public class DynEMF_hugeModel {
 	 * @param blowFactor
 	 */
 	public static Resource createHugeModel(int blowFactor) {
+		
+		EtmPoint point = etmMonitor.createPoint("DynEMF_hugeModel:createHugeModel");
 		
 		//get the instance of EcoreFactory
 		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
@@ -269,7 +307,7 @@ public class DynEMF_hugeModel {
 //			System.err.println("Error during save!");
 //			e.printStackTrace();
 //		}
-		
+		point.collect();
 		return resource;
 		
 	}

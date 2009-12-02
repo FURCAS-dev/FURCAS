@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package xmlresultprocessor;
+package de.hpi.sam.bp2009.benchframework.xmlresultprocessor;
 
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
@@ -14,7 +14,7 @@ import de.hpi.sam.bp2009.benchframework.ResultProcessor;
  * <!-- end-user-doc -->
  *
  *
- * @see xmlresultprocessor.XmlresultprocessorPackage#getXMLResultProcessor()
+ * @see de.hpi.sam.bp2009.benchframework.xmlresultprocessor.XmlresultprocessorPackage#getXMLResultProcessor()
  * @model
  * @generated
  */

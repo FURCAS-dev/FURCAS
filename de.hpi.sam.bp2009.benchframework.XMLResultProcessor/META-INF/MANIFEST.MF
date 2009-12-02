@@ -7,9 +7,9 @@ Bundle-ClassPath: .
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: xmlresultprocessor,
- xmlresultprocessor.impl,
- xmlresultprocessor.util
+Export-Package: de.hpi.sam.bp2009.benchframework.xmlresultprocessor,
+ de.hpi.sam.bp2009.benchframework.xmlresultprocessor.impl,
+ de.hpi.sam.bp2009.benchframework.xmlresultprocessor.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.hpi.sam.bp2009.benchframework;visibility:=reexport

@@ -13,10 +13,13 @@ import de.hpi.sam.bp2009.benchframework.Generator;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+import de.hpi.sam.bp2009.benchframework.UserInterface;
 
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +31,8 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -44,6 +49,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EngineImpl#getResults <em>Results</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EngineImpl#getGenerators <em>Generators</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EngineImpl#getBenchMarkers <em>Bench Markers</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EngineImpl#getUserInterfaces <em>User Interfaces</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,10 +96,21 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	 */
 	protected EList<BenchMarker> benchMarkers;
 
+	/**
+	 * The cached value of the '{@link #getUserInterfaces() <em>User Interfaces</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getUserInterfaces()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UserInterface> userInterfaces;
+
 	private static final String GENERATORID	=	"de.hpi.sam.bp2009.benchframework.generatorExtensionPointID";
 	private static final String OPERATORID	=	"de.hpi.sam.bp2009.benchframework.operatorExtensionPointID";
 	private static final String RESULTID	=	"de.hpi.sam.bp2009.benchframework.resultExtensionPointID";
 	private static final String BENCHMARKID	=	"de.hpi.sam.bp2009.benchframework.benchmarkExtensionPointID";
+	private static final String USERINTERFACEID	=	"de.hpi.sam.bp2009.benchframework.userInterfaceExtensionPointID";
 
 
 	/**
@@ -166,10 +183,22 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<UserInterface> getUserInterfaces() {
+		if (userInterfaces == null) {
+			userInterfaces = new EObjectResolvingEList<UserInterface>(UserInterface.class, this, BenchframeworkPackage.ENGINE__USER_INTERFACES);
+		}
+		return userInterfaces;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param outputStream 
 	 */
 	public void benchmark(OutputStream outputStream) {
-
+		//TODO add registered UserInterfaces?
 		Map<Resource, OptionObject> resources= new HashMap<Resource, OptionObject>();
 		ArrayList<ResultProcessor> resultProcessors=getRegisteredResults();
 		ArrayList<BenchMarker> benchmarks=getRegisteredBenchMarks();
@@ -199,8 +228,6 @@ public class EngineImpl extends EObjectImpl implements Engine {
 		
 		for(ResultProcessor proc: resultProcessors)
 			proc.streamTo(outputStream);
-
-
 	}
 
 	private ArrayList<Generator> getRegisteredGenerators() {
@@ -225,7 +252,7 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	private ArrayList<Operator> getRegisteredOperators() {
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
 		IConfigurationElement[] configurationElement = extensionRegistry.getConfigurationElementsFor(OPERATORID);
-		ArrayList<Operator> generators=new ArrayList<Operator>();
+		ArrayList<Operator> operators=new ArrayList<Operator>();
 		
 		for(IConfigurationElement element:configurationElement){
 		
@@ -237,14 +264,14 @@ public class EngineImpl extends EObjectImpl implements Engine {
 					e.printStackTrace();
 				}
 				if(obj instanceof Operator)
-					generators.add((Operator) obj);
+					operators.add((Operator) obj);
 		}
-		return generators;
+		return operators;
 	}
 	private ArrayList<ResultProcessor> getRegisteredResults() {
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
 		IConfigurationElement[] configurationElement = extensionRegistry.getConfigurationElementsFor(RESULTID);
-		ArrayList<ResultProcessor> generators=new ArrayList<ResultProcessor>();
+		ArrayList<ResultProcessor> results=new ArrayList<ResultProcessor>();
 		
 		for(IConfigurationElement element:configurationElement){
 		
@@ -256,14 +283,14 @@ public class EngineImpl extends EObjectImpl implements Engine {
 					e.printStackTrace();
 				}
 				if(obj instanceof ResultProcessor)
-					generators.add((ResultProcessor) obj);
+					results.add((ResultProcessor) obj);
 		}
-		return generators;
+		return results;
 	}
 	private ArrayList<BenchMarker> getRegisteredBenchMarks() {
 		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
 		IConfigurationElement[] configurationElement = extensionRegistry.getConfigurationElementsFor(BENCHMARKID);
-		ArrayList<BenchMarker> generators=new ArrayList<BenchMarker>();
+		ArrayList<BenchMarker> benchmarks=new ArrayList<BenchMarker>();
 		
 		for(IConfigurationElement element:configurationElement){
 		
@@ -275,9 +302,29 @@ public class EngineImpl extends EObjectImpl implements Engine {
 					e.printStackTrace();
 				}
 				if(obj instanceof BenchMarker)
-					generators.add((BenchMarker) obj);
+					benchmarks.add((BenchMarker) obj);
 		}
-		return generators;
+		return benchmarks;
+	}
+	
+	private ArrayList<UserInterface> getRegisteredUserInterfaces() {
+		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+		IConfigurationElement[] configurationElement = extensionRegistry.getConfigurationElementsFor(USERINTERFACEID);
+		ArrayList<UserInterface> userinterfaces=new ArrayList<UserInterface>();
+		
+		for(IConfigurationElement element:configurationElement){
+		
+				Object obj=null;
+				try {
+					obj = element.createExecutableExtension("userInterfaceClass");
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if(obj instanceof UserInterface)
+					userinterfaces.add((UserInterface) obj);
+		}
+		return userinterfaces;
 	}
 
 	/**
@@ -296,6 +343,8 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				return getGenerators();
 			case BenchframeworkPackage.ENGINE__BENCH_MARKERS:
 				return getBenchMarkers();
+			case BenchframeworkPackage.ENGINE__USER_INTERFACES:
+				return getUserInterfaces();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -325,6 +374,10 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				getBenchMarkers().clear();
 				getBenchMarkers().addAll((Collection<? extends BenchMarker>)newValue);
 				return;
+			case BenchframeworkPackage.ENGINE__USER_INTERFACES:
+				getUserInterfaces().clear();
+				getUserInterfaces().addAll((Collection<? extends UserInterface>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -349,6 +402,9 @@ public class EngineImpl extends EObjectImpl implements Engine {
 			case BenchframeworkPackage.ENGINE__BENCH_MARKERS:
 				getBenchMarkers().clear();
 				return;
+			case BenchframeworkPackage.ENGINE__USER_INTERFACES:
+				getUserInterfaces().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -369,6 +425,8 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				return generators != null && !generators.isEmpty();
 			case BenchframeworkPackage.ENGINE__BENCH_MARKERS:
 				return benchMarkers != null && !benchMarkers.isEmpty();
+			case BenchframeworkPackage.ENGINE__USER_INTERFACES:
+				return userInterfaces != null && !userInterfaces.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

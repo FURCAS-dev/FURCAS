@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import de.hpi.sam.bp2009.testframework.generator.dynamicemf.Generator;
 import de.hpi.sam.bp2009.testframework.operator.Operator;
 import de.hpi.sam.bp2009.testframework.result.Result;
-import de.hpi.sam.bp2009.testframework.OptionObject;
 
 public class TestEngine {
 

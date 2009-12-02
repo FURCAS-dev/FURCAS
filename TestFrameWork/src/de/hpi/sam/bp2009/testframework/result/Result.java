@@ -3,7 +3,6 @@
  */
 package de.hpi.sam.bp2009.testframework.result;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
 import org.eclipse.emf.ecore.resource.Resource;
