@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Parser Plug-in
-Bundle-SymbolicName: com.sap.ide.cts.parser
+Bundle-SymbolicName: com.sap.ide.cts.parser;singleton:=true
 Bundle-Version: 1.0.0
 Bundle-Activator: com.sap.ide.cts.parser.Activator
 Require-Bundle: org.eclipse.core.runtime,

@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Nov 27 17:54:08 2009' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Mon Nov 30 11:25:40 2009' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -145,7 +145,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== behavior.expressions.literals.org.omg.sap2mof.store=no    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.115' 
+            <Model:Tag xmi.id = 'G.118' 
               name = 'org.omg.sap2mof.store=no' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -185,7 +185,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Association>
             <!-- ==================== behavior.expressions.literals.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.116' 
+            <Model:Tag xmi.id = 'G.119' 
               name = 'org.omg.sap2mof.store=yes' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -511,7 +511,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.117' 
+        <Model:Tag xmi.id = 'G.120' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -537,7 +537,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.118' 
+        <Model:Tag xmi.id = 'G.121' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -563,7 +563,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.119' 
+        <Model:Tag xmi.id = 'G.122' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -576,7 +576,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.120' 
+        <Model:Tag xmi.id = 'G.123' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -589,7 +589,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.121' 
+        <Model:Tag xmi.id = 'G.124' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -614,7 +614,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.123' 
+        <Model:Tag xmi.id = 'G.126' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -655,7 +655,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.124' 
+        <Model:Tag xmi.id = 'G.127' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -697,7 +697,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.125' 
+        <Model:Tag xmi.id = 'G.128' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -749,7 +749,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getAliasesDefinedByEvaluating():Set(Alias)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.126' 
+        <Model:Tag xmi.id = 'G.129' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getAliasesDefinedByEvaluating():Set(Alias)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -789,7 +789,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.127' 
+        <Model:Tag xmi.id = 'G.130' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -804,7 +804,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getAllVisibleAliases():Set(Alias)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.128' 
+        <Model:Tag xmi.id = 'G.131' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getAllVisibleAliases():Set(Alias)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1396,7 +1396,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.129' 
+        <Model:Tag xmi.id = 'G.132' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1413,7 +1413,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.130' 
+        <Model:Tag xmi.id = 'G.133' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1687,6 +1687,48 @@ inv:
               </Model:Constraint.expression>
               <Model:Constraint.constrainedElements>
                 <Model:ModelElement xmi.idref = 'a4B0D175400BA'/>  <!-- behavior.expressions.NamedValueExpression -->
+              </Model:Constraint.constrainedElements>
+            </Model:Constraint>
+          </Model:Namespace.contents>
+        </Model:Class>
+        <!-- ==================== behavior.expressions.All    [Class] ==================== -->
+        <Model:Class xmi.id = 'a4B139D4301C5' 
+          name = 'All' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+          isSingleton = 'false' >
+          <Model:ModelElement.constraints>
+            <Model:Constraint xmi.idref = 'a4B139D71009C'/>  <!-- behavior.expressions.All.CantQueryAllValuesOfValueClass -->
+          </Model:ModelElement.constraints>
+          <Model:GeneralizableElement.supertypes>
+            <Model:GeneralizableElement xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+          </Model:GeneralizableElement.supertypes>
+          <Model:Namespace.contents>
+            <!-- ==================== behavior.expressions.All.clazz    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B139D54032C' 
+              name = 'clazz' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'structure.xml|a4AC9B93102DE'/>
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B139D54032C'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== behavior.expressions.All.CantQueryAllValuesOfValueClass    [Constraint] ==================== -->
+            <Model:Constraint xmi.id = 'a4B139D71009C' 
+              name = 'CantQueryAllValuesOfValueClass' annotation = '' 
+              language = 'OCL' evaluationPolicy = 'deferred' >
+              <Model:Constraint.expression>
+                <XMI.any xmi.type = 'string' xmi.name = ''>context All
+inv:
+  not self.clazz.valueType</XMI.any>
+              </Model:Constraint.expression>
+              <Model:Constraint.constrainedElements>
+                <Model:ModelElement xmi.idref = 'a4B139D4301C5'/>  <!-- behavior.expressions.All -->
               </Model:Constraint.constrainedElements>
             </Model:Constraint>
           </Model:Namespace.contents>
@@ -2027,16 +2069,44 @@ inv:
             </Model:AssociationEnd>
           </Model:Namespace.contents>
         </Model:Association>
+        <!-- ==================== behavior.expressions.A_clazz_all    [Association] ==================== -->
+        <Model:Association xmi.id = 'a4B139D520119' 
+          name = 'A_clazz_all' annotation = '' 
+          isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+          isDerived = 'false' >
+          <Model:Namespace.contents>
+            <Model:AssociationEnd xmi.id = 'a4B139D54032C' 
+              name = 'clazz' annotation = '' 
+              isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xml:link = 'simple' href = 'structure.xml|a4AC9B93102DE'/>
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+            <Model:AssociationEnd xmi.id = 'a4B139D54033C' 
+              name = 'all' annotation = '' 
+              isNavigable = 'false' aggregation = 'none' isChangeable = 'true' >
+              <Model:AssociationEnd.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+              </Model:AssociationEnd.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B139D4301C5'/>  <!-- behavior.expressions.All -->
+              </Model:TypedElement.type>
+            </Model:AssociationEnd>
+          </Model:Namespace.contents>
+        </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.114' 
+    <Model:Import xmi.id = 'G.117' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.122' 
+    <Model:Import xmi.id = 'G.125' 
       name = 'structure' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -2159,7 +2229,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.131' 
+        <Model:Tag xmi.id = 'G.134' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2177,7 +2247,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.132' 
+        <Model:Tag xmi.id = 'G.135' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2194,7 +2264,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.133' 
+        <Model:Tag xmi.id = 'G.136' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2215,7 +2285,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.134' 
+        <Model:Tag xmi.id = 'G.137' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2232,7 +2302,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.135' 
+        <Model:Tag xmi.id = 'G.138' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2330,7 +2400,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.136' 
+        <Model:Tag xmi.id = 'G.139' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2347,7 +2417,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.137' 
+        <Model:Tag xmi.id = 'G.140' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2372,7 +2442,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.138' 
+        <Model:Tag xmi.id = 'G.141' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2619,7 +2689,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.139' 
+        <Model:Tag xmi.id = 'G.142' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2992,7 +3062,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.140' 
+        <Model:Tag xmi.id = 'G.143' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3006,7 +3076,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.functions.org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.141' 
+        <Model:Tag xmi.id = 'G.144' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3074,7 +3144,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.142' 
+        <Model:Tag xmi.id = 'G.145' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3142,7 +3212,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.143' 
+        <Model:Tag xmi.id = 'G.146' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3257,7 +3327,7 @@ body:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.144' 
+    <Model:Import xmi.id = 'G.147' 
       name = 'finex' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

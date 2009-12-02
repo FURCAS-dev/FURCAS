@@ -251,6 +251,13 @@ syntax FinexClass(k=0 ) {
 		  {{ type=lookIn("OCL:aliasFor.type") }}
 		;
 	
+	template All
+		: "all"
+		  clazz{as=firstUppercaseIdentifier, query="OCL:structure::FinexClass.allInstances()",
+		    			      filter="->select(c | c.name = ?)", 
+		    			      invert="name"}
+		  {{ type=lookIn("OCL:self.clazz") }}
+		;
 	-- ----------------------- Predefined Operators ---------------------
 	operatorTemplate behavior::expressions::BinaryBooleanOperator(operators=andOp orOp, source='left',
 																  storeOpTo='operator', storeRightTo='right')

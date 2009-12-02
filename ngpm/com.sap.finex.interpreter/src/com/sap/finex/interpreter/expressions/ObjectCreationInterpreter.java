@@ -68,6 +68,8 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
 		}
 	    }
 	}
+	// All entities are automatically all stored persistently
+	interpreter.storeEntity(result);
 	return result;
     }
     

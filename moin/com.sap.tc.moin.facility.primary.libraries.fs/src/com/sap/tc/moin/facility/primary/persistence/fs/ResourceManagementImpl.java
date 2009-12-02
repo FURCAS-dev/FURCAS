@@ -643,7 +643,7 @@ public class ResourceManagementImpl implements IpiFsResourceManagement, SpiParti
 
 
                     IpiStorage folderStorage;
-                    if ( allSourceFoldersAreDirectoryFS( ) || rootPath.startsWith( "\\" ) ) { //$NON-NLS-1$
+                    if ( allSourceFoldersAreDirectoryFS( ) || rootPath.startsWith( File.separator ) ) { //$NON-NLS-1$
                         folderStorage = new StorageDirectoryImpl( cri, resourceFolder, rootPath, this.partitionSerializationManager, this.directoryLogicalFsFactory );
                     } else {
                         folderStorage = new StorageDirectoryImpl( cri, resourceFolder, rootPath, this.partitionSerializationManager, this.archiveLogicalFsFactory );

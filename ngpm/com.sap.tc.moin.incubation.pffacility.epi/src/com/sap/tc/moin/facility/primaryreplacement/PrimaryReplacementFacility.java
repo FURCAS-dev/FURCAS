@@ -1,6 +1,8 @@
 package com.sap.tc.moin.facility.primaryreplacement;
 
 
+import java.io.File;
+
 import com.sap.tc.moin.facility.pde.EclipsePDEFacility;
 import com.sap.tc.moin.repository.spi.core.SpiCore;
 import com.sap.tc.moin.repository.spi.runtimehost.context.SpiRuntimeContext;
@@ -23,7 +25,7 @@ public class PrimaryReplacementFacility extends EclipsePDEFacility {
 
     private static String getIndexLocation( ) {
 
-        String wsfile = grantIndexBasePath( ) + "\\moin_PFidx.dat"; //$NON-NLS-1$
+        String wsfile = grantIndexBasePath( ) + File.separator + "moin_PFidx.dat"; //$NON-NLS-1$
         return wsfile;
     }
 }

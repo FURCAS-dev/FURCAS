@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="com.sap.ap.cts.editor.ClassParserFactoryEP" name="ClassParserFactoryEP" schema="schema/com.sap.ap.cts.editor.ClassParserFactoryEP.exsd"/>
    <extension
          point="org.eclipse.ui.editors">
       <editor
@@ -138,6 +139,13 @@
                type="com.sap.mi.fwk.ui.dnd.IModelTransferTarget">
          </adapter>
       </factory>
+   </extension>
+   <extension
+         point="com.sap.ide.cts.parser.parserFactory">
+      <configuration
+            dynamicParserFactoryClass="com.sap.ap.cts.monet.parser.ClassParserFactory"
+            languageID="Class">
+      </configuration>
    </extension>
 
 </plugin>

@@ -15,7 +15,7 @@ import dataaccess.expressions.VariableExpression;
 public class RunletTreeLabelProvider implements TextLabelProvider {
     @Override
     public String getText(Object treenode) {
-	if (treenode instanceof TreeNodeRefObject) {
+	if (treenode instanceof TreeNodeRefObject<?>) {
 	    TreeNodeRefObject<?> node = (TreeNodeRefObject<?>) treenode;
 	    String roleName = "";
 	    if (node instanceof GenericRefObjectNode) {
