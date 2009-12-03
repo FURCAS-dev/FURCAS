@@ -643,7 +643,14 @@ public class ResourceManagementImpl implements IpiFsResourceManagement, SpiParti
 
 
                     IpiStorage folderStorage;
-                    if ( allSourceFoldersAreDirectoryFS( ) || rootPath.startsWith( File.separator ) ) { //$NON-NLS-1$
+                    // check whether the folder lives within the current workbench's workspace; if so,
+                    // use the directoryLogicalFsFactory which uses an EclFsFactoryImpl which uses
+                    // IResource/IPath and resolves those in the current workspace; otherwise, use the
+                    // archiveLogicalFsFactory which uses plain java.io.File handling and thus can also
+                    // access folders outside the current workspace which is required, e.g., if we're
+                    // currently running a target workbench which needs to find model content from source
+                    // plugins in the source workbench's workspace
+                    if ( allSourceFoldersAreDirectoryFS( ) || isPathInWorkspace(rootPath) ) { //$NON-NLS-1$
                         folderStorage = new StorageDirectoryImpl( cri, resourceFolder, rootPath, this.partitionSerializationManager, this.directoryLogicalFsFactory );
                     } else {
                         folderStorage = new StorageDirectoryImpl( cri, resourceFolder, rootPath, this.partitionSerializationManager, this.archiveLogicalFsFactory );
@@ -705,6 +712,16 @@ public class ResourceManagementImpl implements IpiFsResourceManagement, SpiParti
         }
 
         return registrySwap;
+    }
+
+    /**
+     * Checks if <tt>path</tt> identified a plugin in the current workspace. This is the case if the
+     * path starts with the {@link File#separator}, has only one path component and can successfully be
+     * resolved in the current workspace. 
+     */
+    private boolean isPathInWorkspace(String path) {
+	return path.startsWith( File.separator ) && path.indexOf(File.separator, File.separator.length()) == -1 &&
+		directoryLogicalFsFactory.getResource(path) != null;
     }
 
     private static Boolean allSourceFoldersAreDirectoryFSValue = null;

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests for Actions Language
 Bundle-SymbolicName: com.sap.ap.cts.test
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: test.jar,
  lib/tools.jar
 Require-Bundle: com.sap.mi.fwk,

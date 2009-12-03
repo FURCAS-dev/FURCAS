@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Test CTS Editor Plug-in
 Bundle-SymbolicName: com.sap.ide.cts.editor.test
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: com.sap.mi.fwk,
  com.sap.tc.moin.ide.facade,
@@ -42,11 +42,11 @@ Require-Bundle: com.sap.mi.fwk,
  com.sap.mi.textual.tcs.util,
  com.sap.mi.textual,
  com.sap.mi.textual.moinlookup,
- com.sap.editor.test.mm.eclipse;bundle-version="1.0.0",
- com.sap.finex.metamodel;bundle-version="0.0.4",
- com.sap.tc.moin.metamodel.generatedmetamodel;bundle-version="1.0.0",
- com.sap.mi.textual.tcs.editor;bundle-version="1.0.0",
- com.sap.mi.gfw.mm.eclipse;bundle-version="2.0.0"
+ com.sap.editor.test.mm.eclipse,
+ com.sap.finex.metamodel,
+ com.sap.tc.moin.metamodel.generatedmetamodel,
+ com.sap.mi.textual.tcs.editor,
+ com.sap.mi.gfw.mm.eclipse
 Export-Package: com.sap.ide.cts.editor.test.util,
  com.sap.mi.textual.parsing.textblocks
 Bundle-Activator: com.sap.ide.cts.editor.Activator

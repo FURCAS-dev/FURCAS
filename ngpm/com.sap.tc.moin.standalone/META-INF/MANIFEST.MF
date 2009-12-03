@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Standalone Plug-in
 Bundle-SymbolicName: com.sap.tc.moin.standalone
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.tc.moin.standalone.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,

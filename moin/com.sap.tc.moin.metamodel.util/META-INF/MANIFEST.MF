@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: com.sap.tc.moin.metamodel.util
 Bundle-SymbolicName: com.sap.tc.moin.metamodel.util;singleton:=true
-Bundle-Version: 2.0.0.090422152124
+Bundle-Version: 2.0.0.qualifier
 Bundle-Vendor: SAP AG
 Bundle-Localization: plugin
 Export-Package: moin.reginfo,com.sap.tc.moin.util.properties,com.sap.tc.moin.package4D2FB4CB0EEDD2A056B9FD611EFC18CCF3DBDF29,moin.meta,com.sap.tc.moin,.,com.sap.tc.moin.util.properties.__impl

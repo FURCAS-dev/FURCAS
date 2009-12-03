@@ -10,7 +10,7 @@ Require-Bundle: com.sap.tc.moin.metamodel.company;visibility:=reexport
  m.sap.tc.moin.metamodel.util;bundle-version="2.0.0";visibility:=reexp
  ort
 Bundle-Vendor: %providerName
-Bundle-Version: 2.0.0.090428172424
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

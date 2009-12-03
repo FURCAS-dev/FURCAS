@@ -1,0 +1,92 @@
+An expression can define an alias.
+
+Expressions are evaluated in a context.
+
+The evaluation context is defined by the current stack frame.
+
+In the stack frame's context, an expression may see aliases. In
+particular, if an expression has operands, it sees the aliases defined
+anywhere in these operands.
+
+During evaluation of an expression with one or more operand
+expressions, each operand can return zero, one or multiple
+objects. For each of these objects an object for each alias
+visible by the operand expression exists. For outer joins an alias
+could also be an empty object.
+
+When the expression based on the operand expressions is evaluated, it
+in turn results in zero, one or many objects. For each of these
+objects, the objects bound to all aliases at that point need to be
+recorded.
+
+
+Approaching from the "other end:" If an expression defines an alias,
+for each result object (for outer joins also one single EmptyObject in
+case an EmptyObject results from evaluating the expression) an
+assignment to the alias is recorded. If the expression has seen other
+aliases during its evaluation, the objects associated with each of
+these aliases are also recorded for each of the objects resulting from
+the current expression.
+
+Assigning the aliases to the RunletObjects may not be such a good idea
+because such objects may be stored on the stack and re-used
+elsewhere. In those cases the aliases should not be visible. They only
+apply in the evaluation context of one expression tree.
+
+This seems to imply again that the stack is a good storage place for
+the alias assignments.
+
+More formally: we need a function that in the scope of an expression
+tree maps an object that resulted from some subexpression with alias
+to all aliases seen by that subexpression with the values as seen by
+that subexpression:
+
+ alias_value(e:Expression, o:RunletObject, a:Alias) --> RunletObject
+
+computes the object current for alias a during evaluating expression e
+with result o. When an expression e with alias a is being evaluated,
+using subexpressions/operands e_1, ..., e_m, evaluating to (o_1_1,
+..., o_1_k_1), ..., (o_m_1, ..., o_m_k_m) with e resulting in objects
+o_1, ..., o_n, where o_i (1<=i<=n) is computed using some combination
+of the e_j with their single ("path expression") or all
+("aggregation") result objects o_j_k the alias_value function is
+extended as follows:
+
+for all o_i_j computed from e_i "used" in the computation of o_k as
+result of e and all aliases a_i defined for e_i, alias_value is
+extended as follows:
+
+ alias_value(e, o_k, a_i) := { i, j: o_i_j contributes to computation of o_k:
+                               alias_value(e_i, o_i_j, a_i) }
+
+			        ("pass-through")
+
+This means in particular that alias_value(e, o_k, a_i) can be a
+multi-object if multiple j exist such that o_i_j for the same i
+contributed to o_k. The definition of "used" may have to be "present
+when," for example if the e is a tuple expression defining the tuple
+components using constants. The constants wouldn't depend on the
+o_i_j, but the "presence" of the o_i_j may be relevant if the tuple
+object is used as operand, and in the using expression an alias is
+used to which o_i_j shall be bound.
+
+Furthermore, the alias a_e for the expression e needs to be added to
+the alias_value function. For all o_k resulting from the evaluation of
+e, we add the following:
+
+ alias_value(e, o_k, a_e) := o_k                            ("origin")
+
+"Somehow" this function would have to be attached to the stack
+frame. When an expression e falls out of scope, all entries in
+alias_value for e can be deleted. That would mean that only the
+alias_value entries for the immediate operands for the expressions
+under evaluation would need to be preserved.
+
+This, in turn, would mean that we'd only have to keep one level of
+alias_value definitions, namely for the operands of an
+expression. Once the expression has been evaluated, the alias_value
+function can be updated so that only e entries are contained (applying
+the "pass-through" rule and the "origin" rule), removing all e_i
+entries. If e is used as operand in a higher-level expression, e's
+contribution feeds into the definition of the alias_value function for
+the higher-level expression.

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.sap.mi.fwk.services.local;singleton:=true
-Bundle-Version: 1.0.0.090422172106
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.mi.fwk.services.local.internal.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin

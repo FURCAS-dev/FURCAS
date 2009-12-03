@@ -45,7 +45,7 @@ public abstract class ProjectConnectionBasedTest {
 
 	//@Override
 	@Before
-	public void setUp() throws CoreException, IOException, InterruptedException {
+	public void setUp() throws CoreException, IOException {
 		InputStream data = getProjectContentAsStream();
 		mProject = createProjectWithData(getProjectName(), data);
 		refreshProject(mProject);
@@ -82,7 +82,7 @@ public abstract class ProjectConnectionBasedTest {
 	 */
 	private void refreshProject(final IProject prj) {
 		IRunnableWithProgress operation = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) throws InterruptedException {
+			public void run(IProgressMonitor monitor) {
 				try {
 					prj.refreshLocal(IResource.DEPTH_INFINITE, null);
 					// force a full refresh 
@@ -103,7 +103,7 @@ public abstract class ProjectConnectionBasedTest {
 	private void deleteProject() throws CoreException {
 		// align MOIN DB to prevent testcases influencing each other 
 		IRunnableWithProgress operation = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) throws InterruptedException {
+			public void run(IProgressMonitor monitor) {
 				PartitionService.getInstance().deletePartitions(getProject(), null);
 
 			}
@@ -162,7 +162,7 @@ public abstract class ProjectConnectionBasedTest {
 	protected Connection createConnection() {
 		final Connection[] con = new Connection[1];
 		IRunnableWithProgress operation = new IRunnableWithProgress() {
-		    public void run(IProgressMonitor monitor) throws InterruptedException {
+		    public void run(IProgressMonitor monitor) {
 				con[0] = ConnectionManager.getInstance().createConnection(getProject());
 		    }
 		};

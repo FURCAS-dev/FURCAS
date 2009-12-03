@@ -5,7 +5,7 @@ Require-Bundle: com.sap.tc.moin.libraries.core,com.sap.tc.moin.librari
  reexport
 Bundle-Vendor: SAP AG
 Eclipse-LazyStart: true
-Bundle-Version: 2.0.0.090422162124
+Bundle-Version: 2.0.0.qualifier
 Bundle-Name: com.sap.tc.moin.libraries.generic.facade
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2

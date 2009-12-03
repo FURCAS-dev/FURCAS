@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Jdfacility
 Bundle-SymbolicName: com.sap.tc.moin.incubation.jdfacility;singleton:=true
-Bundle-Version: 2.0.0
+Bundle-Version: 2.0.0.qualifier
 Bundle-Activator: com.sap.tc.moin.facility.pde.Activator
 Bundle-ActivationPolicy: lazy
 Require-Bundle: com.sap.tc.moin.libraries.api,
@@ -16,8 +16,8 @@ Require-Bundle: com.sap.tc.moin.libraries.api,
  com.sap.tc.moin.facility.primary.spi,
  com.sap.tc.moin.facility.primary.libraries.fs,
  com.sap.tc.moin.libraries.spi,
- com.sap.tc.moin.libraries.buildplugin;bundle-version="2.0.0",
- com.sap.tc.moin.runtime;bundle-version="2.0.0"
+ com.sap.tc.moin.libraries.buildplugin,
+ com.sap.tc.moin.runtime
 Export-Package: .,
  com.sap.tc.moin.facility.componentmodel,
  com.sap.tc.moin.facility.componentmodel.adapter,
@@ -30,4 +30,3 @@ Export-Package: .,
  com.sap.tc.moin.facility.versioning,
  com.sap.tc.moin.facility.versioning.eclipse
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

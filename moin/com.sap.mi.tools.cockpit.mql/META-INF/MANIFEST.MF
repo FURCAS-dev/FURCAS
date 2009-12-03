@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %plugin.name
 Bundle-SymbolicName: com.sap.mi.tools.cockpit.mql;singleton:=true
-Bundle-Version: 1.0.0.090422162106
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.mi.tools.cockpit.mql.QueryConsole
 Bundle-Vendor: %plugin.provider
 Bundle-Localization: plugin
