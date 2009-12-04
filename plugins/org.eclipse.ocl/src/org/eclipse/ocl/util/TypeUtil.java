@@ -12,11 +12,11 @@
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling
  *   Zeligsoft - Bugs 244886, 245619, 233673, 179990, 242236
  *   Stefan Schulze - Bug 245619
- *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 233673
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.17 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.18 2009/12/04 21:26:15 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
