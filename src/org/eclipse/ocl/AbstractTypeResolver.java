@@ -9,11 +9,11 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
- *   Adolfo Sánchez-Barbudo Herrera - 222581 generic collection type resolution
+ *   Adolfo Sanchez-Barbudo Herrera - 222581 generic collection type resolution
  *
  * </copyright>
  *
- * $Id: AbstractTypeResolver.java,v 1.13 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractTypeResolver.java,v 1.14 2009/12/04 21:25:29 ewillink Exp $
  */
 package org.eclipse.ocl;
 

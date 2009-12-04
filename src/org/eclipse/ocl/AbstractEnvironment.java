@@ -11,11 +11,11 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Refactoring to support extensibility and flexible error handling 
  *   Zeligsoft - Bugs 243079, 244948, 244886, 246469, 233673
- *   Adolfo Sánchez-Barbudo Herrera - Bug 234354, 233673
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 234354, 233673
  *
  * </copyright>
  *
- * $Id: AbstractEnvironment.java,v 1.19 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: AbstractEnvironment.java,v 1.20 2009/12/04 21:25:20 ewillink Exp $
  */
 package org.eclipse.ocl;
 

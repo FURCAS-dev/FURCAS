@@ -9,14 +9,14 @@
  * 
  * Contributors: 
  *   IBM - Initial API and implementation
- *   Adolfo Sánchez-Barbudo Herrera - Bug 233673
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 233673
  *   Zeligsoft - Bugs 233673, 261128
  *   E.D.Willink - Bug 242236
  *   Radek Dvorak - Bug 261128
  *
  * </copyright>
  *
- * $Id: OCLUtil.java,v 1.9 2009/10/02 20:55:46 ewillink Exp $
+ * $Id: OCLUtil.java,v 1.10 2009/12/04 21:26:07 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 

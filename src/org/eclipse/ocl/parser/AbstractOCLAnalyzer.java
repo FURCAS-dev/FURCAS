@@ -11,7 +11,7 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
  *               - Bugs 184048, 237126, 245586, 213886, 242236, 259818, 259819
- *   Adolfo Sánchez-Barbudo Herrera - Bug 237441
+ *   Adolfo Sanchez-Barbudo Herrera - Bug 237441
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
  *               255599, 251349, 242236, 259740
  *   Nicolas Rouquette - Bug 259818 (regression)
@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.37 2009/11/10 19:15:56 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.38 2009/12/04 21:26:27 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
