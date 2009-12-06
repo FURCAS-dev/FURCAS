@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackage.java,v 1.9 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: TypesPackage.java,v 1.10 2009/12/06 18:12:34 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -623,17 +623,7 @@ public interface TypesPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int TUPLE_TYPE = 10;
-
-	/**
-	 * The number of structural features of the '<em>Tuple Type</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int TUPLE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
+	int TUPLE_TYPE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.TypeTypeImpl <em>Type Type</em>}' class.
@@ -644,7 +634,59 @@ public interface TypesPackage
 	 * @generated
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int TYPE_TYPE = 11;
+	int TYPE_TYPE = 12;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.VoidTypeImpl <em>Void Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.types.impl.VoidTypeImpl
+	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getVoidType()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int VOID_TYPE = 13;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.types.impl.TemplateParameterTypeImpl
+	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getTemplateParameterType()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE = 10;
+
+	/**
+	 * The feature id for the '<em><b>Specification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = 0;
+
+	/**
+	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TUPLE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
@@ -665,17 +707,6 @@ public interface TypesPackage
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.VoidTypeImpl <em>Void Type</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.ocl.types.impl.VoidTypeImpl
-	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getVoidType()
-	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
-	 */
-	int VOID_TYPE = 12;
 
 	/**
 	 * The number of structural features of the '<em>Void Type</em>' class.
@@ -871,6 +902,29 @@ public interface TypesPackage
 	 * @generated
 	 */
 	EClass getVoidType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.types.TemplateParameterType <em>Template Parameter Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Template Parameter Type</em>'.
+	 * @see org.eclipse.ocl.types.TemplateParameterType
+	 * @generated
+	 */
+	EClass getTemplateParameterType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.ocl.types.TemplateParameterType#getSpecification <em>Specification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Specification</em>'.
+	 * @see org.eclipse.ocl.types.TemplateParameterType#getSpecification()
+	 * @see #getTemplateParameterType()
+	 * @generated
+	 */
+	EAttribute getTemplateParameterType_Specification();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1070,6 +1124,27 @@ public interface TypesPackage
 		 * @generated
 		 */
 		EClass VOID_TYPE = eINSTANCE.getVoidType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.types.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.types.impl.TemplateParameterTypeImpl
+		 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getTemplateParameterType()
+		 * @generated
+		 */
+		EClass TEMPLATE_PARAMETER_TYPE = eINSTANCE.getTemplateParameterType();
+
+		/**
+		 * The meta object literal for the '<em><b>Specification</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEMPLATE_PARAMETER_TYPE__SPECIFICATION = eINSTANCE
+			.getTemplateParameterType_Specification();
 
 	}
 

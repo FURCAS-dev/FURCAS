@@ -13,15 +13,12 @@
  * 
  * </copyright>
  *
- * $Id: TypesSwitch.java,v 1.6 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: TypesSwitch.java,v 1.7 2009/12/06 18:13:20 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 
-//import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
-//import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -32,6 +29,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TemplateParameterType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesPackage;
@@ -246,6 +244,13 @@ public class TypesSwitch<T> {
 					result = caseTypedASTNode(setType);
 				if (result == null)
 					result = caseASTNode(setType);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case TypesPackage.TEMPLATE_PARAMETER_TYPE : {
+				TemplateParameterType<?> templateParameterType = (TemplateParameterType<?>) theEObject;
+				T result = caseTemplateParameterType(templateParameterType);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -474,6 +479,22 @@ public class TypesSwitch<T> {
 	 * @generated
 	 */
 	public <O> T caseVoidType(VoidType<O> object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <O> T caseTemplateParameterType(TemplateParameterType<O> object) {
 		return null;
 	}
 

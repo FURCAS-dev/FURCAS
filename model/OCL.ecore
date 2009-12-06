@@ -272,6 +272,11 @@
         <eTypeArguments eTypeParameter="#//types/SetType/O"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterType">
+      <eTypeParameters name="O"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="specification" ordered="false"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="TupleType">
       <eTypeParameters name="O"/>
       <eTypeParameters name="P"/>
@@ -702,6 +707,10 @@
           <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/C"/>
           <eTypeArguments eTypeParameter="#//utilities/ExpressionInOCL/PM"/>
         </eGenericType>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="generatedType" ordered="false"
+          upperBound="-1" containment="true">
+        <eGenericType eTypeParameter="#//utilities/ExpressionInOCL/C"/>
       </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PredefinedType" abstract="true" interface="true">

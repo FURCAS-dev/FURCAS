@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/2.1.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/4" xmlns:Ecore_1="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/4 pathmap://UML_PROFILES/Ecore.profile.uml#_B7dOIMEREduRdatXodjBjA http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_unvTINppEdu-d8Dv4wLx9Q" name="ocl">
     <packagedElement xmi:type="uml:Package" xmi:id="_unvTIdppEdu-d8Dv4wLx9Q" name="types">
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTItppEdu-d8Dv4wLx9Q" name="AnyType">
@@ -231,6 +231,18 @@
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_-PCtwNLlEd6hmvYFRJXZTA" name="TemplateParameterType">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_buUkUNLoEd6hmvYFRJXZTA" parameter="_buUkU9LoEd6hmvYFRJXZTA">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_buUkU9LoEd6hmvYFRJXZTA" parameteredElement="_buUkVNLoEd6hmvYFRJXZTA">
+            <ownedParameteredElement xmi:type="uml:Class" xmi:id="_buUkVNLoEd6hmvYFRJXZTA" name="O" templateParameter="_buUkU9LoEd6hmvYFRJXZTA"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <generalization xmi:id="_JnFSINLoEd6hmvYFRJXZTA" general="_buUkVNLoEd6hmvYFRJXZTA"/>
+        <ownedAttribute xmi:id="_HXbOkNLmEd6hmvYFRJXZTA" name="specification">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kRH9wNLmEd6hmvYFRJXZTA"/>
+        </ownedAttribute>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_unvTk9ppEdu-d8Dv4wLx9Q" name="TupleType">
         <ownedRule xmi:id="_OTfl8Py_EdynbPPIlCogHA" name="tuple_type_name">
           <specification xmi:type="uml:OpaqueExpression" xmi:id="_OTfl8fy_EdynbPPIlCogHA">
@@ -308,6 +320,12 @@
           </templateBinding>
         </nestedClassifier>
       </packagedElement>
+      <profileApplication xmi:id="_u3Gj4NXZEd6ci-srLwOkAQ">
+        <eAnnotations xmi:id="_u3Gj4dXZEd6ci-srLwOkAQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_unvU_9ppEdu-d8Dv4wLx9Q" name="expressions">
       <packagedElement xmi:type="uml:Class" xmi:id="_unvVANppEdu-d8Dv4wLx9Q" name="AssociationClassCallExp">
@@ -1846,6 +1864,10 @@
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_unvU5NppEdu-d8Dv4wLx9Q" value="*"/>
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_unvU5dppEdu-d8Dv4wLx9Q"/>
         </ownedAttribute>
+        <ownedAttribute xmi:id="_ykFGANLmEd6hmvYFRJXZTA" name="generatedType" type="_unvU29ppEdu-d8Dv4wLx9Q" aggregation="composite" association="_H0w1YNLnEd6hmvYFRJXZTA">
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_ykFGAdLmEd6hmvYFRJXZTA" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_ykFGAtLmEd6hmvYFRJXZTA"/>
+        </ownedAttribute>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_unvU5tppEdu-d8Dv4wLx9Q" name="OCLExpression_C">
           <templateBinding xmi:id="_unvU59ppEdu-d8Dv4wLx9Q" signature="_unvVNdppEdu-d8Dv4wLx9Q">
             <parameterSubstitution xmi:id="_unvU6NppEdu-d8Dv4wLx9Q" formal="_unvVNtppEdu-d8Dv4wLx9Q" actual="_unvU29ppEdu-d8Dv4wLx9Q"/>
@@ -1888,6 +1910,9 @@
           </ownedParameter>
         </ownedOperation>
       </packagedElement>
+      <packagedElement xmi:type="uml:Association" xmi:id="_H0w1YNLnEd6hmvYFRJXZTA" memberEnd="_ykFGANLmEd6hmvYFRJXZTA _RPJFINLnEd6hmvYFRJXZTA">
+        <ownedEnd xmi:id="_RPJFINLnEd6hmvYFRJXZTA" type="_unvU2NppEdu-d8Dv4wLx9Q" association="_H0w1YNLnEd6hmvYFRJXZTA"/>
+      </packagedElement>
     </packagedElement>
     <profileApplication xmi:id="_un1az9ppEdu-d8Dv4wLx9Q">
       <eAnnotations xmi:id="_un1a0NppEdu-d8Dv4wLx9Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -1897,61 +1922,61 @@
     </profileApplication>
   </uml:Model>
   <Ecore:EPackage xmi:id="_uo4ioNppEdu-d8Dv4wLx9Q" base_Package="_unvTINppEdu-d8Dv4wLx9Q" nsPrefix="ocl" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL"/>
-  <Ecore:EPackage xmi:id="_uo-pQNppEdu-d8Dv4wLx9Q" base_Package="_unvTIdppEdu-d8Dv4wLx9Q" nsPrefix="ocl.types" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Types"/>
-  <Ecore:EClass xmi:id="_uo-pQdppEdu-d8Dv4wLx9Q" base_Class="_unvTItppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pQtppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTJNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pQ9ppEdu-d8Dv4wLx9Q" base_Class="_unvTJ9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pRNppEdu-d8Dv4wLx9Q" base_Class="_unvTKtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pRdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTLNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pRtppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTLtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pR9ppEdu-d8Dv4wLx9Q" base_Class="_unvTMdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pSNppEdu-d8Dv4wLx9Q" base_Class="_unvTNdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pSdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTN9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pStppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTOdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EReference xmi:id="_uo-pS9ppEdu-d8Dv4wLx9Q" base_Property="_unvTPNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EAttribute xmi:id="_uo-pTNppEdu-d8Dv4wLx9Q" isTransient="true" isVolatile="true" base_Property="_unvTPtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pTdppEdu-d8Dv4wLx9Q" base_Class="_unvTQNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EOperation xmi:id="_uo-pTtppEdu-d8Dv4wLx9Q" base_Operation="_unvTQ9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pT9ppEdu-d8Dv4wLx9Q" base_Class="_unvTSdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pUNppEdu-d8Dv4wLx9Q" base_Class="_unvTStppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pUdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTTNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pUtppEdu-d8Dv4wLx9Q" base_Class="_unvTT9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pU9ppEdu-d8Dv4wLx9Q" base_Class="_unvTUtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pVNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTVNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pVdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTVtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pVtppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTWNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EReference xmi:id="_uo-pV9ppEdu-d8Dv4wLx9Q" base_Property="_unvTW9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EReference xmi:id="_uo-pWNppEdu-d8Dv4wLx9Q" base_Property="_unvTXdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pWdppEdu-d8Dv4wLx9Q" base_Class="_unvTX9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EOperation xmi:id="_uo-pWtppEdu-d8Dv4wLx9Q" base_Operation="_unvTYtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pW9ppEdu-d8Dv4wLx9Q" base_Class="_unvTatppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pXNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTbNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pXdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTbtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pXtppEdu-d8Dv4wLx9Q" base_Class="_unvTcdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pX9ppEdu-d8Dv4wLx9Q" base_Class="_unvTddppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pYNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTd9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pYdppEdu-d8Dv4wLx9Q" base_Class="_unvTetppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pYtppEdu-d8Dv4wLx9Q" base_Class="_unvTfdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pY9ppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTf9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pZNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTgdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pZdppEdu-d8Dv4wLx9Q" base_Class="_unvThNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-pZtppEdu-d8Dv4wLx9Q" base_Class="_unvTiNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pZ9ppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTitppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-paNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTjNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-padppEdu-d8Dv4wLx9Q" base_Class="_unvTj9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_uo-patppEdu-d8Dv4wLx9Q" base_Class="_unvTk9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pa9ppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTldppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_uo-pbNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTl9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_uo-pbdppEdu-d8Dv4wLx9Q" base_Class="_unvTmtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EOperation xmi:id="_uo-pbtppEdu-d8Dv4wLx9Q" base_Operation="_unvTndppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_upEv4NppEdu-d8Dv4wLx9Q" base_Class="_unvTodppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_upEv4dppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTo9ppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_upEv4tppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTpdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EReference xmi:id="_upEv49ppEdu-d8Dv4wLx9Q" base_Property="_unvTqNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_upEv5NppEdu-d8Dv4wLx9Q" base_Class="_unvTqdppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EClass xmi:id="_upEv5dppEdu-d8Dv4wLx9Q" base_Class="_unvTrtppEdu-d8Dv4wLx9Q"/>
-  <Ecore:ETypeParameter xmi:id="_upEv5tppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTsNppEdu-d8Dv4wLx9Q"/>
-  <Ecore:EGenericType xmi:id="_upEv59ppEdu-d8Dv4wLx9Q" base_Class="_unvTs9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EPackage xmi:id="_uo-pQNppEdu-d8Dv4wLx9Q" base_Package="_unvTIdppEdu-d8Dv4wLx9Q" nsPrefix="ocl.types" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Types"/>
+  <Ecore_1:EClass xmi:id="_uo-pQdppEdu-d8Dv4wLx9Q" base_Class="_unvTItppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pQtppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTJNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pQ9ppEdu-d8Dv4wLx9Q" base_Class="_unvTJ9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pRNppEdu-d8Dv4wLx9Q" base_Class="_unvTKtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pRdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTLNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pRtppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTLtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pR9ppEdu-d8Dv4wLx9Q" base_Class="_unvTMdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pSNppEdu-d8Dv4wLx9Q" base_Class="_unvTNdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pSdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTN9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pStppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTOdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EReference xmi:id="_uo-pS9ppEdu-d8Dv4wLx9Q" base_Property="_unvTPNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EAttribute xmi:id="_uo-pTNppEdu-d8Dv4wLx9Q" isTransient="true" isVolatile="true" base_Property="_unvTPtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pTdppEdu-d8Dv4wLx9Q" base_Class="_unvTQNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EOperation xmi:id="_uo-pTtppEdu-d8Dv4wLx9Q" base_Operation="_unvTQ9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pT9ppEdu-d8Dv4wLx9Q" base_Class="_unvTSdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pUNppEdu-d8Dv4wLx9Q" base_Class="_unvTStppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pUdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTTNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pUtppEdu-d8Dv4wLx9Q" base_Class="_unvTT9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pU9ppEdu-d8Dv4wLx9Q" base_Class="_unvTUtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pVNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTVNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pVdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTVtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pVtppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTWNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EReference xmi:id="_uo-pV9ppEdu-d8Dv4wLx9Q" base_Property="_unvTW9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EReference xmi:id="_uo-pWNppEdu-d8Dv4wLx9Q" base_Property="_unvTXdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pWdppEdu-d8Dv4wLx9Q" base_Class="_unvTX9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EOperation xmi:id="_uo-pWtppEdu-d8Dv4wLx9Q" base_Operation="_unvTYtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pW9ppEdu-d8Dv4wLx9Q" base_Class="_unvTatppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pXNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTbNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pXdppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTbtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pXtppEdu-d8Dv4wLx9Q" base_Class="_unvTcdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pX9ppEdu-d8Dv4wLx9Q" base_Class="_unvTddppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pYNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTd9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pYdppEdu-d8Dv4wLx9Q" base_Class="_unvTetppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pYtppEdu-d8Dv4wLx9Q" base_Class="_unvTfdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pY9ppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTf9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pZNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTgdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pZdppEdu-d8Dv4wLx9Q" base_Class="_unvThNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-pZtppEdu-d8Dv4wLx9Q" base_Class="_unvTiNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pZ9ppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTitppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-paNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTjNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-padppEdu-d8Dv4wLx9Q" base_Class="_unvTj9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_uo-patppEdu-d8Dv4wLx9Q" base_Class="_unvTk9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pa9ppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTldppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_uo-pbNppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTl9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_uo-pbdppEdu-d8Dv4wLx9Q" base_Class="_unvTmtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EOperation xmi:id="_uo-pbtppEdu-d8Dv4wLx9Q" base_Operation="_unvTndppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_upEv4NppEdu-d8Dv4wLx9Q" base_Class="_unvTodppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_upEv4dppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTo9ppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_upEv4tppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTpdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EReference xmi:id="_upEv49ppEdu-d8Dv4wLx9Q" base_Property="_unvTqNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_upEv5NppEdu-d8Dv4wLx9Q" base_Class="_unvTqdppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EClass xmi:id="_upEv5dppEdu-d8Dv4wLx9Q" base_Class="_unvTrtppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:ETypeParameter xmi:id="_upEv5tppEdu-d8Dv4wLx9Q" base_TemplateParameter="_unvTsNppEdu-d8Dv4wLx9Q"/>
+  <Ecore_1:EGenericType xmi:id="_upEv59ppEdu-d8Dv4wLx9Q" base_Class="_unvTs9ppEdu-d8Dv4wLx9Q"/>
   <Ecore:EPackage xmi:id="_upEv6NppEdu-d8Dv4wLx9Q" base_Package="_unvTttppEdu-d8Dv4wLx9Q" nsPrefix="ocl.util" nsURI="http://www.eclipse.org/ocl/1.1.0/OCL/Utilities"/>
   <Ecore:EClass xmi:id="_upEv6dppEdu-d8Dv4wLx9Q" base_Interface="_unvTt9ppEdu-d8Dv4wLx9Q"/>
   <Ecore:EAttribute xmi:id="_upEv6tppEdu-d8Dv4wLx9Q" isTransient="true" base_Property="_unvTuNppEdu-d8Dv4wLx9Q"/>
@@ -2275,4 +2300,6 @@
   <Ecore:EParameter xmi:id="_EKlD4N1nEduZ74nG8yJaxg" base_Parameter="_7Yh_cN1mEduZ74nG8yJaxg"/>
   <Ecore:EOperation xmi:id="_QNxwAN1nEduZ74nG8yJaxg" base_Operation="_1EvGIN1mEduZ74nG8yJaxg"/>
   <Ecore:EParameter xmi:id="_SCfO4N1nEduZ74nG8yJaxg" base_Parameter="_FcnTgN1nEduZ74nG8yJaxg"/>
+  <Ecore_1:EClass xmi:id="_1lMzkNXZEd6ci-srLwOkAQ" base_Class="_-PCtwNLlEd6hmvYFRJXZTA"/>
+  <Ecore:EReference xmi:id="_82aXYNXZEd6ci-srLwOkAQ" base_Property="_ykFGANLmEd6hmvYFRJXZTA"/>
 </xmi:XMI>

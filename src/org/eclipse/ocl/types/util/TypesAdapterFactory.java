@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesAdapterFactory.java,v 1.7 2008/10/12 01:09:50 cdamus Exp $
+ * $Id: TypesAdapterFactory.java,v 1.8 2009/12/06 18:13:20 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 
@@ -21,8 +21,6 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
-
-//import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -33,6 +31,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TemplateParameterType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesPackage;
@@ -147,6 +146,12 @@ public class TypesAdapterFactory
 		@Override
 		public <C, O> Adapter caseSetType(SetType<C, O> object) {
 			return createSetTypeAdapter();
+		}
+
+		@Override
+		public <O> Adapter caseTemplateParameterType(
+				TemplateParameterType<O> object) {
+			return createTemplateParameterTypeAdapter();
 		}
 
 		@Override
@@ -377,6 +382,21 @@ public class TypesAdapterFactory
 	 * @generated
 	 */
 	public Adapter createVoidTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.types.TemplateParameterType <em>Template Parameter Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.types.TemplateParameterType
+	 * @generated
+	 */
+	public Adapter createTemplateParameterTypeAdapter() {
 		return null;
 	}
 
