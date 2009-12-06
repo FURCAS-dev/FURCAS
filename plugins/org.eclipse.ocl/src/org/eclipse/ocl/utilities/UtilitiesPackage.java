@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.10 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: UtilitiesPackage.java,v 1.11 2009/12/06 18:13:35 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -373,6 +373,16 @@ public interface UtilitiesPackage
 	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = VISITABLE_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Generated Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int EXPRESSION_IN_OCL__GENERATED_TYPE = VISITABLE_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Expression In OCL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -380,7 +390,7 @@ public interface UtilitiesPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 4;
+	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
@@ -583,6 +593,18 @@ public interface UtilitiesPackage
 	EReference getExpressionInOCL_ParameterVariable();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.utilities.ExpressionInOCL#getGeneratedType <em>Generated Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Generated Type</em>'.
+	 * @see org.eclipse.ocl.utilities.ExpressionInOCL#getGeneratedType()
+	 * @see #getExpressionInOCL()
+	 * @generated
+	 */
+	EReference getExpressionInOCL_GeneratedType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -775,6 +797,16 @@ public interface UtilitiesPackage
 		 */
 		EReference EXPRESSION_IN_OCL__PARAMETER_VARIABLE = eINSTANCE
 			.getExpressionInOCL_ParameterVariable();
+
+		/**
+		 * The meta object literal for the '<em><b>Generated Type</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXPRESSION_IN_OCL__GENERATED_TYPE = eINSTANCE
+			.getExpressionInOCL_GeneratedType();
 
 	}
 

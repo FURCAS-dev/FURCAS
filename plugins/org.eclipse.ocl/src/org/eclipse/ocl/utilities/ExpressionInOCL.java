@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.6 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: ExpressionInOCL.java,v 1.7 2009/12/06 18:13:35 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -32,6 +32,7 @@ import org.eclipse.ocl.expressions.Variable;
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getResultVariable <em>Result Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getParameterVariable <em>Parameter Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.utilities.ExpressionInOCL#getGeneratedType <em>Generated Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -138,5 +139,22 @@ public interface ExpressionInOCL<C, PM>
 	 * @generated
 	 */
 	EList<Variable<C, PM>> getParameterVariable();
+
+	/**
+	 * Returns the value of the '<em><b>Generated Type</b></em>' containment reference list.
+	 * The list contents are of type {@link C}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Generated Type</em>' containment reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Generated Type</em>' containment reference list.
+	 * @see org.eclipse.ocl.utilities.UtilitiesPackage#getExpressionInOCL_GeneratedType()
+	 * @model kind="reference" containment="true" ordered="false"
+	 * @generated
+	 */
+	EList<C> getGeneratedType();
 
 } // ExpressionInOCL
