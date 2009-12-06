@@ -821,6 +821,33 @@
           </parameterSubstitution>
         </templateBinding>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Pb7h0NM5Ed6CZJF8dnsuvw" name="TemplateParameterType_Operation">
+        <templateBinding xmi:id="_Pb7h0dM5Ed6CZJF8dnsuvw">
+          <signature xmi:type="uml:RedefinableTemplateSignature" href="../../org.eclipse.ocl/model/OCL.uml#_buUkUNLoEd6hmvYFRJXZTA"/>
+          <parameterSubstitution xmi:id="_Pb7h0tM5Ed6CZJF8dnsuvw">
+            <formal xmi:type="uml:ClassifierTemplateParameter" href="../../org.eclipse.ocl/model/OCL.uml#_buUkU9LoEd6hmvYFRJXZTA"/>
+            <actual xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+          </parameterSubstitution>
+        </templateBinding>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bUUFENM5Ed6CZJF8dnsuvw" name="TemplateParameterType">
+        <generalization xmi:id="_bUUFEdM5Ed6CZJF8dnsuvw">
+          <general xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier"/>
+        </generalization>
+        <generalization xmi:id="_bUUFEtM5Ed6CZJF8dnsuvw" general="_Pb7h0NM5Ed6CZJF8dnsuvw"/>
+        <ownedAttribute xmi:id="_bUUFE9M5Ed6CZJF8dnsuvw" name="ownedOperation" isOrdered="true" aggregation="composite">
+          <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Operation"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_bUUFFNM5Ed6CZJF8dnsuvw" value="*"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_bUUFFdM5Ed6CZJF8dnsuvw"/>
+          <subsettedProperty href="pathmap://UML_METAMODELS/UML.metamodel.uml#Classifier-feature"/>
+        </ownedAttribute>
+      </packagedElement>
+      <profileApplication xmi:id="_e5LHkNXZEd6ci-srLwOkAQ">
+        <eAnnotations xmi:id="_e5U4kNXZEd6ci-srLwOkAQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://UML_PROFILES/Ecore.profile.uml#_0"/>
+      </profileApplication>
     </packagedElement>
     <profileApplication xmi:id="_O6JKQdp9Eduf94aRL_gBBg">
       <eAnnotations xmi:id="_O6JKQtp9Eduf94aRL_gBBg" source="http://www.eclipse.org/uml2/2.0.0/UML">
@@ -937,4 +964,6 @@
   <Ecore:EClass xmi:id="_O6VWSdp9Eduf94aRL_gBBg" base_Class="_O6JKOtp9Eduf94aRL_gBBg"/>
   <Ecore:EGenericType xmi:id="_O6VWStp9Eduf94aRL_gBBg" base_Class="_O6JKPdp9Eduf94aRL_gBBg"/>
   <Ecore:EGenericType xmi:id="_4vxpYNqFEdupgOgeqS0_oQ" base_Class="_yZ4eUNqFEdupgOgeqS0_oQ"/>
+  <Ecore:EClass xmi:id="_OGKn8NXaEd6ci-srLwOkAQ" base_Class="_bUUFENM5Ed6CZJF8dnsuvw"/>
+  <Ecore:EGenericType xmi:id="_QEn4sNXaEd6ci-srLwOkAQ" base_Class="_Pb7h0NM5Ed6CZJF8dnsuvw"/>
 </xmi:XMI>

@@ -312,6 +312,14 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/ocl/uml/TemplateParameterType.java" type="org.eclipse.ocl.uml.TemplateParameterType">
+        <filter id="574619656">
+            <message_arguments>
+                <message_argument value="TemplateParameterType&lt;O&gt;"/>
+                <message_argument value="TemplateParameterType"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/ocl/uml/TupleLiteralExp.java" type="org.eclipse.ocl.uml.TupleLiteralExp">
         <filter id="574619656">
             <message_arguments>
@@ -461,6 +469,14 @@
             <message_arguments>
                 <message_argument value="PrimitiveTypeImpl"/>
                 <message_argument value="PrimitiveTypeImpl"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/org/eclipse/ocl/uml/impl/TemplateParameterTypeImpl.java" type="org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="ClassifierImpl"/>
+                <message_argument value="TemplateParameterTypeImpl"/>
             </message_arguments>
         </filter>
     </resource>
