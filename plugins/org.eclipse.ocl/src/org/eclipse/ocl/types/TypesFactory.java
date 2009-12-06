@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesFactory.java,v 1.6 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: TypesFactory.java,v 1.7 2009/12/06 18:12:34 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -156,6 +156,16 @@ public interface TypesFactory
 	 * @generated
 	 */
 	<O> VoidType<O> createVoidType();
+
+	/**
+	 * Returns a new object of class '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Template Parameter Type</em>'.
+	 * @generated
+	 */
+	<O> TemplateParameterType<O> createTemplateParameterType();
 
 	/**
 	 * Returns the package supported by this factory.
