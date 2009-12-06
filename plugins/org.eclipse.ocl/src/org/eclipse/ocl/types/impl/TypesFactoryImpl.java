@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesFactoryImpl.java,v 1.5 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: TypesFactoryImpl.java,v 1.6 2009/12/06 18:12:59 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -25,8 +25,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-//import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.expressions.CollectionKind;
 import org.eclipse.ocl.types.AnyType;
@@ -39,6 +37,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TemplateParameterType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesFactory;
@@ -114,6 +113,8 @@ public class TypesFactoryImpl
 				return createSequenceType();
 			case TypesPackage.SET_TYPE :
 				return createSetType();
+			case TypesPackage.TEMPLATE_PARAMETER_TYPE :
+				return createTemplateParameterType();
 			case TypesPackage.TUPLE_TYPE :
 				return createTupleType();
 			case TypesPackage.TYPE_TYPE :
@@ -254,6 +255,17 @@ public class TypesFactoryImpl
 	public <O> VoidType<O> createVoidType() {
 		VoidTypeImpl<O> voidType = new VoidTypeImpl<O>();
 		return voidType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public <O> TemplateParameterType<O> createTemplateParameterType() {
+		TemplateParameterTypeImpl<O> templateParameterType = new TemplateParameterTypeImpl<O>();
+		return templateParameterType;
 	}
 
 	/**

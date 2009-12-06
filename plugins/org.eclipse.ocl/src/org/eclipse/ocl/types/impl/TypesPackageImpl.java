@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackageImpl.java,v 1.10 2009/05/26 20:06:34 aigdalov Exp $
+ * $Id: TypesPackageImpl.java,v 1.11 2009/12/06 18:12:59 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -38,6 +38,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TemplateParameterType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesFactory;
@@ -147,6 +148,13 @@ public class TypesPackageImpl
 	 * @generated
 	 */
 	private EClass voidTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass templateParameterTypeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -403,6 +411,27 @@ public class TypesPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTemplateParameterType() {
+		return templateParameterTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getTemplateParameterType_Specification() {
+		return (EAttribute) templateParameterTypeEClass
+			.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -453,6 +482,10 @@ public class TypesPackageImpl
 		sequenceTypeEClass = createEClass(SEQUENCE_TYPE);
 
 		setTypeEClass = createEClass(SET_TYPE);
+
+		templateParameterTypeEClass = createEClass(TEMPLATE_PARAMETER_TYPE);
+		createEAttribute(templateParameterTypeEClass,
+			TEMPLATE_PARAMETER_TYPE__SPECIFICATION);
 
 		tupleTypeEClass = createEClass(TUPLE_TYPE);
 
@@ -539,6 +572,7 @@ public class TypesPackageImpl
 			sequenceTypeEClass, "O"); //$NON-NLS-1$
 		ETypeParameter setTypeEClass_C = addETypeParameter(setTypeEClass, "C"); //$NON-NLS-1$
 		ETypeParameter setTypeEClass_O = addETypeParameter(setTypeEClass, "O"); //$NON-NLS-1$
+		addETypeParameter(templateParameterTypeEClass, "O"); //$NON-NLS-1$
 		ETypeParameter tupleTypeEClass_O = addETypeParameter(tupleTypeEClass,
 			"O"); //$NON-NLS-1$
 		ETypeParameter tupleTypeEClass_P = addETypeParameter(tupleTypeEClass,
@@ -742,6 +776,15 @@ public class TypesPackageImpl
 
 		initEClass(setTypeEClass, SetType.class,
 			"SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(
+			templateParameterTypeEClass,
+			TemplateParameterType.class,
+			"TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEAttribute(
+			getTemplateParameterType_Specification(),
+			ecorePackage.getEString(),
+			"specification", null, 0, 1, TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			tupleTypeEClass,
