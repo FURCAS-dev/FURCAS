@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TypesItemProviderAdapterFactory.java,v 1.1 2009/10/30 18:47:59 ewillink Exp $
+ * $Id: TypesItemProviderAdapterFactory.java,v 1.2 2009/12/06 18:27:07 ewillink Exp $
  */
 package org.eclipse.ocl.types.provider;
 
@@ -317,6 +317,30 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.types.TemplateParameterType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TemplateParameterTypeItemProvider templateParameterTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.types.TemplateParameterType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTemplateParameterTypeAdapter() {
+		if (templateParameterTypeItemProvider == null) {
+			templateParameterTypeItemProvider = new TemplateParameterTypeItemProvider(
+					this);
+		}
+
+		return templateParameterTypeItemProvider;
+	}
+
+	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.types.TupleType} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -507,6 +531,8 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory
 			sequenceTypeItemProvider.dispose();
 		if (setTypeItemProvider != null)
 			setTypeItemProvider.dispose();
+		if (templateParameterTypeItemProvider != null)
+			templateParameterTypeItemProvider.dispose();
 		if (tupleTypeItemProvider != null)
 			tupleTypeItemProvider.dispose();
 		if (typeTypeItemProvider != null)

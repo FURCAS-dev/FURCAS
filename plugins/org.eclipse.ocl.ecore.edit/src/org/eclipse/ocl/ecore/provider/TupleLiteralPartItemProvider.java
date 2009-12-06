@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartItemProvider.java,v 1.1 2009/10/30 18:58:13 ewillink Exp $
+ * $Id: TupleLiteralPartItemProvider.java,v 1.2 2009/12/06 18:32:02 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -488,6 +488,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				EcoreFactory.eINSTANCE.createTemplateParameterType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				EcoreFactory.eINSTANCE.createTupleType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -733,6 +737,10 @@ public class TupleLiteralPartItemProvider extends ETypedElementItemProvider
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
 				TypesFactory.eINSTANCE.createSetType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,
+				TypesFactory.eINSTANCE.createTemplateParameterType()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.TUPLE_LITERAL_PART__ATTRIBUTE,

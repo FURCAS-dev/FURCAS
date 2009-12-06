@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpItemProvider.java,v 1.1 2009/10/30 18:58:23 ewillink Exp $
+ * $Id: MessageExpItemProvider.java,v 1.2 2009/12/06 18:33:03 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -622,6 +622,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				EcoreFactory.eINSTANCE.createTemplateParameterType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				EcoreFactory.eINSTANCE.createTupleType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -867,6 +871,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				TypesFactory.eINSTANCE.createSetType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				TypesFactory.eINSTANCE.createTemplateParameterType()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -1028,6 +1036,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				EcoreFactory.eINSTANCE.createTemplateParameterType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				EcoreFactory.eINSTANCE.createTupleType()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -1273,6 +1285,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				TypesFactory.eINSTANCE.createSetType()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				TypesFactory.eINSTANCE.createTemplateParameterType()));
 
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
