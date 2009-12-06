@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.1 2009/11/26 20:44:38 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.2 2009/12/06 09:11:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -215,8 +215,17 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	 * when the tests are run with an encoding distinct from UTF-8.
 	 */
 	protected void checkForUTF8Encoding() {
-		if (!"´".equals("\u00B4")) {
-			fail("The Resource text file encoding should be set to UTF-8.");
+		String testCharacter = "´";
+		int length = testCharacter.length();
+		if ((length != 1) || (testCharacter.charAt(0) != 0xB4)) {
+			StringBuffer s = new StringBuffer();
+			s.append("The Resource text file encoding should be set to UTF-8: test character was");
+			for (int i = 0; i < length; i++){
+				s.append(" ");
+				s.append(Integer.toHexString(testCharacter.charAt(i)));
+			}
+			s.append(" rather than B4");
+			fail(s.toString());
 		}
 	}
 	
