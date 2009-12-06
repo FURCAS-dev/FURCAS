@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLValidator.java,v 1.2 2008/10/12 01:12:33 cdamus Exp $
+ * $Id: UMLValidator.java,v 1.3 2009/12/06 18:26:28 ewillink Exp $
  */
 package org.eclipse.ocl.uml.util;
 
@@ -272,6 +272,9 @@ public class UMLValidator
 			case UMLPackage.VARIABLE_EXP :
 				return validateVariableExp((VariableExp) value, diagnostics,
 					context);
+			case UMLPackage.TEMPLATE_PARAMETER_TYPE :
+				return validateTemplateParameterType(
+					(TemplateParameterType) value, diagnostics, context);
 			default :
 				return true;
 		}
@@ -3270,6 +3273,83 @@ public class UMLValidator
 		if (result || diagnostics != null)
 			result &= expressionsValidator.validateVariableExp_checkVarType(
 				variableExp, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTemplateParameterType(
+			TemplateParameterType templateParameterType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = validate_EveryMultiplicityConforms(
+			templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(templateParameterType, diagnostics,
+				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateElement_validateNotOwnSelf(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateElement_validateHasOwner(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasNoQualifiedName(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateHasQualifiedName(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamedElement_validateVisibilityNeedsOwnership(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateNamespace_validateMembersDistinguishable(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateRedefinableElement_validateRedefinitionContextValid(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateRedefinableElement_validateRedefinitionConsistent(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateNoCyclesInGeneralization(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateGeneralizationHierarchies(
+					templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator.validateClassifier_validateSpecializeType(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= umlValidator
+				.validateClassifier_validateMapsToGeneralizationSet(
+					templateParameterType, diagnostics, context);
 		return result;
 	}
 
