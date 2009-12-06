@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackageImpl.java,v 1.12 2009/05/26 20:06:38 aigdalov Exp $
+ * $Id: EcorePackageImpl.java,v 1.13 2009/12/06 18:15:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -67,6 +67,7 @@ import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.StateExp;
 import org.eclipse.ocl.ecore.StringLiteralExp;
+import org.eclipse.ocl.ecore.TemplateParameterType;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 import org.eclipse.ocl.ecore.TupleType;
@@ -162,6 +163,13 @@ public class EcorePackageImpl
 	 * @generated
 	 */
 	private EClass setTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass templateParameterTypeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -625,6 +633,16 @@ public class EcorePackageImpl
 	 */
 	public EClass getSetType() {
 		return setTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTemplateParameterType() {
+		return templateParameterTypeEClass;
 	}
 
 	/**
@@ -1101,6 +1119,8 @@ public class EcorePackageImpl
 
 		setTypeEClass = createEClass(SET_TYPE);
 
+		templateParameterTypeEClass = createEClass(TEMPLATE_PARAMETER_TYPE);
+
 		tupleTypeEClass = createEClass(TUPLE_TYPE);
 
 		typeTypeEClass = createEClass(TYPE_TYPE);
@@ -1321,6 +1341,12 @@ public class EcorePackageImpl
 		g2 = createEGenericType(theEcorePackage_1.getEOperation());
 		g1.getETypeArguments().add(g2);
 		setTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theEcorePackage_1.getEClassifier());
+		templateParameterTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTypesPackage.getTemplateParameterType());
+		g2 = createEGenericType(theEcorePackage_1.getEOperation());
+		g1.getETypeArguments().add(g2);
+		templateParameterTypeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theEcorePackage_1.getEClass());
 		tupleTypeEClass.getEGenericSuperTypes().add(g1);
 		g1 = createEGenericType(theEcorePackage_1.getEDataType());
@@ -1645,6 +1671,11 @@ public class EcorePackageImpl
 			"SetType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		initEClass(
+			templateParameterTypeEClass,
+			TemplateParameterType.class,
+			"TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+		initEClass(
 			tupleTypeEClass,
 			TupleType.class,
 			"TupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1909,6 +1940,9 @@ public class EcorePackageImpl
 		addAnnotation(primitiveTypeEClass, source, new String[]{
 			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
 		});
+		addAnnotation(templateParameterTypeEClass, source, new String[]{
+			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 		addAnnotation(tupleTypeEClass, source, new String[]{
 			"constraints", "WellFormedName WellFormedInstanceTypeName" //$NON-NLS-1$ //$NON-NLS-2$
 		});
@@ -1942,7 +1976,7 @@ public class EcorePackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$												
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$													
 		addAnnotation(expressionInOCLEClass, source, new String[]{
 			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
 		});

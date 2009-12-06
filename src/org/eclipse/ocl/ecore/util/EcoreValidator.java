@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreValidator.java,v 1.4 2008/11/24 00:40:24 cdamus Exp $
+ * $Id: EcoreValidator.java,v 1.5 2009/12/06 18:16:10 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -163,6 +163,9 @@ public class EcoreValidator
 					context);
 			case EcorePackage.SET_TYPE :
 				return validateSetType((SetType) value, diagnostics, context);
+			case EcorePackage.TEMPLATE_PARAMETER_TYPE :
+				return validateTemplateParameterType(
+					(TemplateParameterType) value, diagnostics, context);
 			case EcorePackage.TUPLE_TYPE :
 				return validateTupleType((TupleType) value, diagnostics,
 					context);
@@ -922,6 +925,76 @@ public class EcoreValidator
 				.validateCollectionType_checkNoInvalidValues(setType,
 					diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTemplateParameterType(
+			TemplateParameterType templateParameterType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		boolean result = validate_EveryMultiplicityConforms(
+			templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryDataValueConforms(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryReferenceIsContained(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryProxyResolves(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_UniqueID(templateParameterType, diagnostics,
+				context);
+		if (result || diagnostics != null)
+			result &= validate_EveryKeyUnique(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validate_EveryMapEntryUnique(templateParameterType,
+				diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTemplateParameterType_WellFormedName(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateTemplateParameterType_WellFormedInstanceTypeName(
+				templateParameterType, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= ecoreValidator
+				.validateEClassifier_UniqueTypeParameterNames(
+					templateParameterType, diagnostics, context);
+		return result;
+	}
+
+	/**
+	 * Validates the WellFormedName constraint of '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 * @since 3.0
+	 */
+	public boolean validateTemplateParameterType_WellFormedName(
+			TemplateParameterType templateParameterType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// The Ecore constraint is not applicable to OCL
+		return true;
+	}
+
+	/**
+	 * Validates the WellFormedInstanceTypeName constraint of '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 * @since 3.0
+	 */
+	public boolean validateTemplateParameterType_WellFormedInstanceTypeName(
+			TemplateParameterType templateParameterType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		// The Ecore constraint is not applicable to OCL
+		return true;
 	}
 
 	/**

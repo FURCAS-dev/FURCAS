@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.10 2008/11/30 21:38:34 cdamus Exp $
+ * $Id: EcorePackage.java,v 1.11 2009/12/06 18:15:20 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -1626,6 +1626,117 @@ public interface EcorePackage
 	int SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl
+	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTemplateParameterType()
+	 * @generated
+	 */
+	int TEMPLATE_PARAMETER_TYPE = 10;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__EANNOTATIONS = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__NAME = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS_NAME = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__INSTANCE_CLASS_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__INSTANCE_CLASS = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__INSTANCE_CLASS;
+
+	/**
+	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__DEFAULT_VALUE = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__DEFAULT_VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__INSTANCE_TYPE_NAME = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__INSTANCE_TYPE_NAME;
+
+	/**
+	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__EPACKAGE = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__EPACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__ETYPE_PARAMETERS = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER__ETYPE_PARAMETERS;
+
+	/**
+	 * The feature id for the '<em><b>Specification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = org.eclipse.emf.ecore.EcorePackage.ECLASSIFIER_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1633,7 +1744,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTupleType()
 	 * @generated
 	 */
-	int TUPLE_TYPE = 10;
+	int TUPLE_TYPE = 11;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -1877,7 +1988,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTypeType()
 	 * @generated
 	 */
-	int TYPE_TYPE = 11;
+	int TYPE_TYPE = 12;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -1977,7 +2088,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getVoidType()
 	 * @generated
 	 */
-	int VOID_TYPE = 12;
+	int VOID_TYPE = 13;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2068,7 +2179,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCallOperationAction()
 	 * @generated
 	 */
-	int CALL_OPERATION_ACTION = 13;
+	int CALL_OPERATION_ACTION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' reference.
@@ -2096,7 +2207,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 14;
+	int CONSTRAINT = 15;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2160,7 +2271,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getSendSignalAction()
 	 * @generated
 	 */
-	int SEND_SIGNAL_ACTION = 15;
+	int SEND_SIGNAL_ACTION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Signal</b></em>' reference.
@@ -2188,7 +2299,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getExpressionInOCL()
 	 * @generated
 	 */
-	int EXPRESSION_IN_OCL = 16;
+	int EXPRESSION_IN_OCL = 17;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
@@ -2227,6 +2338,16 @@ public interface EcorePackage
 	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
 
 	/**
+	 * The feature id for the '<em><b>Generated Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_IN_OCL__GENERATED_TYPE = UtilitiesPackage.EXPRESSION_IN_OCL__GENERATED_TYPE;
+
+	/**
 	 * The number of structural features of the '<em>Expression In OCL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2243,7 +2364,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOCLExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 39;
+	int OCL_EXPRESSION = 40;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2370,7 +2491,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCallExp()
 	 * @generated
 	 */
-	int CALL_EXP = 19;
+	int CALL_EXP = 20;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2524,7 +2645,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getFeatureCallExp()
 	 * @generated
 	 */
-	int FEATURE_CALL_EXP = 25;
+	int FEATURE_CALL_EXP = 26;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2687,7 +2808,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getNavigationCallExp()
 	 * @generated
 	 */
-	int NAVIGATION_CALL_EXP = 36;
+	int NAVIGATION_CALL_EXP = 37;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -2868,7 +2989,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getAssociationClassCallExp()
 	 * @generated
 	 */
-	int ASSOCIATION_CLASS_CALL_EXP = 17;
+	int ASSOCIATION_CLASS_CALL_EXP = 18;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3058,7 +3179,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 33;
+	int LITERAL_EXP = 34;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3185,7 +3306,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getPrimitiveLiteralExp()
 	 * @generated
 	 */
-	int PRIMITIVE_LITERAL_EXP = 41;
+	int PRIMITIVE_LITERAL_EXP = 42;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3312,7 +3433,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getBooleanLiteralExp()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXP = 18;
+	int BOOLEAN_LITERAL_EXP = 19;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3448,7 +3569,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionLiteralPart()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_PART = 22;
+	int COLLECTION_LITERAL_PART = 23;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3557,7 +3678,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionItem()
 	 * @generated
 	 */
-	int COLLECTION_ITEM = 20;
+	int COLLECTION_ITEM = 21;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3675,7 +3796,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionLiteralExp()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_EXP = 21;
+	int COLLECTION_LITERAL_EXP = 22;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3829,7 +3950,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionRange()
 	 * @generated
 	 */
-	int COLLECTION_RANGE = 23;
+	int COLLECTION_RANGE = 24;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -3956,7 +4077,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 24;
+	int ENUM_LITERAL_EXP = 25;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4092,7 +4213,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 26;
+	int IF_EXP = 27;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4246,7 +4367,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getNumericLiteralExp()
 	 * @generated
 	 */
-	int NUMERIC_LITERAL_EXP = 38;
+	int NUMERIC_LITERAL_EXP = 39;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4373,7 +4494,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 27;
+	int INTEGER_LITERAL_EXP = 28;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4509,7 +4630,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getUnlimitedNaturalLiteralExp()
 	 * @generated
 	 */
-	int UNLIMITED_NATURAL_LITERAL_EXP = 28;
+	int UNLIMITED_NATURAL_LITERAL_EXP = 29;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4654,7 +4775,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getInvalidLiteralExp()
 	 * @generated
 	 */
-	int INVALID_LITERAL_EXP = 29;
+	int INVALID_LITERAL_EXP = 30;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4781,7 +4902,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 34;
+	int LOOP_EXP = 35;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -4953,7 +5074,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 30;
+	int ITERATE_EXP = 31;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -5134,7 +5255,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 31;
+	int ITERATOR_EXP = 32;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -5306,7 +5427,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 32;
+	int LET_EXP = 33;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -5451,7 +5572,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getMessageExp()
 	 * @generated
 	 */
-	int MESSAGE_EXP = 35;
+	int MESSAGE_EXP = 36;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -5632,7 +5753,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getNullLiteralExp()
 	 * @generated
 	 */
-	int NULL_LITERAL_EXP = 37;
+	int NULL_LITERAL_EXP = 38;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -5759,7 +5880,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 40;
+	int OPERATION_CALL_EXP = 41;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -5949,7 +6070,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 42;
+	int PROPERTY_CALL_EXP = 43;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6139,7 +6260,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 43;
+	int REAL_LITERAL_EXP = 44;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6275,7 +6396,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getStateExp()
 	 * @generated
 	 */
-	int STATE_EXP = 44;
+	int STATE_EXP = 45;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6411,7 +6532,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 45;
+	int STRING_LITERAL_EXP = 46;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6547,7 +6668,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 46;
+	int TUPLE_LITERAL_EXP = 47;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6683,7 +6804,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTupleLiteralPart()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_PART = 47;
+	int TUPLE_LITERAL_PART = 48;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6846,7 +6967,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTypeExp()
 	 * @generated
 	 */
-	int TYPE_EXP = 48;
+	int TYPE_EXP = 49;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -6982,7 +7103,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getUnspecifiedValueExp()
 	 * @generated
 	 */
-	int UNSPECIFIED_VALUE_EXP = 49;
+	int UNSPECIFIED_VALUE_EXP = 50;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -7127,7 +7248,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getVariable()
 	 * @generated
 	 */
-	int VARIABLE = 50;
+	int VARIABLE = 51;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -7290,7 +7411,7 @@ public interface EcorePackage
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getVariableExp()
 	 * @generated
 	 */
-	int VARIABLE_EXP = 51;
+	int VARIABLE_EXP = 52;
 
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
@@ -7517,6 +7638,17 @@ public interface EcorePackage
 	 * @generated
 	 */
 	EClass getSetType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.ecore.TemplateParameterType <em>Template Parameter Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Template Parameter Type</em>'.
+	 * @see org.eclipse.ocl.ecore.TemplateParameterType
+	 * @generated
+	 */
+	EClass getTemplateParameterType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.ecore.TupleType <em>Tuple Type</em>}'.
@@ -8115,6 +8247,17 @@ public interface EcorePackage
 		 * @generated
 		 */
 		EClass SET_TYPE = eINSTANCE.getSetType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl
+		 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTemplateParameterType()
+		 * @generated
+		 */
+		EClass TEMPLATE_PARAMETER_TYPE = eINSTANCE.getTemplateParameterType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.ocl.ecore.impl.TupleTypeImpl <em>Tuple Type</em>}' class.

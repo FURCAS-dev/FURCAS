@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreSwitch.java,v 1.9 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: EcoreSwitch.java,v 1.10 2009/12/06 18:16:10 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -25,10 +25,61 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.ETypedElement;
-import org.eclipse.ocl.ecore.*;
-
+import org.eclipse.ocl.ecore.AnyType;
+import org.eclipse.ocl.ecore.AssociationClassCallExp;
+import org.eclipse.ocl.ecore.BagType;
+import org.eclipse.ocl.ecore.BooleanLiteralExp;
+import org.eclipse.ocl.ecore.CallExp;
+import org.eclipse.ocl.ecore.CallOperationAction;
+import org.eclipse.ocl.ecore.CollectionItem;
+import org.eclipse.ocl.ecore.CollectionLiteralExp;
+import org.eclipse.ocl.ecore.CollectionLiteralPart;
+import org.eclipse.ocl.ecore.CollectionRange;
+import org.eclipse.ocl.ecore.CollectionType;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcorePackage;
+import org.eclipse.ocl.ecore.ElementType;
+import org.eclipse.ocl.ecore.EnumLiteralExp;
+import org.eclipse.ocl.ecore.ExpressionInOCL;
+import org.eclipse.ocl.ecore.FeatureCallExp;
+import org.eclipse.ocl.ecore.IfExp;
+import org.eclipse.ocl.ecore.IntegerLiteralExp;
+import org.eclipse.ocl.ecore.InvalidLiteralExp;
+import org.eclipse.ocl.ecore.InvalidType;
+import org.eclipse.ocl.ecore.IterateExp;
+import org.eclipse.ocl.ecore.IteratorExp;
+import org.eclipse.ocl.ecore.LetExp;
+import org.eclipse.ocl.ecore.LiteralExp;
+import org.eclipse.ocl.ecore.LoopExp;
+import org.eclipse.ocl.ecore.MessageExp;
+import org.eclipse.ocl.ecore.MessageType;
+import org.eclipse.ocl.ecore.NavigationCallExp;
+import org.eclipse.ocl.ecore.NullLiteralExp;
+import org.eclipse.ocl.ecore.NumericLiteralExp;
+import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.ecore.OperationCallExp;
+import org.eclipse.ocl.ecore.OrderedSetType;
+import org.eclipse.ocl.ecore.PrimitiveLiteralExp;
+import org.eclipse.ocl.ecore.PrimitiveType;
+import org.eclipse.ocl.ecore.PropertyCallExp;
+import org.eclipse.ocl.ecore.RealLiteralExp;
+import org.eclipse.ocl.ecore.SendSignalAction;
+import org.eclipse.ocl.ecore.SequenceType;
+import org.eclipse.ocl.ecore.SetType;
+import org.eclipse.ocl.ecore.StateExp;
+import org.eclipse.ocl.ecore.StringLiteralExp;
+import org.eclipse.ocl.ecore.TemplateParameterType;
+import org.eclipse.ocl.ecore.TupleLiteralExp;
+import org.eclipse.ocl.ecore.TupleLiteralPart;
+import org.eclipse.ocl.ecore.TupleType;
+import org.eclipse.ocl.ecore.TypeExp;
+import org.eclipse.ocl.ecore.TypeType;
+import org.eclipse.ocl.ecore.UnlimitedNaturalLiteralExp;
+import org.eclipse.ocl.ecore.UnspecifiedValueExp;
+import org.eclipse.ocl.ecore.Variable;
+import org.eclipse.ocl.ecore.VariableExp;
+import org.eclipse.ocl.ecore.VoidType;
 import org.eclipse.ocl.utilities.ASTNode;
 import org.eclipse.ocl.utilities.CallingASTNode;
 import org.eclipse.ocl.utilities.PredefinedType;
@@ -325,6 +376,21 @@ public class EcoreSwitch<T> {
 					result = caseASTNode(setType);
 				if (result == null)
 					result = caseEModelElement(setType);
+				if (result == null)
+					result = defaultCase(theEObject);
+				return result;
+			}
+			case EcorePackage.TEMPLATE_PARAMETER_TYPE : {
+				TemplateParameterType templateParameterType = (TemplateParameterType) theEObject;
+				T result = caseTemplateParameterType(templateParameterType);
+				if (result == null)
+					result = caseEClassifier(templateParameterType);
+				if (result == null)
+					result = caseTypes_TemplateParameterType(templateParameterType);
+				if (result == null)
+					result = caseENamedElement(templateParameterType);
+				if (result == null)
+					result = caseEModelElement(templateParameterType);
 				if (result == null)
 					result = defaultCase(theEObject);
 				return result;
@@ -1603,6 +1669,22 @@ public class EcoreSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTemplateParameterType(TemplateParameterType object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -2302,7 +2384,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Any Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <O> T caseTypes_AnyType(org.eclipse.ocl.types.AnyType<O> object) {
@@ -2364,7 +2446,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseTypes_CollectionType(
@@ -2382,7 +2464,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Bag Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseTypes_BagType(org.eclipse.ocl.types.BagType<C, O> object) {
@@ -2414,7 +2496,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Element Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public T caseTypes_ElementType(org.eclipse.ocl.types.ElementType object) {
@@ -2431,7 +2513,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Invalid Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <O> T caseTypes_InvalidType(
@@ -2449,7 +2531,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Message Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O, P> T caseTypes_MessageType(
@@ -2467,7 +2549,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Ordered Set Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseTypes_OrderedSetType(
@@ -2485,7 +2567,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Primitive Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <O> T caseTypes_PrimitiveType(
@@ -2503,7 +2585,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Sequence Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseTypes_SequenceType(
@@ -2521,11 +2603,28 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Set Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseTypes_SetType(org.eclipse.ocl.types.SetType<C, O> object) {
 		return caseSetType_1(object);
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Template Parameter Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public <O> T caseTypes_TemplateParameterType(
+			org.eclipse.ocl.types.TemplateParameterType<O> object) {
+		return null;
 	}
 
 	/**
@@ -2538,7 +2637,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tuple Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <O, P> T caseTypes_TupleType(
@@ -2556,7 +2655,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Type Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseTypes_TypeType(
@@ -2574,7 +2673,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Void Type</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <O> T caseTypes_VoidType(org.eclipse.ocl.types.VoidType<O> object) {
@@ -2606,7 +2705,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Expression In OCL</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseUtilities_ExpressionInOCL(
@@ -2654,7 +2753,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>OCL Expression</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_OCLExpression(
@@ -2687,7 +2786,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_CallExp(
@@ -2705,7 +2804,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_FeatureCallExp(
@@ -2723,7 +2822,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Navigation Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, P> T caseExpressions_NavigationCallExp(
@@ -2741,7 +2840,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Association Class Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, P> T caseExpressions_AssociationClassCallExp(
@@ -2759,7 +2858,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_LiteralExp(
@@ -2777,7 +2876,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Primitive Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_PrimitiveLiteralExp(
@@ -2795,7 +2894,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Boolean Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_BooleanLiteralExp(
@@ -2813,7 +2912,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_CollectionLiteralPart(
@@ -2831,7 +2930,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Item</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_CollectionItem(
@@ -2849,7 +2948,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_CollectionLiteralExp(
@@ -2867,7 +2966,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Collection Range</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_CollectionRange(
@@ -2885,7 +2984,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Enum Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, EL> T caseExpressions_EnumLiteralExp(
@@ -2903,7 +3002,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>If Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_IfExp(
@@ -2921,7 +3020,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Numeric Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_NumericLiteralExp(
@@ -2939,7 +3038,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Integer Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_IntegerLiteralExp(
@@ -2957,7 +3056,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Unlimited Natural Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_UnlimitedNaturalLiteralExp(
@@ -2975,7 +3074,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Invalid Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_InvalidLiteralExp(
@@ -2993,7 +3092,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Loop Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseExpressions_LoopExp(
@@ -3011,7 +3110,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseExpressions_IterateExp(
@@ -3029,7 +3128,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseExpressions_IteratorExp(
@@ -3047,7 +3146,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Let Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseExpressions_LetExp(
@@ -3065,7 +3164,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Message Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, COA, SSA> T caseExpressions_MessageExp(
@@ -3083,7 +3182,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Null Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_NullLiteralExp(
@@ -3101,7 +3200,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Operation Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, O> T caseExpressions_OperationCallExp(
@@ -3119,7 +3218,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Property Call Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, P> T caseExpressions_PropertyCallExp(
@@ -3137,7 +3236,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Real Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_RealLiteralExp(
@@ -3155,7 +3254,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>State Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, S> T caseExpressions_StateExp(
@@ -3173,7 +3272,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>String Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_StringLiteralExp(
@@ -3191,7 +3290,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tuple Literal Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, P> T caseExpressions_TupleLiteralExp(
@@ -3209,7 +3308,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Tuple Literal Part</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, P> T caseExpressions_TupleLiteralPart(
@@ -3227,7 +3326,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Type Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_TypeExp(
@@ -3245,7 +3344,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Unspecified Value Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C> T caseExpressions_UnspecifiedValueExp(
@@ -3263,7 +3362,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseExpressions_Variable(
@@ -3281,7 +3380,7 @@ public class EcoreSwitch<T> {
 	 * @param object the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Variable Exp</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
+	 * @generated NOT (generated version returns null)
 	 */
 	@SuppressWarnings("deprecation")
 	public <C, PM> T caseExpressions_VariableExp(
