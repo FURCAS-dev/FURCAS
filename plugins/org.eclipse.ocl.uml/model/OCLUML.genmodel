@@ -100,6 +100,10 @@
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/UnspecifiedValueExp"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/Variable"/>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/VariableExp"/>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCLUML.ecore#//uml/TemplateParameterType">
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCLUML.ecore#//uml/TemplateParameterType/ownedOperation"/>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

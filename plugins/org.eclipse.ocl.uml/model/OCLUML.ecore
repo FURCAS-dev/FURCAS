@@ -358,5 +358,16 @@
         <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Parameter"/>
       </eGenericSuperTypes>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TemplateParameterType">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ownedOperation" upperBound="-1"
+          eType="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"
+          containment="true">
+        <eAnnotations source="subsets" references="platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier/feature"/>
+      </eStructuralFeatures>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Classifier"/>
+      <eGenericSuperTypes eClassifier="ecore:EClass platform:/plugin/org.eclipse.ocl/model/OCL.ecore#//types/TemplateParameterType">
+        <eTypeArguments eClassifier="ecore:EClass platform:/plugin/org.eclipse.uml2.uml/model/UML.ecore#//Operation"/>
+      </eGenericSuperTypes>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>
