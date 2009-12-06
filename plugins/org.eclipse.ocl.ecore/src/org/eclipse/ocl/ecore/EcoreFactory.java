@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactory.java,v 1.7 2008/11/24 00:44:51 cdamus Exp $
+ * $Id: EcoreFactory.java,v 1.8 2009/12/06 18:15:06 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -127,6 +127,16 @@ public interface EcoreFactory
 	 * @generated
 	 */
 	SetType createSetType();
+
+	/**
+	 * Returns a new object of class '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Template Parameter Type</em>'.
+	 * @generated
+	 */
+	TemplateParameterType createTemplateParameterType();
 
 	/**
 	 * Returns a new object of class '<em>Tuple Type</em>'.
