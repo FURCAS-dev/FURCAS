@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: EcoreItemProviderAdapterFactory.java,v 1.1 2009/10/30 18:58:07 ewillink Exp $
+ * $Id: EcoreItemProviderAdapterFactory.java,v 1.2 2009/12/06 18:31:01 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -314,6 +314,30 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 		}
 
 		return setTypeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.ecore.TemplateParameterType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TemplateParameterTypeItemProvider templateParameterTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.ecore.TemplateParameterType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTemplateParameterTypeAdapter() {
+		if (templateParameterTypeItemProvider == null) {
+			templateParameterTypeItemProvider = new TemplateParameterTypeItemProvider(
+					this);
+		}
+
+		return templateParameterTypeItemProvider;
 	}
 
 	/**
@@ -1209,6 +1233,8 @@ public class EcoreItemProviderAdapterFactory extends EcoreAdapterFactory
 			sequenceTypeItemProvider.dispose();
 		if (setTypeItemProvider != null)
 			setTypeItemProvider.dispose();
+		if (templateParameterTypeItemProvider != null)
+			templateParameterTypeItemProvider.dispose();
 		if (tupleTypeItemProvider != null)
 			tupleTypeItemProvider.dispose();
 		if (typeTypeItemProvider != null)
