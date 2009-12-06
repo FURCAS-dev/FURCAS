@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.15 2009/11/28 17:53:08 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.16 2009/12/06 16:57:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1565,7 +1565,7 @@ public class RegressionTest
 				"inv: preferredLabel('foo')" +
 				" endpackage");
 		
-		parse(
+/*		parse( FIXME Bug 291310 rewrite for OCL 2.3 and reintroduce when build is UTF-8.
 				// SuSe Linux in Hebrew Local
 				"package ocltest context Apple " +
 				"inv: preferredLabel(´foo´)" +
@@ -1575,7 +1575,7 @@ public class RegressionTest
 				// I've seen this before (esp. in text export from MS Word)
 				"package ocltest context Apple " +
 				"inv: preferredLabel(`foo´)" +
-				" endpackage");
+				" endpackage"); */
 	}
 	
 	/**
