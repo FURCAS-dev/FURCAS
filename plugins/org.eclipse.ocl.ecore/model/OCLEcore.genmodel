@@ -23,6 +23,7 @@
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/PrimitiveType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/SequenceType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/SetType"/>
+      <genClasses ecoreClass="OCLEcore.ecore#//ecore/TemplateParameterType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/TupleType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/TypeType"/>
       <genClasses ecoreClass="OCLEcore.ecore#//ecore/VoidType"/>
