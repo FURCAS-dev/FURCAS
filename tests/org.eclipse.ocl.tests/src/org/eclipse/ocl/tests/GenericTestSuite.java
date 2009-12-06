@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.2 2009/12/06 09:11:16 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.3 2009/12/06 22:26:43 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -228,7 +228,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 			fail(s.toString());
 		}
 	}
-	
+
 	protected OCLExpression<C> createBodyCondition(O context, String text) {
 		OCLHelper<C, O, P, CT> helper =
 			ocl.createOCLHelper();
