@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.10 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.11 2009/12/06 18:21:24 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -23,6 +23,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -51,6 +52,7 @@ import org.eclipse.uml2.uml.internal.impl.OpaqueExpressionImpl;
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getResultVariable <em>Result Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getParameterVariable <em>Parameter Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.uml.impl.ExpressionInOCLImpl#getGeneratedType <em>Generated Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -100,6 +102,17 @@ public class ExpressionInOCLImpl
 	 * @ordered
 	 */
 	protected EList<Variable<Classifier, Parameter>> parameterVariable;
+
+	/**
+	 * The cached value of the '{@link #getGeneratedType() <em>Generated Type</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getGeneratedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Classifier> generatedType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -314,6 +327,21 @@ public class ExpressionInOCLImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Classifier> getGeneratedType() {
+		if (generatedType == null) {
+			generatedType = new EObjectContainmentEList<Classifier>(
+				EObject.class, this,
+				UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE);
+		}
+		return generatedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -341,6 +369,9 @@ public class ExpressionInOCLImpl
 			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				return ((InternalEList<?>) getParameterVariable()).basicRemove(
 					otherEnd, msgs);
+			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				return ((InternalEList<?>) getGeneratedType()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -361,6 +392,8 @@ public class ExpressionInOCLImpl
 				return getResultVariable();
 			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				return getParameterVariable();
+			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				return getGeneratedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -389,6 +422,11 @@ public class ExpressionInOCLImpl
 					.addAll(
 						(Collection<? extends Variable<Classifier, Parameter>>) newValue);
 				return;
+			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				getGeneratedType().clear();
+				getGeneratedType().addAll(
+					(Collection<? extends Classifier>) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -413,6 +451,9 @@ public class ExpressionInOCLImpl
 			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				getParameterVariable().clear();
 				return;
+			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				getGeneratedType().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -434,6 +475,8 @@ public class ExpressionInOCLImpl
 			case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				return parameterVariable != null
 					&& !parameterVariable.isEmpty();
+			case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				return generatedType != null && !generatedType.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -461,6 +504,8 @@ public class ExpressionInOCLImpl
 					return UtilitiesPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE;
 				case UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 					return UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
+				case UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+					return UtilitiesPackage.EXPRESSION_IN_OCL__GENERATED_TYPE;
 				default :
 					return -1;
 			}
@@ -491,6 +536,8 @@ public class ExpressionInOCLImpl
 					return UMLPackage.EXPRESSION_IN_OCL__RESULT_VARIABLE;
 				case UtilitiesPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 					return UMLPackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE;
+				case UtilitiesPackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+					return UMLPackage.EXPRESSION_IN_OCL__GENERATED_TYPE;
 				default :
 					return -1;
 			}
