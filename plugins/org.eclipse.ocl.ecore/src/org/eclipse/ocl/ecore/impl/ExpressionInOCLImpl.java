@@ -13,7 +13,7 @@
  *   
  * </copyright>
  *
- * $Id: ExpressionInOCLImpl.java,v 1.9 2009/01/23 17:16:21 cdamus Exp $
+ * $Id: ExpressionInOCLImpl.java,v 1.10 2009/12/06 18:15:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -54,6 +55,7 @@ import org.eclipse.ocl.utilities.Visitor;
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getResultVariable <em>Result Variable</em>}</li>
  *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getParameterVariable <em>Parameter Variable</em>}</li>
+ *   <li>{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl#getGeneratedType <em>Generated Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -102,6 +104,17 @@ public class ExpressionInOCLImpl
 	 * @ordered
 	 */
 	protected EList<Variable<EClassifier, EParameter>> parameterVariable;
+
+	/**
+	 * The cached value of the '{@link #getGeneratedType() <em>Generated Type</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @see #getGeneratedType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EClassifier> generatedType;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -316,6 +329,21 @@ public class ExpressionInOCLImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<EClassifier> getGeneratedType() {
+		if (generatedType == null) {
+			generatedType = new EObjectContainmentEList<EClassifier>(
+				EObject.class, this,
+				EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE);
+		}
+		return generatedType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
@@ -343,6 +371,9 @@ public class ExpressionInOCLImpl
 			case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				return ((InternalEList<?>) getParameterVariable()).basicRemove(
 					otherEnd, msgs);
+			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				return ((InternalEList<?>) getGeneratedType()).basicRemove(
+					otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -363,6 +394,8 @@ public class ExpressionInOCLImpl
 				return getResultVariable();
 			case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				return getParameterVariable();
+			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				return getGeneratedType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -391,6 +424,11 @@ public class ExpressionInOCLImpl
 					.addAll(
 						(Collection<? extends Variable<EClassifier, EParameter>>) newValue);
 				return;
+			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				getGeneratedType().clear();
+				getGeneratedType().addAll(
+					(Collection<? extends EClassifier>) newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -415,6 +453,9 @@ public class ExpressionInOCLImpl
 			case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				getParameterVariable().clear();
 				return;
+			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				getGeneratedType().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -436,6 +477,8 @@ public class ExpressionInOCLImpl
 			case EcorePackage.EXPRESSION_IN_OCL__PARAMETER_VARIABLE :
 				return parameterVariable != null
 					&& !parameterVariable.isEmpty();
+			case EcorePackage.EXPRESSION_IN_OCL__GENERATED_TYPE :
+				return generatedType != null && !generatedType.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

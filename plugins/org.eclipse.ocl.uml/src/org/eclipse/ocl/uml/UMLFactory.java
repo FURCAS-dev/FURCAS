@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactory.java,v 1.8 2009/01/23 17:16:12 cdamus Exp $
+ * $Id: UMLFactory.java,v 1.9 2009/12/06 18:19:35 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -399,6 +399,16 @@ public interface UMLFactory
 	 * @generated
 	 */
 	VariableExp createVariableExp();
+
+	/**
+	 * Returns a new object of class '<em>Template Parameter Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Template Parameter Type</em>'.
+	 * @generated
+	 */
+	TemplateParameterType createTemplateParameterType();
 
 	/**
 	 * Returns the package supported by this factory.

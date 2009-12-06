@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackage.java,v 1.9 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: UMLPackage.java,v 1.10 2009/12/06 18:19:54 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -5917,6 +5917,16 @@ public interface UMLPackage
 	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Generated Type</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int EXPRESSION_IN_OCL__GENERATED_TYPE = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Expression In OCL</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -5924,7 +5934,7 @@ public interface UMLPackage
 	 * @ordered
 	 * @noreference This field is not intended to be referenced by clients.
 	 */
-	int EXPRESSION_IN_OCL_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 4;
+	int EXPRESSION_IN_OCL_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.OPAQUE_EXPRESSION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
@@ -12032,6 +12042,417 @@ public interface UMLPackage
 	int VARIABLE_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl
+	 * @see org.eclipse.ocl.uml.impl.UMLPackageImpl#getTemplateParameterType()
+	 * @generated
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE = 49;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__EANNOTATIONS = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Owned Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_ELEMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Comment</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_COMMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_COMMENT;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Visibility</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__VISIBILITY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__VISIBILITY;
+
+	/**
+	 * The feature id for the '<em><b>Qualified Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__QUALIFIED_NAME = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__QUALIFIED_NAME;
+
+	/**
+	 * The feature id for the '<em><b>Client Dependency</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__CLIENT_DEPENDENCY = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__CLIENT_DEPENDENCY;
+
+	/**
+	 * The feature id for the '<em><b>Namespace</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__NAMESPACE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAMESPACE;
+
+	/**
+	 * The feature id for the '<em><b>Name Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__NAME_EXPRESSION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__NAME_EXPRESSION;
+
+	/**
+	 * The feature id for the '<em><b>Element Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__ELEMENT_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ELEMENT_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Package Import</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__PACKAGE_IMPORT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE_IMPORT;
+
+	/**
+	 * The feature id for the '<em><b>Owned Rule</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_RULE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_RULE;
+
+	/**
+	 * The feature id for the '<em><b>Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Imported Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__IMPORTED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IMPORTED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Owned Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Is Leaf</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__IS_LEAF = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_LEAF;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Element</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__REDEFINED_ELEMENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_ELEMENT;
+
+	/**
+	 * The feature id for the '<em><b>Redefinition Context</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__REDEFINITION_CONTEXT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINITION_CONTEXT;
+
+	/**
+	 * The feature id for the '<em><b>Owning Template Parameter</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNING_TEMPLATE_PARAMETER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNING_TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Template Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__TEMPLATE_PARAMETER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_PARAMETER;
+
+	/**
+	 * The feature id for the '<em><b>Package</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__PACKAGE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__PACKAGE;
+
+	/**
+	 * The feature id for the '<em><b>Template Binding</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__TEMPLATE_BINDING = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__TEMPLATE_BINDING;
+
+	/**
+	 * The feature id for the '<em><b>Owned Template Signature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_TEMPLATE_SIGNATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_TEMPLATE_SIGNATURE;
+
+	/**
+	 * The feature id for the '<em><b>Is Abstract</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__IS_ABSTRACT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__IS_ABSTRACT;
+
+	/**
+	 * The feature id for the '<em><b>Generalization</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__GENERALIZATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERALIZATION;
+
+	/**
+	 * The feature id for the '<em><b>Powertype Extent</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__POWERTYPE_EXTENT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__POWERTYPE_EXTENT;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__FEATURE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__FEATURE;
+
+	/**
+	 * The feature id for the '<em><b>Inherited Member</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__INHERITED_MEMBER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__INHERITED_MEMBER;
+
+	/**
+	 * The feature id for the '<em><b>Redefined Classifier</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__REDEFINED_CLASSIFIER = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REDEFINED_CLASSIFIER;
+
+	/**
+	 * The feature id for the '<em><b>General</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__GENERAL = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__GENERAL;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__SUBSTITUTION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__SUBSTITUTION;
+
+	/**
+	 * The feature id for the '<em><b>Attribute</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__ATTRIBUTE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__ATTRIBUTE;
+
+	/**
+	 * The feature id for the '<em><b>Representation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__REPRESENTATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__REPRESENTATION;
+
+	/**
+	 * The feature id for the '<em><b>Collaboration Use</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__COLLABORATION_USE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__COLLABORATION_USE;
+
+	/**
+	 * The feature id for the '<em><b>Owned Use Case</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__OWNED_USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Use Case</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__USE_CASE = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER__USE_CASE;
+
+	/**
+	 * The feature id for the '<em><b>Specification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Owned Operation</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 * @noreference This field is not intended to be referenced by clients.
+	 */
+	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = org.eclipse.uml2.uml.UMLPackage.CLASSIFIER_FEATURE_COUNT + 2;
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.ocl.uml.AnyType <em>Any Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12586,6 +13007,29 @@ public interface UMLPackage
 	 * @generated
 	 */
 	EClass getVariableExp();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.ocl.uml.TemplateParameterType <em>Template Parameter Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Template Parameter Type</em>'.
+	 * @see org.eclipse.ocl.uml.TemplateParameterType
+	 * @generated
+	 */
+	EClass getTemplateParameterType();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.ocl.uml.TemplateParameterType#getOwnedOperations <em>Owned Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Owned Operation</em>'.
+	 * @see org.eclipse.ocl.uml.TemplateParameterType#getOwnedOperations()
+	 * @see #getTemplateParameterType()
+	 * @generated
+	 */
+	EReference getTemplateParameterType_OwnedOperation();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -13157,6 +13601,27 @@ public interface UMLPackage
 		 * @generated
 		 */
 		EClass VARIABLE_EXP = eINSTANCE.getVariableExp();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.uml.impl.TemplateParameterTypeImpl
+		 * @see org.eclipse.ocl.uml.impl.UMLPackageImpl#getTemplateParameterType()
+		 * @generated
+		 */
+		EClass TEMPLATE_PARAMETER_TYPE = eINSTANCE.getTemplateParameterType();
+
+		/**
+		 * The meta object literal for the '<em><b>Owned Operation</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * @since 3.0
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION = eINSTANCE
+			.getTemplateParameterType_OwnedOperation();
 
 	}
 

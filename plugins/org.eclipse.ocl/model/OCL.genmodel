@@ -100,6 +100,10 @@
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/SetType/C"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/SetType/O"/>
       </genClasses>
+      <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/TemplateParameterType">
+        <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TemplateParameterType/O"/>
+        <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute OCL.ecore#//types/TemplateParameterType/specification"/>
+      </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//types/TupleType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TupleType/O"/>
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//types/TupleType/P"/>
@@ -267,6 +271,8 @@
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/resultVariable"/>
         <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
             createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/parameterVariable"/>
+        <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
+            createChild="true" ecoreFeature="ecore:EReference OCL.ecore#//utilities/ExpressionInOCL/generatedType"/>
       </genClasses>
       <genClasses xsi:type="genmodel:GenClass" ecoreClass="OCL.ecore#//utilities/PredefinedType">
         <genTypeParameters ecoreTypeParameter="OCL.ecore#//utilities/PredefinedType/O"/>

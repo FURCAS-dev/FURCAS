@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactoryImpl.java,v 1.8 2008/10/12 01:12:32 cdamus Exp $
+ * $Id: UMLFactoryImpl.java,v 1.9 2009/12/06 18:21:24 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-//import org.eclipse.ocl.uml.*;
 import org.eclipse.ocl.uml.AnyType;
 import org.eclipse.ocl.uml.AssociationClassCallExp;
 import org.eclipse.ocl.uml.BagType;
@@ -54,6 +52,7 @@ import org.eclipse.ocl.uml.SequenceType;
 import org.eclipse.ocl.uml.SetType;
 import org.eclipse.ocl.uml.StateExp;
 import org.eclipse.ocl.uml.StringLiteralExp;
+import org.eclipse.ocl.uml.TemplateParameterType;
 import org.eclipse.ocl.uml.TupleLiteralExp;
 import org.eclipse.ocl.uml.TupleLiteralPart;
 import org.eclipse.ocl.uml.TupleType;
@@ -194,6 +193,8 @@ public class UMLFactoryImpl
 				return createVariable();
 			case UMLPackage.VARIABLE_EXP :
 				return createVariableExp();
+			case UMLPackage.TEMPLATE_PARAMETER_TYPE :
+				return createTemplateParameterType();
 			default :
 				throw new IllegalArgumentException(
 					"The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
@@ -598,6 +599,17 @@ public class UMLFactoryImpl
 	public VariableExp createVariableExp() {
 		VariableExpImpl variableExp = new VariableExpImpl();
 		return variableExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateParameterType createTemplateParameterType() {
+		TemplateParameterTypeImpl templateParameterType = new TemplateParameterTypeImpl();
+		return templateParameterType;
 	}
 
 	/**

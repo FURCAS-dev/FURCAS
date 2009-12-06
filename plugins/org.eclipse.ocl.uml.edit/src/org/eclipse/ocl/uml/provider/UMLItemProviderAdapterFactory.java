@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: UMLItemProviderAdapterFactory.java,v 1.1 2009/10/30 19:05:01 ewillink Exp $
+ * $Id: UMLItemProviderAdapterFactory.java,v 1.2 2009/12/06 18:31:52 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -1017,6 +1017,30 @@ public class UMLItemProviderAdapterFactory extends UMLAdapterFactory implements
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.ocl.uml.TemplateParameterType} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TemplateParameterTypeItemProvider templateParameterTypeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.ocl.uml.TemplateParameterType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTemplateParameterTypeAdapter() {
+		if (templateParameterTypeItemProvider == null) {
+			templateParameterTypeItemProvider = new TemplateParameterTypeItemProvider(
+					this);
+		}
+
+		return templateParameterTypeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1198,6 +1222,8 @@ public class UMLItemProviderAdapterFactory extends UMLAdapterFactory implements
 			variableItemProvider.dispose();
 		if (variableExpItemProvider != null)
 			variableExpItemProvider.dispose();
+		if (templateParameterTypeItemProvider != null)
+			templateParameterTypeItemProvider.dispose();
 	}
 
 }

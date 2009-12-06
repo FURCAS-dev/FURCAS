@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.11 2009/05/26 20:06:43 aigdalov Exp $
+ * $Id: UMLPackageImpl.java,v 1.12 2009/12/06 18:21:35 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -66,6 +66,7 @@ import org.eclipse.ocl.uml.SequenceType;
 import org.eclipse.ocl.uml.SetType;
 import org.eclipse.ocl.uml.StateExp;
 import org.eclipse.ocl.uml.StringLiteralExp;
+import org.eclipse.ocl.uml.TemplateParameterType;
 import org.eclipse.ocl.uml.TupleLiteralExp;
 import org.eclipse.ocl.uml.TupleLiteralPart;
 import org.eclipse.ocl.uml.TupleType;
@@ -433,6 +434,13 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	private EClass variableExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass templateParameterTypeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1011,6 +1019,27 @@ public class UMLPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTemplateParameterType() {
+		return templateParameterTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTemplateParameterType_OwnedOperation() {
+		return (EReference) templateParameterTypeEClass
+			.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -1141,6 +1170,10 @@ public class UMLPackageImpl
 		variableEClass = createEClass(VARIABLE);
 
 		variableExpEClass = createEClass(VARIABLE_EXP);
+
+		templateParameterTypeEClass = createEClass(TEMPLATE_PARAMETER_TYPE);
+		createEReference(templateParameterTypeEClass,
+			TEMPLATE_PARAMETER_TYPE__OWNED_OPERATION);
 	}
 
 	/**
@@ -1547,6 +1580,12 @@ public class UMLPackageImpl
 		g2 = createEGenericType(theUMLPackage_1.getParameter());
 		g1.getETypeArguments().add(g2);
 		variableExpEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theUMLPackage_1.getClassifier());
+		templateParameterTypeEClass.getEGenericSuperTypes().add(g1);
+		g1 = createEGenericType(theTypesPackage.getTemplateParameterType());
+		g2 = createEGenericType(theUMLPackage_1.getOperation());
+		g1.getETypeArguments().add(g2);
+		templateParameterTypeEClass.getEGenericSuperTypes().add(g1);
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(anyTypeEClass, AnyType.class,
@@ -1808,6 +1847,16 @@ public class UMLPackageImpl
 			VariableExp.class,
 			"VariableExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+		initEClass(
+			templateParameterTypeEClass,
+			TemplateParameterType.class,
+			"TemplateParameterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(
+			getTemplateParameterType_OwnedOperation(),
+			theUMLPackage_1.getOperation(),
+			null,
+			"ownedOperation", null, 0, -1, TemplateParameterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
 		// Create resource
 		createResource(eNS_URI);
 
@@ -1851,6 +1900,11 @@ public class UMLPackageImpl
 		addAnnotation(getMessageType_OwnedAttribute(), source, new String[]{},
 			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
 				.appendFragment("//Classifier/attribute") //$NON-NLS-1$
+			});
+		addAnnotation(getTemplateParameterType_OwnedOperation(), source,
+			new String[]{}, new URI[]{URI.createURI(
+				org.eclipse.uml2.uml.UMLPackage.eNS_URI).appendFragment(
+				"//Classifier/feature") //$NON-NLS-1$
 			});
 	}
 

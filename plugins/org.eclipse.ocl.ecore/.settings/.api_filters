@@ -312,6 +312,14 @@
             </message_arguments>
         </filter>
     </resource>
+    <resource path="src/org/eclipse/ocl/ecore/TemplateParameterType.java" type="org.eclipse.ocl.ecore.TemplateParameterType">
+        <filter id="574619656">
+            <message_arguments>
+                <message_argument value="TemplateParameterType&lt;O&gt;"/>
+                <message_argument value="TemplateParameterType"/>
+            </message_arguments>
+        </filter>
+    </resource>
     <resource path="src/org/eclipse/ocl/ecore/TupleLiteralExp.java" type="org.eclipse.ocl.ecore.TupleLiteralExp">
         <filter id="574619656">
             <message_arguments>

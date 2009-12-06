@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackageImpl.java,v 1.10 2009/05/26 20:06:35 aigdalov Exp $
+ * $Id: UtilitiesPackageImpl.java,v 1.11 2009/12/06 18:13:35 ewillink Exp $
  */
 package org.eclipse.ocl.utilities.impl;
 
@@ -356,6 +356,17 @@ public class UtilitiesPackageImpl
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpressionInOCL_GeneratedType() {
+		return (EReference) expressionInOCLEClass.getEStructuralFeatures().get(
+			4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -413,6 +424,8 @@ public class UtilitiesPackageImpl
 			EXPRESSION_IN_OCL__RESULT_VARIABLE);
 		createEReference(expressionInOCLEClass,
 			EXPRESSION_IN_OCL__PARAMETER_VARIABLE);
+		createEReference(expressionInOCLEClass,
+			EXPRESSION_IN_OCL__GENERATED_TYPE);
 
 		predefinedTypeEClass = createEClass(PREDEFINED_TYPE);
 	}
@@ -915,6 +928,12 @@ public class UtilitiesPackageImpl
 			g1,
 			null,
 			"parameterVariable", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		g1 = createEGenericType(expressionInOCLEClass_C);
+		initEReference(
+			getExpressionInOCL_GeneratedType(),
+			g1,
+			null,
+			"generatedType", null, 0, -1, ExpressionInOCL.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(
 			predefinedTypeEClass,

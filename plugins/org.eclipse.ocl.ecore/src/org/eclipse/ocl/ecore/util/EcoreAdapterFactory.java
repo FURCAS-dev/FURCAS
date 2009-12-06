@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreAdapterFactory.java,v 1.8 2009/01/23 17:16:23 cdamus Exp $
+ * $Id: EcoreAdapterFactory.java,v 1.9 2009/12/06 18:16:10 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.util;
 
@@ -145,6 +145,11 @@ public class EcoreAdapterFactory
 		@Override
 		public Adapter caseSetType(SetType object) {
 			return createSetTypeAdapter();
+		}
+
+		@Override
+		public Adapter caseTemplateParameterType(TemplateParameterType object) {
+			return createTemplateParameterTypeAdapter();
 		}
 
 		@Override
@@ -457,6 +462,12 @@ public class EcoreAdapterFactory
 		public <C, O> Adapter caseTypes_SetType(
 				org.eclipse.ocl.types.SetType<C, O> object) {
 			return createTypes_SetTypeAdapter();
+		}
+
+		@Override
+		public <O> Adapter caseTypes_TemplateParameterType(
+				org.eclipse.ocl.types.TemplateParameterType<O> object) {
+			return createTypes_TemplateParameterTypeAdapter();
 		}
 
 		@Override
@@ -869,6 +880,21 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createSetTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.ecore.TemplateParameterType <em>Template Parameter Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.ecore.TemplateParameterType
+	 * @generated
+	 */
+	public Adapter createTemplateParameterTypeAdapter() {
 		return null;
 	}
 
@@ -1522,13 +1548,12 @@ public class EcoreAdapterFactory
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @since 1.3
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.AnyType
 	 * @generated
 	 */
 	public Adapter createTypes_AnyTypeAdapter() {
-		return createAnyType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1585,7 +1610,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_CollectionTypeAdapter() {
-		return createCollectionType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1600,7 +1625,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_BagTypeAdapter() {
-		return createBagType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1629,7 +1654,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_ElementTypeAdapter() {
-		return createElementType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1644,7 +1669,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_InvalidTypeAdapter() {
-		return createInvalidType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1653,13 +1678,12 @@ public class EcoreAdapterFactory
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
-	 * @since 1.3
 	 * @return the new adapter.
 	 * @see org.eclipse.ocl.types.MessageType
 	 * @generated
 	 */
 	public Adapter createTypes_MessageTypeAdapter() {
-		return createMessageType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1674,7 +1698,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_OrderedSetTypeAdapter() {
-		return createOrderedSetType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1689,7 +1713,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_PrimitiveTypeAdapter() {
-		return createPrimitiveType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1704,7 +1728,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_SequenceTypeAdapter() {
-		return createSequenceType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1719,7 +1743,22 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_SetTypeAdapter() {
-		return createSetType_1Adapter();
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.ocl.types.TemplateParameterType <em>Template Parameter Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.ocl.types.TemplateParameterType
+	 * @generated
+	 */
+	public Adapter createTypes_TemplateParameterTypeAdapter() {
+		return null;
 	}
 
 	/**
@@ -1734,7 +1773,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_TupleTypeAdapter() {
-		return createTupleType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1749,7 +1788,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_TypeTypeAdapter() {
-		return createTypeType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1764,7 +1803,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createTypes_VoidTypeAdapter() {
-		return createVoidType_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1793,7 +1832,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createUtilities_ExpressionInOCLAdapter() {
-		return createExpressionInOCL_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1836,7 +1875,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_OCLExpressionAdapter() {
-		return createOCLExpression_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1865,7 +1904,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_CallExpAdapter() {
-		return createCallExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1880,7 +1919,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_FeatureCallExpAdapter() {
-		return createFeatureCallExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1895,7 +1934,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_NavigationCallExpAdapter() {
-		return createNavigationCallExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1910,7 +1949,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_AssociationClassCallExpAdapter() {
-		return createAssociationClassCallExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1925,7 +1964,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_LiteralExpAdapter() {
-		return createLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1940,7 +1979,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_PrimitiveLiteralExpAdapter() {
-		return createPrimitiveLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1955,7 +1994,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_BooleanLiteralExpAdapter() {
-		return createBooleanLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1970,7 +2009,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_CollectionLiteralPartAdapter() {
-		return createCollectionLiteralPart_1Adapter();
+		return null;
 	}
 
 	/**
@@ -1985,7 +2024,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_CollectionItemAdapter() {
-		return createCollectionItem_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2000,7 +2039,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_CollectionLiteralExpAdapter() {
-		return createCollectionLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2015,7 +2054,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_CollectionRangeAdapter() {
-		return createCollectionRange_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2030,7 +2069,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_EnumLiteralExpAdapter() {
-		return createEnumLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2045,7 +2084,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_IfExpAdapter() {
-		return createIfExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2060,7 +2099,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_NumericLiteralExpAdapter() {
-		return createNumericLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2075,7 +2114,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_IntegerLiteralExpAdapter() {
-		return createIntegerLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2090,7 +2129,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_UnlimitedNaturalLiteralExpAdapter() {
-		return createUnlimitedNaturalLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2105,7 +2144,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_InvalidLiteralExpAdapter() {
-		return createInvalidLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2120,7 +2159,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_LoopExpAdapter() {
-		return createLoopExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2135,7 +2174,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_IterateExpAdapter() {
-		return createIterateExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2150,7 +2189,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_IteratorExpAdapter() {
-		return createIteratorExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2165,7 +2204,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_LetExpAdapter() {
-		return createLetExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2180,7 +2219,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_MessageExpAdapter() {
-		return createMessageExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2195,7 +2234,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_NullLiteralExpAdapter() {
-		return createNullLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2210,7 +2249,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_OperationCallExpAdapter() {
-		return createOperationCallExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2225,7 +2264,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_PropertyCallExpAdapter() {
-		return createPropertyCallExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2240,7 +2279,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_RealLiteralExpAdapter() {
-		return createRealLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2255,7 +2294,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_StateExpAdapter() {
-		return createStateExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2270,7 +2309,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_StringLiteralExpAdapter() {
-		return createStringLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2285,7 +2324,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_TupleLiteralExpAdapter() {
-		return createTupleLiteralExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2300,7 +2339,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_TupleLiteralPartAdapter() {
-		return createTupleLiteralPart_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2315,7 +2354,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_TypeExpAdapter() {
-		return createTypeExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2330,7 +2369,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_UnspecifiedValueExpAdapter() {
-		return createUnspecifiedValueExp_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2345,7 +2384,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_VariableAdapter() {
-		return createVariable_1Adapter();
+		return null;
 	}
 
 	/**
@@ -2360,7 +2399,7 @@ public class EcoreAdapterFactory
 	 * @generated
 	 */
 	public Adapter createExpressions_VariableExpAdapter() {
-		return createVariableExp_1Adapter();
+		return null;
 	}
 
 	/**

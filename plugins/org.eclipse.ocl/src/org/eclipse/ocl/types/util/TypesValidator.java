@@ -13,20 +13,17 @@
  * 
  * </copyright>
  *
- * $Id: TypesValidator.java,v 1.3 2008/11/24 00:22:24 cdamus Exp $
+ * $Id: TypesValidator.java,v 1.4 2009/12/06 18:13:20 ewillink Exp $
  */
 package org.eclipse.ocl.types.util;
 
 import java.util.Map;
 
-//import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.ocl.internal.OCLPlugin;
-
-//import org.eclipse.ocl.types.*;
 import org.eclipse.ocl.types.AnyType;
 import org.eclipse.ocl.types.BagType;
 import org.eclipse.ocl.types.CollectionType;
@@ -37,6 +34,7 @@ import org.eclipse.ocl.types.OrderedSetType;
 import org.eclipse.ocl.types.PrimitiveType;
 import org.eclipse.ocl.types.SequenceType;
 import org.eclipse.ocl.types.SetType;
+import org.eclipse.ocl.types.TemplateParameterType;
 import org.eclipse.ocl.types.TupleType;
 import org.eclipse.ocl.types.TypeType;
 import org.eclipse.ocl.types.TypesPackage;
@@ -242,6 +240,9 @@ public class TypesValidator
 			case TypesPackage.SET_TYPE :
 				return validateSetType((SetType<?, ?>) value, diagnostics,
 					context);
+			case TypesPackage.TEMPLATE_PARAMETER_TYPE :
+				return validateTemplateParameterType(
+					(TemplateParameterType<?>) value, diagnostics, context);
 			case TypesPackage.TUPLE_TYPE :
 				return validateTupleType((TupleType<?, ?>) value, diagnostics,
 					context);
@@ -710,6 +711,19 @@ public class TypesValidator
 	public boolean validateVoidType(VoidType<?> voidType,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return validate_EveryDefaultConstraint(voidType, diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateTemplateParameterType(
+			TemplateParameterType<?> templateParameterType,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(templateParameterType,
+			diagnostics, context);
 	}
 
 	/**
