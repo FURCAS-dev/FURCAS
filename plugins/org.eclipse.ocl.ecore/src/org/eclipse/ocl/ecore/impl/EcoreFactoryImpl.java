@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: EcoreFactoryImpl.java,v 1.8 2008/11/24 00:38:36 cdamus Exp $
+ * $Id: EcoreFactoryImpl.java,v 1.9 2009/12/06 18:15:39 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -21,8 +21,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-//import org.eclipse.ocl.ecore.*;
 import org.eclipse.ocl.ecore.AnyType;
 import org.eclipse.ocl.ecore.AssociationClassCallExp;
 import org.eclipse.ocl.ecore.BagType;
@@ -58,6 +56,7 @@ import org.eclipse.ocl.ecore.SequenceType;
 import org.eclipse.ocl.ecore.SetType;
 import org.eclipse.ocl.ecore.StateExp;
 import org.eclipse.ocl.ecore.StringLiteralExp;
+import org.eclipse.ocl.ecore.TemplateParameterType;
 import org.eclipse.ocl.ecore.TupleLiteralExp;
 import org.eclipse.ocl.ecore.TupleLiteralPart;
 import org.eclipse.ocl.ecore.TupleType;
@@ -136,6 +135,8 @@ public class EcoreFactoryImpl
 				return createSequenceType();
 			case EcorePackage.SET_TYPE :
 				return createSetType();
+			case EcorePackage.TEMPLATE_PARAMETER_TYPE :
+				return createTemplateParameterType();
 			case EcorePackage.TUPLE_TYPE :
 				return createTupleType();
 			case EcorePackage.TYPE_TYPE :
@@ -306,6 +307,17 @@ public class EcoreFactoryImpl
 	public SetType createSetType() {
 		SetTypeImpl setType = new SetTypeImpl();
 		return setType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * @since 3.0
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TemplateParameterType createTemplateParameterType() {
+		TemplateParameterTypeImpl templateParameterType = new TemplateParameterTypeImpl();
+		return templateParameterType;
 	}
 
 	/**
