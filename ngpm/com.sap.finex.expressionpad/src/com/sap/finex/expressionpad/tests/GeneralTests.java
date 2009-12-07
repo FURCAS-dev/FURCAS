@@ -14,6 +14,27 @@ import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
 
 public class GeneralTests extends FinexTestCase {
+    public void testTransitiveDetermination() throws Exception {
+        ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "create A(.b: 1).transitiveDependent");
+        RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+    }
+    
+    public void testSimpleDetermination() throws Exception {
+        ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "create A(.b: 234, .c: 1).d",
+            "create A(.b: 234).d");
+        RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(2, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(235l, result[0]);
+        assertNOEquals(357l, result[1]);
+    }
+
     public void testSimpleExpression() throws SecurityException, IllegalArgumentException,
 	    RecognitionException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
@@ -123,7 +144,7 @@ public class GeneralTests extends FinexTestCase {
         assertNOEquals(2l, result[0]);
     }
 
-    public void test() throws Exception {
+    public void testSimpleAliases() throws Exception {
 	ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
             "[1 AS one, 2 AS two].sum() AS s.(a: one, b: two, c: s).a",
             "[1 AS one, 2 AS two].sum() AS s.(a: one, b: two, c: s).b",

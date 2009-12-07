@@ -1,7 +1,12 @@
 package com.sap.ide.cts.editor.document;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,7 +19,7 @@ import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.junitcreate.DocumentHistory;
 import com.sap.ide.cts.editor.junitcreate.NoSuchSnapshotException;
 import com.sap.ide.cts.editor.junitcreate.SnapshotVersion;
-import com.sap.ide.cts.editor.test.CtsEditorTest;
+import com.sap.ide.cts.editor.test.RunletEditorTest;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -28,7 +33,7 @@ import data.classes.SapClass;
  * @author D049157
  *
  */
-public class TestCtsHistoryDocument extends CtsEditorTest {
+public class TestCtsHistoryDocument extends RunletEditorTest {
 	
 	/** fixed loop counts are stupid in tests, anyway it is needed
 	 * to assure that snapshot session do no overlap */

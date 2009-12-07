@@ -1,6 +1,10 @@
 package com.sap.ide.cts.editor.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Collection;
 
@@ -14,7 +18,6 @@ import org.eclipse.ui.PartInitException;
 import org.junit.Test;
 
 import textblocks.TextBlock;
-
 import behavioral.actions.Block;
 import behavioral.actions.Return;
 
@@ -44,7 +47,7 @@ import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.This;
 import dataaccess.expressions.VariableExpression;
 
-public class TestNgpmEditingActions extends CtsEditorTest {
+public class TestNgpmEditingActions extends RunletEditorTest {
 
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.

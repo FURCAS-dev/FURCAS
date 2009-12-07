@@ -47,10 +47,12 @@ Require-Bundle: com.sap.mi.fwk,
  com.sap.tc.moin.metamodel.generatedmetamodel,
  com.sap.mi.textual.tcs.editor,
  com.sap.mi.gfw.mm.eclipse
-Export-Package: com.sap.ide.cts.editor.test.util,
+Export-Package: com.sap.ide.cts.editor.test,
+ com.sap.ide.cts.editor.test.util,
  com.sap.mi.textual.parsing.textblocks
 Bundle-Activator: com.sap.ide.cts.editor.Activator
 Bundle-ActivationPolicy: lazy
 Import-Package: com.sap.tc.moin.repository.spi.core
 Bundle-ClassPath: generatedTemp/,
  .
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
