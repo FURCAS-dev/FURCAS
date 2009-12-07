@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.11 2009/12/06 16:59:01 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.12 2009/12/07 06:16:37 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -1314,7 +1314,7 @@ public class RegressionTest
 	 * the back-quote (grave accent), as well.
 	 */
 	public void test_hebrew_singleQuote_135321() {
-		checkForUTF8Encoding();
+//		checkForUTF8Encoding();
 		
 		parse(
 				// English locale style
