@@ -4,12 +4,12 @@
 package com.sap.ide.cts.editor.document;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 import ngpm.NgpmPackage;
 
 import org.junit.Test;
 
-import com.sap.ide.cts.editor.test.CtsEditorTest;
+import com.sap.ide.cts.editor.test.RunletEditorTest;
 import com.sap.tc.moin.repository.JmiHelper;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 
@@ -18,7 +18,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
  */
 // or move it somewhere else, and delete the plugin dependencies that are then
 // obsolete.
-public class TestCtsDocument extends CtsEditorTest {
+public class TestCtsDocument extends RunletEditorTest {
 
 	@Test
 	public void testTextBlockJMI() {

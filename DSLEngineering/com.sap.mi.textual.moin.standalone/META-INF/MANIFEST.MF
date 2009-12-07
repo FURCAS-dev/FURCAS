@@ -17,7 +17,7 @@ Require-Bundle: com.sap.tc.moin.libraries.api;visibility:=reexport,
  com.sap.tcsmeta.mm.eclipse,
  org.eclipse.osgi,
  org.eclipse.core.runtime,
- tcsmetamodel;bundle-version="1.0.0",
+ tcsmetamodel,
  com.sap.ap.metamodel.core,
  org.junit4;bundle-version="4.3.1",
  com.sap.editor.test.mm.eclipse,
@@ -27,3 +27,4 @@ Import-Package: org.eclipse.jface.resource,
  org.eclipse.ui.plugin
 Bundle-Activator: com.sap.mi.textual.moin.standalone.Activator
 Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

@@ -28,7 +28,7 @@ import data.classes.MethodSignature;
 import data.classes.SapClass;
 import dataaccess.expressions.MethodCallExpression;
 
-public class FailingEditingActions extends CtsEditorTest {
+public class FailingEditingActions extends RunletEditorTest {
 
     /**
      * (from TestCtsHistoryDocument)

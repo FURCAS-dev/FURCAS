@@ -5,4 +5,6 @@ Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.tc.moin.incubation.contentprovider,
  ngpm.stdlib,
  com.sap.ap.cts.editor,
- com.sap.ap.metamodel.core
+ com.sap.ap.metamodel.core,
+ com.sap.finex.editor,
+ finex.stdlib

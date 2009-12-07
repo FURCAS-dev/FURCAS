@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests Plug-in
+Bundle-SymbolicName: com.sap.finex.editor.tests
+Bundle-Version: 1.0.0
+Bundle-Vendor: SAP
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Require-Bundle: com.sap.finex.editor,
+ com.sap.finex.metamodel,
+ com.sap.ide.cts.editor.test,
+ org.junit4;bundle-version="4.3.1",
+ com.sap.tc.moin.libraries.api,
+ org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.sap.ide.cts.editor,
+ org.eclipse.jface.text

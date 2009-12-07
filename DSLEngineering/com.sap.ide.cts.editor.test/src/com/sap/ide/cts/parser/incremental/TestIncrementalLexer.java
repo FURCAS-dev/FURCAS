@@ -15,17 +15,13 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 import textblocks.VersionEnum;
 
-import antlr.Version;
-
 import com.sap.ide.cts.editor.test.util.TestSourceTextBlockCreator;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
 import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
-import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TbValidationUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlockTest;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
-import com.sun.xml.internal.ws.util.VersionUtil;
 
 public class TestIncrementalLexer extends TextBlockTest {
 

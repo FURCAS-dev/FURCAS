@@ -27,10 +27,7 @@ import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mql.MQLProcessor;
-import com.sap.tc.moin.repository.mql.MQLResultSet;
 
-import data.classes.SapClass;
 
 /**
  * Base class for editor integration tests 
@@ -107,17 +104,6 @@ public class CtsEditorTest extends FixtureBasedTest {
 			}
 		}
 	    }
-	}
-
-	protected SapClass findClass(String classname) {
-		MQLProcessor mql = connection.getMQLProcessor();
-		MQLResultSet queryResult = mql.execute(
-			"select c from data::classes::SapClass as c where for c(name='"
-					+ classname + "')", mql.getQueryScopeProvider(
-			/* scopeInclusive */false, /* partitionScope */
-			null, (String[]) null));
-		SapClass clazz = (SapClass) queryResult.getRefObjects("c")[0];
-		return clazz;
 	}
 
 }

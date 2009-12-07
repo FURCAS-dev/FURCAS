@@ -38,8 +38,22 @@ Statement, Expression, SignatureImplementation, FinexStackFrame, NativeImpl, Fin
 	RunletObject<Field, Type, FinexClass> operand = interpreter.evaluate(pe.getOperand());
 	List<RunletObject<Field, Type, FinexClass>> resultList = new LinkedList<RunletObject<Field, Type, FinexClass>>();
 	for (RunletObject<Field, Type, FinexClass> o : operand.flatten()) {
-	    RunletObject<Field, Type, FinexClass> navigationResult = interpreter.navigate(
-		    (ClassTypedObject<Field, Type, FinexClass>) o, pe.getField());
+	    RunletObject<Field, Type, FinexClass> navigationResult;
+	    if (pe.getField().getDetermination() != null) {
+		// determination is computed by evaluating the expression; set this to o
+		FinexStackFrame newFrame = new FinexStackFrame(interpreter.getCallstack().peek());
+		newFrame.setThis((ClassTypedObject<Field, Type, FinexClass>) o);
+		interpreter.push(newFrame);
+		try {
+		    navigationResult = interpreter.evaluate(pe.getField().getDetermination());
+		} finally {
+		    interpreter.pop();
+		}
+	    } else {
+		// independent field is obtained from link container
+		navigationResult = interpreter.navigate(
+			(ClassTypedObject<Field, Type, FinexClass>) o, pe.getField());
+	    }
 	    resultList.add(navigationResult);
 	    for (RunletObject<Field, Type, FinexClass> singleResultObject : navigationResult) {
 		interpreter.getCallstack().peek().getAliasValues().used(o, pe.getOperand(), singleResultObject, pe);
