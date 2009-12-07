@@ -660,6 +660,28 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getAll()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getAll(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getAll(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public behavior.expressions.ALeftLeftOf getALeftLeftOf()
     {
         try {
@@ -924,8 +946,31 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
             throw ex;
         }
     }
+    public behavior.expressions.AClazzAll getAClazzAll()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.AClazzAll) wrapResult(getCastWrappedObject().getAClazzAll(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.AClazzAll) wrapResult(getCastWrappedObject().getAClazzAll(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ExpressionsPackage> get___JmiInterface() {
         return behavior.expressions.ExpressionsPackage.class;
     }

@@ -1,7 +1,7 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: Moinadapter Plug-in
 Bundle-SymbolicName: com.sap.tc.moin.textual.runtime.moin
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

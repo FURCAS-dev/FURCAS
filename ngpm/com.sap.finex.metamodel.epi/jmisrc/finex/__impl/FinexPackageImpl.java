@@ -8,7 +8,7 @@ public final class FinexPackageImpl extends com.sap.tc.moin.repository.core.jmi.
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
@@ -65,6 +65,7 @@ public final class FinexPackageImpl extends com.sap.tc.moin.repository.core.jmi.
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<finex.FinexPackage> get___JmiInterface() {
         return finex.FinexPackage.class;
     }
@@ -73,7 +74,9 @@ public final class FinexPackageImpl extends com.sap.tc.moin.repository.core.jmi.
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(3);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "structure"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "structure.StructurePackage", true); //$NON-NLS-1$
@@ -99,7 +102,9 @@ public final class FinexPackageImpl extends com.sap.tc.moin.repository.core.jmi.
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

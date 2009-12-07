@@ -8,7 +8,7 @@ public class ManipulatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -19,6 +19,7 @@ public class ManipulatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.actions.__impl.ManipulatorImpl getCastWrappedObject() {
         return (behavior.actions.__impl.ManipulatorImpl) getWrappedObject();
     }
@@ -143,7 +144,7 @@ public class ManipulatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-    
+
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -153,10 +154,11 @@ public class ManipulatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-    
+
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.Manipulator> get___JmiInterface() {
         return behavior.actions.Manipulator.class;
     }

@@ -125,6 +125,7 @@ public class AInitExpressionFieldInitializerWrapper extends com.sap.tc.moin.repo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AInitExpressionFieldInitializer> get___JmiInterface() {
         return behavior.expressions.AInitExpressionFieldInitializer.class;
     }

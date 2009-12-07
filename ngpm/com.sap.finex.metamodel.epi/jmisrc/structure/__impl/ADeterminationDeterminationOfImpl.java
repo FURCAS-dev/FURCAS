@@ -64,6 +64,7 @@ public final class ADeterminationDeterminationOfImpl extends com.sap.tc.moin.rep
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.ADeterminationDeterminationOf> get___JmiInterface() {
         return structure.ADeterminationDeterminationOf.class;
     }

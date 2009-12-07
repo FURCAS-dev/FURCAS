@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: com.sap.tc.moin.tcs.mof.editor
 Bundle-SymbolicName: com.sap.tc.moin.tcs.mof.editor; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Require-Bundle: org.eclipse.jface.text,
  org.eclipse.core.runtime,
  org.eclipse.ui.editors,

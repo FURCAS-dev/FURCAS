@@ -63,6 +63,7 @@ public final class ATypeTypedElementImpl extends com.sap.tc.moin.repository.core
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.ATypeTypedElement> get___JmiInterface() {
         return structure.ATypeTypedElement.class;
     }

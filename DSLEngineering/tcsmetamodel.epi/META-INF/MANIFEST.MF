@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: tcsmeta
 Bundle-SymbolicName: com.sap.tcsmeta.mm.eclipse;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.tc.moin.ide.facade,
  com.sap.tc.moin.libraries.jmi.facade,
  org.eclipse.core.resources,

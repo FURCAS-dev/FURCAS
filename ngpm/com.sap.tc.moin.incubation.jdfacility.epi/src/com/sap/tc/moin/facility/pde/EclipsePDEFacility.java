@@ -50,8 +50,8 @@ public class EclipsePDEFacility extends FileSystemFacility {
     protected void configureFacility( ) {
 
         // Create eclipse specific components
-        this.fsFactoryDirectory = new EclFsFactoryImpl( ); // Eclipse FS for sources
-        this.fsFactoryArchive = new FsFactory( ); // Java FS for archives
+        this.fsFactoryDirectory = new EclFsFactoryImpl( ); // Eclipse FS for sources in the current workspace
+        this.fsFactoryArchive = new FsFactory( ); // Java FS for archives and workspace-external directories
         this.fsPersistence = new FsPersistenceVersionedImpl( this.core.getMoinId( ) + "-" + getId( ), this.core.getReferenceQueue( ) ); //$NON-NLS-1$
 
         // Versioning

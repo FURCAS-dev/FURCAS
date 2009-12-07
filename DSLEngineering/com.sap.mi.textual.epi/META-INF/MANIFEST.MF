@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-Name: TextualSyntaxGenerator Plug-in
 Bundle-SymbolicName: com.sap.mi.textual.epi;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.mi.textual.epi.Activator
 Bundle-Vendor: com.sap.mi.textual
 Require-Bundle: org.eclipse.ui,

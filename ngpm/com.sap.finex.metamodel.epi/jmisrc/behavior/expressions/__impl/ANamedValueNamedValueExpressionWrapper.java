@@ -125,6 +125,7 @@ public class ANamedValueNamedValueExpressionWrapper extends com.sap.tc.moin.repo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ANamedValueNamedValueExpression> get___JmiInterface() {
         return behavior.expressions.ANamedValueNamedValueExpression.class;
     }

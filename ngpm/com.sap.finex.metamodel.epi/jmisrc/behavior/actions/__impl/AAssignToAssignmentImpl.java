@@ -63,6 +63,7 @@ public final class AAssignToAssignmentImpl extends com.sap.tc.moin.repository.co
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.AAssignToAssignment> get___JmiInterface() {
         return behavior.actions.AAssignToAssignment.class;
     }

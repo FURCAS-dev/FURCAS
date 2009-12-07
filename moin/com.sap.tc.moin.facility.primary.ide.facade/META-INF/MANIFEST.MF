@@ -1,9 +1,8 @@
 Manifest-Version: 1.0
 Require-Bundle: com.sap.tc.moin.facility.primary.generic.facade;visibility:=reexport,
- com.sap.tc.moin.facility.primary;visibility:=reexport,
- com.sap.tc.moin.facility.primary.internal
+ com.sap.tc.moin.facility.primary;visibility:=reexport
 Bundle-Vendor: %providerName
-Bundle-Version: 2.0.0.090422162124
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2

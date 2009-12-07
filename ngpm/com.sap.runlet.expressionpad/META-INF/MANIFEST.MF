@@ -1,7 +1,7 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: Runlet Expression Pad with Parser
 Bundle-SymbolicName: com.sap.runlet.expressionpad;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.runlet.expressionpad.Activator
 Bundle-Vendor: SAP
 Require-Bundle: org.eclipse.core.runtime,

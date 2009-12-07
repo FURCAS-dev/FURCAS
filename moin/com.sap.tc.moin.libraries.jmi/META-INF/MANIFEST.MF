@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.sap.tc.moin.libraries.jmi;singleton:=true
-Bundle-Version: 2.0.0.090422141846
+Bundle-Version: 2.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Export-Package: com.sap.tc.moin.packageC0393E0B1229E70CBCF5B6FCADF0FFD94D1DE683,

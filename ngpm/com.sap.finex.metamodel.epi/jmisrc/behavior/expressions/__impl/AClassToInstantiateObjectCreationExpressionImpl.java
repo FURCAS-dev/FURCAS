@@ -63,6 +63,7 @@ public final class AClassToInstantiateObjectCreationExpressionImpl extends com.s
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AClassToInstantiateObjectCreationExpression> get___JmiInterface() {
         return behavior.expressions.AClassToInstantiateObjectCreationExpression.class;
     }

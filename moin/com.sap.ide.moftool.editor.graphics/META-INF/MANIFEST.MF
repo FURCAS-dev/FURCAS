@@ -21,7 +21,7 @@ Require-Bundle: org.eclipse.core.runtime,org.eclipse.ui,com.sap.tc.moi
 Bundle-Vendor: %plugin.provider
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 2.0.0.090408140746
+Bundle-Version: 2.0.0.qualifier
 Bundle-Localization: plugin
 Bundle-Name: %plugin.name
 Bundle-ManifestVersion: 2

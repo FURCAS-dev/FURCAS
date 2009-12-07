@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Moin Plug-in
 Bundle-SymbolicName: com.sap.ide.cts.moin
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: SAP
 Require-Bundle: com.sap.tc.moin.libraries.api,
  com.sap.ide.cts.editor,

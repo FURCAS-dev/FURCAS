@@ -1,6 +1,6 @@
 Bundle-ManifestVersion: 2
 Bundle-Name: NGPM Standard Library
 Bundle-SymbolicName: ngpm.stdlib;singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.tc.moin.incubation.contentprovider;bundle-version="1.0.0",
  com.sap.ap.cts.editor;bundle-version="1.0.0"

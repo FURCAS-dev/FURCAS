@@ -10,7 +10,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
@@ -83,12 +83,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0001D0A1ADE95AAB1B711DE8D3900155883529C", /* mofId of reference */ "E0001D0A1ADE95A0B1B711DE829B00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getLeftOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -103,12 +103,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setLeftOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC460A984B74111DE8E5600155883529C", /* mofId of reference */ "E0003E7BC45007B3B74111DEA08B00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setLeftOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC460A984B74111DE8E5600155883529C", /* mofId of reference */ "E0003E7BC45007B3B74111DEA08B00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getRightOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -123,12 +123,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setRightOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC460A987B74111DE831200155883529C", /* mofId of reference */ "E0003E7BC45007B4B74111DEB1BC00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setRightOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC460A987B74111DE831200155883529C", /* mofId of reference */ "E0003E7BC45007B4B74111DEB1BC00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getConditionOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -143,12 +143,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setConditionOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC460A98AB74111DEB31900155883529C", /* mofId of reference */ "E0003E7BC45007B5B74111DEB3B900155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setConditionOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC460A98AB74111DEB31900155883529C", /* mofId of reference */ "E0003E7BC45007B5B74111DEB3B900155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOperandOf() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -163,12 +163,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setOperandOf(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7BC4631A81B74111DEABD500155883529C", /* mofId of reference */ "E0003E7BC45007B6B74111DE96FF00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setOperandOf(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7BC4631A81B74111DEABD500155883529C", /* mofId of reference */ "E0003E7BC45007B6B74111DE96FF00155883529C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getWithArgument() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -183,12 +183,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setWithArgument(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B686A75D3BA2411DEAACD001CBF0234BB", /* mofId of reference */ "E0003E7B75D349D0D03C11DEB3B80019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setWithArgument(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7B686A75D3BA2411DEAACD001CBF0234BB", /* mofId of reference */ "E0003E7B75D349D0D03C11DEB3B80019D29902CC" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -205,12 +205,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setAlias(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B68132514D2F111DE8E690019D29902CC", /* mofId of reference */ "E0003E7B680E6A20D2F111DEC0770019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setAlias(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7B68132514D2F111DE8E690019D29902CC", /* mofId of reference */ "E0003E7B680E6A20D2F111DEC0770019D29902CC" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -225,12 +225,12 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
     public void setFieldInitializer(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0003E7B90B46762D43911DEB8DA001CBF0234BB", /* mofId of reference */ "E0003E7BFA3C00B0DB7011DECF13FDBA0A140E7A" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0003E7B90B46762D43911DEB8DA001CBF0234BB", /* mofId of reference */ "E0003E7BFA3C00B0DB7011DECF13FDBA0A140E7A" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter
@@ -282,7 +282,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -332,7 +332,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 8:
@@ -342,7 +342,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 8:
@@ -352,7 +352,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 8:
@@ -362,7 +362,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -399,6 +399,7 @@ public final class BooleanLiteralImpl extends com.sap.tc.moin.repository.core.jm
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.BooleanLiteral> get___JmiInterface() {
         return behavior.expressions.literals.BooleanLiteral.class;
     }
