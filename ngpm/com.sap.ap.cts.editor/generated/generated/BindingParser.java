@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g 2009-10-19 23:42:28
+1// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g 2009-10-19 23:42:28
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
