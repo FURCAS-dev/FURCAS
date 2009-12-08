@@ -14,35 +14,29 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import org.eclipse.emf.query2.query.AbstractAliasWhereEntry;
-import org.eclipse.emf.query2.query.AliasWhereEntry;
+import org.eclipse.emf.query2.query.AliasAttributeExpression;
 import org.eclipse.emf.query2.query.AndWhereEntry;
-import org.eclipse.emf.query2.query.AttributeWhereEntry;
-import org.eclipse.emf.query2.query.BooleanAttributeWhereEntry;
-import org.eclipse.emf.query2.query.BooleanOperator;
-import org.eclipse.emf.query2.query.DoubleWhereEntry;
+import org.eclipse.emf.query2.query.BooleanExpression;
+import org.eclipse.emf.query2.query.DoubleExpression;
 import org.eclipse.emf.query2.query.ElementScope;
+import org.eclipse.emf.query2.query.Expression;
+import org.eclipse.emf.query2.query.ExpressionWhereEntry;
 import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.Import;
-import org.eclipse.emf.query2.query.LongWhereEntry;
+import org.eclipse.emf.query2.query.LongExpression;
 import org.eclipse.emf.query2.query.MQLquery;
 import org.eclipse.emf.query2.query.Model;
 import org.eclipse.emf.query2.query.NamedQuery;
-import org.eclipse.emf.query2.query.NullWhereEntry;
-import org.eclipse.emf.query2.query.NumericAttributeWhereEntry;
-import org.eclipse.emf.query2.query.NumericOperator;
+import org.eclipse.emf.query2.query.NullExpression;
+import org.eclipse.emf.query2.query.Operator;
 import org.eclipse.emf.query2.query.OrWhereEntry;
+import org.eclipse.emf.query2.query.QueryExpression;
 import org.eclipse.emf.query2.query.QueryFactory;
 import org.eclipse.emf.query2.query.QueryPackage;
-import org.eclipse.emf.query2.query.ReferenceAliasWhereEntry;
-import org.eclipse.emf.query2.query.ReferenceWhereEntry;
 import org.eclipse.emf.query2.query.ResourceScope;
 import org.eclipse.emf.query2.query.ScopeClause;
 import org.eclipse.emf.query2.query.SelectEntry;
-import org.eclipse.emf.query2.query.StringAttributeWhereEntry;
-import org.eclipse.emf.query2.query.StringOperator;
-import org.eclipse.emf.query2.query.SubselectWhereEntry;
-import org.eclipse.emf.query2.query.VariableWhereEntry;
+import org.eclipse.emf.query2.query.StringExpression;
 import org.eclipse.emf.query2.query.WhereEntry;
 
 /**
@@ -128,91 +122,63 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass abstractAliasWhereEntryEClass = null;
+  private EClass expressionWhereEntryEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass attributeWhereEntryEClass = null;
+  private EClass aliasAttributeExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass numericAttributeWhereEntryEClass = null;
+  private EClass expressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass doubleWhereEntryEClass = null;
+  private EClass doubleExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass longWhereEntryEClass = null;
+  private EClass longExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass variableWhereEntryEClass = null;
+  private EClass stringExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass stringAttributeWhereEntryEClass = null;
+  private EClass nullExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass booleanAttributeWhereEntryEClass = null;
+  private EClass booleanExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass referenceWhereEntryEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass nullWhereEntryEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass referenceAliasWhereEntryEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass subselectWhereEntryEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass aliasWhereEntryEClass = null;
+  private EClass queryExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -233,21 +199,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EEnum numericOperatorEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum stringOperatorEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum booleanOperatorEEnum = null;
+  private EEnum operatorEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -417,7 +369,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMQLquery_SelectEntries()
+  public EReference getMQLquery_FromEntries()
   {
     return (EReference)mqLqueryEClass.getEStructuralFeatures().get(0);
   }
@@ -427,7 +379,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getMQLquery_FromEntries()
+  public EReference getMQLquery_SelectEntries()
   {
     return (EReference)mqLqueryEClass.getEStructuralFeatures().get(1);
   }
@@ -507,9 +459,19 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getFromEntry_WithoutsubtypesTypes()
+  {
+    return (EReference)fromEntryEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getFromEntry_Alias()
   {
-    return (EAttribute)fromEntryEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)fromEntryEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -519,7 +481,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    */
   public EReference getFromEntry_ScopeClause()
   {
-    return (EReference)fromEntryEClass.getEStructuralFeatures().get(3);
+    return (EReference)fromEntryEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -587,9 +549,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getAbstractAliasWhereEntry()
+  public EClass getExpressionWhereEntry()
   {
-    return abstractAliasWhereEntryEClass;
+    return expressionWhereEntryEClass;
   }
 
   /**
@@ -597,9 +559,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAbstractAliasWhereEntry_Alias()
+  public EReference getExpressionWhereEntry_Lhs()
   {
-    return (EReference)abstractAliasWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EReference)expressionWhereEntryEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -607,9 +569,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getAttributeWhereEntry()
+  public EAttribute getExpressionWhereEntry_Operator()
   {
-    return attributeWhereEntryEClass;
+    return (EAttribute)expressionWhereEntryEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -617,9 +579,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getAttributeWhereEntry_Attribute()
+  public EReference getExpressionWhereEntry_Rhs()
   {
-    return (EReference)attributeWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EReference)expressionWhereEntryEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -627,9 +589,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getNumericAttributeWhereEntry()
+  public EClass getAliasAttributeExpression()
   {
-    return numericAttributeWhereEntryEClass;
+    return aliasAttributeExpressionEClass;
   }
 
   /**
@@ -637,9 +599,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getNumericAttributeWhereEntry_Operator()
+  public EReference getAliasAttributeExpression_Alias()
   {
-    return (EAttribute)numericAttributeWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EReference)aliasAttributeExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -647,9 +609,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDoubleWhereEntry()
+  public EReference getAliasAttributeExpression_Attribute()
   {
-    return doubleWhereEntryEClass;
+    return (EReference)aliasAttributeExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -657,9 +619,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getDoubleWhereEntry_Value()
+  public EClass getExpression()
   {
-    return (EAttribute)doubleWhereEntryEClass.getEStructuralFeatures().get(0);
+    return expressionEClass;
   }
 
   /**
@@ -667,9 +629,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getLongWhereEntry()
+  public EClass getDoubleExpression()
   {
-    return longWhereEntryEClass;
+    return doubleExpressionEClass;
   }
 
   /**
@@ -677,9 +639,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLongWhereEntry_Value()
+  public EAttribute getDoubleExpression_Value()
   {
-    return (EAttribute)longWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)doubleExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -687,9 +649,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getVariableWhereEntry()
+  public EClass getLongExpression()
   {
-    return variableWhereEntryEClass;
+    return longExpressionEClass;
   }
 
   /**
@@ -697,9 +659,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getVariableWhereEntry_Operator()
+  public EAttribute getLongExpression_Value()
   {
-    return (EAttribute)variableWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)longExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -707,9 +669,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVariableWhereEntry_RightAlias()
+  public EClass getStringExpression()
   {
-    return (EReference)variableWhereEntryEClass.getEStructuralFeatures().get(1);
+    return stringExpressionEClass;
   }
 
   /**
@@ -717,9 +679,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getVariableWhereEntry_RightAttribute()
+  public EAttribute getStringExpression_Value()
   {
-    return (EReference)variableWhereEntryEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)stringExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -727,9 +689,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getStringAttributeWhereEntry()
+  public EClass getNullExpression()
   {
-    return stringAttributeWhereEntryEClass;
+    return nullExpressionEClass;
   }
 
   /**
@@ -737,9 +699,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStringAttributeWhereEntry_Operator()
+  public EAttribute getNullExpression_Value()
   {
-    return (EAttribute)stringAttributeWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)nullExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -747,9 +709,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getStringAttributeWhereEntry_Pattern()
+  public EClass getBooleanExpression()
   {
-    return (EAttribute)stringAttributeWhereEntryEClass.getEStructuralFeatures().get(1);
+    return booleanExpressionEClass;
   }
 
   /**
@@ -757,9 +719,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getBooleanAttributeWhereEntry()
+  public EAttribute getBooleanExpression_True()
   {
-    return booleanAttributeWhereEntryEClass;
+    return (EAttribute)booleanExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -767,9 +729,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBooleanAttributeWhereEntry_Operator()
+  public EClass getQueryExpression()
   {
-    return (EAttribute)booleanAttributeWhereEntryEClass.getEStructuralFeatures().get(0);
+    return queryExpressionEClass;
   }
 
   /**
@@ -777,129 +739,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getBooleanAttributeWhereEntry_IsTrue()
+  public EReference getQueryExpression_Value()
   {
-    return (EAttribute)booleanAttributeWhereEntryEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getReferenceWhereEntry()
-  {
-    return referenceWhereEntryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReferenceWhereEntry_Reference()
-  {
-    return (EReference)referenceWhereEntryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getNullWhereEntry()
-  {
-    return nullWhereEntryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getNullWhereEntry_Feature()
-  {
-    return (EReference)nullWhereEntryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getNullWhereEntry_Operator()
-  {
-    return (EAttribute)nullWhereEntryEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getReferenceAliasWhereEntry()
-  {
-    return referenceAliasWhereEntryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getReferenceAliasWhereEntry_RightAlias()
-  {
-    return (EReference)referenceAliasWhereEntryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getSubselectWhereEntry()
-  {
-    return subselectWhereEntryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getSubselectWhereEntry_NotIn()
-  {
-    return (EAttribute)subselectWhereEntryEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getSubselectWhereEntry_SubQuery()
-  {
-    return (EReference)subselectWhereEntryEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getAliasWhereEntry()
-  {
-    return aliasWhereEntryEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getAliasWhereEntry_RightAlias()
-  {
-    return (EReference)aliasWhereEntryEClass.getEStructuralFeatures().get(0);
+    return (EReference)queryExpressionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -947,29 +789,9 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getNumericOperator()
+  public EEnum getOperator()
   {
-    return numericOperatorEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getStringOperator()
-  {
-    return stringOperatorEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EEnum getBooleanOperator()
-  {
-    return booleanOperatorEEnum;
+    return operatorEEnum;
   }
 
   /**
@@ -1015,8 +837,8 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     createEReference(namedQueryEClass, NAMED_QUERY__QUERY);
 
     mqLqueryEClass = createEClass(MQ_LQUERY);
-    createEReference(mqLqueryEClass, MQ_LQUERY__SELECT_ENTRIES);
     createEReference(mqLqueryEClass, MQ_LQUERY__FROM_ENTRIES);
+    createEReference(mqLqueryEClass, MQ_LQUERY__SELECT_ENTRIES);
     createEReference(mqLqueryEClass, MQ_LQUERY__WHERE_ENTRY);
 
     selectEntryEClass = createEClass(SELECT_ENTRY);
@@ -1026,6 +848,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     fromEntryEClass = createEClass(FROM_ENTRY);
     createEReference(fromEntryEClass, FROM_ENTRY__TYPE);
     createEAttribute(fromEntryEClass, FROM_ENTRY__WITHOUTSUBTYPES);
+    createEReference(fromEntryEClass, FROM_ENTRY__WITHOUTSUBTYPES_TYPES);
     createEAttribute(fromEntryEClass, FROM_ENTRY__ALIAS);
     createEReference(fromEntryEClass, FROM_ENTRY__SCOPE_CLAUSE);
 
@@ -1039,50 +862,34 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
 
     whereEntryEClass = createEClass(WHERE_ENTRY);
 
-    abstractAliasWhereEntryEClass = createEClass(ABSTRACT_ALIAS_WHERE_ENTRY);
-    createEReference(abstractAliasWhereEntryEClass, ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS);
+    expressionWhereEntryEClass = createEClass(EXPRESSION_WHERE_ENTRY);
+    createEReference(expressionWhereEntryEClass, EXPRESSION_WHERE_ENTRY__LHS);
+    createEAttribute(expressionWhereEntryEClass, EXPRESSION_WHERE_ENTRY__OPERATOR);
+    createEReference(expressionWhereEntryEClass, EXPRESSION_WHERE_ENTRY__RHS);
 
-    attributeWhereEntryEClass = createEClass(ATTRIBUTE_WHERE_ENTRY);
-    createEReference(attributeWhereEntryEClass, ATTRIBUTE_WHERE_ENTRY__ATTRIBUTE);
+    aliasAttributeExpressionEClass = createEClass(ALIAS_ATTRIBUTE_EXPRESSION);
+    createEReference(aliasAttributeExpressionEClass, ALIAS_ATTRIBUTE_EXPRESSION__ALIAS);
+    createEReference(aliasAttributeExpressionEClass, ALIAS_ATTRIBUTE_EXPRESSION__ATTRIBUTE);
 
-    numericAttributeWhereEntryEClass = createEClass(NUMERIC_ATTRIBUTE_WHERE_ENTRY);
-    createEAttribute(numericAttributeWhereEntryEClass, NUMERIC_ATTRIBUTE_WHERE_ENTRY__OPERATOR);
+    expressionEClass = createEClass(EXPRESSION);
 
-    doubleWhereEntryEClass = createEClass(DOUBLE_WHERE_ENTRY);
-    createEAttribute(doubleWhereEntryEClass, DOUBLE_WHERE_ENTRY__VALUE);
+    doubleExpressionEClass = createEClass(DOUBLE_EXPRESSION);
+    createEAttribute(doubleExpressionEClass, DOUBLE_EXPRESSION__VALUE);
 
-    longWhereEntryEClass = createEClass(LONG_WHERE_ENTRY);
-    createEAttribute(longWhereEntryEClass, LONG_WHERE_ENTRY__VALUE);
+    longExpressionEClass = createEClass(LONG_EXPRESSION);
+    createEAttribute(longExpressionEClass, LONG_EXPRESSION__VALUE);
 
-    variableWhereEntryEClass = createEClass(VARIABLE_WHERE_ENTRY);
-    createEAttribute(variableWhereEntryEClass, VARIABLE_WHERE_ENTRY__OPERATOR);
-    createEReference(variableWhereEntryEClass, VARIABLE_WHERE_ENTRY__RIGHT_ALIAS);
-    createEReference(variableWhereEntryEClass, VARIABLE_WHERE_ENTRY__RIGHT_ATTRIBUTE);
+    stringExpressionEClass = createEClass(STRING_EXPRESSION);
+    createEAttribute(stringExpressionEClass, STRING_EXPRESSION__VALUE);
 
-    stringAttributeWhereEntryEClass = createEClass(STRING_ATTRIBUTE_WHERE_ENTRY);
-    createEAttribute(stringAttributeWhereEntryEClass, STRING_ATTRIBUTE_WHERE_ENTRY__OPERATOR);
-    createEAttribute(stringAttributeWhereEntryEClass, STRING_ATTRIBUTE_WHERE_ENTRY__PATTERN);
+    nullExpressionEClass = createEClass(NULL_EXPRESSION);
+    createEAttribute(nullExpressionEClass, NULL_EXPRESSION__VALUE);
 
-    booleanAttributeWhereEntryEClass = createEClass(BOOLEAN_ATTRIBUTE_WHERE_ENTRY);
-    createEAttribute(booleanAttributeWhereEntryEClass, BOOLEAN_ATTRIBUTE_WHERE_ENTRY__OPERATOR);
-    createEAttribute(booleanAttributeWhereEntryEClass, BOOLEAN_ATTRIBUTE_WHERE_ENTRY__IS_TRUE);
+    booleanExpressionEClass = createEClass(BOOLEAN_EXPRESSION);
+    createEAttribute(booleanExpressionEClass, BOOLEAN_EXPRESSION__TRUE);
 
-    referenceWhereEntryEClass = createEClass(REFERENCE_WHERE_ENTRY);
-    createEReference(referenceWhereEntryEClass, REFERENCE_WHERE_ENTRY__REFERENCE);
-
-    nullWhereEntryEClass = createEClass(NULL_WHERE_ENTRY);
-    createEReference(nullWhereEntryEClass, NULL_WHERE_ENTRY__FEATURE);
-    createEAttribute(nullWhereEntryEClass, NULL_WHERE_ENTRY__OPERATOR);
-
-    referenceAliasWhereEntryEClass = createEClass(REFERENCE_ALIAS_WHERE_ENTRY);
-    createEReference(referenceAliasWhereEntryEClass, REFERENCE_ALIAS_WHERE_ENTRY__RIGHT_ALIAS);
-
-    subselectWhereEntryEClass = createEClass(SUBSELECT_WHERE_ENTRY);
-    createEAttribute(subselectWhereEntryEClass, SUBSELECT_WHERE_ENTRY__NOT_IN);
-    createEReference(subselectWhereEntryEClass, SUBSELECT_WHERE_ENTRY__SUB_QUERY);
-
-    aliasWhereEntryEClass = createEClass(ALIAS_WHERE_ENTRY);
-    createEReference(aliasWhereEntryEClass, ALIAS_WHERE_ENTRY__RIGHT_ALIAS);
+    queryExpressionEClass = createEClass(QUERY_EXPRESSION);
+    createEReference(queryExpressionEClass, QUERY_EXPRESSION__VALUE);
 
     orWhereEntryEClass = createEClass(OR_WHERE_ENTRY);
     createEReference(orWhereEntryEClass, OR_WHERE_ENTRY__ENTRIES);
@@ -1091,9 +898,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     createEReference(andWhereEntryEClass, AND_WHERE_ENTRY__ENTRIES);
 
     // Create enums
-    numericOperatorEEnum = createEEnum(NUMERIC_OPERATOR);
-    stringOperatorEEnum = createEEnum(STRING_OPERATOR);
-    booleanOperatorEEnum = createEEnum(BOOLEAN_OPERATOR);
+    operatorEEnum = createEEnum(OPERATOR);
   }
 
   /**
@@ -1127,19 +932,14 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     // Add supertypes to classes
     resourceScopeEClass.getESuperTypes().add(this.getScopeClause());
     elementScopeEClass.getESuperTypes().add(this.getScopeClause());
-    abstractAliasWhereEntryEClass.getESuperTypes().add(this.getWhereEntry());
-    attributeWhereEntryEClass.getESuperTypes().add(this.getAbstractAliasWhereEntry());
-    numericAttributeWhereEntryEClass.getESuperTypes().add(this.getAttributeWhereEntry());
-    doubleWhereEntryEClass.getESuperTypes().add(this.getNumericAttributeWhereEntry());
-    longWhereEntryEClass.getESuperTypes().add(this.getNumericAttributeWhereEntry());
-    variableWhereEntryEClass.getESuperTypes().add(this.getAttributeWhereEntry());
-    stringAttributeWhereEntryEClass.getESuperTypes().add(this.getAttributeWhereEntry());
-    booleanAttributeWhereEntryEClass.getESuperTypes().add(this.getAttributeWhereEntry());
-    referenceWhereEntryEClass.getESuperTypes().add(this.getAbstractAliasWhereEntry());
-    nullWhereEntryEClass.getESuperTypes().add(this.getAbstractAliasWhereEntry());
-    referenceAliasWhereEntryEClass.getESuperTypes().add(this.getReferenceWhereEntry());
-    subselectWhereEntryEClass.getESuperTypes().add(this.getReferenceWhereEntry());
-    aliasWhereEntryEClass.getESuperTypes().add(this.getAbstractAliasWhereEntry());
+    expressionWhereEntryEClass.getESuperTypes().add(this.getWhereEntry());
+    aliasAttributeExpressionEClass.getESuperTypes().add(this.getExpression());
+    doubleExpressionEClass.getESuperTypes().add(this.getExpression());
+    longExpressionEClass.getESuperTypes().add(this.getExpression());
+    stringExpressionEClass.getESuperTypes().add(this.getExpression());
+    nullExpressionEClass.getESuperTypes().add(this.getExpression());
+    booleanExpressionEClass.getESuperTypes().add(this.getExpression());
+    queryExpressionEClass.getESuperTypes().add(this.getExpression());
     orWhereEntryEClass.getESuperTypes().add(this.getWhereEntry());
     andWhereEntryEClass.getESuperTypes().add(this.getWhereEntry());
 
@@ -1157,8 +957,8 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     initEReference(getNamedQuery_Query(), this.getMQLquery(), null, "query", null, 0, 1, NamedQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(mqLqueryEClass, MQLquery.class, "MQLquery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getMQLquery_SelectEntries(), this.getSelectEntry(), null, "selectEntries", null, 0, -1, MQLquery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMQLquery_FromEntries(), this.getFromEntry(), null, "fromEntries", null, 0, -1, MQLquery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getMQLquery_SelectEntries(), this.getSelectEntry(), null, "selectEntries", null, 0, -1, MQLquery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMQLquery_WhereEntry(), this.getWhereEntry(), null, "whereEntry", null, 0, 1, MQLquery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(selectEntryEClass, SelectEntry.class, "SelectEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1168,6 +968,7 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     initEClass(fromEntryEClass, FromEntry.class, "FromEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFromEntry_Type(), ecorePackage.getEClass(), null, "type", null, 0, 1, FromEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFromEntry_Withoutsubtypes(), ecorePackage.getEBoolean(), "withoutsubtypes", null, 0, 1, FromEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFromEntry_WithoutsubtypesTypes(), ecorePackage.getEClass(), null, "withoutsubtypesTypes", null, 0, -1, FromEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFromEntry_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, FromEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFromEntry_ScopeClause(), this.getScopeClause(), null, "scopeClause", null, 0, 1, FromEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -1181,50 +982,34 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
 
     initEClass(whereEntryEClass, WhereEntry.class, "WhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(abstractAliasWhereEntryEClass, AbstractAliasWhereEntry.class, "AbstractAliasWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAbstractAliasWhereEntry_Alias(), this.getFromEntry(), null, "alias", null, 0, 1, AbstractAliasWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(expressionWhereEntryEClass, ExpressionWhereEntry.class, "ExpressionWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpressionWhereEntry_Lhs(), this.getAliasAttributeExpression(), null, "lhs", null, 0, 1, ExpressionWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getExpressionWhereEntry_Operator(), this.getOperator(), "operator", null, 0, 1, ExpressionWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpressionWhereEntry_Rhs(), this.getExpression(), null, "rhs", null, 0, 1, ExpressionWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(attributeWhereEntryEClass, AttributeWhereEntry.class, "AttributeWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAttributeWhereEntry_Attribute(), ecorePackage.getEAttribute(), null, "attribute", null, 0, 1, AttributeWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(aliasAttributeExpressionEClass, AliasAttributeExpression.class, "AliasAttributeExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAliasAttributeExpression_Alias(), this.getFromEntry(), null, "alias", null, 0, 1, AliasAttributeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAliasAttributeExpression_Attribute(), ecorePackage.getEStructuralFeature(), null, "attribute", null, 0, 1, AliasAttributeExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(numericAttributeWhereEntryEClass, NumericAttributeWhereEntry.class, "NumericAttributeWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getNumericAttributeWhereEntry_Operator(), this.getNumericOperator(), "operator", null, 0, 1, NumericAttributeWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-    initEClass(doubleWhereEntryEClass, DoubleWhereEntry.class, "DoubleWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getDoubleWhereEntry_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, DoubleWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(doubleExpressionEClass, DoubleExpression.class, "DoubleExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDoubleExpression_Value(), ecorePackage.getEDouble(), "value", null, 0, 1, DoubleExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(longWhereEntryEClass, LongWhereEntry.class, "LongWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLongWhereEntry_Value(), ecorePackage.getELong(), "value", null, 0, 1, LongWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(longExpressionEClass, LongExpression.class, "LongExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLongExpression_Value(), ecorePackage.getELong(), "value", null, 0, 1, LongExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(variableWhereEntryEClass, VariableWhereEntry.class, "VariableWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getVariableWhereEntry_Operator(), this.getNumericOperator(), "operator", null, 0, 1, VariableWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVariableWhereEntry_RightAlias(), this.getFromEntry(), null, "rightAlias", null, 0, 1, VariableWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getVariableWhereEntry_RightAttribute(), ecorePackage.getEAttribute(), null, "rightAttribute", null, 0, 1, VariableWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(stringExpressionEClass, StringExpression.class, "StringExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStringExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(stringAttributeWhereEntryEClass, StringAttributeWhereEntry.class, "StringAttributeWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getStringAttributeWhereEntry_Operator(), this.getStringOperator(), "operator", null, 0, 1, StringAttributeWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getStringAttributeWhereEntry_Pattern(), ecorePackage.getEString(), "pattern", null, 0, 1, StringAttributeWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(nullExpressionEClass, NullExpression.class, "NullExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getNullExpression_Value(), ecorePackage.getEString(), "value", null, 0, 1, NullExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(booleanAttributeWhereEntryEClass, BooleanAttributeWhereEntry.class, "BooleanAttributeWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getBooleanAttributeWhereEntry_Operator(), this.getBooleanOperator(), "operator", null, 0, 1, BooleanAttributeWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBooleanAttributeWhereEntry_IsTrue(), ecorePackage.getEBoolean(), "isTrue", null, 0, 1, BooleanAttributeWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(booleanExpressionEClass, BooleanExpression.class, "BooleanExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBooleanExpression_True(), ecorePackage.getEBoolean(), "true", null, 0, 1, BooleanExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(referenceWhereEntryEClass, ReferenceWhereEntry.class, "ReferenceWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getReferenceWhereEntry_Reference(), ecorePackage.getEReference(), null, "reference", null, 0, 1, ReferenceWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(nullWhereEntryEClass, NullWhereEntry.class, "NullWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNullWhereEntry_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, NullWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNullWhereEntry_Operator(), this.getBooleanOperator(), "operator", null, 0, 1, NullWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(referenceAliasWhereEntryEClass, ReferenceAliasWhereEntry.class, "ReferenceAliasWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getReferenceAliasWhereEntry_RightAlias(), this.getFromEntry(), null, "rightAlias", null, 0, 1, ReferenceAliasWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(subselectWhereEntryEClass, SubselectWhereEntry.class, "SubselectWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSubselectWhereEntry_NotIn(), ecorePackage.getEBoolean(), "notIn", null, 0, 1, SubselectWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSubselectWhereEntry_SubQuery(), this.getMQLquery(), null, "subQuery", null, 0, 1, SubselectWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(aliasWhereEntryEClass, AliasWhereEntry.class, "AliasWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAliasWhereEntry_RightAlias(), this.getFromEntry(), null, "rightAlias", null, 0, 1, AliasWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(queryExpressionEClass, QueryExpression.class, "QueryExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getQueryExpression_Value(), this.getMQLquery(), null, "value", null, 0, 1, QueryExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orWhereEntryEClass, OrWhereEntry.class, "OrWhereEntry", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getOrWhereEntry_Entries(), this.getWhereEntry(), null, "entries", null, 0, -1, OrWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1233,23 +1018,17 @@ public class QueryPackageImpl extends EPackageImpl implements QueryPackage
     initEReference(getAndWhereEntry_Entries(), this.getWhereEntry(), null, "entries", null, 0, -1, AndWhereEntry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(numericOperatorEEnum, NumericOperator.class, "NumericOperator");
-    addEEnumLiteral(numericOperatorEEnum, NumericOperator.LESS_THEN);
-    addEEnumLiteral(numericOperatorEEnum, NumericOperator.GREATER_THEN);
-    addEEnumLiteral(numericOperatorEEnum, NumericOperator.LESS_EQUAL);
-    addEEnumLiteral(numericOperatorEEnum, NumericOperator.GREATER_EQUAL);
-    addEEnumLiteral(numericOperatorEEnum, NumericOperator.EQUAL);
-    addEEnumLiteral(numericOperatorEEnum, NumericOperator.NOT_EQUAL);
-
-    initEEnum(stringOperatorEEnum, StringOperator.class, "StringOperator");
-    addEEnumLiteral(stringOperatorEEnum, StringOperator.EQUAL);
-    addEEnumLiteral(stringOperatorEEnum, StringOperator.NOT_EQUAL);
-    addEEnumLiteral(stringOperatorEEnum, StringOperator.LIKE);
-    addEEnumLiteral(stringOperatorEEnum, StringOperator.NOT_LIKE);
-
-    initEEnum(booleanOperatorEEnum, BooleanOperator.class, "BooleanOperator");
-    addEEnumLiteral(booleanOperatorEEnum, BooleanOperator.EQUAL);
-    addEEnumLiteral(booleanOperatorEEnum, BooleanOperator.NOT_EQUAL);
+    initEEnum(operatorEEnum, Operator.class, "Operator");
+    addEEnumLiteral(operatorEEnum, Operator.LESS_THEN);
+    addEEnumLiteral(operatorEEnum, Operator.GREATER_THEN);
+    addEEnumLiteral(operatorEEnum, Operator.LESS_EQUAL);
+    addEEnumLiteral(operatorEEnum, Operator.GREATER_EQUAL);
+    addEEnumLiteral(operatorEEnum, Operator.EQUAL);
+    addEEnumLiteral(operatorEEnum, Operator.NOT_EQUAL);
+    addEEnumLiteral(operatorEEnum, Operator.LIKE);
+    addEEnumLiteral(operatorEEnum, Operator.NOT_LIKE);
+    addEEnumLiteral(operatorEEnum, Operator.NOT_IN);
+    addEEnumLiteral(operatorEEnum, Operator.IN);
 
     // Create resource
     createResource(eNS_URI);

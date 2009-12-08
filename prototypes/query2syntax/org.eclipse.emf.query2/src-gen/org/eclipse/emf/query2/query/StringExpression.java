@@ -9,21 +9,21 @@ package org.eclipse.emf.query2.query;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Long Where Entry</b></em>'.
+ * A representation of the model object '<em><b>String Expression</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.LongWhereEntry#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.StringExpression#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.eclipse.emf.query2.query.QueryPackage#getLongWhereEntry()
+ * @see org.eclipse.emf.query2.query.QueryPackage#getStringExpression()
  * @model
  * @generated
  */
-public interface LongWhereEntry extends NumericAttributeWhereEntry
+public interface StringExpression extends Expression
 {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
@@ -34,21 +34,21 @@ public interface LongWhereEntry extends NumericAttributeWhereEntry
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(long)
-   * @see org.eclipse.emf.query2.query.QueryPackage#getLongWhereEntry_Value()
+   * @see #setValue(String)
+   * @see org.eclipse.emf.query2.query.QueryPackage#getStringExpression_Value()
    * @model
    * @generated
    */
-  long getValue();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.emf.query2.query.LongWhereEntry#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.emf.query2.query.StringExpression#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
-  void setValue(long value);
+  void setValue(String value);
 
-} // LongWhereEntry
+} // StringExpression

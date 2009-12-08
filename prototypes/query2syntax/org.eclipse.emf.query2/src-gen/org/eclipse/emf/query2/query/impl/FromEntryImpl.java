@@ -6,14 +6,20 @@
  */
 package org.eclipse.emf.query2.query.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.QueryPackage;
@@ -28,6 +34,7 @@ import org.eclipse.emf.query2.query.ScopeClause;
  * <ul>
  *   <li>{@link org.eclipse.emf.query2.query.impl.FromEntryImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.FromEntryImpl#isWithoutsubtypes <em>Withoutsubtypes</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.FromEntryImpl#getWithoutsubtypesTypes <em>Withoutsubtypes Types</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.FromEntryImpl#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.FromEntryImpl#getScopeClause <em>Scope Clause</em>}</li>
  * </ul>
@@ -66,6 +73,16 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
    * @ordered
    */
   protected boolean withoutsubtypes = WITHOUTSUBTYPES_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getWithoutsubtypesTypes() <em>Withoutsubtypes Types</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWithoutsubtypesTypes()
+   * @generated
+   * @ordered
+   */
+  protected EList<EClass> withoutsubtypesTypes;
 
   /**
    * The default value of the '{@link #getAlias() <em>Alias</em>}' attribute.
@@ -189,6 +206,20 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<EClass> getWithoutsubtypesTypes()
+  {
+    if (withoutsubtypesTypes == null)
+    {
+      withoutsubtypesTypes = new EObjectResolvingEList<EClass>(EClass.class, this, QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES_TYPES);
+    }
+    return withoutsubtypesTypes;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getAlias()
   {
     return alias;
@@ -286,6 +317,8 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
         return basicGetType();
       case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES:
         return isWithoutsubtypes();
+      case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES_TYPES:
+        return getWithoutsubtypesTypes();
       case QueryPackage.FROM_ENTRY__ALIAS:
         return getAlias();
       case QueryPackage.FROM_ENTRY__SCOPE_CLAUSE:
@@ -299,6 +332,7 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -309,6 +343,10 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
         return;
       case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES:
         setWithoutsubtypes((Boolean)newValue);
+        return;
+      case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES_TYPES:
+        getWithoutsubtypesTypes().clear();
+        getWithoutsubtypesTypes().addAll((Collection<? extends EClass>)newValue);
         return;
       case QueryPackage.FROM_ENTRY__ALIAS:
         setAlias((String)newValue);
@@ -336,6 +374,9 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
       case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES:
         setWithoutsubtypes(WITHOUTSUBTYPES_EDEFAULT);
         return;
+      case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES_TYPES:
+        getWithoutsubtypesTypes().clear();
+        return;
       case QueryPackage.FROM_ENTRY__ALIAS:
         setAlias(ALIAS_EDEFAULT);
         return;
@@ -360,6 +401,8 @@ public class FromEntryImpl extends MinimalEObjectImpl.Container implements FromE
         return type != null;
       case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES:
         return withoutsubtypes != WITHOUTSUBTYPES_EDEFAULT;
+      case QueryPackage.FROM_ENTRY__WITHOUTSUBTYPES_TYPES:
+        return withoutsubtypesTypes != null && !withoutsubtypesTypes.isEmpty();
       case QueryPackage.FROM_ENTRY__ALIAS:
         return ALIAS_EDEFAULT == null ? alias != null : !ALIAS_EDEFAULT.equals(alias);
       case QueryPackage.FROM_ENTRY__SCOPE_CLAUSE:

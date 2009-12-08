@@ -35,8 +35,8 @@ import org.eclipse.emf.query2.query.WhereEntry;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.MQLqueryImpl#getSelectEntries <em>Select Entries</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.MQLqueryImpl#getFromEntries <em>From Entries</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.MQLqueryImpl#getSelectEntries <em>Select Entries</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.impl.MQLqueryImpl#getWhereEntry <em>Where Entry</em>}</li>
  * </ul>
  * </p>
@@ -46,16 +46,6 @@ import org.eclipse.emf.query2.query.WhereEntry;
 public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLquery
 {
   /**
-   * The cached value of the '{@link #getSelectEntries() <em>Select Entries</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getSelectEntries()
-   * @generated
-   * @ordered
-   */
-  protected EList<SelectEntry> selectEntries;
-
-  /**
    * The cached value of the '{@link #getFromEntries() <em>From Entries</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -64,6 +54,16 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
    * @ordered
    */
   protected EList<FromEntry> fromEntries;
+
+  /**
+   * The cached value of the '{@link #getSelectEntries() <em>Select Entries</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSelectEntries()
+   * @generated
+   * @ordered
+   */
+  protected EList<SelectEntry> selectEntries;
 
   /**
    * The cached value of the '{@link #getWhereEntry() <em>Where Entry</em>}' containment reference.
@@ -101,20 +101,6 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<SelectEntry> getSelectEntries()
-  {
-    if (selectEntries == null)
-    {
-      selectEntries = new EObjectContainmentEList<SelectEntry>(SelectEntry.class, this, QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
-    }
-    return selectEntries;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<FromEntry> getFromEntries()
   {
     if (fromEntries == null)
@@ -122,6 +108,20 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
       fromEntries = new EObjectContainmentEList<FromEntry>(FromEntry.class, this, QueryPackage.MQ_LQUERY__FROM_ENTRIES);
     }
     return fromEntries;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<SelectEntry> getSelectEntries()
+  {
+    if (selectEntries == null)
+    {
+      selectEntries = new EObjectContainmentEList<SelectEntry>(SelectEntry.class, this, QueryPackage.MQ_LQUERY__SELECT_ENTRIES);
+    }
+    return selectEntries;
   }
 
   /**
@@ -182,10 +182,10 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
   {
     switch (featureID)
     {
-      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
-        return ((InternalEList<?>)getSelectEntries()).basicRemove(otherEnd, msgs);
       case QueryPackage.MQ_LQUERY__FROM_ENTRIES:
         return ((InternalEList<?>)getFromEntries()).basicRemove(otherEnd, msgs);
+      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
+        return ((InternalEList<?>)getSelectEntries()).basicRemove(otherEnd, msgs);
       case QueryPackage.MQ_LQUERY__WHERE_ENTRY:
         return basicSetWhereEntry(null, msgs);
     }
@@ -202,10 +202,10 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
   {
     switch (featureID)
     {
-      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
-        return getSelectEntries();
       case QueryPackage.MQ_LQUERY__FROM_ENTRIES:
         return getFromEntries();
+      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
+        return getSelectEntries();
       case QueryPackage.MQ_LQUERY__WHERE_ENTRY:
         return getWhereEntry();
     }
@@ -223,13 +223,13 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
   {
     switch (featureID)
     {
-      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
-        getSelectEntries().clear();
-        getSelectEntries().addAll((Collection<? extends SelectEntry>)newValue);
-        return;
       case QueryPackage.MQ_LQUERY__FROM_ENTRIES:
         getFromEntries().clear();
         getFromEntries().addAll((Collection<? extends FromEntry>)newValue);
+        return;
+      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
+        getSelectEntries().clear();
+        getSelectEntries().addAll((Collection<? extends SelectEntry>)newValue);
         return;
       case QueryPackage.MQ_LQUERY__WHERE_ENTRY:
         setWhereEntry((WhereEntry)newValue);
@@ -248,11 +248,11 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
   {
     switch (featureID)
     {
-      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
-        getSelectEntries().clear();
-        return;
       case QueryPackage.MQ_LQUERY__FROM_ENTRIES:
         getFromEntries().clear();
+        return;
+      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
+        getSelectEntries().clear();
         return;
       case QueryPackage.MQ_LQUERY__WHERE_ENTRY:
         setWhereEntry((WhereEntry)null);
@@ -271,10 +271,10 @@ public class MQLqueryImpl extends MinimalEObjectImpl.Container implements MQLque
   {
     switch (featureID)
     {
-      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
-        return selectEntries != null && !selectEntries.isEmpty();
       case QueryPackage.MQ_LQUERY__FROM_ENTRIES:
         return fromEntries != null && !fromEntries.isEmpty();
+      case QueryPackage.MQ_LQUERY__SELECT_ENTRIES:
+        return selectEntries != null && !selectEntries.isEmpty();
       case QueryPackage.MQ_LQUERY__WHERE_ENTRY:
         return whereEntry != null;
     }

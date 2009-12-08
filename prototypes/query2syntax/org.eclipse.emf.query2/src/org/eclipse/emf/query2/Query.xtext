@@ -18,7 +18,9 @@ NamedQuery:
 ;
 
 MQLquery :
-	"select" selectEntries+=SelectEntry ("," selectEntries+=SelectEntry)* "from" fromEntries+=FromEntry ("," fromEntries+=FromEntry)* ("where" whereEntry=WhereEntry)?
+	"from" fromEntries+=FromEntry ("," fromEntries+=FromEntry)* 
+	"select" selectEntries+=SelectEntry ("," selectEntries+=SelectEntry)*
+	("where" whereEntry=WhereEntry)?
 ;
 
 SelectEntry:
@@ -26,7 +28,7 @@ SelectEntry:
 ; 
 
 FromEntry:
-	type=[ecore::EClass] (withoutsubtypes?="withoutsubtypes")? "as" alias=ID (scopeClause=ScopeClause)?
+	type=[ecore::EClass] (withoutsubtypes?="withoutsubtypes" ("{"withoutsubtypesTypes+=[ecore::EClass] ("," withoutsubtypesTypes+=[ecore::EClass])* "}")?)? "as" alias=ID (scopeClause=ScopeClause)?
 ;
 
 ScopeClause:
@@ -53,77 +55,52 @@ AndWhereEntry returns WhereEntry:
 ;
 
 ConcreteWhereEntry returns WhereEntry:
-	ParWhereEntry | AbstractAliasWhereEntry
+	ParWhereEntry | ExpressionWhereEntry
 ;
 
 ParWhereEntry  returns WhereEntry:
 	"(" WhereEntry ")"
 ;
 
-AbstractAliasWhereEntry:
-	AttributeWhereEntry | ReferenceWhereEntry | AliasWhereEntry | NullWhereEntry
+ExpressionWhereEntry:
+	lhs=AliasAttributeExpression operator=Operator rhs=Expression 
 ;
 
-AttributeWhereEntry:
-	NumericAttributeWhereEntry | StringAttributeWhereEntry | BooleanAttributeWhereEntry | VariableWhereEntry
+AliasAttributeExpression:
+	alias=[FromEntry] ("." attribute=[ecore::EStructuralFeature])?
 ;
 
-NumericAttributeWhereEntry:
-	DoubleWhereEntry | LongWhereEntry
+Expression:
+	AliasAttributeExpression | DoubleExpression | LongExpression | StringExpression | NullExpression | BooleanExpression | QueryExpression
 ;
 
-DoubleWhereEntry:
-	alias=[FromEntry] "." attribute=[ecore::EAttribute] operator=NumericOperator value=SIGNED_DOUBLE
+DoubleExpression: 
+	value=SIGNED_DOUBLE
+; 
+
+LongExpression: 
+	value=SINGED_LONG	
+; 
+
+StringExpression: 
+	value=STRING
+; 
+
+NullExpression:
+	value="null"
+; 
+
+BooleanExpression: 
+	(true?="true" | "false")
 ;
 
-LongWhereEntry:
-	alias=[FromEntry] "." attribute=[ecore::EAttribute] operator=NumericOperator value=SINGED_LONG
+QueryExpression:
+	"("value=MQLquery")" 
 ;
 
-VariableWhereEntry:
-	alias=[FromEntry] "." attribute=[ecore::EAttribute] operator=NumericOperator rightAlias=[FromEntry]"." rightAttribute=[ecore::EAttribute]
+enum Operator:
+	lessThen="<" | greaterThen=">" | lessEqual="<=" | greaterEqual=">=" | equal="=" | notEqual="!=" | like="like" | notLike="not like" | notIn="not in" | in="in"
 ;
-
-enum NumericOperator:
-	lessThen="<" | greaterThen=">" | lessEqual="<=" | greaterEqual=">=" | equal="=" | notEqual="!="
-;
-
-StringAttributeWhereEntry:
-	alias=[FromEntry] "." attribute=[ecore::EAttribute] operator=StringOperator pattern=STRING
-;
-
-enum StringOperator:
-	equal="=" | notEqual="!=" | like="like" | notLike="notlike"
-;
-
-BooleanAttributeWhereEntry:
-	alias=[FromEntry] "." attribute=[ecore::EAttribute] operator=BooleanOperator (isTrue?="true" | "false")
-;
-
-enum BooleanOperator:
-	equal="=" | notEqual="!="
-;
-
-ReferenceWhereEntry:
-	ReferenceAliasWhereEntry | SubselectWhereEntry
-;
-
-NullWhereEntry:
-	alias=[FromEntry] "." feature=[ecore::EStructuralFeature] operator=BooleanOperator "null"
-;
-
-ReferenceAliasWhereEntry:
-	alias=[FromEntry] "." reference=[ecore::EReference] "=" rightAlias=[FromEntry]  
-;
-
-SubselectWhereEntry:
-	alias=[FromEntry] "." reference=[ecore::EReference] (notIn?="not")? "in" "("subQuery=MQLquery")"  
-;
-
-AliasWhereEntry:
-	alias=[FromEntry] "=" rightAlias=[FromEntry]
-;
-
 
 terminal SINGED_LONG returns ecore::ELong: '-'?('0'..'9')+;	
 terminal SIGNED_DOUBLE returns ecore::EDouble: '-'?('0'..'9')+ ('.' ('0'..'9')+)?;

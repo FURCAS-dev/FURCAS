@@ -12,50 +12,50 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.query2.query.DoubleWhereEntry;
+import org.eclipse.emf.query2.query.BooleanExpression;
 import org.eclipse.emf.query2.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Double Where Entry</b></em>'.
+ * An implementation of the model object '<em><b>Boolean Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.DoubleWhereEntryImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.BooleanExpressionImpl#isTrue <em>True</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl implements DoubleWhereEntry
+public class BooleanExpressionImpl extends ExpressionImpl implements BooleanExpression
 {
   /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The default value of the '{@link #isTrue() <em>True</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #isTrue()
    * @generated
    * @ordered
    */
-  protected static final double VALUE_EDEFAULT = 0.0;
+  protected static final boolean TRUE_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * The cached value of the '{@link #isTrue() <em>True</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #isTrue()
    * @generated
    * @ordered
    */
-  protected double value = VALUE_EDEFAULT;
+  protected boolean true_ = TRUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DoubleWhereEntryImpl()
+  protected BooleanExpressionImpl()
   {
     super();
   }
@@ -68,7 +68,7 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
   @Override
   protected EClass eStaticClass()
   {
-    return QueryPackage.Literals.DOUBLE_WHERE_ENTRY;
+    return QueryPackage.Literals.BOOLEAN_EXPRESSION;
   }
 
   /**
@@ -76,9 +76,9 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public double getValue()
+  public boolean isTrue()
   {
-    return value;
+    return true_;
   }
 
   /**
@@ -86,12 +86,12 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(double newValue)
+  public void setTrue(boolean newTrue)
   {
-    double oldValue = value;
-    value = newValue;
+    boolean oldTrue = true_;
+    true_ = newTrue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.DOUBLE_WHERE_ENTRY__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.BOOLEAN_EXPRESSION__TRUE, oldTrue, true_));
   }
 
   /**
@@ -104,8 +104,8 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.DOUBLE_WHERE_ENTRY__VALUE:
-        return getValue();
+      case QueryPackage.BOOLEAN_EXPRESSION__TRUE:
+        return isTrue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.DOUBLE_WHERE_ENTRY__VALUE:
-        setValue((Double)newValue);
+      case QueryPackage.BOOLEAN_EXPRESSION__TRUE:
+        setTrue((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.DOUBLE_WHERE_ENTRY__VALUE:
-        setValue(VALUE_EDEFAULT);
+      case QueryPackage.BOOLEAN_EXPRESSION__TRUE:
+        setTrue(TRUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
   {
     switch (featureID)
     {
-      case QueryPackage.DOUBLE_WHERE_ENTRY__VALUE:
-        return value != VALUE_EDEFAULT;
+      case QueryPackage.BOOLEAN_EXPRESSION__TRUE:
+        return true_ != TRUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +171,10 @@ public class DoubleWhereEntryImpl extends NumericAttributeWhereEntryImpl impleme
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: ");
-    result.append(value);
+    result.append(" (true: ");
+    result.append(true_);
     result.append(')');
     return result.toString();
   }
 
-} //DoubleWhereEntryImpl
+} //BooleanExpressionImpl

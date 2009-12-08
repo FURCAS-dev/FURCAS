@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.MQLquery#getSelectEntries <em>Select Entries</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.MQLquery#getFromEntries <em>From Entries</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.MQLquery#getSelectEntries <em>Select Entries</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.MQLquery#getWhereEntry <em>Where Entry</em>}</li>
  * </ul>
  * </p>
@@ -30,22 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface MQLquery extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Select Entries</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.query2.query.SelectEntry}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Select Entries</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Select Entries</em>' containment reference list.
-   * @see org.eclipse.emf.query2.query.QueryPackage#getMQLquery_SelectEntries()
-   * @model containment="true"
-   * @generated
-   */
-  EList<SelectEntry> getSelectEntries();
-
   /**
    * Returns the value of the '<em><b>From Entries</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.emf.query2.query.FromEntry}.
@@ -61,6 +45,22 @@ public interface MQLquery extends EObject
    * @generated
    */
   EList<FromEntry> getFromEntries();
+
+  /**
+   * Returns the value of the '<em><b>Select Entries</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.query2.query.SelectEntry}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Select Entries</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Select Entries</em>' containment reference list.
+   * @see org.eclipse.emf.query2.query.QueryPackage#getMQLquery_SelectEntries()
+   * @model containment="true"
+   * @generated
+   */
+  EList<SelectEntry> getSelectEntries();
 
   /**
    * Returns the value of the '<em><b>Where Entry</b></em>' containment reference.

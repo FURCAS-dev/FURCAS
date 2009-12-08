@@ -9,15 +9,17 @@ import org.eclipse.emf.query2.SelectAttrs;
 import org.eclipse.emf.query2.WhereClause;
 import org.eclipse.emf.query2.WhereEntry;
 import org.eclipse.emf.query2.WhereString;
+import org.eclipse.emf.query2.query.AliasAttributeExpression;
+import org.eclipse.emf.query2.query.ExpressionWhereEntry;
 import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.MQLquery;
 import org.eclipse.emf.query2.query.Model;
 import org.eclipse.emf.query2.query.NamedQuery;
+import org.eclipse.emf.query2.query.Operator;
 import org.eclipse.emf.query2.query.QueryFactory;
 import org.eclipse.emf.query2.query.QueryPackage;
 import org.eclipse.emf.query2.query.SelectEntry;
-import org.eclipse.emf.query2.query.StringAttributeWhereEntry;
-import org.eclipse.emf.query2.query.StringOperator;
+import org.eclipse.emf.query2.query.StringExpression;
 import org.eclipse.emf.query2.transformation.QueryTransformer;
 import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
 import org.eclipse.xtext.resource.XtextResource;
@@ -108,7 +110,7 @@ public class TestTransformation extends Assert {
 		String string = doTransformation("SelectAttrWhereAttrNull");
 		assertEquals(
 				"select a.lowerBound from type: platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore#//ETypedElement as a "
-						+ "where for a(lowerBound EQUAL null)", string);
+						+ "where for a(eType EQUAL null)", string);
 	}
 
 	@Test
@@ -167,7 +169,6 @@ public class TestTransformation extends Assert {
 	}
 
 
-	@Ignore
 	@Test
 	public void testSimpleTransformation() throws Exception {
 		MQLquery query = QueryFactory.eINSTANCE.createMQLquery();
@@ -193,12 +194,18 @@ public class TestTransformation extends Assert {
 		selectEntry2.setAttribute(QueryPackage.eINSTANCE.getFromEntry_Alias());
 
 		// WHERE ENTRIES
-		StringAttributeWhereEntry whereEntry = QueryFactory.eINSTANCE.createStringAttributeWhereEntry();
-		whereEntry.setAlias(fromEntry2);
-		whereEntry.setAttribute(QueryPackage.eINSTANCE.getFromEntry_Alias());
-		whereEntry.setOperator(StringOperator.EQUAL);
-		whereEntry.setPattern(fromAlias1);
-
+		ExpressionWhereEntry whereEntry = QueryFactory.eINSTANCE.createExpressionWhereEntry();
+		AliasAttributeExpression lhs = QueryFactory.eINSTANCE.createAliasAttributeExpression();
+		lhs.setAlias(fromEntry2);
+		lhs.setAttribute(QueryPackage.eINSTANCE.getFromEntry_Alias());
+		
+		StringExpression rhs = QueryFactory.eINSTANCE.createStringExpression();
+		rhs.setValue(fromAlias1);
+		
+		whereEntry.setLhs(lhs);
+		whereEntry.setOperator(Operator.EQUAL);
+		whereEntry.setRhs(rhs);
+		
 		query.getFromEntries().add(fromEntry1);
 		query.getFromEntries().add(fromEntry2);
 		query.getSelectEntries().add(selectEntry1);

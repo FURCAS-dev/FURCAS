@@ -79,19 +79,15 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
       case QueryPackage.RESOURCE_SCOPE: return createResourceScope();
       case QueryPackage.ELEMENT_SCOPE: return createElementScope();
       case QueryPackage.WHERE_ENTRY: return createWhereEntry();
-      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY: return createAbstractAliasWhereEntry();
-      case QueryPackage.ATTRIBUTE_WHERE_ENTRY: return createAttributeWhereEntry();
-      case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY: return createNumericAttributeWhereEntry();
-      case QueryPackage.DOUBLE_WHERE_ENTRY: return createDoubleWhereEntry();
-      case QueryPackage.LONG_WHERE_ENTRY: return createLongWhereEntry();
-      case QueryPackage.VARIABLE_WHERE_ENTRY: return createVariableWhereEntry();
-      case QueryPackage.STRING_ATTRIBUTE_WHERE_ENTRY: return createStringAttributeWhereEntry();
-      case QueryPackage.BOOLEAN_ATTRIBUTE_WHERE_ENTRY: return createBooleanAttributeWhereEntry();
-      case QueryPackage.REFERENCE_WHERE_ENTRY: return createReferenceWhereEntry();
-      case QueryPackage.NULL_WHERE_ENTRY: return createNullWhereEntry();
-      case QueryPackage.REFERENCE_ALIAS_WHERE_ENTRY: return createReferenceAliasWhereEntry();
-      case QueryPackage.SUBSELECT_WHERE_ENTRY: return createSubselectWhereEntry();
-      case QueryPackage.ALIAS_WHERE_ENTRY: return createAliasWhereEntry();
+      case QueryPackage.EXPRESSION_WHERE_ENTRY: return createExpressionWhereEntry();
+      case QueryPackage.ALIAS_ATTRIBUTE_EXPRESSION: return createAliasAttributeExpression();
+      case QueryPackage.EXPRESSION: return createExpression();
+      case QueryPackage.DOUBLE_EXPRESSION: return createDoubleExpression();
+      case QueryPackage.LONG_EXPRESSION: return createLongExpression();
+      case QueryPackage.STRING_EXPRESSION: return createStringExpression();
+      case QueryPackage.NULL_EXPRESSION: return createNullExpression();
+      case QueryPackage.BOOLEAN_EXPRESSION: return createBooleanExpression();
+      case QueryPackage.QUERY_EXPRESSION: return createQueryExpression();
       case QueryPackage.OR_WHERE_ENTRY: return createOrWhereEntry();
       case QueryPackage.AND_WHERE_ENTRY: return createAndWhereEntry();
       default:
@@ -109,12 +105,8 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case QueryPackage.NUMERIC_OPERATOR:
-        return createNumericOperatorFromString(eDataType, initialValue);
-      case QueryPackage.STRING_OPERATOR:
-        return createStringOperatorFromString(eDataType, initialValue);
-      case QueryPackage.BOOLEAN_OPERATOR:
-        return createBooleanOperatorFromString(eDataType, initialValue);
+      case QueryPackage.OPERATOR:
+        return createOperatorFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -130,12 +122,8 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case QueryPackage.NUMERIC_OPERATOR:
-        return convertNumericOperatorToString(eDataType, instanceValue);
-      case QueryPackage.STRING_OPERATOR:
-        return convertStringOperatorToString(eDataType, instanceValue);
-      case QueryPackage.BOOLEAN_OPERATOR:
-        return convertBooleanOperatorToString(eDataType, instanceValue);
+      case QueryPackage.OPERATOR:
+        return convertOperatorToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -256,10 +244,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public AbstractAliasWhereEntry createAbstractAliasWhereEntry()
+  public ExpressionWhereEntry createExpressionWhereEntry()
   {
-    AbstractAliasWhereEntryImpl abstractAliasWhereEntry = new AbstractAliasWhereEntryImpl();
-    return abstractAliasWhereEntry;
+    ExpressionWhereEntryImpl expressionWhereEntry = new ExpressionWhereEntryImpl();
+    return expressionWhereEntry;
   }
 
   /**
@@ -267,10 +255,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public AttributeWhereEntry createAttributeWhereEntry()
+  public AliasAttributeExpression createAliasAttributeExpression()
   {
-    AttributeWhereEntryImpl attributeWhereEntry = new AttributeWhereEntryImpl();
-    return attributeWhereEntry;
+    AliasAttributeExpressionImpl aliasAttributeExpression = new AliasAttributeExpressionImpl();
+    return aliasAttributeExpression;
   }
 
   /**
@@ -278,10 +266,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public NumericAttributeWhereEntry createNumericAttributeWhereEntry()
+  public Expression createExpression()
   {
-    NumericAttributeWhereEntryImpl numericAttributeWhereEntry = new NumericAttributeWhereEntryImpl();
-    return numericAttributeWhereEntry;
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
   }
 
   /**
@@ -289,10 +277,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public DoubleWhereEntry createDoubleWhereEntry()
+  public DoubleExpression createDoubleExpression()
   {
-    DoubleWhereEntryImpl doubleWhereEntry = new DoubleWhereEntryImpl();
-    return doubleWhereEntry;
+    DoubleExpressionImpl doubleExpression = new DoubleExpressionImpl();
+    return doubleExpression;
   }
 
   /**
@@ -300,10 +288,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public LongWhereEntry createLongWhereEntry()
+  public LongExpression createLongExpression()
   {
-    LongWhereEntryImpl longWhereEntry = new LongWhereEntryImpl();
-    return longWhereEntry;
+    LongExpressionImpl longExpression = new LongExpressionImpl();
+    return longExpression;
   }
 
   /**
@@ -311,10 +299,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public VariableWhereEntry createVariableWhereEntry()
+  public StringExpression createStringExpression()
   {
-    VariableWhereEntryImpl variableWhereEntry = new VariableWhereEntryImpl();
-    return variableWhereEntry;
+    StringExpressionImpl stringExpression = new StringExpressionImpl();
+    return stringExpression;
   }
 
   /**
@@ -322,10 +310,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public StringAttributeWhereEntry createStringAttributeWhereEntry()
+  public NullExpression createNullExpression()
   {
-    StringAttributeWhereEntryImpl stringAttributeWhereEntry = new StringAttributeWhereEntryImpl();
-    return stringAttributeWhereEntry;
+    NullExpressionImpl nullExpression = new NullExpressionImpl();
+    return nullExpression;
   }
 
   /**
@@ -333,10 +321,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public BooleanAttributeWhereEntry createBooleanAttributeWhereEntry()
+  public BooleanExpression createBooleanExpression()
   {
-    BooleanAttributeWhereEntryImpl booleanAttributeWhereEntry = new BooleanAttributeWhereEntryImpl();
-    return booleanAttributeWhereEntry;
+    BooleanExpressionImpl booleanExpression = new BooleanExpressionImpl();
+    return booleanExpression;
   }
 
   /**
@@ -344,54 +332,10 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ReferenceWhereEntry createReferenceWhereEntry()
+  public QueryExpression createQueryExpression()
   {
-    ReferenceWhereEntryImpl referenceWhereEntry = new ReferenceWhereEntryImpl();
-    return referenceWhereEntry;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NullWhereEntry createNullWhereEntry()
-  {
-    NullWhereEntryImpl nullWhereEntry = new NullWhereEntryImpl();
-    return nullWhereEntry;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ReferenceAliasWhereEntry createReferenceAliasWhereEntry()
-  {
-    ReferenceAliasWhereEntryImpl referenceAliasWhereEntry = new ReferenceAliasWhereEntryImpl();
-    return referenceAliasWhereEntry;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public SubselectWhereEntry createSubselectWhereEntry()
-  {
-    SubselectWhereEntryImpl subselectWhereEntry = new SubselectWhereEntryImpl();
-    return subselectWhereEntry;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public AliasWhereEntry createAliasWhereEntry()
-  {
-    AliasWhereEntryImpl aliasWhereEntry = new AliasWhereEntryImpl();
-    return aliasWhereEntry;
+    QueryExpressionImpl queryExpression = new QueryExpressionImpl();
+    return queryExpression;
   }
 
   /**
@@ -421,9 +365,9 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public NumericOperator createNumericOperatorFromString(EDataType eDataType, String initialValue)
+  public Operator createOperatorFromString(EDataType eDataType, String initialValue)
   {
-    NumericOperator result = NumericOperator.get(initialValue);
+    Operator result = Operator.get(initialValue);
     if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
     return result;
   }
@@ -433,51 +377,7 @@ public class QueryFactoryImpl extends EFactoryImpl implements QueryFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public String convertNumericOperatorToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public StringOperator createStringOperatorFromString(EDataType eDataType, String initialValue)
-  {
-    StringOperator result = StringOperator.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertStringOperatorToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public BooleanOperator createBooleanOperatorFromString(EDataType eDataType, String initialValue)
-  {
-    BooleanOperator result = BooleanOperator.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertBooleanOperatorToString(EDataType eDataType, Object instanceValue)
+  public String convertOperatorToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

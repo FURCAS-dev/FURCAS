@@ -1,27 +1,65 @@
-import "platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore" 
+import "platform:/resource/org.eclipse.emf.query2.syntax.test/model/Ecore.ecore"
 
-SelectEClass : select a from EClass as a
+SelectEClass:
+from EClass as a
+select a
 
-SelectEClassWhereNameEqualsEAttribute : select a from EClass as a where a.name = 'EAttribute'
+SelectEClassWhereNameEqualsEAttribute:
+from EClass as a
+select a
+where a.name = 'EAttribute'
 
-SelectAttrTwoWhereAnd: select a.name from EClass as a where a.name = 'EAttribute' and a.abstract = true
+SelectAttrTwoWhereAnd:
+from EClass as a
+select a.name
+where a.name = 'EAttribute' and a.abstract = true
 
-SelectAttrWhereAttrLong: select a.lowerBound from ETypedElement as a where a.upperBound < 5
+SelectAttrWhereAttrLong:
+from ETypedElement as a
+select a.lowerBound
+where a.upperBound < 5
 
-SelectAttrWhereAttrVar: select a.lowerBound, b.upperBound from ETypedElement as a, ETypedElement as b where b.upperBound >= a.lowerBound
+SelectAttrWhereAttrVar:
+from ETypedElement as a, ETypedElement as b
+select a.lowerBound, b.upperBound
+where b.upperBound >= a.lowerBound
 
-SelectAttrWhereAttrNull: select a.lowerBound from ETypedElement as a where a.lowerBound = null
+SelectAttrWhereAttrNull:
+from ETypedElement as a
+select a.lowerBound
+where a.eType = null
 
-SelectEClassWhereRefNull: select a from EClass as a where a.eOperations = null
+SelectEClassWhereRefNull:
+from EClass as a
+select a
+where a.eOperations = null
 
-SelectAttrTwoWhereOr: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true
+SelectAttrTwoWhereOr:
+from EClass as a
+select a.name
+where a.name = 'EAttribute' or a.abstract = true
 
-SelectAttrThreeWhereOr: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true or a.abstract = true or a.interface = true
+SelectAttrThreeWhereOr:
+from EClass as a
+select a.name
+where a.name = 'EAttribute' or a.abstract = true or a.abstract = true or a.interface = true
 
-SelectAttrThreeWhereAnd: select a.name from EClass as a where a.name = 'EAttribute' and a.abstract = true and a.abstract = true and a.interface = true 
+SelectAttrThreeWhereAnd:
+from EClass as a
+select a.name
+where a.name = 'EAttribute' and a.abstract = true and a.abstract = true and a.interface = true
 
-SelectAttrThreeWhereOrAnd: select a.name from EClass as a where a.name = 'EAttribute' or a.abstract = true and a.interface = true
+SelectAttrThreeWhereOrAnd:
+from EClass as a
+select a.name
+where a.name = 'EAttribute' or a.abstract = true and a.interface = true
 
-SelectPar: select a.name from EClass as a where (a.name = 'EAttribute' or a.abstract = true) and a.interface = true
+SelectPar:
+from EClass as a
+select a.name
+where ( a.name = 'EAttribute' or a.abstract = true ) and a.interface = true
 
-SelectPar2: select a.name from EClass as a where a.name = 'EAttribute' or (a.abstract = true and a.interface = true)
+SelectPar2:
+from EClass as a
+select a.name
+where a.name = 'EAttribute' or ( a.abstract = true and a.interface = true )

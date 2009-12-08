@@ -12,51 +12,50 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.query2.query.NumericAttributeWhereEntry;
-import org.eclipse.emf.query2.query.NumericOperator;
+import org.eclipse.emf.query2.query.NullExpression;
 import org.eclipse.emf.query2.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Numeric Attribute Where Entry</b></em>'.
+ * An implementation of the model object '<em><b>Null Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.NumericAttributeWhereEntryImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.NullExpressionImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl implements NumericAttributeWhereEntry
+public class NullExpressionImpl extends ExpressionImpl implements NullExpression
 {
   /**
-   * The default value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOperator()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final NumericOperator OPERATOR_EDEFAULT = NumericOperator.LESS_THEN;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getOperator() <em>Operator</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOperator()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected NumericOperator operator = OPERATOR_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected NumericAttributeWhereEntryImpl()
+  protected NullExpressionImpl()
   {
     super();
   }
@@ -69,7 +68,7 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
   @Override
   protected EClass eStaticClass()
   {
-    return QueryPackage.Literals.NUMERIC_ATTRIBUTE_WHERE_ENTRY;
+    return QueryPackage.Literals.NULL_EXPRESSION;
   }
 
   /**
@@ -77,9 +76,9 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public NumericOperator getOperator()
+  public String getValue()
   {
-    return operator;
+    return value;
   }
 
   /**
@@ -87,12 +86,12 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setOperator(NumericOperator newOperator)
+  public void setValue(String newValue)
   {
-    NumericOperator oldOperator = operator;
-    operator = newOperator == null ? OPERATOR_EDEFAULT : newOperator;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY__OPERATOR, oldOperator, operator));
+      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.NULL_EXPRESSION__VALUE, oldValue, value));
   }
 
   /**
@@ -105,8 +104,8 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
   {
     switch (featureID)
     {
-      case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY__OPERATOR:
-        return getOperator();
+      case QueryPackage.NULL_EXPRESSION__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -121,8 +120,8 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
   {
     switch (featureID)
     {
-      case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY__OPERATOR:
-        setOperator((NumericOperator)newValue);
+      case QueryPackage.NULL_EXPRESSION__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -138,8 +137,8 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
   {
     switch (featureID)
     {
-      case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY__OPERATOR:
-        setOperator(OPERATOR_EDEFAULT);
+      case QueryPackage.NULL_EXPRESSION__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -155,8 +154,8 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
   {
     switch (featureID)
     {
-      case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY__OPERATOR:
-        return operator != OPERATOR_EDEFAULT;
+      case QueryPackage.NULL_EXPRESSION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -172,10 +171,10 @@ public class NumericAttributeWhereEntryImpl extends AttributeWhereEntryImpl impl
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (operator: ");
-    result.append(operator);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //NumericAttributeWhereEntryImpl
+} //NullExpressionImpl

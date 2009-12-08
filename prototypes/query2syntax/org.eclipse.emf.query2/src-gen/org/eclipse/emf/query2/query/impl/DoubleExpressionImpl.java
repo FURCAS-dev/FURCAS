@@ -12,23 +12,23 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.query2.query.LongWhereEntry;
+import org.eclipse.emf.query2.query.DoubleExpression;
 import org.eclipse.emf.query2.query.QueryPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Long Where Entry</b></em>'.
+ * An implementation of the model object '<em><b>Double Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.LongWhereEntryImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.DoubleExpressionImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implements LongWhereEntry
+public class DoubleExpressionImpl extends ExpressionImpl implements DoubleExpression
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -38,7 +38,7 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
    * @generated
    * @ordered
    */
-  protected static final long VALUE_EDEFAULT = 0L;
+  protected static final double VALUE_EDEFAULT = 0.0;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -48,14 +48,14 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
    * @generated
    * @ordered
    */
-  protected long value = VALUE_EDEFAULT;
+  protected double value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected LongWhereEntryImpl()
+  protected DoubleExpressionImpl()
   {
     super();
   }
@@ -68,7 +68,7 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
   @Override
   protected EClass eStaticClass()
   {
-    return QueryPackage.Literals.LONG_WHERE_ENTRY;
+    return QueryPackage.Literals.DOUBLE_EXPRESSION;
   }
 
   /**
@@ -76,7 +76,7 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public long getValue()
+  public double getValue()
   {
     return value;
   }
@@ -86,12 +86,12 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(long newValue)
+  public void setValue(double newValue)
   {
-    long oldValue = value;
+    double oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.LONG_WHERE_ENTRY__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.DOUBLE_EXPRESSION__VALUE, oldValue, value));
   }
 
   /**
@@ -104,7 +104,7 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
   {
     switch (featureID)
     {
-      case QueryPackage.LONG_WHERE_ENTRY__VALUE:
+      case QueryPackage.DOUBLE_EXPRESSION__VALUE:
         return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -120,8 +120,8 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
   {
     switch (featureID)
     {
-      case QueryPackage.LONG_WHERE_ENTRY__VALUE:
-        setValue((Long)newValue);
+      case QueryPackage.DOUBLE_EXPRESSION__VALUE:
+        setValue((Double)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,7 +137,7 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
   {
     switch (featureID)
     {
-      case QueryPackage.LONG_WHERE_ENTRY__VALUE:
+      case QueryPackage.DOUBLE_EXPRESSION__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
     }
@@ -154,7 +154,7 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
   {
     switch (featureID)
     {
-      case QueryPackage.LONG_WHERE_ENTRY__VALUE:
+      case QueryPackage.DOUBLE_EXPRESSION__VALUE:
         return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
@@ -177,4 +177,4 @@ public class LongWhereEntryImpl extends NumericAttributeWhereEntryImpl implement
     return result.toString();
   }
 
-} //LongWhereEntryImpl
+} //DoubleExpressionImpl

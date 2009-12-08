@@ -6,6 +6,8 @@
  */
 package org.eclipse.emf.query2.query;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
@@ -19,6 +21,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.eclipse.emf.query2.query.FromEntry#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.FromEntry#isWithoutsubtypes <em>Withoutsubtypes</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.FromEntry#getWithoutsubtypesTypes <em>Withoutsubtypes Types</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.FromEntry#getAlias <em>Alias</em>}</li>
  *   <li>{@link org.eclipse.emf.query2.query.FromEntry#getScopeClause <em>Scope Clause</em>}</li>
  * </ul>
@@ -81,6 +84,22 @@ public interface FromEntry extends EObject
    * @generated
    */
   void setWithoutsubtypes(boolean value);
+
+  /**
+   * Returns the value of the '<em><b>Withoutsubtypes Types</b></em>' reference list.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EClass}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Withoutsubtypes Types</em>' reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Withoutsubtypes Types</em>' reference list.
+   * @see org.eclipse.emf.query2.query.QueryPackage#getFromEntry_WithoutsubtypesTypes()
+   * @model
+   * @generated
+   */
+  EList<EClass> getWithoutsubtypesTypes();
 
   /**
    * Returns the value of the '<em><b>Alias</b></em>' attribute.

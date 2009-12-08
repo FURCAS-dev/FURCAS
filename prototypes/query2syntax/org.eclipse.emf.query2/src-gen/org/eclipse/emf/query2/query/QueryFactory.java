@@ -117,121 +117,85 @@ public interface QueryFactory extends EFactory
   WhereEntry createWhereEntry();
 
   /**
-   * Returns a new object of class '<em>Abstract Alias Where Entry</em>'.
+   * Returns a new object of class '<em>Expression Where Entry</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Abstract Alias Where Entry</em>'.
+   * @return a new object of class '<em>Expression Where Entry</em>'.
    * @generated
    */
-  AbstractAliasWhereEntry createAbstractAliasWhereEntry();
+  ExpressionWhereEntry createExpressionWhereEntry();
 
   /**
-   * Returns a new object of class '<em>Attribute Where Entry</em>'.
+   * Returns a new object of class '<em>Alias Attribute Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Attribute Where Entry</em>'.
+   * @return a new object of class '<em>Alias Attribute Expression</em>'.
    * @generated
    */
-  AttributeWhereEntry createAttributeWhereEntry();
+  AliasAttributeExpression createAliasAttributeExpression();
 
   /**
-   * Returns a new object of class '<em>Numeric Attribute Where Entry</em>'.
+   * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Numeric Attribute Where Entry</em>'.
+   * @return a new object of class '<em>Expression</em>'.
    * @generated
    */
-  NumericAttributeWhereEntry createNumericAttributeWhereEntry();
+  Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Double Where Entry</em>'.
+   * Returns a new object of class '<em>Double Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Double Where Entry</em>'.
+   * @return a new object of class '<em>Double Expression</em>'.
    * @generated
    */
-  DoubleWhereEntry createDoubleWhereEntry();
+  DoubleExpression createDoubleExpression();
 
   /**
-   * Returns a new object of class '<em>Long Where Entry</em>'.
+   * Returns a new object of class '<em>Long Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Long Where Entry</em>'.
+   * @return a new object of class '<em>Long Expression</em>'.
    * @generated
    */
-  LongWhereEntry createLongWhereEntry();
+  LongExpression createLongExpression();
 
   /**
-   * Returns a new object of class '<em>Variable Where Entry</em>'.
+   * Returns a new object of class '<em>String Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Variable Where Entry</em>'.
+   * @return a new object of class '<em>String Expression</em>'.
    * @generated
    */
-  VariableWhereEntry createVariableWhereEntry();
+  StringExpression createStringExpression();
 
   /**
-   * Returns a new object of class '<em>String Attribute Where Entry</em>'.
+   * Returns a new object of class '<em>Null Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Attribute Where Entry</em>'.
+   * @return a new object of class '<em>Null Expression</em>'.
    * @generated
    */
-  StringAttributeWhereEntry createStringAttributeWhereEntry();
+  NullExpression createNullExpression();
 
   /**
-   * Returns a new object of class '<em>Boolean Attribute Where Entry</em>'.
+   * Returns a new object of class '<em>Boolean Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Boolean Attribute Where Entry</em>'.
+   * @return a new object of class '<em>Boolean Expression</em>'.
    * @generated
    */
-  BooleanAttributeWhereEntry createBooleanAttributeWhereEntry();
+  BooleanExpression createBooleanExpression();
 
   /**
-   * Returns a new object of class '<em>Reference Where Entry</em>'.
+   * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Reference Where Entry</em>'.
+   * @return a new object of class '<em>Expression</em>'.
    * @generated
    */
-  ReferenceWhereEntry createReferenceWhereEntry();
-
-  /**
-   * Returns a new object of class '<em>Null Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Null Where Entry</em>'.
-   * @generated
-   */
-  NullWhereEntry createNullWhereEntry();
-
-  /**
-   * Returns a new object of class '<em>Reference Alias Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Reference Alias Where Entry</em>'.
-   * @generated
-   */
-  ReferenceAliasWhereEntry createReferenceAliasWhereEntry();
-
-  /**
-   * Returns a new object of class '<em>Subselect Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Subselect Where Entry</em>'.
-   * @generated
-   */
-  SubselectWhereEntry createSubselectWhereEntry();
-
-  /**
-   * Returns a new object of class '<em>Alias Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Alias Where Entry</em>'.
-   * @generated
-   */
-  AliasWhereEntry createAliasWhereEntry();
+  QueryExpression createQueryExpression();
 
   /**
    * Returns a new object of class '<em>Or Where Entry</em>'.

@@ -129,69 +129,49 @@ public class QueryAdapterFactory extends AdapterFactoryImpl
         return createWhereEntryAdapter();
       }
       @Override
-      public Adapter caseAbstractAliasWhereEntry(AbstractAliasWhereEntry object)
+      public Adapter caseExpressionWhereEntry(ExpressionWhereEntry object)
       {
-        return createAbstractAliasWhereEntryAdapter();
+        return createExpressionWhereEntryAdapter();
       }
       @Override
-      public Adapter caseAttributeWhereEntry(AttributeWhereEntry object)
+      public Adapter caseAliasAttributeExpression(AliasAttributeExpression object)
       {
-        return createAttributeWhereEntryAdapter();
+        return createAliasAttributeExpressionAdapter();
       }
       @Override
-      public Adapter caseNumericAttributeWhereEntry(NumericAttributeWhereEntry object)
+      public Adapter caseExpression(Expression object)
       {
-        return createNumericAttributeWhereEntryAdapter();
+        return createExpressionAdapter();
       }
       @Override
-      public Adapter caseDoubleWhereEntry(DoubleWhereEntry object)
+      public Adapter caseDoubleExpression(DoubleExpression object)
       {
-        return createDoubleWhereEntryAdapter();
+        return createDoubleExpressionAdapter();
       }
       @Override
-      public Adapter caseLongWhereEntry(LongWhereEntry object)
+      public Adapter caseLongExpression(LongExpression object)
       {
-        return createLongWhereEntryAdapter();
+        return createLongExpressionAdapter();
       }
       @Override
-      public Adapter caseVariableWhereEntry(VariableWhereEntry object)
+      public Adapter caseStringExpression(StringExpression object)
       {
-        return createVariableWhereEntryAdapter();
+        return createStringExpressionAdapter();
       }
       @Override
-      public Adapter caseStringAttributeWhereEntry(StringAttributeWhereEntry object)
+      public Adapter caseNullExpression(NullExpression object)
       {
-        return createStringAttributeWhereEntryAdapter();
+        return createNullExpressionAdapter();
       }
       @Override
-      public Adapter caseBooleanAttributeWhereEntry(BooleanAttributeWhereEntry object)
+      public Adapter caseBooleanExpression(BooleanExpression object)
       {
-        return createBooleanAttributeWhereEntryAdapter();
+        return createBooleanExpressionAdapter();
       }
       @Override
-      public Adapter caseReferenceWhereEntry(ReferenceWhereEntry object)
+      public Adapter caseQueryExpression(QueryExpression object)
       {
-        return createReferenceWhereEntryAdapter();
-      }
-      @Override
-      public Adapter caseNullWhereEntry(NullWhereEntry object)
-      {
-        return createNullWhereEntryAdapter();
-      }
-      @Override
-      public Adapter caseReferenceAliasWhereEntry(ReferenceAliasWhereEntry object)
-      {
-        return createReferenceAliasWhereEntryAdapter();
-      }
-      @Override
-      public Adapter caseSubselectWhereEntry(SubselectWhereEntry object)
-      {
-        return createSubselectWhereEntryAdapter();
-      }
-      @Override
-      public Adapter caseAliasWhereEntry(AliasWhereEntry object)
-      {
-        return createAliasWhereEntryAdapter();
+        return createQueryExpressionAdapter();
       }
       @Override
       public Adapter caseOrWhereEntry(OrWhereEntry object)
@@ -376,196 +356,136 @@ public class QueryAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.AbstractAliasWhereEntry <em>Abstract Alias Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.ExpressionWhereEntry <em>Expression Where Entry</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.AbstractAliasWhereEntry
+   * @see org.eclipse.emf.query2.query.ExpressionWhereEntry
    * @generated
    */
-  public Adapter createAbstractAliasWhereEntryAdapter()
+  public Adapter createExpressionWhereEntryAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.AttributeWhereEntry <em>Attribute Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.AliasAttributeExpression <em>Alias Attribute Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.AttributeWhereEntry
+   * @see org.eclipse.emf.query2.query.AliasAttributeExpression
    * @generated
    */
-  public Adapter createAttributeWhereEntryAdapter()
+  public Adapter createAliasAttributeExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.NumericAttributeWhereEntry <em>Numeric Attribute Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.Expression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.NumericAttributeWhereEntry
+   * @see org.eclipse.emf.query2.query.Expression
    * @generated
    */
-  public Adapter createNumericAttributeWhereEntryAdapter()
+  public Adapter createExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.DoubleWhereEntry <em>Double Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.DoubleExpression <em>Double Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.DoubleWhereEntry
+   * @see org.eclipse.emf.query2.query.DoubleExpression
    * @generated
    */
-  public Adapter createDoubleWhereEntryAdapter()
+  public Adapter createDoubleExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.LongWhereEntry <em>Long Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.LongExpression <em>Long Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.LongWhereEntry
+   * @see org.eclipse.emf.query2.query.LongExpression
    * @generated
    */
-  public Adapter createLongWhereEntryAdapter()
+  public Adapter createLongExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.VariableWhereEntry <em>Variable Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.StringExpression <em>String Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.VariableWhereEntry
+   * @see org.eclipse.emf.query2.query.StringExpression
    * @generated
    */
-  public Adapter createVariableWhereEntryAdapter()
+  public Adapter createStringExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.StringAttributeWhereEntry <em>String Attribute Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.NullExpression <em>Null Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.StringAttributeWhereEntry
+   * @see org.eclipse.emf.query2.query.NullExpression
    * @generated
    */
-  public Adapter createStringAttributeWhereEntryAdapter()
+  public Adapter createNullExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.BooleanAttributeWhereEntry <em>Boolean Attribute Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.BooleanExpression <em>Boolean Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.BooleanAttributeWhereEntry
+   * @see org.eclipse.emf.query2.query.BooleanExpression
    * @generated
    */
-  public Adapter createBooleanAttributeWhereEntryAdapter()
+  public Adapter createBooleanExpressionAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.ReferenceWhereEntry <em>Reference Where Entry</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.QueryExpression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.ReferenceWhereEntry
+   * @see org.eclipse.emf.query2.query.QueryExpression
    * @generated
    */
-  public Adapter createReferenceWhereEntryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.NullWhereEntry <em>Null Where Entry</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.NullWhereEntry
-   * @generated
-   */
-  public Adapter createNullWhereEntryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.ReferenceAliasWhereEntry <em>Reference Alias Where Entry</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.ReferenceAliasWhereEntry
-   * @generated
-   */
-  public Adapter createReferenceAliasWhereEntryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.SubselectWhereEntry <em>Subselect Where Entry</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.SubselectWhereEntry
-   * @generated
-   */
-  public Adapter createSubselectWhereEntryAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.emf.query2.query.AliasWhereEntry <em>Alias Where Entry</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.eclipse.emf.query2.query.AliasWhereEntry
-   * @generated
-   */
-  public Adapter createAliasWhereEntryAdapter()
+  public Adapter createQueryExpressionAdapter()
   {
     return null;
   }

@@ -9,45 +9,53 @@ package org.eclipse.emf.query2.query.impl;
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-import org.eclipse.emf.query2.query.AbstractAliasWhereEntry;
-import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.QueryPackage;
+import org.eclipse.emf.query2.query.StringExpression;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Alias Where Entry</b></em>'.
+ * An implementation of the model object '<em><b>String Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.emf.query2.query.impl.AbstractAliasWhereEntryImpl#getAlias <em>Alias</em>}</li>
+ *   <li>{@link org.eclipse.emf.query2.query.impl.StringExpressionImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements AbstractAliasWhereEntry
+public class StringExpressionImpl extends ExpressionImpl implements StringExpression
 {
   /**
-   * The cached value of the '{@link #getAlias() <em>Alias</em>}' reference.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAlias()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected FromEntry alias;
+  protected static final String VALUE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AbstractAliasWhereEntryImpl()
+  protected StringExpressionImpl()
   {
     super();
   }
@@ -60,7 +68,7 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
   @Override
   protected EClass eStaticClass()
   {
-    return QueryPackage.Literals.ABSTRACT_ALIAS_WHERE_ENTRY;
+    return QueryPackage.Literals.STRING_EXPRESSION;
   }
 
   /**
@@ -68,19 +76,9 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FromEntry getAlias()
+  public String getValue()
   {
-    if (alias != null && alias.eIsProxy())
-    {
-      InternalEObject oldAlias = (InternalEObject)alias;
-      alias = (FromEntry)eResolveProxy(oldAlias);
-      if (alias != oldAlias)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS, oldAlias, alias));
-      }
-    }
-    return alias;
+    return value;
   }
 
   /**
@@ -88,22 +86,12 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
    * <!-- end-user-doc -->
    * @generated
    */
-  public FromEntry basicGetAlias()
+  public void setValue(String newValue)
   {
-    return alias;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setAlias(FromEntry newAlias)
-  {
-    FromEntry oldAlias = alias;
-    alias = newAlias;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS, oldAlias, alias));
+      eNotify(new ENotificationImpl(this, Notification.SET, QueryPackage.STRING_EXPRESSION__VALUE, oldValue, value));
   }
 
   /**
@@ -116,9 +104,8 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
   {
     switch (featureID)
     {
-      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
-        if (resolve) return getAlias();
-        return basicGetAlias();
+      case QueryPackage.STRING_EXPRESSION__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -133,8 +120,8 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
   {
     switch (featureID)
     {
-      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)newValue);
+      case QueryPackage.STRING_EXPRESSION__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -150,8 +137,8 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
   {
     switch (featureID)
     {
-      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
-        setAlias((FromEntry)null);
+      case QueryPackage.STRING_EXPRESSION__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -167,10 +154,27 @@ public class AbstractAliasWhereEntryImpl extends WhereEntryImpl implements Abstr
   {
     switch (featureID)
     {
-      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY__ALIAS:
-        return alias != null;
+      case QueryPackage.STRING_EXPRESSION__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
 
-} //AbstractAliasWhereEntryImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (value: ");
+    result.append(value);
+    result.append(')');
+    return result.toString();
+  }
+
+} //StringExpressionImpl

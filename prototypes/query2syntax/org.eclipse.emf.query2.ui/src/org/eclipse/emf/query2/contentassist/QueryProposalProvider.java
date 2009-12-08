@@ -3,16 +3,6 @@
  */
 package org.eclipse.emf.query2.contentassist;
 
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.query2.query.AttributeWhereEntry;
-import org.eclipse.emf.query2.query.NullWhereEntry;
-import org.eclipse.emf.query2.query.ReferenceWhereEntry;
-import org.eclipse.jface.text.contentassist.ICompletionProposal;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.ui.core.editor.contentassist.ContentAssistContext;
-import org.eclipse.xtext.ui.core.editor.contentassist.ICompletionProposalAcceptor;
 
 /**
  * see
@@ -21,30 +11,30 @@ import org.eclipse.xtext.ui.core.editor.contentassist.ICompletionProposalAccepto
  */
 public class QueryProposalProvider extends AbstractQueryProposalProvider {
 
-	public void completeAttributeWhereEntry_attribute(AttributeWhereEntry entry, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		for (EAttribute attr : entry.getAlias().getType().getEAllAttributes()) {
-			String proposal = getValueConverter().toString(attr.getName(), "ID");
-			ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
-			acceptor.accept(completionProposal);
-		}
-	}
-	
-	public void completeReferenceWhereEntry_reference(ReferenceWhereEntry entry, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		for (EReference ref : entry.getAlias().getType().getEAllReferences()) {
-			String proposal = getValueConverter().toString(ref.getName(), "ID");
-			ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
-			acceptor.accept(completionProposal);
-		}
-	}
-	
-	public void completeNullWhereEntry_feature(NullWhereEntry entry, Assignment assignment, ContentAssistContext context,
-			ICompletionProposalAcceptor acceptor) {
-		for (EStructuralFeature feature : entry.getAlias().getType().getEAllStructuralFeatures()) {
-			String proposal = getValueConverter().toString(feature.getName(), "ID");
-			ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
-			acceptor.accept(completionProposal);
-		}
-	}
+//	public void completeAttributeWhereEntry_attribute(AttributeWhereEntry entry, Assignment assignment, ContentAssistContext context,
+//			ICompletionProposalAcceptor acceptor) {
+//		for (EAttribute attr : entry.getAlias().getType().getEAllAttributes()) {
+//			String proposal = getValueConverter().toString(attr.getName(), "ID");
+//			ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+//			acceptor.accept(completionProposal);
+//		}
+//	}
+//	
+//	public void completeReferenceWhereEntry_reference(ReferenceWhereEntry entry, Assignment assignment, ContentAssistContext context,
+//			ICompletionProposalAcceptor acceptor) {
+//		for (EReference ref : entry.getAlias().getType().getEAllReferences()) {
+//			String proposal = getValueConverter().toString(ref.getName(), "ID");
+//			ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+//			acceptor.accept(completionProposal);
+//		}
+//	}
+//	
+//	public void completeNullWhereEntry_feature(NullWhereEntry entry, Assignment assignment, ContentAssistContext context,
+//			ICompletionProposalAcceptor acceptor) {
+//		for (EStructuralFeature feature : entry.getAlias().getType().getEAllStructuralFeatures()) {
+//			String proposal = getValueConverter().toString(feature.getName(), "ID");
+//			ICompletionProposal completionProposal = createCompletionProposal(proposal, context);
+//			acceptor.accept(completionProposal);
+//		}
+//	}
 }

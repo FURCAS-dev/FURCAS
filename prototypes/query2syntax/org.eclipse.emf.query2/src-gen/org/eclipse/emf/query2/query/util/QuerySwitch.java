@@ -168,129 +168,74 @@ public class QuerySwitch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.ABSTRACT_ALIAS_WHERE_ENTRY:
+      case QueryPackage.EXPRESSION_WHERE_ENTRY:
       {
-        AbstractAliasWhereEntry abstractAliasWhereEntry = (AbstractAliasWhereEntry)theEObject;
-        T result = caseAbstractAliasWhereEntry(abstractAliasWhereEntry);
-        if (result == null) result = caseWhereEntry(abstractAliasWhereEntry);
+        ExpressionWhereEntry expressionWhereEntry = (ExpressionWhereEntry)theEObject;
+        T result = caseExpressionWhereEntry(expressionWhereEntry);
+        if (result == null) result = caseWhereEntry(expressionWhereEntry);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.ATTRIBUTE_WHERE_ENTRY:
+      case QueryPackage.ALIAS_ATTRIBUTE_EXPRESSION:
       {
-        AttributeWhereEntry attributeWhereEntry = (AttributeWhereEntry)theEObject;
-        T result = caseAttributeWhereEntry(attributeWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(attributeWhereEntry);
-        if (result == null) result = caseWhereEntry(attributeWhereEntry);
+        AliasAttributeExpression aliasAttributeExpression = (AliasAttributeExpression)theEObject;
+        T result = caseAliasAttributeExpression(aliasAttributeExpression);
+        if (result == null) result = caseExpression(aliasAttributeExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.NUMERIC_ATTRIBUTE_WHERE_ENTRY:
+      case QueryPackage.EXPRESSION:
       {
-        NumericAttributeWhereEntry numericAttributeWhereEntry = (NumericAttributeWhereEntry)theEObject;
-        T result = caseNumericAttributeWhereEntry(numericAttributeWhereEntry);
-        if (result == null) result = caseAttributeWhereEntry(numericAttributeWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(numericAttributeWhereEntry);
-        if (result == null) result = caseWhereEntry(numericAttributeWhereEntry);
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.DOUBLE_WHERE_ENTRY:
+      case QueryPackage.DOUBLE_EXPRESSION:
       {
-        DoubleWhereEntry doubleWhereEntry = (DoubleWhereEntry)theEObject;
-        T result = caseDoubleWhereEntry(doubleWhereEntry);
-        if (result == null) result = caseNumericAttributeWhereEntry(doubleWhereEntry);
-        if (result == null) result = caseAttributeWhereEntry(doubleWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(doubleWhereEntry);
-        if (result == null) result = caseWhereEntry(doubleWhereEntry);
+        DoubleExpression doubleExpression = (DoubleExpression)theEObject;
+        T result = caseDoubleExpression(doubleExpression);
+        if (result == null) result = caseExpression(doubleExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.LONG_WHERE_ENTRY:
+      case QueryPackage.LONG_EXPRESSION:
       {
-        LongWhereEntry longWhereEntry = (LongWhereEntry)theEObject;
-        T result = caseLongWhereEntry(longWhereEntry);
-        if (result == null) result = caseNumericAttributeWhereEntry(longWhereEntry);
-        if (result == null) result = caseAttributeWhereEntry(longWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(longWhereEntry);
-        if (result == null) result = caseWhereEntry(longWhereEntry);
+        LongExpression longExpression = (LongExpression)theEObject;
+        T result = caseLongExpression(longExpression);
+        if (result == null) result = caseExpression(longExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.VARIABLE_WHERE_ENTRY:
+      case QueryPackage.STRING_EXPRESSION:
       {
-        VariableWhereEntry variableWhereEntry = (VariableWhereEntry)theEObject;
-        T result = caseVariableWhereEntry(variableWhereEntry);
-        if (result == null) result = caseAttributeWhereEntry(variableWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(variableWhereEntry);
-        if (result == null) result = caseWhereEntry(variableWhereEntry);
+        StringExpression stringExpression = (StringExpression)theEObject;
+        T result = caseStringExpression(stringExpression);
+        if (result == null) result = caseExpression(stringExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.STRING_ATTRIBUTE_WHERE_ENTRY:
+      case QueryPackage.NULL_EXPRESSION:
       {
-        StringAttributeWhereEntry stringAttributeWhereEntry = (StringAttributeWhereEntry)theEObject;
-        T result = caseStringAttributeWhereEntry(stringAttributeWhereEntry);
-        if (result == null) result = caseAttributeWhereEntry(stringAttributeWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(stringAttributeWhereEntry);
-        if (result == null) result = caseWhereEntry(stringAttributeWhereEntry);
+        NullExpression nullExpression = (NullExpression)theEObject;
+        T result = caseNullExpression(nullExpression);
+        if (result == null) result = caseExpression(nullExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.BOOLEAN_ATTRIBUTE_WHERE_ENTRY:
+      case QueryPackage.BOOLEAN_EXPRESSION:
       {
-        BooleanAttributeWhereEntry booleanAttributeWhereEntry = (BooleanAttributeWhereEntry)theEObject;
-        T result = caseBooleanAttributeWhereEntry(booleanAttributeWhereEntry);
-        if (result == null) result = caseAttributeWhereEntry(booleanAttributeWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(booleanAttributeWhereEntry);
-        if (result == null) result = caseWhereEntry(booleanAttributeWhereEntry);
+        BooleanExpression booleanExpression = (BooleanExpression)theEObject;
+        T result = caseBooleanExpression(booleanExpression);
+        if (result == null) result = caseExpression(booleanExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case QueryPackage.REFERENCE_WHERE_ENTRY:
+      case QueryPackage.QUERY_EXPRESSION:
       {
-        ReferenceWhereEntry referenceWhereEntry = (ReferenceWhereEntry)theEObject;
-        T result = caseReferenceWhereEntry(referenceWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(referenceWhereEntry);
-        if (result == null) result = caseWhereEntry(referenceWhereEntry);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QueryPackage.NULL_WHERE_ENTRY:
-      {
-        NullWhereEntry nullWhereEntry = (NullWhereEntry)theEObject;
-        T result = caseNullWhereEntry(nullWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(nullWhereEntry);
-        if (result == null) result = caseWhereEntry(nullWhereEntry);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QueryPackage.REFERENCE_ALIAS_WHERE_ENTRY:
-      {
-        ReferenceAliasWhereEntry referenceAliasWhereEntry = (ReferenceAliasWhereEntry)theEObject;
-        T result = caseReferenceAliasWhereEntry(referenceAliasWhereEntry);
-        if (result == null) result = caseReferenceWhereEntry(referenceAliasWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(referenceAliasWhereEntry);
-        if (result == null) result = caseWhereEntry(referenceAliasWhereEntry);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QueryPackage.SUBSELECT_WHERE_ENTRY:
-      {
-        SubselectWhereEntry subselectWhereEntry = (SubselectWhereEntry)theEObject;
-        T result = caseSubselectWhereEntry(subselectWhereEntry);
-        if (result == null) result = caseReferenceWhereEntry(subselectWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(subselectWhereEntry);
-        if (result == null) result = caseWhereEntry(subselectWhereEntry);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case QueryPackage.ALIAS_WHERE_ENTRY:
-      {
-        AliasWhereEntry aliasWhereEntry = (AliasWhereEntry)theEObject;
-        T result = caseAliasWhereEntry(aliasWhereEntry);
-        if (result == null) result = caseAbstractAliasWhereEntry(aliasWhereEntry);
-        if (result == null) result = caseWhereEntry(aliasWhereEntry);
+        QueryExpression queryExpression = (QueryExpression)theEObject;
+        T result = caseQueryExpression(queryExpression);
+        if (result == null) result = caseExpression(queryExpression);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -475,209 +420,145 @@ public class QuerySwitch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Abstract Alias Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression Where Entry</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Abstract Alias Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression Where Entry</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAbstractAliasWhereEntry(AbstractAliasWhereEntry object)
+  public T caseExpressionWhereEntry(ExpressionWhereEntry object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Attribute Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Alias Attribute Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Attribute Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Alias Attribute Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseAttributeWhereEntry(AttributeWhereEntry object)
+  public T caseAliasAttributeExpression(AliasAttributeExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Numeric Attribute Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Numeric Attribute Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseNumericAttributeWhereEntry(NumericAttributeWhereEntry object)
+  public T caseExpression(Expression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Double Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Double Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Double Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Double Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDoubleWhereEntry(DoubleWhereEntry object)
+  public T caseDoubleExpression(DoubleExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Long Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Long Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Long Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Long Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLongWhereEntry(LongWhereEntry object)
+  public T caseLongExpression(LongExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Variable Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>String Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Variable Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>String Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseVariableWhereEntry(VariableWhereEntry object)
+  public T caseStringExpression(StringExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>String Attribute Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Null Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Attribute Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Null Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStringAttributeWhereEntry(StringAttributeWhereEntry object)
+  public T caseNullExpression(NullExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Boolean Attribute Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Boolean Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Boolean Attribute Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Boolean Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBooleanAttributeWhereEntry(BooleanAttributeWhereEntry object)
+  public T caseBooleanExpression(BooleanExpression object)
   {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Reference Where Entry</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Reference Where Entry</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseReferenceWhereEntry(ReferenceWhereEntry object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Null Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Null Where Entry</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseNullWhereEntry(NullWhereEntry object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Reference Alias Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Reference Alias Where Entry</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseReferenceAliasWhereEntry(ReferenceAliasWhereEntry object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Subselect Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Subselect Where Entry</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSubselectWhereEntry(SubselectWhereEntry object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Alias Where Entry</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Alias Where Entry</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseAliasWhereEntry(AliasWhereEntry object)
+  public T caseQueryExpression(QueryExpression object)
   {
     return null;
   }

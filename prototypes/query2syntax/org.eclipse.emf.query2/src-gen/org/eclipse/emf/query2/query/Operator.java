@@ -14,14 +14,14 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Numeric Operator</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Operator</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see org.eclipse.emf.query2.query.QueryPackage#getNumericOperator()
+ * @see org.eclipse.emf.query2.query.QueryPackage#getOperator()
  * @model
  * @generated
  */
-public enum NumericOperator implements Enumerator
+public enum Operator implements Enumerator
 {
   /**
    * The '<em><b>Less Then</b></em>' literal object.
@@ -81,7 +81,47 @@ public enum NumericOperator implements Enumerator
    * @generated
    * @ordered
    */
-  NOT_EQUAL(5, "notEqual", "!=");
+  NOT_EQUAL(5, "notEqual", "!="),
+
+  /**
+   * The '<em><b>Like</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #LIKE_VALUE
+   * @generated
+   * @ordered
+   */
+  LIKE(6, "like", "like"),
+
+  /**
+   * The '<em><b>Not Like</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #NOT_LIKE_VALUE
+   * @generated
+   * @ordered
+   */
+  NOT_LIKE(7, "notLike", "not like"),
+
+  /**
+   * The '<em><b>Not In</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #NOT_IN_VALUE
+   * @generated
+   * @ordered
+   */
+  NOT_IN(8, "notIn", "not in"),
+
+  /**
+   * The '<em><b>In</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #IN_VALUE
+   * @generated
+   * @ordered
+   */
+  IN(9, "in", "in");
 
   /**
    * The '<em><b>Less Then</b></em>' literal value.
@@ -174,13 +214,73 @@ public enum NumericOperator implements Enumerator
   public static final int NOT_EQUAL_VALUE = 5;
 
   /**
-   * An array of all the '<em><b>Numeric Operator</b></em>' enumerators.
+   * The '<em><b>Like</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Like</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #LIKE
+   * @model name="like"
+   * @generated
+   * @ordered
+   */
+  public static final int LIKE_VALUE = 6;
+
+  /**
+   * The '<em><b>Not Like</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Not Like</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #NOT_LIKE
+   * @model name="notLike" literal="not like"
+   * @generated
+   * @ordered
+   */
+  public static final int NOT_LIKE_VALUE = 7;
+
+  /**
+   * The '<em><b>Not In</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>Not In</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #NOT_IN
+   * @model name="notIn" literal="not in"
+   * @generated
+   * @ordered
+   */
+  public static final int NOT_IN_VALUE = 8;
+
+  /**
+   * The '<em><b>In</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>In</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #IN
+   * @model name="in"
+   * @generated
+   * @ordered
+   */
+  public static final int IN_VALUE = 9;
+
+  /**
+   * An array of all the '<em><b>Operator</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final NumericOperator[] VALUES_ARRAY =
-    new NumericOperator[]
+  private static final Operator[] VALUES_ARRAY =
+    new Operator[]
     {
       LESS_THEN,
       GREATER_THEN,
@@ -188,27 +288,31 @@ public enum NumericOperator implements Enumerator
       GREATER_EQUAL,
       EQUAL,
       NOT_EQUAL,
+      LIKE,
+      NOT_LIKE,
+      NOT_IN,
+      IN,
     };
 
   /**
-   * A public read-only list of all the '<em><b>Numeric Operator</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>Operator</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<NumericOperator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<Operator> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Numeric Operator</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>Operator</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static NumericOperator get(String literal)
+  public static Operator get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      NumericOperator result = VALUES_ARRAY[i];
+      Operator result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -218,16 +322,16 @@ public enum NumericOperator implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Numeric Operator</b></em>' literal with the specified name.
+   * Returns the '<em><b>Operator</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static NumericOperator getByName(String name)
+  public static Operator getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      NumericOperator result = VALUES_ARRAY[i];
+      Operator result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -237,12 +341,12 @@ public enum NumericOperator implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Numeric Operator</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>Operator</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static NumericOperator get(int value)
+  public static Operator get(int value)
   {
     switch (value)
     {
@@ -252,6 +356,10 @@ public enum NumericOperator implements Enumerator
       case GREATER_EQUAL_VALUE: return GREATER_EQUAL;
       case EQUAL_VALUE: return EQUAL;
       case NOT_EQUAL_VALUE: return NOT_EQUAL;
+      case LIKE_VALUE: return LIKE;
+      case NOT_LIKE_VALUE: return NOT_LIKE;
+      case NOT_IN_VALUE: return NOT_IN;
+      case IN_VALUE: return IN;
     }
     return null;
   }
@@ -283,7 +391,7 @@ public enum NumericOperator implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private NumericOperator(int value, String name, String literal)
+  private Operator(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -332,4 +440,4 @@ public enum NumericOperator implements Enumerator
     return literal;
   }
   
-} //NumericOperator
+} //Operator

@@ -20,10 +20,10 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="MQLquery">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="selectEntries" upperBound="-1"
-        eType="#//SelectEntry" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="fromEntries" upperBound="-1"
         eType="#//FromEntry" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="selectEntries" upperBound="-1"
+        eType="#//SelectEntry" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="whereEntry" eType="#//WhereEntry"
         containment="true"/>
   </eClassifiers>
@@ -34,6 +34,8 @@
   <eClassifiers xsi:type="ecore:EClass" name="FromEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="withoutsubtypes" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="withoutsubtypesTypes" unique="false"
+        upperBound="-1" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alias" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scopeClause" eType="#//ScopeClause"
         containment="true"/>
@@ -46,69 +48,48 @@
   <eClassifiers xsi:type="ecore:EClass" name="ResourceScope" eSuperTypes="#//ScopeClause"/>
   <eClassifiers xsi:type="ecore:EClass" name="ElementScope" eSuperTypes="#//ScopeClause"/>
   <eClassifiers xsi:type="ecore:EClass" name="WhereEntry"/>
-  <eClassifiers xsi:type="ecore:EClass" name="AbstractAliasWhereEntry" eSuperTypes="#//WhereEntry">
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionWhereEntry" eSuperTypes="#//WhereEntry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lhs" eType="#//AliasAttributeExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rhs" eType="#//Expression"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AliasAttributeExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="alias" eType="#//FromEntry"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AttributeWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NumericAttributeWhereEntry" eSuperTypes="#//AttributeWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//NumericOperator"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DoubleWhereEntry" eSuperTypes="#//NumericAttributeWhereEntry">
+  <eClassifiers xsi:type="ecore:EClass" name="Expression"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DoubleExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDouble"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LongWhereEntry" eSuperTypes="#//NumericAttributeWhereEntry">
+  <eClassifiers xsi:type="ecore:EClass" name="LongExpression" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="VariableWhereEntry" eSuperTypes="#//AttributeWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//NumericOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightAlias" eType="#//FromEntry"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightAttribute" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EAttribute"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="NumericOperator">
+  <eClassifiers xsi:type="ecore:EClass" name="NullExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BooleanExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="true" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryExpression" eSuperTypes="#//Expression">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//MQLquery"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Operator">
     <eLiterals name="lessThen" literal="&lt;"/>
     <eLiterals name="greaterThen" value="1" literal=">"/>
     <eLiterals name="lessEqual" value="2" literal="&lt;="/>
     <eLiterals name="greaterEqual" value="3" literal=">="/>
     <eLiterals name="equal" value="4" literal="="/>
     <eLiterals name="notEqual" value="5" literal="!="/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringAttributeWhereEntry" eSuperTypes="#//AttributeWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//StringOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="pattern" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="StringOperator">
-    <eLiterals name="equal" literal="="/>
-    <eLiterals name="notEqual" value="1" literal="!="/>
-    <eLiterals name="like" value="2" literal="like"/>
-    <eLiterals name="notLike" value="3" literal="notlike"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanAttributeWhereEntry" eSuperTypes="#//AttributeWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BooleanOperator"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isTrue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="BooleanOperator">
-    <eLiterals name="equal" literal="="/>
-    <eLiterals name="notEqual" value="1" literal="!="/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="NullWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="operator" eType="#//BooleanOperator"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ReferenceAliasWhereEntry" eSuperTypes="#//ReferenceWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightAlias" eType="#//FromEntry"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SubselectWhereEntry" eSuperTypes="#//ReferenceWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="notIn" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="subQuery" eType="#//MQLquery"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="AliasWhereEntry" eSuperTypes="#//AbstractAliasWhereEntry">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="rightAlias" eType="#//FromEntry"/>
+    <eLiterals name="like" value="6" literal="like"/>
+    <eLiterals name="notLike" value="7" literal="not like"/>
+    <eLiterals name="notIn" value="8" literal="not in"/>
+    <eLiterals name="in" value="9" literal="in"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrWhereEntry" eSuperTypes="#//WhereEntry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="entries" upperBound="-1"

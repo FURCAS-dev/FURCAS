@@ -14,13 +14,11 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.query2.query.AttributeWhereEntry;
+import org.eclipse.emf.query2.query.AliasAttributeExpression;
 import org.eclipse.emf.query2.query.FromEntry;
 import org.eclipse.emf.query2.query.Import;
 import org.eclipse.emf.query2.query.MQLquery;
 import org.eclipse.emf.query2.query.Model;
-import org.eclipse.emf.query2.query.NullWhereEntry;
-import org.eclipse.emf.query2.query.ReferenceWhereEntry;
 import org.eclipse.emf.query2.query.SelectEntry;
 import org.eclipse.xtext.linking.impl.SimpleAttributeResolver;
 import org.eclipse.xtext.scoping.IScope;
@@ -66,24 +64,12 @@ public class QueryScopeProvider extends AbstractDeclarativeScopeProvider {
 
 	}
 
-	IScope scope_AttributeWhereEntry_attribute(AttributeWhereEntry _this, EReference ref) {
-		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
+	IScope scope_AliasAttributeExpression_attribute(AliasAttributeExpression _this, EReference ref) {
+		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllStructuralFeatures(), NAME_2_STRUCTURAL_FEATURE);
 		return new SimpleScope(IScope.NULLSCOPE, transformed);
 
 	}
 
-	IScope scope_ReferenceWhereEntry_reference(ReferenceWhereEntry _this, EReference ref) {
-		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllReferences(), NAME_2_STRUCTURAL_FEATURE);
-		return new SimpleScope(IScope.NULLSCOPE, transformed);
-
-	}
-
-	IScope scope_NullWhereEntry_feature(NullWhereEntry _this, EReference ref) {
-		Iterable<IScopedElement> transformed = transform(_this.getAlias().getType().getEAllAttributes(), NAME_2_STRUCTURAL_FEATURE);
-		return new SimpleScope(IScope.NULLSCOPE, transformed);
-
-	}
-	
 	IScope scope_EClass(Model _this, EClass type) {
 		if(importScope==null){
 			importScope = new DefaultScope(_this.eResource(), _this.getImports(), type); 
