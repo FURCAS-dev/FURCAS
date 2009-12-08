@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<MetamodelInf xmlns="http://sap.com/moin/MoinArchive"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://sap.com/moin/MoinArchive metamodel_inf.xsd">
+  <FacilityId>PF</FacilityId>
+  <DeploymentExtension class="com.sap.tc.moin.package68C69DC9901DC6FFC8029D49CBCD9D4C780EF1AE.MetamodelExtension" />
+  <Partitions>
+    <Partition name="moin/meta/Common.moinmm"
+      contentHash="633E995C5D7EB193BF9F218BB206DFDF" />
+    <Partition name="moin/meta/Dictionary.moinmm"
+      contentHash="D789A3D0002727AEF87E420E822042CC" />
+    <Partition name="moin/meta/WebDynpro.moinmm"
+      contentHash="9C621F3C8BDFF7E2F5164E18DE04F78C" />
+  </Partitions>
+</MetamodelInf>

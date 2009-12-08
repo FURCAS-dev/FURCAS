@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class KeywordWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.KeywordImpl> implements tcs.Keyword,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class KeywordWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.KeywordImpl getCastWrappedObject() {
         return (tcs.__impl.KeywordImpl) getWrappedObject();
     }
@@ -229,6 +230,7 @@ public class KeywordWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Keyword> get___JmiInterface() {
         return tcs.Keyword.class;
     }

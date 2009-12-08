@@ -125,6 +125,7 @@ public class BlockSequenceWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.BlockSequence> get___JmiInterface() {
         return tcs.BlockSequence.class;
     }

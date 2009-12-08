@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class EndNlbargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.EndNlbargImpl> implements tcs.EndNlbarg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class EndNlbargWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.EndNlbargImpl getCastWrappedObject() {
         return (tcs.__impl.EndNlbargImpl) getWrappedObject();
     }
@@ -182,6 +183,7 @@ public class EndNlbargWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EndNlbarg> get___JmiInterface() {
         return tcs.EndNlbarg.class;
     }

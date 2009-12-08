@@ -125,6 +125,7 @@ public class MultiLineRuleMappingWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.MultiLineRuleMapping> get___JmiInterface() {
         return tcs.MultiLineRuleMapping.class;
     }

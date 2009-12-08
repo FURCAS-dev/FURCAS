@@ -125,6 +125,7 @@ public class BlockBlockArgWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.BlockBlockArg> get___JmiInterface() {
         return tcs.BlockBlockArg.class;
     }

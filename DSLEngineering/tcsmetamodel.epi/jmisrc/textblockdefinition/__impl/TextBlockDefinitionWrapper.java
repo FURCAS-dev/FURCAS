@@ -6,7 +6,7 @@ package textblockdefinition.__impl;
 
 public class TextBlockDefinitionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<textblockdefinition.__impl.TextBlockDefinitionImpl> implements textblockdefinition.TextBlockDefinition,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class TextBlockDefinitionWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private textblockdefinition.__impl.TextBlockDefinitionImpl getCastWrappedObject() {
         return (textblockdefinition.__impl.TextBlockDefinitionImpl) getWrappedObject();
     }
@@ -292,6 +293,7 @@ public class TextBlockDefinitionWrapper extends com.sap.tc.moin.repository.core.
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblockdefinition.TextBlockDefinition> get___JmiInterface() {
         return textblockdefinition.TextBlockDefinition.class;
     }

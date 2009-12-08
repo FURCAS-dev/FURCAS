@@ -64,6 +64,7 @@ public final class ConcreteSyntaxOperatorListImpl extends com.sap.tc.moin.reposi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntaxOperatorList> get___JmiInterface() {
         return tcs.ConcreteSyntaxOperatorList.class;
     }

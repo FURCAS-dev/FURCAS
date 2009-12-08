@@ -478,6 +478,7 @@ public final class MetamodelBuilder extends IncrementalProjectBuilder {
 		}
 
 		public MmJaproBuildFinder(final IPath outputLocation) {
+		    this.outputLocation = outputLocation;
 		}
 
 		public boolean visit(final IResource resource) {

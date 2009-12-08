@@ -125,6 +125,7 @@ public class AlternativeSequenceWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.AlternativeSequence> get___JmiInterface() {
         return tcs.AlternativeSequence.class;
     }

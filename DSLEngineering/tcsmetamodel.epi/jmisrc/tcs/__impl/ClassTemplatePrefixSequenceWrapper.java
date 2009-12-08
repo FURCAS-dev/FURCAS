@@ -125,6 +125,7 @@ public class ClassTemplatePrefixSequenceWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ClassTemplatePrefixSequence> get___JmiInterface() {
         return tcs.ClassTemplatePrefixSequence.class;
     }

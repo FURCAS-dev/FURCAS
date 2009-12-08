@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class QueryPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.QueryPargImpl> implements tcs.QueryParg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class QueryPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.QueryPargImpl getCastWrappedObject() {
         return (tcs.__impl.QueryPargImpl) getWrappedObject();
     }
@@ -182,6 +183,7 @@ public class QueryPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.QueryParg> get___JmiInterface() {
         return tcs.QueryParg.class;
     }

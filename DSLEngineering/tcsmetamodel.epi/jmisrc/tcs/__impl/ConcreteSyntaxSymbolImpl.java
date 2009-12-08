@@ -64,6 +64,7 @@ public final class ConcreteSyntaxSymbolImpl extends com.sap.tc.moin.repository.c
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntaxSymbol> get___JmiInterface() {
         return tcs.ConcreteSyntaxSymbol.class;
     }

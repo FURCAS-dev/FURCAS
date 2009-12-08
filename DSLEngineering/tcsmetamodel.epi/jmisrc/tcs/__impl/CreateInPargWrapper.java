@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class CreateInPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.CreateInPargImpl> implements tcs.CreateInParg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class CreateInPargWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.CreateInPargImpl getCastWrappedObject() {
         return (tcs.__impl.CreateInPargImpl) getWrappedObject();
     }
@@ -160,6 +161,7 @@ public class CreateInPargWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.CreateInParg> get___JmiInterface() {
         return tcs.CreateInParg.class;
     }

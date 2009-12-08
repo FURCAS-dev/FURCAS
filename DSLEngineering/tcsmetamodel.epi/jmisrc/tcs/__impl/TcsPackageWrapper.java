@@ -2972,6 +2972,7 @@ public class TcsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.TcsPackage> get___JmiInterface() {
         return tcs.TcsPackage.class;
     }

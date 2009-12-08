@@ -11,4 +11,5 @@ Require-Bundle: QVTEMF;bundle-version="3.0.0",
  org.eclipse.emf.common;bundle-version="2.5.0",
  org.eclipse.emf.ecore;bundle-version="2.5.0",
  OCLCommon;bundle-version="1.0.0",
- OCLTestAdapter;bundle-version="1.0.0"
+ OCLTestAdapter;bundle-version="1.0.0",
+ QVTTestAdapter;bundle-version="1.0.0"

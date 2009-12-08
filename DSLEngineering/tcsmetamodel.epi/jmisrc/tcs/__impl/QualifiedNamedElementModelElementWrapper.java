@@ -125,6 +125,7 @@ public class QualifiedNamedElementModelElementWrapper extends com.sap.tc.moin.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.QualifiedNamedElementModelElement> get___JmiInterface() {
         return tcs.QualifiedNamedElementModelElement.class;
     }

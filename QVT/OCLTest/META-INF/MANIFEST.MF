@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OCLTest
 Bundle-SymbolicName: OCLTest
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Export-Package: de.ikv.medini.ocl20.bridge4medini.test,
  de.ikv.medini.ocl20.bridge4medini.test.constraint,
  de.ikv.medini.ocl20.bridge4medini.test.constraint.inv,
@@ -38,4 +38,5 @@ Export-Package: de.ikv.medini.ocl20.bridge4medini.test,
  de.ikv.medini.ocl20.bridge4medini.test.performance
 Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
  OCLTestAdapter;bundle-version="1.0.0",
- testmetamodel.epi;bundle-version="1.0.0"
+ testmetamodel.epi;bundle-version="1.0.0",
+ OCLJMITest;bundle-version="1.0.0"

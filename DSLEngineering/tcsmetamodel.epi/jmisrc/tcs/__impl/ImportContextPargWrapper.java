@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class ImportContextPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ImportContextPargImpl> implements tcs.ImportContextParg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ImportContextPargWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.ImportContextPargImpl getCastWrappedObject() {
         return (tcs.__impl.ImportContextPargImpl) getWrappedObject();
     }
@@ -135,6 +136,7 @@ public class ImportContextPargWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ImportContextParg> get___JmiInterface() {
         return tcs.ImportContextParg.class;
     }

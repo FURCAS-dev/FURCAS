@@ -125,6 +125,7 @@ public class LexedTokenReferenesFunctionCallWrapper extends com.sap.tc.moin.repo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.LexedTokenReferenesFunctionCall> get___JmiInterface() {
         return textblocks.LexedTokenReferenesFunctionCall.class;
     }

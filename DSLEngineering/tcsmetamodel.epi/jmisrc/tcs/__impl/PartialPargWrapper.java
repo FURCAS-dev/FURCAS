@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class PartialPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.PartialPargImpl> implements tcs.PartialParg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class PartialPargWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.PartialPargImpl getCastWrappedObject() {
         return (tcs.__impl.PartialPargImpl) getWrappedObject();
     }
@@ -135,6 +136,7 @@ public class PartialPargWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PartialParg> get___JmiInterface() {
         return tcs.PartialParg.class;
     }

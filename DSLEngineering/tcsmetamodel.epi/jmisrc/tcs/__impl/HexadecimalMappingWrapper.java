@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class HexadecimalMappingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.HexadecimalMappingImpl> implements tcs.HexadecimalMapping,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class HexadecimalMappingWrapper extends com.sap.tc.moin.repository.core.j
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.HexadecimalMappingImpl getCastWrappedObject() {
         return (tcs.__impl.HexadecimalMappingImpl) getWrappedObject();
     }
@@ -135,6 +136,7 @@ public class HexadecimalMappingWrapper extends com.sap.tc.moin.repository.core.j
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.HexadecimalMapping> get___JmiInterface() {
         return tcs.HexadecimalMapping.class;
     }

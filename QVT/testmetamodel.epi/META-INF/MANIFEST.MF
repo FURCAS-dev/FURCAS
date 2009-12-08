@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Epi
 Bundle-SymbolicName: testmetamodel.epi
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Export-Package: com.sap.tc.moin,
  com.sap.tc.moin.package4C5694E7B42B40844C972B612BDAA8A1809B2B15,
  de,

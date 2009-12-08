@@ -125,6 +125,7 @@ public class DocumentNodeReferencedElementWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.DocumentNodeReferencedElement> get___JmiInterface() {
         return textblocks.DocumentNodeReferencedElement.class;
     }

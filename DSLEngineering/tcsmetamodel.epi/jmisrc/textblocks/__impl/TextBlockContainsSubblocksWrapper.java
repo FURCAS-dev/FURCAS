@@ -125,6 +125,7 @@ public class TextBlockContainsSubblocksWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextBlockContainsSubblocks> get___JmiInterface() {
         return textblocks.TextBlockContainsSubblocks.class;
     }

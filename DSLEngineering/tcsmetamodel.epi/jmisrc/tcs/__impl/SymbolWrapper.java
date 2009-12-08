@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class SymbolWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.SymbolImpl> implements tcs.Symbol,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SymbolWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.SymbolImpl getCastWrappedObject() {
         return (tcs.__impl.SymbolImpl) getWrappedObject();
     }
@@ -254,6 +255,7 @@ public class SymbolWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Symbol> get___JmiInterface() {
         return tcs.Symbol.class;
     }

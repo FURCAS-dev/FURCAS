@@ -4,6 +4,7 @@ import java.util.Set;
 
 import junit.framework.Assert;
 
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -37,6 +38,15 @@ public class OclFreestyleRegistryStub implements OclFreestyleRegistry {
 			RefPackage[] typesPackages) throws OclManagerException {
 		Assert.assertEquals(expectedQuery, oclExpression);
 		return expresssionReg;
+	}
+	
+	@Override
+	public OclExpressionRegistration createExpressionRegistration(String name,
+	       String oclExpression, OclRegistrationSeverity severity,
+	       String[] categories, RefObject contextMetaClass,
+	       MofPackage[] typesPackages) throws OclManagerException {
+	       Assert.assertEquals(expectedQuery, oclExpression);
+	       return expresssionReg;
 	}
 
 	@Override
@@ -101,5 +111,7 @@ public class OclFreestyleRegistryStub implements OclFreestyleRegistry {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+
 
 }

@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OCLJMITestAdapter
 Bundle-SymbolicName: OCLJMITestAdapter
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
  OCLCommon;bundle-version="1.0.0",
  OCLJMI;bundle-version="1.0.0",

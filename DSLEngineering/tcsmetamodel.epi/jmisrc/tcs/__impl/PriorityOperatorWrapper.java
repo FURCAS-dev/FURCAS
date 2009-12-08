@@ -125,6 +125,7 @@ public class PriorityOperatorWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PriorityOperator> get___JmiInterface() {
         return tcs.PriorityOperator.class;
     }

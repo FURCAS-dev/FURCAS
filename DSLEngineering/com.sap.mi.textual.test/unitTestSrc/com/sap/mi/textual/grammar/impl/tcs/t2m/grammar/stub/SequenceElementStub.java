@@ -36,6 +36,12 @@ public class SequenceElementStub extends LocatedElementStub implements SequenceE
     public void setParentTemplate(Template newValue) throws JmiException {
 	// TODO Auto-generated method stub
 	
+    }
+
+    @Override
+    public boolean hasSyntaxContributions() throws JmiException {
+        // TODO Auto-generated method stub
+        return false;
     }   
    
 

@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class RulePatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.RulePatternImpl> implements tcs.RulePattern,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class RulePatternWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.RulePatternImpl getCastWrappedObject() {
         return (tcs.__impl.RulePatternImpl) getWrappedObject();
     }
@@ -226,6 +227,7 @@ public class RulePatternWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.RulePattern> get___JmiInterface() {
         return tcs.RulePattern.class;
     }

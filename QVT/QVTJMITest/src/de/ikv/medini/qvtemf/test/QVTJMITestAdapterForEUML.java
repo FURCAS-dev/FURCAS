@@ -18,7 +18,7 @@ import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import de.ikv.medini.qvt.test.QVTJMITestAdapter;
 
 public class QVTJMITestAdapterForEUML extends QVTJMITestAdapter {
-	private static final String mmbuildpath = "C:/data/ProjectRi/OCLJMITest/mmbuild/demo.sap.com~euml~def_assmbl.zip";
+	private static final String mmbuildpath = "../OCLJMITest/mmbuild/demo.sap.com~euml~def_assmbl.zip";
 	static RefPackage companyPackage = null;
 //	@Override
 //	public void initRepository() {
@@ -36,7 +36,7 @@ public class QVTJMITestAdapterForEUML extends QVTJMITestAdapter {
 		for (String metaModelID : this.metamodelIDs) {
 			addMetaModel((MofPackage) connection.getPackage(null, metaModelID).refMetaObject());
 		}
-		super.initRepository();
+		super.initRepository(); 
 	}
 
 

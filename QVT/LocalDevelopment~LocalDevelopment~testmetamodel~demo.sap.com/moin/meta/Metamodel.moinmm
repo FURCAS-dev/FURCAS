@@ -38,22 +38,22 @@
 <Model.AssociationEnd m:c='1' m:i='4942B2158631A2D0C87D11DDAEE0C05E7F000001' name='abstractSuperClass' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.AssociationEnd>
-<Model.AssociationEnd m:c='1' m:i='4942B2158631A2D1C87D11DDC033C05E7F000001' name='subClass' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<Model.AssociationEnd m:c='1' m:i='4942B2158631A2D1C87D11DDC033C05E7F000001' name='SubClass' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.AssociationEnd>
 <Model.Tag m:c='1' m:i='4942B21586332970C87D11DDBE2EC05E7F000001' name='storage_yes' annotation='Predefined storage definition tag. Do not change the value of this tag! Instead add the association end to change the storage behavior for to the tagged elements list of the storage tag with the correct value; there is on with the values &apos;yes&apos; and &apos;no&apos; within each root package.' tagId='org.omg.sap2mof.store' values='yes'/>
 <Model.Tag m:c='1' m:i='4942B2158634B010C87D11DD92BAC05E7F000001' name='storage_no' annotation='Predefined storage definition tag. Do not change the value of this tag! Instead add the association end to change the storage behavior for to the tagged elements list of the storage tag with the correct value; there is on with the values &apos;yes&apos; and &apos;no&apos; within each root package.' tagId='org.omg.sap2mof.store' values='no'/>
-<Model.Reference m:c='1' m:i='4942B215863636B0C87D11DD9399C05E7F000001' name='subClass' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<Model.Reference m:c='1' m:i='4942B215863636B0C87D11DD9399C05E7F000001' name='SubClass' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.Reference>
 <Model.Reference m:c='1' m:i='4942B261B3598AC0C87D11DDC25CC05E7F000001' name='abstractSuperClass' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
 </Model.Reference>
-<Model.Attribute m:c='1' m:i='4942B281C6532D70C87D11DDC988C05E7F000001' name='subName' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<Model.Attribute m:c='1' m:i='4942B281C6532D70C87D11DDC988C05E7F000001' name='SubName' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
 <Model.Class m:c='1' m:i='4942B29BD6154BD0C87D11DD9488C05E7F000001' name='SuperClass' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
-<Model.Attribute m:c='1' m:i='4942B2BCE9C1EAD0C87D11DDC5C9C05E7F000001' name='superName' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<Model.Attribute m:c='1' m:i='4942B2BCE9C1EAD0C87D11DDC5C9C05E7F000001' name='SuperName' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
 <Model.Package m:c='1' m:i='4942B2EC061DBE70C87E11DD9F80C05E7F000001' name='DataTypeTests' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
@@ -76,8 +76,8 @@
 <Model.Attribute m:c='1' m:i='4942B464E63DFEC0C87E11DDBB5DC05E7F000001' name='SimpleAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
-<Model.Attribute m:c='1' m:i='4942B473EF59D7E0C87E11DDBBD0C05E7F000001' name='OptionalSimpeAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<Model.Attribute m:c='1' m:i='4942B473EF59D7E0C87E11DDBBD0C05E7F000001' name='OptionalSimpleAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
 <Model.Attribute m:c='1' m:i='4942B4900076CB50C87F11DDCB2AC05E7F000001' name='BagAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='false'/>
@@ -104,7 +104,7 @@
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
 <Model.Attribute m:c='1' m:i='4942B59EA1AE9D40C87F11DD8473C05E7F000001' name='OptionalSimpleAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
-<multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
 <Model.Attribute m:c='1' m:i='4942B5AFABA98BC0C87F11DD9141C05E7F000001' name='BagAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='0' upper='-1' isOrdered='true' isUnique='true'/>
@@ -166,7 +166,7 @@
 <Model.Attribute m:c='1' m:i='497EA75463054150EC3A11DD9C23000E35A783E4' name='SimpleAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
-<Model.Attribute m:c='1' m:i='497EA75B670D8320EC3A11DD925F000E35A783E4' name='OptionalAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<Model.Attribute m:c='1' m:i='497EA75B670D8320EC3A11DD925F000E35A783E4' name='OptionalSimpleAttribute' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
 <Model.Class m:c='1' m:i='497EA812D42F7080EC3A11DD8AE9000E35A783E4' name='IntergerTest' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
@@ -374,10 +374,10 @@
 <Model.AssociationEnd m:c='1' m:i='498637E2A9FE0DE1F0BC11DDB4D5000E35A783E4' name='classtest' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.AssociationEnd>
-<Model.AssociationEnd m:c='1' m:i='498637E2A9FE0DE2F0BC11DD9D90000E35A783E4' name='singleClassReferece' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
+<Model.AssociationEnd m:c='1' m:i='498637E2A9FE0DE2F0BC11DD9D90000E35A783E4' name='singleClassReference' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.AssociationEnd>
-<Model.Reference m:c='1' m:i='498637E2A9FE0DE3F0BC11DDB999000E35A783E4' name='singleClassReferece' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
+<Model.Reference m:c='1' m:i='498637E2A9FE0DE3F0BC11DDB999000E35A783E4' name='singleClassReference' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Reference>
 <Model.Association m:c='1' m:i='4986389E19B1F0C0F0BD11DDC4A4000E35A783E4' name='ClassTest_StringTest1' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
@@ -688,7 +688,7 @@
 <L f='PF.MetaModelDataArea:45ED2E2AD30EAAD3F45945B03D5095FE7AFB9CF2' s='497EA70A371711E0EC3A11DD9BE9000E35A783E4'/>
 <L f='PF.MetaModelDataArea:45ED2E2AD30EAAD3F45945B03D5095FE7AFB9CF2' s='497EA7314E728810EC3A11DD8199000E35A783E4'/>
 <L f='PF.MetaModelDataArea:45ED2E2AD30EAAD3F45945B03D5095FE7AFB9CF2' s='497EA740573D33F0EC3A11DD8BDA000E35A783E4'/>
-<L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='497EA75463054150EC3A11DD9C23000E35A783E4'/>
+<L f='PF.MetaModelDataArea:45ED2E2AD30EAAD3F45945B03D5095FE7AFB9CF2' s='497EA75463054150EC3A11DD9C23000E35A783E4'/>
 <L f='PF.MetaModelDataArea:45ED2E2AD30EAAD3F45945B03D5095FE7AFB9CF2' s='497EA75B670D8320EC3A11DD925F000E35A783E4'/>
 <L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='497EA823DE9B4940EC3A11DDB3C8000E35A783E4'/>
 <L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='497EA840EFB97530EC3A11DD9DD1000E35A783E4'/>

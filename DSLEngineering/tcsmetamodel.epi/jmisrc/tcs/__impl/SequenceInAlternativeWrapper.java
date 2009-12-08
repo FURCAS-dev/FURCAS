@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class SequenceInAlternativeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.SequenceInAlternativeImpl> implements tcs.SequenceInAlternative,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SequenceInAlternativeWrapper extends com.sap.tc.moin.repository.cor
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.SequenceInAlternativeImpl getCastWrappedObject() {
         return (tcs.__impl.SequenceInAlternativeImpl) getWrappedObject();
     }
@@ -383,6 +384,7 @@ public class SequenceInAlternativeWrapper extends com.sap.tc.moin.repository.cor
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.SequenceInAlternative> get___JmiInterface() {
         return tcs.SequenceInAlternative.class;
     }

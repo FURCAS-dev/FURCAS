@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class BooleanPropertyExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.BooleanPropertyExpImpl> implements tcs.BooleanPropertyExp,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class BooleanPropertyExpWrapper extends com.sap.tc.moin.repository.core.j
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.BooleanPropertyExpImpl getCastWrappedObject() {
         return (tcs.__impl.BooleanPropertyExpImpl) getWrappedObject();
     }
@@ -179,6 +180,7 @@ public class BooleanPropertyExpWrapper extends com.sap.tc.moin.repository.core.j
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.BooleanPropertyExp> get___JmiInterface() {
         return tcs.BooleanPropertyExp.class;
     }

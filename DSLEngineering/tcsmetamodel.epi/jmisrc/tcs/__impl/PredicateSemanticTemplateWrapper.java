@@ -125,6 +125,7 @@ public class PredicateSemanticTemplateWrapper extends com.sap.tc.moin.repository
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PredicateSemanticTemplate> get___JmiInterface() {
         return tcs.PredicateSemanticTemplate.class;
     }

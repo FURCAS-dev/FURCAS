@@ -67,8 +67,8 @@
 <links.PictogramLink m:c='1' m:i='4942B1D660AC1360C87D11DDB599C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B1D660AD9A00C87D11DD858FC05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B1D660AD9A01C87D11DD9735C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='182' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='182' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.Style m:c='1' m:i='4942B1D660AD9A02C87D11DDC988C05E7F000001' id='separatorStyle' description=''/>
 <pictograms.Style m:c='1' m:i='4942B1D660AF20A0C87D11DDB8D2C05E7F000001' id='classSeparatorStyle' description=''/>
@@ -78,8 +78,8 @@
 <pictograms.Rectangle m:c='1' m:i='4942B1D660AF20A2C87D11DD9D5AC05E7F000001' width='172' height='40' x='5' y='28'/>
 <pictograms.Shape m:c='1' m:i='4942B1D660AF20A3C87D11DD8A62C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B1D660AF20A4C87D11DD9954C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='68' radius='0'/>
-<points x='182' y='68' radius='0'/>
+<points x='0' y='68' before='0' after='0'/>
+<points x='182' y='68' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B1D660AF20A5C87D11DD9AF0C05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='1'/>
@@ -102,8 +102,8 @@
 <links.PictogramLink m:c='1' m:i='4942B1FC774A05F6C87D11DDBDCBC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B1FC774A05F7C87D11DD8ECEC05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B1FC774A05F8C87D11DD8314C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='201' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='201' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B1FC774A05F9C87D11DDA9ABC05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='0'/>
@@ -111,8 +111,8 @@
 <pictograms.Rectangle m:c='1' m:i='4942B1FC774B8C90C87D11DDA4E1C05E7F000001' width='191' height='40' x='5' y='28'/>
 <pictograms.Shape m:c='1' m:i='4942B1FC774B8C91C87D11DDBCBDC05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B1FC774B8C92C87D11DD8F3FC05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='68' radius='0'/>
-<points x='201' y='68' radius='0'/>
+<points x='0' y='68' before='0' after='0'/>
+<points x='201' y='68' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B1FC774B8C93C87D11DDAD4EC05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='1'/>
@@ -126,14 +126,14 @@
 <pictograms.Style m:c='1' m:i='4942B1FC77532DB0C87D11DD9ED4C05E7F000001' lineWidth='1' id='connectionStyle' description=''/>
 <pictograms.ConnectionDecorator m:c='1' m:i='4942B1FC7754B450C87D11DDB49AC05E7F000001' visible='true' active='false' locationRelative='true' location='1.0'/>
 <pictograms.Polygon m:c='1' m:i='4942B1FC77563AF0C87D11DDA36CC05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='0' radius='0'/>
-<points x='-9' y='-9' radius='0'/>
-<points x='-9' y='9' radius='0'/>
+<points x='0' y='0' before='0' after='0'/>
+<points x='-9' y='-9' before='0' after='0'/>
+<points x='-9' y='9' before='0' after='0'/>
 </pictograms.Polygon>
 <pictograms.Style m:c='1' m:i='4942B1FE78492670C87D11DD81FFC05E7F000001' id='connectionArrowStyle' description=''/>
 <pictograms.FreeFormConnection m:c='1' m:i='4942B2158637BD50C87D11DDC0E3C05E7F000001' visible='true' active='true'>
 <properties key='visible' value='yes'/>
-<bendpoints x='223' y='145' radius='0'/>
+<bendpoints x='223' y='145' before='0' after='0'/>
 </pictograms.FreeFormConnection>
 <links.PictogramLink m:c='1' m:i='4942B2158637BD51C87D11DD8101C05E7F000001'/>
 <pictograms.Polyline m:c='1' m:i='4942B215863943F0C87D11DDCD9DC05E7F000001' width='0' height='0' x='0' y='0'/>
@@ -174,7 +174,7 @@
 <pictograms.Text m:c='1' m:i='4942B215863C5131C87D11DD810AC05E7F000001' width='15' height='10' x='-108' y='0' value='AbstractSuperClass_SubClass'/>
 <pictograms.Style m:c='1' m:i='4942B215863C5132C87D11DDA992C05E7F000001' id='connectionDecoratorStyle' description=''/>
 <pictograms.Text m:c='1' m:i='4942B215863C5133C87D11DDCFB1C05E7F000001' width='15' height='10' x='5' y='5' value='abstractSuperClass'/>
-<pictograms.Text m:c='1' m:i='4942B215863C5134C87D11DD9F42C05E7F000001' width='15' height='10' x='5' y='-16' value='subClass'/>
+<pictograms.Text m:c='1' m:i='4942B215863C5134C87D11DD9F42C05E7F000001' width='15' height='10' x='5' y='-16' value='SubClass'/>
 <pictograms.Text m:c='1' m:i='4942B215863DD7D0C87D11DDAB4FC05E7F000001' width='15' height='10' x='5' y='20' value='0..*'/>
 <pictograms.Text m:c='1' m:i='4942B215863DD7D1C87D11DDBB51C05E7F000001' width='15' height='10' x='5' y='-32' value='0..*'/>
 <pictograms.Style m:c='1' m:i='4942B215863DD7D3C87D11DDB946C05E7F000001' filled='true' id='connectionAssociationDecoratorStyle' description=''/>
@@ -188,31 +188,31 @@
 <pictograms.Shape m:c='1' m:i='4942B2168643F254C87D11DDB84EC05E7F000001' visible='true' active='true'/>
 <pictograms.Rectangle m:c='1' m:i='4942B2168643F255C87D11DDA3A2C05E7F000001' width='172' height='20' x='0' y='20'/>
 <pictograms.Image m:c='1' m:i='4942B2168643F256C87D11DD9233C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B2168643F257C87D11DDB7A2C05E7F000001' width='152' height='20' x='20' y='0' value='subClass : SubClass [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B2168643F257C87D11DDB7A2C05E7F000001' width='152' height='20' x='20' y='0' value='SubClass : SubClass [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B2168643F258C87D11DDBC6DC05E7F000001'/>
 <pictograms.Polygon m:c='1' m:i='4942B261B35B1163C87D11DDA21FC05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='-3' radius='0'/>
-<points x='0' y='3' radius='0'/>
-<points x='-2' y='3' radius='0'/>
-<points x='-2' y='0' radius='0'/>
-<points x='-3' y='0' radius='0'/>
-<points x='-9' y='6' radius='0'/>
-<points x='-3' y='0' radius='0'/>
-<points x='-9' y='-6' radius='0'/>
-<points x='-3' y='0' radius='0'/>
-<points x='-2' y='0' radius='0'/>
-<points x='-2' y='-3' radius='0'/>
+<points x='0' y='-3' before='0' after='0'/>
+<points x='0' y='3' before='0' after='0'/>
+<points x='-2' y='3' before='0' after='0'/>
+<points x='-2' y='0' before='0' after='0'/>
+<points x='-3' y='0' before='0' after='0'/>
+<points x='-9' y='6' before='0' after='0'/>
+<points x='-3' y='0' before='0' after='0'/>
+<points x='-9' y='-6' before='0' after='0'/>
+<points x='-3' y='0' before='0' after='0'/>
+<points x='-2' y='0' before='0' after='0'/>
+<points x='-2' y='-3' before='0' after='0'/>
 </pictograms.Polygon>
 <pictograms.Polygon m:c='1' m:i='4942B261B3612BE0C87D11DD9090C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='0' radius='0'/>
-<points x='-6' y='6' radius='0'/>
-<points x='0' y='0' radius='0'/>
-<points x='-6' y='-6' radius='0'/>
+<points x='0' y='0' before='0' after='0'/>
+<points x='-6' y='6' before='0' after='0'/>
+<points x='0' y='0' before='0' after='0'/>
+<points x='-6' y='-6' before='0' after='0'/>
 </pictograms.Polygon>
 <pictograms.Shape m:c='1' m:i='4942B281C654B410C87D11DDCC21C05E7F000001' visible='true' active='true'/>
 <pictograms.Rectangle m:c='1' m:i='4942B281C654B411C87D11DDCA03C05E7F000001' width='191' height='20' x='0' y='0'/>
 <pictograms.Image m:c='1' m:i='4942B281C654B412C87D11DDAC5DC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B281C654B413C87D11DDA381C05E7F000001' width='171' height='20' x='20' y='0' value='subName : String'/>
+<pictograms.Text m:c='1' m:i='4942B281C654B413C87D11DDA381C05E7F000001' width='171' height='20' x='20' y='0' value='SubName : String'/>
 <links.PictogramLink m:c='1' m:i='4942B281C654B414C87D11DD93E2C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B281C654B415C87D11DDA264C05E7F000001' visible='true' active='true'/>
 <pictograms.Rectangle m:c='1' m:i='4942B281C654B416C87D11DDAF42C05E7F000001' width='191' height='20' x='0' y='20'/>
@@ -232,8 +232,8 @@
 <links.PictogramLink m:c='1' m:i='4942B29BD616D278C87D11DD9C59C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B29BD616D279C87D11DDB922C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B29BD616D27AC87D11DDB66FC05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='150' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='150' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B29BD616D27BC87D11DD8852C05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='0'/>
@@ -241,8 +241,8 @@
 <pictograms.Rectangle m:c='1' m:i='4942B29BD616D27CC87D11DD9686C05E7F000001' width='140' height='20' x='5' y='28'/>
 <pictograms.Shape m:c='1' m:i='4942B29BD6185910C87D11DD8883C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B29BD6185911C87D11DDBCD0C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='48' radius='0'/>
-<points x='150' y='48' radius='0'/>
+<points x='0' y='48' before='0' after='0'/>
+<points x='150' y='48' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B29BD6185912C87D11DDA47FC05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='1'/>
@@ -256,14 +256,14 @@
 <pictograms.Polyline m:c='1' m:i='4942B2B1E321C011C87D11DDBD3EC05E7F000001' width='0' height='0' x='0' y='0'/>
 <pictograms.ConnectionDecorator m:c='1' m:i='4942B2B1E321C012C87D11DDA0C7C05E7F000001' visible='true' active='false' locationRelative='true' location='1.0'/>
 <pictograms.Polygon m:c='1' m:i='4942B2B1E321C013C87D11DD844DC05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='0' radius='0'/>
-<points x='-9' y='-9' radius='0'/>
-<points x='-9' y='9' radius='0'/>
+<points x='0' y='0' before='0' after='0'/>
+<points x='-9' y='-9' before='0' after='0'/>
+<points x='-9' y='9' before='0' after='0'/>
 </pictograms.Polygon>
 <pictograms.Shape m:c='1' m:i='4942B2BCE9C37170C87D11DD91DFC05E7F000001' visible='true' active='true'/>
 <pictograms.Rectangle m:c='1' m:i='4942B2BCE9C37171C87D11DD9507C05E7F000001' width='140' height='20' x='0' y='0'/>
 <pictograms.Image m:c='1' m:i='4942B2BCE9C37172C87D11DD868FC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B2BCE9C37173C87D11DDA765C05E7F000001' width='120' height='20' x='20' y='0' value='superName : String'/>
+<pictograms.Text m:c='1' m:i='4942B2BCE9C37173C87D11DDA765C05E7F000001' width='120' height='20' x='20' y='0' value='SuperName : String'/>
 <links.PictogramLink m:c='1' m:i='4942B2BCE9C37174C87D11DD973EC05E7F000001'/>
 <links.PictogramLinkReferencesBusinessObjects c='1'>
 <L f='local:4942B17C2A885D70C87D11DD85E1C05E7F000001' s='4942B1D35EB0B890C87D11DD9D7BC05E7F000001'/>

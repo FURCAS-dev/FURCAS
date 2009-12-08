@@ -125,6 +125,7 @@ public class TextblockDefinitionGeneralisationWrapper extends com.sap.tc.moin.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblockdefinition.TextblockDefinitionGeneralisation> get___JmiInterface() {
         return textblockdefinition.TextblockDefinitionGeneralisation.class;
     }

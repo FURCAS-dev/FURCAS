@@ -63,6 +63,7 @@ public final class LiteralRefLiteralImpl extends com.sap.tc.moin.repository.core
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.LiteralRefLiteral> get___JmiInterface() {
         return tcs.LiteralRefLiteral.class;
     }

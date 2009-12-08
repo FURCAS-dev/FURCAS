@@ -125,6 +125,7 @@ public class ContextTemplateContextTagsWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ContextTemplateContextTags> get___JmiInterface() {
         return tcs.ContextTemplateContextTags.class;
     }

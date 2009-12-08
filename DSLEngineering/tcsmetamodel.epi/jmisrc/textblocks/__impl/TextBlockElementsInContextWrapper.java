@@ -125,6 +125,7 @@ public class TextBlockElementsInContextWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextBlockElementsInContext> get___JmiInterface() {
         return textblocks.TextBlockElementsInContext.class;
     }

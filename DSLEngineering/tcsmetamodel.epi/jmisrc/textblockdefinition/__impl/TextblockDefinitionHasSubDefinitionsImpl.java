@@ -64,6 +64,7 @@ public final class TextblockDefinitionHasSubDefinitionsImpl extends com.sap.tc.m
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblockdefinition.TextblockDefinitionHasSubDefinitions> get___JmiInterface() {
         return textblockdefinition.TextblockDefinitionHasSubDefinitions.class;
     }

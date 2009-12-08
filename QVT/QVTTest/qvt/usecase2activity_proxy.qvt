@@ -1,0 +1,5 @@
+import usecase2activity;
+
+transformation usecase2activity_proxy(backward:EUML, forward:EUML) {
+
+}

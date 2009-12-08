@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class EndOfLineRuleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.EndOfLineRuleImpl> implements tcs.EndOfLineRule,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class EndOfLineRuleWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.EndOfLineRuleImpl getCastWrappedObject() {
         return (tcs.__impl.EndOfLineRuleImpl) getWrappedObject();
     }
@@ -226,6 +227,7 @@ public class EndOfLineRuleWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EndOfLineRule> get___JmiInterface() {
         return tcs.EndOfLineRule.class;
     }

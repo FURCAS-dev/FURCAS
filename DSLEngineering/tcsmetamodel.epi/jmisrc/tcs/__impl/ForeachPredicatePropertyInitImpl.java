@@ -8,7 +8,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
@@ -94,12 +94,12 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
     public void setInjectorActionsBlockReference(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4912CB2C424BD670ABF011DD8D3C001742153E0C", /* mofId of reference */ "E046953045568490AE9D11DE9BF7001CBF7437BB" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setInjectorActionsBlockReference(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4912CB2C424BD670ABF011DD8D3C001742153E0C", /* mofId of reference */ "E046953045568490AE9D11DE9BF7001CBF7437BB" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getPropertyReference() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -114,12 +114,12 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
     public void setPropertyReference(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4912CBC19B596250ABF011DD8575001742153E0C", /* mofId of reference */ "4912CBC19B596253ABF011DD9E54001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setPropertyReference(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4912CBC19B596250ABF011DD8575001742153E0C", /* mofId of reference */ "4912CBC19B596253ABF011DD9E54001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public java.util.Collection getPredicatesemantic() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -182,7 +182,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -220,7 +220,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 2:
@@ -236,7 +236,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 2:
@@ -252,7 +252,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 2:
@@ -268,7 +268,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -311,6 +311,7 @@ public final class ForeachPredicatePropertyInitImpl extends com.sap.tc.moin.repo
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ForeachPredicatePropertyInit> get___JmiInterface() {
         return tcs.ForeachPredicatePropertyInit.class;
     }

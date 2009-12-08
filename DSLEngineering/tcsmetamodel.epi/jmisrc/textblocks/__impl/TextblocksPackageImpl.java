@@ -8,7 +8,7 @@ public final class TextblocksPackageImpl extends com.sap.tc.moin.repository.core
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(27);
@@ -175,6 +175,7 @@ public final class TextblocksPackageImpl extends com.sap.tc.moin.repository.core
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextblocksPackage> get___JmiInterface() {
         return textblocks.TextblocksPackage.class;
     }
@@ -183,7 +184,9 @@ public final class TextblocksPackageImpl extends com.sap.tc.moin.repository.core
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(1);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "textblockdefinition"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "textblockdefinition.TextblockdefinitionPackage", true); //$NON-NLS-1$
@@ -233,7 +236,9 @@ public final class TextblocksPackageImpl extends com.sap.tc.moin.repository.core
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(11);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "TextBlock_Contains_Tokens"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "textblocks.TextBlockContainsTokens"); //$NON-NLS-1$

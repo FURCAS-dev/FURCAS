@@ -8,7 +8,7 @@ public final class TextblockdefinitionPackageImpl extends com.sap.tc.moin.reposi
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(6);
@@ -79,6 +79,7 @@ public final class TextblockdefinitionPackageImpl extends com.sap.tc.moin.reposi
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblockdefinition.TextblockdefinitionPackage> get___JmiInterface() {
         return textblockdefinition.TextblockdefinitionPackage.class;
     }
@@ -87,7 +88,9 @@ public final class TextblockdefinitionPackageImpl extends com.sap.tc.moin.reposi
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -105,7 +108,9 @@ public final class TextblockdefinitionPackageImpl extends com.sap.tc.moin.reposi
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(3);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "TextblockDefinition_References_Production"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "textblockdefinition.TextblockDefinitionReferencesProduction"); //$NON-NLS-1$

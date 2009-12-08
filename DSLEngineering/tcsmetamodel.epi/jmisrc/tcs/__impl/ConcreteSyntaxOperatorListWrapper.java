@@ -125,6 +125,7 @@ public class ConcreteSyntaxOperatorListWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntaxOperatorList> get___JmiInterface() {
         return tcs.ConcreteSyntaxOperatorList.class;
     }

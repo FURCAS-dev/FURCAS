@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class InstanceOfExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.InstanceOfExpImpl> implements tcs.InstanceOfExp,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class InstanceOfExpWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.InstanceOfExpImpl getCastWrappedObject() {
         return (tcs.__impl.InstanceOfExpImpl) getWrappedObject();
     }
@@ -204,6 +205,7 @@ public class InstanceOfExpWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.InstanceOfExp> get___JmiInterface() {
         return tcs.InstanceOfExp.class;
     }

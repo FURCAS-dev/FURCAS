@@ -68,6 +68,7 @@ public class CtsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<cts.CtsPackage> get___JmiInterface() {
         return cts.CtsPackage.class;
     }

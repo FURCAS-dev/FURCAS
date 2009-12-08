@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class SequenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.SequenceImpl> implements tcs.Sequence,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SequenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.SequenceImpl getCastWrappedObject() {
         return (tcs.__impl.SequenceImpl) getWrappedObject();
     }
@@ -336,6 +337,7 @@ public class SequenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Sequence> get___JmiInterface() {
         return tcs.Sequence.class;
     }

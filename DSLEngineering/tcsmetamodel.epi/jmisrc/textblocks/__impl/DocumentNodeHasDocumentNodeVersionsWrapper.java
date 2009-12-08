@@ -125,6 +125,7 @@ public class DocumentNodeHasDocumentNodeVersionsWrapper extends com.sap.tc.moin.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.DocumentNodeHasDocumentNodeVersions> get___JmiInterface() {
         return textblocks.DocumentNodeHasDocumentNodeVersions.class;
     }

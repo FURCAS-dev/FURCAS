@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class SeparatorPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.SeparatorPargImpl> implements tcs.SeparatorParg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SeparatorPargWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.SeparatorPargImpl getCastWrappedObject() {
         return (tcs.__impl.SeparatorPargImpl) getWrappedObject();
     }
@@ -179,6 +180,7 @@ public class SeparatorPargWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.SeparatorParg> get___JmiInterface() {
         return tcs.SeparatorParg.class;
     }

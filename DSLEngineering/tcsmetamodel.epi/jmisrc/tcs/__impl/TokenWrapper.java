@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class TokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.TokenImpl> implements tcs.Token,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class TokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.TokenImpl getCastWrappedObject() {
         return (tcs.__impl.TokenImpl) getWrappedObject();
     }
@@ -273,6 +274,7 @@ public class TokenWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Token> get___JmiInterface() {
         return tcs.Token.class;
     }

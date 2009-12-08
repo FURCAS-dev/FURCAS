@@ -10,7 +10,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(30);
@@ -310,12 +310,12 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public void setMetaReference(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "48B5573C7AF43F30743C11DD8699001742153E0C", /* mofId of reference */ "48B5573C7AF68920743C11DDA054001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setMetaReference(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "48B5573C7AF43F30743C11DD8699001742153E0C", /* mofId of reference */ "48B5573C7AF68920743C11DDA054001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getConcretesyntax() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -330,12 +330,12 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public void setConcretesyntax(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "484003027EF4E1002E4D11DDC29A001742153E0C", /* mofId of reference */ "4862240025FA4A6042A511DDADC6001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setConcretesyntax(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "484003027EF4E1002E4D11DDC29A001742153E0C", /* mofId of reference */ "4862240025FA4A6042A511DDADC6001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getContextTags() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -350,12 +350,12 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public void setContextTags(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0677A9A1E773140C7A611DEA5AD00016CE99C52", /* mofId of reference */ "E0677A9A1E867380C7A611DEC95B00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setContextTags(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0677A9A1E773140C7A611DEA5AD00016CE99C52", /* mofId of reference */ "E0677A9A1E867380C7A611DEC95B00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getTemplateSequence() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -370,12 +370,12 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public void setTemplateSequence(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "484006E8D1A6DA502E4F11DDCEAD001742153E0C", /* mofId of reference */ "484006E8D1A6DA532E4F11DD8EED001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setTemplateSequence(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "484006E8D1A6DA502E4F11DDCEAD001742153E0C", /* mofId of reference */ "484006E8D1A6DA532E4F11DD8EED001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getPrefixSequence() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -390,12 +390,12 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public void setPrefixSequence(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4840070CE73447402E4F11DD873F001742153E0C", /* mofId of reference */ "4840070CE73447432E4F11DDB0F2001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setPrefixSequence(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4840070CE73447402E4F11DD873F001742153E0C", /* mofId of reference */ "4840070CE73447432E4F11DDB0F2001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOperatorList() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -410,12 +410,12 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
     public void setOperatorList(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "48400738015916A02E5011DD8E78001742153E0C", /* mofId of reference */ "48400738015B87A22E5011DDB943001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setOperatorList(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "48400738015916A02E5011DD8E78001742153E0C", /* mofId of reference */ "48400738015B87A22E5011DDB943001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter
@@ -602,7 +602,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -704,7 +704,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -759,7 +759,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -814,7 +814,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -869,7 +869,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -921,6 +921,7 @@ public final class ClassTemplateImpl extends com.sap.tc.moin.repository.core.jmi
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ClassTemplate> get___JmiInterface() {
         return tcs.ClassTemplate.class;
     }

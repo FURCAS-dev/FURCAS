@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class SimpleMappingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.SimpleMappingImpl> implements tcs.SimpleMapping,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SimpleMappingWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.SimpleMappingImpl getCastWrappedObject() {
         return (tcs.__impl.SimpleMappingImpl) getWrappedObject();
     }
@@ -229,6 +230,7 @@ public class SimpleMappingWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.SimpleMapping> get___JmiInterface() {
         return tcs.SimpleMapping.class;
     }

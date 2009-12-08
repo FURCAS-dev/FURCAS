@@ -464,6 +464,7 @@ public class TextblocksPackageWrapper extends com.sap.tc.moin.repository.core.jm
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextblocksPackage> get___JmiInterface() {
         return textblocks.TextblocksPackage.class;
     }

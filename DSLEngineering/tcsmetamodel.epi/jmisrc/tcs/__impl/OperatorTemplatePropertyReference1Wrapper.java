@@ -125,6 +125,7 @@ public class OperatorTemplatePropertyReference1Wrapper extends com.sap.tc.moin.r
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OperatorTemplatePropertyReference1> get___JmiInterface() {
         return tcs.OperatorTemplatePropertyReference1.class;
     }

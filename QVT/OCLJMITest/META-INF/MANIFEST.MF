@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: OCLJMITest
 Bundle-SymbolicName: OCLJMITest
-Bundle-Version: 1.0.0
+Bundle-Version: 1.0.0.qualifier
 Export-Package: de.ikv.medini.ocljmi.test
 Require-Bundle: com.sap.tc.moin.libraries.api;bundle-version="2.0.0",
  OCLJMI;bundle-version="1.0.0",

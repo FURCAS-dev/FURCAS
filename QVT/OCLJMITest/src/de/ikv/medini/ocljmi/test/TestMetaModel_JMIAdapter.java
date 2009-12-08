@@ -21,7 +21,7 @@ import de.ikv.medini.ocl.test.OCLJMITestAdapter;
 
 public class TestMetaModel_JMIAdapter extends OCLJMITestAdapter {
 
-	private static final String mmbuildpath = "C:/data/cts/FURCAS/furcas_full/QVT/OCLJMITest/mmbuild/demo.sap.com~testmetamodel~def_assmbl.zip";
+	private static final String mmbuildpath = "../OCLJMITest/mmbuild/demo.sap.com~testmetamodel~def_assmbl.zip";
 	static RefPackage companyPackage = null;
 
 	@Override

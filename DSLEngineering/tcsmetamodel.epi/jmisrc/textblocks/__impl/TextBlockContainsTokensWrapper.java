@@ -125,6 +125,7 @@ public class TextBlockContainsTokensWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextBlockContainsTokens> get___JmiInterface() {
         return textblocks.TextBlockContainsTokens.class;
     }

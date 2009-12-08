@@ -125,6 +125,7 @@ public class ThenSequenceWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ThenSequence> get___JmiInterface() {
         return tcs.ThenSequence.class;
     }

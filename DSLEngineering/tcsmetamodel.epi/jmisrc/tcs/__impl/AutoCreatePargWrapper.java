@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class AutoCreatePargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.AutoCreatePargImpl> implements tcs.AutoCreateParg,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class AutoCreatePargWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.AutoCreatePargImpl getCastWrappedObject() {
         return (tcs.__impl.AutoCreatePargImpl) getWrappedObject();
     }
@@ -182,6 +183,7 @@ public class AutoCreatePargWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.AutoCreateParg> get___JmiInterface() {
         return tcs.AutoCreateParg.class;
     }

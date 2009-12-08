@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class ConcreteSyntaxWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ConcreteSyntaxImpl> implements tcs.ConcreteSyntax,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ConcreteSyntaxWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.ConcreteSyntaxImpl getCastWrappedObject() {
         return (tcs.__impl.ConcreteSyntaxImpl) getWrappedObject();
     }
@@ -426,6 +427,7 @@ public class ConcreteSyntaxWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntax> get___JmiInterface() {
         return tcs.ConcreteSyntax.class;
     }

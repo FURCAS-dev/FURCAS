@@ -125,6 +125,7 @@ public class LexedTokenReferenesSequenceElementWrapper extends com.sap.tc.moin.r
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.LexedTokenReferenesSequenceElement> get___JmiInterface() {
         return textblocks.LexedTokenReferenesSequenceElement.class;
     }

@@ -125,6 +125,7 @@ public class EnumLiteralMappingLiteralRefWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EnumLiteralMappingLiteralRef> get___JmiInterface() {
         return tcs.EnumLiteralMappingLiteralRef.class;
     }

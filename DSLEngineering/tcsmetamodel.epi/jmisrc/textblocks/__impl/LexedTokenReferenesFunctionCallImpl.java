@@ -63,6 +63,7 @@ public final class LexedTokenReferenesFunctionCallImpl extends com.sap.tc.moin.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.LexedTokenReferenesFunctionCall> get___JmiInterface() {
         return textblocks.LexedTokenReferenesFunctionCall.class;
     }

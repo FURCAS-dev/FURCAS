@@ -8,7 +8,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
@@ -119,12 +119,12 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
     public void setTemplate(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E000054CC3C682806A7811DEB92500016CE99C52", /* mofId of reference */ "E000054CC3D5C4C06A7811DE924F00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setTemplate(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E000054CC3C682806A7811DEB92500016CE99C52", /* mofId of reference */ "E000054CC3D5C4C06A7811DE924F00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter
@@ -200,7 +200,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -234,7 +234,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -253,7 +253,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -272,7 +272,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -291,7 +291,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -323,6 +323,7 @@ public final class AsPargImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.AsParg> get___JmiInterface() {
         return tcs.AsParg.class;
     }

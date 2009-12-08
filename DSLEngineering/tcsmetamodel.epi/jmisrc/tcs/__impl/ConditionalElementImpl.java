@@ -10,7 +10,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
@@ -117,12 +117,12 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
     public void setElementSequence(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843B9951529F330308411DD9172001742153E0C", /* mofId of reference */ "48621EDA145B360042A211DDA8DC001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setElementSequence(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843B9951529F330308411DD9172001742153E0C", /* mofId of reference */ "48621EDA145B360042A211DDA8DC001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getParentTemplate() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -137,12 +137,12 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
     public void setParentTemplate(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E03D847172B416B06AEA11DEA60500016CE99C52", /* mofId of reference */ "E03D847172E97E906AEA11DE84AD00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setParentTemplate(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E03D847172B416B06AEA11DEA60500016CE99C52", /* mofId of reference */ "E03D847172E97E906AEA11DE84AD00016CE99C52" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getElseSequence() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -157,12 +157,12 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
     public void setElseSequence(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843BB7A36237560308511DD9FC3001742153E0C", /* mofId of reference */ "4843BB7A36237563308511DDBE5D001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setElseSequence(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843BB7A36237560308511DD9FC3001742153E0C", /* mofId of reference */ "4843BB7A36237563308511DDBE5D001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getThenSequence() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -177,12 +177,12 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
     public void setThenSequence(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843BC3FAB9FE7B0308511DDB50E001742153E0C", /* mofId of reference */ "4843BC3FAB9FE7B3308511DD8993001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setThenSequence(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843BC3FAB9FE7B0308511DDB50E001742153E0C", /* mofId of reference */ "4843BC3FAB9FE7B3308511DD8993001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getCondition() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -197,12 +197,12 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
     public void setCondition(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843C95D7CE2E730308D11DDAEC3001742153E0C", /* mofId of reference */ "4843C95D7CE2E733308D11DDC3AC001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setCondition(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843C95D7CE2E730308D11DDAEC3001742153E0C", /* mofId of reference */ "4843C95D7CE2E733308D11DDC3AC001742153E0C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter
@@ -283,7 +283,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -329,7 +329,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -345,7 +345,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -361,7 +361,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -377,7 +377,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -424,6 +424,7 @@ public final class ConditionalElementImpl extends com.sap.tc.moin.repository.cor
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConditionalElement> get___JmiInterface() {
         return tcs.ConditionalElement.class;
     }

@@ -39,7 +39,7 @@
 <links.PictogramLink m:c='1' m:i='4942B30817179983C87E11DDADD5C05E7F000001'/>
 <links.DiagramLink m:c='1' m:i='4942B30817179984C87E11DD91C4C05E7F000001'/>
 <pictograms.ContainerShape m:c='1' m:i='4942B31921159540C87E11DDAC5FC05E7F000001' visible='true' active='true'/>
-<pictograms.RoundedRectangle m:c='1' m:i='4942B31921159541C87E11DD904CC05E7F000001' width='181' height='157' x='50' y='50' cornerHeight='15' cornerWidth='15'/>
+<pictograms.RoundedRectangle m:c='1' m:i='4942B31921159541C87E11DD904CC05E7F000001' width='291' height='157' x='50' y='50' cornerHeight='15' cornerWidth='15'/>
 <pictograms.Style m:c='1' m:i='4942B31921171BE0C87E11DD9FC1C05E7F000001' id='compartmentStyle' description=''/>
 <pictograms.Style m:c='1' m:i='4942B31921171BE1C87E11DD98A2C05E7F000001' renderingStyle='4942B31921171BE4C87E11DDC716C05E7F000001' id='classStyle' description=''/>
 <datatypes.Color m:c='1' m:i='4942B31921171BE2C87E11DDC842C05E7F000001' red='98' green='131' blue='167'/>
@@ -49,35 +49,35 @@
 <pictograms.ContainerShape m:c='1' m:i='4942B31921171BE6C87E11DD9866C05E7F000001' visible='true' active='false'>
 <properties key='COMPARTMENT_TYPE' value='compartmentTypeHeader'/>
 </pictograms.ContainerShape>
-<pictograms.Rectangle m:c='1' m:i='4942B31921171BE7C87E11DDBB5AC05E7F000001' width='171' height='20' x='5' y='8'/>
+<pictograms.Rectangle m:c='1' m:i='4942B31921171BE7C87E11DDBB5AC05E7F000001' width='281' height='20' x='5' y='8'/>
 <pictograms.Style m:c='1' m:i='4942B31921171BE8C87E11DD9580C05E7F000001' filled='false' lineVisible='false' id='innerCompartmentStyle' description=''/>
 <pictograms.Shape m:c='1' m:i='4942B31921171BE9C87E11DD8EE4C05E7F000001' visible='true' active='false'/>
 <links.PictogramLink m:c='1' m:i='4942B31921171BEAC87E11DDC34DC05E7F000001'/>
-<pictograms.Text m:c='1' m:i='4942B31921171BEBC87E11DD9044C05E7F000001' width='171' height='20' x='0' y='0' value='EnumerationTest'/>
+<pictograms.Text m:c='1' m:i='4942B31921171BEBC87E11DD9044C05E7F000001' width='281' height='20' x='0' y='0' value='EnumerationTest'/>
 <pictograms.Style m:c='1' m:i='4942B31921171BECC87E11DDBAB0C05E7F000001' id='textStyle' description=''/>
 <pictograms.Style m:c='1' m:i='4942B31921171BEDC87E11DDB513C05E7F000001' id='objectNameStyle' description='' font='4942B31921171BEEC87E11DD8820C05E7F000001' horizontalAlignment='ALIGNMENT_CENTER'/>
 <pictograms.Font m:c='1' m:i='4942B31921171BEEC87E11DD8820C05E7F000001' name='Arial' size='8' italic='false' bold='true'/>
 <links.PictogramLink m:c='1' m:i='4942B31921171BEFC87E11DDAF63C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B31921171BF0C87E11DDA7C2C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B31921171BF1C87E11DDB284C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='181' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='291' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.Style m:c='1' m:i='4942B31921171BF2C87E11DD90B5C05E7F000001' id='separatorStyle' description=''/>
 <pictograms.Style m:c='1' m:i='4942B31921171BF3C87E11DDBF8EC05E7F000001' id='classSeparatorStyle' description=''/>
 <pictograms.ContainerShape m:c='1' m:i='4942B31921171BF4C87E11DDC674C05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='0'/>
 </pictograms.ContainerShape>
-<pictograms.Rectangle m:c='1' m:i='4942B31921171BF5C87E11DDC7ECC05E7F000001' width='171' height='120' x='5' y='28'/>
+<pictograms.Rectangle m:c='1' m:i='4942B31921171BF5C87E11DDC7ECC05E7F000001' width='281' height='120' x='5' y='28'/>
 <pictograms.Shape m:c='1' m:i='4942B3192118A280C87E11DDA2CEC05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B3192118A281C87E11DD9A58C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='148' radius='0'/>
-<points x='181' y='148' radius='0'/>
+<points x='0' y='148' before='0' after='0'/>
+<points x='291' y='148' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B3192118A282C87E11DDB537C05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='1'/>
 </pictograms.ContainerShape>
-<pictograms.Rectangle m:c='1' m:i='4942B3192118A283C87E11DD8DEBC05E7F000001' width='171' height='7' x='5' y='148'/>
+<pictograms.Rectangle m:c='1' m:i='4942B3192118A283C87E11DD8DEBC05E7F000001' width='281' height='7' x='5' y='148'/>
 <pictograms.ChopboxAnchor m:c='1' m:i='4942B3192118A284C87E11DD949DC05E7F000001' visible='false' active='false'/>
 <pictograms.ChopboxAnchor m:c='1' m:i='4942B3192118A285C87E11DDC820C05E7F000001' visible='false' active='false'/>
 <pictograms.Style m:c='1' m:i='4942B3805E3837C1C87E11DD94C0C05E7F000001' id='compartmentElementStyle' description=''/>
@@ -94,12 +94,12 @@
 <pictograms.Rectangle m:c='1' m:i='4942B3A87613DA73C87E11DD8CCDC05E7F000001' width='186' height='20' x='5' y='8'/>
 <pictograms.Shape m:c='1' m:i='4942B3A87613DA74C87E11DD9EE9C05E7F000001' visible='true' active='false'/>
 <links.PictogramLink m:c='1' m:i='4942B3A87613DA75C87E11DD8A06C05E7F000001'/>
-<pictograms.Text m:c='1' m:i='4942B3A87613DA76C87E11DD840EC05E7F000001' width='186' height='20' x='0' y='0' value='Enum: EnumerationTestType'/>
+<pictograms.Text m:c='1' m:i='4942B3A87613DA76C87E11DD840EC05E7F000001' width='186' height='20' x='0' y='0' value='Enumeration: EnumerationTestType'/>
 <links.PictogramLink m:c='1' m:i='4942B3A876156110C87E11DD88ACC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B3A876156111C87E11DD9B76C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B3A876156112C87E11DDA0A5C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='196' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='196' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.Style m:c='1' m:i='4942B3A876156113C87E11DD8A6AC05E7F000001' id='enumTypeSeparatorStyle' description=''/>
 <pictograms.ContainerShape m:c='1' m:i='4942B3A876156114C87E11DD8AEDC05E7F000001' visible='true' active='true'>
@@ -137,37 +137,37 @@
 <pictograms.Text m:c='1' m:i='4942B3EB9E6003FCC87E11DDB834C05E7F000001' width='166' height='20' x='20' y='0' value='Label2'/>
 <links.PictogramLink m:c='1' m:i='4942B3EB9E6003FDC87E11DDA66CC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B4900076CB51C87F11DDBEF1C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B490007851F0C87F11DD96DAC05E7F000001' width='171' height='20' x='0' y='0'/>
+<pictograms.Rectangle m:c='1' m:i='4942B490007851F0C87F11DD96DAC05E7F000001' width='281' height='20' x='0' y='0'/>
 <pictograms.Image m:c='1' m:i='4942B490007851F1C87F11DD94CBC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B490007851F2C87F11DDB366C05E7F000001' width='151' height='20' x='20' y='0' value='SequenceAttribute : EnumerationTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B490007851F2C87F11DDB366C05E7F000001' width='261' height='20' x='20' y='0' value='SequenceAttribute : EnumerationTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B490007851F3C87F11DDB93EC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B490007851F4C87F11DDAC08C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B490007851F5C87F11DDB372C05E7F000001' width='171' height='20' x='0' y='20'/>
+<pictograms.Rectangle m:c='1' m:i='4942B490007851F5C87F11DDB372C05E7F000001' width='281' height='20' x='0' y='20'/>
 <pictograms.Image m:c='1' m:i='4942B490007851F6C87F11DDC916C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B490007851F7C87F11DD919AC05E7F000001' width='151' height='20' x='20' y='0' value='SetAttribute : EnumerationTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B490007851F7C87F11DD919AC05E7F000001' width='261' height='20' x='20' y='0' value='SetAttribute : EnumerationTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B490007851F8C87F11DDABA6C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B490007851F9C87F11DD9008C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B490007851FAC87F11DDB12AC05E7F000001' width='171' height='20' x='0' y='40'/>
+<pictograms.Rectangle m:c='1' m:i='4942B490007851FAC87F11DDB12AC05E7F000001' width='281' height='20' x='0' y='40'/>
 <pictograms.Image m:c='1' m:i='4942B490007851FBC87F11DD81CBC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B490007851FCC87F11DD882DC05E7F000001' width='151' height='20' x='20' y='0' value='OrderedSetAttribute : EnumerationTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B490007851FCC87F11DD882DC05E7F000001' width='261' height='20' x='20' y='0' value='OrderedSetAttribute : EnumerationTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B490007851FDC87F11DD8A29C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B490007851FEC87F11DD80C0C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B490007851FFC87F11DDA9D6C05E7F000001' width='171' height='20' x='0' y='60'/>
+<pictograms.Rectangle m:c='1' m:i='4942B490007851FFC87F11DDA9D6C05E7F000001' width='281' height='20' x='0' y='60'/>
 <pictograms.Image m:c='1' m:i='4942B4900079D890C87F11DDAB2EC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B4900079D891C87F11DD8709C05E7F000001' width='151' height='20' x='20' y='0' value='SimpleAttribute : EnumerationTestType'/>
+<pictograms.Text m:c='1' m:i='4942B4900079D891C87F11DD8709C05E7F000001' width='261' height='20' x='20' y='0' value='SimpleAttribute : EnumerationTestType'/>
 <links.PictogramLink m:c='1' m:i='4942B4900079D892C87F11DDAC77C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B4900079D893C87F11DD9A35C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B4900079D894C87F11DDC9B2C05E7F000001' width='171' height='20' x='0' y='80'/>
+<pictograms.Rectangle m:c='1' m:i='4942B4900079D894C87F11DDC9B2C05E7F000001' width='281' height='20' x='0' y='80'/>
 <pictograms.Image m:c='1' m:i='4942B4900079D895C87F11DD9AD7C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B4900079D896C87F11DD92FAC05E7F000001' width='151' height='20' x='20' y='0' value='OptionalSimpeAttribute : EnumerationTestType'/>
+<pictograms.Text m:c='1' m:i='4942B4900079D896C87F11DD92FAC05E7F000001' width='261' height='20' x='20' y='0' value='OptionalSimpleAttribute : EnumerationTestType [0..1]'/>
 <links.PictogramLink m:c='1' m:i='4942B4900079D897C87F11DD9869C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B4900079D898C87F11DDC8A1C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B4900079D899C87F11DD8E80C05E7F000001' width='171' height='20' x='0' y='100'/>
+<pictograms.Rectangle m:c='1' m:i='4942B4900079D899C87F11DD8E80C05E7F000001' width='281' height='20' x='0' y='100'/>
 <pictograms.Image m:c='1' m:i='4942B4900079D89AC87F11DDB913C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B4900079D89BC87F11DDC243C05E7F000001' width='151' height='20' x='20' y='0' value='BagAttribute : EnumerationTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B4900079D89BC87F11DDC243C05E7F000001' width='261' height='20' x='20' y='0' value='BagAttribute : EnumerationTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B4900079D89CC87F11DD9614C05E7F000001'/>
 <pictograms.ContainerShape m:c='1' m:i='4942B4B616D17350C87F11DDB336C05E7F000001' visible='true' active='true'/>
-<pictograms.RoundedRectangle m:c='1' m:i='4942B4B616D17351C87F11DD8181C05E7F000001' width='182' height='170' x='72' y='435' cornerHeight='0' cornerWidth='0'/>
+<pictograms.RoundedRectangle m:c='1' m:i='4942B4B616D17351C87F11DD8181C05E7F000001' width='182' height='170' x='220' y='454' cornerHeight='0' cornerWidth='0'/>
 <pictograms.Style m:c='1' m:i='4942B4B616D2F9F0C87F11DDCCAAC05E7F000001' renderingStyle='4942B4B616D2F9F1C87F11DDA600C05E7F000001' id='struTypeStyle' description=''/>
 <pictograms.RenderingStyle m:c='1' m:i='4942B4B616D2F9F1C87F11DDA600C05E7F000001' predefinedStyleId='blue-white'/>
 <links.PictogramLink m:c='1' m:i='4942B4B616D2F9F2C87F11DDBC32C05E7F000001'/>
@@ -181,8 +181,8 @@
 <links.PictogramLink m:c='1' m:i='4942B4B616D48090C87F11DD8EC9C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B4B616D48091C87F11DDBE36C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B4B616D48092C87F11DDA5B1C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='182' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='182' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.Style m:c='1' m:i='4942B4B616D48093C87F11DDC4B7C05E7F000001' id='struTypeSeparatorStyle' description=''/>
 <pictograms.ContainerShape m:c='1' m:i='4942B4B616D48094C87F11DD884BC05E7F000001' visible='true' active='true'>
@@ -227,65 +227,65 @@
 <pictograms.Text m:c='1' m:i='4942B50C4A74E706C87F11DD83C4C05E7F000001' width='152' height='20' x='20' y='0' value='LongStructField : Long'/>
 <links.PictogramLink m:c='1' m:i='4942B50C4A74E707C87F11DDC93FC05E7F000001'/>
 <pictograms.ContainerShape m:c='1' m:i='4942B51D545A78C0C87F11DD8818C05E7F000001' visible='true' active='true'/>
-<pictograms.RoundedRectangle m:c='1' m:i='4942B51D545A78C1C87F11DD9900C05E7F000001' width='150' height='157' x='-88' y='460' cornerHeight='15' cornerWidth='15'/>
+<pictograms.RoundedRectangle m:c='1' m:i='4942B51D545A78C1C87F11DD9900C05E7F000001' width='269' height='164' x='-88' y='460' cornerHeight='15' cornerWidth='15'/>
 <links.PictogramLink m:c='1' m:i='4942B51D545A78C2C87F11DD81CCC05E7F000001'/>
 <pictograms.ContainerShape m:c='1' m:i='4942B51D545A78C3C87F11DDC86BC05E7F000001' visible='true' active='false'>
 <properties key='COMPARTMENT_TYPE' value='compartmentTypeHeader'/>
 </pictograms.ContainerShape>
-<pictograms.Rectangle m:c='1' m:i='4942B51D545A78C4C87F11DDCDE9C05E7F000001' width='140' height='20' x='5' y='8'/>
+<pictograms.Rectangle m:c='1' m:i='4942B51D545A78C4C87F11DDCDE9C05E7F000001' width='259' height='20' x='5' y='8'/>
 <pictograms.Shape m:c='1' m:i='4942B51D545A78C5C87F11DDB73EC05E7F000001' visible='true' active='false'/>
 <links.PictogramLink m:c='1' m:i='4942B51D545A78C6C87F11DD9DF8C05E7F000001'/>
-<pictograms.Text m:c='1' m:i='4942B51D545A78C7C87F11DDA9B9C05E7F000001' width='140' height='20' x='0' y='0' value='StructureTest'/>
+<pictograms.Text m:c='1' m:i='4942B51D545A78C7C87F11DDA9B9C05E7F000001' width='259' height='20' x='0' y='0' value='StructureTest'/>
 <links.PictogramLink m:c='1' m:i='4942B51D545A78C8C87F11DD9B4CC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B51D545A78C9C87F11DDA126C05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B51D545A78CAC87F11DDCA66C05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='28' radius='0'/>
-<points x='150' y='28' radius='0'/>
+<points x='0' y='28' before='0' after='0'/>
+<points x='269' y='28' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B51D545A78CBC87F11DDCB43C05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='0'/>
 </pictograms.ContainerShape>
-<pictograms.Rectangle m:c='1' m:i='4942B51D545BFF60C87F11DD80E4C05E7F000001' width='140' height='120' x='5' y='28'/>
+<pictograms.Rectangle m:c='1' m:i='4942B51D545BFF60C87F11DD80E4C05E7F000001' width='259' height='120' x='5' y='28'/>
 <pictograms.Shape m:c='1' m:i='4942B51D545BFF61C87F11DDC81CC05E7F000001' visible='true' active='false'/>
 <pictograms.Polyline m:c='1' m:i='4942B51D545BFF62C87F11DDC60CC05E7F000001' width='0' height='0' x='0' y='0'>
-<points x='0' y='148' radius='0'/>
-<points x='150' y='148' radius='0'/>
+<points x='0' y='148' before='0' after='0'/>
+<points x='269' y='148' before='0' after='0'/>
 </pictograms.Polyline>
 <pictograms.ContainerShape m:c='1' m:i='4942B51D545BFF63C87F11DD8C89C05E7F000001' visible='true' active='true'>
 <properties key='compartmentNumber' value='1'/>
 </pictograms.ContainerShape>
-<pictograms.Rectangle m:c='1' m:i='4942B51D545BFF64C87F11DDAC9DC05E7F000001' width='140' height='7' x='5' y='148'/>
+<pictograms.Rectangle m:c='1' m:i='4942B51D545BFF64C87F11DDAC9DC05E7F000001' width='259' height='7' x='5' y='148'/>
 <pictograms.ChopboxAnchor m:c='1' m:i='4942B51D545BFF65C87F11DD89F0C05E7F000001' visible='false' active='false'/>
 <pictograms.ChopboxAnchor m:c='1' m:i='4942B51D545BFF66C87F11DDAE22C05E7F000001' visible='false' active='false'/>
 <pictograms.Shape m:c='1' m:i='4942B5AFABAB1260C87F11DDCEDBC05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B5AFABAB1261C87F11DDA352C05E7F000001' width='140' height='20' x='0' y='0'/>
+<pictograms.Rectangle m:c='1' m:i='4942B5AFABAB1261C87F11DDA352C05E7F000001' width='259' height='20' x='0' y='0'/>
 <pictograms.Image m:c='1' m:i='4942B5AFABAB1262C87F11DDAE2FC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B5AFABAB1263C87F11DD8091C05E7F000001' width='120' height='20' x='20' y='0' value='SequenceAttribute : StructureTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B5AFABAB1263C87F11DD8091C05E7F000001' width='239' height='20' x='20' y='0' value='SequenceAttribute : StructureTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B5AFABAB1264C87F11DD8A47C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B5AFABAB1265C87F11DD8ECDC05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B5AFABAB1266C87F11DDA72AC05E7F000001' width='140' height='20' x='0' y='20'/>
+<pictograms.Rectangle m:c='1' m:i='4942B5AFABAB1266C87F11DDA72AC05E7F000001' width='259' height='20' x='0' y='20'/>
 <pictograms.Image m:c='1' m:i='4942B5AFABAB1267C87F11DDBB26C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B5AFABAB1268C87F11DDB20DC05E7F000001' width='120' height='20' x='20' y='0' value='SetAttribute : StructureTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B5AFABAB1268C87F11DDB20DC05E7F000001' width='239' height='20' x='20' y='0' value='SetAttribute : StructureTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B5AFABAC9900C87F11DDB056C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B5AFABAC9901C87F11DDAFEEC05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B5AFABAC9902C87F11DDA1ABC05E7F000001' width='140' height='20' x='0' y='40'/>
+<pictograms.Rectangle m:c='1' m:i='4942B5AFABAC9902C87F11DDA1ABC05E7F000001' width='259' height='20' x='0' y='40'/>
 <pictograms.Image m:c='1' m:i='4942B5AFABAC9903C87F11DD9158C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B5AFABAC9904C87F11DD8726C05E7F000001' width='120' height='20' x='20' y='0' value='OrderdSetAttribute : StructureTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B5AFABAC9904C87F11DD8726C05E7F000001' width='239' height='20' x='20' y='0' value='OrderdSetAttribute : StructureTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B5AFABAC9905C87F11DDB43FC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B5AFABAC9906C87F11DDB276C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B5AFABAC9907C87F11DDCFE3C05E7F000001' width='140' height='20' x='0' y='60'/>
+<pictograms.Rectangle m:c='1' m:i='4942B5AFABAC9907C87F11DDCFE3C05E7F000001' width='259' height='20' x='0' y='60'/>
 <pictograms.Image m:c='1' m:i='4942B5AFABAC9908C87F11DDA1AFC05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B5AFABAC9909C87F11DDAB60C05E7F000001' width='120' height='20' x='20' y='0' value='SimpleAttribute : StructureTestType'/>
+<pictograms.Text m:c='1' m:i='4942B5AFABAC9909C87F11DDAB60C05E7F000001' width='239' height='20' x='20' y='0' value='SimpleAttribute : StructureTestType'/>
 <links.PictogramLink m:c='1' m:i='4942B5AFABAC990AC87F11DDC535C05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B5AFABAC990BC87F11DD9A10C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B5AFABAC990CC87F11DDA4DDC05E7F000001' width='140' height='20' x='0' y='80'/>
+<pictograms.Rectangle m:c='1' m:i='4942B5AFABAC990CC87F11DDA4DDC05E7F000001' width='259' height='20' x='0' y='80'/>
 <pictograms.Image m:c='1' m:i='4942B5AFABAC990DC87F11DD8331C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B5AFABAC990EC87F11DD8E35C05E7F000001' width='120' height='20' x='20' y='0' value='OptionalSimpleAttribute : StructureTestType'/>
+<pictograms.Text m:c='1' m:i='4942B5AFABAC990EC87F11DD8E35C05E7F000001' width='239' height='20' x='20' y='0' value='OptionalSimpleAttribute : StructureTestType [0..1]'/>
 <links.PictogramLink m:c='1' m:i='4942B5AFABAE1FA0C87F11DDC64BC05E7F000001'/>
 <pictograms.Shape m:c='1' m:i='4942B5AFABAE1FA1C87F11DD82E4C05E7F000001' visible='true' active='true'/>
-<pictograms.Rectangle m:c='1' m:i='4942B5AFABAE1FA2C87F11DDB632C05E7F000001' width='140' height='20' x='0' y='100'/>
+<pictograms.Rectangle m:c='1' m:i='4942B5AFABAE1FA2C87F11DDB632C05E7F000001' width='259' height='20' x='0' y='100'/>
 <pictograms.Image m:c='1' m:i='4942B5AFABAE1FA3C87F11DD9C65C05E7F000001' lineWidth='1' lineStyle='SOLID' filled='true' lineVisible='true' transparency='0.0' width='20' height='20' x='0' y='0' id='com.sap.ide.moftool.editor.graphics.img_empty' stretchH='false' stretchV='false' proportional='false'/>
-<pictograms.Text m:c='1' m:i='4942B5AFABAE1FA4C87F11DDA7C3C05E7F000001' width='120' height='20' x='20' y='0' value='BagAttribute : StructureTestType [0..*]'/>
+<pictograms.Text m:c='1' m:i='4942B5AFABAE1FA4C87F11DDA7C3C05E7F000001' width='239' height='20' x='20' y='0' value='BagAttribute : StructureTestType [0..*]'/>
 <links.PictogramLink m:c='1' m:i='4942B5AFABAE1FA5C87F11DDAE35C05E7F000001'/>
 <links.PictogramLinkReferencesBusinessObjects c='1'>
 <L f='local:4942B2EC061DBE70C87E11DD9F80C05E7F000001' s='4942B30817179983C87E11DDADD5C05E7F000001'/>

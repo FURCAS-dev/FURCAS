@@ -64,6 +64,7 @@ public final class EnumerationTemplateEnumLiteralMappingImpl extends com.sap.tc.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EnumerationTemplateEnumLiteralMapping> get___JmiInterface() {
         return tcs.EnumerationTemplateEnumLiteralMapping.class;
     }

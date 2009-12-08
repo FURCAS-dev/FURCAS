@@ -80,17 +80,17 @@ syntax MofPackage {
   	:  [[ type{as=qualifiedNameSymbol, query="OCL:
 			let t=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
   				i; acc:Tuple(pos:Integer, ns:Set(Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
-    				let namePart=s.subString(acc.pos, -1+i) in
+    				let namePart=?.subString(acc.pos, -1+i) in
       				Tuple{pos=i+2,
       				      ns=if acc.ns=null then
             			  	Namespace.allInstances()->select(
               					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
               			  else
-              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)->asSet()
               			  endif,
             			  qn=acc.qn.concat('::').concat(namePart)}) in
 				t.ns.contents",
-		filter="->select(c | c.name=s.subString(t.pos, s.size()))"}
+		filter="->select(c | c.name=?.subString(t.pos, ?.size()))"}
   	  |
   	  	type{as=identifier, query="OCL:Model::Classifier.allInstances()",
   	  		 filter="->select(name=?)"}

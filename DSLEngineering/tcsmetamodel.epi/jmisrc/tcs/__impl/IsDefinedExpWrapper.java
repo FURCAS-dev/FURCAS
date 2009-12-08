@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class IsDefinedExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.IsDefinedExpImpl> implements tcs.IsDefinedExp,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class IsDefinedExpWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.IsDefinedExpImpl getCastWrappedObject() {
         return (tcs.__impl.IsDefinedExpImpl) getWrappedObject();
     }
@@ -179,6 +180,7 @@ public class IsDefinedExpWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.IsDefinedExp> get___JmiInterface() {
         return tcs.IsDefinedExp.class;
     }

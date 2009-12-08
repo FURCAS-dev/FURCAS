@@ -125,6 +125,7 @@ public class TextBlockSequenceElementWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextBlockSequenceElement> get___JmiInterface() {
         return textblocks.TextBlockSequenceElement.class;
     }

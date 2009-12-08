@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class OctalMappingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.OctalMappingImpl> implements tcs.OctalMapping,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class OctalMappingWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private tcs.__impl.OctalMappingImpl getCastWrappedObject() {
         return (tcs.__impl.OctalMappingImpl) getWrappedObject();
     }
@@ -135,6 +136,7 @@ public class OctalMappingWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OctalMapping> get___JmiInterface() {
         return tcs.OctalMapping.class;
     }
