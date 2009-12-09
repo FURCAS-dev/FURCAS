@@ -13,7 +13,7 @@ Export-Package: org.eclipse.emf.query.examples.ocl,
 Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.ui;bundle-version="[3.2.0,4.0.0)",
  org.eclipse.emf.query.ocl;bundle-version="[1.2.0,2.0.0)",
- org.eclipse.ocl.ecore;bundle-version="[1.1.0,2.0.0)",
+ org.eclipse.ocl.ecore;bundle-version="[3.0.0,4.0.0)",
  org.eclipse.emf.examples.library.editor;bundle-version="[2.3.0,3.0.0)"
 Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
