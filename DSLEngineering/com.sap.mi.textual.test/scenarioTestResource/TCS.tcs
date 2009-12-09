@@ -289,7 +289,19 @@ syntax TCS {
 								query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
 							filter="->select(t | 
 									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
-										t.oclAsType(TCS::ClassTemplate).metaReference.name = ?
+				let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  					i; acc:Tuple(pos:Integer, ns:Set(MOF::Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=?.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)->asSet()
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+            			  e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))->asSequence()->at(1) =
+										t.oclAsType(TCS::ClassTemplate).metaReference.name
 										and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
 											->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
 											->includes(self.foreachParent.propertyReference.strucfeature.type)
