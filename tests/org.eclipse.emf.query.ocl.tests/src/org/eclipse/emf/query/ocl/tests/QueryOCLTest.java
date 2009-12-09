@@ -12,10 +12,14 @@
  *
  * </copyright>
  *
- * $Id: QueryOCLTest.java,v 1.3 2007/11/14 18:21:55 cdamus Exp $
+ * $Id: QueryOCLTest.java,v 1.4 2009/12/09 09:04:49 bkolb Exp $
  */
 
 package org.eclipse.emf.query.ocl.tests;
+
+import junit.framework.Test;
+import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import org.eclipse.emf.examples.extlibrary.Book;
 import org.eclipse.emf.examples.extlibrary.EXTLibraryFactory;
@@ -24,14 +28,13 @@ import org.eclipse.emf.examples.extlibrary.Library;
 import org.eclipse.emf.examples.extlibrary.Writer;
 import org.eclipse.emf.query.conditions.eobjects.EObjectSource;
 import org.eclipse.emf.query.conditions.eobjects.structuralfeatures.EStructuralFeatureValueGetter;
-import org.eclipse.emf.query.ocl.conditions.OCLConstraintCondition;
+import org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.ecore.OCL;
 
 
 public class QueryOCLTest
@@ -66,10 +69,10 @@ public class QueryOCLTest
 		}
 	}
 	
-	public void testTrivialOclCondition() {
+	public void testTrivialOclCondition() throws ParserException {
 		SELECT s = new SELECT(
 			new FROM(new EObjectSource(library)),
-			new WHERE(new OCLConstraintCondition(
+			new WHERE(new BooleanOCLCondition(OCL.newInstance().getEnvironment(),
 				"true", //$NON-NLS-1$
 				null,
 				EStructuralFeatureValueGetter.getInstance())));
@@ -79,10 +82,10 @@ public class QueryOCLTest
 		assertEquals(3, result.size());
 	}
 	
-	public void testSimpleOclCondition() {
+	public void testSimpleOclCondition() throws ParserException {
 		SELECT s = new SELECT(
 			new FROM(new EObjectSource(library)),
-			new WHERE(new OCLConstraintCondition(
+			new WHERE(new BooleanOCLCondition(OCL.newInstance().getEnvironment(),
 				"title = 'bar'", //$NON-NLS-1$
 				null,
 				EStructuralFeatureValueGetter.getInstance())));
@@ -92,10 +95,10 @@ public class QueryOCLTest
 		assertEquals(1, result.size());
 	}
 	
-	public void testOclCondition() {
+	public void testOclCondition() throws ParserException {
 		SELECT s = new SELECT(
 			new FROM(new EObjectSource(library)),
-			new WHERE(new OCLConstraintCondition(
+			new WHERE(new BooleanOCLCondition(OCL.newInstance().getEnvironment(),
 				"author.name = 'aWriter'", //$NON-NLS-1$
 				EXTLibraryPackage.eINSTANCE.getBook(),
 				EStructuralFeatureValueGetter.getInstance())));
