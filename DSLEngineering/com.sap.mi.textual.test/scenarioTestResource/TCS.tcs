@@ -18,7 +18,9 @@ syntax TCS {
 
 	primitiveTemplate floatSymbol for PrimitiveTypes::Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
-
+       
+        primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
+                value = "unescapeString(%token%)";
 
 	-- MOF element representation in qualified names
 	
@@ -285,7 +287,8 @@ syntax TCS {
 		template TCS::PredicateSemantic
 		: (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
 		  (isDefined(mode)?  "mode" "=" mode {as = stringSymbol}",")
-		  "as" "=" as {as = identifierOrKeyword, 
+		  [[
+		  "as" "=" as {as = qualifiedNameSymbol, 
 								query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
 							filter="->select(t | 
 									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
@@ -301,7 +304,7 @@ syntax TCS {
               			  endif,
             			  qn=acc.qn.concat('::').concat(namePart)}) in
             			  e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))->asSequence()->at(1) =
-										t.oclAsType(TCS::ClassTemplate).metaReference.name
+										t.oclAsType(TCS::ClassTemplate).metaReference
 										and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
 											->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
 											->includes(self.foreachParent.propertyReference.strucfeature.type)
@@ -329,6 +332,40 @@ syntax TCS {
 												'<no name?>'
 											endif
 										endif"}
+			|
+			  "as" "=" as {as = identifierOrKeyword, 
+                                                                query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
+                                                        filter="->select(t | 
+                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+                                                                                t.oclAsType(TCS::ClassTemplate).metaReference = ?
+                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
+                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
+                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)
+                                                                                and (
+                                                                                        if(not self.mode.oclIsUndefined()) then
+                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode
+                                                                                        else
+                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
+                                                                                        endif
+                                                                                )                                                                       
+                                                                        else
+                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?
+                                                                                else
+                                                                                        false
+                                                                                endif
+                                                                        endif)
+                                                                ",
+                                                        invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+                                                                                        self.oclAsType(TCS::ClassTemplate).metaReference.name
+                                                                                else 
+                                                                                        if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+                                                                                                self.oclAsType(TCS::PrimitiveTemplate).templateName
+                                                                                        else
+                                                                                                '<no name?>'
+                                                                                        endif
+                                                                                endif"}
+			]]
 		;
 
 -- @end Sequence Elements
@@ -688,7 +725,8 @@ syntax TCS {
 		qmark		= "?";
 		dollar		= "$";
 		arobas		= "@";
-
+                --DCOLON = "::";
+                
 		-- operator symbols
 		point		= ".";
 		rarrow		= "->";
@@ -756,10 +794,12 @@ SNAME
 	:	(ALPHA) (ALPHA | DIGIT)* 
 ;
 
-
+QNAME
+        : SNAME '::' SNAME ('::' SNAME )*
+        ;
 NAME
 	:	(   
-		SNAME
+		      (SNAME ~':')=>SNAME
 		|	'\\''!  // exclamation marks means to exclude the char from the token (in theory)
 			(	ESC
 			|	'\\n' {newline();}
