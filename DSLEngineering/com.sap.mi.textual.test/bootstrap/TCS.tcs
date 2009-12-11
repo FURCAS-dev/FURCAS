@@ -3,7 +3,7 @@
 -- Comments begin with -- and end with the end of the line
 syntax TCS {
 
-	primitiveTemplate identifier for PrimitiveTypes::String default using NAME:
+	primitiveTemplate identifier for PrimitiveTypes::String default using NAME :
 		value = "unescapeString(%token%)";
 
 	primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:
@@ -18,33 +18,38 @@ syntax TCS {
 
 	primitiveTemplate floatSymbol for PrimitiveTypes::Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
-
+       
+        primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
+                value = "unescapeString(%token%)";
+                
+          primitiveTemplate qualifiedNameSymbolList for PrimitiveTypes::String using QNAME:
+                value = "java.util.Arrays.asList(unescapeString(%token%).split(\"::\"))";
 
 	-- MOF element representation in qualified names
 	
 	-- A modelClassifier is either its container followed by :: and a name, or just a name
-	template Model::Classifier referenceOnly -- should never be created
-	: ( isDefined(container) ? container   -- is of type Namespace in MM
-	  "::" name : name)
-	;
+--	template Model::Classifier referenceOnly -- should never be created
+--	: ( isDefined(container) ? container   -- is of type Namespace in MM
+--	  "::" name : name)
+--	;
 	
 	
 	-- Namespace gets operatored using the :: operator to resolve left recursion
-	template Model::Namespace abstract operatored(DBLCOLON);
+--	template Model::Namespace abstract operatored(DBLCOLON);
 	
 	-- if parsed path has more than one element, 
 	-- the first will be of type Generalizable element
 	-- because that is the type of Mode::ModelElement.container
-	template Model::GeneralizableElement referenceOnly -- should never be created
-		: name
-		;
+--	template Model::GeneralizableElement referenceOnly -- should never be created
+--		: name
+--		;
 		
 	-- any following elements in a package path will be resolved using this
-	operatorTemplate Model::ModelElement(operators =
-			opDlColon, source = 'container') referenceOnly -- should never be created
-		:
-			name
-		;
+--	operatorTemplate Model::ModelElement(operators =
+--			opDlColon, source = 'container') referenceOnly -- should never be created
+--		:
+--			name
+--		;
 
 	-- end MOF element representation
 
@@ -72,8 +77,31 @@ syntax TCS {
 	-- utility for all qualified meta references
 	function reference(TCS::QualifiedNamedElement)
 		: (isDefined(metaReference) 
-		  ? metaReference--{refersTo=name}
-		  : "->" names{separator="::"}) -- workaround allowing to specify metatypes without directly referencing them
+		  ? [[
+		  	metaReference{as=qualifiedNameSymbol,
+		  	query="let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  					i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=?.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)->asSet()
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+            			  e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))",
+            		filter="",
+            		invert="let qname = self.getQualifiedName()->iterate(n, qn | qn=qn.concat('::'.concat(q))).substring(3, qname.size())"
+		  	} 
+		  	|
+		  	metaReference{as=identifier, query="Classifier.allInstances()", filter="->select(c | c.name = ?)", invert="name"}
+		  	]]
+		  : [[
+		  	"->" names{as=qualifiedNameSymbolList} -- workaround allowing to specify metatypes without directly referencing them
+		  	|
+		  	"->" names{as=identifier, forcedUpper=1, forcedLower=1} -- workaround allowing to specify metatypes without directly referencing them
+		    ]])
 		;
 
 -- @begin Templates
@@ -285,11 +313,24 @@ syntax TCS {
 		template TCS::PredicateSemantic
 		: (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
 		  (isDefined(mode)?  "mode" "=" mode {as = stringSymbol}",")
-		  "as" "=" as {as = identifierOrKeyword, 
-								query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
-							filter="->select(t | 
-									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
-										t.oclAsType(TCS::ClassTemplate).metaReference.name = ?
+		  "as" "=" 
+		  [[
+		  as {as = qualifiedNameSymbol, 
+					query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
+					filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+				let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  					i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=?.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)->asSet()
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+            			  e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))->asSequence()->at(1) =
+										t.oclAsType(TCS::ClassTemplate).metaReference
 										and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
 											->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
 											->includes(self.foreachParent.propertyReference.strucfeature.type)
@@ -317,6 +358,40 @@ syntax TCS {
 												'<no name?>'
 											endif
 										endif"}
+			|	
+				as {as = identifierOrKeyword, 
+                                                                query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
+                                                        filter="->select(t | 
+                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+                                                                                t.oclAsType(TCS::ClassTemplate).metaReference = ?
+                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
+                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
+                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)
+                                                                                and (
+                                                                                        if(not self.mode.oclIsUndefined()) then
+                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode
+                                                                                        else
+                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
+                                                                                        endif
+                                                                                )                                                                       
+                                                                        else
+                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
+                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?
+                                                                                else
+                                                                                        false
+                                                                                endif
+                                                                        endif)
+                                                                ",
+                                                        invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+                                                                                        self.oclAsType(TCS::ClassTemplate).metaReference.name
+                                                                                else 
+                                                                                        if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+                                                                                                self.oclAsType(TCS::PrimitiveTemplate).templateName
+                                                                                        else
+                                                                                                '<no name?>'
+                                                                                        endif
+                                                                                endif"}
+			]]
 		;
 
 -- @end Sequence Elements
@@ -338,7 +413,60 @@ syntax TCS {
 		;
 
 	template TCS::AsPArg
-		:	"as" "=" template {as = identifierOrKeyword, 
+		:	"as" "=" 
+			[[
+		  		template {as = qualifiedNameSymbol, 
+					query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
+					filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+				let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
+  					i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
+    				let namePart=?.subString(acc.pos, -1+i) in
+      				Tuple{pos=i+2,
+      				      ns=if acc.ns=null then
+            			  	Namespace.allInstances()->select(
+              					ns2 | ns2.container->isEmpty() and ns2.name=namePart)
+              			  else
+              			  	acc.ns.contents->select(ns2 | ns2.name=namePart)->asSet()
+              			  endif,
+            			  qn=acc.qn.concat('::').concat(namePart)}) in
+            			  e.ns.contents->select(c | c.name=?.subString(e.pos, ?.size()))->asSequence()->at(1) =
+										t.oclAsType(TCS::ClassTemplate).metaReference
+										and(self.property.propertyReference.strucfeature.type.allSupertypes()
+											->prepend(self.property.propertyReference.strucfeature.type)
+											->includes(t.oclAsType(TCS::ClassTemplate).metaReference))
+										and (
+											if (not self.property.propertyArgs->select(
+													arg | arg.oclIsTypeOf(TCS::ModePArg))->isEmpty()
+												) 
+											then
+												t.oclAsType(TCS::ClassTemplate).mode = 
+													self.property.propertyArgs->select(
+														arg | arg.oclIsTypeOf(TCS::ModePArg))
+															.oclAsType(TCS::ModePArg)->asSequence()->at(1)
+													.mode
+											else
+												t.oclAsType(TCS::ClassTemplate).mode.oclIsUndefined()
+											endif
+										)
+									else
+										if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
+											t.oclAsType(TCS::PrimitiveTemplate).templateName = ? 
+										else
+											false
+										endif
+									endif)
+								",
+							invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+											self.oclAsType(TCS::ClassTemplate).metaReference.name
+										else 
+											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+												self.oclAsType(TCS::PrimitiveTemplate).templateName
+											else
+												'<no name?>'
+											endif
+										endif"}
+			|
+				template {as = identifierOrKeyword, 
 								query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
 								filter="->select(t | 
 									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
@@ -377,6 +505,7 @@ syntax TCS {
 												'<no name?>'
 											endif
 										endif"}
+			]]
 		;
 
 --	template TCS::RefersToKeyPArg
@@ -540,7 +669,12 @@ syntax TCS {
 		;
 
 	template TCS::InstanceOfExp
-		:	propertyReference "instanceOf" supertype{separator = "::"}
+		:	propertyReference "instanceOf" 
+			[[
+				supertype{as=qualifiedNameSymbolList}
+		  	|
+		  		supertype{as=identifier, forcedUpper=1, forcedLower=1} 
+			]]
 		;
 
 --@end Expressions
@@ -676,7 +810,7 @@ syntax TCS {
 		qmark		= "?";
 		dollar		= "$";
 		arobas		= "@";
-
+                
 		-- operator symbols
 		point		= ".";
 		rarrow		= "->";
@@ -701,6 +835,7 @@ syntax TCS {
 	}
 
 	omitted token COMMENT	: endOfLine(start = "--");
+	omitted token MULTI_LINE_COMMENT	: multiLine(start = "/**", end = "*/");
 
 	lexer = "
 %options testLiterals = false;
@@ -741,13 +876,26 @@ ALPHA
 
 %protected
 SNAME
-	:	(ALPHA) (ALPHA | DIGIT)* 
+	:	(~ORKEYWORD)=> (ALPHA) (ALPHA | DIGIT)* 
 ;
 
+QNAME_OR_NAME :
+	   ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }
+	   |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }
+ 	   |	(~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }
+ 	   |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }
+ 	   |    ( '\\'' SNAME) => NAME { _type = NAME; }
+;
 
+%protected 
+ORKEYWORD :
+	'orKeyword'
+;
+
+%protected
 NAME
 	:	(   
-		SNAME
+		      	SNAME
 		|	'\\''!  // exclamation marks means to exclude the char from the token (in theory)
 			(	ESC
 			|	'\\n' {newline();}
@@ -756,7 +904,11 @@ NAME
 			'\\''!
 		)
 	;
-	
+
+%protected
+QNAME
+        : SNAME DLCOLON SNAME (DLCOLON SNAME )*
+        ;
 
 INT
 	:	(DIGIT)+
