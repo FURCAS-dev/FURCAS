@@ -25,6 +25,7 @@ import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.test.util.FixtureBasedTest;
 import com.sap.mi.fwk.ui.ModelManagerUI;
+import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
@@ -70,6 +71,21 @@ public class CtsEditorTest extends FixtureBasedTest {
 			throws CoreException {
 		for (Saveable s : editor.getSaveables()) {
 			s.doSave(new NullProgressMonitor());
+		}
+		int threshold = 50000;
+		int delay = 500;
+		try {
+		    while(!GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue() && threshold > 0) {
+    		
+                        Thread.sleep(delay);
+                    
+                        threshold -= delay;
+		    }
+		} catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+		if(threshold <= 0 && !GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue()) {
+		    fail("There are still delayed reference that were not re evaluted.");
 		}
 	}
 

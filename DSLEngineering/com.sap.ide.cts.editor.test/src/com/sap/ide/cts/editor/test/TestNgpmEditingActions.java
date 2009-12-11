@@ -804,6 +804,8 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		document.replace(indexofName, "test".length(), newName);
 
 		saveAll(editor);
+		//save twice to be sure all delayed references have been resolved
+	        saveAll(editor);
 
 		assertEquals(1, clazz.getElementsOfType().size());
 		ClassTypeDefinition ctd = clazz.getElementsOfType().iterator().next();
@@ -986,6 +988,8 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		document.replace(indexofName, "test".length(), newName);
 
 		saveAll(editor);
+		//save twice to be sure all delayed references have been resolved
+	        saveAll(editor);
 
 		assertEquals(clazz2, ctd.getAssociationEnd().otherEnd().getType()
 				.getClazz());
