@@ -88,7 +88,8 @@ public class ShortPrettyPrinter {
 	    // the new value comes from the value of the referenced element;
 	    for (RefObject referencedObject : token
 		    .getReferencedElements()) {
-	        if(referencedObject.refIsInstanceOf(se.getPropertyReference().getStrucfeature().getType(), true)) {
+	        if(referencedObject != null &&
+	                referencedObject.refIsInstanceOf(se.getPropertyReference().getStrucfeature().getType(), true)) {
         		RefersToParg refersToArg = TcsUtil.getRefersToParg(se);
         		try {
         		    if (TcsUtil.getFilterParg(se) != null) {

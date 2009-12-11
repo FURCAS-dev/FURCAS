@@ -60,6 +60,7 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.InvalidConnectionException;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.PRI;
+import com.sap.tc.moin.repository.PartitionEditingNotPossibleException;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
@@ -355,6 +356,10 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     public static synchronized GlobalDelayedReferenceResolver getInstance() {
 	return instance;
+    }
+    
+    public boolean hasEmptyQueue() {
+        return iaUnresolvedReferences.size() == 0;
     }
 
     public void removeRegistration(DelayedReference unresolvedRef) {
@@ -1257,50 +1262,76 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     // }
     // }
     public void resolveReferences(IProgressMonitor monitor) {
-        Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
-        final String msg = "Reevaluating OCL References...";
-        monitor.beginTask(msg, workingCopy.size());
-        for (final DelayedReference ref : workingCopy) {
+        while(iaUnresolvedReferences.size() > 0) {
+            Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(
+                    iaUnresolvedReferences);
+            final String msg = "Reevaluating OCL References...";
             monitor.beginTask(msg, workingCopy.size());
-            if(!ref.getConnection().isAlive()) {
-                Activator.logWarning("Could not re-resolve reference: " + ref + 
-                    ". Connection: " + ref.getConnection() + " is not alive anymore!");
-            } else {
-                try {
-                    final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-                            ref.getConnection(), (RefBaseObject) ref.getModelElement());
-                    ref.getConnection().getCommandStack().execute(new Command(ref.getConnection()){
+            Collection<DelayedReference> deferredReferences = new ArrayList<DelayedReference>();
+            for (final DelayedReference ref : workingCopy) {
+                monitor.beginTask(msg, workingCopy.size());
+                if (!ref.getConnection().isAlive()) {
+                    Activator.logWarning("Could not re-resolve reference: "
+                            + ref + ". Connection: " + ref.getConnection()
+                            + " is not alive anymore!");
+                } else {
+                    try {
+                        final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
+                                ref.getConnection(), (RefBaseObject) ref
+                                        .getModelElement());
+                        ref.getConnection().getCommandStack().execute(
+                                new Command(ref.getConnection()) {
 
-                        @Override
-                        public boolean canExecute() {
-                            return true;
-                        }
+                                    @Override
+                                    public boolean canExecute() {
+                                        return true;
+                                    }
 
-                        @Override
-                        public void doExecute() {
-                            reEvaluateUnresolvedRef(
-                                    ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
-                        }
+                                    @Override
+                                    public void doExecute() {
+                                        reEvaluateUnresolvedRef(ref
+                                                .getConnection(),
+                                                outermostPackage, ref, ref
+                                                        .getTextBlock());
+                                    }
 
-                        @Override
-                        public Collection<PartitionOperation> getAffectedPartitions() {
-                            PRI pri = ((Partitionable)ref.getModelElement()).get___Partition().getPri();
-                            PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
-                            return Collections.singleton(editOperation);
-                        }
-                        
-                    });
-                    
-                } catch(InvalidObjectException ex) {
-                    Activator.logWarning("Could not re-resolve reference: " + ref + 
-                        ". Element: " + ref.getModelElement() + " is not alive anymore!");
+                                    @Override
+                                    public Collection<PartitionOperation> getAffectedPartitions() {
+                                        PRI pri = ((Partitionable) ref
+                                                .getModelElement())
+                                                .get___Partition().getPri();
+                                        PartitionOperation editOperation = new PartitionOperation(
+                                                PartitionOperation.Operation.EDIT,
+                                                pri);
+                                        return Collections
+                                                .singleton(editOperation);
+                                    }
+
+                                });
+
+                    } catch (InvalidObjectException ex) {
+                        Activator.logWarning("Could not re-resolve reference: "
+                                + ref + ". Element: " + ref.getModelElement()
+                                + " is not alive anymore!");
+                    } catch (PartitionEditingNotPossibleException ex) {
+                        Activator.logWarning("Could not re-resolve reference: "
+                                + ref + ". Partition: " + ex.getPri() 
+                                + " is locked! Will try again later");
+                        deferredReferences.add(ref);
+                    } catch (Exception ex) {
+                        Activator.logError(ex, "Could not re-resolve reference: "
+                                + ref);
+                    }
                 }
+                monitor.worked(1);
             }
-            monitor.worked(1);
-        }
-        iaUnresolvedReferences.removeAll(workingCopy);
-        if(iaUnresolvedReferences.size() > 0) {
-            backgroundResolver.schedule(500);
+            //deferred references will tried to be resolved again later
+            //so dont't remove them
+            workingCopy.remove(deferredReferences);
+            iaUnresolvedReferences.removeAll(workingCopy);
+            // if(iaUnresolvedReferences.size() > 0) {
+            // backgroundResolver.schedule(500);
+            // }
         }
         monitor.done();
     }
