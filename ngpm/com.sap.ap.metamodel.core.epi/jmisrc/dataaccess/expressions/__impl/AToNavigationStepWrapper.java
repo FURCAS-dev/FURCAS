@@ -125,6 +125,7 @@ public class AToNavigationStepWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AToNavigationStep> get___JmiInterface() {
         return dataaccess.expressions.AToNavigationStep.class;
     }

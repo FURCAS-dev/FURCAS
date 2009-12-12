@@ -125,6 +125,7 @@ public class AOfClassAllWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<persistence.expressions.AOfClassAll> get___JmiInterface() {
         return persistence.expressions.AOfClassAll.class;
     }

@@ -8,7 +8,7 @@ public final class XsdPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(36);
@@ -217,6 +217,7 @@ public final class XsdPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.XsdPackage> get___JmiInterface() {
         return integration.xsd.XsdPackage.class;
     }
@@ -225,7 +226,9 @@ public final class XsdPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -311,7 +314,9 @@ public final class XsdPackageImpl extends com.sap.tc.moin.repository.core.jmi.re
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(9);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "hasElemType"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "integration.xsd.HasElemType"); //$NON-NLS-1$

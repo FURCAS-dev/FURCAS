@@ -63,6 +63,7 @@ public final class AValueConfigurationSettingImpl extends com.sap.tc.moin.reposi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AValueConfigurationSetting> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AValueConfigurationSetting.class;
     }

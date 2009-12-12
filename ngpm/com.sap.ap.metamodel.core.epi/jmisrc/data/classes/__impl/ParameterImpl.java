@@ -10,7 +10,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
@@ -90,12 +90,12 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public void setOwnedTypeDefinition(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BD63E4B11DEB7290018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0CC3E4B11DEB2590018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setOwnedTypeDefinition(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BD63E4B11DEB7290018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0CC3E4B11DEB2590018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOwnerSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -110,12 +110,12 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public void setOwnerSignature(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BE83E4B11DEC7270018DE1146FF", /* mofId of reference */ "E0234C8C51E931F63E4B11DE84550018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setOwnerSignature(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BE83E4B11DEC7270018DE1146FF", /* mofId of reference */ "E0234C8C51E931F63E4B11DE84550018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getDefaultValue() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -130,12 +130,12 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
     public void setDefaultValue(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EDECC13E4B11DE8C630018DE1146FF", /* mofId of reference */ "E0234C8C51E931F73E4B11DEC3CB0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setDefaultValue(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EDECC13E4B11DE8C630018DE1146FF", /* mofId of reference */ "E0234C8C51E931F73E4B11DEC3CB0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter
@@ -179,7 +179,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -213,7 +213,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -226,7 +226,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -239,7 +239,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -252,7 +252,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -299,6 +299,7 @@ public final class ParameterImpl extends com.sap.tc.moin.repository.core.jmi.ref
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.Parameter> get___JmiInterface() {
         return data.classes.Parameter.class;
     }

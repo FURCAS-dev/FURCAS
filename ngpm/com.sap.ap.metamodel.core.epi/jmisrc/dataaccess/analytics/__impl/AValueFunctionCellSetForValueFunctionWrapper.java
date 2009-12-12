@@ -125,6 +125,7 @@ public class AValueFunctionCellSetForValueFunctionWrapper extends com.sap.tc.moi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.AValueFunctionCellSetForValueFunction> get___JmiInterface() {
         return dataaccess.analytics.AValueFunctionCellSetForValueFunction.class;
     }

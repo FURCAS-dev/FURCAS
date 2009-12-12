@@ -6,7 +6,7 @@ package configuration.businessconfiguration.experimental.__impl;
 
 public class ConfigurationSettingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.experimental.__impl.ConfigurationSettingImpl> implements configuration.businessconfiguration.experimental.ConfigurationSetting,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ConfigurationSettingWrapper extends com.sap.tc.moin.repository.core
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private configuration.businessconfiguration.experimental.__impl.ConfigurationSettingImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.experimental.__impl.ConfigurationSettingImpl) getWrappedObject();
     }
@@ -122,6 +123,7 @@ public class ConfigurationSettingWrapper extends com.sap.tc.moin.repository.core
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.ConfigurationSetting> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.ConfigurationSetting.class;
     }

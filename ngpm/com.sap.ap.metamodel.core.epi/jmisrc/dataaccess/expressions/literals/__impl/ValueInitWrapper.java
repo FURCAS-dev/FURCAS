@@ -6,7 +6,7 @@ package dataaccess.expressions.literals.__impl;
 
 public class ValueInitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<dataaccess.expressions.literals.__impl.ValueInitImpl> implements dataaccess.expressions.literals.ValueInit,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ValueInitWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private dataaccess.expressions.literals.__impl.ValueInitImpl getCastWrappedObject() {
         return (dataaccess.expressions.literals.__impl.ValueInitImpl) getWrappedObject();
     }
@@ -122,6 +123,7 @@ public class ValueInitWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.ValueInit> get___JmiInterface() {
         return dataaccess.expressions.literals.ValueInit.class;
     }

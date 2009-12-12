@@ -8,7 +8,7 @@ public final class StatusAndActionOldPackageImpl extends com.sap.tc.moin.reposit
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(42);
@@ -247,6 +247,7 @@ public final class StatusAndActionOldPackageImpl extends com.sap.tc.moin.reposit
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.StatusAndActionOldPackage> get___JmiInterface() {
         return behavioral.statusandactionold.StatusAndActionOldPackage.class;
     }
@@ -255,7 +256,9 @@ public final class StatusAndActionOldPackageImpl extends com.sap.tc.moin.reposit
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -309,7 +312,9 @@ public final class StatusAndActionOldPackageImpl extends com.sap.tc.moin.reposit
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(21);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "SAMActionForBusinessObjectNode"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavioral.statusandactionold.SamactionForBusinessObjectNode"); //$NON-NLS-1$

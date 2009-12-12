@@ -125,6 +125,7 @@ public class SourceOfCollectionExpressionWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.collectionexpressions.SourceOfCollectionExpression> get___JmiInterface() {
         return dataaccess.expressions.collectionexpressions.SourceOfCollectionExpression.class;
     }

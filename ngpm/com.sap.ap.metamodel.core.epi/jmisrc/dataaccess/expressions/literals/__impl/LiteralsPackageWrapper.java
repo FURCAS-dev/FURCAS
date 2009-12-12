@@ -288,6 +288,7 @@ public class LiteralsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.LiteralsPackage> get___JmiInterface() {
         return dataaccess.expressions.literals.LiteralsPackage.class;
     }

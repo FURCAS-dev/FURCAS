@@ -6,7 +6,7 @@ package behavioral.transactions.__impl;
 
 public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.transactions.__impl.DummyImpl> implements behavioral.transactions.Dummy,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.transactions.__impl.DummyImpl getCastWrappedObject() {
         return (behavioral.transactions.__impl.DummyImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.transactions.Dummy> get___JmiInterface() {
         return behavioral.transactions.Dummy.class;
     }

@@ -125,6 +125,7 @@ public class ProducerWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.Producer> get___JmiInterface() {
         return behavioral.events.Producer.class;
     }

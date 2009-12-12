@@ -63,6 +63,7 @@ public final class AFormalObjectParameterActualObjectParameterImpl extends com.s
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AFormalObjectParameterActualObjectParameter> get___JmiInterface() {
         return data.classes.AFormalObjectParameterActualObjectParameter.class;
     }

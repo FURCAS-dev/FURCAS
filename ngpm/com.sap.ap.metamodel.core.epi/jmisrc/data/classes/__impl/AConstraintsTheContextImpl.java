@@ -63,6 +63,7 @@ public final class AConstraintsTheContextImpl extends com.sap.tc.moin.repository
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AConstraintsTheContext> get___JmiInterface() {
         return data.classes.AConstraintsTheContext.class;
     }

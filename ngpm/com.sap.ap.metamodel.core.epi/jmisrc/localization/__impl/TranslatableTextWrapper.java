@@ -6,7 +6,7 @@ package localization.__impl;
 
 public class TranslatableTextWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<localization.__impl.TranslatableTextImpl> implements localization.TranslatableText,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class TranslatableTextWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private localization.__impl.TranslatableTextImpl getCastWrappedObject() {
         return (localization.__impl.TranslatableTextImpl) getWrappedObject();
     }
@@ -132,6 +133,7 @@ public class TranslatableTextWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<localization.TranslatableText> get___JmiInterface() {
         return localization.TranslatableText.class;
     }

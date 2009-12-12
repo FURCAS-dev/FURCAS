@@ -8,7 +8,7 @@ public final class ProcesscomponentsPackageImpl extends com.sap.tc.moin.reposito
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
@@ -77,6 +77,7 @@ public final class ProcesscomponentsPackageImpl extends com.sap.tc.moin.reposito
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.processcomponents.ProcesscomponentsPackage> get___JmiInterface() {
         return modelmanagement.processcomponents.ProcesscomponentsPackage.class;
     }
@@ -85,7 +86,9 @@ public final class ProcesscomponentsPackageImpl extends com.sap.tc.moin.reposito
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -111,7 +114,9 @@ public final class ProcesscomponentsPackageImpl extends com.sap.tc.moin.reposito
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(2);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_providedInterfaces_processComponent"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "modelmanagement.processcomponents.AProvidedInterfacesProcessComponent"); //$NON-NLS-1$

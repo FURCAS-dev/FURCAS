@@ -125,6 +125,7 @@ public class APostconditionsPostconditionForSignatureWrapper extends com.sap.tc.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.APostconditionsPostconditionForSignature> get___JmiInterface() {
         return data.constraints.APostconditionsPostconditionForSignature.class;
     }

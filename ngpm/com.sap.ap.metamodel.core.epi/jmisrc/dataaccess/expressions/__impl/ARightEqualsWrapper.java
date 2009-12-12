@@ -125,6 +125,7 @@ public class ARightEqualsWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.ARightEquals> get___JmiInterface() {
         return dataaccess.expressions.ARightEquals.class;
     }

@@ -125,6 +125,7 @@ public class SamneutralPreconditionFromOperatorToOperatorWrapper extends com.sap
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamneutralPreconditionFromOperatorToOperator> get___JmiInterface() {
         return behavioral.statusandactionold.SamneutralPreconditionFromOperatorToOperator.class;
     }

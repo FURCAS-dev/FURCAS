@@ -125,6 +125,7 @@ public class AAbapAnnotationAssociationWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AAbapAnnotationAssociation> get___JmiInterface() {
         return abapmapping.AAbapAnnotationAssociation.class;
     }

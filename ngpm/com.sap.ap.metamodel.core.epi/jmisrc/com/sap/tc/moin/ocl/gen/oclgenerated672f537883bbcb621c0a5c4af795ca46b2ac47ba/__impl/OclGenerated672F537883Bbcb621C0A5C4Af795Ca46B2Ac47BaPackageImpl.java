@@ -6,7 +6,7 @@ package com.sap.tc.moin.ocl.gen.oclgenerated672f537883bbcb621c0a5c4af795ca46b2ac
 
 public final class OclGenerated672F537883Bbcb621C0A5C4Af795Ca46B2Ac47BaPackageImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefPackageImpl
 {
-    
+
     static {
     }
 
@@ -31,6 +31,7 @@ public final class OclGenerated672F537883Bbcb621C0A5C4Af795Ca46B2Ac47BaPackageIm
         throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<com.sap.tc.moin.ocl.gen.oclgenerated672f537883bbcb621c0a5c4af795ca46b2ac47ba.OclGenerated672F537883Bbcb621C0A5C4Af795Ca46B2Ac47BaPackage> get___JmiInterface() {
         return com.sap.tc.moin.ocl.gen.oclgenerated672f537883bbcb621c0a5c4af795ca46b2ac47ba.OclGenerated672F537883Bbcb621C0A5C4Af795Ca46B2Ac47BaPackage.class;
     }
@@ -39,7 +40,9 @@ public final class OclGenerated672F537883Bbcb621C0A5C4Af795Ca46B2Ac47BaPackageIm
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -53,7 +56,9 @@ public final class OclGenerated672F537883Bbcb621C0A5C4Af795Ca46B2Ac47BaPackageIm
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

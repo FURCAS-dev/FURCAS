@@ -63,6 +63,7 @@ public final class AParameterizedClassParameterizedClassInstantiationImpl extend
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.AParameterizedClassParameterizedClassInstantiation> get___JmiInterface() {
         return data.generics.AParameterizedClassParameterizedClassInstantiation.class;
     }

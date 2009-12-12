@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class EnablingStrategyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.EnablingStrategyImpl> implements behavioral.statusandaction.assembly.EnablingStrategy,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class EnablingStrategyWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.EnablingStrategyImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.EnablingStrategyImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class EnablingStrategyWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.EnablingStrategy> get___JmiInterface() {
         return behavioral.statusandaction.assembly.EnablingStrategy.class;
     }

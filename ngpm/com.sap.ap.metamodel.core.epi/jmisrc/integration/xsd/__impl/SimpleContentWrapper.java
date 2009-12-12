@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class SimpleContentWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.SimpleContentImpl> implements integration.xsd.SimpleContent,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SimpleContentWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private integration.xsd.__impl.SimpleContentImpl getCastWrappedObject() {
         return (integration.xsd.__impl.SimpleContentImpl) getWrappedObject();
     }
@@ -110,6 +111,7 @@ public class SimpleContentWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.SimpleContent> get___JmiInterface() {
         return integration.xsd.SimpleContent.class;
     }

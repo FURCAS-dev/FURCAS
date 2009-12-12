@@ -125,6 +125,7 @@ public class SamstatusSynchronizerWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamstatusSynchronizer> get___JmiInterface() {
         return behavioral.statusandactionold.SamstatusSynchronizer.class;
     }

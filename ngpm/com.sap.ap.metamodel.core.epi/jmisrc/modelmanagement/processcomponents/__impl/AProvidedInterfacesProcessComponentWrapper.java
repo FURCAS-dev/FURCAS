@@ -125,6 +125,7 @@ public class AProvidedInterfacesProcessComponentWrapper extends com.sap.tc.moin.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.processcomponents.AProvidedInterfacesProcessComponent> get___JmiInterface() {
         return modelmanagement.processcomponents.AProvidedInterfacesProcessComponent.class;
     }

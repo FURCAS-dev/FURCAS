@@ -6,7 +6,7 @@ package integration.processintegration.__impl;
 
 public class ProcessComponentInteractionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.processintegration.__impl.ProcessComponentInteractionImpl> implements integration.processintegration.ProcessComponentInteraction,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ProcessComponentInteractionWrapper extends com.sap.tc.moin.reposito
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private integration.processintegration.__impl.ProcessComponentInteractionImpl getCastWrappedObject() {
         return (integration.processintegration.__impl.ProcessComponentInteractionImpl) getWrappedObject();
     }
@@ -216,6 +217,7 @@ public class ProcessComponentInteractionWrapper extends com.sap.tc.moin.reposito
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.ProcessComponentInteraction> get___JmiInterface() {
         return integration.processintegration.ProcessComponentInteraction.class;
     }

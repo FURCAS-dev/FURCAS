@@ -125,6 +125,7 @@ public class AForEndValueInitWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.AForEndValueInit> get___JmiInterface() {
         return dataaccess.expressions.literals.AForEndValueInit.class;
     }

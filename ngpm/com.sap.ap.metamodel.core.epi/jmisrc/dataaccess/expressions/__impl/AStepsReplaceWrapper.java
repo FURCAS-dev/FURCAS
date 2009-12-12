@@ -125,6 +125,7 @@ public class AStepsReplaceWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AStepsReplace> get___JmiInterface() {
         return dataaccess.expressions.AStepsReplace.class;
     }

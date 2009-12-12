@@ -125,6 +125,7 @@ public class AStatementsBlockWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AStatementsBlock> get___JmiInterface() {
         return behavioral.actions.AStatementsBlock.class;
     }

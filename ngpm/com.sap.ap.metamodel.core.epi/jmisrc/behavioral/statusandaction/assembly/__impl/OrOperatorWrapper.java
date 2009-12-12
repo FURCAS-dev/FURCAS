@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class OrOperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.OrOperatorImpl> implements behavioral.statusandaction.assembly.OrOperator,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class OrOperatorWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.OrOperatorImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.OrOperatorImpl) getWrappedObject();
     }
@@ -129,6 +130,7 @@ public class OrOperatorWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.OrOperator> get___JmiInterface() {
         return behavioral.statusandaction.assembly.OrOperator.class;
     }

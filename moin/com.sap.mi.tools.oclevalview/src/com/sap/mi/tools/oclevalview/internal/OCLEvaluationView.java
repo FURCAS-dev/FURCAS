@@ -83,7 +83,7 @@ public final class OCLEvaluationView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-
+		
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginHeight = 0;
 		gridLayout.marginWidth = 0;
@@ -205,7 +205,7 @@ public final class OCLEvaluationView extends ViewPart {
 		this.m1ObjectLabel.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
-				// TO DO
+				// TODO
 			}
 		});
 		addDropTarget(this.m1ObjectLabel);
@@ -242,10 +242,12 @@ public final class OCLEvaluationView extends ViewPart {
 		tableWrapData = new TableWrapData(TableWrapData.LEFT);
 		label.setLayoutData(tableWrapData);
 
-		this.oclExpression = this.toolkit.createText(composite, "", SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);//$NON-NLS-1$
+		
+		this.oclExpression = this.toolkit.createText(composite, "", SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);//$NON-NLS-1$
 		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
 		tableWrapData.heightHint = 100;
 		tableWrapData.grabVertical = true;
+		tableWrapData.colspan = 2;
 		this.oclExpression.setLayoutData(tableWrapData);
 		this.oclExpression.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -253,7 +255,8 @@ public final class OCLEvaluationView extends ViewPart {
 				OCLEvaluationView.this.updateEvaluateButton();
 			}
 		});
-
+		
+		
 		this.evaluate = this.toolkit.createButton(composite, Messages.OCLEvaluationView_10_xbut, SWT.NONE);
 		tableWrapData = new TableWrapData(TableWrapData.LEFT);
 		this.evaluate.setLayoutData(tableWrapData);

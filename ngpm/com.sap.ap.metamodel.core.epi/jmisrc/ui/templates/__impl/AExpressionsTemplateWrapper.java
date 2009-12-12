@@ -125,6 +125,7 @@ public class AExpressionsTemplateWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.templates.AExpressionsTemplate> get___JmiInterface() {
         return ui.templates.AExpressionsTemplate.class;
     }

@@ -266,6 +266,7 @@ public class AnalyticsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.AnalyticsPackage> get___JmiInterface() {
         return dataaccess.analytics.AnalyticsPackage.class;
     }

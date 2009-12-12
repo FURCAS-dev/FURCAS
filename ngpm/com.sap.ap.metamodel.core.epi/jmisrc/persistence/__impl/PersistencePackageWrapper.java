@@ -68,6 +68,7 @@ public class PersistencePackageWrapper extends com.sap.tc.moin.repository.core.j
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<persistence.PersistencePackage> get___JmiInterface() {
         return persistence.PersistencePackage.class;
     }

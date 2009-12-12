@@ -10,7 +10,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(6);
@@ -73,12 +73,12 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
     public void setOwnedTypeDefinition(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0234C8C51EB7BD63E4B11DEB7290018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0CC3E4B11DEB2590018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setOwnedTypeDefinition(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0234C8C51EB7BD63E4B11DEB7290018DE1146FF", /* mofId of reference */ "E0234C8C51E6C0CC3E4B11DEB2590018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOfClass() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -93,12 +93,12 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
     public void setOfClass(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E00C881E520349A93E4B11DEA3220018DE1146FF", /* mofId of reference */ "E00C881E520349A03E4B11DEAF1A0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setOfClass(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E00C881E520349A93E4B11DEA3220018DE1146FF", /* mofId of reference */ "E00C881E520349A03E4B11DEAF1A0018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getSnapshotIdentifier() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -113,12 +113,12 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
     public void setSnapshotIdentifier(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E00C881E520349AC3E4B11DE978A0018DE1146FF", /* mofId of reference */ "E00C881E520349A13E4B11DEA2230018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setSnapshotIdentifier(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E00C881E520349AC3E4B11DE978A0018DE1146FF", /* mofId of reference */ "E00C881E520349A13E4B11DEA2230018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter
@@ -155,7 +155,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
         }
         return result;
     }
-    
+
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -185,7 +185,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 3:
@@ -195,7 +195,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-    
+
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 3:
@@ -205,7 +205,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-    
+
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 3:
@@ -215,7 +215,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-    
+
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -257,6 +257,7 @@ public final class AllImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
 
     }
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<persistence.expressions.All> get___JmiInterface() {
         return persistence.expressions.All.class;
     }

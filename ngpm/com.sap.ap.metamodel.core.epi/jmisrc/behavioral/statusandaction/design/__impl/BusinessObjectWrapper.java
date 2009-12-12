@@ -6,7 +6,7 @@ package behavioral.statusandaction.design.__impl;
 
 public class BusinessObjectWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.design.__impl.BusinessObjectImpl> implements behavioral.statusandaction.design.BusinessObject,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class BusinessObjectWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.statusandaction.design.__impl.BusinessObjectImpl getCastWrappedObject() {
         return (behavioral.statusandaction.design.__impl.BusinessObjectImpl) getWrappedObject();
     }
@@ -59,6 +60,7 @@ public class BusinessObjectWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.BusinessObject> get___JmiInterface() {
         return behavioral.statusandaction.design.BusinessObject.class;
     }

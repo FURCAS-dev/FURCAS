@@ -125,6 +125,7 @@ public class AMethodFunctionFromMethodExprWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.fp.AMethodFunctionFromMethodExpr> get___JmiInterface() {
         return dataaccess.expressions.fp.AMethodFunctionFromMethodExpr.class;
     }

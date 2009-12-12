@@ -6,7 +6,7 @@ package behavioral.actions.__impl;
 
 public class SortWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.actions.__impl.SortImpl> implements behavioral.actions.Sort,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SortWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.actions.__impl.SortImpl getCastWrappedObject() {
         return (behavioral.actions.__impl.SortImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class SortWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.Sort> get___JmiInterface() {
         return behavioral.actions.Sort.class;
     }

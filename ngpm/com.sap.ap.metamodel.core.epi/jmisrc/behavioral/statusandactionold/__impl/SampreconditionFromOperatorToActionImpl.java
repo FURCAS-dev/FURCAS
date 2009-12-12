@@ -63,6 +63,7 @@ public final class SampreconditionFromOperatorToActionImpl extends com.sap.tc.mo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SampreconditionFromOperatorToAction> get___JmiInterface() {
         return behavioral.statusandactionold.SampreconditionFromOperatorToAction.class;
     }

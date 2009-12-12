@@ -63,6 +63,7 @@ public final class AdaptedToImpl extends com.sap.tc.moin.repository.core.jmi.ref
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AdaptedTo> get___JmiInterface() {
         return data.classes.AdaptedTo.class;
     }

@@ -6,7 +6,7 @@ package modelmanagement.__impl;
 
 public class ModuleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<modelmanagement.__impl.ModuleImpl> implements modelmanagement.Module,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ModuleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private modelmanagement.__impl.ModuleImpl getCastWrappedObject() {
         return (modelmanagement.__impl.ModuleImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class ModuleWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.Module> get___JmiInterface() {
         return modelmanagement.Module.class;
     }

@@ -125,6 +125,7 @@ public class InSeqWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.InSeq> get___JmiInterface() {
         return integration.xsd.InSeq.class;
     }

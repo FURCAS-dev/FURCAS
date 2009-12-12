@@ -6,7 +6,7 @@ package modelmanagement.__impl;
 
 public class PackageOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<modelmanagement.__impl.PackageOwnerImpl> implements modelmanagement.PackageOwner,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class PackageOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private modelmanagement.__impl.PackageOwnerImpl getCastWrappedObject() {
         return (modelmanagement.__impl.PackageOwnerImpl) getWrappedObject();
     }
@@ -154,6 +155,7 @@ public class PackageOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.PackageOwner> get___JmiInterface() {
         return modelmanagement.PackageOwner.class;
     }

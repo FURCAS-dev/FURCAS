@@ -6,7 +6,7 @@ package data.quantitystructure.__impl;
 
 public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.quantitystructure.__impl.DummyImpl> implements data.quantitystructure.Dummy,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private data.quantitystructure.__impl.DummyImpl getCastWrappedObject() {
         return (data.quantitystructure.__impl.DummyImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.quantitystructure.Dummy> get___JmiInterface() {
         return data.quantitystructure.Dummy.class;
     }

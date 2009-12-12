@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public final class InhibitingStrategyImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-    
+
     static {
     }
     
@@ -24,10 +24,11 @@ public final class InhibitingStrategyImpl extends com.sap.tc.moin.repository.cor
 
     // reflective methods
         
-    
+
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.InhibitingStrategy> get___JmiInterface() {
         return behavioral.statusandaction.assembly.InhibitingStrategy.class;
     }

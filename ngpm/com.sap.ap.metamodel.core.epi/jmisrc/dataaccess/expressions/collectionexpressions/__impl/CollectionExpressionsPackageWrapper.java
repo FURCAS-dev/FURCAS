@@ -288,6 +288,7 @@ public class CollectionExpressionsPackageWrapper extends com.sap.tc.moin.reposit
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.collectionexpressions.CollectionExpressionsPackage> get___JmiInterface() {
         return dataaccess.expressions.collectionexpressions.CollectionExpressionsPackage.class;
     }

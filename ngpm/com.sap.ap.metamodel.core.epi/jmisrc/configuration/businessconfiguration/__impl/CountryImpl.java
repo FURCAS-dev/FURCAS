@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public final class CountryImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-    
+
     static {
     }
     
@@ -24,10 +24,11 @@ public final class CountryImpl extends com.sap.tc.moin.repository.core.jmi.refle
 
     // reflective methods
         
-    
+
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.Country> get___JmiInterface() {
         return configuration.businessconfiguration.Country.class;
     }

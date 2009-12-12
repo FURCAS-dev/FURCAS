@@ -125,6 +125,7 @@ public class ACharacteristicFunctionDimensionWrapper extends com.sap.tc.moin.rep
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.ACharacteristicFunctionDimension> get___JmiInterface() {
         return dataaccess.analytics.ACharacteristicFunctionDimension.class;
     }

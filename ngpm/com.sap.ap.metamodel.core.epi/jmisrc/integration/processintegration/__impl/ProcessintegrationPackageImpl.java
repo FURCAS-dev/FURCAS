@@ -8,7 +8,7 @@ public final class ProcessintegrationPackageImpl extends com.sap.tc.moin.reposit
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
@@ -95,6 +95,7 @@ public final class ProcessintegrationPackageImpl extends com.sap.tc.moin.reposit
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.ProcessintegrationPackage> get___JmiInterface() {
         return integration.processintegration.ProcessintegrationPackage.class;
     }
@@ -103,7 +104,9 @@ public final class ProcessintegrationPackageImpl extends com.sap.tc.moin.reposit
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -125,7 +128,9 @@ public final class ProcessintegrationPackageImpl extends com.sap.tc.moin.reposit
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(6);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "IsInitiator"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "integration.processintegration.IsInitiator"); //$NON-NLS-1$

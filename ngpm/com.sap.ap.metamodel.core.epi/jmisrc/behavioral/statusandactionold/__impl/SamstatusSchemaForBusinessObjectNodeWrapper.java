@@ -125,6 +125,7 @@ public class SamstatusSchemaForBusinessObjectNodeWrapper extends com.sap.tc.moin
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamstatusSchemaForBusinessObjectNode> get___JmiInterface() {
         return behavioral.statusandactionold.SamstatusSchemaForBusinessObjectNode.class;
     }

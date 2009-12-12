@@ -64,6 +64,7 @@ public final class AValueValueInitImpl extends com.sap.tc.moin.repository.core.j
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.AValueValueInit> get___JmiInterface() {
         return dataaccess.expressions.literals.AValueValueInit.class;
     }

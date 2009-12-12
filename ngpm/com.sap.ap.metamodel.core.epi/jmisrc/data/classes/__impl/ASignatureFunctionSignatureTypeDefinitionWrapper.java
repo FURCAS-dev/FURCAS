@@ -125,6 +125,7 @@ public class ASignatureFunctionSignatureTypeDefinitionWrapper extends com.sap.tc
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ASignatureFunctionSignatureTypeDefinition> get___JmiInterface() {
         return data.classes.ASignatureFunctionSignatureTypeDefinition.class;
     }

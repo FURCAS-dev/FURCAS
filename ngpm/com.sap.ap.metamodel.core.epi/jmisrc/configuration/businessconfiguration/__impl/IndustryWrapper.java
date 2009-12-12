@@ -6,7 +6,7 @@ package configuration.businessconfiguration.__impl;
 
 public class IndustryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.__impl.IndustryImpl> implements configuration.businessconfiguration.Industry,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class IndustryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private configuration.businessconfiguration.__impl.IndustryImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.__impl.IndustryImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class IndustryWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.Industry> get___JmiInterface() {
         return configuration.businessconfiguration.Industry.class;
     }

@@ -125,6 +125,7 @@ public class HasAttTypeWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasAttType> get___JmiInterface() {
         return integration.xsd.HasAttType.class;
     }

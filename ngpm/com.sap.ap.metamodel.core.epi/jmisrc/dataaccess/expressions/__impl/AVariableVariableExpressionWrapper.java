@@ -125,6 +125,7 @@ public class AVariableVariableExpressionWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AVariableVariableExpression> get___JmiInterface() {
         return dataaccess.expressions.AVariableVariableExpression.class;
     }

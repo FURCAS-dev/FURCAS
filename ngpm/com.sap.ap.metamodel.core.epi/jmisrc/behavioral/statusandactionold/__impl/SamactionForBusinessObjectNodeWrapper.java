@@ -125,6 +125,7 @@ public class SamactionForBusinessObjectNodeWrapper extends com.sap.tc.moin.repos
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamactionForBusinessObjectNode> get___JmiInterface() {
         return behavioral.statusandactionold.SamactionForBusinessObjectNode.class;
     }

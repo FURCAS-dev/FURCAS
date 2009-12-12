@@ -125,6 +125,7 @@ public class AFunctionBindingWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.AFunctionBinding> get___JmiInterface() {
         return integration.binding.AFunctionBinding.class;
     }
