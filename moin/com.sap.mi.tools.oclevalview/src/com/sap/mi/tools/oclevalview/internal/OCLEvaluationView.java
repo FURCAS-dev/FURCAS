@@ -140,7 +140,7 @@ public final class OCLEvaluationView extends ViewPart {
 		sectionLbl.setLayoutData(tableWrapData);
 
 		final Label metamodelLbl = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_3_xfld);
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
+		tableWrapData = new TableWrapData(TableWrapData.LEFT);
 		metamodelLbl.setLayoutData(tableWrapData);
 
 		this.txtProject = this.toolkit.createText(composite, "");//$NON-NLS-1$
@@ -248,6 +248,7 @@ public final class OCLEvaluationView extends ViewPart {
 		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
 		tableWrapData.heightHint = 100;
 		tableWrapData.grabVertical = true;
+		tableWrapData.grabHorizontal = true;
 		tableWrapData.colspan = 2;
 		this.oclExpression.setLayoutData(tableWrapData);
 		this.oclExpression.addModifyListener(new ModifyListener() {
@@ -259,7 +260,8 @@ public final class OCLEvaluationView extends ViewPart {
 		
 		
 		this.evaluate = this.toolkit.createButton(composite, Messages.OCLEvaluationView_10_xbut, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
+		tableWrapData = new TableWrapData(TableWrapData.RIGHT);
+		tableWrapData.colspan = 3;
 		this.evaluate.setLayoutData(tableWrapData);
 
 		final SelectionListener listener = new SelectionListener() {
