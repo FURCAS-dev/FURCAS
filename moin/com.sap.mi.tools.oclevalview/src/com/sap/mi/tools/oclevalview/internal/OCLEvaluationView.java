@@ -40,6 +40,7 @@ import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.fwk.ui.ModelAdapterUI;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.model.ModelPackage;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -471,9 +472,10 @@ public final class OCLEvaluationView extends ViewPart {
 				final OclRegistrationSeverity severity = OclRegistrationSeverity.Warning;
 				final String[] categories = new String[] { MoinOclWrapper.GLX_OCL_EVALUATOR };
 				final RefClass context = data.refClass();
-				final RefPackage[] typesPackages = new RefPackage[] { context.refOutermostPackage() };
-
 				final Connection conn = ((Partitionable) data).get___Connection();
+				final RefPackage[] typesPackages = new RefPackage[] { context.refOutermostPackage(), conn.getPackage(ModelPackage.PACKAGE_DESCRIPTOR) };
+
+				
 				final OclFreestyleRegistry ocl = conn.getOclRegistryService().getFreestyleRegistry();
 
 				try {

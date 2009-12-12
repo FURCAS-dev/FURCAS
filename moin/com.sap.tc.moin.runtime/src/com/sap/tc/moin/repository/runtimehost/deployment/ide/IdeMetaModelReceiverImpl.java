@@ -348,25 +348,33 @@ public class IdeMetaModelReceiverImpl {
 
 
             if ( overflow != null ) {
-                if ( result.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) ) ) {
+                if ( bundleIdMatches( result, this.bundle ) ) {
                     return result;
                 } else {
                     for ( int i = 0; i < overflow.size( ); i++ ) {
                         URL tempResult = overflow.get( i );
-                        if ( tempResult.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) ) ) {
+                        if ( bundleIdMatches( tempResult, this.bundle ) ) {
                             return tempResult;
                         }
                     }
                 }
             } else {
                 if ( result != null ) {
-                    if ( result.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) ) ) {
+                    if ( bundleIdMatches( result, this.bundle ) ) {
                         return result;
                     }
                 }
             }
 
             return null;
+        }
+
+        private boolean bundleIdMatches(URL result, Bundle bundle2) {
+            if(result.getHost().contains(".")) {
+                return result.getHost( ).split("\\.")[0].equals( Long.toString( this.bundle.getBundleId( ) ) ); 
+            } else {
+                return result.getHost( ).startsWith( Long.toString( this.bundle.getBundleId( ) ) );
+            }
         }
 
         public String getArchiveId( ) {

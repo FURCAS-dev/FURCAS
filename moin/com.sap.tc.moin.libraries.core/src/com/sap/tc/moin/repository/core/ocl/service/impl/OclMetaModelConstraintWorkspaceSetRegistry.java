@@ -214,7 +214,9 @@ public class OclMetaModelConstraintWorkspaceSetRegistry {
                         ModelElement taggedEl = taggedit.next( );
                         if ( taggedEl instanceof OclConstraint ) {
                             OclConstraint constraint = (OclConstraint) taggedEl;
-                            constraintsToCategory.get( constraint ).add( actcategory );
+                            if(constraintsToCategory.get( constraint ) != null) {
+                                constraintsToCategory.get( constraint ).add( actcategory );
+                            }
                         }
                     }
                 }
