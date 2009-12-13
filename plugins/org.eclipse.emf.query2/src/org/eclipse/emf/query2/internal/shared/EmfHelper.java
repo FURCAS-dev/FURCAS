@@ -88,7 +88,7 @@ public class EmfHelper {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				ResourceIndexer rd = new ResourceIndexer();
 				for (Resource r : rs.getResources()) {
 					if (r.isLoaded()) {
@@ -169,7 +169,7 @@ public class EmfHelper {
 		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				ResourceIndexer rd = ResourceIndexer.INSTANCE;
 				rd.resourceChanged(updater, r);
 			}

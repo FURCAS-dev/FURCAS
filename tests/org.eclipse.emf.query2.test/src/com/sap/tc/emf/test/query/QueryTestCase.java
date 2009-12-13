@@ -14,10 +14,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
-import org.eclipse.emf.query.index.query.QueryExecutor;
-import org.eclipse.emf.query.index.update.IndexUpdater;
-import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.test.mm.Company.CompanyPackage;
 import org.eclipse.emf.query2.test.mm.generatedmetamodel.GeneratedmetamodelPackage;
 import org.eclipse.emf.query2.test.mm.testcases.case001.Case001Package;
@@ -27,25 +23,21 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 
+import com.sap.tc.emf.test.query.setup.IndexerForTest;
+
 public class QueryTestCase extends Assert {
 
 	private static final Index DEFAULT_INDEX = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
 	static {
 
-		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
-
-			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-				ResourceIndexer indexer = new ResourceIndexer();
-				indexer.resourceChanged(updater, EcorePackage.eINSTANCE.eResource());
-				indexer.resourceChanged(updater, GeneratedmetamodelPackage.eINSTANCE.eResource());
-				indexer.resourceChanged(updater, CompanyPackage.eINSTANCE.eResource());
-				indexer.resourceChanged(updater, Case001Package.eINSTANCE.eResource());
-				indexer.resourceChanged(updater, Case002Package.eINSTANCE.eResource());
-				indexer.resourceChanged(updater, Case004Package.eINSTANCE.eResource());
-			}
-		});
+		IndexerForTest.index(getDefaultIndexStore(), // 
+				EcorePackage.eINSTANCE.eResource(), // 
+				GeneratedmetamodelPackage.eINSTANCE.eResource(), // 
+				CompanyPackage.eINSTANCE.eResource(), //
+				Case001Package.eINSTANCE.eResource(), //
+				Case002Package.eINSTANCE.eResource(), //
+				Case004Package.eINSTANCE.eResource());
 
 	}
 

@@ -15,7 +15,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.ui.IndexFactory;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
@@ -91,7 +90,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 		IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				updater.deleteResource(URI.createPlatformResourceURI(resource.getFullPath().toString(), true));
 			}
 		});
@@ -116,7 +115,7 @@ public class QueryIndexBuilder extends IncrementalProjectBuilder {
 			IndexFactory.getInstance().executeUpdateCommand(new UpdateCommandAdapter() {
 
 				@Override
-				public void execute(final IndexUpdater updater, QueryExecutor queryExecutor) {
+				public void execute(final IndexUpdater updater) {
 					final ResourceIndexer indexer = new ResourceIndexer();
 					final ResourceSet rs = new ResourceSetImpl();
 					try {

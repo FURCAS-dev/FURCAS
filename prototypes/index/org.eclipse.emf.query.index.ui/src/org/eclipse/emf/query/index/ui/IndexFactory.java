@@ -7,7 +7,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
-import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -21,7 +20,7 @@ public class IndexFactory {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(final IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(final IndexUpdater updater) {
 				final ResourceIndexer indexer = new ResourceIndexer();
 				List<String> uris = new ArrayList<String>();
 				for (String packUri : EPackage.Registry.INSTANCE.keySet()) {

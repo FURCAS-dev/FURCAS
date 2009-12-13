@@ -24,10 +24,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.query.QueryExecutor;
-import org.eclipse.emf.query.index.update.IndexUpdater;
-import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.ColumnType;
 import org.eclipse.emf.query2.FromEntry;
 import org.eclipse.emf.query2.FromFixedSet;
@@ -62,6 +58,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
+import com.sap.tc.emf.test.query.setup.IndexerForTest;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 /**
@@ -143,16 +140,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 		mdi.createData();
 
 		// index all created partitions
-		getDefaultIndexStore().executeUpdateCommand(new UpdateCommandAdapter() {
-
-			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-				ResourceIndexer indexer = new ResourceIndexer();
-				for (Resource resource : myTestClient.getResourceSet().getResources()) {
-					indexer.resourceChanged(updater, resource);
-				}
-			}
-		});
+		IndexerForTest.index(getDefaultIndexStore(), myTestClient.getResourceSet().getResources().toArray(new Resource[0]));
 
 		// test setup sanity check
 		/*
@@ -187,15 +175,7 @@ abstract public class BaseSyntheticQueryTests extends QueryTestCase {
 
 		// remove from index
 		if (deletePartitions && partitionScope != null) {
-			getDefaultIndexStore().executeUpdateCommand(new UpdateCommandAdapter() {
-
-				@Override
-				public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-					for (URI resource : partitionScope) {
-						updater.deleteResource(resource);
-					}
-				}
-			});
+			IndexerForTest.delete(getDefaultIndexStore(), partitionScope);
 		}
 
 		// if we have to delete the partitions

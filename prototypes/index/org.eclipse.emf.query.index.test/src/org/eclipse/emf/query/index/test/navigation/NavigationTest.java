@@ -66,7 +66,7 @@ public class NavigationTest extends Assert {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				ResourceIndexer ourResourceIndexer = new ResourceIndexer();
 				for (int i = 0; i < NUM_MODELS; i++) {
 					URI resourceURI = URI.createURI(Integer.toHexString(i) + ".ecore");
@@ -357,7 +357,7 @@ public class NavigationTest extends Assert {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				for (URI uri : uris) {
 					updater.deleteResource(uri);
 				}

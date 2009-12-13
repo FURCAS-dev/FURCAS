@@ -72,8 +72,6 @@ public class PageableIndexImpl implements PageableIndex {
 
 	private GlobalTables globalTables;
 
-	private QueryExecutorInternal queryExecutor;
-
 	private ReentrantReadWriteLock rwLock;
 
 	private PageFileProvider chProv;
@@ -87,7 +85,6 @@ public class PageableIndexImpl implements PageableIndex {
 				options.limit, options.tolerance);
 		globalTables.resourceIndex = new PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl>(
 				PageableResourceDescriptorImpl.URI, pagingStrategy);
-		queryExecutor = new QueryExecutorImpl(globalTables);
 	}
 
 	@Override
@@ -104,7 +101,7 @@ public class PageableIndexImpl implements PageableIndex {
 
 	public void executeUpdateCommand(UpdateCommand command) {
 		IndexUpdaterInternal indexUpdater = new IndexUpdaterImpl(this.globalTables);
-		command.execute(indexUpdater, this.queryExecutor);
+		command.execute(indexUpdater);
 		this.rwLock.writeLock().lock();
 		try {
 			command.preCommitAction();

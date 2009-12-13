@@ -544,7 +544,7 @@ public class TestIndexNotSufficient extends Assert {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				new ResourceIndexer() {
 
 					@Override
@@ -570,7 +570,7 @@ public class TestIndexNotSufficient extends Assert {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				for (URI uri : uris) {
 					updater.deleteResource(uri);
 				}

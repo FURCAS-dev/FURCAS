@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.update;
 
-import org.eclipse.emf.query.index.query.QueryExecutor;
 
 /**
  * @author Martin Strenge - Initial API and implementation
@@ -19,7 +18,7 @@ import org.eclipse.emf.query.index.query.QueryExecutor;
  */
 public interface UpdateCommand {
 
-	void execute(IndexUpdater updater, QueryExecutor queryExecutor);
+	void execute(IndexUpdater updater);
 
 	void preCommitAction();
 

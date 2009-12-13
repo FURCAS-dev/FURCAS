@@ -40,8 +40,6 @@ public class SerializationStrategyFactory {
 
 	private static final int MAX_SIZE = 262144;
 
-	public static final String ENCODING = "UTF-8"; //$NON-NLS-1$
-
 	private static final int INT_SIZE = Integer.SIZE / 8;
 
 	private static final int SHORT_SIZE = Short.SIZE / 8;
@@ -169,7 +167,7 @@ public class SerializationStrategyFactory {
 			}
 			this.buffer.get(this.stringBuffer, 0, length);
 			try {
-				return new String(this.stringBuffer, 0, length, ENCODING);
+				return new String(this.stringBuffer, 0, length, STRING_ENCODING);
 			} catch (UnsupportedEncodingException e) {
 				throw new RuntimeException(e); // FIXME exceptino handling
 			}
@@ -314,7 +312,7 @@ public class SerializationStrategyFactory {
 
 			byte[] bytes;
 			try {
-				bytes = value.getBytes(ENCODING);
+				bytes = value.getBytes(STRING_ENCODING);
 			} catch (UnsupportedEncodingException e) {
 				throw new RuntimeException(e); // FIXME exception handling
 			}
@@ -763,7 +761,9 @@ public class SerializationStrategyFactory {
 		@Override
 		public PageableResourceDescriptorImpl readElement(URI key) {
 			long version = channel.getLong();
-			return new PageableResourceDescriptorImpl(key, version, null, this.resourceMap, true /* pagedOut */);
+			PageableResourceDescriptorImpl impl = new PageableResourceDescriptorImpl(key, version, null, this.resourceMap, true /* pagedOut */);
+			impl.deserializeData(channel);
+			return impl;
 		}
 
 		@Override
@@ -774,6 +774,7 @@ public class SerializationStrategyFactory {
 		@Override
 		public void writeElement(PageableResourceDescriptorImpl element) {
 			channel.putLong(element.getIndexedVersion());
+			element.serializeData(channel);
 		}
 
 		@Override

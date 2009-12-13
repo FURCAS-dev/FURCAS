@@ -38,7 +38,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 
 	private long versionId = NOT_INDEXED;
 
-	private byte flags = 0;
+	private byte pagingFlag = 0;
 	private static final byte PAGED_OUT = 1 << 0;
 
 	private PagingResourceDescriptorMap<URI, PageableResourceDescriptorImpl> resourceTable;
@@ -220,7 +220,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		if (!this.isPagedOut()) { // FIXME this check should be done in the page
 			// out method
 			if (this.isIndexed()) {
-				this.serializeData(strategyFactory.getChannel());
 				this.eObjectTable.serialize(strategyFactory.createEObjectMapStrategy(this));
 				this.typeTable.serialize(strategyFactory.createTypeMapStrategy(this.eObjectTable));
 				this.outgoingLinkTable.serialize(strategyFactory.createOutgoingLinkMapStrategy(this.eObjectTable, this.resourceTable
@@ -232,7 +231,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		}
 	}
 
-	private void serializeData(Channel channel) {
+	public void serializeData(Channel channel) {
 		if (this.userData == null) {
 			channel.putInt(SerializationStrategyFactory.NO_INT); // FIXME constant position
 			return;
@@ -249,7 +248,6 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	private void deserialize(SerializationStrategyFactory strategyFactory) {
 		if (this.isPagedOut()) {
 			if (this.isIndexed()) {
-				this.deserializeData(strategyFactory.getChannel());
 				this.initResourceContentTables();
 				this.eObjectTable.deserialize(strategyFactory.createEObjectMapStrategy(this));
 				this.typeTable.deserialize(strategyFactory.createTypeMapStrategy(this.eObjectTable));
@@ -262,7 +260,7 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 		}
 	}
 
-	private void deserializeData(Channel channel) {
+	public void deserializeData(Channel channel) {
 		int size = channel.getInt();
 		if (size == SerializationStrategyFactory.NO_INT) {
 			return;
@@ -276,16 +274,16 @@ public class PageableResourceDescriptorImpl implements ResourceDescriptorInterna
 	}
 
 	private void markSwappedOut() {
-		this.flags |= PAGED_OUT;
+		this.pagingFlag |= PAGED_OUT;
 	}
 
 	private void markSwappedIn() {
-		this.flags &= ~PAGED_OUT;
+		this.pagingFlag &= ~PAGED_OUT;
 	}
 
 	@Override
 	public boolean isPagedOut() {
-		return (this.flags & PAGED_OUT) != 0;
+		return (this.pagingFlag & PAGED_OUT) != 0;
 	}
 
 	@Override

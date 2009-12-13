@@ -440,14 +440,14 @@ public class QueryProcessorImpl implements QueryProcessor {
 	 * Execution method
 	 */
 	private ResultSet executeInternal(final PreparedQuery preparedQuery, final EmfHelper emfHelper, final boolean schedulingWanted,
-			final boolean globalScopeIncluded, final URI[] globalPartitionScope, final URI[] globalContainerScope, final int numberOfResults)
+			final boolean globalScopeIncluded, final QueryContext scopeProvider, final URI[] globalContainerScope, final int numberOfResults)
 			throws QueryExecutionException {
 		QueryCommandWithResult<ResultSet> command = new QueryCommandWithResult<ResultSet>() {
 
 			@Override
 			public void execute(QueryExecutor queryExecutor) {
-				this.setResult(executeSecuredInternal(preparedQuery, emfHelper, schedulingWanted, globalScopeIncluded,
-						globalPartitionScope, globalContainerScope, numberOfResults));
+				this.setResult(executeSecuredInternal(preparedQuery, emfHelper, schedulingWanted, globalScopeIncluded, scopeProvider
+						.getResourceScope(), globalContainerScope, numberOfResults));
 			}
 		};
 		emfHelper.getIndex().executeQueryCommand(command);
@@ -556,8 +556,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 			throw new QueryExecutionException(e, ApiMessages.MQL_PREPROCESSOR_PROBLEM);
 		}
 
-		return this.executeInternal(preparedQuery, emfHelper, schedulingWanted, true, context.getResourceScope(), globalContainerScope,
-				numberOfResults);
+		return this.executeInternal(preparedQuery, emfHelper, schedulingWanted, true, context, globalContainerScope, numberOfResults);
 	}
 
 	/*
@@ -663,7 +662,7 @@ public class QueryProcessorImpl implements QueryProcessor {
 
 		EmfHelper emfHelper = this.getEmfHelper(scopeProvider);
 		PreparedQuery preparedQuery = this.prepareInternal(query, scopeProvider, emfHelper);
-		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider.getResourceScope(), null, numberOfResults);
+		return this.executeInternal(preparedQuery, emfHelper, true, true, scopeProvider, null, numberOfResults);
 	}
 
 	// public QueryScopeProvider getGlobalQueryScopeProvider() {

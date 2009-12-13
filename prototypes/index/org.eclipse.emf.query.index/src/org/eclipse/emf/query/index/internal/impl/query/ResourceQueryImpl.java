@@ -72,23 +72,21 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 		if (uriPattern == null || this.isPattern(uriPattern)) {
 			for (URI next : resourceMap.getKeys()) {
 				if (QueryUtil.matchesGlobbing(next.toString(), uriPattern)) {
-					PageableResourceDescriptorImpl match = resourceMap.acquire(next);
+					PageableResourceDescriptorImpl match = resourceMap.getUnderlyingMap().get(next);
 					if (this.matches(match)) {
 						if (ret == null) {
 							ret = new ArrayList<PageableResourceDescriptorImpl>();
 						}
 						ret.add(match);
 					}
-					resourceMap.release(match);
 				}
 			}
 		} else {
-			PageableResourceDescriptorImpl match = resourceMap.acquire(URI.createURI(uriPattern));
+			PageableResourceDescriptorImpl match = resourceMap.getUnderlyingMap().get(URI.createURI(uriPattern));
 			if (match != null) {
 				if (this.matches(match)) {
 					ret = Collections.<PageableResourceDescriptorImpl> singletonList(match);
 				}
-				resourceMap.release(match);
 			}
 		}
 		if (ret == null) {

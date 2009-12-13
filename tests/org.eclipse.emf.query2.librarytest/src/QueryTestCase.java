@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.query.index.Index;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl;
 import org.eclipse.emf.query.index.internal.impl.PageableIndexImpl.Options;
-import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -53,7 +52,7 @@ public class QueryTestCase extends Assert {
 		DEFAULT_INDEX.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(final IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(final IndexUpdater updater) {
 				final ResourceIndexer indexer = new ResourceIndexer();
 				indexer.resourceChanged(updater, EcorePackage.eINSTANCE.eResource());
 				indexer.resourceChanged(updater, LibraryPackage.eINSTANCE.eResource());

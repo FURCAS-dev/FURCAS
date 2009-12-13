@@ -3,7 +3,6 @@ package com.sap.tc.emf.test.query.setup;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.query.QueryExecutor;
 import org.eclipse.emf.query.index.update.IndexUpdater;
 import org.eclipse.emf.query.index.update.ResourceIndexer;
 import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
@@ -14,7 +13,7 @@ public class IndexerForTest {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				ResourceIndexer.INSTANCE.resourceChanged(updater, resources);
 			}
 		});
@@ -24,7 +23,7 @@ public class IndexerForTest {
 		index.executeUpdateCommand(new UpdateCommandAdapter() {
 
 			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
+			public void execute(IndexUpdater updater) {
 				for (URI resource : resources) {
 					updater.deleteResource(resource);
 				}

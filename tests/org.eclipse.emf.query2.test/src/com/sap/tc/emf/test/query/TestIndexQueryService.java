@@ -19,10 +19,6 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.query.index.Index;
-import org.eclipse.emf.query.index.query.QueryExecutor;
-import org.eclipse.emf.query.index.update.IndexUpdater;
-import org.eclipse.emf.query.index.update.ResourceIndexer;
-import org.eclipse.emf.query.index.update.UpdateCommandAdapter;
 import org.eclipse.emf.query2.internal.index.IndexQueryService;
 import org.eclipse.emf.query2.test.mm.testcases.case002.B2;
 import org.eclipse.emf.query2.test.mm.testcases.case002.C2;
@@ -34,6 +30,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sap.tc.emf.test.query.setup.DefaultTestClientImpl;
+import com.sap.tc.emf.test.query.setup.IndexerForTest;
 import com.sap.tc.emf.test.query.setup.TestClient;
 
 public class TestIndexQueryService extends QueryTestCase {
@@ -104,17 +101,8 @@ public class TestIndexQueryService extends QueryTestCase {
 		linkSourceResource.getContents().add(c);
 		linkSourceResource.getContents().add(e);
 
-		getDefaultIndexStore().executeUpdateCommand(new UpdateCommandAdapter() {
-
-			@Override
-			public void execute(IndexUpdater updater, QueryExecutor queryExecutor) {
-				ResourceIndexer indexer = new ResourceIndexer();
-				indexer.resourceChanged(updater, notLinkedResource);
-				indexer.resourceChanged(updater, linkTargetResource);
-				indexer.resourceChanged(updater, invalidLinkTargetResource);
-				indexer.resourceChanged(updater, linkSourceResource);
-			}
-		});
+		// index resources
+		IndexerForTest.index(getDefaultIndexStore(), notLinkedResource, linkTargetResource, invalidLinkTargetResource, linkSourceResource);
 
 		// we are looking for C2->B2 but not E2->B
 		URI referenceURI = EcoreUtil.getURI(Case002Package.Literals.C2__B);

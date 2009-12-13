@@ -92,6 +92,7 @@ public class EReferenceQueryImpl<RDType> implements EReferenceQuery<RDType>, Que
 			this.srcResScope = new LinkedHashSet<URI>();
 			for (URI next : srcEObjectQuery.getResourceScope(globalTables)) {
 				srcResScope.add(next);
+				// TODO set *ResScope to null if it is the whole resource table
 			}
 			srcFragment = srcEObjectQuery.getFragment();
 		}
