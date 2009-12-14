@@ -59,6 +59,7 @@ public class MethodCallInterpreter extends SignatureCallInterpreter {
 	    final List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> resultCollection = new ArrayList<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
 	    int i = 0;
 	    Set<Thread> threadsToWaitFor = new HashSet<Thread>();
+	    // FIXME (bug #2173) on.flatten() contradicts the way the return type definition is computed; collect one by one recursively
 	    for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> thizz : on.flatten()) {
 		final FunctionFromMethodObject evaluator = getEvaluator(interpreter,
 			(ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) thizz);

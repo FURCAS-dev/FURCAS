@@ -125,7 +125,6 @@ public class TextblockDefinitionHasSubDefinitionsWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<textblockdefinition.TextblockDefinitionHasSubDefinitions> get___JmiInterface() {
         return textblockdefinition.TextblockDefinitionHasSubDefinitions.class;
     }

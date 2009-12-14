@@ -1,11 +1,10 @@
 package com.sap.ide.cts.editor.integration.prettyprint;
 
+import static org.junit.Assert.assertNotNull;
 import ngpm.NgpmPackage;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 import textblocks.TextBlock;
 
@@ -96,6 +95,17 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
 				clazz, syntax);
 		assertOutput(output, "Number");
+	}
+
+	@Test
+	public void testMonthAndYear() throws SyntaxAndModelMismatchException {
+
+		SapClass clazz = findClass("MonthAndYear");
+		assertNotNull(clazz);
+
+		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
+				clazz, syntax);
+		assertOutput(output, "MonthAndYear");
 	}
 
 	private SapClass findClass(String classname) {

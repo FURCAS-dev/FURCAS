@@ -99,14 +99,15 @@ public class TCSExtractorPrintStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void endClassTemplate() {
+	public void endClassTemplate(int handle) {
 		// do nothing
 
 	}
 
 	@Override
-	public void startClassTemplateForObject(RefObject object, Template t) {
+	public int startClassTemplateForObject(RefObject object, Template t) {
 		// do nothing
+		return 0;
 
 	}
 

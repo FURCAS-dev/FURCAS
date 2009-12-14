@@ -125,7 +125,6 @@ public class ConditionalElementExpressionWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConditionalElementExpression> get___JmiInterface() {
         return tcs.ConditionalElementExpression.class;
     }

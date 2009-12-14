@@ -125,7 +125,6 @@ public class DocumentNodeReferencesCorrespondingModelElementWrapper extends com.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.DocumentNodeReferencesCorrespondingModelElement> get___JmiInterface() {
         return textblocks.DocumentNodeReferencesCorrespondingModelElement.class;
     }

@@ -8,7 +8,7 @@ public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.j
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -19,7 +19,6 @@ public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.j
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.ConditionalElementImpl getCastWrappedObject() {
         return (tcs.__impl.ConditionalElementImpl) getWrappedObject();
     }
@@ -390,7 +389,7 @@ public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.j
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -400,11 +399,10 @@ public class ConditionalElementWrapper extends com.sap.tc.moin.repository.core.j
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConditionalElement> get___JmiInterface() {
         return tcs.ConditionalElement.class;
     }

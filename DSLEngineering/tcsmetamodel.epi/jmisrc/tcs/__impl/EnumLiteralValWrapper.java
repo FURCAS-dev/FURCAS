@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class EnumLiteralValWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.EnumLiteralValImpl> implements tcs.EnumLiteralVal,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class EnumLiteralValWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.EnumLiteralValImpl getCastWrappedObject() {
         return (tcs.__impl.EnumLiteralValImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class EnumLiteralValWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EnumLiteralVal> get___JmiInterface() {
         return tcs.EnumLiteralVal.class;
     }

@@ -10,13 +10,13 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(11);
         FEATURE_IDS.put("name", Integer.valueOf(0)); //$NON-NLS-1$
-        FEATURE_IDS.put("typedElement", Integer.valueOf(1)); //$NON-NLS-1$
-        FEATURE_IDS.put("owner", Integer.valueOf(2)); //$NON-NLS-1$
+        FEATURE_IDS.put("owner", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("typedElement", Integer.valueOf(2)); //$NON-NLS-1$
         FEATURE_IDS.put("invariants", Integer.valueOf(3)); //$NON-NLS-1$
         FEATURE_IDS.put("ownedTypes", Integer.valueOf(4)); //$NON-NLS-1$
         FEATURE_IDS.put("functions", Integer.valueOf(5)); //$NON-NLS-1$
@@ -77,18 +77,6 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
     }
 
     // methods for references
-    public java.util.Collection getTypedElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* attribute or association */, 1 ) ); //$NON-NLS-1$
-       
-    }
-    public java.util.Collection getTypedElement(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* attribute or association */, 1 ) ); //$NON-NLS-1$
-       
-    }
-
-
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOwner() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         com.sap.tc.moin.repository.core.EndAndMetaObject endAndMetaObject = get___EndAndMetaObject( "E0001D0A0E07C572B1B911DEB1D000155883529C" /* attribute or association */, 1 ); //$NON-NLS-1$
@@ -102,13 +90,25 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
     public void setOwner(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E0001D0A0E07C572B1B911DEB1D000155883529C", /* mofId of reference */ "E0001D0A0E057B80B1B911DEA88A00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOwner(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E0001D0A0E07C572B1B911DEB1D000155883529C", /* mofId of reference */ "E0001D0A0E057B80B1B911DEA88A00155883529C" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
+    public java.util.Collection getTypedElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* attribute or association */, 1 ) ); //$NON-NLS-1$
+       
+    }
+    public java.util.Collection getTypedElement(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* attribute or association */, 1 ) ); //$NON-NLS-1$
+       
+    }
+
+
     public java.util.Collection getInvariants() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         return (java.util.Collection) ___getElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E0001D0AC44D96B8B74111DE90D000155883529C" /* attribute or association */, 0 ) ) ; //$NON-NLS-1$
@@ -183,10 +183,10 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
                 result = getName();
                 break;
             case 1: 
-                result = getTypedElement(connection);
+                result = getOwner(connection);
                 break;
             case 2: 
-                result = getOwner(connection);
+                result = getTypedElement(connection);
                 break;
             case 3: 
                 result = getInvariants(connection);
@@ -208,7 +208,7 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -223,11 +223,11 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
                 break;
                     
             case 1:
-                ___changeReference(connection, "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* mofId of association */, "E0001D0A165C0580D2FA11DEAAE50019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                ___changeReference(connection, "E0001D0A0E07C572B1B911DEB1D000155883529C" /* mofId of association */, "E0001D0A0E057B80B1B911DEA88A00155883529C" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
             case 2:
-                ___changeReference(connection, "E0001D0A0E07C572B1B911DEB1D000155883529C" /* mofId of association */, "E0001D0A0E057B80B1B911DEA88A00155883529C" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                ___changeReference(connection, "E0001D0A1ADE95AAB1B711DE8D3900155883529C" /* mofId of association */, "E0001D0A165C0580D2FA11DEAAE50019D29902CC" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
             case 3:
@@ -254,7 +254,7 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -267,7 +267,7 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -280,7 +280,7 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -293,7 +293,7 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
@@ -340,7 +340,6 @@ public final class FinexClassImpl extends com.sap.tc.moin.repository.core.jmi.re
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.FinexClass> get___JmiInterface() {
         return structure.FinexClass.class;
     }

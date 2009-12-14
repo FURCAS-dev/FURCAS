@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g 2009-10-19 23:42:36
+// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g 2009-12-10 22:05:48
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -24,7 +24,9 @@ public class BindingLexer extends Lexer {
     public static final int EXCL=38;
     public static final int INCLUDINGAT=40;
     public static final int EOF=-1;
+    public static final int T__93=93;
     public static final int LBRACKET=20;
+    public static final int T__94=94;
     public static final int T__91=91;
     public static final int RPAREN=15;
     public static final int T__92=92;
@@ -35,6 +37,8 @@ public class BindingLexer extends Lexer {
     public static final int NL=42;
     public static final int RANGLE=25;
     public static final int COMMENT=36;
+    public static final int T__96=96;
+    public static final int T__95=95;
     public static final int LCURL_LBRACK=34;
     public static final int T__80=80;
     public static final int DDOT=30;
@@ -50,8 +54,8 @@ public class BindingLexer extends Lexer {
     public static final int T__87=87;
     public static final int T__86=86;
     public static final int T__89=89;
-    public static final int ALPHA=45;
     public static final int T__88=88;
+    public static final int ALPHA=45;
     public static final int WS=43;
     public static final int T__71=71;
     public static final int T__72=72;
@@ -229,10 +233,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:117:7: ( 'const' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:117:9: 'const'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:117:7: ( 'NULL' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:117:9: 'NULL'
             {
-            match("const"); if (state.failed) return ;
+            match("NULL"); if (state.failed) return ;
 
 
             }
@@ -250,10 +254,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:118:7: ( 'aggregate' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:118:9: 'aggregate'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:118:7: ( 'return' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:118:9: 'return'
             {
-            match("aggregate"); if (state.failed) return ;
+            match("return"); if (state.failed) return ;
 
 
             }
@@ -271,10 +275,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:119:7: ( 'rollback' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:119:9: 'rollback'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:119:7: ( 'all' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:119:9: 'all'
             {
-            match("rollback"); if (state.failed) return ;
+            match("all"); if (state.failed) return ;
 
 
             }
@@ -292,10 +296,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:120:7: ( 'delete' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:120:9: 'delete'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:120:7: ( 'if' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:120:9: 'if'
             {
-            match("delete"); if (state.failed) return ;
+            match("if"); if (state.failed) return ;
 
 
             }
@@ -313,10 +317,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:121:7: ( '$>' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:121:9: '$>'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:121:7: ( 'foreach' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:121:9: 'foreach'
             {
-            match("$>"); if (state.failed) return ;
+            match("foreach"); if (state.failed) return ;
 
 
             }
@@ -334,10 +338,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:122:7: ( 'tail' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:122:9: 'tail'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:122:7: ( 'else' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:122:9: 'else'
             {
-            match("tail"); if (state.failed) return ;
+            match("else"); if (state.failed) return ;
 
 
             }
@@ -355,11 +359,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:123:7: ( 'binding' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:123:9: 'binding'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:123:7: ( '?' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:123:9: '?'
             {
-            match("binding"); if (state.failed) return ;
-
+            match('?'); if (state.failed) return ;
 
             }
 
@@ -376,10 +379,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:124:7: ( 'by' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:124:9: 'by'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:124:7: ( 'rollback' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:124:9: 'rollback'
             {
-            match("by"); if (state.failed) return ;
+            match("rollback"); if (state.failed) return ;
 
 
             }
@@ -397,10 +400,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:125:7: ( 'count' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:125:9: 'count'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:125:7: ( 'key' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:125:9: 'key'
             {
-            match("count"); if (state.failed) return ;
+            match("key"); if (state.failed) return ;
 
 
             }
@@ -418,10 +421,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:126:7: ( 'if' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:126:9: 'if'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:126:7: ( 'tail' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:126:9: 'tail'
             {
-            match("if"); if (state.failed) return ;
+            match("tail"); if (state.failed) return ;
 
 
             }
@@ -439,10 +442,11 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:127:7: ( ',' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:127:9: ','
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:127:7: ( 'by' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:127:9: 'by'
             {
-            match(','); if (state.failed) return ;
+            match("by"); if (state.failed) return ;
+
 
             }
 
@@ -459,10 +463,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:128:7: ( 'return' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:128:9: 'return'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:128:7: ( 'dim' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:128:9: 'dim'
             {
-            match("return"); if (state.failed) return ;
+            match("dim"); if (state.failed) return ;
 
 
             }
@@ -480,10 +484,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:129:7: ( 'var' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:129:9: 'var'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:129:7: ( 'RemoveLink' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:129:9: 'RemoveLink'
             {
-            match("var"); if (state.failed) return ;
+            match("RemoveLink"); if (state.failed) return ;
 
 
             }
@@ -501,10 +505,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:130:7: ( 'replace' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:130:9: 'replace'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:130:7: ( 'converter' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:130:9: 'converter'
             {
-            match("replace"); if (state.failed) return ;
+            match("converter"); if (state.failed) return ;
 
 
             }
@@ -522,10 +526,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:131:7: ( 'head' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:131:9: 'head'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:131:7: ( '<=>' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:131:9: '<=>'
             {
-            match("head"); if (state.failed) return ;
+            match("<=>"); if (state.failed) return ;
 
 
             }
@@ -543,10 +547,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:132:7: ( '+=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:132:9: '+='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:132:7: ( 'function' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:132:9: 'function'
             {
-            match("+="); if (state.failed) return ;
+            match("function"); if (state.failed) return ;
 
 
             }
@@ -564,10 +568,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:133:7: ( 'store' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:133:9: 'store'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:133:7: ( 'value' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:133:9: 'value'
             {
-            match("store"); if (state.failed) return ;
+            match("value"); if (state.failed) return ;
 
 
             }
@@ -585,10 +589,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:134:7: ( 'snapshot' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:134:9: 'snapshot'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:134:7: ( 'new' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:134:9: 'new'
             {
-            match("snapshot"); if (state.failed) return ;
+            match("new"); if (state.failed) return ;
 
 
             }
@@ -606,10 +610,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:135:7: ( 'converter' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:135:9: 'converter'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:135:7: ( '-->' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:135:9: '-->'
             {
-            match("converter"); if (state.failed) return ;
+            match("-->"); if (state.failed) return ;
 
 
             }
@@ -627,10 +631,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:136:7: ( 'key' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:136:9: 'key'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:136:7: ( 'this' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:136:9: 'this'
             {
-            match("key"); if (state.failed) return ;
+            match("this"); if (state.failed) return ;
 
 
             }
@@ -648,10 +652,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:137:7: ( 'owns' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:137:9: 'owns'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:137:7: ( 'binding' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:137:9: 'binding'
             {
-            match("owns"); if (state.failed) return ;
+            match("binding"); if (state.failed) return ;
 
 
             }
@@ -669,10 +673,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:138:7: ( 'function' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:138:9: 'function'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:138:7: ( 'AddLink' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:138:9: 'AddLink'
             {
-            match("function"); if (state.failed) return ;
+            match("AddLink"); if (state.failed) return ;
 
 
             }
@@ -690,10 +694,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:139:7: ( 'foreach' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:139:9: 'foreach'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:139:7: ( 'aggregate' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:139:9: 'aggregate'
             {
-            match("foreach"); if (state.failed) return ;
+            match("aggregate"); if (state.failed) return ;
 
 
             }
@@ -711,10 +715,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:140:7: ( 'commit' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:140:9: 'commit'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:140:7: ( '+=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:140:9: '+='
             {
-            match("commit"); if (state.failed) return ;
+            match("+="); if (state.failed) return ;
 
 
             }
@@ -732,10 +736,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:141:7: ( '-=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:141:9: '-='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:141:7: ( 'store' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:141:9: 'store'
             {
-            match("-="); if (state.failed) return ;
+            match("store"); if (state.failed) return ;
 
 
             }
@@ -753,10 +757,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:142:7: ( 'dim' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:142:9: 'dim'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:142:7: ( 'head' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:142:9: 'head'
             {
-            match("dim"); if (state.failed) return ;
+            match("head"); if (state.failed) return ;
 
 
             }
@@ -774,10 +778,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:143:7: ( 'native' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:143:9: 'native'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:143:7: ( 'var' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:143:9: 'var'
             {
-            match("native"); if (state.failed) return ;
+            match("var"); if (state.failed) return ;
 
 
             }
@@ -795,10 +799,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:144:7: ( 'all' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:144:9: 'all'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:144:7: ( '$>' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:144:9: '$>'
             {
-            match("all"); if (state.failed) return ;
+            match("$>"); if (state.failed) return ;
 
 
             }
@@ -816,10 +820,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:145:7: ( '-->' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:145:9: '-->'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:145:7: ( 'delete' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:145:9: 'delete'
             {
-            match("-->"); if (state.failed) return ;
+            match("delete"); if (state.failed) return ;
 
 
             }
@@ -837,10 +841,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:146:7: ( '<$' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:146:9: '<$'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:146:7: ( 'while' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:146:9: 'while'
             {
-            match("<$"); if (state.failed) return ;
+            match("while"); if (state.failed) return ;
 
 
             }
@@ -858,10 +862,11 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:147:7: ( '?' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:147:9: '?'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:147:7: ( 'replace' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:147:9: 'replace'
             {
-            match('?'); if (state.failed) return ;
+            match("replace"); if (state.failed) return ;
+
 
             }
 
@@ -878,10 +883,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:148:7: ( 'new' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:148:9: 'new'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:148:7: ( '-=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:148:9: '-='
             {
-            match("new"); if (state.failed) return ;
+            match("-="); if (state.failed) return ;
 
 
             }
@@ -899,10 +904,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:149:7: ( 'changed' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:149:9: 'changed'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:149:7: ( '<$' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:149:9: '<$'
             {
-            match("changed"); if (state.failed) return ;
+            match("<$"); if (state.failed) return ;
 
 
             }
@@ -920,10 +925,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:150:7: ( 'value' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:150:9: 'value'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:150:7: ( 'commit' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:150:9: 'commit'
             {
-            match("value"); if (state.failed) return ;
+            match("commit"); if (state.failed) return ;
 
 
             }
@@ -941,10 +946,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:151:7: ( 'this' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:151:9: 'this'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:151:7: ( 'owns' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:151:9: 'owns'
             {
-            match("this"); if (state.failed) return ;
+            match("owns"); if (state.failed) return ;
 
 
             }
@@ -962,10 +967,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:152:7: ( 'void' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:152:9: 'void'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:152:7: ( 'snapshot' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:152:9: 'snapshot'
             {
-            match("void"); if (state.failed) return ;
+            match("snapshot"); if (state.failed) return ;
 
 
             }
@@ -983,10 +988,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:153:7: ( 'NULL' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:153:9: 'NULL'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:153:7: ( 'count' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:153:9: 'count'
             {
-            match("NULL"); if (state.failed) return ;
+            match("count"); if (state.failed) return ;
 
 
             }
@@ -1004,11 +1009,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:154:7: ( 'else' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:154:9: 'else'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:154:7: ( ',' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:154:9: ','
             {
-            match("else"); if (state.failed) return ;
-
+            match(','); if (state.failed) return ;
 
             }
 
@@ -1025,10 +1029,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:155:7: ( 'AddLink' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:155:9: 'AddLink'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:155:7: ( 'changed' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:155:9: 'changed'
             {
-            match("AddLink"); if (state.failed) return ;
+            match("changed"); if (state.failed) return ;
 
 
             }
@@ -1046,10 +1050,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:156:7: ( 'while' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:156:9: 'while'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:156:7: ( 'native' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:156:9: 'native'
             {
-            match("while"); if (state.failed) return ;
+            match("native"); if (state.failed) return ;
 
 
             }
@@ -1067,10 +1071,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:157:7: ( 'RemoveLink' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:157:9: 'RemoveLink'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:157:7: ( 'void' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:157:9: 'void'
             {
-            match("RemoveLink"); if (state.failed) return ;
+            match("void"); if (state.failed) return ;
 
 
             }
@@ -1088,10 +1092,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:158:7: ( '1000' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:158:9: '1000'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:158:7: ( 'const' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:158:9: 'const'
             {
-            match("1000"); if (state.failed) return ;
+            match("const"); if (state.failed) return ;
 
 
             }
@@ -1109,10 +1113,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:159:7: ( '2000' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:159:9: '2000'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:159:7: ( '1000' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:159:9: '1000'
             {
-            match("2000"); if (state.failed) return ;
+            match("1000"); if (state.failed) return ;
 
 
             }
@@ -1130,10 +1134,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:160:7: ( '3000' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:160:9: '3000'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:160:7: ( '2000' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:160:9: '2000'
             {
-            match("3000"); if (state.failed) return ;
+            match("2000"); if (state.failed) return ;
 
 
             }
@@ -1146,26 +1150,110 @@ public class BindingLexer extends Lexer {
     }
     // $ANTLR end "T__92"
 
+    // $ANTLR start "T__93"
+    public final void mT__93() throws RecognitionException {
+        try {
+            int _type = T__93;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:161:7: ( '3000' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:161:9: '3000'
+            {
+            match("3000"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__93"
+
+    // $ANTLR start "T__94"
+    public final void mT__94() throws RecognitionException {
+        try {
+            int _type = T__94;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:162:7: ( '1002' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:162:9: '1002'
+            {
+            match("1002"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__94"
+
+    // $ANTLR start "T__95"
+    public final void mT__95() throws RecognitionException {
+        try {
+            int _type = T__95;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:163:7: ( '2002' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:163:9: '2002'
+            {
+            match("2002"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__95"
+
+    // $ANTLR start "T__96"
+    public final void mT__96() throws RecognitionException {
+        try {
+            int _type = T__96;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:164:7: ( '3002' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:164:9: '3002'
+            {
+            match("3002"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__96"
+
     // $ANTLR start "COMMENT"
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2481:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2697:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:9: '//' (~ ( '\\r' | '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:9: '//' (~ ( '\\r' | '\\n' ) )*
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:14: (~ ( '\\r' | '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -1178,7 +1266,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2482:15: ~ ( '\\r' | '\\n' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2698:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1227,21 +1315,21 @@ public class BindingLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2487:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2703:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/*"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -1266,7 +1354,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2488:43: ( '\\n' | ~ '\\n' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2704:43: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1317,8 +1405,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2493:3: ( '[' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2494:3: '['
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2709:3: ( '[' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2710:3: '['
             {
             match('['); if (state.failed) return ;
 
@@ -1337,8 +1425,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2499:3: ( ']' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2500:3: ']'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2715:3: ( ']' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2716:3: ']'
             {
             match(']'); if (state.failed) return ;
 
@@ -1357,8 +1445,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2505:3: ( '{' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2506:3: '{'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2721:3: ( '{' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2722:3: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -1377,8 +1465,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2511:3: ( '}' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2512:3: '}'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2727:3: ( '}' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2728:3: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -1397,8 +1485,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = LANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2517:3: ( '<' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2518:3: '<'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2733:3: ( '<' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:3: '<'
             {
             match('<'); if (state.failed) return ;
 
@@ -1417,8 +1505,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2523:3: ( '>' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2524:3: '>'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2739:3: ( '>' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2740:3: '>'
             {
             match('>'); if (state.failed) return ;
 
@@ -1437,8 +1525,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2529:3: ( '(' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2530:3: '('
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2745:3: ( '(' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2746:3: '('
             {
             match('('); if (state.failed) return ;
 
@@ -1457,8 +1545,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2535:3: ( ')' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2536:3: ')'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2751:3: ( ')' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2752:3: ')'
             {
             match(')'); if (state.failed) return ;
 
@@ -1477,8 +1565,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = EXCL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2541:3: ( '!' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2542:3: '!'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2757:3: ( '!' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2758:3: '!'
             {
             match('!'); if (state.failed) return ;
 
@@ -1497,8 +1585,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2547:3: ( '=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2548:3: '='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2763:3: ( '=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2764:3: '='
             {
             match('='); if (state.failed) return ;
 
@@ -1517,8 +1605,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = EQUALSEQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2553:3: ( '==' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2554:3: '=='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2769:3: ( '==' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2770:3: '=='
             {
             match("=="); if (state.failed) return ;
 
@@ -1538,8 +1626,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2559:3: ( ':=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2560:3: ':='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2775:3: ( ':=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2776:3: ':='
             {
             match(":="); if (state.failed) return ;
 
@@ -1559,8 +1647,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2565:3: ( '.' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2566:3: '.'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2781:3: ( '.' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2782:3: '.'
             {
             match('.'); if (state.failed) return ;
 
@@ -1579,8 +1667,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = DDOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2571:3: ( '..' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2572:3: '..'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2787:3: ( '..' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2788:3: '..'
             {
             match(".."); if (state.failed) return ;
 
@@ -1600,8 +1688,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = ARROW;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2577:3: ( '->' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2578:3: '->'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2793:3: ( '->' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2794:3: '->'
             {
             match("->"); if (state.failed) return ;
 
@@ -1621,8 +1709,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = PIPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2583:3: ( '|' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2584:3: '|'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2799:3: ( '|' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2800:3: '|'
             {
             match('|'); if (state.failed) return ;
 
@@ -1641,8 +1729,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2589:3: ( ':' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2590:3: ':'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2805:3: ( ':' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2806:3: ':'
             {
             match(':'); if (state.failed) return ;
 
@@ -1661,8 +1749,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = DCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2595:3: ( '::' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2596:3: '::'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2811:3: ( '::' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2812:3: '::'
             {
             match("::"); if (state.failed) return ;
 
@@ -1682,8 +1770,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2601:3: ( ';' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2602:3: ';'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2817:3: ( ';' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2818:3: ';'
             {
             match(';'); if (state.failed) return ;
 
@@ -1702,8 +1790,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = INCLUDING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2607:3: ( 'including' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2608:3: 'including'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2823:3: ( 'including' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2824:3: 'including'
             {
             match("including"); if (state.failed) return ;
 
@@ -1723,8 +1811,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = EXCLUDING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2613:3: ( 'excluding' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2614:3: 'excluding'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2829:3: ( 'excluding' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2830:3: 'excluding'
             {
             match("excluding"); if (state.failed) return ;
 
@@ -1744,8 +1832,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = INCLUDINGAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2619:3: ( 'includingAt' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2620:3: 'includingAt'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2835:3: ( 'includingAt' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2836:3: 'includingAt'
             {
             match("includingAt"); if (state.failed) return ;
 
@@ -1765,8 +1853,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = EXCLUDINGAT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2625:3: ( 'excludingAt' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2626:3: 'excludingAt'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2841:3: ( 'excludingAt' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2842:3: 'excludingAt'
             {
             match("excludingAt"); if (state.failed) return ;
 
@@ -1786,8 +1874,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = ITERATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2631:3: ( 'iterate' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2632:3: 'iterate'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2847:3: ( 'iterate' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2848:3: 'iterate'
             {
             match("iterate"); if (state.failed) return ;
 
@@ -1807,8 +1895,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = LCURL_LBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2637:3: ( '{[' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2638:3: '{['
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2853:3: ( '{[' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2854:3: '{['
             {
             match("{["); if (state.failed) return ;
 
@@ -1828,8 +1916,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = LBRACK_LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2643:3: ( '[{' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2644:3: '[{'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2859:3: ( '[{' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2860:3: '[{'
             {
             match("[{"); if (state.failed) return ;
 
@@ -1849,8 +1937,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RCURL_RBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2649:3: ( '}]' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2650:3: '}]'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2865:3: ( '}]' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2866:3: '}]'
             {
             match("}]"); if (state.failed) return ;
 
@@ -1870,8 +1958,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RBRACK_RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2655:3: ( ']}' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2656:3: ']}'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2871:3: ( ']}' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2872:3: ']}'
             {
             match("]}"); if (state.failed) return ;
 
@@ -1891,8 +1979,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2661:3: ( '*' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2662:3: '*'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2877:3: ( '*' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2878:3: '*'
             {
             match('*'); if (state.failed) return ;
 
@@ -1911,10 +1999,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2671:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2671:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2887:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2887:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2671:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2887:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -1945,7 +2033,7 @@ public class BindingLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2671:6: '\\r' '\\n'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2887:6: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -1953,7 +2041,7 @@ public class BindingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2672:5: '\\n' '\\r'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2888:5: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -1961,14 +2049,14 @@ public class BindingLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2673:5: '\\r'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2889:5: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2674:5: '\\n'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2890:5: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -1996,8 +2084,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2680:2: ( ( ' ' | '\\t' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2680:4: ( ' ' | '\\t' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2896:2: ( ( ' ' | '\\t' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2896:4: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -2026,8 +2114,8 @@ public class BindingLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2687:2: ( '0' .. '9' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2687:4: '0' .. '9'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2903:2: ( '0' .. '9' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2903:4: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -2042,7 +2130,7 @@ public class BindingLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2692:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2908:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
@@ -2067,17 +2155,17 @@ public class BindingLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2703:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2703:4: ( ALPHA ) ( ALPHA | DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2919:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2919:4: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2703:4: ( ALPHA )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2703:5: ALPHA
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2919:4: ( ALPHA )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2919:5: ALPHA
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2703:12: ( ALPHA | DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2919:12: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
@@ -2125,7 +2213,7 @@ public class BindingLexer extends Lexer {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2706:6: ( 'true' | 'false' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2922:6: ( 'true' | 'false' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -2144,7 +2232,7 @@ public class BindingLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2706:8: 'true'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2922:8: 'true'
                     {
                     match("true"); if (state.failed) return ;
 
@@ -2152,7 +2240,7 @@ public class BindingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2706:17: 'false'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2922:17: 'false'
                     {
                     match("false"); if (state.failed) return ;
 
@@ -2174,8 +2262,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = OBJECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2708:8: ( 'o:' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2708:10: 'o:'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2924:8: ( 'o:' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2924:10: 'o:'
             {
             match("o:"); if (state.failed) return ;
 
@@ -2195,10 +2283,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2711:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2711:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2927:2: ( ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2927:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2711:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2927:4: ( SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -2217,17 +2305,17 @@ public class BindingLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2712:4: SNAME
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2928:4: SNAME
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2713:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2929:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
                     {
                     match('\''); if (state.failed) return ;
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2714:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2930:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -2243,7 +2331,7 @@ public class BindingLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2716:4: '\\n'
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2932:4: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -2253,7 +2341,7 @@ public class BindingLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2717:6: ~ ( '\\\\' | '\\'' | '\\n' )
+                    	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2933:6: ~ ( '\\\\' | '\\'' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -2297,12 +2385,12 @@ public class BindingLexer extends Lexer {
         try {
             int _type = BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2724:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2724:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2940:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2940:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
             {
             match("0x"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2724:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2940:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
             int cnt8=0;
             loop8:
             do {
@@ -2316,7 +2404,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2724:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2940:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
             	        input.consume();
@@ -2368,10 +2456,10 @@ public class BindingLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2729:2: ( ( DIGIT )+ )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2729:4: ( DIGIT )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2945:2: ( ( DIGIT )+ )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2945:4: ( DIGIT )+
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2729:4: ( DIGIT )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2945:4: ( DIGIT )+
             int cnt9=0;
             loop9:
             do {
@@ -2385,7 +2473,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2729:5: DIGIT
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2945:5: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -2416,10 +2504,10 @@ public class BindingLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:2: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:4: ( DIGIT )+ '.' ( DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2950:2: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2950:4: ( DIGIT )+ '.' ( DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:4: ( DIGIT )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2950:4: ( DIGIT )+
             int cnt10=0;
             loop10:
             do {
@@ -2433,7 +2521,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:4: DIGIT
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2950:4: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -2451,7 +2539,7 @@ public class BindingLexer extends Lexer {
             } while (true);
 
             match('.'); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:15: ( DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2950:15: ( DIGIT )*
             loop11:
             do {
                 int alt11=2;
@@ -2464,7 +2552,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2734:15: DIGIT
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2950:15: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -2490,7 +2578,7 @@ public class BindingLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2738:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2954:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
             int alt12=4;
             int LA12_0 = input.LA(1);
 
@@ -2529,7 +2617,7 @@ public class BindingLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2738:9: ( INT '..' )=> INT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2954:9: ( INT '..' )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2539,7 +2627,7 @@ public class BindingLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2739:7: ( INT '.' NAME )=> INT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2955:7: ( INT '.' NAME )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2549,7 +2637,7 @@ public class BindingLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2740:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2956:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2559,7 +2647,7 @@ public class BindingLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2747:9: INT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2963:9: INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2583,8 +2671,8 @@ public class BindingLexer extends Lexer {
         try {
             int _type = DATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2751:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2751:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2967:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2967:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
             {
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
@@ -2596,7 +2684,7 @@ public class BindingLexer extends Lexer {
             match('-'); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2751:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2967:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
             int alt17=2;
             int LA17_0 = input.LA(1);
 
@@ -2605,7 +2693,7 @@ public class BindingLexer extends Lexer {
             }
             switch (alt17) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2751:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2967:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
                     {
                     if ( input.LA(1)==' '||input.LA(1)=='T' ) {
                         input.consume();
@@ -2625,7 +2713,7 @@ public class BindingLexer extends Lexer {
                     match(':'); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2752:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2968:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -2636,10 +2724,10 @@ public class BindingLexer extends Lexer {
                         alt14=2;}
                     switch (alt14) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
                             {
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:40: ( ( ',' | '.' ) ( DIGIT )+ )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:41: ( ',' | '.' ) ( DIGIT )+
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:40: ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:41: ( ',' | '.' ) ( DIGIT )+
                             {
                             if ( input.LA(1)==','||input.LA(1)=='.' ) {
                                 input.consume();
@@ -2651,7 +2739,7 @@ public class BindingLexer extends Lexer {
                                 recover(mse);
                                 throw mse;}
 
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:53: ( DIGIT )+
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:53: ( DIGIT )+
                             int cnt13=0;
                             loop13:
                             do {
@@ -2665,7 +2753,7 @@ public class BindingLexer extends Lexer {
 
                                 switch (alt13) {
                             	case 1 :
-                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:54: DIGIT
+                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:54: DIGIT
                             	    {
                             	    mDIGIT(); if (state.failed) return ;
 
@@ -2689,14 +2777,14 @@ public class BindingLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2755:13: 
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2971:13: 
                             {
                             }
                             break;
 
                     }
 
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2756:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2972:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -2707,16 +2795,16 @@ public class BindingLexer extends Lexer {
                         alt16=2;}
                     switch (alt16) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2756:14: 'Z'
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2972:14: 'Z'
                             {
                             match('Z'); if (state.failed) return ;
 
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2756:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2972:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
                             {
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2756:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2972:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
                             int alt15=2;
                             int LA15_0 = input.LA(1);
 
@@ -2725,7 +2813,7 @@ public class BindingLexer extends Lexer {
                             }
                             switch (alt15) {
                                 case 1 :
-                                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2756:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
+                                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2972:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
                                     {
                                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                                         input.consume();
@@ -2775,11 +2863,11 @@ public class BindingLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2759:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2759:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2975:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2975:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
             {
             match('\"'); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2760:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2976:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
             loop18:
             do {
                 int alt18=3;
@@ -2795,7 +2883,7 @@ public class BindingLexer extends Lexer {
 
                 switch (alt18) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2762:4: '\\n'
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2978:4: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -2805,7 +2893,7 @@ public class BindingLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2763:5: ~ ( '\\\\' | '\"' | '\\n' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2979:5: ~ ( '\\\\' | '\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2839,8 +2927,8 @@ public class BindingLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
-        int alt19=85;
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:8: ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
+        int alt19=89;
         alt19 = dfa19.predict(input);
         switch (alt19) {
             case 1 :
@@ -3152,287 +3240,315 @@ public class BindingLexer extends Lexer {
                 }
                 break;
             case 45 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:274: COMMENT
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:274: T__93
+                {
+                mT__93(); if (state.failed) return ;
+
+                }
+                break;
+            case 46 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:280: T__94
+                {
+                mT__94(); if (state.failed) return ;
+
+                }
+                break;
+            case 47 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:286: T__95
+                {
+                mT__95(); if (state.failed) return ;
+
+                }
+                break;
+            case 48 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:292: T__96
+                {
+                mT__96(); if (state.failed) return ;
+
+                }
+                break;
+            case 49 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:298: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 46 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:282: MULTI_LINE_COMMENT
+            case 50 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:306: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 47 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:301: LBRACKET
+            case 51 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:325: LBRACKET
                 {
                 mLBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 48 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:310: RBRACKET
+            case 52 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:334: RBRACKET
                 {
                 mRBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 49 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:319: LCURL
+            case 53 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:343: LCURL
                 {
                 mLCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 50 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:325: RCURL
+            case 54 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:349: RCURL
                 {
                 mRCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 51 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:331: LANGLE
+            case 55 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:355: LANGLE
                 {
                 mLANGLE(); if (state.failed) return ;
 
                 }
                 break;
-            case 52 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:338: RANGLE
+            case 56 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:362: RANGLE
                 {
                 mRANGLE(); if (state.failed) return ;
 
                 }
                 break;
-            case 53 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:345: LPAREN
+            case 57 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:369: LPAREN
                 {
                 mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 54 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:352: RPAREN
+            case 58 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:376: RPAREN
                 {
                 mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 55 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:359: EXCL
+            case 59 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:383: EXCL
                 {
                 mEXCL(); if (state.failed) return ;
 
                 }
                 break;
-            case 56 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:364: EQUALS
+            case 60 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:388: EQUALS
                 {
                 mEQUALS(); if (state.failed) return ;
 
                 }
                 break;
-            case 57 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:371: EQUALSEQUALS
+            case 61 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:395: EQUALSEQUALS
                 {
                 mEQUALSEQUALS(); if (state.failed) return ;
 
                 }
                 break;
-            case 58 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:384: ASSIGN
+            case 62 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:408: ASSIGN
                 {
                 mASSIGN(); if (state.failed) return ;
 
                 }
                 break;
-            case 59 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:391: DOT
+            case 63 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:415: DOT
                 {
                 mDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 60 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:395: DDOT
+            case 64 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:419: DDOT
                 {
                 mDDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 61 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:400: ARROW
+            case 65 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:424: ARROW
                 {
                 mARROW(); if (state.failed) return ;
 
                 }
                 break;
-            case 62 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:406: PIPE
+            case 66 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:430: PIPE
                 {
                 mPIPE(); if (state.failed) return ;
 
                 }
                 break;
-            case 63 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:411: COLON
+            case 67 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:435: COLON
                 {
                 mCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 64 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:417: DCOLON
+            case 68 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:441: DCOLON
                 {
                 mDCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 65 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:424: SEMICOLON
+            case 69 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:448: SEMICOLON
                 {
                 mSEMICOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 66 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:434: INCLUDING
+            case 70 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:458: INCLUDING
                 {
                 mINCLUDING(); if (state.failed) return ;
 
                 }
                 break;
-            case 67 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:444: EXCLUDING
+            case 71 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:468: EXCLUDING
                 {
                 mEXCLUDING(); if (state.failed) return ;
 
                 }
                 break;
-            case 68 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:454: INCLUDINGAT
+            case 72 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:478: INCLUDINGAT
                 {
                 mINCLUDINGAT(); if (state.failed) return ;
 
                 }
                 break;
-            case 69 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:466: EXCLUDINGAT
+            case 73 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:490: EXCLUDINGAT
                 {
                 mEXCLUDINGAT(); if (state.failed) return ;
 
                 }
                 break;
-            case 70 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:478: ITERATE
+            case 74 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:502: ITERATE
                 {
                 mITERATE(); if (state.failed) return ;
 
                 }
                 break;
-            case 71 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:486: LCURL_LBRACK
+            case 75 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:510: LCURL_LBRACK
                 {
                 mLCURL_LBRACK(); if (state.failed) return ;
 
                 }
                 break;
-            case 72 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:499: LBRACK_LCURL
+            case 76 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:523: LBRACK_LCURL
                 {
                 mLBRACK_LCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 73 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:512: RCURL_RBRACK
+            case 77 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:536: RCURL_RBRACK
                 {
                 mRCURL_RBRACK(); if (state.failed) return ;
 
                 }
                 break;
-            case 74 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:525: RBRACK_RCURL
+            case 78 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:549: RBRACK_RCURL
                 {
                 mRBRACK_RCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 75 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:538: STAR
+            case 79 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:562: STAR
                 {
                 mSTAR(); if (state.failed) return ;
 
                 }
                 break;
-            case 76 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:543: NL
+            case 80 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:567: NL
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
-            case 77 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:546: WS
+            case 81 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:570: WS
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
-            case 78 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:549: BOOL
+            case 82 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:573: BOOL
                 {
                 mBOOL(); if (state.failed) return ;
 
                 }
                 break;
-            case 79 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:554: OBJECT
+            case 83 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:578: OBJECT
                 {
                 mOBJECT(); if (state.failed) return ;
 
                 }
                 break;
-            case 80 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:561: NAME
+            case 84 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:585: NAME
                 {
                 mNAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 81 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:566: BINARY
+            case 85 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:590: BINARY
                 {
                 mBINARY(); if (state.failed) return ;
 
                 }
                 break;
-            case 82 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:573: INT
+            case 86 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:597: INT
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
-            case 83 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:577: RANGE_OR_INT
+            case 87 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:601: RANGE_OR_INT
                 {
                 mRANGE_OR_INT(); if (state.failed) return ;
 
                 }
                 break;
-            case 84 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:590: DATE
+            case 88 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:614: DATE
                 {
                 mDATE(); if (state.failed) return ;
 
                 }
                 break;
-            case 85 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:595: STRING
+            case 89 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:1:619: STRING
                 {
                 mSTRING(); if (state.failed) return ;
 
@@ -3445,8 +3561,8 @@ public class BindingLexer extends Lexer {
 
     // $ANTLR start synpred1_Binding
     public final void synpred1_Binding_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2738:9: ( INT '..' )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2738:11: INT '..'
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2954:9: ( INT '..' )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2954:11: INT '..'
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
@@ -3458,8 +3574,8 @@ public class BindingLexer extends Lexer {
 
     // $ANTLR start synpred2_Binding
     public final void synpred2_Binding_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2739:7: ( INT '.' NAME )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2739:9: INT '.' NAME
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2955:7: ( INT '.' NAME )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2955:9: INT '.' NAME
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -3471,8 +3587,8 @@ public class BindingLexer extends Lexer {
 
     // $ANTLR start synpred3_Binding
     public final void synpred3_Binding_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2740:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2740:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2956:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2956:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -3493,8 +3609,8 @@ public class BindingLexer extends Lexer {
 
     // $ANTLR start synpred4_Binding
     public final void synpred4_Binding_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:15: ( ( ',' | '.' ) DIGIT )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2753:17: ( ',' | '.' ) DIGIT
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:15: ( ( ',' | '.' ) DIGIT )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.ap.cts.editor\\generated\\generated\\Binding.g:2969:17: ( ',' | '.' ) DIGIT
         {
         if ( input.LA(1)==','||input.LA(1)=='.' ) {
             input.consume();
@@ -3572,201 +3688,201 @@ public class BindingLexer extends Lexer {
 
     protected DFA19 dfa19 = new DFA19(this);
     static final String DFA19_eotS =
-        "\1\uffff\4\56\1\uffff\3\56\1\uffff\2\56\1\uffff\4\56\1\uffff\1\56"+
-        "\1\123\1\uffff\5\56\3\133\1\uffff\1\143\1\145\1\147\1\151\4\uffff"+
-        "\1\153\1\156\1\160\6\uffff\2\133\1\uffff\14\56\1\u0081\1\u0082\11"+
-        "\56\1\uffff\3\56\3\uffff\2\56\2\uffff\6\56\1\133\1\uffff\1\133\1"+
-        "\uffff\2\133\22\uffff\5\56\1\u00a2\4\56\1\u00a7\4\56\2\uffff\2\56"+
-        "\1\u00ae\5\56\1\u00b4\5\56\1\u00ba\6\56\4\133\6\56\1\uffff\4\56"+
-        "\1\uffff\1\u00cf\1\u00d0\1\u00d1\3\56\1\uffff\1\56\1\u00d6\1\u00d7"+
-        "\2\56\1\uffff\1\u00da\4\56\1\uffff\1\u00df\1\u00e0\4\56\1\u00e5"+
-        "\1\133\1\u00e8\1\u00e9\1\u00ea\1\56\1\u00ec\7\56\3\uffff\3\56\1"+
-        "\u00f7\2\uffff\1\u00f8\1\56\1\uffff\2\56\1\u00d1\1\56\2\uffff\2"+
-        "\56\1\u00ff\1\56\2\uffff\1\133\3\uffff\1\56\1\uffff\1\u0102\3\56"+
-        "\1\u0106\1\56\1\u0108\3\56\2\uffff\3\56\1\u010f\2\56\1\uffff\2\56"+
-        "\1\uffff\1\u0114\2\56\1\uffff\1\u0117\1\uffff\1\u0118\1\56\1\u011a"+
-        "\2\56\1\u011d\1\uffff\1\56\1\u011f\2\56\1\uffff\1\56\1\u0123\2\uffff"+
-        "\1\56\1\uffff\1\u0125\1\u0126\1\uffff\1\56\1\uffff\1\56\1\u0129"+
-        "\1\u012a\1\uffff\1\u012c\2\uffff\1\u012e\1\56\2\uffff\1\56\1\uffff"+
-        "\1\56\1\uffff\1\u0132\1\u0133\1\u0134\3\uffff";
+        "\1\uffff\6\56\1\uffff\6\56\1\114\2\56\1\uffff\1\56\1\uffff\2\56"+
+        "\1\uffff\2\56\1\uffff\3\134\1\uffff\1\144\1\146\1\150\1\152\4\uffff"+
+        "\1\154\1\157\1\161\6\uffff\2\134\1\uffff\5\56\1\171\13\56\1\u0085"+
+        "\6\56\3\uffff\4\56\3\uffff\6\56\1\uffff\1\134\1\uffff\1\134\1\uffff"+
+        "\2\134\22\uffff\4\56\1\u00a1\1\56\1\uffff\7\56\1\u00aa\3\56\1\uffff"+
+        "\1\56\1\u00af\7\56\1\u00b8\1\56\1\u00ba\7\56\4\134\1\u00c9\3\56"+
+        "\1\uffff\6\56\1\u00d3\1\56\1\uffff\1\u00d5\1\u00d6\1\u00d7\1\56"+
+        "\1\uffff\10\56\1\uffff\1\u00e1\1\uffff\4\56\1\u00e6\1\56\1\u00e8"+
+        "\1\u00e9\1\u00ec\1\134\1\u00ed\1\u00ee\1\u00ef\1\u00f0\1\uffff\10"+
+        "\56\1\u00d7\1\uffff\1\56\3\uffff\4\56\1\u00fe\1\56\1\u0100\1\56"+
+        "\1\u0102\1\uffff\2\56\1\u0105\1\56\1\uffff\1\u0107\2\uffff\1\134"+
+        "\6\uffff\1\u0108\11\56\1\u0112\2\56\1\uffff\1\u0115\1\uffff\1\56"+
+        "\1\uffff\1\u0117\1\56\1\uffff\1\56\2\uffff\1\u011a\3\56\1\u011e"+
+        "\1\u011f\2\56\1\u0122\1\uffff\2\56\1\uffff\1\u0125\1\uffff\1\u0126"+
+        "\1\56\1\uffff\1\u0128\2\56\2\uffff\1\u012b\1\56\1\uffff\2\56\2\uffff"+
+        "\1\u012f\1\uffff\1\u0130\1\u0132\1\uffff\1\u0134\1\56\1\u0136\2"+
+        "\uffff\1\56\1\uffff\1\56\1\uffff\1\u0139\1\uffff\1\u013a\1\u013b"+
+        "\3\uffff";
     static final String DFA19_eofS =
-        "\u0135\uffff";
+        "\u013c\uffff";
     static final String DFA19_minS =
-        "\1\11\1\150\1\147\2\145\1\uffff\1\141\1\151\1\146\1\uffff\1\141"+
-        "\1\145\1\uffff\1\156\1\145\1\72\1\141\1\55\1\141\1\44\1\uffff\1"+
-        "\125\1\154\1\144\1\150\1\145\3\56\1\52\1\173\1\175\1\133\1\135\4"+
-        "\uffff\1\75\1\72\1\56\6\uffff\2\56\1\uffff\1\155\1\141\1\147\2\154"+
-        "\1\160\1\154\1\155\2\151\1\165\1\156\2\60\1\143\1\145\1\154\1\151"+
-        "\1\141\1\157\1\141\1\171\1\156\1\uffff\1\156\1\162\1\154\3\uffff"+
-        "\1\164\1\167\2\uffff\1\114\1\163\1\143\1\144\1\151\1\155\1\56\1"+
-        "\uffff\1\56\1\uffff\2\56\22\uffff\1\163\1\156\1\155\1\156\1\162"+
-        "\1\60\1\154\1\165\1\154\1\145\1\60\1\154\1\163\1\145\1\144\2\uffff"+
-        "\1\154\1\162\1\60\1\165\2\144\1\162\1\160\1\60\1\163\1\143\1\145"+
-        "\1\163\1\151\1\60\1\114\1\145\1\154\1\114\1\154\1\157\4\56\1\164"+
-        "\1\145\1\164\1\151\1\147\1\145\1\uffff\1\142\1\162\1\141\1\164\1"+
-        "\uffff\3\60\1\151\1\165\1\141\1\uffff\1\145\2\60\1\145\1\163\1\uffff"+
-        "\1\60\1\164\1\141\1\145\1\166\1\uffff\2\60\1\165\1\151\1\145\1\166"+
-        "\4\55\1\60\1\162\1\60\1\164\1\145\1\147\1\141\1\156\1\143\1\145"+
-        "\3\uffff\1\156\1\144\1\164\1\60\2\uffff\1\60\1\150\1\uffff\1\151"+
-        "\1\143\1\60\1\145\2\uffff\1\144\1\156\1\60\1\145\2\uffff\1\56\3"+
-        "\uffff\1\164\1\uffff\1\60\1\144\1\141\1\143\1\60\1\145\1\60\1\147"+
-        "\1\151\1\145\2\uffff\2\157\1\150\1\60\1\151\1\153\1\uffff\1\114"+
-        "\1\145\1\uffff\1\60\1\164\1\153\1\uffff\1\60\1\uffff\1\60\1\156"+
-        "\1\60\1\164\1\156\1\60\1\uffff\1\156\1\60\1\151\1\162\1\uffff\1"+
-        "\145\1\60\2\uffff\1\147\1\uffff\2\60\1\uffff\1\147\1\uffff\1\156"+
-        "\2\60\1\uffff\1\60\2\uffff\1\60\1\153\2\uffff\1\164\1\uffff\1\164"+
-        "\1\uffff\3\60\3\uffff";
+        "\1\11\1\125\1\145\1\147\1\146\1\141\1\154\1\uffff\1\145\1\141\1"+
+        "\151\2\145\1\150\1\44\2\141\1\55\1\144\1\uffff\1\156\1\145\1\uffff"+
+        "\1\150\1\72\1\uffff\3\56\1\52\1\173\1\175\1\133\1\135\4\uffff\1"+
+        "\75\1\72\1\56\6\uffff\2\56\1\uffff\1\114\1\160\2\154\1\147\1\60"+
+        "\1\143\1\145\1\162\1\156\1\154\1\163\1\143\1\171\2\151\1\165\1\60"+
+        "\1\156\1\155\1\154\2\155\1\141\3\uffff\1\154\1\151\1\167\1\164\3"+
+        "\uffff\1\144\1\157\2\141\1\151\1\156\1\uffff\1\56\1\uffff\1\56\1"+
+        "\uffff\2\56\22\uffff\1\114\1\165\2\154\1\60\1\162\1\uffff\1\154"+
+        "\1\162\1\145\1\143\1\163\1\145\1\154\1\60\1\154\1\163\1\145\1\uffff"+
+        "\1\144\1\60\1\145\1\157\1\163\1\155\2\156\1\165\1\60\1\144\1\60"+
+        "\1\151\1\114\1\162\1\160\1\144\1\154\1\163\4\56\1\60\1\162\1\141"+
+        "\1\142\1\uffff\1\145\1\165\2\141\1\164\1\145\1\60\1\165\1\uffff"+
+        "\3\60\1\151\1\uffff\1\164\1\166\1\145\1\164\1\151\1\164\1\147\1"+
+        "\145\1\uffff\1\60\1\uffff\1\166\1\151\1\145\1\163\1\60\1\145\1\60"+
+        "\7\55\1\uffff\1\156\1\143\1\141\1\147\1\144\1\164\1\143\1\151\1"+
+        "\60\1\uffff\1\144\3\uffff\1\156\2\145\1\162\1\60\1\164\1\60\1\145"+
+        "\1\60\1\uffff\1\145\1\156\1\60\1\150\1\uffff\1\60\2\uffff\1\56\6"+
+        "\uffff\1\60\1\145\1\143\1\141\1\151\1\145\1\150\1\157\1\151\1\147"+
+        "\1\60\1\114\1\164\1\uffff\1\60\1\uffff\1\144\1\uffff\1\60\1\153"+
+        "\1\uffff\1\157\2\uffff\1\60\1\153\1\164\1\156\2\60\2\156\1\60\1"+
+        "\uffff\1\151\1\145\1\uffff\1\60\1\uffff\1\60\1\164\1\uffff\1\60"+
+        "\1\145\1\147\2\uffff\1\60\1\147\1\uffff\1\156\1\162\2\uffff\1\60"+
+        "\1\uffff\2\60\1\uffff\1\60\1\153\1\60\2\uffff\1\164\1\uffff\1\164"+
+        "\1\uffff\1\60\1\uffff\2\60\3\uffff";
     static final String DFA19_maxS =
-        "\1\u00ff\1\157\1\154\1\157\1\151\1\uffff\1\162\1\171\1\164\1\uffff"+
-        "\1\157\1\145\1\uffff\1\164\1\145\1\167\1\165\1\76\1\145\1\44\1\uffff"+
-        "\1\125\1\170\1\144\1\150\1\145\3\71\1\57\1\173\1\175\1\133\1\135"+
-        "\4\uffff\2\75\1\56\6\uffff\1\170\1\71\1\uffff\1\165\1\141\1\147"+
-        "\2\154\1\164\1\154\1\155\2\151\1\165\1\156\2\u00ff\1\143\1\145\1"+
-        "\162\1\151\1\141\1\157\1\141\1\171\1\156\1\uffff\1\156\1\162\1\154"+
-        "\3\uffff\1\164\1\167\2\uffff\1\114\1\163\1\143\1\144\1\151\1\155"+
-        "\1\71\1\uffff\1\71\1\uffff\2\71\22\uffff\1\166\1\156\1\155\1\156"+
-        "\1\162\1\u00ff\1\154\1\165\1\154\1\145\1\u00ff\1\154\1\163\1\145"+
-        "\1\144\2\uffff\1\154\1\162\1\u00ff\1\165\2\144\1\162\1\160\1\u00ff"+
-        "\1\163\1\143\1\145\1\163\1\151\1\u00ff\1\114\1\145\1\154\1\114\1"+
-        "\154\1\157\4\71\1\164\1\145\1\164\1\151\1\147\1\145\1\uffff\1\142"+
-        "\1\162\1\141\1\164\1\uffff\3\u00ff\1\151\1\165\1\141\1\uffff\1\145"+
-        "\2\u00ff\1\145\1\163\1\uffff\1\u00ff\1\164\1\141\1\145\1\166\1\uffff"+
-        "\2\u00ff\1\165\1\151\1\145\1\166\4\71\1\u00ff\1\162\1\u00ff\1\164"+
-        "\1\145\1\147\1\141\1\156\1\143\1\145\3\uffff\1\156\1\144\1\164\1"+
-        "\u00ff\2\uffff\1\u00ff\1\150\1\uffff\1\151\1\143\1\u00ff\1\145\2"+
-        "\uffff\1\144\1\156\1\u00ff\1\145\2\uffff\1\71\3\uffff\1\164\1\uffff"+
-        "\1\u00ff\1\144\1\141\1\143\1\u00ff\1\145\1\u00ff\1\147\1\151\1\145"+
-        "\2\uffff\2\157\1\150\1\u00ff\1\151\1\153\1\uffff\1\114\1\145\1\uffff"+
-        "\1\u00ff\1\164\1\153\1\uffff\1\u00ff\1\uffff\1\u00ff\1\156\1\u00ff"+
-        "\1\164\1\156\1\u00ff\1\uffff\1\156\1\u00ff\1\151\1\162\1\uffff\1"+
-        "\145\1\u00ff\2\uffff\1\147\1\uffff\2\u00ff\1\uffff\1\147\1\uffff"+
-        "\1\156\2\u00ff\1\uffff\1\u00ff\2\uffff\1\u00ff\1\153\2\uffff\1\164"+
-        "\1\uffff\1\164\1\uffff\3\u00ff\3\uffff";
+        "\1\u00ff\1\125\1\157\1\154\1\164\1\165\1\170\1\uffff\1\145\1\162"+
+        "\1\171\1\151\1\145\1\157\1\75\1\157\1\145\1\76\1\144\1\uffff\1\164"+
+        "\1\145\1\uffff\1\150\1\167\1\uffff\3\71\1\57\1\173\1\175\1\133\1"+
+        "\135\4\uffff\2\75\1\56\6\uffff\1\170\1\71\1\uffff\1\114\1\164\2"+
+        "\154\1\147\1\u00ff\1\143\1\145\1\162\1\156\1\154\1\163\1\143\1\171"+
+        "\2\151\1\165\1\u00ff\1\156\1\155\1\154\1\155\1\165\1\141\3\uffff"+
+        "\1\162\1\151\1\167\1\164\3\uffff\1\144\1\157\2\141\1\151\1\156\1"+
+        "\uffff\1\71\1\uffff\1\71\1\uffff\2\71\22\uffff\1\114\1\165\2\154"+
+        "\1\u00ff\1\162\1\uffff\1\154\1\162\1\145\1\143\1\163\1\145\1\154"+
+        "\1\u00ff\1\154\1\163\1\145\1\uffff\1\144\1\u00ff\1\145\1\157\1\166"+
+        "\1\155\2\156\1\165\1\u00ff\1\144\1\u00ff\1\151\1\114\1\162\1\160"+
+        "\1\144\1\154\1\163\4\71\1\u00ff\1\162\1\141\1\142\1\uffff\1\145"+
+        "\1\165\2\141\1\164\1\145\1\u00ff\1\165\1\uffff\3\u00ff\1\151\1\uffff"+
+        "\1\164\1\166\1\145\1\164\1\151\1\164\1\147\1\145\1\uffff\1\u00ff"+
+        "\1\uffff\1\166\1\151\1\145\1\163\1\u00ff\1\145\1\u00ff\7\71\1\uffff"+
+        "\1\156\1\143\1\141\1\147\1\144\1\164\1\143\1\151\1\u00ff\1\uffff"+
+        "\1\144\3\uffff\1\156\2\145\1\162\1\u00ff\1\164\1\u00ff\1\145\1\u00ff"+
+        "\1\uffff\1\145\1\156\1\u00ff\1\150\1\uffff\1\u00ff\2\uffff\1\71"+
+        "\6\uffff\1\u00ff\1\145\1\143\1\141\1\151\1\145\1\150\1\157\1\151"+
+        "\1\147\1\u00ff\1\114\1\164\1\uffff\1\u00ff\1\uffff\1\144\1\uffff"+
+        "\1\u00ff\1\153\1\uffff\1\157\2\uffff\1\u00ff\1\153\1\164\1\156\2"+
+        "\u00ff\2\156\1\u00ff\1\uffff\1\151\1\145\1\uffff\1\u00ff\1\uffff"+
+        "\1\u00ff\1\164\1\uffff\1\u00ff\1\145\1\147\2\uffff\1\u00ff\1\147"+
+        "\1\uffff\1\156\1\162\2\uffff\1\u00ff\1\uffff\2\u00ff\1\uffff\1\u00ff"+
+        "\1\153\1\u00ff\2\uffff\1\164\1\uffff\1\164\1\uffff\1\u00ff\1\uffff"+
+        "\2\u00ff\3\uffff";
     static final String DFA19_acceptS =
-        "\5\uffff\1\5\3\uffff\1\13\2\uffff\1\20\7\uffff\1\37\15\uffff\1\64"+
-        "\1\65\1\66\1\67\3\uffff\1\76\1\101\1\113\1\114\1\115\1\120\2\uffff"+
-        "\1\125\27\uffff\1\117\3\uffff\1\31\1\35\1\75\2\uffff\1\36\1\63\7"+
-        "\uffff\1\122\1\uffff\1\123\2\uffff\1\55\1\56\1\110\1\57\1\112\1"+
-        "\60\1\107\1\61\1\111\1\62\1\71\1\70\1\72\1\100\1\77\1\74\1\73\1"+
-        "\121\17\uffff\1\10\1\12\37\uffff\1\34\4\uffff\1\32\6\uffff\1\15"+
-        "\5\uffff\1\24\5\uffff\1\40\24\uffff\1\6\1\43\1\116\4\uffff\1\44"+
-        "\1\17\2\uffff\1\25\4\uffff\1\45\1\46\4\uffff\1\52\1\124\1\uffff"+
-        "\1\53\1\54\1\1\1\uffff\1\11\12\uffff\1\42\1\21\6\uffff\1\50\2\uffff"+
-        "\1\30\3\uffff\1\14\1\uffff\1\4\6\uffff\1\33\4\uffff\1\41\2\uffff"+
-        "\1\16\1\7\1\uffff\1\106\2\uffff\1\27\1\uffff\1\47\3\uffff\1\3\1"+
-        "\uffff\1\22\1\26\2\uffff\1\23\1\2\1\uffff\1\102\1\uffff\1\103\3"+
-        "\uffff\1\51\1\104\1\105";
+        "\7\uffff\1\7\13\uffff\1\30\2\uffff\1\34\2\uffff\1\46\10\uffff\1"+
+        "\70\1\71\1\72\1\73\3\uffff\1\102\1\105\1\117\1\120\1\121\1\124\2"+
+        "\uffff\1\131\30\uffff\1\17\1\41\1\67\4\uffff\1\23\1\40\1\101\6\uffff"+
+        "\1\123\1\uffff\1\126\1\uffff\1\127\2\uffff\1\61\1\62\1\114\1\63"+
+        "\1\116\1\64\1\113\1\65\1\115\1\66\1\75\1\74\1\76\1\104\1\103\1\100"+
+        "\1\77\1\125\6\uffff\1\4\13\uffff\1\13\33\uffff\1\3\10\uffff\1\11"+
+        "\4\uffff\1\14\10\uffff\1\33\1\uffff\1\22\16\uffff\1\1\11\uffff\1"+
+        "\6\1\uffff\1\12\1\24\1\122\11\uffff\1\51\4\uffff\1\32\1\uffff\1"+
+        "\43\1\53\1\uffff\1\130\1\56\1\54\1\57\1\55\1\60\15\uffff\1\52\1"+
+        "\uffff\1\45\1\uffff\1\21\2\uffff\1\31\1\uffff\1\36\1\2\11\uffff"+
+        "\1\35\2\uffff\1\42\1\uffff\1\50\2\uffff\1\37\3\uffff\1\112\1\5\2"+
+        "\uffff\1\25\2\uffff\1\47\1\26\1\uffff\1\10\2\uffff\1\20\3\uffff"+
+        "\1\44\1\27\1\uffff\1\106\1\uffff\1\107\1\uffff\1\16\2\uffff\1\15"+
+        "\1\110\1\111";
     static final String DFA19_specialS =
-        "\u0135\uffff}>";
+        "\u013c\uffff}>";
     static final String[] DFA19_transitionS = {
-            "\1\55\1\54\2\uffff\1\54\22\uffff\1\55\1\45\1\61\1\uffff\1\5"+
-            "\2\uffff\1\56\1\43\1\44\1\53\1\14\1\11\1\21\1\50\1\35\1\57\1"+
-            "\32\1\33\1\34\6\60\1\47\1\52\1\23\1\46\1\42\1\24\1\uffff\1\27"+
-            "\14\56\1\25\3\56\1\31\10\56\1\36\1\uffff\1\37\1\uffff\1\56\1"+
-            "\uffff\1\2\1\7\1\1\1\4\1\26\1\20\1\56\1\13\1\10\1\56\1\16\2"+
-            "\56\1\22\1\17\2\56\1\3\1\15\1\6\1\56\1\12\1\30\3\56\1\40\1\51"+
-            "\1\41\102\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\63\6\uffff\1\62",
-            "\1\64\4\uffff\1\65",
-            "\1\67\11\uffff\1\66",
-            "\1\70\3\uffff\1\71",
+            "\1\55\1\54\2\uffff\1\54\22\uffff\1\55\1\45\1\61\1\uffff\1\26"+
+            "\2\uffff\1\56\1\43\1\44\1\53\1\23\1\31\1\21\1\50\1\35\1\57\1"+
+            "\32\1\33\1\34\6\60\1\47\1\52\1\16\1\46\1\42\1\7\1\uffff\1\22"+
+            "\14\56\1\1\3\56\1\14\10\56\1\36\1\uffff\1\37\1\uffff\1\56\1"+
+            "\uffff\1\3\1\12\1\15\1\13\1\6\1\5\1\56\1\25\1\4\1\56\1\10\2"+
+            "\56\1\20\1\30\2\56\1\2\1\24\1\11\1\56\1\17\1\27\3\56\1\40\1"+
+            "\51\1\41\102\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\62",
+            "\1\63\11\uffff\1\64",
+            "\1\66\4\uffff\1\65",
+            "\1\67\7\uffff\1\70\5\uffff\1\71",
+            "\1\74\15\uffff\1\72\5\uffff\1\73",
+            "\1\75\13\uffff\1\76",
             "",
-            "\1\72\6\uffff\1\73\11\uffff\1\74",
-            "\1\75\17\uffff\1\76",
-            "\1\77\7\uffff\1\100\5\uffff\1\101",
-            "",
-            "\1\102\15\uffff\1\103",
-            "\1\104",
-            "",
-            "\1\106\5\uffff\1\105",
+            "\1\77",
+            "\1\100\6\uffff\1\101\11\uffff\1\102",
+            "\1\104\17\uffff\1\103",
+            "\1\106\3\uffff\1\105",
             "\1\107",
-            "\1\111\74\uffff\1\110",
-            "\1\114\15\uffff\1\113\5\uffff\1\112",
-            "\1\116\17\uffff\1\115\1\117",
-            "\1\120\3\uffff\1\121",
-            "\1\122",
-            "",
+            "\1\111\6\uffff\1\110",
+            "\1\113\30\uffff\1\112",
+            "\1\115\15\uffff\1\116",
+            "\1\120\3\uffff\1\117",
+            "\1\121\17\uffff\1\122\1\123",
             "\1\124",
-            "\1\125\13\uffff\1\126",
+            "",
+            "\1\126\5\uffff\1\125",
             "\1\127",
+            "",
             "\1\130",
-            "\1\131",
-            "\1\135\1\uffff\1\132\11\134",
-            "\1\135\1\uffff\1\136\11\134",
-            "\1\135\1\uffff\1\137\11\134",
-            "\1\141\4\uffff\1\140",
-            "\1\142",
-            "\1\144",
-            "\1\146",
-            "\1\150",
+            "\1\132\74\uffff\1\131",
+            "",
+            "\1\136\1\uffff\1\133\11\135",
+            "\1\136\1\uffff\1\137\11\135",
+            "\1\136\1\uffff\1\140\11\135",
+            "\1\142\4\uffff\1\141",
+            "\1\143",
+            "\1\145",
+            "\1\147",
+            "\1\151",
             "",
             "",
             "",
             "",
-            "\1\152",
-            "\1\155\2\uffff\1\154",
-            "\1\157",
+            "\1\153",
+            "\1\156\2\uffff\1\155",
+            "\1\160",
             "",
             "",
             "",
             "",
             "",
             "",
-            "\1\135\1\uffff\12\134\76\uffff\1\161",
-            "\1\135\1\uffff\12\134",
+            "\1\136\1\uffff\12\135\76\uffff\1\162",
+            "\1\136\1\uffff\12\135",
             "",
-            "\1\164\1\162\6\uffff\1\163",
-            "\1\165",
+            "\1\163",
+            "\1\165\3\uffff\1\164",
             "\1\166",
             "\1\167",
             "\1\170",
-            "\1\172\3\uffff\1\171",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\172",
             "\1\173",
             "\1\174",
             "\1\175",
             "\1\176",
             "\1\177",
             "\1\u0080",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0081",
+            "\1\u0082",
             "\1\u0083",
             "\1\u0084",
-            "\1\u0086\5\uffff\1\u0085",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0086",
             "\1\u0087",
             "\1\u0088",
             "\1\u0089",
-            "\1\u008a",
-            "\1\u008b",
-            "\1\u008c",
-            "",
+            "\1\u008b\1\u008a\6\uffff\1\u008c",
             "\1\u008d",
-            "\1\u008e",
-            "\1\u008f",
             "",
             "",
             "",
+            "\1\u008e\5\uffff\1\u008f",
             "\1\u0090",
             "\1\u0091",
-            "",
-            "",
             "\1\u0092",
+            "",
+            "",
+            "",
             "\1\u0093",
             "\1\u0094",
             "\1\u0095",
             "\1\u0096",
             "\1\u0097",
-            "\1\135\1\uffff\1\u0098\11\u0099",
+            "\1\u0098",
             "",
-            "\1\135\1\uffff\12\u0099",
+            "\1\136\1\uffff\1\u0099\11\u009a",
             "",
-            "\1\135\1\uffff\1\u009a\11\u0099",
-            "\1\135\1\uffff\1\u009b\11\u0099",
+            "\1\136\1\uffff\12\u009a",
             "",
-            "",
-            "",
-            "",
+            "\1\136\1\uffff\1\u009b\11\u009a",
+            "\1\136\1\uffff\1\u009c\11\u009a",
             "",
             "",
             "",
@@ -3781,237 +3897,247 @@ public class BindingLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u009c\2\uffff\1\u009d",
+            "",
+            "",
+            "",
+            "",
+            "\1\u009d",
             "\1\u009e",
             "\1\u009f",
             "\1\u00a0",
-            "\1\u00a1",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00a2",
+            "",
             "\1\u00a3",
             "\1\u00a4",
             "\1\u00a5",
             "\1\u00a6",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00a7",
             "\1\u00a8",
             "\1\u00a9",
-            "\1\u00aa",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00ab",
-            "",
-            "",
             "\1\u00ac",
             "\1\u00ad",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00af",
+            "",
+            "\1\u00ae",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00b0",
             "\1\u00b1",
-            "\1\u00b2",
-            "\1\u00b3",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00b3\2\uffff\1\u00b2",
+            "\1\u00b4",
             "\1\u00b5",
             "\1\u00b6",
             "\1\u00b7",
-            "\1\u00b8",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00b9",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00bb",
             "\1\u00bc",
             "\1\u00bd",
             "\1\u00be",
             "\1\u00bf",
             "\1\u00c0",
-            "\1\135\1\uffff\1\u00c1\11\u00c2",
-            "\1\135\1\uffff\12\u00c2",
-            "\1\135\1\uffff\1\u00c3\11\u00c2",
-            "\1\135\1\uffff\1\u00c4\11\u00c2",
-            "\1\u00c5",
-            "\1\u00c6",
-            "\1\u00c7",
-            "\1\u00c8",
-            "\1\u00c9",
+            "\1\u00c1",
+            "\1\136\1\uffff\1\u00c2\1\u00c4\1\u00c3\7\u00c4",
+            "\1\136\1\uffff\12\u00c4",
+            "\1\136\1\uffff\1\u00c5\1\u00c4\1\u00c6\7\u00c4",
+            "\1\136\1\uffff\1\u00c7\1\u00c4\1\u00c8\7\u00c4",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00ca",
-            "",
             "\1\u00cb",
             "\1\u00cc",
+            "",
             "\1\u00cd",
             "\1\u00ce",
-            "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00cf",
+            "\1\u00d0",
+            "\1\u00d1",
             "\1\u00d2",
-            "\1\u00d3",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00d4",
             "",
-            "\1\u00d5",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00d8",
-            "\1\u00d9",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00d9",
+            "\1\u00da",
             "\1\u00db",
             "\1\u00dc",
             "\1\u00dd",
             "\1\u00de",
+            "\1\u00df",
+            "\1\u00e0",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00e1",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "",
             "\1\u00e2",
             "\1\u00e3",
             "\1\u00e4",
-            "\1\u00e6\1\135\1\uffff\12\u00e7",
-            "\1\u00e6\1\135\1\uffff\12\u00e7",
-            "\1\u00e6\1\135\1\uffff\12\u00e7",
-            "\1\u00e6\1\135\1\uffff\12\u00e7",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00eb",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u00ed",
-            "\1\u00ee",
-            "\1\u00ef",
-            "\1\u00f0",
+            "\1\u00e5",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00e7",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "\1\u00eb\1\136\1\uffff\12\u00ea",
+            "",
             "\1\u00f1",
             "\1\u00f2",
             "\1\u00f3",
-            "",
-            "",
-            "",
             "\1\u00f4",
             "\1\u00f5",
             "\1\u00f6",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00f7",
+            "\1\u00f8",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
-            "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00f9",
+            "",
+            "",
             "",
             "\1\u00fa",
             "\1\u00fb",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u00fc",
-            "",
-            "",
             "\1\u00fd",
-            "\1\u00fe",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0100",
-            "",
-            "",
-            "\1\135\1\uffff\12\u00e7",
-            "",
-            "",
-            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u00ff",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0101",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0103",
             "\1\u0104",
-            "\1\u0105",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0107",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0106",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "",
+            "\1\136\1\uffff\12\u00ea",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0109",
             "\1\u010a",
             "\1\u010b",
-            "",
-            "",
             "\1\u010c",
             "\1\u010d",
             "\1\u010e",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u010f",
             "\1\u0110",
             "\1\u0111",
-            "",
-            "\1\u0112",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0113",
+            "\1\u0114",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u0115",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "",
             "\1\u0116",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0118",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0119",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u011b",
             "\1\u011c",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "",
-            "\1\u011e",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u011d",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0120",
             "\1\u0121",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
-            "\1\u0122",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "",
-            "",
+            "\1\u0123",
             "\1\u0124",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "\1\u0127",
             "",
-            "\1\u0128",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u0129",
+            "\1\u012a",
             "",
-            "\12\56\7\uffff\1\u012b\31\56\4\uffff\1\56\1\uffff\32\56\105"+
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\1\u012c",
+            "",
+            "\1\u012d",
+            "\1\u012e",
+            "",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\1\u0131\31\56\4\uffff\1\56\1\uffff\32\56\105"+
             "\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
-            "",
-            "\12\56\7\uffff\1\u012d\31\56\4\uffff\1\56\1\uffff\32\56\105"+
+            "\12\56\7\uffff\1\u0133\31\56\4\uffff\1\56\1\uffff\32\56\105"+
             "\uffff\27\56\1\uffff\37\56\1\uffff\10\56",
-            "\1\u012f",
+            "\1\u0135",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
             "",
-            "\1\u0130",
+            "\1\u0137",
             "",
-            "\1\u0131",
+            "\1\u0138",
             "",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
-            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff\27"+
-            "\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
+            "\12\56\7\uffff\32\56\4\uffff\1\56\1\uffff\32\56\105\uffff"+
+            "\27\56\1\uffff\37\56\1\uffff\10\56",
             "",
             "",
             ""
@@ -4047,7 +4173,7 @@ public class BindingLexer extends Lexer {
             this.transition = DFA19_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING );";
+            return "1:1: Tokens : ( T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EXCL | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | ARROW | PIPE | COLON | DCOLON | SEMICOLON | INCLUDING | EXCLUDING | INCLUDINGAT | EXCLUDINGAT | ITERATE | LCURL_LBRACK | LBRACK_LCURL | RCURL_RBRACK | RBRACK_RCURL | STAR | NL | WS | BOOL | OBJECT | NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING );";
         }
     }
  

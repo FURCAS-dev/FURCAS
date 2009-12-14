@@ -125,7 +125,6 @@ public class AExpressionParameterWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.AExpressionParameter> get___JmiInterface() {
         return behavior.functions.AExpressionParameter.class;
     }

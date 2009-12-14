@@ -7,6 +7,8 @@ import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.List;
 
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
 import org.antlr.runtime.Lexer;
 
 import textblocks.TextBlock;
@@ -204,6 +206,14 @@ public class IncrementalParserFacade {
 		} else {
 			return rootBlock;
 		}
+	}
+	
+	public List<ParsingError> dryParse(TextBlock rootBlock) {
+		ObservableInjectingParser p = getParserFactory().createParser(
+				new CommonTokenStream(getParserFactory().createLexer(
+						new ANTLRStringStream(rootBlock.getCachedString()))),
+				TcsUtil.getConnectionFromRefObject(rootBlock));
+		return p.checkSyntaxWithoutInjecting();
 	}
 
 	public static Object getParsingResult(TextBlock rootBlock) {

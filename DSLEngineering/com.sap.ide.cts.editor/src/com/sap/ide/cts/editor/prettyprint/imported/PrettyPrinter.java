@@ -25,10 +25,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import tcs.Alternative;
+import tcs.AsParg;
 import tcs.BooleanPropertyExp;
 import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
@@ -43,6 +42,7 @@ import tcs.InjectorActionsBlock;
 import tcs.InstanceOfExp;
 import tcs.IsDefinedExp;
 import tcs.Keyword;
+import tcs.LiteralRef;
 import tcs.LookupPropertyInit;
 import tcs.ModeParg;
 import tcs.OneExp;
@@ -54,6 +54,7 @@ import tcs.PrimitiveTemplate;
 import tcs.Priority;
 import tcs.Property;
 import tcs.PropertyInit;
+import tcs.RefersToParg;
 import tcs.Sequence;
 import tcs.SequenceElement;
 import tcs.SequenceInAlternative;
@@ -73,11 +74,7 @@ import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
-import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
 import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
-import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
 
 /**
  * @author Fr�d�ric Jouault
@@ -285,6 +282,8 @@ public class PrettyPrinter
 	private boolean debugws = false;
 	// print output stream to console
 	private static boolean debugPrintOutput = false;
+	// print caught property init exceptions
+	private static boolean printPropertyInitExceptions = false;
 	
 	@SuppressWarnings("unchecked")
 	public void prettyPrint(RefObject source, ConcreteSyntax syntax,
@@ -579,23 +578,20 @@ public class PrettyPrinter
 			context.getPriorities().push(new Integer(Integer.MAX_VALUE));
 			context.getClassTemplates().push((ClassTemplate) template);
 			context.getParentRefObjects().push(ame);
-			out.startClassTemplateForObject(ame, (Template) template);
-			try
-			{
-				serializeSeq(ame, MOINImportedModelAdapter.getME((RefObject) template, "templateSequence"));
-			}
-			catch(SyntaxMismatchException sme)
-			{
-				
-			}
-			out.endClassTemplate();
+			int handle = out.startClassTemplateForObject(ame,
+					(Template) template);
+
+			serializeSeq(ame, MOINImportedModelAdapter.getME(
+					(RefObject) template, "templateSequence"));
+
+			out.endClassTemplate(handle);
 			context.getParentRefObjects().pop();
 			context.getClassTemplates().pop();
 			context.getPriorities().pop();
 		}
 		else if(templateTypeName.equals("TCS::OperatorTemplate"))
 		{
-			out.startClassTemplateForObject(ame, (Template) template);
+			int handle = out.startClassTemplateForObject(ame, (Template) template);
 			OperatorTemplate ot = (OperatorTemplate) template;
 			String sourcePropName = TcsUtil.getPropertyName(ot
 					.getStoreLeftSideTo());
@@ -765,7 +761,7 @@ public class PrettyPrinter
 			if(paren)
 				printSymbol(")");
 			
-			out.endClassTemplate();
+			out.endClassTemplate(handle);
 		}
 		else
 		{
@@ -847,9 +843,8 @@ public class PrettyPrinter
 		debug("serializing seq elem " + tn);
 		if(tn.equals("TCS::LiteralRef"))
 		{
-			RefObject literal = MOINImportedModelAdapter.getME(seqElem,
-					"referredLiteral");
-			printLiteral(literal);
+			LiteralRef litRef = (LiteralRef)seqElem;
+			printLiteral(litRef.getReferredLiteral());
 		}
 		else if(tn.equals("TCS::CustomSeparator"))
 		{
@@ -894,8 +889,16 @@ public class PrettyPrinter
 			}
 			catch(SyntaxMismatchException e)
 			{
-				if(partialArg != null)
-				{
+				
+				if (printPropertyInitExceptions) {
+					System.out.println(e.getMessage());
+				}
+
+				if (partialArg != null) {
+					if (printPropertyInitExceptions) {
+						System.out
+								.println("is ignored due to partial property");
+					}
 					// remove partial output of this property and remove the
 					// exception
 					resetToSafePoint(handle);
@@ -1058,6 +1061,10 @@ public class PrettyPrinter
 				}
 				catch(SyntaxMismatchException e)
 				{
+					if (printPropertyInitExceptions) {
+						System.out.println(e.getMessage());
+					}
+					
 					// unsuccessful print, try other alternatives
 					resetToSafePoint(handle);
 					
@@ -1180,90 +1187,47 @@ public class PrettyPrinter
 		}
 	}
 	
+	private RefObject computeContextObject(String oclQuery) {
+
+		String tag = TcsUtil.getContextTag(oclQuery);
+
+		return PrettyPrintContext.getContextElement(context, tag);
+	}
+	
 	private void validateLookupPropertyInit(RefObject element,
-			LookupPropertyInit p) throws PropertyInitException
-	{
-		
-		if(element != null && p != null)
-		{
-			
+			LookupPropertyInit p) throws PropertyInitException {
+
+		if (element != null && p != null) {
+
 			// only validate PropertyInit, if it is mandatory and not just a
 			// default for the parser
-			if(p.isDefault())
-			{
+			if (p.isDefault()) {
 				return;
 			}
-			
+
 			Object prop = TcsUtil.getPropertyValue(element, p
 					.getPropertyReference());
-			
+
 			String oclQuery = p.getValue();
 			String propName = TcsUtil.getPropertyName(p.getPropertyReference());
-			
-			if(oclQuery != null && propName != null)
-			{
-				
-				// strip OCL query prefix
-				if(oclQuery
-						.startsWith(MoinModelAdapterDelegate.OCL_QUERY_PREFIX))
-				{
-					oclQuery = oclQuery
-							.substring(MoinModelAdapterDelegate.OCL_QUERY_PREFIX
-									.length());
-				}
-				
-				final Pattern contextPattern = Pattern
-						.compile("#context(\\((\\w*)(\\)))?");
-				
-				// #context(blub) will make
-				// group 0: #context(blub)
-				// group 2: blub
-				
-				// #context will make
-				// group 0: #context
-				// group 2: null
-				
-				String tag = null;
-				
-				Matcher matcher = contextPattern.matcher(oclQuery);
-				if(matcher.find())
-				{
-					tag = matcher.group(2);
-				}
-				
-				RefObject contextObject = PrettyPrintContext.getContextElement(
-						context, tag);
-				
+			RefObject contextObject = computeContextObject(oclQuery);
+
+			Object expectedValue = null;
+			try {
 				// keyValue is always null for LookUpPropertyInits
 				// in QueryPArg it denotes the RefersToParg propertyValue
-				String keyValue = null;
-				
-				Object expectedValue = null;
-				try
-				{
-					expectedValue = oclHelper.findElementWithOCLQuery(element,
-							propName, keyValue, oclQuery, contextObject);
-				}
-				catch(ModelAdapterException e)
-				{
-					throw new PropertyInitException(element, p, context);
-				}
-				
-				if(prop == null)
-				{
-					if(expectedValue != null)
-					{
-						throw new PropertyInitException(element, p, context);
-					}
-				}
-				else
-				{
-					if(!prop.equals(expectedValue))
-					{
-						throw new PropertyInitException(element, p, context);
-					}
-				}
+				expectedValue = TcsUtil.executeOclQuery(element, oclQuery, propName,
+						contextObject, null);
+			} catch (ModelAdapterException e) {
+				throw new PropertyInitException(element, p, context);
 			}
+
+			// oclHelper.findElementWithOCLQuery returns null for empty
+			// collections
+			if (!TcsUtil.isPropValueAndOclResultEqual(prop, expectedValue)) {
+				throw new PropertyInitException(element, p, context);
+			}
+
 		}
 	}
 	
@@ -1394,6 +1358,19 @@ public class PrettyPrinter
 		
 		validateBounds(element, property, value);
 		
+		RefersToParg refersToParg = (RefersToParg) getPArg(property, "RefersTo");
+		AsParg asParg = (AsParg) getPArg(property, "As");
+		RefObject query = getPArg(property, "Query");
+		String primitiveTemplateName = null;
+		
+		if (asParg != null) {
+			Template asTemplate = asParg.getTemplate();
+			if (asTemplate instanceof PrimitiveTemplate) {
+				PrimitiveTemplate prim = (PrimitiveTemplate) asTemplate;
+				primitiveTemplateName = prim.getTemplateName();
+			}
+		}
+		
 		if(value == null)
 			return;
 		if(value instanceof Collection)
@@ -1438,29 +1415,25 @@ public class PrettyPrinter
 		{
 			RefObject valueME = (RefObject) value;
 			printWSBlockNoDup();
-			RefObject refersTo = getPArg(property, "RefersTo");
-			Object aso = getPArg(property, "As");
-			if(aso != null)
+			
+			if(asParg != null && query != null)
 			{
-				RefObject query = getPArg(property, "Query");
-				if(query != null)
+				FilterParg filter = (FilterParg) getPArg(property, "Filter");
+				String invertQuery = filter.getInvert();
+				try
 				{
-					FilterParg filter = (FilterParg) getPArg(property, "Filter");
-					String invertQuery = filter.getInvert();
-					try
-					{
-						String refValue = (String) oclHelper.findElementWithOCLQuery(valueME,null, null, invertQuery, null, 
-						        valueME.get___Connection().getJmiHelper().getRefClassForMofClass((MofClass) property.getPropertyReference().getStrucfeature().getType()));
-						this.serializePrimitive(refValue, null);
-					}
-					catch(Exception e)
-					{
-						String defaultName = (String) valueME.refGetValue("name");
-						this.serializePrimitive(defaultName, null);
-					}
+					String refValue = (String) oclHelper.findElementWithOCLQuery(valueME,null, null, invertQuery, null, 
+					        valueME.get___Connection().getJmiHelper().getRefClassForMofClass((MofClass) property.getPropertyReference().getStrucfeature().getType()));
+				
+					this.serializePrimitive(refValue, primitiveTemplateName);
+				}
+				catch(Exception e)
+				{
+					String defaultName = (String) valueME.refGetValue("name");
+					this.serializePrimitive(defaultName, primitiveTemplateName);
 				}
 			}
-			else if(refersTo == null)
+			else if(refersToParg == null)
 			{
 				ModeParg modeArg = (ModeParg) getPArg(property, "Mode");
 				String mode = null;
@@ -1471,39 +1444,25 @@ public class PrettyPrinter
 				
 				serialize(valueME, mode);
 			}
-			else
-			{
+			else {
 				// TODO hack to add autocreated instances of TCS::Keyword to
 				// the
 				// keywords list
-				if(valueME instanceof Keyword)
-				{
+				if (valueME instanceof Keyword) {
 					keywords.add(((Keyword) value).getValue());
 				}
-				
+
 				Object v = MOINImportedModelAdapter.get(valueME,
-						MOINImportedModelAdapter.getString(refersTo,
+						MOINImportedModelAdapter.getString(refersToParg,
 								"propertyName"));
-				
-				RefObject asp = getPArg(property, "As");
-				String as = null;
-				if(asp != null)
-				{
-					as = MOINImportedModelAdapter.getString(asp, "value");
-				}
-				serializePrimitive(v, as);
+
+				serializePrimitive(v, primitiveTemplateName);
 			}
 		}
 		else if(MOINImportedModelAdapter.isPrimitive(value))
 		{
 			printWSBlockNoDup();
-			RefObject asp = getPArg(property, "As");
-			String as = null;
-			if(asp != null)
-			{
-				as = MOINImportedModelAdapter.getString(asp, "value");
-			}
-			serializePrimitive(value, as);
+			serializePrimitive(value, primitiveTemplateName);
 		}
 		else
 		{

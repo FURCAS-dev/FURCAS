@@ -125,7 +125,6 @@ public class AClassToInstantiateObjectCreationExpressionWrapper extends com.sap.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AClassToInstantiateObjectCreationExpression> get___JmiInterface() {
         return behavior.expressions.AClassToInstantiateObjectCreationExpression.class;
     }

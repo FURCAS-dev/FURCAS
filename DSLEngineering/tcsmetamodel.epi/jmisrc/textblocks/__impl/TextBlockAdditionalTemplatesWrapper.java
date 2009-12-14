@@ -125,7 +125,6 @@ public class TextBlockAdditionalTemplatesWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<textblocks.TextBlockAdditionalTemplates> get___JmiInterface() {
         return textblocks.TextBlockAdditionalTemplates.class;
     }

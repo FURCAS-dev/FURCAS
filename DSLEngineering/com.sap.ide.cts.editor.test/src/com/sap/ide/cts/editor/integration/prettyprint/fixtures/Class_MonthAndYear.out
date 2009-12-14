@@ -1,0 +1,4 @@
+value class MonthAndYear {
+	Number year {.}
+	Number month {.}
+}

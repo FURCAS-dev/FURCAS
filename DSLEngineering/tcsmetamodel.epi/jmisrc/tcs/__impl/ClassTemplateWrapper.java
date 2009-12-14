@@ -8,7 +8,7 @@ public class ClassTemplateWrapper extends com.sap.tc.moin.repository.core.jmi.re
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -20,7 +20,6 @@ public class ClassTemplateWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.ClassTemplateImpl getCastWrappedObject() {
         return (tcs.__impl.ClassTemplateImpl) getWrappedObject();
     }
@@ -1054,7 +1053,7 @@ public class ClassTemplateWrapper extends com.sap.tc.moin.repository.core.jmi.re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -1067,11 +1066,10 @@ public class ClassTemplateWrapper extends com.sap.tc.moin.repository.core.jmi.re
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ClassTemplate> get___JmiInterface() {
         return tcs.ClassTemplate.class;
     }

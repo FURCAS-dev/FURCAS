@@ -125,7 +125,6 @@ public class OrPatternSimplePatternWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OrPatternSimplePattern> get___JmiInterface() {
         return tcs.OrPatternSimplePattern.class;
     }

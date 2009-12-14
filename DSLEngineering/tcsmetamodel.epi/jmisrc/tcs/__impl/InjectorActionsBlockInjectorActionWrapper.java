@@ -125,7 +125,6 @@ public class InjectorActionsBlockInjectorActionWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.InjectorActionsBlockInjectorAction> get___JmiInterface() {
         return tcs.InjectorActionsBlockInjectorAction.class;
     }

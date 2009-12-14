@@ -332,7 +332,6 @@ public class StructurePackageWrapper extends com.sap.tc.moin.repository.core.jmi
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.StructurePackage> get___JmiInterface() {
         return structure.StructurePackage.class;
     }

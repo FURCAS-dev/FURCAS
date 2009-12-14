@@ -125,7 +125,6 @@ public class AssociationEndsWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AssociationEnds> get___JmiInterface() {
         return structure.AssociationEnds.class;
     }

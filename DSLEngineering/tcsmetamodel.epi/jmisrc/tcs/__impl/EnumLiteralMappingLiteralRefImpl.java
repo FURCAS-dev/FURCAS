@@ -64,7 +64,6 @@ public final class EnumLiteralMappingLiteralRefImpl extends com.sap.tc.moin.repo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EnumLiteralMappingLiteralRef> get___JmiInterface() {
         return tcs.EnumLiteralMappingLiteralRef.class;
     }

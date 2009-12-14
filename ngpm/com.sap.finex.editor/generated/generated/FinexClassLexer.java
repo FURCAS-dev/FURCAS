@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g 2009-11-30 14:33:07
+// $ANTLR 3.1.1 C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g 2009-12-09 20:19:39
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -77,6 +77,7 @@ public class FinexClassLexer extends Lexer {
     public static final int LCURL=21;
     public static final int T__71=71;
     public static final int WS=31;
+    public static final int T__72=72;
     public static final int T__70=70;
     public static final int FIRST_UPPERCASE_SNAME=37;
     public static final int FIRST_LOWERCASE_NAME=4;
@@ -85,6 +86,9 @@ public class FinexClassLexer extends Lexer {
     public static final int FIRST_UPPERCASE_NAME=5;
     public static final int BINARY=10;
     public static final int DATE=11;
+    public static final int T__75=75;
+    public static final int T__74=74;
+    public static final int T__73=73;
     public static final int STRING=6;
       public com.sap.mi.textual.grammar.IModelInjector ei = null;
     public ITokenFactory<? extends ANTLR3LocationToken> tokenFactory;
@@ -870,26 +874,110 @@ public class FinexClassLexer extends Lexer {
     }
     // $ANTLR end "T__71"
 
+    // $ANTLR start "T__72"
+    public final void mT__72() throws RecognitionException {
+        try {
+            int _type = T__72;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:149:7: ( 'select' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:149:9: 'select'
+            {
+            match("select"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__72"
+
+    // $ANTLR start "T__73"
+    public final void mT__73() throws RecognitionException {
+        try {
+            int _type = T__73;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:150:7: ( 'from' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:150:9: 'from'
+            {
+            match("from"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__73"
+
+    // $ANTLR start "T__74"
+    public final void mT__74() throws RecognitionException {
+        try {
+            int _type = T__74;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:151:7: ( 'where' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:151:9: 'where'
+            {
+            match("where"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__74"
+
+    // $ANTLR start "T__75"
+    public final void mT__75() throws RecognitionException {
+        try {
+            int _type = T__75;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:152:7: ( 'as' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:152:9: 'as'
+            {
+            match("as"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__75"
+
     // $ANTLR start "COMMENT"
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1275:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1458:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:9: '//' (~ ( '\\r' | '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:9: '//' (~ ( '\\r' | '\\n' ) )*
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:14: (~ ( '\\r' | '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -902,7 +990,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1276:15: ~ ( '\\r' | '\\n' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1459:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -951,21 +1039,21 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1281:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1464:3: ( ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:6: ( ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:7: ( ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:8: ( '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:9: '/*' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/*"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:14: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -990,7 +1078,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1282:43: ( '\\n' | ~ '\\n' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:43: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1041,8 +1129,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1287:3: ( '[' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1288:3: '['
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1470:3: ( '[' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1471:3: '['
             {
             match('['); if (state.failed) return ;
 
@@ -1061,8 +1149,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1293:3: ( ']' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1294:3: ']'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1476:3: ( ']' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1477:3: ']'
             {
             match(']'); if (state.failed) return ;
 
@@ -1081,8 +1169,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1299:3: ( '{' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1300:3: '{'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1482:3: ( '{' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1483:3: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -1101,8 +1189,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1305:3: ( '}' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1306:3: '}'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1488:3: ( '}' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1489:3: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -1121,8 +1209,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = LANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1311:3: ( '<' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1312:3: '<'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1494:3: ( '<' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1495:3: '<'
             {
             match('<'); if (state.failed) return ;
 
@@ -1141,8 +1229,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = RANGLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1317:3: ( '>' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1318:3: '>'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1500:3: ( '>' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1501:3: '>'
             {
             match('>'); if (state.failed) return ;
 
@@ -1161,8 +1249,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1323:3: ( '(' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1324:3: '('
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1506:3: ( '(' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1507:3: '('
             {
             match('('); if (state.failed) return ;
 
@@ -1181,8 +1269,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1329:3: ( ')' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1330:3: ')'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1512:3: ( ')' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1513:3: ')'
             {
             match(')'); if (state.failed) return ;
 
@@ -1201,8 +1289,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = EQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1335:3: ( '=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1336:3: '='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1518:3: ( '=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1519:3: '='
             {
             match('='); if (state.failed) return ;
 
@@ -1221,8 +1309,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = EQUALSEQUALS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1341:3: ( '==' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1342:3: '=='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1524:3: ( '==' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1525:3: '=='
             {
             match("=="); if (state.failed) return ;
 
@@ -1242,8 +1330,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = ASSIGN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1347:3: ( ':=' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1348:3: ':='
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1530:3: ( ':=' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1531:3: ':='
             {
             match(":="); if (state.failed) return ;
 
@@ -1263,8 +1351,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = DOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1353:3: ( '.' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1354:3: '.'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1536:3: ( '.' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1537:3: '.'
             {
             match('.'); if (state.failed) return ;
 
@@ -1283,8 +1371,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = DDOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1359:3: ( '..' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1360:3: '..'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1542:3: ( '..' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1543:3: '..'
             {
             match(".."); if (state.failed) return ;
 
@@ -1304,8 +1392,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = PIPE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1365:3: ( '|' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1366:3: '|'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1548:3: ( '|' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1549:3: '|'
             {
             match('|'); if (state.failed) return ;
 
@@ -1324,8 +1412,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1371:3: ( ':' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1372:3: ':'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1554:3: ( ':' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1555:3: ':'
             {
             match(':'); if (state.failed) return ;
 
@@ -1344,8 +1432,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = SEMICOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1377:3: ( ';' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1378:3: ';'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1560:3: ( ';' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1561:3: ';'
             {
             match(';'); if (state.failed) return ;
 
@@ -1364,10 +1452,10 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1387:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1387:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1570:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1570:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1387:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1570:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -1398,7 +1486,7 @@ public class FinexClassLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1387:6: '\\r' '\\n'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1570:6: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -1406,7 +1494,7 @@ public class FinexClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1388:5: '\\n' '\\r'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1571:5: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -1414,14 +1502,14 @@ public class FinexClassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1389:5: '\\r'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1572:5: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1390:5: '\\n'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1573:5: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -1449,8 +1537,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1396:2: ( ( ' ' | '\\t' ) )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1396:4: ( ' ' | '\\t' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1579:2: ( ( ' ' | '\\t' ) )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1579:4: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1479,8 +1567,8 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1403:2: ( '0' .. '9' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1403:4: '0' .. '9'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1586:2: ( '0' .. '9' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1586:4: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -1495,7 +1583,7 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1408:2: ( LOWERCASE_ALPHA | UPPERCASE_ALPHA )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1591:2: ( LOWERCASE_ALPHA | UPPERCASE_ALPHA )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
@@ -1520,7 +1608,7 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "LOWERCASE_ALPHA"
     public final void mLOWERCASE_ALPHA() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1413:2: ( 'a' .. 'z' | '_' | '\\u00DE' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1596:2: ( 'a' .. 'z' | '_' | '\\u00DE' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:
             {
             if ( input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00DE' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
@@ -1545,7 +1633,7 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "UPPERCASE_ALPHA"
     public final void mUPPERCASE_ALPHA() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1422:2: ( 'A' .. 'Z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00DD' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1605:2: ( 'A' .. 'Z' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00DD' )
             // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00DD') ) {
@@ -1570,17 +1658,17 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "FIRST_LOWERCASE_SNAME"
     public final void mFIRST_LOWERCASE_SNAME() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1430:2: ( ( LOWERCASE_ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1430:4: ( LOWERCASE_ALPHA ) ( ALPHA | DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1613:2: ( ( LOWERCASE_ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1613:4: ( LOWERCASE_ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1430:4: ( LOWERCASE_ALPHA )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1430:5: LOWERCASE_ALPHA
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1613:4: ( LOWERCASE_ALPHA )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1613:5: LOWERCASE_ALPHA
             {
             mLOWERCASE_ALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1430:22: ( ALPHA | DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1613:22: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
@@ -1626,17 +1714,17 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "FIRST_UPPERCASE_SNAME"
     public final void mFIRST_UPPERCASE_SNAME() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:2: ( ( UPPERCASE_ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:4: ( UPPERCASE_ALPHA ) ( ALPHA | DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1618:2: ( ( UPPERCASE_ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1618:4: ( UPPERCASE_ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:4: ( UPPERCASE_ALPHA )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:5: UPPERCASE_ALPHA
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1618:4: ( UPPERCASE_ALPHA )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1618:5: UPPERCASE_ALPHA
             {
             mUPPERCASE_ALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1435:22: ( ALPHA | DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1618:22: ( ALPHA | DIGIT )*
             loop5:
             do {
                 int alt5=2;
@@ -1684,7 +1772,7 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1438:6: ( 'true' | 'false' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1621:6: ( 'true' | 'false' )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
@@ -1703,7 +1791,7 @@ public class FinexClassLexer extends Lexer {
             }
             switch (alt6) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1438:8: 'true'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1621:8: 'true'
                     {
                     match("true"); if (state.failed) return ;
 
@@ -1711,7 +1799,7 @@ public class FinexClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1438:17: 'false'
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1621:17: 'false'
                     {
                     match("false"); if (state.failed) return ;
 
@@ -1733,8 +1821,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = OBJECT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1440:8: ( 'o:' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1440:10: 'o:'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1623:8: ( 'o:' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1623:10: 'o:'
             {
             match("o:"); if (state.failed) return ;
 
@@ -1754,8 +1842,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = FIRST_UPPERCASE_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1443:2: ( FIRST_UPPERCASE_SNAME )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1443:4: FIRST_UPPERCASE_SNAME
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1626:2: ( FIRST_UPPERCASE_SNAME )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1626:4: FIRST_UPPERCASE_SNAME
             {
             mFIRST_UPPERCASE_SNAME(); if (state.failed) return ;
 
@@ -1774,8 +1862,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = FIRST_LOWERCASE_NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1447:2: ( FIRST_LOWERCASE_SNAME )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1447:4: FIRST_LOWERCASE_SNAME
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1630:2: ( FIRST_LOWERCASE_SNAME )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1630:4: FIRST_LOWERCASE_SNAME
             {
             mFIRST_LOWERCASE_SNAME(); if (state.failed) return ;
 
@@ -1794,12 +1882,12 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1451:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1451:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1634:2: ( '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+ )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1634:4: '0x' ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
             {
             match("0x"); if (state.failed) return ;
 
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1451:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1634:8: ( ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) )+
             int cnt7=0;
             loop7:
             do {
@@ -1813,7 +1901,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1451:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1634:9: ( DIGIT | 'a' .. 'f' | 'A' .. 'F' ) ( DIGIT | 'a' .. 'f' | 'A' .. 'F' )
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f') ) {
             	        input.consume();
@@ -1865,10 +1953,10 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1456:2: ( ( DIGIT )+ )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1456:4: ( DIGIT )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1639:2: ( ( DIGIT )+ )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1639:4: ( DIGIT )+
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1456:4: ( DIGIT )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1639:4: ( DIGIT )+
             int cnt8=0;
             loop8:
             do {
@@ -1882,7 +1970,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1456:5: DIGIT
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1639:5: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1913,10 +2001,10 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1461:2: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1461:4: ( DIGIT )+ '.' ( DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1644:2: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1644:4: ( DIGIT )+ '.' ( DIGIT )*
             {
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1461:4: ( DIGIT )+
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1644:4: ( DIGIT )+
             int cnt9=0;
             loop9:
             do {
@@ -1930,7 +2018,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1461:4: DIGIT
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1644:4: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1948,7 +2036,7 @@ public class FinexClassLexer extends Lexer {
             } while (true);
 
             match('.'); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1461:15: ( DIGIT )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1644:15: ( DIGIT )*
             loop10:
             do {
                 int alt10=2;
@@ -1961,7 +2049,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1461:15: DIGIT
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1644:15: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1987,7 +2075,7 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:5: ( ( INT '..' )=> INT | ( INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME ) )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1648:5: ( ( INT '..' )=> INT | ( INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME ) )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
             int alt11=4;
             int LA11_0 = input.LA(1);
 
@@ -2026,7 +2114,7 @@ public class FinexClassLexer extends Lexer {
             }
             switch (alt11) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:9: ( INT '..' )=> INT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1648:9: ( INT '..' )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2036,7 +2124,7 @@ public class FinexClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1466:7: ( INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME ) )=> INT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1649:7: ( INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME ) )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2046,7 +2134,7 @@ public class FinexClassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1467:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1650:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2056,7 +2144,7 @@ public class FinexClassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1474:9: INT
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1657:9: INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -2080,8 +2168,8 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = DATE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1478:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1478:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1661:6: ( DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )? )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1661:8: DIGIT DIGIT DIGIT DIGIT '-' DIGIT DIGIT '-' DIGIT DIGIT ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
             {
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
@@ -2093,7 +2181,7 @@ public class FinexClassLexer extends Lexer {
             match('-'); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
             mDIGIT(); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1478:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1661:64: ( ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? ) )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
@@ -2102,7 +2190,7 @@ public class FinexClassLexer extends Lexer {
             }
             switch (alt16) {
                 case 1 :
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1478:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1661:65: ( ' ' | 'T' ) DIGIT DIGIT ':' DIGIT DIGIT ':' DIGIT DIGIT ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | ) ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
                     {
                     if ( input.LA(1)==' '||input.LA(1)=='T' ) {
                         input.consume();
@@ -2122,7 +2210,7 @@ public class FinexClassLexer extends Lexer {
                     match(':'); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
                     mDIGIT(); if (state.failed) return ;
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1479:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1662:13: ( ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ ) | )
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2133,10 +2221,10 @@ public class FinexClassLexer extends Lexer {
                         alt13=2;}
                     switch (alt13) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:15: ( ( ',' | '.' ) DIGIT )=> ( ( ',' | '.' ) ( DIGIT )+ )
                             {
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:40: ( ( ',' | '.' ) ( DIGIT )+ )
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:41: ( ',' | '.' ) ( DIGIT )+
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:40: ( ( ',' | '.' ) ( DIGIT )+ )
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:41: ( ',' | '.' ) ( DIGIT )+
                             {
                             if ( input.LA(1)==','||input.LA(1)=='.' ) {
                                 input.consume();
@@ -2148,7 +2236,7 @@ public class FinexClassLexer extends Lexer {
                                 recover(mse);
                                 throw mse;}
 
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:53: ( DIGIT )+
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:53: ( DIGIT )+
                             int cnt12=0;
                             loop12:
                             do {
@@ -2162,7 +2250,7 @@ public class FinexClassLexer extends Lexer {
 
                                 switch (alt12) {
                             	case 1 :
-                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:54: DIGIT
+                            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:54: DIGIT
                             	    {
                             	    mDIGIT(); if (state.failed) return ;
 
@@ -2186,14 +2274,14 @@ public class FinexClassLexer extends Lexer {
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1482:13: 
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1665:13: 
                             {
                             }
                             break;
 
                     }
 
-                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1483:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
+                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1666:13: ( 'Z' | ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )? )
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -2204,16 +2292,16 @@ public class FinexClassLexer extends Lexer {
                         alt15=2;}
                     switch (alt15) {
                         case 1 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1483:14: 'Z'
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1666:14: 'Z'
                             {
                             match('Z'); if (state.failed) return ;
 
                             }
                             break;
                         case 2 :
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1483:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1666:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
                             {
-                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1483:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
+                            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1666:20: ( ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT )?
                             int alt14=2;
                             int LA14_0 = input.LA(1);
 
@@ -2222,7 +2310,7 @@ public class FinexClassLexer extends Lexer {
                             }
                             switch (alt14) {
                                 case 1 :
-                                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1483:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
+                                    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1666:21: ( '+' | '-' ) DIGIT DIGIT DIGIT DIGIT
                                     {
                                     if ( input.LA(1)=='+'||input.LA(1)=='-' ) {
                                         input.consume();
@@ -2272,11 +2360,11 @@ public class FinexClassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1486:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1486:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1669:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1669:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
             {
             match('\"'); if (state.failed) return ;
-            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1487:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+            // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1670:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
             loop17:
             do {
                 int alt17=3;
@@ -2292,7 +2380,7 @@ public class FinexClassLexer extends Lexer {
 
                 switch (alt17) {
             	case 1 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1489:4: '\\n'
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1672:4: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -2302,7 +2390,7 @@ public class FinexClassLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1490:5: ~ ( '\\\\' | '\"' | '\\n' )
+            	    // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1673:5: ~ ( '\\\\' | '\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -2336,8 +2424,8 @@ public class FinexClassLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:8: ( T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | PIPE | COLON | SEMICOLON | NL | WS | BOOL | OBJECT | FIRST_UPPERCASE_NAME | FIRST_LOWERCASE_NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
-        int alt18=61;
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:8: ( T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | PIPE | COLON | SEMICOLON | NL | WS | BOOL | OBJECT | FIRST_UPPERCASE_NAME | FIRST_LOWERCASE_NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING )
+        int alt18=65;
         alt18 = dfa18.predict(input);
         switch (alt18) {
             case 1 :
@@ -2565,203 +2653,231 @@ public class FinexClassLexer extends Lexer {
                 }
                 break;
             case 33 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:202: COMMENT
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:202: T__72
+                {
+                mT__72(); if (state.failed) return ;
+
+                }
+                break;
+            case 34 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:208: T__73
+                {
+                mT__73(); if (state.failed) return ;
+
+                }
+                break;
+            case 35 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:214: T__74
+                {
+                mT__74(); if (state.failed) return ;
+
+                }
+                break;
+            case 36 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:220: T__75
+                {
+                mT__75(); if (state.failed) return ;
+
+                }
+                break;
+            case 37 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:226: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 34 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:210: MULTI_LINE_COMMENT
+            case 38 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:234: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 35 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:229: LBRACKET
+            case 39 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:253: LBRACKET
                 {
                 mLBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 36 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:238: RBRACKET
+            case 40 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:262: RBRACKET
                 {
                 mRBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 37 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:247: LCURL
+            case 41 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:271: LCURL
                 {
                 mLCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 38 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:253: RCURL
+            case 42 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:277: RCURL
                 {
                 mRCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 39 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:259: LANGLE
+            case 43 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:283: LANGLE
                 {
                 mLANGLE(); if (state.failed) return ;
 
                 }
                 break;
-            case 40 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:266: RANGLE
+            case 44 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:290: RANGLE
                 {
                 mRANGLE(); if (state.failed) return ;
 
                 }
                 break;
-            case 41 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:273: LPAREN
+            case 45 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:297: LPAREN
                 {
                 mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 42 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:280: RPAREN
+            case 46 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:304: RPAREN
                 {
                 mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 43 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:287: EQUALS
+            case 47 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:311: EQUALS
                 {
                 mEQUALS(); if (state.failed) return ;
 
                 }
                 break;
-            case 44 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:294: EQUALSEQUALS
+            case 48 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:318: EQUALSEQUALS
                 {
                 mEQUALSEQUALS(); if (state.failed) return ;
 
                 }
                 break;
-            case 45 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:307: ASSIGN
+            case 49 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:331: ASSIGN
                 {
                 mASSIGN(); if (state.failed) return ;
 
                 }
                 break;
-            case 46 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:314: DOT
+            case 50 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:338: DOT
                 {
                 mDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 47 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:318: DDOT
+            case 51 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:342: DDOT
                 {
                 mDDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 48 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:323: PIPE
+            case 52 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:347: PIPE
                 {
                 mPIPE(); if (state.failed) return ;
 
                 }
                 break;
-            case 49 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:328: COLON
+            case 53 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:352: COLON
                 {
                 mCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 50 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:334: SEMICOLON
+            case 54 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:358: SEMICOLON
                 {
                 mSEMICOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 51 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:344: NL
+            case 55 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:368: NL
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
-            case 52 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:347: WS
+            case 56 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:371: WS
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
-            case 53 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:350: BOOL
+            case 57 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:374: BOOL
                 {
                 mBOOL(); if (state.failed) return ;
 
                 }
                 break;
-            case 54 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:355: OBJECT
+            case 58 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:379: OBJECT
                 {
                 mOBJECT(); if (state.failed) return ;
 
                 }
                 break;
-            case 55 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:362: FIRST_UPPERCASE_NAME
+            case 59 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:386: FIRST_UPPERCASE_NAME
                 {
                 mFIRST_UPPERCASE_NAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 56 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:383: FIRST_LOWERCASE_NAME
+            case 60 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:407: FIRST_LOWERCASE_NAME
                 {
                 mFIRST_LOWERCASE_NAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 57 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:404: BINARY
+            case 61 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:428: BINARY
                 {
                 mBINARY(); if (state.failed) return ;
 
                 }
                 break;
-            case 58 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:411: INT
+            case 62 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:435: INT
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
-            case 59 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:415: RANGE_OR_INT
+            case 63 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:439: RANGE_OR_INT
                 {
                 mRANGE_OR_INT(); if (state.failed) return ;
 
                 }
                 break;
-            case 60 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:428: DATE
+            case 64 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:452: DATE
                 {
                 mDATE(); if (state.failed) return ;
 
                 }
                 break;
-            case 61 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:433: STRING
+            case 65 :
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1:457: STRING
                 {
                 mSTRING(); if (state.failed) return ;
 
@@ -2774,8 +2890,8 @@ public class FinexClassLexer extends Lexer {
 
     // $ANTLR start synpred1_FinexClass
     public final void synpred1_FinexClass_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:9: ( INT '..' )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1465:11: INT '..'
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1648:9: ( INT '..' )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1648:11: INT '..'
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
@@ -2787,12 +2903,12 @@ public class FinexClassLexer extends Lexer {
 
     // $ANTLR start synpred2_FinexClass
     public final void synpred2_FinexClass_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1466:7: ( INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME ) )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1466:9: INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1649:7: ( INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME ) )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1649:9: INT '.' ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1466:17: ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1649:17: ( FIRST_LOWERCASE_NAME | FIRST_UPPERCASE_NAME )
         int alt19=2;
         int LA19_0 = input.LA(1);
 
@@ -2811,14 +2927,14 @@ public class FinexClassLexer extends Lexer {
         }
         switch (alt19) {
             case 1 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1466:18: FIRST_LOWERCASE_NAME
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1649:18: FIRST_LOWERCASE_NAME
                 {
                 mFIRST_LOWERCASE_NAME(); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1466:41: FIRST_UPPERCASE_NAME
+                // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1649:41: FIRST_UPPERCASE_NAME
                 {
                 mFIRST_UPPERCASE_NAME(); if (state.failed) return ;
 
@@ -2834,8 +2950,8 @@ public class FinexClassLexer extends Lexer {
 
     // $ANTLR start synpred3_FinexClass
     public final void synpred3_FinexClass_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1467:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1467:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1650:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1650:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2856,8 +2972,8 @@ public class FinexClassLexer extends Lexer {
 
     // $ANTLR start synpred4_FinexClass
     public final void synpred4_FinexClass_fragment() throws RecognitionException {   
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:15: ( ( ',' | '.' ) DIGIT )
-        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1480:17: ( ',' | '.' ) DIGIT
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:15: ( ( ',' | '.' ) DIGIT )
+        // C:\\Documents and Settings\\D043530\\runtime-workspace\\com.sap.finex.editor\\generated\\generated\\FinexClass.g:1663:17: ( ',' | '.' ) DIGIT
         {
         if ( input.LA(1)==','||input.LA(1)=='.' ) {
             input.consume();
@@ -2935,95 +3051,94 @@ public class FinexClassLexer extends Lexer {
 
     protected DFA18 dfa18 = new DFA18(this);
     static final String DFA18_eotS =
-        "\1\uffff\2\46\3\45\2\46\1\45\1\uffff\1\45\1\uffff\1\46\1\uffff"+
-        "\1\74\1\uffff\1\76\1\100\1\uffff\5\46\6\uffff\1\114\1\116\1\120"+
-        "\6\uffff\2\122\1\uffff\2\46\1\127\1\uffff\1\45\1\131\2\45\4\46\1"+
-        "\141\1\45\1\143\1\46\7\uffff\12\46\10\uffff\1\122\1\uffff\2\46\1"+
-        "\uffff\1\45\1\uffff\1\163\1\164\3\46\1\170\1\171\1\uffff\1\172\1"+
-        "\uffff\1\173\1\174\1\175\1\176\1\177\3\46\1\u0083\2\46\1\122\2\46"+
-        "\1\45\2\uffff\3\46\10\uffff\3\46\1\uffff\1\u0090\1\u0091\1\122\1"+
-        "\u0094\1\46\1\45\1\46\1\u0091\1\46\1\u0099\2\46\3\uffff\1\122\1"+
-        "\uffff\1\46\1\45\2\46\1\uffff\1\u00a0\1\u00a1\1\46\1\u00a3\2\46"+
-        "\2\uffff\1\u00a6\1\uffff\1\u00a7\1\46\2\uffff\2\46\1\u00ab\1\uffff";
+        "\1\uffff\2\47\3\46\2\47\1\46\1\uffff\1\46\1\uffff\1\47\1\uffff"+
+        "\1\76\1\uffff\1\100\1\102\1\uffff\6\47\6\uffff\1\121\1\123\1\125"+
+        "\6\uffff\2\127\1\uffff\2\47\1\134\1\uffff\1\46\1\136\2\46\5\47\1"+
+        "\147\1\46\1\151\1\47\7\uffff\3\47\1\156\11\47\10\uffff\1\127\1\uffff"+
+        "\2\47\1\uffff\1\46\1\uffff\1\174\1\175\4\47\1\u0082\1\u0083\1\uffff"+
+        "\1\u0084\1\uffff\1\u0085\1\u0086\1\u0087\1\u0088\1\uffff\1\u0089"+
+        "\3\47\1\u008d\4\47\1\127\2\47\1\46\2\uffff\1\47\1\u0097\2\47\10"+
+        "\uffff\3\47\1\uffff\1\47\1\u009e\1\u009f\1\47\1\127\1\u00a3\1\47"+
+        "\1\46\1\47\1\uffff\1\u009f\1\47\1\u00a8\3\47\2\uffff\1\u00ac\1\127"+
+        "\2\uffff\1\47\1\46\2\47\1\uffff\1\u00b1\1\u00b2\1\u00b3\1\uffff"+
+        "\1\47\1\u00b5\2\47\3\uffff\1\u00b8\1\uffff\1\u00b9\1\47\2\uffff"+
+        "\2\47\1\u00bd\1\uffff";
     static final String DFA18_eofS =
-        "\u00ac\uffff";
+        "\u00be\uffff";
     static final String DFA18_minS =
         "\1\11\1\141\1\72\1\105\1\116\1\105\2\141\1\116\1\uffff\1\122\1"+
-        "\uffff\1\157\1\uffff\1\52\1\uffff\2\75\1\uffff\1\154\2\157\1\151"+
-        "\1\150\6\uffff\2\75\1\56\6\uffff\2\56\1\uffff\1\154\1\160\1\60\1"+
-        "\uffff\1\106\1\60\1\104\1\131\1\156\1\154\2\156\1\60\1\124\1\60"+
-        "\1\164\7\uffff\1\154\1\144\1\147\1\162\1\165\1\145\1\156\1\155\1"+
-        "\151\1\165\10\uffff\1\56\1\uffff\1\165\1\157\1\uffff\1\101\1\uffff"+
-        "\2\60\1\143\1\163\1\151\2\60\1\uffff\1\60\1\uffff\5\60\1\156\1\141"+
-        "\1\147\1\60\1\163\1\145\1\56\1\145\1\163\1\125\2\uffff\1\164\1\145"+
-        "\1\160\10\uffff\2\164\1\154\1\uffff\2\60\1\55\1\60\1\151\1\114\1"+
-        "\151\1\60\1\165\1\60\2\145\3\uffff\1\56\1\uffff\1\164\1\124\1\157"+
-        "\1\154\1\uffff\2\60\1\145\1\60\1\156\1\141\2\uffff\1\60\1\uffff"+
-        "\1\60\1\164\2\uffff\1\157\1\162\1\60\1\uffff";
+        "\uffff\1\157\1\uffff\1\52\1\uffff\2\75\1\uffff\1\154\2\157\1\145"+
+        "\2\150\6\uffff\2\75\1\56\6\uffff\2\56\1\uffff\1\154\1\160\1\60\1"+
+        "\uffff\1\106\1\60\1\104\1\131\1\156\1\157\1\154\2\156\1\60\1\124"+
+        "\1\60\1\164\7\uffff\1\154\1\144\1\147\1\60\1\162\1\165\1\145\1\156"+
+        "\1\155\1\154\1\151\1\165\1\145\10\uffff\1\56\1\uffff\1\165\1\157"+
+        "\1\uffff\1\101\1\uffff\2\60\1\143\1\155\1\163\1\151\2\60\1\uffff"+
+        "\1\60\1\uffff\4\60\1\uffff\1\60\1\156\1\141\1\147\1\60\1\145\1\163"+
+        "\1\145\1\162\1\56\1\145\1\163\1\125\2\uffff\1\164\1\60\1\145\1\160"+
+        "\10\uffff\2\164\1\154\1\uffff\1\143\2\60\1\145\1\55\1\60\1\151\1"+
+        "\114\1\151\1\uffff\1\60\1\165\1\60\2\145\1\164\2\uffff\1\60\1\56"+
+        "\2\uffff\1\164\1\124\1\157\1\154\1\uffff\3\60\1\uffff\1\145\1\60"+
+        "\1\156\1\141\3\uffff\1\60\1\uffff\1\60\1\164\2\uffff\1\157\1\162"+
+        "\1\60\1\uffff";
     static final String DFA18_maxS =
         "\1\u00ff\1\141\1\162\1\105\1\123\1\105\1\165\1\151\1\116\1\uffff"+
         "\1\125\1\uffff\1\157\1\uffff\1\57\1\uffff\2\75\1\uffff\1\166\1\157"+
-        "\1\162\1\165\1\162\6\uffff\2\75\1\56\6\uffff\1\170\1\71\1\uffff"+
-        "\1\154\1\160\1\u00ff\1\uffff\1\106\1\u00ff\1\104\1\131\1\156\1\154"+
-        "\1\170\1\156\1\u00ff\1\124\1\u00ff\1\164\7\uffff\1\154\1\144\1\147"+
-        "\1\162\1\165\1\145\1\156\1\155\1\151\1\165\10\uffff\1\71\1\uffff"+
-        "\1\165\1\157\1\uffff\1\101\1\uffff\2\u00ff\1\143\1\163\1\151\2\u00ff"+
-        "\1\uffff\1\u00ff\1\uffff\5\u00ff\1\156\1\141\1\147\1\u00ff\1\163"+
-        "\1\145\1\71\1\145\1\163\1\125\2\uffff\1\164\1\145\1\160\10\uffff"+
-        "\2\164\1\154\1\uffff\2\u00ff\1\71\1\u00ff\1\151\1\114\1\151\1\u00ff"+
-        "\1\165\1\u00ff\2\145\3\uffff\1\71\1\uffff\1\164\1\124\1\157\1\154"+
-        "\1\uffff\2\u00ff\1\145\1\u00ff\1\156\1\141\2\uffff\1\u00ff\1\uffff"+
-        "\1\u00ff\1\164\2\uffff\1\157\1\162\1\u00ff\1\uffff";
+        "\1\162\1\165\1\162\1\150\6\uffff\2\75\1\56\6\uffff\1\170\1\71\1"+
+        "\uffff\1\154\1\160\1\u00ff\1\uffff\1\106\1\u00ff\1\104\1\131\1\156"+
+        "\1\157\1\154\1\170\1\156\1\u00ff\1\124\1\u00ff\1\164\7\uffff\1\154"+
+        "\1\144\1\147\1\u00ff\1\162\1\165\1\145\1\156\1\155\1\154\1\151\1"+
+        "\165\1\145\10\uffff\1\71\1\uffff\1\165\1\157\1\uffff\1\101\1\uffff"+
+        "\2\u00ff\1\143\1\155\1\163\1\151\2\u00ff\1\uffff\1\u00ff\1\uffff"+
+        "\4\u00ff\1\uffff\1\u00ff\1\156\1\141\1\147\1\u00ff\1\145\1\163\1"+
+        "\145\1\162\1\71\1\145\1\163\1\125\2\uffff\1\164\1\u00ff\1\145\1"+
+        "\160\10\uffff\2\164\1\154\1\uffff\1\143\2\u00ff\1\145\1\71\1\u00ff"+
+        "\1\151\1\114\1\151\1\uffff\1\u00ff\1\165\1\u00ff\2\145\1\164\2\uffff"+
+        "\1\u00ff\1\71\2\uffff\1\164\1\124\1\157\1\154\1\uffff\3\u00ff\1"+
+        "\uffff\1\145\1\u00ff\1\156\1\141\3\uffff\1\u00ff\1\uffff\1\u00ff"+
+        "\1\164\2\uffff\1\157\1\162\1\u00ff\1\uffff";
     static final String DFA18_acceptS =
         "\11\uffff\1\11\1\uffff\1\13\1\uffff\1\15\1\uffff\1\21\2\uffff\1"+
-        "\24\5\uffff\1\43\1\44\1\45\1\46\1\51\1\52\3\uffff\1\60\1\62\1\63"+
-        "\1\64\1\67\1\70\2\uffff\1\75\3\uffff\1\66\14\uffff\1\41\1\42\1\16"+
-        "\1\22\1\50\1\23\1\47\12\uffff\1\54\1\53\1\55\1\61\1\57\1\56\1\71"+
-        "\1\72\1\uffff\1\73\2\uffff\1\27\1\uffff\1\4\7\uffff\1\10\1\uffff"+
-        "\1\20\17\uffff\1\17\1\5\3\uffff\1\36\1\35\1\12\1\14\1\25\1\26\1"+
-        "\34\1\30\3\uffff\1\33\14\uffff\1\40\1\65\1\74\1\uffff\1\1\4\uffff"+
-        "\1\31\6\uffff\1\37\1\32\1\uffff\1\3\2\uffff\1\2\1\6\3\uffff\1\7";
+        "\24\6\uffff\1\47\1\50\1\51\1\52\1\55\1\56\3\uffff\1\64\1\66\1\67"+
+        "\1\70\1\73\1\74\2\uffff\1\101\3\uffff\1\72\15\uffff\1\45\1\46\1"+
+        "\16\1\22\1\54\1\23\1\53\15\uffff\1\60\1\57\1\61\1\65\1\63\1\62\1"+
+        "\75\1\76\1\uffff\1\77\2\uffff\1\27\1\uffff\1\4\10\uffff\1\10\1\uffff"+
+        "\1\20\4\uffff\1\44\15\uffff\1\17\1\5\4\uffff\1\36\1\35\1\12\1\14"+
+        "\1\25\1\26\1\34\1\30\3\uffff\1\33\11\uffff\1\42\6\uffff\1\40\1\71"+
+        "\2\uffff\1\100\1\1\4\uffff\1\31\3\uffff\1\43\4\uffff\1\37\1\32\1"+
+        "\41\1\uffff\1\3\2\uffff\1\2\1\6\3\uffff\1\7";
     static final String DFA18_specialS =
-        "\u00ac\uffff}>";
+        "\u00be\uffff}>";
     static final String[] DFA18_transitionS = {
-            "\1\44\1\43\2\uffff\1\43\22\uffff\1\44\1\22\1\51\5\uffff\1\34"+
-            "\1\35\1\15\1\17\1\11\1\13\1\40\1\16\1\47\11\50\1\37\1\42\1\21"+
-            "\1\36\1\20\2\uffff\1\4\2\45\1\3\4\45\1\10\1\45\1\5\3\45\1\12"+
-            "\13\45\1\30\1\uffff\1\31\1\uffff\1\46\1\uffff\1\23\1\46\1\25"+
-            "\2\46\1\6\6\46\1\7\1\14\1\2\3\46\1\26\1\27\1\46\1\1\1\46\1\24"+
-            "\2\46\1\32\1\41\1\33\102\uffff\27\45\1\uffff\6\45\31\46\1\uffff"+
-            "\10\46",
-            "\1\52",
-            "\1\55\65\uffff\1\53\1\uffff\1\54",
-            "\1\56",
-            "\1\60\4\uffff\1\57",
-            "\1\61",
-            "\1\63\23\uffff\1\62",
-            "\1\64\7\uffff\1\65",
-            "\1\66",
+            "\1\45\1\44\2\uffff\1\44\22\uffff\1\45\1\22\1\52\5\uffff\1\35"+
+            "\1\36\1\15\1\17\1\11\1\13\1\41\1\16\1\50\11\51\1\40\1\43\1\21"+
+            "\1\37\1\20\2\uffff\1\4\2\46\1\3\4\46\1\10\1\46\1\5\3\46\1\12"+
+            "\13\46\1\31\1\uffff\1\32\1\uffff\1\47\1\uffff\1\23\1\47\1\25"+
+            "\2\47\1\6\6\47\1\7\1\14\1\2\3\47\1\26\1\27\1\47\1\1\1\30\1\24"+
+            "\2\47\1\33\1\42\1\34\102\uffff\27\46\1\uffff\6\46\31\47\1\uffff"+
+            "\10\47",
+            "\1\53",
+            "\1\56\65\uffff\1\54\1\uffff\1\55",
+            "\1\57",
+            "\1\61\4\uffff\1\60",
+            "\1\62",
+            "\1\65\20\uffff\1\64\2\uffff\1\63",
+            "\1\66\7\uffff\1\67",
+            "\1\70",
             "",
-            "\1\70\2\uffff\1\67",
+            "\1\72\2\uffff\1\71",
             "",
-            "\1\71",
+            "\1\73",
             "",
-            "\1\73\4\uffff\1\72",
+            "\1\75\4\uffff\1\74",
             "",
-            "\1\75",
             "\1\77",
+            "\1\101",
             "",
-            "\1\101\1\uffff\1\102\7\uffff\1\103",
-            "\1\104",
-            "\1\105\2\uffff\1\106",
-            "\1\107\13\uffff\1\110",
-            "\1\111\11\uffff\1\112",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\113",
-            "\1\115",
+            "\1\103\1\uffff\1\104\4\uffff\1\106\2\uffff\1\105",
+            "\1\107",
+            "\1\110\2\uffff\1\111",
+            "\1\114\3\uffff\1\112\13\uffff\1\113",
+            "\1\115\11\uffff\1\116",
             "\1\117",
             "",
             "",
@@ -3031,164 +3146,194 @@ public class FinexClassLexer extends Lexer {
             "",
             "",
             "",
-            "\1\124\1\uffff\12\123\76\uffff\1\121",
-            "\1\124\1\uffff\12\123",
+            "\1\120",
+            "\1\122",
+            "\1\124",
             "",
-            "\1\125",
-            "\1\126",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
             "",
-            "\1\130",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "",
+            "",
+            "",
+            "\1\131\1\uffff\12\130\76\uffff\1\126",
+            "\1\131\1\uffff\12\130",
+            "",
             "\1\132",
             "\1\133",
-            "\1\134",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
             "\1\135",
-            "\1\136\11\uffff\1\137",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
+            "\27\46\1\uffff\37\46\1\uffff\10\46",
+            "\1\137",
             "\1\140",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\1\141",
             "\1\142",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\1\144",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\145",
+            "\1\143",
+            "\1\144\11\uffff\1\145",
             "\1\146",
-            "\1\147",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
+            "\27\46\1\uffff\37\46\1\uffff\10\46",
             "\1\150",
-            "\1\151",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
+            "\27\46\1\uffff\37\46\1\uffff\10\46",
             "\1\152",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\153",
             "\1\154",
             "\1\155",
-            "\1\156",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\124\1\uffff\12\157",
-            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\157",
             "\1\160",
             "\1\161",
-            "",
             "\1\162",
-            "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\1\163",
+            "\1\164",
             "\1\165",
             "\1\166",
             "\1\167",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
             "",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\131\1\uffff\12\170",
+            "",
+            "\1\171",
+            "\1\172",
+            "",
+            "\1\173",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
             "\27\46\1\uffff\37\46\1\uffff\10\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
             "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
+            "\1\176",
+            "\1\177",
             "\1\u0080",
             "\1\u0081",
-            "\1\u0082",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
             "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\1\u0084",
-            "\1\u0085",
-            "\1\124\1\uffff\12\u0086",
-            "\1\u0087",
-            "\1\u0088",
-            "\1\u0089",
             "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "\1\u008a",
             "\1\u008b",
             "\1\u008c",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\u008d",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "\1\u008e",
             "\1\u008f",
-            "",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\1\u0092\1\124\1\uffff\12\u0093",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
+            "\1\u0090",
+            "\1\u0091",
+            "\1\131\1\uffff\12\u0092",
+            "\1\u0093",
+            "\1\u0094",
             "\1\u0095",
+            "",
+            "",
             "\1\u0096",
-            "\1\u0097",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "\1\u0098",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
+            "\1\u0099",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
             "\1\u009a",
             "\1\u009b",
-            "",
-            "",
-            "",
-            "\1\124\1\uffff\12\u0093",
-            "",
             "\1\u009c",
-            "\1\u009d",
-            "\1\u009e",
-            "\1\u009f",
             "",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\1\u00a2",
-            "\12\45\7\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\1\u009d",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\u00a0",
+            "\1\u00a2\1\131\1\uffff\12\u00a1",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "\1\u00a4",
             "\1\u00a5",
+            "\1\u00a6",
             "",
-            "",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
-            "\27\46\1\uffff\37\46\1\uffff\10\46",
-            "\1\u00a8",
-            "",
-            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\u00a7",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             "\1\u00a9",
             "\1\u00aa",
+            "\1\u00ab",
+            "",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\131\1\uffff\12\u00a1",
+            "",
+            "",
+            "\1\u00ad",
+            "\1\u00ae",
+            "\1\u00af",
+            "\1\u00b0",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\1\u00b4",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46\105\uffff"+
             "\27\46\1\uffff\37\46\1\uffff\10\46",
+            "\1\u00b6",
+            "\1\u00b7",
+            "",
+            "",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
+            "\1\u00ba",
+            "",
+            "",
+            "\1\u00bb",
+            "\1\u00bc",
+            "\12\47\7\uffff\32\47\4\uffff\1\47\1\uffff\32\47\105\uffff"+
+            "\27\47\1\uffff\37\47\1\uffff\10\47",
             ""
     };
 
@@ -3222,7 +3367,7 @@ public class FinexClassLexer extends Lexer {
             this.transition = DFA18_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | PIPE | COLON | SEMICOLON | NL | WS | BOOL | OBJECT | FIRST_UPPERCASE_NAME | FIRST_LOWERCASE_NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING );";
+            return "1:1: Tokens : ( T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | COMMENT | MULTI_LINE_COMMENT | LBRACKET | RBRACKET | LCURL | RCURL | LANGLE | RANGLE | LPAREN | RPAREN | EQUALS | EQUALSEQUALS | ASSIGN | DOT | DDOT | PIPE | COLON | SEMICOLON | NL | WS | BOOL | OBJECT | FIRST_UPPERCASE_NAME | FIRST_LOWERCASE_NAME | BINARY | INT | RANGE_OR_INT | DATE | STRING );";
         }
     }
  

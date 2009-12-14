@@ -9,13 +9,13 @@ Require-Bundle: com.sap.tc.moin.ide.facade,
  org.eclipse.core.runtime
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.tc.moin.package42CE6AA36F52FA7652048902720F143668901804,
- test.test,
- test.test.__impl,
- test.test.enumeration,
- test.test.enumeration.__impl,
- test.test.expression,
- test.test.expression.__impl,
- test.test.inheritance,
- test.test.inheritance.__impl,
- test.test.reference,
- test.test.reference.__impl
+ test,
+ test.__impl,
+ test.enumeration,
+ test.enumeration.__impl,
+ test.expression,
+ test.expression.__impl,
+ test.inheritance,
+ test.inheritance.__impl,
+ test.reference,
+ test.reference.__impl

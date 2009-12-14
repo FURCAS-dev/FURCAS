@@ -109,6 +109,8 @@ public class ModelPartitionImpl implements CoreModelPartition {
      * Timestamp used for partition eviction.
      */
     private transient long evictionTimestamp;
+    
+    private static TimeQuantizer currentTimeQuantizerThread;
 
     /**
      * Manages all {@link EndStorageLink}s stored at elements in this partition,
@@ -134,6 +136,33 @@ public class ModelPartitionImpl implements CoreModelPartition {
 
     private final byte[] prefixForSegmentedMofIds;
 
+	private static class TimeQuantizer extends Thread {
+		private long quantizingIntervalInMilliseconds;
+		public volatile long currentTimeMillis = System.currentTimeMillis();
+
+		public TimeQuantizer(long quantizingIntervalInMilliseconds) {
+			super("ModelPartitionImpl TimeQuantizer");
+			this.quantizingIntervalInMilliseconds = quantizingIntervalInMilliseconds;
+			setDaemon(true);
+		}
+
+		public void run() {
+			while (true) {
+				currentTimeMillis = System.currentTimeMillis();
+				try {
+					Thread.sleep(quantizingIntervalInMilliseconds);
+				} catch (InterruptedException e) {
+					throw new RuntimeException(e);
+				}
+			}
+		}
+	}
+	
+	static {
+		currentTimeQuantizerThread = new TimeQuantizer(100 /* milliseconds update interval */);
+		currentTimeQuantizerThread.start();
+	}
+    
     /**
      * @param mri
      * @throws InvalidResourceIdentifierException
@@ -507,8 +536,7 @@ public class ModelPartitionImpl implements CoreModelPartition {
     }
 
     public void updateEvictionTimestamp( ) {
-
-        evictionTimestamp = System.currentTimeMillis( );
+        evictionTimestamp = currentTimeQuantizerThread.currentTimeMillis;
     }
 
     public long getEvictionTimestamp( ) {

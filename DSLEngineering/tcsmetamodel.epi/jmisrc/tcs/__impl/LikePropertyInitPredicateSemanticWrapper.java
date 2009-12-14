@@ -125,7 +125,6 @@ public class LikePropertyInitPredicateSemanticWrapper extends com.sap.tc.moin.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.LikePropertyInitPredicateSemantic> get___JmiInterface() {
         return tcs.LikePropertyInitPredicateSemantic.class;
     }

@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class ClassPatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ClassPatternImpl> implements tcs.ClassPattern,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ClassPatternWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.ClassPatternImpl getCastWrappedObject() {
         return (tcs.__impl.ClassPatternImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class ClassPatternWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ClassPattern> get___JmiInterface() {
         return tcs.ClassPattern.class;
     }

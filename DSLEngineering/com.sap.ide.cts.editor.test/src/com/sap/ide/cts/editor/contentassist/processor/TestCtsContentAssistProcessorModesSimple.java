@@ -13,6 +13,7 @@ import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorModesSimple extends
 		CtsContentAssistProcessorEditorTestMetamodelTestBase {
@@ -21,16 +22,15 @@ public class TestCtsContentAssistProcessorModesSimple extends
 	public static void generateParser() throws FileNotFoundException,
 			GrammarGenerationException, SyntaxParsingException,
 			ModelAdapterException, IOException {
-		generateParserForLanguage("Modes");
+		initMetamodelTestbase("Modes");
 	}
 
 	@Before
 	public void initProcessor() throws IOException,
-			InvalidParserImplementationException {
-		initProcessorForFixture("Simple" + "." + getLanguage(), getFacade(),
-				getLanguage(), CtsContentAssistProcessorTestBase.class
-						.getResourceAsStream("../fixtures/syntax/"
-								+ getLanguage() + ".tcs"));
+			InvalidParserImplementationException,
+			UnknownProductionRuleException, InstantiationException,
+			IllegalAccessException {
+		initProcessorForPrefix("Simple");
 	}
 
 	@Test

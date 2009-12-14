@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.Document;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IEventConsumer;
@@ -26,6 +27,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 
 import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
+import com.sap.ide.cts.editor.test.util.StringReplacement;
 
 /**
  * Stub loading document from Filepath.
@@ -33,11 +35,14 @@ import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
 public class TextViewerStub implements ITextViewer {
 
 	private String fixturePath;
+	private StringReplacement postFixtureReplacement;
 
-	public TextViewerStub(String fixturePath) {
+	public TextViewerStub(String fixturePath,
+			StringReplacement postFixtureReplacement) {
 		Assert.isNotNull(fixturePath);
 
 		this.fixturePath = fixturePath;
+		this.postFixtureReplacement = postFixtureReplacement;
 	}
 
 	@Override
@@ -55,7 +60,17 @@ public class TextViewerStub implements ITextViewer {
 			e.printStackTrace();
 		}
 
-		return new Document(out.toString());
+		Document result = new Document(out.toString());
+		if (postFixtureReplacement != null) {
+			try {
+				postFixtureReplacement.applyTo(result);
+			} catch (BadLocationException e) {
+				System.out.println("post fixture replacement failed: " + e);
+				return new Document(out.toString());
+			}
+		}
+
+		return result;
 	}
 
 	@Override
@@ -210,7 +225,8 @@ public class TextViewerStub implements ITextViewer {
 
 	@Deprecated
 	@Override
-	public void setAutoIndentStrategy(org.eclipse.jface.text.IAutoIndentStrategy strategy,
+	public void setAutoIndentStrategy(
+			org.eclipse.jface.text.IAutoIndentStrategy strategy,
 			String contentType) {
 		fail("not implemented");
 

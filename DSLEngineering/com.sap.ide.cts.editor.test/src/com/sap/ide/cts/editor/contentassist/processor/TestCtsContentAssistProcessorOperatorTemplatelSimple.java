@@ -13,6 +13,7 @@ import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorOperatorTemplatelSimple extends
 		CtsContentAssistProcessorEditorTestMetamodelTestBase {
@@ -21,22 +22,20 @@ public class TestCtsContentAssistProcessorOperatorTemplatelSimple extends
 	public static void generateParser() throws FileNotFoundException,
 			GrammarGenerationException, SyntaxParsingException,
 			ModelAdapterException, IOException {
-		generateParserForLanguage("OperatorTemplate");
+		initMetamodelTestbase("OperatorTemplate");
 	}
 
 	@Before
 	public void initProcessor() throws IOException,
-			InvalidParserImplementationException {
-		initProcessorForFixture("Simple" + "." + getLanguage(), getFacade(),
-				getLanguage(), CtsContentAssistProcessorTestBase.class
-						.getResourceAsStream("../fixtures/syntax/"
-								+ getLanguage() + ".tcs"));
+			InvalidParserImplementationException,
+			UnknownProductionRuleException, InstantiationException,
+			IllegalAccessException {
+		initProcessorForPrefix("Simple");
 	}
 
 	@Test
 	public void beginningOfFile() {
 		List<String> expected = new ArrayList<String>();
-		expected.add("(");
 		expected.add("-");
 		expected.add("value");
 
@@ -46,11 +45,11 @@ public class TestCtsContentAssistProcessorOperatorTemplatelSimple extends
 	@Test
 	public void afterFirstExpression() {
 		List<String> expected = new ArrayList<String>();
-		expected.add("(");
 		expected.add("*");
 		expected.add("+");
 		expected.add("-");
 		expected.add("/");
+		expected.add("[");
 		expected.add("^^");
 		expected.add("sqrt");
 
@@ -60,7 +59,6 @@ public class TestCtsContentAssistProcessorOperatorTemplatelSimple extends
 	@Test
 	public void afterOperator() {
 		List<String> expected = new ArrayList<String>();
-		expected.add("(");
 		expected.add("-");
 		expected.add("value");
 

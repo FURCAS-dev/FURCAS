@@ -122,6 +122,31 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
         }
     }
 
+    public java.util.Collection<dataaccess.expressions.MethodCallExpression> getInitializers() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (java.util.Collection<dataaccess.expressions.MethodCallExpression>) wrapResult(getCastWrappedObject().getInitializers(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (java.util.Collection<dataaccess.expressions.MethodCallExpression>) wrapResult(getCastWrappedObject().getInitializers(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+
+
    
     // methods for modeled operations
     public boolean conformsTo(data.classes.TypedElement typedElement) throws com.sap.tc.moin.repository.mmi.reflect.JmiException

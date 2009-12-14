@@ -8,7 +8,7 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(12);
@@ -135,12 +135,12 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
     public void setThencontainer(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843BC3FAB9FE7B0308511DDB50E001742153E0C", /* mofId of reference */ "48621DFB8F5A71A042A111DDBF65001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setThencontainer(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843BC3FAB9FE7B0308511DDB50E001742153E0C", /* mofId of reference */ "48621DFB8F5A71A042A111DDBF65001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getElsecontainer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -155,12 +155,12 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
     public void setElsecontainer(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843BB7A36237560308511DD9FC3001742153E0C", /* mofId of reference */ "48621E28AA6693C042A111DD99A1001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setElsecontainer(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843BB7A36237560308511DD9FC3001742153E0C", /* mofId of reference */ "48621E28AA6693C042A111DD99A1001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getFunctioncontainer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -175,12 +175,12 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
     public void setFunctioncontainer(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "48400506B29D41402E4E11DDA9CA001742153E0C", /* mofId of reference */ "48621E37B314DE0042A111DD8CFB001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setFunctioncontainer(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "48400506B29D41402E4E11DDA9CA001742153E0C", /* mofId of reference */ "48621E37B314DE0042A111DD8CFB001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getSeparatorcontainer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -195,12 +195,12 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
     public void setSeparatorcontainer(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4843BB7E38111490308511DD9064001742153E0C", /* mofId of reference */ "48621E63CD45BB5042A111DD8560001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setSeparatorcontainer(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4843BB7E38111490308511DD9064001742153E0C", /* mofId of reference */ "48621E63CD45BB5042A111DD8560001742153E0C" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -288,7 +288,7 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -338,7 +338,7 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -357,7 +357,7 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -376,7 +376,7 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -395,7 +395,7 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
@@ -427,7 +427,6 @@ public final class SequenceInAlternativeImpl extends com.sap.tc.moin.repository.
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.SequenceInAlternative> get___JmiInterface() {
         return tcs.SequenceInAlternative.class;
     }

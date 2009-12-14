@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class AndExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.AndExpImpl> implements tcs.AndExp,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AndExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.AndExpImpl getCastWrappedObject() {
         return (tcs.__impl.AndExpImpl) getWrappedObject();
     }
@@ -161,7 +160,6 @@ public class AndExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.AndExp> get___JmiInterface() {
         return tcs.AndExp.class;
     }

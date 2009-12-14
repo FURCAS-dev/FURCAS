@@ -125,7 +125,6 @@ public class ALeftLeftOfWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ALeftLeftOf> get___JmiInterface() {
         return behavior.expressions.ALeftLeftOf.class;
     }

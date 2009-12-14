@@ -64,7 +64,6 @@ public final class AInvariantsInvariantOfImpl extends com.sap.tc.moin.repository
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AInvariantsInvariantOf> get___JmiInterface() {
         return structure.AInvariantsInvariantOf.class;
     }

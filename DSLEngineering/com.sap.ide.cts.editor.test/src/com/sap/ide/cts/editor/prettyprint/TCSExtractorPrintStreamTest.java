@@ -22,42 +22,42 @@ public class TCSExtractorPrintStreamTest {
 
 	@Test
 	public void testPublicInterface() {
-		stream.startClassTemplateForObject(null, null);
+		int handleMain = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("a");
 		stream.printWhiteSpace(" ");
 		stream.printBoolean(false);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleOuter = stream.startClassTemplateForObject(null, null);
+		int handleInner = stream.startClassTemplateForObject(null, null);
 		stream.printString("\"", "a(%tok%");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleInner);
+		stream.endClassTemplate(handleOuter);
 
 		stream.printWhiteSpace("\n\n ");
 
-		stream.startClassTemplateForObject(null, null);
+		handleOuter = stream.startClassTemplateForObject(null, null);
 		stream.printString("\\\"", "%token%");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleOuter);
 
 		stream.printWhiteSpace("\n\n ");
 		stream.printInteger(2000);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleA = stream.startClassTemplateForObject(null, null);
+		int handleB = stream.startClassTemplateForObject(null, null);
 		stream.printSymbol("(");
-		stream.startClassTemplateForObject(null, null);
+		int handleC = stream.startClassTemplateForObject(null, null);
 		stream.printWhiteSpace(" ");
 		stream.printIdentifier("PrimitiveTypes");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
 		stream.printSymbol("::");
-		stream.startClassTemplateForObject(null, null);
+		handleC = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("String");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
+		stream.endClassTemplate(handleB);
+		stream.endClassTemplate(handleA);
 
 		stream.printWhiteSpace(" ");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleMain);
 
 		stream.close();
 
@@ -70,42 +70,42 @@ public class TCSExtractorPrintStreamTest {
 	public void testBacktrackingResetAll() {
 		int handle = stream.createSafePoint();
 
-		stream.startClassTemplateForObject(null, null);
+		int handleMain = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("a");
 		stream.printWhiteSpace(" ");
 		stream.printBoolean(false);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleOuter = stream.startClassTemplateForObject(null, null);
+		int handleInner = stream.startClassTemplateForObject(null, null);
 		stream.printString("\"", "a(%tok%");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleInner);
+		stream.endClassTemplate(handleOuter);
 
 		stream.printWhiteSpace("\n\n ");
 
-		stream.startClassTemplateForObject(null, null);
+		handleOuter = stream.startClassTemplateForObject(null, null);
 		stream.printString("\\\"", "%token%");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleOuter);
 
 		stream.printWhiteSpace("\n\n ");
 		stream.printInteger(2000);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleA = stream.startClassTemplateForObject(null, null);
+		int handleB = stream.startClassTemplateForObject(null, null);
 		stream.printSymbol("(");
-		stream.startClassTemplateForObject(null, null);
+		int handleC = stream.startClassTemplateForObject(null, null);
 		stream.printWhiteSpace(" ");
 		stream.printIdentifier("PrimitiveTypes");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
 		stream.printSymbol("::");
-		stream.startClassTemplateForObject(null, null);
+		handleC = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("String");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
+		stream.endClassTemplate(handleB);
+		stream.endClassTemplate(handleA);
 
 		stream.printWhiteSpace(" ");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleMain);
 
 		stream.resetToSafePoint(handle);
 
@@ -120,47 +120,47 @@ public class TCSExtractorPrintStreamTest {
 	public void testBacktrackingResetPrimitiveOutput() {
 		stream.createSafePoint();
 
-		stream.startClassTemplateForObject(null, null);
+		int handleMain = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("a");
 		stream.printWhiteSpace(" ");
 		stream.printBoolean(false);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleOuter = stream.startClassTemplateForObject(null, null);
+		int handleInner = stream.startClassTemplateForObject(null, null);
 		stream.printString("\"", "a(%tok%");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleInner);
+		stream.endClassTemplate(handleOuter);
 
 		// use backtracking to remove unwanted output
-		int handleInner = stream.createSafePoint();
+		int handleSavePointInner = stream.createSafePoint();
 		stream.printSymbol("::");
-		stream.resetToSafePoint(handleInner);
+		stream.resetToSafePoint(handleSavePointInner);
 
 		stream.printWhiteSpace("\n\n ");
 
-		stream.startClassTemplateForObject(null, null);
+		handleOuter = stream.startClassTemplateForObject(null, null);
 		stream.printString("\\\"", "%token%");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleOuter);
 
 		stream.printWhiteSpace("\n\n ");
 		stream.printInteger(2000);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleA = stream.startClassTemplateForObject(null, null);
+		int handleB = stream.startClassTemplateForObject(null, null);
 		stream.printSymbol("(");
-		stream.startClassTemplateForObject(null, null);
+		int handleC = stream.startClassTemplateForObject(null, null);
 		stream.printWhiteSpace(" ");
 		stream.printIdentifier("PrimitiveTypes");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
 		stream.printSymbol("::");
-		stream.startClassTemplateForObject(null, null);
+		handleC = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("String");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
+		stream.endClassTemplate(handleB);
+		stream.endClassTemplate(handleA);
 
 		stream.printWhiteSpace(" ");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleMain);
 
 		stream.close();
 
@@ -173,52 +173,52 @@ public class TCSExtractorPrintStreamTest {
 	public void testBacktrackingResetTemplateOutput() {
 		stream.createSafePoint();
 
-		stream.startClassTemplateForObject(null, null);
+		int handleMain = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("a");
 		stream.printWhiteSpace(" ");
 		stream.printBoolean(false);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleOuter = stream.startClassTemplateForObject(null, null);
+		int handleInner = stream.startClassTemplateForObject(null, null);
 		stream.printString("\"", "a(%tok%");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleInner);
+		stream.endClassTemplate(handleOuter);
 
 		// use backtracking to remove unwanted output
-		int handleInner = stream.createSafePoint();
-		stream.startClassTemplateForObject(null, null);
+		int handleSafePointInner = stream.createSafePoint();
+		handleOuter = stream.startClassTemplateForObject(null, null);
 		stream.createSafePoint();
-		stream.startClassTemplateForObject(null, null);
+		handleInner = stream.startClassTemplateForObject(null, null);
 		stream.printString("\"", "a(%tok%");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
-		stream.resetToSafePoint(handleInner);
+		stream.endClassTemplate(handleInner);
+		stream.endClassTemplate(handleOuter);
+		stream.resetToSafePoint(handleSafePointInner);
 
 		stream.printWhiteSpace("\n\n ");
 
-		stream.startClassTemplateForObject(null, null);
+		handleOuter = stream.startClassTemplateForObject(null, null);
 		stream.printString("\\\"", "%token%");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleOuter);
 
 		stream.printWhiteSpace("\n\n ");
 		stream.printInteger(2000);
 
-		stream.startClassTemplateForObject(null, null);
-		stream.startClassTemplateForObject(null, null);
+		int handleA = stream.startClassTemplateForObject(null, null);
+		int handleB = stream.startClassTemplateForObject(null, null);
 		stream.printSymbol("(");
-		stream.startClassTemplateForObject(null, null);
+		int handleC = stream.startClassTemplateForObject(null, null);
 		stream.printWhiteSpace(" ");
 		stream.printIdentifier("PrimitiveTypes");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
 		stream.printSymbol("::");
-		stream.startClassTemplateForObject(null, null);
+		handleC = stream.startClassTemplateForObject(null, null);
 		stream.printIdentifier("String");
-		stream.endClassTemplate();
-		stream.endClassTemplate();
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleC);
+		stream.endClassTemplate(handleB);
+		stream.endClassTemplate(handleA);
 
 		stream.printWhiteSpace(" ");
-		stream.endClassTemplate();
+		stream.endClassTemplate(handleMain);
 
 		stream.close();
 

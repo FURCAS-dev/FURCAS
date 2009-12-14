@@ -13,6 +13,7 @@ import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorOperatorMainTemplatelBracketSequence
 		extends CtsContentAssistProcessorEditorTestMetamodelTestBase {
@@ -21,23 +22,20 @@ public class TestCtsContentAssistProcessorOperatorMainTemplatelBracketSequence
 	public static void generateParser() throws FileNotFoundException,
 			GrammarGenerationException, SyntaxParsingException,
 			ModelAdapterException, IOException {
-		generateParserForLanguage("OperatorMainTemplate");
+		initMetamodelTestbase("OperatorMainTemplate");
 	}
 
 	@Before
 	public void initProcessor() throws IOException,
-			InvalidParserImplementationException {
-		initProcessorForFixture("BracketSequence" + "." + getLanguage(),
-				getFacade(), getLanguage(),
-				CtsContentAssistProcessorTestBase.class
-						.getResourceAsStream("../fixtures/syntax/"
-								+ getLanguage() + ".tcs"));
+			InvalidParserImplementationException,
+			UnknownProductionRuleException, InstantiationException,
+			IllegalAccessException {
+		initProcessorForPrefix("BracketSequence");
 	}
 
 	@Test
 	public void beginningOfFile() {
 		List<String> expected = new ArrayList<String>();
-		expected.add("(");
 		expected.add("-");
 		expected.add("value");
 

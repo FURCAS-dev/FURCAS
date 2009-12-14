@@ -9,10 +9,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.ide.cts.editor.test.util.StringReplacement;
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorBug1976 extends
 		CtsContentAssistProcessorTestBase {
@@ -24,13 +26,19 @@ public class TestCtsContentAssistProcessorBug1976 extends
 		// use only default metamodel PRIs
 		initMetamodelId("");
 		generateParserForLanguage("Bug1976");
+		generateParserFactoryForLanguage(getLanguage(),
+				"com.sap.tc.moin.repository.mmi.model.ModelPackage",
+				"com.sap.tc.moin.libraries.api");
 	}
 
 	@Before
 	public void initProcessor() throws IOException,
-			InvalidParserImplementationException {
-		initProcessorForFixture("Fixture" + "." + getLanguage(), getFacade(),
-				getLanguage(), CtsContentAssistProcessorTestBase.class
+			InvalidParserImplementationException,
+			UnknownProductionRuleException, InstantiationException,
+			IllegalAccessException {
+		initProcessorForFixture("Fixture" + "." + getLanguage(),
+				new StringReplacement(3, 1, "as"),
+				CtsContentAssistProcessorTestBase.class
 						.getResourceAsStream("../fixtures/syntax/"
 								+ getLanguage() + ".tcs"));
 	}

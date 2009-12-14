@@ -35,6 +35,7 @@ import behavior.expressions.literals.DecimalLiteral;
 import behavior.expressions.literals.IntegerLiteral;
 import behavior.expressions.literals.MultiObjectLiteral;
 import behavior.expressions.literals.StringLiteral;
+import behavior.expressions.oql.OqlQuery;
 import behavior.functions.NativeImpl;
 import behavior.functions.SignatureImplementation;
 
@@ -55,6 +56,7 @@ import com.sap.finex.interpreter.expressions.NamedValueInterpreter;
 import com.sap.finex.interpreter.expressions.NotInterpreter;
 import com.sap.finex.interpreter.expressions.NumericAggregateInterpreter;
 import com.sap.finex.interpreter.expressions.ObjectCreationInterpreter;
+import com.sap.finex.interpreter.expressions.OqlQueryInterpreter;
 import com.sap.finex.interpreter.expressions.PathExpressionInterpreter;
 import com.sap.finex.interpreter.expressions.StringLiteralInterpreter;
 import com.sap.finex.interpreter.expressions.ThisInterpreter;
@@ -165,6 +167,8 @@ public class FinexInterpreter
 		conn.getClass(NumericAggregate.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(AllInterpreter.class, 
 		conn.getClass(All.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(OqlQueryInterpreter.class, 
+		conn.getClass(OqlQuery.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override

@@ -902,6 +902,28 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
             throw ex;
         }
     }
+    public dataaccess.expressions.AInitializersCreationExpression getAInitializersCreationExpression()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (dataaccess.expressions.AInitializersCreationExpression) wrapResult(getCastWrappedObject().getAInitializersCreationExpression(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (dataaccess.expressions.AInitializersCreationExpression) wrapResult(getCastWrappedObject().getAInitializersCreationExpression(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     // methods for structure type creators
     
     @SuppressWarnings("unchecked")

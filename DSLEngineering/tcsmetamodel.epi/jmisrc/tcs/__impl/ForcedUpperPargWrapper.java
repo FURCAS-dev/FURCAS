@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class ForcedUpperPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.ForcedUpperPargImpl> implements tcs.ForcedUpperParg,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ForcedUpperPargWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.ForcedUpperPargImpl getCastWrappedObject() {
         return (tcs.__impl.ForcedUpperPargImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class ForcedUpperPargWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ForcedUpperParg> get___JmiInterface() {
         return tcs.ForcedUpperParg.class;
     }

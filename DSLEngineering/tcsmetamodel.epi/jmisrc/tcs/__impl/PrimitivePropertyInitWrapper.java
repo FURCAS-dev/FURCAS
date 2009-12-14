@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class PrimitivePropertyInitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.PrimitivePropertyInitImpl> implements tcs.PrimitivePropertyInit,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class PrimitivePropertyInitWrapper extends com.sap.tc.moin.repository.cor
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.PrimitivePropertyInitImpl getCastWrappedObject() {
         return (tcs.__impl.PrimitivePropertyInitImpl) getWrappedObject();
     }
@@ -221,7 +220,6 @@ public class PrimitivePropertyInitWrapper extends com.sap.tc.moin.repository.cor
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PrimitivePropertyInit> get___JmiInterface() {
         return tcs.PrimitivePropertyInit.class;
     }

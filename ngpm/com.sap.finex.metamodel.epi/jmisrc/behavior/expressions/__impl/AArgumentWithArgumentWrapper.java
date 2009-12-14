@@ -125,7 +125,6 @@ public class AArgumentWithArgumentWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AArgumentWithArgument> get___JmiInterface() {
         return behavior.expressions.AArgumentWithArgument.class;
     }

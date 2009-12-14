@@ -125,7 +125,6 @@ public class AsPargTemplateWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.AsPargTemplate> get___JmiInterface() {
         return tcs.AsPargTemplate.class;
     }

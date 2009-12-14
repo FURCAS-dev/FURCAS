@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class OneExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.OneExpImpl> implements tcs.OneExp,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class OneExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.OneExpImpl getCastWrappedObject() {
         return (tcs.__impl.OneExpImpl) getWrappedObject();
     }
@@ -180,7 +179,6 @@ public class OneExpWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OneExp> get___JmiInterface() {
         return tcs.OneExp.class;
     }

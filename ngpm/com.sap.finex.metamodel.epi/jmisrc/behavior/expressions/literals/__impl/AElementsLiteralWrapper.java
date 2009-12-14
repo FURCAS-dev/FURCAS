@@ -125,7 +125,6 @@ public class AElementsLiteralWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.literals.AElementsLiteral> get___JmiInterface() {
         return behavior.expressions.literals.AElementsLiteral.class;
     }

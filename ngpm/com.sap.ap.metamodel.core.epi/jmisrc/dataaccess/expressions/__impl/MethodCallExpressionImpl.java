@@ -13,12 +13,13 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
 
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
         FEATURE_IDS.put("ownedTypeDefinition", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("object", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("parameters", Integer.valueOf(2)); //$NON-NLS-1$
         FEATURE_IDS.put("methodSignature", Integer.valueOf(3)); //$NON-NLS-1$
-        FEATURE_IDS.put("asynchronous", Integer.valueOf(4)); //$NON-NLS-1$
+        FEATURE_IDS.put("creationExpression", Integer.valueOf(4)); //$NON-NLS-1$
+        FEATURE_IDS.put("asynchronous", Integer.valueOf(5)); //$NON-NLS-1$
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
         OPERATION_IDS.put("conformsTo", Integer.valueOf(0)); //$NON-NLS-1$
@@ -35,6 +36,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
 
     // links for multiplicity-1 association ends
     private com.sap.tc.moin.repository.core.EndStorageLink __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF;
+    private com.sap.tc.moin.repository.core.EndStorageLink __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182;
     private com.sap.tc.moin.repository.core.EndStorageLink __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF;
     private com.sap.tc.moin.repository.core.EndStorageLink __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF;
 
@@ -58,11 +60,11 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
     }
     public void setAsynchronous(boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(get___CurrentConnection(), 4, "E075D95551F2A7D33E4B11DECCBF0018DE1146FF", __asynchronous, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(get___CurrentConnection(), 5, "E075D95551F2A7D33E4B11DECCBF0018DE1146FF", __asynchronous, newValue); //$NON-NLS-1$
     }
     public void setAsynchronous(com.sap.tc.moin.repository.core.CoreConnection connection, boolean newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
-          ___changeDataTypeAttribute(connection, 4, "E075D95551F2A7D33E4B11DECCBF0018DE1146FF", __asynchronous, newValue); //$NON-NLS-1$
+          ___changeDataTypeAttribute(connection, 5, "E075D95551F2A7D33E4B11DECCBF0018DE1146FF", __asynchronous, newValue); //$NON-NLS-1$
     }
 
     // methods for references
@@ -138,6 +140,26 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
           ___changeReference(connection, /* mofId of association */ "E075D95551F518C13E4B11DECF9D0018DE1146FF", /* mofId of reference */ "E075D95551F2A7D23E4B11DEAD5D0018DE1146FF" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
 
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getCreationExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( get___CurrentConnection(), __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182);
+       
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) ___getElementAtOtherLinkEnd( connection, __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182);
+       
+    }
+    public void setCreationExpression(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(get___CurrentConnection(), /* mofId of association */ "E075D95527D15592E37611DE93F1C38CC0A80182", /* mofId of reference */ "E075D95527CA50B0E37611DEBF51C38CC0A80182" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
+    public void setCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+          ___changeReference(connection, /* mofId of association */ "E075D95527D15592E37611DE93F1C38CC0A80182", /* mofId of reference */ "E075D95527CA50B0E37611DEBF51C38CC0A80182" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
+    
+    }
 
     // methods for internal attribute setter
     private void set__Asynchronous(boolean newValue) {
@@ -169,6 +191,9 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
                 result = getMethodSignature(connection);
                 break;
             case 4: 
+                result = getCreationExpression(connection);
+                break;
+            case 5: 
                 result = isAsynchronous();
                 break;
         default:
@@ -203,7 +228,11 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
                 break;
                     
             case 4:
-                ___changeDataTypeAttribute(connection, 4, "E075D95551F2A7D33E4B11DECCBF0018DE1146FF", __asynchronous, value); //$NON-NLS-1$
+                ___changeReference(connection, "E075D95527D15592E37611DE93F1C38CC0A80182" /* mofId of association */, "E075D95527CA50B0E37611DEBF51C38CC0A80182" /* mofId of reference */, value, 1); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 5:
+                ___changeDataTypeAttribute(connection, 5, "E075D95551F2A7D33E4B11DECCBF0018DE1146FF", __asynchronous, value); //$NON-NLS-1$
                 break;
                     
         default:
@@ -213,7 +242,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
 
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
-            case 4:
+            case 5:
                 set__Asynchronous((java.lang.Boolean) value);     
                 break;
             default:
@@ -223,7 +252,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
 
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
-            case 4:
+            case 5:
                 set__Asynchronous((java.lang.Boolean) value);     
                 break;
             default:
@@ -233,7 +262,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
 
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
-            case 4:
+            case 5:
                 set__Asynchronous((java.lang.Boolean) value);     
                 break;
             default:
@@ -245,12 +274,14 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
         if ( associationEndMofId == "E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF" ) { __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF = value; return; } //$NON-NLS-1$ 
+        if ( associationEndMofId == "E075D95527D15591E37611DE82AEC38CC0A80182" ) { __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182 = value; return; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E075D95551F518AA3E4B11DE97A70018DE1146FF" ) { __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF = value; return; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E075D95551F518C03E4B11DE83BF0018DE1146FF" ) { __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF = value; return; } //$NON-NLS-1$ 
     }
     
     public com.sap.tc.moin.repository.core.EndStorageLink get___AssociationLink( String associationEndMofId ) {
         if ( associationEndMofId == "E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF" ) { return __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF; } //$NON-NLS-1$ 
+        if ( associationEndMofId == "E075D95527D15591E37611DE82AEC38CC0A80182" ) { return __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E075D95551F518AA3E4B11DE97A70018DE1146FF" ) { return __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF; } //$NON-NLS-1$ 
         if ( associationEndMofId == "E075D95551F518C03E4B11DE83BF0018DE1146FF" ) { return __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF; } //$NON-NLS-1$ 
         return null;
@@ -258,6 +289,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
         if ( __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF); } 
+        if ( __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182 != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182); } 
         if ( __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF); } 
         if ( __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF); } 
         if ( __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.addAll( __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF); } 
@@ -268,6 +300,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredAssociationLinks( ) {
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
         if ( __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF); } 
+        if ( __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182 != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182); } 
         if ( __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF); } 
         if ( __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF); } 
         if ( __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.addAll( __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF); } 
@@ -286,6 +319,7 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
         reset___CompositeParentLink( );
         java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> result = null;
         if ( __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF); __A_ownedTypeDefinition_ownerTypedElement_ownedTypeDefinition_E0234C8C51EB7BD43E4B11DECE4B0018DE1146FF = null; } 
+        if ( __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182 != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182); __A_initializers_creationExpression_creationExpression_E075D95527D15591E37611DE82AEC38CC0A80182 = null; } 
         if ( __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF); __A_object_objectBasedExpression_object_E075D95551F518AA3E4B11DE97A70018DE1146FF = null; } 
         if ( __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.add( __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF); __SignatureCallToSignature_methodSignature_E075D95551F518C03E4B11DE83BF0018DE1146FF = null; } 
         if ( __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF != null ) { if ( result == null ) result = new java.util.ArrayList<com.sap.tc.moin.repository.core.EndStorageLink>( ); result.addAll( __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF); __SignatureCallParameters_parameters_E075D95551F518BC3E4B11DEA89A0018DE1146FF = null; } 

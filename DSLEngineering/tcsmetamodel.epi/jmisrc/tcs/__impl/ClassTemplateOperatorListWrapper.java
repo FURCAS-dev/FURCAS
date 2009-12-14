@@ -125,7 +125,6 @@ public class ClassTemplateOperatorListWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ClassTemplateOperatorList> get___JmiInterface() {
         return tcs.ClassTemplateOperatorList.class;
     }

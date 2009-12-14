@@ -64,7 +64,6 @@ public final class AOwnedTypesOwnerImpl extends com.sap.tc.moin.repository.core.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AOwnedTypesOwner> get___JmiInterface() {
         return structure.AOwnedTypesOwner.class;
     }

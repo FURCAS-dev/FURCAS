@@ -36,7 +36,7 @@ import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
  * 
  * Depending on an expression's semantics, aliases computed by one operand may be visible by other operand expressions. This then
  * implies an evaluation order on the operands. Vice versa, if an expression defines semantics such that one operand depends on
- * another operand (e.g., for a {@link FilterExpression}, the condition operand expression uses the result of the operand
+ * another operand (e.g., for a {@link FilterExpression}), the condition operand expression uses the result of the operand
  * expression as its implicit context, implying an evaluation order), this enables the dependent operand to use the aliases
  * defined by the operand it depends on.<p>
  * 

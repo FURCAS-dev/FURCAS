@@ -125,7 +125,6 @@ public class OperatorLiteralWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OperatorLiteral> get___JmiInterface() {
         return tcs.OperatorLiteral.class;
     }

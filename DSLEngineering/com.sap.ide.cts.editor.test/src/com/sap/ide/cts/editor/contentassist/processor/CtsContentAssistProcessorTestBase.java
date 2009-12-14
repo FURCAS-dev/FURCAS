@@ -3,23 +3,26 @@ package com.sap.ide.cts.editor.contentassist.processor;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import org.antlr.runtime.Lexer;
-import org.antlr.runtime.Parser;
 import org.eclipse.jface.text.ITextViewer;
 import org.junit.BeforeClass;
 
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistProcessor;
 import com.sap.ide.cts.editor.contentassist.CtsContentAssistUtil;
+import com.sap.ide.cts.editor.contentassist.TcsFixtureBase;
 import com.sap.ide.cts.editor.contentassist.stubs.TextViewerStub;
-import com.sap.ide.cts.editor.test.util.GeneratedParserBasedTest;
+import com.sap.ide.cts.editor.test.util.GeneratedTextblocksBasedTest;
 import com.sap.ide.cts.editor.test.util.ParserGenerationTestHelper;
-import com.sap.mi.textual.grammar.ParserFacade;
+import com.sap.ide.cts.editor.test.util.StringReplacement;
+import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
+import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public abstract class CtsContentAssistProcessorTestBase extends
-		GeneratedParserBasedTest {
+		GeneratedTextblocksBasedTest {
 
 	protected CtsContentAssistProcessor processor;
 	protected ITextViewer viewer;
@@ -31,24 +34,74 @@ public abstract class CtsContentAssistProcessorTestBase extends
 				"generatedTemp", "generatedTemp/generated", "generated", false));
 	}
 
+	/**
+	 * @param fixtureName
+	 * @param postFixtureParseReplacement
+	 *            this is used to insert unparsable text after the fixture has
+	 *            been parsed (emulating the user typing it in after a
+	 *            successful and correct save)
+	 * @param languageTcsFile
+	 * @throws IOException
+	 * @throws UnknownProductionRuleException
+	 * @throws InvalidParserImplementationException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	protected void initProcessorForFixture(String fixtureName,
-			Class<? extends Lexer> lexerClass,
-			Class<? extends Parser> parserClass, String language,
-			InputStream languageTcsFile) {
+			StringReplacement postFixtureParseReplacement,
+			InputStream languageTcsFile) throws IOException,
+			UnknownProductionRuleException,
+			InvalidParserImplementationException, InstantiationException,
+			IllegalAccessException {
 
 		assertNotNull(metamodelId);
 		initSyntax(languageTcsFile);
 
-		viewer = new TextViewerStub("fixtures/" + fixtureName + ".dsl");
+		String fixturePath = "fixtures/" + fixtureName + ".dsl";
 
-		processor = new CtsContentAssistProcessor(syntax, lexerClass,
-				parserClass, language);
+		viewer = new TextViewerStub(fixturePath, postFixtureParseReplacement);
+
+		InputStream in = TcsFixtureBase.class.getResourceAsStream(fixturePath);
+
+		IncrementalParserFacade facade = getIncrementalFacade();
+
+		initTbModel(in, facade, postFixtureParseReplacement);
+
+		processor = new CtsContentAssistProcessor(syntax, facade
+				.getLexerClass(), facade.getParserClass(), language);
 	}
 
+	/**
+	 * compatibility version with tests that don't use dynamic parser
+	 * generation. assumes initialized syntax
+	 * 
+	 * @param fixtureName
+	 * @param facade
+	 * @throws IOException
+	 * @throws UnknownProductionRuleException
+	 * @throws InvalidParserImplementationException
+	 * @throws InstantiationException
+	 * @throws IllegalAccessException
+	 */
 	protected void initProcessorForFixture(String fixtureName,
-			ParserFacade facade, String language, InputStream languageTcsFile) {
-		initProcessorForFixture(fixtureName, facade.getLexerClass(), facade
-				.getParserClass(), language, languageTcsFile);
+			IncrementalParserFacade facade, String language)
+			throws IOException, UnknownProductionRuleException,
+			InvalidParserImplementationException, InstantiationException,
+			IllegalAccessException {
+
+		assertNotNull(metamodelId);
+		assertNotNull(syntax);
+
+		String fixturePath = "fixtures/" + fixtureName + ".dsl";
+
+		viewer = new TextViewerStub(fixturePath, null);
+
+		InputStream in = TcsFixtureBase.class.getResourceAsStream(fixturePath);
+
+		initTbModel(in, facade, null);
+
+		processor = new CtsContentAssistProcessor(syntax, facade
+				.getLexerClass(), facade.getParserClass(), language);
 	}
 
 	/**
@@ -61,7 +114,7 @@ public abstract class CtsContentAssistProcessorTestBase extends
 			int charPositionInLine) {
 		List<String> displayStrings = CtsContentAssistUtil
 				.collectDisplayStrings(processor.computeCompletionProposals(
-						viewer, line, charPositionInLine));
+						viewer, line, charPositionInLine, tbModel));
 
 		boolean fail = false;
 		String failMsg = "";

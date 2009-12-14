@@ -339,7 +339,7 @@ syntax FinexClass(k=0 ) {
 	template Type #tuple abstract;
 	template FinexClass #tuple context
 		: associations{forcedLower=1, separator=",", mode=tuple}
-		  {{ name=lookIn("OCL:self.typedElement.oclAsType(\"Tuple\").operand.getAllVisibleAliases()->iterate(
+		  {{ name=lookIn("OCL:self.typedElement->select(te|te.oclIsKindOf(\"Tuple\")).oclAsType(\"Tuple\").operand.getAllVisibleAliases()->iterate(
 			 			a; acc='TupleType_for' | acc.concat('_').concat(a.name))"),
 			 valueType='true',
 			 owner=lookIn("OCL:self.typedElement->select(te | te.oclIsKindOf(Expression)).
@@ -367,12 +367,6 @@ syntax FinexClass(k=0 ) {
 		  {{ type=lookIn("OCL:self.defaultValue.type"),
 		     navigable='true',
 		     singleMultiplicity='true'
-		  }}
-		;
-	
-	template Field #tupleLocalEnd
-		: {{ name='"tuple"', navigable='false', mandatory='false', key='false', singleMultiplicity='true',
-		     type=lookIn("OCL:self.association.clazz")
 		  }}
 		;
 	
@@ -447,6 +441,109 @@ syntax FinexClass(k=0 ) {
 		: {{ type = lookIn("OCL:self.getImplicitContextType()") }}
 		;
 
+	-- ------------------------------ OQL ------------------------------
+	template OqlQuery
+		: [[ -- explicit select
+		     "select" type{mode=oqlQuery}
+		   | -- implicit select; constructs tuple from FROM aliases
+		     type{mode=oqlQueryWithImplicitSelect}
+		  ]]
+		  "from" fromClauses{separator=","}
+		  -- (isDefined(condition) ? "where" condition)
+		  "where" condition{forcedLower=1}
+		;
+	
+	template FromClause
+		: fromExpression "as" alias{mode=fromClause}
+		;
+	
+	template Alias #fromClause
+		: [[ name{as=firstUppercaseIdentifier} | name{as=firstLowercaseIdentifier} ]]
+		  {{ type=lookIn("OCL:self.fromClause.fromExpression.type") }}
+		;
+	
+	template Type #oqlQuery abstract;
+	template FinexClass #oqlQuery context
+		: associations{forcedLower=1, separator=",", mode=oqlQuery}
+		  {{ name=lookIn("OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses.alias->iterate(
+			 			a; acc='QueryType_for' | acc.concat('_').concat(a.name))"),
+			 valueType='true',
+			 owner=lookIn("OCL:self.typedElement->select(te | te.oclIsKindOf(Expression)).
+			                   oclAsType(Expression).getEnclosingType()")
+		  }}
+		;
+	
+	template structure::Association #oqlQuery
+		: ends {forcedLower=1, forcedUpper=1, mode=oqlQuery}
+		  -- force creation of non-declared opposite end
+		  ends {forcedLower=1, forcedUpper=1, mode=nondeclaredOpposite} 
+		  {{ name=lookIn("OCL:'Query_to_'.concat(self.ends->first().name)") 
+		  }}
+		;
+	
+	template structure::Field #oqlQuery
+		: [[
+		     name{as=firstUppercaseIdentifier}
+		     {{ mandatory='true' }}
+		   |
+		     name{as=firstLowercaseIdentifier}
+		     {{ mandatory='false' }}
+		  ]]
+		  defaultValue{forcedLower=1, mode=oqlQuery}
+		  {{ type=lookIn("OCL:self.defaultValue.type"),
+		     navigable='true',
+		     singleMultiplicity='true'
+		  }}
+		;
+	
+	template behavior::expressions::Expression #oqlQuery abstract;
+	template NamedValueExpression #oqlQuery
+		: {{ namedValue = lookIn("OCL:self.defaultOf.oclAsType(Field).association.clazz.typedElement.
+						          oclAsType(OqlQuery).fromClauses.alias->select(a|
+								                                a.name=self.defaultOf.oclAsType(Field).name)"),
+			 type = lookIn("OCL:namedValue.type")
+		  }}
+		;
+	
+	template Type #oqlQueryWithImplicitSelect abstract;
+	template FinexClass #oqlQueryWithImplicitSelect context
+		: -- for each fromClause creates an entry in this value type where name/type are taken from
+		  -- the respective from clause and its alias
+		  {{ associations=foreach("OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses",
+		                          mode="oqlQueryWithImplicitSelect", as=Association),
+		     name=lookIn("OCL:self.typedElement->select(te|te.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery).fromClauses.alias->iterate(
+			 			a; acc='QueryType_for' | acc.concat('_').concat(a.name))"),
+			 valueType='true',
+			 owner=lookIn("OCL:self.typedElement->select(te | te.oclIsKindOf(Expression)).
+			                   oclAsType(Expression).getEnclosingType()")
+		  }}
+		;
+	
+	template structure::Association #oqlQueryWithImplicitSelect
+		: ends {forcedLower=1, forcedUpper=1, mode=oqlQueryWithImplicitSelect}
+		  -- force creation of non-declared opposite end
+		  ends {forcedLower=1, forcedUpper=1, mode=nondeclaredOpposite} 
+		  {{ name=lookIn("OCL:'Query_to_'.concat(self.ends->first().name)") 
+		  }}
+		;
+	
+	template structure::Field #oqlQueryWithImplicitSelect
+		: defaultValue{forcedLower=1, mode=oqlQueryWithImplicitSelect}
+		  {{ type=lookIn("OCL:self.defaultValue.type"),
+		     navigable='true',
+		     singleMultiplicity='true',
+		     name=lookIn("OCL:#context.oclAsType(FromClause).alias.name")
+		  }}
+		;
+	
+	template behavior::expressions::Expression #oqlQueryWithImplicitSelect abstract;
+	template behavior::expressions::NamedValueExpression #oqlQueryWithImplicitSelect
+		: {{ namedValue=lookIn("OCL:#context.oclAsType(FromClause).alias"),
+		     type=lookIn("OCL:self.namedValue.type")
+		  }}
+		;
+	
+	-- ---------------------- Path Expressions ---------------------------
 --	template UnaryOperator abstract;
 --	template BinaryOperator abstract;
 	template FirstPathExpression

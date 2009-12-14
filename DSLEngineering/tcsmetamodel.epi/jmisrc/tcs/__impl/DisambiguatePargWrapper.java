@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class DisambiguatePargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.DisambiguatePargImpl> implements tcs.DisambiguateParg,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DisambiguatePargWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.DisambiguatePargImpl getCastWrappedObject() {
         return (tcs.__impl.DisambiguatePargImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class DisambiguatePargWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.DisambiguateParg> get___JmiInterface() {
         return tcs.DisambiguateParg.class;
     }

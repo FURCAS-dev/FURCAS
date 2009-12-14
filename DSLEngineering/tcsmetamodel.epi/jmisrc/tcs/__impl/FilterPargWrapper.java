@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class FilterPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.FilterPargImpl> implements tcs.FilterParg,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class FilterPargWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.FilterPargImpl getCastWrappedObject() {
         return (tcs.__impl.FilterPargImpl) getWrappedObject();
     }
@@ -230,7 +229,6 @@ public class FilterPargWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.FilterParg> get___JmiInterface() {
         return tcs.FilterParg.class;
     }

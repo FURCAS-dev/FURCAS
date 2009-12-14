@@ -125,7 +125,6 @@ public class ConcreteSyntaxKeywordWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntaxKeyword> get___JmiInterface() {
         return tcs.ConcreteSyntaxKeyword.class;
     }

@@ -44,6 +44,28 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
             throw ex;
         }
     }
+    public behavior.expressions.oql.OqlPackage getOql()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.oql.OqlPackage) wrapResult(getCastWrappedObject().getOql(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.oql.OqlPackage) wrapResult(getCastWrappedObject().getOql(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getExpression()
     {
         try {
@@ -970,7 +992,6 @@ public class ExpressionsPackageWrapper extends com.sap.tc.moin.repository.core.j
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ExpressionsPackage> get___JmiInterface() {
         return behavior.expressions.ExpressionsPackage.class;
     }

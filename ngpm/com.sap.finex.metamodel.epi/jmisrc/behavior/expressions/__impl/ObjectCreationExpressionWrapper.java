@@ -8,7 +8,7 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -22,13 +22,14 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
         OPERATION_IDS.put("getAliasesDefinedByEvaluating", Integer.valueOf(7)); //$NON-NLS-1$
         OPERATION_IDS.put("getTuplesWhereThisIsFieldInitializer", Integer.valueOf(8)); //$NON-NLS-1$
         OPERATION_IDS.put("getAllVisibleAliases", Integer.valueOf(9)); //$NON-NLS-1$
+        OPERATION_IDS.put("getOqlQueriesWhereThisIsFieldInitializer", Integer.valueOf(10)); //$NON-NLS-1$
+        OPERATION_IDS.put("getUsedAliases", Integer.valueOf(11)); //$NON-NLS-1$
     }
 
     public ObjectCreationExpressionWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, behavior.expressions.__impl.ObjectCreationExpressionImpl baseObject, boolean synchronize) {
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private behavior.expressions.__impl.ObjectCreationExpressionImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.ObjectCreationExpressionImpl) getWrappedObject();
     }
@@ -304,50 +305,6 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
         }
     }
 
-    public behavior.expressions.Alias getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        try {
-            if (synchronize) {
-                synchronizationManager.acquireReadLock();
-                try {
-                    assertConnectionAlive();
-                    attachConnectionIfRequired();
-                    return (behavior.expressions.Alias) wrapResult(getCastWrappedObject().getAlias(connection));
-                } finally {
-                    synchronizationManager.releaseReadLock();
-                }
-       
-            }
-            assertConnectionAlive();
-            attachConnectionIfRequired();
-            return (behavior.expressions.Alias) wrapResult(getCastWrappedObject().getAlias(connection)); 
-        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
-            wrapJmiExceptionArgs(ex);
-            throw ex;
-        }
-    }
-
-    public void setAlias(behavior.expressions.Alias newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
-    {
-        try {
-            if (synchronize) {
-                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
-                    assertConnectionAlive();
-                    attachConnectionIfRequired();
-                    getCastWrappedObject().setAlias(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
-                }       
-            }
-            else {
-                assertConnectionAlive();
-                attachConnectionIfRequired();
-                getCastWrappedObject().setAlias(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
-            } 
-        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
-            wrapJmiExceptionArgs(ex);
-            throw ex;
-        }
-    }
-
     public behavior.expressions.FieldInitializer getFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
@@ -385,6 +342,50 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
                 assertConnectionAlive();
                 attachConnectionIfRequired();
                 getCastWrappedObject().setFieldInitializer(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+            } 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public behavior.expressions.Alias getAlias() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (behavior.expressions.Alias) wrapResult(getCastWrappedObject().getAlias(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (behavior.expressions.Alias) wrapResult(getCastWrappedObject().getAlias(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+
+    public void setAlias(behavior.expressions.Alias newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            if (synchronize) {
+                synchronized (synchronizationManager.getProhibitWriteSyncObject()) {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    getCastWrappedObject().setAlias(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
+                }       
+            }
+            else {
+                assertConnectionAlive();
+                attachConnectionIfRequired();
+                getCastWrappedObject().setAlias(connection, unwrapArg((com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) newValue));
             } 
         } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
             wrapJmiExceptionArgs(ex);
@@ -567,6 +568,26 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
         }
     }
 
+    public java.util.Collection<behavior.expressions.oql.OqlQuery> getOqlQueriesWhereThisIsFieldInitializer() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavior.expressions.oql.OqlQuery>)___invokeOperation(connection, 10, "E0003E7BFF51B511E32A11DE8593F9CF0A140E7A", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
+    public java.util.Collection<behavior.expressions.Alias> getUsedAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavior.expressions.Alias>)___invokeOperation(connection, 11, "E0003E7B408A8391E41111DEA8C3CA460A140E7A", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
     private structure.Type invoke__getImpliedType(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String name) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -683,6 +704,28 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
+    private java.util.Collection<behavior.expressions.oql.OqlQuery> invoke__getOqlQueriesWhereThisIsFieldInitializer(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getOqlQueriesWhereThisIsFieldInitializer", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
+    private java.util.Collection<behavior.expressions.Alias> invoke__getUsedAliases(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getUsedAliases", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
 
     // reflective methods
     @Override
@@ -725,11 +768,17 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
                 
             case 9:
                 return ___invokeOperation( connection, operationId, "E0003E7B8F9FED32DAA711DE9206D77E0A140E7A", args ); //$NON-NLS-1$    
+                
+            case 10:
+                return ___invokeOperation( connection, operationId, "E0003E7BFF51B511E32A11DE8593F9CF0A140E7A", args ); //$NON-NLS-1$    
+                
+            case 11:
+                return ___invokeOperation( connection, operationId, "E0003E7B408A8391E41111DEA8C3CA460A140E7A", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -763,14 +812,19 @@ public class ObjectCreationExpressionWrapper extends com.sap.tc.moin.repository.
                 
             case 9:
                 return invoke__getAllVisibleAliases(connection);    
+                
+            case 10:
+                return invoke__getOqlQueriesWhereThisIsFieldInitializer(connection);    
+                
+            case 11:
+                return invoke__getUsedAliases(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.ObjectCreationExpression> get___JmiInterface() {
         return behavior.expressions.ObjectCreationExpression.class;
     }

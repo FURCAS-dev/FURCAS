@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class StringValWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.StringValImpl> implements tcs.StringVal,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StringValWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.StringValImpl getCastWrappedObject() {
         return (tcs.__impl.StringValImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class StringValWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.StringVal> get___JmiInterface() {
         return tcs.StringVal.class;
     }

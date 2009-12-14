@@ -83,18 +83,18 @@ public interface Literal extends behavior.expressions.Expression {
             return behavior.expressions.Expression.DESCRIPTORS.WITH_ARGUMENT( );
         }
         /**
-         * Returns the descriptor for the <code>alias</code> reference.
-         * @return  the descriptor for the <code>alias</code> reference
-         */
-        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.Alias> ALIAS( ) {
-            return behavior.expressions.Expression.DESCRIPTORS.ALIAS( );
-        }
-        /**
          * Returns the descriptor for the <code>fieldInitializer</code> reference.
          * @return  the descriptor for the <code>fieldInitializer</code> reference
          */
         public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.FieldInitializer> FIELD_INITIALIZER( ) {
             return behavior.expressions.Expression.DESCRIPTORS.FIELD_INITIALIZER( );
+        }
+        /**
+         * Returns the descriptor for the <code>alias</code> reference.
+         * @return  the descriptor for the <code>alias</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,behavior.expressions.Expression,behavior.expressions.Alias> ALIAS( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.ALIAS( );
         }
         /**
          * Returns the descriptor for the <code>getImpliedType</code> operation.
@@ -165,6 +165,20 @@ public interface Literal extends behavior.expressions.Expression {
          */
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_ALL_VISIBLE_ALIASES( ) {
             return behavior.expressions.Expression.DESCRIPTORS.GET_ALL_VISIBLE_ALIASES( );
+        }
+        /**
+         * Returns the descriptor for the <code>getOqlQueriesWhereThisIsFieldInitializer</code> operation.
+         * @return  the descriptor for the <code>getOqlQueriesWhereThisIsFieldInitializer</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.oql.OqlQuery>> GET_OQL_QUERIES_WHERE_THIS_IS_FIELD_INITIALIZER( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_OQL_QUERIES_WHERE_THIS_IS_FIELD_INITIALIZER( );
+        }
+        /**
+         * Returns the descriptor for the <code>getUsedAliases</code> operation.
+         * @return  the descriptor for the <code>getUsedAliases</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,behavior.expressions.Expression,java.util.Collection<behavior.expressions.Alias>> GET_USED_ALIASES( ) {
+            return behavior.expressions.Expression.DESCRIPTORS.GET_USED_ALIASES( );
         }
     }
 }    

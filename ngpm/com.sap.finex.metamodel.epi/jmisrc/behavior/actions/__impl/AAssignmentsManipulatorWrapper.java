@@ -125,7 +125,6 @@ public class AAssignmentsManipulatorWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.AAssignmentsManipulator> get___JmiInterface() {
         return behavior.actions.AAssignmentsManipulator.class;
     }

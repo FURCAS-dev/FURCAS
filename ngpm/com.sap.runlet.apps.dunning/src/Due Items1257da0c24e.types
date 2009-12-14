@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Partition xmlns:m='http://xml.sap.com/moin'>
+<C n='sap.com/moin/mm/ap/core' i='1' v=''/>
+<M c='1' q='modelmanagement.Package' i='E07264A551F762DB3E4B11DEADE60018DE1146FF' ova='description'/>
+<M c='1' q='modelmanagement.A_ownedPackages_owner' i='E07264A551F9D3993E4B11DEBA5F0018DE1146FF' se='0' ce='1' oe='-1'/>
+<modelmanagement.Package m:c='1' m:i='E012BF1E6B254B10E64D11DEBB69D75D7F000002' name='Financial Document'/>
+<modelmanagement.A_ownedPackages_owner c='1'>
+<L f='E012BF1E6B254B10E64D11DEBB69D75D7F000002' s='local:E0E14F8699013240E5B411DE9453C3597F000002'/>
+</modelmanagement.A_ownedPackages_owner>
+</Partition>

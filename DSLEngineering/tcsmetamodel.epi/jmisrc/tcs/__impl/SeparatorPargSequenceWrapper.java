@@ -125,7 +125,6 @@ public class SeparatorPargSequenceWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.SeparatorPargSequence> get___JmiInterface() {
         return tcs.SeparatorPargSequence.class;
     }

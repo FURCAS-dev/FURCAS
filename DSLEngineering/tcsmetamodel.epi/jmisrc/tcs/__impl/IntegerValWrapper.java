@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class IntegerValWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.IntegerValImpl> implements tcs.IntegerVal,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class IntegerValWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.IntegerValImpl getCastWrappedObject() {
         return (tcs.__impl.IntegerValImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class IntegerValWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.IntegerVal> get___JmiInterface() {
         return tcs.IntegerVal.class;
     }
