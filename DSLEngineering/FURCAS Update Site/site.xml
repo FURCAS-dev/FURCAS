@@ -3,10 +3,10 @@
    <description name="www.furcas.org" url="www.furcas.org/update-site/">
       The FURCAS update site
    </description>
-   <feature url="features/FURCAS_1.0.1.200912071730.jar" id="FURCAS" version="1.0.1.200912071730">
+   <feature url="features/FURCAS_1.0.1.200912081222.jar" id="FURCAS" version="1.0.1.200912081222">
       <category name="furcas"/>
    </feature>
-   <feature url="features/MOIN_1.0.1.200912071730.jar" id="MOIN" version="1.0.1.200912071730">
+   <feature url="features/MOIN_1.0.1.200912081222.jar" id="MOIN" version="1.0.1.200912081222">
       <category name="furcas"/>
    </feature>
    <category-def name="furcas" label="FURCAS Textual Modelling">
