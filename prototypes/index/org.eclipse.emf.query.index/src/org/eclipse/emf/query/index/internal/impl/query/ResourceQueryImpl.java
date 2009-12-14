@@ -82,7 +82,7 @@ public class ResourceQueryImpl<T> implements ResourceQuery<T>, QueryInternal<T, 
 				}
 			}
 		} else {
-			PageableResourceDescriptorImpl match = resourceMap.getUnderlyingMap().get(URI.createURI(uriPattern));
+			PageableResourceDescriptorImpl match = resourceMap.getUnderlyingMap().getEqual(URI.createURI(uriPattern));
 			if (match != null) {
 				if (this.matches(match)) {
 					ret = Collections.<PageableResourceDescriptorImpl> singletonList(match);
