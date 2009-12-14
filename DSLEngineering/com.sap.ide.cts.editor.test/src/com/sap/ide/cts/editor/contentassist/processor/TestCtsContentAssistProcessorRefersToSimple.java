@@ -9,14 +9,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import test.test.reference.Author;
-import test.test.reference.Library;
-import test.test.reference.ReferencePackage;
-
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorRefersToSimple extends
 		CtsContentAssistProcessorEditorTestMetamodelTestBase {
@@ -25,22 +22,21 @@ public class TestCtsContentAssistProcessorRefersToSimple extends
 	public static void generateParser() throws FileNotFoundException,
 			GrammarGenerationException, SyntaxParsingException,
 			ModelAdapterException, IOException {
-		generateParserForLanguage("RefersTo");
+		initMetamodelTestbase("RefersTo");
 	}
 
 	@Before
 	public void initProcessor() throws IOException,
-			InvalidParserImplementationException {
-		initProcessorForFixture("Simple" + "." + getLanguage(), getFacade(),
-				getLanguage(), CtsContentAssistProcessorTestBase.class
-						.getResourceAsStream("../fixtures/syntax/"
-								+ getLanguage() + ".tcs"));
+			InvalidParserImplementationException,
+			UnknownProductionRuleException, InstantiationException,
+			IllegalAccessException {
+		initProcessorForPrefix("Simple");
 	}
 
 	@Before
 	public void populateModel() {
 		// populate model as if the fixture had been parsed
-		ReferencePackage refPack = connection
+	/*	ReferencePackage refPack = connection
 				.getPackage(ReferencePackage.PACKAGE_DESCRIPTOR);
 
 		Library lib = (Library) refPack.getLibrary().refCreateInstance();
@@ -56,7 +52,7 @@ public class TestCtsContentAssistProcessorRefersToSimple extends
 
 		lib.getAuthors().add(henderson);
 		lib.getAuthors().add(obrian);
-		lib.getAuthors().add(rivers);
+		lib.getAuthors().add(rivers);*/
 
 		// no need to supply books as we only test referring to an author
 	}

@@ -28,7 +28,7 @@ syntax OperatorMainTemplate {
 			source = 'left',
 			storeOpTo = 'operator'
 		)
-		:	right ")"
+		:	"bracket" right "]"
 	;
 	
 	template test::expression::IntegerExpression
@@ -58,17 +58,17 @@ syntax OperatorMainTemplate {
 	---------------------- BREAK MINIMAL SYNTAX ------------------------------------
 	
 	operators {
-	
-		priority 0 {	-- 0 is highest, left associativity (default)
-			opBracket 	= "(", 1;
-		}
-		
-		priority 1 {
+			
+		priority 0 { -- 0 is highest, left associativity (default)
 			opNegation 	= "-", 1;
 		}
 		
-		priority 2 { -- unary postfix
+		priority 1 { -- unary postfix
 			postfix opSqrt 	= "sqrt", 1;
+		}
+		
+		priority 2 {
+			opBracket 	= "[", 2;
 		}
 
 		priority 3, right {	-- right associativity

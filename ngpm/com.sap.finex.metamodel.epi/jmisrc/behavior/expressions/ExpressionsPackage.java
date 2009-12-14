@@ -15,6 +15,7 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public final com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<behavior.expressions.ExpressionsPackage> PACKAGE_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<behavior.expressions.ExpressionsPackage>("E0003E7B7484E77DB1A911DEA33C00155883529C", "sap.com/finex/metamodel", "behavior", "expressions"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ 
     // packages
     public behavior.expressions.literals.LiteralsPackage getLiterals();
+    public behavior.expressions.oql.OqlPackage getOql();
     // classes
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getExpression();
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getBinaryBooleanOperator();

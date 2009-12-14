@@ -25,6 +25,7 @@ import tcs.SequenceElement;
 import tcs.Template;
 
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
 
 public class TcsDebugUtil {
 
@@ -35,10 +36,18 @@ public class TcsDebugUtil {
 
 		if (t instanceof ClassTemplate) {
 			ClassTemplate ct = (ClassTemplate) t;
+			String typeName = "null";
+			String mode = ct.getMode();
+			Classifier type = ct.getMetaReference();
+			if (type != null) {
+				typeName = TcsUtil.joinNameList(type.getQualifiedName());
+			}
 			if (ct.isMain()) {
-				return "ClassTemplate (main)";
+				return "ClassTemplate (main) for type " + typeName
+						+ " and mode " + mode;
 			} else {
-				return "ClassTemplate";
+				return "ClassTemplate for type " + typeName + " and mode "
+						+ mode;
 			}
 		}
 

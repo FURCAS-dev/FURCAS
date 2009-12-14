@@ -1,13 +1,18 @@
 package com.sap.ide.cts.editor.contentassist.processor;
 
 import generated.TCSLexer;
-import generated.TCSParser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
+import com.sap.mi.tcs.parser.TcsParserFactory;
+import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 /**
  * 
@@ -16,11 +21,15 @@ public class TestCtsContentAssistProcessorTCSSequence extends
 		CtsContentAssistProcessorTestBase {
 
 	@Before
-	public void initProcessor() {
+	public void initProcessor() throws IOException,
+			UnknownProductionRuleException,
+			InvalidParserImplementationException, InstantiationException,
+			IllegalAccessException {
 		initMetamodelId("demo.sap.com/tcsmeta");
-		initProcessorForFixture("Sequence.tcs", TCSLexer.class,
-				TCSParser.class, "TCS", TCSLexer.class
-						.getResourceAsStream("TCS.tcs"));
+		initSyntax(TCSLexer.class.getResourceAsStream("TCS.tcs"));
+		IncrementalParserFacade facade = createFacade(new TcsParserFactory(),
+				tcsPackage);
+		initProcessorForFixture("Sequence.tcs", facade, "TCS");
 	}
 
 	@Test

@@ -31,11 +31,11 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testSimpleCommit() throws Exception {
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-        	"var o = new Organization",
+        	"var o = new Organization()",
         	"store o",
         	"commit",
         	"all Organization->iterate(Boolean contains=false; i|contains.or(i==o))",
-        	"o = new Organization",
+        	"o = new Organization()",
         	"all Organization->iterate(Boolean contains=false; i|contains.or(i==o))").getResult();
         assertEquals(6, result.length);
         assertTrue(result[3] instanceof NativeObject);
@@ -46,9 +46,9 @@ public class PersistenceTests extends RunletTestCase {
         
     public void testCommitAcrossSessions() throws Exception {
         main.execute(
-        	"var o = new Organization",
+        	"var o = new Organization()",
         	"store o",
-        	"var p = new Person",
+        	"var p = new Person()",
         	"p.name=\"Hercules\"",
         	"o.persons += p",
         	"commit");
@@ -64,10 +64,10 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testSnapshotRetrieval() throws Exception {
         main.execute(
-        	"var o = new Organization",
-        	"var p1 = new Person",
+        	"var o = new Organization()",
+        	"var p1 = new Person()",
         	"p1.name=\"Jan\"",
-        	"var p2 = new Person",
+        	"var p2 = new Person()",
         	"p2.name=\"Axel\"",
         	"o.persons += p1",
         	"store o",
@@ -100,7 +100,7 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testDeleteOfPersistentInstanceWithInBetweenCommit() throws Exception {
         main.execute(
-        	"var p1 = new Person",
+        	"var p1 = new Person()",
         	"p1.name=\"Jan\"",
         	"store p1",
         	"var s1 = commit");
@@ -119,11 +119,11 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testAllChanged() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-			"var p = new Person",
+			"var p = new Person()",
 			"p.name = \"Frank\"",
 			"store p",
 			"var snapshot1=commit",
-			"var p2=new Person",
+			"var p2=new Person()",
 			"p2.name=\"Axel\"",
 			"store p2",
 			"var snapshot2=commit",
@@ -134,17 +134,17 @@ public class PersistenceTests extends RunletTestCase {
 			"all[changed] Person.name").getResult();
 	// one Multivalue object
 	assertEquals(13, result.length);
-	assertTrue(result[12] instanceof MultiValuedObject);
+	assertTrue(result[12] instanceof MultiValuedObject<?, ?, ?>);
 	assertEquals(2, result[12].size());
 	assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] { "Axel", "Frank" }, result[12]);
     }
     
     public void testDateAndSnapshot() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-			"var o = new Organization",
+			"var o = new Organization()",
 			"store o",
 			"var s1 = commit",
-			"o.persons += new Person",
+			"o.persons += new Person()",
         		"var s2 = commit",
         		"s1.precedes(s2)",
         		"s1.when().before(s2.when())").getResult();
@@ -157,10 +157,10 @@ public class PersistenceTests extends RunletTestCase {
     }
     
     public void testRetrievalOfLatestByTime() throws Exception {
-	main.execute("var o = new Organization", 
+	main.execute("var o = new Organization()", 
 		"store o", 
 		"commit", 
-		"var p = new Person",
+		"var p = new Person()",
 		"p.name=\"Jan\"", 
 		"o.persons += p", 
 		"var s1 = commit");
@@ -173,7 +173,7 @@ public class PersistenceTests extends RunletTestCase {
 
     public void testRetrievalOfAllCityEntitiesInAllSnapshots() throws Exception {
 	main.execute(
-		"var c = new City", 
+		"var c = new City()", 
 		"c.name = \"Frankfurt\"", 
 		"store c", 
 		"commit",
@@ -182,21 +182,21 @@ public class PersistenceTests extends RunletTestCase {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("all[all] City.name").getResult();
 	// one Multivalue object
 	assertEquals(1, result.length);
-	assertTrue(result[0] instanceof MultiValuedObject);
+	assertTrue(result[0] instanceof MultiValuedObject<?, ?, ?>);
 	assertEquals(2, result[0].size());
 	assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] { "Frankfurt", "Berlin" }, result[0]);
     }
 
     public void testRetrievalOfAllChangedCityEntities() throws Exception {
 	main.execute(
-		"var c = new City", 
+		"var c = new City()", 
 		"c.name = \"Frankfurt\"", 
 		"store c", 
 		"commit");
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("all[changed] City.name").getResult();
 	// one Multivalue object
 	assertEquals(1, result.length);
-	assertTrue(result[0] instanceof MultiValuedObject);
+	assertTrue(result[0] instanceof MultiValuedObject<?, ?, ?>);
 	MultiValuedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> mvo = (MultiValuedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) result[0];
 	assertEquals(1, mvo.size());
 
@@ -205,30 +205,30 @@ public class PersistenceTests extends RunletTestCase {
 
     public void testRetrievalOfAllChangedCityEntities2() throws Exception {
 	main.execute(
-		"var c = new City", 
+		"var c = new City()", 
 		"c.name = \"Frankfurt\"", 
 		"store c", 
 		"commit",
 		"c.name = \"Berlin\"", 
 		"commit", 
-		"var p = new Person", // here we
+		"var p = new Person()", // here we
 		"store p", // create a
 		"commit"); // new snapshot without any change to City
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("all[changed] City.name").getResult();
 	// one Multivalue object
 	assertEquals(1, result.length);
-	assertTrue(result[0] instanceof MultiValuedObject);
+	assertTrue(result[0] instanceof MultiValuedObject<?, ?, ?>);
 	assertEquals(2, result[0].size());
 	assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] { "Frankfurt", "Berlin" }, result[0]);
     }
 
     public void testRetrievalOfAllChangedCityEntities3() throws Exception {
 	main.execute(
-		"var c = new City", 
+		"var c = new City()", 
 		"c.name = \"Frankfurt\"", 
 		"store c", 
 		"commit",
-		"var p = new Person", // here we
+		"var p = new Person()", // here we
 		"store p", // create a
 		"commit", // new snapshot without any change to City
 		"c.name = \"Berlin\"", 
@@ -236,21 +236,21 @@ public class PersistenceTests extends RunletTestCase {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("all[changed] City.name").getResult();
 	// one Multivalue object
 	assertEquals(1, result.length);
-	assertTrue(result[0] instanceof MultiValuedObject);
+	assertTrue(result[0] instanceof MultiValuedObject<?, ?, ?>);
 	assertEquals(2, result[0].size());
 	assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] { "Frankfurt", "Berlin" }, result[0]);
     }
 
     public void testRetrievalOfAllChangedOrganizationEntities() throws Exception {
 	main.execute(
-		"var o = new Organization", 
+		"var o = new Organization()", 
 		"store o", "commit", 
-		"o.persons += new Person",
+		"o.persons += new Person()",
 		"commit");
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("all[changed] Organization").getResult();
 	// one Multivalue object
 	assertEquals(1, result.length);
-	assertTrue(result[0] instanceof MultiValuedObject);
+	assertTrue(result[0] instanceof MultiValuedObject<?, ?, ?>);
 	MultiValuedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> mvo = (MultiValuedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) result[0];
 	assertEquals(2, mvo.size());
     }
@@ -264,7 +264,7 @@ public class PersistenceTests extends RunletTestCase {
 
     public void testSnapshotExpression() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var c = new City",
+		"var c = new City()",
 		"store c",
 		"var s1 = commit",
 		"c.name = \"Home\"",
@@ -278,7 +278,7 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testCommitEvalutesToSnapshotInAllStatement() throws Exception {
 	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-		"var c = new City",
+		"var c = new City()",
 		"c.name = \"test\"",
 		"store c",
 		"all[commit] City");
@@ -305,7 +305,7 @@ public class PersistenceTests extends RunletTestCase {
         assertEquals(3, result.length);
         assertEquals(0, errors.length);
         
-        assertTrue(result[0] instanceof MultiValuedObject);
+        assertTrue(result[0] instanceof MultiValuedObject<?, ?, ?>);
         assertNOEquals(new Fraction(0), result[1]);
         assertNOEquals(new Fraction(0), result[2]);
     }
@@ -317,13 +317,13 @@ public class PersistenceTests extends RunletTestCase {
      */
     public void testChangingInCurrentSnapshotOnly() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var o=new Organization",
-            "var p=new Person",
+            "var o=new Organization()",
+            "var p=new Person()",
             "p.name=\"Daniel\"",
             "o.persons+=p",
             "store o",
             "var snapshot1=commit",
-            "var p2=new Person",
+            "var p2=new Person()",
             "p2.name=\"Axel\"",
             "o.persons+=p2",
             "var snapshot2=commit",
@@ -337,14 +337,14 @@ public class PersistenceTests extends RunletTestCase {
         String[]      errors = executeResult.getErrors();
         assertEquals(16, result.length);
         assertEquals(3, errors.length); // expecting four OutputMultiplicities issues right now
-        assertTrue(result[15] instanceof MultiValuedObject);
+        assertTrue(result[15] instanceof MultiValuedObject<?, ?, ?>);
         assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] { "Daniel" }, result[15]);
     }
     
     public void testStoreThroughValueWithEntity() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var p1=new Person",
-            "var c1=new City",
+            "var p1=new Person()",
+            "var c1=new City()",
             "c1.name=\"Mannheim\"",
             "p1.addresses+=value Address(city: c1, street: \"C1,17\")",
             "p1.addresses.city.name",
@@ -363,8 +363,8 @@ public class PersistenceTests extends RunletTestCase {
 
     public void testModifyTransitivelyStoredEntities() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var p=new Person",
-            "var c=new City",
+            "var p=new Person()",
+            "var c=new City()",
             "c.name=\"Mannheim\"",
             "p.addresses+=value Address(city:c, street: \"C1,19\")",
             "store p",
@@ -390,8 +390,8 @@ public class PersistenceTests extends RunletTestCase {
 	    new RunletInMemoryRepository(Activator.getDefault().getModelAdapter());
 	RunletEvaluator main1 = new RunletEvaluator("ngpm.stdlib", rep);
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult1 = main1.execute(
-            "var c1=new City",
-            "var p=new Person",
+            "var c1=new City()",
+            "var p=new Person()",
             "c1.name=\"Mannheim\"",
             "p.addresses+=value Address(city:c1, street: \"C1,19\")",
             "store p",
@@ -401,7 +401,7 @@ public class PersistenceTests extends RunletTestCase {
         RunletEvaluator main2 = new RunletEvaluator("ngpm.stdlib", rep);
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult2 = main2.execute(
         	"var p=all Person->iterate(p|p)",
-                "var c2=new City",
+                "var c2=new City()",
                 "c2.name=\"Heidelberg\"",
                 "p.addresses = p.addresses->replace(city=c2)",
         	"p.addresses.city.name");
@@ -415,8 +415,8 @@ public class PersistenceTests extends RunletTestCase {
 	    new RunletInMemoryRepository(Activator.getDefault().getModelAdapter());
 	RunletEvaluator main1 = new RunletEvaluator("ngpm.stdlib", rep);
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult1 = main1.execute(
-                "var q = new Quotation",
-                "var p = new Person",
+                "var q = new Quotation()",
+                "var p = new Person()",
                 "q.responsibleEmployee = p",
                 "store q",
                 "commit");
@@ -440,8 +440,8 @@ public class PersistenceTests extends RunletTestCase {
 	Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> rep = new RunletInMemoryRepository(Activator.getDefault().getModelAdapter());
 	RunletEvaluator main1 = new RunletEvaluator("ngpm.stdlib", rep);
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult1 = main1.execute(
-            "var q=new Quotation",
-            "var p=new Person",
+            "var q=new Quotation()",
+            "var p=new Person()",
             "p.name=\"Axel\"",
             "q.responsibleEmployee=p",
             "store q",
@@ -451,7 +451,7 @@ public class PersistenceTests extends RunletTestCase {
         assertEquals(7, result1.length);
         RunletEvaluator main2 = new RunletEvaluator("ngpm.stdlib", rep);
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult2 = main2.execute(
-        	"var p2=new Person",
+        	"var p2=new Person()",
                 "p2.name=\"Jan\"",
                 "store p2",
                 "Quotation q=all Quotation->iterate(q|q)",
@@ -478,7 +478,7 @@ public class PersistenceTests extends RunletTestCase {
 
     public void testSimpleBranching() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var p=new Person",
+            "var p=new Person()",
             "p.name=\"Axel\"",
             "store p",
             "var ss1=commit",
@@ -529,9 +529,9 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testAddingLinkToExistingButNotYetLoadedLinkCollection() throws Exception {
         main.execute(
-        	"var o = new Organization",
+        	"var o = new Organization()",
         	"store o",
-        	"var p = new Person",
+        	"var p = new Person()",
         	"p.name=\"Hercules\"",
         	"o.persons += p",
         	"commit");
@@ -539,7 +539,7 @@ public class PersistenceTests extends RunletTestCase {
         RunletEvaluator main2 = new RunletEvaluator(main.getConnection(), repository);
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute(
             	"var o = all Organization",
-            	"var p2 = new Person",
+            	"var p2 = new Person()",
             	"p2.name=\"The Other\"",
             	"o.persons += p2",
             	"o.persons.name.count",
@@ -562,7 +562,7 @@ public class PersistenceTests extends RunletTestCase {
     
     public void testSnapshotMerge() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var o=new OrderedAssocTest",
+            "var o=new OrderedAssocTest()",
             "store o",
             "var ss1=commit",			
             "o.orderedStrings+=\"a\"",
@@ -600,7 +600,7 @@ public class PersistenceTests extends RunletTestCase {
 
     public void testEqualityOfSnapshotsUsingTwoMergeChangeSets() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var o=new OrderedAssocTest",
+            "var o=new OrderedAssocTest()",
             "store o",
             "var ss1=commit",			
             "o.orderedStrings+=\"a\"",

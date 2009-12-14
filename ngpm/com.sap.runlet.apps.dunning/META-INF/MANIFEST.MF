@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Dunning
+Bundle-SymbolicName: com.sap.runlet.apps.dunning;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.sap.runlet.apps.dunning.Activator
+Bundle-Vendor: SAP
+Require-Bundle: com.sap.tc.moin.incubation.contentprovider,
+ com.sap.ap.cts.editor,
+ ngpm.stdlib,
+ com.sap.runlet.apps.opportunitymanagement
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy

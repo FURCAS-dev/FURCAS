@@ -7,6 +7,7 @@ import behavioral.actions.Statement;
 import com.sap.ap.metamodel.formatter.StringFormatter;
 import com.sap.runlet.abstractinterpreter.Interpreter;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
+import com.sap.runlet.abstractinterpreter.util.Fraction;
 import com.sap.runlet.interpreter.RunletInterpreter;
 import com.sap.runlet.interpreter.RunletStackFrame;
 import com.sap.runlet.interpreter.objects.NativeObject;
@@ -48,6 +49,20 @@ RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImp
 	    }
 	    return new ReturnInterpreter.ReturnResult(new NativeObject((ClassTypeDefinition) sig.getOutput(), result, interpreter
 		    .getDefaultSnapshot(), interpreter));
+	}
+	if (sig.getName().equals("addSeconds")) {
+	    Parameter op = sig.getInput().get(0);
+	    Fraction THOUSAND = new Fraction(1000);
+	    Fraction result = new Fraction(thiz.getTime()); 
+	    for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> seconds : interpreter
+		    .getCallstack().peek().getValue(op)) {
+		// argument is expected to be a Duration object; we'll fetch the "seconds" association end
+		Fraction secondsAsFraction = (Fraction) ((NativeObject) seconds).getNativeObject();
+		result = result.plus(secondsAsFraction.times(THOUSAND));
+	    }
+	    Date resultDate = new Date(result.asLong());
+	    return new ReturnInterpreter.ReturnResult(new NativeObject((ClassTypeDefinition) sig.getOutput(), resultDate,
+		    interpreter.getDefaultSnapshot(), interpreter));
 	}
 	throw new RuntimeException("Unknown native method " + StringFormatter.toString(nativeImpl.getImplements())
 		+ " and no native interpreter registered for class " + sig.getOwner().getName());

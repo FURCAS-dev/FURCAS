@@ -14,6 +14,40 @@ import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.abstractinterpreter.util.Fraction;
 
 public class GeneralTests extends FinexTestCase {
+    public void testComplexOqlQueries() throws Exception {
+        ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "(select a, b from [create A(.a: \"abc\", .b: 123), create A(.a: \"def\", .b: 456)] as a, a.b as b where true).count()",
+            "(select a, b from [create A(.a: \"abc\", .b: 123), create A(.a: \"def\", .b: 456)] as a, a[.b==123].b as b where true).count()",
+            "(select a, b from [create A(.a: \"abc\", .b: 123), create A(.a: \"def\", .b: 456)] as a, [2, 4, 6] as c, a.b as b where 100*c<a.b).count()",
+            "(select a, b, c from [create A(.a: \"abc\", .b: 123), create A(.a: \"def\", .b: 456)] as a, [2, 4, 6] as c, a.b as b where 100*c<b).b",
+            "(select a, b, c from [create A(.a: \"abc\", .b: 123), create A(.a: \"def\", .b: 456)] as a, [2, 4, 6] as c, a.b as b where 100*c<b).c");
+        RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(5, result.length);
+        assertEquals(15, errors.length); // side effects in from-clause
+        assertNOEquals(2l, result[0]);
+        assertNOEquals(1l, result[1]);
+        assertNOEquals(2l, result[2]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Long[] { 456l, 456l }, result[3]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Long[] { 2l, 4l }, result[4]);
+    }
+
+    public void testSimpleOqlQueries() throws Exception {
+        ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
+            "(select a, b from [1, 3, 5] as a, [2, 4, 6] as b where b>a).count()",
+            "(select a, b from [1, 2, 3] as a, [4, 5, 6] as b where true).count()",
+            "(from [1, 2, 3] as a, [4, 5, 6] as b where true).count()",
+            "(from [1, 2, 3] as a, [4, 5, 6] as b where b==2*a).b");
+        RunletObject<Field, Type, FinexClass>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(4, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(6l, result[0]);
+        assertNOEquals(9l, result[1]);
+        assertNOEquals(9l, result[2]);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Long[] { 4l, 6l }, result[3]);
+    }
+
     public void testTransitiveDetermination() throws Exception {
         ExecuteResult<Field, Type, FinexClass> executeResult = main.execute(
             "create A(.b: 1).transitiveDependent");

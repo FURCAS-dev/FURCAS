@@ -30,9 +30,9 @@ public class DebugPrintTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void endClassTemplate() {
-		print("<END_CLASSTEMPLATE>");
-		target.endClassTemplate();
+	public void endClassTemplate(int handle) {
+		print("<END_CLASSTEMPLATE with handle: " + handle + ">");
+		target.endClassTemplate(handle);
 	}
 
 	@Override
@@ -111,9 +111,10 @@ public class DebugPrintTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void startClassTemplateForObject(RefObject object, Template template) {
-		print("<START_CLASSTEMPLATE>");
-		target.startClassTemplateForObject(object, template);
+	public int startClassTemplateForObject(RefObject object, Template template) {
+		int handle = target.startClassTemplateForObject(object, template);
+		print("<START_CLASSTEMPLATE with handle: " + handle + ">");
+		return handle;
 	}
 
 	@Override

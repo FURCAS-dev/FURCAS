@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class PriorityWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.PriorityImpl> implements tcs.Priority,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class PriorityWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.PriorityImpl getCastWrappedObject() {
         return (tcs.__impl.PriorityImpl) getWrappedObject();
     }
@@ -255,7 +254,6 @@ public class PriorityWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.Priority> get___JmiInterface() {
         return tcs.Priority.class;
     }

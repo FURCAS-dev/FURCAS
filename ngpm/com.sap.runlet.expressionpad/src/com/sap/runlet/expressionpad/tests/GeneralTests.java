@@ -140,7 +140,7 @@ public class GeneralTests extends RunletTestCase {
     public void testSimpleEntityToValueAssoc() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main
 		.execute(
-			"var p=new Person",
+			"var p=new Person()",
 			"p.name=\"abc\"",
 			"p.name").getResult();
 	assertEquals(3, result.length);
@@ -163,8 +163,8 @@ public class GeneralTests extends RunletTestCase {
 	assertEquals(false, ((NativeObject) result2[0]).getNativeObject());
 	// equal street names but distinct (yet equal) City objects for the city
 	// property should compare unequal
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result3 = main.evaluate("value Address(street: \"a\", city: new City) == "
-		+ "value Address(street: \"a\", city: new City)");
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result3 = main.evaluate("value Address(street: \"a\", city: new City()) == "
+		+ "value Address(street: \"a\", city: new City())");
 	assertEquals(1, result3.length);
 	assertTrue(result3[0] instanceof NativeObject);
 	assertEquals(false, ((NativeObject) result3[0]).getNativeObject());
@@ -172,7 +172,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testValueClassEqualityWithEmbeddedEntity() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var c=new City",
+		"var c=new City()",
 		"var a1=value Address(street: \"a\", city: c)",
 		"var a2=value Address(street: \"a\", city: c)",
 		"a1==a2").getResult();
@@ -182,8 +182,8 @@ public class GeneralTests extends RunletTestCase {
     }
 
     public void testEntityEquality() throws Exception {
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("var c1=new City",
-		"var c2=new City",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute("var c1=new City()",
+		"var c2=new City()",
 		"c1==c2",
 		"c1==c1").getResult();
 	assertEquals(4, result.length);
@@ -201,7 +201,7 @@ public class GeneralTests extends RunletTestCase {
     }
 
     public void testSimpleStringTemplate() throws Exception {
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate("new Templ.m(\"m\"->including(\"y \"))");
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate("new Templ().m(\"m\"->including(\"y \"))");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
 	assertEquals("Hello my World!", ((NativeObject) result[0]).getNativeObject());
@@ -234,9 +234,9 @@ public class GeneralTests extends RunletTestCase {
 
     public void testCompositionCheck() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var o1 = new Organization",
-		"var o2 = new Organization",
-		"var p = new Person",
+		"var o1 = new Organization()",
+		"var o2 = new Organization()",
+		"var p = new Person()",
 		"o1.persons += p").getResult();
 	assertEquals(4, result.length);
 	try {
@@ -255,9 +255,9 @@ public class GeneralTests extends RunletTestCase {
     
     public void testUniqueness() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var u = new UniquenessTest",
-		"var p1 = new Person",
-		"var p2 = new Person",
+		"var u = new UniquenessTest()",
+		"var p1 = new Person()",
+		"var p2 = new Person()",
 		"u.persons += p1",
 		"u.persons += p1",
 		"u.persons += p2",
@@ -278,7 +278,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testScopeStabilityAcrossParseErrors() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var p = new Person",
+		"var p = new Person()",
 		"p.name=\"Axel\"",
 		"var dim : : ,+=/| -> iterate(bla blubb trala; )",
 		"p.addresses->iterate(i|i.street.append(\"asf\"))",
@@ -290,7 +290,7 @@ public class GeneralTests extends RunletTestCase {
     
     public void testValueLiteralWithTwoPropertyInits() throws Exception {
 	// equal street names should compare equal
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate("value Address(street: \"a\", city: new City).street == \"a\")");
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate("value Address(street: \"a\", city: new City()).street == \"a\")");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
 	assertEquals(true, ((NativeObject) result[0]).getNativeObject());
@@ -299,7 +299,7 @@ public class GeneralTests extends RunletTestCase {
     public void testSaveLeavesValueLinkIntact() throws Exception {
 	
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var p = new Person",
+		"var p = new Person()",
 		"p.name=\"Axel\"",
 		"p.name",
 		"store p",
@@ -313,9 +313,9 @@ public class GeneralTests extends RunletTestCase {
 
     public void testDeleteWithSubsequentAll() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var p1 = new Person",
+		"var p1 = new Person()",
 		"p1.name=\"Jan\"",
-		"var p2 = new Person",
+		"var p2 = new Person()",
 		"p2.name=\"Axel\"",
 		"store p1",
 		"store p2",
@@ -331,10 +331,10 @@ public class GeneralTests extends RunletTestCase {
     
     public void testAddTransientCompositeChildToPersistentEntity() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var o = new Organization",
-		"var p1 = new Person",
+		"var o = new Organization()",
+		"var p1 = new Person()",
 		"p1.name=\"Jan\"",
-		"var p2 = new Person",
+		"var p2 = new Person()",
 		"p2.name=\"Axel\"",
 		"o.persons += p1",
 		"store o",
@@ -347,10 +347,10 @@ public class GeneralTests extends RunletTestCase {
 
     public void testDeleteFromComposition() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var o = new Organization",
-		"var p1 = new Person",
+		"var o = new Organization()",
+		"var p1 = new Person()",
 		"p1.name=\"Jan\"",
-		"var p2 = new Person",
+		"var p2 = new Person()",
 		"p2.name=\"Axel\"",
 		"o.persons += p1",
 		"store o",
@@ -376,7 +376,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testNativeValueVariableAsArgument() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"var p1 = new Person",
+		"var p1 = new Person()",
 		"var s = \"a\"",
 		"s = s.append(\"b\")",
 		"p1.name = s",
@@ -388,8 +388,8 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSimpleCellSet() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.execute(
-		"new CellSetTest.m(\"Mannheim\", \"John\")",
-		"new CellSetTest.m(\"Heidelberg\", \"Elton\")").getResult();
+		"new CellSetTest().m(\"Mannheim\", \"John\")",
+		"new CellSetTest().m(\"Heidelberg\", \"Elton\")").getResult();
 	assertEquals(2, result.length);
 	assertTrue(result[0] instanceof NativeObject);
 	assertEquals(new Fraction(2), ((NativeObject) result[0]).getNativeObject());
@@ -414,8 +414,8 @@ public class GeneralTests extends RunletTestCase {
     public void testTypeAdapterAndSimplePolymorphism() throws Exception {
 	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = main
 		.execute(
-			"Organization o = new Organization",
-			"var at1 = new AdapterTest1",
+			"Organization o = new Organization()",
+			"var at1 = new AdapterTest1()",
 			"at1.polymorphismTest(o)",
 			"o = at1",
 			"at1.polymorphismTest(at1)");
@@ -431,7 +431,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSimpleReplaceExpression() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main
-		.evaluate("new ReplaceTest.n(\"Trala\").b.c.s");
+		.evaluate("new ReplaceTest().n(\"Trala\").b.c.s");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
 	assertEquals("Trala", ((NativeObject) result[0]).getNativeObject());
@@ -502,7 +502,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSelectIterator() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new Iterators.select(1->including(2)->including(3), function(Number n):Boolean { return n.greaterThan(2); })");
+            "new Iterators().select(1->including(2)->including(3), function(Number n):Boolean { return n.greaterThan(2); })");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(1, result.length);
@@ -539,20 +539,20 @@ public class GeneralTests extends RunletTestCase {
         assertNOEquals(new Fraction(3), result[2]);
     }
 
-    public void testAnalyticsQueryOnOpportunity() throws Exception {
+    public void testAggregateExpression() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var o=new Opportunity",
-            "o.expectedSalesVolume=value Amount(val:30, currency:value Currency(code:\"USD\"))",
-            "o.probability=1.div(3)",
-            "o.phase=\"open\"",
-            "o.expectedCloseDate=2009-07-01",
-            "value Reports().getExpectedRevenueByMonthAndPhase(o, value Calendar().getMonth(2009-07-01), \"open\").val");
+            "var m1 = value Measure(precise:true,date:value MonthAndYear(month:2,year:2009),val:100)",
+            "var m2 = value Measure(precise:true,date:value MonthAndYear(month:2,year:2009),val:200)",
+            "var m3 = value Measure(precise:false,date:value MonthAndYear(month:2,year:2009),val:300)",
+            "var ms = m1->including(m2)->including(m3)",
+            "m1.measuresByYear(ms,true,2009)");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
-        // String[]      errors = executeResult.getErrors();
-        assertEquals(6, result.length);
-        // assertTrue(errors.length<=1); // TODO set to 0 when OutputMultiplicities problem has been resolved
-        assertNOEquals(new Fraction(10), result[5]);
+        String[]      errors = executeResult.getErrors();
+        assertEquals(5, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(new Fraction(300), result[4]);
     }
+
     
     public void testTernary() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
@@ -572,8 +572,8 @@ public class GeneralTests extends RunletTestCase {
     
     public void testDimensionExpression() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new CellSetTest.getCellSet()->dim(new CellSetTest.createOrganizations().persons, name)",
-            "new CellSetTest.getCellSet()->dim(new CellSetTest.createOrganizations().persons, cityName)");
+            "new CellSetTest().getCellSet()->dim(new CellSetTest().createOrganizations().persons, name)",
+            "new CellSetTest().getCellSet()->dim(new CellSetTest().createOrganizations().persons, cityName)");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         // String[]      errors = executeResult.getErrors();
         assertEquals(2, result.length);
@@ -592,11 +592,11 @@ public class GeneralTests extends RunletTestCase {
      */
     public void testCellSetOverHistoricData() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var cst=new CellSetTest",
+            "var cst=new CellSetTest()",
             "var orgs=cst.createOrganizations()",
             "store orgs",
             "var ss1=commit",
-            "new CellSetTest.getCellSet()(all[ss1] Organization.persons, \"Mannheim\", \"John\")");
+            "new CellSetTest().getCellSet()(all[ss1] Organization.persons, \"Mannheim\", \"John\")");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         assertEquals(5, result.length);
         assertNOEquals(new Fraction(2), result[4]);
@@ -604,24 +604,24 @@ public class GeneralTests extends RunletTestCase {
 
     public void testDimensionExpressionAcrossSnapshots() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var p1=new Person",
-            "var c1=new City",
+            "var p1=new Person()",
+            "var c1=new City()",
             "c1.name=\"Mannheim\"",
             "p1.addresses+=value Address(street: \"abc\", city: c1)",
             "store p1",
             "p1.name=\"Axel\"",
             "var ss1=commit",
-            "var p2=new Person",
+            "var p2=new Person()",
             "p2.name=\"Jan\"",
-            "var c2=new City",
+            "var c2=new City()",
             "c2.name=\"Heidelberg\"",
             "p2.addresses+=value Address(street: \"Rohrbacher Str.\", city: c2)",
             "store p2",
             "var ss2=commit",
             "Person[] ps=all[ss1] Person->including(all[ss2] Person)",
             "ps.count",
-            "new CellSetTest.getCellSet()->dim(ps, cityName)",
-            "new CellSetTest.getCellSet()->dim(ps, cityName).count");
+            "new CellSetTest().getCellSet()->dim(ps, cityName)",
+            "new CellSetTest().getCellSet()->dim(ps, cityName).count");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         assertEquals(18, result.length);
         assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new String[] { "Mannheim", "Heidelberg" }, result[16]);
@@ -630,17 +630,17 @@ public class GeneralTests extends RunletTestCase {
 
     public void testMethodCallOnMultiObjectWithEmptyObjectInside() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var o=new Organization",
-            "var p1=new Person",
+            "var o=new Organization()",
+            "var p1=new Person()",
             "p1.name=\"Nick\"",
-            "var p2=new Person",
+            "var p2=new Person()",
             "p2.name=\"Axel\"",
             "o.persons+=p1",
             "o.persons+=p2",
             "o.persons.count",
             "o.persons",
             "o.persons.name",
-            "var p3=new Person",
+            "var p3=new Person()",
             "o.persons+=p3",
             "o.persons.name", // produces a multi-object with one EmptyObject inside
             "o.persons.name.length()"); // tests a call on a multi-object with empty object inside
@@ -653,7 +653,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testOrderedAssoc1() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var o=new OrderedAssocTest",
+            "var o=new OrderedAssocTest()",
             "o.orderedNumbers+=1",
             "o.orderedNumbers+=2",
             "o.orderedNumbers+=3",
@@ -685,9 +685,9 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSelectionExpression() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new SelectionTest.filterSmallElements(1->including(2), 2)",
-            "new SelectionTest.filterSmallElements(1->including(2), 3)",
-            "new SelectionTest.filterSmallElements(1->including(2), 1)");
+            "new SelectionTest().filterSmallElements(1->including(2), 2)",
+            "new SelectionTest().filterSmallElements(1->including(2), 3)",
+            "new SelectionTest().filterSmallElements(1->including(2), 1)");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(3, result.length);
@@ -699,9 +699,9 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSelectionAtIndex() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new SelectionTest.getAtIndices(1->including(2), 2)",
-            "new SelectionTest.getAtIndices(1->including(2), 1)",
-            "new SelectionTest.getAtIndices(1->including(2), 1->including(0))");
+            "new SelectionTest().getAtIndices(1->including(2), 2)",
+            "new SelectionTest().getAtIndices(1->including(2), 1)",
+            "new SelectionTest().getAtIndices(1->including(2), 1->including(0))");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(3, result.length);
@@ -732,7 +732,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testIteratorTyping() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new IteratorTest.m()");
+            "new IteratorTest().m()");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(1, result.length);
@@ -742,8 +742,8 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSelectionWithMultiObjects() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new SelectionTest.filterNestedMultiplicityElements(2)",
-            "new SelectionTest.filterNestedMultiplicityElements(3)");
+            "new SelectionTest().filterNestedMultiplicityElements(2)",
+            "new SelectionTest().filterNestedMultiplicityElements(3)");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(2, result.length);
@@ -772,8 +772,8 @@ public class GeneralTests extends RunletTestCase {
 
     public void testContentEquality() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var c1=new City",
-            "var c2=new City",
+            "var c1=new City()",
+            "var c2=new City()",
             "c1.name=\"abc\"",
             "c2.name=\"abc\"",
             "c1 <=> c2",
@@ -789,7 +789,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testContentEqualityOnMultiObjects() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "var c = new City",
+            "var c = new City()",
             "c.name = \"Karl-Marx-Stadt\"",
             "store c",
             "var ss1 = commit",
@@ -803,5 +803,16 @@ public class GeneralTests extends RunletTestCase {
         assertEquals(0, errors.length);
         assertNOEquals(true, result[6]);
         assertNOEquals(false, result[7]);
+    }
+    
+    public void testCreateEntityWithInitializers() throws Exception {
+	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+	            "var c = new City(name: \"Karl-Marx-Stadt\")",
+	            "c.name == \"Karl-Marx-Stadt\"");
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(2, result.length);
+        assertEquals(0, errors.length);
+        assertNOEquals(true, result[1]);
     }
 }

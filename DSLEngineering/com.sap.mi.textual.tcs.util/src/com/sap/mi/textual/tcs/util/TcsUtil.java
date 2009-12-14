@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.Assert;
 
@@ -54,6 +56,7 @@ import tcs.Symbol;
 import tcs.Template;
 import tcs.Token;
 
+import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.exceptions.SyntaxElementException;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.tc.moin.repository.Connection;
@@ -80,6 +83,8 @@ import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
 import com.sap.tc.moin.repository.mql.MQLPreparedQuery;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
+import com.sap.tc.moin.textual.moinadapter.adapter.AdapterJMIHelper;
+import com.sap.tc.moin.textual.moinadapter.adapter.MoinModelAdapterDelegate;
 
 /**
  * Utility class for the TcsPackage.
@@ -1782,5 +1787,71 @@ public class TcsUtil {
 		}
 
 		return null;
+	}
+
+	public static Object executeOclQuery(RefObject element, String oclQuery,
+			String propName, RefObject contextObject, String keyValue)
+			throws ModelAdapterException {
+		if (oclQuery != null && propName != null) {
+	
+			Object expectedValue = null;
+	
+			Connection con = getConnectionFromRefObject(element);
+	
+			AdapterJMIHelper oclHelper = new AdapterJMIHelper(element
+					.refOutermostPackage(), con, con.getJmiHelper(), null, null);
+	
+			expectedValue = oclHelper.findElementWithOCLQuery(element,
+					propName, keyValue, oclQuery, contextObject);
+	
+			return expectedValue;
+		}
+	
+		return null;
+	}
+
+	public static boolean isPropValueAndOclResultEqual(Object propValue, Object oclResult) {
+		// oclHelper.findElementWithOCLQuery returns null for empty
+		// collections
+		if (propValue == null
+				|| (propValue instanceof Collection && ((Collection<?>) propValue)
+						.size() == 0)) {
+			if (oclResult != null) {
+				return false;
+			}
+		} else {
+			if (!propValue.equals(oclResult)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+
+	public static String getContextTag(String oclQuery) {
+		// strip OCL query prefix
+		if (oclQuery.startsWith(MoinModelAdapterDelegate.OCL_QUERY_PREFIX)) {
+			oclQuery = oclQuery
+					.substring(MoinModelAdapterDelegate.OCL_QUERY_PREFIX
+							.length());
+		}
+	
+		final Pattern contextPattern = Pattern
+				.compile("#context(\\((\\w*)(\\)))?");
+	
+		// #context(blub) will make
+		// group 0: #context(blub)
+		// group 2: blub
+	
+		// #context will make
+		// group 0: #context
+		// group 2: null
+	
+		Matcher matcher = contextPattern.matcher(oclQuery);
+		if (matcher.find()) {
+			return matcher.group(2);
+		} else {
+			return null;
+		}
 	}
 }

@@ -125,7 +125,6 @@ public class ConcreteSyntaxSymbolWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ConcreteSyntaxSymbol> get___JmiInterface() {
         return tcs.ConcreteSyntaxSymbol.class;
     }

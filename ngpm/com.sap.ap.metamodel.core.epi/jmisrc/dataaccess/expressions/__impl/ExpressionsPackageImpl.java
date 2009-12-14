@@ -11,7 +11,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
     
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(54);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(55);
         FEATURE_IDS.put("literals", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("collectionExpressions", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("fp", Integer.valueOf(2)); //$NON-NLS-1$
@@ -52,6 +52,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         FEATURE_IDS.put("A_falseExpr_ternary", Integer.valueOf(37)); //$NON-NLS-1$
         FEATURE_IDS.put("A_trueExpr_ternary", Integer.valueOf(38)); //$NON-NLS-1$
         FEATURE_IDS.put("A_condition_conditional", Integer.valueOf(39)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_initializers_creationExpression", Integer.valueOf(40)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -188,6 +189,9 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAConditionConditional(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_condition_conditional"); //$NON-NLS-1$
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAInitializersCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_initializers_creationExpression"); //$NON-NLS-1$
+    }
     // structure type creators
 
     protected java.lang.Object create___Extent(java.lang.Object workspace, java.lang.String mofId, com.sap.tc.moin.repository.mmi.reflect.RefPackage immediatePackage, com.sap.tc.moin.repository.mmi.reflect.RefObject metaObject) {
@@ -275,6 +279,8 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
                     return new dataaccess.expressions.__impl.ATrueExprTernaryImpl(workspace, mofId, immediatePackage, metaObject);
                 case 39:
                     return new dataaccess.expressions.__impl.AConditionConditionalImpl(workspace, mofId, immediatePackage, metaObject);
+                case 40:
+                    return new dataaccess.expressions.__impl.AInitializersCreationExpressionImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
         }
@@ -399,7 +405,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }
   
         if (___refAssociations == null) {
-            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(17);
+            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(18);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefAssociationAndName raan = null;
@@ -469,6 +475,10 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
             ___refAssociationsByName.put(name, raan);
             name = "A_condition_conditional"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "dataaccess.expressions.AConditionConditional"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_initializers_creationExpression"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "dataaccess.expressions.AInitializersCreationExpression"); //$NON-NLS-1$
             ___refAssociations.add(raan);
             ___refAssociationsByName.put(name, raan);
         }

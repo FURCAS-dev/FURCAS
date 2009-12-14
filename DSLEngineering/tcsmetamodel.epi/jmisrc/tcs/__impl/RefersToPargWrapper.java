@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class RefersToPargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.RefersToPargImpl> implements tcs.RefersToParg,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class RefersToPargWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.RefersToPargImpl getCastWrappedObject() {
         return (tcs.__impl.RefersToPargImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class RefersToPargWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.RefersToParg> get___JmiInterface() {
         return tcs.RefersToParg.class;
     }

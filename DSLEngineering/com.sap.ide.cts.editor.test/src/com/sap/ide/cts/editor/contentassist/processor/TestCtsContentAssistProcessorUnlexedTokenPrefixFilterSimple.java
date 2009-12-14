@@ -9,10 +9,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.sap.ide.cts.editor.test.util.StringReplacement;
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.SyntaxParsingException;
+import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 
 public class TestCtsContentAssistProcessorUnlexedTokenPrefixFilterSimple extends
 		CtsContentAssistProcessorEditorTestMetamodelTestBase {
@@ -21,16 +23,16 @@ public class TestCtsContentAssistProcessorUnlexedTokenPrefixFilterSimple extends
 	public static void generateParser() throws FileNotFoundException,
 			GrammarGenerationException, SyntaxParsingException,
 			ModelAdapterException, IOException {
-		generateParserForLanguage("UnlexedTokenPrefixFilter");
+		initMetamodelTestbase("UnlexedTokenPrefixFilter");
 	}
 
 	@Before
 	public void initProcessor() throws IOException,
-			InvalidParserImplementationException {
-		initProcessorForFixture("Simple" + "." + getLanguage(), getFacade(),
-				getLanguage(), CtsContentAssistProcessorTestBase.class
-						.getResourceAsStream("../fixtures/syntax/"
-								+ getLanguage() + ".tcs"));
+			InvalidParserImplementationException,
+			UnknownProductionRuleException, InstantiationException,
+			IllegalAccessException {
+		initProcessorForPrefix("Simple", new StringReplacement(0, 0,
+				"*(?=| peter $$"));
 	}
 
 	@Test

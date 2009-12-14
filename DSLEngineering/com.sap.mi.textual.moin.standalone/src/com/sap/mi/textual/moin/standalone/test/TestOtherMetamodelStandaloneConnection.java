@@ -10,7 +10,7 @@ import ngpm.NgpmPackage;
 import org.junit.Test;
 
 import tcs.TcsPackage;
-import test.test.TestPackage;
+import test.TestPackage;
 
 import com.sap.mi.textual.moin.standalone.MOINTCSMetaConnectionProvider;
 import com.sap.tc.moin.repository.Connection;

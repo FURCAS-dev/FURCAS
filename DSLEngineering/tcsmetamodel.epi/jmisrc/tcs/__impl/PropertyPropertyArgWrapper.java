@@ -125,7 +125,6 @@ public class PropertyPropertyArgWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PropertyPropertyArg> get___JmiInterface() {
         return tcs.PropertyPropertyArg.class;
     }

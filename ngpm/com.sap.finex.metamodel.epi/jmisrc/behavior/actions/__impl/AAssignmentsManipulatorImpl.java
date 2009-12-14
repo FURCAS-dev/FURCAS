@@ -63,7 +63,6 @@ public final class AAssignmentsManipulatorImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.AAssignmentsManipulator> get___JmiInterface() {
         return behavior.actions.AAssignmentsManipulator.class;
     }

@@ -37,6 +37,8 @@ public interface MethodCallExpression extends dataaccess.expressions.ObjectBased
     // references
     public data.classes.MethodSignature getMethodSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setMethodSignature(data.classes.MethodSignature newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public dataaccess.expressions.ObjectCreationExpression getCreationExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public void setCreationExpression(dataaccess.expressions.ObjectCreationExpression newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -84,6 +86,17 @@ public interface MethodCallExpression extends dataaccess.expressions.ObjectBased
                 __methodSignature = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.MethodCallExpression,data.classes.MethodSignature>( "E075D95551F2A7D23E4B11DEAD5D0018DE1146FF", "sap.com/moin/mm/ap/core", new java.lang.String[] { "dataaccess", "expressions", "MethodCallExpression", "methodSignature" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __methodSignature;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.MethodCallExpression,dataaccess.expressions.ObjectCreationExpression> __creationExpression;
+        /**
+         * Returns the descriptor for the <code>creationExpression</code> reference.
+         * @return  the descriptor for the <code>creationExpression</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.MethodCallExpression,dataaccess.expressions.ObjectCreationExpression> CREATION_EXPRESSION( ) {
+            if ( __creationExpression == null ) {
+                __creationExpression = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.MethodCallExpression,dataaccess.expressions.ObjectCreationExpression>( "E075D95527CA50B0E37611DEBF51C38CC0A80182", "sap.com/moin/mm/ap/core", new java.lang.String[] { "dataaccess", "expressions", "MethodCallExpression", "creationExpression" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __creationExpression;
         }
         /**
          * Returns the descriptor for the <code>conformsTo</code> operation.

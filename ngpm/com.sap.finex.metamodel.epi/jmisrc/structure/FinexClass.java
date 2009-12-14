@@ -54,18 +54,18 @@ public interface FinexClass extends structure.Type {
             return __valueType;
         }
         /**
-         * Returns the descriptor for the <code>typedElement</code> reference.
-         * @return  the descriptor for the <code>typedElement</code> reference
-         */
-        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,java.util.Collection<structure.TypedElement>> TYPED_ELEMENT( ) {
-            return structure.Type.DESCRIPTORS.TYPED_ELEMENT( );
-        }
-        /**
          * Returns the descriptor for the <code>owner</code> reference.
          * @return  the descriptor for the <code>owner</code> reference
          */
         public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,structure.FinexClass> OWNER( ) {
             return structure.Type.DESCRIPTORS.OWNER( );
+        }
+        /**
+         * Returns the descriptor for the <code>typedElement</code> reference.
+         * @return  the descriptor for the <code>typedElement</code> reference
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.Type,java.util.Collection<structure.TypedElement>> TYPED_ELEMENT( ) {
+            return structure.Type.DESCRIPTORS.TYPED_ELEMENT( );
         }
         private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,structure.FinexClass,java.util.Collection<behavior.expressions.Expression>> __invariants;
         /**

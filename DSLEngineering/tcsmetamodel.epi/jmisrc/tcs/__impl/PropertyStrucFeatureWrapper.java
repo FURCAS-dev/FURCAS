@@ -125,7 +125,6 @@ public class PropertyStrucFeatureWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PropertyStrucFeature> get___JmiInterface() {
         return tcs.PropertyStrucFeature.class;
     }

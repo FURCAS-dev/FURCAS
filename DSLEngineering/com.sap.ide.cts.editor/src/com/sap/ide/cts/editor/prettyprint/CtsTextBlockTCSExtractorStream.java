@@ -2,7 +2,6 @@ package com.sap.ide.cts.editor.prettyprint;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
@@ -25,6 +24,7 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 import textblocks.VersionEnum;
 
+import com.sap.ide.cts.editor.contentassist.TcsDebugUtil;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRIncrementalLexerAdapter;
@@ -38,6 +38,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 
+	private static boolean debug = false;
+	/**
+	 * this is used to track unmatched opened and closed textblocks
+	 */
+	private int textBlocksHandleCounter = 0;
+
+	private Stack<Integer> openTextBlocksHandles = new Stack<Integer>();
+
 	interface TextBlockCommand {
 		void execute();
 	}
@@ -47,23 +55,31 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		private RefObject object;
 		private Template t;
 		private SequenceElement se;
+		private int handle;
 
 		public AddNextTextBlockCommand(RefObject object, Template t,
-				SequenceElement se) {
+				SequenceElement se, int handle) {
 			this.object = object;
 			this.t = t;
 			this.se = se;
+			this.handle = handle;
 		}
 
 		public void execute() {
-			addNextTextBlock(object, t, se);
+			addNextTextBlock(object, t, se, handle);
 		}
 	}
 
 	class FinishTextBlockCommand implements TextBlockCommand {
 
+		private int handle;
+
+		public FinishTextBlockCommand(int handle) {
+			this.handle = handle;
+		}
+
 		public void execute() {
-			finishTextBlock();
+			finishTextBlock(handle);
 		}
 	}
 
@@ -175,7 +191,14 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	void addNextTextBlock(RefObject correspondingModelElement,
-			Template template, SequenceElement se) {
+			Template template, SequenceElement se, int handle) {
+		if (debug) {
+			System.out.println("adding TextBlock for template "
+					+ TcsDebugUtil.prettyPrint(template) + " with handle: "
+					+ handle);
+		}
+
+		openTextBlocksHandles.add(handle);
 
 		if (rootBlock == null) {
 			// first textBlock, special rootBlock handling
@@ -183,18 +206,21 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			setType(rootBlock, template);
 			rootBlock.setOffsetRelative(false);
 			if (correspondingModelElement != null) {
-        			if(TcsUtil.isPropertyInit(se)) {
-        			    //Add to referenced element if its a Property Init
-        			    rootBlock.getReferencedElements().add(
-        					correspondingModelElement);
-        			} else {
-        			    rootBlock.getCorrespondingModelElements().add(
-        					correspondingModelElement);
-        			}
+				if (TcsUtil.isPropertyInit(se)) {
+					// Add to referenced element if its a Property Init
+					rootBlock.getReferencedElements().add(
+							correspondingModelElement);
+				} else {
+					rootBlock.getCorrespondingModelElements().add(
+							correspondingModelElement);
+				}
 			}
 			rootBlock.setSequenceElement(se);
 			curBlock = rootBlock;
 
+			if (debug) {
+				System.out.println("adding BosToken");
+			}
 			addBosToken();
 		} else {
 			// not the rootBlock
@@ -204,16 +230,15 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 
 			TextBlock b = createTextBlock();
 			b.setOffset(curOffset);
-		
+
 			if (correspondingModelElement != null) {
-        			if(TcsUtil.isPropertyInit(se)) {
-        			    //Add to referenced element if its a Property Init
-        			    b.getReferencedElements().add(
-        					correspondingModelElement);
-        			} else {
-        			    b.getCorrespondingModelElements().add(
-        					correspondingModelElement);
-        			}
+				if (TcsUtil.isPropertyInit(se)) {
+					// Add to referenced element if its a Property Init
+					b.getReferencedElements().add(correspondingModelElement);
+				} else {
+					b.getCorrespondingModelElements().add(
+							correspondingModelElement);
+				}
 			}
 			b.setSequenceElement(se);
 			setType(b, template);
@@ -242,7 +267,27 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 		curBlock = b;
 	}
 
-	void finishTextBlock() {
+	void finishTextBlock(int handle) {
+		if (debug) {
+			System.out.println("finishing TextBlock with handle: " + handle);
+		}
+
+		while (openTextBlocksHandles.size() > 0
+				&& openTextBlocksHandles.peek() != handle) {
+			// calls to addTextBlock and finishTextBlock do not match
+			// last textblock was falsely left open
+
+			// gracefully close it
+			if (debug) {
+				System.out.println("closing left-open TextBlock with handle: "
+						+ openTextBlocksHandles.peek());
+			}
+			finishTextBlock(openTextBlocksHandles.peek());
+		}
+		if (openTextBlocksHandles.size() > 0) {
+			openTextBlocksHandles.pop();
+		}
+
 		curBlock.setLength(curBlockLength);
 
 		TextBlock parent = curBlock.getParentBlock();
@@ -250,6 +295,9 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 
 			if (curBlockLength == 0) {
 				// this textblock is empty, remove it
+				if (debug) {
+					System.out.println("removing empty TextBlock");
+				}
 
 				parent.getSubBlocks().remove(curBlock);
 				curBlock.refDelete();
@@ -304,7 +352,7 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			Template t = getType(parentBlock);
 
 			if (t instanceof ContextTemplate) {
-			        ContextTemplate ct = (ContextTemplate) t;
+				ContextTemplate ct = (ContextTemplate) t;
 				if (ct.isContext()) {
 					parentBlock.getElementsInContext().addAll(modelElements);
 					return;
@@ -325,8 +373,14 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 			Token lexerToken = lexer.nextToken();
 
 			if (lexerToken.getChannel() == Token.HIDDEN_CHANNEL) {
+				if (debug) {
+					System.out.println("adding OmittedToken: '" + value + "'");
+				}
 				t = createOmittedToken();
 			} else {
+				if (debug) {
+					System.out.println("adding LexedToken: '" + value + "'");
+				}
 				t = createLexedToken(se);
 			}
 			t.setType(lexerToken.getType());
@@ -379,8 +433,11 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 
 		// check first if any output was printed
 		if (rootBlock != null) {
+			if (debug) {
+				System.out.println("adding EosToken");
+			}
 			addEosToken();
-			finishTextBlock();
+
 			TbValidationUtil.assertTextBlockConsistencyRecursive(rootBlock);
 			rootBlock.setCachedString(rootBlockCachedString.toString());
 		}
@@ -395,13 +452,16 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	}
 
 	@Override
-	public void startClassTemplateForObject(RefObject object, Template t) {
-		current.add(new AddNextTextBlockCommand(object, t, getCurrentSE()));
+	public int startClassTemplateForObject(RefObject object, Template t) {
+		int handle = textBlocksHandleCounter++;
+		current.add(new AddNextTextBlockCommand(object, t, getCurrentSE(),
+				handle));
+		return handle;
 	}
 
 	@Override
-	public void endClassTemplate() {
-		current.add(new FinishTextBlockCommand());
+	public void endClassTemplate(int handle) {
+		current.add(new FinishTextBlockCommand(handle));
 	}
 
 	@Override
@@ -466,13 +526,25 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 	public int createSafePoint() {
 		List<TextBlockCommand> store = new ArrayList<TextBlockCommand>(current);
 		curBackupHandle++;
+
+		if (debug) {
+			System.out.println("creating savepoint " + curBackupHandle
+					+ " with " + store.size() + " commands saved");
+		}
+
 		backup.put(curBackupHandle, store);
 		return curBackupHandle;
 	}
 
 	@Override
 	public void resetToSafePoint(int handle) {
-		current = backup.get(curBackupHandle);
+		current = backup.get(handle);
+
+		if (debug) {
+			System.out.println("resetting to savepoint " + handle + " with "
+					+ current.size() + " commands restored");
+		}
+
 	}
 
 	@Override

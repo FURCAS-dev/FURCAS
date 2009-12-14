@@ -79,7 +79,6 @@
 <multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Reference>
 <Model.Package m:c='1' m:i='E0677A9A85750EB0804A11DEA2640018DE1146FF' name='test' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
-<Model.Tag m:c='1' m:i='E0677A9A85750EB1804A11DEC1AF0018DE1146FF' name='packagePrefix' annotation='Package prefix for root packages' tagId='javax.jmi.packagePrefix' values='test'/>
 <Model.Package m:c='1' m:i='E0677A9AB2A92BA0804A11DE934E0018DE1146FF' name='inheritance' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
 <Model.Class m:c='1' m:i='E0677A9AF98D0F00804A11DEC6EC0018DE1146FF' name='Person' annotation='' isRoot='false' isLeaf='false' isAbstract='true' visibility='public_vis' isSingleton='false'/>
 <Model.Attribute m:c='1' m:i='E07B8DB9AF1A89D0804E11DEAF1C0018DE1146FF' name='name' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>

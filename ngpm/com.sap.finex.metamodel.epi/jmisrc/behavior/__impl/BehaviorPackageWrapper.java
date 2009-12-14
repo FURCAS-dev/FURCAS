@@ -90,7 +90,6 @@ public class BehaviorPackageWrapper extends com.sap.tc.moin.repository.core.jmi.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.BehaviorPackage> get___JmiInterface() {
         return behavior.BehaviorPackage.class;
     }

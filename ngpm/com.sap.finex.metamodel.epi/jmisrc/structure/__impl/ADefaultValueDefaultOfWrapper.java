@@ -125,7 +125,6 @@ public class ADefaultValueDefaultOfWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.ADefaultValueDefaultOf> get___JmiInterface() {
         return structure.ADefaultValueDefaultOf.class;
     }

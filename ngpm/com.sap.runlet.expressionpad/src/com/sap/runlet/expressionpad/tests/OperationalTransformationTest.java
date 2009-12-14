@@ -78,7 +78,7 @@ public class OperationalTransformationTest extends TestCase {
     }
     
     public void testRedundantEntityDelete() throws Exception {
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var p=new Person", "store p", "commit").getResult();
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var p=new Person()", "store p", "commit").getResult();
 	assertEquals(3, result1.length);
 	
 	// delete person
@@ -101,8 +101,8 @@ public class OperationalTransformationTest extends TestCase {
 
     @SuppressWarnings("unchecked")
     public void testCreateTwoEntities() throws Exception {
- 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var p=new Person", "store p").getResult();
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var p=new Person", "store p").getResult();
+ 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var p=new Person()", "store p").getResult();
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var p=new Person()", "store p").getResult();
 	assertEquals(2, result1.length);
 	assertEquals(2, result2.length);
 	
@@ -126,7 +126,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked")
     public void testCreateLinkDeleteEntity() throws Exception {
 	// create, store and commit a Person entity
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var p=new Person", "store p", "commit").getResult();
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var p=new Person()", "store p", "commit").getResult();
 	assertEquals(3, result1.length);
 	
 	// delete but do not commit Person entity
@@ -134,7 +134,7 @@ public class OperationalTransformationTest extends TestCase {
  	assertEquals(1, result1.length);
  	
  	// Create and store Organization Entity with new link created to Person entity
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var o=new Organization", "o.persons += all Person", "store o").getResult();
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var o=new Organization()", "o.persons += all Person", "store o").getResult();
 	assertEquals(3, result2.length);
 	
 	ChangeSetImpl<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> cs1 = main1.getInterpreter().getTransactionBuffer().getChangeSetImpl();
@@ -162,10 +162,10 @@ public class OperationalTransformationTest extends TestCase {
      */
     @SuppressWarnings("unchecked")
     public void testCreateCompetingOrderedLinks() throws Exception {
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest", "store o", "commit").getResult();
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest()", "store o", "commit").getResult();
 	assertEquals(3, result1.length);
 	
- 	result1 = main1.execute("var p=new Person", "p.name=\"name1\"", "store p",
+ 	result1 = main1.execute("var p=new Person()", "p.name=\"name1\"", "store p",
  				"all OrderedAssocTest.orderedPersons += p").getResult();
  	assertEquals(4, result1.length);
  	
@@ -173,7 +173,7 @@ public class OperationalTransformationTest extends TestCase {
  	// TODO: I assume that I see the changes commited by main1 (the Person). Not sure if this is the case.
  	// The resulting changeSet for main2 only contains an Entity Creation but no link creation. Time is running out
  	// need to check this after vacation ;)
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var p=new Person", "p.name=\"name2\"", "store p",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var p=new Person()", "p.name=\"name2\"", "store p",
 		"all OrderedAssocTest.orderedPersons += p").getResult();
 	assertEquals(4, result2.length);
 	
@@ -201,7 +201,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked")
     public void testDeleteEntityAndAddOrderedLinks() throws Exception {
 	// create, store and commit a Person and an OrderedAssocTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest", "store o", "var p=new Person",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest()", "store o", "var p=new Person()",
 		"p.name=\"name1\"", "store p", "o.orderedPersons += p", "commit").getResult();
 	assertEquals(7, result1.length);
 	
@@ -214,10 +214,10 @@ public class OperationalTransformationTest extends TestCase {
  	// but should then get re-numbered because the first link creation will be canceled.
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result2 = main2.execute("var o=all OrderedAssocTest->iterate(i|i)",
 		"var p=o.orderedPersons->iterate(j|j)",
-		"var o2=new OrderedAssocTest",
+		"var o2=new OrderedAssocTest()",
 		"store o2",
 		"o2.orderedPersons += p",
-		"var p2=new Person", "p2.name=\"name2\"", "store p2",
+		"var p2=new Person()", "p2.name=\"name2\"", "store p2",
 		"o2.orderedPersons += p2").getResult();
 	assertEquals(9, result2.length);
 	
@@ -247,7 +247,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testSpecificConcurrentChangesToOrderedAssociation() throws Exception {
 	// create, store and commit a Person and an OrderedAssocTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest", "store o", "o.orderedStrings += \"a\"",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest()", "store o", "o.orderedStrings += \"a\"",
 		"o.orderedStrings += \"b\"", "o.orderedStrings += \"c\"",
 		"commit").getResult();
 	assertEquals(6, result1.length);
@@ -288,7 +288,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testOrderedLinkCreationAndDeletion() throws Exception {
 	// create, store and commit a Person and an OrderedAssocTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest", "store o", "o.orderedStrings += \"a\"",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest()", "store o", "o.orderedStrings += \"a\"",
 		"o.orderedStrings += \"b\"", "o.orderedStrings += \"c\"",
 		"commit").getResult();
 	assertEquals(6, result1.length);
@@ -327,7 +327,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testOrderedLinkCreationAndDeletion2() throws Exception {
 	// create, store and commit a Person and an OrderedAssocTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest", "store o", "o.orderedStrings += \"a\"",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest()", "store o", "o.orderedStrings += \"a\"",
 		"commit").getResult();
 	assertEquals(4, result1.length);
 	
@@ -369,7 +369,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testOrderedLinkCreationAndDeletion3() throws Exception {
 	// create, store and commit a Person and an OrderedAssocTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest", "store o", "o.orderedStrings += \"a\"",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new OrderedAssocTest()", "store o", "o.orderedStrings += \"a\"",
 		"commit").getResult();
 	assertEquals(4, result1.length);
 	
@@ -411,7 +411,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testUniqueLinkCreation() throws Exception {
 	// create, store and commit a Person and an UniquenessTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main1.execute("var u=new UniquenessTest", "store u", "u.numbers += 1",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main1.execute("var u=new UniquenessTest()", "store u", "u.numbers += 1",
 		"u.numbers += 2", "u.numbers += 3",
 		"commit").getResult();
 	assertEquals(6, result.length);
@@ -448,7 +448,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testRedundantUniqueLinkCreation() throws Exception {
 	// create, store and commit a Person and an UniquenessTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main1.execute("var u=new UniquenessTest", "store u", "u.numbers += 1",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main1.execute("var u=new UniquenessTest()", "store u", "u.numbers += 1",
 		"u.numbers += 2", "u.numbers += 3",
 		"commit").getResult();
 	assertEquals(6, result.length);
@@ -483,7 +483,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testRedundantUniqueLinkDeletion() throws Exception {
 	// create, store and commit a Person and an UniquenessTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main1.execute("var u=new UniquenessTest", "store u", "u.numbers += 1",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main1.execute("var u=new UniquenessTest()", "store u", "u.numbers += 1",
 		"u.numbers += 2", "u.numbers += 3",
 		"commit").getResult();
 	assertEquals(6, result.length);
@@ -514,7 +514,7 @@ public class OperationalTransformationTest extends TestCase {
     @SuppressWarnings("unchecked") // need array of generic Triple class
     public void testRedundantLinkDeletion() throws Exception {
 	// create, store and commit a Person and an OrderedAssocTest entity with ordered link between
-	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new Organization", "store o", "o.persons += new Person",
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result1 = main1.execute("var o=new Organization()", "store o", "o.persons += new Person()",
 		"commit").getResult();
 	assertEquals(4, result1.length);
 	
@@ -552,15 +552,15 @@ public class OperationalTransformationTest extends TestCase {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] clientResult = null;
 	
 	// create a Person entity in server session and commit creation
-	serverResult = main1.execute("var p1=new Person", "store p1", "commit").getResult();
+	serverResult = main1.execute("var p1=new Person()", "store p1", "commit").getResult();
 	assertEquals(3, serverResult.length);
 	
 	// create a 2nd Person entity in server session, no commit yet
-	serverResult = main1.execute("var p2=new Person", "store p2").getResult();
+	serverResult = main1.execute("var p2=new Person()", "store p2").getResult();
 	assertEquals(2, serverResult.length);
 	
 	// create a 3rd Person entity in client session, no commit yet
-	clientResult = main2.execute("var p3=new Person", "store p3").getResult();
+	clientResult = main2.execute("var p3=new Person()", "store p3").getResult();
 	assertEquals(2, clientResult.length);
 	
 	// commit server session

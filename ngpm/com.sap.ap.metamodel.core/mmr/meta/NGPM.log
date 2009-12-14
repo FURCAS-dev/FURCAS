@@ -83,6 +83,7 @@
 *Warning: Association found with no name between 'Expression' and 'Ternary'.  The name 'A_falseExpr_ternary' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'Ternary'.  The name 'A_trueExpr_ternary' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'Conditional'.  The name 'A_condition_conditional' has been created for it.
+*Warning: Association found with no name between 'MethodCallExpression' and 'ObjectCreationExpression'.  The name 'A_initializers_creationExpression' has been created for it.
 *Warning: Association found with no name between 'Iterator' and 'Selection'.  The name 'A_iterator_selection' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'Selection'.  The name 'A_selectionExpr_selection' has been created for it.
 *Warning: Association found with no name between 'Dimension' and 'CellSet'.  The name 'A_dimensions_cellSet' has been created for it.

@@ -1,4 +1,4 @@
-value class Number{
+value class Number {
   const Boolean 1..1 greaterOrEquals(Number 1..1 n)
     native
   const Boolean 1..1 greaterThan(Number 1..1 n)
@@ -17,4 +17,5 @@ value class Number{
     native
   const Number 1..1 negate()
     native
+  
 }

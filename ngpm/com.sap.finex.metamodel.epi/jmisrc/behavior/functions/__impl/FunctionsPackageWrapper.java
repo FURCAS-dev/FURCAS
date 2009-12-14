@@ -178,7 +178,6 @@ public class FunctionsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.FunctionsPackage> get___JmiInterface() {
         return behavior.functions.FunctionsPackage.class;
     }

@@ -125,7 +125,6 @@ public class AFieldInitializersCreationExpressionWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AFieldInitializersCreationExpression> get___JmiInterface() {
         return behavior.expressions.AFieldInitializersCreationExpression.class;
     }

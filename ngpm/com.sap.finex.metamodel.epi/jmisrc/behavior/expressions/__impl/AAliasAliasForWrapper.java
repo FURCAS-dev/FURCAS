@@ -125,7 +125,6 @@ public class AAliasAliasForWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AAliasAliasFor> get___JmiInterface() {
         return behavior.expressions.AAliasAliasFor.class;
     }

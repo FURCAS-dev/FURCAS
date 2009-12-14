@@ -57,4 +57,5 @@ public interface ExpressionsPackage extends com.sap.tc.moin.repository.mmi.refle
     public dataaccess.expressions.AFalseExprTernary getAFalseExprTernary();
     public dataaccess.expressions.ATrueExprTernary getATrueExprTernary();
     public dataaccess.expressions.AConditionConditional getAConditionConditional();
+    public dataaccess.expressions.AInitializersCreationExpression getAInitializersCreationExpression();
 }

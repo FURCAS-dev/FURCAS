@@ -125,7 +125,6 @@ public class ElseSequenceWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.ElseSequence> get___JmiInterface() {
         return tcs.ElseSequence.class;
     }

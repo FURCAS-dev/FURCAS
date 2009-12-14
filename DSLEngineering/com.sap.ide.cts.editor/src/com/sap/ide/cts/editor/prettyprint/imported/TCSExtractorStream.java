@@ -12,10 +12,10 @@
  */
 package com.sap.ide.cts.editor.prettyprint.imported;
 
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import tcs.SequenceElement;
 import tcs.Template;
+
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * 
@@ -51,9 +51,9 @@ public interface TCSExtractorStream {
 
 	void printComment(String c);
 
-	void startClassTemplateForObject(RefObject object, Template template);
+	int startClassTemplateForObject(RefObject object, Template template);
 
-	void endClassTemplate();
+	void endClassTemplate(int handle);
 
 	void enterSequenceElement(SequenceElement e);
 

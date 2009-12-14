@@ -8,7 +8,7 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
@@ -97,7 +97,6 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.FunctionsPackage> get___JmiInterface() {
         return behavior.functions.FunctionsPackage.class;
     }
@@ -106,9 +105,7 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -138,9 +135,7 @@ public final class FunctionsPackageImpl extends com.sap.tc.moin.repository.core.
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(3);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_implementation_signature"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavior.functions.AImplementationSignature"); //$NON-NLS-1$

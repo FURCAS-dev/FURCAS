@@ -19,37 +19,37 @@ syntax TCS {
 	primitiveTemplate floatSymbol for PrimitiveTypes::Double default using FLOAT:
 		value = "Double.valueOf(%token%)";
        
-        primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
+/**        primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
                 value = "unescapeString(%token%)";
                 
           primitiveTemplate qualifiedNameSymbolList for PrimitiveTypes::String using QNAME:
                 value = "java.util.Arrays.asList(unescapeString(%token%).split(\"::\"))";
-
+*/
 	-- MOF element representation in qualified names
 	
 	-- A modelClassifier is either its container followed by :: and a name, or just a name
---	template Model::Classifier referenceOnly -- should never be created
---	: ( isDefined(container) ? container   -- is of type Namespace in MM
---	  "::" name : name)
---	;
+	template Model::Classifier referenceOnly -- should never be created
+	: ( isDefined(container) ? container   -- is of type Namespace in MM
+	  "::" name : name)
+	;
 	
 	
 	-- Namespace gets operatored using the :: operator to resolve left recursion
---	template Model::Namespace abstract operatored(DBLCOLON);
+	template Model::Namespace abstract operatored(DBLCOLON);
 	
 	-- if parsed path has more than one element, 
 	-- the first will be of type Generalizable element
 	-- because that is the type of Mode::ModelElement.container
---	template Model::GeneralizableElement referenceOnly -- should never be created
---		: name
---		;
+	template Model::GeneralizableElement referenceOnly -- should never be created
+		: name
+		;
 		
 	-- any following elements in a package path will be resolved using this
---	operatorTemplate Model::ModelElement(operators =
---			opDlColon, source = 'container') referenceOnly -- should never be created
---		:
---			name
---		;
+	operatorTemplate Model::ModelElement(operators =
+			opDlColon, source = 'container') referenceOnly -- should never be created
+		:
+			name
+		;
 
 	-- end MOF element representation
 
@@ -77,7 +77,8 @@ syntax TCS {
 	-- utility for all qualified meta references
 	function reference(TCS::QualifiedNamedElement)
 		: (isDefined(metaReference) 
-		  ? [[
+		  ? 
+/**		  [[
 		  	metaReference{as=qualifiedNameSymbol,
 		  	query="let e=Sequence{1..?.size()}->select(j|?.subString(j, j+1) = '::')->iterate(
   					i; acc:Tuple(pos:Integer, ns:Set(Model::Namespace), qn:String)=Tuple{pos=1, ns=null, qn=''} |
@@ -96,12 +97,17 @@ syntax TCS {
 		  	} 
 		  	|
 		  	metaReference{as=identifier, query="Classifier.allInstances()", filter="->select(c | c.name = ?)", invert="name"}
-		  	]]
-		  : [[
+*/		        metaReference	
+		  	--]]
+		  : "->" names{separator="::"}) -- workaround allowing to specify metatypes without directly referencing them
+/**                    [[
 		  	"->" names{as=qualifiedNameSymbolList} -- workaround allowing to specify metatypes without directly referencing them
 		  	|
+		  	
 		  	"->" names{as=identifier, forcedUpper=1, forcedLower=1} -- workaround allowing to specify metatypes without directly referencing them
-		    ]])
+		    ]]
+		    )
+*/		    
 		;
 
 -- @begin Templates
@@ -314,7 +320,7 @@ syntax TCS {
 		: (isDefined(when)?  "when" "=" when {as = stringSymbol}",") 
 		  (isDefined(mode)?  "mode" "=" mode {as = stringSymbol}",")
 		  "as" "=" 
-		  [[
+/**		  [[
 		  as {as = qualifiedNameSymbol, 
 					query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
 					filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
@@ -359,7 +365,7 @@ syntax TCS {
 											endif
 										endif"}
 			|	
-				as {as = identifierOrKeyword, 
+*/				as {as = identifierOrKeyword, 
                                                                 query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
                                                         filter="->select(t | 
                                                                         if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
@@ -391,7 +397,7 @@ syntax TCS {
                                                                                                 '<no name?>'
                                                                                         endif
                                                                                 endif"}
-			]]
+			--]]
 		;
 
 -- @end Sequence Elements
@@ -414,7 +420,7 @@ syntax TCS {
 
 	template TCS::AsPArg
 		:	"as" "=" 
-			[[
+/**			[[
 		  		template {as = qualifiedNameSymbol, 
 					query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
 					filter="->select(t | if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
@@ -466,6 +472,7 @@ syntax TCS {
 											endif
 										endif"}
 			|
+*/
 				template {as = identifierOrKeyword, 
 								query="OCL:self.property.parentTemplate.concreteSyntax.templates", 
 								filter="->select(t | 
@@ -505,7 +512,7 @@ syntax TCS {
 												'<no name?>'
 											endif
 										endif"}
-			]]
+			--]]
 		;
 
 --	template TCS::RefersToKeyPArg
@@ -670,11 +677,14 @@ syntax TCS {
 
 	template TCS::InstanceOfExp
 		:	propertyReference "instanceOf" 
-			[[
+			supertype{separator = "::"}
+/**			[[
 				supertype{as=qualifiedNameSymbolList}
 		  	|
+
 		  		supertype{as=identifier, forcedUpper=1, forcedLower=1} 
 			]]
+*/
 		;
 
 --@end Expressions
@@ -876,23 +886,25 @@ ALPHA
 
 %protected
 SNAME
-	:	(~ORKEYWORD)=> (ALPHA) (ALPHA | DIGIT)* 
+	:	
+//	(~ORKEYWORD)=> 
+	(ALPHA) (ALPHA | DIGIT)* 
 ;
 
-QNAME_OR_NAME :
-	   ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }
-	   |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }
- 	   |	(~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }
- 	   |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }
- 	   |    ( '\\'' SNAME) => NAME { _type = NAME; }
-;
+//QNAME_OR_NAME :
+//	   ( ORKEYWORD COLON ) => ORKEYWORD { _type = ORKEYWORD; }
+//	   |    ( SNAME DLCOLON SNAME ) => QNAME { _type = QNAME; }
+// 	   |	(~ORKEYWORD COLON | SNAME COLON ~(COLON) ) => NAME { _type = NAME; }
+// 	   |    ( ~ORKEYWORD | SNAME ~COLON ) => NAME { _type = NAME; }
+// 	   |    ( '\\'' SNAME) => NAME { _type = NAME; }
+//;
 
-%protected 
-ORKEYWORD :
-	'orKeyword'
-;
+//%protected 
+//ORKEYWORD :
+//	'orKeyword'
+//;
 
-%protected
+//%protected
 NAME
 	:	(   
 		      	SNAME
@@ -905,10 +917,10 @@ NAME
 		)
 	;
 
-%protected
-QNAME
-        : SNAME DLCOLON SNAME (DLCOLON SNAME )*
-        ;
+//%protected
+//QNAME
+//        : SNAME DLCOLON SNAME (DLCOLON SNAME )*
+//        ;
 
 INT
 	:	(DIGIT)+

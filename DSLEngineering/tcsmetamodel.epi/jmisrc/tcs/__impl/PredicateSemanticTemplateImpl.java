@@ -63,7 +63,6 @@ public final class PredicateSemanticTemplateImpl extends com.sap.tc.moin.reposit
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PredicateSemanticTemplate> get___JmiInterface() {
         return tcs.PredicateSemanticTemplate.class;
     }

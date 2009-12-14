@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Dec 04 23:02:19 2009' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Wed Dec 09 14:29:55 2009' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -145,7 +145,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Class>
             <!-- ==================== behavior.expressions.literals.org.omg.sap2mof.store=no    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.118' 
+            <Model:Tag xmi.id = 'G.130' 
               name = 'org.omg.sap2mof.store=no' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -185,7 +185,7 @@ inv:
               </Model:Namespace.contents>
             </Model:Association>
             <!-- ==================== behavior.expressions.literals.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-            <Model:Tag xmi.id = 'G.119' 
+            <Model:Tag xmi.id = 'G.131' 
               name = 'org.omg.sap2mof.store=yes' annotation = '' 
               tagId = 'org.omg.sap2mof.store' >
               <Model:Tag.values>
@@ -195,6 +195,298 @@ inv:
                 <Model:ModelElement xmi.idref = 'a4B0E54A600AB'/>
               </Model:Tag.elements>
             </Model:Tag>
+          </Model:Namespace.contents>
+        </Model:Package>
+        <!-- ==================== behavior.expressions.oql    [Package] ==================== -->
+        <Model:Package xmi.id = 'a4B1CBFF002BF' 
+          name = 'oql' annotation = '' 
+          isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' >
+          <Model:Namespace.contents>
+            <!-- ==================== behavior.expressions.oql.OqlQuery    [Class] ==================== -->
+            <Model:Class xmi.id = 'a4B1CC01500CB' 
+              name = 'OqlQuery' annotation = '' 
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+              isSingleton = 'false' >
+              <Model:ModelElement.constraints>
+                <Model:Constraint xmi.idref = 'a4B1CC5A7003E'/>  <!-- behavior.expressions.oql.OqlQuery.ConditionMustBeBoolean -->
+                <Model:Constraint xmi.idref = 'a4B1E2EC50000'/>  <!-- behavior.expressions.oql.OqlQuery.WhereClauseMustBeSideEffectFree -->
+              </Model:ModelElement.constraints>
+              <Model:GeneralizableElement.supertypes>
+                <Model:GeneralizableElement xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+              </Model:GeneralizableElement.supertypes>
+              <Model:Namespace.contents>
+                <!-- ==================== behavior.expressions.oql.OqlQuery.condition    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4B1CC51B009C' 
+                  name = 'condition' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4B1CC51B009C'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== behavior.expressions.oql.OqlQuery.fromClauses    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4B1CC3AC003E' 
+                  name = 'fromClauses' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '-1' is_ordered = 'true' is_unique = 'true' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1E9FAB003E'/>  <!-- behavior.expressions.oql.FromClause -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4B1CC3AC003E'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== behavior.expressions.oql.OqlQuery.ConditionMustBeBoolean    [Constraint] ==================== -->
+                <Model:Constraint xmi.id = 'a4B1CC5A7003E' 
+                  name = 'ConditionMustBeBoolean' annotation = '' 
+                  language = 'OCL' evaluationPolicy = 'deferred' >
+                  <Model:Constraint.expression>
+                    <XMI.any xmi.type = 'string' xmi.name = ''>context OqlQuery
+inv:
+  self.condition-&gt;notEmpty() implies self.condition.isBoolean()</XMI.any>
+                  </Model:Constraint.expression>
+                  <Model:Constraint.constrainedElements>
+                    <Model:ModelElement xmi.idref = 'a4B1CC01500CB'/>  <!-- behavior.expressions.oql.OqlQuery -->
+                  </Model:Constraint.constrainedElements>
+                </Model:Constraint>
+                <!-- ==================== behavior.expressions.oql.OqlQuery.WhereClauseMustBeSideEffectFree    [Constraint] ==================== -->
+                <Model:Constraint xmi.id = 'a4B1E2EC50000' 
+                  name = 'WhereClauseMustBeSideEffectFree' annotation = '' 
+                  language = 'OCL' evaluationPolicy = 'deferred' >
+                  <Model:Constraint.expression>
+                    <XMI.any xmi.type = 'string' xmi.name = ''>context OqlQuery
+inv:
+  self.condition-&gt;forAll(c | c.isSideEffectFree())</XMI.any>
+                  </Model:Constraint.expression>
+                  <Model:Constraint.constrainedElements>
+                    <Model:ModelElement xmi.idref = 'a4B1CC01500CB'/>  <!-- behavior.expressions.oql.OqlQuery -->
+                  </Model:Constraint.constrainedElements>
+                </Model:Constraint>
+              </Model:Namespace.contents>
+            </Model:Class>
+            <!-- ==================== behavior.expressions.oql.org.omg.sap2mof.store=no    [Tag] ==================== -->
+            <Model:Tag xmi.id = 'G.132' 
+              name = 'org.omg.sap2mof.store=no' annotation = '' 
+              tagId = 'org.omg.sap2mof.store' >
+              <Model:Tag.values>
+                <XMI.any xmi.type = 'string' xmi.name = ''>no</XMI.any>
+              </Model:Tag.values>
+              <Model:Tag.elements>
+                <Model:ModelElement xmi.idref = 'ra4B1CC51B009C'/>  <!-- behavior.expressions.oql.OqlQuery.condition -->
+                <Model:ModelElement xmi.idref = 'ra4B1CC3AC003E'/>  <!-- behavior.expressions.oql.OqlQuery.fromClauses -->
+                <Model:ModelElement xmi.idref = 'ra4B1E9FCB03A9'/>  <!-- behavior.expressions.oql.FromClause.fromExpression -->
+                <Model:ModelElement xmi.idref = 'ra4B1EA07E035B'/>  <!-- behavior.expressions.oql.FromClause.alias -->
+                <Model:ModelElement xmi.idref = 'a4B1CC3AC003E'/>
+                <Model:ModelElement xmi.idref = 'a4B1CC51B009C'/>
+                <Model:ModelElement xmi.idref = 'a4B1E9FCB03A9'/>
+                <Model:ModelElement xmi.idref = 'a4B1EA07E035B'/>
+              </Model:Tag.elements>
+            </Model:Tag>
+            <!-- ==================== behavior.expressions.oql.FromClause    [Class] ==================== -->
+            <Model:Class xmi.id = 'a4B1E9FAB003E' 
+              name = 'FromClause' annotation = '' 
+              isRoot = 'false' isLeaf = 'false' isAbstract = 'false' visibility = 'public_vis' 
+              isSingleton = 'false' >
+              <Model:ModelElement.constraints>
+                <Model:Constraint xmi.idref = 'a4B1E2E9A02BF'/>  <!-- behavior.expressions.oql.FromClause.FromClausesMustBeSideEffectFree -->
+              </Model:ModelElement.constraints>
+              <Model:Namespace.contents>
+                <!-- ==================== behavior.expressions.oql.FromClause.fromClauseOfOqlQuery    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4B1CC3AC008C' 
+                  name = 'fromClauseOfOqlQuery' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1CC01500CB'/>  <!-- behavior.expressions.oql.OqlQuery -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4B1CC3AC008C'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== behavior.expressions.oql.FromClause.fromExpression    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4B1E9FCB03A9' 
+                  name = 'fromExpression' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4B1E9FCB03A9'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== behavior.expressions.oql.FromClause.alias    [Reference] ==================== -->
+                <Model:Reference xmi.id = 'ra4B1EA07E035B' 
+                  name = 'alias' annotation = '' 
+                  scope = 'instance_level' visibility = 'public_vis' 
+                  isChangeable = 'true' >
+                  <Model:StructuralFeature.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:StructuralFeature.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B01B40D02D6'/>  <!-- behavior.expressions.Alias -->
+                  </Model:TypedElement.type>
+                  <Model:Reference.referencedEnd>
+                    <Model:AssociationEnd xmi.idref = 'a4B1EA07E035B'/>
+                  </Model:Reference.referencedEnd>
+                </Model:Reference>
+                <!-- ==================== behavior.expressions.oql.FromClause.FromClausesMustBeSideEffectFree    [Constraint] ==================== -->
+                <Model:Constraint xmi.id = 'a4B1E2E9A02BF' 
+                  name = 'FromClausesMustBeSideEffectFree' annotation = '' 
+                  language = 'OCL' evaluationPolicy = 'deferred' >
+                  <Model:Constraint.expression>
+                    <XMI.any xmi.type = 'string' xmi.name = ''>context FromClause
+inv:
+  self.fromExpression.isSideEffectFree()</XMI.any>
+                  </Model:Constraint.expression>
+                  <Model:Constraint.constrainedElements>
+                    <Model:ModelElement xmi.idref = 'a4B1E9FAB003E'/>  <!-- behavior.expressions.oql.FromClause -->
+                  </Model:Constraint.constrainedElements>
+                </Model:Constraint>
+              </Model:Namespace.contents>
+            </Model:Class>
+            <!-- ==================== behavior.expressions.oql.org.omg.sap2mof.store=yes    [Tag] ==================== -->
+            <Model:Tag xmi.id = 'G.133' 
+              name = 'org.omg.sap2mof.store=yes' annotation = '' 
+              tagId = 'org.omg.sap2mof.store' >
+              <Model:Tag.values>
+                <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+              </Model:Tag.values>
+              <Model:Tag.elements>
+                <Model:ModelElement xmi.idref = 'ra4B1CC3AC008C'/>  <!-- behavior.expressions.oql.FromClause.fromClauseOfOqlQuery -->
+                <Model:ModelElement xmi.idref = 'a4B1CC3AC008C'/>
+                <Model:ModelElement xmi.idref = 'a4B1CC51B00DA'/>
+                <Model:ModelElement xmi.idref = 'a4B1E9FCC0000'/>
+                <Model:ModelElement xmi.idref = 'a4B1EA07E035D'/>
+              </Model:Tag.elements>
+            </Model:Tag>
+            <!-- ==================== behavior.expressions.oql.A_fromClauses_fromClauseOfOqlQuery    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4B1CC3AB00DA' 
+              name = 'A_fromClauses_fromClauseOfOqlQuery' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4B1CC3AC003E' 
+                  name = 'fromClauses' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '-1' is_ordered = 'true' is_unique = 'true' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1E9FAB003E'/>  <!-- behavior.expressions.oql.FromClause -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4B1CC3AC008C' 
+                  name = 'fromClauseOfOqlQuery' annotation = '' 
+                  isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1CC01500CB'/>  <!-- behavior.expressions.oql.OqlQuery -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== behavior.expressions.oql.A_condition_conditionOfOqlQuery    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4B1CC5190232' 
+              name = 'A_condition_conditionOfOqlQuery' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4B1CC51B009C' 
+                  name = 'condition' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4B1CC51B00DA' 
+                  name = 'conditionOfOqlQuery' annotation = '' 
+                  isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1CC01500CB'/>  <!-- behavior.expressions.oql.OqlQuery -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== behavior.expressions.oql.A_fromExpression_fromClause    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4B1E9FCA0128' 
+              name = 'A_fromExpression_fromClause' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4B1E9FCB03A9' 
+                  name = 'fromExpression' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4AC9BBE90196'/>  <!-- behavior.expressions.Expression -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4B1E9FCC0000' 
+                  name = 'fromClause' annotation = '' 
+                  isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1E9FAB003E'/>  <!-- behavior.expressions.oql.FromClause -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
+            <!-- ==================== behavior.expressions.oql.A_alias_fromClause    [Association] ==================== -->
+            <Model:Association xmi.id = 'a4B1EA07D03C8' 
+              name = 'A_alias_fromClause' annotation = '' 
+              isRoot = 'true' isLeaf = 'true' isAbstract = 'false' visibility = 'public_vis' 
+              isDerived = 'false' >
+              <Model:Namespace.contents>
+                <Model:AssociationEnd xmi.id = 'a4B1EA07E035B' 
+                  name = 'alias' annotation = '' 
+                  isNavigable = 'true' aggregation = 'none' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '1' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B01B40D02D6'/>  <!-- behavior.expressions.Alias -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+                <Model:AssociationEnd xmi.id = 'a4B1EA07E035D' 
+                  name = 'fromClause' annotation = '' 
+                  isNavigable = 'true' aggregation = 'composite' isChangeable = 'true' >
+                  <Model:AssociationEnd.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:AssociationEnd.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1E9FAB003E'/>  <!-- behavior.expressions.oql.FromClause -->
+                  </Model:TypedElement.type>
+                </Model:AssociationEnd>
+              </Model:Namespace.contents>
+            </Model:Association>
           </Model:Namespace.contents>
         </Model:Package>
         <!-- ==================== behavior.expressions.Expression    [Class] ==================== -->
@@ -281,21 +573,6 @@ inv:
                 <Model:AssociationEnd xmi.idref = 'a4AD819CE000F'/>
               </Model:Reference.referencedEnd>
             </Model:Reference>
-            <!-- ==================== behavior.expressions.Expression.alias    [Reference] ==================== -->
-            <Model:Reference xmi.id = 'ra4B01B4120269' 
-              name = 'alias' annotation = '' 
-              scope = 'instance_level' visibility = 'public_vis' 
-              isChangeable = 'true' >
-              <Model:StructuralFeature.multiplicity>
-                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
-              </Model:StructuralFeature.multiplicity>
-              <Model:TypedElement.type>
-                <Model:Classifier xmi.idref = 'a4B01B40D02D6'/>  <!-- behavior.expressions.Alias -->
-              </Model:TypedElement.type>
-              <Model:Reference.referencedEnd>
-                <Model:AssociationEnd xmi.idref = 'a4B01B4120269'/>
-              </Model:Reference.referencedEnd>
-            </Model:Reference>
             <!-- ==================== behavior.expressions.Expression.fieldInitializer    [Reference] ==================== -->
             <Model:Reference xmi.id = 'ra4B02B5060149' 
               name = 'fieldInitializer' annotation = '' 
@@ -309,6 +586,21 @@ inv:
               </Model:TypedElement.type>
               <Model:Reference.referencedEnd>
                 <Model:AssociationEnd xmi.idref = 'a4B02B5060149'/>
+              </Model:Reference.referencedEnd>
+            </Model:Reference>
+            <!-- ==================== behavior.expressions.Expression.alias    [Reference] ==================== -->
+            <Model:Reference xmi.id = 'ra4B01B4120269' 
+              name = 'alias' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isChangeable = 'true' >
+              <Model:StructuralFeature.multiplicity>
+                <Model:MultiplicityType lower = '0' upper = '1' is_ordered = 'false' is_unique = 'false' />
+              </Model:StructuralFeature.multiplicity>
+              <Model:TypedElement.type>
+                <Model:Classifier xmi.idref = 'a4B01B40D02D6'/>  <!-- behavior.expressions.Alias -->
+              </Model:TypedElement.type>
+              <Model:Reference.referencedEnd>
+                <Model:AssociationEnd xmi.idref = 'a4B01B4120269'/>
               </Model:Reference.referencedEnd>
             </Model:Reference>
             <!-- ==================== behavior.expressions.Expression.isNumeric    [Operation] ==================== -->
@@ -508,10 +800,46 @@ This method determines the implicit context's type for this expression.</Model:M
                 </Model:Parameter>
               </Model:Namespace.contents>
             </Model:Operation>
+            <!-- ==================== behavior.expressions.Expression.getOqlQueriesWhereThisIsFieldInitializer    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B1CF1240213' 
+              name = 'getOqlQueriesWhereThisIsFieldInitializer' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.21' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'false' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B1CC01500CB'/>  <!-- behavior.expressions.oql.OqlQuery -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
+            <!-- ==================== behavior.expressions.Expression.getUsedAliases    [Operation] ==================== -->
+            <Model:Operation xmi.id = 'a4B1E736602DE' 
+              name = 'getUsedAliases' annotation = '' 
+              scope = 'instance_level' visibility = 'public_vis' 
+              isQuery = 'true' >
+              <Model:Namespace.contents>
+                <Model:Parameter xmi.id = 'XX.22' 
+                  name = '*return' annotation = '' 
+                  direction = 'return_dir' >
+                  <Model:Parameter.multiplicity>
+                    <Model:MultiplicityType lower = '0' upper = '-1' is_ordered = 'false' is_unique = 'true' />
+                  </Model:Parameter.multiplicity>
+                  <Model:TypedElement.type>
+                    <Model:Classifier xmi.idref = 'a4B01B40D02D6'/>  <!-- behavior.expressions.Alias -->
+                  </Model:TypedElement.type>
+                </Model:Parameter>
+              </Model:Namespace.contents>
+            </Model:Operation>
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.120' 
+        <Model:Tag xmi.id = 'G.134' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -522,8 +850,8 @@ This method determines the implicit context's type for this expression.</Model:M
             <Model:ModelElement xmi.idref = 'ra4ACB431700CB'/>  <!-- behavior.expressions.Expression.rightOf -->
             <Model:ModelElement xmi.idref = 'ra4ACDBCC9030D'/>  <!-- behavior.expressions.Expression.conditionOf -->
             <Model:ModelElement xmi.idref = 'ra4ACDC45201F5'/>  <!-- behavior.expressions.Expression.operandOf -->
-            <Model:ModelElement xmi.idref = 'ra4B01B4120269'/>  <!-- behavior.expressions.Expression.alias -->
             <Model:ModelElement xmi.idref = 'ra4B02B5060149'/>  <!-- behavior.expressions.Expression.fieldInitializer -->
+            <Model:ModelElement xmi.idref = 'ra4B01B4120269'/>  <!-- behavior.expressions.Expression.alias -->
             <Model:ModelElement xmi.idref = 'ra4AD819CE0000'/>  <!-- behavior.expressions.WithArgument.argument -->
             <Model:ModelElement xmi.idref = 'ra4B02B0DF02E2'/>  <!-- behavior.expressions.FieldInitializer.creationExpression -->
             <Model:ModelElement xmi.idref = 'a4ACB43150251'/>
@@ -537,7 +865,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.121' 
+        <Model:Tag xmi.id = 'G.135' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -563,7 +891,7 @@ This method determines the implicit context's type for this expression.</Model:M
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.122' 
+        <Model:Tag xmi.id = 'G.136' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isNumeric():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -576,7 +904,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.123' 
+        <Model:Tag xmi.id = 'G.137' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isBoolean():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -589,7 +917,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.124' 
+        <Model:Tag xmi.id = 'G.138' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::numericPostType(operator:String, preType1:Type, preType2:Type):Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -614,7 +942,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.126' 
+        <Model:Tag xmi.id = 'G.140' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -655,7 +983,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.127' 
+        <Model:Tag xmi.id = 'G.141' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -698,7 +1026,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.128' 
+        <Model:Tag xmi.id = 'G.142' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -750,7 +1078,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getAliasesDefinedByEvaluating():Set(Alias)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.129' 
+        <Model:Tag xmi.id = 'G.143' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getAliasesDefinedByEvaluating():Set(Alias)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -783,14 +1111,15 @@ body:
         endif
       endif
     endif
-  endif)-&gt;union(self.alias-&gt;asSet())</XMI.any>
+  endif)-&gt;union(self.alias-&gt;asSet())-&gt;union(
+  self.fromClause.alias-&gt;asSet())</XMI.any>
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a4B01B53D0382'/>  <!-- behavior.expressions.Expression.getAliasesDefinedByEvaluating -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.130' 
+        <Model:Tag xmi.id = 'G.144' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getTuplesWhereThisIsFieldInitializer():Bag("Tuple")...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -805,7 +1134,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getAllVisibleAliases():Set(Alias)...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.131' 
+        <Model:Tag xmi.id = 'G.145' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getAllVisibleAliases():Set(Alias)...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -818,6 +1147,7 @@ body:
     Set{}
   endif)-&gt;union(
   self.getTuplesWhereThisIsFieldInitializer().operand.getAliasesDefinedByEvaluating()-&gt;asSet())-&gt;union(
+  self.getOqlQueriesWhereThisIsFieldInitializer().fromClauses.alias-&gt;asSet())-&gt;union(
   if self.getTuplesWhereThisIsFieldInitializer()-&gt;notEmpty() then
     self.getTuplesWhereThisIsFieldInitializer().operand.getAllVisibleAliases()-&gt;asSet()
   else
@@ -825,6 +1155,16 @@ body:
   endif)-&gt;union(
   if self.operandOf-&gt;notEmpty() then
     self.operandOf.getAllVisibleAliases()-&gt;asSet()
+  else
+    Set{}
+  endif)-&gt;union(
+  if self.leftOf-&gt;notEmpty() then
+    self.leftOf.getAllVisibleAliases()-&gt;asSet()
+  else
+    Set{}
+  endif)-&gt;union(
+  if self.rightOf-&gt;notEmpty() then
+    self.rightOf.getAllVisibleAliases()-&gt;asSet()
   else
     Set{}
   endif)-&gt;union(
@@ -847,11 +1187,91 @@ body:
     self.rightOf.getAllVisibleAliases()-&gt;asSet()
   else
     Set{}
+  endif)-&gt;union(
+  if self.conditionOfOqlQuery-&gt;notEmpty() then
+    self.conditionOfOqlQuery.fromClauses.alias-&gt;asSet()
+  else
+    Set{}
+  endif)-&gt;union(
+  if self.fromClause-&gt;notEmpty() then
+    let i = self.fromClause.fromClauseOfOqlQuery.fromClauses-&gt;asSequence().fromExpression-&gt;indexOf(self) in
+    Sequence{1..-1+i}-&gt;collect(j | self.fromClause.fromClauseOfOqlQuery.fromClauses-&gt;asSequence()-&gt;at(j)).alias-&gt;asSet()
+  else
+    Set{}
   endif)
 </XMI.any>
           </Model:Tag.values>
           <Model:Tag.elements>
             <Model:ModelElement xmi.idref = 'a4B0EA3E100CB'/>  <!-- behavior.expressions.Expression.getAllVisibleAliases -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getOqlQueriesWhereThisIsFieldInitializer():Bag(OqlQuery)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.146' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getOqlQueriesWhereThisIsFieldInitializer():Bag(OqlQuery)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getOqlQueriesWhereThisIsFieldInitializer():Bag(OqlQuery)
+body:
+  self.defaultOf-&gt;select(d | d.oclIsKindOf(Field)).oclAsType(structure::Field).
+  otherEnd().type.typedElement-&gt;select(t |
+      t.oclIsKindOf(OqlQuery)).oclAsType(OqlQuery)</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B1CF1240213'/>  <!-- behavior.expressions.Expression.getOqlQueriesWhereThisIsFieldInitializer -->
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Alias)...    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.147' 
+          name = 'org.omg.sap2mof.OperationCodeOcl=context Expression::getUsedAliases():Set(Alias)...' annotation = '' 
+          tagId = 'org.omg.sap2mof.OperationCodeOcl' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>context Expression::getUsedAliases():Set(Alias)
+body:
+  if self.oclIsKindOf(BinaryOperator) then
+    self.oclAsType(BinaryOperator).right.getUsedAliases()-&gt;union(
+    self.oclAsType(BinaryOperator).left.getUsedAliases())
+  else
+    if self.oclIsKindOf(UnaryOperator) then
+      if self.oclIsKindOf(FilterExpression) then
+        self.oclAsType(UnaryOperator).operand.getUsedAliases()-&gt;union(
+                self.oclAsType(FilterExpression).condition.getUsedAliases())
+      else
+        if self.oclIsKindOf("Tuple") then
+          self.oclAsType(UnaryOperator).operand.getUsedAliases()-&gt;union(
+                self.oclAsType("Tuple").type.getNavigableFields().defaultValue.getUsedAliases()-&gt;asSet())
+        else
+          self.oclAsType(UnaryOperator).operand.getUsedAliases()
+        endif
+      endif
+    else
+      if self.oclIsKindOf(MultiObjectLiteral) then
+        self.oclAsType(MultiObjectLiteral).elements.getUsedAliases()-&gt;asSet()
+      else
+        if self.oclIsKindOf(ObjectCreationExpression) then
+          self.oclAsType(ObjectCreationExpression).fieldInitializers.initExpression.getUsedAliases()-&gt;asSet()
+        else
+          if self.oclIsKindOf(NamedValueExpression) then
+            let nv = self.oclAsType(NamedValueExpression).namedValue in
+              if nv.oclIsKindOf(Alias) then
+                nv.oclAsType(Alias)-&gt;asSet()
+              else
+                Set{}
+              endif
+          else
+            if self.oclIsKindOf(OqlQuery) then
+              self.oclAsType(OqlQuery).fromClauses.fromExpression.getUsedAliases()-&gt;asSet()-&gt;union(
+              self.oclAsType(OqlQuery).condition.getUsedAliases()-&gt;asSet())
+            else
+              Set{}
+            endif
+          endif
+        endif
+      endif
+    endif
+  endif</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'a4B1E736602DE'/>  <!-- behavior.expressions.Expression.getUsedAliases -->
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.BinaryBooleanOperator    [Class] ==================== -->
@@ -1364,7 +1784,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.21' 
+                <Model:Parameter xmi.id = 'XX.23' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1382,7 +1802,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.22' 
+                <Model:Parameter xmi.id = 'XX.24' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -1397,7 +1817,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.132' 
+        <Model:Tag xmi.id = 'G.148' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WithArgument::getEnclosingTypeFromWithArgument():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -1414,7 +1834,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.expressions.org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.133' 
+        <Model:Tag xmi.id = 'G.149' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context WithArgument::getImplicitContextTypeFromWithArgument():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2100,14 +2520,14 @@ inv:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.117' 
+    <Model:Import xmi.id = 'G.129' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
         <Model:Namespace xml:link = 'simple' href = 'PrimitiveTypes.xml|a3B5389EE0204'/>
       </Model:Import.importedNamespace>
     </Model:Import>
-    <Model:Import xmi.id = 'G.125' 
+    <Model:Import xmi.id = 'G.139' 
       name = 'structure' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>
@@ -2179,7 +2599,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.23' 
+                <Model:Parameter xmi.id = 'XX.25' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2197,7 +2617,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.24' 
+                <Model:Parameter xmi.id = 'XX.26' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2215,7 +2635,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.25' 
+                <Model:Parameter xmi.id = 'XX.27' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2230,7 +2650,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.134' 
+        <Model:Tag xmi.id = 'G.150' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2248,7 +2668,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.135' 
+        <Model:Tag xmi.id = 'G.151' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -2265,7 +2685,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.136' 
+        <Model:Tag xmi.id = 'G.152' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2286,7 +2706,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.137' 
+        <Model:Tag xmi.id = 'G.153' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getOuterMostBlock():Block...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2303,7 +2723,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.138' 
+        <Model:Tag xmi.id = 'G.154' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Block::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2350,7 +2770,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.26' 
+                <Model:Parameter xmi.id = 'XX.28' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2368,7 +2788,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.27' 
+                <Model:Parameter xmi.id = 'XX.29' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2386,7 +2806,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.28' 
+                <Model:Parameter xmi.id = 'XX.30' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2401,7 +2821,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.139' 
+        <Model:Tag xmi.id = 'G.155' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getEnclosingType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2418,7 +2838,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.140' 
+        <Model:Tag xmi.id = 'G.156' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2443,7 +2863,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.141' 
+        <Model:Tag xmi.id = 'G.157' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Statement::getImplicitContextType():Type...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -2649,7 +3069,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.29' 
+                <Model:Parameter xmi.id = 'XX.31' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -2690,7 +3110,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.actions.org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.142' 
+        <Model:Tag xmi.id = 'G.158' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Assignment::getOwningClass():FinexClass...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3048,7 +3468,7 @@ inv:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.30' 
+                <Model:Parameter xmi.id = 'XX.32' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3063,7 +3483,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.store=no    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.143' 
+        <Model:Tag xmi.id = 'G.159' 
           name = 'org.omg.sap2mof.store=no' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3077,7 +3497,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== behavior.functions.org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.144' 
+        <Model:Tag xmi.id = 'G.160' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Function::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3145,7 +3565,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.145' 
+        <Model:Tag xmi.id = 'G.161' 
           name = 'org.omg.sap2mof.store=yes' annotation = '' 
           tagId = 'org.omg.sap2mof.store' >
           <Model:Tag.values>
@@ -3198,7 +3618,7 @@ body:
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
-                <Model:Parameter xmi.id = 'XX.31' 
+                <Model:Parameter xmi.id = 'XX.33' 
                   name = '*return' annotation = '' 
                   direction = 'return_dir' >
                   <Model:Parameter.multiplicity>
@@ -3213,7 +3633,7 @@ body:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== behavior.functions.org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::isSideEffectFree():Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.146' 
+        <Model:Tag xmi.id = 'G.162' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context SignatureImplementation::isSideEffectFree():Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -3328,7 +3748,7 @@ body:
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.147' 
+    <Model:Import xmi.id = 'G.163' 
       name = 'finex' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

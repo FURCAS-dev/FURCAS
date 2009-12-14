@@ -21,20 +21,15 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 public class GeneratedParserAndFactoryBasedTest extends
 		GeneratedParserBasedTest {
-	
-	private static String metamodelId = null;
 
 	public static void generateParserFactoryForLanguage(String language,
-			String completeMetamodelPackageName, String metamodelProjectName, String metamodelId)
+			String completeMetamodelPackageName, String metamodelProjectName)
 			throws FileNotFoundException, GrammarGenerationException,
 			ModelAdapterException, IOException {
 		assertNotNull(language);
 		assertNotNull(completeMetamodelPackageName);
 		assertNotNull(metamodelProjectName);
-		assertNotNull(metamodelId);
 		assertNotNull(generationHelper);
-		
-		GeneratedParserAndFactoryBasedTest.metamodelId = metamodelId;
 
 		generationHelper.generateParserFactoryClasses(language,
 				completeMetamodelPackageName);
@@ -62,12 +57,19 @@ public class GeneratedParserAndFactoryBasedTest extends
 		RefPackage metamodelPackage = parserFactory
 				.getMetamodelPackage(connection);
 
-		IncrementalParserFacade facade = new IncrementalParserFacade(
-				parserFactory, new TextBlocksAwareModelAdapter(
-						new MOINModelAdapter(metamodelPackage, connection,
-								MOINTCSMetaConnectionProvider
-										.getPartitionsOfMetamodel(metamodelId),
-								null)), connection, null);
+		IncrementalParserFacade facade = createFacade(parserFactory,
+				metamodelPackage);
 		return facade;
+	}
+
+	public static IncrementalParserFacade createFacade(
+			AbstractParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
+			RefPackage metamodelPackage) {
+		return new IncrementalParserFacade(parserFactory,
+				new TextBlocksAwareModelAdapter(new MOINModelAdapter(
+						metamodelPackage, connection,
+						MOINTCSMetaConnectionProvider
+								.getPartitionsOfMetamodel(metamodelId), null)),
+				connection, null);
 	}
 }

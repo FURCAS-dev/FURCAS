@@ -125,7 +125,6 @@ public class EnumerationTemplateEnumLiteralMappingWrapper extends com.sap.tc.moi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.EnumerationTemplateEnumLiteralMapping> get___JmiInterface() {
         return tcs.EnumerationTemplateEnumLiteralMapping.class;
     }

@@ -24,6 +24,7 @@ public interface ObjectCreationExpression extends dataaccess.expressions.Express
     // references
     public data.classes.SapClass getClassToInstantiate() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
     public void setClassToInstantiate(data.classes.SapClass newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    public java.util.Collection<dataaccess.expressions.MethodCallExpression> getInitializers() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -46,6 +47,17 @@ public interface ObjectCreationExpression extends dataaccess.expressions.Express
                 __classToInstantiate = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.ObjectCreationExpression,data.classes.SapClass>( "E075D95551F2A7D73E4B11DE93B00018DE1146FF", "sap.com/moin/mm/ap/core", new java.lang.String[] { "dataaccess", "expressions", "ObjectCreationExpression", "classToInstantiate" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __classToInstantiate;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.ObjectCreationExpression,java.util.Collection<dataaccess.expressions.MethodCallExpression>> __initializers;
+        /**
+         * Returns the descriptor for the <code>initializers</code> reference.
+         * @return  the descriptor for the <code>initializers</code> reference
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.ObjectCreationExpression,java.util.Collection<dataaccess.expressions.MethodCallExpression>> INITIALIZERS( ) {
+            if ( __initializers == null ) {
+                __initializers = new com.sap.tc.moin.repository.mmi.descriptors.ReferenceDescriptor<com.sap.tc.moin.repository.mmi.model.Reference,dataaccess.expressions.ObjectCreationExpression,java.util.Collection<dataaccess.expressions.MethodCallExpression>>( "E075D955BEEDFF10E32F11DEA691F6C00A140FF0", "sap.com/moin/mm/ap/core", new java.lang.String[] { "dataaccess", "expressions", "ObjectCreationExpression", "initializers" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __initializers;
         }
         /**
          * Returns the descriptor for the <code>conformsTo</code> operation.

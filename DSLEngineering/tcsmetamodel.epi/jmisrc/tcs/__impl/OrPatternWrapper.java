@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class OrPatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.OrPatternImpl> implements tcs.OrPattern,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class OrPatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.OrPatternImpl getCastWrappedObject() {
         return (tcs.__impl.OrPatternImpl) getWrappedObject();
     }
@@ -161,7 +160,6 @@ public class OrPatternWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.OrPattern> get___JmiInterface() {
         return tcs.OrPattern.class;
     }

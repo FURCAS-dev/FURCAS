@@ -153,6 +153,14 @@ public class ParsingTextblocksActivator extends Plugin {
      * @param e the e
      */
     public static void logError(Exception e) {
+        logError(e, "");
+    }
+    /**
+     * Log error.
+     * 
+     * @param e the e
+     */
+    public static void logError(Exception e, String message) {
         String msg;
         if (e instanceof CoreException) {
             IStatus status = ((CoreException) e).getStatus();
@@ -175,6 +183,7 @@ public class ParsingTextblocksActivator extends Plugin {
         if (msg == null) {
             msg = String.valueOf(e);
         }
+        msg = message + msg;
     	if (getDefault() != null) {
 			getDefault().getLog().log(
 					new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, msg, e));

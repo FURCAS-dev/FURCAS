@@ -14,6 +14,7 @@ import org.antlr.runtime.Parser;
 import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
@@ -25,6 +26,8 @@ import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 
 import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
+import com.sap.ide.cts.editor.document.CtsDocument;
+import com.sap.ide.cts.editor.document.TextBlocksModelStore;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ParserFacade;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
@@ -32,6 +35,7 @@ import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.DelegationParsingObserver;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.Connection;
 
 public class CtsContentAssistProcessor implements IContentAssistProcessor {
@@ -59,6 +63,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 					"Syntax definition model for language '" + language
 							+ "' does not exist in connection.");
 		}
+
+		initClassTemplateMap();
 	}
 
 	public CtsContentAssistProcessor(ConcreteSyntax syntax,
@@ -72,6 +78,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 		this.connection = TcsUtil.getConnectionFromRefObject(syntax);
 		Assert.isNotNull(connection, "moin connection is null");
+		
+		initClassTemplateMap();
 	}
 
 	/**
@@ -132,6 +140,22 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		return token.getCharPositionInLine();
 	}
 
+	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
+			int line, int charPositionInLine) {
+		TextBlocksModel tbModel = null;
+		IDocument doc = viewer.getDocument();
+		if (doc instanceof CtsDocument) {
+			TextBlocksModelStore store = ((CtsDocument) doc)
+					.getTextBlocksModelStore();
+			if (store != null) {
+				tbModel = store.getModel();
+			}
+		}
+
+		return computeCompletionProposals(viewer, line, charPositionInLine,
+				tbModel);
+	}
+
 	/**
 	 * 
 	 * @param viewer
@@ -142,13 +166,12 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	 * @return
 	 */
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
-			int line, int charPositionInLine) {
+			int line, int charPositionInLine, TextBlocksModel tbModel) {
 
 		try {
 			List<ICompletionProposal> results = null;
 
 			initParsingHandler(viewer);
-			initClassTemplateMap();
 
 			String prefix = "";
 
@@ -188,7 +211,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 					if (CtsContentAssistUtil.isInToken(line,
 							charPositionInLine, context.getToken())) {
 
-						CtsContentAssistContext previousContext = getPreviousContext(context);
+						CtsContentAssistContext previousContext = getPreviousContext(
+								context, viewer);
 
 						// get proposals that follow previous token, and apply
 						// prefix filter
@@ -371,17 +395,20 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	}
 
 	private void initClassTemplateMap() {
-		classTemplateMap = parsingHandler.getClassTemplateMap();
+		classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
 	}
 
 	private CtsContentAssistContext getPreviousContext(
-			CtsContentAssistContext context) {
+			CtsContentAssistContext context, ITextViewer viewer)
+			throws BadLocationException {
 		// get the context one offset before this context
 		return getContext(getLine(context.getToken()),
 				getCharPositionInLine(context.getToken()) - 1);
 	}
 
-	private CtsContentAssistContext getContext(int line, int charPositionInLine) {
+	private CtsContentAssistContext getContext(int line, int charPositionInLine)
+			throws BadLocationException {
+
 		return parsingHandler.getFloorContext(line, charPositionInLine);
 	}
 
@@ -391,7 +418,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 				.getSyntaxesInConnection(connection);
 
 		for (ConcreteSyntax syntax : syntaxList) {
-			if (syntax.getName().equals(language)) {
+			if (syntax != null && syntax.getName() != null && syntax.getName().equals(language)) {
 				return syntax;
 			}
 		}

@@ -49,6 +49,7 @@ import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.grammar.impl.context.ContextManager;
 import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
+import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -1319,7 +1320,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
                                 + " is locked! Will try again later");
                         deferredReferences.add(ref);
                     } catch (Exception ex) {
-                        Activator.logError(ex, "Could not re-resolve reference: "
+                        ParsingTextblocksActivator.logError(ex, "Could not re-resolve reference: "
                                 + ref);
                     }
                 }

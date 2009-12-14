@@ -13,9 +13,10 @@ public final class ObjectCreationExpressionImpl extends com.sap.tc.moin.reposito
     
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
         FEATURE_IDS.put("ownedTypeDefinition", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("classToInstantiate", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("initializers", Integer.valueOf(2)); //$NON-NLS-1$
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(6);
         OPERATION_IDS.put("conformsTo", Integer.valueOf(0)); //$NON-NLS-1$
@@ -79,6 +80,18 @@ public final class ObjectCreationExpressionImpl extends com.sap.tc.moin.reposito
           ___changeReference(connection, /* mofId of association */ "E075D95551F518AF3E4B11DEABE20018DE1146FF", /* mofId of reference */ "E075D95551F2A7D73E4B11DE93B00018DE1146FF" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
     
     }
+    public java.util.Collection getInitializers() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( get___CurrentConnection(), this, get___EndAndMetaObject( "E075D95527D15592E37611DE93F1C38CC0A80182" /* attribute or association */, 0 ) ); //$NON-NLS-1$
+       
+    }
+    public java.util.Collection getInitializers(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        return (java.util.Collection) ___queryElementsAtOtherLinkEnd( connection, this, get___EndAndMetaObject( "E075D95527D15592E37611DE93F1C38CC0A80182" /* attribute or association */, 0 ) ); //$NON-NLS-1$
+       
+    }
+
+
 
     // methods for internal attribute setter
 
@@ -98,6 +111,9 @@ public final class ObjectCreationExpressionImpl extends com.sap.tc.moin.reposito
                 break;
             case 1: 
                 result = getClassToInstantiate(connection);
+                break;
+            case 2: 
+                result = getInitializers(connection);
                 break;
         default:
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "refGetValue(String)"); //$NON-NLS-1$
@@ -120,6 +136,10 @@ public final class ObjectCreationExpressionImpl extends com.sap.tc.moin.reposito
                     
             case 1:
                 ___changeReference(connection, "E075D95551F518AF3E4B11DEABE20018DE1146FF" /* mofId of association */, "E075D95551F2A7D73E4B11DE93B00018DE1146FF" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
+                break;
+                    
+            case 2:
+                ___changeReference(connection, "E075D95527D15592E37611DE93F1C38CC0A80182" /* mofId of association */, "E075D955BEEDFF10E32F11DEA691F6C00A140FF0" /* mofId of reference */, value, 0); //$NON-NLS-1$ //$NON-NLS-2$     
                 break;
                     
         default:

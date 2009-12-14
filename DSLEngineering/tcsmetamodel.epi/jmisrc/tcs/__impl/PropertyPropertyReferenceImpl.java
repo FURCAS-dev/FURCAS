@@ -64,7 +64,6 @@ public final class PropertyPropertyReferenceImpl extends com.sap.tc.moin.reposit
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.PropertyPropertyReference> get___JmiInterface() {
         return tcs.PropertyPropertyReference.class;
     }

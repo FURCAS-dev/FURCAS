@@ -4,7 +4,7 @@ syntax TCS{
 
   primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";
 
-  primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";
+  primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\\\"' + %value%.toCString() + '\\\"'";
 
   primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:value="Integer.valueOf(%token%)";
 
@@ -25,15 +25,17 @@ syntax TCS{
     :
     ;
   template TCS::ConcreteSyntax main context
-    :"syntax" name (isDefined(k)?"(" "k" "=" "k" ")") "{" [templates (isDefined(keywords)?"keywords" "{" ["keywords"] "}") (isDefined(symbols)?"symbols" "{" ["symbols"] "}") operatorLists tokens (isDefined(lexer)?"lexer" "=" "lexer"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ";")]{nbNL=2} "}"
+    :"syntax" name (isDefined(k)?"(" "k" "=" k ")") "{" [templates (isDefined(keywords)?"keywords" "{" [keywords] "}") (isDefined(symbols)?"symbols" "{" [symbols] "}") operatorLists tokens (isDefined(lexer)?"lexer" "=" lexer{as=stringSymbol} ";")]{nbNL=2} "}"
     ;
   function reference(TCS::QualifiedNamedElement)
     :(isDefined(metaReference)?metaReference:"->" names{separator="::"})
     ;
   template TCS::Template abstract;
 
+  template TCS::ContextTemplate abstract;
+
   template TCS::PrimitiveTemplate
-    :"primitiveTemplate" templateName "for" $reference (isDefault?"default") "using" tokenName (orKeyword?"orKeyword") ":" "value" "=" "value"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} (isDefined(serializer)?"," "serializer" "=" "serializer"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}) ";" textBlockDefinition{forcedUpper=1}
+    :"primitiveTemplate" templateName "for" $reference (isDefault?"default") "using" tokenName (orKeyword?"orKeyword") ":" "value" "=" value{as=stringSymbol} (isDefined(serializer)?"," "serializer" "=" serializer{as=stringSymbol}) ";" textBlockDefinition{forcedUpper=1}
     ;
   template TCS::EnumerationTemplate context addToContext
     :"enumerationTemplate" $reference (automatic?"auto") (isDefined(mappings)?[":" [mappings{separator=","}]{startNL=false} ";"]:";") textBlockDefinition{forcedUpper=1}
@@ -42,10 +44,10 @@ syntax TCS{
     :literal "=" element
     ;
   template TCS::ClassTemplate context addToContext
-    :"template" $reference (isReferenceOnly?"referenceOnly":(isDefined(mode)?"#" mode) (isDefined(disambiguate)?"(" "disambiguate" "=" "disambiguate"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ")") (isDefined(disambiguateV3)?"(" "disambiguateV3" "=" "disambiguateV3"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ")") (isMulti?"multi") (isMain?"main") (isAbstract?(isDeep?"deep") "abstract") (isOperatored?"operatored" (isDefined(operatorList)?"(" operatorList{refersTo=name} ")")) (isContext?"context" (isDefined(contextTags)?contextTags)) (isAddToContext?"addToContext") (isNonPrimary?"nonPrimary") (isDefined(prefixSequence)?"prefix" [":" [prefixSequence]{startNL=false}])) (isDefined(templateSequence)?[":" [templateSequence]{startNL=false} ";"]:";") textBlockDefinition{forcedUpper=1}
+    :"template" $reference (isReferenceOnly?"referenceOnly":(isDefined(mode)?"#" mode) (isDefined(disambiguate)?"(" "disambiguate" "=" disambiguate{as=stringSymbol} ")") (isDefined(disambiguateV3)?"(" "disambiguateV3" "=" disambiguateV3{as=stringSymbol} ")") (isMulti?"multi") (isMain?"main") (isAbstract?(isDeep?"deep") "abstract") (isOperatored?"operatored" (isDefined(operatorList)?"(" operatorList{refersTo=name} ")")) (isContext?"context" (isDefined(contextTags)?contextTags)) (isAddToContext?"addToContext") (isNonPrimary?"nonPrimary") (isDefined(prefixSequence)?"prefix" [":" [prefixSequence]{startNL=false}])) (isDefined(templateSequence)?[":" [templateSequence]{startNL=false} ";"]:";") textBlockDefinition{forcedUpper=1}
     ;
   template TCS::OperatorTemplate context addToContext
-    :"operatorTemplate" $reference "(" "operators" "=" "operators"{refersTo=name} "," "source" "=" storeLeftSideTo (isDefined(storeOperatorTo)?"," "storeOpTo" "=" storeOperatorTo) (isDefined(storeRightSideTo)?"," "storeRightTo" "=" storeRightSideTo) (isDefined("disambiguate")?"," "disambiguate" "=" "disambiguate"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}) (isDefined("disambiguateV3")?"," "disambiguateV3" "=" "disambiguateV3"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}) ")" (isReferenceOnly?"referenceOnly":(isContext?"context" (isDefined(contextTags)?contextTags))) (isDefined(otSequence)?[":" [otSequence]{startNL=false} ";"]:";") textBlockDefinition{forcedUpper=1}
+    :"operatorTemplate" $reference "(" "operators" "=" operators{refersTo=name} "," "source" "=" storeLeftSideTo (isDefined(storeOperatorTo)?"," "storeOpTo" "=" storeOperatorTo) (isDefined(storeRightSideTo)?"," "storeRightTo" "=" storeRightSideTo) (isDefined(disambiguate)?"," "disambiguate" "=" disambiguate{as=stringSymbol}) (isDefined(disambiguateV3)?"," "disambiguateV3" "=" disambiguateV3{as=stringSymbol}) ")" (isReferenceOnly?"referenceOnly":(isContext?"context" (isDefined(contextTags)?contextTags))) (isDefined(otSequence)?[":" [otSequence]{startNL=false} ";"]:";") textBlockDefinition{forcedUpper=1}
     ;
   template TCS::FunctionTemplate context addToContext
     :"function" functionName "(" $reference ")" [":" [functionSequence]{startNL=false} ";"]
@@ -59,7 +61,7 @@ syntax TCS{
   template TCS::SequenceElement abstract;
 
   template TCS::LiteralRef
-    :referredLiteral{refersTo="value", lookIn=#all, as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";, autoCreate=ifmissing, createAs=Keyword} {{parentTemplate=lookIn("OCL:#context")}}
+    :referredLiteral{refersTo=value, lookIn=#all, as=stringSymbol, autoCreate=ifmissing, createAs=Keyword} {{parentTemplate=lookIn("OCL:#context")}}
     ;
   template TCS::PropertyReference
     :(isDefined(strucfeature)?strucfeature{refersTo=name, query="OCL:let c = #context.oclAsType(TCS::Template).metaReference in
@@ -94,7 +96,7 @@ syntax TCS{
 		  						)->collect(ae | ae.oclAsType(Model::AssociationEnd).otherEnd()
 		  					) 
 		  				endif
-		  					", as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";}:"->" name{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";})
+		  					", filter="",invert="name", as=identifierOrKeyword}:"->" name{as=identifierOrKeyword})
     ;
   template TCS::Property
     :propertyReference (isDefined(propertyArgs)?"{" propertyArgs{separator=","} "}") {{parentTemplate=lookIn("OCL:#context")}}
@@ -112,7 +114,7 @@ syntax TCS{
     :"[[" sequences{separator="|"} "]]" (isMulti?"*") {{parentTemplate=lookIn("OCL:#context")}}
     ;
   template TCS::SequenceInAlternative
-    :(isDefined("disambiguate")?"disambiguate" "(" "disambiguate"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ")") elements
+    :(isDefined(disambiguate)?"disambiguate" "(" disambiguate{as=stringSymbol} ")") elements
     ;
   template TCS::FunctionCall
     :"$" calledFunction{refersTo=functionName} {{parentTemplate=lookIn("OCL:#context")}}
@@ -125,50 +127,58 @@ syntax TCS{
   template TCS::PropertyInit abstract;
 
   template TCS::PrimitivePropertyInit
-    :propertyReference (isDefault?"<-":"=") "value"
+    :propertyReference (isDefault?"<-":"=") value
     ;
   template TCS::LookupPropertyInit
-    :propertyReference (isDefault?"<-":"=") "lookIn" "(" "value"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ")"
+    :propertyReference (isDefault?"<-":"=") "lookIn" "(" value{as=stringSymbol} ")"
     ;
   template TCS::ForeachPredicatePropertyInit
-    :propertyReference (isDefault?"<-":"=") "foreach" "(" "value"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} (isDefined(mode)?"," "mode" "=" "mode"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}) (isDefined(predicatesemantic)?"," predicatesemantic{separator=","}) ")"
+    :propertyReference (isDefault?"<-":"=") "foreach" "(" value{as=stringSymbol} (isDefined(mode)?"," "mode" "=" mode{as=stringSymbol}) (isDefined(predicatesemantic)?"," predicatesemantic{separator=","}) ")"
     ;
   template TCS::PredicateSemantic
-    :(isDefined(when)?"when" "=" "when"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ",") (isDefined("mode")?"mode" "=" "mode"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ",") "as" "=" "as"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";, query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", filter="->select(t | 
-							if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
-							 	t.oclAsType(TCS::ClassTemplate).metaReference.name = ? 
-							 		and ( 
-							 	t.oclAsType(TCS::ClassTemplate).metaReference.allSupertypes()
-							 	->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)		
-							 	->includesAll(self.foreachParent.propertyReference.strucfeature.type.allSupertypes()))
-							  		and ( 
-							  		if self.mode->isEmpty() then	
-							 			t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
-							                else 		
-							 			t.oclAsType(TCS::ClassTemplate).mode = self.mode 
-							 		endif ) 
-							else 
-								if (t.oclIsTypeOf(TCS::PrimitiveTemplate)) then  			
-							 		t.oclAsType(TCS::PrimitiveTemplate).templateName = ? 
-							 	else 
-							 		false 
-							 	endif 
- 	   						endif)
-							"}
+    :(isDefined(when)?"when" "=" when{as=stringSymbol} ",") (isDefined(mode)?"mode" "=" mode{as=stringSymbol} ",") "as" "=" as{as=identifierOrKeyword, query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", filter="->select(t | 
+									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
+										t.oclAsType(TCS::ClassTemplate).metaReference.name = ?
+										and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
+											->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
+											->includes(self.foreachParent.propertyReference.strucfeature.type)
+										and (
+											if(not self.mode.oclIsUndefined()) then
+												t.oclAsType(TCS::ClassTemplate).mode = self.mode
+											else
+												t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode
+											endif
+										)									
+									else
+										if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then
+											t.oclAsType(TCS::PrimitiveTemplate).templateName = ?
+										else
+											false
+										endif
+									endif)
+								",invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+											self.oclAsType(TCS::ClassTemplate).metaReference.name
+										else 
+											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+												self.oclAsType(TCS::PrimitiveTemplate).templateName
+											else
+												'<no name?>'
+											endif
+										endif"}
     ;
   template TCS::PropertyArg abstract;
 
   template TCS::RefersToPArg
-    :"refersTo" "=" propertyName{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";}
+    :"refersTo" "=" propertyName{as=identifierOrKeyword}
     ;
   template TCS::LookInPArg
-    :"lookIn" "=" (propertyName="#all"?"#" "all":propertyName{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";, separator="."})
+    :"lookIn" "=" (propertyName="#all"?"#" "all":propertyName{as=identifierOrKeyword, separator="."})
     ;
   template TCS::CreateInPArg
-    :"createIn" "=" propertyName{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";, separator="."}
+    :"createIn" "=" propertyName{as=identifierOrKeyword, separator="."}
     ;
   template TCS::AsPArg
-    :"as" "=" "template"{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";, query="OCL:self.property.parentTemplate.concreteSyntax.templates", filter="->select(t | 
+    :"as" "=" template{as=identifierOrKeyword, query="OCL:self.property.parentTemplate.concreteSyntax.templates", filter="->select(t | 
 									if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
 										t.oclAsType(TCS::ClassTemplate).metaReference.name = ? 
 										and(self.property.propertyReference.strucfeature.type.allSupertypes()
@@ -195,16 +205,24 @@ syntax TCS{
 											false
 										endif
 									endif)
-								"}
+								",invert="OCL:if self.oclIsTypeOf(TCS::ClassTemplate) then
+											self.oclAsType(TCS::ClassTemplate).metaReference.name
+										else 
+											if self.oclIsTypeOf(TCS::PrimitiveTemplate) then
+												self.oclAsType(TCS::PrimitiveTemplate).templateName
+											else
+												'<no name?>'
+											endif
+										endif"}
     ;
   template TCS::SeparatorPArg
     :"separator" "=" separatorSequence
     ;
   template TCS::DisambiguatePArg
-    :"disambiguate" "=" disambiguation{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}
+    :"disambiguate" "=" disambiguation{as=stringSymbol}
     ;
   template TCS::AutoCreatePArg
-    :"autoCreate" "=" "value"
+    :"autoCreate" "=" value
     ;
   enumerationTemplate TCS::AutoCreateKind
     :#always="always",
@@ -218,42 +236,42 @@ syntax TCS{
     :"partial"
     ;
   template TCS::ForcedLowerPArg
-    :"forcedLower" "=" "value"
+    :"forcedLower" "=" value
     ;
   template TCS::ForcedUpperPArg
-    :"forcedUpper" "=" "value"
+    :"forcedUpper" "=" value
     ;
   template TCS::CreateAsPArg
-    :"createAs" "=" name{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";, separator="::"}
+    :"createAs" "=" name{as=identifierOrKeyword, separator="::"}
     ;
   template TCS::QueryPArg
-    :"query" "=" "query"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}
+    :"query" "=" query{as=stringSymbol}
     ;
   template TCS::FilterPArg
-    :"filter" "=" "filter"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} (isDefined(invert)?"," "invert" "=" "invert"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";})
+    :"filter" "=" filter{as=stringSymbol} (isDefined(invert)?"," "invert" "=" invert{as=stringSymbol})
     ;
   template TCS::ModePArg
-    :"mode" "=" "mode"{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";}
+    :"mode" "=" mode{as=identifierOrKeyword}
     ;
   template TCS::BlockArg abstract;
 
   template TCS::NbNLBArg
-    :"nbNL" "=" "value"
+    :"nbNL" "=" value
     ;
   template TCS::IndentIncrBArg
-    :"indentIncr" "=" "value"
+    :"indentIncr" "=" value
     ;
   template TCS::StartNLBArg
-    :"startNL" "=" ("value"?"true":"false")
+    :"startNL" "=" (value?"true":"false")
     ;
   template TCS::StartNbNLBArg
-    :"startNbNL" "=" "value"
+    :"startNbNL" "=" value
     ;
   template TCS::EndNLBArg
-    :"endNL" "=" ("value"?"true":"false")
+    :"endNL" "=" (value?"true":"false")
     ;
   template TCS::Symbol addToContext
-    :name "=" "value"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} (isDefined(spaces)?":" spaces{separator=","}) ";"
+    :name "=" value{as=stringSymbol} (isDefined(spaces)?":" spaces{separator=","}) ";"
     ;
   enumerationTemplate TCS::SpaceKind
     :#leftSpace="leftSpace",
@@ -262,16 +280,16 @@ syntax TCS{
       #rightNone="rightNone"
     ;
   template TCS::Keyword addToContext
-    :name "=" "value"{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";} ";"
+    :name "=" value{as=stringSymbol} ";"
     ;
   template TCS::OperatorList addToContext
     :"operators" (isDefined(name)?name) "{" [priorities] "}"
     ;
   template TCS::Priority
-    :"priority" "value" (associativity=#left?:"," associativity) "{" ["operators"] "}"
+    :"priority" value (associativity=#left?:"," associativity) "{" [operators] "}"
     ;
   template TCS::Operator addToContext
-    :(isPostfix?"postfix") name "=" (isDefined(literal)?[[literal{refersTo=name}| literal{refersTo="value", lookIn=#all, as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";, autoCreate=ifmissing, createAs=Keyword}]]) "," arity ";"
+    :(isPostfix?"postfix") name "=" (isDefined(literal)?[[literal{refersTo=name}| literal{refersTo=value, lookIn=#all, as=stringSymbol, autoCreate=ifmissing, createAs=Keyword}]]) "," arity ";"
     ;
   enumerationTemplate TCS::Associativity
     :#left="left",
@@ -285,7 +303,7 @@ syntax TCS{
   template TCS::AtomExp abstract;
 
   template TCS::EqualsExp
-    :propertyReference "=" "value"
+    :propertyReference "=" value
     ;
   template TCS::BooleanPropertyExp
     :propertyReference
@@ -302,7 +320,7 @@ syntax TCS{
   template TCS::Value abstract;
 
   template TCS::StringVal
-    :symbol{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}
+    :symbol{as=stringSymbol}
     ;
   template TCS::IntegerVal
     :symbol
@@ -311,7 +329,7 @@ syntax TCS{
     :"-" symbol
     ;
   template TCS::EnumLiteralVal
-    :"#" name{as=primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";}
+    :"#" name{as=identifierOrKeyword}
     ;
   template TCS::Token
     :(isOmitted?"omitted") "token" name ":" pattern ";"
@@ -327,18 +345,18 @@ syntax TCS{
   template TCS::Rule abstract;
 
   template TCS::WordRule
-    :"word" "(" "start" "=" "start" "," "part" "=" "part" (isDefined(end)?"," "end" "=" "end") ")"
+    :"word" "(" "start" "=" start "," "part" "=" part (isDefined(end)?"," "end" "=" end) ")"
     ;
   template TCS::EndOfLineRule
-    :"endOfLine" "(" "start" "=" (dropStart?"drop") "start" ")"
+    :"endOfLine" "(" "start" "=" (dropStart?"drop") start ")"
     ;
   template TCS::MultiLineRule
-    :"multiLine" "(" "start" "=" (dropStart?"drop") "start" "," "end" "=" (dropEnd?"drop") "end" (isDefined(esc)?"," "esc" "=" "esc" (isDefined(escMappings)?"," "(" escMappings{separator=","} ")")) ")"
+    :"multiLine" "(" "start" "=" (dropStart?"drop") start "," "end" "=" (dropEnd?"drop") end (isDefined(esc)?"," "esc" "=" esc (isDefined(escMappings)?"," "(" escMappings{separator=","} ")")) ")"
     ;
   template TCS::Mapping abstract;
 
   template TCS::SimpleMapping
-    :key "->" "value"
+    :key "->" value
     ;
   template TCS::WildcardMapping
     :"." "->" "."
@@ -350,7 +368,7 @@ syntax TCS{
     :"hex"
     ;
   template TCS::StringPattern
-    :name{as=primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\"' + %value%.toCString() + '\"'";}
+    :name{as=stringSymbol}
     ;
   template TCS::ClassPattern
     :"[" name "]"
@@ -397,7 +415,7 @@ syntax TCS{
     }
   }
 
-  token COMMENT:endOfLine(start="--");
+  omitted token COMMENT:endOfLine(start="--");
 
   lexer=
 
@@ -405,18 +423,18 @@ syntax TCS{
 %options testLiterals = false;
 
 NL
-	:	(	'\r' '\n'
-		|	'\n' '\r'	//Improbable
-		|	'\r'
-		|	'\n'
+	:	(	'\\r' '\\n'
+		|	'\\n' '\\r'	//Improbable
+		|	'\\r'
+		|	'\\n'
 		)
-	{newline();}
+	{newline();$channel=HIDDEN;}
 	;
 
 WS
 	:	(	' '
-		|	'\t'
-		)
+		|	'\\t'
+		){$channel=HIDDEN;}
 	;
 
 %protected
@@ -430,9 +448,9 @@ ALPHA
 	|	'A'..'Z'
 	|	'_'
 	//For Unicode compatibility (from 0000 to 00ff)
-	|	'\u00C0' .. '\u00D6'
-	|	'\u00D8' .. '\u00F6'
-	|	'\u00F8' .. '\u00FF'
+	|	'\\u00C0' .. '\\u00D6'
+	|	'\\u00D8' .. '\\u00F6'
+	|	'\\u00F8' .. '\\u00FF'
 	;
 	
 
@@ -447,12 +465,12 @@ SNAME
 NAME
 	:	(   
 		SNAME
-		|	'\''!  // exclamation marks means to exclude the char from the token (in theory)
+		|	'\\''!  // exclamation marks means to exclude the char from the token (in theory)
 			(	ESC
-			|	'\n' {newline();}
-			|	~('\\'|'\''|'\n') // means any other character
+			|	'\\n' {newline();}
+			|	~('\\\\'|'\\''|'\\n') // means any other character
 			)*
-			'\''!
+			'\\''!
 		)
 	;
 	
@@ -465,15 +483,15 @@ INT
 
 %protected
 ESC
-	:	'\\'!
+	:	'\\\\'!
 		(	'n' 
 		|	'r' 
 		|	't' 
 		|	'b' 
 		|	'f' 
-		|	'"' 
-		|	'\'' 
-		|	'\\' 
+		|	'\"' 
+		|	'\\'' 
+		|	'\\\\' 
 		|	(
 				('0'..'3')
 				(
@@ -493,12 +511,12 @@ ESC
 	;
 
 STRING
-	:	'"'!
+	:	'\"'!
 		(	ESC
-		|	'\n' {newline();}
-		|	~('\\'|'\"'|'\n')  // means any other character
+		|	'\\n' {newline();}
+		|	~('\\\\'|'\\\"'|'\\n')  // means any other character
 		)*
-		'"'!
+		'\"'!
 	;
 
 	";

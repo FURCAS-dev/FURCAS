@@ -449,13 +449,6 @@
          unpack="false"/>
 
    <plugin
-         id="com.sap.ide.moftool.editor"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.sap.ide.moftool.editor.graphics"
          download-size="0"
          install-size="0"
@@ -464,6 +457,13 @@
 
    <plugin
          id="com.sap.ide.moftool.editor.graphics.eclipse"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="com.sap.ide.moftool.editor"
          download-size="0"
          install-size="0"
          version="0.0.0"

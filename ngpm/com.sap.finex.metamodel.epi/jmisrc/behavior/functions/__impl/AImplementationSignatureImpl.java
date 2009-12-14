@@ -64,7 +64,6 @@ public final class AImplementationSignatureImpl extends com.sap.tc.moin.reposito
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.AImplementationSignature> get___JmiInterface() {
         return behavior.functions.AImplementationSignature.class;
     }

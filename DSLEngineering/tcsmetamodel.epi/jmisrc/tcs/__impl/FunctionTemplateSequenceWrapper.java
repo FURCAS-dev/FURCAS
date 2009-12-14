@@ -125,7 +125,6 @@ public class FunctionTemplateSequenceWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.FunctionTemplateSequence> get___JmiInterface() {
         return tcs.FunctionTemplateSequence.class;
     }

@@ -125,7 +125,6 @@ public class FunctionCallFunctionTemplateWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.FunctionCallFunctionTemplate> get___JmiInterface() {
         return tcs.FunctionCallFunctionTemplate.class;
     }

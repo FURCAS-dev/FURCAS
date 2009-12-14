@@ -6,7 +6,7 @@ package tcs.__impl;
 
 public class StartNbNlbargWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<tcs.__impl.StartNbNlbargImpl> implements tcs.StartNbNlbarg,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StartNbNlbargWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private tcs.__impl.StartNbNlbargImpl getCastWrappedObject() {
         return (tcs.__impl.StartNbNlbargImpl) getWrappedObject();
     }
@@ -183,7 +182,6 @@ public class StartNbNlbargWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<tcs.StartNbNlbarg> get___JmiInterface() {
         return tcs.StartNbNlbarg.class;
     }

@@ -125,7 +125,6 @@ public class AImplementationSignatureWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.AImplementationSignature> get___JmiInterface() {
         return behavior.functions.AImplementationSignature.class;
     }
