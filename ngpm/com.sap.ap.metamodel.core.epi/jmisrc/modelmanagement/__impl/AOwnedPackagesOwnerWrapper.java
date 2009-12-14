@@ -125,6 +125,7 @@ public class AOwnedPackagesOwnerWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.AOwnedPackagesOwner> get___JmiInterface() {
         return modelmanagement.AOwnedPackagesOwner.class;
     }

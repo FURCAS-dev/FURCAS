@@ -84,7 +84,7 @@ public final class OCLEvaluationView extends ViewPart {
 
 	@Override
 	public void createPartControl(Composite parent) {
-
+		
 		final GridLayout gridLayout = new GridLayout();
 		gridLayout.marginHeight = 0;
 		gridLayout.marginWidth = 0;
@@ -140,7 +140,7 @@ public final class OCLEvaluationView extends ViewPart {
 		sectionLbl.setLayoutData(tableWrapData);
 
 		final Label metamodelLbl = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_3_xfld);
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
+		tableWrapData = new TableWrapData(TableWrapData.LEFT);
 		metamodelLbl.setLayoutData(tableWrapData);
 
 		this.txtProject = this.toolkit.createText(composite, "");//$NON-NLS-1$
@@ -206,7 +206,7 @@ public final class OCLEvaluationView extends ViewPart {
 		this.m1ObjectLabel.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
-				// TO DO
+				// TODO
 			}
 		});
 		addDropTarget(this.m1ObjectLabel);
@@ -243,10 +243,13 @@ public final class OCLEvaluationView extends ViewPart {
 		tableWrapData = new TableWrapData(TableWrapData.LEFT);
 		label.setLayoutData(tableWrapData);
 
-		this.oclExpression = this.toolkit.createText(composite, "", SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);//$NON-NLS-1$
+		
+		this.oclExpression = this.toolkit.createText(composite, "", SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);//$NON-NLS-1$
 		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
 		tableWrapData.heightHint = 100;
 		tableWrapData.grabVertical = true;
+		tableWrapData.grabHorizontal = true;
+		tableWrapData.colspan = 2;
 		this.oclExpression.setLayoutData(tableWrapData);
 		this.oclExpression.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
@@ -254,9 +257,11 @@ public final class OCLEvaluationView extends ViewPart {
 				OCLEvaluationView.this.updateEvaluateButton();
 			}
 		});
-
+		
+		
 		this.evaluate = this.toolkit.createButton(composite, Messages.OCLEvaluationView_10_xbut, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
+		tableWrapData = new TableWrapData(TableWrapData.RIGHT);
+		tableWrapData.colspan = 3;
 		this.evaluate.setLayoutData(tableWrapData);
 
 		final SelectionListener listener = new SelectionListener() {

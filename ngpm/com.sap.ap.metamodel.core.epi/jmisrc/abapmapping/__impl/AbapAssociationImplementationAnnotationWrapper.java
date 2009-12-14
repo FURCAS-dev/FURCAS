@@ -6,7 +6,7 @@ package abapmapping.__impl;
 
 public class AbapAssociationImplementationAnnotationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<abapmapping.__impl.AbapAssociationImplementationAnnotationImpl> implements abapmapping.AbapAssociationImplementationAnnotation,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class AbapAssociationImplementationAnnotationWrapper extends com.sap.tc.m
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private abapmapping.__impl.AbapAssociationImplementationAnnotationImpl getCastWrappedObject() {
         return (abapmapping.__impl.AbapAssociationImplementationAnnotationImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class AbapAssociationImplementationAnnotationWrapper extends com.sap.tc.m
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AbapAssociationImplementationAnnotation> get___JmiInterface() {
         return abapmapping.AbapAssociationImplementationAnnotation.class;
     }

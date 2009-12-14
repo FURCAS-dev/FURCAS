@@ -125,6 +125,7 @@ public class AOwningStatementNestedBlocksWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AOwningStatementNestedBlocks> get___JmiInterface() {
         return behavioral.actions.AOwningStatementNestedBlocks.class;
     }

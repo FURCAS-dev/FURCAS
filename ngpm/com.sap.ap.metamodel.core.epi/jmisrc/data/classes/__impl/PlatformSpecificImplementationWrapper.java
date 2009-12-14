@@ -6,7 +6,7 @@ package data.classes.__impl;
 
 public class PlatformSpecificImplementationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.classes.__impl.PlatformSpecificImplementationImpl> implements data.classes.PlatformSpecificImplementation,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class PlatformSpecificImplementationWrapper extends com.sap.tc.moin.repos
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private data.classes.__impl.PlatformSpecificImplementationImpl getCastWrappedObject() {
         return (data.classes.__impl.PlatformSpecificImplementationImpl) getWrappedObject();
     }
@@ -132,6 +133,7 @@ public class PlatformSpecificImplementationWrapper extends com.sap.tc.moin.repos
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.PlatformSpecificImplementation> get___JmiInterface() {
         return data.classes.PlatformSpecificImplementation.class;
     }

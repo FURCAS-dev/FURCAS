@@ -6,7 +6,7 @@ package configuration.contextdrivers.__impl;
 
 public class ContexConfigurationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.contextdrivers.__impl.ContexConfigurationImpl> implements configuration.contextdrivers.ContexConfiguration,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ContexConfigurationWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private configuration.contextdrivers.__impl.ContexConfigurationImpl getCastWrappedObject() {
         return (configuration.contextdrivers.__impl.ContexConfigurationImpl) getWrappedObject();
     }
@@ -172,6 +173,7 @@ public class ContexConfigurationWrapper extends com.sap.tc.moin.repository.core.
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ContexConfiguration> get___JmiInterface() {
         return configuration.contextdrivers.ContexConfiguration.class;
     }

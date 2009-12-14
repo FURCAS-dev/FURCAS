@@ -46,6 +46,7 @@ public class RulesPackageWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.rules.RulesPackage> get___JmiInterface() {
         return behavioral.rules.RulesPackage.class;
     }

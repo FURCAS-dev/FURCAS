@@ -63,6 +63,7 @@ public final class IncludedContextValuesImpl extends com.sap.tc.moin.repository.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.IncludedContextValues> get___JmiInterface() {
         return configuration.contextdrivers.IncludedContextValues.class;
     }

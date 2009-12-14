@@ -125,6 +125,7 @@ public class IncludedContextValuesWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.IncludedContextValues> get___JmiInterface() {
         return configuration.contextdrivers.IncludedContextValues.class;
     }

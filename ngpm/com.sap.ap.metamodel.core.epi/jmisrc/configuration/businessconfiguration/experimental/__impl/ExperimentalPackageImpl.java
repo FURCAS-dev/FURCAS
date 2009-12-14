@@ -8,7 +8,7 @@ public final class ExperimentalPackageImpl extends com.sap.tc.moin.repository.co
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(15);
@@ -113,6 +113,7 @@ public final class ExperimentalPackageImpl extends com.sap.tc.moin.repository.co
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.ExperimentalPackage> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.ExperimentalPackage.class;
     }
@@ -121,7 +122,9 @@ public final class ExperimentalPackageImpl extends com.sap.tc.moin.repository.co
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -147,7 +150,9 @@ public final class ExperimentalPackageImpl extends com.sap.tc.moin.repository.co
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(8);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_value_valueSetEntry"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "configuration.businessconfiguration.experimental.AValueValueSetEntry"); //$NON-NLS-1$

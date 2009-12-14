@@ -6,7 +6,7 @@ package configuration.businessconfiguration.experimental.__impl;
 
 public class PackageUseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.businessconfiguration.experimental.__impl.PackageUseImpl> implements configuration.businessconfiguration.experimental.PackageUse,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class PackageUseWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private configuration.businessconfiguration.experimental.__impl.PackageUseImpl getCastWrappedObject() {
         return (configuration.businessconfiguration.experimental.__impl.PackageUseImpl) getWrappedObject();
     }
@@ -103,6 +104,7 @@ public class PackageUseWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.PackageUse> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.PackageUse.class;
     }

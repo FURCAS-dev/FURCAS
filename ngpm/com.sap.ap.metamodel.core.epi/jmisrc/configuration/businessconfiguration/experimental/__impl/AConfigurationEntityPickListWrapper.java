@@ -125,6 +125,7 @@ public class AConfigurationEntityPickListWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.AConfigurationEntityPickList> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.AConfigurationEntityPickList.class;
     }

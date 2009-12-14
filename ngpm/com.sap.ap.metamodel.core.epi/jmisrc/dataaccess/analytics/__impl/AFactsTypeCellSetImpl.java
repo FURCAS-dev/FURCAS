@@ -64,6 +64,7 @@ public final class AFactsTypeCellSetImpl extends com.sap.tc.moin.repository.core
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.AFactsTypeCellSet> get___JmiInterface() {
         return dataaccess.analytics.AFactsTypeCellSet.class;
     }

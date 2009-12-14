@@ -125,6 +125,7 @@ public class AConstraintExpressionConstraintWrapper extends com.sap.tc.moin.repo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.AConstraintExpressionConstraint> get___JmiInterface() {
         return data.constraints.AConstraintExpressionConstraint.class;
     }

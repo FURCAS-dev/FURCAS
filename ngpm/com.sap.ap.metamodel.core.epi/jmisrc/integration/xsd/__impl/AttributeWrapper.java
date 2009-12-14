@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class AttributeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.AttributeImpl> implements integration.xsd.Attribute,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class AttributeWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private integration.xsd.__impl.AttributeImpl getCastWrappedObject() {
         return (integration.xsd.__impl.AttributeImpl) getWrappedObject();
     }
@@ -314,6 +315,7 @@ public class AttributeWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.Attribute> get___JmiInterface() {
         return integration.xsd.Attribute.class;
     }

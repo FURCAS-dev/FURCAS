@@ -125,6 +125,7 @@ public class AEntriesValueSetWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.AEntriesValueSet> get___JmiInterface() {
         return configuration.businessconfiguration.AEntriesValueSet.class;
     }

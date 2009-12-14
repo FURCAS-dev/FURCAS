@@ -125,6 +125,7 @@ public class AAssociationLinkManipulationStatementWrapper extends com.sap.tc.moi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AAssociationLinkManipulationStatement> get___JmiInterface() {
         return behavioral.actions.AAssociationLinkManipulationStatement.class;
     }

@@ -125,6 +125,7 @@ public class ATrueExprTernaryWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.ATrueExprTernary> get___JmiInterface() {
         return dataaccess.expressions.ATrueExprTernary.class;
     }

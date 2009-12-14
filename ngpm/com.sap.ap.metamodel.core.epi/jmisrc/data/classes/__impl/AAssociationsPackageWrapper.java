@@ -125,6 +125,7 @@ public class AAssociationsPackageWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AAssociationsPackage> get___JmiInterface() {
         return data.classes.AAssociationsPackage.class;
     }

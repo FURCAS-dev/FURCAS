@@ -125,6 +125,7 @@ public class AConditionConditionalWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AConditionConditional> get___JmiInterface() {
         return dataaccess.expressions.AConditionConditional.class;
     }

@@ -125,6 +125,7 @@ public class HasChoicesWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasChoices> get___JmiInterface() {
         return integration.xsd.HasChoices.class;
     }

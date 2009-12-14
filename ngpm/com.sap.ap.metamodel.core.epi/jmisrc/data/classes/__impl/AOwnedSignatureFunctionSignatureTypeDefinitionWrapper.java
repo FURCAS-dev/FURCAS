@@ -125,6 +125,7 @@ public class AOwnedSignatureFunctionSignatureTypeDefinitionWrapper extends com.s
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AOwnedSignatureFunctionSignatureTypeDefinition> get___JmiInterface() {
         return data.classes.AOwnedSignatureFunctionSignatureTypeDefinition.class;
     }

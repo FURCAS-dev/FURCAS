@@ -6,7 +6,7 @@ package abapmapping.abapdictionary.__impl;
 
 public class CodeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<abapmapping.abapdictionary.__impl.CodeImpl> implements abapmapping.abapdictionary.Code,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class CodeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private abapmapping.abapdictionary.__impl.CodeImpl getCastWrappedObject() {
         return (abapmapping.abapdictionary.__impl.CodeImpl) getWrappedObject();
     }
@@ -245,6 +246,7 @@ public class CodeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.Code> get___JmiInterface() {
         return abapmapping.abapdictionary.Code.class;
     }

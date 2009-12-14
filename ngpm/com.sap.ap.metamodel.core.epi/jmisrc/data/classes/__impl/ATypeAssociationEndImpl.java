@@ -64,6 +64,7 @@ public final class ATypeAssociationEndImpl extends com.sap.tc.moin.repository.co
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ATypeAssociationEnd> get___JmiInterface() {
         return data.classes.ATypeAssociationEnd.class;
     }

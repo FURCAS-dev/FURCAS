@@ -125,6 +125,7 @@ public class AConverterBetweenParametrizationsClazzWrapper extends com.sap.tc.mo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AConverterBetweenParametrizationsClazz> get___JmiInterface() {
         return data.classes.AConverterBetweenParametrizationsClazz.class;
     }

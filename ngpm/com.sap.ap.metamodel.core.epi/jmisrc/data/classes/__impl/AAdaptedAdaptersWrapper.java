@@ -125,6 +125,7 @@ public class AAdaptedAdaptersWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AAdaptedAdapters> get___JmiInterface() {
         return data.classes.AAdaptedAdapters.class;
     }

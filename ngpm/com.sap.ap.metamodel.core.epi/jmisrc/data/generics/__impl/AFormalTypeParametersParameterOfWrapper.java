@@ -125,6 +125,7 @@ public class AFormalTypeParametersParameterOfWrapper extends com.sap.tc.moin.rep
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.AFormalTypeParametersParameterOf> get___JmiInterface() {
         return data.generics.AFormalTypeParametersParameterOf.class;
     }

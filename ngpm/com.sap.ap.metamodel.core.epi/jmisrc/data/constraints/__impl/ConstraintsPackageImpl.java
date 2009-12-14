@@ -8,7 +8,7 @@ public final class ConstraintsPackageImpl extends com.sap.tc.moin.repository.cor
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
@@ -100,6 +100,7 @@ public final class ConstraintsPackageImpl extends com.sap.tc.moin.repository.cor
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.ConstraintsPackage> get___JmiInterface() {
         return data.constraints.ConstraintsPackage.class;
     }
@@ -108,7 +109,9 @@ public final class ConstraintsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -130,7 +133,9 @@ public final class ConstraintsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(5);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "Constrains"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "data.constraints.Constrains"); //$NON-NLS-1$

@@ -6,7 +6,7 @@ package deployment.landscape.__impl;
 
 public final class LandscapePackageImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefPackageImpl
 {
-    
+
     static {
     }
 
@@ -31,6 +31,7 @@ public final class LandscapePackageImpl extends com.sap.tc.moin.repository.core.
         throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<deployment.landscape.LandscapePackage> get___JmiInterface() {
         return deployment.landscape.LandscapePackage.class;
     }
@@ -39,7 +40,9 @@ public final class LandscapePackageImpl extends com.sap.tc.moin.repository.core.
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -53,7 +56,9 @@ public final class LandscapePackageImpl extends com.sap.tc.moin.repository.core.
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

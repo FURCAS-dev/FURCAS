@@ -68,6 +68,7 @@ public class UiPackageWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.UiPackage> get___JmiInterface() {
         return ui.UiPackage.class;
     }

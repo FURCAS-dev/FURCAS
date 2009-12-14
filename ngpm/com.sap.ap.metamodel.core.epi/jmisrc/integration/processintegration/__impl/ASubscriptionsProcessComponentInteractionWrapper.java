@@ -125,6 +125,7 @@ public class ASubscriptionsProcessComponentInteractionWrapper extends com.sap.tc
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.ASubscriptionsProcessComponentInteraction> get___JmiInterface() {
         return integration.processintegration.ASubscriptionsProcessComponentInteraction.class;
     }

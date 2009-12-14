@@ -125,6 +125,7 @@ public class AElementsTupleTypeDefinitionWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.tuples.AElementsTupleTypeDefinition> get___JmiInterface() {
         return data.tuples.AElementsTupleTypeDefinition.class;
     }

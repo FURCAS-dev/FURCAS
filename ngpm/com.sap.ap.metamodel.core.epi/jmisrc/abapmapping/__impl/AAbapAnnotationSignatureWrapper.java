@@ -125,6 +125,7 @@ public class AAbapAnnotationSignatureWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AAbapAnnotationSignature> get___JmiInterface() {
         return abapmapping.AAbapAnnotationSignature.class;
     }

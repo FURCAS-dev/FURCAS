@@ -125,6 +125,7 @@ public class ADimensionDimensionExpressionWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.ADimensionDimensionExpression> get___JmiInterface() {
         return dataaccess.analytics.ADimensionDimensionExpression.class;
     }

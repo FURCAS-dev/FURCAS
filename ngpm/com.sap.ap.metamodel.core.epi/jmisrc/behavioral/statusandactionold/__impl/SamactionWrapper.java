@@ -6,7 +6,7 @@ package behavioral.statusandactionold.__impl;
 
 public class SamactionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandactionold.__impl.SamactionImpl> implements behavioral.statusandactionold.Samaction,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SamactionWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.statusandactionold.__impl.SamactionImpl getCastWrappedObject() {
         return (behavioral.statusandactionold.__impl.SamactionImpl) getWrappedObject();
     }
@@ -201,6 +202,7 @@ public class SamactionWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.Samaction> get___JmiInterface() {
         return behavioral.statusandactionold.Samaction.class;
     }

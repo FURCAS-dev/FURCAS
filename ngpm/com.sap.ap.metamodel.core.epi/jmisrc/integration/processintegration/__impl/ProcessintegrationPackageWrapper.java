@@ -200,6 +200,7 @@ public class ProcessintegrationPackageWrapper extends com.sap.tc.moin.repository
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.ProcessintegrationPackage> get___JmiInterface() {
         return integration.processintegration.ProcessintegrationPackage.class;
     }

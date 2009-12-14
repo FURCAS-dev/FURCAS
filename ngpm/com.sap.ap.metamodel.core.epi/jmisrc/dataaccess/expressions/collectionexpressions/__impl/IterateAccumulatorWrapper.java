@@ -125,6 +125,7 @@ public class IterateAccumulatorWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.collectionexpressions.IterateAccumulator> get___JmiInterface() {
         return dataaccess.expressions.collectionexpressions.IterateAccumulator.class;
     }

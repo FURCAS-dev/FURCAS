@@ -8,7 +8,7 @@ public final class GenericsPackageImpl extends com.sap.tc.moin.repository.core.j
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(16);
@@ -119,6 +119,7 @@ public final class GenericsPackageImpl extends com.sap.tc.moin.repository.core.j
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.GenericsPackage> get___JmiInterface() {
         return data.generics.GenericsPackage.class;
     }
@@ -127,7 +128,9 @@ public final class GenericsPackageImpl extends com.sap.tc.moin.repository.core.j
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -157,7 +160,9 @@ public final class GenericsPackageImpl extends com.sap.tc.moin.repository.core.j
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(8);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_formalTypeParameters_parameterOf"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "data.generics.AFormalTypeParametersParameterOf"); //$NON-NLS-1$

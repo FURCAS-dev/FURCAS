@@ -125,6 +125,7 @@ public class APcsInsideCompanyDeploymentUnitWrapper extends com.sap.tc.moin.repo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.deploymentunits.APcsInsideCompanyDeploymentUnit> get___JmiInterface() {
         return modelmanagement.deploymentunits.APcsInsideCompanyDeploymentUnit.class;
     }

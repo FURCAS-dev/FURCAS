@@ -64,6 +64,7 @@ public final class CodeValuesImpl extends com.sap.tc.moin.repository.core.jmi.re
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.CodeValues> get___JmiInterface() {
         return abapmapping.abapdictionary.CodeValues.class;
     }

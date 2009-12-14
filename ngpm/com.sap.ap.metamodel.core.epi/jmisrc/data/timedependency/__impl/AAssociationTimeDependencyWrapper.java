@@ -125,6 +125,7 @@ public class AAssociationTimeDependencyWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.timedependency.AAssociationTimeDependency> get___JmiInterface() {
         return data.timedependency.AAssociationTimeDependency.class;
     }

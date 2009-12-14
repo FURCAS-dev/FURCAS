@@ -200,6 +200,7 @@ public class EventsPackageWrapper extends com.sap.tc.moin.repository.core.jmi.re
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.EventsPackage> get___JmiInterface() {
         return behavioral.events.EventsPackage.class;
     }

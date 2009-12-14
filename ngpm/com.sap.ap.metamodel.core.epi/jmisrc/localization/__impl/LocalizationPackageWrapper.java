@@ -46,6 +46,7 @@ public class LocalizationPackageWrapper extends com.sap.tc.moin.repository.core.
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<localization.LocalizationPackage> get___JmiInterface() {
         return localization.LocalizationPackage.class;
     }

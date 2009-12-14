@@ -64,6 +64,7 @@ public final class AEntriesValueSetImpl extends com.sap.tc.moin.repository.core.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.AEntriesValueSet> get___JmiInterface() {
         return configuration.businessconfiguration.AEntriesValueSet.class;
     }

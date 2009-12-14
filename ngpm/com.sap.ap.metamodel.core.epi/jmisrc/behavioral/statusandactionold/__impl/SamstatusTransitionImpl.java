@@ -63,6 +63,7 @@ public final class SamstatusTransitionImpl extends com.sap.tc.moin.repository.co
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamstatusTransition> get___JmiInterface() {
         return behavioral.statusandactionold.SamstatusTransition.class;
     }

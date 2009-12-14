@@ -64,6 +64,7 @@ public final class AFunctionBindingImpl extends com.sap.tc.moin.repository.core.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.AFunctionBinding> get___JmiInterface() {
         return integration.binding.AFunctionBinding.class;
     }

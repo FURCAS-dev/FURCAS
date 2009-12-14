@@ -63,6 +63,7 @@ public final class SeveritiesForConstraintImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.SeveritiesForConstraint> get___JmiInterface() {
         return data.constraints.SeveritiesForConstraint.class;
     }

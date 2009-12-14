@@ -125,6 +125,7 @@ public class AIntegrationScenariosApplicationWrapper extends com.sap.tc.moin.rep
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.AIntegrationScenariosApplication> get___JmiInterface() {
         return integration.processintegration.AIntegrationScenariosApplication.class;
     }

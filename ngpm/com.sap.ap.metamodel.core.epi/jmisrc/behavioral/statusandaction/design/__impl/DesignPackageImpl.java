@@ -8,7 +8,7 @@ public final class DesignPackageImpl extends com.sap.tc.moin.repository.core.jmi
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(16);
@@ -119,6 +119,7 @@ public final class DesignPackageImpl extends com.sap.tc.moin.repository.core.jmi
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.DesignPackage> get___JmiInterface() {
         return behavioral.statusandaction.design.DesignPackage.class;
     }
@@ -127,7 +128,9 @@ public final class DesignPackageImpl extends com.sap.tc.moin.repository.core.jmi
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -173,7 +176,9 @@ public final class DesignPackageImpl extends com.sap.tc.moin.repository.core.jmi
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(4);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "BusinessObjectHasNodes"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "behavioral.statusandaction.design.BusinessObjectHasNodes"); //$NON-NLS-1$

@@ -125,6 +125,7 @@ public class SeveritiesForConstraintWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.SeveritiesForConstraint> get___JmiInterface() {
         return data.constraints.SeveritiesForConstraint.class;
     }

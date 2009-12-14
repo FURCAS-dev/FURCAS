@@ -125,6 +125,7 @@ public class ExcludedContextValuesWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ExcludedContextValues> get___JmiInterface() {
         return configuration.contextdrivers.ExcludedContextValues.class;
     }

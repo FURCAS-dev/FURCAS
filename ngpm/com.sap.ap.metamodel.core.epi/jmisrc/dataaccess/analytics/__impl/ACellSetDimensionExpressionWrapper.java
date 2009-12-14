@@ -125,6 +125,7 @@ public class ACellSetDimensionExpressionWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.ACellSetDimensionExpression> get___JmiInterface() {
         return dataaccess.analytics.ACellSetDimensionExpression.class;
     }

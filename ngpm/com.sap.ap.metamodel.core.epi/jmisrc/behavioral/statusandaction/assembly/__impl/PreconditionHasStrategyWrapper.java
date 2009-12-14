@@ -125,6 +125,7 @@ public class PreconditionHasStrategyWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.PreconditionHasStrategy> get___JmiInterface() {
         return behavioral.statusandaction.assembly.PreconditionHasStrategy.class;
     }

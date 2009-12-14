@@ -64,6 +64,7 @@ public final class VariableHasValuesImpl extends com.sap.tc.moin.repository.core
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.VariableHasValues> get___JmiInterface() {
         return behavioral.statusandaction.design.VariableHasValues.class;
     }

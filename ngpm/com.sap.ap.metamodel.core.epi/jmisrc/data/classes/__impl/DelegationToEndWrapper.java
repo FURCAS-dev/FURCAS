@@ -125,6 +125,7 @@ public class DelegationToEndWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.DelegationToEnd> get___JmiInterface() {
         return data.classes.DelegationToEnd.class;
     }

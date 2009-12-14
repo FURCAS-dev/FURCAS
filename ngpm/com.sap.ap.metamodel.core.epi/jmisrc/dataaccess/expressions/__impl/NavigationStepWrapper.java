@@ -6,7 +6,7 @@ package dataaccess.expressions.__impl;
 
 public class NavigationStepWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<dataaccess.expressions.__impl.NavigationStepImpl> implements dataaccess.expressions.NavigationStep,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class NavigationStepWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private dataaccess.expressions.__impl.NavigationStepImpl getCastWrappedObject() {
         return (dataaccess.expressions.__impl.NavigationStepImpl) getWrappedObject();
     }
@@ -166,6 +167,7 @@ public class NavigationStepWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.NavigationStep> get___JmiInterface() {
         return dataaccess.expressions.NavigationStep.class;
     }

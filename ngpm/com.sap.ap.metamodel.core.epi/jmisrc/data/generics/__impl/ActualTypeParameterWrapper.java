@@ -6,7 +6,7 @@ package data.generics.__impl;
 
 public class ActualTypeParameterWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.generics.__impl.ActualTypeParameterImpl> implements data.generics.ActualTypeParameter,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ActualTypeParameterWrapper extends com.sap.tc.moin.repository.core.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private data.generics.__impl.ActualTypeParameterImpl getCastWrappedObject() {
         return (data.generics.__impl.ActualTypeParameterImpl) getWrappedObject();
     }
@@ -166,6 +167,7 @@ public class ActualTypeParameterWrapper extends com.sap.tc.moin.repository.core.
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.ActualTypeParameter> get___JmiInterface() {
         return data.generics.ActualTypeParameter.class;
     }

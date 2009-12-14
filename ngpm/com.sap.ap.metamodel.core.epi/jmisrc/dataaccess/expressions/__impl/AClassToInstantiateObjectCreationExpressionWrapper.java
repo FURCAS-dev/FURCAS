@@ -125,6 +125,7 @@ public class AClassToInstantiateObjectCreationExpressionWrapper extends com.sap.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AClassToInstantiateObjectCreationExpression> get___JmiInterface() {
         return dataaccess.expressions.AClassToInstantiateObjectCreationExpression.class;
     }

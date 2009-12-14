@@ -6,7 +6,7 @@ package data.constraints.__impl;
 
 public class ConstraintWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<data.constraints.__impl.ConstraintImpl> implements data.constraints.Constraint,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ConstraintWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private data.constraints.__impl.ConstraintImpl getCastWrappedObject() {
         return (data.constraints.__impl.ConstraintImpl) getWrappedObject();
     }
@@ -242,6 +243,7 @@ public class ConstraintWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.constraints.Constraint> get___JmiInterface() {
         return data.constraints.Constraint.class;
     }

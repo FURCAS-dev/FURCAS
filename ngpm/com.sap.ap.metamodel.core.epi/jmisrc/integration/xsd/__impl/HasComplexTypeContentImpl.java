@@ -63,6 +63,7 @@ public final class HasComplexTypeContentImpl extends com.sap.tc.moin.repository.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasComplexTypeContent> get___JmiInterface() {
         return integration.xsd.HasComplexTypeContent.class;
     }

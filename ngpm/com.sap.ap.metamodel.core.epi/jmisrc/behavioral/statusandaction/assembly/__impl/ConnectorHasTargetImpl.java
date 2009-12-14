@@ -64,6 +64,7 @@ public final class ConnectorHasTargetImpl extends com.sap.tc.moin.repository.cor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.ConnectorHasTarget> get___JmiInterface() {
         return behavioral.statusandaction.assembly.ConnectorHasTarget.class;
     }

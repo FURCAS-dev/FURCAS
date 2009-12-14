@@ -63,6 +63,7 @@ public final class AOfClassAllImpl extends com.sap.tc.moin.repository.core.jmi.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<persistence.expressions.AOfClassAll> get___JmiInterface() {
         return persistence.expressions.AOfClassAll.class;
     }

@@ -8,7 +8,7 @@ public final class DeploymentPackageImpl extends com.sap.tc.moin.repository.core
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(3);
@@ -59,6 +59,7 @@ public final class DeploymentPackageImpl extends com.sap.tc.moin.repository.core
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<deployment.DeploymentPackage> get___JmiInterface() {
         return deployment.DeploymentPackage.class;
     }
@@ -67,7 +68,9 @@ public final class DeploymentPackageImpl extends com.sap.tc.moin.repository.core
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(2);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "landscape"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "deployment.landscape.LandscapePackage", false); //$NON-NLS-1$
@@ -89,7 +92,9 @@ public final class DeploymentPackageImpl extends com.sap.tc.moin.repository.core
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

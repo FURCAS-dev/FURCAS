@@ -125,6 +125,7 @@ public class AAbapTypeAbapClassImplementationAnnotationWrapper extends com.sap.t
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AAbapTypeAbapClassImplementationAnnotation> get___JmiInterface() {
         return abapmapping.AAbapTypeAbapClassImplementationAnnotation.class;
     }

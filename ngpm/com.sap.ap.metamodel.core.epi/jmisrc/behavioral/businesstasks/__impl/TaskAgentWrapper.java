@@ -6,7 +6,7 @@ package behavioral.businesstasks.__impl;
 
 public class TaskAgentWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.businesstasks.__impl.TaskAgentImpl> implements behavioral.businesstasks.TaskAgent,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class TaskAgentWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.businesstasks.__impl.TaskAgentImpl getCastWrappedObject() {
         return (behavioral.businesstasks.__impl.TaskAgentImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class TaskAgentWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.businesstasks.TaskAgent> get___JmiInterface() {
         return behavioral.businesstasks.TaskAgent.class;
     }

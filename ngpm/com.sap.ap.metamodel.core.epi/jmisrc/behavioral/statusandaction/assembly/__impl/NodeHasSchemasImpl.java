@@ -63,6 +63,7 @@ public final class NodeHasSchemasImpl extends com.sap.tc.moin.repository.core.jm
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.NodeHasSchemas> get___JmiInterface() {
         return behavioral.statusandaction.assembly.NodeHasSchemas.class;
     }

@@ -125,6 +125,7 @@ public class ACollectionForeachWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.ACollectionForeach> get___JmiInterface() {
         return behavioral.actions.ACollectionForeach.class;
     }

@@ -125,6 +125,7 @@ public class IsActorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.IsActor> get___JmiInterface() {
         return integration.processintegration.IsActor.class;
     }

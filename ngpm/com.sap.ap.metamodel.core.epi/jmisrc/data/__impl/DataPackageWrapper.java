@@ -178,6 +178,7 @@ public class DataPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.DataPackage> get___JmiInterface() {
         return data.DataPackage.class;
     }
