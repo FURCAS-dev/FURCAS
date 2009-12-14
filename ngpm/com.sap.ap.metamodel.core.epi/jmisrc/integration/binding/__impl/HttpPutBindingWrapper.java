@@ -6,7 +6,7 @@ package integration.binding.__impl;
 
 public class HttpPutBindingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.binding.__impl.HttpPutBindingImpl> implements integration.binding.HttpPutBinding,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class HttpPutBindingWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private integration.binding.__impl.HttpPutBindingImpl getCastWrappedObject() {
         return (integration.binding.__impl.HttpPutBindingImpl) getWrappedObject();
     }
@@ -217,6 +218,7 @@ public class HttpPutBindingWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.HttpPutBinding> get___JmiInterface() {
         return integration.binding.HttpPutBinding.class;
     }

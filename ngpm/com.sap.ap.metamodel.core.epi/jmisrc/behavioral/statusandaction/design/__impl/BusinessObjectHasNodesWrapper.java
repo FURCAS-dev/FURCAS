@@ -125,6 +125,7 @@ public class BusinessObjectHasNodesWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.BusinessObjectHasNodes> get___JmiInterface() {
         return behavioral.statusandaction.design.BusinessObjectHasNodes.class;
     }

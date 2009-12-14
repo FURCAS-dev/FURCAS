@@ -125,6 +125,7 @@ public class ACalledBlockFunctionCallExpressionWrapper extends com.sap.tc.moin.r
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.ACalledBlockFunctionCallExpression> get___JmiInterface() {
         return dataaccess.expressions.ACalledBlockFunctionCallExpression.class;
     }

@@ -125,6 +125,7 @@ public class AApplicableInContextConfigurationElementWrapper extends com.sap.tc.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.AApplicableInContextConfigurationElement> get___JmiInterface() {
         return configuration.businessconfiguration.AApplicableInContextConfigurationElement.class;
     }

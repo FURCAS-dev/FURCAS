@@ -64,6 +64,7 @@ public final class ACharacteristicFunctionDimensionImpl extends com.sap.tc.moin.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.ACharacteristicFunctionDimension> get___JmiInterface() {
         return dataaccess.analytics.ACharacteristicFunctionDimension.class;
     }

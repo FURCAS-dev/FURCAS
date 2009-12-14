@@ -125,6 +125,7 @@ public class SamschemaVariableForSamstatusSchemaWrapper extends com.sap.tc.moin.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamschemaVariableForSamstatusSchema> get___JmiInterface() {
         return behavioral.statusandactionold.SamschemaVariableForSamstatusSchema.class;
     }

@@ -125,6 +125,7 @@ public class NodeHasVariablesWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.design.NodeHasVariables> get___JmiInterface() {
         return behavioral.statusandaction.design.NodeHasVariables.class;
     }

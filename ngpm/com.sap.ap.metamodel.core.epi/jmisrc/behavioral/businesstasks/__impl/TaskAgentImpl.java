@@ -6,7 +6,7 @@ package behavioral.businesstasks.__impl;
 
 public final class TaskAgentImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-    
+
     static {
     }
     
@@ -24,10 +24,11 @@ public final class TaskAgentImpl extends com.sap.tc.moin.repository.core.jmi.ref
 
     // reflective methods
         
-    
+
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.businesstasks.TaskAgent> get___JmiInterface() {
         return behavioral.businesstasks.TaskAgent.class;
     }

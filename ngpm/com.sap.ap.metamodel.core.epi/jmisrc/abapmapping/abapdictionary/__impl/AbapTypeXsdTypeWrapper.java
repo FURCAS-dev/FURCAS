@@ -125,6 +125,7 @@ public class AbapTypeXsdTypeWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.AbapTypeXsdType> get___JmiInterface() {
         return abapmapping.abapdictionary.AbapTypeXsdType.class;
     }

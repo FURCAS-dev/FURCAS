@@ -6,7 +6,7 @@ package behavioral.rules.__impl;
 
 public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.rules.__impl.DummyImpl> implements behavioral.rules.Dummy,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.rules.__impl.DummyImpl getCastWrappedObject() {
         return (behavioral.rules.__impl.DummyImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.rules.Dummy> get___JmiInterface() {
         return behavioral.rules.Dummy.class;
     }

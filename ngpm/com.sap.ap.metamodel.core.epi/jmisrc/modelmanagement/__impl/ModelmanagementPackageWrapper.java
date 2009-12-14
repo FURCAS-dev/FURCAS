@@ -200,6 +200,7 @@ public class ModelmanagementPackageWrapper extends com.sap.tc.moin.repository.co
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.ModelmanagementPackage> get___JmiInterface() {
         return modelmanagement.ModelmanagementPackage.class;
     }

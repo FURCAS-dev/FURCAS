@@ -8,7 +8,7 @@ public class CellSetWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -23,6 +23,7 @@ public class CellSetWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private dataaccess.analytics.__impl.CellSetImpl getCastWrappedObject() {
         return (dataaccess.analytics.__impl.CellSetImpl) getWrappedObject();
     }
@@ -419,7 +420,7 @@ public class CellSetWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-    
+
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -441,10 +442,11 @@ public class CellSetWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-    
+
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.CellSet> get___JmiInterface() {
         return dataaccess.analytics.CellSet.class;
     }

@@ -6,7 +6,7 @@ package behavioral.events.__impl;
 
 public class SubscriptionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.events.__impl.SubscriptionImpl> implements behavioral.events.Subscription,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SubscriptionWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.events.__impl.SubscriptionImpl getCastWrappedObject() {
         return (behavioral.events.__impl.SubscriptionImpl) getWrappedObject();
     }
@@ -242,6 +243,7 @@ public class SubscriptionWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.events.Subscription> get___JmiInterface() {
         return behavioral.events.Subscription.class;
     }

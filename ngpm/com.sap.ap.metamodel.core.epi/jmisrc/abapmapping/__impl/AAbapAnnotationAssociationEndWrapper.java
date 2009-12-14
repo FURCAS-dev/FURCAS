@@ -125,6 +125,7 @@ public class AAbapAnnotationAssociationEndWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AAbapAnnotationAssociationEnd> get___JmiInterface() {
         return abapmapping.AAbapAnnotationAssociationEnd.class;
     }

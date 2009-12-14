@@ -6,7 +6,7 @@ package ui.databinding.__impl;
 
 public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<ui.databinding.__impl.DummyImpl> implements ui.databinding.Dummy,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private ui.databinding.__impl.DummyImpl getCastWrappedObject() {
         return (ui.databinding.__impl.DummyImpl) getWrappedObject();
     }
@@ -34,6 +35,7 @@ public class DummyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<ui.databinding.Dummy> get___JmiInterface() {
         return ui.databinding.Dummy.class;
     }

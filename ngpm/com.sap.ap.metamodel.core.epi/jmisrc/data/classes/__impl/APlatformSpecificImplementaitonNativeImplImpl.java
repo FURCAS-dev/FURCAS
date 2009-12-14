@@ -63,6 +63,7 @@ public final class APlatformSpecificImplementaitonNativeImplImpl extends com.sap
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.APlatformSpecificImplementaitonNativeImpl> get___JmiInterface() {
         return data.classes.APlatformSpecificImplementaitonNativeImpl.class;
     }

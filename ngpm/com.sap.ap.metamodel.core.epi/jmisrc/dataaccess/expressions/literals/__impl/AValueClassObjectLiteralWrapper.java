@@ -125,6 +125,7 @@ public class AValueClassObjectLiteralWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.AValueClassObjectLiteral> get___JmiInterface() {
         return dataaccess.expressions.literals.AValueClassObjectLiteral.class;
     }

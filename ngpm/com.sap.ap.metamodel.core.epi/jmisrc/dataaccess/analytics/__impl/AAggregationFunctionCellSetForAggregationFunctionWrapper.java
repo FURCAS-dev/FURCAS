@@ -125,6 +125,7 @@ public class AAggregationFunctionCellSetForAggregationFunctionWrapper extends co
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.analytics.AAggregationFunctionCellSetForAggregationFunction> get___JmiInterface() {
         return dataaccess.analytics.AAggregationFunctionCellSetForAggregationFunction.class;
     }

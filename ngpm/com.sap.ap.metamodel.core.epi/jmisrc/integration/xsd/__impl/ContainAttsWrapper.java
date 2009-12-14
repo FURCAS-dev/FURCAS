@@ -125,6 +125,7 @@ public class ContainAttsWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.ContainAtts> get___JmiInterface() {
         return integration.xsd.ContainAtts.class;
     }

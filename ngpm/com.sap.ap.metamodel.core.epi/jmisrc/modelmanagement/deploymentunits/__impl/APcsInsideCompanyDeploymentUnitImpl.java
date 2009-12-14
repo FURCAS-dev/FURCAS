@@ -63,6 +63,7 @@ public final class APcsInsideCompanyDeploymentUnitImpl extends com.sap.tc.moin.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.deploymentunits.APcsInsideCompanyDeploymentUnit> get___JmiInterface() {
         return modelmanagement.deploymentunits.APcsInsideCompanyDeploymentUnit.class;
     }

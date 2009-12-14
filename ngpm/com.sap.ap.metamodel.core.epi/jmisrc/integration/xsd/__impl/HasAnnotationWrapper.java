@@ -125,6 +125,7 @@ public class HasAnnotationWrapper extends com.sap.tc.moin.repository.core.jmi.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasAnnotation> get___JmiInterface() {
         return integration.xsd.HasAnnotation.class;
     }

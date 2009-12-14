@@ -125,6 +125,7 @@ public class SamderivatorForBusinessObjectWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.SamderivatorForBusinessObject> get___JmiInterface() {
         return behavioral.statusandactionold.SamderivatorForBusinessObject.class;
     }

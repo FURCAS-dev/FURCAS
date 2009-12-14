@@ -125,6 +125,7 @@ public class AEndSignatureImplementationsWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AEndSignatureImplementations> get___JmiInterface() {
         return data.classes.AEndSignatureImplementations.class;
     }

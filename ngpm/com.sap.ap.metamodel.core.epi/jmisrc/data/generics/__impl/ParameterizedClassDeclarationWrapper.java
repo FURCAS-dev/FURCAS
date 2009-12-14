@@ -125,6 +125,7 @@ public class ParameterizedClassDeclarationWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.ParameterizedClassDeclaration> get___JmiInterface() {
         return data.generics.ParameterizedClassDeclaration.class;
     }

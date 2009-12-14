@@ -266,6 +266,7 @@ public class ExperimentalPackageWrapper extends com.sap.tc.moin.repository.core.
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.businessconfiguration.experimental.ExperimentalPackage> get___JmiInterface() {
         return configuration.businessconfiguration.experimental.ExperimentalPackage.class;
     }

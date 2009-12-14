@@ -8,7 +8,7 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(16);
@@ -119,6 +119,7 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.literals.LiteralsPackage> get___JmiInterface() {
         return dataaccess.expressions.literals.LiteralsPackage.class;
     }
@@ -127,7 +128,9 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -173,7 +176,9 @@ public final class LiteralsPackageImpl extends com.sap.tc.moin.repository.core.j
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(4);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_valueClass_objectLiteral"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "dataaccess.expressions.literals.AValueClassObjectLiteral"); //$NON-NLS-1$

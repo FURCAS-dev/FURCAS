@@ -63,6 +63,7 @@ public final class AMethodCallsProcessComponentInteractionImpl extends com.sap.t
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.processintegration.AMethodCallsProcessComponentInteraction> get___JmiInterface() {
         return integration.processintegration.AMethodCallsProcessComponentInteraction.class;
     }

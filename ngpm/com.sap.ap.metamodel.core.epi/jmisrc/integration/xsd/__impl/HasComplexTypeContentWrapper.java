@@ -125,6 +125,7 @@ public class HasComplexTypeContentWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.HasComplexTypeContent> get___JmiInterface() {
         return integration.xsd.HasComplexTypeContent.class;
     }

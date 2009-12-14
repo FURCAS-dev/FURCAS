@@ -125,6 +125,7 @@ public class AObjectObjectBasedExpressionWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AObjectObjectBasedExpression> get___JmiInterface() {
         return dataaccess.expressions.AObjectObjectBasedExpression.class;
     }

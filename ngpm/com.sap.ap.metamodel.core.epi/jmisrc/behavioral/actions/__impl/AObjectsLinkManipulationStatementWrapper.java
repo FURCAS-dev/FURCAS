@@ -125,6 +125,7 @@ public class AObjectsLinkManipulationStatementWrapper extends com.sap.tc.moin.re
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.actions.AObjectsLinkManipulationStatement> get___JmiInterface() {
         return behavioral.actions.AObjectsLinkManipulationStatement.class;
     }

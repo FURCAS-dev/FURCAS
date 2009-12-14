@@ -46,6 +46,7 @@ public class DocumentsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.documents.DocumentsPackage> get___JmiInterface() {
         return data.documents.DocumentsPackage.class;
     }

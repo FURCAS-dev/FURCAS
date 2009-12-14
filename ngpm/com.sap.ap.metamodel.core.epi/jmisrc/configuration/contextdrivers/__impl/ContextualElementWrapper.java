@@ -6,7 +6,7 @@ package configuration.contextdrivers.__impl;
 
 public class ContextualElementWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<configuration.contextdrivers.__impl.ContextualElementImpl> implements configuration.contextdrivers.ContextualElement,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ContextualElementWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private configuration.contextdrivers.__impl.ContextualElementImpl getCastWrappedObject() {
         return (configuration.contextdrivers.__impl.ContextualElementImpl) getWrappedObject();
     }
@@ -59,6 +60,7 @@ public class ContextualElementWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ContextualElement> get___JmiInterface() {
         return configuration.contextdrivers.ContextualElement.class;
     }

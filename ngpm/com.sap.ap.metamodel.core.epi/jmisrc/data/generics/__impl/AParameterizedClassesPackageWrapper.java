@@ -125,6 +125,7 @@ public class AParameterizedClassesPackageWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.AParameterizedClassesPackage> get___JmiInterface() {
         return data.generics.AParameterizedClassesPackage.class;
     }

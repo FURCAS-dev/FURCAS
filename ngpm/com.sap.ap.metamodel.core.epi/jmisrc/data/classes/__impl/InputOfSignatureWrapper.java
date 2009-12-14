@@ -125,6 +125,7 @@ public class InputOfSignatureWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.InputOfSignature> get___JmiInterface() {
         return data.classes.InputOfSignature.class;
     }

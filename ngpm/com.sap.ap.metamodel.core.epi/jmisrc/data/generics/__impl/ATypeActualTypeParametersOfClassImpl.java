@@ -63,6 +63,7 @@ public final class ATypeActualTypeParametersOfClassImpl extends com.sap.tc.moin.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.ATypeActualTypeParametersOfClass> get___JmiInterface() {
         return data.generics.ATypeActualTypeParametersOfClass.class;
     }

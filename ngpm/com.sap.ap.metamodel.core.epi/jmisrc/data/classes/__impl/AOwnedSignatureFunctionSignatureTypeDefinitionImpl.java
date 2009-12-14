@@ -64,6 +64,7 @@ public final class AOwnedSignatureFunctionSignatureTypeDefinitionImpl extends co
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.AOwnedSignatureFunctionSignatureTypeDefinition> get___JmiInterface() {
         return data.classes.AOwnedSignatureFunctionSignatureTypeDefinition.class;
     }

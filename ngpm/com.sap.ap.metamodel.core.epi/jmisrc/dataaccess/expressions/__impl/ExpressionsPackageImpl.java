@@ -8,7 +8,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-    
+
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(55);
@@ -293,6 +293,7 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         }        
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.ExpressionsPackage> get___JmiInterface() {
         return dataaccess.expressions.ExpressionsPackage.class;
     }
@@ -301,7 +302,9 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(3);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "literals"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "dataaccess.expressions.literals.LiteralsPackage", false); //$NON-NLS-1$
@@ -407,7 +410,9 @@ public final class ExpressionsPackageImpl extends com.sap.tc.moin.repository.cor
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(18);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
+            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
+            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "A_variable_variableExpression"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "dataaccess.expressions.AVariableVariableExpression"); //$NON-NLS-1$

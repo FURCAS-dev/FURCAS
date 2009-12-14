@@ -6,7 +6,7 @@ package modelmanagement.__impl;
 
 public final class ModuleImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-    
+
     static {
     }
     
@@ -24,10 +24,11 @@ public final class ModuleImpl extends com.sap.tc.moin.repository.core.jmi.reflec
 
     // reflective methods
         
-    
+
 
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<modelmanagement.Module> get___JmiInterface() {
         return modelmanagement.Module.class;
     }

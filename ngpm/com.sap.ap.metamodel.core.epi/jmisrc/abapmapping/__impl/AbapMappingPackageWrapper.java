@@ -244,6 +244,7 @@ public class AbapMappingPackageWrapper extends com.sap.tc.moin.repository.core.j
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.AbapMappingPackage> get___JmiInterface() {
         return abapmapping.AbapMappingPackage.class;
     }

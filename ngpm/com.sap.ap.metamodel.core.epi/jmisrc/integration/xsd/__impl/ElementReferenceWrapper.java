@@ -6,7 +6,7 @@ package integration.xsd.__impl;
 
 public class ElementReferenceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<integration.xsd.__impl.ElementReferenceImpl> implements integration.xsd.ElementReference,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class ElementReferenceWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private integration.xsd.__impl.ElementReferenceImpl getCastWrappedObject() {
         return (integration.xsd.__impl.ElementReferenceImpl) getWrappedObject();
     }
@@ -270,6 +271,7 @@ public class ElementReferenceWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.ElementReference> get___JmiInterface() {
         return integration.xsd.ElementReference.class;
     }

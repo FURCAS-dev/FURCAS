@@ -63,6 +63,7 @@ public final class InSeqImpl extends com.sap.tc.moin.repository.core.jmi.reflect
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.xsd.InSeq> get___JmiInterface() {
         return integration.xsd.InSeq.class;
     }

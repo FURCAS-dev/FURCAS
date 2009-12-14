@@ -6,7 +6,7 @@ package behavioral.statusandactionold.__impl;
 
 public class SamoperatorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandactionold.__impl.SamoperatorImpl> implements behavioral.statusandactionold.Samoperator,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class SamoperatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.statusandactionold.__impl.SamoperatorImpl getCastWrappedObject() {
         return (behavioral.statusandactionold.__impl.SamoperatorImpl) getWrappedObject();
     }
@@ -229,6 +230,7 @@ public class SamoperatorWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandactionold.Samoperator> get___JmiInterface() {
         return behavioral.statusandactionold.Samoperator.class;
     }

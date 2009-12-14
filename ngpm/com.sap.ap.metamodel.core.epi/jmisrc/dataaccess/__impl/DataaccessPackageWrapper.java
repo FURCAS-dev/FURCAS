@@ -90,6 +90,7 @@ public class DataaccessPackageWrapper extends com.sap.tc.moin.repository.core.jm
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.DataaccessPackage> get___JmiInterface() {
         return dataaccess.DataaccessPackage.class;
     }

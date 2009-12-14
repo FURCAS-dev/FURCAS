@@ -1432,6 +1432,7 @@ public class ClassesPackageWrapper extends com.sap.tc.moin.repository.core.jmi.r
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.classes.ClassesPackage> get___JmiInterface() {
         return data.classes.ClassesPackage.class;
     }

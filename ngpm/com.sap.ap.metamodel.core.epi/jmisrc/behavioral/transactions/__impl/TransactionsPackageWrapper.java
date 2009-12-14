@@ -46,6 +46,7 @@ public class TransactionsPackageWrapper extends com.sap.tc.moin.repository.core.
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.transactions.TransactionsPackage> get___JmiInterface() {
         return behavioral.transactions.TransactionsPackage.class;
     }

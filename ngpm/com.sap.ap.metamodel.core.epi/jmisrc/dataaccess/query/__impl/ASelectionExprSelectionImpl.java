@@ -64,6 +64,7 @@ public final class ASelectionExprSelectionImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.query.ASelectionExprSelection> get___JmiInterface() {
         return dataaccess.query.ASelectionExprSelection.class;
     }

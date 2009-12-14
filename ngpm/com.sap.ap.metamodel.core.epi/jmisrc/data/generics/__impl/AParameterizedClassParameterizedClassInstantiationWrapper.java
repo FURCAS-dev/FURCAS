@@ -125,6 +125,7 @@ public class AParameterizedClassParameterizedClassInstantiationWrapper extends c
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<data.generics.AParameterizedClassParameterizedClassInstantiation> get___JmiInterface() {
         return data.generics.AParameterizedClassParameterizedClassInstantiation.class;
     }

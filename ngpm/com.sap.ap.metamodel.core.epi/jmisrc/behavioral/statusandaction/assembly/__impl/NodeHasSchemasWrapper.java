@@ -125,6 +125,7 @@ public class NodeHasSchemasWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.NodeHasSchemas> get___JmiInterface() {
         return behavioral.statusandaction.assembly.NodeHasSchemas.class;
     }

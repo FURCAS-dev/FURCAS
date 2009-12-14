@@ -63,6 +63,7 @@ public final class ProxyRepresentsActionImpl extends com.sap.tc.moin.repository.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.ProxyRepresentsAction> get___JmiInterface() {
         return behavioral.statusandaction.assembly.ProxyRepresentsAction.class;
     }

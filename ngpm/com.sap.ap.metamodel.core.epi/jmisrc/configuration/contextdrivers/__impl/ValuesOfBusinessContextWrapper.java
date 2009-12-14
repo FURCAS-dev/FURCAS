@@ -125,6 +125,7 @@ public class ValuesOfBusinessContextWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<configuration.contextdrivers.ValuesOfBusinessContext> get___JmiInterface() {
         return configuration.contextdrivers.ValuesOfBusinessContext.class;
     }

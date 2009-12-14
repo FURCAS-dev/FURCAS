@@ -6,7 +6,7 @@ package behavioral.statusandaction.assembly.__impl;
 
 public class StatusSchemaWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavioral.statusandaction.assembly.__impl.StatusSchemaImpl> implements behavioral.statusandaction.assembly.StatusSchema,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class StatusSchemaWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavioral.statusandaction.assembly.__impl.StatusSchemaImpl getCastWrappedObject() {
         return (behavioral.statusandaction.assembly.__impl.StatusSchemaImpl) getWrappedObject();
     }
@@ -198,6 +199,7 @@ public class StatusSchemaWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavioral.statusandaction.assembly.StatusSchema> get___JmiInterface() {
         return behavioral.statusandaction.assembly.StatusSchema.class;
     }

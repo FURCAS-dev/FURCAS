@@ -125,6 +125,7 @@ public class ABindingsPackageWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<integration.binding.ABindingsPackage> get___JmiInterface() {
         return integration.binding.ABindingsPackage.class;
     }

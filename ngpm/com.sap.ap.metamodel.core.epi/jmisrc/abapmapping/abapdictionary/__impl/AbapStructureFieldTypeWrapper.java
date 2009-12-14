@@ -125,6 +125,7 @@ public class AbapStructureFieldTypeWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<abapmapping.abapdictionary.AbapStructureFieldType> get___JmiInterface() {
         return abapmapping.abapdictionary.AbapStructureFieldType.class;
     }
