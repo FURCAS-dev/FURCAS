@@ -103,8 +103,13 @@ public class CtsDocument extends AbstractDocument {
 	// document
 	completelyItitialized = true;
 	furcasDocumentSetupParticpant.setupCallback(this);
+	
+	//synchronize all tokens with values from model
 	textBlocksModelStore.expandToEditableVersion();
 	getTracker().set(rootBlock.getCachedString());
+	
+	//enable usage of cached string for get() operations as it is faster.
+	((TextBlocksModelStore)getStore()).getModel().setUsecache(true);
     }
 
     

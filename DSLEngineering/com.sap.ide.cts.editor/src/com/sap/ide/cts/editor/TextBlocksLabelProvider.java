@@ -108,15 +108,17 @@ public class TextBlocksLabelProvider implements ILabelProvider {
 			}
 			sb.append("Referenced elements:");
 			for (RefObject referencedME : tok.getReferencedElements()) {
-				sb.append(referencedME.refMetaObject().refGetValue("name"));
-				try {
-					Object value = referencedME.refGetValue("name");
-					sb.append(" Name:").append(value);
-				} catch(InvalidNameException e) {
-					appendId(sb, referencedME);
-				} catch(InvalidCallException e) {
-					appendId(sb, referencedME);
-				}
+			        if(referencedME != null) {
+        				sb.append(referencedME.refMetaObject().refGetValue("name"));
+        				try {
+        					Object value = referencedME.refGetValue("name");
+        					sb.append(" Name:").append(value);
+        				} catch(InvalidNameException e) {
+        					appendId(sb, referencedME);
+        				} catch(InvalidCallException e) {
+        					appendId(sb, referencedME);
+        				}
+			        }
 			}
 		}
 		return sb.toString();

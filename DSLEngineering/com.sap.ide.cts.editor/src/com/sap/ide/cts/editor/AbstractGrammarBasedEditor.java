@@ -770,10 +770,10 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 
 	private void refreshModelAnnotations(ModelPartition rootPartition) {
-		for (Annotation markerAnnotation : markerAnnotations) {
+		for (Annotation markerAnnotation : new HashSet<Annotation>(markerAnnotations)) {
 			getDocumentProvider().getAnnotationModel(getEditorInput()).removeAnnotation(markerAnnotation);
+			markerAnnotations.remove(markerAnnotation);
 		}
-		markerAnnotations.clear();
 		IMarker[] markers = ModelManager.getMarkerManager().findMarkers(rootPartition, IMarker.PROBLEM, true, 0);
 		for (IMarker marker : markers) {
 			RefObject element;

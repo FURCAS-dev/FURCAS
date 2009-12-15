@@ -10,6 +10,7 @@ public class ClosingBraceAutoEditStrategy implements IAutoEditStrategy {
 
     private boolean lastCommandWasEdited = false;
     private String lastCommandText = "";
+    private int insertedBracketPos;
 
     @Override
     public void customizeDocumentCommand(IDocument d, DocumentCommand c) {
@@ -23,10 +24,14 @@ public class ClosingBraceAutoEditStrategy implements IAutoEditStrategy {
 	}
 	if (c.length == 0 && c.text != null
 		&& bStaticMatcher.isOpeningText(c.text)) {
-	    lastCommandWasEdited = true;
+	    lastCommandWasEdited = true; 
 	    lastCommandText = bStaticMatcher.getClosingText(c.text);
+	    insertedBracketPos = c.offset;
 	    c.text = c.text + lastCommandText;
 	    arrangeCarret(d, c);
+	} else if(c.offset == insertedBracketPos + 1){
+	    lastCommandWasEdited = true;
+	    insertedBracketPos += c.text.length();
 	} else {
 	    lastCommandWasEdited = false;
 	}
