@@ -56,7 +56,17 @@ public class TextBlocksModel {
 
 	private ShortPrettyPrinter shortPrettyPrinter;
 
-	/**
+        private boolean usecache = false;
+    
+    	public boolean isUsecache() {
+            return usecache;
+        }
+    
+        public void setUsecache(boolean usecache) {
+            this.usecache = usecache;
+        }
+
+        /**
 	 * @param rootBlock2
 	 * @param modelAdapter 
 	 */
@@ -107,15 +117,15 @@ public class TextBlocksModel {
 	 * 
 	 * @param rootBlock
 	 */
-	public void setRootTextBlock(TextBlock rootBlock) {
-	    if (rootBlock == null) {
-	        throw new IllegalArgumentException("null block passed as root");
-	    }
-	    if (rootBlock.getParentBlock() != null) {
-            throw new IllegalArgumentException("block passed is not root");
+        public void setRootTextBlock(TextBlock rootBlock) {
+            if (rootBlock == null) {
+                throw new IllegalArgumentException("null block passed as root");
+            }
+            if (rootBlock.getParentBlock() != null) {
+                throw new IllegalArgumentException("block passed is not root");
+            }
+            this.rootBlock = rootBlock;
         }
-		this.rootBlock = rootBlock;
-	}
 
 	/**
 	 * Returns the token at the offset, or the last token before the offset.
@@ -154,6 +164,9 @@ public class TextBlocksModel {
 	    if (offset >= getLength()) { // should never happen
             throw new IllegalArgumentException("Offset outside text length " + offset + ">" + getLength());
         }
+	    if(usecache) {
+	        return rootBlock.getCachedString().charAt(offset);
+	    }
 		AbstractToken token = getFloorTokenInRoot(offset);
 		if (token == null) {
 		    
@@ -200,11 +213,13 @@ public class TextBlocksModel {
 		}
 
 		// TODO: maybe check input and throw IllegalArgumentException
+		
+		if(usecache) {
+		    return rootBlock.getCachedString().substring(regionOffset, regionOffset + regionLength);
+		}
 
 		int remainingLength = regionLength;
 		StringBuilder result = new StringBuilder(regionLength);
-		
-		
 		
 		// the position in the TextBlocksModel we currently look at for more chars
 		int currentAbsoluteCursorPosition = regionOffset;	

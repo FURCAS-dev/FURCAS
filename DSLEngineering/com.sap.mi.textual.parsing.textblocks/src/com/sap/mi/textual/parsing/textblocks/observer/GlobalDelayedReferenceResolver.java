@@ -1003,12 +1003,15 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
                             }
                         }
                         try {
-                            String query = MoinHelper.prepareOclQuery(injectorAction.getValue(),
-                                null, null);
-                            if (query != null) {
-                                DelayedReference ref = new DelayedReference(null, null,
+                            String query = injectorAction.getValue();
+                            DelayedReference ref = new DelayedReference(null, null,
                                     injectorAction.getPropertyReference().getStrucfeature()
                                         .getName(), null, null, query, false, null);
+                            //now replace any #context parts within the query with self
+                            //and use the context element type for registration if it is
+                            //used here, 
+                            query = MoinHelper.prepareOclQuery(query, null, null);
+                            if (query != null) {
                                 ref.setQueryElement(injectorAction);
                                 ref.setGenericReference(true);
                                 String name = "<genericReference>" + injectorAction.refMofId();
@@ -1073,14 +1076,14 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
                                     // TODO currently this works only if a "#context" is postfixed
                                     // by a .oclAsType(...) expression.
                                 }
-                                query = MoinHelper.prepareOclQuery(query, null,
-                                    TEMPORARY_QUERY_PARAM_REPLACEMENT);
-                                if (query != null) {
-                                    DelayedReference ref = new DelayedReference(
+                                DelayedReference ref = new DelayedReference(
                                         null,
                                         null,
                                         property.getPropertyReference().getStrucfeature().getName(),
                                         null, null, query, false, null);
+                                query = MoinHelper.prepareOclQuery(query, null,
+                                    TEMPORARY_QUERY_PARAM_REPLACEMENT);
+                                if (query != null) {
                                     ref.setQueryElement(property);
                                     ref.setGenericReference(true);
                                     String name = "<genericReference>" + property.refMofId();
