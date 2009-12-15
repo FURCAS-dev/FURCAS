@@ -19,7 +19,7 @@
 <feature
       id="org.eclipse.emf.query.ocl"
       label="%featureName"
-      version="2.0.0.qualifier"
+      version="1.4.0.qualifier"
       provider-name="%providerName"
       image="modeling32.png">
 
