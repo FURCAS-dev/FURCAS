@@ -64,8 +64,4 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.emf.query.ocl.source"
          version="0.0.0"/>
 
-   <includes
-         id="org.eclipse.emf.query.examples"
-         version="0.0.0"/>
-
 </feature>
