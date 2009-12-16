@@ -10,12 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
- *   Ed Willink - Bug 254919
+ *   E.D.Willink - Bug 254919, 296409
  *   Obeo - Bug 291310
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.3 2009/12/06 22:26:43 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.4 2009/12/16 21:00:41 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -27,8 +27,11 @@ import java.lang.reflect.Modifier;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Set;
 
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -38,6 +41,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.EnvironmentFactory;
@@ -53,8 +57,10 @@ import org.eclipse.ocl.helper.OCLHelper;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.OCLProblemHandler;
 import org.eclipse.ocl.types.OCLStandardLibrary;
+import org.eclipse.ocl.util.CollectionUtil;
 import org.eclipse.ocl.util.OCLUtil;
 import org.eclipse.ocl.utilities.Visitable;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * Default test framework.
@@ -88,6 +94,46 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	private static ArrayList<Resource> standardResources;
 
 	private static boolean initialized = false;
+
+    public static <T> Collection<T> createBag(T... elements) {
+    	Collection<T> collection = CollectionUtil.createNewBag();
+    	if (elements != null) {
+    		for (T element : elements) {
+    			collection.add(element);
+    		}
+    	}
+    	return collection;
+    }
+
+    public static <T> Set<T> createOrderedSet(T... elements) {
+    	Set<T> collection = CollectionUtil.createNewOrderedSet();
+    	if (elements != null) {
+    		for (T element : elements) {
+    			collection.add(element);
+    		}
+    	}
+    	return collection;
+    }
+
+    public static <T> List<T> createSequence(T... elements) {
+    	List<T> collection = CollectionUtil.createNewSequence();
+    	if (elements != null) {
+    		for (T element : elements) {
+    			collection.add(element);
+    		}
+    	}
+    	return collection;
+    }
+
+    public static <T> Set<T> createSet(T... elements) {
+    	Set<T> collection = CollectionUtil.createNewSet();
+    	if (elements != null) {
+    		for (T element : elements) {
+    			collection.add(element);
+    		}
+    	}
+    	return collection;
+    }
 	
 	public static void debugPrintln(String string) {
 		if (!noDebug) {
@@ -106,7 +152,51 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	protected Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment;
 	protected TestReflection<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, PR, EL, S, COA, SSA, CT> reflection;
 	protected OCLHelper<C, O, P, CT> helper;
-	
+    
+	/**
+	 * Assert that an expression cannot be used as an invariant, because an exception is thrown
+	 * with a diagnostic of severity containing a message that is the result of messageTemplate
+	 * resolved by bindings.
+	 */
+    protected void assertBadInvariant(Class<?> exception, int severity,
+   		 String expression, String messageTemplate, String... bindings) {
+		String denormalized = denormalize(expression);
+        try {
+        	helper.createInvariant(denormalized);
+            fail("Should not have parsed \"" + denormalized + "\"");
+        } catch (ParserException e) {
+        	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
+        	Diagnostic diagnostic = getDiagnostic();
+			assertNoException(diagnostic, ClassCastException.class);
+        	assertNoException(diagnostic, NullPointerException.class);
+        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
+        	String expectedMessage = NLS.bind(messageTemplate, bindings);
+        	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
+        }	   
+    }
+	 
+	/**
+	 * Assert that an expression cannot be used as a query, because an exception is thrown
+	 * with a diagnostic of severity containing a message that is the result of messageTemplate
+	 * resolved by bindings.
+	 */
+     protected void assertBadQuery(Class<?> exception, int severity,
+    		 String expression, String messageTemplate, String... bindings) {
+		String denormalized = denormalize(expression);
+        try {
+        	helper.createQuery(denormalized);
+            fail("Should not have parsed \"" + denormalized + "\"");
+        } catch (ParserException e) {
+        	assertEquals("Exception for \"" + denormalized + "\"", exception, e.getClass());
+        	Diagnostic diagnostic = getDiagnostic();
+			assertNoException(diagnostic, ClassCastException.class);
+        	assertNoException(diagnostic, NullPointerException.class);
+        	assertEquals("Severity for \"" + denormalized + "\"", severity, diagnostic.getSeverity());
+        	String expectedMessage = NLS.bind(messageTemplate, bindings);
+        	assertEquals("Message for \"" + denormalized + "\"", expectedMessage, diagnostic.getMessage());
+        }	   
+	}
+    	
 	/**
 	 * Asserts that the specified choice is to be found in the collection of
 	 * <code>choices</code>.
@@ -122,6 +212,52 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	
 	protected void assertInvalid(Object value) {
 		assertTrue("Expected invalid", ocl.isInvalid(value));
+	}
+	
+	/**
+	 * Assert that an expression can be parsed as an invariant for a context and return the invariant.
+	 */
+	protected OCLExpression<C> assertInvariant(C context, String expression) {
+		helper.setContext(context);
+		
+		String denormalized = denormalize(expression);		
+		try {
+			OCLExpression<C> result = getBodyExpression(helper.createInvariant(denormalized));
+			return result;
+		} catch (Exception e) {
+			fail("Parse failed: " + e.getLocalizedMessage());
+			return null;
+		}		
+	}
+
+	/**
+	 * Assert that an expression evaluated as an invariant for a context returns false.
+	 */
+	protected Object assertInvariantFalse(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = check(helper, context, denormalized);
+			assertEquals(denormalized, false, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that an expression evaluated as an invariant for a context returns true.
+	 */
+	protected Object assertInvariantTrue(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = check(helper, context, denormalized);
+			assertEquals(denormalized, true, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
 	}
 
 	/**
@@ -157,6 +293,158 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	}
 	
 	/**
+	 * Assert that an expression can be parsed as a query for a context and return the query.
+	 */
+	protected OCLExpression<C> assertQuery(C context, String expression) {
+		helper.setContext(context);
+		String denormalized = denormalize(expression);
+		try {
+			OCLExpression<C> result = helper.createQuery(denormalized);
+			return result;
+		} catch (Exception e) {
+//			e.printStackTrace();
+			fail("Parse failed: " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is equal to expected.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryEquals(Object context, Object expected, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertEquals(denormalized, expected, value);
+			if (expected instanceof LinkedHashSet) {
+				assertTrue(denormalized, value instanceof LinkedHashSet);
+				Iterator<?> es = ((LinkedHashSet<?>)expected).iterator();
+				Iterator<?> vs = ((LinkedHashSet<?>)value).iterator();
+				while (es.hasNext()) {
+					Object e = es.next();
+					Object v = vs.next();
+					assertEquals(denormalized, e, v);
+				}
+			}
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is the same as expected.
+	 */
+	protected Object assertQueryEvaluate(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+            return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is false.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryFalse(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertEquals(denormalized, false, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is invalid.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryInvalid(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertInvalid(value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is not null.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryNotNull(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertNotNull(denormalized, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is not the same as expected.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryNotSame(Object context, Object expected, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertNotSame(denormalized, expected, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is the same as expected.
+	 * @return the evaluation result
+	 */
+	protected Object assertQuerySame(Object context, Object expected, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertSame(denormalized, expected, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+
+	/**
+	 * Assert that the result of evaluating an expression as a query is true.
+	 * @return the evaluation result
+	 */
+	protected Object assertQueryTrue(Object context, String expression) {
+		String denormalized = denormalize(expression);
+		try {
+			Object value = evaluate(helper, context, denormalized);
+			assertEquals(denormalized, true, value);
+			return value;
+		} catch (ParserException e) {
+            fail("Failed to parse or evaluate \"" + denormalized + "\": " + e.getLocalizedMessage());
+			return null;
+		}
+	}
+    
+    /**
 	 * Asserts that the <code>toString</code> representation of an AST node as
 	 * generated by the toString visitor does not throw a run-time exception
 	 * and is not <code>null</code>.
@@ -177,11 +465,9 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		boolean result = false;
 		
 		try {
-			OCLExpression<C> expr = parse(
-					"package " + reflection.getModelPackageName() +
-					" context " + reflection.getStringTypeName() +
-					" inv: " + contextFreeExpression +
-					" endpackage");
+			String document = denormalize("package %uml context %String" +
+					" inv: " + contextFreeExpression + " endpackage");
+			OCLExpression<C> expr = parse(document);
 			
 			result = check(expr, "");
 		} catch (Exception e) {
@@ -246,6 +532,16 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		return result;
 	}
 
+	/**
+	 * Return an isOrdered,isUnique collection containing args.
+	 */
+	protected<Z> Collection<Z> createCollection(boolean isOrdered, boolean isUnique, Z... args) {
+		if (isOrdered)
+			return isUnique ? createOrderedSet(args) : createSequence(args);
+		else
+			return isUnique ? createSet(args) : createBag(args);
+	}
+
 	protected void createDocument(String text) {
 		try {
 			ocl
@@ -260,21 +556,8 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		return ocl.createOCLHelper();
 	}
 	
-	protected OCLExpression<C> createInvariant(C context, String text) {
-		OCLHelper<C, O, P, CT> helper =
-			ocl.createOCLHelper();
-		helper.setContext(context);
-		
-		OCLExpression<C> result = null;
-		
-		try {
-			result = getBodyExpression(helper.createInvariant(text));
-		} catch (Exception e) {
-//			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage());
-		}
-		
-		return result;
+	protected OCLExpression<C> createInvariant(C context, String expression) {
+		return assertInvariant(context, expression);
 	}
 
 	protected OCL<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> createOCL() {
@@ -315,20 +598,8 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		return result;
 	}
 	
-	protected OCLExpression<C> createQuery(CLS context, String text) {
-		OCLHelper<C, O, P, CT> helper = ocl.createOCLHelper();
-		helper.setContext(context);
-		
-		OCLExpression<C> result = null;
-		
-		try {
-			result = helper.createQuery(text);
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Parse failed: " + e.getLocalizedMessage());
-		}
-		
-		return result;
+	protected OCLExpression<C> createQuery(CLS context, String expression) {
+		return assertQuery(context, expression);
 	}
 	
 	protected OCLExpression<C> createQuery(
@@ -357,6 +628,34 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
         var.setType(type);
         environment.addElement(var.getName(), var, true);
 	}
+
+	/**
+	 * Replace every %xxx occurrence on expression by the binding-specific value of
+	 * denormalization of xxx if defined or xxx otherwise.
+	 */
+	public String denormalize(String expression) {
+		StringBuffer s = new StringBuffer();
+		int iMax = expression.length();
+		for (int i = 0; i < iMax; i++) {
+			char c = expression.charAt(i);
+			if (c == '%') {
+				int iStart = ++i;
+				for (; i < iMax; i++){
+					c = expression.charAt(i);
+					if (!Character.isLetterOrDigit(c)) {
+						break;
+					}
+				}
+				String key = expression.substring(iStart, i);
+				String mapped = reflection.denormalize(key);
+				s.append(mapped != null ? mapped : key);
+			}
+			if (i < iMax)
+				s.append(c);
+				
+		}
+		return s.toString();
+	}	
 	
 	protected void disposeResourceSet() {
         for (Resource res : resourceSet.getResources()) {
@@ -373,11 +672,9 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		Object result = null;
 		
 		try {
-			OCLExpression<C> expr = parse(
-					"package " + reflection.getModelPackageName() +
-						" context " + reflection.getStringTypeName() +
-					" inv: " + contextFreeExpression +
-					" endpackage");
+			String document = denormalize("package %uml context %String" +
+					" inv: " + contextFreeExpression +" endpackage");
+			OCLExpression<C> expr = parse(document);
 			
 			result = evaluate(expr, "");
 		} catch (Exception e) {
@@ -639,6 +936,19 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 		assertValidToString(result);
 		
 		return result;
+	}
+
+	/**
+	 * Create a Resource to register a binding-dependent pkg for access with a given nsPrefix and nsUri.
+	 */
+	protected PK registerPackage(PK pkg, String nsPrefix, String nsUri) {
+        reflection.setNsPrefix(pkg, nsPrefix);
+        reflection.setNsURI(pkg, nsUri);
+		Resource resource = new ResourceImpl(URI.createURI(nsUri));
+        resource.getContents().add(pkg);
+        resourceSet.getResources().add(resource);					// FIXME UML needs this
+        resourceSet.getPackageRegistry().put(nsUri, pkg);			//  whereas Ecore needs this
+        return pkg;
 	}
 	
 	@Override
