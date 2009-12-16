@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: runtests.xml,v 1.5 2009/12/16 10:16:25 aigdalov Exp $
+ * $Id: runtests.xml,v 1.6 2009/12/16 10:54:37 aigdalov Exp $
  */
 -->
 <project name="project" default="default">
@@ -34,7 +34,7 @@
         	
         	<classpath>
         		<fileset dir="${target.location}">
-        			<include name="**/plugins/org.junit_4*/junit.jar"/>
+        			<include name="**/plugins/org.junit4*/junit.jar"/>
         			<include name="**/plugins/org.eclipse.emf.common_*.jar"/>
         			<include name="**/plugins/org.eclipse.emf.ecore_*.jar"/>
         			<include name="**/plugins/org.eclipse.emf.ecore.xmi_*.jar"/>
