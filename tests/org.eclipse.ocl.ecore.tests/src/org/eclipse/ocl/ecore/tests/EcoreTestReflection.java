@@ -8,13 +8,17 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Ed Willink - Bug 254919; Initial API and implementation
+ *   E.D.Willink - Initial API and implementation
+ *   E.D.Willink - Bug 254919, 296409
  *
  * </copyright>
  *
- * $Id: EcoreTestReflection.java,v 1.1 2009/11/26 20:45:49 ewillink Exp $
+ * $Id: EcoreTestReflection.java,v 1.2 2009/12/16 21:00:50 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.tests;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -62,8 +66,6 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 {
 	public static final EcoreTestReflection INSTANCE = new EcoreTestReflection();
 	public static final String PLUGIN_ID = "org.eclipse.ocl.ecore.tests";
-	
-//	private static Map<URI, URI> uriMap;		
 
 	public static OCL createOCL() {
 		OCL newInstance = OCL.newInstance();
@@ -72,6 +74,11 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 			newInstance.setParserRepairCount(Integer.parseInt(repairs));
 		return newInstance;
 	}
+	
+	/**
+	 * Map of %Key to value for denormalizing OCL test code.
+	 */
+	private Map<String, String> normalizers = null;
 
 	public void addSupertype(EClass aClass, EClass superClass) {
 		aClass.getESuperTypes().add(superClass);
@@ -83,6 +90,11 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 
 	public EAnnotation createComment() {
 		return EcoreFactory.eINSTANCE.createEAnnotation();
+	}
+
+	public void createGeneralization(EClassifier special, EClassifier general) {
+		if ((special instanceof EClass) && (general instanceof EClass))
+			((EClass)special).getESuperTypes().add((EClass)general);
 	}
 
 	public EPackage createNestedPackage(EPackage aPackage, String name) {
@@ -176,6 +188,24 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 			Environment<EPackage, EClassifier, EOperation, EStructuralFeature, EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint, EClass, EObject> environment) {
 		return this;
 	}
+
+	public String denormalize(String key) {
+		if (normalizers == null) {
+			normalizers = new HashMap<String, String>();
+			normalizers.put("Date", "EDate");
+			normalizers.put("Package", "EPackage");
+			normalizers.put("Reference", "EReference");
+			normalizers.put("String", "EString");
+			normalizers.put("Type", "EClassifier");
+			normalizers.put("container", "eContainer");
+			normalizers.put("nestedPackage", "eSubpackages");
+			normalizers.put("nestingPackage", "eSuperPackage");
+			normalizers.put("opposite", "eOpposite");
+			normalizers.put("ownedType", "eClassifiers");
+			normalizers.put("uml", "ecore");
+		}
+		return normalizers.get(key);
+	}
 	
 	public void disposeResourceSet(ResourceSet resourceSet) {
         if (resourceSet != null) {
@@ -192,20 +222,14 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 //        fruitPackage = null;
 	}
 
-	public String getAbstractOperationName() {
-		return "abstract";
-	}
-
-	public String getAttributeParentTypeName() {
-		return "EClass";
-	}
-
-	public String getAttributeTypeName() {
-		return "EAttribute";
-	}
-
-	public String getAttributesFeatureName() {
-		return "eAttributes";
+	public EStructuralFeature getAttribute(EClassifier classifier, String name, EClassifier type) {
+		if (!(classifier instanceof EClass))
+			return null;
+		EStructuralFeature feature = ((EClass)classifier).getEStructuralFeature(name);
+		if (feature == null)
+			return null;
+		// check type
+		return feature;
 	}
 
 	public EClassifier getBigDecimal() {
@@ -224,10 +248,6 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		return EcorePackage.Literals.ECLASS;
 	}
 
-	public String getClassTypeName() {
-		return "EClass";
-	}
-
 	public EClassifier getClassifierTypeContext() {
 		return EcorePackage.Literals.ECLASSIFIER;
 	}
@@ -236,38 +256,18 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		return ExpressionsPackage.Literals.COLLECTION_KIND;
 	}
 
-	public String getCommentElementName() {
-		return "source";
-	}
-
 	public EClassifier getCommentTypeContext() {
 		return EcorePackage.Literals.EANNOTATION;
-	}
-
-	public String getCommentTypeName() {
-		return "EAnnotation";
-	}
-
-	public String getConformsToOperationName() {
-		return "isSuperTypeOf";
 	}
 	
 	public java.lang.Class<Constraint> getConstraintClass() {
 		return Constraint.class;
 	}
 
-	public String getDataTypeTypeName() {
-		return "EDataType";
-	}
-
 	public EClassifier getDefaultSetType(Environment<EPackage, EClassifier, EOperation, EStructuralFeature,
 			EEnumLiteral, EParameter, EObject, CallOperationAction, SendSignalAction, Constraint,
 			EClass, EObject> environment) {
 		return EcorePackage.Literals.ERESOURCE;
-	}
-
-	public String getDerivedOperationName() {
-		return "derived";
 	}
 
 	public EPackage getEPackage(EPackage pkg) {
@@ -290,27 +290,14 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		throw new UnsupportedOperationException(getClass().getName() + ".getEcorePrimitiveTypes");
 	}
 
-	public String getEnumerationTypeName() {
-		return "EEnum";
-	}
-
 	public String getFruitModelPath() {
 		return "/model/OCLTest.ecore";
 	}
     
-	public EClassifier getMetaclass(String name) {	// FIXME UOE
-		throw new UnsupportedOperationException(getClass().getName() + ".getMetaclass");
-//        return (Classifier) umlMetamodel.getOwnedType(name);
+	public EClassifier getMetaclass(String name) {
+	    return EcorePackage.eINSTANCE.getEClassifier(name);
     }
-
-	public String getModelPackageName() {
-		return "ecore";
-	}
-
-	public String getMultiplicityElementTypeName() {
-		return "ETypedElement";
-	}
-
+	
 	public String getNsURI(EPackage aPackage) {
 		return aPackage.getNsURI();
 	}
@@ -332,16 +319,8 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		return EcorePackage.Literals.ESTRING;
 	}
 
-	public String getStringTypeName() {
-		return "EString";
-	}
-
 	public String getTestPlugInId() {
 		return PLUGIN_ID;
-	}
-
-	public String getTypesPackageName() {
-		return "ecore";
 	}
 	
 	public EDataType getUMLBoolean() {
@@ -357,7 +336,7 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 	}
 
 	public EPackage getUMLMetamodel() {	// FIXME UOE
-		throw new UnsupportedOperationException(getClass().getName() + ".getUMLMetaModel");
+		return EcorePackage.eINSTANCE;
 	}
 
 	public EPackage getUMLPrimitiveTypes() {	// FIXME UOE
@@ -374,10 +353,6 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 
 	public int getUnlimitedValue() {
 		return -1;			// FIXME find symbolic value
-	}
-
-	public String getUpperOperationName() {
-		return "upperBound";
 	}
 
 /*	public Map<URI, URI> initRegistries() {
@@ -406,6 +381,20 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 		resourceSet.getPackageRegistry().put(EcorePackage.eINSTANCE.getNsURI(), EcorePackage.eINSTANCE);
 		return resourceSet;
 	}
+
+	public boolean isOrdered(String key) {
+		if ("nestedPackage".equals(key)) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean isUnique(String key) {
+		if ("nestedPackage".equals(key)) {
+			return true;
+		}
+		return false;
+	}
 	
 	public void setAbstract(EClass aClass, boolean isAbstract) {
 		aClass.setAbstract(isAbstract);
@@ -433,6 +422,10 @@ EEnumLiteral, EObject, CallOperationAction, SendSignalAction, Constraint>
 
 	public void setNsURI(EPackage aPackage, String name) {
 		aPackage.setNsPrefix(name);
+	}
+
+	public void setOperationUpper(EOperation anOperation, int value) {
+		anOperation.setUpperBound(value);
 	}
 
 	public void setUpper(EStructuralFeature aProperty, int value) {
