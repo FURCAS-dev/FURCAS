@@ -15,7 +15,7 @@
 <stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value=""/>
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
-<stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit3"/>
+<stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.ecore.tests.AllTests"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.ecore.tests"/>
 <stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.ecore.tests=${resource_loc:/org.eclipse.ocl.ecore.tests}&#13;&#10;-Dorg.eclipse.ocl.ecore=${resource_loc:/org.eclipse.ocl.ecore}&#13;&#10;-Dorg.eclipse.ocl.ecore.tests.nodebug=true&#13;&#10;-Dorg.eclipse.ocl.ecore.tests.repairs=100&#13;&#10;-ea"/>
