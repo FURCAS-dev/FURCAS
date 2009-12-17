@@ -13,6 +13,7 @@ import tcs.ConditionalElement;
 import tcs.Property;
 import tcs.SequenceElement;
 import tcs.Template;
+import textblockdefinition.TextblockDefinitionGeneralisation;
 import textblocks.AbstractToken;
 import textblocks.DocumentNode;
 import textblocks.LexedToken;
@@ -458,25 +459,22 @@ public class IncrementalParsingUtil {
 		TextBlock tbDeletionCandidate = original;
 		Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
 		if (((Partitionable) original).is___Alive()) {
-			while (tbDeletionCandidate != null
-				&& TbNavigationUtil.firstToken(tbDeletionCandidate) == null
-				// this may be the case if there are any empty blocks before
-				// remaining tokens
-				// inside the block
-				&& tbDeletionCandidate.getTokens().size() == 0) {
-				TextBlock deleteTB = tbDeletionCandidate;
-				if (deleteTB.getCorrespondingModelElements().size() > 0) {
-					affectedModelElements.addAll(deleteTB
-						.getCorrespondingModelElements());
-				}
-				tbDeletionCandidate = tbDeletionCandidate.getParentBlock();
-				deleteTB.refDelete();
-			}
-		}
-		if (((Partitionable) original).is___Alive()) {
-			for (TextBlock subBlock : new ArrayList<TextBlock>(original.getSubBlocks())) {
-				affectedModelElements.addAll(deleteEmptyBlocks(subBlock));
-			}
+                    for (TextBlock subBlock : new ArrayList<TextBlock>(original.getSubBlocks())) {
+                            affectedModelElements.addAll(deleteEmptyBlocks(subBlock));
+                    }
+                }
+		if (((Partitionable) original).is___Alive()  && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
+	                    // this may be the case if there are any empty blocks before
+	                    // remaining tokens
+	                    // inside the block
+	                    && tbDeletionCandidate.getTokens().size() == 0) {
+                        TextBlock deleteTB = tbDeletionCandidate;
+                        if (deleteTB.getCorrespondingModelElements().size() > 0) {
+                                affectedModelElements.addAll(deleteTB
+                                        .getCorrespondingModelElements());
+                        }
+                        deleteTB.refDelete();
+               
 		}
 		return affectedModelElements;
 	}
@@ -516,10 +514,32 @@ public class IncrementalParsingUtil {
 		affectedModelElements.addAll(deletePreviousEmptyBlocks(original));
 		affectedModelElements.addAll(deleteNextEmptyBlocks(original));
 		affectedModelElements.addAll(deleteEmptyBlocks(original));
+		affectedModelElements.addAll(deleteEmptyParentBlocks(original));
 		return affectedModelElements;
 	}
 
-	public static void unsetPrimitiveFeature(TextBlock oldVersion, LexedToken lt,
+	private static Collection<? extends RefObject> deleteEmptyParentBlocks(
+            TextBlock original) {
+	    Collection<RefObject> affectedModelElements = new ArrayList<RefObject>();
+	    TextBlock tbDeletionCandidate = original;
+	    while (tbDeletionCandidate != null && tbDeletionCandidate.is___Alive()
+                    && TbNavigationUtil.firstToken(tbDeletionCandidate) == null
+                    // this may be the case if there are any empty blocks before
+                    // remaining tokens
+                    // inside the block
+                    && tbDeletionCandidate.getTokens().size() == 0) {
+                    TextBlock deleteTB = tbDeletionCandidate;
+                    if (deleteTB.getCorrespondingModelElements().size() > 0) {
+                            affectedModelElements.addAll(deleteTB
+                                    .getCorrespondingModelElements());
+                    }
+                    tbDeletionCandidate = tbDeletionCandidate.getParentBlock();
+                    deleteTB.refDelete();
+            }
+	    return affectedModelElements;
+	}
+
+    public static void unsetPrimitiveFeature(TextBlock oldVersion, LexedToken lt,
 		IModelInjector injector) {
 		if (oldVersion.getCorrespondingModelElements().size() > 0
 			&& lt.getSequenceElement() != null

@@ -765,96 +765,98 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 		}
 	}
 
-	/**
-	 * Delete if there is no current version and the template was not reference only.
-	 * 
-	 * @param oldVersion
-	 */
-	private void deleteElementsForRemovedSubBlocks(TextBlock oldVersion) {
-		TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion,
-			VersionEnum.REFERENCE);
-		if (reference != null) {
-			for (TextBlock tb : reference.getSubBlocks()) {
-				// delete if there is no current version and the template was
-				// not reference only
-				if (TbVersionUtil.getOtherVersion(tb, VersionEnum.CURRENT) == null) {
-					deleteElementsForRemovedSubBlocks(tb);
-					if (tb.getReferencedElements().size() > 0
-						&& tb.getSequenceElement() instanceof Property) {
-						for (RefObject ro : new ArrayList<RefObject>(tb
-							.getCorrespondingModelElements())) {
-							for (RefObject value : new ArrayList<RefObject>(
-								tb.getReferencedElements())) {
-								try {
-									SetNewFeatureBean bean = new SetNewFeatureBean(
-										ro,
-										((Property) oldVersion
-											.getSequenceElement())
-											.getPropertyReference()
-											.getStrucfeature()
-											.getName(),
-										value, 0);
-									referenceHandler
-										.unsetFeature(bean);
-								} catch (Exception ex) {
-									// do nothing just try next
-									// element
-								}
-							}
-						}
-					}
-					if (tb.getType() != null
-						&& tb.getType().getParseRule() != null) {
-						if (!TcsUtil.isReferenceOnly(tb.getType()
-							.getParseRule())) {
-							// FIXME: Delete only the first element as
-							// this is
-							// the one the tb is responsible for
-							// However, this should be separated by
-							// having a
-							// separate assoc for
-							// responsible elements and such elements
-							// that were
-							// resolved from somewhere else,
-							// such as property inits
-							for (RefObject ro : new ArrayList<RefObject>(
-								tb.getCorrespondingModelElements())) {
-								if (((Partitionable) ro)
-									.is___Alive()) {
-									ro.refDelete();
-								}
-							}
-						} else {
-							// Only unset features that are at the
-							// boundary to referenceOnly elements
-							if (!TcsUtil.isReferenceOnly(reference
-								.getType().getParseRule())) {
-
-							}
-						}
-					}
-				}
-			}
-			for (AbstractToken tb : reference.getTokens()) {
-				// unset the corresponding value of the token if there is no current
-				// version
-				if (tb instanceof LexedToken
-					&& TbVersionUtil.getOtherVersion(tb, VersionEnum.CURRENT) == null) {
-					LexedToken lt = (LexedToken) tb;
-					if (lt.getCorrespondingModelElements().size() > 0
-						&& lt.getSequenceElement() instanceof Property) {
-						referenceHandler.unsetPrimitiveFeature(oldVersion,
-							lt);
-					}
-					if (lt.getReferencedElements().size() > 0
-						&& lt.getSequenceElement() instanceof Property) {
-						referenceHandler.unsetPrimitiveFeature(oldVersion,
-							lt);
-					}
-				}
-			}
-		}
-	}
+        /**
+         * Delete if there is no current version and the template was not reference
+         * only.
+         * 
+         * @param oldVersion
+         */
+        private void deleteElementsForRemovedSubBlocks(TextBlock oldVersion) {
+            if (oldVersion.is___Alive()) {
+                TextBlock reference = TbVersionUtil.getOtherVersion(oldVersion,
+                        VersionEnum.REFERENCE);
+                if (reference != null) {
+                    for (TextBlock tb : reference.getSubBlocks()) {
+                        // delete if there is no current version and the template
+                        // was
+                        // not reference only
+                        if (TbVersionUtil.getOtherVersion(tb, VersionEnum.CURRENT) == null) {
+                            deleteElementsForRemovedSubBlocks(tb);
+                            if (tb.getReferencedElements().size() > 0
+                                    && tb.getSequenceElement() instanceof Property) {
+                                for (RefObject ro : new ArrayList<RefObject>(tb
+                                        .getCorrespondingModelElements())) {
+                                    for (RefObject value : new ArrayList<RefObject>(
+                                            tb.getReferencedElements())) {
+                                        try {
+                                            SetNewFeatureBean bean = new SetNewFeatureBean(
+                                                    ro, ((Property) oldVersion
+                                                            .getSequenceElement())
+                                                            .getPropertyReference()
+                                                            .getStrucfeature()
+                                                            .getName(), value, 0);
+                                            referenceHandler.unsetFeature(bean);
+                                        } catch (Exception ex) {
+                                            // do nothing just try next
+                                            // element
+                                        }
+                                    }
+                                }
+                            }
+                            if (tb.getType() != null
+                                    && tb.getType().getParseRule() != null) {
+                                if (!TcsUtil.isReferenceOnly(tb.getType()
+                                        .getParseRule())) {
+                                    // FIXME: Delete only the first element as
+                                    // this is
+                                    // the one the tb is responsible for
+                                    // However, this should be separated by
+                                    // having a
+                                    // separate assoc for
+                                    // responsible elements and such elements
+                                    // that were
+                                    // resolved from somewhere else,
+                                    // such as property inits
+                                    for (RefObject ro : new ArrayList<RefObject>(tb
+                                            .getCorrespondingModelElements())) {
+                                        if (((Partitionable) ro).is___Alive()) {
+                                            ro.refDelete();
+                                        }
+                                    }
+                                } else {
+                                    // Only unset features that are at the
+                                    // boundary to referenceOnly elements
+                                    if (!TcsUtil.isReferenceOnly(reference
+                                            .getType().getParseRule())) {
+    
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    for (AbstractToken tb : reference.getTokens()) {
+                        // unset the corresponding value of the token if there is no
+                        // current
+                        // version
+                        if (tb instanceof LexedToken
+                                && TbVersionUtil.getOtherVersion(tb,
+                                        VersionEnum.CURRENT) == null) {
+                            LexedToken lt = (LexedToken) tb;
+                            if (lt.getCorrespondingModelElements().size() > 0
+                                    && lt.getSequenceElement() instanceof Property) {
+                                referenceHandler.unsetPrimitiveFeature(oldVersion,
+                                        lt);
+                            }
+                            if (lt.getReferencedElements().size() > 0
+                                    && lt.getSequenceElement() instanceof Property) {
+                                referenceHandler.unsetPrimitiveFeature(oldVersion,
+                                        lt);
+                            }
+                        }
+                    }
+                }
+            }
+        }
 
 	/**
 	 * Cheks whether the token was reused or not.
