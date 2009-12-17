@@ -89,7 +89,6 @@ public class RedefinableElementClassifierWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.RedefinableElementClassifier> get___JmiInterface() {
         return uml.RedefinableElementClassifier.class;
     }

@@ -125,7 +125,6 @@ public class NamedElementNamespaceWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.NamedElementNamespace> get___JmiInterface() {
         return uml.NamedElementNamespace.class;
     }

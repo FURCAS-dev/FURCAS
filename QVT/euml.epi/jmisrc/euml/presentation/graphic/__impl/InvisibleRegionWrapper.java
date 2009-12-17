@@ -6,7 +6,7 @@ package euml.presentation.graphic.__impl;
 
 public class InvisibleRegionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.presentation.graphic.__impl.InvisibleRegionImpl> implements euml.presentation.graphic.InvisibleRegion,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class InvisibleRegionWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.presentation.graphic.__impl.InvisibleRegionImpl getCastWrappedObject() {
         return (euml.presentation.graphic.__impl.InvisibleRegionImpl) getWrappedObject();
     }
@@ -155,7 +154,6 @@ public class InvisibleRegionWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.InvisibleRegion> get___JmiInterface() {
         return euml.presentation.graphic.InvisibleRegion.class;
     }

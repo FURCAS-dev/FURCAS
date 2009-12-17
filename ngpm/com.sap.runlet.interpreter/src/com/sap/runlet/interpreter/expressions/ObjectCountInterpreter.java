@@ -23,7 +23,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.ObjectCount;
 
-public class ObjectCountInterpreter implements Interpreter<ObjectCount, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ObjectCountInterpreter implements Interpreter<ObjectCount, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private ObjectCount objectCount;
     
     public ObjectCountInterpreter(ObjectCount objectCount) {

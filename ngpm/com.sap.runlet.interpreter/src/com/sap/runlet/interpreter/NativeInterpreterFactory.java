@@ -41,7 +41,7 @@ import dataaccess.expressions.Expression;
 public class NativeInterpreterFactory
 extends InterpreterFactory<SapClass, NativeImpl, SapClass, TypeDefinition, ClassTypeDefinition,
 Association, AssociationEnd, Statement, Expression, SignatureImplementation,
-RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+RunletStackFrame, NativeImpl, RunletInterpreter> {
     protected SapClass getType(NativeImpl modelElement) {
 	SapClass clazz = (SapClass) ((MethodSignature) modelElement.getImplementedSignature()).getOwner();
 	return clazz;

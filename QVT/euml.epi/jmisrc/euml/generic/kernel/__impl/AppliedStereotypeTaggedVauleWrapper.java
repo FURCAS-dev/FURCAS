@@ -125,7 +125,6 @@ public class AppliedStereotypeTaggedVauleWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.AppliedStereotypeTaggedVaule> get___JmiInterface() {
         return euml.generic.kernel.AppliedStereotypeTaggedVaule.class;
     }

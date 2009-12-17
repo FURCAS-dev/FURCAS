@@ -125,7 +125,6 @@ public class UmlsignalEventUmlsignalWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmlsignalEventUmlsignal> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmlsignalEventUmlsignal.class;
     }

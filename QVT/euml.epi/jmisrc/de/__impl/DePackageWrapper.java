@@ -46,7 +46,6 @@ public class DePackageWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<de.DePackage> get___JmiInterface() {
         return de.DePackage.class;
     }

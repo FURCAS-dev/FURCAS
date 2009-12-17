@@ -125,7 +125,6 @@ public class UmlelementUmlannotationWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlelementUmlannotation> get___JmiInterface() {
         return euml.generic.kernel.UmlelementUmlannotation.class;
     }

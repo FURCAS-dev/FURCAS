@@ -125,7 +125,6 @@ public class InstanceWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.Instance> get___JmiInterface() {
         return euml.generic.kernel.Instance.class;
     }

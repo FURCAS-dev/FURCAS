@@ -21,7 +21,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class LinkTraversalInterpreter implements Interpreter<LinkTraversal, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class LinkTraversalInterpreter implements Interpreter<LinkTraversal, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private LinkTraversal linkTraversal;
     
     public LinkTraversalInterpreter(LinkTraversal linkTraversal) {

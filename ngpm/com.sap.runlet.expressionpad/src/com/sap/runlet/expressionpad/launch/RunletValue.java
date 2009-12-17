@@ -103,7 +103,7 @@ public class RunletValue extends DebugElement implements IValue {
 			.getImplementation(), (ClassTypedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) value);
 		try {
 		    RunletInterpreter methodEvalInterpreter = (RunletInterpreter) getDebugTarget().getInterpreter().spawn();
-		    com.sap.runlet.interpreter.RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> evalFrame = new com.sap.runlet.interpreter.RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>();
+		    com.sap.runlet.interpreter.RunletStackFrame evalFrame = new com.sap.runlet.interpreter.RunletStackFrame();
 		    methodEvalInterpreter.push(evalFrame);
 		    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> methodCallResult = ffmo.evaluate(methodEvalInterpreter);
 		    result.add(new RunletVariable(sig.getName() + "()", methodCallResult,

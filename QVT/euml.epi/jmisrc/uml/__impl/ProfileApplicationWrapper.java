@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class ProfileApplicationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.ProfileApplicationImpl> implements uml.ProfileApplication,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ProfileApplicationWrapper extends com.sap.tc.moin.repository.core.j
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.ProfileApplicationImpl getCastWrappedObject() {
         return (uml.__impl.ProfileApplicationImpl) getWrappedObject();
     }
@@ -79,7 +78,6 @@ public class ProfileApplicationWrapper extends com.sap.tc.moin.repository.core.j
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ProfileApplication> get___JmiInterface() {
         return uml.ProfileApplication.class;
     }

@@ -125,7 +125,6 @@ public class UmlslotUmlpropertyWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlslotUmlproperty> get___JmiInterface() {
         return euml.generic.kernel.UmlslotUmlproperty.class;
     }

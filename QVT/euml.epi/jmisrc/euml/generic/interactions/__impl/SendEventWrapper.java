@@ -125,7 +125,6 @@ public class SendEventWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.SendEvent> get___JmiInterface() {
         return euml.generic.interactions.SendEvent.class;
     }

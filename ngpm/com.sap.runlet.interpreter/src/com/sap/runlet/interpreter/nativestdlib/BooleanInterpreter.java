@@ -24,7 +24,7 @@ import dataaccess.expressions.Expression;
 
 public class BooleanInterpreter implements Interpreter<NativeImpl, SapClass, TypeDefinition, ClassTypeDefinition,
 Association, AssociationEnd, Statement, Expression, SignatureImplementation,
-RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+RunletStackFrame, NativeImpl, RunletInterpreter> {
     private NativeImpl nativeImpl;
 
     public BooleanInterpreter(NativeImpl nativeImpl) {

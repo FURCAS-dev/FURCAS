@@ -125,7 +125,6 @@ public class UmltriggerUmleventWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmltriggerUmlevent> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmltriggerUmlevent.class;
     }

@@ -64,7 +64,6 @@ public final class DiagramElementInvisibleRegionImpl extends com.sap.tc.moin.rep
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.DiagramElementInvisibleRegion> get___JmiInterface() {
         return euml.presentation.graphic.DiagramElementInvisibleRegion.class;
     }

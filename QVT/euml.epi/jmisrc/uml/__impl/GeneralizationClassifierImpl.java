@@ -64,7 +64,6 @@ public final class GeneralizationClassifierImpl extends com.sap.tc.moin.reposito
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.GeneralizationClassifier> get___JmiInterface() {
         return uml.GeneralizationClassifier.class;
     }

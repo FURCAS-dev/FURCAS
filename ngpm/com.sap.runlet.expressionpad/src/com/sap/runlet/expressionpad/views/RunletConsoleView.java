@@ -39,7 +39,7 @@ import dataaccess.expressions.Expression;
 
 public class RunletConsoleView
 extends ConsoleView<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition,
-Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>,
+Statement, Expression, SignatureImplementation, RunletStackFrame,
 NativeImpl, RunletInterpreter, Block, NamedValue> {
 
     /**^

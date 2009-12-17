@@ -125,7 +125,6 @@ public class DataTypeOperationWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DataTypeOperation> get___JmiInterface() {
         return uml.DataTypeOperation.class;
     }

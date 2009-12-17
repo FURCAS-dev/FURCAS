@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import textblocks.TextBlock;
 
+import com.sap.ap.cts.monet.parser.ClassParserFactory;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
@@ -106,6 +107,17 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
 				clazz, syntax);
 		assertOutput(output, "MonthAndYear");
+	}
+	
+	@Test
+	public void testOrganization() throws SyntaxAndModelMismatchException {
+
+		SapClass clazz = findClass("Organization");
+		assertNotNull(clazz);
+
+		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
+				clazz, syntax);
+		assertOutput(output, "Organization");
 	}
 
 	private SapClass findClass(String classname) {

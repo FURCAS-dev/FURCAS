@@ -55,6 +55,7 @@ import com.sap.runlet.interpreter.expressions.NumberLiteralInterpreter;
 import com.sap.runlet.interpreter.expressions.ObjectCountInterpreter;
 import com.sap.runlet.interpreter.expressions.ObjectCreationInterpreter;
 import com.sap.runlet.interpreter.expressions.ObjectLiteralInterpreter;
+import com.sap.runlet.interpreter.expressions.OqlQueryInterpreter;
 import com.sap.runlet.interpreter.expressions.ReplaceInterpreter;
 import com.sap.runlet.interpreter.expressions.SelectionInterpreter;
 import com.sap.runlet.interpreter.expressions.SignatureCallInterpreter;
@@ -172,7 +173,7 @@ import dataaccess.expressions.literals.TimePointLiteral;
 public class RunletInterpreter extends
 	AbstractRunletInterpreter<SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd,
 	                          Statement, Expression, SignatureImplementation,
-	                          RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>,
+	                          RunletStackFrame,
 	                          NativeImpl, RunletInterpreter> {
     /**
      * Used for polymorphic method resolution.
@@ -299,6 +300,8 @@ public class RunletInterpreter extends
 		conn.getClass(dataaccess.expressions.Ternary.CLASS_DESCRIPTOR).refMetaObject());
 	getExpressionInterpreterFactory().registerInterpreter(SelectionInterpreter.class,
 		conn.getClass(dataaccess.query.Selection.CLASS_DESCRIPTOR).refMetaObject());
+	getExpressionInterpreterFactory().registerInterpreter(OqlQueryInterpreter.class,
+		conn.getClass(dataaccess.query.OqlQuery.CLASS_DESCRIPTOR).refMetaObject());
     }
 
     @Override
@@ -403,7 +406,7 @@ public class RunletInterpreter extends
 	    }
 	} else {
 	    TypeDefinition innermost = ro.getType().getInnermost();
-	    if (ro instanceof MultiValuedObject && innermost instanceof ClassTypeDefinition
+	    if (ro instanceof MultiValuedObject<?, ?, ?> && innermost instanceof ClassTypeDefinition
 		&& ((ClassTypeDefinition) innermost).getClazz().isValueType()) {
 		return new ConvertedMultiObject((MultiValuedObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>) ro,
 			targetType, this, targetType.isOrdered(), targetType.isUnique());
@@ -463,7 +466,7 @@ public class RunletInterpreter extends
 	    }
 	    MethodSignature converterSig = converter.getConversionMethod();
 	    FunctionFromMethodObject ffmo = new FunctionFromMethodObject(/* type */null, converterSig.getImplementation(), vo);
-	    RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> newStackFrame =
+	    RunletStackFrame newStackFrame =
 		pushArgumentsToStackFrame(targetParameterValues, ffmo);
 	    push(newStackFrame);
 	    try {
@@ -495,9 +498,9 @@ public class RunletInterpreter extends
      *         in <tt>evaluator</tt>'s implementation's signature a
      *         {@link RunletObject} has been registered from <tt>values</tt>
      */
-    public RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> pushArgumentsToStackFrame(List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> values, FunctionObject evaluator) {
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> result =
-	    new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(); // constructs a new stack frame
+    public RunletStackFrame pushArgumentsToStackFrame(List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> values, FunctionObject evaluator) {
+	RunletStackFrame result =
+	    new RunletStackFrame(); // constructs a new stack frame
 					      						 // with no scope parent
 	Iterator<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> v = values.iterator();
 	for (Parameter parameter : evaluator.getImplementation().getImplementedSignature().getInput()) {

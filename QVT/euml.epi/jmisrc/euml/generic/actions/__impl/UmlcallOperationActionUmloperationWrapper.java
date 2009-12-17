@@ -125,7 +125,6 @@ public class UmlcallOperationActionUmloperationWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlcallOperationActionUmloperation> get___JmiInterface() {
         return euml.generic.actions.UmlcallOperationActionUmloperation.class;
     }

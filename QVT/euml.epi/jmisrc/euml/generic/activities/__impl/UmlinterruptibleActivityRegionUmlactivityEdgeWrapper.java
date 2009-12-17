@@ -125,7 +125,6 @@ public class UmlinterruptibleActivityRegionUmlactivityEdgeWrapper extends com.sa
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlinterruptibleActivityRegionUmlactivityEdge> get___JmiInterface() {
         return euml.generic.activities.UmlinterruptibleActivityRegionUmlactivityEdge.class;
     }

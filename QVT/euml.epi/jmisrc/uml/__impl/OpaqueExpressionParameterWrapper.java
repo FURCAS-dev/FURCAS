@@ -89,7 +89,6 @@ public class OpaqueExpressionParameterWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OpaqueExpressionParameter> get___JmiInterface() {
         return uml.OpaqueExpressionParameter.class;
     }

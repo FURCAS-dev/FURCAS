@@ -6,9 +6,7 @@ package uml;
 
 /**
  * An operation is a behavioral feature of a classifier that specifies the name, type, parameters, and constraints for invoking an associated behavior.
-
  * An operation may invoke both the execution of method behaviors as well as other behavioral responses.
-
  * Operation specializes TemplateableElement in order to support specification of template operations and bound operations. Operation specializes ParameterableElement to specify that an operation can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.
  * This interface is not intended to be implemented by clients.
  */

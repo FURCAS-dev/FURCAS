@@ -125,7 +125,6 @@ public class BehavioralFeatureParameterWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.BehavioralFeatureParameter> get___JmiInterface() {
         return uml.BehavioralFeatureParameter.class;
     }

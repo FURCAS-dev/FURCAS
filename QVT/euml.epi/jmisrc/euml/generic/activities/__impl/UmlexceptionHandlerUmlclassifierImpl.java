@@ -64,7 +64,6 @@ public final class UmlexceptionHandlerUmlclassifierImpl extends com.sap.tc.moin.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlexceptionHandlerUmlclassifier> get___JmiInterface() {
         return euml.generic.activities.UmlexceptionHandlerUmlclassifier.class;
     }

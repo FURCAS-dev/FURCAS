@@ -125,7 +125,6 @@ public class UmllifelineUmlpartDecompositionWrapper extends com.sap.tc.moin.repo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmllifelineUmlpartDecomposition> get___JmiInterface() {
         return euml.generic.interactions.UmllifelineUmlpartDecomposition.class;
     }

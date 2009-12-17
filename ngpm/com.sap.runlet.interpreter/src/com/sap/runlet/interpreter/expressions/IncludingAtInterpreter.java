@@ -31,7 +31,7 @@ import dataaccess.expressions.collectionexpressions.IncludingAt;
  * 
  * @author Axel Uhl (D043530)
  */
-public class IncludingAtInterpreter implements Interpreter<IncludingAt, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class IncludingAtInterpreter implements Interpreter<IncludingAt, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     
     private IncludingAt including;
     

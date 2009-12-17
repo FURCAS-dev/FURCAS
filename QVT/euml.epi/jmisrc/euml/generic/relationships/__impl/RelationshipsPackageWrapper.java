@@ -222,7 +222,6 @@ public class RelationshipsPackageWrapper extends com.sap.tc.moin.repository.core
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.relationships.RelationshipsPackage> get___JmiInterface() {
         return euml.generic.relationships.RelationshipsPackage.class;
     }

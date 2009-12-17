@@ -125,7 +125,6 @@ public class GeneralizationGeneralizationSetWrapper extends com.sap.tc.moin.repo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.GeneralizationGeneralizationSet> get___JmiInterface() {
         return uml.GeneralizationGeneralizationSet.class;
     }

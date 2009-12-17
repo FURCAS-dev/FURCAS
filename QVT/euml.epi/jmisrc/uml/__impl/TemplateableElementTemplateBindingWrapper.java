@@ -125,7 +125,6 @@ public class TemplateableElementTemplateBindingWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateableElementTemplateBinding> get___JmiInterface() {
         return uml.TemplateableElementTemplateBinding.class;
     }

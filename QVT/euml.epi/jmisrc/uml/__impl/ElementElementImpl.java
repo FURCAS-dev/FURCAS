@@ -64,7 +64,6 @@ public final class ElementElementImpl extends com.sap.tc.moin.repository.core.jm
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ElementElement> get___JmiInterface() {
         return uml.ElementElement.class;
     }

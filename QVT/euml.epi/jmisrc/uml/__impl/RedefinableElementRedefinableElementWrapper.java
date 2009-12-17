@@ -89,7 +89,6 @@ public class RedefinableElementRedefinableElementWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.RedefinableElementRedefinableElement> get___JmiInterface() {
         return uml.RedefinableElementRedefinableElement.class;
     }

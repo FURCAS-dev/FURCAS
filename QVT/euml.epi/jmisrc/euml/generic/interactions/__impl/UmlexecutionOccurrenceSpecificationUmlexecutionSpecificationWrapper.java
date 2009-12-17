@@ -125,7 +125,6 @@ public class UmlexecutionOccurrenceSpecificationUmlexecutionSpecificationWrapper
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlexecutionOccurrenceSpecificationUmlexecutionSpecification> get___JmiInterface() {
         return euml.generic.interactions.UmlexecutionOccurrenceSpecificationUmlexecutionSpecification.class;
     }

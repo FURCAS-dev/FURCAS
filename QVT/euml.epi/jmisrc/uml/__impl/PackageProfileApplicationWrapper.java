@@ -125,7 +125,6 @@ public class PackageProfileApplicationWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PackageProfileApplication> get___JmiInterface() {
         return uml.PackageProfileApplication.class;
     }

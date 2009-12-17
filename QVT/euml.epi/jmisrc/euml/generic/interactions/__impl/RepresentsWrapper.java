@@ -125,7 +125,6 @@ public class RepresentsWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.Represents> get___JmiInterface() {
         return euml.generic.interactions.Represents.class;
     }

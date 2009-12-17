@@ -21,7 +21,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.AssociationEndNavigationExpression;
 import dataaccess.expressions.Expression;
 
-public class AssociationEndNavigationInterpreter implements Interpreter<AssociationEndNavigationExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class AssociationEndNavigationInterpreter implements Interpreter<AssociationEndNavigationExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private AssociationEndNavigationExpression aene;
     
     public AssociationEndNavigationInterpreter(AssociationEndNavigationExpression aene) {

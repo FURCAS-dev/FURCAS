@@ -125,7 +125,6 @@ public class ClassifierUseCaseWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ClassifierUseCase> get___JmiInterface() {
         return uml.ClassifierUseCase.class;
     }

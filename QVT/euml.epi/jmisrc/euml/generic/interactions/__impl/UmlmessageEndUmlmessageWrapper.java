@@ -125,7 +125,6 @@ public class UmlmessageEndUmlmessageWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlmessageEndUmlmessage> get___JmiInterface() {
         return euml.generic.interactions.UmlmessageEndUmlmessage.class;
     }

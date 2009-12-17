@@ -125,7 +125,6 @@ public class ContraintValueSpecificationWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ContraintValueSpecification> get___JmiInterface() {
         return uml.ContraintValueSpecification.class;
     }

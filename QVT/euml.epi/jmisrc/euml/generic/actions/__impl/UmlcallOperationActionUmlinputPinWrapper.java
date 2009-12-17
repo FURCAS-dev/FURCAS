@@ -125,7 +125,6 @@ public class UmlcallOperationActionUmlinputPinWrapper extends com.sap.tc.moin.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlcallOperationActionUmlinputPin> get___JmiInterface() {
         return euml.generic.actions.UmlcallOperationActionUmlinputPin.class;
     }

@@ -19,6 +19,7 @@ import textblocks.VersionEnum;
 import com.sap.ide.cts.parser.incremental.antlr.IncrementalParserFacade;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ParsingError;
+import com.sap.mi.textual.parsing.textblocks.TbChangeUtil;
 import com.sap.mi.textual.parsing.textblocks.TbVersionUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
@@ -49,24 +50,33 @@ public class GeneratedTextblocksBasedTest extends
 		List<ParsingError> errorList = facade.dryParse(rootBlock);
 
 		if (errorList.size() != 0) {
-			System.out.println("Error parsing fixture:");
-			for (ParsingError pe : errorList) {
-				System.out.println(pe.toString());
-			}
-
+			
 			if (!fixtureContents.equals("")) {
 				// empty fixture fails to parse but should still be a valid
 				// fixture
 				// as a special case
+
+				System.out.println("Error parsing fixture:");
+				for (ParsingError pe : errorList) {
+					System.out.println(pe.toString());
+				}
+
 				fail("error parsing fixture");
 			}
 
 		} else {
 
-			Object result = facade.parseIncrementally(rootBlock);
+			TextBlock result = facade.parseIncrementally(rootBlock);
 
 			assertNotNull(result);
-
+			
+			// re-create tbModel
+			TbChangeUtil.cleanUp(result);
+			// add a new template
+			tbModel = new TextBlocksModel(result, new MOINModelAdapter(facade
+					.getParserFactory().getMetamodelPackage(connection),
+					connection, null, null));
+			
 			// add post-parse replacement
 			// this is used for strings that would otherwise throw parse errors
 			// if

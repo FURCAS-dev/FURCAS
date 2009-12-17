@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class CommentWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.CommentImpl> implements uml.Comment,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class CommentWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.CommentImpl getCastWrappedObject() {
         return (uml.__impl.CommentImpl) getWrappedObject();
     }
@@ -111,7 +110,6 @@ public class CommentWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Comment> get___JmiInterface() {
         return uml.Comment.class;
     }

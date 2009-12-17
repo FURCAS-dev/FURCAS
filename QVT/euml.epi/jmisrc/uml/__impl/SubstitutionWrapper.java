@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class SubstitutionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.SubstitutionImpl> implements uml.Substitution,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class SubstitutionWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.SubstitutionImpl getCastWrappedObject() {
         return (uml.__impl.SubstitutionImpl) getWrappedObject();
     }
@@ -685,7 +684,6 @@ public class SubstitutionWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Substitution> get___JmiInterface() {
         return uml.Substitution.class;
     }

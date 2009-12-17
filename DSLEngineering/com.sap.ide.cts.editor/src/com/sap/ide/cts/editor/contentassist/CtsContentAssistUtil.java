@@ -1,6 +1,7 @@
 package com.sap.ide.cts.editor.contentassist;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -19,16 +20,22 @@ import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import tcs.ConditionalElement;
 import tcs.EnumLiteralMapping;
+import tcs.FilterParg;
 import tcs.FunctionCall;
 import tcs.FunctionTemplate;
 import tcs.LiteralRef;
 import tcs.OperatorTemplate;
 import tcs.Property;
+import tcs.QueryParg;
+import tcs.RefersToParg;
 import tcs.Sequence;
 import tcs.SequenceElement;
 import tcs.Template;
+import textblocks.AbstractToken;
+import textblocks.TextBlock;
 
 import com.sap.mi.textual.tcs.util.TcsUtil;
+import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.model.TypedElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -248,7 +255,8 @@ public class CtsContentAssistUtil {
 	public static List<ICompletionProposal> createFirstPossibleProposals(
 			ConcreteSyntax syntax,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
-			ITextViewer viewer, int line, int charPositionInLine, Token token) {
+			ITextViewer viewer, int line, int charPositionInLine, Token token,
+			TextBlocksModel tbModel) {
 		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
 		for (SequenceElement atomic : TcsUtil
@@ -256,7 +264,7 @@ public class CtsContentAssistUtil {
 						classTemplateMap)) {
 			results.addAll(createProposalsFromAtomicSequenceElement(syntax,
 					classTemplateMap, atomic, viewer, line, charPositionInLine,
-					token));
+					token, tbModel));
 		}
 
 		return results;
@@ -265,7 +273,8 @@ public class CtsContentAssistUtil {
 	public static List<ICompletionProposal> createFollowProposalsFromContext(
 			ConcreteSyntax syntax, CtsContentAssistContext context,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
-			ITextViewer viewer, int line, int charPositionInLine, Token token) {
+			ITextViewer viewer, int line, int charPositionInLine, Token token,
+			TextBlocksModel tbModel) {
 		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
 		if (context == null) {
@@ -279,7 +288,7 @@ public class CtsContentAssistUtil {
 
 			results.addAll(createProposalsFromAtomicSequenceElement(syntax,
 					classTemplateMap, atomic, viewer, line, charPositionInLine,
-					token));
+					token, tbModel));
 		}
 
 		return results;
@@ -373,7 +382,7 @@ public class CtsContentAssistUtil {
 			ConcreteSyntax syntax,
 			Map<List<String>, Map<String, ClassTemplate>> classTemplateMap,
 			SequenceElement e, ITextViewer viewer, int line,
-			int charPositionInLine, Token token) {
+			int charPositionInLine, Token token, TextBlocksModel tbModel) {
 
 		List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
@@ -463,24 +472,93 @@ public class CtsContentAssistUtil {
 				}
 			}
 
-			if (TcsUtil.containsRefersToArg(prop)) {
-				// propose referenced feature of model elements queried by type
-				TypedElement propFeature = TcsUtil.getStructuralFeature(prop);
-				if (propFeature != null) {
-					String featureName = TcsUtil.getRefersToParg(prop)
-							.getPropertyName();
-					List<String> propValues = TcsUtil.queryPropertyValues(
-							propFeature.getType(), featureName, TcsUtil
-									.getConnectionFromRefObject(prop));
+			RefersToParg refersToArg = TcsUtil.getRefersToParg(prop);
+			FilterParg filterArg = TcsUtil.getFilterParg(prop);
+			QueryParg queryArg = TcsUtil.getQueryParg(prop);
+			
+			if (filterArg != null) {
+				if (queryArg != null) {
+					// first execute query, then apply invert OCL expression to each result to generate proposal strings
+					
+					String invert = filterArg.getInvert();
+					if (invert != null) {
+						// if invert is null, we don't really know how to derive
+						// the proposal string as the filter could be any OCL
+						// expression using the ? placeholder
 
-					for (String propValue : propValues) {
-						String displayString = propValue;
-						String replacementString = displayString;
-						results.add(createPropValueProposal(displayString,
-								replacementString, viewer, line,
-								charPositionInLine, token));
+						List<RefObject> oclElements = getQueryResult(viewer,
+								line, charPositionInLine, tbModel, prop,
+								queryArg);
+
+						for (RefObject refObj : oclElements) {
+							String displayString = null;
+							try {
+								Object result = TcsUtil.executeOclQuery(refObj,
+										invert, null, null);
+								if (result instanceof String) {
+									displayString = (String) result;
+								}
+							} catch (Exception e1) {
+								System.out
+										.println("Error executing invert-query: "
+												+ e1.getMessage());
+
+							}
+
+							if (displayString != null) {
+								String replacementString = displayString;
+								results
+										.add(createPropValueProposal(
+												displayString,
+												replacementString, viewer,
+												line, charPositionInLine, token));
+							}
+						}
 					}
+				}
+			}
+			
+			if (refersToArg != null) {
+				
+				if (queryArg != null) {
+					// first execute query, then use refersTo property name to generate proposal strings
+					
+					List<RefObject> oclElements = getQueryResult(viewer, line,
+							charPositionInLine, tbModel, prop, queryArg);
+					
+					for (RefObject refObj : oclElements) {
+						String displayString = refObj.refGetValue(
+								refersToArg.getPropertyName())
+								.toString();
+						String replacementString = displayString;
+						results.add(createPropValueProposal(
+								displayString, replacementString,
+								viewer, line, charPositionInLine,
+								token));
+					}				
+					
+					
+				} else {
+					// propose referenced feature of model elements queried by
+					// type
+					TypedElement propFeature = TcsUtil
+							.getStructuralFeature(prop);
+					if (propFeature != null) {
+						String featureName = TcsUtil.getRefersToParg(prop)
+								.getPropertyName();
+						List<String> propValues = TcsUtil.queryPropertyValues(
+								propFeature.getType(), featureName, TcsUtil
+										.getConnectionFromRefObject(prop));
 
+						for (String propValue : propValues) {
+							String displayString = propValue;
+							String replacementString = displayString;
+							results.add(createPropValueProposal(displayString,
+									replacementString, viewer, line,
+									charPositionInLine, token));
+						}
+
+					}
 				}
 			}
 
@@ -508,6 +586,90 @@ public class CtsContentAssistUtil {
 		}
 
 		return results;
+	}
+
+	private static List<RefObject> getQueryResult(ITextViewer viewer, int line,
+			int charPositionInLine, TextBlocksModel tbModel, Property prop,
+			QueryParg queryArg) {
+		List<RefObject> oclElements = new ArrayList<RefObject>();
+
+		if (tbModel != null && tbModel.getRoot() != null) {
+
+			AbstractToken floorToken = tbModel
+					.getFloorTokenInRoot(getOffset(viewer, line,
+							charPositionInLine));
+			TextBlock parentBlock = floorToken.getParentBlock();
+			while (parentBlock != null
+					&& parentBlock.getCorrespondingModelElements()
+							.size() < 1) {
+				parentBlock = parentBlock.getParentBlock();
+			}
+
+			if (parentBlock != null) {
+				// we found a parent block with attached model
+				// element(s)
+
+				RefObject element = parentBlock
+						.getCorrespondingModelElements().get(0);
+				RefObject contextElement = getContextElement(
+						element, parentBlock, TcsUtil
+								.getContextTag(queryArg.getQuery()));
+
+				Object oclResult = null;
+
+				try {
+					// prefix is null as refersTo/query does not use
+					// ? in query
+					oclResult = TcsUtil.executeOclQuery(element, queryArg
+							.getQuery(), contextElement, null);
+
+				} catch (Exception e1) {
+					System.out.println("Error executing ocl query: "
+							+ e1.getMessage());
+					// do nothing, just omit proposals
+				}
+
+				// create proposals for each returned element using
+				// the refersTo structural feature
+				if (oclResult instanceof RefObject) {
+					oclElements.add((RefObject) oclResult);
+				}
+				if (oclResult instanceof Collection) {
+					for (Object o : (Collection<?>) oclResult) {
+						if (o instanceof RefObject) {
+							oclElements.add((RefObject) o);
+						}
+					}
+				}
+			}
+		}
+		return oclElements;
+	}
+
+	private static RefObject getContextElement(RefObject element,
+			TextBlock parentBlock, String tag) {
+		TextBlock curBlock = parentBlock;
+		while (curBlock != null
+				&& curBlock.getCorrespondingModelElements().size() > 0) {
+			Template t = curBlock.getType().getParseRule();
+			if (t instanceof ClassTemplate) {
+				ClassTemplate ct = (ClassTemplate) t;
+				if (TcsUtil.matchesContext(ct, tag)) {
+					return curBlock.getCorrespondingModelElements().get(0);
+				}
+			}
+
+			if (t instanceof OperatorTemplate) {
+				OperatorTemplate ot = (OperatorTemplate) t;
+				if (TcsUtil.matchesContext(ot, tag)) {
+					return curBlock.getCorrespondingModelElements().get(0);
+				}
+			}
+
+			curBlock = curBlock.getParentBlock();
+		}
+
+		return null;
 	}
 
 	/**

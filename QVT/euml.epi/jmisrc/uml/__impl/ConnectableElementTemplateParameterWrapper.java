@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class ConnectableElementTemplateParameterWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.ConnectableElementTemplateParameterImpl> implements uml.ConnectableElementTemplateParameter,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ConnectableElementTemplateParameterWrapper extends com.sap.tc.moin.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.ConnectableElementTemplateParameterImpl getCastWrappedObject() {
         return (uml.__impl.ConnectableElementTemplateParameterImpl) getWrappedObject();
     }
@@ -349,7 +348,6 @@ public class ConnectableElementTemplateParameterWrapper extends com.sap.tc.moin.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ConnectableElementTemplateParameter> get___JmiInterface() {
         return uml.ConnectableElementTemplateParameter.class;
     }

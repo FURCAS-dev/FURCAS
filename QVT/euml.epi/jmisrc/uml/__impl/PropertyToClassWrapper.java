@@ -89,7 +89,6 @@ public class PropertyToClassWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PropertyToClass> get___JmiInterface() {
         return uml.PropertyToClass.class;
     }

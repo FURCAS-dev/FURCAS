@@ -125,7 +125,6 @@ public class MultiplicityElmentValueSpecification1Wrapper extends com.sap.tc.moi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.MultiplicityElmentValueSpecification1> get___JmiInterface() {
         return uml.MultiplicityElmentValueSpecification1.class;
     }

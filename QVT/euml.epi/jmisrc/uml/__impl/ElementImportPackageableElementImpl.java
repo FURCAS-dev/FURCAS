@@ -64,7 +64,6 @@ public final class ElementImportPackageableElementImpl extends com.sap.tc.moin.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ElementImportPackageableElement> get___JmiInterface() {
         return uml.ElementImportPackageableElement.class;
     }

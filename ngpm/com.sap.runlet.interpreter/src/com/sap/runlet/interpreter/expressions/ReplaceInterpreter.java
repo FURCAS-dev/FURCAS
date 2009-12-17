@@ -27,7 +27,7 @@ import dataaccess.expressions.Expression;
 import dataaccess.expressions.NavigationStep;
 import dataaccess.expressions.Replace;
 
-public class ReplaceInterpreter implements Interpreter<Replace, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ReplaceInterpreter implements Interpreter<Replace, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private Replace replace;
     
     public ReplaceInterpreter(Replace replace) {

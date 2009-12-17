@@ -18,7 +18,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.literals.BooleanLiteral;
 
-public class BooleanLiteralInterpreter implements Interpreter<BooleanLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class BooleanLiteralInterpreter implements Interpreter<BooleanLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private BooleanLiteral literal;
     
     public BooleanLiteralInterpreter(BooleanLiteral literal) {

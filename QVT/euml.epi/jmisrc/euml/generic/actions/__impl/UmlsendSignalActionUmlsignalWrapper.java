@@ -125,7 +125,6 @@ public class UmlsendSignalActionUmlsignalWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlsendSignalActionUmlsignal> get___JmiInterface() {
         return euml.generic.actions.UmlsendSignalActionUmlsignal.class;
     }

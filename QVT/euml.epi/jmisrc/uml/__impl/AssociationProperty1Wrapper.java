@@ -125,7 +125,6 @@ public class AssociationProperty1Wrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.AssociationProperty1> get___JmiInterface() {
         return uml.AssociationProperty1.class;
     }

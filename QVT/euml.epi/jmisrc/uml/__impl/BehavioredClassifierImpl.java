@@ -6,7 +6,7 @@ package uml.__impl;
 
 public final class BehavioredClassifierImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -24,11 +24,10 @@ public final class BehavioredClassifierImpl extends com.sap.tc.moin.repository.c
 
     // reflective methods
         
-
+    
 
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.BehavioredClassifier> get___JmiInterface() {
         return uml.BehavioredClassifier.class;
     }

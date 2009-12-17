@@ -32,7 +32,7 @@ import dataaccess.expressions.Expression;
  * @author Axel Uhl (D043530)
  *
  */
-public class ReturnInterpreter implements Interpreter<Statement, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ReturnInterpreter implements Interpreter<Statement, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private Return ret;
     
     /**

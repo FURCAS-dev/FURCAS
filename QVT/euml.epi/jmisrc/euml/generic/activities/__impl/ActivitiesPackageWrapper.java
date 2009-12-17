@@ -860,7 +860,6 @@ public class ActivitiesPackageWrapper extends com.sap.tc.moin.repository.core.jm
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.ActivitiesPackage> get___JmiInterface() {
         return euml.generic.activities.ActivitiesPackage.class;
     }

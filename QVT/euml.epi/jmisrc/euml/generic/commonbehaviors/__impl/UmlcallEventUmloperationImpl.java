@@ -64,7 +64,6 @@ public final class UmlcallEventUmloperationImpl extends com.sap.tc.moin.reposito
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmlcallEventUmloperation> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmlcallEventUmloperation.class;
     }

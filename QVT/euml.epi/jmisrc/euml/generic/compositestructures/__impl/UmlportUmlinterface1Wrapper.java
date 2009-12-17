@@ -125,7 +125,6 @@ public class UmlportUmlinterface1Wrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.compositestructures.UmlportUmlinterface1> get___JmiInterface() {
         return euml.generic.compositestructures.UmlportUmlinterface1.class;
     }

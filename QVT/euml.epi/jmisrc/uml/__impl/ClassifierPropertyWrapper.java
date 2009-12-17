@@ -89,7 +89,6 @@ public class ClassifierPropertyWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ClassifierProperty> get___JmiInterface() {
         return uml.ClassifierProperty.class;
     }

@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class UseCaseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.UseCaseImpl> implements uml.UseCase,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class UseCaseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.UseCaseImpl getCastWrappedObject() {
         return (uml.__impl.UseCaseImpl) getWrappedObject();
     }
@@ -60,7 +59,6 @@ public class UseCaseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.UseCase> get___JmiInterface() {
         return uml.UseCase.class;
     }

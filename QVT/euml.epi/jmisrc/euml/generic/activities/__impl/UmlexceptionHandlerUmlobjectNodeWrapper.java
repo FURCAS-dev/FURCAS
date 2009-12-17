@@ -125,7 +125,6 @@ public class UmlexceptionHandlerUmlobjectNodeWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlexceptionHandlerUmlobjectNode> get___JmiInterface() {
         return euml.generic.activities.UmlexceptionHandlerUmlobjectNode.class;
     }

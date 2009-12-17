@@ -8,7 +8,7 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(18);
@@ -192,12 +192,12 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
     public void setThediagram(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "497EBE8938301AA0EC4811DDAB53000E35A783E4", /* mofId of reference */ "497EBEFA7B646380EC4811DDB5F7000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setThediagram(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "497EBE8938301AA0EC4811DDAB53000E35A783E4", /* mofId of reference */ "497EBEFA7B646380EC4811DDB5F7000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getTheRepresentedElement() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -212,12 +212,12 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
     public void setTheRepresentedElement(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "497F0F5661A90380EC7811DD90DD000E35A783E4", /* mofId of reference */ "497F0F5661A90383EC7811DD94A8000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setTheRepresentedElement(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "497F0F5661A90380EC7811DD90DD000E35A783E4", /* mofId of reference */ "497F0F5661A90383EC7811DD94A8000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public java.util.List getTheDiagramObjects() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -329,7 +329,7 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -395,7 +395,7 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -432,7 +432,7 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -469,7 +469,7 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -506,7 +506,7 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -549,7 +549,6 @@ public final class DiagramConnectorImpl extends com.sap.tc.moin.repository.core.
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.DiagramConnector> get___JmiInterface() {
         return euml.presentation.graphic.DiagramConnector.class;
     }

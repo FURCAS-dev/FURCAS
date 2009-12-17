@@ -30,7 +30,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class AllInterpreter implements Interpreter<All, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class AllInterpreter implements Interpreter<All, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private All all;
     
     public AllInterpreter(All all) {

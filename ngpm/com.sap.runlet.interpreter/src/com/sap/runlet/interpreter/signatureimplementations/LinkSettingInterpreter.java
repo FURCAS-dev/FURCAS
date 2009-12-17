@@ -22,7 +22,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class LinkSettingInterpreter implements Interpreter<LinkSetting, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class LinkSettingInterpreter implements Interpreter<LinkSetting, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private LinkSetting linkSetting;
     
     public LinkSettingInterpreter(LinkSetting linkSetting) {

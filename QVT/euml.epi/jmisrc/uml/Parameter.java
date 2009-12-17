@@ -6,9 +6,7 @@ package uml;
 
 /**
  * A parameter is a specification of an argument used to pass information into or out of an invocation of a behavioral feature.
-
  * Parameters are allowed to be treated as connectable elements.
-
  * Parameters have support for streaming, exceptions, and parameter sets.
  * This interface is not intended to be implemented by clients.
  */

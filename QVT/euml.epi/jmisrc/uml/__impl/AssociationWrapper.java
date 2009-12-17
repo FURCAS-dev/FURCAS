@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.AssociationImpl> implements uml.Association,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.AssociationImpl getCastWrappedObject() {
         return (uml.__impl.AssociationImpl) getWrappedObject();
     }
@@ -1332,7 +1331,6 @@ public class AssociationWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Association> get___JmiInterface() {
         return uml.Association.class;
     }

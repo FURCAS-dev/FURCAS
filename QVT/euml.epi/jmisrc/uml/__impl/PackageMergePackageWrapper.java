@@ -125,7 +125,6 @@ public class PackageMergePackageWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PackageMergePackage> get___JmiInterface() {
         return uml.PackageMergePackage.class;
     }

@@ -6,7 +6,7 @@ package uml.__impl;
 
 public final class UmlClassImpl extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl {
 
-
+    
     static {
     }
     
@@ -27,7 +27,7 @@ public final class UmlClassImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
     // reflective methods
         
-
+    
 
 
     public java.util.List<com.sap.tc.moin.repository.core.EndStorageLink> get___AllStoredLinks( ) {
@@ -59,7 +59,6 @@ public final class UmlClassImpl extends com.sap.tc.moin.repository.core.jmi.refl
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.UmlClass> get___JmiInterface() {
         return uml.UmlClass.class;
     }

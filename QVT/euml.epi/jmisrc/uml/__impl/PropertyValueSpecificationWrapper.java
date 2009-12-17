@@ -125,7 +125,6 @@ public class PropertyValueSpecificationWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PropertyValueSpecification> get___JmiInterface() {
         return uml.PropertyValueSpecification.class;
     }

@@ -125,7 +125,6 @@ public class NamedElementStringExpressionWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.NamedElementStringExpression> get___JmiInterface() {
         return uml.NamedElementStringExpression.class;
     }

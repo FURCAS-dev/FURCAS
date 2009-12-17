@@ -125,7 +125,6 @@ public class UmlelementUmldirectedRelationShipWrapper extends com.sap.tc.moin.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.relationships.UmlelementUmldirectedRelationShip> get___JmiInterface() {
         return euml.generic.relationships.UmlelementUmldirectedRelationShip.class;
     }

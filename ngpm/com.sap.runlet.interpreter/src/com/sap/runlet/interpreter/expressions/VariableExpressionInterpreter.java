@@ -18,7 +18,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.VariableExpression;
 
-public class VariableExpressionInterpreter implements Interpreter<VariableExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class VariableExpressionInterpreter implements Interpreter<VariableExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     
     private VariableExpression variableExpression;
     

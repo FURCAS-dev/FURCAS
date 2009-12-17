@@ -1,0 +1,10 @@
+class Organization {
+  Boolean 0..1 playWithPersistence()
+    {
+      store this;
+      var ss1=commit;
+      var containsThis=all[ss1]Organization->iterate(Boolean 1..1 contains=false;i|contains.or(i==this));
+      return containsThis;
+    }
+  owns Person 0..*persons{., += , -=} 
+}

@@ -25,7 +25,7 @@ import dataaccess.expressions.Expression;
 
 public class StringInterpreter implements Interpreter<NativeImpl, SapClass, TypeDefinition, ClassTypeDefinition,
 Association, AssociationEnd, Statement, Expression, SignatureImplementation,
-RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+RunletStackFrame, NativeImpl, RunletInterpreter> {
     private NativeImpl nativeImpl;
 
     public StringInterpreter(NativeImpl nativeImpl) {

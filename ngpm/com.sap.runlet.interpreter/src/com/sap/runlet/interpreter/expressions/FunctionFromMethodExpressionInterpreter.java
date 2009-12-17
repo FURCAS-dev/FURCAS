@@ -30,7 +30,7 @@ import dataaccess.expressions.fp.FunctionFromMethodExpr;
  * 
  * @author Axel Uhl (D043530)
  */
-public class FunctionFromMethodExpressionInterpreter implements Interpreter<FunctionFromMethodExpr, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class FunctionFromMethodExpressionInterpreter implements Interpreter<FunctionFromMethodExpr, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private FunctionFromMethodExpr ffm;
     
     public FunctionFromMethodExpressionInterpreter(FunctionFromMethodExpr ffm) {

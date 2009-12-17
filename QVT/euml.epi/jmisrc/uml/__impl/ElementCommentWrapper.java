@@ -125,7 +125,6 @@ public class ElementCommentWrapper extends com.sap.tc.moin.repository.core.jmi.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ElementComment> get___JmiInterface() {
         return uml.ElementComment.class;
     }

@@ -10,7 +10,7 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(35);
@@ -273,12 +273,12 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
     public void setTheStereotype(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498665D20B7397F0F0D811DDBFB5000E35A783E4", /* mofId of reference */ "498665D20B7397F3F0D811DD8254000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setTheStereotype(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498665D20B7397F0F0D811DDBFB5000E35A783E4", /* mofId of reference */ "498665D20B7397F3F0D811DD8254000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public java.util.List getTheAnnotation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -353,12 +353,12 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
     public void setTheOwner(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "49866B253784B150F0DB11DD92FE000E35A783E4", /* mofId of reference */ "49866CCB33603F80F0DC11DD902D000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setTheOwner(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "49866B253784B150F0DB11DD92FE000E35A783E4", /* mofId of reference */ "49866CCB33603F80F0DC11DD902D000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public java.util.List getTheIncomingEdge() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -399,12 +399,12 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
     public void setThegroupofthenode(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "4986507F55C62820F0CB11DDC33E000E35A783E4", /* mofId of reference */ "498650BA789D6070F0CB11DDC808000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setThegroupofthenode(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "4986507F55C62820F0CB11DDC33E000E35A783E4", /* mofId of reference */ "498650BA789D6070F0CB11DDC808000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOperation() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -419,12 +419,12 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
     public void setOperation(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "49863EB8BD048500F0C011DDA500000E35A783E4", /* mofId of reference */ "49863EB8BD048503F0C011DD8C61000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOperation(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "49863EB8BD048500F0C011DDA500000E35A783E4", /* mofId of reference */ "49863EB8BD048503F0C011DD8C61000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getTarget() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -439,12 +439,12 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
     public void setTarget(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "49863EEBDB27AB20F0C011DD8FF8000E35A783E4", /* mofId of reference */ "49863EEBDB27AB23F0C011DDB9FA000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setTarget(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "49863EEBDB27AB20F0C011DD8FF8000E35A783E4", /* mofId of reference */ "49863EEBDB27AB23F0C011DDB9FA000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -575,7 +575,7 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -693,7 +693,7 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -724,7 +724,7 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 0:
@@ -755,7 +755,7 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 0:
@@ -786,7 +786,7 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -869,7 +869,6 @@ public final class UmlcallOperationActionImpl extends com.sap.tc.moin.repository
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlcallOperationAction> get___JmiInterface() {
         return euml.generic.actions.UmlcallOperationAction.class;
     }

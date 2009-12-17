@@ -125,7 +125,6 @@ public class UmlelementUmlconstraintWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlelementUmlconstraint> get___JmiInterface() {
         return euml.generic.kernel.UmlelementUmlconstraint.class;
     }

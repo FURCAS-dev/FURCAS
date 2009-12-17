@@ -32,11 +32,13 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 
 		context.setSequenceElement(main1Lit);
 
-		assertEquals(expected, CtsContentAssistUtil
-				.collectDisplayStrings(CtsContentAssistProcessor
-						.removeNullValues(CtsContentAssistUtil
-								.createFollowProposalsFromContext(null,
-										context, null, null, 0, 0, null))));
+		assertEquals(expected,
+				CtsContentAssistUtil
+						.collectDisplayStrings(CtsContentAssistProcessor
+								.removeNullValues(CtsContentAssistUtil
+										.createFollowProposalsFromContext(null,
+												context, null, null, 0, 0,
+												null, null))));
 	}
 
 	@Test
@@ -47,11 +49,13 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 
 		context.setSequenceElement(main2CondThenLit);
 
-		assertEquals(expected, CtsContentAssistUtil
-				.collectDisplayStrings(CtsContentAssistProcessor
-						.removeNullValues(CtsContentAssistUtil
-								.createFollowProposalsFromContext(null,
-										context, null, null, 0, 0, null))));
+		assertEquals(expected,
+				CtsContentAssistUtil
+						.collectDisplayStrings(CtsContentAssistProcessor
+								.removeNullValues(CtsContentAssistUtil
+										.createFollowProposalsFromContext(null,
+												context, null, null, 0, 0,
+												null, null))));
 	}
 
 	@Test
@@ -63,11 +67,13 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 
 		context.setSequenceElement(main3Prop);
 
-		assertEquals(expected, CtsContentAssistUtil
-				.collectDisplayStrings(CtsContentAssistProcessor
-						.removeNullValues(CtsContentAssistUtil
-								.createFollowProposalsFromContext(null,
-										context, null, null, 0, 0, null))));
+		assertEquals(expected,
+				CtsContentAssistUtil
+						.collectDisplayStrings(CtsContentAssistProcessor
+								.removeNullValues(CtsContentAssistUtil
+										.createFollowProposalsFromContext(null,
+												context, null, null, 0, 0,
+												null, null))));
 	}
 
 	@Test
@@ -88,7 +94,7 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 						.removeNullValues(CtsContentAssistUtil
 								.createFollowProposalsFromContext(null,
 										context, classTemplateMap, null, 0, 0,
-										null))));
+										null, null))));
 	}
 
 	@Test
@@ -98,7 +104,7 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 
 		// main5BlockProp is multi-valued, repeat possible tokens of
 		// main5BlockProp
-		
+
 		// not mode 1
 		// from mode2
 		expected.add("symbolB");
@@ -113,7 +119,7 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 						.removeNullValues(CtsContentAssistUtil
 								.createFollowProposalsFromContext(null,
 										context, classTemplateMap, null, 0, 0,
-										null))));
+										null, null))));
 	}
 
 	@Test
@@ -125,11 +131,13 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 		context.setSequenceElement(funcTemplateLit);
 		context.getParentFunctionCallStack().push(main6Call);
 
-		assertEquals(expected, CtsContentAssistUtil
-				.collectDisplayStrings(CtsContentAssistProcessor
-						.removeNullValues(CtsContentAssistUtil
-								.createFollowProposalsFromContext(null,
-										context, null, null, 0, 0, null))));
+		assertEquals(expected,
+				CtsContentAssistUtil
+						.collectDisplayStrings(CtsContentAssistProcessor
+								.removeNullValues(CtsContentAssistUtil
+										.createFollowProposalsFromContext(null,
+												context, null, null, 0, 0,
+												null, null))));
 	}
 
 	@Test
@@ -141,11 +149,13 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 
 		context.setSequenceElement(main7Lit);
 
-		assertEquals(expected, CtsContentAssistUtil
-				.collectDisplayStrings(CtsContentAssistProcessor
-						.removeNullValues(CtsContentAssistUtil
-								.createFollowProposalsFromContext(null,
-										context, null, null, 0, 0, null))));
+		assertEquals(expected,
+				CtsContentAssistUtil
+						.collectDisplayStrings(CtsContentAssistProcessor
+								.removeNullValues(CtsContentAssistUtil
+										.createFollowProposalsFromContext(null,
+												context, null, null, 0, 0,
+												null, null))));
 	}
 
 	@Test
@@ -157,11 +167,13 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 		context.setSequenceElement(funcTemplateLit);
 		context.getParentFunctionCallStack().push(main8Call);
 
-		assertEquals(expected, CtsContentAssistUtil
-				.collectDisplayStrings(CtsContentAssistProcessor
-						.removeNullValues(CtsContentAssistUtil
-								.createFollowProposalsFromContext(null,
-										context, null, null, 0, 0, null))));
+		assertEquals(expected,
+				CtsContentAssistUtil
+						.collectDisplayStrings(CtsContentAssistProcessor
+								.removeNullValues(CtsContentAssistUtil
+										.createFollowProposalsFromContext(null,
+												context, null, null, 0, 0,
+												null, null))));
 	}
 
 	@Test
@@ -173,7 +185,7 @@ public class TestCtsContentAssistUtil extends TcsFixtureBase {
 				.collectDisplayStrings(CtsContentAssistProcessor
 						.removeNullValues(CtsContentAssistUtil
 								.createFollowProposalsFromContext(null, null,
-										null, null, 0, 0, null))));
+										null, null, 0, 0, null, null))));
 	}
 
 	@Test

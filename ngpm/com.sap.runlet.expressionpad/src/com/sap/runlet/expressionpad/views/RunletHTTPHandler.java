@@ -146,7 +146,7 @@ public class RunletHTTPHandler implements HttpHandler, Executor {
 
     private void fillStackFrame(RunletInterpreter requestInterpreter,
 	    List<Parameter> formalParameters, URI requestURI) throws UnsupportedEncodingException {
-	requestInterpreter.getCallstack().push(new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>());
+	requestInterpreter.getCallstack().push(new RunletStackFrame());
 	// get map of parameter names and values encoded in the URL
 	Map<String, String> urlParameters = extractParameters(requestURI);
 	// loop over formal parameters

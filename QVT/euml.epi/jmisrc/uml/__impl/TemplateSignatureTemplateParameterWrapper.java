@@ -125,7 +125,6 @@ public class TemplateSignatureTemplateParameterWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateSignatureTemplateParameter> get___JmiInterface() {
         return uml.TemplateSignatureTemplateParameter.class;
     }

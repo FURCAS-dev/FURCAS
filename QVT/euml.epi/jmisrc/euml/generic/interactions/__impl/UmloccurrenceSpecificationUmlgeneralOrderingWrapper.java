@@ -125,7 +125,6 @@ public class UmloccurrenceSpecificationUmlgeneralOrderingWrapper extends com.sap
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmloccurrenceSpecificationUmlgeneralOrdering> get___JmiInterface() {
         return euml.generic.interactions.UmloccurrenceSpecificationUmlgeneralOrdering.class;
     }

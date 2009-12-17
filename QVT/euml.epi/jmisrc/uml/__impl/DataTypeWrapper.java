@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class DataTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.DataTypeImpl> implements uml.DataType,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DataTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.DataTypeImpl getCastWrappedObject() {
         return (uml.__impl.DataTypeImpl) getWrappedObject();
     }
@@ -60,7 +59,6 @@ public class DataTypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DataType> get___JmiInterface() {
         return uml.DataType.class;
     }

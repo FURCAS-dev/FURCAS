@@ -6,7 +6,7 @@ package euml.presentation.graphic.__impl;
 
 public class DiagramElementWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.presentation.graphic.__impl.DiagramElementImpl> implements euml.presentation.graphic.DiagramElement,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DiagramElementWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.presentation.graphic.__impl.DiagramElementImpl getCastWrappedObject() {
         return (euml.presentation.graphic.__impl.DiagramElementImpl) getWrappedObject();
     }
@@ -619,7 +618,6 @@ public class DiagramElementWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.DiagramElement> get___JmiInterface() {
         return euml.presentation.graphic.DiagramElement.class;
     }

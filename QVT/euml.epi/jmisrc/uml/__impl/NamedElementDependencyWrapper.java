@@ -125,7 +125,6 @@ public class NamedElementDependencyWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.NamedElementDependency> get___JmiInterface() {
         return uml.NamedElementDependency.class;
     }

@@ -78,7 +78,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 		this.connection = TcsUtil.getConnectionFromRefObject(syntax);
 		Assert.isNotNull(connection, "moin connection is null");
-		
+
 		initClassTemplateMap();
 	}
 
@@ -186,7 +186,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 					results = CtsContentAssistUtil
 							.createFirstPossibleProposals(syntax,
 									classTemplateMap, viewer, line,
-									charPositionInLine, null);
+									charPositionInLine, null, tbModel);
 
 					// TODO workaround because ANTRL will not create error token
 					// for unlexed characters
@@ -223,14 +223,14 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 									.createFirstPossibleProposals(syntax,
 											classTemplateMap, viewer, line,
 											charPositionInLine, context
-													.getToken());
+													.getToken(), tbModel);
 						} else {
 							// get proposals that follow token
 							results = CtsContentAssistUtil
 									.createFollowProposalsFromContext(syntax,
 											previousContext, classTemplateMap,
 											viewer, line, charPositionInLine,
-											context.getToken());
+											context.getToken(), tbModel);
 						}
 
 						// compute prefix from token text
@@ -256,7 +256,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 							results.addAll(CtsContentAssistUtil
 									.createFollowProposalsFromContext(syntax,
 											context, classTemplateMap, viewer,
-											line, charPositionInLine, null));
+											line, charPositionInLine, null,
+											tbModel));
 
 							// not prefix-filtered
 						}
@@ -267,7 +268,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 								.createFollowProposalsFromContext(syntax,
 										context, classTemplateMap, viewer,
 										line, charPositionInLine, context
-												.getToken());
+												.getToken(), tbModel);
 
 						// TODO workaround because ANTRL will not create error
 						// token
@@ -305,7 +306,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		finally {
 			// clear transient partitions used by content assist
 			TcsUtil.clearTransientPartition(connection);
@@ -418,7 +419,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 				.getSyntaxesInConnection(connection);
 
 		for (ConcreteSyntax syntax : syntaxList) {
-			if (syntax != null && syntax.getName() != null && syntax.getName().equals(language)) {
+			if (syntax != null && syntax.getName() != null
+					&& syntax.getName().equals(language)) {
 				return syntax;
 			}
 		}

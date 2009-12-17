@@ -125,7 +125,6 @@ public class DeploymentDeploymentSpecificationWrapper extends com.sap.tc.moin.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DeploymentDeploymentSpecification> get___JmiInterface() {
         return uml.DeploymentDeploymentSpecification.class;
     }

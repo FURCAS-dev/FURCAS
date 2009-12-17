@@ -8,7 +8,7 @@ public final class DePackageImpl extends com.sap.tc.moin.repository.core.jmi.ref
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(2);
@@ -53,7 +53,6 @@ public final class DePackageImpl extends com.sap.tc.moin.repository.core.jmi.ref
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<de.DePackage> get___JmiInterface() {
         return de.DePackage.class;
     }
@@ -62,9 +61,7 @@ public final class DePackageImpl extends com.sap.tc.moin.repository.core.jmi.ref
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(1);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
             name = "ikv"; //$NON-NLS-1$
             rpan = new RefPackageAndName(name, "de.ikv.IkvPackage", false); //$NON-NLS-1$
@@ -82,9 +79,7 @@ public final class DePackageImpl extends com.sap.tc.moin.repository.core.jmi.ref
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(0);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
         }
     }

@@ -96,7 +96,7 @@ public class MOINTCSMetaConnectionProvider {
 
     private static String getStandaloneProjectPath() {
 	// source is in /bin folder
-	return getSourceRoot(MOINTCSMetaConnectionProvider.class) + "..\\";
+	return getSourceRoot(MOINTCSMetaConnectionProvider.class) + ".."+File.separator;
     }
 
     /**
@@ -111,7 +111,7 @@ public class MOINTCSMetaConnectionProvider {
 
 	    for (int i = 0; i < metamodelZipFilenames.size(); i++) {
 
-		File file = new File(getStandaloneProjectPath() + "mmbuild\\" + metamodelZipFilenames.get(i));
+		File file = new File(getStandaloneProjectPath() + "mmbuild" + File.separator + metamodelZipFilenames.get(i));
 		if (!file.exists()) {
 		    throw new IllegalStateException("TCS Metamodel archive file does not exist at " + file.getAbsolutePath());
 
@@ -129,7 +129,7 @@ public class MOINTCSMetaConnectionProvider {
 
 	List<String> resultZips = new ArrayList<String>();
 
-	File directory = new File(getStandaloneProjectPath() + "\\bin\\metamodels\\");
+	File directory = new File(getStandaloneProjectPath() + File.separator+"bin"+File.separator+"metamodels"+File.separator);
 
 	if (!directory.exists()) {
 	    System.out.println("zipMetamodels cannot find directory " + directory.getAbsolutePath());
@@ -145,7 +145,8 @@ public class MOINTCSMetaConnectionProvider {
 
 		    resultZips.add(metamodelZipFileName);
 
-		    File metamodelZip = new File("..\\com.sap.mi.textual.moin.standalone\\mmbuild\\" + metamodelZipFileName);
+		    File metamodelZip = new File(".."+File.separator+"com.sap.mi.textual.moin.standalone"+
+			    File.separator+"mmbuild"+File.separator+"" + metamodelZipFileName);
 
 		    metamodelZip.createNewFile();
 		    OutputStream os = new FileOutputStream(metamodelZip);
@@ -260,24 +261,13 @@ public class MOINTCSMetaConnectionProvider {
 	    return facilityId;
 	}
 
-	public void setFacilityId(String facilityId) {
-	    this.facilityId = facilityId;
-	}
-
 	public String getContainerName() {
 	    return containerName;
-	}
-
-	public void setContainerName(String containerName) {
-	    this.containerName = containerName;
 	}
 
 	public String getPartitionsProp() {
 	    return partitionsProp;
 	}
 
-	public void setPartitionsProp(String partitionsProp) {
-	    this.partitionsProp = partitionsProp;
-	}
     }
 }

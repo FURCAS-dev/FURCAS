@@ -16,14 +16,14 @@ public class StandaloneConnectionBasedTest {
 	protected static Connection connection = null;
 
 	@BeforeClass
-	public static void setUp() throws Exception {
+	public static void setUp() {
 		if (connection == null) {
 			connection = MOINTCSMetaConnectionProvider.getTestConnection();
 		}
 	}
 
 	@After
-	public void tearDown() throws Exception {
+	public void tearDown() {
 
 		// should be @After and execute after every test
 		if (connection != null) {

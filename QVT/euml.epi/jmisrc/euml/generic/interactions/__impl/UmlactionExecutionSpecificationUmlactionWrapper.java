@@ -125,7 +125,6 @@ public class UmlactionExecutionSpecificationUmlactionWrapper extends com.sap.tc.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlactionExecutionSpecificationUmlaction> get___JmiInterface() {
         return euml.generic.interactions.UmlactionExecutionSpecificationUmlaction.class;
     }

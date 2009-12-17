@@ -125,7 +125,6 @@ public class OperationContraint2Wrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OperationContraint2> get___JmiInterface() {
         return uml.OperationContraint2.class;
     }

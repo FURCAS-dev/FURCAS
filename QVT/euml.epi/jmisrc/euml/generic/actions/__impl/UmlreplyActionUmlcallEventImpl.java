@@ -63,7 +63,6 @@ public final class UmlreplyActionUmlcallEventImpl extends com.sap.tc.moin.reposi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlreplyActionUmlcallEvent> get___JmiInterface() {
         return euml.generic.actions.UmlreplyActionUmlcallEvent.class;
     }

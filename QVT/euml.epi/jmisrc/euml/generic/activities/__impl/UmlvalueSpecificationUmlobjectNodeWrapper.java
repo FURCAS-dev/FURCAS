@@ -125,7 +125,6 @@ public class UmlvalueSpecificationUmlobjectNodeWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlvalueSpecificationUmlobjectNode> get___JmiInterface() {
         return euml.generic.activities.UmlvalueSpecificationUmlobjectNode.class;
     }

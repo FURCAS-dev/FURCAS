@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class StucturalFeatureWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.StucturalFeatureImpl> implements uml.StucturalFeature,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StucturalFeatureWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.StucturalFeatureImpl getCastWrappedObject() {
         return (uml.__impl.StucturalFeatureImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class StucturalFeatureWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.StucturalFeature> get___JmiInterface() {
         return uml.StucturalFeature.class;
     }

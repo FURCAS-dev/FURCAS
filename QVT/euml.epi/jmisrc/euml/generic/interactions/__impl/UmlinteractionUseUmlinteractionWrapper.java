@@ -125,7 +125,6 @@ public class UmlinteractionUseUmlinteractionWrapper extends com.sap.tc.moin.repo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlinteractionUseUmlinteraction> get___JmiInterface() {
         return euml.generic.interactions.UmlinteractionUseUmlinteraction.class;
     }

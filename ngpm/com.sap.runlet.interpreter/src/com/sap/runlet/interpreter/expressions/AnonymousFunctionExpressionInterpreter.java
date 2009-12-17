@@ -24,7 +24,7 @@ import dataaccess.expressions.fp.AnonymousFunctionExpr;
  *  
  * @author Axel Uhl (D043530)
  */
-public class AnonymousFunctionExpressionInterpreter implements Interpreter<AnonymousFunctionExpr, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class AnonymousFunctionExpressionInterpreter implements Interpreter<AnonymousFunctionExpr, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private AnonymousFunctionExpr afe;
     
     public AnonymousFunctionExpressionInterpreter(AnonymousFunctionExpr afe) {

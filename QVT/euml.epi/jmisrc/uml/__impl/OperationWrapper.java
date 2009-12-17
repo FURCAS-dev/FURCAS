@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class OperationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.OperationImpl> implements uml.Operation,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class OperationWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.OperationImpl getCastWrappedObject() {
         return (uml.__impl.OperationImpl) getWrappedObject();
     }
@@ -1524,7 +1523,6 @@ public class OperationWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Operation> get___JmiInterface() {
         return uml.Operation.class;
     }

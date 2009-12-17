@@ -22,7 +22,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class WhileInterpreter implements Interpreter<IfElse, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class WhileInterpreter implements Interpreter<IfElse, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     
     private WhileLoop whileLoop;
     

@@ -298,20 +298,22 @@ public class CtsTextBlockTCSExtractorStream implements TCSExtractorStream {
 				if (debug) {
 					System.out.println("removing empty TextBlock");
 				}
+				
+				// handle this textblock's addToContext flag
+				// addToContext only present on ClassTemplate
+				// context can be present on ClassTemplate and OperatorTemplate
+				Template t = getType(curBlock);
+				if (t instanceof ClassTemplate) {
+					ClassTemplate ct = (ClassTemplate) t;
+					if (ct.isAddToContext()) {
+						addToParentContext(curBlock);
+					}
+				}
 
 				parent.getSubBlocks().remove(curBlock);
+				parent.getCorrespondingModelElements().addAll(curBlock.getCorrespondingModelElements());
+				parent.getReferencedElements().addAll(curBlock.getReferencedElements());
 				curBlock.refDelete();
-			}
-
-			// handle this textblock's addToContext flag
-			// addToContext only present on ClassTemplate
-			// context can be present on ClassTemplate and OperatorTemplate
-			Template t = getType(curBlock);
-			if (t instanceof ClassTemplate) {
-				ClassTemplate ct = (ClassTemplate) t;
-				if (ct.isAddToContext()) {
-					addToParentContext(curBlock);
-				}
 			}
 
 			// restore curBlockLength from parent and curBlockLength

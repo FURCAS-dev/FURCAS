@@ -1431,6 +1431,9 @@ public class TcsUtil {
 			TypedElement elem = propRef.getStrucfeature();
 			if (elem != null) {
 				if (elem instanceof AssociationEnd) {
+					AssociationEnd thisEnd = (AssociationEnd) elem;
+					AssociationEnd otherEnd = thisEnd.otherEnd();
+					
 					RefAssociation ass = getConnectionFromRefObject(target)
 							.getJmiHelper().getRefAssociationForAssociation(
 									(Association) elem.refImmediateComposite());
@@ -1438,8 +1441,8 @@ public class TcsUtil {
 					Collection<RefObject> results = null;
 
 					try {
-						results = ass.refQuery(elem.getName(), target
-								.refMetaObject());
+						// Warning, the other end must be used for this to work
+						results = ass.refQuery(otherEnd.getName(), target);
 
 					} catch (TypeMismatchException e) {
 						return null;
@@ -1790,23 +1793,24 @@ public class TcsUtil {
 	}
 
 	public static Object executeOclQuery(RefObject element, String oclQuery,
-			String propName, RefObject contextObject, String keyValue)
+			RefObject contextObject, String keyValue)
 			throws ModelAdapterException {
-		if (oclQuery != null && propName != null) {
-	
+		if (oclQuery != null) {
+
 			Object expectedValue = null;
-	
+
 			Connection con = getConnectionFromRefObject(element);
-	
+
 			AdapterJMIHelper oclHelper = new AdapterJMIHelper(element
 					.refOutermostPackage(), con, con.getJmiHelper(), null, null);
-	
-			expectedValue = oclHelper.findElementWithOCLQuery(element,
-					propName, keyValue, oclQuery, contextObject);
-	
+
+			// propName is never used in findElementWithOCLQuery
+			expectedValue = oclHelper.findElementWithOCLQuery(element, null,
+					keyValue, oclQuery, contextObject);
+
 			return expectedValue;
 		}
-	
+
 		return null;
 	}
 

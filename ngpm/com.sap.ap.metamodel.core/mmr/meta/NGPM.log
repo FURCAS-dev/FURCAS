@@ -86,6 +86,11 @@
 *Warning: Association found with no name between 'MethodCallExpression' and 'ObjectCreationExpression'.  The name 'A_initializers_creationExpression' has been created for it.
 *Warning: Association found with no name between 'Iterator' and 'Selection'.  The name 'A_iterator_selection' has been created for it.
 *Warning: Association found with no name between 'Expression' and 'Selection'.  The name 'A_selectionExpr_selection' has been created for it.
+*Warning: Association found with no name between 'Expression' and 'OqlQuery'.  The name 'A_condition_conditionOfOqlQuery' has been created for it.
+*Warning: Association found with no name between 'FromClause' and 'OqlQuery'.  The name 'A_fromClauses_fromClauseOfOqlQuery' has been created for it.
+*Warning: Association found with no name between 'Expression' and 'FromClause'.  The name 'A_fromExpression_fromClause' has been created for it.
+*Warning: Association found with no name between 'Iterator' and 'FromClause'.  The name 'A_alias_fromClause' has been created for it.
+*Warning: Association found with no name between 'Iterator' and 'OqlQuery'.  The name 'A_selected_oqlQuery' has been created for it.
 *Warning: Association found with no name between 'Dimension' and 'CellSet'.  The name 'A_dimensions_cellSet' has been created for it.
 *Warning: Association found with no name between 'FunctionSignature' and 'Dimension'.  The name 'A_characteristicFunction_dimension' has been created for it.
 *Warning: Association found with no name between 'FunctionSignature' and 'CellSet'.  The name 'A_valueFunction_cellSetForValueFunction' has been created for it.

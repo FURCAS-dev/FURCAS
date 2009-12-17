@@ -20,7 +20,7 @@ import dataaccess.expressions.Expression;
 import dataaccess.expressions.MethodCallExpression;
 import dataaccess.expressions.ObjectCreationExpression;
 
-public class ObjectCreationInterpreter implements Interpreter<ObjectCreationExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ObjectCreationInterpreter implements Interpreter<ObjectCreationExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private ObjectCreationExpression oce;
     
     public ObjectCreationInterpreter(ObjectCreationExpression oce) {
@@ -36,7 +36,7 @@ public class ObjectCreationInterpreter implements Interpreter<ObjectCreationExpr
 	result = interpreter.createEntityObject((ClassTypeDefinition) oce.getType());
 	if (oce.getInitializers().size() > 0) {
 		try {
-			RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> objectCreationFrame = new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>();
+			RunletStackFrame objectCreationFrame = new RunletStackFrame();
 			objectCreationFrame.setThis(result);
 			interpreter.getCallstack().push(objectCreationFrame);
 			for (MethodCallExpression initializer : oce.getInitializers()) {

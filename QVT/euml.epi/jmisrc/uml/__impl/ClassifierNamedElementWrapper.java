@@ -89,7 +89,6 @@ public class ClassifierNamedElementWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ClassifierNamedElement> get___JmiInterface() {
         return uml.ClassifierNamedElement.class;
     }

@@ -22,7 +22,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class StringTemplateInterpreter implements Interpreter<StringTemplate, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class StringTemplateInterpreter implements Interpreter<StringTemplate, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private StringTemplate stringTemplate;
     
     public StringTemplateInterpreter(StringTemplate stringTemplate) {
@@ -35,7 +35,7 @@ public class StringTemplateInterpreter implements Interpreter<StringTemplate, Sa
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	StringBuilder result = new StringBuilder();
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> stackFrame = new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(/* parent */ interpreter.getCallstack().peek());
+	RunletStackFrame stackFrame = new RunletStackFrame(/* parent */ interpreter.getCallstack().peek());
 	interpreter.getCallstack().push(stackFrame);
 	for (Expression segment:stringTemplate.getExpressions()) {
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> segmentResult = interpreter.evaluate(segment);

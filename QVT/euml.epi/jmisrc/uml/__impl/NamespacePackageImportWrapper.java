@@ -125,7 +125,6 @@ public class NamespacePackageImportWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.NamespacePackageImport> get___JmiInterface() {
         return uml.NamespacePackageImport.class;
     }

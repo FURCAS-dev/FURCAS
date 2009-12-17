@@ -125,7 +125,6 @@ public class PackageImportPackageWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PackageImportPackage> get___JmiInterface() {
         return uml.PackageImportPackage.class;
     }

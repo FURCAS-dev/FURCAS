@@ -48,7 +48,6 @@ public final class ConnectionEndPropertyImpl extends com.sap.tc.moin.repository.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ConnectionEndProperty> get___JmiInterface() {
         return uml.ConnectionEndProperty.class;
     }

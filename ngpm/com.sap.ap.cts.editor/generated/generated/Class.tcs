@@ -42,7 +42,7 @@ syntax Class(k=0 ) {
 		  ]]
 			(isDefined(adapters) ? "implements" adapters{mode=implements, forcedLower=1, separator=","})
 		    <space> "{" [
-		    	ownedSignatures{disambiguate="data_classes_methodsignature"}
+		    	ownedSignatures{disambiguate="data_classes_methodsignature", partial}
 		    	elementsOfType{mode=property, partial}
 		    ] "}"
 		;
@@ -894,7 +894,200 @@ syntax Class(k=0 ) {
 		     ordered='false',
 		     unique='false' }}
 		;
+
+	-- ------------------------------ OQL ------------------------------
+	template OqlQuery context(oqlQuery)
+		: [[ -- explicit select
+		     "select" selected{as=identifier, query="OCL:self.fromClause.fromClauseOfOqlQuery.fromClauses.alias",
+		                                      filter="->select(i|i.name=?)", invert="name", separator=","}
+		   | -- implicit select; constructs tuple from FROM aliases
+		     {{ selected=lookIn("OCL:self.fromClauses.alias") }}
+		  ]]
+		  "from" fromClauses{separator=","}
+          -- Making "where" optional leads to ANTLR trouble with recursive OqlQuery in a FROM clause
+		  -- (isDefined(condition) ? "where" condition{forcedLower=1})
+		  "where" condition{forcedLower=1}
+		  ownedTypeDefinition{mode=oqlQueryResult, forcedLower=1}
+		;
+	
+	template FromClause
+		: fromExpression "as" alias{mode=fromClause}
+		;
+	
+	template Iterator #fromClause context(iteratorFromClause) addToContext
+		: name
+		  {{ ownedTypeDefinition=foreach("OCL:if self.fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+		    										self.fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type
+		    									else
+		    										self.fromClause.fromExpression.getType()
+		    									endif",
+		    							   mode="iteratorFromClause") }}
+		;
+	
+	template ClassTypeDefinition #iteratorFromClause
+		: {{
+			clazz=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).clazz
+							  else
+							      #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(ClassTypeDefinition).clazz
+							  endif"),
+			objectParameters=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).objectParameters
+							  else
+							      #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(ClassTypeDefinition).objectParameters
+							  endif"),
+			lowerMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
+							  else
+							      1
+							  endif"),
+			upperMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(ClassTypeDefinition).upperMultiplicity
+							  else
+							      1
+							  endif"),
+			ordered=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered
+							  else
+							      false
+							  endif"),
+			unique=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique
+							  else
+							      false
+							  endif")
+		  }}
+		;
+
+	template FunctionSignatureTypeDefinition #iteratorFromClause
+		: {{
+			signature=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.oclAsType(FunctionSignatureTypeDefinition).signature
+							  else
+							      #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(FunctionSignatureTypeDefinition).signature
+							  endif"),
+			lowerMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity
+							  else
+							      1
+							  endif"),
+			upperMultiplicity=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.upperMultiplicity
+							  else
+							      1
+							  endif"),
+			ordered=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered
+							  else
+							      false
+							  endif"),
+			unique=lookIn("OCL:if #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclIsKindOf(NestedTypeDefinition) then
+								  #context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique
+							  else
+							      false
+							  endif")
+		  }}
+		;
+
+    -- This must have been a NestedTypeDefinition nested within a NestedTypeDefinition
+	template NestedTypeDefinition #iteratorFromClause
+		: {{
+			type=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type"),
+			lowerMultiplicity=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.lowerMultiplicity"),
+			upperMultiplicity=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.upperMultiplicity"),
+			ordered=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.ordered"),
+			unique=lookIn("OCL:#context(iteratorFromClause).oclAsType(Iterator).fromClause.fromExpression.getType().oclAsType(NestedTypeDefinition).type.unique")
+		  }}
+		;
+	
+	template TypeDefinition #oqlQueryResult abstract;
+	-- construct the type definition and value class for the OQL query result; no actual object parameters
+	template ClassTypeDefinition #oqlQueryResult context
+		: clazz{mode=oqlQueryResult}
+		  {{ lowerMultiplicity='0',
+		     upperMultiplicity='-1',
+		     ordered='false',
+		     unique='false'
+		  }}
+		;
+	
+	-- creates the OQL query's result set type as a value class
+	template SapClass #oqlQueryResult context
+		: {{ elementsOfType=foreach("OCL:#context(oqlQuery).oclAsType(OqlQuery).selected",
+		                            mode="oqlQueryResultProperties", as=ClassTypeDefinition),
+		     name=lookIn("OCL:self.elementsOfType.ownerTypedElement.oclAsType(OqlQuery).fromClauses.alias->iterate(
+		  		i; acc='QueryResult' | acc.concat('_').concat(i.name))"),
+		     valueType='true',
+		     package_=lookIn("OCL:#context(root).oclAsType(SapClass).package_")
+		  }}
+		;
+	
+	template TypeDefinition #oqlQueryResultProperties abstract;
+	-- Produce the class type definition for the "local" association end on the OQL result value class.
+	-- It has no object parameters.
+	template ClassTypeDefinition #oqlQueryResultProperties
+		: associationEnd{mode=oqlQueryResultProperties, forcedLower=1} 
+		  {{ lowerMultiplicity='0', upperMultiplicity='-1', ordered='false', unique='false' }}
+		;
 		
+	template data::classes::AssociationEnd #oqlQueryResultProperties
+		: association{mode=oqlQueryResultProperties}
+		  {{ navigable='false',
+		     contributesToEquality='true',
+		     name=lookIn("OCL:'opposite_of_'.concat(#context.oclAsType(Iterator).name)")
+		  }}
+		;
+
+	template data::classes::Association #oqlQueryResultProperties
+		: -- force creation of non-declared opposite end
+		  ends{forcedLower=1, forcedUpper=1, mode=oqlQueryResultPropertiesOtherEnd} 
+		  {{ name=lookIn("OCL:'Query_to_'.concat(self.ends->first().name)"),
+		     package_=lookIn("OCL:#context(root).oclAsType(SapClass).package_")
+		  }}
+		;
+	
+	template data::classes::AssociationEnd #oqlQueryResultPropertiesOtherEnd
+		: signatureImplementations{mode=oqlQueryResultPropertiesGetter, forcedLower=1, forcedUpper=1}
+		  {{ name=lookIn("OCL:#context.oclAsType(Iterator).name"),
+		     -- pick the iterator for which the current association is created and use its type as
+		     -- the type for the remote association end
+		     type=foreach("OCL:#context.oclAsType(Iterator).getType()", mode="oqlQueryResultAssociationEndType"),
+		     navigable='true'
+		  }}
+		;
+	
+	template AssociationEndSignatureImplementation #oqlQueryResultPropertiesGetter abstract;
+	template LinkTraversal #oqlQueryResultPropertiesGetter
+		: implements_{mode=oqlQueryResultProperties, forcedLower=1}
+		  {{ end=lookIn("OCL:#context.oclAsType(Iterator).fromClause.fromClauseOfOqlQuery.getType().
+		                     oclAsType(ClassTypeDefinition).clazz.getAssociationEnds().otherEnd()->select(
+		                     ae | ae.name=#context.oclAsType(Iterator).name)")
+		  }}
+		;
+		
+	-- "getters" for each property
+	template MethodSignature #oqlQueryResultProperties
+		: {{ name=lookIn("OCL:'.'.concat(#context.oclAsType(Iterator).name)"),
+		     owner=lookIn("OCL:#context.oclAsType(Iterator).fromClause.fromClauseOfOqlQuery.getType().
+		           oclAsType(ClassTypeDefinition).clazz"),
+		     output=lookIn("OCL:self.implementation.oclAsType(LinkTraversal).end.type")
+		  }}
+		;
+	
+	template TypeDefinition #oqlQueryResultAssociationEndType abstract;
+	-- Can only be class type definition because association ends don't support other type definitions.
+	-- It is furthermore constrained in the metamodel by constraint SelectedIteratorsMustHaveClassTypeDefinitionAsType.
+	template ClassTypeDefinition #oqlQueryResultAssociationEndType
+		: {{
+		     clazz=lookIn("OCL:#context.oclAsType(Iterator).getType().oclAsType(ClassTypeDefinition).clazz"),
+		     objectParameters=lookIn("OCL:#context.oclAsType(Iterator).getType().oclAsType(ClassTypeDefinition).objectParameters"),
+		     lowerMultiplicity=lookIn("OCL:#context.oclAsType(Iterator).getType().oclAsType(ClassTypeDefinition).lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:#context.oclAsType(Iterator).getType().oclAsType(ClassTypeDefinition).upperMultiplicity"),
+		     ordered=lookIn("OCL:#context.oclAsType(Iterator).getType().oclAsType(ClassTypeDefinition).ordered"),
+		     unique=lookIn("OCL:#context.oclAsType(Iterator).getType().oclAsType(ClassTypeDefinition).unique")
+		  }}
+		;
+	
 -- @end COLLECTION EXPRESSIONS
 
 	operatorTemplate Replace (operators = arrowOp, source = 'object')

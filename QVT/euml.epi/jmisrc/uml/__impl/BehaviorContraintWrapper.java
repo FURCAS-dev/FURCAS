@@ -125,7 +125,6 @@ public class BehaviorContraintWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.BehaviorContraint> get___JmiInterface() {
         return uml.BehaviorContraint.class;
     }

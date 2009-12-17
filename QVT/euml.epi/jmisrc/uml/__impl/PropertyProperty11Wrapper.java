@@ -125,7 +125,6 @@ public class PropertyProperty11Wrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PropertyProperty11> get___JmiInterface() {
         return uml.PropertyProperty11.class;
     }

@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class TemplateParameterSubstitutionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.TemplateParameterSubstitutionImpl> implements uml.TemplateParameterSubstitution,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class TemplateParameterSubstitutionWrapper extends com.sap.tc.moin.reposi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.TemplateParameterSubstitutionImpl getCastWrappedObject() {
         return (uml.__impl.TemplateParameterSubstitutionImpl) getWrappedObject();
     }
@@ -267,7 +266,6 @@ public class TemplateParameterSubstitutionWrapper extends com.sap.tc.moin.reposi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateParameterSubstitution> get___JmiInterface() {
         return uml.TemplateParameterSubstitution.class;
     }

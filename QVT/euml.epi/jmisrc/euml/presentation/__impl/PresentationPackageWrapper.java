@@ -46,7 +46,6 @@ public class PresentationPackageWrapper extends com.sap.tc.moin.repository.core.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.PresentationPackage> get___JmiInterface() {
         return euml.presentation.PresentationPackage.class;
     }

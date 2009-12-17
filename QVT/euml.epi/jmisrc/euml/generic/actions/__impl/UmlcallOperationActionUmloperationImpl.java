@@ -63,7 +63,6 @@ public final class UmlcallOperationActionUmloperationImpl extends com.sap.tc.moi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlcallOperationActionUmloperation> get___JmiInterface() {
         return euml.generic.actions.UmlcallOperationActionUmloperation.class;
     }

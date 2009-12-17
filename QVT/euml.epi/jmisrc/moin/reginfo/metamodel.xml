@@ -6,6 +6,6 @@
   <DeploymentExtension class="com.sap.tc.moin.package58FE58412B26152589B8D1F21B46FFC1F1E4B9B9.MetamodelExtension" />
   <Partitions>
     <Partition name="moin/meta/Metamodel.moinmm"
-      contentHash="9E41CDCB5B7C3A33208D907CB2657F10" />
+      contentHash="B8A4162C003CB7E07B01965294CE8EDC" />
   </Partitions>
 </MetamodelInf>

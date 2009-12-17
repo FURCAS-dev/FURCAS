@@ -6,7 +6,6 @@ package uml;
 
 /**
  * ConnectableElement is an abstract metaclass representing a set of instances that play roles of a classifier. Connectable elements may be joined by attached connectors and specify configurations of linked instances to be created within an instance of the containing classifier.
-
  * A connectable element may be exposed as a connectable element template parameter.
  * This interface is not intended to be implemented by clients.
  */

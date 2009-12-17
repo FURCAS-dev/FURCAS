@@ -10,7 +10,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IProject;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -18,7 +17,6 @@ import org.junit.Test;
 import tcs.TcsPackage;
 
 import com.sap.ide.cts.editor.test.util.ProjectConnectionBasedTest;
-import com.sap.mi.fwk.ConnectionManager;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
 import com.sap.mi.textual.common.interfaces.ResolvedNameAndReferenceBean;
 import com.sap.mi.textual.test.util.MOINContainerNameLookUpFactory;
@@ -28,7 +26,6 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class TestMoinLookUp extends ProjectConnectionBasedTest{
 
-	private static IProject project;
 	private static Connection connection;
 
 	private static IMetaModelLookup<RefObject> lookup = null;

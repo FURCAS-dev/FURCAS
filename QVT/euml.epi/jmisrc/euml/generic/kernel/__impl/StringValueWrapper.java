@@ -6,7 +6,7 @@ package euml.generic.kernel.__impl;
 
 public class StringValueWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.generic.kernel.__impl.StringValueImpl> implements euml.generic.kernel.StringValue,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StringValueWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.kernel.__impl.StringValueImpl getCastWrappedObject() {
         return (euml.generic.kernel.__impl.StringValueImpl) getWrappedObject();
     }
@@ -224,7 +223,6 @@ public class StringValueWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.StringValue> get___JmiInterface() {
         return euml.generic.kernel.StringValue.class;
     }

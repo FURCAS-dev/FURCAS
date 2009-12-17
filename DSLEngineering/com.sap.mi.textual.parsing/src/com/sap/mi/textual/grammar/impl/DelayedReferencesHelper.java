@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-12-11 20:22:07 +0100 (Fr, 11 Dez 2009) $
- * Revision: $Revision: 9074 $
+ * Date: $Date: 2009-12-16 14:55:10 +0100 (Mi, 16 Dez 2009) $
+ * Revision: $Revision: 9126 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
@@ -201,12 +201,16 @@ public class DelayedReferencesHelper {
 	}
 	if (reference.hasContext() && next instanceof RefObject) {
 	    ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(next);
-	    parser.addContext(proxyForNext);
-	    parser.getContextManager().notifyProxyResolvedWith(proxyForNext, next,
-	    /*
-	     * no creation context element needs to be provided here because the proxy has just been
-	     * created and has not been added to any other context
-	     */null);
+	    if (parser.getContextManager().getContextForElement(next) == null) {
+		parser.addContext(proxyForNext);
+		parser.getContextManager().notifyProxyResolvedWith(proxyForNext, next,
+		/*
+		 * no creation context element needs to be provided here because the proxy has just been created and has
+		 * not been added to any other context
+		 */null);
+	    } else {
+		parser.getCurrentContextStack().push(proxyForNext); // the Context object was already created elsewhere
+	    }
 	}
 	try {
 	    Object parseReturn = methodToCall.invoke(parser);

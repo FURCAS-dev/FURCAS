@@ -125,7 +125,6 @@ public class DiagramConnectorDiagramElementWrapper extends com.sap.tc.moin.repos
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.DiagramConnectorDiagramElement> get___JmiInterface() {
         return euml.presentation.graphic.DiagramConnectorDiagramElement.class;
     }

@@ -125,7 +125,6 @@ public class UmlconnectorUmlconnectorEndWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.compositestructures.UmlconnectorUmlconnectorEnd> get___JmiInterface() {
         return euml.generic.compositestructures.UmlconnectorUmlconnectorEnd.class;
     }

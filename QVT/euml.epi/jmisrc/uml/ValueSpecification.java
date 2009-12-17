@@ -6,7 +6,6 @@ package uml;
 
 /**
  * A value specification is the specification of a (possibly empty) set of instances, including both objects and data values.
-
  * ValueSpecification specializes ParameterableElement to specify that a value specification can be exposed as a formal template parameter, and provided as an actual parameter in a binding of a template.
  * This interface is not intended to be implemented by clients.
  */

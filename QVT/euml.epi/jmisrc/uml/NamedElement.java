@@ -6,7 +6,6 @@ package uml;
 
 /**
  * A named element is an element in a model that may have a name.
-
  * A named element supports using a string expression to specify its name. This allows names of model elements to involve template parameters. The actual name is evaluated from the string expression only when it is sensible to do so (e.g., when a template is bound).
  * This interface is not intended to be implemented by clients.
  */

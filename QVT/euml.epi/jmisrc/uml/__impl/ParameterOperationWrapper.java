@@ -89,7 +89,6 @@ public class ParameterOperationWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ParameterOperation> get___JmiInterface() {
         return uml.ParameterOperation.class;
     }

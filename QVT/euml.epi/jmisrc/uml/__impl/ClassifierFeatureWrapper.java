@@ -125,7 +125,6 @@ public class ClassifierFeatureWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ClassifierFeature> get___JmiInterface() {
         return uml.ClassifierFeature.class;
     }

@@ -156,7 +156,6 @@ public class UseCasesPackageWrapper extends com.sap.tc.moin.repository.core.jmi.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.usecases.UseCasesPackage> get___JmiInterface() {
         return euml.generic.usecases.UseCasesPackage.class;
     }

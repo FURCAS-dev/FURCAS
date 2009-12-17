@@ -125,7 +125,6 @@ public class C2cWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefA
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.C2c> get___JmiInterface() {
         return uml.C2c.class;
     }

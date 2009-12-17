@@ -64,7 +64,6 @@ public final class UmlinstanceSpecificationUmlclassifierImpl extends com.sap.tc.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlinstanceSpecificationUmlclassifier> get___JmiInterface() {
         return euml.generic.kernel.UmlinstanceSpecificationUmlclassifier.class;
     }

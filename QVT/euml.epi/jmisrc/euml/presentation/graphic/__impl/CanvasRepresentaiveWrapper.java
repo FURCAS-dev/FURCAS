@@ -125,7 +125,6 @@ public class CanvasRepresentaiveWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.CanvasRepresentaive> get___JmiInterface() {
         return euml.presentation.graphic.CanvasRepresentaive.class;
     }

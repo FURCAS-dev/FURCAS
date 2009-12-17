@@ -64,7 +64,6 @@ public final class TemplateParameterParameterableElementImpl extends com.sap.tc.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateParameterParameterableElement> get___JmiInterface() {
         return uml.TemplateParameterParameterableElement.class;
     }

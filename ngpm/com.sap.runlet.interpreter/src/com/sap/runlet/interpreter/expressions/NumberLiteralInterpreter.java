@@ -25,7 +25,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.literals.NumberLiteral;
 
-public class NumberLiteralInterpreter implements Interpreter<NumberLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class NumberLiteralInterpreter implements Interpreter<NumberLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private NumberLiteral literal;
 
     public NumberLiteralInterpreter(NumberLiteral literal) {

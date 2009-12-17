@@ -44,7 +44,7 @@ import dataaccess.query.Selection;
  * @author Axel Uhl D043530
  * 
  */
-public class SelectionInterpreter implements Interpreter<Selection, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class SelectionInterpreter implements Interpreter<Selection, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
 
     private Selection selection;
 
@@ -160,7 +160,7 @@ public class SelectionInterpreter implements Interpreter<Selection, SapClass, Ty
 	    InvocationTargetException {
 	Collection<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> result = RunletObject.createCollection(selection
 		.getType().isOrdered(), selection.getType().isUnique());
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> frame = new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(interpreter.getCallstack().peek());
+	RunletStackFrame frame = new RunletStackFrame(interpreter.getCallstack().peek());
 	interpreter.push(frame);
 	try {
 	    Iterator iter = selection.getIterator();

@@ -992,7 +992,6 @@ public class KernelPackageWrapper extends com.sap.tc.moin.repository.core.jmi.re
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.KernelPackage> get___JmiInterface() {
         return euml.generic.kernel.KernelPackage.class;
     }

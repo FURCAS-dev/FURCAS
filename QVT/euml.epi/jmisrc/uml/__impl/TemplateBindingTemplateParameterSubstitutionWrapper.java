@@ -125,7 +125,6 @@ public class TemplateBindingTemplateParameterSubstitutionWrapper extends com.sap
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateBindingTemplateParameterSubstitution> get___JmiInterface() {
         return uml.TemplateBindingTemplateParameterSubstitution.class;
     }

@@ -6,7 +6,7 @@ package euml.generic.interactions.__impl;
 
 public class UmlinteractionUseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.generic.interactions.__impl.UmlinteractionUseImpl> implements euml.generic.interactions.UmlinteractionUse,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class UmlinteractionUseWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.interactions.__impl.UmlinteractionUseImpl getCastWrappedObject() {
         return (euml.generic.interactions.__impl.UmlinteractionUseImpl) getWrappedObject();
     }
@@ -130,7 +129,6 @@ public class UmlinteractionUseWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlinteractionUse> get___JmiInterface() {
         return euml.generic.interactions.UmlinteractionUse.class;
     }

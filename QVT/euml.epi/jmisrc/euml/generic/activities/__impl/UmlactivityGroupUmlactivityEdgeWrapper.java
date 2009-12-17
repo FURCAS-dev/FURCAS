@@ -125,7 +125,6 @@ public class UmlactivityGroupUmlactivityEdgeWrapper extends com.sap.tc.moin.repo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlactivityGroupUmlactivityEdge> get___JmiInterface() {
         return euml.generic.activities.UmlactivityGroupUmlactivityEdge.class;
     }

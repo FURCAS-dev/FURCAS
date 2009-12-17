@@ -60,8 +60,10 @@ public class IndirectSubExpression extends SubExpression {
     }
 
     /**
-     * @param loop {@link LoopExp}
-     * @return true or false
+     * Decides if this subexpression belongs to the <tt>loop</tt> expression. It does so by extracting the
+     * first {@link #getExpressionParts()} element which is assumed to be a {@link VariableExp}-typed expression.
+     * If the variable declaration to which the variable expression refers is an iterator or result variable of
+     * <tt>loop</tt>, <tt>true</tt> is returned; otherwise, <tt>false</tt> is returned.
      */
     public boolean isChildOf( LoopExp loop ) {
 

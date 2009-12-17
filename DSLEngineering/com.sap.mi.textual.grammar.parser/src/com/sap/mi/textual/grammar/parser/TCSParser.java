@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 parser/TCS.g 2009-12-14 10:47:35
+// $ANTLR 3.1.1 parser/TCS.g 2009-12-14 18:03:11
 
 package com.sap.mi.textual.grammar.parser;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class TCSParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "RPAREN", "EQ", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'for'", "'createAs'", "'forcedLower'", "'prefix'", "'esc'", "'ifmissing'", "'priority'", "'storeOpTo'", "'refersTo'", "'symbols'", "'and'", "'rightSpace'", "'function'", "'keywords'", "'end'", "'hex'", "'isDefined'", "'orKeyword'", "'omitted'", "'postfix'", "'enumerationTemplate'", "'partial'", "'importContext'", "'operatorTemplate'", "'multiLine'", "'nonPrimary'", "'startNL'", "'nbNL'", "'all'", "'main'", "'part'", "'disambiguate'", "'leftSpace'", "'mode'", "'default'", "'referenceOnly'", "'deep'", "'abstract'", "'disambiguateV3'", "'right'", "'endNL'", "'context'", "'filter'", "'value'", "'one'", "'startNbNL'", "'auto'", "'query'", "'multi'", "'token'", "'start'", "'primitiveTemplate'", "'operatored'", "'operators'", "'using'", "'forcedUpper'", "'always'", "'never'", "'createIn'", "'addToContext'", "'lookIn'", "'storeRightTo'", "'template'", "'octal'", "'endOfLine'", "'syntax'", "'serializer'", "'instanceOf'", "'lexer'", "'foreach'", "'k'", "'left'", "'invert'", "'autoCreate'", "'as'", "'word'", "'source'", "'rightNone'", "'leftNone'", "'separator'", "'drop'", "'true'", "'when'", "'false'", "'indentIncr'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "STRING", "INT", "FLOAT", "DLCOLON", "LPAREN", "RPAREN", "EQ", "LCURLY", "RCURLY", "SEMI", "RARROW", "COLON", "COMA", "SHARP", "LT", "GT", "LSQUARE", "RSQUARE", "QMARK", "DLSQUARE", "PIPE", "DRSQUARE", "STAR", "DOLLAR", "DLCURLY", "DRCURLY", "LARROW", "POINT", "MINUS", "COMMENT", "MULTI_LINE_COMMENT", "EXCL", "AROBAS", "SLASH", "PLUS", "GE", "LE", "NE", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "ESC", "'separator'", "'createAs'", "'syntax'", "'left'", "'abstract'", "'false'", "'indentIncr'", "'start'", "'referenceOnly'", "'isDefined'", "'enumerationTemplate'", "'value'", "'multiLine'", "'nonPrimary'", "'operatored'", "'multi'", "'function'", "'keywords'", "'forcedUpper'", "'rightSpace'", "'leftSpace'", "'ifmissing'", "'template'", "'foreach'", "'operators'", "'storeOpTo'", "'postfix'", "'never'", "'main'", "'disambiguateV3'", "'storeRightTo'", "'startNL'", "'default'", "'endNL'", "'using'", "'word'", "'orKeyword'", "'one'", "'importContext'", "'auto'", "'forcedLower'", "'true'", "'invert'", "'octal'", "'query'", "'when'", "'mode'", "'serializer'", "'esc'", "'part'", "'instanceOf'", "'filter'", "'createIn'", "'and'", "'leftNone'", "'k'", "'all'", "'operatorTemplate'", "'token'", "'startNbNL'", "'partial'", "'deep'", "'hex'", "'symbols'", "'as'", "'priority'", "'end'", "'lookIn'", "'primitiveTemplate'", "'nbNL'", "'omitted'", "'autoCreate'", "'refersTo'", "'rightNone'", "'prefix'", "'addToContext'", "'lexer'", "'for'", "'always'", "'source'", "'disambiguate'", "'context'", "'drop'", "'endOfLine'", "'right'"
     };
     public static final int DLCURLY=29;
     public static final int LT=19;
@@ -170,7 +170,7 @@ public class TCSParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "parser/TCS.g"; }
 
 
-       private static final String syntaxUUID = "E0DCF6CD900DD3D0E89511DEC1C7ECDF8D1506C3";
+       private static final String syntaxUUID = "E0DCF6CD6BE1CD30E8D211DE9139C00C8D1506C3";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -289,7 +289,7 @@ public class TCSParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifierOrKeyword"
-    // parser/TCS.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'for' | 'createAs' | 'forcedLower' | 'prefix' | 'esc' | 'ifmissing' | 'priority' | 'storeOpTo' | 'refersTo' | 'symbols' | 'and' | 'rightSpace' | 'function' | 'keywords' | 'end' | 'hex' | 'isDefined' | 'orKeyword' | 'omitted' | 'postfix' | 'enumerationTemplate' | 'partial' | 'importContext' | 'operatorTemplate' | 'multiLine' | 'nonPrimary' | 'startNL' | 'nbNL' | 'all' | 'main' | 'part' | 'disambiguate' | 'leftSpace' | 'mode' | 'default' | 'referenceOnly' | 'deep' | 'abstract' | 'disambiguateV3' | 'right' | 'endNL' | 'context' | 'filter' | 'value' | 'one' | 'startNbNL' | 'auto' | 'query' | 'multi' | 'token' | 'start' | 'primitiveTemplate' | 'operatored' | 'operators' | 'using' | 'forcedUpper' | 'always' | 'never' | 'createIn' | 'addToContext' | 'lookIn' | 'storeRightTo' | 'template' | 'octal' | 'endOfLine' | 'syntax' | 'serializer' | 'instanceOf' | 'lexer' | 'foreach' | 'k' | 'left' | 'invert' | 'autoCreate' | 'as' | 'word' | 'source' | 'rightNone' | 'leftNone' | 'separator' | 'drop' | 'true' | 'when' | 'false' | 'indentIncr' ) ;
+    // parser/TCS.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'separator' | 'createAs' | 'syntax' | 'left' | 'abstract' | 'false' | 'indentIncr' | 'start' | 'referenceOnly' | 'isDefined' | 'enumerationTemplate' | 'value' | 'multiLine' | 'nonPrimary' | 'operatored' | 'multi' | 'function' | 'keywords' | 'forcedUpper' | 'rightSpace' | 'leftSpace' | 'ifmissing' | 'template' | 'foreach' | 'operators' | 'storeOpTo' | 'postfix' | 'never' | 'main' | 'disambiguateV3' | 'storeRightTo' | 'startNL' | 'default' | 'endNL' | 'using' | 'word' | 'orKeyword' | 'one' | 'importContext' | 'auto' | 'forcedLower' | 'true' | 'invert' | 'octal' | 'query' | 'when' | 'mode' | 'serializer' | 'esc' | 'part' | 'instanceOf' | 'filter' | 'createIn' | 'and' | 'leftNone' | 'k' | 'all' | 'operatorTemplate' | 'token' | 'startNbNL' | 'partial' | 'deep' | 'hex' | 'symbols' | 'as' | 'priority' | 'end' | 'lookIn' | 'primitiveTemplate' | 'nbNL' | 'omitted' | 'autoCreate' | 'refersTo' | 'rightNone' | 'prefix' | 'addToContext' | 'lexer' | 'for' | 'always' | 'source' | 'disambiguate' | 'context' | 'drop' | 'endOfLine' | 'right' ) ;
     public final Object identifierOrKeyword() throws RecognitionException {
 
         Object ret2 = null;
@@ -298,10 +298,10 @@ public class TCSParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // parser/TCS.g:218:3: ( (ast= NAME | 'for' | 'createAs' | 'forcedLower' | 'prefix' | 'esc' | 'ifmissing' | 'priority' | 'storeOpTo' | 'refersTo' | 'symbols' | 'and' | 'rightSpace' | 'function' | 'keywords' | 'end' | 'hex' | 'isDefined' | 'orKeyword' | 'omitted' | 'postfix' | 'enumerationTemplate' | 'partial' | 'importContext' | 'operatorTemplate' | 'multiLine' | 'nonPrimary' | 'startNL' | 'nbNL' | 'all' | 'main' | 'part' | 'disambiguate' | 'leftSpace' | 'mode' | 'default' | 'referenceOnly' | 'deep' | 'abstract' | 'disambiguateV3' | 'right' | 'endNL' | 'context' | 'filter' | 'value' | 'one' | 'startNbNL' | 'auto' | 'query' | 'multi' | 'token' | 'start' | 'primitiveTemplate' | 'operatored' | 'operators' | 'using' | 'forcedUpper' | 'always' | 'never' | 'createIn' | 'addToContext' | 'lookIn' | 'storeRightTo' | 'template' | 'octal' | 'endOfLine' | 'syntax' | 'serializer' | 'instanceOf' | 'lexer' | 'foreach' | 'k' | 'left' | 'invert' | 'autoCreate' | 'as' | 'word' | 'source' | 'rightNone' | 'leftNone' | 'separator' | 'drop' | 'true' | 'when' | 'false' | 'indentIncr' ) )
-            // parser/TCS.g:219:3: (ast= NAME | 'for' | 'createAs' | 'forcedLower' | 'prefix' | 'esc' | 'ifmissing' | 'priority' | 'storeOpTo' | 'refersTo' | 'symbols' | 'and' | 'rightSpace' | 'function' | 'keywords' | 'end' | 'hex' | 'isDefined' | 'orKeyword' | 'omitted' | 'postfix' | 'enumerationTemplate' | 'partial' | 'importContext' | 'operatorTemplate' | 'multiLine' | 'nonPrimary' | 'startNL' | 'nbNL' | 'all' | 'main' | 'part' | 'disambiguate' | 'leftSpace' | 'mode' | 'default' | 'referenceOnly' | 'deep' | 'abstract' | 'disambiguateV3' | 'right' | 'endNL' | 'context' | 'filter' | 'value' | 'one' | 'startNbNL' | 'auto' | 'query' | 'multi' | 'token' | 'start' | 'primitiveTemplate' | 'operatored' | 'operators' | 'using' | 'forcedUpper' | 'always' | 'never' | 'createIn' | 'addToContext' | 'lookIn' | 'storeRightTo' | 'template' | 'octal' | 'endOfLine' | 'syntax' | 'serializer' | 'instanceOf' | 'lexer' | 'foreach' | 'k' | 'left' | 'invert' | 'autoCreate' | 'as' | 'word' | 'source' | 'rightNone' | 'leftNone' | 'separator' | 'drop' | 'true' | 'when' | 'false' | 'indentIncr' )
+            // parser/TCS.g:218:3: ( (ast= NAME | 'separator' | 'createAs' | 'syntax' | 'left' | 'abstract' | 'false' | 'indentIncr' | 'start' | 'referenceOnly' | 'isDefined' | 'enumerationTemplate' | 'value' | 'multiLine' | 'nonPrimary' | 'operatored' | 'multi' | 'function' | 'keywords' | 'forcedUpper' | 'rightSpace' | 'leftSpace' | 'ifmissing' | 'template' | 'foreach' | 'operators' | 'storeOpTo' | 'postfix' | 'never' | 'main' | 'disambiguateV3' | 'storeRightTo' | 'startNL' | 'default' | 'endNL' | 'using' | 'word' | 'orKeyword' | 'one' | 'importContext' | 'auto' | 'forcedLower' | 'true' | 'invert' | 'octal' | 'query' | 'when' | 'mode' | 'serializer' | 'esc' | 'part' | 'instanceOf' | 'filter' | 'createIn' | 'and' | 'leftNone' | 'k' | 'all' | 'operatorTemplate' | 'token' | 'startNbNL' | 'partial' | 'deep' | 'hex' | 'symbols' | 'as' | 'priority' | 'end' | 'lookIn' | 'primitiveTemplate' | 'nbNL' | 'omitted' | 'autoCreate' | 'refersTo' | 'rightNone' | 'prefix' | 'addToContext' | 'lexer' | 'for' | 'always' | 'source' | 'disambiguate' | 'context' | 'drop' | 'endOfLine' | 'right' ) )
+            // parser/TCS.g:219:3: (ast= NAME | 'separator' | 'createAs' | 'syntax' | 'left' | 'abstract' | 'false' | 'indentIncr' | 'start' | 'referenceOnly' | 'isDefined' | 'enumerationTemplate' | 'value' | 'multiLine' | 'nonPrimary' | 'operatored' | 'multi' | 'function' | 'keywords' | 'forcedUpper' | 'rightSpace' | 'leftSpace' | 'ifmissing' | 'template' | 'foreach' | 'operators' | 'storeOpTo' | 'postfix' | 'never' | 'main' | 'disambiguateV3' | 'storeRightTo' | 'startNL' | 'default' | 'endNL' | 'using' | 'word' | 'orKeyword' | 'one' | 'importContext' | 'auto' | 'forcedLower' | 'true' | 'invert' | 'octal' | 'query' | 'when' | 'mode' | 'serializer' | 'esc' | 'part' | 'instanceOf' | 'filter' | 'createIn' | 'and' | 'leftNone' | 'k' | 'all' | 'operatorTemplate' | 'token' | 'startNbNL' | 'partial' | 'deep' | 'hex' | 'symbols' | 'as' | 'priority' | 'end' | 'lookIn' | 'primitiveTemplate' | 'nbNL' | 'omitted' | 'autoCreate' | 'refersTo' | 'rightNone' | 'prefix' | 'addToContext' | 'lexer' | 'for' | 'always' | 'source' | 'disambiguate' | 'context' | 'drop' | 'endOfLine' | 'right' )
             {
-            // parser/TCS.g:219:3: (ast= NAME | 'for' | 'createAs' | 'forcedLower' | 'prefix' | 'esc' | 'ifmissing' | 'priority' | 'storeOpTo' | 'refersTo' | 'symbols' | 'and' | 'rightSpace' | 'function' | 'keywords' | 'end' | 'hex' | 'isDefined' | 'orKeyword' | 'omitted' | 'postfix' | 'enumerationTemplate' | 'partial' | 'importContext' | 'operatorTemplate' | 'multiLine' | 'nonPrimary' | 'startNL' | 'nbNL' | 'all' | 'main' | 'part' | 'disambiguate' | 'leftSpace' | 'mode' | 'default' | 'referenceOnly' | 'deep' | 'abstract' | 'disambiguateV3' | 'right' | 'endNL' | 'context' | 'filter' | 'value' | 'one' | 'startNbNL' | 'auto' | 'query' | 'multi' | 'token' | 'start' | 'primitiveTemplate' | 'operatored' | 'operators' | 'using' | 'forcedUpper' | 'always' | 'never' | 'createIn' | 'addToContext' | 'lookIn' | 'storeRightTo' | 'template' | 'octal' | 'endOfLine' | 'syntax' | 'serializer' | 'instanceOf' | 'lexer' | 'foreach' | 'k' | 'left' | 'invert' | 'autoCreate' | 'as' | 'word' | 'source' | 'rightNone' | 'leftNone' | 'separator' | 'drop' | 'true' | 'when' | 'false' | 'indentIncr' )
+            // parser/TCS.g:219:3: (ast= NAME | 'separator' | 'createAs' | 'syntax' | 'left' | 'abstract' | 'false' | 'indentIncr' | 'start' | 'referenceOnly' | 'isDefined' | 'enumerationTemplate' | 'value' | 'multiLine' | 'nonPrimary' | 'operatored' | 'multi' | 'function' | 'keywords' | 'forcedUpper' | 'rightSpace' | 'leftSpace' | 'ifmissing' | 'template' | 'foreach' | 'operators' | 'storeOpTo' | 'postfix' | 'never' | 'main' | 'disambiguateV3' | 'storeRightTo' | 'startNL' | 'default' | 'endNL' | 'using' | 'word' | 'orKeyword' | 'one' | 'importContext' | 'auto' | 'forcedLower' | 'true' | 'invert' | 'octal' | 'query' | 'when' | 'mode' | 'serializer' | 'esc' | 'part' | 'instanceOf' | 'filter' | 'createIn' | 'and' | 'leftNone' | 'k' | 'all' | 'operatorTemplate' | 'token' | 'startNbNL' | 'partial' | 'deep' | 'hex' | 'symbols' | 'as' | 'priority' | 'end' | 'lookIn' | 'primitiveTemplate' | 'nbNL' | 'omitted' | 'autoCreate' | 'refersTo' | 'rightNone' | 'prefix' | 'addToContext' | 'lexer' | 'for' | 'always' | 'source' | 'disambiguate' | 'context' | 'drop' | 'endOfLine' | 'right' )
             int alt1=86;
             switch ( input.LA(1) ) {
             case NAME:
@@ -755,11 +755,11 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // parser/TCS.g:221:5: 'for'
+                    // parser/TCS.g:221:5: 'separator'
                     {
                     match(input,49,FOLLOW_49_in_identifierOrKeyword108); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "for";
+                      ret = "separator";
                     }
 
                     }
@@ -775,831 +775,831 @@ public class TCSParser extends ObservableInjectingParser {
                     }
                     break;
                 case 4 :
-                    // parser/TCS.g:223:5: 'forcedLower'
+                    // parser/TCS.g:223:5: 'syntax'
                     {
                     match(input,51,FOLLOW_51_in_identifierOrKeyword124); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "forcedLower";
-                    }
-
-                    }
-                    break;
-                case 5 :
-                    // parser/TCS.g:224:5: 'prefix'
-                    {
-                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "prefix";
-                    }
-
-                    }
-                    break;
-                case 6 :
-                    // parser/TCS.g:225:5: 'esc'
-                    {
-                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "esc";
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // parser/TCS.g:226:5: 'ifmissing'
-                    {
-                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "ifmissing";
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // parser/TCS.g:227:5: 'priority'
-                    {
-                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "priority";
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // parser/TCS.g:228:5: 'storeOpTo'
-                    {
-                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "storeOpTo";
-                    }
-
-                    }
-                    break;
-                case 10 :
-                    // parser/TCS.g:229:5: 'refersTo'
-                    {
-                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "refersTo";
-                    }
-
-                    }
-                    break;
-                case 11 :
-                    // parser/TCS.g:230:5: 'symbols'
-                    {
-                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "symbols";
-                    }
-
-                    }
-                    break;
-                case 12 :
-                    // parser/TCS.g:231:5: 'and'
-                    {
-                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "and";
-                    }
-
-                    }
-                    break;
-                case 13 :
-                    // parser/TCS.g:232:5: 'rightSpace'
-                    {
-                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "rightSpace";
-                    }
-
-                    }
-                    break;
-                case 14 :
-                    // parser/TCS.g:233:5: 'function'
-                    {
-                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "function";
-                    }
-
-                    }
-                    break;
-                case 15 :
-                    // parser/TCS.g:234:5: 'keywords'
-                    {
-                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "keywords";
-                    }
-
-                    }
-                    break;
-                case 16 :
-                    // parser/TCS.g:235:5: 'end'
-                    {
-                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "end";
-                    }
-
-                    }
-                    break;
-                case 17 :
-                    // parser/TCS.g:236:5: 'hex'
-                    {
-                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "hex";
-                    }
-
-                    }
-                    break;
-                case 18 :
-                    // parser/TCS.g:237:5: 'isDefined'
-                    {
-                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "isDefined";
-                    }
-
-                    }
-                    break;
-                case 19 :
-                    // parser/TCS.g:238:5: 'orKeyword'
-                    {
-                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "orKeyword";
-                    }
-
-                    }
-                    break;
-                case 20 :
-                    // parser/TCS.g:239:5: 'omitted'
-                    {
-                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "omitted";
-                    }
-
-                    }
-                    break;
-                case 21 :
-                    // parser/TCS.g:240:5: 'postfix'
-                    {
-                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "postfix";
-                    }
-
-                    }
-                    break;
-                case 22 :
-                    // parser/TCS.g:241:5: 'enumerationTemplate'
-                    {
-                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "enumerationTemplate";
-                    }
-
-                    }
-                    break;
-                case 23 :
-                    // parser/TCS.g:242:5: 'partial'
-                    {
-                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "partial";
-                    }
-
-                    }
-                    break;
-                case 24 :
-                    // parser/TCS.g:243:5: 'importContext'
-                    {
-                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "importContext";
-                    }
-
-                    }
-                    break;
-                case 25 :
-                    // parser/TCS.g:244:5: 'operatorTemplate'
-                    {
-                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "operatorTemplate";
-                    }
-
-                    }
-                    break;
-                case 26 :
-                    // parser/TCS.g:245:5: 'multiLine'
-                    {
-                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "multiLine";
-                    }
-
-                    }
-                    break;
-                case 27 :
-                    // parser/TCS.g:246:5: 'nonPrimary'
-                    {
-                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "nonPrimary";
-                    }
-
-                    }
-                    break;
-                case 28 :
-                    // parser/TCS.g:247:5: 'startNL'
-                    {
-                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "startNL";
-                    }
-
-                    }
-                    break;
-                case 29 :
-                    // parser/TCS.g:248:5: 'nbNL'
-                    {
-                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "nbNL";
-                    }
-
-                    }
-                    break;
-                case 30 :
-                    // parser/TCS.g:249:5: 'all'
-                    {
-                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "all";
-                    }
-
-                    }
-                    break;
-                case 31 :
-                    // parser/TCS.g:250:5: 'main'
-                    {
-                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "main";
-                    }
-
-                    }
-                    break;
-                case 32 :
-                    // parser/TCS.g:251:5: 'part'
-                    {
-                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "part";
-                    }
-
-                    }
-                    break;
-                case 33 :
-                    // parser/TCS.g:252:5: 'disambiguate'
-                    {
-                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguate";
-                    }
-
-                    }
-                    break;
-                case 34 :
-                    // parser/TCS.g:253:5: 'leftSpace'
-                    {
-                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "leftSpace";
-                    }
-
-                    }
-                    break;
-                case 35 :
-                    // parser/TCS.g:254:5: 'mode'
-                    {
-                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "mode";
-                    }
-
-                    }
-                    break;
-                case 36 :
-                    // parser/TCS.g:255:5: 'default'
-                    {
-                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "default";
-                    }
-
-                    }
-                    break;
-                case 37 :
-                    // parser/TCS.g:256:5: 'referenceOnly'
-                    {
-                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "referenceOnly";
-                    }
-
-                    }
-                    break;
-                case 38 :
-                    // parser/TCS.g:257:5: 'deep'
-                    {
-                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "deep";
-                    }
-
-                    }
-                    break;
-                case 39 :
-                    // parser/TCS.g:258:5: 'abstract'
-                    {
-                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "abstract";
-                    }
-
-                    }
-                    break;
-                case 40 :
-                    // parser/TCS.g:259:5: 'disambiguateV3'
-                    {
-                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "disambiguateV3";
-                    }
-
-                    }
-                    break;
-                case 41 :
-                    // parser/TCS.g:260:5: 'right'
-                    {
-                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "right";
-                    }
-
-                    }
-                    break;
-                case 42 :
-                    // parser/TCS.g:261:5: 'endNL'
-                    {
-                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "endNL";
-                    }
-
-                    }
-                    break;
-                case 43 :
-                    // parser/TCS.g:262:5: 'context'
-                    {
-                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "context";
-                    }
-
-                    }
-                    break;
-                case 44 :
-                    // parser/TCS.g:263:5: 'filter'
-                    {
-                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "filter";
-                    }
-
-                    }
-                    break;
-                case 45 :
-                    // parser/TCS.g:264:5: 'value'
-                    {
-                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "value";
-                    }
-
-                    }
-                    break;
-                case 46 :
-                    // parser/TCS.g:265:5: 'one'
-                    {
-                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "one";
-                    }
-
-                    }
-                    break;
-                case 47 :
-                    // parser/TCS.g:266:5: 'startNbNL'
-                    {
-                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "startNbNL";
-                    }
-
-                    }
-                    break;
-                case 48 :
-                    // parser/TCS.g:267:5: 'auto'
-                    {
-                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "auto";
-                    }
-
-                    }
-                    break;
-                case 49 :
-                    // parser/TCS.g:268:5: 'query'
-                    {
-                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "query";
-                    }
-
-                    }
-                    break;
-                case 50 :
-                    // parser/TCS.g:269:5: 'multi'
-                    {
-                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "multi";
-                    }
-
-                    }
-                    break;
-                case 51 :
-                    // parser/TCS.g:270:5: 'token'
-                    {
-                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "token";
-                    }
-
-                    }
-                    break;
-                case 52 :
-                    // parser/TCS.g:271:5: 'start'
-                    {
-                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "start";
-                    }
-
-                    }
-                    break;
-                case 53 :
-                    // parser/TCS.g:272:5: 'primitiveTemplate'
-                    {
-                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "primitiveTemplate";
-                    }
-
-                    }
-                    break;
-                case 54 :
-                    // parser/TCS.g:273:5: 'operatored'
-                    {
-                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "operatored";
-                    }
-
-                    }
-                    break;
-                case 55 :
-                    // parser/TCS.g:274:5: 'operators'
-                    {
-                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "operators";
-                    }
-
-                    }
-                    break;
-                case 56 :
-                    // parser/TCS.g:275:5: 'using'
-                    {
-                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "using";
-                    }
-
-                    }
-                    break;
-                case 57 :
-                    // parser/TCS.g:276:5: 'forcedUpper'
-                    {
-                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "forcedUpper";
-                    }
-
-                    }
-                    break;
-                case 58 :
-                    // parser/TCS.g:277:5: 'always'
-                    {
-                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "always";
-                    }
-
-                    }
-                    break;
-                case 59 :
-                    // parser/TCS.g:278:5: 'never'
-                    {
-                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "never";
-                    }
-
-                    }
-                    break;
-                case 60 :
-                    // parser/TCS.g:279:5: 'createIn'
-                    {
-                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "createIn";
-                    }
-
-                    }
-                    break;
-                case 61 :
-                    // parser/TCS.g:280:5: 'addToContext'
-                    {
-                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "addToContext";
-                    }
-
-                    }
-                    break;
-                case 62 :
-                    // parser/TCS.g:281:5: 'lookIn'
-                    {
-                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "lookIn";
-                    }
-
-                    }
-                    break;
-                case 63 :
-                    // parser/TCS.g:282:5: 'storeRightTo'
-                    {
-                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "storeRightTo";
-                    }
-
-                    }
-                    break;
-                case 64 :
-                    // parser/TCS.g:283:5: 'template'
-                    {
-                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "template";
-                    }
-
-                    }
-                    break;
-                case 65 :
-                    // parser/TCS.g:284:5: 'octal'
-                    {
-                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "octal";
-                    }
-
-                    }
-                    break;
-                case 66 :
-                    // parser/TCS.g:285:5: 'endOfLine'
-                    {
-                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "endOfLine";
-                    }
-
-                    }
-                    break;
-                case 67 :
-                    // parser/TCS.g:286:5: 'syntax'
-                    {
-                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "syntax";
                     }
 
                     }
                     break;
-                case 68 :
-                    // parser/TCS.g:287:5: 'serializer'
+                case 5 :
+                    // parser/TCS.g:224:5: 'left'
                     {
-                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "serializer";
-                    }
-
-                    }
-                    break;
-                case 69 :
-                    // parser/TCS.g:288:5: 'instanceOf'
-                    {
-                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "instanceOf";
-                    }
-
-                    }
-                    break;
-                case 70 :
-                    // parser/TCS.g:289:5: 'lexer'
-                    {
-                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "lexer";
-                    }
-
-                    }
-                    break;
-                case 71 :
-                    // parser/TCS.g:290:5: 'foreach'
-                    {
-                    match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "foreach";
-                    }
-
-                    }
-                    break;
-                case 72 :
-                    // parser/TCS.g:291:5: 'k'
-                    {
-                    match(input,119,FOLLOW_119_in_identifierOrKeyword668); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "k";
-                    }
-
-                    }
-                    break;
-                case 73 :
-                    // parser/TCS.g:292:5: 'left'
-                    {
-                    match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_identifierOrKeyword132); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "left";
                     }
 
                     }
                     break;
-                case 74 :
-                    // parser/TCS.g:293:5: 'invert'
+                case 6 :
+                    // parser/TCS.g:225:5: 'abstract'
                     {
-                    match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) return ret2;
+                    match(input,53,FOLLOW_53_in_identifierOrKeyword140); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "invert";
+                      ret = "abstract";
                     }
 
                     }
                     break;
-                case 75 :
-                    // parser/TCS.g:294:5: 'autoCreate'
+                case 7 :
+                    // parser/TCS.g:226:5: 'false'
                     {
-                    match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "autoCreate";
-                    }
-
-                    }
-                    break;
-                case 76 :
-                    // parser/TCS.g:295:5: 'as'
-                    {
-                    match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "as";
-                    }
-
-                    }
-                    break;
-                case 77 :
-                    // parser/TCS.g:296:5: 'word'
-                    {
-                    match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "word";
-                    }
-
-                    }
-                    break;
-                case 78 :
-                    // parser/TCS.g:297:5: 'source'
-                    {
-                    match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "source";
-                    }
-
-                    }
-                    break;
-                case 79 :
-                    // parser/TCS.g:298:5: 'rightNone'
-                    {
-                    match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "rightNone";
-                    }
-
-                    }
-                    break;
-                case 80 :
-                    // parser/TCS.g:299:5: 'leftNone'
-                    {
-                    match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "leftNone";
-                    }
-
-                    }
-                    break;
-                case 81 :
-                    // parser/TCS.g:300:5: 'separator'
-                    {
-                    match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "separator";
-                    }
-
-                    }
-                    break;
-                case 82 :
-                    // parser/TCS.g:301:5: 'drop'
-                    {
-                    match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "drop";
-                    }
-
-                    }
-                    break;
-                case 83 :
-                    // parser/TCS.g:302:5: 'true'
-                    {
-                    match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "true";
-                    }
-
-                    }
-                    break;
-                case 84 :
-                    // parser/TCS.g:303:5: 'when'
-                    {
-                    match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "when";
-                    }
-
-                    }
-                    break;
-                case 85 :
-                    // parser/TCS.g:304:5: 'false'
-                    {
-                    match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_identifierOrKeyword148); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "false";
                     }
 
                     }
                     break;
+                case 8 :
+                    // parser/TCS.g:227:5: 'indentIncr'
+                    {
+                    match(input,55,FOLLOW_55_in_identifierOrKeyword156); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "indentIncr";
+                    }
+
+                    }
+                    break;
+                case 9 :
+                    // parser/TCS.g:228:5: 'start'
+                    {
+                    match(input,56,FOLLOW_56_in_identifierOrKeyword164); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "start";
+                    }
+
+                    }
+                    break;
+                case 10 :
+                    // parser/TCS.g:229:5: 'referenceOnly'
+                    {
+                    match(input,57,FOLLOW_57_in_identifierOrKeyword172); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "referenceOnly";
+                    }
+
+                    }
+                    break;
+                case 11 :
+                    // parser/TCS.g:230:5: 'isDefined'
+                    {
+                    match(input,58,FOLLOW_58_in_identifierOrKeyword180); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "isDefined";
+                    }
+
+                    }
+                    break;
+                case 12 :
+                    // parser/TCS.g:231:5: 'enumerationTemplate'
+                    {
+                    match(input,59,FOLLOW_59_in_identifierOrKeyword188); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "enumerationTemplate";
+                    }
+
+                    }
+                    break;
+                case 13 :
+                    // parser/TCS.g:232:5: 'value'
+                    {
+                    match(input,60,FOLLOW_60_in_identifierOrKeyword196); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "value";
+                    }
+
+                    }
+                    break;
+                case 14 :
+                    // parser/TCS.g:233:5: 'multiLine'
+                    {
+                    match(input,61,FOLLOW_61_in_identifierOrKeyword204); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "multiLine";
+                    }
+
+                    }
+                    break;
+                case 15 :
+                    // parser/TCS.g:234:5: 'nonPrimary'
+                    {
+                    match(input,62,FOLLOW_62_in_identifierOrKeyword212); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "nonPrimary";
+                    }
+
+                    }
+                    break;
+                case 16 :
+                    // parser/TCS.g:235:5: 'operatored'
+                    {
+                    match(input,63,FOLLOW_63_in_identifierOrKeyword220); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "operatored";
+                    }
+
+                    }
+                    break;
+                case 17 :
+                    // parser/TCS.g:236:5: 'multi'
+                    {
+                    match(input,64,FOLLOW_64_in_identifierOrKeyword228); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "multi";
+                    }
+
+                    }
+                    break;
+                case 18 :
+                    // parser/TCS.g:237:5: 'function'
+                    {
+                    match(input,65,FOLLOW_65_in_identifierOrKeyword236); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "function";
+                    }
+
+                    }
+                    break;
+                case 19 :
+                    // parser/TCS.g:238:5: 'keywords'
+                    {
+                    match(input,66,FOLLOW_66_in_identifierOrKeyword244); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "keywords";
+                    }
+
+                    }
+                    break;
+                case 20 :
+                    // parser/TCS.g:239:5: 'forcedUpper'
+                    {
+                    match(input,67,FOLLOW_67_in_identifierOrKeyword252); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "forcedUpper";
+                    }
+
+                    }
+                    break;
+                case 21 :
+                    // parser/TCS.g:240:5: 'rightSpace'
+                    {
+                    match(input,68,FOLLOW_68_in_identifierOrKeyword260); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "rightSpace";
+                    }
+
+                    }
+                    break;
+                case 22 :
+                    // parser/TCS.g:241:5: 'leftSpace'
+                    {
+                    match(input,69,FOLLOW_69_in_identifierOrKeyword268); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "leftSpace";
+                    }
+
+                    }
+                    break;
+                case 23 :
+                    // parser/TCS.g:242:5: 'ifmissing'
+                    {
+                    match(input,70,FOLLOW_70_in_identifierOrKeyword276); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "ifmissing";
+                    }
+
+                    }
+                    break;
+                case 24 :
+                    // parser/TCS.g:243:5: 'template'
+                    {
+                    match(input,71,FOLLOW_71_in_identifierOrKeyword284); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "template";
+                    }
+
+                    }
+                    break;
+                case 25 :
+                    // parser/TCS.g:244:5: 'foreach'
+                    {
+                    match(input,72,FOLLOW_72_in_identifierOrKeyword292); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "foreach";
+                    }
+
+                    }
+                    break;
+                case 26 :
+                    // parser/TCS.g:245:5: 'operators'
+                    {
+                    match(input,73,FOLLOW_73_in_identifierOrKeyword300); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "operators";
+                    }
+
+                    }
+                    break;
+                case 27 :
+                    // parser/TCS.g:246:5: 'storeOpTo'
+                    {
+                    match(input,74,FOLLOW_74_in_identifierOrKeyword308); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "storeOpTo";
+                    }
+
+                    }
+                    break;
+                case 28 :
+                    // parser/TCS.g:247:5: 'postfix'
+                    {
+                    match(input,75,FOLLOW_75_in_identifierOrKeyword316); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "postfix";
+                    }
+
+                    }
+                    break;
+                case 29 :
+                    // parser/TCS.g:248:5: 'never'
+                    {
+                    match(input,76,FOLLOW_76_in_identifierOrKeyword324); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "never";
+                    }
+
+                    }
+                    break;
+                case 30 :
+                    // parser/TCS.g:249:5: 'main'
+                    {
+                    match(input,77,FOLLOW_77_in_identifierOrKeyword332); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "main";
+                    }
+
+                    }
+                    break;
+                case 31 :
+                    // parser/TCS.g:250:5: 'disambiguateV3'
+                    {
+                    match(input,78,FOLLOW_78_in_identifierOrKeyword340); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguateV3";
+                    }
+
+                    }
+                    break;
+                case 32 :
+                    // parser/TCS.g:251:5: 'storeRightTo'
+                    {
+                    match(input,79,FOLLOW_79_in_identifierOrKeyword348); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "storeRightTo";
+                    }
+
+                    }
+                    break;
+                case 33 :
+                    // parser/TCS.g:252:5: 'startNL'
+                    {
+                    match(input,80,FOLLOW_80_in_identifierOrKeyword356); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "startNL";
+                    }
+
+                    }
+                    break;
+                case 34 :
+                    // parser/TCS.g:253:5: 'default'
+                    {
+                    match(input,81,FOLLOW_81_in_identifierOrKeyword364); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "default";
+                    }
+
+                    }
+                    break;
+                case 35 :
+                    // parser/TCS.g:254:5: 'endNL'
+                    {
+                    match(input,82,FOLLOW_82_in_identifierOrKeyword372); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "endNL";
+                    }
+
+                    }
+                    break;
+                case 36 :
+                    // parser/TCS.g:255:5: 'using'
+                    {
+                    match(input,83,FOLLOW_83_in_identifierOrKeyword380); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "using";
+                    }
+
+                    }
+                    break;
+                case 37 :
+                    // parser/TCS.g:256:5: 'word'
+                    {
+                    match(input,84,FOLLOW_84_in_identifierOrKeyword388); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "word";
+                    }
+
+                    }
+                    break;
+                case 38 :
+                    // parser/TCS.g:257:5: 'orKeyword'
+                    {
+                    match(input,85,FOLLOW_85_in_identifierOrKeyword396); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "orKeyword";
+                    }
+
+                    }
+                    break;
+                case 39 :
+                    // parser/TCS.g:258:5: 'one'
+                    {
+                    match(input,86,FOLLOW_86_in_identifierOrKeyword404); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "one";
+                    }
+
+                    }
+                    break;
+                case 40 :
+                    // parser/TCS.g:259:5: 'importContext'
+                    {
+                    match(input,87,FOLLOW_87_in_identifierOrKeyword412); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "importContext";
+                    }
+
+                    }
+                    break;
+                case 41 :
+                    // parser/TCS.g:260:5: 'auto'
+                    {
+                    match(input,88,FOLLOW_88_in_identifierOrKeyword420); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "auto";
+                    }
+
+                    }
+                    break;
+                case 42 :
+                    // parser/TCS.g:261:5: 'forcedLower'
+                    {
+                    match(input,89,FOLLOW_89_in_identifierOrKeyword428); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "forcedLower";
+                    }
+
+                    }
+                    break;
+                case 43 :
+                    // parser/TCS.g:262:5: 'true'
+                    {
+                    match(input,90,FOLLOW_90_in_identifierOrKeyword436); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "true";
+                    }
+
+                    }
+                    break;
+                case 44 :
+                    // parser/TCS.g:263:5: 'invert'
+                    {
+                    match(input,91,FOLLOW_91_in_identifierOrKeyword444); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "invert";
+                    }
+
+                    }
+                    break;
+                case 45 :
+                    // parser/TCS.g:264:5: 'octal'
+                    {
+                    match(input,92,FOLLOW_92_in_identifierOrKeyword452); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "octal";
+                    }
+
+                    }
+                    break;
+                case 46 :
+                    // parser/TCS.g:265:5: 'query'
+                    {
+                    match(input,93,FOLLOW_93_in_identifierOrKeyword460); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "query";
+                    }
+
+                    }
+                    break;
+                case 47 :
+                    // parser/TCS.g:266:5: 'when'
+                    {
+                    match(input,94,FOLLOW_94_in_identifierOrKeyword468); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "when";
+                    }
+
+                    }
+                    break;
+                case 48 :
+                    // parser/TCS.g:267:5: 'mode'
+                    {
+                    match(input,95,FOLLOW_95_in_identifierOrKeyword476); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "mode";
+                    }
+
+                    }
+                    break;
+                case 49 :
+                    // parser/TCS.g:268:5: 'serializer'
+                    {
+                    match(input,96,FOLLOW_96_in_identifierOrKeyword484); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "serializer";
+                    }
+
+                    }
+                    break;
+                case 50 :
+                    // parser/TCS.g:269:5: 'esc'
+                    {
+                    match(input,97,FOLLOW_97_in_identifierOrKeyword492); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "esc";
+                    }
+
+                    }
+                    break;
+                case 51 :
+                    // parser/TCS.g:270:5: 'part'
+                    {
+                    match(input,98,FOLLOW_98_in_identifierOrKeyword500); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "part";
+                    }
+
+                    }
+                    break;
+                case 52 :
+                    // parser/TCS.g:271:5: 'instanceOf'
+                    {
+                    match(input,99,FOLLOW_99_in_identifierOrKeyword508); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "instanceOf";
+                    }
+
+                    }
+                    break;
+                case 53 :
+                    // parser/TCS.g:272:5: 'filter'
+                    {
+                    match(input,100,FOLLOW_100_in_identifierOrKeyword516); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "filter";
+                    }
+
+                    }
+                    break;
+                case 54 :
+                    // parser/TCS.g:273:5: 'createIn'
+                    {
+                    match(input,101,FOLLOW_101_in_identifierOrKeyword524); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "createIn";
+                    }
+
+                    }
+                    break;
+                case 55 :
+                    // parser/TCS.g:274:5: 'and'
+                    {
+                    match(input,102,FOLLOW_102_in_identifierOrKeyword532); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "and";
+                    }
+
+                    }
+                    break;
+                case 56 :
+                    // parser/TCS.g:275:5: 'leftNone'
+                    {
+                    match(input,103,FOLLOW_103_in_identifierOrKeyword540); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "leftNone";
+                    }
+
+                    }
+                    break;
+                case 57 :
+                    // parser/TCS.g:276:5: 'k'
+                    {
+                    match(input,104,FOLLOW_104_in_identifierOrKeyword548); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "k";
+                    }
+
+                    }
+                    break;
+                case 58 :
+                    // parser/TCS.g:277:5: 'all'
+                    {
+                    match(input,105,FOLLOW_105_in_identifierOrKeyword556); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "all";
+                    }
+
+                    }
+                    break;
+                case 59 :
+                    // parser/TCS.g:278:5: 'operatorTemplate'
+                    {
+                    match(input,106,FOLLOW_106_in_identifierOrKeyword564); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "operatorTemplate";
+                    }
+
+                    }
+                    break;
+                case 60 :
+                    // parser/TCS.g:279:5: 'token'
+                    {
+                    match(input,107,FOLLOW_107_in_identifierOrKeyword572); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "token";
+                    }
+
+                    }
+                    break;
+                case 61 :
+                    // parser/TCS.g:280:5: 'startNbNL'
+                    {
+                    match(input,108,FOLLOW_108_in_identifierOrKeyword580); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "startNbNL";
+                    }
+
+                    }
+                    break;
+                case 62 :
+                    // parser/TCS.g:281:5: 'partial'
+                    {
+                    match(input,109,FOLLOW_109_in_identifierOrKeyword588); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "partial";
+                    }
+
+                    }
+                    break;
+                case 63 :
+                    // parser/TCS.g:282:5: 'deep'
+                    {
+                    match(input,110,FOLLOW_110_in_identifierOrKeyword596); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "deep";
+                    }
+
+                    }
+                    break;
+                case 64 :
+                    // parser/TCS.g:283:5: 'hex'
+                    {
+                    match(input,111,FOLLOW_111_in_identifierOrKeyword604); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "hex";
+                    }
+
+                    }
+                    break;
+                case 65 :
+                    // parser/TCS.g:284:5: 'symbols'
+                    {
+                    match(input,112,FOLLOW_112_in_identifierOrKeyword612); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "symbols";
+                    }
+
+                    }
+                    break;
+                case 66 :
+                    // parser/TCS.g:285:5: 'as'
+                    {
+                    match(input,113,FOLLOW_113_in_identifierOrKeyword620); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "as";
+                    }
+
+                    }
+                    break;
+                case 67 :
+                    // parser/TCS.g:286:5: 'priority'
+                    {
+                    match(input,114,FOLLOW_114_in_identifierOrKeyword628); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "priority";
+                    }
+
+                    }
+                    break;
+                case 68 :
+                    // parser/TCS.g:287:5: 'end'
+                    {
+                    match(input,115,FOLLOW_115_in_identifierOrKeyword636); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "end";
+                    }
+
+                    }
+                    break;
+                case 69 :
+                    // parser/TCS.g:288:5: 'lookIn'
+                    {
+                    match(input,116,FOLLOW_116_in_identifierOrKeyword644); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "lookIn";
+                    }
+
+                    }
+                    break;
+                case 70 :
+                    // parser/TCS.g:289:5: 'primitiveTemplate'
+                    {
+                    match(input,117,FOLLOW_117_in_identifierOrKeyword652); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "primitiveTemplate";
+                    }
+
+                    }
+                    break;
+                case 71 :
+                    // parser/TCS.g:290:5: 'nbNL'
+                    {
+                    match(input,118,FOLLOW_118_in_identifierOrKeyword660); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "nbNL";
+                    }
+
+                    }
+                    break;
+                case 72 :
+                    // parser/TCS.g:291:5: 'omitted'
+                    {
+                    match(input,119,FOLLOW_119_in_identifierOrKeyword668); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "omitted";
+                    }
+
+                    }
+                    break;
+                case 73 :
+                    // parser/TCS.g:292:5: 'autoCreate'
+                    {
+                    match(input,120,FOLLOW_120_in_identifierOrKeyword676); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "autoCreate";
+                    }
+
+                    }
+                    break;
+                case 74 :
+                    // parser/TCS.g:293:5: 'refersTo'
+                    {
+                    match(input,121,FOLLOW_121_in_identifierOrKeyword684); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "refersTo";
+                    }
+
+                    }
+                    break;
+                case 75 :
+                    // parser/TCS.g:294:5: 'rightNone'
+                    {
+                    match(input,122,FOLLOW_122_in_identifierOrKeyword692); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "rightNone";
+                    }
+
+                    }
+                    break;
+                case 76 :
+                    // parser/TCS.g:295:5: 'prefix'
+                    {
+                    match(input,123,FOLLOW_123_in_identifierOrKeyword700); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "prefix";
+                    }
+
+                    }
+                    break;
+                case 77 :
+                    // parser/TCS.g:296:5: 'addToContext'
+                    {
+                    match(input,124,FOLLOW_124_in_identifierOrKeyword708); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "addToContext";
+                    }
+
+                    }
+                    break;
+                case 78 :
+                    // parser/TCS.g:297:5: 'lexer'
+                    {
+                    match(input,125,FOLLOW_125_in_identifierOrKeyword716); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "lexer";
+                    }
+
+                    }
+                    break;
+                case 79 :
+                    // parser/TCS.g:298:5: 'for'
+                    {
+                    match(input,126,FOLLOW_126_in_identifierOrKeyword724); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "for";
+                    }
+
+                    }
+                    break;
+                case 80 :
+                    // parser/TCS.g:299:5: 'always'
+                    {
+                    match(input,127,FOLLOW_127_in_identifierOrKeyword732); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "always";
+                    }
+
+                    }
+                    break;
+                case 81 :
+                    // parser/TCS.g:300:5: 'source'
+                    {
+                    match(input,128,FOLLOW_128_in_identifierOrKeyword740); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "source";
+                    }
+
+                    }
+                    break;
+                case 82 :
+                    // parser/TCS.g:301:5: 'disambiguate'
+                    {
+                    match(input,129,FOLLOW_129_in_identifierOrKeyword748); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "disambiguate";
+                    }
+
+                    }
+                    break;
+                case 83 :
+                    // parser/TCS.g:302:5: 'context'
+                    {
+                    match(input,130,FOLLOW_130_in_identifierOrKeyword756); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "context";
+                    }
+
+                    }
+                    break;
+                case 84 :
+                    // parser/TCS.g:303:5: 'drop'
+                    {
+                    match(input,131,FOLLOW_131_in_identifierOrKeyword764); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "drop";
+                    }
+
+                    }
+                    break;
+                case 85 :
+                    // parser/TCS.g:304:5: 'endOfLine'
+                    {
+                    match(input,132,FOLLOW_132_in_identifierOrKeyword772); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "endOfLine";
+                    }
+
+                    }
+                    break;
                 case 86 :
-                    // parser/TCS.g:305:5: 'indentIncr'
+                    // parser/TCS.g:305:5: 'right'
                     {
                     match(input,133,FOLLOW_133_in_identifierOrKeyword780); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "indentIncr";
+                      ret = "right";
                     }
 
                     }
@@ -1781,7 +1781,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:348:4: ( ( (temp= model_namespace ) DLCOLON (temp= identifier ) ) | ( (temp= identifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F0DC8F0E89511DEB317ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD67043A00E8D211DE9D67C00C8D1506C3");
             }
             // parser/TCS.g:348:64: ( ( (temp= model_namespace ) DLCOLON (temp= identifier ) ) | ( (temp= identifier ) ) )
             int alt2=2;
@@ -1790,7 +1790,7 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA2_0==NAME) ) {
                 int LA2_1 = input.LA(2);
 
-                if ( (LA2_1==EOF||(LA2_1>=LPAREN && LA2_1<=RPAREN)||LA2_1==SEMI||LA2_1==COLON||LA2_1==SHARP||LA2_1==52||LA2_1==74||LA2_1==78||(LA2_1>=83 && LA2_1<=86)||LA2_1==90||LA2_1==95||LA2_1==97||LA2_1==101||LA2_1==103||LA2_1==108) ) {
+                if ( (LA2_1==EOF||(LA2_1>=LPAREN && LA2_1<=RPAREN)||LA2_1==SEMI||LA2_1==COLON||LA2_1==SHARP||LA2_1==53||LA2_1==57||(LA2_1>=62 && LA2_1<=64)||LA2_1==77||LA2_1==81||LA2_1==83||LA2_1==88||LA2_1==110||(LA2_1>=123 && LA2_1<=124)||LA2_1==130) ) {
                     alt2=2;
                 }
                 else if ( (LA2_1==DLCOLON) ) {
@@ -1825,7 +1825,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:348:82: (temp= model_namespace ) DLCOLON (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8EFD0010E89511DECD52ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD66549910E8D211DEC23AC00C8D1506C3");
                     }
                     // parser/TCS.g:348:141: (temp= model_namespace )
                     // parser/TCS.g:348:143: temp= model_namespace
@@ -1846,14 +1846,14 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F031A90E89511DE93FBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD66A29200E8D211DEA3A8C00C8D1506C3");
                     }
                     match(input,DLCOLON,FOLLOW_DLCOLON_in_model_classifier920); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F031A92E89511DE974EECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD66AA3321E8D211DEA5AFC00C8D1506C3");
                     }
                     // parser/TCS.g:348:362: (temp= identifier )
                     // parser/TCS.g:348:364: temp= identifier
@@ -1892,7 +1892,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:348:465: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F0C4251E89511DEB9BCECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD66FC98E1E8D211DEAE67C00C8D1506C3");
                     }
                     // parser/TCS.g:348:524: (temp= identifier )
                     // parser/TCS.g:348:526: temp= identifier
@@ -2263,7 +2263,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:392:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F19FDF1E89511DE883EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD675B5AB1E8D211DEBAA3C00C8D1506C3");
             }
             // parser/TCS.g:392:63: (temp= identifier )
             // parser/TCS.g:392:65: temp= identifier
@@ -2329,7 +2329,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:406:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F19FDF7E89511DE9238ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD675E67F2E8D211DE9E0BC00C8D1506C3");
             }
             // parser/TCS.g:406:63: (temp= identifier )
             // parser/TCS.g:406:65: temp= identifier
@@ -2492,14 +2492,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:445:4: 'syntax' (temp= identifier )? ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | ) LCURLY ( ( (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F219F10E89511DEBC05ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD67E37670E8D211DE9832C00C8D1506C3");
             }
-            match(input,114,FOLLOW_114_in_tcs_concretesyntax1284); if (state.failed) return ret2;
+            match(input,51,FOLLOW_51_in_tcs_concretesyntax1284); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F219F12E89511DE9291ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD67E37672E8D211DEB110C00C8D1506C3");
             }
             // parser/TCS.g:445:146: (temp= identifier )?
             int alt5=2;
@@ -2531,7 +2531,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F2325B7E89511DE90FCECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD67E4FD17E8D211DEC044C00C8D1506C3");
             }
             // parser/TCS.g:445:276: ( ( LPAREN 'k' EQ (temp= integerSymbol ) RPAREN ) | )
             int alt6=2;
@@ -2561,28 +2561,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:445:294: LPAREN 'k' EQ (temp= integerSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2325B0E89511DE8633ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E4FD10E8D211DE8EF2C00C8D1506C3");
                     }
                     match(input,LPAREN,FOLLOW_LPAREN_in_tcs_concretesyntax1306); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2325B1E89511DE852CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E4FD11E8D211DEC625C00C8D1506C3");
                     }
-                    match(input,119,FOLLOW_119_in_tcs_concretesyntax1310); if (state.failed) return ret2;
+                    match(input,104,FOLLOW_104_in_tcs_concretesyntax1310); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2325B2E89511DEAB7CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E4FD12E8D211DEB622C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_concretesyntax1314); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2325B4E89511DE9EA6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E4FD14E8D211DE9C02C00C8D1506C3");
                     }
                     // parser/TCS.g:445:593: (temp= integerSymbol )
                     // parser/TCS.g:445:595: temp= integerSymbol
@@ -2603,7 +2603,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2325B5E89511DEA8E2ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E4FD15E8D211DEBEB3C00C8D1506C3");
                     }
                     match(input,RPAREN,FOLLOW_RPAREN_in_tcs_concretesyntax1329); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -2637,14 +2637,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F24AC50E89511DE9044ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD67E4FD18E8D211DEBAD0C00C8D1506C3");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1347); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F36D4C0E89511DE8DEFECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6829A730E8D211DE84C9C00C8D1506C3");
             }
             // parser/TCS.g:446:159: ( ( (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) ) )
             // parser/TCS.g:446:160: ( (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | ) )
@@ -2653,13 +2653,13 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:446:161: (temp= tcs_template (temp= tcs_template )* )? ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | ) ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | ) (temp= tcs_operatorlist (temp= tcs_operatorlist )* )? (temp= tcs_token (temp= tcs_token )* )? ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F24AC52E89511DE93F6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD67E4FD1AE8D211DE84DDC00C8D1506C3");
             }
             // parser/TCS.g:446:220: (temp= tcs_template (temp= tcs_template )* )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( (LA8_0==61||LA8_0==69||LA8_0==72||LA8_0==100||LA8_0==111) ) {
+            if ( (LA8_0==59||LA8_0==65||LA8_0==71||LA8_0==106||LA8_0==117) ) {
                 alt8=1;
             }
             switch (alt8) {
@@ -2681,7 +2681,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt7=2;
                         int LA7_0 = input.LA(1);
 
-                        if ( (LA7_0==61||LA7_0==69||LA7_0==72||LA7_0==100||LA7_0==111) ) {
+                        if ( (LA7_0==59||LA7_0==65||LA7_0==71||LA7_0==106||LA7_0==117) ) {
                             alt7=1;
                         }
 
@@ -2718,16 +2718,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F2AC6D0E89511DEBD49ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68007452E8D211DE87C3C00C8D1506C3");
             }
             // parser/TCS.g:446:419: ( ( 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY ) | )
             int alt11=2;
             int LA11_0 = input.LA(1);
 
-            if ( (LA11_0==62) ) {
+            if ( (LA11_0==66) ) {
                 alt11=1;
             }
-            else if ( (LA11_0==RCURLY||LA11_0==58||LA11_0==67||LA11_0==98||LA11_0==102||LA11_0==117) ) {
+            else if ( (LA11_0==RCURLY||LA11_0==73||LA11_0==107||LA11_0==112||LA11_0==119||LA11_0==125) ) {
                 alt11=2;
             }
             else {
@@ -2748,21 +2748,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:446:437: 'keywords' LCURLY ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2632F0E89511DE83FDECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E683B0E8D211DE9FECC00C8D1506C3");
                     }
-                    match(input,62,FOLLOW_62_in_tcs_concretesyntax1383); if (state.failed) return ret2;
+                    match(input,66,FOLLOW_66_in_tcs_concretesyntax1383); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2632F1E89511DECD66ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E683B1E8D211DE87C3C00C8D1506C3");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1387); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F27B990E89511DEBC59ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67EC9E30E8D211DEB030C00C8D1506C3");
                     }
                     // parser/TCS.g:446:664: ( ( (temp= tcs_keyword (temp= tcs_keyword )* )? ) )
                     // parser/TCS.g:446:665: ( (temp= tcs_keyword (temp= tcs_keyword )* )? )
@@ -2771,7 +2771,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:446:666: (temp= tcs_keyword (temp= tcs_keyword )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2632F3E89511DE9115ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD67E683B3E8D211DE8440C00C8D1506C3");
                     }
                     // parser/TCS.g:446:725: (temp= tcs_keyword (temp= tcs_keyword )* )?
                     int alt10=2;
@@ -2845,7 +2845,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F294030E89511DEA1C9ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68007450E8D211DEBF0CC00C8D1506C3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1421); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -2879,16 +2879,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F2DD412E89511DEBA12ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6801FAF4E8D211DEB971C00C8D1506C3");
             }
             // parser/TCS.g:447:77: ( ( 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY ) | )
             int alt14=2;
             int LA14_0 = input.LA(1);
 
-            if ( (LA14_0==58) ) {
+            if ( (LA14_0==112) ) {
                 alt14=1;
             }
-            else if ( (LA14_0==RCURLY||LA14_0==67||LA14_0==98||LA14_0==102||LA14_0==117) ) {
+            else if ( (LA14_0==RCURLY||LA14_0==73||LA14_0==107||LA14_0==119||LA14_0==125) ) {
                 alt14=2;
             }
             else {
@@ -2909,21 +2909,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:447:95: 'symbols' LCURLY ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) ) RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2AC6D4E89511DEC83AECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68007456E8D211DE9EE4C00C8D1506C3");
                     }
-                    match(input,58,FOLLOW_58_in_tcs_concretesyntax1444); if (state.failed) return ret2;
+                    match(input,112,FOLLOW_112_in_tcs_concretesyntax1444); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2AC6D5E89511DE8349ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68007457E8D211DEAA95C00C8D1506C3");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_tcs_concretesyntax1448); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2AC6D9E89511DEBEBFECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6801FAF1E8D211DE9005C00C8D1506C3");
                     }
                     // parser/TCS.g:447:321: ( ( (temp= tcs_symbol (temp= tcs_symbol )* )? ) )
                     // parser/TCS.g:447:322: ( (temp= tcs_symbol (temp= tcs_symbol )* )? )
@@ -2932,7 +2932,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:447:323: (temp= tcs_symbol (temp= tcs_symbol )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2AC6D7E89511DEAB4CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68007459E8D211DEB3C6C00C8D1506C3");
                     }
                     // parser/TCS.g:447:382: (temp= tcs_symbol (temp= tcs_symbol )* )?
                     int alt13=2;
@@ -3006,7 +3006,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F2DD410E89511DE927FECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6801FAF2E8D211DEBA8EC00C8D1506C3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1482); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3040,13 +3040,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F2F5AB1E89511DEA4E0ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6801FAF6E8D211DEA792C00C8D1506C3");
             }
             // parser/TCS.g:448:76: (temp= tcs_operatorlist (temp= tcs_operatorlist )* )?
             int alt16=2;
             int LA16_0 = input.LA(1);
 
-            if ( (LA16_0==102) ) {
+            if ( (LA16_0==73) ) {
                 alt16=1;
             }
             switch (alt16) {
@@ -3068,7 +3068,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt15=2;
                         int LA15_0 = input.LA(1);
 
-                        if ( (LA15_0==102) ) {
+                        if ( (LA15_0==73) ) {
                             alt15=1;
                         }
 
@@ -3105,13 +3105,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F2F5AB3E89511DE9B06ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6801FAF8E8D211DEAD9DC00C8D1506C3");
             }
             // parser/TCS.g:448:290: (temp= tcs_token (temp= tcs_token )* )?
             int alt18=2;
             int LA18_0 = input.LA(1);
 
-            if ( (LA18_0==67||LA18_0==98) ) {
+            if ( (LA18_0==107||LA18_0==119) ) {
                 alt18=1;
             }
             switch (alt18) {
@@ -3133,7 +3133,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt17=2;
                         int LA17_0 = input.LA(1);
 
-                        if ( (LA17_0==67||LA17_0==98) ) {
+                        if ( (LA17_0==107||LA17_0==119) ) {
                             alt17=1;
                         }
 
@@ -3170,13 +3170,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F33EE92E89511DE95BDECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD681A64F0E8D211DE85CBC00C8D1506C3");
             }
             // parser/TCS.g:448:477: ( ( 'lexer' EQ (temp= stringSymbol ) SEMI ) | )
             int alt19=2;
             int LA19_0 = input.LA(1);
 
-            if ( (LA19_0==117) ) {
+            if ( (LA19_0==125) ) {
                 alt19=1;
             }
             else if ( (LA19_0==RCURLY) ) {
@@ -3200,21 +3200,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:448:495: 'lexer' EQ (temp= stringSymbol ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F30E151E89511DEB944ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68038190E8D211DEAC4AC00C8D1506C3");
                     }
-                    match(input,117,FOLLOW_117_in_tcs_concretesyntax1551); if (state.failed) return ret2;
+                    match(input,125,FOLLOW_125_in_tcs_concretesyntax1551); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F30E152E89511DE969BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68038191E8D211DEC53BC00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_concretesyntax1555); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F3267F0E89511DE890BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6812C3D0E8D211DEC999C00C8D1506C3");
                     }
                     // parser/TCS.g:448:715: (temp= stringSymbol )
                     // parser/TCS.g:448:717: temp= stringSymbol
@@ -3235,7 +3235,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F33EE90E89511DEA06DECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6818DE50E8D211DEC80AC00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_concretesyntax1570); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3278,7 +3278,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F39E200E89511DEC7AFECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD682FC1B0E8D211DEB42AC00C8D1506C3");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_tcs_concretesyntax1591); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -3322,7 +3322,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:459:4: ( ( (temp= model_classifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F3FFC80E89511DEAF02ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD684CE6A0E8D211DEA403C00C8D1506C3");
             }
             // parser/TCS.g:459:64: ( ( (temp= model_classifier ) ) | ( RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )? ) )
             int alt22=2;
@@ -3352,7 +3352,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:459:82: (temp= model_classifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F3B68A2E89511DECEC8ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6835DC32E8D211DEA4F6C00C8D1506C3");
                     }
                     // parser/TCS.g:459:141: (temp= model_classifier )
                     // parser/TCS.g:459:143: temp= model_classifier
@@ -3391,14 +3391,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:459:259: RARROW (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F3B68A4E89511DE92A8ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6835DC34E8D211DE8FF8C00C8D1506C3");
                     }
                     match(input,RARROW,FOLLOW_RARROW_in_reference1652); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F3E75E0E89511DEAEA5ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD684B6000E8D211DEA254C00C8D1506C3");
                     }
                     // parser/TCS.g:459:401: (temp= identifier ( ( DLCOLON ) temp= identifier )* )?
                     int alt21=2;
@@ -3442,7 +3442,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // parser/TCS.g:459:473: DLCOLON
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0DCF6CD8F3B68A6E89511DEB6BDECDF8D1506C3");
+                            	      _beforeSeqEl("E0DCF6CD6835DC36E8D211DE83B2C00C8D1506C3");
                             	    }
                             	    match(input,DLCOLON,FOLLOW_DLCOLON_in_reference1669); if (state.failed) return ;
                             	    if ( state.backtracking==0 ) {
@@ -3534,23 +3534,23 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:469:3: (ret= tcs_contexttemplate | ret= tcs_primitivetemplate | ret= tcs_enumerationtemplate | ret= tcs_functiontemplate )
             int alt23=4;
             switch ( input.LA(1) ) {
-            case 72:
-            case 111:
+            case 71:
+            case 106:
                 {
                 alt23=1;
                 }
                 break;
-            case 100:
+            case 117:
                 {
                 alt23=2;
                 }
                 break;
-            case 69:
+            case 59:
                 {
                 alt23=3;
                 }
                 break;
-            case 61:
+            case 65:
                 {
                 alt23=4;
                 }
@@ -3652,10 +3652,10 @@ public class TCSParser extends ObservableInjectingParser {
             int alt24=2;
             int LA24_0 = input.LA(1);
 
-            if ( (LA24_0==111) ) {
+            if ( (LA24_0==71) ) {
                 alt24=1;
             }
-            else if ( (LA24_0==72) ) {
+            else if ( (LA24_0==106) ) {
                 alt24=2;
             }
             else {
@@ -3735,14 +3735,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:495:4: 'primitiveTemplate' (temp= identifier ) 'for' reference[ret] ( ( 'default' ) | ) 'using' (temp= identifier ) ( ( 'orKeyword' ) | ) COLON 'value' EQ (temp= stringSymbol ) ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | ) SEMI (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F449063E89511DE8045ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD687C3400E8D211DE9DA8C00C8D1506C3");
             }
-            match(input,100,FOLLOW_100_in_tcs_primitivetemplate1807); if (state.failed) return ret2;
+            match(input,117,FOLLOW_117_in_tcs_primitivetemplate1807); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F449065E89511DE9729ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD687C3402E8D211DEB61BC00C8D1506C3");
             }
             // parser/TCS.g:495:157: (temp= identifier )
             // parser/TCS.g:495:159: temp= identifier
@@ -3763,14 +3763,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F449066E89511DEB3AEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD687C3403E8D211DEAF2FC00C8D1506C3");
             }
-            match(input,49,FOLLOW_49_in_tcs_primitivetemplate1820); if (state.failed) return ret2;
+            match(input,126,FOLLOW_126_in_tcs_primitivetemplate1820); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F461700E89511DEC57DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68824E80E8D211DEC79AC00C8D1506C3");
             }
             pushFollow(FOLLOW_reference_in_tcs_primitivetemplate1823);
             reference(ret);
@@ -3782,16 +3782,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F479DA4E89511DE8BE9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A40753E8D211DE8849C00C8D1506C3");
             }
             // parser/TCS.g:495:462: ( ( 'default' ) | )
             int alt25=2;
             int LA25_0 = input.LA(1);
 
-            if ( (LA25_0==83) ) {
+            if ( (LA25_0==81) ) {
                 alt25=1;
             }
-            else if ( (LA25_0==103) ) {
+            else if ( (LA25_0==83) ) {
                 alt25=2;
             }
             else {
@@ -3812,9 +3812,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:495:480: 'default'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F479DA2E89511DEA3E3ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68A40751E8D211DE8E3CC00C8D1506C3");
                     }
-                    match(input,83,FOLLOW_83_in_tcs_primitivetemplate1833); if (state.failed) return ret2;
+                    match(input,81,FOLLOW_81_in_tcs_primitivetemplate1833); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3852,14 +3852,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F492440E89511DEC219ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A40754E8D211DEC8C1C00C8D1506C3");
             }
-            match(input,103,FOLLOW_103_in_tcs_primitivetemplate1851); if (state.failed) return ret2;
+            match(input,83,FOLLOW_83_in_tcs_primitivetemplate1851); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F492442E89511DEC158ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A40756E8D211DEC4B2C00C8D1506C3");
             }
             // parser/TCS.g:496:158: (temp= identifier )
             // parser/TCS.g:496:160: temp= identifier
@@ -3880,13 +3880,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F492448E89511DE8D78ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A4075CE8D211DEB243C00C8D1506C3");
             }
             // parser/TCS.g:496:291: ( ( 'orKeyword' ) | )
             int alt26=2;
             int LA26_0 = input.LA(1);
 
-            if ( (LA26_0==66) ) {
+            if ( (LA26_0==85) ) {
                 alt26=1;
             }
             else if ( (LA26_0==COLON) ) {
@@ -3910,9 +3910,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:496:309: 'orKeyword'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F492446E89511DECE7BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68A4075AE8D211DE989AC00C8D1506C3");
                     }
-                    match(input,66,FOLLOW_66_in_tcs_primitivetemplate1870); if (state.failed) return ret2;
+                    match(input,85,FOLLOW_85_in_tcs_primitivetemplate1870); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3950,28 +3950,28 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F492449E89511DEA034ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A58DF0E8D211DE90CBC00C8D1506C3");
             }
             match(input,COLON,FOLLOW_COLON_in_tcs_primitivetemplate1889); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F49244AE89511DEB027ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A58DF1E8D211DEA7CBC00C8D1506C3");
             }
-            match(input,92,FOLLOW_92_in_tcs_primitivetemplate1893); if (state.failed) return ret2;
+            match(input,60,FOLLOW_60_in_tcs_primitivetemplate1893); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F49244BE89511DEC6C2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A58DF2E8D211DE86BBC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_primitivetemplate1897); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F49244EE89511DE880EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A58DF5E8D211DEB674C00C8D1506C3");
             }
             // parser/TCS.g:497:319: (temp= stringSymbol )
             // parser/TCS.g:497:321: temp= stringSymbol
@@ -3992,7 +3992,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F4AAAE7E89511DE913EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A71497E8D211DECEF5C00C8D1506C3");
             }
             // parser/TCS.g:497:450: ( ( COMA 'serializer' EQ (temp= stringSymbol ) ) | )
             int alt27=2;
@@ -4022,28 +4022,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:497:468: COMA 'serializer' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F4AAAE0E89511DECCF5ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68A71490E8D211DEA9A6C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_primitivetemplate1918); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F4AAAE1E89511DE84D2ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68A71491E8D211DE8B32C00C8D1506C3");
                     }
-                    match(input,115,FOLLOW_115_in_tcs_primitivetemplate1922); if (state.failed) return ret2;
+                    match(input,96,FOLLOW_96_in_tcs_primitivetemplate1922); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F4AAAE2E89511DEBBCFECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68A71492E8D211DE9CB0C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_primitivetemplate1926); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F4AAAE5E89511DE9E10ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68A71495E8D211DE88C2C00C8D1506C3");
                     }
                     // parser/TCS.g:497:774: (temp= stringSymbol )
                     // parser/TCS.g:497:776: temp= stringSymbol
@@ -4091,14 +4091,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F4AAAE8E89511DE864DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68A71498E8D211DEADC4C00C8D1506C3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_tcs_primitivetemplate1954); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F4DB820E89511DE98A7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68B34990E8D211DEAB67C00C8D1506C3");
             }
             // parser/TCS.g:498:157: (temp= textblockdefinition_textblockdefinition )?
             int alt28=2;
@@ -4171,14 +4171,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:512:4: 'enumerationTemplate' reference[ret] ( ( 'auto' ) | ) ( ( ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) ) (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F4F3EC2E89511DE9F98ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68BAEAB0E8D211DE9055C00C8D1506C3");
             }
-            match(input,69,FOLLOW_69_in_tcs_enumerationtemplate2007); if (state.failed) return ret2;
+            match(input,59,FOLLOW_59_in_tcs_enumerationtemplate2007); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F4F3EC3E89511DE81AAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68BAEAB1E8D211DEBDF5C00C8D1506C3");
             }
             pushFollow(FOLLOW_reference_in_tcs_enumerationtemplate2010);
             reference(ret);
@@ -4190,13 +4190,13 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F50C562E89511DEBDC2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68BC7155E8D211DE8845C00C8D1506C3");
             }
             // parser/TCS.g:512:249: ( ( 'auto' ) | )
             int alt29=2;
             int LA29_0 = input.LA(1);
 
-            if ( (LA29_0==95) ) {
+            if ( (LA29_0==88) ) {
                 alt29=1;
             }
             else if ( (LA29_0==SEMI||LA29_0==COLON) ) {
@@ -4220,9 +4220,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:512:267: 'auto'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F50C560E89511DE8E74ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68BC7153E8D211DEC473C00C8D1506C3");
                     }
-                    match(input,95,FOLLOW_95_in_tcs_enumerationtemplate2020); if (state.failed) return ret2;
+                    match(input,88,FOLLOW_88_in_tcs_enumerationtemplate2020); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4260,7 +4260,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F555946E89511DEA112ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68D661F3E8D211DEC7E2C00C8D1506C3");
             }
             // parser/TCS.g:513:77: ( ( ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) ) ) | ( SEMI ) )
             int alt32=2;
@@ -4290,7 +4290,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:513:95: ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F555942E89511DEA60DECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68D4DB50E8D211DEC5B6C00C8D1506C3");
                     }
                     // parser/TCS.g:513:154: ( ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI ) )
                     // parser/TCS.g:513:155: ( COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI )
@@ -4299,14 +4299,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:513:156: COLON ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F50C566E89511DEA0B2ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68BC7159E8D211DEA4F9C00C8D1506C3");
                     }
                     match(input,COLON,FOLLOW_COLON_in_tcs_enumerationtemplate2048); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F53D2A0E89511DECA49ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68D354B0E8D211DECCA4C00C8D1506C3");
                     }
                     // parser/TCS.g:513:297: ( ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? ) )
                     // parser/TCS.g:513:298: ( (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )? )
@@ -4315,7 +4315,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:513:299: (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F50C56BE89511DEB8B7ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68BC715EE8D211DEA58FC00C8D1506C3");
                     }
                     // parser/TCS.g:513:358: (temp= tcs_enumliteralmapping ( ( COMA ) temp= tcs_enumliteralmapping )* )?
                     int alt31=2;
@@ -4359,7 +4359,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // parser/TCS.g:513:445: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0DCF6CD8F50C568E89511DE9155ECDF8D1506C3");
+                            	      _beforeSeqEl("E0DCF6CD68BC715BE8D211DEB584C00C8D1506C3");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_tcs_enumerationtemplate2068); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
@@ -4408,7 +4408,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F555940E89511DEB692ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68D354B1E8D211DE9558C00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_enumerationtemplate2091); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4442,7 +4442,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:513:783: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F555944E89511DE98DFECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68D661F1E8D211DECFB7C00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_enumerationtemplate2108); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4464,7 +4464,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F555949E89511DE9DD9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68D661F6E8D211DEBED3C00C8D1506C3");
             }
             // parser/TCS.g:514:76: (temp= textblockdefinition_textblockdefinition )?
             int alt33=2;
@@ -4537,7 +4537,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:528:4: (temp= tcs_enumliteralval ) EQ (temp= tcs_literalref )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F56DFE3E89511DE9511ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68D96F31E8D211DEAAB9C00C8D1506C3");
             }
             // parser/TCS.g:528:63: (temp= tcs_enumliteralval )
             // parser/TCS.g:528:65: temp= tcs_enumliteralval
@@ -4558,14 +4558,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F586680E89511DE9679ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68D96F32E8D211DEB92BC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_enumliteralmapping2178); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F586682E89511DEA66DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68D96F34E8D211DE9815C00C8D1506C3");
             }
             // parser/TCS.g:528:280: (temp= tcs_literalref )
             // parser/TCS.g:528:282: temp= tcs_literalref
@@ -4631,14 +4631,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:542:4: 'template' reference[ret] ( ( 'referenceOnly' ) | ( ( ( SHARP (temp= identifier ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) ) (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F586686E89511DE87EFECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68DF89B0E8D211DEB03BC00C8D1506C3");
             }
-            match(input,111,FOLLOW_111_in_tcs_classtemplate2229); if (state.failed) return ret2;
+            match(input,71,FOLLOW_71_in_tcs_classtemplate2229); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F586687E89511DE9BF2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68DF89B1E8D211DEA711C00C8D1506C3");
             }
             pushFollow(FOLLOW_reference_in_tcs_classtemplate2232);
             reference(ret);
@@ -4650,16 +4650,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6AB600E89511DE954DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68F97A55E8D211DEC3A8C00C8D1506C3");
             }
             // parser/TCS.g:542:238: ( ( 'referenceOnly' ) | ( ( ( SHARP (temp= identifier ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | ) ) )
             int alt48=2;
             int LA48_0 = input.LA(1);
 
-            if ( (LA48_0==84) ) {
+            if ( (LA48_0==57) ) {
                 alt48=1;
             }
-            else if ( (LA48_0==LPAREN||LA48_0==SEMI||LA48_0==COLON||LA48_0==SHARP||LA48_0==52||LA48_0==74||LA48_0==78||(LA48_0>=85 && LA48_0<=86)||LA48_0==90||LA48_0==97||LA48_0==101||LA48_0==108) ) {
+            else if ( (LA48_0==LPAREN||LA48_0==SEMI||LA48_0==COLON||LA48_0==SHARP||LA48_0==53||(LA48_0>=62 && LA48_0<=64)||LA48_0==77||LA48_0==110||(LA48_0>=123 && LA48_0<=124)||LA48_0==130) ) {
                 alt48=2;
             }
             else {
@@ -4680,9 +4680,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:542:256: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F59ED20E89511DEA22FECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68DF89B5E8D211DEA273C00C8D1506C3");
                     }
-                    match(input,84,FOLLOW_84_in_tcs_classtemplate2242); if (state.failed) return ret2;
+                    match(input,57,FOLLOW_57_in_tcs_classtemplate2242); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4708,7 +4708,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:542:443: ( ( SHARP (temp= identifier ) ) | ) ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | ) ( ( 'multi' ) | ) ( ( 'main' ) | ) ( ( ( ( 'deep' ) | ) 'abstract' ) | ) ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | ) ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ( ( 'addToContext' ) | ) ( ( 'nonPrimary' ) | ) ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F59ED29E89511DECEBBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68DF89BEE8D211DEA9CEC00C8D1506C3");
                     }
                     // parser/TCS.g:542:503: ( ( SHARP (temp= identifier ) ) | )
                     int alt34=2;
@@ -4717,7 +4717,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA34_0==SHARP) ) {
                         alt34=1;
                     }
-                    else if ( (LA34_0==LPAREN||LA34_0==SEMI||LA34_0==COLON||LA34_0==52||LA34_0==74||LA34_0==78||(LA34_0>=85 && LA34_0<=86)||LA34_0==90||LA34_0==97||LA34_0==101||LA34_0==108) ) {
+                    else if ( (LA34_0==LPAREN||LA34_0==SEMI||LA34_0==COLON||LA34_0==53||(LA34_0>=62 && LA34_0<=64)||LA34_0==77||LA34_0==110||(LA34_0>=123 && LA34_0<=124)||LA34_0==130) ) {
                         alt34=2;
                     }
                     else {
@@ -4738,14 +4738,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:542:521: SHARP (temp= identifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F59ED25E89511DE9916ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68DF89BAE8D211DEC4EAC00C8D1506C3");
                             }
                             match(input,SHARP,FOLLOW_SHARP_in_tcs_classtemplate2262); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F59ED27E89511DEB818ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68DF89BCE8D211DE9707C00C8D1506C3");
                             }
                             // parser/TCS.g:542:662: (temp= identifier )
                             // parser/TCS.g:542:664: temp= identifier
@@ -4793,7 +4793,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F5B73C3E89511DE8E4CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68E296F0E8D211DE8202C00C8D1506C3");
                     }
                     // parser/TCS.g:543:77: ( ( LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt35=2;
@@ -4802,10 +4802,10 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA35_0==LPAREN) ) {
                         int LA35_1 = input.LA(2);
 
-                        if ( (LA35_1==80) ) {
+                        if ( (LA35_1==129) ) {
                             alt35=1;
                         }
-                        else if ( (LA35_1==87) ) {
+                        else if ( (LA35_1==78) ) {
                             alt35=2;
                         }
                         else {
@@ -4816,7 +4816,7 @@ public class TCSParser extends ObservableInjectingParser {
                             throw nvae;
                         }
                     }
-                    else if ( (LA35_0==SEMI||LA35_0==COLON||LA35_0==52||LA35_0==74||LA35_0==78||(LA35_0>=85 && LA35_0<=86)||LA35_0==90||LA35_0==97||LA35_0==101||LA35_0==108) ) {
+                    else if ( (LA35_0==SEMI||LA35_0==COLON||LA35_0==53||(LA35_0>=62 && LA35_0<=64)||LA35_0==77||LA35_0==110||(LA35_0>=123 && LA35_0<=124)||LA35_0==130) ) {
                         alt35=2;
                     }
                     else {
@@ -4837,28 +4837,28 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:543:95: LPAREN 'disambiguate' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F59ED2DE89511DEBE0EECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E11051E8D211DEC93AC00C8D1506C3");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2296); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F59ED2EE89511DECA14ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E11052E8D211DEC3DCC00C8D1506C3");
                             }
-                            match(input,80,FOLLOW_80_in_tcs_classtemplate2300); if (state.failed) return ret2;
+                            match(input,129,FOLLOW_129_in_tcs_classtemplate2300); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F59ED2FE89511DEA599ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E11053E8D211DE8E3AC00C8D1506C3");
                             }
                             match(input,EQ,FOLLOW_EQ_in_tcs_classtemplate2304); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5B73C0E89511DE9BA5ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E11056E8D211DECF4BC00C8D1506C3");
                             }
                             // parser/TCS.g:543:405: (temp= stringSymbol )
                             // parser/TCS.g:543:407: temp= stringSymbol
@@ -4879,7 +4879,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5B73C1E89511DE92CFECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E11057E8D211DEB435C00C8D1506C3");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2319); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -4913,7 +4913,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F5E8100E89511DEB208ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68E41D90E8D211DEAA0DC00C8D1506C3");
                     }
                     // parser/TCS.g:544:77: ( ( LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN ) | )
                     int alt36=2;
@@ -4922,7 +4922,7 @@ public class TCSParser extends ObservableInjectingParser {
                     if ( (LA36_0==LPAREN) ) {
                         alt36=1;
                     }
-                    else if ( (LA36_0==SEMI||LA36_0==COLON||LA36_0==52||LA36_0==74||LA36_0==78||(LA36_0>=85 && LA36_0<=86)||LA36_0==90||LA36_0==97||LA36_0==101||LA36_0==108) ) {
+                    else if ( (LA36_0==SEMI||LA36_0==COLON||LA36_0==53||(LA36_0>=62 && LA36_0<=64)||LA36_0==77||LA36_0==110||(LA36_0>=123 && LA36_0<=124)||LA36_0==130) ) {
                         alt36=2;
                     }
                     else {
@@ -4943,28 +4943,28 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:544:95: LPAREN 'disambiguateV3' EQ (temp= stringSymbol ) RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5B73C7E89511DEA78BECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E296F4E8D211DEA387C00C8D1506C3");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2343); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5B73C8E89511DEABBEECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E296F5E8D211DE8928C00C8D1506C3");
                             }
-                            match(input,87,FOLLOW_87_in_tcs_classtemplate2347); if (state.failed) return ret2;
+                            match(input,78,FOLLOW_78_in_tcs_classtemplate2347); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5B73C9E89511DEC5BCECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E296F6E8D211DEC6C2C00C8D1506C3");
                             }
                             match(input,EQ,FOLLOW_EQ_in_tcs_classtemplate2351); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5B73CCE89511DEC369ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E296F9E8D211DECDD3C00C8D1506C3");
                             }
                             // parser/TCS.g:544:407: (temp= stringSymbol )
                             // parser/TCS.g:544:409: temp= stringSymbol
@@ -4985,7 +4985,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5CFA60E89511DE8AC9ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E296FAE8D211DEB29EC00C8D1506C3");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2366); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -5019,16 +5019,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F5E8106E89511DE91A0ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68E41D96E8D211DEBEEDC00C8D1506C3");
                     }
                     // parser/TCS.g:545:77: ( ( 'multi' ) | )
                     int alt37=2;
                     int LA37_0 = input.LA(1);
 
-                    if ( (LA37_0==97) ) {
+                    if ( (LA37_0==64) ) {
                         alt37=1;
                     }
-                    else if ( (LA37_0==SEMI||LA37_0==COLON||LA37_0==52||LA37_0==74||LA37_0==78||(LA37_0>=85 && LA37_0<=86)||LA37_0==90||LA37_0==101||LA37_0==108) ) {
+                    else if ( (LA37_0==SEMI||LA37_0==COLON||LA37_0==53||(LA37_0>=62 && LA37_0<=63)||LA37_0==77||LA37_0==110||(LA37_0>=123 && LA37_0<=124)||LA37_0==130) ) {
                         alt37=2;
                     }
                     else {
@@ -5049,9 +5049,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:545:95: 'multi'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5E8104E89511DEBD2AECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E41D94E8D211DE9B0EC00C8D1506C3");
                             }
-                            match(input,97,FOLLOW_97_in_tcs_classtemplate2389); if (state.failed) return ret2;
+                            match(input,64,FOLLOW_64_in_tcs_classtemplate2389); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5089,16 +5089,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F5E810CE89511DE8FE5ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68E41D9CE8D211DEA032C00C8D1506C3");
                     }
                     // parser/TCS.g:546:77: ( ( 'main' ) | )
                     int alt38=2;
                     int LA38_0 = input.LA(1);
 
-                    if ( (LA38_0==78) ) {
+                    if ( (LA38_0==77) ) {
                         alt38=1;
                     }
-                    else if ( (LA38_0==SEMI||LA38_0==COLON||LA38_0==52||LA38_0==74||(LA38_0>=85 && LA38_0<=86)||LA38_0==90||LA38_0==101||LA38_0==108) ) {
+                    else if ( (LA38_0==SEMI||LA38_0==COLON||LA38_0==53||(LA38_0>=62 && LA38_0<=63)||LA38_0==110||(LA38_0>=123 && LA38_0<=124)||LA38_0==130) ) {
                         alt38=2;
                     }
                     else {
@@ -5119,9 +5119,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:546:95: 'main'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F5E810AE89511DEC378ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E41D9AE8D211DEA056C00C8D1506C3");
                             }
-                            match(input,78,FOLLOW_78_in_tcs_classtemplate2413); if (state.failed) return ret2;
+                            match(input,77,FOLLOW_77_in_tcs_classtemplate2413); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5159,16 +5159,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6007ABE89511DEB0DCECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68E5A438E8D211DEA94CC00C8D1506C3");
                     }
                     // parser/TCS.g:547:77: ( ( ( ( 'deep' ) | ) 'abstract' ) | )
                     int alt40=2;
                     int LA40_0 = input.LA(1);
 
-                    if ( ((LA40_0>=85 && LA40_0<=86)) ) {
+                    if ( (LA40_0==53||LA40_0==110) ) {
                         alt40=1;
                     }
-                    else if ( (LA40_0==SEMI||LA40_0==COLON||LA40_0==52||LA40_0==74||LA40_0==90||LA40_0==101||LA40_0==108) ) {
+                    else if ( (LA40_0==SEMI||LA40_0==COLON||(LA40_0>=62 && LA40_0<=63)||(LA40_0>=123 && LA40_0<=124)||LA40_0==130) ) {
                         alt40=2;
                     }
                     else {
@@ -5189,16 +5189,16 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:547:95: ( ( 'deep' ) | ) 'abstract'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F6007A8E89511DEB9DFECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E5A435E8D211DE920FC00C8D1506C3");
                             }
                             // parser/TCS.g:547:155: ( ( 'deep' ) | )
                             int alt39=2;
                             int LA39_0 = input.LA(1);
 
-                            if ( (LA39_0==85) ) {
+                            if ( (LA39_0==110) ) {
                                 alt39=1;
                             }
-                            else if ( (LA39_0==86) ) {
+                            else if ( (LA39_0==53) ) {
                                 alt39=2;
                             }
                             else {
@@ -5219,9 +5219,9 @@ public class TCSParser extends ObservableInjectingParser {
                                     // parser/TCS.g:547:173: 'deep'
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0DCF6CD8F6007A6E89511DE8A23ECDF8D1506C3");
+                                      _beforeSeqEl("E0DCF6CD68E5A433E8D211DEBB67C00C8D1506C3");
                                     }
-                                    match(input,85,FOLLOW_85_in_tcs_classtemplate2443); if (state.failed) return ret2;
+                                    match(input,110,FOLLOW_110_in_tcs_classtemplate2443); if (state.failed) return ret2;
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
@@ -5259,9 +5259,9 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F6007A9E89511DE8875ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E5A436E8D211DE8191C00C8D1506C3");
                             }
-                            match(input,86,FOLLOW_86_in_tcs_classtemplate2461); if (state.failed) return ret2;
+                            match(input,53,FOLLOW_53_in_tcs_classtemplate2461); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5299,16 +5299,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F649B84E89511DE911DECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68F4E674E8D211DE946AC00C8D1506C3");
                     }
                     // parser/TCS.g:549:77: ( ( 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | ) ) | )
                     int alt42=2;
                     int LA42_0 = input.LA(1);
 
-                    if ( (LA42_0==101) ) {
+                    if ( (LA42_0==63) ) {
                         alt42=1;
                     }
-                    else if ( (LA42_0==SEMI||LA42_0==COLON||LA42_0==52||LA42_0==74||LA42_0==90||LA42_0==108) ) {
+                    else if ( (LA42_0==SEMI||LA42_0==COLON||LA42_0==62||(LA42_0>=123 && LA42_0<=124)||LA42_0==130) ) {
                         alt42=2;
                     }
                     else {
@@ -5329,14 +5329,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:549:95: 'operatored' ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F618E41E89511DE9F64ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68E72AD3E8D211DEC0DFC00C8D1506C3");
                             }
-                            match(input,101,FOLLOW_101_in_tcs_classtemplate2485); if (state.failed) return ret2;
+                            match(input,63,FOLLOW_63_in_tcs_classtemplate2485); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F649B82E89511DEC9C5ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F4E672E8D211DEB4F6C00C8D1506C3");
                             }
                             // parser/TCS.g:549:242: ( ( LPAREN (temp= identifier ) RPAREN ) | )
                             int alt41=2;
@@ -5345,7 +5345,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA41_0==LPAREN) ) {
                                 alt41=1;
                             }
-                            else if ( (LA41_0==SEMI||LA41_0==COLON||LA41_0==52||LA41_0==74||LA41_0==90||LA41_0==108) ) {
+                            else if ( (LA41_0==SEMI||LA41_0==COLON||LA41_0==62||(LA41_0>=123 && LA41_0<=124)||LA41_0==130) ) {
                                 alt41=2;
                             }
                             else {
@@ -5366,14 +5366,14 @@ public class TCSParser extends ObservableInjectingParser {
                                     // parser/TCS.g:549:260: LPAREN (temp= identifier ) RPAREN
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0DCF6CD8F618E45E89511DEB766ECDF8D1506C3");
+                                      _beforeSeqEl("E0DCF6CD68E72AD7E8D211DE8564C00C8D1506C3");
                                     }
                                     match(input,LPAREN,FOLLOW_LPAREN_in_tcs_classtemplate2495); if (state.failed) return ret2;
                                     if ( state.backtracking==0 ) {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0DCF6CD8F6314E1E89511DE94F2ECDF8D1506C3");
+                                      _beforeSeqEl("E0DCF6CD68F35FD0E8D211DE923DC00C8D1506C3");
                                     }
                                     // parser/TCS.g:549:402: (temp= identifier )
                                     // parser/TCS.g:549:404: temp= identifier
@@ -5394,7 +5394,7 @@ public class TCSParser extends ObservableInjectingParser {
                                       _afterSeqEl();
                                     }
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0DCF6CD8F649B80E89511DE98CEECDF8D1506C3");
+                                      _beforeSeqEl("E0DCF6CD68F4E670E8D211DE9534C00C8D1506C3");
                                     }
                                     match(input,RPAREN,FOLLOW_RPAREN_in_tcs_classtemplate2510); if (state.failed) return ret2;
                                     if ( state.backtracking==0 ) {
@@ -5461,16 +5461,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F662223E89511DECAEEECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68F66D11E8D211DEC2E6C00C8D1506C3");
                     }
                     // parser/TCS.g:551:77: ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | )
                     int alt44=2;
                     int LA44_0 = input.LA(1);
 
-                    if ( (LA44_0==90) ) {
+                    if ( (LA44_0==130) ) {
                         alt44=1;
                     }
-                    else if ( (LA44_0==SEMI||LA44_0==COLON||LA44_0==52||LA44_0==74||LA44_0==108) ) {
+                    else if ( (LA44_0==SEMI||LA44_0==COLON||LA44_0==62||(LA44_0>=123 && LA44_0<=124)) ) {
                         alt44=2;
                     }
                     else {
@@ -5491,14 +5491,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:551:95: 'context' ( ( (temp= tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F649B88E89511DECD43ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F4E678E8D211DE8484C00C8D1506C3");
                             }
-                            match(input,90,FOLLOW_90_in_tcs_classtemplate2548); if (state.failed) return ret2;
+                            match(input,130,FOLLOW_130_in_tcs_classtemplate2548); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F662221E89511DEBB4EECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F4E67FE8D211DE98F9C00C8D1506C3");
                             }
                             // parser/TCS.g:551:239: ( ( (temp= tcs_contexttags ) ) | )
                             int alt43=2;
@@ -5507,7 +5507,7 @@ public class TCSParser extends ObservableInjectingParser {
                             if ( (LA43_0==LPAREN) ) {
                                 alt43=1;
                             }
-                            else if ( (LA43_0==SEMI||LA43_0==COLON||LA43_0==52||LA43_0==74||LA43_0==108) ) {
+                            else if ( (LA43_0==SEMI||LA43_0==COLON||LA43_0==62||(LA43_0>=123 && LA43_0<=124)) ) {
                                 alt43=2;
                             }
                             else {
@@ -5528,7 +5528,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // parser/TCS.g:551:257: (temp= tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0DCF6CD8F649B8DE89511DEB2F9ECDF8D1506C3");
+                                      _beforeSeqEl("E0DCF6CD68F4E67DE8D211DE89BBC00C8D1506C3");
                                     }
                                     // parser/TCS.g:551:316: (temp= tcs_contexttags )
                                     // parser/TCS.g:551:318: temp= tcs_contexttags
@@ -5609,16 +5609,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F662229E89511DE8735ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68F66D17E8D211DE9C02C00C8D1506C3");
                     }
                     // parser/TCS.g:553:77: ( ( 'addToContext' ) | )
                     int alt45=2;
                     int LA45_0 = input.LA(1);
 
-                    if ( (LA45_0==108) ) {
+                    if ( (LA45_0==124) ) {
                         alt45=1;
                     }
-                    else if ( (LA45_0==SEMI||LA45_0==COLON||LA45_0==52||LA45_0==74) ) {
+                    else if ( (LA45_0==SEMI||LA45_0==COLON||LA45_0==62||LA45_0==123) ) {
                         alt45=2;
                     }
                     else {
@@ -5639,9 +5639,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:553:95: 'addToContext'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F662227E89511DEB58BECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F66D15E8D211DE988BC00C8D1506C3");
                             }
-                            match(input,108,FOLLOW_108_in_tcs_classtemplate2601); if (state.failed) return ret2;
+                            match(input,124,FOLLOW_124_in_tcs_classtemplate2601); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5679,16 +5679,16 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F67A8C2E89511DECC86ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68F66D1DE8D211DEB292C00C8D1506C3");
                     }
                     // parser/TCS.g:554:77: ( ( 'nonPrimary' ) | )
                     int alt46=2;
                     int LA46_0 = input.LA(1);
 
-                    if ( (LA46_0==74) ) {
+                    if ( (LA46_0==62) ) {
                         alt46=1;
                     }
-                    else if ( (LA46_0==SEMI||LA46_0==COLON||LA46_0==52) ) {
+                    else if ( (LA46_0==SEMI||LA46_0==COLON||LA46_0==123) ) {
                         alt46=2;
                     }
                     else {
@@ -5709,9 +5709,9 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:554:95: 'nonPrimary'
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F67A8C0E89511DEC20FECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F66D1BE8D211DE9DD0C00C8D1506C3");
                             }
-                            match(input,74,FOLLOW_74_in_tcs_classtemplate2625); if (state.failed) return ret2;
+                            match(input,62,FOLLOW_62_in_tcs_classtemplate2625); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -5749,13 +5749,13 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F692F6AE89511DEC4A6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68F97A53E8D211DEC972C00C8D1506C3");
                     }
                     // parser/TCS.g:555:77: ( ( 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) ) ) | )
                     int alt47=2;
                     int LA47_0 = input.LA(1);
 
-                    if ( (LA47_0==52) ) {
+                    if ( (LA47_0==123) ) {
                         alt47=1;
                     }
                     else if ( (LA47_0==SEMI||LA47_0==COLON) ) {
@@ -5779,14 +5779,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:555:95: 'prefix' ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F692F60E89511DEAED3ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F7F3B1E8D211DE9DB0C00C8D1506C3");
                             }
-                            match(input,52,FOLLOW_52_in_tcs_classtemplate2649); if (state.failed) return ret2;
+                            match(input,123,FOLLOW_123_in_tcs_classtemplate2649); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F692F68E89511DEC176ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F97A51E8D211DE9D9FC00C8D1506C3");
                             }
                             // parser/TCS.g:555:237: ( ( COLON ( ( (temp= tcs_sequence ) ) ) ) )
                             // parser/TCS.g:555:238: ( COLON ( ( (temp= tcs_sequence ) ) ) )
@@ -5795,14 +5795,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:555:239: COLON ( ( (temp= tcs_sequence ) ) )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F692F61E89511DE8592ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F7F3B2E8D211DECB8AC00C8D1506C3");
                             }
                             match(input,COLON,FOLLOW_COLON_in_tcs_classtemplate2656); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F692F66E89511DECE50ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F7F3B7E8D211DE808DC00C8D1506C3");
                             }
                             // parser/TCS.g:555:380: ( ( (temp= tcs_sequence ) ) )
                             // parser/TCS.g:555:381: ( (temp= tcs_sequence ) )
@@ -5811,7 +5811,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:555:382: (temp= tcs_sequence )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F692F63E89511DEBF30ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD68F7F3B4E8D211DECFF5C00C8D1506C3");
                             }
                             // parser/TCS.g:555:441: (temp= tcs_sequence )
                             // parser/TCS.g:555:443: temp= tcs_sequence
@@ -5895,7 +5895,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC340E89511DE8F76ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68FB00FDE8D211DEAFEAC00C8D1506C3");
             }
             // parser/TCS.g:557:77: ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt49=2;
@@ -5925,7 +5925,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:557:95: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6C3CA5E89511DEA692ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68FB00F9E8D211DEA741C00C8D1506C3");
                     }
                     // parser/TCS.g:557:154: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     // parser/TCS.g:557:155: ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI )
@@ -5934,14 +5934,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:557:156: COLON ( ( (temp= tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6AB604E89511DEAD88ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68FB00F1E8D211DEAAB4C00C8D1506C3");
                     }
                     match(input,COLON,FOLLOW_COLON_in_tcs_classtemplate2709); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6C3CA2E89511DEA4DAECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68FB00F6E8D211DEA1D3C00C8D1506C3");
                     }
                     // parser/TCS.g:557:297: ( ( (temp= tcs_sequence ) ) )
                     // parser/TCS.g:557:298: ( (temp= tcs_sequence ) )
@@ -5950,7 +5950,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:557:299: (temp= tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6AB606E89511DEA0FCECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68FB00F3E8D211DEAC87C00C8D1506C3");
                     }
                     // parser/TCS.g:557:358: (temp= tcs_sequence )
                     // parser/TCS.g:557:360: temp= tcs_sequence
@@ -5980,7 +5980,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6C3CA3E89511DE809FECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68FB00F7E8D211DEBA3FC00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_classtemplate2730); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -6014,7 +6014,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:557:592: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6C3CA7E89511DEAAB8ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD68FB00FBE8D211DE816BC00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_classtemplate2747); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -6036,7 +6036,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC343E89511DE987CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD68FC8791E8D211DECD51C00C8D1506C3");
             }
             // parser/TCS.g:558:76: (temp= textblockdefinition_textblockdefinition )?
             int alt50=2;
@@ -6109,14 +6109,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:572:4: 'operatorTemplate' reference[ret] LPAREN 'operators' EQ (temp= identifier (temp= identifier )* )? COMA 'source' EQ (temp= tcs_propertyreference ) ( ( COMA 'storeOpTo' EQ (temp= tcs_propertyreference ) ) | ) ( ( COMA 'storeRightTo' EQ (temp= tcs_propertyreference ) ) | ) ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | ) ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | ) RPAREN ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ) ) ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) ) (temp= textblockdefinition_textblockdefinition )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC347E89511DECE0BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69011B70E8D211DE948FC00C8D1506C3");
             }
-            match(input,72,FOLLOW_72_in_tcs_operatortemplate2806); if (state.failed) return ret2;
+            match(input,106,FOLLOW_106_in_tcs_operatortemplate2806); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC348E89511DE91E1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69011B71E8D211DECC44C00C8D1506C3");
             }
             pushFollow(FOLLOW_reference_in_tcs_operatortemplate2809);
             reference(ret);
@@ -6128,28 +6128,28 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC349E89511DE8D1EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69011B72E8D211DEAA73C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_operatortemplate2814); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC34AE89511DE9838ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69011B73E8D211DE81B2C00C8D1506C3");
             }
-            match(input,102,FOLLOW_102_in_tcs_operatortemplate2818); if (state.failed) return ret2;
+            match(input,73,FOLLOW_73_in_tcs_operatortemplate2818); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC34BE89511DEBB20ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69011B74E8D211DEBC9FC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2822); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6DC34EE89511DE891EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6902A210E8D211DE8EF6C00C8D1506C3");
             }
             // parser/TCS.g:572:493: (temp= identifier (temp= identifier )* )?
             int alt52=2;
@@ -6214,28 +6214,28 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6F49E0E89511DEADF7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6902A211E8D211DEA640C00C8D1506C3");
             }
             match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2850); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6F49E1E89511DE851BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6902A212E8D211DEB469C00C8D1506C3");
             }
-            match(input,125,FOLLOW_125_in_tcs_operatortemplate2854); if (state.failed) return ret2;
+            match(input,128,FOLLOW_128_in_tcs_operatortemplate2854); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6F49E2E89511DEBB56ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6902A213E8D211DEAECDC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2858); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F6F49E4E89511DEC7E6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6902A215E8D211DE8C94C00C8D1506C3");
             }
             // parser/TCS.g:572:1052: (temp= tcs_propertyreference )
             // parser/TCS.g:572:1054: temp= tcs_propertyreference
@@ -6256,7 +6256,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F70D082E89511DEA082ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6902A21FE8D211DEBDAAC00C8D1506C3");
             }
             // parser/TCS.g:572:1202: ( ( COMA 'storeOpTo' EQ (temp= tcs_propertyreference ) ) | )
             int alt53=2;
@@ -6265,10 +6265,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA53_0==COMA) ) {
                 int LA53_1 = input.LA(2);
 
-                if ( (LA53_1==56) ) {
+                if ( (LA53_1==74) ) {
                     alt53=1;
                 }
-                else if ( (LA53_1==80||LA53_1==87||LA53_1==110) ) {
+                else if ( ((LA53_1>=78 && LA53_1<=79)||LA53_1==129) ) {
                     alt53=2;
                 }
                 else {
@@ -6300,28 +6300,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:572:1220: COMA 'storeOpTo' EQ (temp= tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6F49E8E89511DECDD4ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6902A219E8D211DE834FC00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2879); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6F49E9E89511DEAFA7ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6902A21AE8D211DE88C4C00C8D1506C3");
                     }
-                    match(input,56,FOLLOW_56_in_tcs_operatortemplate2883); if (state.failed) return ret2;
+                    match(input,74,FOLLOW_74_in_tcs_operatortemplate2883); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F6F49EAE89511DE989CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6902A21BE8D211DE98B9C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2887); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F70D080E89511DE97CCECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6902A21DE8D211DEA82AC00C8D1506C3");
                     }
                     // parser/TCS.g:572:1525: (temp= tcs_propertyreference )
                     // parser/TCS.g:572:1527: temp= tcs_propertyreference
@@ -6369,7 +6369,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F725720E89511DEA2DBECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD690428B9E8D211DE831FC00C8D1506C3");
             }
             // parser/TCS.g:573:77: ( ( COMA 'storeRightTo' EQ (temp= tcs_propertyreference ) ) | )
             int alt54=2;
@@ -6378,10 +6378,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA54_0==COMA) ) {
                 int LA54_1 = input.LA(2);
 
-                if ( (LA54_1==80||LA54_1==87) ) {
+                if ( (LA54_1==78||LA54_1==129) ) {
                     alt54=2;
                 }
-                else if ( (LA54_1==110) ) {
+                else if ( (LA54_1==79) ) {
                     alt54=1;
                 }
                 else {
@@ -6413,28 +6413,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:573:95: COMA 'storeRightTo' EQ (temp= tcs_propertyreference )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F70D086E89511DEADE4ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428B3E8D211DEAD91C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2921); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F70D087E89511DEA572ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428B4E8D211DE8F58C00C8D1506C3");
                     }
-                    match(input,110,FOLLOW_110_in_tcs_operatortemplate2925); if (state.failed) return ret2;
+                    match(input,79,FOLLOW_79_in_tcs_operatortemplate2925); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F70D088E89511DE9912ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428B5E8D211DEAFB3C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2929); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F70D08AE89511DE84A2ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428B7E8D211DEA296C00C8D1506C3");
                     }
                     // parser/TCS.g:573:403: (temp= tcs_propertyreference )
                     // parser/TCS.g:573:405: temp= tcs_propertyreference
@@ -6482,7 +6482,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F72572BE89511DEB606ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6905AF50E8D211DECBEEC00C8D1506C3");
             }
             // parser/TCS.g:574:77: ( ( COMA 'disambiguate' EQ (temp= stringSymbol ) ) | )
             int alt55=2;
@@ -6491,10 +6491,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA55_0==COMA) ) {
                 int LA55_1 = input.LA(2);
 
-                if ( (LA55_1==80) ) {
+                if ( (LA55_1==129) ) {
                     alt55=1;
                 }
-                else if ( (LA55_1==87) ) {
+                else if ( (LA55_1==78) ) {
                     alt55=2;
                 }
                 else {
@@ -6526,28 +6526,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:574:95: COMA 'disambiguate' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725724E89511DEBADBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428BDE8D211DEBC69C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate2963); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725725E89511DEA531ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428BEE8D211DE9F90C00C8D1506C3");
                     }
-                    match(input,80,FOLLOW_80_in_tcs_operatortemplate2967); if (state.failed) return ret2;
+                    match(input,129,FOLLOW_129_in_tcs_operatortemplate2967); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725726E89511DECB74ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428BFE8D211DECDBDC00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate2971); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725729E89511DEC588ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690428C2E8D211DEA238C00C8D1506C3");
                     }
                     // parser/TCS.g:574:403: (temp= stringSymbol )
                     // parser/TCS.g:574:405: temp= stringSymbol
@@ -6595,7 +6595,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F73DDC1E89511DEA44FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6905AF5BE8D211DE9213C00C8D1506C3");
             }
             // parser/TCS.g:575:77: ( ( COMA 'disambiguateV3' EQ (temp= stringSymbol ) ) | )
             int alt56=2;
@@ -6625,28 +6625,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:575:95: COMA 'disambiguateV3' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F72572FE89511DE8A27ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6905AF54E8D211DEB6FDC00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_operatortemplate3005); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725730E89511DEC983ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6905AF55E8D211DEC3A8C00C8D1506C3");
                     }
-                    match(input,87,FOLLOW_87_in_tcs_operatortemplate3009); if (state.failed) return ret2;
+                    match(input,78,FOLLOW_78_in_tcs_operatortemplate3009); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725731E89511DE9535ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6905AF56E8D211DEAD78C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_operatortemplate3013); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F725734E89511DE93F9ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6905AF59E8D211DEC4ECC00C8D1506C3");
                     }
                     // parser/TCS.g:575:405: (temp= stringSymbol )
                     // parser/TCS.g:575:407: temp= stringSymbol
@@ -6694,23 +6694,23 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F73DDC2E89511DEA905ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6905AF5CE8D211DEB016C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_operatortemplate3041); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F75646EE89511DEA2C1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6908BC91E8D211DE8733C00C8D1506C3");
             }
             // parser/TCS.g:576:160: ( ( 'referenceOnly' ) | ( ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | ) ) )
             int alt59=2;
             int LA59_0 = input.LA(1);
 
-            if ( (LA59_0==84) ) {
+            if ( (LA59_0==57) ) {
                 alt59=1;
             }
-            else if ( (LA59_0==SEMI||LA59_0==COLON||LA59_0==90) ) {
+            else if ( (LA59_0==SEMI||LA59_0==COLON||LA59_0==130) ) {
                 alt59=2;
             }
             else {
@@ -6731,9 +6731,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:576:178: 'referenceOnly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F73DDC6E89511DE8851ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6905AF60E8D211DE807AC00C8D1506C3");
                     }
-                    match(input,84,FOLLOW_84_in_tcs_operatortemplate3051); if (state.failed) return ret2;
+                    match(input,57,FOLLOW_57_in_tcs_operatortemplate3051); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -6759,13 +6759,13 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:576:365: ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F75646CE89511DE86C6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD690735F9E8D211DE9601C00C8D1506C3");
                     }
                     // parser/TCS.g:576:425: ( ( 'context' ( ( (temp= tcs_contexttags ) ) | ) ) | )
                     int alt58=2;
                     int LA58_0 = input.LA(1);
 
-                    if ( (LA58_0==90) ) {
+                    if ( (LA58_0==130) ) {
                         alt58=1;
                     }
                     else if ( (LA58_0==SEMI||LA58_0==COLON) ) {
@@ -6789,14 +6789,14 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:576:443: 'context' ( ( (temp= tcs_contexttags ) ) | )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F756463E89511DEADAFECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD690735F0E8D211DE8F02C00C8D1506C3");
                             }
-                            match(input,90,FOLLOW_90_in_tcs_operatortemplate3070); if (state.failed) return ret2;
+                            match(input,130,FOLLOW_130_in_tcs_operatortemplate3070); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8F75646AE89511DE8CB5ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD690735F7E8D211DEB2CAC00C8D1506C3");
                             }
                             // parser/TCS.g:576:587: ( ( (temp= tcs_contexttags ) ) | )
                             int alt57=2;
@@ -6826,7 +6826,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     // parser/TCS.g:576:605: (temp= tcs_contexttags )
                                     {
                                     if ( state.backtracking==0 ) {
-                                      _beforeSeqEl("E0DCF6CD8F756468E89511DECE1FECDF8D1506C3");
+                                      _beforeSeqEl("E0DCF6CD690735F5E8D211DEA2C9C00C8D1506C3");
                                     }
                                     // parser/TCS.g:576:664: (temp= tcs_contexttags )
                                     // parser/TCS.g:576:666: temp= tcs_contexttags
@@ -6925,7 +6925,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F76EB0DE89511DECC8CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6908BCA1E8D211DE96DCC00C8D1506C3");
             }
             // parser/TCS.g:579:77: ( ( ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) ) ) | ( SEMI ) )
             int alt60=2;
@@ -6955,7 +6955,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:579:95: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F76EB09E89511DE9DB1ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6908BC9DE8D211DEB31CC00C8D1506C3");
                     }
                     // parser/TCS.g:579:154: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
                     // parser/TCS.g:579:155: ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI )
@@ -6964,14 +6964,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:579:156: COLON ( ( (temp= tcs_sequence ) ) ) SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F76EB01E89511DE89CEECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6908BC95E8D211DEAAAEC00C8D1506C3");
                     }
                     match(input,COLON,FOLLOW_COLON_in_tcs_operatortemplate3134); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F76EB06E89511DECE5CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6908BC9AE8D211DE9FA8C00C8D1506C3");
                     }
                     // parser/TCS.g:579:297: ( ( (temp= tcs_sequence ) ) )
                     // parser/TCS.g:579:298: ( (temp= tcs_sequence ) )
@@ -6980,7 +6980,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:579:299: (temp= tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F76EB03E89511DE8C02ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6908BC97E8D211DEC93DC00C8D1506C3");
                     }
                     // parser/TCS.g:579:358: (temp= tcs_sequence )
                     // parser/TCS.g:579:360: temp= tcs_sequence
@@ -7010,7 +7010,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F76EB07E89511DEB212ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6908BC9BE8D211DEA8E3C00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_operatortemplate3155); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -7044,7 +7044,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:579:586: SEMI
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F76EB0BE89511DE8275ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6908BC9FE8D211DEB3BDC00C8D1506C3");
                     }
                     match(input,SEMI,FOLLOW_SEMI_in_tcs_operatortemplate3172); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -7066,7 +7066,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F7871A0E89511DE95FAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6908BCA4E8D211DEB583C00C8D1506C3");
             }
             // parser/TCS.g:580:76: (temp= textblockdefinition_textblockdefinition )?
             int alt61=2;
@@ -7139,14 +7139,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:594:4: 'function' (temp= identifier ) LPAREN reference[ret] RPAREN ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F842E89511DEB9ACECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69245AE0E8D211DEB626C00C8D1506C3");
             }
-            match(input,61,FOLLOW_61_in_tcs_functiontemplate3231); if (state.failed) return ret2;
+            match(input,65,FOLLOW_65_in_tcs_functiontemplate3231); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F844E89511DE8A00ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69245AE2E8D211DEC10FC00C8D1506C3");
             }
             // parser/TCS.g:594:148: (temp= identifier )
             // parser/TCS.g:594:150: temp= identifier
@@ -7167,14 +7167,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F845E89511DEBBB5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69245AE3E8D211DEBD41C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_functiontemplate3245); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F846E89511DEB22EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69245AE4E8D211DEBD5CC00C8D1506C3");
             }
             pushFollow(FOLLOW_reference_in_tcs_functiontemplate3249);
             reference(ret);
@@ -7186,14 +7186,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F847E89511DE9E66ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69245AE5E8D211DEC099C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_functiontemplate3254); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F850E89511DE9F1EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6925E188E8D211DE814EC00C8D1506C3");
             }
             // parser/TCS.g:594:538: ( ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI ) )
             // parser/TCS.g:594:539: ( COLON ( ( (temp= tcs_sequence ) ) ) SEMI )
@@ -7202,14 +7202,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:594:540: COLON ( ( (temp= tcs_sequence ) ) ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F848E89511DE9713ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6925E180E8D211DE9D05C00C8D1506C3");
             }
             match(input,COLON,FOLLOW_COLON_in_tcs_functiontemplate3262); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F84DE89511DE8E67ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6925E185E8D211DE9D5EC00C8D1506C3");
             }
             // parser/TCS.g:594:681: ( ( (temp= tcs_sequence ) ) )
             // parser/TCS.g:594:682: ( (temp= tcs_sequence ) )
@@ -7218,7 +7218,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:594:683: (temp= tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F84AE89511DEB15FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6925E182E8D211DE9F35C00C8D1506C3");
             }
             // parser/TCS.g:594:742: (temp= tcs_sequence )
             // parser/TCS.g:594:744: temp= tcs_sequence
@@ -7248,7 +7248,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F79F84EE89511DEB99EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6925E186E8D211DEB775C00C8D1506C3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_tcs_functiontemplate3283); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -7309,14 +7309,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:608:4: LPAREN (temp= identifier ( ( COMA ) temp= identifier )* )? RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F7B7EE3E89511DEB272ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6928EEC0E8D211DEBF0EC00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_contexttags3328); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F7B7EE8E89511DEB0BAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6928EEC5E8D211DE866FC00C8D1506C3");
             }
             // parser/TCS.g:608:146: (temp= identifier ( ( COMA ) temp= identifier )* )?
             int alt63=2;
@@ -7360,7 +7360,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // parser/TCS.g:608:217: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0DCF6CD8F7B7EE5E89511DEA62FECDF8D1506C3");
+                    	      _beforeSeqEl("E0DCF6CD6928EEC2E8D211DEA0EEC00C8D1506C3");
                     	    }
                     	    match(input,COMA,FOLLOW_COMA_in_tcs_contexttags3345); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -7400,7 +7400,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F7D0580E89511DEAFA9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6928EEC6E8D211DECD63C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_contexttags3365); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -7452,7 +7452,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:622:4: (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F7D0585E89511DE9E0CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD692BFC01E8D211DEB750C00C8D1506C3");
             }
             // parser/TCS.g:622:63: (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             int alt65=2;
@@ -7905,7 +7905,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:661:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F862D40E89511DEC124ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6973DA70E8D211DEC925C00C8D1506C3");
             }
             // parser/TCS.g:661:63: (temp= stringSymbol )
             // parser/TCS.g:661:65: temp= stringSymbol
@@ -7926,7 +7926,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F893A80E89511DEB21FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6996F2D0E8D211DE85D7C00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -7980,7 +7980,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:675:4: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F90DBA6E89511DEA352ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69CAD416E8D211DE81E7C00C8D1506C3");
             }
             // parser/TCS.g:675:64: ( ( (temp= identifierOrKeyword ) ) | ( RARROW (temp= identifierOrKeyword )? ) )
             int alt69=2;
@@ -8010,7 +8010,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:675:82: (temp= identifierOrKeyword )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F8F5502E89511DEA251ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69C332F1E8D211DECFA6C00C8D1506C3");
                     }
                     // parser/TCS.g:675:141: (temp= identifierOrKeyword )
                     // parser/TCS.g:675:143: temp= identifierOrKeyword
@@ -8049,14 +8049,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:675:3504: RARROW (temp= identifierOrKeyword )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F90DBA1E89511DECDDCECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69CAD411E8D211DEB031C00C8D1506C3");
                     }
                     match(input,RARROW,FOLLOW_RARROW_in_tcs_propertyreference3659); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F90DBA4E89511DE8AD6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69CAD414E8D211DECE6DC00C8D1506C3");
                     }
                     // parser/TCS.g:675:3646: (temp= identifierOrKeyword )?
                     int alt68=2;
@@ -8144,7 +8144,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:690:4: (temp= tcs_propertyreference ) ( ( LCURLY (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F90DBABE89511DE96F8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69CDE151E8D211DEAF70C00C8D1506C3");
             }
             // parser/TCS.g:690:63: (temp= tcs_propertyreference )
             // parser/TCS.g:690:65: temp= tcs_propertyreference
@@ -8165,7 +8165,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F93E8E0E89511DEAC05ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69D27532E8D211DEBD4EC00C8D1506C3");
             }
             // parser/TCS.g:690:215: ( ( LCURLY (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )? RCURLY ) | )
             int alt72=2;
@@ -8195,20 +8195,20 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:690:233: LCURLY (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F90DBAFE89511DEA8F6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69CF67F3E8D211DE80A0C00C8D1506C3");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_tcs_property3735); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F926242E89511DEBA2FECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69CF67F8E8D211DEB461C00C8D1506C3");
                     }
                     // parser/TCS.g:690:375: (temp= tcs_propertyarg ( ( COMA ) temp= tcs_propertyarg )* )?
                     int alt71=2;
                     int LA71_0 = input.LA(1);
 
-                    if ( ((LA71_0>=50 && LA71_0<=51)||LA71_0==57||(LA71_0>=70 && LA71_0<=71)||LA71_0==80||LA71_0==82||LA71_0==91||LA71_0==96||LA71_0==104||LA71_0==107||LA71_0==109||(LA71_0>=122 && LA71_0<=123)||LA71_0==128) ) {
+                    if ( ((LA71_0>=49 && LA71_0<=50)||LA71_0==67||LA71_0==87||LA71_0==89||LA71_0==93||LA71_0==95||(LA71_0>=100 && LA71_0<=101)||LA71_0==109||LA71_0==113||LA71_0==116||(LA71_0>=120 && LA71_0<=121)||LA71_0==129) ) {
                         alt71=1;
                     }
                     switch (alt71) {
@@ -8246,7 +8246,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // parser/TCS.g:690:459: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0DCF6CD8F90DBB1E89511DEBA42ECDF8D1506C3");
+                            	      _beforeSeqEl("E0DCF6CD69CF67F5E8D211DEB474C00C8D1506C3");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_tcs_property3752); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
@@ -8286,7 +8286,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F926243E89511DEACBBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69D27530E8D211DEC1C8C00C8D1506C3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_tcs_property3772); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -8320,7 +8320,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F956F82E89511DECE31ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69D27535E8D211DE9C2EC00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -8374,14 +8374,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:705:4: LT (temp= identifier ) GT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F622E89511DE9CA4ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69D70910E8D211DEAB8BC00C8D1506C3");
             }
             match(input,LT,FOLLOW_LT_in_tcs_customseparator3830); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F624E89511DEA577ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69D70912E8D211DE80D1C00C8D1506C3");
             }
             // parser/TCS.g:705:142: (temp= identifier )
             // parser/TCS.g:705:144: temp= identifier
@@ -8402,14 +8402,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F625E89511DEBA12ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69D70913E8D211DEA2ADC00C8D1506C3");
             }
             match(input,GT,FOLLOW_GT_in_tcs_customseparator3845); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F628E89511DEA5EEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69D70916E8D211DEC220C00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -8463,14 +8463,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:719:4: LSQUARE (temp= tcs_sequence ) RSQUARE ( ( LCURLY (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )? RCURLY ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F62CE89511DEAAB5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69DBC400E8D211DE9C04C00C8D1506C3");
             }
             match(input,LSQUARE,FOLLOW_LSQUARE_in_tcs_block3890); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F62EE89511DEB3DDECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69DBC402E8D211DEAFF8C00C8D1506C3");
             }
             // parser/TCS.g:719:147: (temp= tcs_sequence )
             // parser/TCS.g:719:149: temp= tcs_sequence
@@ -8491,14 +8491,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F96F62FE89511DE937AECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69DBC403E8D211DEC5F7C00C8D1506C3");
             }
             match(input,RSQUARE,FOLLOW_RSQUARE_in_tcs_block3905); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F987CC2E89511DE8437ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69DED140E8D211DEA51BC00C8D1506C3");
             }
             // parser/TCS.g:719:370: ( ( LCURLY (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )? RCURLY ) | )
             int alt75=2;
@@ -8528,20 +8528,20 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:719:388: LCURLY (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )? RCURLY
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F96F633E89511DEC82EECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69DBC407E8D211DECD4DC00C8D1506C3");
                     }
                     match(input,LCURLY,FOLLOW_LCURLY_in_tcs_block3916); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F96F638E89511DEC92CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69DBC40CE8D211DEB5B1C00C8D1506C3");
                     }
                     // parser/TCS.g:719:530: (temp= tcs_blockarg ( ( COMA ) temp= tcs_blockarg )* )?
                     int alt74=2;
                     int LA74_0 = input.LA(1);
 
-                    if ( ((LA74_0>=75 && LA74_0<=76)||LA74_0==89||LA74_0==94||LA74_0==133) ) {
+                    if ( (LA74_0==55||LA74_0==80||LA74_0==82||LA74_0==108||LA74_0==118) ) {
                         alt74=1;
                     }
                     switch (alt74) {
@@ -8579,7 +8579,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // parser/TCS.g:719:608: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0DCF6CD8F96F635E89511DEA310ECDF8D1506C3");
+                            	      _beforeSeqEl("E0DCF6CD69DBC409E8D211DE81EFC00C8D1506C3");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_tcs_block3933); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
@@ -8619,7 +8619,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F987CC0E89511DEAC65ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69DBC40DE8D211DEB769C00C8D1506C3");
                     }
                     match(input,RCURLY,FOLLOW_RCURLY_in_tcs_block3953); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -8653,7 +8653,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F987CC5E89511DEAE84ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69DED143E8D211DE9012C00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -8707,14 +8707,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:734:4: LPAREN (temp= tcs_expression )? QMARK (temp= tcs_sequence ) ( ( COLON (temp= tcs_sequence ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F987CC9E89511DE9592ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E1DE80E8D211DE8E5EC00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_conditionalelement4011); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F987CCBE89511DEB719ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E1DE82E8D211DE8620C00C8D1506C3");
             }
             // parser/TCS.g:734:146: (temp= tcs_expression )?
             int alt76=2;
@@ -8753,14 +8753,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F987CCCE89511DEA71BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E1DE83E8D211DE8305C00C8D1506C3");
             }
             match(input,QMARK,FOLLOW_QMARK_in_tcs_conditionalelement4028); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F987CCEE89511DEC5D0ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E1DE85E8D211DE8DDAC00C8D1506C3");
             }
             // parser/TCS.g:734:366: (temp= tcs_sequence )
             // parser/TCS.g:734:368: temp= tcs_sequence
@@ -8781,7 +8781,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9A0367E89511DE8D9BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E36521E8D211DEBC90C00C8D1506C3");
             }
             // parser/TCS.g:734:504: ( ( COLON (temp= tcs_sequence ) ) | )
             int alt77=2;
@@ -8811,14 +8811,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:734:522: COLON (temp= tcs_sequence )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9A0363E89511DECAFAECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E1DE89E8D211DE8153C00C8D1506C3");
                     }
                     match(input,COLON,FOLLOW_COLON_in_tcs_conditionalelement4049); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9A0365E89511DEC2E5ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E1DE8BE8D211DEB28BC00C8D1506C3");
                     }
                     // parser/TCS.g:734:663: (temp= tcs_sequence )
                     // parser/TCS.g:734:665: temp= tcs_sequence
@@ -8866,14 +8866,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9A0368E89511DEB0F8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E36522E8D211DE8B8DC00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_conditionalelement4077); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9A036BE89511DE83C7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E36525E8D211DEBC1CC00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -8927,14 +8927,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:749:4: DLSQUARE (temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )* )? DRSQUARE ( ( STAR ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9B8A00E89511DECAF5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E4EBC0E8D211DE85D5C00C8D1506C3");
             }
             match(input,DLSQUARE,FOLLOW_DLSQUARE_in_tcs_alternative4122); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9B8A05E89511DE8888ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E4EBC5E8D211DE8B18C00C8D1506C3");
             }
             // parser/TCS.g:749:148: (temp= tcs_sequenceinalternative ( ( PIPE ) temp= tcs_sequenceinalternative )* )?
             int alt79=2;
@@ -8985,7 +8985,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // parser/TCS.g:749:239: PIPE
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0DCF6CD8F9B8A02E89511DE8A2DECDF8D1506C3");
+                    	      _beforeSeqEl("E0DCF6CD69E4EBC2E8D211DEA809C00C8D1506C3");
                     	    }
                     	    match(input,PIPE,FOLLOW_PIPE_in_tcs_alternative4139); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -9025,14 +9025,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9B8A06E89511DEB3A2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E67260E8D211DE9F54C00C8D1506C3");
             }
             match(input,DRSQUARE,FOLLOW_DRSQUARE_in_tcs_alternative4159); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9B8A0CE89511DE8FC3ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E67266E8D211DEC94FC00C8D1506C3");
             }
             // parser/TCS.g:749:574: ( ( STAR ) | )
             int alt80=2;
@@ -9062,7 +9062,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:749:592: STAR
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9B8A0AE89511DEA1DBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E67264E8D211DEBAE0C00C8D1506C3");
                     }
                     match(input,STAR,FOLLOW_STAR_in_tcs_alternative4170); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -9102,7 +9102,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9B8A0FE89511DE919BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E67269E8D211DE8647C00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -9156,19 +9156,16 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:764:4: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | ) (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9E9740E89511DECC02ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E97FA2E8D211DE903AC00C8D1506C3");
             }
             // parser/TCS.g:764:64: ( ( 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN ) | )
             int alt81=2;
             int LA81_0 = input.LA(1);
 
-            if ( (LA81_0==80) ) {
+            if ( (LA81_0==129) ) {
                 int LA81_1 = input.LA(2);
 
-                if ( (LA81_1==EOF||(LA81_1>=NAME && LA81_1<=STRING)||LA81_1==RPAREN||(LA81_1>=LCURLY && LA81_1<=COMA)||LA81_1==LT||(LA81_1>=LSQUARE && LA81_1<=RSQUARE)||(LA81_1>=DLSQUARE && LA81_1<=DRSQUARE)||(LA81_1>=DOLLAR && LA81_1<=DLCURLY)||(LA81_1>=49 && LA81_1<=133)) ) {
-                    alt81=2;
-                }
-                else if ( (LA81_1==LPAREN) ) {
+                if ( (LA81_1==LPAREN) ) {
                     int LA81_3 = input.LA(3);
 
                     if ( (LA81_3==STRING) ) {
@@ -9185,6 +9182,9 @@ public class TCSParser extends ObservableInjectingParser {
                         throw nvae;
                     }
                 }
+                else if ( (LA81_1==EOF||(LA81_1>=NAME && LA81_1<=STRING)||LA81_1==RPAREN||(LA81_1>=LCURLY && LA81_1<=COMA)||LA81_1==LT||(LA81_1>=LSQUARE && LA81_1<=RSQUARE)||(LA81_1>=DLSQUARE && LA81_1<=DRSQUARE)||(LA81_1>=DOLLAR && LA81_1<=DLCURLY)||(LA81_1>=49 && LA81_1<=133)) ) {
+                    alt81=2;
+                }
                 else {
                     if (state.backtracking>0) {state.failed=true; return ret2;}
                     NoViableAltException nvae =
@@ -9193,7 +9193,7 @@ public class TCSParser extends ObservableInjectingParser {
                     throw nvae;
                 }
             }
-            else if ( (LA81_0==EOF||(LA81_0>=NAME && LA81_0<=STRING)||(LA81_0>=LPAREN && LA81_0<=RPAREN)||(LA81_0>=RCURLY && LA81_0<=COMA)||LA81_0==LT||(LA81_0>=LSQUARE && LA81_0<=RSQUARE)||(LA81_0>=DLSQUARE && LA81_0<=DRSQUARE)||(LA81_0>=DOLLAR && LA81_0<=DLCURLY)||(LA81_0>=49 && LA81_0<=79)||(LA81_0>=81 && LA81_0<=133)) ) {
+            else if ( (LA81_0==EOF||(LA81_0>=NAME && LA81_0<=STRING)||(LA81_0>=LPAREN && LA81_0<=RPAREN)||(LA81_0>=RCURLY && LA81_0<=COMA)||LA81_0==LT||(LA81_0>=LSQUARE && LA81_0<=RSQUARE)||(LA81_0>=DLSQUARE && LA81_0<=DRSQUARE)||(LA81_0>=DOLLAR && LA81_0<=DLCURLY)||(LA81_0>=49 && LA81_0<=128)||(LA81_0>=130 && LA81_0<=133)) ) {
                 alt81=2;
             }
             else {
@@ -9214,21 +9214,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:764:82: 'disambiguate' LPAREN (temp= stringSymbol ) RPAREN
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9D10A5E89511DE90DFECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E7F903E8D211DEBCE1C00C8D1506C3");
                     }
-                    match(input,80,FOLLOW_80_in_tcs_sequenceinalternative4235); if (state.failed) return ret2;
+                    match(input,129,FOLLOW_129_in_tcs_sequenceinalternative4235); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9D10A6E89511DE9D43ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E7F904E8D211DE9F66C00C8D1506C3");
                     }
                     match(input,LPAREN,FOLLOW_LPAREN_in_tcs_sequenceinalternative4239); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9D10A9E89511DE8426ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E7F907E8D211DE92AAC00C8D1506C3");
                     }
                     // parser/TCS.g:764:313: (temp= stringSymbol )
                     // parser/TCS.g:764:315: temp= stringSymbol
@@ -9249,7 +9249,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8F9D10AAE89511DE89DBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69E97FA0E8D211DEA120C00C8D1506C3");
                     }
                     match(input,RPAREN,FOLLOW_RPAREN_in_tcs_sequenceinalternative4254); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -9283,7 +9283,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9E9742E89511DEB007ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69E97FA4E8D211DE887BC00C8D1506C3");
             }
             // parser/TCS.g:765:76: (temp= tcs_sequenceelement (temp= tcs_sequenceelement )* )?
             int alt83=2;
@@ -9393,14 +9393,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:779:4: DOLLAR (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9E9746E89511DE9426ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EB0640E8D211DE85FBC00C8D1506C3");
             }
             match(input,DOLLAR,FOLLOW_DOLLAR_in_tcs_functioncall4332); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9E9749E89511DEBEFBECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EB0643E8D211DE8AC9C00C8D1506C3");
             }
             // parser/TCS.g:779:146: (temp= identifier )
             // parser/TCS.g:779:148: temp= identifier
@@ -9421,7 +9421,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8F9E974CE89511DE9B95ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EB0646E8D211DEC0F8C00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -9475,14 +9475,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:793:4: DLCURLY (temp= tcs_injectoraction ( ( COMA ) temp= tcs_injectoraction )* )? DRCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA01DE0E89511DECDD5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EE1380E8D211DEC163C00C8D1506C3");
             }
             match(input,DLCURLY,FOLLOW_DLCURLY_in_tcs_injectoractionsblock4387); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA01DE5E89511DE9729ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EE1385E8D211DEC63FC00C8D1506C3");
             }
             // parser/TCS.g:793:147: (temp= tcs_injectoraction ( ( COMA ) temp= tcs_injectoraction )* )?
             int alt85=2;
@@ -9526,7 +9526,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // parser/TCS.g:793:237: COMA
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0DCF6CD8FA01DE2E89511DE91DCECDF8D1506C3");
+                    	      _beforeSeqEl("E0DCF6CD69EE1382E8D211DEBE42C00C8D1506C3");
                     	    }
                     	    match(input,COMA,FOLLOW_COMA_in_tcs_injectoractionsblock4404); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -9566,14 +9566,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA01DE6E89511DE9093ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EE1386E8D211DE8ACDC00C8D1506C3");
             }
             match(input,DRCURLY,FOLLOW_DRCURLY_in_tcs_injectoractionsblock4424); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA01DE9E89511DECB77ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69EE1389E8D211DE8698C00C8D1506C3");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "parentTemplate", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -9748,7 +9748,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:827:4: (temp= tcs_propertyreference ) ( ( LARROW ) | ( EQ ) ) (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA1A481E89511DE803DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F42E01E8D211DEC9B8C00C8D1506C3");
             }
             // parser/TCS.g:827:63: (temp= tcs_propertyreference )
             // parser/TCS.g:827:65: temp= tcs_propertyreference
@@ -9769,7 +9769,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA1A489E89511DE81B6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F42E09E8D211DEC792C00C8D1506C3");
             }
             // parser/TCS.g:827:215: ( ( LARROW ) | ( EQ ) )
             int alt87=2;
@@ -9799,7 +9799,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:827:233: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA1A485E89511DE8EA9ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69F42E05E8D211DE9E40C00C8D1506C3");
                     }
                     match(input,LARROW,FOLLOW_LARROW_in_tcs_primitivepropertyinit4555); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -9827,7 +9827,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:827:407: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA1A487E89511DEC285ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69F42E07E8D211DE9EBBC00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_primitivepropertyinit4570); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -9852,7 +9852,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA1A48BE89511DEA977ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F42E0BE8D211DE84ABC00C8D1506C3");
             }
             // parser/TCS.g:828:76: (temp= identifier )
             // parser/TCS.g:828:78: temp= identifier
@@ -9918,7 +9918,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:842:4: (temp= tcs_propertyreference ) ( ( LARROW ) | ( EQ ) ) 'lookIn' LPAREN (temp= stringSymbol ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA1A490E89511DE889EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F73B41E8D211DE94E6C00C8D1506C3");
             }
             // parser/TCS.g:842:63: (temp= tcs_propertyreference )
             // parser/TCS.g:842:65: temp= tcs_propertyreference
@@ -9939,7 +9939,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA32B27E89511DEB627ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F73B49E8D211DEA958C00C8D1506C3");
             }
             // parser/TCS.g:842:215: ( ( LARROW ) | ( EQ ) )
             int alt88=2;
@@ -9969,7 +9969,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:842:233: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA32B23E89511DE91CEECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69F73B45E8D211DEC370C00C8D1506C3");
                     }
                     match(input,LARROW,FOLLOW_LARROW_in_tcs_lookuppropertyinit4645); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -9997,7 +9997,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:842:407: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA32B25E89511DE99D6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69F73B47E8D211DEA074C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_lookuppropertyinit4660); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -10022,21 +10022,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA32B28E89511DE9423ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F73B4AE8D211DEAD8AC00C8D1506C3");
             }
-            match(input,109,FOLLOW_109_in_tcs_lookuppropertyinit4671); if (state.failed) return ret2;
+            match(input,116,FOLLOW_116_in_tcs_lookuppropertyinit4671); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA32B29E89511DE9396ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F73B4BE8D211DEB3F6C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_lookuppropertyinit4675); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA32B2CE89511DE832DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F73B4EE8D211DE9F40C00C8D1506C3");
             }
             // parser/TCS.g:843:242: (temp= stringSymbol )
             // parser/TCS.g:843:244: temp= stringSymbol
@@ -10057,7 +10057,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA4B1C0E89511DEBA25ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69F73B4FE8D211DECEDEC00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_lookuppropertyinit4690); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -10109,7 +10109,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:857:4: (temp= tcs_propertyreference ) ( ( LARROW ) | ( EQ ) ) 'foreach' LPAREN (temp= stringSymbol ) ( ( COMA 'mode' EQ (temp= stringSymbol ) ) | ) ( ( COMA (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )? ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA4B1C5E89511DEBDA8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69FA4881E8D211DE8CF9C00C8D1506C3");
             }
             // parser/TCS.g:857:63: (temp= tcs_propertyreference )
             // parser/TCS.g:857:65: temp= tcs_propertyreference
@@ -10130,7 +10130,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA4B1CDE89511DEBEF8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69FA4889E8D211DE9994C00C8D1506C3");
             }
             // parser/TCS.g:857:215: ( ( LARROW ) | ( EQ ) )
             int alt89=2;
@@ -10160,7 +10160,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:857:233: LARROW
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA4B1C9E89511DEBD40ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FA4885E8D211DE991DC00C8D1506C3");
                     }
                     match(input,LARROW,FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4748); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -10188,7 +10188,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:857:407: EQ
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA4B1CBE89511DEAD66ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FA4887E8D211DEC701C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4763); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -10213,21 +10213,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA4B1CEE89511DE9530ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69FA488AE8D211DE8915C00C8D1506C3");
             }
-            match(input,118,FOLLOW_118_in_tcs_foreachpredicatepropertyinit4774); if (state.failed) return ret2;
+            match(input,72,FOLLOW_72_in_tcs_foreachpredicatepropertyinit4774); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA63860E89511DEC10DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69FA488BE8D211DEA8CFC00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_foreachpredicatepropertyinit4778); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA63863E89511DEB886ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69FA488EE8D211DEA971C00C8D1506C3");
             }
             // parser/TCS.g:858:243: (temp= stringSymbol )
             // parser/TCS.g:858:245: temp= stringSymbol
@@ -10248,7 +10248,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA6386EE89511DE9FBDECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD69FBCF23E8D211DECACEC00C8D1506C3");
             }
             // parser/TCS.g:858:374: ( ( COMA 'mode' EQ (temp= stringSymbol ) ) | )
             int alt90=2;
@@ -10257,7 +10257,7 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA90_0==COMA) ) {
                 int LA90_1 = input.LA(2);
 
-                if ( (LA90_1==82) ) {
+                if ( (LA90_1==95) ) {
                     int LA90_3 = input.LA(3);
 
                     if ( (LA90_3==EQ) ) {
@@ -10310,7 +10310,7 @@ public class TCSParser extends ObservableInjectingParser {
                         throw nvae;
                     }
                 }
-                else if ( (LA90_1==RPAREN||LA90_1==123||LA90_1==131) ) {
+                else if ( (LA90_1==RPAREN||LA90_1==94||LA90_1==113) ) {
                     alt90=2;
                 }
                 else {
@@ -10342,28 +10342,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:858:392: COMA 'mode' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA63867E89511DE9DF2ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FA4892E8D211DEC6FBC00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4799); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA63868E89511DE9AA1ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FA4893E8D211DE8B93C00C8D1506C3");
                     }
-                    match(input,82,FOLLOW_82_in_tcs_foreachpredicatepropertyinit4803); if (state.failed) return ret2;
+                    match(input,95,FOLLOW_95_in_tcs_foreachpredicatepropertyinit4803); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA63869E89511DEBD72ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FA4894E8D211DEBEDAC00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4807); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA6386CE89511DE957EECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FBCF21E8D211DE97BBC00C8D1506C3");
                     }
                     // parser/TCS.g:858:692: (temp= stringSymbol )
                     // parser/TCS.g:858:694: temp= stringSymbol
@@ -10411,7 +10411,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA7BF0AE89511DE9AA9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A006300E8D211DEBABDC00C8D1506C3");
             }
             // parser/TCS.g:859:77: ( ( COMA (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )? ) | )
             int alt93=2;
@@ -10441,20 +10441,20 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:859:95: COMA (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA7BF03E89511DEB36BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FBCF27E8D211DEABE4C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4841); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA7BF08E89511DEC812ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD69FBCF2CE8D211DE94E0C00C8D1506C3");
                     }
                     // parser/TCS.g:859:235: (temp= tcs_predicatesemantic ( ( COMA ) temp= tcs_predicatesemantic )* )?
                     int alt92=2;
                     int LA92_0 = input.LA(1);
 
-                    if ( (LA92_0==82||LA92_0==123||LA92_0==131) ) {
+                    if ( ((LA92_0>=94 && LA92_0<=95)||LA92_0==113) ) {
                         alt92=1;
                     }
                     switch (alt92) {
@@ -10492,7 +10492,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // parser/TCS.g:859:330: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0DCF6CD8FA7BF05E89511DEA064ECDF8D1506C3");
+                            	      _beforeSeqEl("E0DCF6CD69FBCF29E8D211DE8545C00C8D1506C3");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4858); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
@@ -10559,7 +10559,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FA7BF0BE89511DEC80EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A006301E8D211DEBD3EC00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_foreachpredicatepropertyinit4891); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -10611,16 +10611,16 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:874:4: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | ) ( ( 'mode' EQ (temp= stringSymbol ) COMA ) | ) 'as' EQ (temp= identifierOrKeyword )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FAACC40E89511DEBFDFECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A037049E8D211DEA8CDC00C8D1506C3");
             }
             // parser/TCS.g:874:64: ( ( 'when' EQ (temp= stringSymbol ) COMA ) | )
             int alt94=2;
             int LA94_0 = input.LA(1);
 
-            if ( (LA94_0==131) ) {
+            if ( (LA94_0==94) ) {
                 alt94=1;
             }
-            else if ( (LA94_0==82||LA94_0==123) ) {
+            else if ( (LA94_0==95||LA94_0==113) ) {
                 alt94=2;
             }
             else {
@@ -10641,21 +10641,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:874:82: 'when' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA7BF12E89511DEC2A8ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A037042E8D211DEA98FC00C8D1506C3");
                     }
-                    match(input,131,FOLLOW_131_in_tcs_predicatesemantic4938); if (state.failed) return ret2;
+                    match(input,94,FOLLOW_94_in_tcs_predicatesemantic4938); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA7BF13E89511DEB0EAECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A037043E8D211DEC80EC00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic4942); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA7BF16E89511DEA2BCECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A037046E8D211DECAC4C00C8D1506C3");
                     }
                     // parser/TCS.g:874:301: (temp= stringSymbol )
                     // parser/TCS.g:874:303: temp= stringSymbol
@@ -10676,7 +10676,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FA945A0E89511DE901AECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A037047E8D211DE906EC00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_predicatesemantic4957); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -10710,16 +10710,16 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FAC52EAE89511DEA1BBECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A037054E8D211DEBCE2C00C8D1506C3");
             }
             // parser/TCS.g:875:77: ( ( 'mode' EQ (temp= stringSymbol ) COMA ) | )
             int alt95=2;
             int LA95_0 = input.LA(1);
 
-            if ( (LA95_0==82) ) {
+            if ( (LA95_0==95) ) {
                 alt95=1;
             }
-            else if ( (LA95_0==123) ) {
+            else if ( (LA95_0==113) ) {
                 alt95=2;
             }
             else {
@@ -10740,21 +10740,21 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:875:95: 'mode' EQ (temp= stringSymbol ) COMA
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FAC52E3E89511DE8D1EECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A03704DE8D211DEA3FDC00C8D1506C3");
                     }
-                    match(input,82,FOLLOW_82_in_tcs_predicatesemantic4980); if (state.failed) return ret2;
+                    match(input,95,FOLLOW_95_in_tcs_predicatesemantic4980); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FAC52E4E89511DEC4B3ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A03704EE8D211DE94C6C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic4984); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FAC52E7E89511DE9990ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A037051E8D211DE92A8C00C8D1506C3");
                     }
                     // parser/TCS.g:875:314: (temp= stringSymbol )
                     // parser/TCS.g:875:316: temp= stringSymbol
@@ -10775,7 +10775,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FAC52E8E89511DEA8D6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A037052E8D211DE81D5C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_predicatesemantic4999); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -10809,21 +10809,21 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FADD980E89511DE9674ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A037055E8D211DECCEAC00C8D1506C3");
             }
-            match(input,123,FOLLOW_123_in_tcs_predicatesemantic5016); if (state.failed) return ret2;
+            match(input,113,FOLLOW_113_in_tcs_predicatesemantic5016); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FADD981E89511DEA471ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A04F6E0E8D211DEBE47C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_predicatesemantic5020); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FADD986E89511DEA3C7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A04F6E5E8D211DECBD1C00C8D1506C3");
             }
             // parser/TCS.g:876:234: (temp= identifierOrKeyword )?
             int alt96=2;
@@ -10843,7 +10843,7 @@ public class TCSParser extends ObservableInjectingParser {
                     state._fsp--;
                     if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference = ?"+"                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()"+"                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
+                      setOclRef(ret, "as", null, temp, "OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates->select(t | "+"                                                                        if(t.oclIsTypeOf(TCS::ClassTemplate)) then "+"                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ?"+"                                                                                and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()"+"                                                                                        ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)"+"                                                                                        ->includes(self.foreachParent.propertyReference.strucfeature.type)"+"                                                                                and ("+"                                                                                        if(not self.mode.oclIsUndefined()) then"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.mode"+"                                                                                        else"+"                                                                                                t.oclAsType(TCS::ClassTemplate).mode = self.foreachParent.mode"+"                                                                                        endif"+"                                                                                )                                                                       "+"                                                                        else"+"                                                                                if(t.oclIsTypeOf(TCS::PrimitiveTemplate)) then"+"                                                                                        t.oclAsType(TCS::PrimitiveTemplate).templateName = ?"+"                                                                                else"+"                                                                                        false"+"                                                                                endif"+"                                                                        endif)"+"                                                                ");
                     }
 
                     }
@@ -10894,57 +10894,57 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:886:3: (ret= tcs_referstoparg | ret= tcs_lookinparg | ret= tcs_createinparg | ret= tcs_asparg | ret= tcs_separatorparg | ret= tcs_disambiguateparg | ret= tcs_autocreateparg | ret= tcs_importcontextparg | ret= tcs_partialparg | ret= tcs_forcedlowerparg | ret= tcs_forcedupperparg | ret= tcs_createasparg | ret= tcs_queryparg | ret= tcs_filterparg | ret= tcs_modeparg )
             int alt97=15;
             switch ( input.LA(1) ) {
-            case 57:
+            case 121:
                 {
                 alt97=1;
                 }
                 break;
-            case 109:
+            case 116:
                 {
                 alt97=2;
                 }
                 break;
-            case 107:
+            case 101:
                 {
                 alt97=3;
                 }
                 break;
-            case 123:
+            case 113:
                 {
                 alt97=4;
                 }
                 break;
-            case 128:
+            case 49:
                 {
                 alt97=5;
                 }
                 break;
-            case 80:
+            case 129:
                 {
                 alt97=6;
                 }
                 break;
-            case 122:
+            case 120:
                 {
                 alt97=7;
                 }
                 break;
-            case 71:
+            case 87:
                 {
                 alt97=8;
                 }
                 break;
-            case 70:
+            case 109:
                 {
                 alt97=9;
                 }
                 break;
-            case 51:
+            case 89:
                 {
                 alt97=10;
                 }
                 break;
-            case 104:
+            case 67:
                 {
                 alt97=11;
                 }
@@ -10954,17 +10954,17 @@ public class TCSParser extends ObservableInjectingParser {
                 alt97=12;
                 }
                 break;
-            case 96:
+            case 93:
                 {
                 alt97=13;
                 }
                 break;
-            case 91:
+            case 100:
                 {
                 alt97=14;
                 }
                 break;
-            case 82:
+            case 95:
                 {
                 alt97=15;
                 }
@@ -11203,21 +11203,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:913:4: 'refersTo' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB0E6C1E89511DEC71DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A080422E8D211DEC915C00C8D1506C3");
             }
-            match(input,57,FOLLOW_57_in_tcs_referstoparg5212); if (state.failed) return ret2;
+            match(input,121,FOLLOW_121_in_tcs_referstoparg5212); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB0E6C2E89511DE8608ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A080423E8D211DEBE91C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_referstoparg5216); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB0E6C5E89511DE9D93ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A080426E8D211DE9576C00C8D1506C3");
             }
             // parser/TCS.g:913:227: (temp= identifierOrKeyword )
             // parser/TCS.g:913:229: temp= identifierOrKeyword
@@ -11283,21 +11283,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:927:4: 'lookIn' EQ ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB0E6C9E89511DE9AF9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A0B1160E8D211DE8E36C00C8D1506C3");
             }
-            match(input,109,FOLLOW_109_in_tcs_lookinparg5267); if (state.failed) return ret2;
+            match(input,116,FOLLOW_116_in_tcs_lookinparg5267); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB0E6CAE89511DEB109ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A0B1161E8D211DEAFEEC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_lookinparg5271); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB57AABE89511DEA271ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A38D828E8D211DE8D47C00C8D1506C3");
             }
             // parser/TCS.g:927:226: ( ( SHARP 'all' ) | ( (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* ) ) )
             int alt99=2;
@@ -11327,16 +11327,16 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:927:244: SHARP 'all'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FB57AA1E89511DE8ABBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A375181E8D211DE86DCC00C8D1506C3");
                     }
                     match(input,SHARP,FOLLOW_SHARP_in_tcs_lookinparg5282); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FB57AA2E89511DE9D25ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A375182E8D211DEA7F1C00C8D1506C3");
                     }
-                    match(input,77,FOLLOW_77_in_tcs_lookinparg5286); if (state.failed) return ret2;
+                    match(input,105,FOLLOW_105_in_tcs_lookinparg5286); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11362,7 +11362,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:927:496: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FB57AA9E89511DEAE1AECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A38D826E8D211DEA0F5C00C8D1506C3");
                     }
                     // parser/TCS.g:927:555: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
                     // parser/TCS.g:927:557: temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )*
@@ -11398,7 +11398,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // parser/TCS.g:927:643: POINT
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0DCF6CD8FB57AA6E89511DEBFFCECDF8D1506C3");
+                    	      _beforeSeqEl("E0DCF6CD6A38D823E8D211DE8654C00C8D1506C3");
                     	    }
                     	    match(input,POINT,FOLLOW_POINT_in_tcs_lookinparg5312); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -11497,21 +11497,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:942:4: 'createIn' EQ (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB70140E89511DE8C38ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A3A5EC0E8D211DEBA8BC00C8D1506C3");
             }
-            match(input,107,FOLLOW_107_in_tcs_createinparg5373); if (state.failed) return ret2;
+            match(input,101,FOLLOW_101_in_tcs_createinparg5373); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB70141E89511DEA7B7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A3A5EC1E8D211DEA2C3C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_createinparg5377); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB70147E89511DEBF64ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A3A5EC7E8D211DECC80C00C8D1506C3");
             }
             // parser/TCS.g:942:227: (temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )* )
             // parser/TCS.g:942:229: temp= identifierOrKeyword ( ( POINT ) temp= identifierOrKeyword )*
@@ -11547,7 +11547,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    // parser/TCS.g:942:315: POINT
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0DCF6CD8FB70144E89511DEA8E3ECDF8D1506C3");
+            	      _beforeSeqEl("E0DCF6CD6A3A5EC4E8D211DE8236C00C8D1506C3");
             	    }
             	    match(input,POINT,FOLLOW_POINT_in_tcs_createinparg5394); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
@@ -11629,21 +11629,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:956:4: 'as' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB7014BE89511DEA4A1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A3D6C00E8D211DEB6DCC00C8D1506C3");
             }
-            match(input,123,FOLLOW_123_in_tcs_asparg5448); if (state.failed) return ret2;
+            match(input,113,FOLLOW_113_in_tcs_asparg5448); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB7014CE89511DEB8A2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A3D6C01E8D211DECA0FC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_asparg5452); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB70151E89511DE986BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A3D6C06E8D211DEB6F0C00C8D1506C3");
             }
             // parser/TCS.g:956:221: (temp= identifierOrKeyword )
             // parser/TCS.g:956:223: temp= identifierOrKeyword
@@ -11709,21 +11709,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:970:4: 'separator' EQ (temp= tcs_sequence )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB887E3E89511DEC191ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A407940E8D211DEA286C00C8D1506C3");
             }
-            match(input,128,FOLLOW_128_in_tcs_separatorparg5503); if (state.failed) return ret2;
+            match(input,49,FOLLOW_49_in_tcs_separatorparg5503); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB887E4E89511DE8027ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A407941E8D211DE8484C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_separatorparg5507); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB887E6E89511DE8E7CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A407943E8D211DE90C1C00C8D1506C3");
             }
             // parser/TCS.g:970:228: (temp= tcs_sequence )
             // parser/TCS.g:970:230: temp= tcs_sequence
@@ -11789,21 +11789,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:984:4: 'disambiguate' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB887EAE89511DEC4A7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A4226F0E8D211DEC3BBC00C8D1506C3");
             }
-            match(input,80,FOLLOW_80_in_tcs_disambiguateparg5558); if (state.failed) return ret2;
+            match(input,129,FOLLOW_129_in_tcs_disambiguateparg5558); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB887EBE89511DE8DF8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A4226F1E8D211DE9722C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_disambiguateparg5562); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FB887EEE89511DE9F77ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A4226F4E8D211DE96BDC00C8D1506C3");
             }
             // parser/TCS.g:984:231: (temp= stringSymbol )
             // parser/TCS.g:984:233: temp= stringSymbol
@@ -11869,21 +11869,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:998:4: 'autoCreate' EQ (temp= tcs_autocreatekind )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FBA0E80E89511DEA64FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A43AD90E8D211DE87FAC00C8D1506C3");
             }
-            match(input,122,FOLLOW_122_in_tcs_autocreateparg5613); if (state.failed) return ret2;
+            match(input,120,FOLLOW_120_in_tcs_autocreateparg5613); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FBA0E81E89511DEB047ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A43AD91E8D211DEAB75C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_autocreateparg5617); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FBA0E83E89511DEAFFAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A43AD93E8D211DEA190C00C8D1506C3");
             }
             // parser/TCS.g:998:229: (temp= tcs_autocreatekind )
             // parser/TCS.g:998:231: temp= tcs_autocreatekind
@@ -11941,17 +11941,17 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1008:3: ( ( 'always' ) | ( 'ifmissing' ) | ( 'never' ) )
             int alt101=3;
             switch ( input.LA(1) ) {
-            case 105:
+            case 127:
                 {
                 alt101=1;
                 }
                 break;
-            case 54:
+            case 70:
                 {
                 alt101=2;
                 }
                 break;
-            case 106:
+            case 76:
                 {
                 alt101=3;
                 }
@@ -11972,9 +11972,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1008:5: 'always'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FBB9520E89511DEC828ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A547670E8D211DECBF3C00C8D1506C3");
                     }
-                    match(input,105,FOLLOW_105_in_tcs_autocreatekind5669); if (state.failed) return ret2;
+                    match(input,127,FOLLOW_127_in_tcs_autocreatekind5669); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -11994,9 +11994,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1009:5: 'ifmissing'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FC1AFA0E89511DEC4A6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A684C91E8D211DECCC1C00C8D1506C3");
                     }
-                    match(input,54,FOLLOW_54_in_tcs_autocreatekind5679); if (state.failed) return ret2;
+                    match(input,70,FOLLOW_70_in_tcs_autocreatekind5679); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12016,9 +12016,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1010:5: 'never'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FC1AFA3E89511DE8B18ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A684C94E8D211DEBA77C00C8D1506C3");
                     }
-                    match(input,106,FOLLOW_106_in_tcs_autocreatekind5689); if (state.failed) return ret2;
+                    match(input,76,FOLLOW_76_in_tcs_autocreatekind5689); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -12073,9 +12073,9 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1023:4: 'importContext'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC4BCE0E89511DE8C30ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A791570E8D211DEA7D4C00C8D1506C3");
             }
-            match(input,71,FOLLOW_71_in_tcs_importcontextparg5720); if (state.failed) return ret2;
+            match(input,87,FOLLOW_87_in_tcs_importcontextparg5720); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -12122,9 +12122,9 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1037:4: 'partial'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC4BCE4E89511DECE56ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7A9C10E8D211DEC64BC00C8D1506C3");
             }
-            match(input,70,FOLLOW_70_in_tcs_partialparg5760); if (state.failed) return ret2;
+            match(input,109,FOLLOW_109_in_tcs_partialparg5760); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -12174,21 +12174,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1051:4: 'forcedLower' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC61C72E89511DEBDAEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7C22B2E8D211DEC412C00C8D1506C3");
             }
-            match(input,51,FOLLOW_51_in_tcs_forcedlowerparg5800); if (state.failed) return ret2;
+            match(input,89,FOLLOW_89_in_tcs_forcedlowerparg5800); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC61C73E89511DE8779ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7C22B3E8D211DEC795C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_forcedlowerparg5804); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC61C75E89511DEC731ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7DA951E8D211DE872FC00C8D1506C3");
             }
             // parser/TCS.g:1051:230: (temp= integerSymbol )
             // parser/TCS.g:1051:232: temp= integerSymbol
@@ -12254,21 +12254,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1065:4: 'forcedUpper' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC61C79E89511DEB4F5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7F2FF2E8D211DE8BD8C00C8D1506C3");
             }
-            match(input,104,FOLLOW_104_in_tcs_forcedupperparg5855); if (state.failed) return ret2;
+            match(input,67,FOLLOW_67_in_tcs_forcedupperparg5855); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC61C7AE89511DE86AEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7F2FF3E8D211DEB44FC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_forcedupperparg5859); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC61C7CE89511DEA46AECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A7F2FF5E8D211DE93FAC00C8D1506C3");
             }
             // parser/TCS.g:1065:230: (temp= integerSymbol )
             // parser/TCS.g:1065:232: temp= integerSymbol
@@ -12334,21 +12334,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1079:4: 'createAs' EQ (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A310E89511DEC03FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A80B690E8D211DE9486C00C8D1506C3");
             }
             match(input,50,FOLLOW_50_in_tcs_createasparg5910); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A311E89511DEA33BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A80B691E8D211DE925CC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_createasparg5914); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A317E89511DE86E3ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A83C3D0E8D211DEBF18C00C8D1506C3");
             }
             // parser/TCS.g:1079:227: (temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )* )
             // parser/TCS.g:1079:229: temp= identifierOrKeyword ( ( DLCOLON ) temp= identifierOrKeyword )*
@@ -12384,7 +12384,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    // parser/TCS.g:1079:307: DLCOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0DCF6CD8FC7A314E89511DEBEBDECDF8D1506C3");
+            	      _beforeSeqEl("E0DCF6CD6A823D31E8D211DEC4D6C00C8D1506C3");
             	    }
             	    match(input,DLCOLON,FOLLOW_DLCOLON_in_tcs_createasparg5931); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
@@ -12466,21 +12466,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1093:4: 'query' EQ (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A31BE89511DE82B6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A854A70E8D211DECDB9C00C8D1506C3");
             }
-            match(input,96,FOLLOW_96_in_tcs_queryparg5985); if (state.failed) return ret2;
+            match(input,93,FOLLOW_93_in_tcs_queryparg5985); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A31CE89511DEA87DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A854A71E8D211DEC5CDC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_queryparg5989); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A31FE89511DE8660ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A854A74E8D211DEAE1BC00C8D1506C3");
             }
             // parser/TCS.g:1093:224: (temp= stringSymbol )
             // parser/TCS.g:1093:226: temp= stringSymbol
@@ -12546,21 +12546,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1107:4: 'filter' EQ (temp= stringSymbol ) ( ( COMA 'invert' EQ (temp= stringSymbol ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A323E89511DEB4A5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A86D110E8D211DE8912C00C8D1506C3");
             }
-            match(input,91,FOLLOW_91_in_tcs_filterparg6040); if (state.failed) return ret2;
+            match(input,100,FOLLOW_100_in_tcs_filterparg6040); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A324E89511DE82E2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A86D111E8D211DE9A60C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_filterparg6044); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC7A327E89511DEC6DBECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A86D114E8D211DE94DAC00C8D1506C3");
             }
             // parser/TCS.g:1107:225: (temp= stringSymbol )
             // parser/TCS.g:1107:227: temp= stringSymbol
@@ -12581,7 +12581,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929B0E89511DEB2ACECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8857B1E8D211DE8C6EC00C8D1506C3");
             }
             // parser/TCS.g:1107:357: ( ( COMA 'invert' EQ (temp= stringSymbol ) ) | )
             int alt103=2;
@@ -12590,10 +12590,10 @@ public class TCSParser extends ObservableInjectingParser {
             if ( (LA103_0==COMA) ) {
                 int LA103_1 = input.LA(2);
 
-                if ( ((LA103_1>=50 && LA103_1<=51)||LA103_1==57||(LA103_1>=70 && LA103_1<=71)||LA103_1==80||LA103_1==82||LA103_1==91||LA103_1==96||LA103_1==104||LA103_1==107||LA103_1==109||(LA103_1>=122 && LA103_1<=123)||LA103_1==128) ) {
+                if ( ((LA103_1>=49 && LA103_1<=50)||LA103_1==67||LA103_1==87||LA103_1==89||LA103_1==93||LA103_1==95||(LA103_1>=100 && LA103_1<=101)||LA103_1==109||LA103_1==113||LA103_1==116||(LA103_1>=120 && LA103_1<=121)||LA103_1==129) ) {
                     alt103=2;
                 }
-                else if ( (LA103_1==121) ) {
+                else if ( (LA103_1==91) ) {
                     alt103=1;
                 }
                 else {
@@ -12625,28 +12625,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1107:375: COMA 'invert' EQ (temp= stringSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FC7A32BE89511DEBF4DECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A86D118E8D211DEA8F0C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_filterparg6065); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FC7A32CE89511DEB2E6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A86D119E8D211DEC90CC00C8D1506C3");
                     }
-                    match(input,121,FOLLOW_121_in_tcs_filterparg6069); if (state.failed) return ret2;
+                    match(input,91,FOLLOW_91_in_tcs_filterparg6069); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FC7A32DE89511DEB34BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A86D11AE8D211DEB1E2C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_filterparg6073); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FC7A330E89511DE80E1ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A86D11DE8D211DEC388C00C8D1506C3");
                     }
                     // parser/TCS.g:1107:677: (temp= stringSymbol )
                     // parser/TCS.g:1107:679: temp= stringSymbol
@@ -12739,21 +12739,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1122:4: 'mode' EQ (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929B4E89511DE906BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A89DE50E8D211DE8DD4C00C8D1506C3");
             }
-            match(input,82,FOLLOW_82_in_tcs_modeparg6137); if (state.failed) return ret2;
+            match(input,95,FOLLOW_95_in_tcs_modeparg6137); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929B5E89511DEC370ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A89DE51E8D211DE89A8C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_modeparg6141); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929B8E89511DE9E44ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A89DE54E8D211DEC7B2C00C8D1506C3");
             }
             // parser/TCS.g:1122:223: (temp= identifierOrKeyword )
             // parser/TCS.g:1122:225: temp= identifierOrKeyword
@@ -12813,27 +12813,27 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1132:3: (ret= tcs_nbnlbarg | ret= tcs_indentincrbarg | ret= tcs_startnlbarg | ret= tcs_startnbnlbarg | ret= tcs_endnlbarg )
             int alt104=5;
             switch ( input.LA(1) ) {
-            case 76:
+            case 118:
                 {
                 alt104=1;
                 }
                 break;
-            case 133:
+            case 55:
                 {
                 alt104=2;
                 }
                 break;
-            case 75:
+            case 80:
                 {
                 alt104=3;
                 }
                 break;
-            case 94:
+            case 108:
                 {
                 alt104=4;
                 }
                 break;
-            case 89:
+            case 82:
                 {
                 alt104=5;
                 }
@@ -12952,21 +12952,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1149:4: 'nbNL' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929BEE89511DEA23FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8CEB91E8D211DEAB65C00C8D1506C3");
             }
-            match(input,76,FOLLOW_76_in_tcs_nbnlbarg6251); if (state.failed) return ret2;
+            match(input,118,FOLLOW_118_in_tcs_nbnlbarg6251); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929BFE89511DEAD70ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8CEB92E8D211DE8B08C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_nbnlbarg6255); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929C1E89511DEA792ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8CEB94E8D211DEC923C00C8D1506C3");
             }
             // parser/TCS.g:1149:223: (temp= integerSymbol )
             // parser/TCS.g:1149:225: temp= integerSymbol
@@ -13032,21 +13032,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1163:4: 'indentIncr' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FC929C5E89511DE83E8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8FF8D0E8D211DE9D9DC00C8D1506C3");
             }
-            match(input,133,FOLLOW_133_in_tcs_indentincrbarg6306); if (state.failed) return ret2;
+            match(input,55,FOLLOW_55_in_tcs_indentincrbarg6306); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCAB050E89511DEA321ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8FF8D1E8D211DEBC99C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_indentincrbarg6310); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCAB052E89511DEBDC6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A8FF8D3E8D211DE98B1C00C8D1506C3");
             }
             // parser/TCS.g:1163:229: (temp= integerSymbol )
             // parser/TCS.g:1163:231: temp= integerSymbol
@@ -13109,30 +13109,30 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1177:4: 'startNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCAB056E89511DEC365ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A917F70E8D211DEA8C5C00C8D1506C3");
             }
-            match(input,75,FOLLOW_75_in_tcs_startnlbarg6361); if (state.failed) return ret2;
+            match(input,80,FOLLOW_80_in_tcs_startnlbarg6361); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCAB057E89511DEB244ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A917F71E8D211DECC5BC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_startnlbarg6365); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCC36F4E89511DEA655ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A930614E8D211DE8EF6C00C8D1506C3");
             }
             // parser/TCS.g:1177:227: ( ( 'true' ) | ( 'false' ) )
             int alt105=2;
             int LA105_0 = input.LA(1);
 
-            if ( (LA105_0==130) ) {
+            if ( (LA105_0==90) ) {
                 alt105=1;
             }
-            else if ( (LA105_0==132) ) {
+            else if ( (LA105_0==54) ) {
                 alt105=2;
             }
             else {
@@ -13153,9 +13153,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1177:245: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCC36F0E89511DE920DECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A930610E8D211DE8E09C00C8D1506C3");
                     }
-                    match(input,130,FOLLOW_130_in_tcs_startnlbarg6375); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_tcs_startnlbarg6375); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13181,9 +13181,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1177:413: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCC36F2E89511DEC1FBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A930612E8D211DEC86FC00C8D1506C3");
                     }
-                    match(input,132,FOLLOW_132_in_tcs_startnlbarg6388); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_tcs_startnlbarg6388); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13251,21 +13251,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1192:4: 'startNbNL' EQ (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCC36F8E89511DE856DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A961350E8D211DE95AFC00C8D1506C3");
             }
-            match(input,94,FOLLOW_94_in_tcs_startnbnlbarg6435); if (state.failed) return ret2;
+            match(input,108,FOLLOW_108_in_tcs_startnbnlbarg6435); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCC36F9E89511DE88E1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A961351E8D211DE98B5C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_startnbnlbarg6439); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCC36FBE89511DEB80CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A961353E8D211DEB68EC00C8D1506C3");
             }
             // parser/TCS.g:1192:228: (temp= integerSymbol )
             // parser/TCS.g:1192:230: temp= integerSymbol
@@ -13328,30 +13328,30 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1206:4: 'endNL' EQ ( ( 'true' ) | ( 'false' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCDBD90E89511DEBB51ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9799F0E8D211DEBA75C00C8D1506C3");
             }
-            match(input,89,FOLLOW_89_in_tcs_endnlbarg6490); if (state.failed) return ret2;
+            match(input,82,FOLLOW_82_in_tcs_endnlbarg6490); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCDBD91E89511DE85C6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9799F1E8D211DECD58C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_endnlbarg6494); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCDBD99E89511DEA145ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A992093E8D211DEC3ECC00C8D1506C3");
             }
             // parser/TCS.g:1206:225: ( ( 'true' ) | ( 'false' ) )
             int alt106=2;
             int LA106_0 = input.LA(1);
 
-            if ( (LA106_0==130) ) {
+            if ( (LA106_0==90) ) {
                 alt106=1;
             }
-            else if ( (LA106_0==132) ) {
+            else if ( (LA106_0==54) ) {
                 alt106=2;
             }
             else {
@@ -13372,9 +13372,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1206:243: 'true'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCDBD95E89511DEC66EECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9799F5E8D211DE91BBC00C8D1506C3");
                     }
-                    match(input,130,FOLLOW_130_in_tcs_endnlbarg6504); if (state.failed) return ret2;
+                    match(input,90,FOLLOW_90_in_tcs_endnlbarg6504); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13400,9 +13400,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1206:411: 'false'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCDBD97E89511DE8691ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A992091E8D211DEC174C00C8D1506C3");
                     }
-                    match(input,132,FOLLOW_132_in_tcs_endnlbarg6517); if (state.failed) return ret2;
+                    match(input,54,FOLLOW_54_in_tcs_endnlbarg6517); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13470,7 +13470,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1221:4: (temp= identifier )? EQ (temp= stringSymbol ) ( ( COLON (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )? ) | ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCDBD9EE89511DE96F1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9AA731E8D211DECB03C00C8D1506C3");
             }
             // parser/TCS.g:1221:63: (temp= identifier )?
             int alt107=2;
@@ -13502,14 +13502,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCDBD9FE89511DE98A7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9AA732E8D211DECCEFC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_symbol6577); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCDBDA2E89511DEAF29ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9AA735E8D211DEA6E1C00C8D1506C3");
             }
             // parser/TCS.g:1221:271: (temp= stringSymbol )
             // parser/TCS.g:1221:273: temp= stringSymbol
@@ -13530,7 +13530,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCF4432E89511DEAA3AECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9C2DD2E8D211DEAB1DC00C8D1506C3");
             }
             // parser/TCS.g:1221:402: ( ( COLON (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )? ) | )
             int alt110=2;
@@ -13560,20 +13560,20 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1221:420: COLON (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )?
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCDBDA6E89511DEBE72ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9AA739E8D211DEAA58C00C8D1506C3");
                     }
                     match(input,COLON,FOLLOW_COLON_in_tcs_symbol6598); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCF4430E89511DE9E08ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9C2DD0E8D211DEA65CC00C8D1506C3");
                     }
                     // parser/TCS.g:1221:561: (temp= tcs_spacekind ( ( COMA ) temp= tcs_spacekind )* )?
                     int alt109=2;
                     int LA109_0 = input.LA(1);
 
-                    if ( (LA109_0==60||LA109_0==81||(LA109_0>=126 && LA109_0<=127)) ) {
+                    if ( ((LA109_0>=68 && LA109_0<=69)||LA109_0==103||LA109_0==122) ) {
                         alt109=1;
                     }
                     switch (alt109) {
@@ -13611,7 +13611,7 @@ public class TCSParser extends ObservableInjectingParser {
                             	    // parser/TCS.g:1221:637: COMA
                             	    {
                             	    if ( state.backtracking==0 ) {
-                            	      _beforeSeqEl("E0DCF6CD8FCDBDA8E89511DEB000ECDF8D1506C3");
+                            	      _beforeSeqEl("E0DCF6CD6A9AA73BE8D211DEB195C00C8D1506C3");
                             	    }
                             	    match(input,COMA,FOLLOW_COMA_in_tcs_symbol6615); if (state.failed) return ret2;
                             	    if ( state.backtracking==0 ) {
@@ -13678,7 +13678,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FCF4433E89511DE8C34ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6A9C2DD3E8D211DEB3C7C00C8D1506C3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_tcs_symbol6648); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -13722,22 +13722,22 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1232:3: ( ( 'leftSpace' ) | ( 'leftNone' ) | ( 'rightSpace' ) | ( 'rightNone' ) )
             int alt111=4;
             switch ( input.LA(1) ) {
-            case 81:
+            case 69:
                 {
                 alt111=1;
                 }
                 break;
-            case 127:
+            case 103:
                 {
                 alt111=2;
                 }
                 break;
-            case 60:
+            case 68:
                 {
                 alt111=3;
                 }
                 break;
-            case 126:
+            case 122:
                 {
                 alt111=4;
                 }
@@ -13758,9 +13758,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1232:5: 'leftSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCF4438E89511DEA6E4ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9DB471E8D211DEAC9CC00C8D1506C3");
                     }
-                    match(input,81,FOLLOW_81_in_tcs_spacekind6690); if (state.failed) return ret2;
+                    match(input,69,FOLLOW_69_in_tcs_spacekind6690); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13780,9 +13780,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1233:5: 'leftNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCF443BE89511DE8308ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9DB474E8D211DE8A71C00C8D1506C3");
                     }
-                    match(input,127,FOLLOW_127_in_tcs_spacekind6700); if (state.failed) return ret2;
+                    match(input,103,FOLLOW_103_in_tcs_spacekind6700); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13802,9 +13802,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1234:5: 'rightSpace'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCF443EE89511DE84CBECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9DB477E8D211DEADA2C00C8D1506C3");
                     }
-                    match(input,60,FOLLOW_60_in_tcs_spacekind6710); if (state.failed) return ret2;
+                    match(input,68,FOLLOW_68_in_tcs_spacekind6710); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13824,9 +13824,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1235:5: 'rightNone'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FCF4441E89511DEB5A1ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6A9F3B11E8D211DE9904C00C8D1506C3");
                     }
-                    match(input,126,FOLLOW_126_in_tcs_spacekind6720); if (state.failed) return ret2;
+                    match(input,122,FOLLOW_122_in_tcs_spacekind6720); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -13884,7 +13884,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1248:4: (temp= identifier )? EQ (temp= stringSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD0CAD1E89511DE945CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA0C1B1E8D211DECFC1C00C8D1506C3");
             }
             // parser/TCS.g:1248:63: (temp= identifier )?
             int alt112=2;
@@ -13916,14 +13916,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD0CAD2E89511DE8E1CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA0C1B2E8D211DE9FE0C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_keyword6764); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD0CAD5E89511DEB3B2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA24852E8D211DEC718C00C8D1506C3");
             }
             // parser/TCS.g:1248:271: (temp= stringSymbol )
             // parser/TCS.g:1248:273: temp= stringSymbol
@@ -13944,7 +13944,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD0CAD6E89511DEA62CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA3CEF0E8D211DEB2A2C00C8D1506C3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_tcs_keyword6779); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -13996,14 +13996,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1262:4: 'operators' ( ( (temp= identifier ) ) | ) LCURLY ( ( (temp= tcs_priority (temp= tcs_priority )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD25172E89511DE94A3ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA3CEF4E8D211DE8501C00C8D1506C3");
             }
-            match(input,102,FOLLOW_102_in_tcs_operatorlist6820); if (state.failed) return ret2;
+            match(input,73,FOLLOW_73_in_tcs_operatorlist6820); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD25179E89511DEAACDECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA55594E8D211DEB45DC00C8D1506C3");
             }
             // parser/TCS.g:1262:150: ( ( (temp= identifier ) ) | )
             int alt113=2;
@@ -14033,7 +14033,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1262:168: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FD25177E89511DE9005ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AA55592E8D211DEC48FC00C8D1506C3");
                     }
                     // parser/TCS.g:1262:227: (temp= identifier )
                     // parser/TCS.g:1262:229: temp= identifier
@@ -14081,14 +14081,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD2517AE89511DEBA3DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA55595E8D211DEC4F7C00C8D1506C3");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_tcs_operatorlist6853); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD2517EE89511DE9AA7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA55599E8D211DE89C7C00C8D1506C3");
             }
             // parser/TCS.g:1263:159: ( ( (temp= tcs_priority (temp= tcs_priority )* )? ) )
             // parser/TCS.g:1263:160: ( (temp= tcs_priority (temp= tcs_priority )* )? )
@@ -14097,13 +14097,13 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1263:161: (temp= tcs_priority (temp= tcs_priority )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD2517CE89511DE8726ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA55597E8D211DE9B9BC00C8D1506C3");
             }
             // parser/TCS.g:1263:220: (temp= tcs_priority (temp= tcs_priority )* )?
             int alt115=2;
             int LA115_0 = input.LA(1);
 
-            if ( (LA115_0==55) ) {
+            if ( (LA115_0==114) ) {
                 alt115=1;
             }
             switch (alt115) {
@@ -14125,7 +14125,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt114=2;
                         int LA114_0 = input.LA(1);
 
-                        if ( (LA114_0==55) ) {
+                        if ( (LA114_0==114) ) {
                             alt114=1;
                         }
 
@@ -14171,7 +14171,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD2517FE89511DE8FC6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA5559AE8D211DEBA3BC00C8D1506C3");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_tcs_operatorlist6887); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -14223,14 +14223,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1277:4: 'priority' (temp= integerSymbol ) ( () | ( COMA (temp= tcs_associativity ) ) ) LCURLY ( ( (temp= tcs_operator (temp= tcs_operator )* )? ) ) RCURLY
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD25183E89511DEC82AECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889E0E8D211DE90F7C00C8D1506C3");
             }
-            match(input,55,FOLLOW_55_in_tcs_priority6928); if (state.failed) return ret2;
+            match(input,114,FOLLOW_114_in_tcs_priority6928); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD25185E89511DE91D1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889E2E8D211DE8FAFC00C8D1506C3");
             }
             // parser/TCS.g:1277:148: (temp= integerSymbol )
             // parser/TCS.g:1277:150: temp= integerSymbol
@@ -14251,7 +14251,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD3D816E89511DEA2CBECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889ECE8D211DEA496C00C8D1506C3");
             }
             // parser/TCS.g:1277:280: ( () | ( COMA (temp= tcs_associativity ) ) )
             int alt116=2;
@@ -14301,14 +14301,14 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1277:424: COMA (temp= tcs_associativity )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FD3D812E89511DEA03AECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AA889E8E8D211DE849BC00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_priority6958); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FD3D814E89511DE8442ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AA889EAE8D211DEAD2AC00C8D1506C3");
                     }
                     // parser/TCS.g:1277:564: (temp= tcs_associativity )
                     // parser/TCS.g:1277:566: temp= tcs_associativity
@@ -14347,14 +14347,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD3D817E89511DEBDEEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889EDE8D211DE99C5C00C8D1506C3");
             }
             match(input,LCURLY,FOLLOW_LCURLY_in_tcs_priority6980); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD55EB0E89511DE99F1ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889F1E8D211DEB079C00C8D1506C3");
             }
             // parser/TCS.g:1278:159: ( ( (temp= tcs_operator (temp= tcs_operator )* )? ) )
             // parser/TCS.g:1278:160: ( (temp= tcs_operator (temp= tcs_operator )* )? )
@@ -14363,13 +14363,13 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1278:161: (temp= tcs_operator (temp= tcs_operator )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD3D819E89511DE8718ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889EFE8D211DECC1AC00C8D1506C3");
             }
             // parser/TCS.g:1278:220: (temp= tcs_operator (temp= tcs_operator )* )?
             int alt118=2;
             int LA118_0 = input.LA(1);
 
-            if ( (LA118_0==NAME||LA118_0==EQ||LA118_0==68) ) {
+            if ( (LA118_0==NAME||LA118_0==EQ||LA118_0==75) ) {
                 alt118=1;
             }
             switch (alt118) {
@@ -14391,7 +14391,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt117=2;
                         int LA117_0 = input.LA(1);
 
-                        if ( (LA117_0==NAME||LA117_0==EQ||LA117_0==68) ) {
+                        if ( (LA117_0==NAME||LA117_0==EQ||LA117_0==75) ) {
                             alt117=1;
                         }
 
@@ -14437,7 +14437,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD55EB1E89511DE877AECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AA889F2E8D211DEA1B0C00C8D1506C3");
             }
             match(input,RCURLY,FOLLOW_RCURLY_in_tcs_priority7014); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -14489,13 +14489,13 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1292:4: ( ( 'postfix' ) | ) (temp= identifier )? EQ ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | ) COMA (temp= integerSymbol ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD55EBAE89511DEBF8FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AAA1085E8D211DE9F5CC00C8D1506C3");
             }
             // parser/TCS.g:1292:64: ( ( 'postfix' ) | )
             int alt119=2;
             int LA119_0 = input.LA(1);
 
-            if ( (LA119_0==68) ) {
+            if ( (LA119_0==75) ) {
                 alt119=1;
             }
             else if ( (LA119_0==NAME||LA119_0==EQ) ) {
@@ -14519,9 +14519,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1292:82: 'postfix'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FD55EB8E89511DEA3B6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AAA1083E8D211DEA94CC00C8D1506C3");
                     }
-                    match(input,68,FOLLOW_68_in_tcs_operator7061); if (state.failed) return ret2;
+                    match(input,75,FOLLOW_75_in_tcs_operator7061); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14559,7 +14559,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD55EBCE89511DEBDAFECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AAB9721E8D211DEA713C00C8D1506C3");
             }
             // parser/TCS.g:1293:76: (temp= identifier )?
             int alt120=2;
@@ -14591,14 +14591,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FD55EBDE89511DEC812ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AAB9722E8D211DE9646C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_operator7092); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE00D11E89511DE97FFECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AC587C1E8D211DE9C8DC00C8D1506C3");
             }
             // parser/TCS.g:1293:285: ( ( ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) ) ) | )
             int alt122=2;
@@ -14628,7 +14628,7 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1293:303: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FDCFFD8E89511DEAC9BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6ABDE6A0E8D211DE86CFC00C8D1506C3");
                     }
                     // parser/TCS.g:1293:362: ( ( (temp= identifier ) ) | ( (temp= stringSymbol ) ) )
                     int alt121=2;
@@ -14658,7 +14658,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:1293:380: (temp= identifier )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8FD55EC3E89511DEB1CDECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD6AAB9728E8D211DEB8CFC00C8D1506C3");
                             }
                             // parser/TCS.g:1293:439: (temp= identifier )
                             // parser/TCS.g:1293:441: temp= identifier
@@ -14697,7 +14697,7 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:1294:21: (temp= stringSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8FDCFFD6E89511DEB6A1ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD6AB952C6E8D211DEAD2BC00C8D1506C3");
                             }
                             // parser/TCS.g:1294:80: (temp= stringSymbol )
                             // parser/TCS.g:1294:82: temp= stringSymbol
@@ -14760,14 +14760,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE00D12E89511DE98A9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AC587C2E8D211DE87FDC00C8D1506C3");
             }
             match(input,COMA,FOLLOW_COMA_in_tcs_operator7156); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE00D14E89511DE9F65ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AC587C4E8D211DE92D9C00C8D1506C3");
             }
             // parser/TCS.g:1295:157: (temp= integerSymbol )
             // parser/TCS.g:1295:159: temp= integerSymbol
@@ -14788,7 +14788,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE00D15E89511DEAB54ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AC587C5E8D211DE9CD4C00C8D1506C3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_tcs_operator7171); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -14833,10 +14833,10 @@ public class TCSParser extends ObservableInjectingParser {
             int alt123=2;
             int LA123_0 = input.LA(1);
 
-            if ( (LA123_0==120) ) {
+            if ( (LA123_0==52) ) {
                 alt123=1;
             }
-            else if ( (LA123_0==88) ) {
+            else if ( (LA123_0==133) ) {
                 alt123=2;
             }
             else {
@@ -14854,9 +14854,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1305:5: 'left'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE00D1AE89511DEB9C6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AC89501E8D211DE8F2FC00C8D1506C3");
                     }
-                    match(input,120,FOLLOW_120_in_tcs_associativity7213); if (state.failed) return ret2;
+                    match(input,52,FOLLOW_52_in_tcs_associativity7213); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14876,9 +14876,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1306:5: 'right'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE00D1DE89511DEC885ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AC89504E8D211DEB5BBC00C8D1506C3");
                     }
-                    match(input,88,FOLLOW_88_in_tcs_associativity7223); if (state.failed) return ret2;
+                    match(input,133,FOLLOW_133_in_tcs_associativity7223); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -14981,7 +14981,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1328:4: (temp= tcs_atomexp ( ( 'and' ) temp= tcs_atomexp )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE00D27E89511DEBC9EECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ACBA244E8D211DECDD7C00C8D1506C3");
             }
             // parser/TCS.g:1328:63: (temp= tcs_atomexp ( ( 'and' ) temp= tcs_atomexp )* )?
             int alt125=2;
@@ -15009,7 +15009,7 @@ public class TCSParser extends ObservableInjectingParser {
                         int alt124=2;
                         int LA124_0 = input.LA(1);
 
-                        if ( (LA124_0==59) ) {
+                        if ( (LA124_0==102) ) {
                             alt124=1;
                         }
 
@@ -15025,9 +15025,9 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // parser/TCS.g:1328:142: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0DCF6CD8FE00D24E89511DEACBFECDF8D1506C3");
+                    	      _beforeSeqEl("E0DCF6CD6ACBA241E8D211DEC849C00C8D1506C3");
                     	    }
-                    	    match(input,59,FOLLOW_59_in_tcs_andexp7293); if (state.failed) return ret2;
+                    	    match(input,102,FOLLOW_102_in_tcs_andexp7293); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
                     	      _afterSeqEl();
                     	    }
@@ -15210,7 +15210,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1355:4: (temp= tcs_propertyreference ) EQ (temp= tcs_value )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE193B3E89511DE868FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ACEAF81E8D211DEA941C00C8D1506C3");
             }
             // parser/TCS.g:1355:63: (temp= tcs_propertyreference )
             // parser/TCS.g:1355:65: temp= tcs_propertyreference
@@ -15231,14 +15231,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE193B4E89511DECFE3ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ACEAF82E8D211DEAF57C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_equalsexp7418); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE193B6E89511DE9888ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ACEAF84E8D211DEA9ABC00C8D1506C3");
             }
             // parser/TCS.g:1355:293: (temp= tcs_value )
             // parser/TCS.g:1355:295: temp= tcs_value
@@ -15304,7 +15304,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1369:4: (temp= tcs_propertyreference )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A51E89511DEBA48ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD1BCC1E8D211DEB162C00C8D1506C3");
             }
             // parser/TCS.g:1369:63: (temp= tcs_propertyreference )
             // parser/TCS.g:1369:65: temp= tcs_propertyreference
@@ -15370,21 +15370,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1383:4: 'isDefined' LPAREN (temp= tcs_propertyreference ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A55E89511DE9564ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD34360E8D211DEC56CC00C8D1506C3");
             }
-            match(input,65,FOLLOW_65_in_tcs_isdefinedexp7516); if (state.failed) return ret2;
+            match(input,58,FOLLOW_58_in_tcs_isdefinedexp7516); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A56E89511DEC2B7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD34361E8D211DEB1E7C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_isdefinedexp7520); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A58E89511DEC70CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD34363E8D211DEAF87C00C8D1506C3");
             }
             // parser/TCS.g:1383:232: (temp= tcs_propertyreference )
             // parser/TCS.g:1383:234: temp= tcs_propertyreference
@@ -15405,7 +15405,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A59E89511DE9EC8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD34364E8D211DE9FB0C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_isdefinedexp7535); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -15457,21 +15457,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1397:4: 'one' LPAREN (temp= tcs_propertyreference ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A5DE89511DEB058ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD4CA00E8D211DEB56FC00C8D1506C3");
             }
-            match(input,93,FOLLOW_93_in_tcs_oneexp7576); if (state.failed) return ret2;
+            match(input,86,FOLLOW_86_in_tcs_oneexp7576); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A5EE89511DE8672ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD4CA01E8D211DE8A0AC00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_oneexp7580); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A60E89511DEC843ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD4CA03E8D211DEC713C00C8D1506C3");
             }
             // parser/TCS.g:1397:226: (temp= tcs_propertyreference )
             // parser/TCS.g:1397:228: temp= tcs_propertyreference
@@ -15492,7 +15492,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A61E89511DE8250ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD4CA04E8D211DEC0B6C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_oneexp7595); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -15544,7 +15544,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1411:4: (temp= tcs_propertyreference ) 'instanceOf' (temp= identifier ( ( DLCOLON ) temp= identifier )* )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A66E89511DEB33BECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD650A1E8D211DE92E8C00C8D1506C3");
             }
             // parser/TCS.g:1411:63: (temp= tcs_propertyreference )
             // parser/TCS.g:1411:65: temp= tcs_propertyreference
@@ -15565,14 +15565,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE31A67E89511DEBDC2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD650A2E8D211DECBA0C00C8D1506C3");
             }
-            match(input,116,FOLLOW_116_in_tcs_instanceofexp7646); if (state.failed) return ret2;
+            match(input,99,FOLLOW_99_in_tcs_instanceofexp7646); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE4A0F1E89511DEB064ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD650A7E8D211DE9BA5C00C8D1506C3");
             }
             // parser/TCS.g:1411:301: (temp= identifier ( ( DLCOLON ) temp= identifier )* )
             // parser/TCS.g:1411:303: temp= identifier ( ( DLCOLON ) temp= identifier )*
@@ -15608,7 +15608,7 @@ public class TCSParser extends ObservableInjectingParser {
             	    // parser/TCS.g:1411:377: DLCOLON
             	    {
             	    if ( state.backtracking==0 ) {
-            	      _beforeSeqEl("E0DCF6CD8FE31A69E89511DE9CEDECDF8D1506C3");
+            	      _beforeSeqEl("E0DCF6CD6AD650A4E8D211DEADF5C00C8D1506C3");
             	    }
             	    match(input,DLCOLON,FOLLOW_DLCOLON_in_tcs_instanceofexp7662); if (state.failed) return ret2;
             	    if ( state.backtracking==0 ) {
@@ -15806,7 +15806,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1437:4: (temp= stringSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE4A0F9E89511DE88BAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AD95DE4E8D211DEA1A9C00C8D1506C3");
             }
             // parser/TCS.g:1437:63: (temp= stringSymbol )
             // parser/TCS.g:1437:65: temp= stringSymbol
@@ -15872,7 +15872,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1451:4: (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE62793E89511DE9AB9ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ADAE482E8D211DE8D6DC00C8D1506C3");
             }
             // parser/TCS.g:1451:63: (temp= integerSymbol )
             // parser/TCS.g:1451:65: temp= integerSymbol
@@ -15938,14 +15938,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1465:4: MINUS (temp= integerSymbol )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE62797E89511DEB18FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ADC6B23E8D211DEB29EC00C8D1506C3");
             }
             match(input,MINUS,FOLLOW_MINUS_in_tcs_negativeintegerval7862); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE62799E89511DE9268ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ADC6B25E8D211DEC940C00C8D1506C3");
             }
             // parser/TCS.g:1465:145: (temp= integerSymbol )
             // parser/TCS.g:1465:147: temp= integerSymbol
@@ -16011,14 +16011,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1479:4: SHARP (temp= identifierOrKeyword )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE6279DE89511DEC177ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ADF7860E8D211DEB075C00C8D1506C3");
             }
             match(input,SHARP,FOLLOW_SHARP_in_tcs_enumliteralval7914); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE627A0E89511DEA2CDECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6ADF7863E8D211DE8ECBC00C8D1506C3");
             }
             // parser/TCS.g:1479:145: (temp= identifierOrKeyword )
             // parser/TCS.g:1479:147: temp= identifierOrKeyword
@@ -16084,16 +16084,16 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1493:4: ( ( 'omitted' ) | ) 'token' (temp= identifier )? COLON (temp= tcs_orpattern ) SEMI
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE627A9E89511DE88B3ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE0FF05E8D211DE9900C00C8D1506C3");
             }
             // parser/TCS.g:1493:64: ( ( 'omitted' ) | )
             int alt129=2;
             int LA129_0 = input.LA(1);
 
-            if ( (LA129_0==67) ) {
+            if ( (LA129_0==119) ) {
                 alt129=1;
             }
-            else if ( (LA129_0==98) ) {
+            else if ( (LA129_0==107) ) {
                 alt129=2;
             }
             else {
@@ -16114,9 +16114,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1493:82: 'omitted'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE627A7E89511DEAB9BECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AE0FF03E8D211DE819DC00C8D1506C3");
                     }
-                    match(input,67,FOLLOW_67_in_tcs_token7971); if (state.failed) return ret2;
+                    match(input,119,FOLLOW_119_in_tcs_token7971); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -16154,14 +16154,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE627AAE89511DE83E7ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE0FF06E8D211DEACB3C00C8D1506C3");
             }
-            match(input,98,FOLLOW_98_in_tcs_token7989); if (state.failed) return ret2;
+            match(input,107,FOLLOW_107_in_tcs_token7989); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE627ACE89511DEC055ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE0FF08E8D211DEBA5CC00C8D1506C3");
             }
             // parser/TCS.g:1494:158: (temp= identifier )?
             int alt130=2;
@@ -16193,14 +16193,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE7AE30E89511DE8983ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE0FF09E8D211DE9679C00C8D1506C3");
             }
             match(input,COLON,FOLLOW_COLON_in_tcs_token8005); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE7AE32E89511DE9F3CECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE0FF0BE8D211DEA982C00C8D1506C3");
             }
             // parser/TCS.g:1494:369: (temp= tcs_orpattern )
             // parser/TCS.g:1494:371: temp= tcs_orpattern
@@ -16221,7 +16221,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE7AE33E89511DECE9DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE0FF0CE8D211DEB3C4C00C8D1506C3");
             }
             match(input,SEMI,FOLLOW_SEMI_in_tcs_token8020); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -16273,7 +16273,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1508:4: (temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE7AE3BE89511DE8ED8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE40C44E8D211DE915CC00C8D1506C3");
             }
             // parser/TCS.g:1508:63: (temp= tcs_simplepattern ( ( PIPE ) temp= tcs_simplepattern )* )?
             int alt132=2;
@@ -16281,9 +16281,9 @@ public class TCSParser extends ObservableInjectingParser {
                 case STRING:
                 case LSQUARE:
                 case PIPE:
-                case 73:
-                case 113:
-                case 124:
+                case 61:
+                case 84:
+                case 132:
                     {
                     alt132=1;
                     }
@@ -16361,7 +16361,7 @@ public class TCSParser extends ObservableInjectingParser {
                     	    // parser/TCS.g:1508:151: PIPE
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0DCF6CD8FE7AE38E89511DE895BECDF8D1506C3");
+                    	      _beforeSeqEl("E0DCF6CD6AE40C41E8D211DEAC1BC00C8D1506C3");
                     	    }
                     	    match(input,PIPE,FOLLOW_PIPE_in_tcs_orpattern8074); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -16440,9 +16440,9 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1518:3: (ret= tcs_rulepattern | ret= tcs_stringpattern | ret= tcs_classpattern )
             int alt133=3;
             switch ( input.LA(1) ) {
-            case 73:
-            case 113:
-            case 124:
+            case 61:
+            case 84:
+            case 132:
                 {
                 alt133=1;
                 }
@@ -16552,7 +16552,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1533:4: (temp= tcs_rule )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934D1E89511DEB8B2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AE71981E8D211DEC11EC00C8D1506C3");
             }
             // parser/TCS.g:1533:63: (temp= tcs_rule )
             // parser/TCS.g:1533:65: temp= tcs_rule
@@ -16612,17 +16612,17 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1543:3: (ret= tcs_wordrule | ret= tcs_endoflinerule | ret= tcs_multilinerule )
             int alt134=3;
             switch ( input.LA(1) ) {
-            case 124:
+            case 84:
                 {
                 alt134=1;
                 }
                 break;
-            case 113:
+            case 132:
                 {
                 alt134=2;
                 }
                 break;
-            case 73:
+            case 61:
                 {
                 alt134=3;
                 }
@@ -16717,35 +16717,35 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1558:4: 'word' LPAREN 'start' EQ (temp= tcs_orpattern ) COMA 'part' EQ (temp= tcs_orpattern ) ( ( COMA 'end' EQ (temp= tcs_orpattern ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934D7E89511DEA49AECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C0E8D211DE819CC00C8D1506C3");
             }
-            match(input,124,FOLLOW_124_in_tcs_wordrule8263); if (state.failed) return ret2;
+            match(input,84,FOLLOW_84_in_tcs_wordrule8263); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934D8E89511DEA183ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C1E8D211DEA285C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_wordrule8267); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934D9E89511DE8FD2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C2E8D211DEAA4BC00C8D1506C3");
             }
-            match(input,99,FOLLOW_99_in_tcs_wordrule8271); if (state.failed) return ret2;
+            match(input,56,FOLLOW_56_in_tcs_wordrule8271); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934DAE89511DEA0B4ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C3E8D211DE95C9C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8275); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934DCE89511DEBF52ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C5E8D211DEA2ABC00C8D1506C3");
             }
             // parser/TCS.g:1558:388: (temp= tcs_orpattern )
             // parser/TCS.g:1558:390: temp= tcs_orpattern
@@ -16766,28 +16766,28 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934DDE89511DE9803ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C6E8D211DE985AC00C8D1506C3");
             }
             match(input,COMA,FOLLOW_COMA_in_tcs_wordrule8290); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934DEE89511DE9783ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C7E8D211DEC13DC00C8D1506C3");
             }
-            match(input,79,FOLLOW_79_in_tcs_wordrule8294); if (state.failed) return ret2;
+            match(input,98,FOLLOW_98_in_tcs_wordrule8294); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934DFE89511DE8DEAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26C8E8D211DE8EC3C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8298); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934E1E89511DEB3A3ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26CAE8D211DEA272C00C8D1506C3");
             }
             // parser/TCS.g:1558:760: (temp= tcs_orpattern )
             // parser/TCS.g:1558:762: temp= tcs_orpattern
@@ -16808,7 +16808,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934EBE89511DEB491ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26D4E8D211DEB237C00C8D1506C3");
             }
             // parser/TCS.g:1558:891: ( ( COMA 'end' EQ (temp= tcs_orpattern ) ) | )
             int alt135=2;
@@ -16838,28 +16838,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1558:909: COMA 'end' EQ (temp= tcs_orpattern )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE934E5E89511DEBFCEECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AEA26CEE8D211DE8579C00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_wordrule8319); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE934E6E89511DE99C8ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AEA26CFE8D211DECA40C00C8D1506C3");
                     }
-                    match(input,63,FOLLOW_63_in_tcs_wordrule8323); if (state.failed) return ret2;
+                    match(input,115,FOLLOW_115_in_tcs_wordrule8323); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE934E7E89511DE9CE7ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AEA26D0E8D211DEB9C8C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_wordrule8327); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FE934E9E89511DECB2FECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AEA26D2E8D211DEB763C00C8D1506C3");
                     }
                     // parser/TCS.g:1558:1208: (temp= tcs_orpattern )
                     // parser/TCS.g:1558:1210: temp= tcs_orpattern
@@ -16907,7 +16907,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FE934ECE89511DE85D6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEA26D5E8D211DEB0D4C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_wordrule8355); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -16959,41 +16959,41 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1573:4: 'endOfLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= tcs_stringpattern ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB72E89511DEB2A2ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED3400E8D211DE91A5C00C8D1506C3");
             }
-            match(input,113,FOLLOW_113_in_tcs_endoflinerule8396); if (state.failed) return ret2;
+            match(input,132,FOLLOW_132_in_tcs_endoflinerule8396); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB73E89511DE94CAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED3401E8D211DE8647C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_endoflinerule8400); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB74E89511DEC20DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED3402E8D211DE93F1C00C8D1506C3");
             }
-            match(input,99,FOLLOW_99_in_tcs_endoflinerule8404); if (state.failed) return ret2;
+            match(input,56,FOLLOW_56_in_tcs_endoflinerule8404); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB75E89511DE8A19ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED3403E8D211DE855AC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_endoflinerule8408); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB7BE89511DE8268ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED3409E8D211DEACD3C00C8D1506C3");
             }
             // parser/TCS.g:1573:394: ( ( 'drop' ) | )
             int alt136=2;
             int LA136_0 = input.LA(1);
 
-            if ( (LA136_0==129) ) {
+            if ( (LA136_0==131) ) {
                 alt136=1;
             }
             else if ( (LA136_0==EOF||LA136_0==STRING||LA136_0==RPAREN||LA136_0==SEMI||LA136_0==COMA||LA136_0==PIPE) ) {
@@ -17017,9 +17017,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1573:412: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEABB79E89511DECC5DECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AED3407E8D211DE9371C00C8D1506C3");
                     }
-                    match(input,129,FOLLOW_129_in_tcs_endoflinerule8418); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_tcs_endoflinerule8418); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17057,7 +17057,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB7DE89511DE9824ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED340BE8D211DE86E3C00C8D1506C3");
             }
             // parser/TCS.g:1574:76: (temp= tcs_stringpattern )
             // parser/TCS.g:1574:78: temp= tcs_stringpattern
@@ -17078,7 +17078,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB7EE89511DEA185ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AED340CE8D211DE940CC00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_endoflinerule8447); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -17130,41 +17130,41 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1588:4: 'multiLine' LPAREN 'start' EQ ( ( 'drop' ) | ) (temp= tcs_stringpattern ) COMA 'end' EQ ( ( 'drop' ) | ) (temp= tcs_stringpattern ) ( ( COMA 'esc' EQ (temp= tcs_stringpattern ) ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | ) ) | ) RPAREN
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB82E89511DEC0DEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEEBAA2E8D211DEB8ABC00C8D1506C3");
             }
-            match(input,73,FOLLOW_73_in_tcs_multilinerule8488); if (state.failed) return ret2;
+            match(input,61,FOLLOW_61_in_tcs_multilinerule8488); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB83E89511DE8073ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEEBAA3E8D211DE99E0C00C8D1506C3");
             }
             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_multilinerule8492); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB84E89511DEBC86ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEEBAA4E8D211DE8E42C00C8D1506C3");
             }
-            match(input,99,FOLLOW_99_in_tcs_multilinerule8496); if (state.failed) return ret2;
+            match(input,56,FOLLOW_56_in_tcs_multilinerule8496); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB85E89511DECDA6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AEEBAA5E8D211DEB0C7C00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8500); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB8BE89511DE9CCEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF04143E8D211DEC347C00C8D1506C3");
             }
             // parser/TCS.g:1588:394: ( ( 'drop' ) | )
             int alt137=2;
             int LA137_0 = input.LA(1);
 
-            if ( (LA137_0==129) ) {
+            if ( (LA137_0==131) ) {
                 alt137=1;
             }
             else if ( (LA137_0==EOF||LA137_0==STRING||LA137_0==RPAREN||LA137_0==SEMI||LA137_0==COMA||LA137_0==PIPE) ) {
@@ -17188,9 +17188,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1588:412: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEABB89E89511DECF68ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF04141E8D211DEA93BC00C8D1506C3");
                     }
-                    match(input,129,FOLLOW_129_in_tcs_multilinerule8510); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_tcs_multilinerule8510); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17228,7 +17228,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEABB8DE89511DEA5CAECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF04145E8D211DEBC9BC00C8D1506C3");
             }
             // parser/TCS.g:1589:76: (temp= tcs_stringpattern )
             // parser/TCS.g:1589:78: temp= tcs_stringpattern
@@ -17249,34 +17249,34 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEC4210E89511DE886FECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF04146E8D211DEB633C00C8D1506C3");
             }
             match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8539); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEC4211E89511DEC810ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF04147E8D211DE9C9DC00C8D1506C3");
             }
-            match(input,63,FOLLOW_63_in_tcs_multilinerule8543); if (state.failed) return ret2;
+            match(input,115,FOLLOW_115_in_tcs_multilinerule8543); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEC4212E89511DE83C5ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF04148E8D211DEAEEEC00C8D1506C3");
             }
             match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8547); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEC4218E89511DEB7D4ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF0414EE8D211DE8AA0C00C8D1506C3");
             }
             // parser/TCS.g:1589:452: ( ( 'drop' ) | )
             int alt138=2;
             int LA138_0 = input.LA(1);
 
-            if ( (LA138_0==129) ) {
+            if ( (LA138_0==131) ) {
                 alt138=1;
             }
             else if ( (LA138_0==EOF||LA138_0==STRING||LA138_0==RPAREN||LA138_0==SEMI||LA138_0==COMA||LA138_0==PIPE) ) {
@@ -17300,9 +17300,9 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1589:470: 'drop'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEC4216E89511DEC321ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF0414CE8D211DEC8B4C00C8D1506C3");
                     }
-                    match(input,129,FOLLOW_129_in_tcs_multilinerule8557); if (state.failed) return ret2;
+                    match(input,131,FOLLOW_131_in_tcs_multilinerule8557); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -17340,7 +17340,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEC421AE89511DEAD44ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF04150E8D211DE8D66C00C8D1506C3");
             }
             // parser/TCS.g:1590:76: (temp= tcs_stringpattern )
             // parser/TCS.g:1590:78: temp= tcs_stringpattern
@@ -17361,7 +17361,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEDC8B4E89511DE97FDECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF1C7F6E8D211DEB136C00C8D1506C3");
             }
             // parser/TCS.g:1590:210: ( ( COMA 'esc' EQ (temp= tcs_stringpattern ) ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | ) ) | )
             int alt142=2;
@@ -17391,28 +17391,28 @@ public class TCSParser extends ObservableInjectingParser {
                     // parser/TCS.g:1590:228: COMA 'esc' EQ (temp= tcs_stringpattern ) ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEC421EE89511DEC08CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF1C7E3E8D211DEC17FC00C8D1506C3");
                     }
                     match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8592); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEC421FE89511DEC164ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF1C7E4E8D211DEC649C00C8D1506C3");
                     }
-                    match(input,53,FOLLOW_53_in_tcs_multilinerule8596); if (state.failed) return ret2;
+                    match(input,97,FOLLOW_97_in_tcs_multilinerule8596); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEC4220E89511DE9E8CECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF1C7E5E8D211DEAA65C00C8D1506C3");
                     }
                     match(input,EQ,FOLLOW_EQ_in_tcs_multilinerule8600); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEC4222E89511DECBB6ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF1C7E7E8D211DEBF36C00C8D1506C3");
                     }
                     // parser/TCS.g:1590:527: (temp= tcs_stringpattern )
                     // parser/TCS.g:1590:529: temp= tcs_stringpattern
@@ -17433,7 +17433,7 @@ public class TCSParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0DCF6CD8FEDC8B2E89511DEC010ECDF8D1506C3");
+                      _beforeSeqEl("E0DCF6CD6AF1C7F4E8D211DE948FC00C8D1506C3");
                     }
                     // parser/TCS.g:1590:661: ( ( COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN ) | )
                     int alt141=2;
@@ -17463,27 +17463,27 @@ public class TCSParser extends ObservableInjectingParser {
                             // parser/TCS.g:1590:679: COMA LPAREN (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )? RPAREN
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8FEC4226E89511DEBE4CECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD6AF1C7EBE8D211DE9667C00C8D1506C3");
                             }
                             match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8621); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8FEC4227E89511DEA600ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD6AF1C7ECE8D211DEA637C00C8D1506C3");
                             }
                             match(input,LPAREN,FOLLOW_LPAREN_in_tcs_multilinerule8626); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8FEC422CE89511DEB886ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD6AF1C7F1E8D211DE9F9BC00C8D1506C3");
                             }
                             // parser/TCS.g:1590:902: (temp= tcs_mapping ( ( COMA ) temp= tcs_mapping )* )?
                             int alt140=2;
                             int LA140_0 = input.LA(1);
 
-                            if ( (LA140_0==NAME||LA140_0==POINT||LA140_0==64||LA140_0==112) ) {
+                            if ( (LA140_0==NAME||LA140_0==POINT||LA140_0==92||LA140_0==111) ) {
                                 alt140=1;
                             }
                             switch (alt140) {
@@ -17521,7 +17521,7 @@ public class TCSParser extends ObservableInjectingParser {
                                     	    // parser/TCS.g:1590:981: COMA
                                     	    {
                                     	    if ( state.backtracking==0 ) {
-                                    	      _beforeSeqEl("E0DCF6CD8FEC4229E89511DE9387ECDF8D1506C3");
+                                    	      _beforeSeqEl("E0DCF6CD6AF1C7EEE8D211DE9DD8C00C8D1506C3");
                                     	    }
                                     	    match(input,COMA,FOLLOW_COMA_in_tcs_multilinerule8643); if (state.failed) return ret2;
                                     	    if ( state.backtracking==0 ) {
@@ -17561,7 +17561,7 @@ public class TCSParser extends ObservableInjectingParser {
                               _afterSeqEl();
                             }
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0DCF6CD8FEDC8B0E89511DECD05ECDF8D1506C3");
+                              _beforeSeqEl("E0DCF6CD6AF1C7F2E8D211DEB4A9C00C8D1506C3");
                             }
                             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_multilinerule8663); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -17622,7 +17622,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEDC8B5E89511DEC9E4ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF34E80E8D211DE8C01C00C8D1506C3");
             }
             match(input,RPAREN,FOLLOW_RPAREN_in_tcs_multilinerule8694); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -17678,12 +17678,12 @@ public class TCSParser extends ObservableInjectingParser {
                 alt143=2;
                 }
                 break;
-            case 112:
+            case 92:
                 {
                 alt143=3;
                 }
                 break;
-            case 64:
+            case 111:
                 {
                 alt143=4;
                 }
@@ -17790,7 +17790,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1618:4: (temp= identifier ) RARROW (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F53E89511DE97EEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF65BC1E8D211DE85D7C00C8D1506C3");
             }
             // parser/TCS.g:1618:63: (temp= identifier )
             // parser/TCS.g:1618:65: temp= identifier
@@ -17811,14 +17811,14 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F54E89511DECCB4ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF65BC2E8D211DEC4F1C00C8D1506C3");
             }
             match(input,RARROW,FOLLOW_RARROW_in_tcs_simplemapping8797); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F56E89511DEBE06ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF65BC4E8D211DE9BCBC00C8D1506C3");
             }
             // parser/TCS.g:1618:272: (temp= identifier )
             // parser/TCS.g:1618:274: temp= identifier
@@ -17881,21 +17881,21 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1632:4: POINT RARROW POINT
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F5AE89511DE965DECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF7E260E8D211DEBDCDC00C8D1506C3");
             }
             match(input,POINT,FOLLOW_POINT_in_tcs_wildcardmapping8849); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F5BE89511DE8052ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF7E261E8D211DE9A94C00C8D1506C3");
             }
             match(input,RARROW,FOLLOW_RARROW_in_tcs_wildcardmapping8854); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F5CE89511DEBB63ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AF7E262E8D211DECE13C00C8D1506C3");
             }
             match(input,POINT,FOLLOW_POINT_in_tcs_wildcardmapping8859); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -17944,9 +17944,9 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1646:4: 'octal'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F60E89511DEC5A4ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AFAEFA0E8D211DEBAF8C00C8D1506C3");
             }
-            match(input,112,FOLLOW_112_in_tcs_octalmapping8900); if (state.failed) return ret2;
+            match(input,92,FOLLOW_92_in_tcs_octalmapping8900); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -17993,9 +17993,9 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1660:4: 'hex'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F64E89511DEADC6ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AFC7640E8D211DEBC69C00C8D1506C3");
             }
-            match(input,64,FOLLOW_64_in_tcs_hexadecimalmapping8940); if (state.failed) return ret2;
+            match(input,111,FOLLOW_111_in_tcs_hexadecimalmapping8940); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -18045,7 +18045,7 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1674:4: (temp= stringSymbol )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FEF4F6AE89511DE97BEECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6AFF8382E8D211DE9C03C00C8D1506C3");
             }
             // parser/TCS.g:1674:63: (temp= stringSymbol )?
             int alt144=2;
@@ -18122,14 +18122,14 @@ public class TCSParser extends ObservableInjectingParser {
             // parser/TCS.g:1688:4: LSQUARE (temp= identifier )? RSQUARE
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FF0D5F0E89511DE9167ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6B010A20E8D211DEBEF4C00C8D1506C3");
             }
             match(input,LSQUARE,FOLLOW_LSQUARE_in_tcs_classpattern9030); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FF0D5F2E89511DEA3F8ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6B010A22E8D211DEA889C00C8D1506C3");
             }
             // parser/TCS.g:1688:147: (temp= identifier )?
             int alt145=2;
@@ -18161,7 +18161,7 @@ public class TCSParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0DCF6CD8FF0D5F3E89511DE9C19ECDF8D1506C3");
+              _beforeSeqEl("E0DCF6CD6B010A23E8D211DE8D45C00C8D1506C3");
             }
             match(input,RSQUARE,FOLLOW_RSQUARE_in_tcs_classpattern9047); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -18367,7 +18367,7 @@ public class TCSParser extends ObservableInjectingParser {
         	    // parser/TCS.g:749:239: PIPE
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("E0DCF6CD8F9B8A02E89511DE8A2DECDF8D1506C3");
+        	      _beforeSeqEl("E0DCF6CD69E4EBC2E8D211DEA809C00C8D1506C3");
         	    }
         	    match(input,PIPE,FOLLOW_PIPE_in_synpred171_TCS4139); if (state.failed) return ;
 
@@ -18408,10 +18408,10 @@ public class TCSParser extends ObservableInjectingParser {
         // parser/TCS.g:858:392: COMA 'mode' EQ (temp= stringSymbol )
         {
         if ( state.backtracking==0 ) {
-          _beforeSeqEl("E0DCF6CD8FA63867E89511DE9DF2ECDF8D1506C3");
+          _beforeSeqEl("E0DCF6CD69FA4892E8D211DEC6FBC00C8D1506C3");
         }
         match(input,COMA,FOLLOW_COMA_in_synpred183_TCS4799); if (state.failed) return ;
-        match(input,82,FOLLOW_82_in_synpred183_TCS4803); if (state.failed) return ;
+        match(input,95,FOLLOW_95_in_synpred183_TCS4803); if (state.failed) return ;
         match(input,EQ,FOLLOW_EQ_in_synpred183_TCS4807); if (state.failed) return ;
         // parser/TCS.g:858:692: (temp= stringSymbol )
         // parser/TCS.g:858:694: temp= stringSymbol
@@ -18466,7 +18466,7 @@ public class TCSParser extends ObservableInjectingParser {
         	    // parser/TCS.g:1508:151: PIPE
         	    {
         	    if ( state.backtracking==0 ) {
-        	      _beforeSeqEl("E0DCF6CD8FE7AE38E89511DE895BECDF8D1506C3");
+        	      _beforeSeqEl("E0DCF6CD6AE40C41E8D211DEAC1BC00C8D1506C3");
         	    }
         	    match(input,PIPE,FOLLOW_PIPE_in_synpred249_TCS8074); if (state.failed) return ;
 
@@ -18665,16 +18665,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA28_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA28_maxS =
-        "\1\165\15\0\2\uffff";
+        "\1\175\15\0\2\uffff";
     static final String DFA28_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA28_specialS =
         "\1\uffff\1\10\1\14\1\13\1\12\1\7\1\0\1\1\1\6\1\5\1\11\1\4\1\2\1"+
         "\3\2\uffff}>";
     static final String[] DFA28_transitionS = {
-            "\1\14\54\uffff\1\7\2\uffff\1\5\1\6\4\uffff\1\11\1\uffff\1\4"+
-            "\2\uffff\1\2\31\uffff\1\12\1\uffff\1\3\1\uffff\1\10\10\uffff"+
-            "\1\1\5\uffff\1\13",
+            "\1\14\55\uffff\1\4\5\uffff\1\5\1\6\4\uffff\1\1\1\uffff\1\10"+
+            "\40\uffff\1\2\1\12\4\uffff\1\7\4\uffff\1\3\1\uffff\1\11\5\uffff"+
+            "\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -18951,16 +18951,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA33_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA33_maxS =
-        "\1\165\15\0\2\uffff";
+        "\1\175\15\0\2\uffff";
     static final String DFA33_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA33_specialS =
         "\1\uffff\1\10\1\14\1\13\1\12\1\7\1\1\1\2\1\6\1\5\1\11\1\4\1\3\1"+
         "\0\2\uffff}>";
     static final String[] DFA33_transitionS = {
-            "\1\14\54\uffff\1\7\2\uffff\1\5\1\6\4\uffff\1\11\1\uffff\1\4"+
-            "\2\uffff\1\2\31\uffff\1\12\1\uffff\1\3\1\uffff\1\10\10\uffff"+
-            "\1\1\5\uffff\1\13",
+            "\1\14\55\uffff\1\4\5\uffff\1\5\1\6\4\uffff\1\1\1\uffff\1\10"+
+            "\40\uffff\1\2\1\12\4\uffff\1\7\4\uffff\1\3\1\uffff\1\11\5\uffff"+
+            "\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -19237,16 +19237,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA50_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA50_maxS =
-        "\1\165\15\0\2\uffff";
+        "\1\175\15\0\2\uffff";
     static final String DFA50_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA50_specialS =
         "\1\uffff\1\7\1\14\1\13\1\12\1\6\1\0\1\1\1\5\1\4\1\10\1\3\1\2\1"+
         "\11\2\uffff}>";
     static final String[] DFA50_transitionS = {
-            "\1\14\54\uffff\1\7\2\uffff\1\5\1\6\4\uffff\1\11\1\uffff\1\4"+
-            "\2\uffff\1\2\31\uffff\1\12\1\uffff\1\3\1\uffff\1\10\10\uffff"+
-            "\1\1\5\uffff\1\13",
+            "\1\14\55\uffff\1\4\5\uffff\1\5\1\6\4\uffff\1\1\1\uffff\1\10"+
+            "\40\uffff\1\2\1\12\4\uffff\1\7\4\uffff\1\3\1\uffff\1\11\5\uffff"+
+            "\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -19523,16 +19523,16 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA61_minS =
         "\1\15\15\0\2\uffff";
     static final String DFA61_maxS =
-        "\1\165\15\0\2\uffff";
+        "\1\175\15\0\2\uffff";
     static final String DFA61_acceptS =
         "\16\uffff\1\1\1\2";
     static final String DFA61_specialS =
         "\1\uffff\1\10\1\14\1\13\1\12\1\7\1\1\1\2\1\6\1\5\1\11\1\4\1\3\1"+
         "\0\2\uffff}>";
     static final String[] DFA61_transitionS = {
-            "\1\14\54\uffff\1\7\2\uffff\1\5\1\6\4\uffff\1\11\1\uffff\1\4"+
-            "\2\uffff\1\2\31\uffff\1\12\1\uffff\1\3\1\uffff\1\10\10\uffff"+
-            "\1\1\5\uffff\1\13",
+            "\1\14\55\uffff\1\4\5\uffff\1\5\1\6\4\uffff\1\1\1\uffff\1\10"+
+            "\40\uffff\1\2\1\12\4\uffff\1\7\4\uffff\1\3\1\uffff\1\11\5\uffff"+
+            "\1\13",
             "\1\uffff",
             "\1\uffff",
             "\1\uffff",
@@ -21609,12 +21609,12 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA68_acceptS =
         "\127\uffff\1\2\1\1";
     static final String DFA68_specialS =
-        "\1\uffff\1\73\1\11\1\42\1\106\1\22\1\104\1\44\1\5\1\65\1\6\1\66"+
-        "\1\1\1\111\1\40\1\110\1\3\1\62\1\4\1\64\1\77\1\33\1\76\1\31\1\15"+
-        "\1\55\1\2\1\57\1\12\1\103\1\41\1\101\1\17\1\60\1\7\1\61\1\20\1\13"+
-        "\1\67\1\14\1\36\1\102\1\45\1\114\1\34\1\100\1\10\1\70\1\23\1\74"+
-        "\1\43\1\113\1\27\1\75\1\71\1\16\1\26\1\107\1\25\1\117\1\21\1\105"+
-        "\1\24\1\72\1\32\1\112\1\30\1\125\1\35\1\63\1\37\1\0\1\54\1\124\1"+
+        "\1\uffff\1\72\1\11\1\42\1\105\1\22\1\103\1\44\1\5\1\64\1\6\1\65"+
+        "\1\40\1\110\1\37\1\107\1\3\1\62\1\4\1\63\1\76\1\32\1\75\1\30\1\16"+
+        "\1\55\1\2\1\57\1\12\1\102\1\41\1\100\1\17\1\60\1\7\1\61\1\20\1\13"+
+        "\1\66\1\14\1\35\1\101\1\45\1\114\1\33\1\77\1\10\1\67\1\23\1\73\1"+
+        "\43\1\113\1\1\1\74\1\70\1\15\1\26\1\106\1\25\1\117\1\21\1\104\1"+
+        "\24\1\71\1\31\1\111\1\27\1\125\1\34\1\112\1\36\1\0\1\54\1\124\1"+
         "\53\1\123\1\51\1\121\1\52\1\122\1\47\1\116\1\46\1\115\1\50\1\120"+
         "\1\56\2\uffff}>";
     static final String[] DFA68_transitionS = {
@@ -21771,10 +21771,10 @@ public class TCSParser extends ObservableInjectingParser {
                         break;
 
                     case 1 : 
-                        int LA68_12 = input.LA(1);
+                        int LA68_52 = input.LA(1);
 
                          
-                        int index68_12 = input.index();
+                        int index68_52 = input.index();
                         input.rewind();
                         s = -1;
                         if ( (synpred161_TCS()) ) {s = 88;}
@@ -21782,7 +21782,7 @@ public class TCSParser extends ObservableInjectingParser {
                         else if ( (true) ) {s = 87;}
 
                          
-                        input.seek(index68_12);
+                        input.seek(index68_52);
                         if ( s>=0 ) return s;
                         break;
 
@@ -21963,22 +21963,6 @@ public class TCSParser extends ObservableInjectingParser {
                         break;
 
                     case 13 : 
-                        int LA68_24 = input.LA(1);
-
-                         
-                        int index68_24 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_24);
-                        if ( s>=0 ) return s;
-                        break;
-
-                    case 14 : 
                         int LA68_55 = input.LA(1);
 
                          
@@ -21991,6 +21975,22 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_55);
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 14 : 
+                        int LA68_24 = input.LA(1);
+
+                         
+                        int index68_24 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_24);
                         if ( s>=0 ) return s;
                         break;
 
@@ -22123,22 +22123,6 @@ public class TCSParser extends ObservableInjectingParser {
                         break;
 
                     case 23 : 
-                        int LA68_52 = input.LA(1);
-
-                         
-                        int index68_52 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_52);
-                        if ( s>=0 ) return s;
-                        break;
-
-                    case 24 : 
                         int LA68_66 = input.LA(1);
 
                          
@@ -22154,7 +22138,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 25 : 
+                    case 24 : 
                         int LA68_23 = input.LA(1);
 
                          
@@ -22170,7 +22154,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 26 : 
+                    case 25 : 
                         int LA68_64 = input.LA(1);
 
                          
@@ -22186,7 +22170,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 27 : 
+                    case 26 : 
                         int LA68_21 = input.LA(1);
 
                          
@@ -22202,7 +22186,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 28 : 
+                    case 27 : 
                         int LA68_44 = input.LA(1);
 
                          
@@ -22218,7 +22202,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 29 : 
+                    case 28 : 
                         int LA68_68 = input.LA(1);
 
                          
@@ -22234,7 +22218,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 30 : 
+                    case 29 : 
                         int LA68_40 = input.LA(1);
 
                          
@@ -22250,7 +22234,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 31 : 
+                    case 30 : 
                         int LA68_70 = input.LA(1);
 
                          
@@ -22266,7 +22250,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 32 : 
+                    case 31 : 
                         int LA68_14 = input.LA(1);
 
                          
@@ -22279,6 +22263,22 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_14);
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 32 : 
+                        int LA68_12 = input.LA(1);
+
+                         
+                        int index68_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_12);
                         if ( s>=0 ) return s;
                         break;
 
@@ -22571,22 +22571,6 @@ public class TCSParser extends ObservableInjectingParser {
                         break;
 
                     case 51 : 
-                        int LA68_69 = input.LA(1);
-
-                         
-                        int index68_69 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (synpred161_TCS()) ) {s = 88;}
-
-                        else if ( (true) ) {s = 87;}
-
-                         
-                        input.seek(index68_69);
-                        if ( s>=0 ) return s;
-                        break;
-
-                    case 52 : 
                         int LA68_19 = input.LA(1);
 
                          
@@ -22602,7 +22586,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 53 : 
+                    case 52 : 
                         int LA68_9 = input.LA(1);
 
                          
@@ -22618,7 +22602,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 54 : 
+                    case 53 : 
                         int LA68_11 = input.LA(1);
 
                          
@@ -22634,7 +22618,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 55 : 
+                    case 54 : 
                         int LA68_38 = input.LA(1);
 
                          
@@ -22650,7 +22634,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 56 : 
+                    case 55 : 
                         int LA68_47 = input.LA(1);
 
                          
@@ -22666,7 +22650,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 57 : 
+                    case 56 : 
                         int LA68_54 = input.LA(1);
 
                          
@@ -22682,7 +22666,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 58 : 
+                    case 57 : 
                         int LA68_63 = input.LA(1);
 
                          
@@ -22698,7 +22682,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 59 : 
+                    case 58 : 
                         int LA68_1 = input.LA(1);
 
                          
@@ -22714,7 +22698,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 60 : 
+                    case 59 : 
                         int LA68_49 = input.LA(1);
 
                          
@@ -22730,7 +22714,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 61 : 
+                    case 60 : 
                         int LA68_53 = input.LA(1);
 
                          
@@ -22746,7 +22730,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 62 : 
+                    case 61 : 
                         int LA68_22 = input.LA(1);
 
                          
@@ -22762,7 +22746,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 63 : 
+                    case 62 : 
                         int LA68_20 = input.LA(1);
 
                          
@@ -22778,7 +22762,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 64 : 
+                    case 63 : 
                         int LA68_45 = input.LA(1);
 
                          
@@ -22794,7 +22778,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 65 : 
+                    case 64 : 
                         int LA68_31 = input.LA(1);
 
                          
@@ -22810,7 +22794,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 66 : 
+                    case 65 : 
                         int LA68_41 = input.LA(1);
 
                          
@@ -22826,7 +22810,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 67 : 
+                    case 66 : 
                         int LA68_29 = input.LA(1);
 
                          
@@ -22842,7 +22826,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 68 : 
+                    case 67 : 
                         int LA68_6 = input.LA(1);
 
                          
@@ -22858,7 +22842,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 69 : 
+                    case 68 : 
                         int LA68_61 = input.LA(1);
 
                          
@@ -22874,7 +22858,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 70 : 
+                    case 69 : 
                         int LA68_4 = input.LA(1);
 
                          
@@ -22890,7 +22874,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 71 : 
+                    case 70 : 
                         int LA68_57 = input.LA(1);
 
                          
@@ -22906,7 +22890,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 72 : 
+                    case 71 : 
                         int LA68_15 = input.LA(1);
 
                          
@@ -22922,7 +22906,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 73 : 
+                    case 72 : 
                         int LA68_13 = input.LA(1);
 
                          
@@ -22938,7 +22922,7 @@ public class TCSParser extends ObservableInjectingParser {
                         if ( s>=0 ) return s;
                         break;
 
-                    case 74 : 
+                    case 73 : 
                         int LA68_65 = input.LA(1);
 
                          
@@ -22951,6 +22935,22 @@ public class TCSParser extends ObservableInjectingParser {
 
                          
                         input.seek(index68_65);
+                        if ( s>=0 ) return s;
+                        break;
+
+                    case 74 : 
+                        int LA68_69 = input.LA(1);
+
+                         
+                        int index68_69 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (synpred161_TCS()) ) {s = 88;}
+
+                        else if ( (true) ) {s = 87;}
+
+                         
+                        input.seek(index68_69);
                         if ( s>=0 ) return s;
                         break;
 
@@ -23144,7 +23144,7 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA86_minS =
         "\1\4\126\13\3\4\126\13\3\uffff";
     static final String DFA86_maxS =
-        "\1\u0085\126\37\1\u0085\2\166\126\37\3\uffff";
+        "\1\u0085\126\37\1\u0085\2\164\126\37\3\uffff";
     static final String DFA86_acceptS =
         "\u00b0\uffff\1\2\1\1\1\3";
     static final String DFA86_specialS =
@@ -23255,8 +23255,8 @@ public class TCSParser extends ObservableInjectingParser {
             "\1\u009c\1\u009d\1\u009e\1\u009f\1\u00a0\1\u00a1\1\u00a2\1\u00a3"+
             "\1\u00a4\1\u00a5\1\u00a6\1\u00a7\1\u00a8\1\u00a9\1\u00aa\1\u00ab"+
             "\1\u00ac\1\u00ad\1\u00ae\1\u00af",
-            "\1\u00b1\150\uffff\1\u00b0\10\uffff\1\u00b2",
-            "\1\u00b1\150\uffff\1\u00b0\10\uffff\1\u00b2",
+            "\1\u00b1\103\uffff\1\u00b2\53\uffff\1\u00b0",
+            "\1\u00b1\103\uffff\1\u00b2\53\uffff\1\u00b0",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
             "\1\131\23\uffff\1\130",
@@ -23386,10 +23386,10 @@ public class TCSParser extends ObservableInjectingParser {
     static final String DFA126_eofS =
         "\1\uffff\127\131\5\uffff\127\131";
     static final String DFA126_minS =
-        "\1\4\21\13\1\11\33\13\1\11\50\13\1\4\5\uffff\13\13\1\4\70\13\1"+
-        "\4\21\13\1\4";
+        "\1\4\12\13\1\11\33\13\1\11\57\13\1\4\5\uffff\63\13\1\4\2\13\1\4"+
+        "\37\13\1\4";
     static final String DFA126_maxS =
-        "\1\u0085\126\164\1\u0085\5\uffff\13\164\1\u0085\113\164";
+        "\1\u0085\126\146\1\u0085\5\uffff\66\146\1\u0085\40\146";
     static final String DFA126_acceptS =
         "\130\uffff\1\5\1\2\1\1\1\3\1\4\127\uffff";
     static final String DFA126_specialS =
@@ -23403,94 +23403,94 @@ public class TCSParser extends ObservableInjectingParser {
             "\71\1\72\1\73\1\74\1\75\1\76\1\77\1\100\1\101\1\102\1\103\1"+
             "\104\1\105\1\106\1\107\1\110\1\111\1\112\1\113\1\114\1\115\1"+
             "\116\1\117\1\120\1\121\1\122\1\123\1\124\1\125\1\126",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\133\1\uffff\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff"+
-            "\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\134\1\uffff\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff"+
-            "\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\133\1\uffff\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff"+
+            "\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\134\1\uffff\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff"+
+            "\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
             "\1\135\6\uffff\1\132\13\uffff\1\131\31\uffff\1\136\1\137\1"+
             "\140\1\141\1\142\1\143\1\144\1\145\1\146\1\147\1\150\1\151\1"+
             "\152\1\153\1\154\1\155\1\156\1\157\1\160\1\161\1\162\1\163\1"+
@@ -23507,95 +23507,95 @@ public class TCSParser extends ObservableInjectingParser {
             "",
             "",
             "",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\130\6\uffff\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff"+
+            "\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
             "\1\131\6\uffff\1\132\3\uffff\1\131\7\uffff\1\131\31\uffff"+
-            "\103\131\1\u00b3\21\131",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\130\6\uffff\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff"+
-            "\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\132\13\uffff\1\131\43\uffff\1\131\70\uffff\1\130",
-            "\1\130\6\uffff\1\131\13\uffff\1\131\43\uffff\1\131\70\uffff"+
+            "\62\131\1\u00b3\42\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\132\13\uffff\1\131\113\uffff\1\130\2\uffff\1\131",
+            "\1\130\6\uffff\1\131\13\uffff\1\131\113\uffff\1\131\2\uffff"+
             "\1\131"
     };
 
@@ -23740,31 +23740,31 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_identifier_in_model_modelelement1180 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_concretesyntax_in_main1250 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_main1253 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_114_in_tcs_concretesyntax1284 = new BitSet(new long[]{0x0000000000001210L});
+    public static final BitSet FOLLOW_51_in_tcs_concretesyntax1284 = new BitSet(new long[]{0x0000000000001210L});
     public static final BitSet FOLLOW_identifier_in_tcs_concretesyntax1291 = new BitSet(new long[]{0x0000000000001200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_concretesyntax1306 = new BitSet(new long[]{0x0000000000000000L,0x0080000000000000L});
-    public static final BitSet FOLLOW_119_in_tcs_concretesyntax1310 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_concretesyntax1306 = new BitSet(new long[]{0x0000000000000000L,0x0000010000000000L});
+    public static final BitSet FOLLOW_104_in_tcs_concretesyntax1310 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_concretesyntax1314 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_concretesyntax1322 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_concretesyntax1329 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1347 = new BitSet(new long[]{0x6400000000002000L,0x0020805400000128L});
-    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1358 = new BitSet(new long[]{0x6400000000002000L,0x0020805400000128L});
-    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1366 = new BitSet(new long[]{0x6400000000002000L,0x0020805400000128L});
-    public static final BitSet FOLLOW_62_in_tcs_concretesyntax1383 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1347 = new BitSet(new long[]{0x0800000000002000L,0x20A10C0000000286L});
+    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1358 = new BitSet(new long[]{0x0800000000002000L,0x20A10C0000000286L});
+    public static final BitSet FOLLOW_tcs_template_in_tcs_concretesyntax1366 = new BitSet(new long[]{0x0800000000002000L,0x20A10C0000000286L});
+    public static final BitSet FOLLOW_66_in_tcs_concretesyntax1383 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1387 = new BitSet(new long[]{0x0000000000002810L});
     public static final BitSet FOLLOW_tcs_keyword_in_tcs_concretesyntax1398 = new BitSet(new long[]{0x0000000000002810L});
     public static final BitSet FOLLOW_tcs_keyword_in_tcs_concretesyntax1406 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1421 = new BitSet(new long[]{0x0400000000002000L,0x0020004400000008L});
-    public static final BitSet FOLLOW_58_in_tcs_concretesyntax1444 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1421 = new BitSet(new long[]{0x0000000000002000L,0x2081080000000200L});
+    public static final BitSet FOLLOW_112_in_tcs_concretesyntax1444 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_LCURLY_in_tcs_concretesyntax1448 = new BitSet(new long[]{0x0000000000002810L});
     public static final BitSet FOLLOW_tcs_symbol_in_tcs_concretesyntax1459 = new BitSet(new long[]{0x0000000000002810L});
     public static final BitSet FOLLOW_tcs_symbol_in_tcs_concretesyntax1467 = new BitSet(new long[]{0x0000000000002810L});
-    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1482 = new BitSet(new long[]{0x0000000000002000L,0x0020004400000008L});
-    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1503 = new BitSet(new long[]{0x0000000000002000L,0x0020004400000008L});
-    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1511 = new BitSet(new long[]{0x0000000000002000L,0x0020004400000008L});
-    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1526 = new BitSet(new long[]{0x0000000000002000L,0x0020000400000008L});
-    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1534 = new BitSet(new long[]{0x0000000000002000L,0x0020000400000008L});
-    public static final BitSet FOLLOW_117_in_tcs_concretesyntax1551 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURLY_in_tcs_concretesyntax1482 = new BitSet(new long[]{0x0000000000002000L,0x2080080000000200L});
+    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1503 = new BitSet(new long[]{0x0000000000002000L,0x2080080000000200L});
+    public static final BitSet FOLLOW_tcs_operatorlist_in_tcs_concretesyntax1511 = new BitSet(new long[]{0x0000000000002000L,0x2080080000000200L});
+    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1526 = new BitSet(new long[]{0x0000000000002000L,0x2080080000000000L});
+    public static final BitSet FOLLOW_tcs_token_in_tcs_concretesyntax1534 = new BitSet(new long[]{0x0000000000002000L,0x2080080000000000L});
+    public static final BitSet FOLLOW_125_in_tcs_concretesyntax1551 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_concretesyntax1555 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_concretesyntax1563 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_concretesyntax1570 = new BitSet(new long[]{0x0000000000002000L});
@@ -23780,27 +23780,27 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_functiontemplate_in_tcs_template1742 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_classtemplate_in_tcs_contexttemplate1769 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_operatortemplate_in_tcs_contexttemplate1777 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_100_in_tcs_primitivetemplate1807 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1814 = new BitSet(new long[]{0x0002000000000000L});
-    public static final BitSet FOLLOW_49_in_tcs_primitivetemplate1820 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_primitivetemplate1823 = new BitSet(new long[]{0x0000000000000000L,0x0000008000080000L});
-    public static final BitSet FOLLOW_83_in_tcs_primitivetemplate1833 = new BitSet(new long[]{0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_103_in_tcs_primitivetemplate1851 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1858 = new BitSet(new long[]{0x0000000000010000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_66_in_tcs_primitivetemplate1870 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_primitivetemplate1889 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
-    public static final BitSet FOLLOW_92_in_tcs_primitivetemplate1893 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_117_in_tcs_primitivetemplate1807 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1814 = new BitSet(new long[]{0x0000000000000000L,0x4000000000000000L});
+    public static final BitSet FOLLOW_126_in_tcs_primitivetemplate1820 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_primitivetemplate1823 = new BitSet(new long[]{0x0000000000000000L,0x00000000000A0000L});
+    public static final BitSet FOLLOW_81_in_tcs_primitivetemplate1833 = new BitSet(new long[]{0x0000000000000000L,0x0000000000080000L});
+    public static final BitSet FOLLOW_83_in_tcs_primitivetemplate1851 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_tcs_primitivetemplate1858 = new BitSet(new long[]{0x0000000000010000L,0x0000000000200000L});
+    public static final BitSet FOLLOW_85_in_tcs_primitivetemplate1870 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_primitivetemplate1889 = new BitSet(new long[]{0x1000000000000000L});
+    public static final BitSet FOLLOW_60_in_tcs_primitivetemplate1893 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_primitivetemplate1897 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_primitivetemplate1905 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_primitivetemplate1918 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
-    public static final BitSet FOLLOW_115_in_tcs_primitivetemplate1922 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_primitivetemplate1918 = new BitSet(new long[]{0x0000000000000000L,0x0000000100000000L});
+    public static final BitSet FOLLOW_96_in_tcs_primitivetemplate1922 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_primitivetemplate1926 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_primitivetemplate1934 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_primitivetemplate1954 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_primitivetemplate1962 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_69_in_tcs_enumerationtemplate2007 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_enumerationtemplate2010 = new BitSet(new long[]{0x0000000000014000L,0x0000000080000000L});
-    public static final BitSet FOLLOW_95_in_tcs_enumerationtemplate2020 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_59_in_tcs_enumerationtemplate2007 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_enumerationtemplate2010 = new BitSet(new long[]{0x0000000000014000L,0x0000000001000000L});
+    public static final BitSet FOLLOW_88_in_tcs_enumerationtemplate2020 = new BitSet(new long[]{0x0000000000014000L});
     public static final BitSet FOLLOW_COLON_in_tcs_enumerationtemplate2048 = new BitSet(new long[]{0x0000000000044000L});
     public static final BitSet FOLLOW_tcs_enumliteralmapping_in_tcs_enumerationtemplate2059 = new BitSet(new long[]{0x0000000000024000L});
     public static final BitSet FOLLOW_COMA_in_tcs_enumerationtemplate2068 = new BitSet(new long[]{0x0000000000040000L});
@@ -23811,34 +23811,34 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_enumliteralval_in_tcs_enumliteralmapping2171 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_enumliteralmapping2178 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_tcs_literalref_in_tcs_enumliteralmapping2186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_111_in_tcs_classtemplate2229 = new BitSet(new long[]{0x0000000000008210L});
-    public static final BitSet FOLLOW_reference_in_tcs_classtemplate2232 = new BitSet(new long[]{0x0010000000054200L,0x0000102204704400L});
-    public static final BitSet FOLLOW_84_in_tcs_classtemplate2242 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_71_in_tcs_classtemplate2229 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_reference_in_tcs_classtemplate2232 = new BitSet(new long[]{0xC220000000054200L,0x1800400000002001L,0x0000000000000004L});
+    public static final BitSet FOLLOW_57_in_tcs_classtemplate2242 = new BitSet(new long[]{0x0000000000014000L});
     public static final BitSet FOLLOW_SHARP_in_tcs_classtemplate2262 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_tcs_classtemplate2270 = new BitSet(new long[]{0x0010000000014200L,0x0000102204604400L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2296 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_tcs_classtemplate2300 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_identifier_in_tcs_classtemplate2270 = new BitSet(new long[]{0xC020000000014200L,0x1800400000002001L,0x0000000000000004L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2296 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_129_in_tcs_classtemplate2300 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_classtemplate2304 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_classtemplate2312 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2319 = new BitSet(new long[]{0x0010000000014200L,0x0000102204604400L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2343 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_tcs_classtemplate2347 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2319 = new BitSet(new long[]{0xC020000000014200L,0x1800400000002001L,0x0000000000000004L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2343 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_tcs_classtemplate2347 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_classtemplate2351 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_classtemplate2359 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2366 = new BitSet(new long[]{0x0010000000014000L,0x0000102204604400L});
-    public static final BitSet FOLLOW_97_in_tcs_classtemplate2389 = new BitSet(new long[]{0x0010000000014000L,0x0000102004604400L});
-    public static final BitSet FOLLOW_78_in_tcs_classtemplate2413 = new BitSet(new long[]{0x0010000000014000L,0x0000102004600400L});
-    public static final BitSet FOLLOW_85_in_tcs_classtemplate2443 = new BitSet(new long[]{0x0000000000000000L,0x0000000000400000L});
-    public static final BitSet FOLLOW_86_in_tcs_classtemplate2461 = new BitSet(new long[]{0x0010000000014000L,0x0000102004000400L});
-    public static final BitSet FOLLOW_101_in_tcs_classtemplate2485 = new BitSet(new long[]{0x0010000000014200L,0x0000100004000400L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2366 = new BitSet(new long[]{0xC020000000014000L,0x1800400000002001L,0x0000000000000004L});
+    public static final BitSet FOLLOW_64_in_tcs_classtemplate2389 = new BitSet(new long[]{0xC020000000014000L,0x1800400000002000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_77_in_tcs_classtemplate2413 = new BitSet(new long[]{0xC020000000014000L,0x1800400000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_110_in_tcs_classtemplate2443 = new BitSet(new long[]{0x0020000000000000L});
+    public static final BitSet FOLLOW_53_in_tcs_classtemplate2461 = new BitSet(new long[]{0xC000000000014000L,0x1800000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_63_in_tcs_classtemplate2485 = new BitSet(new long[]{0x4000000000014200L,0x1800000000000000L,0x0000000000000004L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_classtemplate2495 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_tcs_classtemplate2503 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2510 = new BitSet(new long[]{0x0010000000014000L,0x0000100004000400L});
-    public static final BitSet FOLLOW_90_in_tcs_classtemplate2548 = new BitSet(new long[]{0x0010000000014200L,0x0000100000000400L});
-    public static final BitSet FOLLOW_tcs_contexttags_in_tcs_classtemplate2561 = new BitSet(new long[]{0x0010000000014000L,0x0000100000000400L});
-    public static final BitSet FOLLOW_108_in_tcs_classtemplate2601 = new BitSet(new long[]{0x0010000000014000L,0x0000000000000400L});
-    public static final BitSet FOLLOW_74_in_tcs_classtemplate2625 = new BitSet(new long[]{0x0010000000014000L});
-    public static final BitSet FOLLOW_52_in_tcs_classtemplate2649 = new BitSet(new long[]{0x0000000000010000L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_classtemplate2510 = new BitSet(new long[]{0x4000000000014000L,0x1800000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_130_in_tcs_classtemplate2548 = new BitSet(new long[]{0x4000000000014200L,0x1800000000000000L});
+    public static final BitSet FOLLOW_tcs_contexttags_in_tcs_classtemplate2561 = new BitSet(new long[]{0x4000000000014000L,0x1800000000000000L});
+    public static final BitSet FOLLOW_124_in_tcs_classtemplate2601 = new BitSet(new long[]{0x4000000000014000L,0x0800000000000000L});
+    public static final BitSet FOLLOW_62_in_tcs_classtemplate2625 = new BitSet(new long[]{0x0000000000014000L,0x0800000000000000L});
+    public static final BitSet FOLLOW_123_in_tcs_classtemplate2649 = new BitSet(new long[]{0x0000000000010000L});
     public static final BitSet FOLLOW_COLON_in_tcs_classtemplate2656 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_sequence_in_tcs_classtemplate2667 = new BitSet(new long[]{0x0000000000014000L});
     public static final BitSet FOLLOW_COLON_in_tcs_classtemplate2709 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
@@ -23846,43 +23846,43 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_SEMI_in_tcs_classtemplate2730 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_classtemplate2747 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_classtemplate2761 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_72_in_tcs_operatortemplate2806 = new BitSet(new long[]{0x0000000000008210L});
+    public static final BitSet FOLLOW_106_in_tcs_operatortemplate2806 = new BitSet(new long[]{0x0000000000008210L});
     public static final BitSet FOLLOW_reference_in_tcs_operatortemplate2809 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_operatortemplate2814 = new BitSet(new long[]{0x0000000000000000L,0x0000004000000000L});
-    public static final BitSet FOLLOW_102_in_tcs_operatortemplate2818 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_operatortemplate2814 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000200L});
+    public static final BitSet FOLLOW_73_in_tcs_operatortemplate2818 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2822 = new BitSet(new long[]{0x0000000000020010L});
     public static final BitSet FOLLOW_identifier_in_tcs_operatortemplate2830 = new BitSet(new long[]{0x0000000000020010L});
     public static final BitSet FOLLOW_identifier_in_tcs_operatortemplate2838 = new BitSet(new long[]{0x0000000000020010L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2850 = new BitSet(new long[]{0x0000000000000000L,0x2000000000000000L});
-    public static final BitSet FOLLOW_125_in_tcs_operatortemplate2854 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2850 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_128_in_tcs_operatortemplate2854 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2858 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2866 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2879 = new BitSet(new long[]{0x0100000000000000L});
-    public static final BitSet FOLLOW_56_in_tcs_operatortemplate2883 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2879 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000400L});
+    public static final BitSet FOLLOW_74_in_tcs_operatortemplate2883 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2887 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2895 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2921 = new BitSet(new long[]{0x0000000000000000L,0x0000400000000000L});
-    public static final BitSet FOLLOW_110_in_tcs_operatortemplate2925 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2921 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
+    public static final BitSet FOLLOW_79_in_tcs_operatortemplate2925 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2929 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_operatortemplate2937 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2963 = new BitSet(new long[]{0x0000000000000000L,0x0000000000010000L});
-    public static final BitSet FOLLOW_80_in_tcs_operatortemplate2967 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate2963 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_129_in_tcs_operatortemplate2967 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate2971 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_operatortemplate2979 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate3005 = new BitSet(new long[]{0x0000000000000000L,0x0000000000800000L});
-    public static final BitSet FOLLOW_87_in_tcs_operatortemplate3009 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_operatortemplate3005 = new BitSet(new long[]{0x0000000000000000L,0x0000000000004000L});
+    public static final BitSet FOLLOW_78_in_tcs_operatortemplate3009 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operatortemplate3013 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_operatortemplate3021 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_RPAREN_in_tcs_operatortemplate3041 = new BitSet(new long[]{0x0000000000014000L,0x0000000004100000L});
-    public static final BitSet FOLLOW_84_in_tcs_operatortemplate3051 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_90_in_tcs_operatortemplate3070 = new BitSet(new long[]{0x0000000000014200L});
+    public static final BitSet FOLLOW_RPAREN_in_tcs_operatortemplate3041 = new BitSet(new long[]{0x0200000000014000L,0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_57_in_tcs_operatortemplate3051 = new BitSet(new long[]{0x0000000000014000L});
+    public static final BitSet FOLLOW_130_in_tcs_operatortemplate3070 = new BitSet(new long[]{0x0000000000014200L});
     public static final BitSet FOLLOW_tcs_contexttags_in_tcs_operatortemplate3083 = new BitSet(new long[]{0x0000000000014000L});
     public static final BitSet FOLLOW_COLON_in_tcs_operatortemplate3134 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_sequence_in_tcs_operatortemplate3145 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_operatortemplate3155 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_operatortemplate3172 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_textblockdefinition_textblockdefinition_in_tcs_operatortemplate3186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_61_in_tcs_functiontemplate3231 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_65_in_tcs_functiontemplate3231 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_tcs_functiontemplate3238 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_functiontemplate3245 = new BitSet(new long[]{0x0000000000008210L});
     public static final BitSet FOLLOW_reference_in_tcs_functiontemplate3249 = new BitSet(new long[]{0x0000000000000400L});
@@ -23912,9 +23912,9 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_RARROW_in_tcs_propertyreference3659 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_propertyreference3667 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_property3722 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_property3735 = new BitSet(new long[]{0x020C000000002000L,0x0C002901080500C0L,0x0000000000000001L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_property3735 = new BitSet(new long[]{0x0006000000002000L,0x03122030A2800008L,0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_propertyarg_in_tcs_property3743 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_property3752 = new BitSet(new long[]{0x020C000000000000L,0x0C002901080500C0L,0x0000000000000001L});
+    public static final BitSet FOLLOW_COMA_in_tcs_property3752 = new BitSet(new long[]{0x0006000000000000L,0x03122030A2800008L,0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_propertyarg_in_tcs_property3760 = new BitSet(new long[]{0x0000000000022000L});
     public static final BitSet FOLLOW_RCURLY_in_tcs_property3772 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LT_in_tcs_customseparator3830 = new BitSet(new long[]{0x0000000000000010L});
@@ -23923,9 +23923,9 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_LSQUARE_in_tcs_block3890 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_sequence_in_tcs_block3898 = new BitSet(new long[]{0x0000000000400000L});
     public static final BitSet FOLLOW_RSQUARE_in_tcs_block3905 = new BitSet(new long[]{0x0000000000001002L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_block3916 = new BitSet(new long[]{0x0000000000002000L,0x0000000042001800L,0x0000000000000020L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_block3916 = new BitSet(new long[]{0x0080000000002000L,0x0040100000050000L});
     public static final BitSet FOLLOW_tcs_blockarg_in_tcs_block3924 = new BitSet(new long[]{0x0000000000022000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_block3933 = new BitSet(new long[]{0x0000000000000000L,0x0000000042001800L,0x0000000000000020L});
+    public static final BitSet FOLLOW_COMA_in_tcs_block3933 = new BitSet(new long[]{0x0080000000000000L,0x0040100000050000L});
     public static final BitSet FOLLOW_tcs_blockarg_in_tcs_block3941 = new BitSet(new long[]{0x0000000000022000L});
     public static final BitSet FOLLOW_RCURLY_in_tcs_block3953 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_conditionalelement4011 = new BitSet(new long[]{0xFFFE000000808010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
@@ -23941,7 +23941,7 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_sequenceinalternative_in_tcs_alternative4147 = new BitSet(new long[]{0x0000000006000000L});
     public static final BitSet FOLLOW_DRSQUARE_in_tcs_alternative4159 = new BitSet(new long[]{0x0000000008000002L});
     public static final BitSet FOLLOW_STAR_in_tcs_alternative4170 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_tcs_sequenceinalternative4235 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_129_in_tcs_sequenceinalternative4235 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_sequenceinalternative4239 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_sequenceinalternative4247 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_sequenceinalternative4254 = new BitSet(new long[]{0xFFFE000031288232L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
@@ -23963,36 +23963,36 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_EQ_in_tcs_primitivepropertyinit4570 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_tcs_primitivepropertyinit4585 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_lookuppropertyinit4632 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_tcs_lookuppropertyinit4645 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_EQ_in_tcs_lookuppropertyinit4660 = new BitSet(new long[]{0x0000000000000000L,0x0000200000000000L});
-    public static final BitSet FOLLOW_109_in_tcs_lookuppropertyinit4671 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LARROW_in_tcs_lookuppropertyinit4645 = new BitSet(new long[]{0x0000000000000000L,0x0010000000000000L});
+    public static final BitSet FOLLOW_EQ_in_tcs_lookuppropertyinit4660 = new BitSet(new long[]{0x0000000000000000L,0x0010000000000000L});
+    public static final BitSet FOLLOW_116_in_tcs_lookuppropertyinit4671 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_lookuppropertyinit4675 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_lookuppropertyinit4683 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_lookuppropertyinit4690 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_foreachpredicatepropertyinit4735 = new BitSet(new long[]{0x0000000080000800L});
-    public static final BitSet FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4748 = new BitSet(new long[]{0x0000000000000000L,0x0040000000000000L});
-    public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4763 = new BitSet(new long[]{0x0000000000000000L,0x0040000000000000L});
-    public static final BitSet FOLLOW_118_in_tcs_foreachpredicatepropertyinit4774 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LARROW_in_tcs_foreachpredicatepropertyinit4748 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4763 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_72_in_tcs_foreachpredicatepropertyinit4774 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_foreachpredicatepropertyinit4778 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4786 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4799 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_tcs_foreachpredicatepropertyinit4803 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4799 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_95_in_tcs_foreachpredicatepropertyinit4803 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_foreachpredicatepropertyinit4807 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_foreachpredicatepropertyinit4815 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4841 = new BitSet(new long[]{0x0000000000000400L,0x0800000000040000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4841 = new BitSet(new long[]{0x0000000000000400L,0x00020000C0000000L});
     public static final BitSet FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4849 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4858 = new BitSet(new long[]{0x0000000000000000L,0x0800000000040000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_COMA_in_tcs_foreachpredicatepropertyinit4858 = new BitSet(new long[]{0x0000000000000000L,0x00020000C0000000L});
     public static final BitSet FOLLOW_tcs_predicatesemantic_in_tcs_foreachpredicatepropertyinit4866 = new BitSet(new long[]{0x0000000000020400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_foreachpredicatepropertyinit4891 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_131_in_tcs_predicatesemantic4938 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_94_in_tcs_predicatesemantic4938 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic4942 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_predicatesemantic4950 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic4957 = new BitSet(new long[]{0x0000000000000000L,0x0800000000040000L});
-    public static final BitSet FOLLOW_82_in_tcs_predicatesemantic4980 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic4957 = new BitSet(new long[]{0x0000000000000000L,0x0002000080000000L});
+    public static final BitSet FOLLOW_95_in_tcs_predicatesemantic4980 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic4984 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_predicatesemantic4992 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic4999 = new BitSet(new long[]{0x0000000000000000L,0x0800000000000000L});
-    public static final BitSet FOLLOW_123_in_tcs_predicatesemantic5016 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_predicatesemantic4999 = new BitSet(new long[]{0x0000000000000000L,0x0002000000000000L});
+    public static final BitSet FOLLOW_113_in_tcs_predicatesemantic5016 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_predicatesemantic5020 = new BitSet(new long[]{0xFFFE000000000012L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_predicatesemantic5028 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_referstoparg_in_tcs_propertyarg5070 = new BitSet(new long[]{0x0000000000000002L});
@@ -24010,42 +24010,42 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_queryparg_in_tcs_propertyarg5166 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_filterparg_in_tcs_propertyarg5174 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_modeparg_in_tcs_propertyarg5182 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_57_in_tcs_referstoparg5212 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_121_in_tcs_referstoparg5212 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_referstoparg5216 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_referstoparg5224 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_109_in_tcs_lookinparg5267 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_116_in_tcs_lookinparg5267 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_lookinparg5271 = new BitSet(new long[]{0xFFFE000000040010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_SHARP_in_tcs_lookinparg5282 = new BitSet(new long[]{0x0000000000000000L,0x0000000000002000L});
-    public static final BitSet FOLLOW_77_in_tcs_lookinparg5286 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_SHARP_in_tcs_lookinparg5282 = new BitSet(new long[]{0x0000000000000000L,0x0000020000000000L});
+    public static final BitSet FOLLOW_105_in_tcs_lookinparg5286 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_lookinparg5303 = new BitSet(new long[]{0x0000000100000002L});
     public static final BitSet FOLLOW_POINT_in_tcs_lookinparg5312 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_lookinparg5320 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_107_in_tcs_createinparg5373 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_101_in_tcs_createinparg5373 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_createinparg5377 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createinparg5385 = new BitSet(new long[]{0x0000000100000002L});
     public static final BitSet FOLLOW_POINT_in_tcs_createinparg5394 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createinparg5402 = new BitSet(new long[]{0x0000000100000002L});
-    public static final BitSet FOLLOW_123_in_tcs_asparg5448 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_113_in_tcs_asparg5448 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_asparg5452 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_asparg5460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_128_in_tcs_separatorparg5503 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_49_in_tcs_separatorparg5503 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_separatorparg5507 = new BitSet(new long[]{0xFFFE000031288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_sequence_in_tcs_separatorparg5515 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_80_in_tcs_disambiguateparg5558 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_129_in_tcs_disambiguateparg5558 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_disambiguateparg5562 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_disambiguateparg5570 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_122_in_tcs_autocreateparg5613 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_autocreateparg5617 = new BitSet(new long[]{0x0040000000000000L,0x0000060000000000L});
+    public static final BitSet FOLLOW_120_in_tcs_autocreateparg5613 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_autocreateparg5617 = new BitSet(new long[]{0x0000000000000000L,0x8000000000001040L});
     public static final BitSet FOLLOW_tcs_autocreatekind_in_tcs_autocreateparg5625 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_105_in_tcs_autocreatekind5669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_54_in_tcs_autocreatekind5679 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_106_in_tcs_autocreatekind5689 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_71_in_tcs_importcontextparg5720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_70_in_tcs_partialparg5760 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_51_in_tcs_forcedlowerparg5800 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_127_in_tcs_autocreatekind5669 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_70_in_tcs_autocreatekind5679 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_76_in_tcs_autocreatekind5689 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_87_in_tcs_importcontextparg5720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_109_in_tcs_partialparg5760 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_89_in_tcs_forcedlowerparg5800 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_forcedlowerparg5804 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_forcedlowerparg5812 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_104_in_tcs_forcedupperparg5855 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_67_in_tcs_forcedupperparg5855 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_forcedupperparg5859 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_forcedupperparg5867 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_50_in_tcs_createasparg5910 = new BitSet(new long[]{0x0000000000000800L});
@@ -24053,17 +24053,17 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createasparg5922 = new BitSet(new long[]{0x0000000000000102L});
     public static final BitSet FOLLOW_DLCOLON_in_tcs_createasparg5931 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_createasparg5939 = new BitSet(new long[]{0x0000000000000102L});
-    public static final BitSet FOLLOW_96_in_tcs_queryparg5985 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_93_in_tcs_queryparg5985 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_queryparg5989 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_queryparg5997 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_91_in_tcs_filterparg6040 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_100_in_tcs_filterparg6040 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_filterparg6044 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_filterparg6052 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_COMA_in_tcs_filterparg6065 = new BitSet(new long[]{0x0000000000000000L,0x0200000000000000L});
-    public static final BitSet FOLLOW_121_in_tcs_filterparg6069 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_filterparg6065 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
+    public static final BitSet FOLLOW_91_in_tcs_filterparg6069 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_filterparg6073 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_filterparg6081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_82_in_tcs_modeparg6137 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_95_in_tcs_modeparg6137 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_modeparg6141 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_modeparg6149 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_nbnlbarg_in_tcs_blockarg6189 = new BitSet(new long[]{0x0000000000000002L});
@@ -24071,54 +24071,54 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_startnlbarg_in_tcs_blockarg6205 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_startnbnlbarg_in_tcs_blockarg6213 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_endnlbarg_in_tcs_blockarg6221 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_76_in_tcs_nbnlbarg6251 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_118_in_tcs_nbnlbarg6251 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_nbnlbarg6255 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_nbnlbarg6263 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_133_in_tcs_indentincrbarg6306 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_55_in_tcs_indentincrbarg6306 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_indentincrbarg6310 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_indentincrbarg6318 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_75_in_tcs_startnlbarg6361 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_startnlbarg6365 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000014L});
-    public static final BitSet FOLLOW_130_in_tcs_startnlbarg6375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_132_in_tcs_startnlbarg6388 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_94_in_tcs_startnbnlbarg6435 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_80_in_tcs_startnlbarg6361 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_startnlbarg6365 = new BitSet(new long[]{0x0040000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_tcs_startnlbarg6375 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_tcs_startnlbarg6388 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_108_in_tcs_startnbnlbarg6435 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_startnbnlbarg6439 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_startnbnlbarg6447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_89_in_tcs_endnlbarg6490 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_endnlbarg6494 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000014L});
-    public static final BitSet FOLLOW_130_in_tcs_endnlbarg6504 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_132_in_tcs_endnlbarg6517 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_82_in_tcs_endnlbarg6490 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_endnlbarg6494 = new BitSet(new long[]{0x0040000000000000L,0x0000000004000000L});
+    public static final BitSet FOLLOW_90_in_tcs_endnlbarg6504 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_54_in_tcs_endnlbarg6517 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifier_in_tcs_symbol6568 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_symbol6577 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_symbol6585 = new BitSet(new long[]{0x0000000000014000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_symbol6598 = new BitSet(new long[]{0x1000000000004000L,0xC000000000020000L});
+    public static final BitSet FOLLOW_COLON_in_tcs_symbol6598 = new BitSet(new long[]{0x0000000000004000L,0x0400008000000030L});
     public static final BitSet FOLLOW_tcs_spacekind_in_tcs_symbol6606 = new BitSet(new long[]{0x0000000000024000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_symbol6615 = new BitSet(new long[]{0x1000000000000000L,0xC000000000020000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_symbol6615 = new BitSet(new long[]{0x0000000000000000L,0x0400008000000030L});
     public static final BitSet FOLLOW_tcs_spacekind_in_tcs_symbol6623 = new BitSet(new long[]{0x0000000000024000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_symbol6648 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_81_in_tcs_spacekind6690 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_127_in_tcs_spacekind6700 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_60_in_tcs_spacekind6710 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_126_in_tcs_spacekind6720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_69_in_tcs_spacekind6690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_103_in_tcs_spacekind6700 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_68_in_tcs_spacekind6710 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_122_in_tcs_spacekind6720 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifier_in_tcs_keyword6755 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_keyword6764 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_keyword6772 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_keyword6779 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_102_in_tcs_operatorlist6820 = new BitSet(new long[]{0x0000000000001010L});
+    public static final BitSet FOLLOW_73_in_tcs_operatorlist6820 = new BitSet(new long[]{0x0000000000001010L});
     public static final BitSet FOLLOW_identifier_in_tcs_operatorlist6833 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_operatorlist6853 = new BitSet(new long[]{0x0080000000002000L});
-    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6864 = new BitSet(new long[]{0x0080000000002000L});
-    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6872 = new BitSet(new long[]{0x0080000000002000L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_operatorlist6853 = new BitSet(new long[]{0x0000000000002000L,0x0004000000000000L});
+    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6864 = new BitSet(new long[]{0x0000000000002000L,0x0004000000000000L});
+    public static final BitSet FOLLOW_tcs_priority_in_tcs_operatorlist6872 = new BitSet(new long[]{0x0000000000002000L,0x0004000000000000L});
     public static final BitSet FOLLOW_RCURLY_in_tcs_operatorlist6887 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_55_in_tcs_priority6928 = new BitSet(new long[]{0x0000000000000040L});
+    public static final BitSet FOLLOW_114_in_tcs_priority6928 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_priority6935 = new BitSet(new long[]{0x0000000000021000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_priority6958 = new BitSet(new long[]{0x0000000000000000L,0x0100000001000000L});
+    public static final BitSet FOLLOW_COMA_in_tcs_priority6958 = new BitSet(new long[]{0x0010000000000000L,0x0000000000000000L,0x0000000000000020L});
     public static final BitSet FOLLOW_tcs_associativity_in_tcs_priority6966 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_LCURLY_in_tcs_priority6980 = new BitSet(new long[]{0x0000000000002810L,0x0000000000000010L});
-    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority6991 = new BitSet(new long[]{0x0000000000002810L,0x0000000000000010L});
-    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority6999 = new BitSet(new long[]{0x0000000000002810L,0x0000000000000010L});
+    public static final BitSet FOLLOW_LCURLY_in_tcs_priority6980 = new BitSet(new long[]{0x0000000000002810L,0x0000000000000800L});
+    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority6991 = new BitSet(new long[]{0x0000000000002810L,0x0000000000000800L});
+    public static final BitSet FOLLOW_tcs_operator_in_tcs_priority6999 = new BitSet(new long[]{0x0000000000002810L,0x0000000000000800L});
     public static final BitSet FOLLOW_RCURLY_in_tcs_priority7014 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_68_in_tcs_operator7061 = new BitSet(new long[]{0x0000000000000810L});
+    public static final BitSet FOLLOW_75_in_tcs_operator7061 = new BitSet(new long[]{0x0000000000000810L});
     public static final BitSet FOLLOW_identifier_in_tcs_operator7083 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_operator7092 = new BitSet(new long[]{0x0000000000020030L});
     public static final BitSet FOLLOW_identifier_in_tcs_operator7111 = new BitSet(new long[]{0x0000000000020000L});
@@ -24126,12 +24126,12 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_COMA_in_tcs_operator7156 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_integerSymbol_in_tcs_operator7164 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_operator7171 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_120_in_tcs_associativity7213 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_88_in_tcs_associativity7223 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_52_in_tcs_associativity7213 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_133_in_tcs_associativity7223 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_andexp_in_tcs_expression7251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7285 = new BitSet(new long[]{0x0800000000000002L});
-    public static final BitSet FOLLOW_59_in_tcs_andexp7293 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
-    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7300 = new BitSet(new long[]{0x0800000000000002L});
+    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7285 = new BitSet(new long[]{0x0000000000000002L,0x0000004000000000L});
+    public static final BitSet FOLLOW_102_in_tcs_andexp7293 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
+    public static final BitSet FOLLOW_tcs_atomexp_in_tcs_andexp7300 = new BitSet(new long[]{0x0000000000000002L,0x0000004000000000L});
     public static final BitSet FOLLOW_tcs_equalsexp_in_tcs_atomexp7345 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_booleanpropertyexp_in_tcs_atomexp7353 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_isdefinedexp_in_tcs_atomexp7361 = new BitSet(new long[]{0x0000000000000002L});
@@ -24141,16 +24141,16 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_EQ_in_tcs_equalsexp7418 = new BitSet(new long[]{0x0000000200040060L});
     public static final BitSet FOLLOW_tcs_value_in_tcs_equalsexp7426 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_booleanpropertyexp7473 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_65_in_tcs_isdefinedexp7516 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_58_in_tcs_isdefinedexp7516 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_isdefinedexp7520 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_isdefinedexp7528 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_isdefinedexp7535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_93_in_tcs_oneexp7576 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_86_in_tcs_oneexp7576 = new BitSet(new long[]{0x0000000000000200L});
     public static final BitSet FOLLOW_LPAREN_in_tcs_oneexp7580 = new BitSet(new long[]{0xFFFE000000008010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_oneexp7588 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_oneexp7595 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_instanceofexp7640 = new BitSet(new long[]{0x0000000000000000L,0x0010000000000000L});
-    public static final BitSet FOLLOW_116_in_tcs_instanceofexp7646 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_tcs_propertyreference_in_tcs_instanceofexp7640 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
+    public static final BitSet FOLLOW_99_in_tcs_instanceofexp7646 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_tcs_instanceofexp7653 = new BitSet(new long[]{0x0000000000000102L});
     public static final BitSet FOLLOW_DLCOLON_in_tcs_instanceofexp7662 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_tcs_instanceofexp7670 = new BitSet(new long[]{0x0000000000000102L});
@@ -24164,14 +24164,14 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_integerSymbol_in_tcs_negativeintegerval7870 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_SHARP_in_tcs_enumliteralval7914 = new BitSet(new long[]{0xFFFE000000000010L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_identifierOrKeyword_in_tcs_enumliteralval7922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_67_in_tcs_token7971 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
-    public static final BitSet FOLLOW_98_in_tcs_token7989 = new BitSet(new long[]{0x0000000000010010L});
+    public static final BitSet FOLLOW_119_in_tcs_token7971 = new BitSet(new long[]{0x0000000000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_107_in_tcs_token7989 = new BitSet(new long[]{0x0000000000010010L});
     public static final BitSet FOLLOW_identifier_in_tcs_token7996 = new BitSet(new long[]{0x0000000000010000L});
-    public static final BitSet FOLLOW_COLON_in_tcs_token8005 = new BitSet(new long[]{0x0000000000204020L,0x1002000000000200L});
+    public static final BitSet FOLLOW_COLON_in_tcs_token8005 = new BitSet(new long[]{0x2000000000204020L,0x0000000000100000L,0x0000000000000010L});
     public static final BitSet FOLLOW_tcs_orpattern_in_tcs_token8013 = new BitSet(new long[]{0x0000000000004000L});
     public static final BitSet FOLLOW_SEMI_in_tcs_token8020 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_simplepattern_in_tcs_orpattern8065 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_PIPE_in_tcs_orpattern8074 = new BitSet(new long[]{0x0000000000200020L,0x1002000000000200L});
+    public static final BitSet FOLLOW_PIPE_in_tcs_orpattern8074 = new BitSet(new long[]{0x2000000000200020L,0x0000000000100000L,0x0000000000000010L});
     public static final BitSet FOLLOW_tcs_simplepattern_in_tcs_orpattern8082 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_tcs_rulepattern_in_tcs_simplepattern8127 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_simplepattern8135 = new BitSet(new long[]{0x0000000000000002L});
@@ -24180,46 +24180,46 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_wordrule_in_tcs_rule8217 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_endoflinerule_in_tcs_rule8225 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_multilinerule_in_tcs_rule8233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_124_in_tcs_wordrule8263 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_wordrule8267 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-    public static final BitSet FOLLOW_99_in_tcs_wordrule8271 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8275 = new BitSet(new long[]{0x0000000000220020L,0x1002000000000200L});
+    public static final BitSet FOLLOW_84_in_tcs_wordrule8263 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_wordrule8267 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_tcs_wordrule8271 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8275 = new BitSet(new long[]{0x2000000000220020L,0x0000000000100000L,0x0000000000000010L});
     public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8283 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8290 = new BitSet(new long[]{0x0000000000000000L,0x0000000000008000L});
-    public static final BitSet FOLLOW_79_in_tcs_wordrule8294 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8298 = new BitSet(new long[]{0x0000000000220420L,0x1002000000000200L});
+    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8290 = new BitSet(new long[]{0x0000000000000000L,0x0000000400000000L});
+    public static final BitSet FOLLOW_98_in_tcs_wordrule8294 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8298 = new BitSet(new long[]{0x2000000000220420L,0x0000000000100000L,0x0000000000000010L});
     public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8306 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8319 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_tcs_wordrule8323 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8327 = new BitSet(new long[]{0x0000000000200420L,0x1002000000000200L});
+    public static final BitSet FOLLOW_COMA_in_tcs_wordrule8319 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
+    public static final BitSet FOLLOW_115_in_tcs_wordrule8323 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_wordrule8327 = new BitSet(new long[]{0x2000000000200420L,0x0000000000100000L,0x0000000000000010L});
     public static final BitSet FOLLOW_tcs_orpattern_in_tcs_wordrule8335 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_wordrule8355 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_113_in_tcs_endoflinerule8396 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_endoflinerule8400 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-    public static final BitSet FOLLOW_99_in_tcs_endoflinerule8404 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_endoflinerule8408 = new BitSet(new long[]{0x0000000000000420L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_129_in_tcs_endoflinerule8418 = new BitSet(new long[]{0x0000000000000420L});
+    public static final BitSet FOLLOW_132_in_tcs_endoflinerule8396 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_endoflinerule8400 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_tcs_endoflinerule8404 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_endoflinerule8408 = new BitSet(new long[]{0x0000000000000420L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_131_in_tcs_endoflinerule8418 = new BitSet(new long[]{0x0000000000000420L});
     public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_endoflinerule8440 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_endoflinerule8447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_73_in_tcs_multilinerule8488 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8492 = new BitSet(new long[]{0x0000000000000000L,0x0000000800000000L});
-    public static final BitSet FOLLOW_99_in_tcs_multilinerule8496 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8500 = new BitSet(new long[]{0x0000000000020020L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_129_in_tcs_multilinerule8510 = new BitSet(new long[]{0x0000000000020020L});
+    public static final BitSet FOLLOW_61_in_tcs_multilinerule8488 = new BitSet(new long[]{0x0000000000000200L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8492 = new BitSet(new long[]{0x0100000000000000L});
+    public static final BitSet FOLLOW_56_in_tcs_multilinerule8496 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8500 = new BitSet(new long[]{0x0000000000020020L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_131_in_tcs_multilinerule8510 = new BitSet(new long[]{0x0000000000020020L});
     public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8532 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8539 = new BitSet(new long[]{0x8000000000000000L});
-    public static final BitSet FOLLOW_63_in_tcs_multilinerule8543 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8547 = new BitSet(new long[]{0x0000000000020420L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_129_in_tcs_multilinerule8557 = new BitSet(new long[]{0x0000000000020420L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8539 = new BitSet(new long[]{0x0000000000000000L,0x0008000000000000L});
+    public static final BitSet FOLLOW_115_in_tcs_multilinerule8543 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8547 = new BitSet(new long[]{0x0000000000020420L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_131_in_tcs_multilinerule8557 = new BitSet(new long[]{0x0000000000020420L});
     public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8579 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8592 = new BitSet(new long[]{0x0020000000000000L});
-    public static final BitSet FOLLOW_53_in_tcs_multilinerule8596 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8592 = new BitSet(new long[]{0x0000000000000000L,0x0000000200000000L});
+    public static final BitSet FOLLOW_97_in_tcs_multilinerule8596 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_tcs_multilinerule8600 = new BitSet(new long[]{0x0000000000020420L});
     public static final BitSet FOLLOW_tcs_stringpattern_in_tcs_multilinerule8608 = new BitSet(new long[]{0x0000000000020400L});
     public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8621 = new BitSet(new long[]{0x0000000000000200L});
-    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8626 = new BitSet(new long[]{0x0000000100000410L,0x0001000000000001L});
+    public static final BitSet FOLLOW_LPAREN_in_tcs_multilinerule8626 = new BitSet(new long[]{0x0000000100000410L,0x0000800010000000L});
     public static final BitSet FOLLOW_tcs_mapping_in_tcs_multilinerule8634 = new BitSet(new long[]{0x0000000000020400L});
-    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8643 = new BitSet(new long[]{0x0000000100000010L,0x0001000000000001L});
+    public static final BitSet FOLLOW_COMA_in_tcs_multilinerule8643 = new BitSet(new long[]{0x0000000100000010L,0x0000800010000000L});
     public static final BitSet FOLLOW_tcs_mapping_in_tcs_multilinerule8651 = new BitSet(new long[]{0x0000000000020400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_multilinerule8663 = new BitSet(new long[]{0x0000000000000400L});
     public static final BitSet FOLLOW_RPAREN_in_tcs_multilinerule8694 = new BitSet(new long[]{0x0000000000000002L});
@@ -24233,8 +24233,8 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_POINT_in_tcs_wildcardmapping8849 = new BitSet(new long[]{0x0000000000008000L});
     public static final BitSet FOLLOW_RARROW_in_tcs_wildcardmapping8854 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_POINT_in_tcs_wildcardmapping8859 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_112_in_tcs_octalmapping8900 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_64_in_tcs_hexadecimalmapping8940 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_92_in_tcs_octalmapping8900 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_111_in_tcs_hexadecimalmapping8940 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_stringSymbol_in_tcs_stringpattern8984 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_LSQUARE_in_tcs_classpattern9030 = new BitSet(new long[]{0x0000000000400010L});
     public static final BitSet FOLLOW_identifier_in_tcs_classpattern9038 = new BitSet(new long[]{0x0000000000400000L});
@@ -24250,12 +24250,12 @@ public class TCSParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4130 = new BitSet(new long[]{0x0000000002000002L});
     public static final BitSet FOLLOW_PIPE_in_synpred171_TCS4139 = new BitSet(new long[]{0xFFFE000033288230L,0xFFFFFFFFFFFFFFFFL,0x000000000000003FL});
     public static final BitSet FOLLOW_tcs_sequenceinalternative_in_synpred171_TCS4147 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_COMA_in_synpred183_TCS4799 = new BitSet(new long[]{0x0000000000000000L,0x0000000000040000L});
-    public static final BitSet FOLLOW_82_in_synpred183_TCS4803 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_COMA_in_synpred183_TCS4799 = new BitSet(new long[]{0x0000000000000000L,0x0000000080000000L});
+    public static final BitSet FOLLOW_95_in_synpred183_TCS4803 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_EQ_in_synpred183_TCS4807 = new BitSet(new long[]{0x0000000000000020L});
     public static final BitSet FOLLOW_stringSymbol_in_synpred183_TCS4815 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_tcs_simplepattern_in_synpred249_TCS8065 = new BitSet(new long[]{0x0000000002000002L});
-    public static final BitSet FOLLOW_PIPE_in_synpred249_TCS8074 = new BitSet(new long[]{0x0000000000200020L,0x1002000000000200L});
+    public static final BitSet FOLLOW_PIPE_in_synpred249_TCS8074 = new BitSet(new long[]{0x2000000000200020L,0x0000000000100000L,0x0000000000000010L});
     public static final BitSet FOLLOW_tcs_simplepattern_in_synpred249_TCS8082 = new BitSet(new long[]{0x0000000002000002L});
 
 }

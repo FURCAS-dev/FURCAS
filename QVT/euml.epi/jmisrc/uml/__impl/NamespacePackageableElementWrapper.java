@@ -125,7 +125,6 @@ public class NamespacePackageableElementWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.NamespacePackageableElement> get___JmiInterface() {
         return uml.NamespacePackageableElement.class;
     }

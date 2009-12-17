@@ -31,7 +31,7 @@ import dataaccess.expressions.Expression;
  * 
  * @author D043530
  */
-public class ForeachInterpreter implements Interpreter<Foreach, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ForeachInterpreter implements Interpreter<Foreach, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private Foreach foreach;
     
     public ForeachInterpreter(Foreach foreach) {
@@ -47,8 +47,8 @@ public class ForeachInterpreter implements Interpreter<Foreach, SapClass, TypeDe
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> coll = interpreter.evaluate(foreach.getCollection());
 	Iterator it = foreach.getForVariable();
 	// make the iterator variable visible only to the enclosed block
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> stackFrame =
-	    new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(/* parent */ interpreter.getCallstack().peek());
+	RunletStackFrame stackFrame =
+	    new RunletStackFrame(/* parent */ interpreter.getCallstack().peek());
 	interpreter.push(stackFrame);
 	stackFrame.enterValue(it, new EmptyObject<AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(
 		it.getType(), interpreter.getModelAdapter()));

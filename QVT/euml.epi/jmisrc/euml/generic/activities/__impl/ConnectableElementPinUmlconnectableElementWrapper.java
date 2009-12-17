@@ -125,7 +125,6 @@ public class ConnectableElementPinUmlconnectableElementWrapper extends com.sap.t
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.ConnectableElementPinUmlconnectableElement> get___JmiInterface() {
         return euml.generic.activities.ConnectableElementPinUmlconnectableElement.class;
     }

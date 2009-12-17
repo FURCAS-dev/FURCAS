@@ -125,7 +125,6 @@ public class TemplateParameterParameterableElement2Wrapper extends com.sap.tc.mo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateParameterParameterableElement2> get___JmiInterface() {
         return uml.TemplateParameterParameterableElement2.class;
     }

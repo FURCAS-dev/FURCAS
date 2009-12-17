@@ -125,7 +125,6 @@ public class UmltraceUmlelement1Wrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.relationships.UmltraceUmlelement1> get___JmiInterface() {
         return euml.generic.relationships.UmltraceUmlelement1.class;
     }

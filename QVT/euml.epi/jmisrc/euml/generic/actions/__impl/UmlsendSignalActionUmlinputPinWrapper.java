@@ -125,7 +125,6 @@ public class UmlsendSignalActionUmlinputPinWrapper extends com.sap.tc.moin.repos
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlsendSignalActionUmlinputPin> get___JmiInterface() {
         return euml.generic.actions.UmlsendSignalActionUmlinputPin.class;
     }

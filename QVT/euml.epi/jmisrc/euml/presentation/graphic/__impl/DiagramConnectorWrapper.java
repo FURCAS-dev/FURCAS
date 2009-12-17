@@ -6,7 +6,7 @@ package euml.presentation.graphic.__impl;
 
 public class DiagramConnectorWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.presentation.graphic.__impl.DiagramConnectorImpl> implements euml.presentation.graphic.DiagramConnector,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DiagramConnectorWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.presentation.graphic.__impl.DiagramConnectorImpl getCastWrappedObject() {
         return (euml.presentation.graphic.__impl.DiagramConnectorImpl) getWrappedObject();
     }
@@ -622,7 +621,6 @@ public class DiagramConnectorWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.DiagramConnector> get___JmiInterface() {
         return euml.presentation.graphic.DiagramConnector.class;
     }

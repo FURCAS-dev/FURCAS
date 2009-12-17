@@ -6,7 +6,7 @@ package euml.generic.interactions.__impl;
 
 public class UmlpartDecompositionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.generic.interactions.__impl.UmlpartDecompositionImpl> implements euml.generic.interactions.UmlpartDecomposition,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class UmlpartDecompositionWrapper extends com.sap.tc.moin.repository.core
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.interactions.__impl.UmlpartDecompositionImpl getCastWrappedObject() {
         return (euml.generic.interactions.__impl.UmlpartDecompositionImpl) getWrappedObject();
     }
@@ -130,7 +129,6 @@ public class UmlpartDecompositionWrapper extends com.sap.tc.moin.repository.core
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlpartDecomposition> get___JmiInterface() {
         return euml.generic.interactions.UmlpartDecomposition.class;
     }

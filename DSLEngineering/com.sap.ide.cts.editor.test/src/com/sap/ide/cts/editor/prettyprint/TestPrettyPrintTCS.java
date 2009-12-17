@@ -14,6 +14,7 @@ import tcs.SpaceKindEnum;
 import tcs.Symbol;
 import textblocks.TextBlock;
 
+import com.sap.mi.tcs.parser.TcsParserFactory;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -34,7 +35,7 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		s.setName("SimpleSyntax");
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(s,
-				syntax);
+				syntax, new TcsParserFactory());
 		assertOutput(output, "SyntaxOnly");
 	}
 
@@ -56,7 +57,7 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		s.getTemplates().add(t);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(s,
-				syntax);
+				syntax, new TcsParserFactory());
 		assertOutput(output, "SyntaxWithMainClassTemplateMetaReference");
 	}
 
@@ -91,7 +92,7 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		s.getSymbols().add(sym);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(s,
-				syntax);
+				syntax, new TcsParserFactory());
 		assertOutput(output, "SyntaxWithSymbols");
 	}
 
@@ -120,7 +121,7 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		s.getTemplates().add(t);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(s,
-				syntax);
+				syntax, new TcsParserFactory());
 		assertOutput(output, "AutocreatedKeyword");
 	}
 
@@ -129,7 +130,7 @@ public class TestPrettyPrintTCS extends CtsPrettyPrinterTestBase {
 		ConcreteSyntax s = TcsUtil.getTcsSyntax(connection);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(s,
-				syntax);
+				syntax, new TcsParserFactory());
 		assertOutput(output, "CompleteTCSSyntax");
 	}
 }

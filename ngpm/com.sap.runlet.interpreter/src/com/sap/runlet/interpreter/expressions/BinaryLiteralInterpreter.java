@@ -18,7 +18,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.literals.BinaryLiteral;
 
-public class BinaryLiteralInterpreter implements Interpreter<BinaryLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class BinaryLiteralInterpreter implements Interpreter<BinaryLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private BinaryLiteral literal;
     
     public BinaryLiteralInterpreter(BinaryLiteral literal) {

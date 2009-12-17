@@ -6,7 +6,6 @@ package uml;
 
 /**
  * An opaque expression is an uninterpreted textual statement that denotes a (possibly empty) set of values when evaluated in a context.
-
  * Provides a mechanism for precisely defining the behavior of an opaque expression. An opaque expression is defined by a behavior restricted to return one result.
  * This interface is not intended to be implemented by clients.
  */

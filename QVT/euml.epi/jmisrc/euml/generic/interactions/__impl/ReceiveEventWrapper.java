@@ -125,7 +125,6 @@ public class ReceiveEventWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.ReceiveEvent> get___JmiInterface() {
         return euml.generic.interactions.ReceiveEvent.class;
     }

@@ -63,7 +63,6 @@ public final class UmlelementUmlannotationImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlelementUmlannotation> get___JmiInterface() {
         return euml.generic.kernel.UmlelementUmlannotation.class;
     }

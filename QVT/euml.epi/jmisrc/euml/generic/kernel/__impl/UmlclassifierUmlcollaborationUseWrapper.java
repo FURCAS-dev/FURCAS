@@ -125,7 +125,6 @@ public class UmlclassifierUmlcollaborationUseWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlclassifierUmlcollaborationUse> get___JmiInterface() {
         return euml.generic.kernel.UmlclassifierUmlcollaborationUse.class;
     }

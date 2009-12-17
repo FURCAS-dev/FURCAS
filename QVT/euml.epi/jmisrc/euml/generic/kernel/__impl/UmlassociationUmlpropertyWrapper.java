@@ -125,7 +125,6 @@ public class UmlassociationUmlpropertyWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlassociationUmlproperty> get___JmiInterface() {
         return euml.generic.kernel.UmlassociationUmlproperty.class;
     }

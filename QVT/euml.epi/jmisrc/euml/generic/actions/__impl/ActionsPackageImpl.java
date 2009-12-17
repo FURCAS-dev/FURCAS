@@ -8,7 +8,7 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(18);
@@ -125,7 +125,6 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.ActionsPackage> get___JmiInterface() {
         return euml.generic.actions.ActionsPackage.class;
     }
@@ -134,9 +133,7 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -178,9 +175,7 @@ public final class ActionsPackageImpl extends com.sap.tc.moin.repository.core.jm
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(6);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "UMLAcceptEventAction_UMLTrigger"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "euml.generic.actions.UmlacceptEventActionUmltrigger"); //$NON-NLS-1$

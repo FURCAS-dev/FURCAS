@@ -63,7 +63,6 @@ public final class UmlclassifierUmluseCaseImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.usecases.UmlclassifierUmluseCase> get___JmiInterface() {
         return euml.generic.usecases.UmlclassifierUmluseCase.class;
     }

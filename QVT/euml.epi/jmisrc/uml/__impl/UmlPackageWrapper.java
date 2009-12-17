@@ -3588,7 +3588,6 @@ public class UmlPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.UmlPackage> get___JmiInterface() {
         return uml.UmlPackage.class;
     }

@@ -376,7 +376,6 @@ public class CompositeStructuresPackageWrapper extends com.sap.tc.moin.repositor
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.compositestructures.CompositeStructuresPackage> get___JmiInterface() {
         return euml.generic.compositestructures.CompositeStructuresPackage.class;
     }

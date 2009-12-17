@@ -125,7 +125,6 @@ public class UmlelementAppliedStereotypeWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlelementAppliedStereotype> get___JmiInterface() {
         return euml.generic.kernel.UmlelementAppliedStereotype.class;
     }

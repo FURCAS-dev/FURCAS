@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class TemplateBindingWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.TemplateBindingImpl> implements uml.TemplateBinding,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class TemplateBindingWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.TemplateBindingImpl getCastWrappedObject() {
         return (uml.__impl.TemplateBindingImpl) getWrappedObject();
     }
@@ -198,7 +197,6 @@ public class TemplateBindingWrapper extends com.sap.tc.moin.repository.core.jmi.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateBinding> get___JmiInterface() {
         return uml.TemplateBinding.class;
     }

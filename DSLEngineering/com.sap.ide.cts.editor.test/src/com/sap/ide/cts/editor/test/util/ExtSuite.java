@@ -147,7 +147,7 @@ public class ExtSuite extends Suite {
 			}
 
 			// ignore folder starting with '.' (i.e '.svn')
-			if (!(fullPath.charAt(fullPath.lastIndexOf("/") + 1) == '.')) {
+			if (fullPath.endsWith("/") || !(fullPath.charAt(fullPath.lastIndexOf("/") + 1) == '.')) {
 				dirs.add(new File(fullPath.replace("%20", " ")));
 			}
 		}

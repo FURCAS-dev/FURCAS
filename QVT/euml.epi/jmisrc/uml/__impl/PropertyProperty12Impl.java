@@ -64,7 +64,6 @@ public final class PropertyProperty12Impl extends com.sap.tc.moin.repository.cor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PropertyProperty12> get___JmiInterface() {
         return uml.PropertyProperty12.class;
     }

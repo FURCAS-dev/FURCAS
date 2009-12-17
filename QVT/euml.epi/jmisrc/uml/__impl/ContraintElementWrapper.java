@@ -125,7 +125,6 @@ public class ContraintElementWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ContraintElement> get___JmiInterface() {
         return uml.ContraintElement.class;
     }

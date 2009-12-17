@@ -24,7 +24,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.collectionexpressions.Iterate;
 
-public class IterateInterpreter implements Interpreter<Iterate, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class IterateInterpreter implements Interpreter<Iterate, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private Iterate iterate;
 
     public IterateInterpreter(Iterate iterate) {
@@ -69,8 +69,8 @@ public class IterateInterpreter implements Interpreter<Iterate, SapClass, TypeDe
 		acc = iterate(interpreter, iterators, iteratorIndex + 1, source, acc, iteratorValues);
 	    } else {
 		// innermost iterator; perform one "step"
-		RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> stackFrame =
-		    new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(interpreter.getCallstack().peek());
+		RunletStackFrame stackFrame =
+		    new RunletStackFrame(interpreter.getCallstack().peek());
 		stackFrame.enterValue(iterate.getAccumulator(), acc);
 		for (behavioral.actions.Iterator iterator : iteratorValues.keySet()) {
 		    stackFrame.enterValue(iterator, iteratorValues.get(iterator));

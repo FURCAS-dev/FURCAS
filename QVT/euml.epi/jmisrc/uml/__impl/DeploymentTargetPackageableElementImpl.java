@@ -48,7 +48,6 @@ public final class DeploymentTargetPackageableElementImpl extends com.sap.tc.moi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DeploymentTargetPackageableElement> get___JmiInterface() {
         return uml.DeploymentTargetPackageableElement.class;
     }

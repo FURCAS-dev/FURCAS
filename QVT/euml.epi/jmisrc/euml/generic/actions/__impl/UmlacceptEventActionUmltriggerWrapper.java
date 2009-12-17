@@ -125,7 +125,6 @@ public class UmlacceptEventActionUmltriggerWrapper extends com.sap.tc.moin.repos
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlacceptEventActionUmltrigger> get___JmiInterface() {
         return euml.generic.actions.UmlacceptEventActionUmltrigger.class;
     }

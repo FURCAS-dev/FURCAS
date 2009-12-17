@@ -64,7 +64,6 @@ public final class UmlmessageOccurrenceSpecificationUmlmessageEventImpl extends 
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlmessageOccurrenceSpecificationUmlmessageEvent> get___JmiInterface() {
         return euml.generic.interactions.UmlmessageOccurrenceSpecificationUmlmessageEvent.class;
     }

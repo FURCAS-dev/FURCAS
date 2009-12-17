@@ -125,7 +125,6 @@ public class TemplateableElementTemplateSignatureWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateableElementTemplateSignature> get___JmiInterface() {
         return uml.TemplateableElementTemplateSignature.class;
     }

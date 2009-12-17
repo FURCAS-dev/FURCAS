@@ -369,7 +369,7 @@ syntax TCS {
                                                                 query="OCL:self.foreachParent.injectorActionsBlockReference.parentTemplate.concreteSyntax.templates", 
                                                         filter="->select(t | 
                                                                         if(t.oclIsTypeOf(TCS::ClassTemplate)) then 
-                                                                                t.oclAsType(TCS::ClassTemplate).metaReference = ?
+                                                                                t.oclAsType(TCS::ClassTemplate).metaReference.name = ?
                                                                                 and(t.oclAsType(TCS::ClassTemplate).metaReference).allSupertypes()
                                                                                         ->prepend(t.oclAsType(TCS::ClassTemplate).metaReference)
                                                                                         ->includes(self.foreachParent.propertyReference.strucfeature.type)

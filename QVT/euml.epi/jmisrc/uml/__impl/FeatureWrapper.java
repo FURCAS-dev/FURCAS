@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class FeatureWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.FeatureImpl> implements uml.Feature,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class FeatureWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.FeatureImpl getCastWrappedObject() {
         return (uml.__impl.FeatureImpl) getWrappedObject();
     }
@@ -534,7 +533,6 @@ public class FeatureWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Feature> get___JmiInterface() {
         return uml.Feature.class;
     }

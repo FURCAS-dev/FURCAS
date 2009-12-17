@@ -125,7 +125,6 @@ public class AbstractionDependencyWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.AbstractionDependency> get___JmiInterface() {
         return uml.AbstractionDependency.class;
     }

@@ -64,7 +64,6 @@ public final class TemplateSignatureTemplateParameter1Impl extends com.sap.tc.mo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateSignatureTemplateParameter1> get___JmiInterface() {
         return uml.TemplateSignatureTemplateParameter1.class;
     }

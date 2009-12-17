@@ -8,7 +8,7 @@ public class UmlforkJoinNodeWrapper extends com.sap.tc.moin.repository.core.jmi.
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -23,7 +23,6 @@ public class UmlforkJoinNodeWrapper extends com.sap.tc.moin.repository.core.jmi.
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.activities.__impl.UmlforkJoinNodeImpl getCastWrappedObject() {
         return (euml.generic.activities.__impl.UmlforkJoinNodeImpl) getWrappedObject();
     }
@@ -933,7 +932,7 @@ public class UmlforkJoinNodeWrapper extends com.sap.tc.moin.repository.core.jmi.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -957,11 +956,10 @@ public class UmlforkJoinNodeWrapper extends com.sap.tc.moin.repository.core.jmi.
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlforkJoinNode> get___JmiInterface() {
         return euml.generic.activities.UmlforkJoinNode.class;
     }

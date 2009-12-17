@@ -89,7 +89,6 @@ public class AssociationTypeWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.AssociationType> get___JmiInterface() {
         return uml.AssociationType.class;
     }

@@ -64,7 +64,6 @@ public final class OperationContraintImpl extends com.sap.tc.moin.repository.cor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OperationContraint> get___JmiInterface() {
         return uml.OperationContraint.class;
     }

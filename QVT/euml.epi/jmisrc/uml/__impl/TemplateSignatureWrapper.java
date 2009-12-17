@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class TemplateSignatureWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.TemplateSignatureImpl> implements uml.TemplateSignature,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class TemplateSignatureWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.TemplateSignatureImpl getCastWrappedObject() {
         return (uml.__impl.TemplateSignatureImpl) getWrappedObject();
     }
@@ -223,7 +222,6 @@ public class TemplateSignatureWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateSignature> get___JmiInterface() {
         return uml.TemplateSignature.class;
     }

@@ -64,7 +64,6 @@ public final class UmlreceptionUmlsignalImpl extends com.sap.tc.moin.repository.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmlreceptionUmlsignal> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmlreceptionUmlsignal.class;
     }

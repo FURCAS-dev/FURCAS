@@ -125,7 +125,6 @@ public class NamespaceContraintWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.NamespaceContraint> get___JmiInterface() {
         return uml.NamespaceContraint.class;
     }

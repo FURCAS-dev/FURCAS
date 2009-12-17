@@ -46,7 +46,6 @@ public class KernelPackageWrapper extends com.sap.tc.moin.repository.core.jmi.re
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<de.ikv.medini.kernel.KernelPackage> get___JmiInterface() {
         return de.ikv.medini.kernel.KernelPackage.class;
     }

@@ -29,7 +29,7 @@ import dataaccess.analytics.Dimension;
 import dataaccess.analytics.DimensionExpression;
 import dataaccess.expressions.Expression;
 
-public class DimensionExpressionInterpreter implements Interpreter<DimensionExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class DimensionExpressionInterpreter implements Interpreter<DimensionExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
 
     /**
      * Wraps a {@link RunletObject} such that its {@link #equals(Object)} and
@@ -109,7 +109,7 @@ public class DimensionExpressionInterpreter implements Interpreter<DimensionExpr
     private RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> callSingleArgFunction(RunletInterpreter interpreter,
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> arg, FunctionSignatureImplementation impl)
 	    throws NoSuchMethodException, InstantiationException, IllegalAccessException, InvocationTargetException {
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> stackFrame = new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>();
+	RunletStackFrame stackFrame = new RunletStackFrame();
 	stackFrame.enterValue(impl.getImplementedSignature().getInput().get(0).getName(), arg);
 	interpreter.push(stackFrame);
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> dimensionValueForFact = ((ReturnInterpreter.ReturnResult) interpreter

@@ -7,12 +7,7 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
-
-import test.reference.Author;
-import test.reference.Library;
-import test.reference.ReferencePackage;
 
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
@@ -38,30 +33,6 @@ public class TestCtsContentAssistProcessorQueryAndRefersToSimple extends
 		initProcessorForPrefix("Simple");
 	}
 
-	@Before
-	public void populateModel() {
-		// populate model as if the fixture had been parsed
-		ReferencePackage refPack = connection
-				.getPackage(ReferencePackage.PACKAGE_DESCRIPTOR);
-
-		Library lib = (Library) refPack.getLibrary().refCreateInstance();
-
-		Author henderson = (Author) refPack.getAuthor().refCreateInstance();
-		henderson.setName("henderson");
-
-		Author obrian = (Author) refPack.getAuthor().refCreateInstance();
-		obrian.setName("obrian");
-
-		Author hegel = (Author) refPack.getAuthor().refCreateInstance();
-		hegel.setName("hegel");
-
-		lib.getAuthors().add(henderson);
-		lib.getAuthors().add(obrian);
-		lib.getAuthors().add(hegel);
-
-		// no need to supply books as we only test referring to an author
-	}
-
 	@Test
 	public void beginningOfBook() {
 		List<String> expected = new ArrayList<String>();
@@ -72,19 +43,13 @@ public class TestCtsContentAssistProcessorQueryAndRefersToSimple extends
 		assertDisplayStrings(expected, 3, 0);
 	}
 
-	/**
-	 * Ignored until content assist support for query and refersTo is
-	 * implemented.
-	 */
-	@Ignore
 	@Test
 	public void insideBookBeginningOfAuthor() {
 		List<String> expected = new ArrayList<String>();
 		expected.add("author");
 		expected.add("hegel");
-		expected.add("henderson");
 
-		// other authors filtered out, their names don't start with an 'h'
+		// only hegel should return from query
 
 		assertDisplayStrings(expected, 3, 11);
 	}
@@ -93,7 +58,6 @@ public class TestCtsContentAssistProcessorQueryAndRefersToSimple extends
 	public void insideBookInsideAuthor() {
 		List<String> expected = new ArrayList<String>();
 		expected.add("hegel");
-		expected.add("henderson");
 
 		assertDisplayStrings(expected, 3, 13);
 	}

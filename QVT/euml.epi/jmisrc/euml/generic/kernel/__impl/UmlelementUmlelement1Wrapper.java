@@ -125,7 +125,6 @@ public class UmlelementUmlelement1Wrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlelementUmlelement1> get___JmiInterface() {
         return euml.generic.kernel.UmlelementUmlelement1.class;
     }

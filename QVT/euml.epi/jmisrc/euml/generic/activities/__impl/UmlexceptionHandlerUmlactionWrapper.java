@@ -125,7 +125,6 @@ public class UmlexceptionHandlerUmlactionWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlexceptionHandlerUmlaction> get___JmiInterface() {
         return euml.generic.activities.UmlexceptionHandlerUmlaction.class;
     }

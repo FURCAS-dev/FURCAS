@@ -39,7 +39,7 @@ import dataaccess.expressions.collectionexpressions.ExcludingAt;
  * 
  * @author Axel Uhl (D043530)
  */
-public class ExcludingAtInterpreter implements Interpreter<ExcludingAt, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ExcludingAtInterpreter implements Interpreter<ExcludingAt, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     
     private ExcludingAt excluding;
     

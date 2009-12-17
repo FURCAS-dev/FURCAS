@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class DependencyWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.DependencyImpl> implements uml.Dependency,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DependencyWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.DependencyImpl getCastWrappedObject() {
         return (uml.__impl.DependencyImpl) getWrappedObject();
     }
@@ -553,7 +552,6 @@ public class DependencyWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Dependency> get___JmiInterface() {
         return uml.Dependency.class;
     }

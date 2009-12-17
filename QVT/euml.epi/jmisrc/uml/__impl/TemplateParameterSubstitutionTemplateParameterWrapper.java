@@ -125,7 +125,6 @@ public class TemplateParameterSubstitutionTemplateParameterWrapper extends com.s
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateParameterSubstitutionTemplateParameter> get___JmiInterface() {
         return uml.TemplateParameterSubstitutionTemplateParameter.class;
     }

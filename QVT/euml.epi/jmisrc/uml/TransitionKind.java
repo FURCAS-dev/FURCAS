@@ -6,9 +6,7 @@ package uml;
 
 /**
  * TransitionKind is an enumeration type.
-
  * kind=#local implies owner.source.isComposite
-
  * kind=#external implies owner.source.isComposite
  * This interface is not intended to be implemented by clients.
  */

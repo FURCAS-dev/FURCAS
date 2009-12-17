@@ -125,7 +125,6 @@ public class DiagramElementInvisibleRegionWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.DiagramElementInvisibleRegion> get___JmiInterface() {
         return euml.presentation.graphic.DiagramElementInvisibleRegion.class;
     }

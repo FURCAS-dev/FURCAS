@@ -125,7 +125,6 @@ public class ParameterValueSpecificationWrapper extends com.sap.tc.moin.reposito
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ParameterValueSpecification> get___JmiInterface() {
         return uml.ParameterValueSpecification.class;
     }

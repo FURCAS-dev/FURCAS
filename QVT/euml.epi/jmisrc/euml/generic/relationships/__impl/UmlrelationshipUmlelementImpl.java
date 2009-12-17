@@ -63,7 +63,6 @@ public final class UmlrelationshipUmlelementImpl extends com.sap.tc.moin.reposit
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.relationships.UmlrelationshipUmlelement> get___JmiInterface() {
         return euml.generic.relationships.UmlrelationshipUmlelement.class;
     }

@@ -13,7 +13,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class RunletNativeInterpreter extends NativeInterpreter<SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class RunletNativeInterpreter extends NativeInterpreter<SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     public RunletNativeInterpreter(NativeImpl nativeImpl) {
 	super(nativeImpl, new RunletObjectFormatter());
     }

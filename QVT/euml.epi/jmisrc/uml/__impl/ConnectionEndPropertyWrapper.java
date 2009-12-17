@@ -89,7 +89,6 @@ public class ConnectionEndPropertyWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ConnectionEndProperty> get___JmiInterface() {
         return uml.ConnectionEndProperty.class;
     }

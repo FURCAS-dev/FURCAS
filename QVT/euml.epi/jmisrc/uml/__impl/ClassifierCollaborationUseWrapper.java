@@ -125,7 +125,6 @@ public class ClassifierCollaborationUseWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ClassifierCollaborationUse> get___JmiInterface() {
         return uml.ClassifierCollaborationUse.class;
     }

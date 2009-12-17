@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class ConnectionEndWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.ConnectionEndImpl> implements uml.ConnectionEnd,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ConnectionEndWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.ConnectionEndImpl getCastWrappedObject() {
         return (uml.__impl.ConnectionEndImpl) getWrappedObject();
     }
@@ -541,7 +540,6 @@ public class ConnectionEndWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ConnectionEnd> get___JmiInterface() {
         return uml.ConnectionEnd.class;
     }

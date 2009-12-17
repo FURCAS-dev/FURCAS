@@ -8,7 +8,7 @@ public final class CommonBehaviorsPackageImpl extends com.sap.tc.moin.repository
 {
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(22);
@@ -143,7 +143,6 @@ public final class CommonBehaviorsPackageImpl extends com.sap.tc.moin.repository
         }        
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.CommonBehaviorsPackage> get___JmiInterface() {
         return euml.generic.commonbehaviors.CommonBehaviorsPackage.class;
     }
@@ -152,9 +151,7 @@ public final class CommonBehaviorsPackageImpl extends com.sap.tc.moin.repository
         if (___refPackages == null) {
             ___refPackages = new java.util.ArrayList<RefPackageAndName>(0);
             ___refPackagesByName = new java.util.HashMap<String, RefPackageAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefPackageAndName rpan = null;
         }
   
@@ -208,9 +205,7 @@ public final class CommonBehaviorsPackageImpl extends com.sap.tc.moin.repository
         if (___refAssociations == null) {
             ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(6);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
-            @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
-            @SuppressWarnings("unused")
             RefAssociationAndName raan = null;
             name = "UMLBehavioralFeature_UMLBehaviror"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "euml.generic.commonbehaviors.UmlbehavioralFeatureUmlbehaviror"); //$NON-NLS-1$

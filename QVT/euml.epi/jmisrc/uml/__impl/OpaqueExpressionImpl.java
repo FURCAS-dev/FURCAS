@@ -8,7 +8,7 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
 
         
     public static final java.util.Map<java.lang.String, java.lang.Integer> FEATURE_IDS;
-
+    
     static {
         
         FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(22);
@@ -174,12 +174,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setOwner(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "49867AF0A1C33EC0F0E411DD9786000E35A783E4", /* mofId of reference */ "49867B33C9A6BB60F0E411DDC424000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOwner(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "49867AF0A1C33EC0F0E411DD9786000E35A783E4", /* mofId of reference */ "49867B33C9A6BB60F0E411DDC424000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public java.util.Collection getOwnedComment() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -218,12 +218,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setNamespace(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498681164BEBDAD0F0E811DDB574000E35A783E4", /* mofId of reference */ "498681164BEBDAD3F0E811DDBD57000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setNamespace(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498681164BEBDAD0F0E811DDB574000E35A783E4", /* mofId of reference */ "498681164BEBDAD3F0E811DDBD57000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getNameExpression() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -238,12 +238,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setNameExpression(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498681D8BF596A50F0E811DD9712000E35A783E4", /* mofId of reference */ "498681D8BF596A53F0E811DD9A96000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setNameExpression(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498681D8BF596A50F0E811DD9712000E35A783E4", /* mofId of reference */ "498681D8BF596A53F0E811DD9A96000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getTemplateparameter() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -260,12 +260,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setTemplateparameter(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498692EBECA19FF0F0F211DDAEE1000E35A783E4", /* mofId of reference */ "498693200C8513B0F0F311DD912B000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setTemplateparameter(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498692EBECA19FF0F0F211DDAEE1000E35A783E4", /* mofId of reference */ "498693200C8513B0F0F311DD912B000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getOwningtemplateparameter() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -280,12 +280,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setOwningtemplateparameter(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "49869328110E1E40F0F311DDC4E9000E35A783E4", /* mofId of reference */ "498693D678F8E6C0F0F311DDA244000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setOwningtemplateparameter(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "49869328110E1E40F0F311DDC4E9000E35A783E4", /* mofId of reference */ "498693D678F8E6C0F0F311DDA244000E35A783E4" , newValue, 0); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getType() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -300,12 +300,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setType(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498689130E95B2F0F0ED11DDB55C000E35A783E4", /* mofId of reference */ "498689130E9823F1F0ED11DD9A7C000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setType(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498689130E95B2F0F0ED11DDB55C000E35A783E4", /* mofId of reference */ "498689130E9823F1F0ED11DD9A7C000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getBehavior() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -320,12 +320,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setBehavior(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498698B55FC46370F0F611DD8511000E35A783E4", /* mofId of reference */ "498698B55FC6AD60F0F611DD8DE6000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setBehavior(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498698B55FC46370F0F611DD8511000E35A783E4", /* mofId of reference */ "498698B55FC6AD60F0F611DD8DE6000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefBaseObject getResult() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
@@ -340,12 +340,12 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
     public void setResult(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "498698C368AB9800F0F611DD84FD000E35A783E4", /* mofId of reference */ "498698C368AE0901F0F611DDBEEC000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
     public void setResult(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "498698C368AB9800F0F611DD84FD000E35A783E4", /* mofId of reference */ "498698C368AE0901F0F611DDBEEC000E35A783E4" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-
+    
     }
 
     // methods for internal attribute setter
@@ -470,7 +470,7 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
         }
         return result;
     }
-
+    
     public void refSetValue(com.sap.tc.moin.repository.core.CoreConnection connection, java.lang.String featureName, java.lang.Object value) {
         if (featureName == null) {
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidNameException(featureName);
@@ -548,7 +548,7 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
             throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, null, "refSetValue(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 3:
@@ -570,7 +570,7 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "set___Value(String)"); //$NON-NLS-1$
         }
     }
-
+    
     public void set___Value(com.sap.tc.moin.repository.core.CoreSession session, int featureId, java.lang.Object value) {
         switch (featureId) {
             case 3:
@@ -592,7 +592,7 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureId, refMetaObject(), "set___Value(int)"); //$NON-NLS-1$
         }
     }
-
+    
     public void addOrSet___Value(com.sap.tc.moin.repository.core.CoreSession session, java.lang.String featureName, java.lang.Object value) {
         switch (FEATURE_IDS.get(featureName)) {
             case 3:
@@ -614,7 +614,7 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(featureName, refMetaObject(), "addOrSet___Value(String)"); //$NON-NLS-1$
         }
     }    
-
+    
 
 
     public void set___AssociationLink( String associationEndMofId, com.sap.tc.moin.repository.core.EndStorageLink value ) {
@@ -687,7 +687,6 @@ public final class OpaqueExpressionImpl extends com.sap.tc.moin.repository.core.
 
     }
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OpaqueExpression> get___JmiInterface() {
         return uml.OpaqueExpression.class;
     }

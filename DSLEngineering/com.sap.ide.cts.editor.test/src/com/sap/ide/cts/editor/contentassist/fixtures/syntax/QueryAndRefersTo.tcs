@@ -8,15 +8,15 @@ syntax QueryAndRefersTo {
 				"}"
 	;
 	
-	template test::reference::Author context addToContext
+	template test::reference::Author
 		:	name
 	;
 	
 	template test::reference::Book
 		:	title "by" 
 			author{ 
-				refersTo = name, 
-				query="OCL:#context.oclAsType(test::reference::Library).authors->select( a | a.name.subString(1,1) = 'h' )->asSequence()->first()"
+				refersTo = name, -- refers to is used to know the correct type only. (no ? parameter in query, see query/filter instead)
+				query="OCL:#context.oclAsType(test::reference::Library).authors->select( a | a.name = 'hegel' )->asSequence()->first()"
 			}
 	;
 	

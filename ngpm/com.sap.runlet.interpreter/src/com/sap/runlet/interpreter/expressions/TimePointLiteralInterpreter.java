@@ -20,7 +20,7 @@ import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 import dataaccess.expressions.literals.TimePointLiteral;
 
-public class TimePointLiteralInterpreter implements Interpreter<TimePointLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class TimePointLiteralInterpreter implements Interpreter<TimePointLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private TimePointLiteral literal;
     
     public TimePointLiteralInterpreter(TimePointLiteral literal) {

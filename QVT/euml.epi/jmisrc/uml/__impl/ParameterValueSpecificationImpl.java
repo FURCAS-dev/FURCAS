@@ -64,7 +64,6 @@ public final class ParameterValueSpecificationImpl extends com.sap.tc.moin.repos
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ParameterValueSpecification> get___JmiInterface() {
         return uml.ParameterValueSpecification.class;
     }

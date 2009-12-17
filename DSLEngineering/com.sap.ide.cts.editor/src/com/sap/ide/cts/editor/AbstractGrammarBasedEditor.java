@@ -69,12 +69,16 @@ import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 import textblocks.VersionEnum;
 
+import com.sap.ide.cts.dialogs.PrettyPrintPreviewDialog;
 import com.sap.ide.cts.editor.action.GotoDeclarationAction;
 import com.sap.ide.cts.editor.action.HighlightTextBlockAction;
+import com.sap.ide.cts.editor.action.PrettyPrintAction;
 import com.sap.ide.cts.editor.commands.ParseCommand;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.matching.CtsStaticMatcher;
 import com.sap.ide.cts.editor.preferences.PreferenceInitializer;
+import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
+import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.editor.recovery.TbRecoverUtil;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
@@ -116,6 +120,7 @@ import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
 import com.sap.tc.moin.repository.exception.ExecutionRollbackFailedException;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
@@ -561,17 +566,48 @@ public abstract class AbstractGrammarBasedEditor extends
 					+ "Would you like to try to recover this connection?\n"
 					+ "Otherwise this will cause all elements in defined in the"
 					+ "document to be re-created upon changes to the document!");
-				if (recoverLink) {
-				    	if (!TbRecoverUtil.recoverTextBlockFromBrokenMapping(blockInError, rootTemplate, getIncrementalParser(), getParser(), getLexer(), shortPrettyPrinter)) {
-				    	    	MessageDialog.openError(
-				    	    		CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),
-							"Mapping Link Recovery Failed", "The link from the current document to the mapping definition is broken."
-							+ "Recovery failed!\n"
-							+ "This will cause all elements in defined in the"
-							+ "document to be re-created upon changes to the document!");
+				if (recoverLink) 
+				{
+						if (!TbRecoverUtil.recoverTextBlockFromBrokenMapping(blockInError, rootTemplate, getIncrementalParser(), getParser(), getLexer(), shortPrettyPrinter)) 
+				    	{
+				    		String title = "Mapping Link Recovery Failed";
+				    		String error = "The link from the current document to the mapping definition is broken." 
+				    			+ "Recovery failed!\n" + "This will cause all elements in defined in the" 
+				    			+ "document to be re-created upon changes to the document!";
+				    		String oldClass = blockInError.getCachedString();
+				    		String newClass = "";
+							try
+							{
+								PrettyPrinter pp = new PrettyPrinter();
+								CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(
+										TcsUtil.getConnectionFromRefObject(rootObject).getPackage(
+												TextblocksPackage.PACKAGE_DESCRIPTOR), null, getParserFactory());
+								pp.prettyPrint(rootObject, rootTemplate.getConcretesyntax(), target);
+								newClass = target.getRootBlock().getCachedString();
+								//newClass = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(rootObject, rootTemplate.getConcretesyntax(), getParserFactory()).getCachedString();
+							}
+							catch(Exception e)
+							{
+								e.printStackTrace();
+								newClass="Error occurred while pretty printing: " + e.getMessage();
+							}
+				    		PrettyPrintPreviewDialog dialog =
+				    			new PrettyPrintPreviewDialog(title, error, oldClass, newClass);
+				    		boolean startPrettyPrinter = dialog.open();
+							if(startPrettyPrinter)
+							{
+								PrettyPrintAction action = new PrettyPrintAction((MofClass) rootObject.refMetaObject(), rootObject, false);
+								action.runWithEvent(null);
+								rootBlock = action.getRootBlock();
+							}
 				    	}
-				    	rootBlock = blockInError;
-				} else {
+						else
+						{
+							rootBlock = blockInError;
+						}
+				} 
+				else 
+				{
 				    	// just do nothing then
 				    	rootBlock = blockInError;
 				}

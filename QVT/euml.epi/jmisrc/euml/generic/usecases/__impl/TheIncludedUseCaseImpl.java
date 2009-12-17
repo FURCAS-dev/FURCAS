@@ -64,7 +64,6 @@ public final class TheIncludedUseCaseImpl extends com.sap.tc.moin.repository.cor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.usecases.TheIncludedUseCase> get___JmiInterface() {
         return euml.generic.usecases.TheIncludedUseCase.class;
     }

@@ -64,7 +64,6 @@ public final class ConnectionEndConnectableElementImpl extends com.sap.tc.moin.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ConnectionEndConnectableElement> get___JmiInterface() {
         return uml.ConnectionEndConnectableElement.class;
     }

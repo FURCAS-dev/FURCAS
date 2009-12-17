@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class ElementImportWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.ElementImportImpl> implements uml.ElementImport,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ElementImportWrapper extends com.sap.tc.moin.repository.core.jmi.re
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.ElementImportImpl getCastWrappedObject() {
         return (uml.__impl.ElementImportImpl) getWrappedObject();
     }
@@ -271,7 +270,6 @@ public class ElementImportWrapper extends com.sap.tc.moin.repository.core.jmi.re
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ElementImport> get___JmiInterface() {
         return uml.ElementImport.class;
     }

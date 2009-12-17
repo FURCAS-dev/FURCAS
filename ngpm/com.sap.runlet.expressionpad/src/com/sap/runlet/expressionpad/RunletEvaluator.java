@@ -55,7 +55,7 @@ extends Evaluator<
         	Statement, 
         	Expression, 
         	SignatureImplementation, 
-        	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, 
+        	RunletStackFrame, 
         	NativeImpl, 
         	RunletInterpreter, 
         	Block> {
@@ -86,7 +86,7 @@ extends Evaluator<
     
     @Override
     protected void initLocalFields(Connection connection, Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository) {
-	setStackFrame(new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>());
+	setStackFrame(new RunletStackFrame());
 	Block contextBlock = connection.createElement(Block.CLASS_DESCRIPTOR);
 	contextBlock.assign___PartitionIncludingChildren(connection.getOrCreateTransientPartition("RunletConsoleObjects"));
 	setContextBlock(contextBlock);

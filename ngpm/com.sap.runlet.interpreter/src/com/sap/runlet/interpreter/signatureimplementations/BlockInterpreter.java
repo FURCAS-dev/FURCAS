@@ -21,7 +21,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class BlockInterpreter implements Interpreter<Block, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class BlockInterpreter implements Interpreter<Block, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private Block block;
     
     public BlockInterpreter(Block block) {
@@ -34,8 +34,8 @@ public class BlockInterpreter implements Interpreter<Block, SapClass, TypeDefini
 	    NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = null;
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> stackFrame =
-	    new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(/* parent */ interpreter.getCallstack().peek());
+	RunletStackFrame stackFrame =
+	    new RunletStackFrame(/* parent */ interpreter.getCallstack().peek());
 	interpreter.getCallstack().push(stackFrame);
 	for (Statement statement:block.getStatements()) {
 	    result = interpreter.evaluateStatement(statement);

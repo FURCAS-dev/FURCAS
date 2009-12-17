@@ -6,7 +6,7 @@ package euml.generic.activities.__impl;
 
 public class UmlfinalNodeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.generic.activities.__impl.UmlfinalNodeImpl> implements euml.generic.activities.UmlfinalNode,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class UmlfinalNodeWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.activities.__impl.UmlfinalNodeImpl getCastWrappedObject() {
         return (euml.generic.activities.__impl.UmlfinalNodeImpl) getWrappedObject();
     }
@@ -86,7 +85,6 @@ public class UmlfinalNodeWrapper extends com.sap.tc.moin.repository.core.jmi.ref
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlfinalNode> get___JmiInterface() {
         return euml.generic.activities.UmlfinalNode.class;
     }

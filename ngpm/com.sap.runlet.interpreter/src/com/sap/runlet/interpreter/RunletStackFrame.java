@@ -6,8 +6,11 @@ import com.sap.runlet.abstractinterpreter.StackFrame;
 import com.sap.runlet.abstractinterpreter.objects.RunletObject;
 import com.sap.runlet.interpreter.signatureimplementations.BlockInterpreter;
 
+import data.classes.AssociationEnd;
+import data.classes.ClassTypeDefinition;
 import data.classes.NamedValue;
 import data.classes.SignatureImplementation;
+import data.classes.TypeDefinition;
 
 /**
  * Holds one frame of a call stack of an execution thread corresponding to a {@link Block}
@@ -29,8 +32,8 @@ import data.classes.SignatureImplementation;
  * @author Axel Uhl (D043530)
  *
  */
-public class RunletStackFrame<LinkEndMetaObject, TypeUsage, ClassUsage extends TypeUsage>
-extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementation> {
+public class RunletStackFrame
+extends StackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition, SignatureImplementation> {
     /**
      * Creates a new stack frame for a method or function invocation with no parent stack
      * for name resolution.
@@ -44,7 +47,7 @@ extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementa
      * is expected to be used when a nested block inside a method or function execution begins
      * to execute.
      */
-    public RunletStackFrame(RunletStackFrame<LinkEndMetaObject, TypeUsage, ClassUsage> parent) {
+    public RunletStackFrame(RunletStackFrame parent) {
 	super(parent);
     }
     
@@ -53,7 +56,7 @@ extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementa
      * key in any parent frame. If a definition by that key is already known by this very frame
      * (not ascending to parent frames), an exception will be thrown.
      */
-    public void enterValue(NamedValue variable, RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> value) {
+    public void enterValue(NamedValue variable, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> value) {
 	if (variable == null) {
 	    throw new RuntimeException("Cannot create unnamed variable on StackFrame");
 	}
@@ -66,8 +69,8 @@ extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementa
      * other until a value is found or the end of the stack has been reached. In that case,
      * a {@link RuntimeException} is thrown because the value is undefined.
      */
-    public RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> getValue(NamedValue variable) {
-	RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> result;
+    public RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> getValue(NamedValue variable) {
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result;
 	if (variable == null) {
 	    throw new RuntimeException("No value defined for <null> variable");
 	} else {
@@ -81,7 +84,7 @@ extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementa
      * it is updated by the <tt>value</tt> provided. Otherwise, the variable is added to this frame and
      * set to <tt>value</tt>.
      */
-    public void setValue(NamedValue variable, RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> value) {
+    public void setValue(NamedValue variable, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> value) {
 	if (variable == null) {
 	    throw new RuntimeException("Cannot create unnamed variable on StackFrame");
 	}
@@ -89,8 +92,8 @@ extends StackFrame<LinkEndMetaObject, TypeUsage, ClassUsage, SignatureImplementa
     }
     
     @Override
-    public RunletStackFrame<LinkEndMetaObject, TypeUsage, ClassUsage> getScopeParent() {
-	return (RunletStackFrame<LinkEndMetaObject, TypeUsage, ClassUsage>) super.getScopeParent();
+    public RunletStackFrame getScopeParent() {
+	return (RunletStackFrame) super.getScopeParent();
     }
     
 }

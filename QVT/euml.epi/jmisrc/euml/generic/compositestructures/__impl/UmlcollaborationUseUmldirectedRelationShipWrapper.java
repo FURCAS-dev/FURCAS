@@ -125,7 +125,6 @@ public class UmlcollaborationUseUmldirectedRelationShipWrapper extends com.sap.t
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.compositestructures.UmlcollaborationUseUmldirectedRelationShip> get___JmiInterface() {
         return euml.generic.compositestructures.UmlcollaborationUseUmldirectedRelationShip.class;
     }

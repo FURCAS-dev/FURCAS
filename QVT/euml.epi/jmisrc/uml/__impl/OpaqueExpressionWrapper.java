@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class OpaqueExpressionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.OpaqueExpressionImpl> implements uml.OpaqueExpression,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class OpaqueExpressionWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.OpaqueExpressionImpl getCastWrappedObject() {
         return (uml.__impl.OpaqueExpressionImpl) getWrappedObject();
     }
@@ -635,7 +634,6 @@ public class OpaqueExpressionWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OpaqueExpression> get___JmiInterface() {
         return uml.OpaqueExpression.class;
     }

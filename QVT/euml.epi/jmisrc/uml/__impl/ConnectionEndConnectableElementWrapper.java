@@ -125,7 +125,6 @@ public class ConnectionEndConnectableElementWrapper extends com.sap.tc.moin.repo
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ConnectionEndConnectableElement> get___JmiInterface() {
         return uml.ConnectionEndConnectableElement.class;
     }

@@ -6,7 +6,6 @@ package uml;
 
 /**
  * A typed element is a kind of named element that represents an element with a type.
-
  * A typed element has a type.
  * This interface is not intended to be implemented by clients.
  */

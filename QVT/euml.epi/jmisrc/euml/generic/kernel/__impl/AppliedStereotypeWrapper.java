@@ -6,7 +6,7 @@ package euml.generic.kernel.__impl;
 
 public class AppliedStereotypeWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.generic.kernel.__impl.AppliedStereotypeImpl> implements euml.generic.kernel.AppliedStereotype,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AppliedStereotypeWrapper extends com.sap.tc.moin.repository.core.jm
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.kernel.__impl.AppliedStereotypeImpl getCastWrappedObject() {
         return (euml.generic.kernel.__impl.AppliedStereotypeImpl) getWrappedObject();
     }
@@ -202,7 +201,6 @@ public class AppliedStereotypeWrapper extends com.sap.tc.moin.repository.core.jm
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.AppliedStereotype> get___JmiInterface() {
         return euml.generic.kernel.AppliedStereotype.class;
     }

@@ -64,7 +64,6 @@ public final class UmlportPortUsageImpl extends com.sap.tc.moin.repository.core.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.compositestructures.UmlportPortUsage> get___JmiInterface() {
         return euml.generic.compositestructures.UmlportPortUsage.class;
     }

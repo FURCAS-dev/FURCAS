@@ -125,7 +125,6 @@ public class UmlclassifierUmluseCaseWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.usecases.UmlclassifierUmluseCase> get___JmiInterface() {
         return euml.generic.usecases.UmlclassifierUmluseCase.class;
     }

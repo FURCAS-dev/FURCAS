@@ -125,7 +125,6 @@ public class UmldecisionMergeNodeUmlbehavirorWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmldecisionMergeNodeUmlbehaviror> get___JmiInterface() {
         return euml.generic.activities.UmldecisionMergeNodeUmlbehaviror.class;
     }

@@ -125,7 +125,6 @@ public class UmltypeUmltypedElementWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmltypeUmltypedElement> get___JmiInterface() {
         return euml.generic.kernel.UmltypeUmltypedElement.class;
     }

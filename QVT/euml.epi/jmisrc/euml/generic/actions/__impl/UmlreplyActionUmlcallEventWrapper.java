@@ -125,7 +125,6 @@ public class UmlreplyActionUmlcallEventWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlreplyActionUmlcallEvent> get___JmiInterface() {
         return euml.generic.actions.UmlreplyActionUmlcallEvent.class;
     }

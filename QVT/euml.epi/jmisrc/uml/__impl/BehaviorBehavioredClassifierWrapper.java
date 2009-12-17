@@ -125,7 +125,6 @@ public class BehaviorBehavioredClassifierWrapper extends com.sap.tc.moin.reposit
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.BehaviorBehavioredClassifier> get___JmiInterface() {
         return uml.BehaviorBehavioredClassifier.class;
     }

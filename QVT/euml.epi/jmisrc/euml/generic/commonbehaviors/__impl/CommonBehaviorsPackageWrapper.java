@@ -376,7 +376,6 @@ public class CommonBehaviorsPackageWrapper extends com.sap.tc.moin.repository.co
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.CommonBehaviorsPackage> get___JmiInterface() {
         return euml.generic.commonbehaviors.CommonBehaviorsPackage.class;
     }

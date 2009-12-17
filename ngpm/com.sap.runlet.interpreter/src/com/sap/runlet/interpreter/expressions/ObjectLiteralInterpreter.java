@@ -29,7 +29,7 @@ import dataaccess.expressions.Expression;
 import dataaccess.expressions.literals.ObjectLiteral;
 import dataaccess.expressions.literals.ValueInit;
 
-public class ObjectLiteralInterpreter implements Interpreter<ObjectLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ObjectLiteralInterpreter implements Interpreter<ObjectLiteral, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private ObjectLiteral objectLiteral;
     
     public ObjectLiteralInterpreter(ObjectLiteral objectLiteral) {
@@ -42,7 +42,7 @@ public class ObjectLiteralInterpreter implements Interpreter<ObjectLiteral, SapC
 	    IllegalAccessException, InvocationTargetException {
 	ClassTypeDefinition ctd = (ClassTypeDefinition) objectLiteral.getType();
 	assert ctd.getClazz().isValueType() && !ctd.getClazz().isAbstract();
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> actualObjectParamsFrame = null;
+	RunletStackFrame actualObjectParamsFrame = null;
 	// push a stack frame linked to the current frame as its parent frame and put
 	// the actual object parameters on the frame if any; this is required to resolve
 	// the formal parameters when they are used, e.g., as actual parameters in
@@ -50,7 +50,7 @@ public class ObjectLiteralInterpreter implements Interpreter<ObjectLiteral, SapC
 	// is creating an instance
 	try {
 	    if (ctd.getClazz().getFormalObjectParameters().size() > 0) {
-		actualObjectParamsFrame = new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>(interpreter.getCallstack().peek());
+		actualObjectParamsFrame = new RunletStackFrame(interpreter.getCallstack().peek());
 		Iterator<Parameter> fopIter = ctd.getClazz().getFormalObjectParameters().iterator();
 		for (ActualObjectParameter aop : ctd.getObjectParameters()) {
 		    Parameter fop = fopIter.next();

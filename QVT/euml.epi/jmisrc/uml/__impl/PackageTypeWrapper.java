@@ -125,7 +125,6 @@ public class PackageTypeWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PackageType> get___JmiInterface() {
         return uml.PackageType.class;
     }

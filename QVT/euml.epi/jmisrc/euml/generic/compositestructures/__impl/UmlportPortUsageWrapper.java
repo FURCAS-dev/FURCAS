@@ -125,7 +125,6 @@ public class UmlportPortUsageWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.compositestructures.UmlportPortUsage> get___JmiInterface() {
         return euml.generic.compositestructures.UmlportPortUsage.class;
     }

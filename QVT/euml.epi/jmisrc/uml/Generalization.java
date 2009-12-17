@@ -6,7 +6,6 @@ package uml;
 
 /**
  * A generalization is a taxonomic relationship between a more general classifier and a more specific classifier. Each instance of the specific classifier is also an indirect instance of the general classifier. Thus, the specific classifier inherits the features of the more general classifier.
-
  * A generalization relates a specific classifier to a more general classifier, and is owned by the specific classifier.
  * This interface is not intended to be implemented by clients.
  */

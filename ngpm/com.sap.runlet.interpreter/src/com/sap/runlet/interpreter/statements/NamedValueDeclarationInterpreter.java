@@ -21,7 +21,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class NamedValueDeclarationInterpreter implements Interpreter<NamedValueDeclaration, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class NamedValueDeclarationInterpreter implements Interpreter<NamedValueDeclaration, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private NamedValueDeclaration namedValueDeclaration;
     
     public NamedValueDeclarationInterpreter(NamedValueDeclaration variableDeclaration) {

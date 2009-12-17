@@ -64,7 +64,6 @@ public final class UmloccurrenceSpecificationUmlexecutionSpecification1Impl exte
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmloccurrenceSpecificationUmlexecutionSpecification1> get___JmiInterface() {
         return euml.generic.interactions.UmloccurrenceSpecificationUmlexecutionSpecification1.class;
     }

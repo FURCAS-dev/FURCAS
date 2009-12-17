@@ -22,7 +22,7 @@ import data.classes.SignatureImplementation;
 import data.classes.TypeDefinition;
 import dataaccess.expressions.Expression;
 
-public class RemoveLinkInterpreter extends LinkManipulationInterpreter implements Interpreter<RemoveLink, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class RemoveLinkInterpreter extends LinkManipulationInterpreter implements Interpreter<RemoveLink, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     public RemoveLinkInterpreter(RemoveLink linkManipulationStatement) {
 	super(linkManipulationStatement);
     }

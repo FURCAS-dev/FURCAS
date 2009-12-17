@@ -64,7 +64,6 @@ public final class UmlmessageEndUmlmessageImpl extends com.sap.tc.moin.repositor
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlmessageEndUmlmessage> get___JmiInterface() {
         return euml.generic.interactions.UmlmessageEndUmlmessage.class;
     }

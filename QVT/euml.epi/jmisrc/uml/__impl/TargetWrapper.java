@@ -125,7 +125,6 @@ public class TargetWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Target> get___JmiInterface() {
         return uml.Target.class;
     }

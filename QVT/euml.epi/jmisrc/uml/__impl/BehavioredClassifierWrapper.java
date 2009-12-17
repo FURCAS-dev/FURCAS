@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class BehavioredClassifierWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.BehavioredClassifierImpl> implements uml.BehavioredClassifier,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class BehavioredClassifierWrapper extends com.sap.tc.moin.repository.core
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.BehavioredClassifierImpl getCastWrappedObject() {
         return (uml.__impl.BehavioredClassifierImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class BehavioredClassifierWrapper extends com.sap.tc.moin.repository.core
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.BehavioredClassifier> get___JmiInterface() {
         return uml.BehavioredClassifier.class;
     }

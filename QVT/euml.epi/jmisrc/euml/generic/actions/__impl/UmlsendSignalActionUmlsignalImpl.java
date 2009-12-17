@@ -63,7 +63,6 @@ public final class UmlsendSignalActionUmlsignalImpl extends com.sap.tc.moin.repo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.actions.UmlsendSignalActionUmlsignal> get___JmiInterface() {
         return euml.generic.actions.UmlsendSignalActionUmlsignal.class;
     }

@@ -125,7 +125,6 @@ public class RelationshipElementWrapper extends com.sap.tc.moin.repository.core.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.RelationshipElement> get___JmiInterface() {
         return uml.RelationshipElement.class;
     }

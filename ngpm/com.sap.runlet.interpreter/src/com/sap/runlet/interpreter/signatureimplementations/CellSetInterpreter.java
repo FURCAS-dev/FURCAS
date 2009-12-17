@@ -42,7 +42,7 @@ import dataaccess.expressions.Expression;
  * @author Axel Uhl D043530
  * 
  */
-public class CellSetInterpreter implements Interpreter<CellSet, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class CellSetInterpreter implements Interpreter<CellSet, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     private CellSet cellSet;
 
     public CellSetInterpreter(CellSet cellSet) {
@@ -114,7 +114,7 @@ public class CellSetInterpreter implements Interpreter<CellSet, SapClass, TypeDe
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> arg,
 	    FunctionSignatureImplementation impl) throws NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
-	RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> stackFrame = new RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>();
+	RunletStackFrame stackFrame = new RunletStackFrame();
 	stackFrame.enterValue(impl.getImplementedSignature().getInput().get(0), arg);
 	interpreter.push(stackFrame);
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> dimensionValueForFact = ((ReturnInterpreter.ReturnResult) interpreter.evaluateSignatureImplementation(impl)).getResult();

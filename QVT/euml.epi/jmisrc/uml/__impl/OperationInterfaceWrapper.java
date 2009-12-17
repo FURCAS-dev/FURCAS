@@ -125,7 +125,6 @@ public class OperationInterfaceWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OperationInterface> get___JmiInterface() {
         return uml.OperationInterface.class;
     }

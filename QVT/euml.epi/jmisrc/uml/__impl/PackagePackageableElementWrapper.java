@@ -125,7 +125,6 @@ public class PackagePackageableElementWrapper extends com.sap.tc.moin.repository
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PackagePackageableElement> get___JmiInterface() {
         return uml.PackagePackageableElement.class;
     }

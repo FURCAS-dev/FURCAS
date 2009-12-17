@@ -125,7 +125,6 @@ public class ValueWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.Value> get___JmiInterface() {
         return euml.generic.kernel.Value.class;
     }

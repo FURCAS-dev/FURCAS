@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class CollaborationUseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.CollaborationUseImpl> implements uml.CollaborationUse,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class CollaborationUseWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.CollaborationUseImpl getCastWrappedObject() {
         return (uml.__impl.CollaborationUseImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class CollaborationUseWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.CollaborationUse> get___JmiInterface() {
         return uml.CollaborationUse.class;
     }

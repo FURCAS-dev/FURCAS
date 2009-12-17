@@ -89,7 +89,6 @@ public class DeploymentTargetPackageableElementWrapper extends com.sap.tc.moin.r
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DeploymentTargetPackageableElement> get___JmiInterface() {
         return uml.DeploymentTargetPackageableElement.class;
     }

@@ -125,7 +125,6 @@ public class UmlbehavioralFeatureUmlbehavirorWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmlbehavioralFeatureUmlbehaviror> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmlbehavioralFeatureUmlbehaviror.class;
     }

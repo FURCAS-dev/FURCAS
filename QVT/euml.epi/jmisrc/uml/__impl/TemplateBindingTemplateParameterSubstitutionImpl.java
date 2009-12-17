@@ -64,7 +64,6 @@ public final class TemplateBindingTemplateParameterSubstitutionImpl extends com.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateBindingTemplateParameterSubstitution> get___JmiInterface() {
         return uml.TemplateBindingTemplateParameterSubstitution.class;
     }

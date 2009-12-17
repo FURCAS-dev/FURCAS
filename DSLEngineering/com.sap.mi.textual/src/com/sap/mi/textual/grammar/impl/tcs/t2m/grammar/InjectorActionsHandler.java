@@ -201,6 +201,7 @@ public class InjectorActionsHandler<Type> {
 			String javaQuery = value.replaceAll("\\\"", "\\\\\"");
 			javaQuery = javaQuery.replaceAll("\r\n", "\"+\"");
 			javaQuery = javaQuery.replaceAll("\n", "\"+\"");
+			buffer.append("\n{\n");
 			buffer
 					.append("List<PredicateSemantic> list = new ArrayList<PredicateSemantic>();\n");
 			buffer.append("RuleNameFinder finder = new RuleNameFinder();\n");
@@ -248,6 +249,7 @@ public class InjectorActionsHandler<Type> {
 						+ mode + "\",\"" + javaQuery + "\",list,finder,"
 						+ hasContext + ");");
 			}
+			buffer.append("\n}\n");
 		}
 		buffer.append(ObservationDirectivesHelper
 				.getExitInjectorActionNotification());

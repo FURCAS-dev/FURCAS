@@ -125,7 +125,6 @@ public class PowertypeExtentWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PowertypeExtent> get___JmiInterface() {
         return uml.PowertypeExtent.class;
     }

@@ -750,7 +750,6 @@ public class InteractionsPackageWrapper extends com.sap.tc.moin.repository.core.
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.InteractionsPackage> get___JmiInterface() {
         return euml.generic.interactions.InteractionsPackage.class;
     }

@@ -64,7 +64,6 @@ public final class ConnectableElementPinUmlconnectableElementImpl extends com.sa
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.ConnectableElementPinUmlconnectableElement> get___JmiInterface() {
         return euml.generic.activities.ConnectableElementPinUmlconnectableElement.class;
     }

@@ -46,7 +46,6 @@ public class IkvPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }
     // methods for structure type creators
     
-    @SuppressWarnings("unchecked")
     public java.lang.Class<de.ikv.IkvPackage> get___JmiInterface() {
         return de.ikv.IkvPackage.class;
     }

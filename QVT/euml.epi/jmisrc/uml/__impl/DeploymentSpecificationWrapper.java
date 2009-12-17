@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class DeploymentSpecificationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.DeploymentSpecificationImpl> implements uml.DeploymentSpecification,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class DeploymentSpecificationWrapper extends com.sap.tc.moin.repository.c
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.DeploymentSpecificationImpl getCastWrappedObject() {
         return (uml.__impl.DeploymentSpecificationImpl) getWrappedObject();
     }
@@ -1445,7 +1444,6 @@ public class DeploymentSpecificationWrapper extends com.sap.tc.moin.repository.c
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DeploymentSpecification> get___JmiInterface() {
         return uml.DeploymentSpecification.class;
     }

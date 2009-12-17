@@ -31,7 +31,7 @@ import dataaccess.expressions.Expression;
  * 
  * @author Axel Uhl (D043530)
  */
-public class RunletLinkContainer extends LinkContainer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class RunletLinkContainer extends LinkContainer<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     public RunletLinkContainer(Repository<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> repository,
 	    ModelAdapter<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition> modelAdapter) {
 	super(modelAdapter, repository);

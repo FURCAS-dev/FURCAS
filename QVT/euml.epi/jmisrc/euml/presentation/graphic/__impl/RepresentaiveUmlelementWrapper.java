@@ -125,7 +125,6 @@ public class RepresentaiveUmlelementWrapper extends com.sap.tc.moin.repository.c
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.presentation.graphic.RepresentaiveUmlelement> get___JmiInterface() {
         return euml.presentation.graphic.RepresentaiveUmlelement.class;
     }

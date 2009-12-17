@@ -125,7 +125,6 @@ public class ArtifactManifestationWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ArtifactManifestation> get___JmiInterface() {
         return uml.ArtifactManifestation.class;
     }

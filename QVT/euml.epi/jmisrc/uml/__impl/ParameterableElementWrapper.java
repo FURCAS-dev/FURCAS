@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class ParameterableElementWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.ParameterableElementImpl> implements uml.ParameterableElement,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ParameterableElementWrapper extends com.sap.tc.moin.repository.core
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.ParameterableElementImpl getCastWrappedObject() {
         return (uml.__impl.ParameterableElementImpl) getWrappedObject();
     }
@@ -217,7 +216,6 @@ public class ParameterableElementWrapper extends com.sap.tc.moin.repository.core
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ParameterableElement> get___JmiInterface() {
         return uml.ParameterableElement.class;
     }

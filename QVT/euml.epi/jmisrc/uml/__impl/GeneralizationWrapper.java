@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class GeneralizationWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.GeneralizationImpl> implements uml.Generalization,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class GeneralizationWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.GeneralizationImpl getCastWrappedObject() {
         return (uml.__impl.GeneralizationImpl) getWrappedObject();
     }
@@ -249,7 +248,6 @@ public class GeneralizationWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Generalization> get___JmiInterface() {
         return uml.Generalization.class;
     }

@@ -125,7 +125,6 @@ public class UmlactivityParameterNodeUmlparameterWrapper extends com.sap.tc.moin
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlactivityParameterNodeUmlparameter> get___JmiInterface() {
         return euml.generic.activities.UmlactivityParameterNodeUmlparameter.class;
     }

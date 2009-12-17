@@ -125,7 +125,6 @@ public class OpaqueExpressionBehaviorWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OpaqueExpressionBehavior> get___JmiInterface() {
         return uml.OpaqueExpressionBehavior.class;
     }

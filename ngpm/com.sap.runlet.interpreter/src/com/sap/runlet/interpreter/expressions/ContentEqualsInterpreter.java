@@ -35,7 +35,7 @@ import dataaccess.expressions.Expression;
  * 
  * @author Axel Uhl (D043530)
  */
-public class ContentEqualsInterpreter implements Interpreter<ContentEquals, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class ContentEqualsInterpreter implements Interpreter<ContentEquals, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     
     private ContentEquals contentEequals;
     

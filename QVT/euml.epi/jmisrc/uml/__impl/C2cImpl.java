@@ -64,7 +64,6 @@ public final class C2cImpl extends com.sap.tc.moin.repository.core.jmi.reflect.R
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.C2c> get___JmiInterface() {
         return uml.C2c.class;
     }

@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class StringExpressionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.StringExpressionImpl> implements uml.StringExpression,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class StringExpressionWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.StringExpressionImpl getCastWrappedObject() {
         return (uml.__impl.StringExpressionImpl) getWrappedObject();
     }
@@ -35,7 +34,6 @@ public class StringExpressionWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.StringExpression> get___JmiInterface() {
         return uml.StringExpression.class;
     }

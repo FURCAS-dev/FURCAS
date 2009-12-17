@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class ContraintWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.ContraintImpl> implements uml.Contraint,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ContraintWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.ContraintImpl getCastWrappedObject() {
         return (uml.__impl.ContraintImpl) getWrappedObject();
     }
@@ -566,7 +565,6 @@ public class ContraintWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Contraint> get___JmiInterface() {
         return uml.Contraint.class;
     }

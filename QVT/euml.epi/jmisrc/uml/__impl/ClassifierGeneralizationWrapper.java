@@ -125,7 +125,6 @@ public class ClassifierGeneralizationWrapper extends com.sap.tc.moin.repository.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ClassifierGeneralization> get___JmiInterface() {
         return uml.ClassifierGeneralization.class;
     }

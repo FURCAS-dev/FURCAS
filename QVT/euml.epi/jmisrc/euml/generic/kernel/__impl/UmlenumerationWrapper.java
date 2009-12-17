@@ -8,7 +8,7 @@ public class UmlenumerationWrapper extends com.sap.tc.moin.repository.core.jmi.r
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-
+    
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -25,7 +25,6 @@ public class UmlenumerationWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.kernel.__impl.UmlenumerationImpl getCastWrappedObject() {
         return (euml.generic.kernel.__impl.UmlenumerationImpl) getWrappedObject();
     }
@@ -902,7 +901,7 @@ public class UmlenumerationWrapper extends com.sap.tc.moin.repository.core.jmi.r
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-
+    
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -932,11 +931,10 @@ public class UmlenumerationWrapper extends com.sap.tc.moin.repository.core.jmi.r
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-
+    
     }    
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.Umlenumeration> get___JmiInterface() {
         return euml.generic.kernel.Umlenumeration.class;
     }

@@ -125,7 +125,6 @@ public class UmlactivityPartitionUmlnamedElementWrapper extends com.sap.tc.moin.
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlactivityPartitionUmlnamedElement> get___JmiInterface() {
         return euml.generic.activities.UmlactivityPartitionUmlnamedElement.class;
     }

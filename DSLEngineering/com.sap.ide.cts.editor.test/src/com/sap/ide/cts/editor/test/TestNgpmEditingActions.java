@@ -21,6 +21,7 @@ import textblocks.TextBlock;
 import behavioral.actions.Block;
 import behavioral.actions.Return;
 
+import com.sap.ap.cts.monet.parser.ClassParserFactory;
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
@@ -75,7 +76,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         close(editor);
     };
    
-
     /**
      * Takes an abstract method and makes it concrete by changing its return
      * type from "void" to "Number" and replacing the ";" by a block that
@@ -113,8 +113,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         close(editor);
     }
 
-    
-
     @Test
     public void testPrettyPrintAssoc() throws NullPartitionNotEmptyException, ReferencedTransientElementsException,
             PartitionsNotSavedException, BadLocationException, CoreException, SyntaxAndModelMismatchException {
@@ -148,8 +146,9 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         assoc.getEnds().add(a1);
         assoc.getEnds().add(a2);
         connection.save();
-        TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(clazz, TcsUtil.getSyntaxByName(connection, "Class"));
-		System.out.println(output.getCachedString());
+        TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(clazz, TcsUtil.getSyntaxByName(connection, "Class"),
+        	new ClassParserFactory());
+        System.out.println(output.getCachedString());
         AbstractGrammarBasedEditor editor = openEditor(clazz);
 
         CtsDocument document = getDocument(editor);
@@ -1524,6 +1523,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 
 	saveAll(editor);
 	failOnError(editor);
+	saveAll(editor); // TODO follow-up changes aren't saved during first "round" yet
 	
 	assertTrue(clazz.is___Alive());
 	assertEquals("Class3", clazz.getName());

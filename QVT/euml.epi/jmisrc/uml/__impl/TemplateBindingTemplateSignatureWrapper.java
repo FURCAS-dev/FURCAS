@@ -125,7 +125,6 @@ public class TemplateBindingTemplateSignatureWrapper extends com.sap.tc.moin.rep
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.TemplateBindingTemplateSignature> get___JmiInterface() {
         return uml.TemplateBindingTemplateSignature.class;
     }

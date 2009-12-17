@@ -64,7 +64,6 @@ public final class UmloccurrenceSpecificationUmlgeneralOrderingImpl extends com.
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmloccurrenceSpecificationUmlgeneralOrdering> get___JmiInterface() {
         return euml.generic.interactions.UmloccurrenceSpecificationUmlgeneralOrdering.class;
     }

@@ -29,6 +29,12 @@ import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
 
 public class GeneralTests extends RunletTestCase {
+    public void testSimpleOql() throws Exception {
+	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate(
+            "(from 1->including(2)->including(3) as a, 4->including(5)->including(6) as b where true).count");
+        assertEquals(1, result.length);
+        assertNOEquals(new Fraction(9), result[0]);
+    }
     
     public void testSimpleExpression() throws SecurityException, IllegalArgumentException,
 	    RecognitionException, NoSuchMethodException, InstantiationException,
@@ -36,7 +42,7 @@ public class GeneralTests extends RunletTestCase {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate("123");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
-	assertEquals(((NativeObject) result[0]).getNativeObject(), new Fraction(123));
+	assertEquals(new Fraction(123), ((NativeObject) result[0]).getNativeObject());
     }
 
     public void testFunctionExpression() throws SecurityException, IllegalArgumentException,
@@ -46,7 +52,7 @@ public class GeneralTests extends RunletTestCase {
 		.evaluate("function(String s):Number { return s.length(); }(\"abc\")");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
-	assertEquals(((NativeObject) result[0]).getNativeObject(), new Fraction(3));
+	assertEquals(new Fraction(3), ((NativeObject) result[0]).getNativeObject());
     }
 
     public void testTypeOfStringLiteral() throws SecurityException, IllegalArgumentException,
@@ -56,7 +62,7 @@ public class GeneralTests extends RunletTestCase {
 		.evaluate("function(String s):Number { return \"kaputt\".length(); }(\"a\")");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
-	assertEquals(((NativeObject) result[0]).getNativeObject(), new Fraction(6));
+	assertEquals(new Fraction(6), ((NativeObject) result[0]).getNativeObject());
     }
 
     public void testEmptyParameterListOnFunctionSignature() throws SecurityException,
@@ -65,7 +71,7 @@ public class GeneralTests extends RunletTestCase {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate("function():Number { return 1; }()");
 	assertEquals(1, result.length);
 	assertTrue(result[0] instanceof NativeObject);
-	assertEquals(((NativeObject) result[0]).getNativeObject(), new Fraction(1));
+	assertEquals(new Fraction(1), ((NativeObject) result[0]).getNativeObject());
     }
 
     public void testStatementSequence() throws Exception {
@@ -502,7 +508,7 @@ public class GeneralTests extends RunletTestCase {
 
     public void testSelectIterator() throws Exception {
         ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
-            "new Iterators().select(1->including(2)->including(3), function(Number n):Boolean { return n.greaterThan(2); })");
+            "new Iterators().sel(1->including(2)->including(3), function(Number n):Boolean { return n.greaterThan(2); })");
         RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
         String[]      errors = executeResult.getErrors();
         assertEquals(1, result.length);

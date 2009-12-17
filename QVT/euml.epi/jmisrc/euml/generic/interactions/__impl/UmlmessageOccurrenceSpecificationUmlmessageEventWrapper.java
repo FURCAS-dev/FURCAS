@@ -125,7 +125,6 @@ public class UmlmessageOccurrenceSpecificationUmlmessageEventWrapper extends com
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlmessageOccurrenceSpecificationUmlmessageEvent> get___JmiInterface() {
         return euml.generic.interactions.UmlmessageOccurrenceSpecificationUmlmessageEvent.class;
     }

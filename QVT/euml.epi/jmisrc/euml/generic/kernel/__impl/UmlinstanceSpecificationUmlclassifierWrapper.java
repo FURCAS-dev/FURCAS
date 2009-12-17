@@ -125,7 +125,6 @@ public class UmlinstanceSpecificationUmlclassifierWrapper extends com.sap.tc.moi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.UmlinstanceSpecificationUmlclassifier> get___JmiInterface() {
         return euml.generic.kernel.UmlinstanceSpecificationUmlclassifier.class;
     }

@@ -64,7 +64,6 @@ public final class UmlactivityPartitionUmlnamedElementImpl extends com.sap.tc.mo
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.activities.UmlactivityPartitionUmlnamedElement> get___JmiInterface() {
         return euml.generic.activities.UmlactivityPartitionUmlnamedElement.class;
     }

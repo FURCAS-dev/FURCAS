@@ -611,6 +611,7 @@ public class SubExpressionTW extends TreeWalker {
         // add the remaining accumulated sub expressions of the body to the
         // current
         // tag,
+        // TODO does this properly handle explicit uses of accumulator in body expression? Wouldn't this have to lead to a recursive backward path definition?
         tag.addToAccumulated( accSubExp );
         // add this node to the current sub expressions
         addNodeToCurrSubExprs( exp, tag );
@@ -738,6 +739,7 @@ public class SubExpressionTW extends TreeWalker {
         // We supply the tags of the arguments. The sub expressions
         // attached to the arguments are then continued and the resulting
         // sub expressions are returned.
+        // TODO how does this work for recursive operations?
         Operation op = ( (OperationCallExpImpl) exp ).getReferredOperation( this.connection );
         // get the body definition of the operation
         OclExpression bodyExpr = getBodyExpr( op );
@@ -791,6 +793,7 @@ public class SubExpressionTW extends TreeWalker {
             // create indirect sub expression
             SubExpression subExp = new IndirectSubExpression( this.connection, this.statement );
             subExp.setKind( ExpressionKind.INSTANCE );
+            // TODO (d043530) why is the variable expression added here in the first place? What about the loop's source? Shouldn't its expressions be copied?
             subExp.addExpressionParts( exp );
             // pass sub expression up the tree
             tag.getCurrentSubExprs( ).add( subExp );

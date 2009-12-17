@@ -125,7 +125,6 @@ public class DeploymentDeployedArtifactWrapper extends com.sap.tc.moin.repositor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.DeploymentDeployedArtifact> get___JmiInterface() {
         return uml.DeploymentDeployedArtifact.class;
     }

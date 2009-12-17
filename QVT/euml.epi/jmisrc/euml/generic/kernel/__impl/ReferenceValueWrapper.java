@@ -6,7 +6,7 @@ package euml.generic.kernel.__impl;
 
 public class ReferenceValueWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<euml.generic.kernel.__impl.ReferenceValueImpl> implements euml.generic.kernel.ReferenceValue,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class ReferenceValueWrapper extends com.sap.tc.moin.repository.core.jmi.r
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private euml.generic.kernel.__impl.ReferenceValueImpl getCastWrappedObject() {
         return (euml.generic.kernel.__impl.ReferenceValueImpl) getWrappedObject();
     }
@@ -221,7 +220,6 @@ public class ReferenceValueWrapper extends com.sap.tc.moin.repository.core.jmi.r
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.kernel.ReferenceValue> get___JmiInterface() {
         return euml.generic.kernel.ReferenceValue.class;
     }

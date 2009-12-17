@@ -125,7 +125,6 @@ public class PropertyDataTypeWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.PropertyDataType> get___JmiInterface() {
         return uml.PropertyDataType.class;
     }

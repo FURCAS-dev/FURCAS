@@ -125,7 +125,6 @@ public class ArtifactPropertyWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.ArtifactProperty> get___JmiInterface() {
         return uml.ArtifactProperty.class;
     }

@@ -6,7 +6,7 @@ package uml.__impl;
 
 public class AbstractionWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<uml.__impl.AbstractionImpl> implements uml.Abstraction,com.sap.tc.moin.repository.Partitionable {
 
-
+    
     static {
     }
 
@@ -14,7 +14,6 @@ public class AbstractionWrapper extends com.sap.tc.moin.repository.core.jmi.refl
         super(conn, baseObject, synchronize);
     }
 
-    @SuppressWarnings("unused")
     private uml.__impl.AbstractionImpl getCastWrappedObject() {
         return (uml.__impl.AbstractionImpl) getWrappedObject();
     }
@@ -597,7 +596,6 @@ public class AbstractionWrapper extends com.sap.tc.moin.repository.core.jmi.refl
     
 
     // get the JMI interface
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.Abstraction> get___JmiInterface() {
         return uml.Abstraction.class;
     }

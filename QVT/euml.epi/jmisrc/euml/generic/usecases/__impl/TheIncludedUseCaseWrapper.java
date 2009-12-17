@@ -125,7 +125,6 @@ public class TheIncludedUseCaseWrapper extends com.sap.tc.moin.repository.core.j
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.usecases.TheIncludedUseCase> get___JmiInterface() {
         return euml.generic.usecases.TheIncludedUseCase.class;
     }

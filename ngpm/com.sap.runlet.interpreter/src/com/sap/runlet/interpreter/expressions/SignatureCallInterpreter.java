@@ -34,7 +34,7 @@ import dataaccess.expressions.Expression;
 import dataaccess.expressions.FunctionCallExpression;
 import dataaccess.expressions.SignatureCallExpression;
 
-public class SignatureCallInterpreter implements Interpreter<SignatureCallExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition>, NativeImpl, RunletInterpreter> {
+public class SignatureCallInterpreter implements Interpreter<SignatureCallExpression, SapClass, TypeDefinition, ClassTypeDefinition, Association, AssociationEnd, Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, RunletInterpreter> {
     protected SignatureCallExpression sce;
     
     static class ExceptionObject extends NativeObject {
@@ -176,7 +176,7 @@ public class SignatureCallInterpreter implements Interpreter<SignatureCallExpres
 	    // TODO parallelize if side effect-free
 	    for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> functionObject : evaluators.flatten()) {
 		FunctionObject evaluator = (FunctionObject) functionObject;
-		RunletStackFrame<AssociationEnd, TypeDefinition, ClassTypeDefinition> newStackFrame =
+		RunletStackFrame newStackFrame =
 		    interpreter.pushArgumentsToStackFrame(parameterValues, evaluator);
 		pushed = true;
 		interpreter.push(newStackFrame); // TODO this must not happen before function expression has been evaluated (errr... why again?)

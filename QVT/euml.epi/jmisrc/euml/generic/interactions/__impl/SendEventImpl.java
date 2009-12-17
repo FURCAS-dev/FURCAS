@@ -64,7 +64,6 @@ public final class SendEventImpl extends com.sap.tc.moin.repository.core.jmi.ref
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.SendEvent> get___JmiInterface() {
         return euml.generic.interactions.SendEvent.class;
     }

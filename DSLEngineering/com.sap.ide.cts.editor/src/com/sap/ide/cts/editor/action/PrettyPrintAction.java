@@ -9,15 +9,18 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 
 import tcs.ConcreteSyntax;
+import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
 import com.sap.ide.cts.dialogs.ChooseConcreteSyntaxDialog;
+import com.sap.ide.cts.dialogs.PrettyPrintPreviewDialog;
 import com.sap.ide.cts.dialogs.PrettyPrinterInfoDialog;
+import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.prettyprint.CtsPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
-import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorPrintStream;
 import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorStream;
 import com.sap.ide.cts.parser.incremental.ParserFactory;
+import com.sap.mi.fwk.ui.ModelManagerUI;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
@@ -32,8 +35,10 @@ public class PrettyPrintAction extends Action
 
 	private final RefObject modelElement;
 	private final MofClass clazz;
+	private TextBlock rootBlock;
+	private final boolean openEditorAfterPrettyPrint;
 
-	public PrettyPrintAction(MofClass clazz, RefObject modelElement)
+	public PrettyPrintAction(MofClass clazz, RefObject modelElement, boolean openEditorAfterPrettyPrint)
 	{
 		super("Pretty Print", PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ETOOL_PRINT_EDIT));
 		this.setDisabledImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
@@ -43,6 +48,7 @@ public class PrettyPrintAction extends Action
 		//setImageDescriptor(Activator.getImageDescriptor(clazz));
 		this.clazz = clazz;
 		this.modelElement = modelElement;
+		this.openEditorAfterPrettyPrint = openEditorAfterPrettyPrint;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -113,13 +119,24 @@ public class PrettyPrintAction extends Action
 						 throw new Exception("No Parser Factory registered!");
 					 }
 					 CtsPrettyPrinter.prettyPrint(modelElement, s, stream);
+					 if(stream instanceof CtsTextBlockTCSExtractorStream)
+					 {
+						 this.rootBlock = ((CtsTextBlockTCSExtractorStream) stream).getRootBlock();
+					 }
 					 connection.save();
 					 PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog("Pretty Printer", "Pretty Printer finished successfully!");
 					 dialog.execute(null);
+					 if(this.openEditorAfterPrettyPrint)
+					 {
+						 ModelManagerUI.getEditorManager().openEditor(modelElement, null, null);
+					 }
 				 }
 				 catch(Exception e)
 				 {
+					 connection.revert();
 					 e.printStackTrace();
+					 PrettyPrinterInfoDialog dialog = new PrettyPrinterInfoDialog("Pretty Printer", "Pretty Printer failed with exception, see console!");
+					 dialog.execute(null);
 				 }
 			 }
 			 else
@@ -133,6 +150,11 @@ public class PrettyPrintAction extends Action
 			 e.printStackTrace();
 		 }
 	 }
+
+	public TextBlock getRootBlock()
+	{
+		return rootBlock;
+	}
 }
 
 /**

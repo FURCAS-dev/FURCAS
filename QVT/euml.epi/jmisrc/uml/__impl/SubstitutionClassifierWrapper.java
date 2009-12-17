@@ -125,7 +125,6 @@ public class SubstitutionClassifierWrapper extends com.sap.tc.moin.repository.co
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.SubstitutionClassifier> get___JmiInterface() {
         return uml.SubstitutionClassifier.class;
     }

@@ -131,7 +131,7 @@ public class ActionProviderContainmentTree extends CommonActionProvider
 					MofClass clazz = (MofClass) modelElement.refMetaObject();
 					
 					PrettyPrintAction action = new PrettyPrintAction(clazz,
-							modelElement);
+							modelElement, true);
 					subMenuManager.add(action);
 				}
 				menu.insertAfter(ICommonMenuConstants.GROUP_NEW, subMenuManager);

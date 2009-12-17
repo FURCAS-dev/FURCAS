@@ -125,7 +125,6 @@ public class UmlreceptionUmlsignalWrapper extends com.sap.tc.moin.repository.cor
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmlreceptionUmlsignal> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmlreceptionUmlsignal.class;
     }

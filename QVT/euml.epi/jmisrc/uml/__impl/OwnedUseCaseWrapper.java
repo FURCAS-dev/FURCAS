@@ -125,7 +125,6 @@ public class OwnedUseCaseWrapper extends com.sap.tc.moin.repository.core.jmi.ref
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<uml.OwnedUseCase> get___JmiInterface() {
         return uml.OwnedUseCase.class;
     }

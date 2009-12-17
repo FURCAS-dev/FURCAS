@@ -125,7 +125,6 @@ public class UmlinteractionFragmentUmllifelineWrapper extends com.sap.tc.moin.re
         }
     }   
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.interactions.UmlinteractionFragmentUmllifeline> get___JmiInterface() {
         return euml.generic.interactions.UmlinteractionFragmentUmllifeline.class;
     }

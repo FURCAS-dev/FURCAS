@@ -64,7 +64,6 @@ public final class UmlbehavirorUmlclassifierImpl extends com.sap.tc.moin.reposit
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
-    @SuppressWarnings("unchecked")
     public java.lang.Class<euml.generic.commonbehaviors.UmlbehavirorUmlclassifier> get___JmiInterface() {
         return euml.generic.commonbehaviors.UmlbehavirorUmlclassifier.class;
     }
