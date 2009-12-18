@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: OperationConstraintsTest.java,v 1.9 2009/11/28 17:48:20 ewillink Exp $
+ * $Id: OperationConstraintsTest.java,v 1.10 2009/12/18 06:34:09 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -348,14 +348,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			"pre: color <> newColor " +
 			"endpackage");
 
-		assertTrue(expr instanceof OperationCallExp);
+		assertTrue(expr instanceof OperationCallExp<?, ?>);
 		OperationCallExp<EClassifier, EOperation> notEquals =
 			(OperationCallExp<EClassifier, EOperation>) expr;
-		assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+		assertTrue(notEquals.getSource() instanceof PropertyCallExp<?, ?>);
 		PropertyCallExp<EClassifier, EStructuralFeature> propertyCall =
 			(PropertyCallExp<EClassifier, EStructuralFeature>) notEquals.getSource();
 		
-		assertTrue(propertyCall.getSource() instanceof VariableExp);
+		assertTrue(propertyCall.getSource() instanceof VariableExp<?, ?>);
 		VariableExp<EClassifier, EParameter> var =
 			(VariableExp<EClassifier, EParameter>) propertyCall.getSource();
 		
@@ -368,15 +368,15 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 				"pre: Fruit.allInstances()->forAll(color <> newColor) " +
 				"endpackage");
 
-		assertTrue(expr instanceof IteratorExp);
+		assertTrue(expr instanceof IteratorExp<?, ?>);
 		IteratorExp<EClassifier, EParameter> forAll =
 			(IteratorExp<EClassifier, EParameter>) expr;
-		assertTrue(forAll.getBody() instanceof OperationCallExp);
+		assertTrue(forAll.getBody() instanceof OperationCallExp<?, ?>);
 		notEquals = (OperationCallExp<EClassifier, EOperation>) forAll.getBody();
-		assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+		assertTrue(notEquals.getSource() instanceof PropertyCallExp<?, ?>);
 		propertyCall = (PropertyCallExp<EClassifier, EStructuralFeature>) notEquals.getSource();
 		
-		assertTrue(propertyCall.getSource() instanceof VariableExp);
+		assertTrue(propertyCall.getSource() instanceof VariableExp<?, ?>);
 		var = (VariableExp<EClassifier, EParameter>) propertyCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
@@ -395,14 +395,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			OCLExpression<EClassifier> expr =
 				helper.createPrecondition("color <> newColor").getSpecification().getBodyExpression();
 	
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			OperationCallExp<EClassifier, EOperation> notEquals =
 				(OperationCallExp<EClassifier, EOperation>) expr;
-			assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+			assertTrue(notEquals.getSource() instanceof PropertyCallExp<?, ?>);
 			PropertyCallExp<EClassifier, EStructuralFeature> propertyCall =
 				(PropertyCallExp<EClassifier, EStructuralFeature>) notEquals.getSource();
 			
-			assertTrue(propertyCall.getSource() instanceof VariableExp);
+			assertTrue(propertyCall.getSource() instanceof VariableExp<?, ?>);
 			VariableExp<EClassifier, EParameter> var =
 				(VariableExp<EClassifier, EParameter>) propertyCall.getSource();
 			
@@ -413,14 +413,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			expr = helper.createPrecondition(
 					"Fruit.allInstances()->forAll(color <> newColor)").getSpecification().getBodyExpression();
 	
-			assertTrue(expr instanceof IteratorExp);
+			assertTrue(expr instanceof IteratorExp<?, ?>);
 			IteratorExp<EClassifier, EParameter> forAll = (IteratorExp<EClassifier, EParameter>) expr;
-			assertTrue(forAll.getBody() instanceof OperationCallExp);
+			assertTrue(forAll.getBody() instanceof OperationCallExp<?, ?>);
 			notEquals = (OperationCallExp<EClassifier, EOperation>) forAll.getBody();
-			assertTrue(notEquals.getSource() instanceof PropertyCallExp);
+			assertTrue(notEquals.getSource() instanceof PropertyCallExp<?, ?>);
 			propertyCall = (PropertyCallExp<EClassifier, EStructuralFeature>) notEquals.getSource();
 			
-			assertTrue(propertyCall.getSource() instanceof VariableExp);
+			assertTrue(propertyCall.getSource() instanceof VariableExp<?, ?>);
 			var = (VariableExp<EClassifier, EParameter>) propertyCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property
@@ -442,14 +442,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			"pre: preferredColor() <> newColor " +
 			"endpackage");
 
-		assertTrue(expr instanceof OperationCallExp);
+		assertTrue(expr instanceof OperationCallExp<?, ?>);
 		OperationCallExp<EClassifier, EOperation> notEquals =
 			(OperationCallExp<EClassifier, EOperation>) expr;
-		assertTrue(notEquals.getSource() instanceof OperationCallExp);
+		assertTrue(notEquals.getSource() instanceof OperationCallExp<?, ?>);
 		OperationCallExp<EClassifier, EOperation> operationCall =
 			(OperationCallExp<EClassifier, EOperation>) notEquals.getSource();
 		
-		assertTrue(operationCall.getSource() instanceof VariableExp);
+		assertTrue(operationCall.getSource() instanceof VariableExp<?, ?>);
 		VariableExp<EClassifier, EParameter> var =
 			(VariableExp<EClassifier, EParameter>) operationCall.getSource();
 		
@@ -462,14 +462,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 				"pre: Fruit.allInstances()->forAll(preferredColor() <> newColor) " +
 				"endpackage");
 
-		assertTrue(expr instanceof IteratorExp);
+		assertTrue(expr instanceof IteratorExp<?, ?>);
 		IteratorExp<EClassifier, EParameter> forAll = (IteratorExp<EClassifier, EParameter>) expr;
-		assertTrue(forAll.getBody() instanceof OperationCallExp);
+		assertTrue(forAll.getBody() instanceof OperationCallExp<?, ?>);
 		notEquals = (OperationCallExp<EClassifier, EOperation>) forAll.getBody();
-		assertTrue(notEquals.getSource() instanceof OperationCallExp);
+		assertTrue(notEquals.getSource() instanceof OperationCallExp<?, ?>);
 		operationCall = (OperationCallExp<EClassifier, EOperation>) notEquals.getSource();
 		
-		assertTrue(operationCall.getSource() instanceof VariableExp);
+		assertTrue(operationCall.getSource() instanceof VariableExp<?, ?>);
 		var = (VariableExp<EClassifier, EParameter>) operationCall.getSource();
 		
 		// we did not resolve against "fruit", which also has a color property
@@ -488,14 +488,14 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			OCLExpression<EClassifier> expr = helper.createPrecondition(
 					"preferredColor() <> newColor").getSpecification().getBodyExpression();
 	
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			OperationCallExp<EClassifier, EOperation> notEquals =
 				(OperationCallExp<EClassifier, EOperation>) expr;
-			assertTrue(notEquals.getSource() instanceof OperationCallExp);
+			assertTrue(notEquals.getSource() instanceof OperationCallExp<?, ?>);
 			OperationCallExp<EClassifier, EOperation> operationCall =
 				(OperationCallExp<EClassifier, EOperation>) notEquals.getSource();
 			
-			assertTrue(operationCall.getSource() instanceof VariableExp);
+			assertTrue(operationCall.getSource() instanceof VariableExp<?, ?>);
 			VariableExp<EClassifier, EParameter> var =
 				(VariableExp<EClassifier, EParameter>) operationCall.getSource();
 			
@@ -506,15 +506,15 @@ public class OperationConstraintsTest extends AbstractTestSuite {
 			expr = helper.createPrecondition(
 					"Fruit.allInstances()->forAll(preferredColor() <> newColor)").getSpecification().getBodyExpression();
 	
-			assertTrue(expr instanceof IteratorExp);
+			assertTrue(expr instanceof IteratorExp<?, ?>);
 			IteratorExp<EClassifier, EParameter> forAll =
 				(IteratorExp<EClassifier, EParameter>) expr;
-			assertTrue(forAll.getBody() instanceof OperationCallExp);
+			assertTrue(forAll.getBody() instanceof OperationCallExp<?, ?>);
 			notEquals = (OperationCallExp<EClassifier, EOperation>) forAll.getBody();
-			assertTrue(notEquals.getSource() instanceof OperationCallExp);
+			assertTrue(notEquals.getSource() instanceof OperationCallExp<?, ?>);
 			operationCall = (OperationCallExp<EClassifier, EOperation>) notEquals.getSource();
 			
-			assertTrue(operationCall.getSource() instanceof VariableExp);
+			assertTrue(operationCall.getSource() instanceof VariableExp<?, ?>);
 			var = (VariableExp<EClassifier, EParameter>) operationCall.getSource();
 			
 			// we did not resolve against "fruit", which also has a color property

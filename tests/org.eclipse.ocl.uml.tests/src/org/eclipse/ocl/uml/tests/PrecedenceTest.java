@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: PrecedenceTest.java,v 1.10 2009/11/28 18:15:55 ewillink Exp $
+ * $Id: PrecedenceTest.java,v 1.11 2009/12/18 06:32:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -105,10 +105,10 @@ public class PrecedenceTest
         }
 
         assertNotNull(expr);
-        assertTrue(expr instanceof LetExp);  // not a PropertyCallExp
+        assertTrue(expr instanceof LetExp<?, ?>);  // not a PropertyCallExp
         
         LetExp<Classifier, ?> letExp = (LetExp<Classifier, ?>) expr;
-        assertTrue(letExp.getIn() instanceof PropertyCallExp);
+        assertTrue(letExp.getIn() instanceof PropertyCallExp<?, ?>);
         
         try {
             expr = helper.createQuery(
@@ -118,10 +118,10 @@ public class PrecedenceTest
         }
 
         assertNotNull(expr);
-        assertTrue(expr instanceof LetExp);  // not a PropertyCallExp
+        assertTrue(expr instanceof LetExp<?, ?>);  // not a PropertyCallExp
         
         letExp = (LetExp<Classifier, ?>) expr;
-        assertTrue(letExp.getIn() instanceof OperationCallExp);
+        assertTrue(letExp.getIn() instanceof OperationCallExp<?, ?>);
         
         OperationCallExp<Classifier, Operation> opCall =
             (OperationCallExp<Classifier, Operation>) letExp.getIn();
@@ -129,10 +129,10 @@ public class PrecedenceTest
         assertEquals("size", opCall.getReferredOperation().getName());
         
         expr = letExp.getVariable().getInitExpression();
-        assertTrue(expr instanceof LetExp);
+        assertTrue(expr instanceof LetExp<?, ?>);
         
         letExp = (LetExp<Classifier, ?>) letExp.getVariable().getInitExpression();
-        assertTrue(letExp.getIn() instanceof PropertyCallExp);
+        assertTrue(letExp.getIn() instanceof PropertyCallExp<?, ?>);
         
         // a different nesting
         try {
@@ -143,13 +143,13 @@ public class PrecedenceTest
         }
 
         assertNotNull(expr);
-        assertTrue(expr instanceof LetExp);  // not a PropertyCallExp
+        assertTrue(expr instanceof LetExp<?, ?>);  // not a PropertyCallExp
         
         letExp = (LetExp<Classifier, ?>) expr;
-        assertTrue(letExp.getIn() instanceof LetExp);
+        assertTrue(letExp.getIn() instanceof LetExp<?, ?>);
         
         letExp = (LetExp<Classifier, ?>) letExp.getIn();
-        assertTrue(letExp.getIn() instanceof OperationCallExp);
+        assertTrue(letExp.getIn() instanceof OperationCallExp<?, ?>);
         
         OperationCallExp<Classifier, Operation> opCall2 =
             (OperationCallExp<Classifier, Operation>) letExp.getIn();

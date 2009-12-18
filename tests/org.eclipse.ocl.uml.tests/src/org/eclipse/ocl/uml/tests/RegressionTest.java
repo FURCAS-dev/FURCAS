@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.12 2009/12/07 06:16:37 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.13 2009/12/18 06:32:29 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -1208,7 +1208,7 @@ public class RegressionTest
 		try {
 			OCLExpression<Classifier> expr = helper.createQuery("self.foo(c)");
 			
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			OperationCallExp<Classifier, Operation> oc =
 				(OperationCallExp<Classifier, Operation>) expr;
 			
@@ -1217,7 +1217,7 @@ public class RegressionTest
 			
 			expr = helper.createQuery("self.foo(b)");
 			
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			oc = (OperationCallExp<Classifier, Operation>) expr;
 			
 			// we matched foo1 because it was the first operation matching b
@@ -1226,7 +1226,7 @@ public class RegressionTest
 			
 			expr = helper.createQuery("self.foo(b.oclAsType(C))");
 			
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			oc = (OperationCallExp<Classifier, Operation>) expr;
 			
 			// coerced the arg to type C to find the correct foo
