@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: RegressionTest.java,v 1.17 2009/12/07 06:16:40 ewillink Exp $
+ * $Id: RegressionTest.java,v 1.18 2009/12/18 06:36:36 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -1290,7 +1290,7 @@ public class RegressionTest
 		try {
 			OCLExpression<EClassifier> expr = helper.createQuery("self.foo(c)");
 			
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			OperationCallExp<EClassifier, EOperation> oc =
 				(OperationCallExp<EClassifier, EOperation>) expr;
 			
@@ -1299,7 +1299,7 @@ public class RegressionTest
 			
 			expr = helper.createQuery("self.foo(b)");
 			
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			oc = (OperationCallExp<EClassifier, EOperation>) expr;
 			
 			// we matched foo1 because it was the first operation matching b
@@ -1308,7 +1308,7 @@ public class RegressionTest
 			
 			expr = helper.createQuery("self.foo(b.oclAsType(C))");
 			
-			assertTrue(expr instanceof OperationCallExp);
+			assertTrue(expr instanceof OperationCallExp<?, ?>);
 			oc = (OperationCallExp<EClassifier, EOperation>) expr;
 			
 			// coerced the arg to type C to find the correct foo
@@ -1619,28 +1619,28 @@ public class RegressionTest
         // verify the structure of the nested let expression
         
         // first level let is the String variable
-        assertTrue(expr instanceof LetExp);
+        assertTrue(expr instanceof LetExp<?, ?>);
         LetExp<EClassifier, ?> letExp = (LetExp<EClassifier, ?>) expr;
         Variable<EClassifier, ?> var = letExp.getVariable();
         assertEquals("s", var.getName());
         assertSame(getOCLStandardLibrary().getString(), var.getType());
         
         // second level is the Set(Integer)
-        assertTrue(letExp.getIn() instanceof LetExp);
+        assertTrue(letExp.getIn() instanceof LetExp<?, ?>);
         letExp = (LetExp<EClassifier, ?>) letExp.getIn();
         var = letExp.getVariable();
         assertEquals("i", var.getName());
         assertTrue(var.getType() instanceof SetType);
         
         // third level is the UnlimitedNatural
-        assertTrue(letExp.getIn() instanceof LetExp);
+        assertTrue(letExp.getIn() instanceof LetExp<?, ?>);
         letExp = (LetExp<EClassifier, ?>) letExp.getIn();
         var = letExp.getVariable();
         assertEquals("n", var.getName());
         assertSame(getOCLStandardLibrary().getUnlimitedNatural(), var.getType());
         
         // now we have a real "in"
-        assertTrue(letExp.getIn() instanceof BooleanLiteralExp);
+        assertTrue(letExp.getIn() instanceof BooleanLiteralExp<?>);
     }
     
     /**
