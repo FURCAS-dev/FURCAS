@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.3 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.4 2009/12/18 06:26:03 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -1318,8 +1318,7 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 				Comparable<Object> compContext = (Comparable<Object>) sourceVal;
 				OCLExpression<C> arg = args.get(0);
 				
-				@SuppressWarnings("unchecked")
-				Comparable evalArg = (Comparable) arg.accept(getVisitor());
+				Comparable<?> evalArg = (Comparable<?>) arg.accept(getVisitor());
 				return Boolean.valueOf(compContext.compareTo(evalArg) > 0);
 			}
 

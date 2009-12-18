@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionUtil.java,v 1.8 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: CollectionUtil.java,v 1.9 2009/12/18 06:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -432,7 +432,7 @@ public class CollectionUtil {
         
         C result = type.getElementType();
         
-        while (result instanceof CollectionType) {
+        while (result instanceof CollectionType<?, ?>) {
             result = ((CollectionType<C, ?>) result).getElementType();
         }
         

@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionTypeImpl.java,v 1.8 2009/01/23 17:16:04 cdamus Exp $
+ * $Id: CollectionTypeImpl.java,v 1.9 2009/12/18 06:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -230,7 +230,7 @@ public class CollectionTypeImpl<C, O>
 
 			C elementType = getElementType();
 			String elementTypeName;
-			if (elementType instanceof PredefinedType) {
+			if (elementType instanceof PredefinedType<?>) {
 				elementTypeName = ((PredefinedType<C>) elementType).getName();
 			} else {
 				elementTypeName = env.getUMLReflection().getName(elementType);

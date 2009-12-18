@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.38 2009/12/04 21:26:27 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.39 2009/12/18 06:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -383,7 +383,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 							// non-collection
 							// type
 							@SuppressWarnings("unchecked")
-							CollectionType<C, O> ct = (CollectionType) ncType;
+							CollectionType<C, O> ct = (CollectionType<C, O>) ncType;
 
 							nc.setType(ct.getElementType());
 						}
@@ -4567,7 +4567,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 	@SuppressWarnings("unchecked")
 	protected C getElementType(C possibleCollectionType) {
-		if (possibleCollectionType instanceof CollectionType) {
+		if (possibleCollectionType instanceof CollectionType<?, ?>) {
 			return ((CollectionType<C, O>) possibleCollectionType)
 				.getElementType();
 		}
@@ -4577,7 +4577,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 
 	@SuppressWarnings("unchecked")
 	protected CollectionKind getCollectionKind(C possibleCollectionType) {
-		if (possibleCollectionType instanceof CollectionType) {
+		if (possibleCollectionType instanceof CollectionType<?, ?>) {
 			return ((CollectionType<C, O>) possibleCollectionType).getKind();
 		}
 

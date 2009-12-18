@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.5 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.6 2009/12/18 06:26:03 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -427,7 +427,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			// from the perspective of the association class, its ends have
 			// multiplicity 1 regardless of their definition (which is from
 			// the perspective of the classifiers at the ends)
-			if (result instanceof CollectionType) {
+			if (result instanceof CollectionType<?, ?>) {
 				result = ((CollectionType<C, O>) result).getElementType();
 			}
 		}
@@ -477,10 +477,10 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			return type1;
 		}
 
-		if (type1 == stdlib.getOclAny() && !(type2 instanceof CollectionType)) {
+		if (type1 == stdlib.getOclAny() && !(type2 instanceof CollectionType<?, ?>)) {
 			return type1;
 		}
-		if (type2 == stdlib.getOclAny() && !(type1 instanceof CollectionType)) {
+		if (type2 == stdlib.getOclAny() && !(type1 instanceof CollectionType<?, ?>)) {
 			return type2;
 		}
 
@@ -495,7 +495,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			return type1;
 		}
 
-		if (type1 instanceof CollectionType && type2 instanceof CollectionType) {
+		if (type1 instanceof CollectionType<?, ?> && type2 instanceof CollectionType<?, ?>) {
 
 			CollectionType<C, O> ct1 = (CollectionType<C, O>) type1;
 
@@ -510,16 +510,16 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			return (C) resolveCollectionType(commonKind, resultElementType);
 		}
 
-		if (type1 instanceof MessageType && type2 instanceof MessageType) {
+		if (type1 instanceof MessageType<?, ?, ?> && type2 instanceof MessageType<?, ?, ?>) {
 			return stdlib.getOclMessage();
 		}
 
-		if (type1 instanceof TypeType && type2 instanceof TypeType) {
+		if (type1 instanceof TypeType<?, ?> && type2 instanceof TypeType<?, ?>) {
 			return stdlib.getOclType();
 		}
 
-		if (type1 instanceof TupleType || type2 instanceof TupleType) {
-			if (!((type1 instanceof TupleType) && (type2 instanceof TupleType))) {
+		if (type1 instanceof TupleType<?, ?> || type2 instanceof TupleType<?, ?>) {
+			if (!((type1 instanceof TupleType<?, ?>) && (type2 instanceof TupleType<?, ?>))) {
 				String message = OCLMessages.bind(
 					OCLMessages.TupleTypeMismatch_ERROR_, getName(type1),
 					getName(type2));
@@ -573,7 +573,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		// once exhausted the possibilities for pre-defined types,
 		// if one of them is a CollectionType they don't have common super type
-		if (type1 instanceof CollectionType || type2 instanceof CollectionType) {
+		if (type1 instanceof CollectionType<?, ?> || type2 instanceof CollectionType<?, ?>) {
 			String message = OCLMessages.bind(OCLMessages.TypeMismatch_ERROR_,
 				getName(type1), getName(type2));
 			error(message, "commonSuperType", problemObject); //$NON-NLS-1$
@@ -873,7 +873,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			C paramType = resolve(uml.getOCLType(param));
 
 			Variable<C, PM> var = oclFactory.createVariable();
-			if (paramType instanceof TypeType) {
+			if (paramType instanceof TypeType<?, ?>) {
 				// need the referred type
 				TypeType<C, O> typeType = (TypeType<C, O>) paramType;
 				if (typeType.getReferredType() == null) {
@@ -882,7 +882,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 					var.setType(typeType.getReferredType());
 				}
 			} else {
-				if (paramType instanceof CollectionType) {
+				if (paramType instanceof CollectionType<?, ?>) {
 					CollectionType<C, O> ct = (CollectionType<C, O>) paramType;
 
 					if (ct.getElementType() == stdlib.getT2()) {
@@ -928,7 +928,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			// substitute the owner type (or owner's element type in
 			// the case of a collection)
 			result = owner;
-			if (result instanceof CollectionType) {
+			if (result instanceof CollectionType<?, ?>) {
 				result = ((CollectionType<C, O>) result).getElementType();
 
 				if (result == stdlib.getOclVoid()) {
@@ -940,7 +940,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 					result = stdlib.getT();
 				}
 			}
-		} else if (result instanceof CollectionType) {
+		} else if (result instanceof CollectionType<?, ?>) {
 			// handle generic collection operation with parameter of
 			// type <collectionKind>(T)
 			CollectionType<C, O> collType = (CollectionType<C, O>) result;
@@ -948,7 +948,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 			if (elemType == stdlib.getT()) {
 				C ownerMatch = owner;
-				if (ownerMatch instanceof CollectionType) {
+				if (ownerMatch instanceof CollectionType<?, ?>) {
 					ownerMatch = ((CollectionType<C, O>) ownerMatch)
 						.getElementType();
 
@@ -967,7 +967,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 			} else if (elemType == stdlib.getT2()) {
 				// wildard to match any other collection type
 				C argMatch = argType;
-				if (argMatch instanceof CollectionType) {
+				if (argMatch instanceof CollectionType<?, ?>) {
 					argMatch = ((CollectionType<C, O>) argMatch)
 						.getElementType();
 
