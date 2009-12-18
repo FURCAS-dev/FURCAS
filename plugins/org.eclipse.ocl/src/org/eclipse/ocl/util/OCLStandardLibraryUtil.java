@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLStandardLibraryUtil.java,v 1.14 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: OCLStandardLibraryUtil.java,v 1.15 2009/12/18 06:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -2145,7 +2145,7 @@ public final class OCLStandardLibraryUtil {
 		Collection<C> result;
 		OCLStandardLibrary<C> stdlib = env.getOCLStandardLibrary();
 
-		if (type instanceof CollectionType) {
+		if (type instanceof CollectionType<?, ?>) {
 			CollectionType<?, ?> collType = (CollectionType<?, ?>) type;
 
 			switch (collType.getKind()) {
@@ -2162,7 +2162,7 @@ public final class OCLStandardLibraryUtil {
 			}
 		} else if (type == stdlib.getInteger()) {
 			result = Arrays.asList(stdlib.getReal(), stdlib.getOclAny());
-		} else if (type instanceof AnyType) {
+		} else if (type instanceof AnyType<?>) {
 			result = Collections.emptySet();
 		} else {
 			result = Collections.singleton(stdlib.getOclAny());
