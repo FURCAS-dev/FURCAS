@@ -16,7 +16,7 @@
  * 
  * </copyright>
  * 
- * $Id: TypeUtil.java,v 1.18 2009/12/04 21:26:15 ewillink Exp $
+ * $Id: TypeUtil.java,v 1.19 2009/12/18 06:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.util;
 
@@ -306,7 +306,7 @@ public class TypeUtil {
 			C paramType = resolveType(env, uml.getOCLType(param));
 
 			Variable<C, PM> var = env.getOCLFactory().createVariable();
-			if (paramType instanceof TypeType) {
+			if (paramType instanceof TypeType<?, ?>) {
 				// need the referred type
 				TypeType<C, O> typeType = (TypeType<C, O>) paramType;
 				if (typeType.getReferredType() == null) {
@@ -315,7 +315,7 @@ public class TypeUtil {
 					var.setType(typeType.getReferredType());
 				}
 			} else {
-				if (paramType instanceof CollectionType) {
+				if (paramType instanceof CollectionType<?, ?>) {
 					CollectionType<C, O> ct = (CollectionType<C, O>) paramType;
 
 					if (ct.getElementType() == stdlib.getT2()) {

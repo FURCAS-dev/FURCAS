@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageTypeImpl.java,v 1.7 2008/10/12 01:09:48 cdamus Exp $
+ * $Id: MessageTypeImpl.java,v 1.8 2009/12/18 06:26:04 ewillink Exp $
  */
 package org.eclipse.ocl.types.impl;
 
@@ -248,7 +248,6 @@ public class MessageTypeImpl<C, O, P>
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	@SuppressWarnings("unchecked")
 	public EList<P> oclProperties() {
 		if (properties == null) {
 			properties = new BasicEList<P>();
@@ -261,10 +260,10 @@ public class MessageTypeImpl<C, O, P>
 
 			EList<?> typedElements;
 			if (getReferredOperation() != null) {
-				typedElements = new BasicEList(uml
+				typedElements = new BasicEList<Object>(uml
 					.getParameters(getReferredOperation()));
 			} else if (getReferredSignal() != null) {
-				typedElements = new BasicEList(uml
+				typedElements = new BasicEList<Object>(uml
 					.getAttributes(getReferredSignal()));
 			} else {
 				typedElements = ECollections.EMPTY_ELIST;

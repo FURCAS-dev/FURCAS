@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.g,v 1.5 2009/11/09 22:11:45 ewillink Exp $
+-- * $Id: EssentialOCLErrors.g,v 1.6 2009/12/18 06:26:04 ewillink Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
@@ -71,7 +71,7 @@ $Rules
 --		/.$BeginJava
 --					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_VARIABLE_TYPE);
 --					SimpleNameCS name = (SimpleNameCS)$getSym(1);
---					CSTNode result = createVariableCS(name, null, null);
+--					VariableCS result = createVariableCS(name, null, null);
 --					setOffsets(result, name, getIToken($getToken(2)));
 --					$setResult(result);
 --		  $EndJava
@@ -91,7 +91,7 @@ $Rules
 	TupleLiteralExpCS ::= Tuple ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_LBRACE);
-					CSTNode result = createTupleLiteralExpCS((EList)$getSym(3));
+					TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)$getSym(3));
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
 					$setResult(result);
 		  $EndJava
@@ -100,7 +100,7 @@ $Rules
 	TupleLiteralPartsCS ::= ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_VARIABLES);
-					EList result = new BasicEList();
+					EList<VariableCS> result = new BasicEList<VariableCS>();
 					$setResult(result);
 		  $EndJava
 		./
@@ -111,9 +111,9 @@ $Rules
 	AssociationClassCallExpCS ::= simpleNameCS '[' argumentsCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RBRACK);
-					CSTNode result = createVariableExpCS(
+					VariableExpCS result = createVariableExpCS(
 							(SimpleNameCS)$getSym(1),
-							(EList)$getSym(3),
+							(EList<OCLExpressionCS>)$getSym(3),
 							null
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
@@ -127,7 +127,7 @@ $Rules
 	IfExpCS ::= if OclExpressionCS then OclExpressionCS else OclExpressionCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_ENDIF);
-					CSTNode result = createIfExpCS(
+					IfExpCS result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
 							(OCLExpressionCS)$getSym(4),
 							(OCLExpressionCS)$getSym(6)
@@ -139,7 +139,7 @@ $Rules
 	IfExpCS ::= if OclExpressionCS then OclExpressionCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(5), OCLParserErrors.MISSING_ELSE_ENDIF);
-					CSTNode result = createIfExpCS(
+					IfExpCS result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
 							(OCLExpressionCS)$getSym(4),
 							createInvalidLiteralExpCS(getTokenText($getToken(5)))
@@ -151,7 +151,7 @@ $Rules
 	IfExpCS ::= if OclExpressionCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE_ENDIF);
-					CSTNode result = createIfExpCS(
+					IfExpCS result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
 							createInvalidLiteralExpCS(getTokenText($getToken(3))),
 							createInvalidLiteralExpCS(getTokenText($getToken(3)))
@@ -163,7 +163,7 @@ $Rules
 	IfExpCS ::= if ERROR_TOKEN endif
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE);
-					CSTNode result = createIfExpCS(
+					IfExpCS result = createIfExpCS(
 							createInvalidLiteralExpCS(getTokenText($getToken(2))),
 							createInvalidLiteralExpCS(getTokenText($getToken(2))),
 							createInvalidLiteralExpCS(getTokenText($getToken(2)))
@@ -176,7 +176,7 @@ $Rules
 	primaryExpCS ::= '(' OclExpressionCS ERROR_TOKEN
 		/.$BeginJava
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_RPAREN);
-					CSTNode result = (CSTNode)$getSym(2);
+					OCLExpressionCS result = (OCLExpressionCS)$getSym(2);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
 		  $EndJava

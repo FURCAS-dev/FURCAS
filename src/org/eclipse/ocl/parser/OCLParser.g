@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.9 2009/11/09 22:03:57 ewillink Exp $
+-- * $Id: OCLParser.g,v 1.10 2009/12/18 06:26:04 ewillink Exp $
 -- */
 --
 -- The Complete OCL Parser
@@ -69,15 +69,23 @@ $End
 $Globals
 	/.
 	import org.eclipse.ocl.Environment;
+	import org.eclipse.ocl.cst.ClassifierContextDeclCS;
+	import org.eclipse.ocl.cst.ContextDeclCS;
 	import org.eclipse.ocl.cst.DefCS;
 	import org.eclipse.ocl.cst.DefExpressionCS;
+	import org.eclipse.ocl.cst.DerValueCS;
+	import org.eclipse.ocl.cst.InitValueCS;
 	import org.eclipse.ocl.cst.InitOrDerValueCS;
+	import org.eclipse.ocl.cst.InvCS;
 	import org.eclipse.ocl.cst.InvOrDefCS;
 	import org.eclipse.ocl.cst.MessageExpCS;
 	import org.eclipse.ocl.cst.OCLMessageArgCS;
 	import org.eclipse.ocl.cst.OperationCS;
+	import org.eclipse.ocl.cst.OperationContextDeclCS;
 	import org.eclipse.ocl.cst.PackageDeclarationCS;
+	import org.eclipse.ocl.cst.PrePostOrBodyDeclCS;
 	import org.eclipse.ocl.cst.PrePostOrBodyEnum;
+	import org.eclipse.ocl.cst.PropertyContextCS;
 	./
 $End
 
@@ -127,7 +135,7 @@ $Rules
 -----------------------------------------------------------------------
 	primitiveTypeCS ::= OclMessage
 		/.$BeginJava
-					CSTNode result = createPrimitiveTypeCS(
+					PrimitiveTypeCS result = createPrimitiveTypeCS(
 							SimpleTypeEnum.OCL_MESSAGE_LITERAL,
 							getTokenText($getToken(1))
 						);
@@ -147,11 +155,11 @@ $Rules
 		primaryExpCS '->' simpleNameCS isMarkedPreCS '(' argumentsCSopt ')'
 		/.$BeginJava
 					OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
-					CSTNode result = createArrowOperationCallExpCS(
+					OperationCallExpCS result = createArrowOperationCallExpCS(
 							source,
 							(SimpleNameCS)$getSym(3),
 							(IsMarkedPreCS)$getSym(4),
-							(EList)$getSym(6)
+							(EList<OCLExpressionCS>)$getSym(6)
 						);
 					setOffsets(result, source, getIToken($getToken(7)));
 					$setResult(result);
@@ -163,9 +171,9 @@ $Rules
 		/.$BeginJava
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
 					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
-					CSTNode result = createVariableExpCS(
+					VariableExpCS result = createVariableExpCS(
 							simpleNameCS,
-							new BasicEList(),
+							new BasicEList<OCLExpressionCS>(),
 							isMarkedPreCS
 						);
 					setOffsets(result, simpleNameCS, isMarkedPreCS);
@@ -175,7 +183,7 @@ $Rules
 
 	isMarkedPreCS ::= '@' pre
 		/.$BeginJava
-					CSTNode result = createIsMarkedPreCS();
+					IsMarkedPreCS result = createIsMarkedPreCS();
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
 					$setResult(result);
 		  $EndJava
@@ -199,27 +207,30 @@ $Rules
 		./
 
 	OclMessageArgumentsCSopt ::= $empty
-		/.$EmptyListAction./
+        /.$BeginJava
+                    $setResult(new BasicEList<OCLMessageArgCS>());
+          $EndJava
+        ./
 	OclMessageArgumentsCSopt -> OclMessageArgumentsCS
 
 	OclMessageArgumentsCS ::= OclMessageArgCS
 		/.$BeginJava
-					EList result = new BasicEList();
-					result.add($getSym(1));
+					EList<OCLMessageArgCS> result = new BasicEList<OCLMessageArgCS>();
+					result.add((OCLMessageArgCS)$getSym(1));
 					$setResult(result);
 		  $EndJava
 		./
 	OclMessageArgumentsCS ::= OclMessageArgumentsCS ',' OclMessageArgCS
 		/.$BeginJava
-					EList result = (EList)$getSym(1);
-					result.add($getSym(3));
+					EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)$getSym(1);
+					result.add((OCLMessageArgCS)$getSym(3));
 					$setResult(result);
 		  $EndJava
 		./
 
 	OclMessageArgCS ::= '?'
 		/.$BeginJava
-					CSTNode result = createOCLMessageArgCS(
+					OCLMessageArgCS result = createOCLMessageArgCS(
 							null,
 							null
 						);
@@ -229,7 +240,7 @@ $Rules
 		./
 	OclMessageArgCS ::= '?' ':' typeCS
 		/.$BeginJava
-					CSTNode result = createOCLMessageArgCS(
+					OCLMessageArgCS result = createOCLMessageArgCS(
 							(TypeCS)$getSym(3),
 							null
 						);
@@ -239,7 +250,7 @@ $Rules
 		./
 	OclMessageArgCS ::= OclExpressionCS
 		/.$BeginJava
-					CSTNode result = createOCLMessageArgCS(
+					OCLMessageArgCS result = createOCLMessageArgCS(
 							null,
 							(OCLExpressionCS)$getSym(1)
 						);
@@ -269,9 +280,9 @@ $Rules
     packageDeclarationCS -> packageDeclarationCS_B
     packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt endpackage
         /.$BeginJava
-                    CSTNode result = createPackageDeclarationCS(
+                    PackageDeclarationCS result = createPackageDeclarationCS(
                             (PathNameCS)$getSym(2),
-                            (EList)$getSym(3)
+                            (EList<ContextDeclCS>)$getSym(3)
                         );
                     setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
                     $setResult(result);
@@ -280,30 +291,33 @@ $Rules
     
     packageDeclarationCS_B ::= contextDeclsCS
         /.$BeginJava
-                    EList contextDecls = (EList)$getSym(1);
-                    CSTNode result = createPackageDeclarationCS(null, contextDecls);
+                    EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)$getSym(1);
+                    PackageDeclarationCS result = createPackageDeclarationCS(null, contextDecls);
                     if (!contextDecls.isEmpty()) {
-                        setOffsets(result, (CSTNode)contextDecls.get(0), (CSTNode)contextDecls.get(contextDecls.size()-1));
+                        setOffsets(result, contextDecls.get(0), contextDecls.get(contextDecls.size()-1));
                     }
                     $setResult(result);
           $EndJava
         ./
 
     contextDeclsCSopt ::= $empty
-        /.$EmptyListAction./
+        /.$BeginJava
+                    $setResult(new BasicEList<ContextDeclCS>());
+          $EndJava
+        ./
     contextDeclsCSopt -> contextDeclsCS
 
     contextDeclsCS ::= contextDeclCS
         /.$BeginJava
-                    EList result = new BasicEList();
-                    result.add($getSym(1));
+                    EList<ContextDeclCS> result = new BasicEList<ContextDeclCS>();
+                    result.add((ContextDeclCS)$getSym(1));
                     $setResult(result);
           $EndJava
         ./
     contextDeclsCS ::= contextDeclsCS contextDeclCS
         /.$BeginJava
-                    EList result = (EList)$getSym(1);
-                    result.add($getSym(2));
+                    EList<ContextDeclCS> result = (EList<ContextDeclCS>)$getSym(1);
+                    result.add((ContextDeclCS)$getSym(2));
                     $setResult(result);
           $EndJava
         ./
@@ -318,7 +332,7 @@ $Rules
                     PathNameCS pathNameCS = (PathNameCS)$getSym(2);
                     SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(4);
                     EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)$getSym(7);
-                    CSTNode result = createPropertyContextCS(
+                    PropertyContextCS result = createPropertyContextCS(
                             pathNameCS,
                             simpleNameCS,
                             (TypeCS)$getSym(6),
@@ -346,14 +360,14 @@ $Rules
 
     initOrDerValueCS ::= init ':' OclExpressionCS
         /.$BeginJava
-                    CSTNode result = createInitValueCS((OCLExpressionCS)$getSym(3));
+                    InitValueCS result = createInitValueCS((OCLExpressionCS)$getSym(3));
                     setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
                     $setResult(result);
           $EndJava
         ./
     initOrDerValueCS ::= derive ':' OclExpressionCS
         /.$BeginJava
-                    CSTNode result = createDerValueCS((OCLExpressionCS)$getSym(3));
+                    DerValueCS result = createDerValueCS((OCLExpressionCS)$getSym(3));
                     setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
                     $setResult(result);
           $EndJava
@@ -362,7 +376,7 @@ $Rules
 	classifierContextDeclCS ::= context pathNameCS invOrDefsCS
 		/.$BeginJava
 					EList<InvOrDefCS> list = (EList<InvOrDefCS>)$getSym(3);
-					CSTNode result = createClassifierContextDeclCS(
+					ClassifierContextDeclCS result = createClassifierContextDeclCS(
 							null,
 							(PathNameCS)$getSym(2),
 							list
@@ -374,7 +388,7 @@ $Rules
 	classifierContextDeclCS ::= context simpleNameCS ':' pathNameCS invOrDefsCS
 		/.$BeginJava
 					EList<InvOrDefCS> list = (EList<InvOrDefCS>)$getSym(5);
-					CSTNode result = createClassifierContextDeclCS(
+					ClassifierContextDeclCS result = createClassifierContextDeclCS(
 							(SimpleNameCS)$getSym(2),
 							(PathNameCS)$getSym(4),
 							list
@@ -401,7 +415,7 @@ $Rules
 
 	invOrDefCS ::= inv unreservedSimpleNameCSopt ':' OclExpressionCS
 		/.$BeginJava
-					CSTNode result = createInvCS(
+					InvCS result = createInvCS(
 							(SimpleNameCS)$getSym(2),
 							(OCLExpressionCS)$getSym(4)
 						);
@@ -438,7 +452,7 @@ $Rules
 		/.$BeginJava
 					VariableCS variableCS = (VariableCS)$getSym(1);
 					OCLExpressionCS expressionCS = (OCLExpressionCS)$getSym(3);
-					CSTNode result = createDefExpressionCS(
+					DefExpressionCS result = createDefExpressionCS(
 							variableCS,
 							null,
 							expressionCS
@@ -449,7 +463,7 @@ $Rules
 		./
 	defExpressionCS ::= operationCS1 '=' OclExpressionCS
 		/.$BeginJava
-					CSTNode result = createDefExpressionCS(
+					DefExpressionCS result = createDefExpressionCS(
 							null,
 							(OperationCS)$getSym(1),
 							(OCLExpressionCS)$getSym(3)
@@ -461,34 +475,34 @@ $Rules
 
 	operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclsCS
 		/.$BeginJava
-					EList prePostOrBodyDecls = (EList)$getSym(3);
-					CSTNode result = createOperationContextDeclCS(
+					EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)$getSym(3);
+					OperationContextDeclCS result = createOperationContextDeclCS(
 							(OperationCS)$getSym(2),
 							prePostOrBodyDecls
 						);
-					setOffsets(result, getIToken($getToken(1)), (CSTNode)prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
+					setOffsets(result, getIToken($getToken(1)), prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
 					$setResult(result);
 		  $EndJava
 		./
 
     prePostOrBodyDeclsCS ::= prePostOrBodyDeclCS
         /.$BeginJava
-                    EList result = new BasicEList();
-                    result.add($getSym(1));
+                    EList<PrePostOrBodyDeclCS> result = new BasicEList<PrePostOrBodyDeclCS>();
+                    result.add((PrePostOrBodyDeclCS)$getSym(1));
                     $setResult(result);
           $EndJava
         ./
     prePostOrBodyDeclsCS ::= prePostOrBodyDeclsCS prePostOrBodyDeclCS
         /.$BeginJava
-                    EList result = (EList)$getSym(1);
-                    result.add($getSym(2));
+                    EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)$getSym(1);
+                    result.add((PrePostOrBodyDeclCS)$getSym(2));
                     $setResult(result);
           $EndJava
         ./
 
     prePostOrBodyDeclCS ::= pre unreservedSimpleNameCSopt ':' OclExpressionCS
         /.$BeginJava
-                    CSTNode result = createPrePostOrBodyDeclCS(
+                    PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                             PrePostOrBodyEnum.PRE_LITERAL,
                             (SimpleNameCS)$getSym(2),
                             (OCLExpressionCS)$getSym(4)
@@ -499,7 +513,7 @@ $Rules
         ./
     prePostOrBodyDeclCS ::= post unreservedSimpleNameCSopt ':' OclExpressionCS
         /.$BeginJava
-                    CSTNode result = createPrePostOrBodyDeclCS(
+                    PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                             PrePostOrBodyEnum.POST_LITERAL,
                             (SimpleNameCS)$getSym(2),
                             (OCLExpressionCS)$getSym(4)
@@ -510,7 +524,7 @@ $Rules
         ./
     prePostOrBodyDeclCS ::= body unreservedSimpleNameCSopt ':' OclExpressionCS
         /.$BeginJava
-                    CSTNode result = createPrePostOrBodyDeclCS(
+                    PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                             PrePostOrBodyEnum.BODY_LITERAL,
                             (SimpleNameCS)$getSym(2),
                             (OCLExpressionCS)$getSym(4)
@@ -522,9 +536,9 @@ $Rules
 
 	operationCS1 ::= simpleNameCS '(' parametersCSopt ')' ':' typeCSopt
 		/.$BeginJava
-					CSTNode result = createOperationCS(
+					OperationCS result = createOperationCS(
 							getIToken($getToken(1)),
-							(EList)$getSym(3),
+							(EList<VariableCS>)$getSym(3),
 							(TypeCS)$getSym(6)
 						);
 					if ($getSym(6) != null) {
@@ -541,10 +555,10 @@ $Rules
 					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
 					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
 					TypeCS typeCS = (TypeCS)$getSym(8);
-					CSTNode result = createOperationCS(
+					OperationCS result = createOperationCS(
 							pathNameCS,
 							simpleNameCS,
-							(EList)$getSym(5),
+							(EList<VariableCS>)$getSym(5),
 							typeCS
 						);
 					if (typeCS != null) {
@@ -557,20 +571,23 @@ $Rules
 		./
 
     parametersCSopt ::= $empty
-        /.$EmptyListAction./
+        /.$BeginJava
+                    $setResult(new BasicEList<VariableCS>());
+          $EndJava
+        ./
     parametersCSopt -> parametersCS
 	
 	parametersCS ::= VariableDeclarationCS 
 		/.$BeginJava
-					EList result = new BasicEList();
-					result.add($getSym(1));
+					EList<VariableCS> result = new BasicEList<VariableCS>();
+					result.add((VariableCS)$getSym(1));
 					$setResult(result);
 		  $EndJava
 		./
 	parametersCS ::= parametersCS ',' VariableDeclarationCS
 		/.$BeginJava
-					EList result = (EList)$getSym(1);
-					result.add($getSym(3));
+					EList<VariableCS> result = (EList<VariableCS>)$getSym(1);
+					result.add((VariableCS)$getSym(3));
 					$setResult(result);
 		  $EndJava
 		./

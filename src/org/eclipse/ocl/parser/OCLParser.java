@@ -17,7 +17,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.19 2009/11/09 22:03:31 ewillink Exp $
+* $Id: OCLParser.java,v 1.20 2009/12/18 06:26:04 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -39,19 +39,36 @@ package org.eclipse.ocl.parser;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.ocl.cst.BooleanLiteralExpCS;
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.cst.CallExpCS;
+import org.eclipse.ocl.cst.CollectionLiteralExpCS;
+import org.eclipse.ocl.cst.CollectionLiteralPartCS;
 import org.eclipse.ocl.cst.CollectionTypeCS;
 import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
+import org.eclipse.ocl.cst.FeatureCallExpCS;
+import org.eclipse.ocl.cst.IfExpCS;
+import org.eclipse.ocl.cst.IntegerLiteralExpCS;
+import org.eclipse.ocl.cst.InvalidLiteralExpCS;
 import org.eclipse.ocl.cst.IsMarkedPreCS;
+import org.eclipse.ocl.cst.IterateExpCS;
+import org.eclipse.ocl.cst.IteratorExpCS;
+import org.eclipse.ocl.cst.LetExpCS;
+import org.eclipse.ocl.cst.NullLiteralExpCS;
 import org.eclipse.ocl.cst.OCLExpressionCS;
 import org.eclipse.ocl.cst.OperationCallExpCS;
 import org.eclipse.ocl.cst.PathNameCS;
+import org.eclipse.ocl.cst.PrimitiveTypeCS;
+import org.eclipse.ocl.cst.RealLiteralExpCS;
 import org.eclipse.ocl.cst.SimpleNameCS;
 import org.eclipse.ocl.cst.SimpleTypeEnum;
 import org.eclipse.ocl.cst.StringLiteralExpCS;
+import org.eclipse.ocl.cst.TupleLiteralExpCS;
+import org.eclipse.ocl.cst.TupleTypeCS;
 import org.eclipse.ocl.cst.TypeCS;
+import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.cst.VariableCS;
+import org.eclipse.ocl.cst.VariableExpCS;
 
 import lpg.lpgjavaruntime.BadParseException;
 import lpg.lpgjavaruntime.BadParseSymFileException;
@@ -64,15 +81,23 @@ import lpg.lpgjavaruntime.ParseTable;
 import lpg.lpgjavaruntime.RuleAction;
 
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.cst.ClassifierContextDeclCS;
+import org.eclipse.ocl.cst.ContextDeclCS;
 import org.eclipse.ocl.cst.DefCS;
 import org.eclipse.ocl.cst.DefExpressionCS;
+import org.eclipse.ocl.cst.DerValueCS;
+import org.eclipse.ocl.cst.InitValueCS;
 import org.eclipse.ocl.cst.InitOrDerValueCS;
+import org.eclipse.ocl.cst.InvCS;
 import org.eclipse.ocl.cst.InvOrDefCS;
 import org.eclipse.ocl.cst.MessageExpCS;
 import org.eclipse.ocl.cst.OCLMessageArgCS;
 import org.eclipse.ocl.cst.OperationCS;
+import org.eclipse.ocl.cst.OperationContextDeclCS;
 import org.eclipse.ocl.cst.PackageDeclarationCS;
+import org.eclipse.ocl.cst.PrePostOrBodyDeclCS;
 import org.eclipse.ocl.cst.PrePostOrBodyEnum;
+import org.eclipse.ocl.cst.PropertyContextCS;
 
 public class OCLParser extends AbstractOCLParser implements RuleAction
 {
@@ -189,7 +214,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 33: {
                 
                 IToken iToken = getIToken(dtParser.getToken(1));
-                CSTNode result = createSimpleNameCS(
+                SimpleNameCS result = createSimpleNameCS(
                         SimpleTypeEnum.SELF_LITERAL,
                         iToken
                     );
@@ -204,7 +229,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 34: {
                 
                 IToken iToken = getIToken(dtParser.getToken(1));
-                CSTNode result = createSimpleNameCS(
+                SimpleNameCS result = createSimpleNameCS(
                         SimpleTypeEnum.IDENTIFIER_LITERAL,
                         iToken
                     );
@@ -243,7 +268,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 39: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.BOOLEAN_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -257,7 +282,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 40: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.INTEGER_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -271,7 +296,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 41: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.REAL_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -285,7 +310,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 42: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.STRING_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -299,7 +324,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 43: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.UNLIMITED_NATURAL_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -313,7 +338,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 44: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_ANY_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -327,7 +352,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 45: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_INVALID_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -341,7 +366,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 46: {
                 
-                CSTNode result = createPrimitiveTypeCS(
+                PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_VOID_LITERAL,
                         getTokenText(dtParser.getToken(1))
                     );
@@ -437,7 +462,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 57: {
                 
-                CSTNode result = createTupleTypeCS((EList)dtParser.getSym(3));
+                TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)dtParser.getSym(3));
                 setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
                 dtParser.setSym1(result);
               break;
@@ -446,17 +471,19 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             // Rule 58:  tupleTypePartsCSopt ::= $Empty
             //
-            case 58:
-                dtParser.setSym1(new BasicEList());
-                break;
- 
+            case 58: {
+                
+                dtParser.setSym1(new BasicEList<VariableCS>());
+              break;
+            }
+     
             //
             // Rule 60:  tupleTypePartsCS ::= typedUninitializedVariableCS
             //
             case 60: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<VariableCS> result = new BasicEList<VariableCS>();
+                result.add((VariableCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -466,8 +493,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 61: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(3));
+                EList<VariableCS> result = (EList<VariableCS>)dtParser.getSym(1);
+                result.add((VariableCS)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
             }
@@ -478,7 +505,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 62: {
                 
                 SimpleNameCS name = (SimpleNameCS)dtParser.getSym(1);
-                CSTNode result = createVariableCS(name, null, null);
+                VariableCS result = createVariableCS(name, null, null);
                 setOffsets(result, name);
                 dtParser.setSym1(result);
               break;
@@ -491,7 +518,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 SimpleNameCS name = (SimpleNameCS)dtParser.getSym(1);
                 TypeCS type = (TypeCS)dtParser.getSym(3);
-                CSTNode result = createVariableCS(name, type, null);
+                VariableCS result = createVariableCS(name, type, null);
                 setOffsets(result, name, type);
                 dtParser.setSym1(result);
               break;
@@ -504,7 +531,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 SimpleNameCS name = (SimpleNameCS)dtParser.getSym(1);
                 OCLExpressionCS initExpression = (OCLExpressionCS)dtParser.getSym(3);
-                CSTNode result = createVariableCS(name, null, initExpression);
+                VariableCS result = createVariableCS(name, null, initExpression);
                 setOffsets(result, name, initExpression);
                 dtParser.setSym1(result);
               break;
@@ -518,7 +545,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 SimpleNameCS name = (SimpleNameCS)dtParser.getSym(1);
                 TypeCS type = (TypeCS)dtParser.getSym(3);
                 OCLExpressionCS initExpression = (OCLExpressionCS)dtParser.getSym(5);
-                CSTNode result = createVariableCS(name, type, initExpression);
+                VariableCS result = createVariableCS(name, type, initExpression);
                 setOffsets(result, name, initExpression);
                 dtParser.setSym1(result);
               break;
@@ -530,9 +557,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 78: {
                 
                 CollectionTypeCS typeCS = (CollectionTypeCS)dtParser.getSym(1);
-                CSTNode result = createCollectionLiteralExpCS(
+                CollectionLiteralExpCS result = createCollectionLiteralExpCS(
                         typeCS,
-                        (EList)dtParser.getSym(3)
+                        (EList<CollectionLiteralPartCS>)dtParser.getSym(3)
                     );
                 setOffsets(result, typeCS, getIToken(dtParser.getToken(4)));
                 dtParser.setSym1(result);
@@ -545,9 +572,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 79: {
                 
                 CollectionTypeCS typeCS = (CollectionTypeCS)dtParser.getSym(1);
-                CSTNode result = createCollectionLiteralExpCS(
+                CollectionLiteralExpCS result = createCollectionLiteralExpCS(
                         typeCS,
-                        (EList)dtParser.getSym(3)
+                        (EList<CollectionLiteralPartCS>)dtParser.getSym(3)
                     );
                 setOffsets(result, typeCS, getIToken(dtParser.getToken(4)));
                 dtParser.setSym1(result);
@@ -557,17 +584,19 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             // Rule 80:  CollectionLiteralPartsCSopt ::= $Empty
             //
-            case 80:
-                dtParser.setSym1(new BasicEList());
-                break;
- 
+            case 80: {
+                
+                dtParser.setSym1(new BasicEList<CollectionLiteralPartCS>());
+              break;
+            }
+     
             //
             // Rule 82:  CollectionLiteralPartsCS ::= CollectionLiteralPartCS
             //
             case 82: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<CollectionLiteralPartCS> result = new BasicEList<CollectionLiteralPartCS>();
+                result.add((CollectionLiteralPartCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -577,8 +606,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 83: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(3));
+                EList<CollectionLiteralPartCS> result = (EList<CollectionLiteralPartCS>)dtParser.getSym(1);
+                result.add((CollectionLiteralPartCS)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
             }
@@ -588,7 +617,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 85: {
                 
-                CSTNode result = createCollectionLiteralPartCS(
+                CollectionLiteralPartCS result = createCollectionLiteralPartCS(
                         (OCLExpressionCS)dtParser.getSym(1)
                     );
                 setOffsets(result, (CSTNode)dtParser.getSym(1));
@@ -601,7 +630,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 86: {
                 
-                CSTNode result = createCollectionRangeCS(
+                CollectionLiteralPartCS result = createCollectionRangeCS(
                         (OCLExpressionCS)dtParser.getSym(1),
                         (OCLExpressionCS)dtParser.getSym(3)
                     );
@@ -615,7 +644,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 94: {
                 
-                CSTNode result = createTupleLiteralExpCS((EList)dtParser.getSym(3));
+                TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)dtParser.getSym(3));
                 setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
                 dtParser.setSym1(result);
               break;
@@ -626,8 +655,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 95: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<VariableCS> result = new BasicEList<VariableCS>();
+                result.add((VariableCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -637,8 +666,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 96: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(3));
+                EList<VariableCS> result = (EList<VariableCS>)dtParser.getSym(1);
+                result.add((VariableCS)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
             }
@@ -648,7 +677,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 97: {
                 
-                CSTNode result = createIntegerLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                IntegerLiteralExpCS result = createIntegerLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -659,7 +688,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 98: {
                 
-                CSTNode result = createRealLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                RealLiteralExpCS result = createRealLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -695,7 +724,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 101: {
                 
-                CSTNode result = createBooleanLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                BooleanLiteralExpCS result = createBooleanLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -706,7 +735,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 102: {
                 
-                CSTNode result = createBooleanLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                BooleanLiteralExpCS result = createBooleanLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -717,7 +746,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 103: {
                 
-                CSTNode result = createUnlimitedNaturalLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                UnlimitedNaturalLiteralExpCS result = createUnlimitedNaturalLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -728,7 +757,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 104: {
                 
-                CSTNode result = createInvalidLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                InvalidLiteralExpCS result = createInvalidLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -739,7 +768,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 105: {
                 
-                CSTNode result = createNullLiteralExpCS(getTokenText(dtParser.getToken(1)));
+                NullLiteralExpCS result = createNullLiteralExpCS(getTokenText(dtParser.getToken(1)));
                 setOffsets(result, getIToken(dtParser.getToken(1)));
                 dtParser.setSym1(result);
               break;
@@ -761,9 +790,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 108: {
                 
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
-                CSTNode result = createVariableExpCS(
+                VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(result, simpleNameCS);
@@ -778,7 +807,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
-                CSTNode result = createIteratorExpCS(
+                IteratorExpCS result = createIteratorExpCS(
                         source,
                         simpleNameCS,
                         (VariableCS)dtParser.getSym(5),
@@ -800,7 +829,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 setOffsets(variableCS, name);
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
-                CSTNode result = createIteratorExpCS(
+                IteratorExpCS result = createIteratorExpCS(
                         source,
                         simpleNameCS,
                         variableCS,
@@ -819,7 +848,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
-                CSTNode result = createIteratorExpCS(
+                IteratorExpCS result = createIteratorExpCS(
                         source,
                         simpleNameCS,
                         (VariableCS)dtParser.getSym(5),
@@ -838,7 +867,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
-                CSTNode result = createIterateExpCS(
+                IterateExpCS result = createIterateExpCS(
                         source,
                         simpleNameCS,
                         (VariableCS)dtParser.getSym(5),
@@ -857,7 +886,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
-                CSTNode result = createIterateExpCS(
+                IterateExpCS result = createIterateExpCS(
                         source,
                         simpleNameCS,
                         (VariableCS)dtParser.getSym(5),
@@ -875,11 +904,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 121: {
                 
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
-                CSTNode result = createArrowOperationCallExpCS(
+                OperationCallExpCS result = createArrowOperationCallExpCS(
                         source,
                         (SimpleNameCS)dtParser.getSym(3),
                         null,
-                        new BasicEList()
+                        new BasicEList<OCLExpressionCS>()
                     );
                 setOffsets(result, source, getIToken(dtParser.getToken(5)));
                 dtParser.setSym1(result);
@@ -894,7 +923,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
                 OCLExpressionCS arg = (OCLExpressionCS)dtParser.getSym(5);
-                CSTNode result;
+                OCLExpressionCS result;
                 if (isIterator(simpleNameCS.getValue())) {
                     result = createIteratorExpCS(
                             source,
@@ -905,7 +934,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                         );
                 }
                 else {
-                    EList args = new BasicEList();
+                    EList<OCLExpressionCS> args = new BasicEList<OCLExpressionCS>();
                     args.add(arg);
                     result = createArrowOperationCallExpCS(
                             source,
@@ -924,10 +953,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 123: {
                 
-                EList args = (EList)dtParser.getSym(7);
-                args.add(0, dtParser.getSym(5));
+                EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)dtParser.getSym(7);
+                args.add(0, (OCLExpressionCS)dtParser.getSym(5));
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
-                CSTNode result = createArrowOperationCallExpCS(
+                OperationCallExpCS result = createArrowOperationCallExpCS(
                         source,
                         (SimpleNameCS)dtParser.getSym(3),
                         null,
@@ -946,14 +975,14 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(5);
                 OCLExpressionCS variableExpCS = createVariableExpCS(
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(variableExpCS, simpleNameCS);
-                EList args = (EList)dtParser.getSym(7);
+                EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)dtParser.getSym(7);
                 args.add(0, variableExpCS);
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
-                CSTNode result = createArrowOperationCallExpCS(
+                OperationCallExpCS result = createArrowOperationCallExpCS(
                         source,
                         (SimpleNameCS)dtParser.getSym(3),
                         null,
@@ -981,7 +1010,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                         null,
                         simpleNameCS,
                         (IsMarkedPreCS)dtParser.getSym(4),
-                        (EList)dtParser.getSym(6)
+                        (EList<OCLExpressionCS>)dtParser.getSym(6)
                     );
                 setOffsets(result, source, getIToken(dtParser.getToken(7)));
                 dtParser.setSym1(result);
@@ -993,12 +1022,12 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 127: {
                 
-                CSTNode result = createDotOperationCallExpCS(
+                OperationCallExpCS result = createDotOperationCallExpCS(
                         null,
                         null,
                         (SimpleNameCS)dtParser.getSym(1),
                         (IsMarkedPreCS)dtParser.getSym(2),
-                        (EList)dtParser.getSym(4)
+                        (EList<OCLExpressionCS>)dtParser.getSym(4)
                     );
                 setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));
                 dtParser.setSym1(result);
@@ -1017,7 +1046,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                         pathNameCS,
                         simpleNameCS,
                         null,
-                        (EList)dtParser.getSym(5)
+                        (EList<OCLExpressionCS>)dtParser.getSym(5)
                     );
                 setOffsets(result, pathNameCS, getIToken(dtParser.getToken(6)));
                 dtParser.setSym1(result);
@@ -1037,7 +1066,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                         pathNameCS,
                         simpleNameCS,
                         (IsMarkedPreCS)dtParser.getSym(6),
-                        (EList)dtParser.getSym(8)
+                        (EList<OCLExpressionCS>)dtParser.getSym(8)
                     );
                 setOffsets(result, source, getIToken(dtParser.getToken(9)));
                 dtParser.setSym1(result);
@@ -1052,11 +1081,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 PathNameCS pathNameCS = (PathNameCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(4);
-                CSTNode result = createFeatureCallExpCS(
+                FeatureCallExpCS result = createFeatureCallExpCS(
                         null,
                         pathNameCS,
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
@@ -1077,11 +1106,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 PathNameCS pathNameCS = (PathNameCS)dtParser.getSym(3);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(5);
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(6);
-                CSTNode result = createFeatureCallExpCS(
+                FeatureCallExpCS result = createFeatureCallExpCS(
                         source,
                         pathNameCS,
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
@@ -1101,11 +1130,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(4);
-                CSTNode result = createFeatureCallExpCS(
+                FeatureCallExpCS result = createFeatureCallExpCS(
                         source,
                         null,
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
@@ -1125,11 +1154,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(7);
-                CSTNode result = createFeatureCallExpCS(
+                FeatureCallExpCS result = createFeatureCallExpCS(
                         source,
                         null,
                         simpleNameCS,
-                        (EList)dtParser.getSym(5),
+                        (EList<OCLExpressionCS>)dtParser.getSym(5),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
@@ -1148,9 +1177,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(5);
-                CSTNode result = createVariableExpCS(
+                VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
-                        (EList)dtParser.getSym(3),
+                        (EList<OCLExpressionCS>)dtParser.getSym(3),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
@@ -1174,17 +1203,19 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             // Rule 137:  argumentsCSopt ::= $Empty
             //
-            case 137:
-                dtParser.setSym1(new BasicEList());
-                break;
- 
+            case 137: {
+                
+                dtParser.setSym1(new BasicEList<OCLExpressionCS>());
+              break;
+            }
+     
             //
             // Rule 139:  argumentsCS ::= OclExpressionCS
             //
             case 139: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<OCLExpressionCS> result = new BasicEList<OCLExpressionCS>();
+                result.add((OCLExpressionCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -1194,8 +1225,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 140: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(3));
+                EList<OCLExpressionCS> result = (EList<OCLExpressionCS>)dtParser.getSym(1);
+                result.add((OCLExpressionCS)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
             }
@@ -1206,9 +1237,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 143: {
                 
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
-                CSTNode result = createVariableExpCS(
+                VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(result, simpleNameCS);
@@ -1222,9 +1253,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 144: {
                 
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
-                CSTNode result = createVariableExpCS(
+                VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
-                        new BasicEList(),
+                        new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(result, simpleNameCS);
@@ -1379,9 +1410,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 setOffsets(simpleNameCS, getIToken(dtParser.getToken(2)));
                 OCLExpressionCS left = (OCLExpressionCS)dtParser.getSym(1);
                 OCLExpressionCS right = (OCLExpressionCS)dtParser.getSym(3);
-                EList args = new BasicEList();
+                EList<OCLExpressionCS> args = new BasicEList<OCLExpressionCS>();
                 args.add(right);
-                CSTNode result = createOperationCallExpCS(
+                OperationCallExpCS result = createOperationCallExpCS(
                         left,
                         simpleNameCS,
                         args
@@ -1417,10 +1448,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                         );
                 setOffsets(simpleNameCS, getIToken(dtParser.getToken(1)));
                 OCLExpressionCS expr = (OCLExpressionCS)dtParser.getSym(2);
-                CSTNode result = createOperationCallExpCS(
+                OperationCallExpCS result = createOperationCallExpCS(
                         expr,
                         simpleNameCS,
-                        new BasicEList()
+                        new BasicEList<OCLExpressionCS>()
                     );
                 setOffsets(result, simpleNameCS, expr);
                 dtParser.setSym1(result);
@@ -1432,7 +1463,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 221: {
                 
-                CSTNode result = (CSTNode)dtParser.getSym(2);
+                OCLExpressionCS result = (OCLExpressionCS)dtParser.getSym(2);
                 if (result instanceof OperationCallExpCS) {
                     ((OperationCallExpCS)result).setIsAtomic(true);
                 }
@@ -1446,7 +1477,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 222: {
                 
-                CSTNode result = createIfExpCS(
+                IfExpCS result = createIfExpCS(
                         (OCLExpressionCS)dtParser.getSym(2),
                         (OCLExpressionCS)dtParser.getSym(4),
                         (OCLExpressionCS)dtParser.getSym(6)
@@ -1462,8 +1493,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 223: {
                 
                 OCLExpressionCS expr = (OCLExpressionCS)dtParser.getSym(4);
-                CSTNode result = createLetExpCS(
-                        (EList)dtParser.getSym(2),
+                LetExpCS result = createLetExpCS(
+                        (EList<VariableCS>)dtParser.getSym(2),
                         expr
                     );
                 setOffsets(result, getIToken(dtParser.getToken(1)), expr);
@@ -1476,8 +1507,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 224: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<VariableCS> result = new BasicEList<VariableCS>();
+                result.add((VariableCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -1487,8 +1518,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 225: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(3));
+                EList<VariableCS> result = (EList<VariableCS>)dtParser.getSym(1);
+                result.add((VariableCS)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
             }
@@ -1505,7 +1536,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 245: {
                 
-				CSTNode result = createPrimitiveTypeCS(
+				PrimitiveTypeCS result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_MESSAGE_LITERAL,
 						getTokenText(dtParser.getToken(1))
 					);
@@ -1527,11 +1558,11 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 248: {
                 
 				OCLExpressionCS source = (OCLExpressionCS)dtParser.getSym(1);
-				CSTNode result = createArrowOperationCallExpCS(
+				OperationCallExpCS result = createArrowOperationCallExpCS(
 						source,
 						(SimpleNameCS)dtParser.getSym(3),
 						(IsMarkedPreCS)dtParser.getSym(4),
-						(EList)dtParser.getSym(6)
+						(EList<OCLExpressionCS>)dtParser.getSym(6)
 					);
 				setOffsets(result, source, getIToken(dtParser.getToken(7)));
 				dtParser.setSym1(result);
@@ -1545,9 +1576,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
 				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(1);
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)dtParser.getSym(2);
-				CSTNode result = createVariableExpCS(
+				VariableExpCS result = createVariableExpCS(
 						simpleNameCS,
-						new BasicEList(),
+						new BasicEList<OCLExpressionCS>(),
 						isMarkedPreCS
 					);
 				setOffsets(result, simpleNameCS, isMarkedPreCS);
@@ -1560,7 +1591,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 250: {
                 
-				CSTNode result = createIsMarkedPreCS();
+				IsMarkedPreCS result = createIsMarkedPreCS();
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(2)));
 				dtParser.setSym1(result);
 	          break;
@@ -1591,17 +1622,19 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             // Rule 254:  OclMessageArgumentsCSopt ::= $Empty
             //
-            case 254:
-                dtParser.setSym1(new BasicEList());
-                break;
- 
+            case 254: {
+                
+                dtParser.setSym1(new BasicEList<OCLMessageArgCS>());
+              break;
+            }
+     
             //
             // Rule 256:  OclMessageArgumentsCS ::= OclMessageArgCS
             //
             case 256: {
                 
-				EList result = new BasicEList();
-				result.add(dtParser.getSym(1));
+				EList<OCLMessageArgCS> result = new BasicEList<OCLMessageArgCS>();
+				result.add((OCLMessageArgCS)dtParser.getSym(1));
 				dtParser.setSym1(result);
 	          break;
             }
@@ -1611,8 +1644,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 257: {
                 
-				EList result = (EList)dtParser.getSym(1);
-				result.add(dtParser.getSym(3));
+				EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)dtParser.getSym(1);
+				result.add((OCLMessageArgCS)dtParser.getSym(3));
 				dtParser.setSym1(result);
 	          break;
             }
@@ -1622,7 +1655,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 258: {
                 
-				CSTNode result = createOCLMessageArgCS(
+				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
 						null
 					);
@@ -1636,7 +1669,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 259: {
                 
-				CSTNode result = createOCLMessageArgCS(
+				OCLMessageArgCS result = createOCLMessageArgCS(
 						(TypeCS)dtParser.getSym(3),
 						null
 					);
@@ -1650,7 +1683,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 260: {
                 
-				CSTNode result = createOCLMessageArgCS(
+				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
 						(OCLExpressionCS)dtParser.getSym(1)
 					);
@@ -1675,9 +1708,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 266: {
                 
-                CSTNode result = createPackageDeclarationCS(
+                PackageDeclarationCS result = createPackageDeclarationCS(
                         (PathNameCS)dtParser.getSym(2),
-                        (EList)dtParser.getSym(3)
+                        (EList<ContextDeclCS>)dtParser.getSym(3)
                     );
                 setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
                 dtParser.setSym1(result);
@@ -1689,10 +1722,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 267: {
                 
-                EList contextDecls = (EList)dtParser.getSym(1);
-                CSTNode result = createPackageDeclarationCS(null, contextDecls);
+                EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)dtParser.getSym(1);
+                PackageDeclarationCS result = createPackageDeclarationCS(null, contextDecls);
                 if (!contextDecls.isEmpty()) {
-                    setOffsets(result, (CSTNode)contextDecls.get(0), (CSTNode)contextDecls.get(contextDecls.size()-1));
+                    setOffsets(result, contextDecls.get(0), contextDecls.get(contextDecls.size()-1));
                 }
                 dtParser.setSym1(result);
               break;
@@ -1701,17 +1734,19 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             // Rule 268:  contextDeclsCSopt ::= $Empty
             //
-            case 268:
-                dtParser.setSym1(new BasicEList());
-                break;
- 
+            case 268: {
+                
+                dtParser.setSym1(new BasicEList<ContextDeclCS>());
+              break;
+            }
+     
             //
             // Rule 270:  contextDeclsCS ::= contextDeclCS
             //
             case 270: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<ContextDeclCS> result = new BasicEList<ContextDeclCS>();
+                result.add((ContextDeclCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -1721,8 +1756,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 271: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(2));
+                EList<ContextDeclCS> result = (EList<ContextDeclCS>)dtParser.getSym(1);
+                result.add((ContextDeclCS)dtParser.getSym(2));
                 dtParser.setSym1(result);
               break;
             }
@@ -1735,7 +1770,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 PathNameCS pathNameCS = (PathNameCS)dtParser.getSym(2);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(4);
                 EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)dtParser.getSym(7);
-                CSTNode result = createPropertyContextCS(
+                PropertyContextCS result = createPropertyContextCS(
                         pathNameCS,
                         simpleNameCS,
                         (TypeCS)dtParser.getSym(6),
@@ -1773,7 +1808,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 278: {
                 
-                CSTNode result = createInitValueCS((OCLExpressionCS)dtParser.getSym(3));
+                InitValueCS result = createInitValueCS((OCLExpressionCS)dtParser.getSym(3));
                 setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
@@ -1784,7 +1819,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 279: {
                 
-                CSTNode result = createDerValueCS((OCLExpressionCS)dtParser.getSym(3));
+                DerValueCS result = createDerValueCS((OCLExpressionCS)dtParser.getSym(3));
                 setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)dtParser.getSym(3));
                 dtParser.setSym1(result);
               break;
@@ -1796,7 +1831,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 280: {
                 
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)dtParser.getSym(3);
-				CSTNode result = createClassifierContextDeclCS(
+				ClassifierContextDeclCS result = createClassifierContextDeclCS(
 						null,
 						(PathNameCS)dtParser.getSym(2),
 						list
@@ -1812,7 +1847,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             case 281: {
                 
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)dtParser.getSym(5);
-				CSTNode result = createClassifierContextDeclCS(
+				ClassifierContextDeclCS result = createClassifierContextDeclCS(
 						(SimpleNameCS)dtParser.getSym(2),
 						(PathNameCS)dtParser.getSym(4),
 						list
@@ -1849,7 +1884,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 284: {
                 
-				CSTNode result = createInvCS(
+				InvCS result = createInvCS(
 						(SimpleNameCS)dtParser.getSym(2),
 						(OCLExpressionCS)dtParser.getSym(4)
 					);
@@ -1897,7 +1932,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
                 
 				VariableCS variableCS = (VariableCS)dtParser.getSym(1);
 				OCLExpressionCS expressionCS = (OCLExpressionCS)dtParser.getSym(3);
-				CSTNode result = createDefExpressionCS(
+				DefExpressionCS result = createDefExpressionCS(
 						variableCS,
 						null,
 						expressionCS
@@ -1912,7 +1947,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 288: {
                 
-				CSTNode result = createDefExpressionCS(
+				DefExpressionCS result = createDefExpressionCS(
 						null,
 						(OperationCS)dtParser.getSym(1),
 						(OCLExpressionCS)dtParser.getSym(3)
@@ -1927,12 +1962,12 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 289: {
                 
-				EList prePostOrBodyDecls = (EList)dtParser.getSym(3);
-				CSTNode result = createOperationContextDeclCS(
+				EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)dtParser.getSym(3);
+				OperationContextDeclCS result = createOperationContextDeclCS(
 						(OperationCS)dtParser.getSym(2),
 						prePostOrBodyDecls
 					);
-				setOffsets(result, getIToken(dtParser.getToken(1)), (CSTNode)prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
+				setOffsets(result, getIToken(dtParser.getToken(1)), prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
 				dtParser.setSym1(result);
 	          break;
             }
@@ -1942,8 +1977,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 290: {
                 
-                EList result = new BasicEList();
-                result.add(dtParser.getSym(1));
+                EList<PrePostOrBodyDeclCS> result = new BasicEList<PrePostOrBodyDeclCS>();
+                result.add((PrePostOrBodyDeclCS)dtParser.getSym(1));
                 dtParser.setSym1(result);
               break;
             }
@@ -1953,8 +1988,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 291: {
                 
-                EList result = (EList)dtParser.getSym(1);
-                result.add(dtParser.getSym(2));
+                EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)dtParser.getSym(1);
+                result.add((PrePostOrBodyDeclCS)dtParser.getSym(2));
                 dtParser.setSym1(result);
               break;
             }
@@ -1964,7 +1999,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 292: {
                 
-                CSTNode result = createPrePostOrBodyDeclCS(
+                PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.PRE_LITERAL,
                         (SimpleNameCS)dtParser.getSym(2),
                         (OCLExpressionCS)dtParser.getSym(4)
@@ -1979,7 +2014,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 293: {
                 
-                CSTNode result = createPrePostOrBodyDeclCS(
+                PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.POST_LITERAL,
                         (SimpleNameCS)dtParser.getSym(2),
                         (OCLExpressionCS)dtParser.getSym(4)
@@ -1994,7 +2029,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 294: {
                 
-                CSTNode result = createPrePostOrBodyDeclCS(
+                PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.BODY_LITERAL,
                         (SimpleNameCS)dtParser.getSym(2),
                         (OCLExpressionCS)dtParser.getSym(4)
@@ -2009,9 +2044,9 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 295: {
                 
-				CSTNode result = createOperationCS(
+				OperationCS result = createOperationCS(
 						getIToken(dtParser.getToken(1)),
-						(EList)dtParser.getSym(3),
+						(EList<VariableCS>)dtParser.getSym(3),
 						(TypeCS)dtParser.getSym(6)
 					);
 				if (dtParser.getSym(6) != null) {
@@ -2031,10 +2066,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
 				PathNameCS pathNameCS = (PathNameCS)dtParser.getSym(1);
 				SimpleNameCS simpleNameCS = (SimpleNameCS)dtParser.getSym(3);
 				TypeCS typeCS = (TypeCS)dtParser.getSym(8);
-				CSTNode result = createOperationCS(
+				OperationCS result = createOperationCS(
 						pathNameCS,
 						simpleNameCS,
-						(EList)dtParser.getSym(5),
+						(EList<VariableCS>)dtParser.getSym(5),
 						typeCS
 					);
 				if (typeCS != null) {
@@ -2049,17 +2084,19 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             // Rule 297:  parametersCSopt ::= $Empty
             //
-            case 297:
-                dtParser.setSym1(new BasicEList());
-                break;
- 
+            case 297: {
+                
+                dtParser.setSym1(new BasicEList<VariableCS>());
+              break;
+            }
+     
             //
             // Rule 299:  parametersCS ::= VariableDeclarationCS
             //
             case 299: {
                 
-				EList result = new BasicEList();
-				result.add(dtParser.getSym(1));
+				EList<VariableCS> result = new BasicEList<VariableCS>();
+				result.add((VariableCS)dtParser.getSym(1));
 				dtParser.setSym1(result);
 	          break;
             }
@@ -2069,8 +2106,8 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
             //
             case 300: {
                 
-				EList result = (EList)dtParser.getSym(1);
-				result.add(dtParser.getSym(3));
+				EList<VariableCS> result = (EList<VariableCS>)dtParser.getSym(1);
+				result.add((VariableCS)dtParser.getSym(3));
 				dtParser.setSym1(result);
 	          break;
             }
