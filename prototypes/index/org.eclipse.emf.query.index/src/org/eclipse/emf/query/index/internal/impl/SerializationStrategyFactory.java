@@ -613,15 +613,18 @@ public class SerializationStrategyFactory {
 
 			switch (kind) {
 			case INTRA:
-				EObjectDescriptorImpl target = eObjectMap.get(channel.getInt());
-				tarRes = target.getResourceURI();
-				fragment = target.getFragment();
-				break;
+				int position = channel.getInt();
+				if (position != -1) {
+					EObjectDescriptorImpl target = eObjectMap.get(position);
+					tarRes = target.getResourceURI();
+					fragment = target.getFragment();
+					break;
+				} // else dangling intra link (process as cross link)
 			case CROSS:
 				tarRes = URI.createURI(channel.getString());
 				fragment = channel.getString();
-				// FIXME expensive resolving?
 				tarRes = this.resourceMap.getEqual(tarRes).getURI();
+				assert tarRes != null;
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown link kind " + kind);
@@ -648,7 +651,13 @@ public class SerializationStrategyFactory {
 			}
 			if (element.isIntraLink()) {
 				channel.putByte(INTRA);
-				channel.putInt(eObjectMap.getPosition(element.getTargetFragment()));
+				int position = eObjectMap.getPosition(element.getTargetFragment());
+				channel.putInt(position);
+				if (position == -1) {
+					// dangling intra link
+					channel.putString(element.getTargetResourceURI().toString());
+					channel.putString(element.getTargetFragment());
+				}
 			} else {
 				channel.putByte(CROSS);
 				channel.putString(element.getTargetResourceURI().toString());
