@@ -21,13 +21,14 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
         FEATURE_IDS.put("creationExpression", Integer.valueOf(4)); //$NON-NLS-1$
         FEATURE_IDS.put("asynchronous", Integer.valueOf(5)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
         OPERATION_IDS.put("conformsTo", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getType", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(2)); //$NON-NLS-1$
         OPERATION_IDS.put("evaluatesToEqualAs", Integer.valueOf(3)); //$NON-NLS-1$
-        OPERATION_IDS.put("getSignature", Integer.valueOf(4)); //$NON-NLS-1$
-        OPERATION_IDS.put("getMultiplicityOfCallTarget", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getUsedAliases", Integer.valueOf(4)); //$NON-NLS-1$
+        OPERATION_IDS.put("getSignature", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getMultiplicityOfCallTarget", Integer.valueOf(6)); //$NON-NLS-1$
     }
     
     
@@ -153,12 +154,12 @@ public final class MethodCallExpressionImpl extends com.sap.tc.moin.repository.c
     public void setCreationExpression(com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(get___CurrentConnection(), /* mofId of association */ "E075D95527D15592E37611DE93F1C38CC0A80182", /* mofId of reference */ "E075D95527CA50B0E37611DEBF51C38CC0A80182" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
     public void setCreationExpression(com.sap.tc.moin.repository.core.CoreConnection connection, com.sap.tc.moin.repository.mmi.reflect.RefBaseObject newValue) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
           ___changeReference(connection, /* mofId of association */ "E075D95527D15592E37611DE93F1C38CC0A80182", /* mofId of reference */ "E075D95527CA50B0E37611DEBF51C38CC0A80182" , newValue, 1); //$NON-NLS-1$ //$NON-NLS-2$
-    
+
     }
 
     // methods for internal attribute setter

@@ -44,6 +44,50 @@ public class QueryPackageWrapper extends com.sap.tc.moin.repository.core.jmi.ref
             throw ex;
         }
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getOqlQuery()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getOqlQuery(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getOqlQuery(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getFromClause()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getFromClause(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (com.sap.tc.moin.repository.mmi.reflect.RefClass) wrapResult(getCastWrappedObject().getFromClause(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
     public dataaccess.query.AIteratorSelection getAIteratorSelection()
     {
         try {
@@ -83,6 +127,116 @@ public class QueryPackageWrapper extends com.sap.tc.moin.repository.core.jmi.ref
             assertConnectionAlive();
             attachConnectionIfRequired();
             return (dataaccess.query.ASelectionExprSelection) wrapResult(getCastWrappedObject().getASelectionExprSelection(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public dataaccess.query.AConditionConditionOfOqlQuery getAConditionConditionOfOqlQuery()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (dataaccess.query.AConditionConditionOfOqlQuery) wrapResult(getCastWrappedObject().getAConditionConditionOfOqlQuery(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (dataaccess.query.AConditionConditionOfOqlQuery) wrapResult(getCastWrappedObject().getAConditionConditionOfOqlQuery(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public dataaccess.query.AFromClausesFromClauseOfOqlQuery getAFromClausesFromClauseOfOqlQuery()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (dataaccess.query.AFromClausesFromClauseOfOqlQuery) wrapResult(getCastWrappedObject().getAFromClausesFromClauseOfOqlQuery(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (dataaccess.query.AFromClausesFromClauseOfOqlQuery) wrapResult(getCastWrappedObject().getAFromClausesFromClauseOfOqlQuery(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public dataaccess.query.AFromExpressionFromClause getAFromExpressionFromClause()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (dataaccess.query.AFromExpressionFromClause) wrapResult(getCastWrappedObject().getAFromExpressionFromClause(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (dataaccess.query.AFromExpressionFromClause) wrapResult(getCastWrappedObject().getAFromExpressionFromClause(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public dataaccess.query.AAliasFromClause getAAliasFromClause()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (dataaccess.query.AAliasFromClause) wrapResult(getCastWrappedObject().getAAliasFromClause(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (dataaccess.query.AAliasFromClause) wrapResult(getCastWrappedObject().getAAliasFromClause(connection)); 
+        } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
+            wrapJmiExceptionArgs(ex);
+            throw ex;
+        }
+    }
+    public dataaccess.query.ASelectedOqlQuery getASelectedOqlQuery()
+    {
+        try {
+            if (synchronize) {
+                synchronizationManager.acquireReadLock();
+                try {
+                    assertConnectionAlive();
+                    attachConnectionIfRequired();
+                    return (dataaccess.query.ASelectedOqlQuery) wrapResult(getCastWrappedObject().getASelectedOqlQuery(connection));
+                } finally {
+                    synchronizationManager.releaseReadLock();
+                }
+       
+            }
+            assertConnectionAlive();
+            attachConnectionIfRequired();
+            return (dataaccess.query.ASelectedOqlQuery) wrapResult(getCastWrappedObject().getASelectedOqlQuery(connection)); 
         } catch (com.sap.tc.moin.repository.mmi.reflect.JmiException ex) {
             wrapJmiExceptionArgs(ex);
             throw ex;

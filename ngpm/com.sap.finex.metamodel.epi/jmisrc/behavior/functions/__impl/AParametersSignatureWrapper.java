@@ -125,6 +125,7 @@ public class AParametersSignatureWrapper extends com.sap.tc.moin.repository.core
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.functions.AParametersSignature> get___JmiInterface() {
         return behavior.functions.AParametersSignature.class;
     }

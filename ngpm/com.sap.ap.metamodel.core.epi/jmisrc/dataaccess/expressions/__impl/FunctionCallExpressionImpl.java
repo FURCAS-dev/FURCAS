@@ -18,13 +18,14 @@ public final class FunctionCallExpressionImpl extends com.sap.tc.moin.repository
         FEATURE_IDS.put("parameters", Integer.valueOf(1)); //$NON-NLS-1$
         FEATURE_IDS.put("calledBlock", Integer.valueOf(2)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(8);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(10);
         OPERATION_IDS.put("conformsTo", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getType", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(2)); //$NON-NLS-1$
         OPERATION_IDS.put("evaluatesToEqualAs", Integer.valueOf(3)); //$NON-NLS-1$
-        OPERATION_IDS.put("getSignature", Integer.valueOf(4)); //$NON-NLS-1$
-        OPERATION_IDS.put("getMultiplicityOfCallTarget", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getUsedAliases", Integer.valueOf(4)); //$NON-NLS-1$
+        OPERATION_IDS.put("getSignature", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getMultiplicityOfCallTarget", Integer.valueOf(6)); //$NON-NLS-1$
     }
     
     // links for multiplicity-1 association ends

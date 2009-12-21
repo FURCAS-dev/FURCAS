@@ -50,6 +50,7 @@ import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 import com.sap.tc.moin.repository.ocl.freestyle.OclFreestyleRegistry;
 import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
 import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
+import com.sun.org.apache.regexp.internal.REUtil;
 
 /**
  * The evaluation view
@@ -105,13 +106,13 @@ public final class OCLEvaluationView extends ViewPart {
 		gridData.grabExcessVerticalSpace = true;
 		form.setLayoutData(gridData);
 		form.setText(Messages.OCLEvaluationView_0_Xhed);
-
+		
 		final Composite bodyForm = form.getBody();
-		final TableWrapLayout layout = new TableWrapLayout();
-		layout.leftMargin = 10;
+		final GridLayout layout = new GridLayout();
+		layout.marginLeft = 10;
 		bodyForm.setLayout(layout);
 
-		TableWrapData tableWrapData;
+		
 		int basicSectionStyle = ExpandableComposite.TWISTIE | ExpandableComposite.COMPACT | ExpandableComposite.TITLE_BAR;
 		if (OCLEvaluationView.isSectionExpanded) {
 			basicSectionStyle |= ExpandableComposite.EXPANDED;
@@ -123,45 +124,56 @@ public final class OCLEvaluationView extends ViewPart {
 
 		final Section expressionSection = this.toolkit.createSection(bodyForm, basicSectionStyle);
 
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		expressionSection.setLayoutData(tableWrapData);
+		// OCL Expression
+		GridData gridDataExpressionSection = new GridData(GridData.FILL_BOTH);
+		gridDataExpressionSection.heightHint = 350;
+		expressionSection.setLayoutData(gridDataExpressionSection);
 		expressionSection.setText(Messages.OCLEvaluationView_1_xhed);
 
-		Composite composite = this.toolkit.createComposite(expressionSection, SWT.FILL);
-		TableWrapLayout compositeLayout = new TableWrapLayout();
-		compositeLayout.numColumns = 3;
-		compositeLayout.verticalSpacing = 10;
-		composite.setLayout(compositeLayout);
+		// 
+		Composite composite = this.toolkit.createComposite(expressionSection);
+		GridLayout gridLayoutExpressionComposite = new GridLayout(2, false);
+		gridLayoutExpressionComposite.marginWidth = 10;
+		gridLayoutExpressionComposite.marginHeight = 10;
+		composite.setLayout(gridLayoutExpressionComposite);
 		this.toolkit.paintBordersFor(composite);
 
+		// Set context for your ...
 		final Label sectionLbl = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_2_xtxt);
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.colspan = 3;
-		sectionLbl.setLayoutData(tableWrapData);
+		GridData gridDataSectionLb1 = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataSectionLb1.horizontalSpan = 2;
+		gridDataSectionLb1.grabExcessHorizontalSpace = true;
+		sectionLbl.setLayoutData(gridDataSectionLb1);
 
+		// Project
 		final Label metamodelLbl = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_3_xfld);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
-		metamodelLbl.setLayoutData(tableWrapData);
+		GridData gridDataMetamodelLb1 = new GridData();
+		gridDataMetamodelLb1.horizontalSpan = 1;
+		metamodelLbl.setLayoutData(gridDataMetamodelLb1);
 
+		//
 		this.txtProject = this.toolkit.createText(composite, "");//$NON-NLS-1$
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.colspan = 2;
-		this.txtProject.setLayoutData(tableWrapData);
+		GridData gridDataTxtProject = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataTxtProject.horizontalSpan = 1;
+		this.txtProject.setLayoutData(gridDataTxtProject);
 		this.toolkit.adapt(this.txtProject, true, true);
 		addDropTarget(this.txtProject);
 
+		
 		Label label;
-
+		GridData gridDataLabel;
+		
 		// Object
 
 		label = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_4_xfld, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
-		label.setLayoutData(tableWrapData);
+		gridDataLabel = new GridData();
+		gridDataLabel.horizontalSpan = 1;
+		label.setLayoutData(gridDataLabel);
 
 		this.m1Object = this.toolkit.createText(composite, ""); //$NON-NLS-1$
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.colspan = 2;
-		this.m1Object.setLayoutData(tableWrapData);
+		GridData gridDataM1Object = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataM1Object.horizontalSpan = 1;
+		this.m1Object.setLayoutData(gridDataM1Object);
 		this.m1Object.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
@@ -195,14 +207,15 @@ public final class OCLEvaluationView extends ViewPart {
 
 		// Label
 		label = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_6_xfld, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
-		label.setLayoutData(tableWrapData);
+		gridDataLabel = new GridData();
+		gridDataLabel.horizontalSpan = 1;
+		label.setLayoutData(gridDataLabel);
 		this.m1ObjectLabel = this.toolkit.createText(composite, "", SWT.READ_ONLY); //$NON-NLS-1$
 		this.m1ObjectLabel.setForeground(colorDisabled);
-
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.colspan = 2;
-		this.m1ObjectLabel.setLayoutData(tableWrapData);
+		GridData gridDataM1ObjectTxt = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataM1ObjectTxt.horizontalSpan = 1;
+		
+		this.m1ObjectLabel.setLayoutData(gridDataM1ObjectTxt);
 		this.m1ObjectLabel.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
@@ -214,14 +227,14 @@ public final class OCLEvaluationView extends ViewPart {
 		// Context
 
 		label = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_7_xfld, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
-		label.setLayoutData(tableWrapData);
+		gridDataLabel = new GridData();
+		gridDataLabel.horizontalSpan = 1;
+		label.setLayoutData(gridDataLabel);
 		this.oclContext = this.toolkit.createText(composite, "", SWT.READ_ONLY); //$NON-NLS-1$
 		this.oclContext.setForeground(colorDisabled);
+		GridData gridDataOclContext = new GridData(GridData.FILL_HORIZONTAL);
 
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.colspan = 2;
-		this.oclContext.setLayoutData(tableWrapData);
+		this.oclContext.setLayoutData(gridDataOclContext);
 		this.oclContext.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
@@ -233,24 +246,22 @@ public final class OCLEvaluationView extends ViewPart {
 		// Resolve domain model
 
 		this.checkbox = this.toolkit.createButton(composite, Messages.OCLEvaluationView_8_xbut, SWT.CHECK);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
-		tableWrapData.colspan = 3;
-		this.checkbox.setLayoutData(tableWrapData);
+		GridData gridDataCheckbox = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataCheckbox.horizontalSpan = 2;
+		this.checkbox.setLayoutData(gridDataCheckbox);
 
 		// Expression
 
 		label = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_9_xfld, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.LEFT);
-		label.setLayoutData(tableWrapData);
+		gridDataLabel = new GridData(GridData.FILL_VERTICAL);
+		gridDataLabel.horizontalSpan = 1;
+		label.setLayoutData(gridDataLabel);
 
 		
 		this.oclExpression = this.toolkit.createText(composite, "", SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);//$NON-NLS-1$
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.heightHint = 100;
-		tableWrapData.grabVertical = true;
-		tableWrapData.grabHorizontal = true;
-		tableWrapData.colspan = 2;
-		this.oclExpression.setLayoutData(tableWrapData);
+		GridData gridDataOclExpression = new GridData(GridData.FILL_BOTH);
+		gridDataOclExpression.heightHint = 100;
+		this.oclExpression.setLayoutData(gridDataOclExpression);
 		this.oclExpression.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
@@ -260,9 +271,10 @@ public final class OCLEvaluationView extends ViewPart {
 		
 		
 		this.evaluate = this.toolkit.createButton(composite, Messages.OCLEvaluationView_10_xbut, SWT.NONE);
-		tableWrapData = new TableWrapData(TableWrapData.RIGHT);
-		tableWrapData.colspan = 3;
-		this.evaluate.setLayoutData(tableWrapData);
+		GridData gridDataEvaluate = new GridData();
+		gridDataEvaluate.horizontalSpan = 2;
+		gridDataEvaluate.horizontalAlignment = SWT.RIGHT;
+		this.evaluate.setLayoutData(gridDataEvaluate);
 
 		final SelectionListener listener = new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -279,32 +291,36 @@ public final class OCLEvaluationView extends ViewPart {
 
 		expressionSection.setClient(composite);
 
+		
 		/*
 		 * Expression Section
 		 */
-
 		final Section resultSection = this.toolkit.createSection(bodyForm, basicSectionStyle);
 
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		resultSection.setLayoutData(tableWrapData);
+		//
+		GridData gridDataReslutSection = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataReslutSection.heightHint = 300;
+		resultSection.setLayoutData(gridDataReslutSection);
 		resultSection.setText(Messages.OCLEvaluationView_0_xhed);
 
+		//
 		composite = this.toolkit.createComposite(resultSection, SWT.FILL);
-		compositeLayout = new TableWrapLayout();
-		compositeLayout.numColumns = 1;
-		compositeLayout.verticalSpacing = 10;
-		composite.setLayout(compositeLayout);
+		GridLayout gridLayoutResultComposite = new GridLayout();//(2,false);
+		gridLayoutResultComposite.marginWidth = 10;
+		composite.setLayout(gridLayoutResultComposite);
 		this.toolkit.paintBordersFor(composite);
 
+		// 
 		this.resultLabel = this.toolkit.createLabel(composite, Messages.OCLEvaluationView_11_xfld);
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		this.resultLabel.setLayoutData(tableWrapData);
+		GridData gridDataResultLabel = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataResultLabel.heightHint = 50;
+		this.resultLabel.setData(gridDataResultLabel);
 
-		this.result = this.toolkit.createText(composite, "", SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.READ_ONLY); //$NON-NLS-1$
-		tableWrapData = new TableWrapData(TableWrapData.FILL_GRAB);
-		tableWrapData.heightHint = 100;
-		tableWrapData.grabVertical = true;
-		this.result.setLayoutData(tableWrapData);
+		//
+		this.result = this.toolkit.createText(composite, "", SWT.MULTI | SWT.WRAP | SWT.V_SCROLL | SWT.READ_ONLY);
+		GridData gridDataResultText = new GridData(GridData.FILL_HORIZONTAL);
+		gridDataResultText.heightHint = 140;
+		this.result.setLayoutData(gridDataResultText);
 		this.result.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
 
@@ -314,6 +330,15 @@ public final class OCLEvaluationView extends ViewPart {
 		addDropTarget(this.result);
 		resultSection.setClient(composite);
 
+		/**
+		 * Hack!! somehow the scrollbar for the whole OCLEvaluationView only works correctly after 
+		 * the an fold of an expandable section. So the hack ensures that the scrollbar is working correctly.
+		 */
+		// Hack Begin
+		resultSection.setExpanded(false);
+		resultSection.setExpanded(true);
+		// Hack End
+		
 		updateEvaluateButton();
 	}
 

@@ -125,6 +125,7 @@ public class AFunctionsOwnerWrapper extends com.sap.tc.moin.repository.core.jmi.
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<structure.AFunctionsOwner> get___JmiInterface() {
         return structure.AFunctionsOwner.class;
     }

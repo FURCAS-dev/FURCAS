@@ -125,6 +125,7 @@ public class AOperandOfOperandWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AOperandOfOperand> get___JmiInterface() {
         return behavior.expressions.AOperandOfOperand.class;
     }

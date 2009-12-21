@@ -125,6 +125,7 @@ public class AClazzAllWrapper extends com.sap.tc.moin.repository.core.jmi.reflec
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AClazzAll> get___JmiInterface() {
         return behavior.expressions.AClazzAll.class;
     }

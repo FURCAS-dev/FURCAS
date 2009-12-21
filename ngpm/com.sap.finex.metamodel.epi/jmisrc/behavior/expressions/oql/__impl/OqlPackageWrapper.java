@@ -156,6 +156,7 @@ public class OqlPackageWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     }
     // methods for structure type creators
     
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.OqlPackage> get___JmiInterface() {
         return behavior.expressions.oql.OqlPackage.class;
     }

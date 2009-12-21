@@ -125,6 +125,7 @@ public class AFromExpressionFromClauseWrapper extends com.sap.tc.moin.repository
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.AFromExpressionFromClause> get___JmiInterface() {
         return behavior.expressions.oql.AFromExpressionFromClause.class;
     }

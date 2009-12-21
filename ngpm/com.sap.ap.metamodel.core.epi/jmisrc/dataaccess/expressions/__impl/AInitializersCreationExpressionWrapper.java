@@ -125,6 +125,7 @@ public class AInitializersCreationExpressionWrapper extends com.sap.tc.moin.repo
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AInitializersCreationExpression> get___JmiInterface() {
         return dataaccess.expressions.AInitializersCreationExpression.class;
     }

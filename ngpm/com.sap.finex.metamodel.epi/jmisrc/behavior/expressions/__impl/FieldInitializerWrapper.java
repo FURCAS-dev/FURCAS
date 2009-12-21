@@ -6,7 +6,7 @@ package behavior.expressions.__impl;
 
 public class FieldInitializerWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavior.expressions.__impl.FieldInitializerImpl> implements behavior.expressions.FieldInitializer,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class FieldInitializerWrapper extends com.sap.tc.moin.repository.core.jmi
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.FieldInitializerImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.FieldInitializerImpl) getWrappedObject();
     }
@@ -166,6 +167,7 @@ public class FieldInitializerWrapper extends com.sap.tc.moin.repository.core.jmi
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.FieldInitializer> get___JmiInterface() {
         return behavior.expressions.FieldInitializer.class;
     }

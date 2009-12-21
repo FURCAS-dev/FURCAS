@@ -23,7 +23,14 @@ public interface QueryPackage extends com.sap.tc.moin.repository.mmi.reflect.Ref
     public final com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<dataaccess.query.QueryPackage> PACKAGE_DESCRIPTOR = new com.sap.tc.moin.repository.mmi.descriptors.PackageDescriptor<dataaccess.query.QueryPackage>("E075D95551F518D83E4B11DEACF10018DE1146FF", "sap.com/moin/mm/ap/core", "dataaccess", "query"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ 
     // classes
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getSelection();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getOqlQuery();
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getFromClause();
     // associations
     public dataaccess.query.AIteratorSelection getAIteratorSelection();
     public dataaccess.query.ASelectionExprSelection getASelectionExprSelection();
+    public dataaccess.query.AConditionConditionOfOqlQuery getAConditionConditionOfOqlQuery();
+    public dataaccess.query.AFromClausesFromClauseOfOqlQuery getAFromClausesFromClauseOfOqlQuery();
+    public dataaccess.query.AFromExpressionFromClause getAFromExpressionFromClause();
+    public dataaccess.query.AAliasFromClause getAAliasFromClause();
+    public dataaccess.query.ASelectedOqlQuery getASelectedOqlQuery();
 }

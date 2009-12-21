@@ -11,10 +11,17 @@ public final class QueryPackageImpl extends com.sap.tc.moin.repository.core.jmi.
 
     static {
         
-        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(4);
+        FEATURE_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(14);
         FEATURE_IDS.put("Selection", Integer.valueOf(0)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_iterator_selection", Integer.valueOf(1)); //$NON-NLS-1$
-        FEATURE_IDS.put("A_selectionExpr_selection", Integer.valueOf(2)); //$NON-NLS-1$
+        FEATURE_IDS.put("OqlQuery", Integer.valueOf(1)); //$NON-NLS-1$
+        FEATURE_IDS.put("FromClause", Integer.valueOf(2)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_iterator_selection", Integer.valueOf(3)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_selectionExpr_selection", Integer.valueOf(4)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_condition_conditionOfOqlQuery", Integer.valueOf(5)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_fromClauses_fromClauseOfOqlQuery", Integer.valueOf(6)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_fromExpression_fromClause", Integer.valueOf(7)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_alias_fromClause", Integer.valueOf(8)); //$NON-NLS-1$
+        FEATURE_IDS.put("A_selected_oqlQuery", Integer.valueOf(9)); //$NON-NLS-1$
     }
 
     // constructors    
@@ -33,12 +40,33 @@ public final class QueryPackageImpl extends com.sap.tc.moin.repository.core.jmi.
     public com.sap.tc.moin.repository.mmi.reflect.RefClass getSelection(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refClass(connection, "Selection"); //$NON-NLS-1$
     }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getOqlQuery(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "OqlQuery"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefClass getFromClause(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refClass(connection, "FromClause"); //$NON-NLS-1$
+    }
     // associations
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAIteratorSelection(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_iterator_selection"); //$NON-NLS-1$
     }
     public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getASelectionExprSelection(com.sap.tc.moin.repository.core.CoreConnection connection) {
         return  refAssociation(connection, "A_selectionExpr_selection"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAConditionConditionOfOqlQuery(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_condition_conditionOfOqlQuery"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAFromClausesFromClauseOfOqlQuery(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_fromClauses_fromClauseOfOqlQuery"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAFromExpressionFromClause(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_fromExpression_fromClause"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getAAliasFromClause(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_alias_fromClause"); //$NON-NLS-1$
+    }
+    public com.sap.tc.moin.repository.mmi.reflect.RefAssociation getASelectedOqlQuery(com.sap.tc.moin.repository.core.CoreConnection connection) {
+        return  refAssociation(connection, "A_selected_oqlQuery"); //$NON-NLS-1$
     }
     // structure type creators
 
@@ -50,9 +78,23 @@ public final class QueryPackageImpl extends com.sap.tc.moin.repository.core.jmi.
                 case 0:
                     return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("dataaccess.query.__impl.SelectionImpl")); //$NON-NLS-1$
                 case 1:
-                    return new dataaccess.query.__impl.AIteratorSelectionImpl(workspace, mofId, immediatePackage, metaObject);
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("dataaccess.query.__impl.OqlQueryImpl")); //$NON-NLS-1$
                 case 2:
+                    return new com.sap.tc.moin.repository.core.jmi.reflect.RefClassImpl(workspace, mofId, immediatePackage, metaObject, Class.forName("dataaccess.query.__impl.FromClauseImpl")); //$NON-NLS-1$
+                case 3:
+                    return new dataaccess.query.__impl.AIteratorSelectionImpl(workspace, mofId, immediatePackage, metaObject);
+                case 4:
                     return new dataaccess.query.__impl.ASelectionExprSelectionImpl(workspace, mofId, immediatePackage, metaObject);
+                case 5:
+                    return new dataaccess.query.__impl.AConditionConditionOfOqlQueryImpl(workspace, mofId, immediatePackage, metaObject);
+                case 6:
+                    return new dataaccess.query.__impl.AFromClausesFromClauseOfOqlQueryImpl(workspace, mofId, immediatePackage, metaObject);
+                case 7:
+                    return new dataaccess.query.__impl.AFromExpressionFromClauseImpl(workspace, mofId, immediatePackage, metaObject);
+                case 8:
+                    return new dataaccess.query.__impl.AAliasFromClauseImpl(workspace, mofId, immediatePackage, metaObject);
+                case 9:
+                    return new dataaccess.query.__impl.ASelectedOqlQueryImpl(workspace, mofId, immediatePackage, metaObject);
                 default:
                     throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(name, null, "create___Extent()"); //$NON-NLS-1$
         }
@@ -81,7 +123,7 @@ public final class QueryPackageImpl extends com.sap.tc.moin.repository.core.jmi.
         }
   
         if (___refClasses == null) {
-            ___refClasses = new java.util.ArrayList<RefClassAndName>(1);
+            ___refClasses = new java.util.ArrayList<RefClassAndName>(3);
             ___refClassesByName = new java.util.HashMap<String, RefClassAndName>();
             java.lang.String name = ""; //$NON-NLS-1$
             RefClassAndName rcan = null;
@@ -89,10 +131,18 @@ public final class QueryPackageImpl extends com.sap.tc.moin.repository.core.jmi.
             rcan = new RefClassAndName(name, "dataaccess.query.Selection"); //$NON-NLS-1$
             ___refClasses.add(rcan);
             ___refClassesByName.put(name, rcan);
+            name = "OqlQuery"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "dataaccess.query.OqlQuery"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
+            name = "FromClause"; //$NON-NLS-1$
+            rcan = new RefClassAndName(name, "dataaccess.query.FromClause"); //$NON-NLS-1$
+            ___refClasses.add(rcan);
+            ___refClassesByName.put(name, rcan);
         }
   
         if (___refAssociations == null) {
-            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(2);
+            ___refAssociations = new java.util.ArrayList<RefAssociationAndName>(7);
             ___refAssociationsByName = new java.util.HashMap<String, RefAssociationAndName>();
             @SuppressWarnings("unused")
             java.lang.String name = ""; //$NON-NLS-1$
@@ -104,6 +154,26 @@ public final class QueryPackageImpl extends com.sap.tc.moin.repository.core.jmi.
             ___refAssociationsByName.put(name, raan);
             name = "A_selectionExpr_selection"; //$NON-NLS-1$
             raan = new RefAssociationAndName(name, "dataaccess.query.ASelectionExprSelection"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_condition_conditionOfOqlQuery"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "dataaccess.query.AConditionConditionOfOqlQuery"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_fromClauses_fromClauseOfOqlQuery"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "dataaccess.query.AFromClausesFromClauseOfOqlQuery"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_fromExpression_fromClause"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "dataaccess.query.AFromExpressionFromClause"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_alias_fromClause"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "dataaccess.query.AAliasFromClause"); //$NON-NLS-1$
+            ___refAssociations.add(raan);
+            ___refAssociationsByName.put(name, raan);
+            name = "A_selected_oqlQuery"; //$NON-NLS-1$
+            raan = new RefAssociationAndName(name, "dataaccess.query.ASelectedOqlQuery"); //$NON-NLS-1$
             ___refAssociations.add(raan);
             ___refAssociationsByName.put(name, raan);
         }

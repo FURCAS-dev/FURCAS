@@ -125,6 +125,7 @@ public class AFromClausesFromClauseOfOqlQueryWrapper extends com.sap.tc.moin.rep
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.AFromClausesFromClauseOfOqlQuery> get___JmiInterface() {
         return behavior.expressions.oql.AFromClausesFromClauseOfOqlQuery.class;
     }

@@ -71,6 +71,13 @@ public interface AnonymousFunctionExpr extends dataaccess.expressions.Expression
         public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.Expression,java.lang.Boolean> EVALUATES_TO_EQUAL_AS( ) {
             return dataaccess.expressions.Expression.DESCRIPTORS.EVALUATES_TO_EQUAL_AS( );
         }
+        /**
+         * Returns the descriptor for the <code>getUsedAliases</code> operation.
+         * @return  the descriptor for the <code>getUsedAliases</code> operation
+         */
+        public com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.Expression,java.util.Collection<behavioral.actions.Iterator>> GET_USED_ALIASES( ) {
+            return dataaccess.expressions.Expression.DESCRIPTORS.GET_USED_ALIASES( );
+        }
         private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.fp.AnonymousFunctionExpr,data.classes.FunctionSignatureImplementation> __getImplementation;
         /**
          * Returns the descriptor for the <code>getImplementation</code> operation.

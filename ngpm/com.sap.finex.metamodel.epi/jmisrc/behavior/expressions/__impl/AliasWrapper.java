@@ -8,7 +8,7 @@ public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
 
         
     private static final java.util.Map<java.lang.String, java.lang.Integer> OPERATION_IDS;
-    
+
     static {
         
         OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>();
@@ -19,6 +19,7 @@ public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.__impl.AliasImpl getCastWrappedObject() {
         return (behavior.expressions.__impl.AliasImpl) getWrappedObject();
     }
@@ -215,7 +216,7 @@ public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
     }
-    
+
     @Override
     public Object invoke___Operation(com.sap.tc.moin.repository.core.CoreConnection connection, int operationId, java.util.List<? extends Object> args) throws com.sap.tc.moin.repository.mmi.reflect.RefException {
         switch (operationId) {
@@ -225,10 +226,11 @@ public class AliasWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.Re
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }
-    
+
     }    
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.Alias> get___JmiInterface() {
         return behavior.expressions.Alias.class;
     }

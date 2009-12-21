@@ -125,6 +125,7 @@ public class AConditionConditionOfOqlQueryWrapper extends com.sap.tc.moin.reposi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.AConditionConditionOfOqlQuery> get___JmiInterface() {
         return behavior.expressions.oql.AConditionConditionOfOqlQuery.class;
     }

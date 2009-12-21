@@ -125,6 +125,7 @@ public class ANamedValuesBlockWrapper extends com.sap.tc.moin.repository.core.jm
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.actions.ANamedValuesBlock> get___JmiInterface() {
         return behavior.actions.ANamedValuesBlock.class;
     }

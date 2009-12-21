@@ -31,6 +31,10 @@ public interface Expression extends data.classes.TypedElement {
      * A conservative estimation that returns true if provably this and the passed expression will evaluate to equal objects. false means that the two expressions may evaluate to different results, not excluding that they can still have equal results; it's just not (yet) provable here.
      */
     public boolean evaluatesToEqualAs(dataaccess.expressions.Expression e) throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
+    /**
+     * Computes the Iterator objects that are defined by a FromClause of an OqlQuery and that are used in a VariableExpression somewhere in side this expression.
+     */
+    public java.util.Collection<behavioral.actions.Iterator> getUsedAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException;
 
 
     public static final class Descriptors {
@@ -78,6 +82,17 @@ public interface Expression extends data.classes.TypedElement {
                 __evaluatesToEqualAs = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.Expression,java.lang.Boolean>( "E075D95551F2A7CC3E4B11DE809E0018DE1146FF", "sap.com/moin/mm/ap/core", new java.lang.String[] { "dataaccess", "expressions", "Expression", "evaluatesToEqualAs" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
             }
             return __evaluatesToEqualAs;
+        }
+        private com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.Expression,java.util.Collection<behavioral.actions.Iterator>> __getUsedAliases;
+        /**
+         * Returns the descriptor for the <code>getUsedAliases</code> operation.
+         * @return  the descriptor for the <code>getUsedAliases</code> operation
+         */
+        public synchronized com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.Expression,java.util.Collection<behavioral.actions.Iterator>> GET_USED_ALIASES( ) {
+            if ( __getUsedAliases == null ) {
+                __getUsedAliases = new com.sap.tc.moin.repository.mmi.descriptors.OperationDescriptor<com.sap.tc.moin.repository.mmi.model.Operation,dataaccess.expressions.Expression,java.util.Collection<behavioral.actions.Iterator>>( "E075D955691D7570E97411DEAD8DF6740A140E7A", "sap.com/moin/mm/ap/core", new java.lang.String[] { "dataaccess", "expressions", "Expression", "getUsedAliases" } ); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ 
+            }
+            return __getUsedAliases;
         }
     }
 }    

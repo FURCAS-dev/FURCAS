@@ -125,6 +125,7 @@ public class AAliasFromClauseWrapper extends com.sap.tc.moin.repository.core.jmi
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.AAliasFromClause> get___JmiInterface() {
         return behavior.expressions.oql.AAliasFromClause.class;
     }

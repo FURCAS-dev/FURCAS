@@ -16,6 +16,7 @@ public class CommitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         OPERATION_IDS.put("getType", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(2)); //$NON-NLS-1$
         OPERATION_IDS.put("evaluatesToEqualAs", Integer.valueOf(3)); //$NON-NLS-1$
+        OPERATION_IDS.put("getUsedAliases", Integer.valueOf(4)); //$NON-NLS-1$
     }
 
     public CommitWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, persistence.expressions.__impl.CommitImpl baseObject, boolean synchronize) {
@@ -122,6 +123,16 @@ public class CommitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
         }
     }
 
+    public java.util.Collection<behavioral.actions.Iterator> getUsedAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavioral.actions.Iterator>)___invokeOperation(connection, 4, "E075D955691D7570E97411DEAD8DF6740A140E7A", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     
     // methods for internal modeled operations
     private boolean invoke__conformsTo(com.sap.tc.moin.repository.core.CoreConnection connection, data.classes.TypedElement typedElement) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
@@ -170,6 +181,17 @@ public class CommitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
+    private java.util.Collection<behavioral.actions.Iterator> invoke__getUsedAliases(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getUsedAliases", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
 
     // reflective methods
     @Override
@@ -194,6 +216,9 @@ public class CommitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 
             case 3:
                 return ___invokeOperation( connection, operationId, "E075D95551F2A7CC3E4B11DE809E0018DE1146FF", args ); //$NON-NLS-1$    
+                
+            case 4:
+                return ___invokeOperation( connection, operationId, "E075D955691D7570E97411DEAD8DF6740A140E7A", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
         }
@@ -214,6 +239,9 @@ public class CommitWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.R
                 
             case 3:
                 return invoke__evaluatesToEqualAs(connection, (dataaccess.expressions.Expression) args.get(0));    
+                
+            case 4:
+                return invoke__getUsedAliases(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$
         }

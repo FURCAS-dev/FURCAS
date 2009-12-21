@@ -63,6 +63,7 @@ public final class AInitializersCreationExpressionImpl extends com.sap.tc.moin.r
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<dataaccess.expressions.AInitializersCreationExpression> get___JmiInterface() {
         return dataaccess.expressions.AInitializersCreationExpression.class;
     }

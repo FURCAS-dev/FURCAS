@@ -16,8 +16,9 @@ public class FunctionCallExpressionWrapper extends com.sap.tc.moin.repository.co
         OPERATION_IDS.put("getType", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(2)); //$NON-NLS-1$
         OPERATION_IDS.put("evaluatesToEqualAs", Integer.valueOf(3)); //$NON-NLS-1$
-        OPERATION_IDS.put("getSignature", Integer.valueOf(4)); //$NON-NLS-1$
-        OPERATION_IDS.put("getMultiplicityOfCallTarget", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getUsedAliases", Integer.valueOf(4)); //$NON-NLS-1$
+        OPERATION_IDS.put("getSignature", Integer.valueOf(5)); //$NON-NLS-1$
+        OPERATION_IDS.put("getMultiplicityOfCallTarget", Integer.valueOf(6)); //$NON-NLS-1$
     }
 
     public FunctionCallExpressionWrapper(com.sap.tc.moin.repository.core.CoreConnection conn, dataaccess.expressions.__impl.FunctionCallExpressionImpl baseObject, boolean synchronize) {
@@ -193,11 +194,21 @@ public class FunctionCallExpressionWrapper extends com.sap.tc.moin.repository.co
         }
     }
 
+    public java.util.Collection<behavioral.actions.Iterator> getUsedAliases() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
+        try {
+            return (java.util.Collection<behavioral.actions.Iterator>)___invokeOperation(connection, 4, "E075D955691D7570E97411DEAD8DF6740A140E7A", parameterList); //$NON-NLS-1$
+        } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
+            throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
+        }
+    }
+
     public data.classes.Signature getSignature() throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
-            return (data.classes.Signature)___invokeOperation(connection, 4, "E075D95551F2A7E53E4B11DE97EC0018DE1146FF", parameterList); //$NON-NLS-1$
+            return (data.classes.Signature)___invokeOperation(connection, 5, "E075D95551F2A7E53E4B11DE97EC0018DE1146FF", parameterList); //$NON-NLS-1$
         } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
             throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
         }
@@ -207,7 +218,7 @@ public class FunctionCallExpressionWrapper extends com.sap.tc.moin.repository.co
     {
         java.util.List<java.lang.Object> parameterList = new java.util.ArrayList<java.lang.Object>(0);
         try {
-            return (data.classes.Multiplicity)___invokeOperation(connection, 5, "E075D9559CE61A11B80011DEA13B001A6BCDC3B3", parameterList); //$NON-NLS-1$
+            return (data.classes.Multiplicity)___invokeOperation(connection, 6, "E075D9559CE61A11B80011DEA13B001A6BCDC3B3", parameterList); //$NON-NLS-1$
         } catch ( com.sap.tc.moin.repository.mmi.reflect.RefException ex ) {
             throw new com.sap.tc.moin.repository.mmi.reflect.JmiException( ex );
         }
@@ -261,6 +272,17 @@ public class FunctionCallExpressionWrapper extends com.sap.tc.moin.repository.co
                 throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
         }
     }
+    private java.util.Collection<behavioral.actions.Iterator> invoke__getUsedAliases(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
+    {
+        try {
+            // delegating to the OCL service org.omg.sap2mof.OperationCodeOcl
+            java.util.Map operationParameters = new java.util.HashMap();
+            return (java.util.Collection)wrapResult(connection.getSession().getOclService().evaluateOclBodyExpression(connection, "getUsedAliases", getCastWrappedObject( ), operationParameters));
+            // end of implementation provided in tag org.omg.sap2mof.OperationCodeOcl
+        } catch(com.sap.tc.moin.repository.exception.MoinBaseException ex) {
+                throw new com.sap.tc.moin.repository.mmi.reflect.JmiException(ex);
+        }
+    }
     private data.classes.Signature invoke__getSignature(com.sap.tc.moin.repository.core.CoreConnection connection) throws com.sap.tc.moin.repository.mmi.reflect.JmiException
     {
         try {
@@ -309,9 +331,12 @@ public class FunctionCallExpressionWrapper extends com.sap.tc.moin.repository.co
                 return ___invokeOperation( connection, operationId, "E075D95551F2A7CC3E4B11DE809E0018DE1146FF", args ); //$NON-NLS-1$    
                 
             case 4:
-                return ___invokeOperation( connection, operationId, "E075D95551F2A7E53E4B11DE97EC0018DE1146FF", args ); //$NON-NLS-1$    
+                return ___invokeOperation( connection, operationId, "E075D955691D7570E97411DEAD8DF6740A140E7A", args ); //$NON-NLS-1$    
                 
             case 5:
+                return ___invokeOperation( connection, operationId, "E075D95551F2A7E53E4B11DE97EC0018DE1146FF", args ); //$NON-NLS-1$    
+                
+            case 6:
                 return ___invokeOperation( connection, operationId, "E075D9559CE61A11B80011DEA13B001A6BCDC3B3", args ); //$NON-NLS-1$    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException(requestedOperation, refMetaObject(), "refInvokeOperation(String)"); //$NON-NLS-1$
@@ -335,9 +360,12 @@ public class FunctionCallExpressionWrapper extends com.sap.tc.moin.repository.co
                 return invoke__evaluatesToEqualAs(connection, (dataaccess.expressions.Expression) args.get(0));    
                 
             case 4:
-                return invoke__getSignature(connection);    
+                return invoke__getUsedAliases(connection);    
                 
             case 5:
+                return invoke__getSignature(connection);    
+                
+            case 6:
                 return invoke__getMultiplicityOfCallTarget(connection);    
             default:
                 throw new com.sap.tc.moin.repository.mmi.reflect.InvalidCallException( operationId, refMetaObject( ), "invoke___Operation(int)"); //$NON-NLS-1$

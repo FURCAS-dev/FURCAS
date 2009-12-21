@@ -6,7 +6,7 @@ package behavior.expressions.oql.__impl;
 
 public class FromClauseWrapper extends com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl<behavior.expressions.oql.__impl.FromClauseImpl> implements behavior.expressions.oql.FromClause,com.sap.tc.moin.repository.Partitionable {
 
-    
+
     static {
     }
 
@@ -14,6 +14,7 @@ public class FromClauseWrapper extends com.sap.tc.moin.repository.core.jmi.refle
         super(conn, baseObject, synchronize);
     }
 
+    @SuppressWarnings("unused")
     private behavior.expressions.oql.__impl.FromClauseImpl getCastWrappedObject() {
         return (behavior.expressions.oql.__impl.FromClauseImpl) getWrappedObject();
     }
@@ -166,6 +167,7 @@ public class FromClauseWrapper extends com.sap.tc.moin.repository.core.jmi.refle
     
 
     // get the JMI interface
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.FromClause> get___JmiInterface() {
         return behavior.expressions.oql.FromClause.class;
     }

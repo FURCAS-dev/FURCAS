@@ -63,6 +63,7 @@ public final class AFieldToInitializeFieldInitializerImpl extends com.sap.tc.moi
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AFieldToInitializeFieldInitializer> get___JmiInterface() {
         return behavior.expressions.AFieldToInitializeFieldInitializer.class;
     }

@@ -17,11 +17,12 @@ public final class VariableExpressionImpl extends com.sap.tc.moin.repository.cor
         FEATURE_IDS.put("ownedTypeDefinition", Integer.valueOf(0)); //$NON-NLS-1$
         FEATURE_IDS.put("variable", Integer.valueOf(1)); //$NON-NLS-1$
         
-        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(6);
+        OPERATION_IDS = new java.util.HashMap<java.lang.String, java.lang.Integer>(7);
         OPERATION_IDS.put("conformsTo", Integer.valueOf(0)); //$NON-NLS-1$
         OPERATION_IDS.put("getType", Integer.valueOf(1)); //$NON-NLS-1$
         OPERATION_IDS.put("isSideEffectFree", Integer.valueOf(2)); //$NON-NLS-1$
         OPERATION_IDS.put("evaluatesToEqualAs", Integer.valueOf(3)); //$NON-NLS-1$
+        OPERATION_IDS.put("getUsedAliases", Integer.valueOf(4)); //$NON-NLS-1$
     }
     
     // links for multiplicity-1 association ends

@@ -125,6 +125,7 @@ public class AFieldToInitializeFieldInitializerWrapper extends com.sap.tc.moin.r
         }
     }   
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.AFieldToInitializeFieldInitializer> get___JmiInterface() {
         return behavior.expressions.AFieldToInitializeFieldInitializer.class;
     }

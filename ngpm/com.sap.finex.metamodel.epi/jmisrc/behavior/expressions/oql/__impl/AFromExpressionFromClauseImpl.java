@@ -64,6 +64,7 @@ public final class AFromExpressionFromClauseImpl extends com.sap.tc.moin.reposit
         return exists( connection, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) firstEnd, (com.sap.tc.moin.repository.mmi.reflect.RefBaseObject) secondEnd );
     }
 
+    @SuppressWarnings("unchecked")
     public java.lang.Class<behavior.expressions.oql.AFromExpressionFromClause> get___JmiInterface() {
         return behavior.expressions.oql.AFromExpressionFromClause.class;
     }
