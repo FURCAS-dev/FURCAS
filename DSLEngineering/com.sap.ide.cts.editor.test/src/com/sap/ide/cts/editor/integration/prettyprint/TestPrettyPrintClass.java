@@ -72,7 +72,7 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		assoc.getEnds().add(a2);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
-				clazz, syntax);
+				clazz, syntax, new ClassParserFactory());
 		assertOutput(output, "Association");
 	}
 
@@ -83,7 +83,7 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		assertNotNull(clazz);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
-				clazz, syntax);
+				clazz, syntax, new ClassParserFactory());
 		assertOutput(output, "Boolean");
 	}
 
@@ -94,7 +94,7 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		assertNotNull(clazz);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
-				clazz, syntax);
+				clazz, syntax, new ClassParserFactory());
 		assertOutput(output, "Number");
 	}
 
@@ -105,10 +105,10 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		assertNotNull(clazz);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
-				clazz, syntax);
+				clazz, syntax, new ClassParserFactory());
 		assertOutput(output, "MonthAndYear");
 	}
-	
+
 	@Test
 	public void testOrganization() throws SyntaxAndModelMismatchException {
 
@@ -116,7 +116,7 @@ public class TestPrettyPrintClass extends CtsPrettyPrinterIntegrationTestBase {
 		assertNotNull(clazz);
 
 		TextBlock output = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(
-				clazz, syntax);
+				clazz, syntax, new ClassParserFactory());
 		assertOutput(output, "Organization");
 	}
 
