@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: PathNameCS.java,v 1.4 2009/09/04 13:40:44 ewillink Exp $
+ * $Id: PathNameCS.java,v 1.5 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -34,8 +34,6 @@ import org.eclipse.emf.common.util.EList;
  * @see org.eclipse.ocl.cst.CSTPackage#getPathNameCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface PathNameCS
 		extends TypeCS {

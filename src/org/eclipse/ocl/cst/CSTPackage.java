@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.12 2009/10/15 19:37:46 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.13 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -39,8 +39,6 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.ocl.cst.CSTFactory
  * @model kind="package"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface CSTPackage
 		extends EPackage {
@@ -89,1234 +87,1359 @@ public interface CSTPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.CSTNodeImpl <em>Node</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.CSTNodeImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCSTNode()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE__START_OFFSET = 0;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE__END_OFFSET = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE__START_TOKEN = 2;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE__END_TOKEN = 3;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE__AST = 4;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CST_NODE_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PackageDeclarationCSImpl <em>Package Declaration CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.PackageDeclarationCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPackageDeclarationCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS = 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLExpressionCSImpl <em>OCL Expression CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.OCLExpressionCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLExpressionCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS = 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.TypeCSImpl <em>Type CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.TypeCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTypeCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS = 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PathNameCSImpl <em>Path Name CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.PathNameCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPathNameCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.ContextDeclCSImpl <em>Context Decl CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.ContextDeclCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getContextDeclCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS = 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__PATH_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Context Decls</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__CONTEXT_DECLS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Package Declaration CS</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS__PACKAGE_DECLARATION_CS = CST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Package Declaration CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PACKAGE_DECLARATION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The number of structural features of the '<em>OCL Expression CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The number of structural features of the '<em>Type CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS__START_OFFSET = TYPE_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS__END_OFFSET = TYPE_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS__START_TOKEN = TYPE_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS__END_TOKEN = TYPE_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS__AST = TYPE_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Simple Names</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS__SIMPLE_NAMES = TYPE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Path Name CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PATH_NAME_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.PropertyContextCSImpl <em>Property Context CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.PropertyContextCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPropertyContextCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.SimpleNameCSImpl <em>Simple Name CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.SimpleNameCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getSimpleNameCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS = 5;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__VALUE = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS__TYPE = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Simple Name CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_NAME_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The number of structural features of the '<em>Context Decl CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CONTEXT_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__AST = CONTEXT_DECL_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__TYPE_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Property Context CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PROPERTY_CONTEXT_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InitOrDerValueCSImpl <em>Init Or Der Value CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.InitOrDerValueCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInitOrDerValueCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS = 8;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Init Or Der Value CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_OR_DER_VALUE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl <em>Classifier Context Decl CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.ClassifierContextDeclCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getClassifierContextDeclCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS = 9;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__AST = CONTEXT_DECL_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__PATH_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__CONSTRAINTS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS__SIMPLE_NAME_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Classifier Context Decl CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CLASSIFIER_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.InvOrDefCSImpl <em>Inv Or Def CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.InvOrDefCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInvOrDefCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS = 10;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Inv Or Def CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_OR_DEF_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OperationContextDeclCSImpl <em>Operation Context Decl CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.OperationContextDeclCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOperationContextDeclCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS = 11;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__START_OFFSET = CONTEXT_DECL_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__END_OFFSET = CONTEXT_DECL_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__START_TOKEN = CONTEXT_DECL_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__END_TOKEN = CONTEXT_DECL_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__AST = CONTEXT_DECL_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Operation CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__OPERATION_CS = CONTEXT_DECL_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Pre Post Or Body Decls</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS__PRE_POST_OR_BODY_DECLS = CONTEXT_DECL_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Operation Context Decl CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CONTEXT_DECL_CS_FEATURE_COUNT = CONTEXT_DECL_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OperationCSImpl <em>Operation CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.OperationCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOperationCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS = 12;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__PATH_NAME_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__PARAMETERS = CST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Operation CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.VariableCSImpl <em>Variable CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.VariableCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getVariableCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS = 13;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__NAME = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS__INIT_EXPRESSION = CST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Variable CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -1327,97 +1450,105 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.PrePostOrBodyDeclCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrePostOrBodyDeclCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS = 14;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__KIND = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__SIMPLE_NAME_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Pre Post Or Body Decl CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_DECL_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -1428,77 +1559,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.DerValueCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDerValueCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS = 15;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS__START_OFFSET = INIT_OR_DER_VALUE_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS__END_OFFSET = INIT_OR_DER_VALUE_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS__START_TOKEN = INIT_OR_DER_VALUE_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS__END_TOKEN = INIT_OR_DER_VALUE_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS__AST = INIT_OR_DER_VALUE_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS__EXPRESSION_CS = INIT_OR_DER_VALUE_CS__EXPRESSION_CS;
 
 	/**
 	 * The number of structural features of the '<em>Der Value CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DER_VALUE_CS_FEATURE_COUNT = INIT_OR_DER_VALUE_CS_FEATURE_COUNT + 0;
 
@@ -1509,77 +1646,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.InitValueCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInitValueCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS = 16;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__START_OFFSET = INIT_OR_DER_VALUE_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__END_OFFSET = INIT_OR_DER_VALUE_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__START_TOKEN = INIT_OR_DER_VALUE_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__END_TOKEN = INIT_OR_DER_VALUE_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__AST = INIT_OR_DER_VALUE_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS__EXPRESSION_CS = INIT_OR_DER_VALUE_CS__EXPRESSION_CS;
 
 	/**
 	 * The number of structural features of the '<em>Init Value CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INIT_VALUE_CS_FEATURE_COUNT = INIT_OR_DER_VALUE_CS_FEATURE_COUNT + 0;
 
@@ -1590,87 +1733,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.InvCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInvCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS = 17;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__START_OFFSET = INV_OR_DEF_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__END_OFFSET = INV_OR_DEF_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__START_TOKEN = INV_OR_DEF_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__END_TOKEN = INV_OR_DEF_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__AST = INV_OR_DEF_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__SIMPLE_NAME_CS = INV_OR_DEF_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS__EXPRESSION_CS = INV_OR_DEF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Inv CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INV_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 1;
 
@@ -1681,97 +1831,106 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.DefCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDefCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__START_OFFSET = INV_OR_DEF_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__END_OFFSET = INV_OR_DEF_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__START_TOKEN = INV_OR_DEF_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__END_TOKEN = INV_OR_DEF_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__AST = INV_OR_DEF_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__SIMPLE_NAME_CS = INV_OR_DEF_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Def Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__DEF_EXPRESSION_CS = INV_OR_DEF_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Static</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS__STATIC = INV_OR_DEF_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Def CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_CS_FEATURE_COUNT = INV_OR_DEF_CS_FEATURE_COUNT + 2;
 
@@ -1782,97 +1941,105 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.DefExpressionCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDefExpressionCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS = 19;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Operation CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__OPERATION_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Variable CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__VARIABLE_CS = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Def Expression CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DEF_EXPRESSION_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 3;
 
@@ -1883,97 +2050,105 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.VariableExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getVariableExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__ARGUMENTS = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS__IS_MARKED_PRE_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Variable Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VARIABLE_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -1984,67 +2159,72 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.IsMarkedPreCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIsMarkedPreCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The number of structural features of the '<em>Is Marked Pre CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IS_MARKED_PRE_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 0;
 
@@ -2055,87 +2235,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.PrimitiveTypeCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrimitiveTypeCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS = 22;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__VALUE = SIMPLE_NAME_CS__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Type CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
@@ -2146,77 +2333,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.TupleTypeCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTupleTypeCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS = 23;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS__START_OFFSET = TYPE_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS__END_OFFSET = TYPE_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS__START_TOKEN = TYPE_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS__END_TOKEN = TYPE_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS__AST = TYPE_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS__VARIABLES = TYPE_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Type CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_CS_FEATURE_COUNT = TYPE_CS_FEATURE_COUNT + 1;
 
@@ -2227,107 +2420,116 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.CollectionTypeCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionTypeCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS = 24;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__VALUE = SIMPLE_NAME_CS__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Collection Type Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__COLLECTION_TYPE_IDENTIFIER = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS__TYPE_CS = SIMPLE_NAME_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 2;
 
@@ -2338,87 +2540,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.LetExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getLetExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS = 25;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__VARIABLES = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>In Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS__IN_EXPRESSION = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Let Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LET_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
@@ -2429,97 +2638,105 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.IfExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIfExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS = 26;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__THEN_EXPRESSION = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Else Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__ELSE_EXPRESSION = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS__CONDITION = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>If Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int IF_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -2530,107 +2747,116 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.MessageExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getMessageExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS = 27;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__TARGET = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__KIND = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS__ARGUMENTS = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Message Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 4;
 
@@ -2641,87 +2867,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.OCLMessageArgCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLMessageArgCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS = 28;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Type CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__TYPE_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS__EXPRESSION = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>OCL Message Arg CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_MESSAGE_ARG_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 2;
 
@@ -2732,67 +2965,72 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.LiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS = 29;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The number of structural features of the '<em>Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LITERAL_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
@@ -2803,87 +3041,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.CollectionLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS = 30;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Collection Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__COLLECTION_TYPE = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Collection Literal Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS__COLLECTION_LITERAL_PARTS = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
@@ -2894,77 +3139,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.CollectionLiteralPartCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionLiteralPartCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS = 31;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS__EXPRESSION_CS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Collection Literal Part CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_LITERAL_PART_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
@@ -2975,77 +3226,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.TupleLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getTupleLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS = 32;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Variables</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS__VARIABLES = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -3056,77 +3313,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.PrimitiveLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrimitiveLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS = 33;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__START_OFFSET = LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__END_OFFSET = LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__START_TOKEN = LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__END_TOKEN = LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__AST = LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS__SYMBOL = LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT = LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -3137,87 +3400,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.IntegerLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIntegerLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS = 34;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS__INTEGER_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Integer Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INTEGER_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -3228,87 +3498,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.UnlimitedNaturalLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getUnlimitedNaturalLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS = 35;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS__INTEGER_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int UNLIMITED_NATURAL_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -3319,87 +3596,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.RealLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getRealLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS = 36;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
 	/**
 	 * The feature id for the '<em><b>Real Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS__REAL_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Real Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int REAL_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
@@ -3410,77 +3694,83 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.StringLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getStringLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS = 37;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__START_OFFSET = PRIMITIVE_LITERAL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__END_OFFSET = PRIMITIVE_LITERAL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__START_TOKEN = PRIMITIVE_LITERAL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__END_TOKEN = PRIMITIVE_LITERAL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__AST = PRIMITIVE_LITERAL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__SYMBOL = PRIMITIVE_LITERAL_EXP_CS__SYMBOL;
 
 	/**
 	 * The feature id for the '<em><b>String Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 0;
 
@@ -3491,17 +3781,17 @@ public interface CSTPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS__UNESCAPED_STRING_SYMBOL = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>String Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int STRING_LITERAL_EXP_CS_FEATURE_COUNT = PRIMITIVE_LITERAL_EXP_CS_FEATURE_COUNT + 2;
 
@@ -3512,107 +3802,116 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.BooleanLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getBooleanLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS = 38;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__VALUE = SIMPLE_NAME_CS__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__SYMBOL = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Boolean Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS__BOOLEAN_SYMBOL = SIMPLE_NAME_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BOOLEAN_LITERAL_EXP_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 2;
 
@@ -3623,87 +3922,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.NullLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getNullLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS = 39;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__VALUE = SIMPLE_NAME_CS__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Null Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int NULL_LITERAL_EXP_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
@@ -3714,87 +4020,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.InvalidLiteralExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getInvalidLiteralExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS = 40;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__START_OFFSET = SIMPLE_NAME_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__END_OFFSET = SIMPLE_NAME_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__START_TOKEN = SIMPLE_NAME_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__END_TOKEN = SIMPLE_NAME_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__AST = SIMPLE_NAME_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__VALUE = SIMPLE_NAME_CS__VALUE;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS__TYPE = SIMPLE_NAME_CS__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_LITERAL_EXP_CS_FEATURE_COUNT = SIMPLE_NAME_CS_FEATURE_COUNT + 0;
 
@@ -3805,87 +4118,94 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.CollectionRangeCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionRangeCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS = 41;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__START_OFFSET = COLLECTION_LITERAL_PART_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__END_OFFSET = COLLECTION_LITERAL_PART_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__START_TOKEN = COLLECTION_LITERAL_PART_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__END_TOKEN = COLLECTION_LITERAL_PART_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__AST = COLLECTION_LITERAL_PART_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__EXPRESSION_CS = COLLECTION_LITERAL_PART_CS__EXPRESSION_CS;
 
 	/**
 	 * The feature id for the '<em><b>Last Expression CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS__LAST_EXPRESSION_CS = COLLECTION_LITERAL_PART_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Collection Range CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_RANGE_CS_FEATURE_COUNT = COLLECTION_LITERAL_PART_CS_FEATURE_COUNT + 1;
 
@@ -3896,97 +4216,105 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.CallExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCallExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS = 42;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__START_OFFSET = OCL_EXPRESSION_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__END_OFFSET = OCL_EXPRESSION_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__START_TOKEN = OCL_EXPRESSION_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__END_TOKEN = OCL_EXPRESSION_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__AST = OCL_EXPRESSION_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__SOURCE = OCL_EXPRESSION_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Accessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__ACCESSOR = OCL_EXPRESSION_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS__SIMPLE_NAME_CS = OCL_EXPRESSION_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALL_EXP_CS_FEATURE_COUNT = OCL_EXPRESSION_CS_FEATURE_COUNT + 3;
 
@@ -3997,127 +4325,138 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.LoopExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getLoopExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS = 43;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__START_OFFSET = CALL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__END_OFFSET = CALL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__START_TOKEN = CALL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__END_TOKEN = CALL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__AST = CALL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Accessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__ACCESSOR = CALL_EXP_CS__ACCESSOR;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Variable1</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__VARIABLE1 = CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Variable2</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__VARIABLE2 = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS__BODY = CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Loop Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int LOOP_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 3;
 
@@ -4128,127 +4467,138 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.IteratorExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIteratorExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS = 44;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__START_OFFSET = LOOP_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__END_OFFSET = LOOP_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__START_TOKEN = LOOP_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__END_TOKEN = LOOP_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__AST = LOOP_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__SOURCE = LOOP_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Accessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__ACCESSOR = LOOP_EXP_CS__ACCESSOR;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__SIMPLE_NAME_CS = LOOP_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Variable1</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__VARIABLE1 = LOOP_EXP_CS__VARIABLE1;
 
 	/**
 	 * The feature id for the '<em><b>Variable2</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__VARIABLE2 = LOOP_EXP_CS__VARIABLE2;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS__BODY = LOOP_EXP_CS__BODY;
 
 	/**
 	 * The number of structural features of the '<em>Iterator Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATOR_EXP_CS_FEATURE_COUNT = LOOP_EXP_CS_FEATURE_COUNT + 0;
 
@@ -4259,127 +4609,138 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.IterateExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIterateExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS = 45;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__START_OFFSET = LOOP_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__END_OFFSET = LOOP_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__START_TOKEN = LOOP_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__END_TOKEN = LOOP_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__AST = LOOP_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__SOURCE = LOOP_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Accessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__ACCESSOR = LOOP_EXP_CS__ACCESSOR;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__SIMPLE_NAME_CS = LOOP_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Variable1</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__VARIABLE1 = LOOP_EXP_CS__VARIABLE1;
 
 	/**
 	 * The feature id for the '<em><b>Variable2</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__VARIABLE2 = LOOP_EXP_CS__VARIABLE2;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS__BODY = LOOP_EXP_CS__BODY;
 
 	/**
 	 * The number of structural features of the '<em>Iterate Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITERATE_EXP_CS_FEATURE_COUNT = LOOP_EXP_CS_FEATURE_COUNT + 0;
 
@@ -4390,127 +4751,139 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.FeatureCallExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getFeatureCallExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS = 46;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__START_OFFSET = CALL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__END_OFFSET = CALL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__START_TOKEN = CALL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__END_TOKEN = CALL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__AST = CALL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__SOURCE = CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Accessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__ACCESSOR = CALL_EXP_CS__ACCESSOR;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS = CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__PATH_NAME_CS = CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__ARGUMENTS = CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS = CALL_EXP_CS_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Feature Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int FEATURE_CALL_EXP_CS_FEATURE_COUNT = CALL_EXP_CS_FEATURE_COUNT + 3;
 
@@ -4521,284 +4894,312 @@ public interface CSTPackage
 	 * @see org.eclipse.ocl.cst.impl.OperationCallExpCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOperationCallExpCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS = 47;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__START_OFFSET = FEATURE_CALL_EXP_CS__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__END_OFFSET = FEATURE_CALL_EXP_CS__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__START_TOKEN = FEATURE_CALL_EXP_CS__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__END_TOKEN = FEATURE_CALL_EXP_CS__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__AST = FEATURE_CALL_EXP_CS__AST;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__SOURCE = FEATURE_CALL_EXP_CS__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Accessor</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__ACCESSOR = FEATURE_CALL_EXP_CS__ACCESSOR;
 
 	/**
 	 * The feature id for the '<em><b>Simple Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__SIMPLE_NAME_CS = FEATURE_CALL_EXP_CS__SIMPLE_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Path Name CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__PATH_NAME_CS = FEATURE_CALL_EXP_CS__PATH_NAME_CS;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__ARGUMENTS = FEATURE_CALL_EXP_CS__ARGUMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Is Marked Pre CS</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__IS_MARKED_PRE_CS = FEATURE_CALL_EXP_CS__IS_MARKED_PRE_CS;
 
 	/**
 	 * The feature id for the '<em><b>Is Atomic</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS__IS_ATOMIC = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Operation Call Exp CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OPERATION_CALL_EXP_CS_FEATURE_COUNT = FEATURE_CALL_EXP_CS_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.impl.OCLDocumentCSImpl <em>OCL Document CS</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.impl.OCLDocumentCSImpl
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getOCLDocumentCS()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS = 48;
 
 	/**
 	 * The feature id for the '<em><b>Start Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS__START_OFFSET = CST_NODE__START_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>End Offset</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS__END_OFFSET = CST_NODE__END_OFFSET;
 
 	/**
 	 * The feature id for the '<em><b>Start Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS__START_TOKEN = CST_NODE__START_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>End Token</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS__END_TOKEN = CST_NODE__END_TOKEN;
 
 	/**
 	 * The feature id for the '<em><b>Ast</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS__AST = CST_NODE__AST;
 
 	/**
 	 * The feature id for the '<em><b>Package Declarations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS__PACKAGE_DECLARATIONS = CST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>OCL Document CS</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int OCL_DOCUMENT_CS_FEATURE_COUNT = CST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.SimpleTypeEnum <em>Simple Type Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.SimpleTypeEnum
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getSimpleTypeEnum()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SIMPLE_TYPE_ENUM = 49;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.PrePostOrBodyEnum <em>Pre Post Or Body Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.PrePostOrBodyEnum
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getPrePostOrBodyEnum()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRE_POST_OR_BODY_ENUM = 50;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.CollectionTypeIdentifierEnum <em>Collection Type Identifier Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.CollectionTypeIdentifierEnum
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getCollectionTypeIdentifierEnum()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_IDENTIFIER_ENUM = 51;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.MessageExpKind <em>Message Exp Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.MessageExpKind
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getMessageExpKind()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_EXP_KIND = 52;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.cst.DotOrArrowEnum <em>Dot Or Arrow Enum</em>}' enum.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.cst.DotOrArrowEnum
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getDotOrArrowEnum()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int DOT_OR_ARROW_ENUM = 53;
 
 	/**
 	 * The meta object id for the '<em>IToken</em>' data type.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see lpg.lpgjavaruntime.IToken
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIToken()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ITOKEN = 54;
 
@@ -6243,10 +6644,10 @@ public interface CSTPackage
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
-	 * <!-- end-user-doc -->
-	 * @generated
 	 * @noimplement This interface is not intended to be implemented by clients.
 	 * @noextend This interface is not intended to be extended by clients.
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	interface Literals {
 
@@ -6516,7 +6917,7 @@ public interface CSTPackage
 		/**
 		 * The meta object literal for the '<em><b>Simple Name CS</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
-	 * @since 3.0
+		 * @since 3.0
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
