@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g 2009-11-24 17:17:42
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g 2009-12-18 11:27:24
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -61,7 +61,7 @@ public class BibtexParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g"; }
 
 
-       private static final String syntaxUUID = "E0E1B8C6E1870870D91411DEB285F8478D1505E2";
+       private static final String syntaxUUID = "E0E1B8C6EC5D9350EBBF11DE8FFAF31F8D1505E2";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -282,7 +282,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
         List<String> metaType=list("Bibtex","LiteratureDb");
         onEnterTemplateRule(metaType);
-        IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, false, false) : null;
+        IModelElementProxy ret=(getBacktrackingLevel()==0) ? createModelElementProxy(metaType, true, false) : null;
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
@@ -293,7 +293,7 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:242:4: (temp= identifier ) 'Entries:' '{' (temp= bibtex_entry (temp= bibtex_entry )* )? '}' 'Authors:' '{' (temp= bibtex_author (temp= bibtex_author )* )? '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E15D8770D91411DEADD0F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC3DD650EBBF11DEBB7CF31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:242:63: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:242:65: temp= identifier
@@ -314,21 +314,21 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E15F5C30D91411DE92F7F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC3F8400EBBF11DE9A09F31F8D1505E2");
             }
             match(input,15,FOLLOW_15_in_bibtex_literaturedb172); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1606DA0D91411DEAEE8F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC402040EBBF11DE91A8F31F8D1505E2");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1652890D91411DE944CF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC404751EBBF11DE92B6F31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:242:353: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt2=2;
@@ -393,28 +393,28 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1654FA0D91411DEA5BCF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC404752EBBF11DE8A74F31F8D1505E2");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb201); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1654FA1D91411DE84D4F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC406E60EBBF11DE9156F31F8D1505E2");
             }
             match(input,18,FOLLOW_18_in_bibtex_literaturedb204); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1654FA2D91411DE853FF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC406E61EBBF11DEA96AF31F8D1505E2");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1654FA4D91411DEB9BAF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC406E63EBBF11DE80A7F31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:242:788: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt4=2;
@@ -479,7 +479,7 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16576B0D91411DE8464F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC406E64EBBF11DE8CBFF31F8D1505E2");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb233); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -490,7 +490,7 @@ public class BibtexParser extends ObservableInjectingParser {
 
             if ( state.backtracking==0 ) {
 
-              ret2 = commitCreation(ret, firstToken, false);
+              ret2 = commitCreation(ret, firstToken, true);
 
                
             }
@@ -530,21 +530,21 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:4: '@article' '{' ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) ) '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16E5050D91411DEC32EF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC455060EBBF11DEC49CF31F8D1505E2");
             }
             match(input,19,FOLLOW_19_in_bibtex_entry273); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16F61C0D91411DEC4CBF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC455061EBBF11DE9914F31F8D1505E2");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry276); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E17C3300D91411DEB8B3F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC52BDE0EBBF11DE9BC8F31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:226: ( ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:227: ( (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}' )
@@ -553,7 +553,7 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:228: (temp= identifier ) ',' 'title' '=' '{' (temp= identifier ) '}' ',' 'author' '=' '{' (temp= identifier ( ( 'and' ) temp= identifier )* )? '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16F88D1D91411DE9411F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4EC640EBBF11DEB3BDF31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:287: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:289: temp= identifier
@@ -574,35 +574,35 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16F88D2D91411DE9325F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4EC641EBBF11DE85F9F31F8D1505E2");
             }
             match(input,20,FOLLOW_20_in_bibtex_entry292); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16FAFE0D91411DEA7BDF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4EC642EBBF11DEC09BF31F8D1505E2");
             }
             match(input,21,FOLLOW_21_in_bibtex_entry295); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16FAFE1D91411DE9A97F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4EED50EBBF11DE87C8F31F8D1505E2");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry298); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16FAFE2D91411DEBD13F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4EED51EBBF11DEC4A4F31F8D1505E2");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry301); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16FAFE4D91411DE9E1DF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4EED53EBBF11DE8793F31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:728: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:730: temp= identifier
@@ -623,42 +623,42 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E16FFE00D91411DE96E4F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4F3B70EBBF11DEABCBF31F8D1505E2");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry314); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1702510D91411DEA9E0F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4F3B71EBBF11DE99CAF31F8D1505E2");
             }
             match(input,20,FOLLOW_20_in_bibtex_entry317); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1702511D91411DE9C96F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4F3B72EBBF11DEC613F31F8D1505E2");
             }
             match(input,23,FOLLOW_23_in_bibtex_entry320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1702512D91411DECDD6F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4F3B73EBBF11DEB16CF31F8D1505E2");
             }
             match(input,22,FOLLOW_22_in_bibtex_entry323); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1704C21D91411DE94B0F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC4F6280EBBF11DE8241F31F8D1505E2");
             }
             match(input,16,FOLLOW_16_in_bibtex_entry326); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E17666A0D91411DECD43F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC518560EBBF11DEB385F31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:1251: (temp= identifier ( ( 'and' ) temp= identifier )* )?
             int alt6=2;
@@ -702,7 +702,7 @@ public class BibtexParser extends ObservableInjectingParser {
                     	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:256:1388: 'and'
                     	    {
                     	    if ( state.backtracking==0 ) {
-                    	      _beforeSeqEl("E0E1B8C6E171F9D2D91411DEA77BF8478D1505E2");
+                    	      _beforeSeqEl("E0E1B8C6EC4FFEC0EBBF11DEB41FF31F8D1505E2");
                     	    }
                     	    match(input,24,FOLLOW_24_in_bibtex_entry341); if (state.failed) return ret2;
                     	    if ( state.backtracking==0 ) {
@@ -742,7 +742,7 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1777810D91411DE970BF8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC5221A0EBBF11DE96A5F31F8D1505E2");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry359); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -758,9 +758,18 @@ public class BibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1813C10D91411DEB3A6F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC53CF50EBBF11DEC66CF31F8D1505E2");
             }
             match(input,17,FOLLOW_17_in_bibtex_entry365); if (state.failed) return ret2;
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E0E1B8C6EC55CB20EBBF11DEBF28F31F8D1505E2");
+            }
+            if ( state.backtracking==0 ) {
+              setOclRef(ret, "literturedb", null, null, "OCL:#context", true);_exitInjectorAction();
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -809,12 +818,12 @@ public class BibtexParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:270:4: (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6E1827490D91411DE9C52F8478D1505E2");
+              _beforeSeqEl("E0E1B8C6EC579FE1EBBF11DE9F49F31F8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:270:63: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\Bibtex.g:270:65: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_bibtex_author409);
+            pushFollow(FOLLOW_identifier_in_bibtex_author412);
             temp=identifier();
 
             checkFollows();
@@ -826,6 +835,15 @@ public class BibtexParser extends ObservableInjectingParser {
 
             }
 
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E0E1B8C6EC57EE00EBBF11DEB9D0F31F8D1505E2");
+            }
+            if ( state.backtracking==0 ) {
+              setOclRef(ret, "literturedb", null, null, "OCL:#context", true);_exitInjectorAction();
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -890,6 +908,6 @@ public class BibtexParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_identifier_in_bibtex_entry348 = new BitSet(new long[]{0x0000000001020000L});
     public static final BitSet FOLLOW_17_in_bibtex_entry359 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_17_in_bibtex_entry365 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_bibtex_author409 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_bibtex_author412 = new BitSet(new long[]{0x0000000000000002L});
 
 }

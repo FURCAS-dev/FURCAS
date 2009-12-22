@@ -278,26 +278,39 @@ public class SyntaxBuilder extends IncrementalProjectBuilder {
 ////	return parserFactory.newSAXParser();
 //	}
 
-	/**
+    /**
      * @param resource
      * @param mymonitor
      */
-	public void cleanResource(IResource resource, IProgressMonitor mymonitor) throws CoreException {
-	    if (resource instanceof IFile && resource.getName().endsWith(Constants.TCS_EXTENSION)) {
-	        IFile file = (IFile) resource;
-	        // delete markers
-	        EclipseMarkerUtil.deleteMarkers(file);
-	        // delete grammarfile
-	        IFile[] genfiles = GrammarGenerationBuildHelper.getFilesForClean(file);
-	        for (int i = 0; i < genfiles.length; i++) {
-                IFile genfile = genfiles[i];
-                if (genfile.exists()) {
-                	EclipseMarkerUtil.deleteMarkers(genfile);
-                    genfile.delete(IResource.FORCE, mymonitor);
-                }    
+    public void cleanResource(IResource resource, IProgressMonitor mymonitor)
+            throws CoreException {
+        if (resource instanceof IFile
+                && resource.getName().endsWith(Constants.TCS_EXTENSION)) {
+            // Only delete if we are sure that we can rebuild it
+            // one condition for that is the availability of the metamodel
+            SyntaxGenerationNature nature = SyntaxGenerationNature
+                    .getNatureFromProject(resource.getProject());
+
+            if (nature != null) {
+                IProjectMetaRefConf conf = nature.getMetaModelReferenceConf();
+                if(conf.getMetaLookUpForProject() != null) {
+                    IFile file = (IFile) resource;
+                    // delete markers
+                    EclipseMarkerUtil.deleteMarkers(file);
+                    // delete grammarfile
+                    IFile[] genfiles = GrammarGenerationBuildHelper
+                            .getFilesForClean(file);
+                    for (int i = 0; i < genfiles.length; i++) {
+                        IFile genfile = genfiles[i];
+                        if (genfile.exists()) {
+                            EclipseMarkerUtil.deleteMarkers(genfile);
+                            genfile.delete(IResource.FORCE, mymonitor);
+                        }
+                    }
+                }
             }
-	    }
-	}
+        }
+    }
 
     
     

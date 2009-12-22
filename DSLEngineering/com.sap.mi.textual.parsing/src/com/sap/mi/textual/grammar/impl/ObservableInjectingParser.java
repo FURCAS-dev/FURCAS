@@ -106,6 +106,15 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 		super(input, state);
 		resetParser();
 	}
+	
+	/**
+         * @param input
+         * @param state
+         */
+        public ObservableInjectingParser(TokenStream input) {
+                super(input);
+                resetParser();
+        }
 
 	public ContextManager getContextManager() {
 		return contextManager;

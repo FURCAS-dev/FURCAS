@@ -877,4 +877,14 @@ public class LexedTokenWrapper implements ANTLR3LocationToken, LexedToken {
 	    return wrappedToken.getReferencedElements();
 	}
 
+    @Override
+    public boolean isOperator() throws JmiException {
+        return wrappedToken.isOperator();
+    }
+
+    @Override
+    public void setOperator(boolean newValue) throws JmiException {
+        wrappedToken.setOperator(newValue);
+    }
+
 }

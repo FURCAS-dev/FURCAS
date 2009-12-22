@@ -537,29 +537,40 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 						return false;
 					}
 					if (!canBeReused) {
-						// if only tokens were replaced by new ones that
-						// have the
-						// same referenced SequenceElement the TextBlock can
-						// be reused
-						boolean sequenceElementsEqual = true;
-						int i = 0;
-						for (LexedToken oldToken : oldTokens) {
-							if (i < newTokens.size()) {
-								LexedToken newTok = newTokens
-									.get(i);
-								sequenceElementsEqual &= newTok
-									.getSequenceElement() != null
-									&& newTok
-										.getSequenceElement()
-										.equals(
-											oldToken
-												.getSequenceElement());
-							} else {
-								sequenceElementsEqual = false;
-								break;
-							}
-							i++;
-						}
+					        if(oldTokens.size() > 0) {
+        						// if only tokens were replaced by new ones that
+        						// have the
+        						// same referenced SequenceElement the TextBlock can
+        						// be reused
+        						boolean sequenceElementsEqual = true;
+        						int i = 0;
+        						for (LexedToken oldToken : oldTokens) {
+        							if (i < newTokens.size()) {
+        								LexedToken newTok = newTokens
+        									.get(i);
+        								if(newTok.isOperator() && oldToken.isOperator()) {
+        								    //both are operators of the same operator template
+        								    //reuse should be no problem here.
+        								    sequenceElementsEqual &= true;
+        								} else {
+        								    sequenceElementsEqual &= newTok
+        									.getSequenceElement() != null
+        									&& newTok
+        										.getSequenceElement()
+        										.equals(
+        											oldToken
+        												.getSequenceElement());
+        								}
+        							} else {
+        								sequenceElementsEqual = false;
+        								break;
+        							}
+        							i++;
+        						}
+        						return sequenceElementsEqual;
+					        } else {
+					            return false;
+					        }
 					} else {
 						return true;
 					}

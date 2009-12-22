@@ -546,7 +546,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		TbUtil.constructContext(tokenInCurrentConnection,
 			localContextBuilder);
 		referringDocumentNode = tokenInCurrentConnection;
-		unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
+		if(!localContextBuilder.getContextStack().isEmpty()) {
+		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
+		}
 	    } else if (contextTextBlock != null) {
 		TbUtil.constructContext(contextTextBlock, localContextBuilder);
 		referringDocumentNode = contextTextBlock;

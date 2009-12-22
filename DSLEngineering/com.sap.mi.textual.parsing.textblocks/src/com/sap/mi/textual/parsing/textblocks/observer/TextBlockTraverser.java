@@ -123,6 +123,14 @@ public class TextBlockTraverser {
 		//do nothing
 	}
 
+    public void setOperatorToken(boolean b) {
+        stack.peek().setOperatorToken(b);
+    }
+
+    public boolean isOperatorToken() {
+        return stack.peek().isOperatorToken();
+    }
+
 
   
     

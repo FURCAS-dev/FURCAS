@@ -9,7 +9,7 @@ syntax Bibtex {
   primitiveTemplate integerSymbol for Integer default using INT:
         value = "Integer.valueOf(%token%)";
         
-  template LiteratureDb main
+  template LiteratureDb main context
   : name "Entries:" "{" entries "}"
   		 "Authors:"	"{" authors "}"
   ;
@@ -23,11 +23,13 @@ syntax Bibtex {
   			 				"}" 
   		]
   	"}"
+  	{{literturedb = lookIn("OCL:#context")}}
   ;
   
   template Author
   :
   	name
+  	{{literturedb = lookIn("OCL:#context")}}
   ;
  
   -- place keywords here (optional, seldom used)

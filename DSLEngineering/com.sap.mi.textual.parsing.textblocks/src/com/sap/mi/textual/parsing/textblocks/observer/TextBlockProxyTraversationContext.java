@@ -23,6 +23,8 @@ public class TextBlockProxyTraversationContext {
 
     private int currentAlternative;
 
+    private boolean operatorToken;
+
     /**
      * @param contextBlock
      */
@@ -68,6 +70,7 @@ public class TextBlockProxyTraversationContext {
 	if (node instanceof LexedToken) {
 	    LexedToken tok = (LexedToken) node;
 	    tok.setSequenceElement(sequenceElement);
+	    tok.setOperator(operatorToken);
 	}
     }
 
@@ -85,6 +88,7 @@ public class TextBlockProxyTraversationContext {
 	    if (node instanceof LexedToken) {
 		LexedToken tok = (LexedToken) node;
 		tok.setSequenceElement(sequenceElement);
+		tok.setOperator(operatorToken);
 	    }
 	}
     }
@@ -132,6 +136,14 @@ public class TextBlockProxyTraversationContext {
     public void setCurrentAlternative(int choice) {
 	currentAlternative = choice;
 	contextBlock.addAlternativeChoice(choice);
+    }
+
+    public void setOperatorToken(boolean operatorToken) {
+        this.operatorToken = operatorToken;
+    }
+
+    public boolean isOperatorToken() {
+        return operatorToken;
     }	
 
 }

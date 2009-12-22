@@ -238,12 +238,15 @@ public class Activator extends Plugin implements BundleActivator, GlobalEventLis
 	return myBundle.getBundleContext();
     }
     
+    public static void logError(Exception e) {
+        logError(e, "");
+    }
     /**
      * Log error.
      * 
      * @param e the e
      */
-    public static void logError(Exception e) {
+    public static void logError(Exception e, String message) {
         String msg;
         if (e instanceof CoreException) {
             IStatus status = ((CoreException) e).getStatus();
@@ -266,11 +269,12 @@ public class Activator extends Plugin implements BundleActivator, GlobalEventLis
         if (msg == null) {
             msg = String.valueOf(e);
         }
+        msg = message + msg;
         if (getDefault() != null) {
                         getDefault().getLog().log(
                                         new Status(IStatus.ERROR, PLUGIN_ID, IStatus.OK, msg, e));
                 } else {
-                        System.out.println("ParsingTextblocksActivator.logWarning: "
+                        System.out.println("ParsingTextblocksActivator.logError: "
                                         + e.getMessage());
                         e.printStackTrace();
                 }

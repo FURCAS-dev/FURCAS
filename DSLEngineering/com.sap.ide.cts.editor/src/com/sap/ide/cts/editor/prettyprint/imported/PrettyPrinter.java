@@ -1370,11 +1370,20 @@ public class PrettyPrinter {
 		if (value instanceof String) {
 
 			// TODO what about serializer attribute?
+		        RefObject template = primitiveTemplates.get(as);
+		        if(template != null && template instanceof PrimitiveTemplate &&
+		                ((PrimitiveTemplate)template).getSerializer() != null &&
+		                !((PrimitiveTemplate)template).getSerializer().equals("")) {
+		            PrimitiveTemplate primTemplate = (PrimitiveTemplate)template;
+                            if (primTemplate.getSerializer().contains("%value%")) {
+                                printCustomStringLiteral(primTemplate.getSerializer().replaceAll(
+                                        "%value%", (String) value), "");
+                            }
+		        }
 			// TODO what about tokens and token attribute?
-			if ("stringSymbol".equals(as)) {
+		        else if ("stringSymbol".equals(as)) {
 				printStringLiteral((String) value);
 			} else {
-				RefObject template = primitiveTemplates.get(as);
 				boolean orKeyword = false;
 				if (template != null)
 					orKeyword = MOINImportedModelAdapter
@@ -1542,6 +1551,12 @@ public class PrettyPrinter {
 				.replaceAll("\"", "\\\\\""));
 		context.setTypeLast(TYPE_STRING);
 	}
+	
+	private void printCustomStringLiteral(String v, String surroundings) {
+            printDisambiguationWS();
+            out.printString(surroundings, v);
+            context.setTypeLast(TYPE_STRING);
+        }
 
 	private void printComment(String c) {
 		printDisambiguationWS();

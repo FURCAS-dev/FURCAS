@@ -17,13 +17,15 @@ syntax AlternativeBibtex {
   
   template Entry
   : id ":" title
-  	{{literturedb = lookIn('#context')}}
+  	{{literturedb = lookIn("OCL:#context")}}
   ;
   
   template Author
   :
   	name ":" 
   	[ publications ]
+  	
+  	{{literturedb = lookIn("OCL:#context")}}
   ;
  
   -- place keywords here (optional, seldom used)

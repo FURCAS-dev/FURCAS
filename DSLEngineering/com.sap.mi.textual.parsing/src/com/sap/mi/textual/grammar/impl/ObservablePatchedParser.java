@@ -23,7 +23,10 @@ import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
  * Also handles awareness of exceptions in observers, makes sure that the exitTemplateRule is not called if an 
  * exception has happened, so that the exception does not get swallowed by finallys.
  */
-public abstract class ObservablePatchedParser extends Parser {
+public abstract class ObservablePatchedParser 
+//extends DebugParser 
+extends Parser
+{
 
     /**
      * @param input
@@ -31,6 +34,14 @@ public abstract class ObservablePatchedParser extends Parser {
      */
     public ObservablePatchedParser(TokenStream input, RecognizerSharedState state) {
         super(input, state);
+    }
+    
+    /**
+     * @param input
+     * @param state 
+     */
+    public ObservablePatchedParser(TokenStream input) {
+        super(input, (RecognizerSharedState)null);
     }
     
     private IParsingObserver observer;

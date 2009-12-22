@@ -371,9 +371,22 @@ public class MoinModelAdapterDelegate {
 	                    throw new ModelAdapterException("MofClass has no such property: "+ mofClass.getName() + "." + propertyName);
 	                } else {
 	                    if(associationFound.isFirst) {
-	                	associationFound.refAss.refRemoveLink(refAObject, (RefObject) value);
+	                        if(value instanceof Collection) {
+	                            for (Object obj : (Collection) value) {
+	                                associationFound.refAss.refRemoveLink(refAObject, (RefObject) obj);
+                                    }
+	                        } else {
+	                            associationFound.refAss.refRemoveLink(refAObject, (RefObject) value);
+	                        }
+	                	
 	                    } else {
-	                	associationFound.refAss.refRemoveLink((RefObject) value, refAObject);
+	                        if(value instanceof Collection) {
+    	                            for (Object obj : (Collection) value) {
+                                        associationFound.refAss.refRemoveLink((RefObject) obj, refAObject);
+                                    }
+	                        } else {
+	                            associationFound.refAss.refRemoveLink((RefObject) value, refAObject);
+	                        }
 	                    }
 	                }
 	            } 

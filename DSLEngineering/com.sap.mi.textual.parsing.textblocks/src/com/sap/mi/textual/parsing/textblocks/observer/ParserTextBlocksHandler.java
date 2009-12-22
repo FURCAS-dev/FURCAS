@@ -14,6 +14,7 @@ import org.antlr.runtime.Token;
 
 import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
+import tcs.OperatorTemplate;
 import tcs.SequenceElement;
 import tcs.Template;
 import textblocks.AbstractToken;
@@ -26,6 +27,7 @@ import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.IParsingObserver;
+import com.sap.mi.textual.grammar.impl.ModelElementProxy;
 import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
@@ -80,6 +82,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 	private final Collection<PRI> mappingDefinitionPartitions;
 
 	private final Collection<CRI> additionalCRIScope;
+
 
 	/**
 	 * Constructs a new Handler which will read from the TextBlocksTokenStream
@@ -178,86 +181,98 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 		// tbContextStack.add(currentTextBlock);
 	}
 
-	private Template findTemplate(List<String> createdElement, String mode) {
-		if(createdElement == null) {
-			return null;
-		}
-		String queryClass = "select class \n" + 
-        	"from \"sap.com/tc/moin/mof_1.4\"#" + "Model::Classifier as class \n"+
-        	"where class.name = '" + createdElement.get(createdElement.size()-1) + "'";
-		//get clazz by name
-		//TODO query fully qualified name!
-		MQLResultSet result = connection.getMQLProcessor().execute(queryClass, metamodelContainerQueryScope);
-		RefObject[] refObjects = result.getRefObjects("class");
-		Classifier clazz = null;
-		if(refObjects.length > 1) {
-			//throw new RuntimeException("Ambigous templates found for: "  + createdElement + " mode=" + mode);
-			clazz = (Classifier) refObjects[1];
-		} else if (refObjects.length == 1){
-			clazz = (Classifier) refObjects[0];
-		}
-		//TODO search only in the mapping partition!
-		Template template = null;
-			if(clazz != null) {
-			String query = "select template \n" + 
-			        "from \"demo.sap.com/tcsmeta\"#" + "TCS::ClassTemplate as template, \n" +
-			        "\"" + ( (Partitionable) clazz ).get___Mri( ) + "\" as class " +
-			        " where template.metaReference = class where template.mode = ";
-			if(mode != null) {
-				query += "'" + mode + "'";
-			}else {
-				query += "null";
-			}
-			String templateKey = createdElement.toString() + (mode == null ? "" : ("#" + mode));
-			template = templateCache.get(templateKey);
-			if(template == null) {
-				QueryScopeProvider mappingQueryScope = connection.getMQLProcessor()
-        				.getInclusiveQueryScopeProvider(
-        					mappingDefinitionPartitions
-        						.toArray(new PRI[] {}),
-        						metamodelContainerQueryScope
-        						.getContainerScope());
-				result = connection.getMQLProcessor().execute(query,
-						mappingQueryScope);
-				refObjects = result.getRefObjects("template");
-				if(refObjects.length > 1) {
-					//throw new RuntimeException("Ambigous templates found for: "  + createdElement + " mode=" + mode);
-					template = (Template) refObjects[1];
-				} else if (refObjects.length == 1){
-					template = (Template) refObjects[0];
-				}
-				if(template == null) {
-					//maybe operatorTemplate?
-					query = "select template \n" + 
-				        "from \"demo.sap.com/tcsmeta\"#" + "TCS::OperatorTemplate as template, \n" +
-				        "\"" + ( (Partitionable) clazz ).get___Mri( ) + "\" as class " +
-				        " where template.metaReference = class";
-			
-					result = connection.getMQLProcessor().execute(query);
-					refObjects = result.getRefObjects("template");
-					
-					if(refObjects.length > 1) {
-						//throw new RuntimeException("Ambigous templates found for: "  + createdElement + " mode=" + mode);
-						template = (Template) refObjects[1];
-					} else if (refObjects.length == 1){
-						template = (Template) refObjects[0];
-					} 
-				}
-				if(template != null) {
-					templateCache.put(templateKey, template);
-				} else {
-					ParsingTextblocksActivator
-							.logWarning("No template model element found for template:"
-									+ createdElement
-									+ " with mode = "
-									+ mode
-									+ "! Check if mapping model is available,"
-									+ " otherwise incremental parsing will not work!");
-				}
-			}
-		}
-		return template;
-	}
+        private Template findTemplate(List<String> createdElement, String mode) {
+            if (createdElement == null) {
+                return null;
+            }
+            String templateKey = createdElement.toString()
+                    + (mode == null ? "" : ("#" + mode));
+            Template template = templateCache.get(templateKey);
+            if (template == null) {
+                String queryClass = "select class \n"
+                        + "from \"sap.com/tc/moin/mof_1.4\"#"
+                        + "Model::Classifier as class \n" + "where class.name = '"
+                        + createdElement.get(createdElement.size() - 1) + "'";
+                // get clazz by name
+                // TODO query fully qualified name!
+                MQLResultSet result = connection.getMQLProcessor().execute(
+                        queryClass, metamodelContainerQueryScope);
+                RefObject[] refObjects = result.getRefObjects("class");
+                Classifier clazz = null;
+                if (refObjects.length > 1) {
+                    // throw new RuntimeException("Ambigous templates found for: " +
+                    // createdElement + " mode=" + mode);
+                    clazz = (Classifier) refObjects[1];
+                } else if (refObjects.length == 1) {
+                    clazz = (Classifier) refObjects[0];
+                }
+                if (clazz != null) {
+                    String query = "select template \n"
+                            + "from \"demo.sap.com/tcsmeta\"#"
+                            + "TCS::ClassTemplate as template, \n"
+                            + "\""
+                            + ((Partitionable) clazz).get___Mri()
+                            + "\" as class "
+                            + " where template.metaReference = class where template.mode = ";
+                    if (mode != null) {
+                        query += "'" + mode + "'";
+                    } else {
+                        query += "null";
+                    }
+                    QueryScopeProvider mappingQueryScope = connection
+                            .getMQLProcessor().getInclusiveQueryScopeProvider(
+                                    mappingDefinitionPartitions
+                                            .toArray(new PRI[] {}),
+                                    metamodelContainerQueryScope
+                                            .getContainerScope());
+                    result = connection.getMQLProcessor().execute(query,
+                            mappingQueryScope);
+                    refObjects = result.getRefObjects("template");
+                    if (refObjects.length > 1) {
+                        // throw new
+                        // RuntimeException("Ambigous templates found for: " +
+                        // createdElement + " mode=" + mode);
+                        template = (Template) refObjects[1];
+                    } else if (refObjects.length == 1) {
+                        template = (Template) refObjects[0];
+                    }
+                    if (template == null) {
+                        // maybe operatorTemplate?
+                        query = "select template \n"
+                                + "from \"demo.sap.com/tcsmeta\"#"
+                                + "TCS::OperatorTemplate as template, \n" + "\""
+                                + ((Partitionable) clazz).get___Mri()
+                                + "\" as class "
+                                + " where template.metaReference = class";
+    
+                        result = connection.getMQLProcessor().execute(query);
+                        refObjects = result.getRefObjects("template");
+    
+                        if (refObjects.length > 1) {
+                            // throw new
+                            // RuntimeException("Ambigous templates found for: " +
+                            // createdElement + " mode=" + mode);
+                            template = (Template) refObjects[1];
+                        } else if (refObjects.length == 1) {
+                            template = (Template) refObjects[0];
+                        }
+                    }
+                    if (template != null) {
+                        templateCache.put(templateKey, template);
+                    } else {
+                        ParsingTextblocksActivator
+                                .logWarning("No template model element found for template:"
+                                        + createdElement
+                                        + " with mode = "
+                                        + mode
+                                        + "! Check if mapping model is available,"
+                                        + " otherwise incremental parsing will not work!");
+                    }
+    
+                }
+            }
+            return template;
+        }
 
 	/**
 	 * It navigates to the textblock that belongs to the given context within
@@ -393,7 +408,6 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 
 	@Override
 	public void notifyEnterSequenceElement() {
-		// for subclasses or delegation
 	}
 	
 	@Override
@@ -451,7 +465,12 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 
 	@Override
 	public void notifyExitSequenceElement() {
-		// for subclasses or delegation
+	    if(traverser.isOperatorToken()) {
+	        //matching of operator tokenalways is surrounded with enterEqEl and exitSeqEl directly. So we need
+	        //to switch operator token off here, otherwise elements from this point to to the 
+	        //exitOperatorSequence will also get operatorToken set to true.
+                traverser.setOperatorToken(false);
+            }
 	}
 
 	/**
@@ -468,6 +487,36 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 			TextBlockProxy currentTextBlock = traverser.getCurrent();
 			currentTextBlock.addCorrespondingModelElement(
 					(IModelElementProxy) newModelElement);
+			((ModelElementProxy) newModelElement).setTextBlock(currentTextBlock);
+			if(currentTextBlock.getTemplate() instanceof OperatorTemplate &&
+			        ((OperatorTemplate) currentTextBlock.getTemplate()).getStoreLeftSideTo() != null) {
+			    //need to add left hand side textblock to current one as child to correctly represent 
+			    //composition
+			    String storeLeftToProperty = ((OperatorTemplate) currentTextBlock.getTemplate()).getStoreLeftSideTo().getStrucfeature().getName();
+			    ModelElementProxy leftHandSide = (ModelElementProxy) ((Collection<Object>)((ModelElementProxy)newModelElement).getAttributeMap().get(storeLeftToProperty)).iterator().next();
+			    TextBlockProxy leftHandSideTBProxy = (TextBlockProxy) leftHandSide.getTextBlock();
+			    //add all consumed tokens and textblock starting from the lefthand side proxy to the current textblock
+			    TextBlockProxy parent = leftHandSideTBProxy.getParent();
+			    int index = parent.getSubNodes().indexOf(leftHandSideTBProxy);
+			    List<Object> elementsMoved = new ArrayList<Object>();
+			    for (; index < parent.getSubNodes().size(); index++) {
+                                Object element = parent.getSubNodes().get(index);
+                                elementsMoved.add(element);
+                            }
+			    int position = 0;
+			    for (Object object : elementsMoved) {
+                                if (!object.equals(currentTextBlock)) {
+                                    // remove elements from their original parent
+                                    parent.getSubNodes().remove(object);
+                                    if (object instanceof TextBlockProxy) {
+                                        ((TextBlockProxy) object)
+                                                .setParent(currentTextBlock);
+                                    }
+                                    // add elements to current proxy at start index
+                                    currentTextBlock.addSubNodeAt(object, position++);
+                                }
+                            }
+			}
 		} else {
 			throw new RuntimeException("Expected IModelElementProxy but got: "
 					+ newModelElement.getClass().getCanonicalName());
@@ -658,7 +707,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     @Override
     public void notifyEnterOperatorSequence(String operator, int arity,
             boolean isUnaryPostfix) {
-     // ignore
+        traverser.setOperatorToken(true);
     }
 
     /* (non-Javadoc)
@@ -666,7 +715,36 @@ public class ParserTextBlocksHandler implements IParsingObserver {
      */
     @Override
     public void notifyExitOperatorSequence() {
-     // ignore
+        //if there was a right hand side assign the textblock created for it to the textblock responsible for
+        //the operator templated element.
+        TextBlockProxy currentTextBlockProxy = traverser.getCurrent();
+        //first get the second to the last TextBlockProxy within the parent
+        int index = currentTextBlockProxy.getSubNodes().size() - 1;
+        boolean countedFirstTbFromReverse = false;
+        TextBlockProxy last = null;
+        TextBlockProxy secondToLast = null;
+        while(index > 0) {
+            Object o = currentTextBlockProxy.getSubNodes().get(index--);
+            if(o instanceof TextBlockProxy) {
+                if(countedFirstTbFromReverse) {
+                    secondToLast = (TextBlockProxy) o;
+                    break;
+                } else {
+                    last = (TextBlockProxy) o;
+                    countedFirstTbFromReverse = true;
+                }
+            }
+        }
+        if(secondToLast != null && secondToLast.getTemplate() instanceof OperatorTemplate) {
+            OperatorTemplate optemplate = (OperatorTemplate)secondToLast.getTemplate();
+            if(optemplate.getStoreRightSideTo() != null) {
+                //this means that the right hand side proxy was added to the parent textblock instead of
+                //the one for the operatortemplate, so move it to there
+                last.setParent(secondToLast);
+                currentTextBlockProxy.removeSubNode(last);
+                secondToLast.addSubNodeAt(last, secondToLast.getSubNodes().size());
+            }
+        }
     }
 
    

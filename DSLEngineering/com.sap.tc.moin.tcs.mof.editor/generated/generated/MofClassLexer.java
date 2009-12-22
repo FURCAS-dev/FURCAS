@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g 2009-12-12 16:31:23
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g 2009-12-21 08:59:53
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -20,13 +20,15 @@ public class MofClassLexer extends Lexer {
     public static final int STAR=16;
     public static final int RBRACK_RCURL=22;
     public static final int FLOAT=9;
+    public static final int T__61=61;
+    public static final int T__60=60;
     public static final int EOF=-1;
     public static final int LPAREN=13;
     public static final int T__55=55;
     public static final int LBRACKET=17;
     public static final int T__56=56;
-    public static final int RPAREN=14;
     public static final int T__57=57;
+    public static final int RPAREN=14;
     public static final int NAME=4;
     public static final int T__58=58;
     public static final int DCOLON=24;
@@ -49,8 +51,8 @@ public class MofClassLexer extends Lexer {
     public static final int T__40=40;
     public static final int T__41=41;
     public static final int T__46=46;
-    public static final int T__47=47;
     public static final int DDOT=15;
+    public static final int T__47=47;
     public static final int T__44=44;
     public static final int T__45=45;
     public static final int T__48=48;
@@ -189,17 +191,17 @@ public class MofClassLexer extends Lexer {
         super(input,state);
 
     }
-    public String getGrammarFileName() { return "C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g"; }
+    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g"; }
 
     // $ANTLR start "T__32"
     public final void mT__32() throws RecognitionException {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:117:7: ( 'let' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:117:9: 'let'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:117:7: ( 'referencedEnd' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:117:9: 'referencedEnd'
             {
-            match("let"); if (state.failed) return ;
+            match("referencedEnd"); if (state.failed) return ;
 
 
             }
@@ -217,10 +219,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:118:7: ( 'iterate' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:118:9: 'iterate'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:118:7: ( 'ref' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:118:9: 'ref'
             {
-            match("iterate"); if (state.failed) return ;
+            match("ref"); if (state.failed) return ;
 
 
             }
@@ -238,10 +240,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:119:7: ( 'invariants' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:119:9: 'invariants'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:119:7: ( 'let' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:119:9: 'let'
             {
-            match("invariants"); if (state.failed) return ;
+            match("let"); if (state.failed) return ;
 
 
             }
@@ -259,10 +261,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:120:7: ( 'in' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:120:9: 'in'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:120:7: ( 'Set' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:120:9: 'Set'
             {
-            match("in"); if (state.failed) return ;
+            match("Set"); if (state.failed) return ;
 
 
             }
@@ -280,10 +282,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:121:7: ( 'endif' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:121:9: 'endif'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:121:7: ( 'then' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:121:9: 'then'
             {
-            match("endif"); if (state.failed) return ;
+            match("then"); if (state.failed) return ;
 
 
             }
@@ -301,10 +303,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:122:7: ( 'if' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:122:9: 'if'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:122:7: ( 'class' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:122:9: 'class'
             {
-            match("if"); if (state.failed) return ;
+            match("class"); if (state.failed) return ;
 
 
             }
@@ -322,10 +324,11 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:123:7: ( '|' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:123:9: '|'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:123:7: ( 'protected' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:123:9: 'protected'
             {
-            match('|'); if (state.failed) return ;
+            match("protected"); if (state.failed) return ;
+
 
             }
 
@@ -342,10 +345,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:124:7: ( 'abstract' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:124:9: 'abstract'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:124:7: ( 'if' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:124:9: 'if'
             {
-            match("abstract"); if (state.failed) return ;
+            match("if"); if (state.failed) return ;
 
 
             }
@@ -363,10 +366,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:125:7: ( 'public' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:125:9: 'public'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:125:7: ( '->' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:125:9: '->'
             {
-            match("public"); if (state.failed) return ;
+            match("->"); if (state.failed) return ;
 
 
             }
@@ -384,10 +387,11 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:126:7: ( ',' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:126:9: ','
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:126:7: ( 'private' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:126:9: 'private'
             {
-            match(','); if (state.failed) return ;
+            match("private"); if (state.failed) return ;
+
 
             }
 
@@ -404,10 +408,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:127:7: ( 'Bag' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:127:9: 'Bag'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:127:7: ( 'OrderedSet' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:127:9: 'OrderedSet'
             {
-            match("Bag"); if (state.failed) return ;
+            match("OrderedSet"); if (state.failed) return ;
 
 
             }
@@ -425,10 +429,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:128:7: ( 'Sequence' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:128:9: 'Sequence'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:128:7: ( 'public' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:128:9: 'public'
             {
-            match("Sequence"); if (state.failed) return ;
+            match("public"); if (state.failed) return ;
 
 
             }
@@ -446,10 +450,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:129:7: ( 'then' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:129:9: 'then'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:129:7: ( 'Collection' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:129:9: 'Collection'
             {
-            match("then"); if (state.failed) return ;
+            match("Collection"); if (state.failed) return ;
 
 
             }
@@ -467,10 +471,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:130:7: ( 'class' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:130:9: 'class'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:130:7: ( 'endif' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:130:9: 'endif'
             {
-            match("class"); if (state.failed) return ;
+            match("endif"); if (state.failed) return ;
 
 
             }
@@ -488,10 +492,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:131:7: ( 'self' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:131:9: 'self'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:131:7: ( 'invariants' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:131:9: 'invariants'
             {
-            match("self"); if (state.failed) return ;
+            match("invariants"); if (state.failed) return ;
 
 
             }
@@ -509,11 +513,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:132:7: ( 'Collection' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:132:9: 'Collection'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:132:7: ( '=' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:132:9: '='
             {
-            match("Collection"); if (state.failed) return ;
-
+            match('='); if (state.failed) return ;
 
             }
 
@@ -530,10 +533,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:133:7: ( '->' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:133:9: '->'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:133:7: ( 'in' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:133:9: 'in'
             {
-            match("->"); if (state.failed) return ;
+            match("in"); if (state.failed) return ;
 
 
             }
@@ -551,10 +554,11 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:134:7: ( '.' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:134:9: '.'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:134:7: ( 'abstract' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:134:9: 'abstract'
             {
-            match('.'); if (state.failed) return ;
+            match("abstract"); if (state.failed) return ;
+
 
             }
 
@@ -571,10 +575,11 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:135:7: ( '=' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:135:9: '='
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:135:7: ( 'static' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:135:9: 'static'
             {
-            match('='); if (state.failed) return ;
+            match("static"); if (state.failed) return ;
+
 
             }
 
@@ -591,10 +596,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:136:7: ( 'OrderedSet' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:136:9: 'OrderedSet'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:136:7: ( 'Bag' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:136:9: 'Bag'
             {
-            match("OrderedSet"); if (state.failed) return ;
+            match("Bag"); if (state.failed) return ;
 
 
             }
@@ -612,10 +617,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:137:7: ( 'protected' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:137:9: 'protected'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:137:7: ( 'else' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:137:9: 'else'
             {
-            match("protected"); if (state.failed) return ;
+            match("else"); if (state.failed) return ;
 
 
             }
@@ -633,10 +638,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:138:7: ( 'extends' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:138:9: 'extends'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:138:7: ( 'iterate' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:138:9: 'iterate'
             {
-            match("extends"); if (state.failed) return ;
+            match("iterate"); if (state.failed) return ;
 
 
             }
@@ -654,11 +659,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:139:7: ( 'else' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:139:9: 'else'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:139:7: ( '|' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:139:9: '|'
             {
-            match("else"); if (state.failed) return ;
-
+            match('|'); if (state.failed) return ;
 
             }
 
@@ -675,11 +679,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:140:7: ( 'private' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:140:9: 'private'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:140:7: ( '.' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:140:9: '.'
             {
-            match("private"); if (state.failed) return ;
-
+            match('.'); if (state.failed) return ;
 
             }
 
@@ -696,10 +699,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:141:7: ( 'Set' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:141:9: 'Set'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:141:7: ( 'readonly' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:141:9: 'readonly'
             {
-            match("Set"); if (state.failed) return ;
+            match("readonly"); if (state.failed) return ;
 
 
             }
@@ -717,10 +720,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:142:7: ( 'static' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:142:9: 'static'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:142:7: ( 'Sequence' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:142:9: 'Sequence'
             {
-            match("static"); if (state.failed) return ;
+            match("Sequence"); if (state.failed) return ;
 
 
             }
@@ -738,10 +741,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:143:7: ( 'readonly' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:143:9: 'readonly'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:143:7: ( 'self' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:143:9: 'self'
             {
-            match("readonly"); if (state.failed) return ;
+            match("self"); if (state.failed) return ;
 
 
             }
@@ -759,10 +762,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:144:7: ( ';' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:144:9: ';'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:144:7: ( ',' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:144:9: ','
             {
-            match(';'); if (state.failed) return ;
+            match(','); if (state.failed) return ;
 
             }
 
@@ -774,26 +777,67 @@ public class MofClassLexer extends Lexer {
     }
     // $ANTLR end "T__59"
 
+    // $ANTLR start "T__60"
+    public final void mT__60() throws RecognitionException {
+        try {
+            int _type = T__60;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:145:7: ( 'extends' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:145:9: 'extends'
+            {
+            match("extends"); if (state.failed) return ;
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__60"
+
+    // $ANTLR start "T__61"
+    public final void mT__61() throws RecognitionException {
+        try {
+            int _type = T__61;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:146:7: ( ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:146:9: ';'
+            {
+            match(';'); if (state.failed) return ;
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__61"
+
     // $ANTLR start "COMMENT"
     public final void mCOMMENT() throws RecognitionException {
         try {
             int _type = COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1224:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1243:3: ( ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:6: ( ( ( '//' (~ ( '\\r' | '\\n' ) )* ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:7: ( ( '//' (~ ( '\\r' | '\\n' ) )* ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:9: '//' (~ ( '\\r' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:8: ( '//' (~ ( '\\r' | '\\n' ) )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:9: '//' (~ ( '\\r' | '\\n' ) )*
             {
             match("//"); if (state.failed) return ;
 
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:14: (~ ( '\\r' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:14: (~ ( '\\r' | '\\n' ) )*
             loop1:
             do {
                 int alt1=2;
@@ -806,7 +850,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt1) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1225:15: ~ ( '\\r' | '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1244:15: ~ ( '\\r' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -855,21 +899,21 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = MULTI_LINE_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1230:3: ( ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1249:3: ( ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:6: ( ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:7: ( ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:9: '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:8: ( '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:9: '/**' ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )* '*/'
             {
             match("/**"); if (state.failed) return ;
 
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:15: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:15: ( options {greedy=false; } : ( '\\n' | ~ '\\n' ) )*
             loop2:
             do {
                 int alt2=2;
@@ -894,7 +938,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt2) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1231:44: ( '\\n' | ~ '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1250:44: ( '\\n' | ~ '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -945,8 +989,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = DDOT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1236:3: ( '..' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1237:3: '..'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1255:3: ( '..' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1256:3: '..'
             {
             match(".."); if (state.failed) return ;
 
@@ -966,8 +1010,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = LBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1242:3: ( '[' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1243:3: '['
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1261:3: ( '[' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1262:3: '['
             {
             match('['); if (state.failed) return ;
 
@@ -986,8 +1030,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = RBRACKET;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1248:3: ( ']' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1249:3: ']'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1267:3: ( ']' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1268:3: ']'
             {
             match(']'); if (state.failed) return ;
 
@@ -1006,8 +1050,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1254:3: ( '{' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1255:3: '{'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1273:3: ( '{' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1274:3: '{'
             {
             match('{'); if (state.failed) return ;
 
@@ -1026,8 +1070,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1260:3: ( '}' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1261:3: '}'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1279:3: ( '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1280:3: '}'
             {
             match('}'); if (state.failed) return ;
 
@@ -1046,8 +1090,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = STAR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1266:3: ( '*' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1267:3: '*'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1285:3: ( '*' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1286:3: '*'
             {
             match('*'); if (state.failed) return ;
 
@@ -1066,8 +1110,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = LCURL_LBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1272:3: ( '{[' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1273:3: '{['
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1291:3: ( '{[' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1292:3: '{['
             {
             match("{["); if (state.failed) return ;
 
@@ -1087,8 +1131,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = RBRACK_RCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1278:3: ( ']}' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1279:3: ']}'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1297:3: ( ']}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1298:3: ']}'
             {
             match("]}"); if (state.failed) return ;
 
@@ -1108,8 +1152,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = LBRACK_LCURL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1284:3: ( '[{' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1285:3: '[{'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1303:3: ( '[{' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1304:3: '[{'
             {
             match("[{"); if (state.failed) return ;
 
@@ -1129,8 +1173,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = RCURL_RBRACK;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1290:3: ( '}]' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1291:3: '}]'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1309:3: ( '}]' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1310:3: '}]'
             {
             match("}]"); if (state.failed) return ;
 
@@ -1150,8 +1194,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = LPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1296:3: ( '(' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1297:3: '('
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1315:3: ( '(' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1316:3: '('
             {
             match('('); if (state.failed) return ;
 
@@ -1170,8 +1214,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = RPAREN;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1302:3: ( ')' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1303:3: ')'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1321:3: ( ')' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1322:3: ')'
             {
             match(')'); if (state.failed) return ;
 
@@ -1190,8 +1234,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = COLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1308:3: ( ':' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1309:3: ':'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1327:3: ( ':' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1328:3: ':'
             {
             match(':'); if (state.failed) return ;
 
@@ -1210,8 +1254,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = DCOLON;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1314:3: ( '::' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1315:3: '::'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1333:3: ( '::' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1334:3: '::'
             {
             match("::"); if (state.failed) return ;
 
@@ -1231,10 +1275,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = NL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1324:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1324:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1343:2: ( ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1343:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1324:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1343:4: ( '\\r' '\\n' | '\\n' '\\r' | '\\r' | '\\n' )
             int alt3=4;
             int LA3_0 = input.LA(1);
 
@@ -1265,7 +1309,7 @@ public class MofClassLexer extends Lexer {
             }
             switch (alt3) {
                 case 1 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1324:6: '\\r' '\\n'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1343:6: '\\r' '\\n'
                     {
                     match('\r'); if (state.failed) return ;
                     match('\n'); if (state.failed) return ;
@@ -1273,7 +1317,7 @@ public class MofClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1325:5: '\\n' '\\r'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1344:5: '\\n' '\\r'
                     {
                     match('\n'); if (state.failed) return ;
                     match('\r'); if (state.failed) return ;
@@ -1281,14 +1325,14 @@ public class MofClassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1326:5: '\\r'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1345:5: '\\r'
                     {
                     match('\r'); if (state.failed) return ;
 
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1327:5: '\\n'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1346:5: '\\n'
                     {
                     match('\n'); if (state.failed) return ;
 
@@ -1316,8 +1360,8 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1333:2: ( ( ' ' | '\\t' ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1333:4: ( ' ' | '\\t' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1352:2: ( ( ' ' | '\\t' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1352:4: ( ' ' | '\\t' )
             {
             if ( input.LA(1)=='\t'||input.LA(1)==' ' ) {
                 input.consume();
@@ -1346,8 +1390,8 @@ public class MofClassLexer extends Lexer {
     // $ANTLR start "DIGIT"
     public final void mDIGIT() throws RecognitionException {
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1340:2: ( '0' .. '9' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1340:4: '0' .. '9'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1359:2: ( '0' .. '9' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1359:4: '0' .. '9'
             {
             matchRange('0','9'); if (state.failed) return ;
 
@@ -1362,8 +1406,8 @@ public class MofClassLexer extends Lexer {
     // $ANTLR start "ALPHA"
     public final void mALPHA() throws RecognitionException {
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1345:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1364:2: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:
             {
             if ( (input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
                 input.consume();
@@ -1387,17 +1431,17 @@ public class MofClassLexer extends Lexer {
     // $ANTLR start "SNAME"
     public final void mSNAME() throws RecognitionException {
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1356:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1356:4: ( ALPHA ) ( ALPHA | DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1375:2: ( ( ALPHA ) ( ALPHA | DIGIT )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1375:4: ( ALPHA ) ( ALPHA | DIGIT )*
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1356:4: ( ALPHA )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1356:5: ALPHA
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1375:4: ( ALPHA )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1375:5: ALPHA
             {
             mALPHA(); if (state.failed) return ;
 
             }
 
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1356:12: ( ALPHA | DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1375:12: ( ALPHA | DIGIT )*
             loop4:
             do {
                 int alt4=2;
@@ -1410,7 +1454,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:
             	    {
             	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z')||(input.LA(1)>='\u00C0' && input.LA(1)<='\u00D6')||(input.LA(1)>='\u00D8' && input.LA(1)<='\u00F6')||(input.LA(1)>='\u00F8' && input.LA(1)<='\u00FF') ) {
             	        input.consume();
@@ -1445,7 +1489,7 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = BOOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1359:6: ( 'true' | 'false' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1378:6: ( 'true' | 'false' )
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1464,7 +1508,7 @@ public class MofClassLexer extends Lexer {
             }
             switch (alt5) {
                 case 1 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1359:8: 'true'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1378:8: 'true'
                     {
                     match("true"); if (state.failed) return ;
 
@@ -1472,7 +1516,7 @@ public class MofClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1359:17: 'false'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1378:17: 'false'
                     {
                     match("false"); if (state.failed) return ;
 
@@ -1494,10 +1538,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = NAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1362:2: ( ( ( SNAME ~ DCOLON )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1362:4: ( ( SNAME ~ DCOLON )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1381:2: ( ( ( SNAME ~ DCOLON )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1381:4: ( ( SNAME ~ DCOLON )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1362:4: ( ( SNAME ~ DCOLON )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1381:4: ( ( SNAME ~ DCOLON )=> SNAME | '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\'' )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
@@ -1516,17 +1560,17 @@ public class MofClassLexer extends Lexer {
             }
             switch (alt7) {
                 case 1 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1363:4: ( SNAME ~ DCOLON )=> SNAME
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1382:4: ( SNAME ~ DCOLON )=> SNAME
                     {
                     mSNAME(); if (state.failed) return ;
 
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1364:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1383:5: '\\'' ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )* '\\''
                     {
                     match('\''); if (state.failed) return ;
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1365:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:4: ( '\\n' | ~ ( '\\\\' | '\\'' | '\\n' ) )*
                     loop6:
                     do {
                         int alt6=3;
@@ -1542,7 +1586,7 @@ public class MofClassLexer extends Lexer {
 
                         switch (alt6) {
                     	case 1 :
-                    	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1366:4: '\\n'
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1385:4: '\\n'
                     	    {
                     	    match('\n'); if (state.failed) return ;
                     	    if ( state.backtracking==0 ) {
@@ -1552,7 +1596,7 @@ public class MofClassLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1367:6: ~ ( '\\\\' | '\\'' | '\\n' )
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1386:6: ~ ( '\\\\' | '\\'' | '\\n' )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1596,13 +1640,13 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = QNAME;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1374:2: ( SNAME DCOLON SNAME ( DCOLON SNAME )* )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1374:4: SNAME DCOLON SNAME ( DCOLON SNAME )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1393:2: ( SNAME DCOLON SNAME ( DCOLON SNAME )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1393:4: SNAME DCOLON SNAME ( DCOLON SNAME )*
             {
             mSNAME(); if (state.failed) return ;
             mDCOLON(); if (state.failed) return ;
             mSNAME(); if (state.failed) return ;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1374:23: ( DCOLON SNAME )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1393:23: ( DCOLON SNAME )*
             loop8:
             do {
                 int alt8=2;
@@ -1615,7 +1659,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1374:24: DCOLON SNAME
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1393:24: DCOLON SNAME
             	    {
             	    mDCOLON(); if (state.failed) return ;
             	    mSNAME(); if (state.failed) return ;
@@ -1644,10 +1688,10 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1379:2: ( ( DIGIT )+ )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1379:4: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1398:2: ( ( DIGIT )+ )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1398:4: ( DIGIT )+
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1379:4: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1398:4: ( DIGIT )+
             int cnt9=0;
             loop9:
             do {
@@ -1661,7 +1705,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt9) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1379:5: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1398:5: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1692,10 +1736,10 @@ public class MofClassLexer extends Lexer {
     // $ANTLR start "FLOAT"
     public final void mFLOAT() throws RecognitionException {
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:2: ( ( DIGIT )+ '.' ( DIGIT )* )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:4: ( DIGIT )+ '.' ( DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:2: ( ( DIGIT )+ '.' ( DIGIT )* )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:4: ( DIGIT )+ '.' ( DIGIT )*
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:4: ( DIGIT )+
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:4: ( DIGIT )+
             int cnt10=0;
             loop10:
             do {
@@ -1709,7 +1753,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:4: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:4: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1727,7 +1771,7 @@ public class MofClassLexer extends Lexer {
             } while (true);
 
             match('.'); if (state.failed) return ;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:15: ( DIGIT )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:15: ( DIGIT )*
             loop11:
             do {
                 int alt11=2;
@@ -1740,7 +1784,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1384:15: DIGIT
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:15: DIGIT
             	    {
             	    mDIGIT(); if (state.failed) return ;
 
@@ -1766,7 +1810,7 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = RANGE_OR_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1388:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1407:5: ( ( INT '..' )=> INT | ( INT '.' NAME )=> INT | ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT | INT )
             int alt12=4;
             int LA12_0 = input.LA(1);
 
@@ -1805,7 +1849,7 @@ public class MofClassLexer extends Lexer {
             }
             switch (alt12) {
                 case 1 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1388:9: ( INT '..' )=> INT
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1407:9: ( INT '..' )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1815,7 +1859,7 @@ public class MofClassLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1389:7: ( INT '.' NAME )=> INT
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1408:7: ( INT '.' NAME )=> INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1825,7 +1869,7 @@ public class MofClassLexer extends Lexer {
                     }
                     break;
                 case 3 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1390:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1409:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )=> FLOAT
                     {
                     mFLOAT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1835,7 +1879,7 @@ public class MofClassLexer extends Lexer {
                     }
                     break;
                 case 4 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1397:9: INT
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1416:9: INT
                     {
                     mINT(); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
@@ -1859,11 +1903,11 @@ public class MofClassLexer extends Lexer {
         try {
             int _type = STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1402:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1402:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1421:2: ( '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1421:4: '\"' ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )* '\"'
             {
             match('\"'); if (state.failed) return ;
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1403:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1422:3: ( '\\n' | ~ ( '\\\\' | '\"' | '\\n' ) )*
             loop13:
             do {
                 int alt13=3;
@@ -1879,7 +1923,7 @@ public class MofClassLexer extends Lexer {
 
                 switch (alt13) {
             	case 1 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1405:4: '\\n'
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1424:4: '\\n'
             	    {
             	    match('\n'); if (state.failed) return ;
             	    if ( state.backtracking==0 ) {
@@ -1889,7 +1933,7 @@ public class MofClassLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1406:5: ~ ( '\\\\' | '\"' | '\\n' )
+            	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1425:5: ~ ( '\\\\' | '\"' | '\\n' )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1923,369 +1967,383 @@ public class MofClassLexer extends Lexer {
     // $ANTLR end "STRING"
 
     public void mTokens() throws RecognitionException {
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:8: ( T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LCURL_LBRACK | RBRACK_RCURL | LBRACK_LCURL | RCURL_RBRACK | LPAREN | RPAREN | COLON | DCOLON | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING )
-        int alt14=52;
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:8: ( T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LCURL_LBRACK | RBRACK_RCURL | LBRACK_LCURL | RCURL_RBRACK | LPAREN | RPAREN | COLON | DCOLON | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING )
+        int alt14=54;
         alt14 = dfa14.predict(input);
         switch (alt14) {
             case 1 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:10: T__32
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:10: T__32
                 {
                 mT__32(); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:16: T__33
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:16: T__33
                 {
                 mT__33(); if (state.failed) return ;
 
                 }
                 break;
             case 3 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:22: T__34
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:22: T__34
                 {
                 mT__34(); if (state.failed) return ;
 
                 }
                 break;
             case 4 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:28: T__35
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:28: T__35
                 {
                 mT__35(); if (state.failed) return ;
 
                 }
                 break;
             case 5 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:34: T__36
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:34: T__36
                 {
                 mT__36(); if (state.failed) return ;
 
                 }
                 break;
             case 6 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:40: T__37
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:40: T__37
                 {
                 mT__37(); if (state.failed) return ;
 
                 }
                 break;
             case 7 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:46: T__38
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:46: T__38
                 {
                 mT__38(); if (state.failed) return ;
 
                 }
                 break;
             case 8 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:52: T__39
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:52: T__39
                 {
                 mT__39(); if (state.failed) return ;
 
                 }
                 break;
             case 9 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:58: T__40
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:58: T__40
                 {
                 mT__40(); if (state.failed) return ;
 
                 }
                 break;
             case 10 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:64: T__41
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:64: T__41
                 {
                 mT__41(); if (state.failed) return ;
 
                 }
                 break;
             case 11 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:70: T__42
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:70: T__42
                 {
                 mT__42(); if (state.failed) return ;
 
                 }
                 break;
             case 12 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:76: T__43
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:76: T__43
                 {
                 mT__43(); if (state.failed) return ;
 
                 }
                 break;
             case 13 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:82: T__44
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:82: T__44
                 {
                 mT__44(); if (state.failed) return ;
 
                 }
                 break;
             case 14 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:88: T__45
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:88: T__45
                 {
                 mT__45(); if (state.failed) return ;
 
                 }
                 break;
             case 15 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:94: T__46
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:94: T__46
                 {
                 mT__46(); if (state.failed) return ;
 
                 }
                 break;
             case 16 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:100: T__47
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:100: T__47
                 {
                 mT__47(); if (state.failed) return ;
 
                 }
                 break;
             case 17 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:106: T__48
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:106: T__48
                 {
                 mT__48(); if (state.failed) return ;
 
                 }
                 break;
             case 18 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:112: T__49
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:112: T__49
                 {
                 mT__49(); if (state.failed) return ;
 
                 }
                 break;
             case 19 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:118: T__50
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:118: T__50
                 {
                 mT__50(); if (state.failed) return ;
 
                 }
                 break;
             case 20 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:124: T__51
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:124: T__51
                 {
                 mT__51(); if (state.failed) return ;
 
                 }
                 break;
             case 21 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:130: T__52
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:130: T__52
                 {
                 mT__52(); if (state.failed) return ;
 
                 }
                 break;
             case 22 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:136: T__53
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:136: T__53
                 {
                 mT__53(); if (state.failed) return ;
 
                 }
                 break;
             case 23 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:142: T__54
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:142: T__54
                 {
                 mT__54(); if (state.failed) return ;
 
                 }
                 break;
             case 24 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:148: T__55
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:148: T__55
                 {
                 mT__55(); if (state.failed) return ;
 
                 }
                 break;
             case 25 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:154: T__56
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:154: T__56
                 {
                 mT__56(); if (state.failed) return ;
 
                 }
                 break;
             case 26 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:160: T__57
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:160: T__57
                 {
                 mT__57(); if (state.failed) return ;
 
                 }
                 break;
             case 27 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:166: T__58
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:166: T__58
                 {
                 mT__58(); if (state.failed) return ;
 
                 }
                 break;
             case 28 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:172: T__59
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:172: T__59
                 {
                 mT__59(); if (state.failed) return ;
 
                 }
                 break;
             case 29 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:178: COMMENT
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:178: T__60
+                {
+                mT__60(); if (state.failed) return ;
+
+                }
+                break;
+            case 30 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:184: T__61
+                {
+                mT__61(); if (state.failed) return ;
+
+                }
+                break;
+            case 31 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:190: COMMENT
                 {
                 mCOMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 30 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:186: MULTI_LINE_COMMENT
+            case 32 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:198: MULTI_LINE_COMMENT
                 {
                 mMULTI_LINE_COMMENT(); if (state.failed) return ;
 
                 }
                 break;
-            case 31 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:205: DDOT
+            case 33 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:217: DDOT
                 {
                 mDDOT(); if (state.failed) return ;
 
                 }
                 break;
-            case 32 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:210: LBRACKET
+            case 34 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:222: LBRACKET
                 {
                 mLBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 33 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:219: RBRACKET
+            case 35 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:231: RBRACKET
                 {
                 mRBRACKET(); if (state.failed) return ;
 
                 }
                 break;
-            case 34 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:228: LCURL
+            case 36 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:240: LCURL
                 {
                 mLCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 35 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:234: RCURL
+            case 37 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:246: RCURL
                 {
                 mRCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 36 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:240: STAR
+            case 38 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:252: STAR
                 {
                 mSTAR(); if (state.failed) return ;
 
                 }
                 break;
-            case 37 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:245: LCURL_LBRACK
+            case 39 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:257: LCURL_LBRACK
                 {
                 mLCURL_LBRACK(); if (state.failed) return ;
 
                 }
                 break;
-            case 38 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:258: RBRACK_RCURL
+            case 40 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:270: RBRACK_RCURL
                 {
                 mRBRACK_RCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 39 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:271: LBRACK_LCURL
+            case 41 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:283: LBRACK_LCURL
                 {
                 mLBRACK_LCURL(); if (state.failed) return ;
 
                 }
                 break;
-            case 40 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:284: RCURL_RBRACK
+            case 42 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:296: RCURL_RBRACK
                 {
                 mRCURL_RBRACK(); if (state.failed) return ;
 
                 }
                 break;
-            case 41 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:297: LPAREN
+            case 43 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:309: LPAREN
                 {
                 mLPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 42 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:304: RPAREN
+            case 44 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:316: RPAREN
                 {
                 mRPAREN(); if (state.failed) return ;
 
                 }
                 break;
-            case 43 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:311: COLON
+            case 45 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:323: COLON
                 {
                 mCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 44 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:317: DCOLON
+            case 46 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:329: DCOLON
                 {
                 mDCOLON(); if (state.failed) return ;
 
                 }
                 break;
-            case 45 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:324: NL
+            case 47 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:336: NL
                 {
                 mNL(); if (state.failed) return ;
 
                 }
                 break;
-            case 46 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:327: WS
+            case 48 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:339: WS
                 {
                 mWS(); if (state.failed) return ;
 
                 }
                 break;
-            case 47 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:330: BOOL
+            case 49 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:342: BOOL
                 {
                 mBOOL(); if (state.failed) return ;
 
                 }
                 break;
-            case 48 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:335: NAME
+            case 50 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:347: NAME
                 {
                 mNAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 49 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:340: QNAME
+            case 51 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:352: QNAME
                 {
                 mQNAME(); if (state.failed) return ;
 
                 }
                 break;
-            case 50 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:346: INT
+            case 52 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:358: INT
                 {
                 mINT(); if (state.failed) return ;
 
                 }
                 break;
-            case 51 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:350: RANGE_OR_INT
+            case 53 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:362: RANGE_OR_INT
                 {
                 mRANGE_OR_INT(); if (state.failed) return ;
 
                 }
                 break;
-            case 52 :
-                // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:363: STRING
+            case 54 :
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1:375: STRING
                 {
                 mSTRING(); if (state.failed) return ;
 
@@ -2298,8 +2356,8 @@ public class MofClassLexer extends Lexer {
 
     // $ANTLR start synpred1_MofClass
     public final void synpred1_MofClass_fragment() throws RecognitionException {   
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1363:4: ( SNAME ~ DCOLON )
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1363:5: SNAME ~ DCOLON
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1382:4: ( SNAME ~ DCOLON )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1382:5: SNAME ~ DCOLON
         {
         mSNAME(); if (state.failed) return ;
         if ( (input.LA(1)>='\u0000' && input.LA(1)<='\u0017')||(input.LA(1)>='\u0019' && input.LA(1)<='\uFFFF') ) {
@@ -2319,8 +2377,8 @@ public class MofClassLexer extends Lexer {
 
     // $ANTLR start synpred2_MofClass
     public final void synpred2_MofClass_fragment() throws RecognitionException {   
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1388:9: ( INT '..' )
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1388:11: INT '..'
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1407:9: ( INT '..' )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1407:11: INT '..'
         {
         mINT(); if (state.failed) return ;
         match(".."); if (state.failed) return ;
@@ -2332,8 +2390,8 @@ public class MofClassLexer extends Lexer {
 
     // $ANTLR start synpred3_MofClass
     public final void synpred3_MofClass_fragment() throws RecognitionException {   
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1389:7: ( INT '.' NAME )
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1389:9: INT '.' NAME
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1408:7: ( INT '.' NAME )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1408:9: INT '.' NAME
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2345,8 +2403,8 @@ public class MofClassLexer extends Lexer {
 
     // $ANTLR start synpred4_MofClass
     public final void synpred4_MofClass_fragment() throws RecognitionException {   
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1390:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
-        // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1390:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1409:9: ( INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' ) )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofClass.g:1409:11: INT '.' ~ ( '.' | 'a' .. 'z' | 'A' .. 'Z' | '_' | '\\u00C0' .. '\\u00D6' | '\\u00D8' .. '\\u00F6' | '\\u00F8' .. '\\u00FF' )
         {
         mINT(); if (state.failed) return ;
         match('.'); if (state.failed) return ;
@@ -2425,90 +2483,89 @@ public class MofClassLexer extends Lexer {
 
     protected DFA14 dfa14 = new DFA14(this);
     static final String DFA14_eotS =
-        "\1\uffff\3\41\1\uffff\2\41\1\uffff\6\41\1\uffff\1\71\1\uffff\2"+
-        "\41\2\uffff\1\77\1\101\1\103\1\105\3\uffff\1\107\2\uffff\2\41\1"+
-        "\uffff\1\111\1\uffff\2\41\1\uffff\1\41\1\116\1\117\16\41\2\uffff"+
-        "\2\41\14\uffff\1\41\2\uffff\1\143\2\41\2\uffff\7\41\1\155\1\41\1"+
-        "\157\11\41\1\uffff\4\41\1\175\4\41\1\uffff\1\41\1\uffff\1\u0083"+
-        "\1\u0084\1\41\1\u0086\7\41\1\u008e\1\41\1\uffff\5\41\2\uffff\1\u0095"+
-        "\1\uffff\4\41\1\u0084\2\41\1\uffff\2\41\1\u009e\3\41\1\uffff\1\u00a2"+
-        "\3\41\1\u00a6\1\41\1\u00a8\1\41\1\uffff\1\41\1\u00ab\1\41\1\uffff"+
-        "\3\41\1\uffff\1\41\1\uffff\1\u00b1\1\41\1\uffff\1\u00b3\2\41\1\u00b6"+
-        "\1\41\1\uffff\1\u00b8\1\uffff\2\41\1\uffff\1\u00bb\1\uffff\1\u00bc"+
-        "\1\u00bd\3\uffff";
+        "\1\uffff\7\41\1\uffff\3\41\1\uffff\3\41\1\uffff\1\73\3\uffff\1"+
+        "\77\1\101\1\103\1\105\3\uffff\1\107\2\uffff\2\41\1\uffff\1\111\1"+
+        "\uffff\2\41\1\uffff\7\41\1\126\1\130\12\41\16\uffff\1\41\2\uffff"+
+        "\1\145\1\41\1\147\1\150\7\41\1\uffff\1\41\1\uffff\11\41\1\172\2"+
+        "\41\1\uffff\1\41\2\uffff\1\41\1\177\1\u0080\11\41\1\u008a\3\41\1"+
+        "\u008e\1\uffff\4\41\2\uffff\1\u0093\7\41\1\u009b\1\uffff\3\41\1"+
+        "\uffff\1\u0080\3\41\1\uffff\2\41\1\u00a4\4\41\1\uffff\2\41\1\u00ab"+
+        "\4\41\1\u00b0\1\uffff\1\41\1\u00b2\2\41\1\u00b5\1\41\1\uffff\1\41"+
+        "\1\u00b8\1\u00b9\1\41\1\uffff\1\41\1\uffff\2\41\1\uffff\1\u00be"+
+        "\1\41\2\uffff\1\u00c0\3\41\1\uffff\1\41\1\uffff\1\u00c5\1\u00c6"+
+        "\1\u00c7\1\41\3\uffff\1\41\1\u00ca\1\uffff";
     static final String DFA14_eofS =
-        "\u00be\uffff";
+        "\u00cb\uffff";
     static final String DFA14_minS =
-        "\1\11\3\60\1\uffff\2\60\1\uffff\6\60\1\uffff\1\56\1\uffff\2\60"+
-        "\1\uffff\1\52\1\173\1\175\1\133\1\135\3\uffff\1\72\2\uffff\2\60"+
-        "\1\uffff\1\56\1\uffff\2\60\1\uffff\21\60\2\uffff\2\60\14\uffff\1"+
-        "\60\2\uffff\3\60\2\uffff\23\60\1\uffff\11\60\1\uffff\1\60\1\uffff"+
-        "\15\60\1\uffff\5\60\2\uffff\1\60\1\uffff\7\60\1\uffff\6\60\1\uffff"+
-        "\10\60\1\uffff\3\60\1\uffff\3\60\1\uffff\1\60\1\uffff\2\60\1\uffff"+
-        "\5\60\1\uffff\1\60\1\uffff\2\60\1\uffff\1\60\1\uffff\2\60\3\uffff";
+        "\1\11\7\60\1\uffff\3\60\1\uffff\3\60\1\uffff\1\56\2\uffff\1\52"+
+        "\1\173\1\175\1\133\1\135\3\uffff\1\72\2\uffff\2\60\1\uffff\1\56"+
+        "\1\uffff\2\60\1\uffff\23\60\16\uffff\1\60\2\uffff\13\60\1\uffff"+
+        "\1\60\1\uffff\14\60\1\uffff\1\60\2\uffff\21\60\1\uffff\4\60\2\uffff"+
+        "\11\60\1\uffff\3\60\1\uffff\4\60\1\uffff\7\60\1\uffff\10\60\1\uffff"+
+        "\6\60\1\uffff\4\60\1\uffff\1\60\1\uffff\2\60\1\uffff\2\60\2\uffff"+
+        "\4\60\1\uffff\1\60\1\uffff\4\60\3\uffff\2\60\1\uffff";
     static final String DFA14_maxS =
-        "\4\u00ff\1\uffff\2\u00ff\1\uffff\6\u00ff\1\uffff\1\56\1\uffff\2"+
-        "\u00ff\1\uffff\1\57\1\173\1\175\1\133\1\135\3\uffff\1\72\2\uffff"+
-        "\2\u00ff\1\uffff\1\71\1\uffff\2\u00ff\1\uffff\21\u00ff\2\uffff\2"+
-        "\u00ff\14\uffff\1\u00ff\2\uffff\3\u00ff\2\uffff\23\u00ff\1\uffff"+
-        "\11\u00ff\1\uffff\1\u00ff\1\uffff\15\u00ff\1\uffff\5\u00ff\2\uffff"+
-        "\1\u00ff\1\uffff\7\u00ff\1\uffff\6\u00ff\1\uffff\10\u00ff\1\uffff"+
-        "\3\u00ff\1\uffff\3\u00ff\1\uffff\1\u00ff\1\uffff\2\u00ff\1\uffff"+
-        "\5\u00ff\1\uffff\1\u00ff\1\uffff\2\u00ff\1\uffff\1\u00ff\1\uffff"+
-        "\2\u00ff\3\uffff";
+        "\10\u00ff\1\uffff\3\u00ff\1\uffff\3\u00ff\1\uffff\1\56\2\uffff"+
+        "\1\57\1\173\1\175\1\133\1\135\3\uffff\1\72\2\uffff\2\u00ff\1\uffff"+
+        "\1\71\1\uffff\2\u00ff\1\uffff\23\u00ff\16\uffff\1\u00ff\2\uffff"+
+        "\13\u00ff\1\uffff\1\u00ff\1\uffff\14\u00ff\1\uffff\1\u00ff\2\uffff"+
+        "\21\u00ff\1\uffff\4\u00ff\2\uffff\11\u00ff\1\uffff\3\u00ff\1\uffff"+
+        "\4\u00ff\1\uffff\7\u00ff\1\uffff\10\u00ff\1\uffff\6\u00ff\1\uffff"+
+        "\4\u00ff\1\uffff\1\u00ff\1\uffff\2\u00ff\1\uffff\2\u00ff\2\uffff"+
+        "\4\u00ff\1\uffff\1\u00ff\1\uffff\4\u00ff\3\uffff\2\u00ff\1\uffff";
     static final String DFA14_acceptS =
-        "\4\uffff\1\7\2\uffff\1\12\6\uffff\1\21\1\uffff\1\23\2\uffff\1\34"+
-        "\5\uffff\1\44\1\51\1\52\1\uffff\1\55\1\56\2\uffff\1\60\1\uffff\1"+
-        "\64\2\uffff\1\61\21\uffff\1\37\1\22\2\uffff\1\35\1\36\1\47\1\40"+
-        "\1\46\1\41\1\45\1\42\1\50\1\43\1\54\1\53\1\uffff\1\62\1\63\3\uffff"+
-        "\1\4\1\6\23\uffff\1\1\11\uffff\1\13\1\uffff\1\31\15\uffff\1\27\5"+
-        "\uffff\1\15\1\57\1\uffff\1\17\7\uffff\1\5\6\uffff\1\16\10\uffff"+
-        "\1\11\3\uffff\1\32\3\uffff\1\2\1\uffff\1\26\2\uffff\1\30\5\uffff"+
-        "\1\10\1\uffff\1\14\2\uffff\1\33\1\uffff\1\25\2\uffff\1\3\1\20\1"+
-        "\24";
+        "\10\uffff\1\11\3\uffff\1\20\3\uffff\1\27\1\uffff\1\34\1\36\5\uffff"+
+        "\1\46\1\53\1\54\1\uffff\1\57\1\60\2\uffff\1\62\1\uffff\1\66\2\uffff"+
+        "\1\63\23\uffff\1\41\1\30\1\37\1\40\1\51\1\42\1\50\1\43\1\47\1\44"+
+        "\1\52\1\45\1\56\1\55\1\uffff\1\64\1\65\13\uffff\1\10\1\uffff\1\21"+
+        "\14\uffff\1\2\1\uffff\1\3\1\4\21\uffff\1\24\4\uffff\1\5\1\61\11"+
+        "\uffff\1\25\3\uffff\1\33\4\uffff\1\6\7\uffff\1\16\10\uffff\1\14"+
+        "\6\uffff\1\23\4\uffff\1\12\1\uffff\1\26\2\uffff\1\35\2\uffff\1\31"+
+        "\1\32\4\uffff\1\22\1\uffff\1\7\4\uffff\1\17\1\13\1\15\2\uffff\1"+
+        "\1";
     static final String DFA14_specialS =
-        "\u00be\uffff}>";
+        "\u00cb\uffff}>";
     static final String[] DFA14_transitionS = {
             "\1\36\1\35\2\uffff\1\35\22\uffff\1\36\1\uffff\1\43\4\uffff"+
-            "\1\41\1\32\1\33\1\31\1\uffff\1\7\1\16\1\17\1\24\12\42\1\34\1"+
-            "\23\1\uffff\1\20\3\uffff\1\40\1\10\1\15\13\40\1\21\3\40\1\11"+
-            "\7\40\1\25\1\uffff\1\26\1\uffff\1\40\1\uffff\1\5\1\40\1\13\1"+
-            "\40\1\3\1\37\2\40\1\2\2\40\1\1\3\40\1\6\1\40\1\22\1\14\1\12"+
-            "\6\40\1\27\1\4\1\30\102\uffff\27\40\1\uffff\37\40\1\uffff\10"+
+            "\1\41\1\32\1\33\1\31\1\uffff\1\22\1\10\1\21\1\24\12\42\1\34"+
+            "\1\23\1\uffff\1\14\3\uffff\1\40\1\17\1\12\13\40\1\11\3\40\1"+
+            "\3\7\40\1\25\1\uffff\1\26\1\uffff\1\40\1\uffff\1\15\1\40\1\5"+
+            "\1\40\1\13\1\37\2\40\1\7\2\40\1\2\3\40\1\6\1\40\1\1\1\16\1\4"+
+            "\6\40\1\27\1\20\1\30\102\uffff\27\40\1\uffff\37\40\1\uffff\10"+
             "\40",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\44\25"+
             "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\51\7"+
-            "\45\1\50\5\45\1\47\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff"+
-            "\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\54"+
-            "\1\45\1\52\11\45\1\53\2\45\105\uffff\27\45\1\uffff\37\45\1\uffff"+
-            "\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\45\1\55\30"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\47\25"+
             "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\57"+
-            "\2\45\1\56\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\60\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\61\25"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\50\25"+
             "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\7\45\1\62\11"+
-            "\45\1\63\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\64"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\7\45\1\51\11"+
+            "\45\1\52\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\53"+
             "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\65\16"+
-            "\45\1\66\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\67"+
-            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\54"+
+            "\2\45\1\55\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\56\7"+
+            "\45\1\57\5\45\1\60\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff"+
+            "\10\45",
             "",
-            "\1\70",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\72"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\61"+
             "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\73\25"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\62"+
+            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\64"+
+            "\1\45\1\63\11\45\1\65\2\45\105\uffff\27\45\1\uffff\37\45\1\uffff"+
+            "\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\45\1\66\30"+
             "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\70\16"+
+            "\45\1\67\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\71\31\45"+
+            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\1\72",
+            "",
             "",
             "\1\75\4\uffff\1\74",
             "\1\76",
@@ -2528,273 +2585,297 @@ public class MofClassLexer extends Lexer {
             "",
             "\1\112\1\uffff\12\42",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\113"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\114\4\45"+
+            "\1\113\24\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\114"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\25\45\1\115"+
-            "\4\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\120"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\121"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\115"+
             "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\122"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\123"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\45\1\124"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\20\45\1\117"+
+            "\2\45\1\116\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\120"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\24\45\1\121"+
+            "\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\122\31\45"+
+            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\124"+
+            "\5\45\1\123\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\45\1\125"+
             "\30\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\126"+
-            "\5\45\1\125\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\6\45\1\127"+
-            "\23\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\20\45\1\130"+
-            "\2\45\1\131\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\132"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\24\45\1\133"+
-            "\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\134\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\135"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\136\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\137"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\140"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\141\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\142"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\144"+
-            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\145\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\146"+
-            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\147"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\150"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\151"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\152"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\153"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\25\45\1\154"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\25\45\1\127"+
             "\4\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\24\45\1\156"+
-            "\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\160"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\161"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\131"+
             "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\162"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\163"+
-            "\24\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\164"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\165"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\132"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\133"+
             "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\134"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\135"+
+            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\136"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\137"+
+            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\140\31\45"+
+            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\141"+
+            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\6\45\1\142"+
+            "\23\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\143"+
+            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\144"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\146"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\24\45\1\151"+
+            "\5\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\152"+
+            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\153"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\154"+
+            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\155"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\25\45\1\156"+
+            "\4\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\157"+
+            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\160\31\45"+
+            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\161"+
+            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\162"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\163"+
+            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\164"+
+            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\165"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\166"+
             "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\167"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\170"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\171\31\45"+
-            "\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\172"+
-            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\173"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\167"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\170"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\171"+
             "\24\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\174"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\176"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\173"+
+            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\174"+
             "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\177"+
-            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u0080"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u0081\31"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\175"+
+            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\176"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\u0081"+
+            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u0082"+
             "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\u0085"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\u0087"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u0083\31"+
+            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\u0084"+
             "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\u0085"+
+            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u0086\31"+
+            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\u0087"+
+            "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u0088"+
             "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\u0089"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\5\45\1\u0089"+
+            "\24\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u008b"+
+            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\21\45\1\u008c"+
             "\10\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\u008a"+
-            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u008b"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u008c"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\u008d"+
             "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u008f"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u0090\31"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u0091"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u0092"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u0093"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u0094"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u008f"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u0090"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u0091"+
+            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u0092"+
             "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
             "",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u0094"+
+            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u0095"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u0096"+
             "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u0097"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u0098"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u0099"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u009a"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u009b\31"+
-            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\u009c"+
-            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u009d"+
-            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u009f"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\u0097"+
+            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u0098"+
             "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00a0"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u0099"+
             "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u009a"+
+            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u009c"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u009d\31"+
+            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u009e"+
+            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u009f"+
+            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\u00a0"+
+            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u00a1"+
             "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00a2"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00a3"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00a3"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u00a4"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\1\u00a5\31"+
+            "\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00a6"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u00a7"+
             "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\13\45\1\u00a5"+
-            "\16\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u00a7"+
-            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00a9"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00a8"+
             "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00aa"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00ac"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\u00ad"+
-            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\22\45\1\u00ae\7\45\4\uffff\1\45\1\uffff"+
-            "\32\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\30\45\1\u00af"+
-            "\1\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00b0"+
-            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u00b2"+
-            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\u00b4"+
-            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00b5"+
-            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
-            "\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\u00b7"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\u00a9"+
             "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u00aa"+
+            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\2\45\1\u00ac"+
+            "\27\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\30\45\1\u00ad"+
+            "\1\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00ae"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00af"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u00b9"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u00b1"+
             "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
-            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00ba"+
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\22\45\1\u00b3\7\45\4\uffff\1\45\1\uffff"+
+            "\32\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\10\45\1\u00b4"+
+            "\21\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00b6"+
             "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00b7"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u00ba"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00bb"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\4\45\1\u00bc"+
+            "\25\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\16\45\1\u00bd"+
+            "\13\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u00bf"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\22\45\1\u00c1"+
+            "\7\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\23\45\1\u00c2"+
+            "\6\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u00c3"+
+            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "",
+            "\12\45\1\46\6\uffff\4\45\1\u00c4\25\45\4\uffff\1\45\1\uffff"+
+            "\32\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
             "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
             "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\15\45\1\u00c8"+
+            "\14\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
             "",
             "",
+            "",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\3\45\1\u00c9"+
+            "\26\45\105\uffff\27\45\1\uffff\37\45\1\uffff\10\45",
+            "\12\45\1\46\6\uffff\32\45\4\uffff\1\45\1\uffff\32\45\105\uffff"+
+            "\27\45\1\uffff\37\45\1\uffff\10\45",
             ""
     };
 
@@ -2828,7 +2909,7 @@ public class MofClassLexer extends Lexer {
             this.transition = DFA14_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LCURL_LBRACK | RBRACK_RCURL | LBRACK_LCURL | RCURL_RBRACK | LPAREN | RPAREN | COLON | DCOLON | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING );";
+            return "1:1: Tokens : ( T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | COMMENT | MULTI_LINE_COMMENT | DDOT | LBRACKET | RBRACKET | LCURL | RCURL | STAR | LCURL_LBRACK | RBRACK_RCURL | LBRACK_LCURL | RCURL_RBRACK | LPAREN | RPAREN | COLON | DCOLON | NL | WS | BOOL | NAME | QNAME | INT | RANGE_OR_INT | STRING );";
         }
     }
  

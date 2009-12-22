@@ -13,11 +13,11 @@ syntax MofPackage {
 
 	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
 		value = "unescapeString(%token%)",
-		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+		serializer="\"%value%\"";
 
 	primitiveTemplate annotationSymbol for PrimitiveTypes::String using MULTI_LINE_COMMENT:
 		value = "unescapeString(%token%)",
-		serializer="'/** ' + %value%.toCString() + '\n*/'";
+		serializer="/** %value% \n*/";
 
 	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
 		value = "Integer.valueOf(%token%)";
@@ -31,8 +31,8 @@ syntax MofPackage {
   template Package main 
   	: $annotation
   	  "package" name <space> "{" [
-  	  contents{mode=classes}
-  	  contents{mode=associations}
+  	  contents{mode=classes, partial}
+  	  contents{mode=associations, partial}
   	  ] "}"
   	;
   
@@ -110,7 +110,7 @@ syntax MofPackage {
   	;
   
   function annotation(ModelElement)
-  	: (isDefined(annotation) ? annotation{as=annotationSymbol})
+  	: (isDefined(annotation) ? annotation{as=annotationSymbol} <newline> )
   	;
  
   template MultiplicityType

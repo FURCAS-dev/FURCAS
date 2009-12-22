@@ -18,67 +18,6 @@ import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
 
 public class FailingFinexEditingActions extends FinexEditorTest {
-    /**
-     * The editor gives an error dialog and the model is not updated.
-     */
-    @Test
-    public void testAddingValidation() throws PartInitException, BadLocationException, CoreException {
-        FinexClass testInfixChangeClass = findClass("TestFinexInfixOperatorChange");
-        // Source / Copy of: PF.IDE:E007956A7EF09B11E0BA11DE91A5CC610A140E7A
-        assertNotNull(testInfixChangeClass); 
-        assertTrue(testInfixChangeClass.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(testInfixChangeClass);
-        CtsDocument document = getDocument(editor);
-        document.replace(48, 0, "\n    ");
-        document.replace(53, 0, "[]");
-        document.replace(54, 0, "2");
-        document.replace(55, 0, " ");
-        document.replace(56, 0, "<");
-        document.replace(57, 0, " ");
-        document.replace(58, 0, "3");
-        document.replace(60, 0, ";");
-        saveAll(editor);
-        //failOnError(editor);
-        assertTrue(testInfixChangeClass.is___Alive());
-        // Your assertions on refObject here 
-        assertEquals(2, testInfixChangeClass.getInvariants().size());
-        boolean found = false;
-        for (Expression e : testInfixChangeClass.getInvariants()) {
-            if (e instanceof BinaryNumericOperator) {
-        	BinaryNumericOperator bno = (BinaryNumericOperator) e;
-        	if (bno.getOperator().equals("<")) {
-        	    found = (bno.getLeft() instanceof IntegerLiteral &&
-        		     bno.getRight() instanceof IntegerLiteral &&
-        		     ((IntegerLiteral) bno.getLeft()).getLiteral().equals("2") &&
-        		     ((IntegerLiteral) bno.getRight()).getLiteral().equals("3"));
-        	}
-            }
-        }
-        assertTrue("Didn't find an invariant [ 2 < 3]", found);
-        close(editor);
-    };
-
-    /**
-     * The test failed because the incremental editor simply did not update the operator in the model
-     */
-    @Test
-    public void testChangeInfixOperatorFromPlusToMinus() throws PartInitException, BadLocationException, CoreException {
-        FinexClass testInfixChangeClass = findClass("TestFinexInfixOperatorChange");
-        assertNotNull(testInfixChangeClass); 
-        assertTrue(testInfixChangeClass.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(testInfixChangeClass);
-        CtsDocument document = getDocument(editor);
-        document.replace(38, 1, "");
-        document.replace(38, 0, "-");
-        saveAll(editor);
-        failOnError(editor);
-        assertTrue(testInfixChangeClass.is___Alive());
-
-        BinaryNumericOperator invariant = (BinaryNumericOperator) testInfixChangeClass.getInvariants().iterator().next();
-        BinaryNumericOperator expectedMinusOperator = (BinaryNumericOperator) invariant.getLeft();
-        assertEquals("-", expectedMinusOperator.getOperator());
-        
-        close(editor);
-    };
+   
 
 }

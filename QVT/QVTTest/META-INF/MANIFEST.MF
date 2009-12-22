@@ -5,7 +5,7 @@ Bundle-SymbolicName: QVTTest
 Bundle-Version: 1.0.0.qualifier
 Export-Package: de.ikv.medini.qvt.test,
  de.ikv.medini.qvt.testcases
-Require-Bundle: QVTCommon;bundle-version="1.0.0",
- OCLCommon;bundle-version="1.0.0",
- OCLTestAdapter;bundle-version="1.0.0",
- QVTTestAdapter;bundle-version="1.0.0"
+Require-Bundle: QVTCommon,
+ OCLCommon,
+ OCLTestAdapter,
+ QVTTestAdapter

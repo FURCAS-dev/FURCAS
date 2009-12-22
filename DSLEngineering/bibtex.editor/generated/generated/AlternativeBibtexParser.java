@@ -1,8 +1,10 @@
-// $ANTLR 3.1.1 C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g 2009-06-29 15:20:41
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g 2009-12-18 11:27:27
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.common.interfaces.IModelElementProxy;
+import com.sap.mi.textual.grammar.impl.PredicateSemantic;
+import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -50,9 +52,13 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         
 
     public String[] getTokenNames() { return AlternativeBibtexParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g"; }
+    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g"; }
 
 
+       private static final String syntaxUUID = "E007956AEF995D61EBBF11DE9940F31F8D1505E2";
+       public String getSyntaxUUID() {
+            return syntaxUUID;
+       }
        /**
          * Unescape string.
          * 
@@ -124,7 +130,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifier"
-    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:201:1: identifier returns [Object ret2] : (ast= NAME ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:207:1: identifier returns [Object ret2] : (ast= NAME ) ;
     public final Object identifier() throws RecognitionException {
         Object ret2 = null;
 
@@ -132,11 +138,11 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:202:3: ( (ast= NAME ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:203:3: (ast= NAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:208:3: ( (ast= NAME ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:3: (ast= NAME )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:203:3: (ast= NAME )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:203:4: ast= NAME
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:3: (ast= NAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:4: ast= NAME
             {
             ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier69); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -167,7 +173,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "integerSymbol"
-    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:211:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:217:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
     public final Object integerSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -175,11 +181,11 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:212:3: ( (ast= INT ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:213:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:218:3: ( (ast= INT ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:3: (ast= INT )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:213:3: (ast= INT )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:213:4: ast= INT
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol100); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -210,7 +216,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "main"
-    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:221:1: main returns [Object ret2] : ( (ret= bibtex_literaturedb ) EOF ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:227:1: main returns [Object ret2] : ( (ret= bibtex_literaturedb ) EOF ) ;
     public final Object main() throws RecognitionException {
         Object ret2 = null;
 
@@ -218,14 +224,14 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
         try {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:222:3: ( ( (ret= bibtex_literaturedb ) EOF ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:223:3: ( (ret= bibtex_literaturedb ) EOF )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:228:3: ( ( (ret= bibtex_literaturedb ) EOF ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:3: ( (ret= bibtex_literaturedb ) EOF )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:223:3: ( (ret= bibtex_literaturedb ) EOF )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:223:4: (ret= bibtex_literaturedb ) EOF
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:3: ( (ret= bibtex_literaturedb ) EOF )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:4: (ret= bibtex_literaturedb ) EOF
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:223:4: (ret= bibtex_literaturedb )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:223:5: ret= bibtex_literaturedb
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:4: (ret= bibtex_literaturedb )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:5: ret= bibtex_literaturedb
             {
             pushFollow(FOLLOW_bibtex_literaturedb_in_main128);
             ret=bibtex_literaturedb();
@@ -261,7 +267,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_literaturedb"
-    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:230:1: bibtex_literaturedb returns [Object ret2] : ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:1: bibtex_literaturedb returns [Object ret2] : ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) ;
     public final Object bibtex_literaturedb() throws RecognitionException {
         Object ret2 = null;
 
@@ -274,24 +280,24 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:235:3: ( ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:241:3: ( ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:4: 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:4: 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99D0678064AF11DEC1D700016CE99C52");
+              _beforeSeqEl("E007956AEF87F840EBBF11DEC5F4F31F8D1505E2");
             }
             match(input,15,FOLLOW_15_in_bibtex_literaturedb162); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99D0678264AF11DEB80000016CE99C52");
+              _beforeSeqEl("E007956AEF884660EBBF11DE856BF31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:143: (temp= identifier )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:145: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:143: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:145: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_literaturedb169);
             temp=identifier();
@@ -309,25 +315,25 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99DE232064AF11DEB14C00016CE99C52");
+              _beforeSeqEl("E007956AEF889480EBBF11DEB28EF31F8D1505E2");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99E5C44064AF11DEA70C00016CE99C52");
+              _beforeSeqEl("E007956AEF8909B0EBBF11DEC455F31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:348: ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:348: ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:350: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:350: (temp= bibtex_author (temp= bibtex_author )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99DFA9C164AF11DE84F300016CE99C52");
+              _beforeSeqEl("E007956AEF88BB91EBBF11DE8E54F31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:409: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:409: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -336,7 +342,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:411: temp= bibtex_author (temp= bibtex_author )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:411: temp= bibtex_author (temp= bibtex_author )*
                     {
                     pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb185);
                     temp=bibtex_author();
@@ -347,7 +353,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "author", temp);
                     }
-                    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:466: (temp= bibtex_author )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:466: (temp= bibtex_author )*
                     loop1:
                     do {
                         int alt1=2;
@@ -360,7 +366,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:468: temp= bibtex_author
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:468: temp= bibtex_author
                     	    {
                     	    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb193);
                     	    temp=bibtex_author();
@@ -399,7 +405,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99F813C064AF11DEA3CF00016CE99C52");
+              _beforeSeqEl("E007956AEF8930C0EBBF11DEB632F31F8D1505E2");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -430,7 +436,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_entry"
-    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:244:1: bibtex_entry returns [Object ret2] : ( (temp= identifier ) ':' (temp= identifier ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:1: bibtex_entry returns [Object ret2] : ( (temp= identifier ) ':' (temp= identifier ) ) ;
     public final Object bibtex_entry() throws RecognitionException {
         Object ret2 = null;
 
@@ -443,17 +449,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:249:3: ( ( (temp= identifier ) ':' (temp= identifier ) ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:3: ( (temp= identifier ) ':' (temp= identifier ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:255:3: ( ( (temp= identifier ) ':' (temp= identifier ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:3: ( (temp= identifier ) ':' (temp= identifier ) )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:3: ( (temp= identifier ) ':' (temp= identifier ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:4: (temp= identifier ) ':' (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:3: ( (temp= identifier ) ':' (temp= identifier ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:4: (temp= identifier ) ':' (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99FE2E4164AF11DE82E300016CE99C52");
+              _beforeSeqEl("E007956AEF923170EBBF11DEA658F31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:63: (temp= identifier )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:65: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:63: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:65: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry251);
             temp=identifier();
@@ -471,17 +477,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99FE2E4264AF11DEA66E00016CE99C52");
+              _beforeSeqEl("E007956AEF927F90EBBF11DEAA69F31F8D1505E2");
             }
             match(input,18,FOLLOW_18_in_bibtex_entry257); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A99FE2E4464AF11DE865A00016CE99C52");
+              _beforeSeqEl("E007956AEF927F92EBBF11DE8AFFF31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:266: (temp= identifier )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:268: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:266: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:268: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry264);
             temp=identifier();
@@ -499,10 +505,10 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A9A19CC9064AF11DEB74800016CE99C52");
+              _beforeSeqEl("E007956AEF92A6A1EBBF11DE8ECFF31F8D1505E2");
             }
             if ( state.backtracking==0 ) {
-              setRef(ret, "literturedb", list("Bibtex","LiteratureDb"), null, null, "#context", null, null, false, null, false);
+              setOclRef(ret, "literturedb", null, null, "OCL:#context", true);_exitInjectorAction();
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
@@ -532,7 +538,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_author"
-    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:258:1: bibtex_author returns [Object ret2] : ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:1: bibtex_author returns [Object ret2] : ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) ;
     public final Object bibtex_author() throws RecognitionException {
         Object ret2 = null;
 
@@ -545,17 +551,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:263:3: ( ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:269:3: ( ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:4: (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:4: (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A9A290ED464AF11DE8ACE00016CE99C52");
+              _beforeSeqEl("E007956AEF97D6C1EBBF11DE8F2EF31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:63: (temp= identifier )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:65: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:63: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:65: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_author314);
             temp=identifier();
@@ -573,25 +579,25 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A9A290ED564AF11DEB45400016CE99C52");
+              _beforeSeqEl("E007956AEF97FDD0EBBF11DE8DBDF31F8D1505E2");
             }
             match(input,18,FOLLOW_18_in_bibtex_author320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A9A2A957164AF11DEACA400016CE99C52");
+              _beforeSeqEl("E007956AEF9824E0EBBF11DEB689F31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:268: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:268: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
             {
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:270: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:270: (temp= bibtex_entry (temp= bibtex_entry )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E007956A9A290ED764AF11DEA61B00016CE99C52");
+              _beforeSeqEl("E007956AEF97FDD2EBBF11DECD1BF31F8D1505E2");
             }
-            // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:329: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:329: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -612,7 +618,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:331: temp= bibtex_entry (temp= bibtex_entry )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:331: temp= bibtex_entry (temp= bibtex_entry )*
                     {
                     pushFollow(FOLLOW_bibtex_entry_in_bibtex_author330);
                     temp=bibtex_entry();
@@ -623,7 +629,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "publications", temp);
                     }
-                    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:391: (temp= bibtex_entry )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:391: (temp= bibtex_entry )*
                     loop3:
                     do {
                         int alt3=2;
@@ -654,7 +660,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // C:\\data\\cts\\runtime-ehp2\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:393: temp= bibtex_entry
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:393: temp= bibtex_entry
                     	    {
                     	    pushFollow(FOLLOW_bibtex_entry_in_bibtex_author338);
                     	    temp=bibtex_entry();
@@ -689,6 +695,15 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
             }
 
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E007956AEF987300EBBF11DEC703F31F8D1505E2");
+            }
+            if ( state.backtracking==0 ) {
+              setOclRef(ret, "literturedb", null, null, "OCL:#context", true);_exitInjectorAction();
+            }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }

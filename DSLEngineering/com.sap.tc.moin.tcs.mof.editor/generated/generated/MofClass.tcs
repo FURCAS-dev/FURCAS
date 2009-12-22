@@ -10,14 +10,14 @@ syntax MofClass(k=0) {
 
 	primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
 		value = "unescapeString(%token%)",
-		serializer="'\\\"' + %value%.toCString() + '\\\"'";
+		serializer="\"%value%\"";
 	
 	primitiveTemplate qualifiedNameSymbol for PrimitiveTypes::String using QNAME:
 		value = "unescapeString(%token%)";
 
 	primitiveTemplate annotationSymbol for PrimitiveTypes::String using MULTI_LINE_COMMENT:
 		value = "unescapeString(%token%)",
-		serializer="'/** ' + %value%.toCString() + '\n*/'";
+		serializer="/** %value% \n*/";
 
 	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
 		value = "Integer.valueOf(%token%)";
@@ -101,6 +101,28 @@ syntax MofClass(k=0) {
   	  $typeReference
   	  multiplicity
   	  name <no_space> ";"
+  	;
+  	
+  template Reference
+  	: $annotation
+  	  "ref"
+  	  (isChangeable ? : "readonly")
+  	  $scopeAndVisibility
+  	  --type
+  	  $typeReference
+  	  multiplicity
+  	  name
+  	  [[
+  	    	"referencedEnd" referencedEnd{ refersTo=name, 
+  	  	query = "self.container.oclAsType(Classifier).typedElements->select(
+  	  		e|e.oclIsTypeOf(AssociationEnd)).oclAsType(AssociationEnd).otherEnd()",
+  	  	filter ="->select(e|e.name=?)",
+  	  	invert = "name" }
+  	    |
+  	    	{{ referencedEnd = lookIn("OCL:self.container.oclAsType(Classifier).typedElements->select(
+  	  		e|e.oclIsTypeOf(AssociationEnd)).oclAsType(AssociationEnd).otherEnd()->select(e|e.name=self.name)") }}
+  	   ]]
+  	  <no_space>";"
   	;
   
   function typeReference(TypedElement)
@@ -254,7 +276,7 @@ syntax MofClass(k=0) {
 		;
 
   function annotation(ModelElement)
-  	: (isDefined(annotation) ? annotation{as=annotationSymbol})
+  	: (isDefined(annotation) ? annotation{as=annotationSymbol} <newline> )
   	;
  
   function visibility(GeneralizableElement)

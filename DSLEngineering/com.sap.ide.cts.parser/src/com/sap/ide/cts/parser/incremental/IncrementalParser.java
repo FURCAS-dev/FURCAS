@@ -11,7 +11,9 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import tcs.ClassTemplate;
 import tcs.OperatorTemplate;
@@ -518,7 +520,7 @@ public class IncrementalParser extends IncrementalRecognizer {
 			// difficult, which composite is used then?
 			// some check which parent is in a deeper hierarchy than the other
 			// one has to be done..
-			Collection<RefObject> elementsToDelete = new ArrayList<RefObject>(1);
+		        Set<RefObject> elementsToDelete = new HashSet<RefObject>(1);
 			for (RefObject correspondingModelElement : correspondingModelElements) {
 
 				RefObject parent = (RefObject) correspondingModelElement
@@ -654,7 +656,9 @@ public class IncrementalParser extends IncrementalRecognizer {
 				}
 			}
 			for (RefObject elementToDelete : elementsToDelete) {
+			    if(elementToDelete.is___Alive()) {
 				elementToDelete.refDelete();
+			    }
 			}
 		}
 	}

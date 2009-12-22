@@ -29,6 +29,7 @@ public class ModelElementProxy implements IModelElementProxy {
 	private boolean referenceOnly;
 	private Token firstToken;
 	private Token lastToken;
+	private Object textBlock;
 
 	/**
 	 * @param name
@@ -193,5 +194,13 @@ public class ModelElementProxy implements IModelElementProxy {
 		    existingList.remove(value);
 		}
 	}
+
+        public void setTextBlock(Object currentTextBlock) {
+            this.textBlock = currentTextBlock;
+        }
+        
+        public Object getTextBlock() {
+            return textBlock;
+        }
 
 }

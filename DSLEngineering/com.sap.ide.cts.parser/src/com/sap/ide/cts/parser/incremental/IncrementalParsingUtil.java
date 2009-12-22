@@ -10,6 +10,7 @@ import java.util.List;
 import tcs.AndExp;
 import tcs.AtomExp;
 import tcs.ConditionalElement;
+import tcs.OperatorTemplate;
 import tcs.Property;
 import tcs.SequenceElement;
 import tcs.Template;
@@ -311,9 +312,10 @@ public class IncrementalParsingUtil {
 		AbstractToken subNode, IModelInjector injector) {
 		int i = 0;
 		TypedElement compareToProperty = null;
-		if (subNode instanceof LexedToken
-			&& ((LexedToken) subNode).getSequenceElement() != null) {
-			if (checkIsDefinedOptional(subNode)) {
+		if (subNode instanceof LexedToken) {
+	                if(((LexedToken) subNode).isOperator()) {
+		                compareToProperty = ((OperatorTemplate) newVersion.getTemplate()).getStoreOperatorTo().getStrucfeature();
+	                } else if (((LexedToken) subNode).getSequenceElement() != null && checkIsDefinedOptional(subNode)) {
 				// if the subNode is responsible for a property that is set through
 				// an isDefined clause
 				// then the value to which the token's valuen should be compared is
