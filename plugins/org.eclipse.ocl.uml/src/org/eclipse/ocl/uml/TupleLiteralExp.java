@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TupleLiteralExp.java,v 1.3 2008/11/30 22:06:25 cdamus Exp $
+ * $Id: TupleLiteralExp.java,v 1.4 2009/12/22 18:59:37 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -29,8 +29,6 @@ import org.eclipse.uml2.uml.Property;
  * @see org.eclipse.ocl.uml.UMLPackage#getTupleLiteralExp()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface TupleLiteralExp
 		extends LiteralExp,

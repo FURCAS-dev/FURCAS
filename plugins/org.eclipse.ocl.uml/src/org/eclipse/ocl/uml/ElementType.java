@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: ElementType.java,v 1.4 2008/11/30 22:06:25 cdamus Exp $
+ * $Id: ElementType.java,v 1.5 2009/12/22 18:59:36 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -28,8 +28,6 @@ import org.eclipse.uml2.uml.Classifier;
  * @see org.eclipse.ocl.uml.UMLPackage#getElementType()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface ElementType
 		extends Classifier, org.eclipse.ocl.types.ElementType {

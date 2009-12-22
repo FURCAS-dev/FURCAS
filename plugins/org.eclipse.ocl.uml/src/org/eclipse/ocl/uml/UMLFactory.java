@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLFactory.java,v 1.9 2009/12/06 18:19:35 ewillink Exp $
+ * $Id: UMLFactory.java,v 1.10 2009/12/22 18:59:37 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.uml.UMLPackage
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface UMLFactory
 		extends EFactory {
