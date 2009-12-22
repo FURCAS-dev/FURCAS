@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ExpressionInOCL.java,v 1.7 2009/12/06 18:13:35 ewillink Exp $
+ * $Id: ExpressionInOCL.java,v 1.8 2009/12/22 18:54:06 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -40,8 +40,6 @@ import org.eclipse.ocl.expressions.Variable;
  * @model interface="true" abstract="true"
  *        extendedMetaData="name='ExpressionInOcl'"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface ExpressionInOCL<C, PM>
 		extends Visitable {

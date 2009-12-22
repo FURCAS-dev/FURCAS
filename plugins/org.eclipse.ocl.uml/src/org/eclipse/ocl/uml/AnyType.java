@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: AnyType.java,v 1.9 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: AnyType.java,v 1.10 2009/12/22 18:59:36 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -38,8 +38,6 @@ import org.eclipse.uml2.uml.Type;
  * @see org.eclipse.ocl.uml.UMLPackage#getAnyType()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface AnyType
 		extends Classifier, org.eclipse.ocl.types.AnyType<Operation> {

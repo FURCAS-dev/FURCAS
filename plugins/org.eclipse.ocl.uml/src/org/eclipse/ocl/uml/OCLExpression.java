@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: OCLExpression.java,v 1.4 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: OCLExpression.java,v 1.5 2009/12/22 18:59:37 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -31,8 +31,6 @@ import org.eclipse.uml2.uml.TypedElement;
  *        extendedMetaData="name='OclExpression'"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='has_type'"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface OCLExpression
 		extends TypedElement,

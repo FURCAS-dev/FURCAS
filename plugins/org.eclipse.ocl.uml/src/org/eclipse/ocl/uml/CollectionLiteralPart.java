@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CollectionLiteralPart.java,v 1.3 2008/11/30 22:06:25 cdamus Exp $
+ * $Id: CollectionLiteralPart.java,v 1.4 2009/12/22 18:59:37 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -29,8 +29,6 @@ import org.eclipse.uml2.uml.TypedElement;
  * @see org.eclipse.ocl.uml.UMLPackage#getCollectionLiteralPart()
  * @model abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface CollectionLiteralPart
 		extends TypedElement,

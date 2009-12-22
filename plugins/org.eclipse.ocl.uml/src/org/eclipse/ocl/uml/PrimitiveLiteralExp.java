@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: PrimitiveLiteralExp.java,v 1.3 2008/11/30 22:06:24 cdamus Exp $
+ * $Id: PrimitiveLiteralExp.java,v 1.4 2009/12/22 18:59:37 ewillink Exp $
  */
 package org.eclipse.ocl.uml;
 
@@ -28,8 +28,6 @@ import org.eclipse.uml2.uml.Classifier;
  * @see org.eclipse.ocl.uml.UMLPackage#getPrimitiveLiteralExp()
  * @model abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface PrimitiveLiteralExp
 		extends LiteralExp,

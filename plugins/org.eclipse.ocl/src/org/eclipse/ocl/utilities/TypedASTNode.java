@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: TypedASTNode.java,v 1.5 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: TypedASTNode.java,v 1.6 2009/12/22 18:54:07 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -32,8 +32,6 @@ package org.eclipse.ocl.utilities;
  * @see org.eclipse.ocl.utilities.UtilitiesPackage#getTypedASTNode()
  * @model interface="true" abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface TypedASTNode
 		extends ASTNode {
