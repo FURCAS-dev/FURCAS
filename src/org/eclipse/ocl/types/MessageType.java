@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageType.java,v 1.7 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: MessageType.java,v 1.8 2009/12/22 18:52:41 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -38,8 +38,6 @@ import org.eclipse.ocl.utilities.PredefinedType;
  * @see org.eclipse.ocl.types.TypesPackage#getMessageType()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface MessageType<C, O, P>
 		extends PredefinedType<O> {

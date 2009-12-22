@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UtilitiesPackage.java,v 1.11 2009/12/06 18:13:35 ewillink Exp $
+ * $Id: UtilitiesPackage.java,v 1.12 2009/12/22 18:54:07 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -36,8 +36,6 @@ import org.eclipse.emf.ecore.EReference;
  * @see org.eclipse.ocl.utilities.UtilitiesFactory
  * @model kind="package"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface UtilitiesPackage
 		extends EPackage {
@@ -87,318 +85,350 @@ public interface UtilitiesPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.ASTNode <em>AST Node</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.ASTNode
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getASTNode()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int AST_NODE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int AST_NODE__START_POSITION = 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int AST_NODE__END_POSITION = 1;
 
 	/**
 	 * The number of structural features of the '<em>AST Node</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int AST_NODE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.CallingASTNode <em>Calling AST Node</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.CallingASTNode
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getCallingASTNode()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALLING_AST_NODE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALLING_AST_NODE__START_POSITION = AST_NODE__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALLING_AST_NODE__END_POSITION = AST_NODE__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALLING_AST_NODE__PROPERTY_START_POSITION = AST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALLING_AST_NODE__PROPERTY_END_POSITION = AST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Calling AST Node</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int CALLING_AST_NODE_FEATURE_COUNT = AST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.PredefinedType <em>Predefined Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.PredefinedType
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getPredefinedType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PREDEFINED_TYPE = 7;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.TypedASTNode <em>Typed AST Node</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.TypedASTNode
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getTypedASTNode()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_AST_NODE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_AST_NODE__START_POSITION = AST_NODE__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_AST_NODE__END_POSITION = AST_NODE__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_AST_NODE__TYPE_START_POSITION = AST_NODE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_AST_NODE__TYPE_END_POSITION = AST_NODE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Typed AST Node</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_AST_NODE_FEATURE_COUNT = AST_NODE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.Visitable <em>Visitable</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.Visitable
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitable()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VISITABLE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Visitable</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VISITABLE_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.TypedElement <em>Typed Element</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.TypedElement
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getTypedElement()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_ELEMENT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.Visitor <em>Visitor</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.Visitor
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getVisitor()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VISITOR = 4;
 
 	/**
 	 * The number of structural features of the '<em>Visitor</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VISITOR_FEATURE_COUNT = 0;
 
 	/**
 	 * The number of structural features of the '<em>Typed Element</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPED_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.utilities.ExpressionInOCL <em>Expression In OCL</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.utilities.ExpressionInOCL
 	 * @see org.eclipse.ocl.utilities.impl.UtilitiesPackageImpl#getExpressionInOCL()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL = 6;
 
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL__BODY_EXPRESSION = VISITABLE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL__CONTEXT_VARIABLE = VISITABLE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Result Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL__RESULT_VARIABLE = VISITABLE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Parameter Variable</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL__PARAMETER_VARIABLE = VISITABLE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Generated Type</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL__GENERATED_TYPE = VISITABLE_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Expression In OCL</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int EXPRESSION_IN_OCL_FEATURE_COUNT = VISITABLE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Predefined Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PREDEFINED_TYPE_FEATURE_COUNT = 0;
 
@@ -622,10 +652,10 @@ public interface UtilitiesPackage
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
-	 * <!-- end-user-doc -->
-	 * @generated
 	 * @noimplement This interface is not intended to be implemented by clients.
 	 * @noextend This interface is not intended to be extended by clients.
+	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	interface Literals {
 
