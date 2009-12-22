@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypesPackage.java,v 1.10 2009/12/06 18:12:34 ewillink Exp $
+ * $Id: TypesPackage.java,v 1.11 2009/12/22 18:52:41 ewillink Exp $
  */
 package org.eclipse.ocl.types;
 
@@ -37,8 +37,6 @@ import org.eclipse.ocl.utilities.UtilitiesPackage;
  * @see org.eclipse.ocl.types.TypesFactory
  * @model kind="package"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface TypesPackage
 		extends EPackage {
@@ -87,634 +85,699 @@ public interface TypesPackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.AnyTypeImpl <em>Any Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.AnyTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getAnyType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ANY_TYPE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Any Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ANY_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.CollectionTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getCollectionType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE = 2;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE__START_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE__END_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE__TYPE_START_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE__TYPE_END_POSITION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE__ELEMENT_TYPE = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE__KIND = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>Collection Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int COLLECTION_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.BagTypeImpl <em>Bag Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.BagTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getBagType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE__START_POSITION = COLLECTION_TYPE__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE__END_POSITION = COLLECTION_TYPE__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE__TYPE_START_POSITION = COLLECTION_TYPE__TYPE_START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE__TYPE_END_POSITION = COLLECTION_TYPE__TYPE_END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE__KIND = COLLECTION_TYPE__KIND;
 
 	/**
 	 * The number of structural features of the '<em>Bag Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int BAG_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.ElementTypeImpl <em>Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.ElementTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getElementType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ELEMENT_TYPE = 3;
 
 	/**
 	 * The number of structural features of the '<em>Element Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ELEMENT_TYPE_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.InvalidTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getInvalidType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_TYPE = 4;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int INVALID_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.MessageTypeImpl <em>Message Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.MessageTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getMessageType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_TYPE = 5;
 
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_TYPE__REFERRED_OPERATION = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_TYPE__REFERRED_SIGNAL = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Message Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int MESSAGE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.OrderedSetTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getOrderedSetType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE__START_POSITION = COLLECTION_TYPE__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE__END_POSITION = COLLECTION_TYPE__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE__TYPE_START_POSITION = COLLECTION_TYPE__TYPE_START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE__TYPE_END_POSITION = COLLECTION_TYPE__TYPE_END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE__KIND = COLLECTION_TYPE__KIND;
 
 	/**
 	 * The number of structural features of the '<em>Ordered Set Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int ORDERED_SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.PrimitiveTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getPrimitiveType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE = 7;
 
 	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int PRIMITIVE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.SequenceTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getSequenceType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE = 8;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE__START_POSITION = COLLECTION_TYPE__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE__END_POSITION = COLLECTION_TYPE__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE__TYPE_START_POSITION = COLLECTION_TYPE__TYPE_START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE__TYPE_END_POSITION = COLLECTION_TYPE__TYPE_END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE__KIND = COLLECTION_TYPE__KIND;
 
 	/**
 	 * The number of structural features of the '<em>Sequence Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SEQUENCE_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.SetTypeImpl <em>Set Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.SetTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getSetType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE = 9;
 
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE__START_POSITION = COLLECTION_TYPE__START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE__END_POSITION = COLLECTION_TYPE__END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE__TYPE_START_POSITION = COLLECTION_TYPE__TYPE_START_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE__TYPE_END_POSITION = COLLECTION_TYPE__TYPE_END_POSITION;
 
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE__ELEMENT_TYPE = COLLECTION_TYPE__ELEMENT_TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE__KIND = COLLECTION_TYPE__KIND;
 
 	/**
 	 * The number of structural features of the '<em>Set Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int SET_TYPE_FEATURE_COUNT = COLLECTION_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.TupleTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getTupleType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE = 11;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.TypeTypeImpl <em>Type Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.TypeTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getTypeType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_TYPE = 12;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.VoidTypeImpl <em>Void Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.VoidTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getVoidType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VOID_TYPE = 13;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.types.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.types.impl.TemplateParameterTypeImpl
 	 * @see org.eclipse.ocl.types.impl.TypesPackageImpl#getTemplateParameterType()
 	 * @generated
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TEMPLATE_PARAMETER_TYPE = 10;
 
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TEMPLATE_PARAMETER_TYPE__SPECIFICATION = 0;
 
 	/**
 	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
+	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TEMPLATE_PARAMETER_TYPE_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TUPLE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_TYPE__REFERRED_TYPE = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Type Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int TYPE_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Void Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
-	 * @noreference This field is not intended to be referenced by clients.
 	 */
 	int VOID_TYPE_FEATURE_COUNT = UtilitiesPackage.PREDEFINED_TYPE_FEATURE_COUNT + 0;
 
@@ -946,8 +1009,6 @@ public interface TypesPackage
 	 * </ul>
 	 * <!-- end-user-doc -->
 	 * @generated
-	 * @noimplement This interface is not intended to be implemented by clients.
-	 * @noextend This interface is not intended to be extended by clients.
 	 */
 	interface Literals {
 
