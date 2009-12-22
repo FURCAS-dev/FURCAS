@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeCS.java,v 1.4 2009/10/10 07:10:08 ewillink Exp $
+ * $Id: CollectionTypeCS.java,v 1.5 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -33,8 +33,6 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getCollectionTypeCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface CollectionTypeCS
 		extends SimpleNameCS, TypeCS {

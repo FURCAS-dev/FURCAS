@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: LetExpCS.java,v 1.3 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: LetExpCS.java,v 1.4 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -35,8 +35,6 @@ import org.eclipse.emf.common.util.EList;
  * @see org.eclipse.ocl.cst.CSTPackage#getLetExpCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface LetExpCS
 		extends OCLExpressionCS {

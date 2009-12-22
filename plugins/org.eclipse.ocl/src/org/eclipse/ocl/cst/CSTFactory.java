@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: CSTFactory.java,v 1.6 2009/10/15 19:37:46 ewillink Exp $
+ * $Id: CSTFactory.java,v 1.7 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -26,8 +26,6 @@ import org.eclipse.emf.ecore.EFactory;
  * <!-- end-user-doc -->
  * @see org.eclipse.ocl.cst.CSTPackage
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface CSTFactory
 		extends EFactory {
