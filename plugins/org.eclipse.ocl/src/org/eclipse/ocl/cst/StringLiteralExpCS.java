@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: StringLiteralExpCS.java,v 1.4 2009/03/05 14:12:13 cdamus Exp $
+ * $Id: StringLiteralExpCS.java,v 1.5 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -34,8 +34,6 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getStringLiteralExpCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface StringLiteralExpCS
 		extends PrimitiveLiteralExpCS {

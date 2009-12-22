@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: InitOrDerValueCS.java,v 1.5 2009/09/04 13:40:44 ewillink Exp $
+ * $Id: InitOrDerValueCS.java,v 1.6 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -32,8 +32,6 @@ package org.eclipse.ocl.cst;
  * @see org.eclipse.ocl.cst.CSTPackage#getInitOrDerValueCS()
  * @model abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface InitOrDerValueCS
 		extends CSTNode {

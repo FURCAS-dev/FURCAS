@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLDocumentCS.java,v 1.1 2008/12/02 11:58:50 cdamus Exp $
+ * $Id: OCLDocumentCS.java,v 1.2 2009/12/22 18:42:30 ewillink Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -34,8 +34,6 @@ import org.eclipse.emf.common.util.EList;
  * @see org.eclipse.ocl.cst.CSTPackage#getOCLDocumentCS()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface OCLDocumentCS
 		extends CSTNode {
