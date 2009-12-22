@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: EcorePackage.java,v 1.11 2009/12/06 18:15:20 ewillink Exp $
+ * $Id: EcorePackage.java,v 1.12 2009/12/22 18:57:14 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
@@ -88,6 +88,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.AnyTypeImpl <em>Any Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.AnyTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getAnyType()
@@ -98,6 +100,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -107,6 +111,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -116,6 +122,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -125,6 +133,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -134,6 +144,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -143,6 +155,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -152,6 +166,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -161,6 +177,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -170,6 +188,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Any Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -179,6 +199,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionTypeImpl <em>Collection Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CollectionTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionType()
@@ -189,6 +211,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -198,6 +222,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -207,6 +233,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -216,6 +244,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -225,6 +255,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -234,6 +266,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -243,6 +277,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -252,6 +288,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -261,6 +299,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -270,6 +310,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -279,6 +321,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -288,6 +332,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -297,6 +343,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -306,6 +354,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -315,6 +365,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -324,6 +376,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Collection Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -333,6 +387,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.BagTypeImpl <em>Bag Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.BagTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getBagType()
@@ -343,6 +399,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -352,6 +410,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -361,6 +421,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -370,6 +432,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -379,6 +443,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -388,6 +454,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -397,6 +465,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -406,6 +476,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -415,6 +487,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -424,6 +498,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -433,6 +509,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -442,6 +520,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -451,6 +531,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -460,6 +542,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -469,6 +553,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -478,6 +564,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Bag Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -487,6 +575,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.ElementTypeImpl <em>Element Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.ElementTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getElementType()
@@ -497,6 +587,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -506,6 +598,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -515,6 +609,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -524,6 +620,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -533,6 +631,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -542,6 +642,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -551,6 +653,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -560,6 +664,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -569,6 +675,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -578,6 +686,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -587,6 +697,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>ESuper Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -596,6 +708,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EOperations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -605,6 +719,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Attributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -614,6 +730,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -623,6 +741,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EReferences</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -632,6 +752,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAttributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -641,6 +763,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Containments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -650,6 +774,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Operations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -659,6 +785,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Structural Features</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -668,6 +796,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -677,6 +807,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EID Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -686,6 +818,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EStructural Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -695,6 +829,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -704,6 +840,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Generic Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -713,6 +851,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Element Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -722,6 +862,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.InvalidTypeImpl <em>Invalid Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.InvalidTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getInvalidType()
@@ -732,6 +874,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -741,6 +885,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -750,6 +896,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -759,6 +907,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -768,6 +918,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -777,6 +929,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -786,6 +940,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -795,6 +951,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -804,6 +962,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Invalid Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -813,6 +973,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.MessageTypeImpl <em>Message Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.MessageTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getMessageType()
@@ -823,6 +985,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -832,6 +996,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -841,6 +1007,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -850,6 +1018,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -859,6 +1029,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -868,6 +1040,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -877,6 +1051,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -886,6 +1062,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -895,6 +1073,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -904,6 +1084,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -913,6 +1095,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>ESuper Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -922,6 +1106,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EOperations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -931,6 +1117,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Attributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -940,6 +1128,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -949,6 +1139,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EReferences</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -958,6 +1150,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAttributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -967,6 +1161,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Containments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -976,6 +1172,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Operations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -985,6 +1183,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Structural Features</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -994,6 +1194,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1003,6 +1205,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EID Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1012,6 +1216,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EStructural Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1021,6 +1227,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1030,6 +1238,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Generic Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1039,6 +1249,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1048,6 +1260,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Signal</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1057,6 +1271,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Message Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1066,6 +1282,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.OrderedSetTypeImpl <em>Ordered Set Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.OrderedSetTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOrderedSetType()
@@ -1076,6 +1294,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1085,6 +1305,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1094,6 +1316,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1103,6 +1327,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1112,6 +1338,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1121,6 +1349,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1130,6 +1360,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1139,6 +1371,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1148,6 +1382,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1157,6 +1393,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1166,6 +1404,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1175,6 +1415,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1184,6 +1426,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1193,6 +1437,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1202,6 +1448,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1211,6 +1459,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Ordered Set Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1220,6 +1470,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.PrimitiveTypeImpl <em>Primitive Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.PrimitiveTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getPrimitiveType()
@@ -1230,6 +1482,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1239,6 +1493,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1248,6 +1504,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1257,6 +1515,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1266,6 +1526,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1275,6 +1537,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1284,6 +1548,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1293,6 +1559,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1302,6 +1570,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1311,6 +1581,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Primitive Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1320,6 +1592,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.SequenceTypeImpl <em>Sequence Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.SequenceTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getSequenceType()
@@ -1330,6 +1604,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1339,6 +1615,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1348,6 +1626,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1357,6 +1637,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1366,6 +1648,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1375,6 +1659,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1384,6 +1670,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1393,6 +1681,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1402,6 +1692,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1411,6 +1703,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1420,6 +1714,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1429,6 +1725,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1438,6 +1736,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1447,6 +1747,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1456,6 +1758,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1465,6 +1769,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Sequence Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1474,6 +1780,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.SetTypeImpl <em>Set Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.SetTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getSetType()
@@ -1484,6 +1792,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1493,6 +1803,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1502,6 +1814,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1511,6 +1825,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1520,6 +1836,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1529,6 +1847,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1538,6 +1858,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1547,6 +1869,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1556,6 +1880,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1565,6 +1891,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1574,6 +1902,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1583,6 +1913,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1592,6 +1924,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1601,6 +1935,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Element Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1610,6 +1946,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1619,6 +1957,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Set Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1628,6 +1968,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl <em>Template Parameter Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.TemplateParameterTypeImpl
@@ -1639,6 +1981,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1649,6 +1993,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1659,6 +2005,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1669,6 +2017,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1679,6 +2029,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1689,6 +2041,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1699,6 +2053,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1709,6 +2065,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1719,6 +2077,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1729,6 +2089,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Template Parameter Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1739,6 +2101,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TupleTypeImpl <em>Tuple Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.TupleTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTupleType()
@@ -1749,6 +2113,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1758,6 +2124,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1767,6 +2135,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1776,6 +2146,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1785,6 +2157,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1794,6 +2168,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1803,6 +2179,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1812,6 +2190,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1821,6 +2201,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Abstract</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1830,6 +2212,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Interface</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1839,6 +2223,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>ESuper Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1848,6 +2234,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EOperations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1857,6 +2245,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Attributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1866,6 +2256,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll References</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1875,6 +2267,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EReferences</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1884,6 +2278,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAttributes</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1893,6 +2289,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Containments</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1902,6 +2300,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Operations</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1911,6 +2311,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Structural Features</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1920,6 +2322,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1929,6 +2333,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EID Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1938,6 +2344,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EStructural Features</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1947,6 +2355,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Super Types</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1956,6 +2366,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAll Generic Super Types</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1965,6 +2377,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Serializable</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1974,6 +2388,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Tuple Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -1983,6 +2399,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TypeTypeImpl <em>Type Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.TypeTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTypeType()
@@ -1993,6 +2411,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2002,6 +2422,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2011,6 +2433,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2020,6 +2444,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2029,6 +2455,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2038,6 +2466,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2047,6 +2477,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2056,6 +2488,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2065,6 +2499,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2074,6 +2510,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Type Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2083,6 +2521,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.VoidTypeImpl <em>Void Type</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.VoidTypeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getVoidType()
@@ -2093,6 +2533,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2102,6 +2544,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2111,6 +2555,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2120,6 +2566,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Class</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2129,6 +2577,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Default Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2138,6 +2588,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Instance Type Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2147,6 +2599,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EPackage</b></em>' container reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2156,6 +2610,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType Parameters</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2165,6 +2621,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Void Type</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2174,6 +2632,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CallOperationActionImpl <em>Call Operation Action</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CallOperationActionImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCallOperationAction()
@@ -2184,6 +2644,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2193,6 +2655,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Call Operation Action</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2202,6 +2666,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.ConstraintImpl <em>Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.ConstraintImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getConstraint()
@@ -2212,6 +2678,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2221,6 +2689,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2230,6 +2700,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Specification</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2239,6 +2711,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Constrained Elements</b></em>' reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2248,6 +2722,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2257,6 +2733,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2266,6 +2744,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.SendSignalActionImpl <em>Send Signal Action</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.SendSignalActionImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getSendSignalAction()
@@ -2276,6 +2756,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Signal</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2285,6 +2767,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Send Signal Action</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2294,6 +2778,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl <em>Expression In OCL</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.ExpressionInOCLImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getExpressionInOCL()
@@ -2304,6 +2790,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Body Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2313,6 +2801,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2322,6 +2812,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Result Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2331,6 +2823,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Parameter Variable</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2340,6 +2834,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Generated Type</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * @since 3.0
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -2350,6 +2846,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Expression In OCL</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2359,6 +2857,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.OCLExpressionImpl <em>OCL Expression</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.OCLExpressionImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOCLExpression()
@@ -2369,6 +2869,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2378,6 +2880,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2387,6 +2891,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2396,6 +2902,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2405,6 +2913,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2414,6 +2924,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2423,6 +2935,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2432,6 +2946,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2441,6 +2957,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2450,6 +2968,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2459,6 +2979,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2468,6 +2990,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2477,6 +3001,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>OCL Expression</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2486,6 +3012,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CallExpImpl <em>Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CallExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCallExp()
@@ -2496,6 +3024,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2505,6 +3035,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2514,6 +3046,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2523,6 +3057,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2532,6 +3068,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2541,6 +3079,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2550,6 +3090,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2559,6 +3101,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2568,6 +3112,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2577,6 +3123,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2586,6 +3134,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2595,6 +3145,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2604,6 +3156,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2613,6 +3167,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2622,6 +3178,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2631,6 +3189,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2640,6 +3200,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.FeatureCallExpImpl <em>Feature Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.FeatureCallExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getFeatureCallExp()
@@ -2650,6 +3212,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2659,6 +3223,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2668,6 +3234,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2677,6 +3245,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2686,6 +3256,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2695,6 +3267,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2704,6 +3278,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2713,6 +3289,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2722,6 +3300,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2731,6 +3311,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2740,6 +3322,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2749,6 +3333,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2758,6 +3344,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2767,6 +3355,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2776,6 +3366,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2785,6 +3377,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2794,6 +3388,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Feature Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2803,6 +3399,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.NavigationCallExpImpl <em>Navigation Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.NavigationCallExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getNavigationCallExp()
@@ -2813,6 +3411,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2822,6 +3422,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2831,6 +3433,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2840,6 +3444,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2849,6 +3455,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2858,6 +3466,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2867,6 +3477,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2876,6 +3488,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2885,6 +3499,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2894,6 +3510,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2903,6 +3521,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2912,6 +3532,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2921,6 +3543,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2930,6 +3554,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2939,6 +3565,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2948,6 +3576,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2957,6 +3587,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2966,6 +3598,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2975,6 +3609,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Navigation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -2984,6 +3620,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.AssociationClassCallExpImpl <em>Association Class Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.AssociationClassCallExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getAssociationClassCallExp()
@@ -2994,6 +3632,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3003,6 +3643,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3012,6 +3654,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3021,6 +3665,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3030,6 +3676,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3039,6 +3687,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3048,6 +3698,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3057,6 +3709,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3066,6 +3720,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3075,6 +3731,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3084,6 +3742,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3093,6 +3753,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3102,6 +3764,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3111,6 +3775,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3120,6 +3786,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3129,6 +3797,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3138,6 +3808,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3147,6 +3819,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3156,6 +3830,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Association Class</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3165,6 +3841,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Association Class Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3174,6 +3852,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.LiteralExpImpl <em>Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.LiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getLiteralExp()
@@ -3184,6 +3864,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3193,6 +3875,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3202,6 +3886,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3211,6 +3897,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3220,6 +3908,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3229,6 +3919,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3238,6 +3930,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3247,6 +3941,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3256,6 +3952,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3265,6 +3963,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3274,6 +3974,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3283,6 +3985,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3292,6 +3996,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3301,6 +4007,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.PrimitiveLiteralExpImpl <em>Primitive Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.PrimitiveLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getPrimitiveLiteralExp()
@@ -3311,6 +4019,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3320,6 +4030,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3329,6 +4041,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3338,6 +4052,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3347,6 +4063,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3356,6 +4074,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3365,6 +4085,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3374,6 +4096,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3383,6 +4107,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3392,6 +4118,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3401,6 +4129,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3410,6 +4140,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3419,6 +4151,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Primitive Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3428,6 +4162,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.BooleanLiteralExpImpl <em>Boolean Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.BooleanLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getBooleanLiteralExp()
@@ -3438,6 +4174,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3447,6 +4185,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3456,6 +4196,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3465,6 +4207,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3474,6 +4218,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3483,6 +4229,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3492,6 +4240,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3501,6 +4251,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3510,6 +4262,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3519,6 +4273,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3528,6 +4284,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3537,6 +4295,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3546,6 +4306,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Boolean Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3555,6 +4317,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Boolean Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3564,6 +4328,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionLiteralPartImpl <em>Collection Literal Part</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CollectionLiteralPartImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionLiteralPart()
@@ -3574,6 +4340,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3583,6 +4351,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3592,6 +4362,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3601,6 +4373,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3610,6 +4384,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3619,6 +4395,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3628,6 +4406,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3637,6 +4417,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3646,6 +4428,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3655,6 +4439,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3664,6 +4450,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Collection Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3673,6 +4461,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionItemImpl <em>Collection Item</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CollectionItemImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionItem()
@@ -3683,6 +4473,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3692,6 +4484,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3701,6 +4495,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3710,6 +4506,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3719,6 +4517,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3728,6 +4528,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3737,6 +4539,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3746,6 +4550,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3755,6 +4561,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3764,6 +4572,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3773,6 +4583,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Item</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3782,6 +4594,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Collection Item</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3791,6 +4605,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionLiteralExpImpl <em>Collection Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CollectionLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionLiteralExp()
@@ -3801,6 +4617,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3810,6 +4628,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3819,6 +4639,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3828,6 +4650,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3837,6 +4661,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3846,6 +4672,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3855,6 +4683,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3864,6 +4694,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3873,6 +4705,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3882,6 +4716,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3891,6 +4727,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3900,6 +4738,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3909,6 +4749,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3918,6 +4760,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3927,6 +4771,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Simple Range</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3936,6 +4782,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Collection Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3945,6 +4793,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.CollectionRangeImpl <em>Collection Range</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.CollectionRangeImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getCollectionRange()
@@ -3955,6 +4805,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3964,6 +4816,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3973,6 +4827,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3982,6 +4838,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -3991,6 +4849,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4000,6 +4860,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4009,6 +4871,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4018,6 +4882,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4027,6 +4893,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4036,6 +4904,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4045,6 +4915,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>First</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4054,6 +4926,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Last</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4063,6 +4937,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Collection Range</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4072,6 +4948,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.EnumLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getEnumLiteralExp()
@@ -4082,6 +4960,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4091,6 +4971,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4100,6 +4982,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4109,6 +4993,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4118,6 +5004,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4127,6 +5015,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4136,6 +5026,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4145,6 +5037,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4154,6 +5048,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4163,6 +5059,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4172,6 +5070,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4181,6 +5081,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4190,6 +5092,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Enum Literal</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4199,6 +5103,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Enum Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4208,6 +5114,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.IfExpImpl <em>If Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.IfExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIfExp()
@@ -4218,6 +5126,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4227,6 +5137,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4236,6 +5148,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4245,6 +5159,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4254,6 +5170,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4263,6 +5181,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4272,6 +5192,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4281,6 +5203,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4290,6 +5214,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4299,6 +5225,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4308,6 +5236,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4317,6 +5247,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4326,6 +5258,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4335,6 +5269,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Then Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4344,6 +5280,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Else Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4353,6 +5291,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>If Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4362,6 +5302,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.NumericLiteralExpImpl <em>Numeric Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.NumericLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getNumericLiteralExp()
@@ -4372,6 +5314,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4381,6 +5325,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4390,6 +5336,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4399,6 +5347,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4408,6 +5358,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4417,6 +5369,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4426,6 +5380,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4435,6 +5391,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4444,6 +5402,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4453,6 +5413,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4462,6 +5424,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4471,6 +5435,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4480,6 +5446,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Numeric Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4489,6 +5457,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.IntegerLiteralExpImpl <em>Integer Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.IntegerLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIntegerLiteralExp()
@@ -4499,6 +5469,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4508,6 +5480,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4517,6 +5491,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4526,6 +5502,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4535,6 +5513,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4544,6 +5524,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4553,6 +5535,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4562,6 +5546,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4571,6 +5557,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4580,6 +5568,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4589,6 +5579,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4598,6 +5590,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4607,6 +5601,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4616,6 +5612,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Integer Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4625,6 +5623,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl <em>Unlimited Natural Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.UnlimitedNaturalLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getUnlimitedNaturalLiteralExp()
@@ -4635,6 +5635,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4644,6 +5646,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4653,6 +5657,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4662,6 +5668,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4671,6 +5679,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4680,6 +5690,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4689,6 +5701,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4698,6 +5712,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4707,6 +5723,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4716,6 +5734,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4725,6 +5745,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4734,6 +5756,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4743,6 +5767,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Integer Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4752,6 +5778,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unlimited</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4761,6 +5789,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Unlimited Natural Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4770,6 +5800,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.InvalidLiteralExpImpl <em>Invalid Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.InvalidLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getInvalidLiteralExp()
@@ -4780,6 +5812,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4789,6 +5823,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4798,6 +5834,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4807,6 +5845,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4816,6 +5856,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4825,6 +5867,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4834,6 +5878,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4843,6 +5889,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4852,6 +5900,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4861,6 +5911,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4870,6 +5922,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4879,6 +5933,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4888,6 +5944,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Invalid Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4897,6 +5955,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.LoopExpImpl <em>Loop Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.LoopExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getLoopExp()
@@ -4907,6 +5967,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4916,6 +5978,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4925,6 +5989,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4934,6 +6000,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4943,6 +6011,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4952,6 +6022,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4961,6 +6033,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4970,6 +6044,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4979,6 +6055,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4988,6 +6066,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -4997,6 +6077,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5006,6 +6088,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5015,6 +6099,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5024,6 +6110,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5033,6 +6121,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5042,6 +6132,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5051,6 +6143,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5060,6 +6154,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Loop Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5069,6 +6165,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.IterateExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIterateExp()
@@ -5079,6 +6177,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5088,6 +6188,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5097,6 +6199,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5106,6 +6210,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5115,6 +6221,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5124,6 +6232,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5133,6 +6243,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5142,6 +6254,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5151,6 +6265,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5160,6 +6276,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5169,6 +6287,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5178,6 +6298,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5187,6 +6309,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5196,6 +6320,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5205,6 +6331,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5214,6 +6342,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5223,6 +6353,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5232,6 +6364,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5241,6 +6375,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Iterate Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5250,6 +6386,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.IteratorExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getIteratorExp()
@@ -5260,6 +6398,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5269,6 +6409,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5278,6 +6420,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5287,6 +6431,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5296,6 +6442,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5305,6 +6453,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5314,6 +6464,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5323,6 +6475,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5332,6 +6486,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5341,6 +6497,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5350,6 +6508,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5359,6 +6519,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5368,6 +6530,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5377,6 +6541,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5386,6 +6552,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5395,6 +6563,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5404,6 +6574,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5413,6 +6585,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Iterator Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5422,6 +6596,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.LetExpImpl <em>Let Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.LetExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getLetExp()
@@ -5432,6 +6608,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5441,6 +6619,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5450,6 +6630,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5459,6 +6641,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5468,6 +6652,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5477,6 +6663,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5486,6 +6674,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5495,6 +6685,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5504,6 +6696,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5513,6 +6707,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5522,6 +6718,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5531,6 +6729,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5540,6 +6740,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>In</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5549,6 +6751,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5558,6 +6762,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Let Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5567,6 +6773,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.MessageExpImpl <em>Message Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.MessageExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getMessageExp()
@@ -5577,6 +6785,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5586,6 +6796,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5595,6 +6807,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5604,6 +6818,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5613,6 +6829,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5622,6 +6840,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5631,6 +6851,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5640,6 +6862,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5649,6 +6873,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5658,6 +6884,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5667,6 +6895,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5676,6 +6906,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5685,6 +6917,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5694,6 +6928,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5703,6 +6939,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5712,6 +6950,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5721,6 +6961,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Called Operation</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5730,6 +6972,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Sent Signal</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5739,6 +6983,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Message Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5748,6 +6994,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.NullLiteralExpImpl <em>Null Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.NullLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getNullLiteralExp()
@@ -5758,6 +7006,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5767,6 +7017,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5776,6 +7028,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5785,6 +7039,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5794,6 +7050,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5803,6 +7061,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5812,6 +7072,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5821,6 +7083,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5830,6 +7094,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5839,6 +7105,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5848,6 +7116,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5857,6 +7127,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5866,6 +7138,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Null Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5875,6 +7149,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.OperationCallExpImpl <em>Operation Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.OperationCallExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getOperationCallExp()
@@ -5885,6 +7161,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5894,6 +7172,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5903,6 +7183,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5912,6 +7194,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5921,6 +7205,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5930,6 +7216,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5939,6 +7227,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5948,6 +7238,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5957,6 +7249,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5966,6 +7260,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5975,6 +7271,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5984,6 +7282,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -5993,6 +7293,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6002,6 +7304,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6011,6 +7315,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6020,6 +7326,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6029,6 +7337,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Argument</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6038,6 +7348,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Operation</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6047,6 +7359,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Operation Code</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6056,6 +7370,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6065,6 +7381,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.PropertyCallExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getPropertyCallExp()
@@ -6075,6 +7393,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6084,6 +7404,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6093,6 +7415,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6102,6 +7426,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6111,6 +7437,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6120,6 +7448,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6129,6 +7459,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6138,6 +7470,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6147,6 +7481,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6156,6 +7492,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6165,6 +7503,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6174,6 +7514,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6183,6 +7525,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6192,6 +7536,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Property End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6201,6 +7547,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6210,6 +7558,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Marked Pre</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6219,6 +7569,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Qualifier</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6228,6 +7580,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Navigation Source</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6237,6 +7591,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Property</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6246,6 +7602,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Property Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6255,6 +7613,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.RealLiteralExpImpl <em>Real Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.RealLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getRealLiteralExp()
@@ -6265,6 +7625,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6274,6 +7636,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6283,6 +7647,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6292,6 +7658,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6301,6 +7669,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6310,6 +7680,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6319,6 +7691,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6328,6 +7702,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6337,6 +7713,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6346,6 +7724,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6355,6 +7735,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6364,6 +7746,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6373,6 +7757,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Real Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6382,6 +7768,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Real Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6391,6 +7779,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.StateExpImpl <em>State Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.StateExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getStateExp()
@@ -6401,6 +7791,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6410,6 +7802,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6419,6 +7813,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6428,6 +7824,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6437,6 +7835,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6446,6 +7846,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6455,6 +7857,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6464,6 +7868,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6473,6 +7879,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6482,6 +7890,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6491,6 +7901,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6500,6 +7912,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6509,6 +7923,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred State</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6518,6 +7934,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>State Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6527,6 +7945,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.StringLiteralExpImpl <em>String Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.StringLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getStringLiteralExp()
@@ -6537,6 +7957,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6546,6 +7968,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6555,6 +7979,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6564,6 +7990,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6573,6 +8001,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6582,6 +8012,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6591,6 +8023,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6600,6 +8034,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6609,6 +8045,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6618,6 +8056,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6627,6 +8067,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6636,6 +8078,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6645,6 +8089,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>String Symbol</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6654,6 +8100,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>String Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6663,6 +8111,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.TupleLiteralExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTupleLiteralExp()
@@ -6673,6 +8123,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6682,6 +8134,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6691,6 +8145,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6700,6 +8156,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6709,6 +8167,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6718,6 +8178,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6727,6 +8189,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6736,6 +8200,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6745,6 +8211,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6754,6 +8222,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6763,6 +8233,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6772,6 +8244,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6781,6 +8255,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Part</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6790,6 +8266,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6799,6 +8277,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TupleLiteralPartImpl <em>Tuple Literal Part</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.TupleLiteralPartImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTupleLiteralPart()
@@ -6809,6 +8289,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6818,6 +8300,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6827,6 +8311,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6836,6 +8322,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6845,6 +8333,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6854,6 +8344,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6863,6 +8355,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6872,6 +8366,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6881,6 +8377,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6890,6 +8388,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6899,6 +8399,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6908,6 +8410,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6917,6 +8421,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6926,6 +8432,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6935,6 +8443,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6944,6 +8454,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6953,6 +8465,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Part</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6962,6 +8476,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.TypeExpImpl <em>Type Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.TypeExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getTypeExp()
@@ -6972,6 +8488,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6981,6 +8499,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6990,6 +8510,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -6999,6 +8521,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7008,6 +8532,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7017,6 +8543,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7026,6 +8554,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7035,6 +8565,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7044,6 +8576,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7053,6 +8587,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7062,6 +8598,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7071,6 +8609,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7080,6 +8620,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7089,6 +8631,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Type Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7098,6 +8642,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.UnspecifiedValueExpImpl <em>Unspecified Value Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.UnspecifiedValueExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getUnspecifiedValueExp()
@@ -7108,6 +8654,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7117,6 +8665,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7126,6 +8676,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7135,6 +8687,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7144,6 +8698,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7153,6 +8709,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7162,6 +8720,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7171,6 +8731,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7180,6 +8742,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7189,6 +8753,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7198,6 +8764,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7207,6 +8775,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7216,6 +8786,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7225,6 +8797,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7234,6 +8808,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Unspecified Value Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7243,6 +8819,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.VariableImpl <em>Variable</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.VariableImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getVariable()
@@ -7253,6 +8831,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7262,6 +8842,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7271,6 +8853,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7280,6 +8864,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7289,6 +8875,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7298,6 +8886,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7307,6 +8897,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7316,6 +8908,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7325,6 +8919,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7334,6 +8930,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7343,6 +8941,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7352,6 +8952,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7361,6 +8963,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7370,6 +8974,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Type End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7379,6 +8985,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Init Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7388,6 +8996,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Represented Parameter</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7397,6 +9007,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Variable</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7406,6 +9018,8 @@ public interface EcorePackage
 	/**
 	 * The meta object id for the '{@link org.eclipse.ocl.ecore.impl.VariableExpImpl <em>Variable Exp</em>}' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.ocl.ecore.impl.VariableExpImpl
 	 * @see org.eclipse.ocl.ecore.impl.EcorePackageImpl#getVariableExp()
@@ -7416,6 +9030,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7425,6 +9041,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7434,6 +9052,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Ordered</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7443,6 +9063,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Unique</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7452,6 +9074,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Lower Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7461,6 +9085,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Upper Bound</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7470,6 +9096,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Many</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7479,6 +9107,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7488,6 +9118,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EType</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7497,6 +9129,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>EGeneric Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7506,6 +9140,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Start Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7515,6 +9151,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>End Position</b></em>' attribute.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7524,6 +9162,8 @@ public interface EcorePackage
 	/**
 	 * The feature id for the '<em><b>Referred Variable</b></em>' reference.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
@@ -7533,6 +9173,8 @@ public interface EcorePackage
 	/**
 	 * The number of structural features of the '<em>Variable Exp</em>' class.
 	 * <!-- begin-user-doc -->
+	 * This value may change when the model code is regenerated.
+	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
