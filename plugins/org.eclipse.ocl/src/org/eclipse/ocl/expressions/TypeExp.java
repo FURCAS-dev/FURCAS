@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: TypeExp.java,v 1.6 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: TypeExp.java,v 1.7 2009/12/22 18:53:30 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -32,8 +32,6 @@ package org.eclipse.ocl.expressions;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getTypeExp()
  * @model
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface TypeExp<C>
 		extends OCLExpression<C> {

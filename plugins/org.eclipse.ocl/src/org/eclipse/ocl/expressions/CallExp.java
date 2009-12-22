@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: CallExp.java,v 1.6 2008/11/30 22:11:38 cdamus Exp $
+ * $Id: CallExp.java,v 1.7 2009/12/22 18:53:30 ewillink Exp $
  */
 package org.eclipse.ocl.expressions;
 
@@ -34,8 +34,6 @@ import org.eclipse.ocl.utilities.CallingASTNode;
  * @see org.eclipse.ocl.expressions.ExpressionsPackage#getCallExp()
  * @model abstract="true"
  * @generated
- * @noimplement This interface is not intended to be implemented by clients.
- * @noextend This interface is not intended to be extended by clients.
  */
 public interface CallExp<C>
 		extends OCLExpression<C>, CallingASTNode {
