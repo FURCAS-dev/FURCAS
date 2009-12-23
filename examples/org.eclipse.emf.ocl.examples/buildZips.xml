@@ -15,7 +15,6 @@
 		<zip destfile="zips/library.zip" basedir="../org.eclipse.emf.examples.library"/>
 		<zip destfile="zips/libraryEdit.zip" basedir="../org.eclipse.emf.examples.library.edit"/>
 		<zip destfile="zips/libraryEditor.zip" basedir="../org.eclipse.emf.examples.library.editor"/>
-		<antcall target="refresh"/>
 	</target>
 
 	<target name="clean" depends="init" description="Clean the plug-in: org.eclipse.emf.ocl.examples.">
