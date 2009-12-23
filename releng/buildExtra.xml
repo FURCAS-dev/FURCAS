@@ -20,40 +20,76 @@
 				<include name="**/net.sourceforge.lpg.lpgjavaruntime.source_${LPGRuntimeVersion}*.jar"/>
 			</patternset>
 		</unzip>
+		
+		<!-- Here is where we fetch all of the example plugins from CVS
+		      We don't need them to be packaged into the Master zip, but rather
+		      they are needed so that they can be zipped up into the examples
+		      plugin as part of the build for that plugin. See the postProcess
+		      target below for the other part of this process.-->
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.ocl.examples.interpreter"/>
+		</ant>
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.examples.library"/>
+		</ant>
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.examples.library.edit"/>
+		</ant>
+		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
+			<property name="type" value="plugin"/>
+			<property name="id" value="org.eclipse.emf.examples.library.editor"/>
+		</ant>
 	</target>
 
 	<target name="postFetch">
 		<echo message="postFetch!!!" />
 	</target>
-		<target name="preGenerate">
-			<echo message="preGenerate!!!" />
-		</target>
-		<target name="postGenerate">
-			<echo message="postGenerate!!!" />
-		</target>
-		<target name="preAssemble">
-			<echo message="preAssemble!!!" />
-		</target>
-		<target name="postAssemble">
-			<echo message="[[[Add the LPG bundles into Master zip]]]" />
-			<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
-				<zipfileset dir="${buildDirectory}/LPG" 
-							includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
-				/>
-			</zip>
-		</target>
-		<target name="prePackage">
-			<echo message="prePackage!!!" />
-		</target>
-		<target name="postPackage">
-			<echo message="postPackage!!!" />
-		</target>
-		<target name="preProcess">
-			<echo message="preProcess!!!" />
-		</target>
+	
+	<target name="preGenerate">
+		<echo message="preGenerate!!!" />
+	</target>
+	
+	<target name="postGenerate">
+		<echo message="postGenerate!!!" />
+	</target>
+	
+	<target name="preAssemble">
+		<echo message="preAssemble!!!" />
+	</target>
+	
+	<target name="postAssemble">
+		<echo message="[[[Add the LPG bundles into Master zip]]]" />
+		<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
+			<zipfileset dir="${buildDirectory}/LPG" 
+						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+			/>
+		</zip>
+	</target>
+	
+	<target name="prePackage">
+		<echo message="prePackage!!!" />
+	</target>
+	
+	<target name="postPackage">
+		<echo message="postPackage!!!" />
+	</target>
+	
+	<target name="preProcess">
+		<echo message="preProcess!!!" />
+	</target>
+	
 	<target name="postProcess">
 		<echo message="postProcess!!!" />
+
+		<!-- We call the special ant task in the example plugin in order to
+		      zip up all of the actual examples plugins as zips contained in this
+		      plugin. -->
+		<ant dir="${buildDirectory}/plugins/org.eclipse.emf.ocl.examples" antfile="${buildDirectory}/plugins/org.eclipse.emf.ocl.examples/buildZips.xml"/>
 	</target>
+
 	<target name="postBuild">
 		<echo message="postBuild!!!" />
 	</target>
