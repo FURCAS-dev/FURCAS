@@ -36,6 +36,10 @@ http://www.eclipse.org/legal/epl-v10.html
          version="0.0.0"/>
 
    <includes
+         id="org.eclipse.emf.ocl.examples"
+         version="0.0.0"/>
+
+   <includes
          id="org.eclipse.ocl.source"
          version="0.0.0"/>
 

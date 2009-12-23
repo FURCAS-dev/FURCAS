@@ -25,7 +25,7 @@
 		      We don't need them to be packaged into the Master zip, but rather
 		      they are needed so that they can be zipped up into the examples
 		      plugin as part of the build for that plugin. See the postProcess
-		      target below for the other part of this process.>
+		      target below for the other part of this process.-->
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.emf.ocl.examples.interpreter"/>
@@ -41,7 +41,7 @@
 		<ant target="fetchElement" antfile="${eclipse.pdebuild.scripts}/genericTargets.xml">
 			<property name="type" value="plugin"/>
 			<property name="id" value="org.eclipse.emf.examples.library.editor"/>
-		</ant-->
+		</ant>
 	</target>
 
 	<target name="postFetch">
