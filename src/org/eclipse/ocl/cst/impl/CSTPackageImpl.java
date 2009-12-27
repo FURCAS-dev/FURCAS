@@ -14,11 +14,11 @@
  *
  * </copyright>
  *
- * $Id: CSTPackageImpl.java,v 1.13 2009/10/15 19:38:06 ewillink Exp $
+ * $Id: CSTPackageImpl.java,v 1.14 2009/12/27 15:49:51 asanchez Exp $
  */
 package org.eclipse.ocl.cst.impl;
 
-import lpg.lpgjavaruntime.IToken;
+import lpg.runtime.IToken;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;

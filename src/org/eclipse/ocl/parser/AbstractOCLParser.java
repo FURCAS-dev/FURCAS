@@ -16,18 +16,18 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.11 2009/11/09 22:00:09 ewillink Exp $
+ * $Id: AbstractOCLParser.java,v 1.12 2009/12/27 15:49:44 asanchez Exp $
  */
 package org.eclipse.ocl.parser;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.NullExportedSymbolsException;
-import lpg.lpgjavaruntime.NullTerminalSymbolsException;
-import lpg.lpgjavaruntime.UndefinedEofSymbolException;
-import lpg.lpgjavaruntime.UnimplementedTerminalsException;
+import lpg.runtime.IToken;
+import lpg.runtime.NullExportedSymbolsException;
+import lpg.runtime.NullTerminalSymbolsException;
+import lpg.runtime.UndefinedEofSymbolException;
+import lpg.runtime.UnimplementedTerminalsException;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.ocl.cst.BooleanLiteralExpCS;

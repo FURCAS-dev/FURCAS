@@ -12,9 +12,11 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   E.D.Willink - Bug 285633, 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 *
-* $Id: OCLBacktrackingKWLexersym.java,v 1.9 2009/11/09 22:14:17 ewillink Exp $
+*
 */
 /**
 * Complete OCL Keyword Lexer
@@ -29,6 +31,8 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 */
 
@@ -46,6 +50,8 @@ package org.eclipse.ocl.parser.backtracking;
 public interface OCLBacktrackingKWLexersym {
     public final static int
       Char_DollarSign = 37,
+      Char_Percent = 38,
+      Char__ = 39,
       Char_a = 4,
       Char_b = 23,
       Char_c = 10,
@@ -55,7 +61,7 @@ public interface OCLBacktrackingKWLexersym {
       Char_g = 12,
       Char_h = 24,
       Char_i = 6,
-      Char_j = 38,
+      Char_j = 40,
       Char_k = 17,
       Char_l = 2,
       Char_m = 18,
@@ -68,39 +74,39 @@ public interface OCLBacktrackingKWLexersym {
       Char_t = 3,
       Char_u = 14,
       Char_v = 16,
-      Char_w = 39,
+      Char_w = 41,
       Char_x = 19,
       Char_y = 20,
-      Char_z = 40,
+      Char_z = 42,
       Char_A = 26,
       Char_B = 27,
       Char_C = 28,
-      Char_D = 41,
-      Char_E = 42,
-      Char_F = 43,
-      Char_G = 44,
-      Char_H = 45,
+      Char_D = 43,
+      Char_E = 44,
+      Char_F = 45,
+      Char_G = 46,
+      Char_H = 47,
       Char_I = 21,
-      Char_J = 46,
-      Char_K = 47,
-      Char_L = 48,
+      Char_J = 48,
+      Char_K = 49,
+      Char_L = 50,
       Char_M = 29,
       Char_N = 30,
       Char_O = 31,
-      Char_P = 49,
-      Char_Q = 50,
+      Char_P = 51,
+      Char_Q = 52,
       Char_R = 32,
       Char_S = 22,
       Char_T = 33,
       Char_U = 34,
       Char_V = 35,
-      Char_W = 51,
-      Char_X = 52,
-      Char_Y = 53,
-      Char_Z = 54,
+      Char_W = 53,
+      Char_X = 54,
+      Char_Y = 55,
+      Char_Z = 56,
       Char_EOF = 36;
 
-      public final static String orderedTerminalSymbols[] = {
+    public final static String orderedTerminalSymbols[] = {
                  "",
                  "e",
                  "l",
@@ -139,6 +145,8 @@ public interface OCLBacktrackingKWLexersym {
                  "V",
                  "EOF",
                  "DollarSign",
+                 "Percent",
+                 "_",
                  "j",
                  "w",
                  "z",
@@ -158,5 +166,6 @@ public interface OCLBacktrackingKWLexersym {
                  "Z"
              };
 
+    public final static int numTokenKinds = orderedTerminalSymbols.length;
     public final static boolean isValidForParser = true;
 }

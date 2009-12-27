@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.g,v 1.7 2009/10/23 21:26:55 ewillink Exp $
+-- * $Id: OCLLexer.gi,v 1.2 2009/12/27 15:49:46 asanchez Exp $
 -- */
 --
 -- The Complete OCL Lexer
@@ -24,34 +24,27 @@
 %options single-productions
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/LexerTemplateD.g
-%options filter=OCLKWLexer.g
+%options template=../lpg/LexerTemplateD.gi
+%options filter=OCLKWLexer.gi
 %options export_terminals=("OCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
-$Define
+%Import
+	EssentialOCLLexer.gi
+%End
+
+%Define
 
 	--
-	-- Definition of macros used in the template
-	--
-	$action_class /.$file_prefix./
-	$eof_token /.$_EOF_TOKEN./
-    $environment_class /.Environment<?,?,?,?,?,?,?,?,?,?,?,?>./
-    $adapt_environment /.OCLUtil.getAdapter(environment, BasicEnvironment.class)./
-    $environment_import /.org.eclipse.ocl.Environment./
- 
-	--
 	-- Definition of macro used in the included file LexerBasicMap.g
+	-- We redefine that one defined by EssentialOCLLexer
 	--
 	$kw_lexer_class /.OCLKWLexer./
 	$copyright_contributions /.*./
 
-$End
-$Include
-	EssentialOCLLexer.g
-$End
+%End
 
-$Notice
+%Notice
 	/./**
  * Complete OCL Lexer
  * <copyright>
@@ -65,19 +58,21 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Bug 292112, 292594
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ $copyright_contributions
  * </copyright>
  */
 	./
-$End
+%End
 
-$Export
+%Export
 	AT
 	CARET
 	CARETCARET
 	QUESTIONMARK
-$End
+%End
 
-$Rules
+%Rules
 	Token ::= '@'
 		/.$BeginAction
 					makeToken($_AT);
@@ -101,4 +96,4 @@ $Rules
 					makeToken($_QUESTIONMARK);
 		  $EndAction
 		./
-$End
+%End

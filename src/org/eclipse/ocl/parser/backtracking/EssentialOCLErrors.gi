@@ -9,25 +9,26 @@
 -- *
 -- * Contributors:
 -- *   E.D.Willink - Initial API and implementation
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.g,v 1.6 2009/12/18 06:26:04 ewillink Exp $
+-- * $Id: EssentialOCLErrors.gi,v 1.2 2009/12/27 15:49:49 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
 --
 
-$Rules
+%Rules
 	ERROR_Colon ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_COLON);
-		  $EndJava
+		  $EndCode
 		./
 	ERROR_Empty ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.EXTRA_TOKENS);
-		  $EndJava
+		  $EndCode
 		./
 
 -----------------------------------------------------------------------
@@ -35,7 +36,7 @@ $Rules
 -----------------------------------------------------------------------
 		
 	ERROR_SimpleNameCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					int token = $getToken(1);
 					reportErrorTokenMessage(token, OCLParserErrors.MISSING_SIMPLE_NAME);
                     IToken iToken = getIToken(token);
@@ -45,7 +46,7 @@ $Rules
 						);
 					setOffsets(result, iToken);
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	simpleNameCS -> ERROR_SimpleNameCS
@@ -55,61 +56,61 @@ $Rules
 --	Types
 -----------------------------------------------------------------------		
 	collectionTypeCS ::= CollectionTypeIdentifierCS '(' typeCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RPAREN);
 					CollectionTypeCS result = (CollectionTypeCS)dtParser.getSym(1); 
 					result.setTypeCS((TypeCS)dtParser.getSym(3));
 					setOffsets(result, result, getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 -----------------------------------------------------------------------
 --	Declarations
 -----------------------------------------------------------------------
 --	VariableDeclarationCS ::= notLiteralNorReservedSimpleNameCS ERROR_TOKEN
---		/.$BeginJava
+--		/.$BeginCode
 --					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_VARIABLE_TYPE);
 --					SimpleNameCS name = (SimpleNameCS)$getSym(1);
 --					VariableCS result = createVariableCS(name, null, null);
 --					setOffsets(result, name, getIToken($getToken(2)));
 --					$setResult(result);
---		  $EndJava
+--		  $EndCode
 --		./
 
 --	variableDeclarationListCS ::= ERROR_TOKEN
---		/.$BeginJava
+--		/.$BeginCode
 --					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_VARIABLES);
 --					EList result = new BasicEList();
 --					$setResult(result);
---		  $EndJava
+--		  $EndCode
 --		./
 
 -----------------------------------------------------------------------
 --	Literals
 -----------------------------------------------------------------------
 	TupleLiteralExpCS ::= Tuple ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_LBRACE);
 					TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)$getSym(3));
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	TupleLiteralPartsCS ::= ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_VARIABLES);
 					EList<VariableCS> result = new BasicEList<VariableCS>();
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 -----------------------------------------------------------------------
 --	Calls
 -----------------------------------------------------------------------		
 	AssociationClassCallExpCS ::= simpleNameCS '[' argumentsCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RBRACK);
 					VariableExpCS result = createVariableExpCS(
 							(SimpleNameCS)$getSym(1),
@@ -118,14 +119,14 @@ $Rules
 						);
 					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 -----------------------------------------------------------------------
 --	Expressions
 -----------------------------------------------------------------------
 	IfExpCS ::= if OclExpressionCS then OclExpressionCS else OclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_ENDIF);
 					IfExpCS result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
@@ -134,10 +135,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(7)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	IfExpCS ::= if OclExpressionCS then OclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(5), OCLParserErrors.MISSING_ELSE_ENDIF);
 					IfExpCS result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
@@ -146,10 +147,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	IfExpCS ::= if OclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE_ENDIF);
 					IfExpCS result = createIfExpCS(
 							(OCLExpressionCS)$getSym(2),
@@ -158,10 +159,10 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 	IfExpCS ::= if ERROR_TOKEN endif
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE);
 					IfExpCS result = createIfExpCS(
 							createInvalidLiteralExpCS(getTokenText($getToken(2))),
@@ -170,15 +171,15 @@ $Rules
 						);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
 
 	primaryExpCS ::= '(' OclExpressionCS ERROR_TOKEN
-		/.$BeginJava
+		/.$BeginCode
 					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_RPAREN);
 					OCLExpressionCS result = (OCLExpressionCS)$getSym(2);
 					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
 					$setResult(result);
-		  $EndJava
+		  $EndCode
 		./
-$End
+%End

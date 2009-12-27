@@ -12,9 +12,11 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   E.D.Willink - Bug 285633, 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 *
-* $Id: OCLKWLexerprs.java,v 1.11 2009/11/09 22:00:25 ewillink Exp $
+*
 */
 /**
 * Complete OCL Keyword Lexer
@@ -29,12 +31,95 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 */
 
 package org.eclipse.ocl.parser;
 
-public class OCLKWLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLKWLexersym {
+public class OCLKWLexerprs implements lpg.runtime.ParseTable, OCLKWLexersym {
+    public final static int ERROR_SYMBOL = 0;
+    public final int getErrorSymbol() { return ERROR_SYMBOL; }
+
+    public final static int SCOPE_UBOUND = 0;
+    public final int getScopeUbound() { return SCOPE_UBOUND; }
+
+    public final static int SCOPE_SIZE = 0;
+    public final int getScopeSize() { return SCOPE_SIZE; }
+
+    public final static int MAX_NAME_LENGTH = 0;
+    public final int getMaxNameLength() { return MAX_NAME_LENGTH; }
+
+    public final static int NUM_STATES = 159;
+    public final int getNumStates() { return NUM_STATES; }
+
+    public final static int NT_OFFSET = 56;
+    public final int getNtOffset() { return NT_OFFSET; }
+
+    public final static int LA_STATE_OFFSET = 247;
+    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
+
+    public final static int MAX_LA = 1;
+    public final int getMaxLa() { return MAX_LA; }
+
+    public final static int NUM_RULES = 42;
+    public final int getNumRules() { return NUM_RULES; }
+
+    public final static int NUM_NONTERMINALS = 2;
+    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
+
+    public final static int NUM_SYMBOLS = 58;
+    public final int getNumSymbols() { return NUM_SYMBOLS; }
+
+    public final static int SEGMENT_SIZE = 8192;
+    public final int getSegmentSize() { return SEGMENT_SIZE; }
+
+    public final static int START_STATE = 43;
+    public final int getStartState() { return START_STATE; }
+
+    public final static int IDENTIFIER_SYMBOL = 0;
+    public final int getIdentifier_SYMBOL() { return IDENTIFIER_SYMBOL; }
+
+    public final static int EOFT_SYMBOL = 36;
+    public final int getEoftSymbol() { return EOFT_SYMBOL; }
+
+    public final static int EOLT_SYMBOL = 57;
+    public final int getEoltSymbol() { return EOLT_SYMBOL; }
+
+    public final static int ACCEPT_ACTION = 204;
+    public final int getAcceptAction() { return ACCEPT_ACTION; }
+
+    public final static int ERROR_ACTION = 205;
+    public final int getErrorAction() { return ERROR_ACTION; }
+
+    public final static boolean BACKTRACK = false;
+    public final boolean getBacktrack() { return BACKTRACK; }
+
+    public final int getStartSymbol() { return lhs(0); }
+    public final boolean isValidForParser() { return OCLKWLexersym.isValidForParser; }
+
+
+    public interface IsNullable {
+        public final static byte isNullable[] = {0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0
+        };
+    };
+    public final static byte isNullable[] = IsNullable.isNullable;
+    public final boolean isNullable(int index) { return isNullable[index] != 0; }
+
+    public interface ProsthesesIndex {
+        public final static byte prosthesesIndex[] = {0,
+            2,1
+        };
+    };
+    public final static byte prosthesesIndex[] = ProsthesesIndex.prosthesesIndex;
+    public final int prosthesesIndex(int index) { return prosthesesIndex[index]; }
 
     public interface IsKeyword {
         public final static byte isKeyword[] = {0,
@@ -43,7 +128,7 @@ public class OCLKWLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLKWLexers
             0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0
+            0,0,0,0,0,0
         };
     };
     public final static byte isKeyword[] = IsKeyword.isKeyword;
@@ -136,7 +221,7 @@ public class OCLKWLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLKWLexers
             0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,0,0,0,
-            0,0,0
+            0,0,0,0,0
         };
     };
     public final static byte termCheck[] = TermCheck.termCheck;
@@ -200,56 +285,21 @@ public class OCLKWLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLKWLexers
     public final int scopeState(int index) { return 0;}
     public final int inSymb(int index) { return 0;}
     public final String name(int index) { return null; }
-    public final int getErrorSymbol() { return 0; }
-    public final int getScopeUbound() { return 0; }
-    public final int getScopeSize() { return 0; }
-    public final int getMaxNameLength() { return 0; }
-
-    public final static int
-           NUM_STATES        = 159,
-           NT_OFFSET         = 54,
-           LA_STATE_OFFSET   = 247,
-           MAX_LA            = 1,
-           NUM_RULES         = 42,
-           NUM_NONTERMINALS  = 2,
-           NUM_SYMBOLS       = 56,
-           SEGMENT_SIZE      = 8192,
-           START_STATE       = 43,
-           IDENTIFIER_SYMBOL = 0,
-           EOFT_SYMBOL       = 36,
-           EOLT_SYMBOL       = 55,
-           ACCEPT_ACTION     = 204,
-           ERROR_ACTION      = 205;
-
-    public final static boolean BACKTRACK = false;
-
-    public final int getNumStates() { return NUM_STATES; }
-    public final int getNtOffset() { return NT_OFFSET; }
-    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
-    public final int getMaxLa() { return MAX_LA; }
-    public final int getNumRules() { return NUM_RULES; }
-    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
-    public final int getNumSymbols() { return NUM_SYMBOLS; }
-    public final int getSegmentSize() { return SEGMENT_SIZE; }
-    public final int getStartState() { return START_STATE; }
-    public final int getStartSymbol() { return lhs[0]; }
-    public final int getIdentifierSymbol() { return IDENTIFIER_SYMBOL; }
-    public final int getEoftSymbol() { return EOFT_SYMBOL; }
-    public final int getEoltSymbol() { return EOLT_SYMBOL; }
-    public final int getAcceptAction() { return ACCEPT_ACTION; }
-    public final int getErrorAction() { return ERROR_ACTION; }
-    public final boolean isValidForParser() { return isValidForParser; }
-    public final boolean getBacktrack() { return BACKTRACK; }
-
     public final int originalState(int state) { return 0; }
     public final int asi(int state) { return 0; }
     public final int nasi(int state) { return 0; }
     public final int inSymbol(int state) { return 0; }
 
+    /**
+     * assert(! goto_default);
+     */
     public final int ntAction(int state, int sym) {
         return baseAction[state + sym];
     }
 
+    /**
+     * assert(! shift_default);
+     */
     public final int tAction(int state, int sym) {
         int i = baseAction[state],
             k = i + sym;

@@ -13,9 +13,11 @@
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
 *   E.D.Willink - Bug 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 *
-* $Id: OCLBacktrackingLexerprs.java,v 1.11 2009/11/09 22:13:52 ewillink Exp $
+* $Id: OCLBacktrackingLexerprs.java,v 1.12 2009/12/27 15:49:48 asanchez Exp $
 */
 /**
 * Complete OCL Lexer
@@ -30,12 +32,106 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 292112, 292594
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
-public class OCLBacktrackingLexerprs implements lpg.lpgjavaruntime.ParseTable, OCLBacktrackingLexersym {
+public class OCLBacktrackingLexerprs implements lpg.runtime.ParseTable, OCLBacktrackingLexersym {
+    public final static int ERROR_SYMBOL = 0;
+    public final int getErrorSymbol() { return ERROR_SYMBOL; }
+
+    public final static int SCOPE_UBOUND = 0;
+    public final int getScopeUbound() { return SCOPE_UBOUND; }
+
+    public final static int SCOPE_SIZE = 0;
+    public final int getScopeSize() { return SCOPE_SIZE; }
+
+    public final static int MAX_NAME_LENGTH = 0;
+    public final int getMaxNameLength() { return MAX_NAME_LENGTH; }
+
+    public final static int NUM_STATES = 40;
+    public final int getNumStates() { return NUM_STATES; }
+
+    public final static int NT_OFFSET = 103;
+    public final int getNtOffset() { return NT_OFFSET; }
+
+    public final static int LA_STATE_OFFSET = 709;
+    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
+
+    public final static int MAX_LA = 2;
+    public final int getMaxLa() { return MAX_LA; }
+
+    public final static int NUM_RULES = 267;
+    public final int getNumRules() { return NUM_RULES; }
+
+    public final static int NUM_NONTERMINALS = 35;
+    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
+
+    public final static int NUM_SYMBOLS = 138;
+    public final int getNumSymbols() { return NUM_SYMBOLS; }
+
+    public final static int SEGMENT_SIZE = 8192;
+    public final int getSegmentSize() { return SEGMENT_SIZE; }
+
+    public final static int START_STATE = 268;
+    public final int getStartState() { return START_STATE; }
+
+    public final static int IDENTIFIER_SYMBOL = 0;
+    public final int getIdentifier_SYMBOL() { return IDENTIFIER_SYMBOL; }
+
+    public final static int EOFT_SYMBOL = 102;
+    public final int getEoftSymbol() { return EOFT_SYMBOL; }
+
+    public final static int EOLT_SYMBOL = 104;
+    public final int getEoltSymbol() { return EOLT_SYMBOL; }
+
+    public final static int ACCEPT_ACTION = 441;
+    public final int getAcceptAction() { return ACCEPT_ACTION; }
+
+    public final static int ERROR_ACTION = 442;
+    public final int getErrorAction() { return ERROR_ACTION; }
+
+    public final static boolean BACKTRACK = false;
+    public final boolean getBacktrack() { return BACKTRACK; }
+
+    public final int getStartSymbol() { return lhs(0); }
+    public final boolean isValidForParser() { return OCLBacktrackingLexersym.isValidForParser; }
+
+
+    public interface IsNullable {
+        public final static byte isNullable[] = {0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,1,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,1,
+            0,0,0,0,0,0,0,0
+        };
+    };
+    public final static byte isNullable[] = IsNullable.isNullable;
+    public final boolean isNullable(int index) { return isNullable[index] != 0; }
+
+    public interface ProsthesesIndex {
+        public final static byte prosthesesIndex[] = {0,
+            19,22,23,24,27,32,14,21,29,34,
+            5,35,7,8,16,17,20,26,28,33,
+            2,3,4,6,9,10,11,12,13,15,
+            18,25,30,31,1
+        };
+    };
+    public final static byte prosthesesIndex[] = ProsthesesIndex.prosthesesIndex;
+    public final int prosthesesIndex(int index) { return prosthesesIndex[index]; }
 
     public interface IsKeyword {
         public final static byte isKeyword[] = {0,
@@ -417,56 +513,21 @@ public class OCLBacktrackingLexerprs implements lpg.lpgjavaruntime.ParseTable, O
     public final int scopeState(int index) { return 0;}
     public final int inSymb(int index) { return 0;}
     public final String name(int index) { return null; }
-    public final int getErrorSymbol() { return 0; }
-    public final int getScopeUbound() { return 0; }
-    public final int getScopeSize() { return 0; }
-    public final int getMaxNameLength() { return 0; }
-
-    public final static int
-           NUM_STATES        = 40,
-           NT_OFFSET         = 103,
-           LA_STATE_OFFSET   = 709,
-           MAX_LA            = 2,
-           NUM_RULES         = 267,
-           NUM_NONTERMINALS  = 35,
-           NUM_SYMBOLS       = 138,
-           SEGMENT_SIZE      = 8192,
-           START_STATE       = 268,
-           IDENTIFIER_SYMBOL = 0,
-           EOFT_SYMBOL       = 102,
-           EOLT_SYMBOL       = 104,
-           ACCEPT_ACTION     = 441,
-           ERROR_ACTION      = 442;
-
-    public final static boolean BACKTRACK = false;
-
-    public final int getNumStates() { return NUM_STATES; }
-    public final int getNtOffset() { return NT_OFFSET; }
-    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
-    public final int getMaxLa() { return MAX_LA; }
-    public final int getNumRules() { return NUM_RULES; }
-    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
-    public final int getNumSymbols() { return NUM_SYMBOLS; }
-    public final int getSegmentSize() { return SEGMENT_SIZE; }
-    public final int getStartState() { return START_STATE; }
-    public final int getStartSymbol() { return lhs[0]; }
-    public final int getIdentifierSymbol() { return IDENTIFIER_SYMBOL; }
-    public final int getEoftSymbol() { return EOFT_SYMBOL; }
-    public final int getEoltSymbol() { return EOLT_SYMBOL; }
-    public final int getAcceptAction() { return ACCEPT_ACTION; }
-    public final int getErrorAction() { return ERROR_ACTION; }
-    public final boolean isValidForParser() { return isValidForParser; }
-    public final boolean getBacktrack() { return BACKTRACK; }
-
     public final int originalState(int state) { return 0; }
     public final int asi(int state) { return 0; }
     public final int nasi(int state) { return 0; }
     public final int inSymbol(int state) { return 0; }
 
+    /**
+     * assert(! goto_default);
+     */
     public final int ntAction(int state, int sym) {
         return baseAction[state + sym];
     }
 
+    /**
+     * assert(! shift_default);
+     */
     public final int tAction(int state, int sym) {
         int i = baseAction[state],
             k = i + sym;

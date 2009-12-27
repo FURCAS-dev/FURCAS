@@ -11,22 +11,23 @@
 --
 -- B E G I N N I N G   O F   T E M P L A T E   KeywordTemplateD
 --
-%Options Programming_Language=java,margin=4
-%Options table
-%options action=("*.java", "/.", "./")
-%options ParseTable=lpg.lpgjavaruntime.ParseTable
-%Options prefix=Char_
+%options Programming_Language=java,margin=4
+%options table
+%options action-block=("*.java", "/.", "./")
+%options ParseTable=lpg.runtime.ParseTable
+%options prefix=Char_
+%options single-productions
 
 --
 -- This template requires that the name of the EOF token be set
 -- to EOF and that the prefix be "Char_" to be consistent with
 -- LexerTemplateD.
 --
-$Eof
+%Eof
     EOF
-$End
+%End
 
-$Define
+%Define
     --
     -- Macro that may be respecified in an instance of this template
     --
@@ -41,7 +42,8 @@ $Define
     /.
             //
             // Rule $rule_number:  $rule_text
-            //./
+            //
+            ./
 
     $BeginAction /.$Header./
 
@@ -50,9 +52,9 @@ $Define
     $BeginJava /.$BeginAction./
 
     $EndJava /.$EndAction./
-$End
+%End
 
-$Headers
+%Headers
     /.
     public class $action_type extends $prs_type implements $exp_type
     {
@@ -88,9 +90,9 @@ $Headers
         public void setInputChars(char[] inputChars) { this.inputChars = inputChars; }
 
     ./
-$End
+%End
 
-$Rules
+%Rules
     /.
 
         public $action_type(char[] inputChars, int identifierKind)
@@ -98,9 +100,9 @@ $Rules
             this.inputChars = inputChars;
             keywordKind[0] = identifierKind;
     ./
-$End
+%End
 
-$Trailers
+%Trailers
     /.
 
             for (int i = 0; i < keywordKind.length; i++)
@@ -111,7 +113,7 @@ $Trailers
         }
     }
     ./
-$End
+%End
 
 --
 -- E N D   O F   T E M P L A T E
