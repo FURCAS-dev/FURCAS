@@ -15,20 +15,19 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.6 2009/11/09 21:57:32 ewillink Exp $
+ * $Id: AbstractParser.java,v 1.7 2009/12/27 15:49:50 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 
 import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 
-import lpg.lpgjavaruntime.ErrorToken;
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.LexStream;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.ParseErrorCodes;
-import lpg.lpgjavaruntime.PrsStream;
-import lpg.lpgjavaruntime.Token;
+import lpg.runtime.ErrorToken;
+import lpg.runtime.IToken;
+import lpg.runtime.LexStream;
+import lpg.runtime.Monitor;
+import lpg.runtime.ParseErrorCodes;
+import lpg.runtime.PrsStream;
 
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -143,7 +142,7 @@ public abstract class AbstractParser
 	}
 
 	public AbstractLexer getLexer() {
-		return (AbstractLexer) super.getLexStream();
+		return (AbstractLexer) super.getILexStream();
 	}
 
 	/**
@@ -189,13 +188,13 @@ public abstract class AbstractParser
 		// the calling program (a parser driver) to pass to us the proper kind
 		// that it wants for an error token.
 		//
-		Token token = new ErrorToken(getIToken(firsttok), getIToken(lasttok),
+		IToken token = new ErrorToken(getIToken(firsttok), getIToken(lasttok),
 			getIToken(errortok), getStartOffset(firsttok),
 			getEndOffset(lasttok), kind) {
 
 			@Override
 			public String toString() {
-				if (getPrsStream() == null) {
+				if (getIPrsStream() == null) {
 					return "<toString>"; //$NON-NLS-1$
 				}
 				int startOffset = getStartOffset();
@@ -204,10 +203,10 @@ public abstract class AbstractParser
 					length = -length - 1;
 					startOffset = getEndOffset();
 				}
-				if ((startOffset + length) > getPrsStream().getInputChars().length) {
+				if ((startOffset + length) > getIPrsStream().getInputChars().length) {
 					return String.valueOf(IToken.EOF);
 				}
-				return new String(getPrsStream().getInputChars(), startOffset,
+				return new String(getIPrsStream().getInputChars(), startOffset,
 					length);
 			}
 
@@ -225,20 +224,24 @@ public abstract class AbstractParser
 	public abstract CSTNode parseTokensToCST(Monitor monitor,
 			int error_repair_count);
 
-	@Override
-	public void reportError(int errorCode, String locationInfo, int leftToken,
-			int rightToken, String tokenText) {
-		BasicEnvironment environment = getEnvironment();
-		if (environment == null) {
-			super.reportError(errorCode, locationInfo, leftToken, rightToken,
-				tokenText);
-		} else {
-			if (errorCode == DELETION_CODE || errorCode == MISPLACED_CODE) {
-				tokenText = ""; //$NON-NLS-1$
-			}
-			environment
-				.parserError(errorCode, leftToken, rightToken, tokenText);
-		}
+	/**
+	 * 
+	 * @since 3.0
+	 */
+	@Override 
+	public void reportError(int errorCode, int leftToken, int errorToken, 
+			int rightToken, String[] errorInfo) { 
+		BasicEnvironment environment = getEnvironment(); 
+		if (environment == null) { 
+			super.reportError(errorCode, leftToken, errorToken, rightToken, errorInfo); 
+		} else {			 
+			// TODO Revise this. BasicEnvironment.parserError doesn't have a String[] argument
+			String tokenText = errorInfo.length > 0 ? errorInfo[0] : ""; //$NON-NLS-1$
+			if (errorCode == PrsStream.DELETION_CODE || errorCode == PrsStream.MISPLACED_CODE) {  
+				tokenText = ""; //$NON-NLS-1$  
+			}  
+			environment.parserError(errorCode, leftToken, rightToken, tokenText); 
+		} 
 	}
 
 	/**
@@ -255,18 +258,10 @@ public abstract class AbstractParser
 		int firsttok = super.getFirstRealToken(error_token);
 		int lasttok = super.getLastRealToken(error_token);
 		if (firsttok > lasttok) {
-			String location = super.getFileName() + ':'
-				+ super.getEndLine(lasttok) + ':' + super.getEndColumn(lasttok)
-				+ ": "; //$NON-NLS-1$
-			reportError(ParseErrorCodes.INSERTION_CODE, location, lasttok,
+			reportError(ParseErrorCodes.INSERTION_CODE, lasttok,
 				lasttok, msg);
 		} else {
-			String location = super.getFileName() + ':'
-				+ super.getLine(error_token) + ':'
-				+ super.getColumn(error_token) + ':'
-				+ super.getEndLine(error_token) + ':'
-				+ super.getEndColumn(error_token) + ": "; //$NON-NLS-1$
-			reportError(ParseErrorCodes.SUBSTITUTION_CODE, location, firsttok,
+			reportError(ParseErrorCodes.SUBSTITUTION_CODE, firsttok,
 				lasttok, msg);
 		}
 	}

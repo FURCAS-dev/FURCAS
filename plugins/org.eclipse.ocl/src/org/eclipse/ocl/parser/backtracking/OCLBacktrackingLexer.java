@@ -13,9 +13,11 @@
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
 *   E.D.Willink - Bug 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 *
-* $Id: OCLBacktrackingLexer.java,v 1.10 2009/11/09 22:14:06 ewillink Exp $
+* $Id: OCLBacktrackingLexer.java,v 1.11 2009/12/27 15:49:47 asanchez Exp $
 */
 /**
 * Complete OCL Lexer
@@ -30,12 +32,14 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 292112, 292594
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 */
 
 package org.eclipse.ocl.parser.backtracking;
 
-import lpg.lpgjavaruntime.*;
+import lpg.runtime.*;
 import org.eclipse.ocl.lpg.AbstractLexer;
 import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.Environment;
@@ -68,7 +72,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
     
 	public OCLBacktrackingLexer(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, char[] chars) {
 		this(environment, chars, "OCL", ECLIPSE_TAB_VALUE);
-		kwLexer = new OCLBacktrackingKWLexer(getInputChars(), TK_IDENTIFIER);
+		kwLexer = new OCLBacktrackingKWLexer(getInputChars(), OCLBacktrackingParsersym.TK_IDENTIFIER);
 	}
 
     public OCLBacktrackingLexer(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, char[] input_chars, String filename, int tab)  {
@@ -97,7 +101,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
     {
         super.initialize(content, filename);
         if (kwLexer == null)
-             kwLexer = new OCLBacktrackingKWLexer(getInputChars(), TK_IDENTIFIER);
+             kwLexer = new OCLBacktrackingKWLexer(getInputChars(), OCLBacktrackingParsersym.TK_IDENTIFIER);
         else
              kwLexer.setInputChars(getInputChars());
     }
@@ -108,7 +112,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
     @Override
     public void setInputChars(char[] inputChars) {
 		super.setInputChars(inputChars);
-		kwLexer = new OCLBacktrackingKWLexer(getInputChars(), TK_IDENTIFIER);
+		kwLexer = new OCLBacktrackingKWLexer(getInputChars(), OCLBacktrackingParsersym.TK_IDENTIFIER);
 	}
     
     @Override
@@ -124,12 +128,12 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
         lexParser.parseCharacters(monitor);  // Lex the input characters
             
         int i = getStreamIndex();
-        parser.makeToken(i, i, TK_EOF_TOKEN); // and end with the end of file token
+        parser.makeToken(i, i, OCLBacktrackingParsersym.TK_EOF_TOKEN); // and end with the end of file token
         parser.setStreamLength(parser.getSize());
             
         return;
     }
-    
+        
     final void makeToken(int kind)
     {
         int startOffset = getLeftSpan(),
@@ -142,7 +146,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
     {
         int startOffset = getLeftSpan(),
             endOffset = getRightSpan();
-        super.getPrsStream().makeAdjunct(startOffset, endOffset, kind);
+        super.getIPrsStream().makeAdjunct(startOffset, endOffset, kind);
     }
 
     final void skipToken()
@@ -333,7 +337,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 2:  Token ::= " SLNotDQ "
             //
             case 2: { 
-				makeToken(TK_IDENTIFIER);
+				makeToken(OCLBacktrackingParsersym.TK_IDENTIFIER);
 	            break;
             }
 	 
@@ -341,7 +345,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 3:  Token ::= SingleQuote SLNotSQOpt SingleQuote
             //
             case 3: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLBacktrackingParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -349,7 +353,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 4:  Token ::= Acute SLNotSQOpt Acute
             //
             case 4: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLBacktrackingParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -357,7 +361,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 5:  Token ::= BackQuote SLNotSQOpt Acute
             //
             case 5: { 
-				makeToken(TK_STRING_LITERAL);
+				makeToken(OCLBacktrackingParsersym.TK_STRING_LITERAL);
 	            break;
             }
 	 
@@ -383,7 +387,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 9:  Token ::= RealLiteral
             //
             case 9: { 
-				makeToken(TK_REAL_LITERAL);
+				makeToken(OCLBacktrackingParsersym.TK_REAL_LITERAL);
 	            break;
             }
 	 
@@ -391,7 +395,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 10:  Token ::= SLC
             //
             case 10: { 
-				makeComment(TK_SINGLE_LINE_COMMENT);
+				makeComment(OCLBacktrackingParsersym.TK_SINGLE_LINE_COMMENT);
 	            break;
             }
 	 
@@ -399,7 +403,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 11:  Token ::= / * Inside Stars /
             //
             case 11: { 
-                makeComment(TK_MULTI_LINE_COMMENT);
+                makeComment(OCLBacktrackingParsersym.TK_MULTI_LINE_COMMENT);
                 break;
             }
      
@@ -415,7 +419,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 13:  Token ::= +
             //
             case 13: { 
-				makeToken(TK_PLUS);
+				makeToken(OCLBacktrackingParsersym.TK_PLUS);
 	            break;
             }
 	 
@@ -423,7 +427,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 14:  Token ::= -
             //
             case 14: { 
-				makeToken(TK_MINUS);
+				makeToken(OCLBacktrackingParsersym.TK_MINUS);
 	            break;
             }
 	 
@@ -431,7 +435,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 15:  Token ::= *
             //
             case 15: { 
-				makeToken(TK_MULTIPLY);
+				makeToken(OCLBacktrackingParsersym.TK_MULTIPLY);
 	            break;
             }
 	 
@@ -439,7 +443,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 16:  Token ::= /
             //
             case 16: { 
-				makeToken(TK_DIVIDE);
+				makeToken(OCLBacktrackingParsersym.TK_DIVIDE);
 	            break;
             }
 	 
@@ -447,7 +451,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 17:  Token ::= (
             //
             case 17: { 
-				makeToken(TK_LPAREN);
+				makeToken(OCLBacktrackingParsersym.TK_LPAREN);
 	            break;
             }
 	 
@@ -455,7 +459,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 18:  Token ::= )
             //
             case 18: { 
-				makeToken(TK_RPAREN);
+				makeToken(OCLBacktrackingParsersym.TK_RPAREN);
 	            break;
             }
 	 
@@ -463,7 +467,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 19:  Token ::= >
             //
             case 19: { 
-				makeToken(TK_GREATER);
+				makeToken(OCLBacktrackingParsersym.TK_GREATER);
 	            break;
             }
 	 
@@ -471,7 +475,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 20:  Token ::= <
             //
             case 20: { 
-				makeToken(TK_LESS);
+				makeToken(OCLBacktrackingParsersym.TK_LESS);
 	            break;
             }
 	 
@@ -479,7 +483,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 21:  Token ::= =
             //
             case 21: { 
-				makeToken(TK_EQUAL);
+				makeToken(OCLBacktrackingParsersym.TK_EQUAL);
 	            break;
             }
 	 
@@ -487,7 +491,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 22:  Token ::= > =
             //
             case 22: { 
-				makeToken(TK_GREATER_EQUAL);
+				makeToken(OCLBacktrackingParsersym.TK_GREATER_EQUAL);
 	            break;
             }
 	 
@@ -495,7 +499,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 23:  Token ::= < =
             //
             case 23: { 
-				makeToken(TK_LESS_EQUAL);
+				makeToken(OCLBacktrackingParsersym.TK_LESS_EQUAL);
 	            break;
             }
 	 
@@ -503,7 +507,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 24:  Token ::= < >
             //
             case 24: { 
-				makeToken(TK_NOT_EQUAL);
+				makeToken(OCLBacktrackingParsersym.TK_NOT_EQUAL);
 	            break;
             }
 	 
@@ -511,7 +515,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 25:  Token ::= [
             //
             case 25: { 
-				makeToken(TK_LBRACKET);
+				makeToken(OCLBacktrackingParsersym.TK_LBRACKET);
 	            break;
             }
 	 
@@ -519,7 +523,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 26:  Token ::= ]
             //
             case 26: { 
-				makeToken(TK_RBRACKET);
+				makeToken(OCLBacktrackingParsersym.TK_RBRACKET);
 	            break;
             }
 	 
@@ -527,7 +531,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 27:  Token ::= {
             //
             case 27: { 
-				makeToken(TK_LBRACE);
+				makeToken(OCLBacktrackingParsersym.TK_LBRACE);
 	            break;
             }
 	 
@@ -535,7 +539,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 28:  Token ::= }
             //
             case 28: { 
-				makeToken(TK_RBRACE);
+				makeToken(OCLBacktrackingParsersym.TK_RBRACE);
 	            break;
             }
 	 
@@ -543,7 +547,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 29:  Token ::= - >
             //
             case 29: { 
-				makeToken(TK_ARROW);
+				makeToken(OCLBacktrackingParsersym.TK_ARROW);
 	            break;
             }
 	 
@@ -551,7 +555,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 30:  Token ::= |
             //
             case 30: { 
-				makeToken(TK_BAR);
+				makeToken(OCLBacktrackingParsersym.TK_BAR);
 	            break;
             }
 	 
@@ -559,7 +563,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 31:  Token ::= ,
             //
             case 31: { 
-				makeToken(TK_COMMA);
+				makeToken(OCLBacktrackingParsersym.TK_COMMA);
 	            break;
             }
 	 
@@ -567,7 +571,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 32:  Token ::= :
             //
             case 32: { 
-				makeToken(TK_COLON);
+				makeToken(OCLBacktrackingParsersym.TK_COLON);
 	            break;
             }
 	 
@@ -575,7 +579,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 33:  Token ::= : :
             //
             case 33: { 
-				makeToken(TK_COLONCOLON);
+				makeToken(OCLBacktrackingParsersym.TK_COLONCOLON);
 	            break;
             }
 	 
@@ -583,7 +587,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 34:  Token ::= ;
             //
             case 34: { 
-				makeToken(TK_SEMICOLON);
+				makeToken(OCLBacktrackingParsersym.TK_SEMICOLON);
 	            break;
             }
 	 
@@ -597,7 +601,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 36:  DotToken ::= .
             //
             case 36: { 
-				makeToken(TK_DOT);
+				makeToken(OCLBacktrackingParsersym.TK_DOT);
 	            break;
             }
 	 
@@ -611,7 +615,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 38:  DotDotToken ::= . .
             //
             case 38: { 
-				makeToken(TK_DOTDOT);
+				makeToken(OCLBacktrackingParsersym.TK_DOTDOT);
 	            break;
             }
 	 
@@ -619,7 +623,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 39:  IntegerLiteral ::= Integer
             //
             case 39: { 
-				makeToken(TK_INTEGER_LITERAL);
+				makeToken(OCLBacktrackingParsersym.TK_INTEGER_LITERAL);
 	            break;
             }
 	 
@@ -627,7 +631,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 264:  Token ::= @
             //
             case 264: { 
-				makeToken(TK_AT);
+				makeToken(OCLBacktrackingParsersym.TK_AT);
 	            break;
             }
 	 
@@ -635,7 +639,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 265:  Token ::= ^
             //
             case 265: { 
-				makeToken(TK_CARET);
+				makeToken(OCLBacktrackingParsersym.TK_CARET);
 	            break;
             }
 	 
@@ -643,7 +647,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 266:  Token ::= ^ ^
             //
             case 266: { 
-				makeToken(TK_CARETCARET);
+				makeToken(OCLBacktrackingParsersym.TK_CARETCARET);
 	            break;
             }
 	 
@@ -651,7 +655,7 @@ public class OCLBacktrackingLexer extends AbstractLexer implements OCLBacktracki
             // Rule 267:  Token ::= ?
             //
             case 267: { 
-				makeToken(TK_QUESTIONMARK);
+				makeToken(OCLBacktrackingParsersym.TK_QUESTIONMARK);
 	            break;
             }
 	

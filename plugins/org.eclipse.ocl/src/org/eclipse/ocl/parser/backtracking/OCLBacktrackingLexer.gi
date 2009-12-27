@@ -1,7 +1,7 @@
 --/**
 -- * <copyright>
 -- *
--- * Copyright (c) 2008, 2009 IBM Corporation and others.
+-- * Copyright (c) 2008, 2009 Eclipse.org and others.
 -- * All rights reserved.   This program and the accompanying materials
 -- * are made available under the terms of the Eclipse Public License v1.0
 -- * which accompanies this distribution, and is available at
@@ -10,25 +10,33 @@
 -- * Contributors:
 -- *   IBM - Initial API and implementation
 -- *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLBacktrackingKWLexer.g,v 1.1 2009/01/13 20:31:30 cdamus Exp $
+-- * $Id: OCLBacktrackingLexer.gi,v 1.2 2009/12/27 15:49:47 asanchez Exp $
 -- */
 --
--- The OCL Backtracking KeyWord Lexer, which is nominally identical to the
--- normal KeyWord Lexer, however the extra ERROR_TOKEN symbol makes it difficult
+-- The OCL Backtracking Lexer, which is nominally identical to the
+-- normal Lexer, however the extra ERROR_TOKEN symbol makes it difficult
 -- to share reliably.
 --
 
-%Options slr
-%Options fp=OCLBacktrackingKWLexer,prefix=Char_
+%options escape=$
+%options la=2
+%options fp=OCLBacktrackingLexer,prefix=Char_
+%options single-productions
 %options noserialize
 %options package=org.eclipse.ocl.parser.backtracking
-%options template=../../lpg/KeywordTemplateD.g
+%options template=../../lpg/LexerTemplateD.gi
+%options filter=OCLBacktrackingKWLexer.gi
 %options export_terminals=("OCLBacktrackingParsersym.java", "TK_")
 %options include_directory="..;../../lpg"
 
-$Include
-	OCLKWLexer.g
-$End
+%Import
+	OCLLexer.gi
+%End
+
+%Define
+	$kw_lexer_class /.OCLBacktrackingKWLexer./
+%End

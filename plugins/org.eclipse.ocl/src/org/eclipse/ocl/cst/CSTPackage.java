@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: CSTPackage.java,v 1.13 2009/12/22 18:42:30 ewillink Exp $
+ * $Id: CSTPackage.java,v 1.14 2009/12/27 15:49:51 asanchez Exp $
  */
 package org.eclipse.ocl.cst;
 
@@ -5197,7 +5197,7 @@ public interface CSTPackage
 	 * This value may change when the model code is regenerated.
 	 * It is subject to change without notice.
 	 * <!-- end-user-doc -->
-	 * @see lpg.lpgjavaruntime.IToken
+	 * @see lpg.runtime.IToken
 	 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIToken()
 	 * @generated
 	 */
@@ -6615,13 +6615,13 @@ public interface CSTPackage
 	EEnum getDotOrArrowEnum();
 
 	/**
-	 * Returns the meta object for data type '{@link lpg.lpgjavaruntime.IToken <em>IToken</em>}'.
+	 * Returns the meta object for data type '{@link lpg.runtime.IToken <em>IToken</em>}'.
 	 * <!-- begin-user-doc -->
 	 * @since 1.3
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>IToken</em>'.
-	 * @see lpg.lpgjavaruntime.IToken
-	 * @model instanceClass="lpg.lpgjavaruntime.IToken"
+	 * @see lpg.runtime.IToken
+	 * @model instanceClass="lpg.runtime.IToken"
 	 * @generated
 	 */
 	EDataType getIToken();
@@ -7898,7 +7898,7 @@ public interface CSTPackage
 		 * <!-- begin-user-doc -->
 		 * @since 1.3
 		 * <!-- end-user-doc -->
-		 * @see lpg.lpgjavaruntime.IToken
+		 * @see lpg.runtime.IToken
 		 * @see org.eclipse.ocl.cst.impl.CSTPackageImpl#getIToken()
 		 * @generated
 		 */

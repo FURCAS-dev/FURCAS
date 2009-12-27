@@ -13,9 +13,11 @@
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
 *   E.D.Willink - Bug 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 *
-* $Id: OCLBacktrackingLexersym.java,v 1.10 2009/11/09 22:14:27 ewillink Exp $
+* $Id: OCLBacktrackingLexersym.java,v 1.11 2009/12/27 15:49:48 asanchez Exp $
 */
 /**
 * Complete OCL Lexer
@@ -30,6 +32,8 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 292112, 292594
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*
 * </copyright>
 */
 
@@ -150,7 +154,7 @@ public interface OCLBacktrackingLexersym {
       Char_Equal = 16,
       Char_EOF = 102;
 
-      public final static String orderedTerminalSymbols[] = {
+    public final static String orderedTerminalSymbols[] = {
                  "",
                  "0",
                  "1",
@@ -257,5 +261,6 @@ public interface OCLBacktrackingLexersym {
                  "CtlCharNotWS"
              };
 
+    public final static int numTokenKinds = orderedTerminalSymbols.length;
     public final static boolean isValidForParser = true;
 }

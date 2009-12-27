@@ -848,7 +848,7 @@
   <Ecore:EClass xmi:id="_qf-8J_8fEduhWtVvKtiQ7w" base_Class="_qdx-Vf8fEduhWtVvKtiQ7w"/>
   <Ecore:EClass xmi:id="_qf-8KP8fEduhWtVvKtiQ7w"/>
   <Ecore:EAttribute xmi:id="_qf-8Kf8fEduhWtVvKtiQ7w"/>
-  <Ecore:EDataType xmi:id="_wn-44I2FEd2mlKUM3HGxZg" instanceClassName="lpg.lpgjavaruntime.IToken" base_PrimitiveType="_tvVQwI2FEd2mlKUM3HGxZg"/>
+  <Ecore:EDataType xmi:id="_wn-44I2FEd2mlKUM3HGxZg" instanceClassName="lpg.runtime.IToken" base_PrimitiveType="_tvVQwI2FEd2mlKUM3HGxZg"/>
   <Ecore:EAttribute xmi:id="_qkehgI2JEd2mlKUM3HGxZg" isTransient="true" base_Property="_PkTnII2GEd2mlKUM3HGxZg"/>
   <Ecore:EAttribute xmi:id="_na5BwI2GEd2mlKUM3HGxZg" isTransient="true" base_Property="_kTt1cI2GEd2mlKUM3HGxZg"/>
   <Ecore:EAttribute xmi:id="_CoEkwI2HEd2mlKUM3HGxZg" isTransient="true" base_Property="_xJpmEI2GEd2mlKUM3HGxZg"/>

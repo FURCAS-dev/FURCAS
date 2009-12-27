@@ -14,10 +14,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.12 2009/11/09 22:15:06 ewillink Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.13 2009/12/27 15:49:47 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -32,6 +33,7 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 * </copyright>
 */
 
@@ -132,7 +134,7 @@ public interface OCLBacktrackingParsersym {
       TK_MULTI_LINE_COMMENT = 78,
       TK_ERROR_TOKEN = 1;
 
-      public final static String orderedTerminalSymbols[] = {
+    public final static String orderedTerminalSymbols[] = {
                  "",
                  "ERROR_TOKEN",
                  "LPAREN",
@@ -214,5 +216,6 @@ public interface OCLBacktrackingParsersym {
                  "MULTI_LINE_COMMENT"
              };
 
+    public final static int numTokenKinds = orderedTerminalSymbols.length;
     public final static boolean isValidForParser = true;
 }

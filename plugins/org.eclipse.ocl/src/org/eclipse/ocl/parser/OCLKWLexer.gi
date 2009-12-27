@@ -12,40 +12,25 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLKWLexer.g,v 1.6 2009/10/15 19:43:12 ewillink Exp $
+-- * $Id: OCLKWLexer.gi,v 1.2 2009/12/27 15:49:43 asanchez Exp $
 -- */
 --
 -- The Complete OCL KeyWord Lexer
 --
 
-%Options slr
-%Options fp=OCLKWLexer,prefix=Char_
+%options slr
+%options fp=OCLKWLexer,prefix=Char_
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/KeywordTemplateD.g
+%options template=../lpg/KeywordTemplateD.gi
 %options export_terminals=("OCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
-$Define
+%Import
+	EssentialOCLKWLexer.gi
+%End
 
-	--
-	-- Definition of macros used in the template
-	--
-	$action_class /.$file_prefix./
-	$eof_char /.Char_EOF./
-	$copyright_contributions /.*./
-
-$End
-
-$Globals
-	/../
-$End
-
-$Include
-	EssentialOCLKWLexer.g
-$End
-
-$Notice
+%Notice
 	/./**
  * Complete OCL Keyword Lexer
  * <copyright>
@@ -59,12 +44,14 @@ $Notice
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Bug 292112
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+$copyright_contributions
  * </copyright>
  */
 	./
-$End
+%End
 
-$Export
+%Export
 	inv
 	pre
 	post
@@ -81,9 +68,9 @@ $Export
 	static
 	
 	OclMessage
-$End
+%End
 
-$Rules
+%Rules
 
 -- The Goal for the parser is a single Keyword
 
@@ -159,4 +146,4 @@ $Rules
 			$setResult($_static);
 		  $EndAction
 		./
-$End
+%End
