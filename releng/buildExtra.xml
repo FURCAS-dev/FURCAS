@@ -13,13 +13,13 @@
 	</target>
 
 	<target name="preFetch">
-		<!--echo message="[[[Unzipping LPG]]]" />
+		<echo message="[[[Unzipping LPG]]]" />
 		<unzip dest="${buildDirectory}/LPG" src="${downloadsDir}/${tools.orbit.file}">
 			<patternset>
-				<include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*.jar"/>
-				<include name="**/net.sourceforge.lpg.lpgjavaruntime.source_${LPGRuntimeVersion}*.jar"/>
+				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*.jar"/>
+				<include name="**/lpg.runtime.java.source_${LPGRuntimeVersion}*.jar"/>
 			</patternset>
-		</unzip-->
+		</unzip>
 		
 		<!-- Here is where we fetch all of the example plugins from CVS
 		      We don't need them to be packaged into the Master zip, but rather
@@ -61,12 +61,12 @@
 	</target>
 	
 	<target name="postAssemble">
-		<!--echo message="[[[Add the LPG bundles into Master zip]]]" />
+		<echo message="[[[Add the LPG bundles into Master zip]]]" />
 		<zip destfile="${buildDirectory}/${buildLabel}/${masterZip}" update="true">
 			<zipfileset dir="${buildDirectory}/LPG" 
-						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}.*.jar"
 			/>
-		</zip-->
+		</zip>
 	</target>
 	
 	<target name="prePackage">
@@ -95,15 +95,15 @@
 	</target>
 
 	<target name="extraPackaging">
-		<!-- Add the LPG bundles into SDK zip>
+		<!-- Add the LPG bundles into SDK zip-->
 		<zip destfile="${buildDirectory}/${buildLabel}/${SDKZip}" update="true">
 			<zipfileset dir="${buildDirectory}/LPG" 
-						includes="**/net.sourceforge.lpg.lpgjavaruntime*_${LPGRuntimeVersion}.*.jar"
+						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}.*.jar"
 			/>
 			<zipfileset dir="${buildDirectory}" 
 						includes="epl-v10.html, notice.html" prefix="eclipse"
 			/>
-		</zip-->
+		</zip>
 
 		<!-- build runtime from SDK -->
 		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-runtime${incubation}-${buildAlias}.zip" update="true">
@@ -114,7 +114,7 @@
 			>
 				<include name="**/${domainNamespace}.ocl*/" />
 				<include name="**/${domainNamespace}.ocl*/**" />
-				<!--include name="**/net.sourceforge.lpg.lpgjavaruntime_${LPGRuntimeVersion}*" /-->
+				<include name="**/lpg.runtime.java_${LPGRuntimeVersion}*" />
 				<include name="**/eclipse/epl-v10.html" />
 				<include name="**/eclipse/notice.html" />
 			</zipfileset>
@@ -129,7 +129,7 @@
 					<include name="**/plugins/org.eclipse.ocl.ecore_*.jar" />
 					<include name="**/plugins/org.eclipse.ocl.uml_*.jar" />
 					<include name="**/plugins/org.eclipse.ocl_*.jar" />
-					<include name="**/plugins/net.sourceforge.lpg.lpgjavaruntime_*.jar" />
+					<include name="**/plugins/lpg.runtime.java_*.jar" />
 				</patternset>
 			</zipfileset>
 			<mapper type="flatten" />
