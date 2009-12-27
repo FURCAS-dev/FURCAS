@@ -44,5 +44,6 @@ plugin@org.eclipse.emf.examples.library.edit=R2_3_1RC,:pserver:anonymous@dev.ecl
 plugin@org.eclipse.emf.examples.library.editor=R2_3_1RC,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library.editor
 
 !*** LPG Distribution
-plugin@net.sourceforge.lpg.lpgjavaruntime,1.1.0=v200803061910,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime
-plugin@net.sourceforge.lpg.lpgjavaruntime.source,1.1.0=v200803061910,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime/source-bundle
+plugin@lpg.runtime.java,2.0.17=HEAD,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/lpg.runtime.java
+!*** plugin@net.sourceforge.lpg.lpgjavaruntime,1.1.0=v200803061910,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime
+!*** plugin@net.sourceforge.lpg.lpgjavaruntime.source,1.1.0=v200803061910,:pserver:anonymous@dev.eclipse.org:/cvsroot/tools,,org.eclipse.orbit/net.sourceforge.lpg.lpgjavaruntime/source-bundle
