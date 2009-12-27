@@ -14,10 +14,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.15 2009/12/18 06:26:04 ewillink Exp $
+* $Id: OCLBacktrackingParser.java,v 1.16 2009/12/27 15:49:48 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -32,6 +33,7 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 * </copyright>
 */
 
@@ -70,15 +72,15 @@ import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
 import org.eclipse.ocl.cst.VariableCS;
 import org.eclipse.ocl.cst.VariableExpCS;
 
-import lpg.lpgjavaruntime.BadParseException;
-import lpg.lpgjavaruntime.BadParseSymFileException;
-import lpg.lpgjavaruntime.BacktrackingParser;
-import lpg.lpgjavaruntime.DiagnoseParser;
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.NotBacktrackParseTableException;
-import lpg.lpgjavaruntime.ParseTable;
-import lpg.lpgjavaruntime.RuleAction;
+import lpg.runtime.BadParseException;
+import lpg.runtime.BadParseSymFileException;
+import lpg.runtime.BacktrackingParser;
+import lpg.runtime.DiagnoseParser;
+import lpg.runtime.IToken;
+import lpg.runtime.Monitor;
+import lpg.runtime.NotBacktrackParseTableException;
+import lpg.runtime.ParseTable;
+import lpg.runtime.RuleAction;
 
 import org.eclipse.ocl.Environment;
 import org.eclipse.ocl.cst.ClassifierContextDeclCS;
@@ -464,7 +466,7 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
             //
             case 57: {
                 
-                TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)dtParser.getSym(3));
+                 TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)dtParser.getSym(3));
                 setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(4)));
                 dtParser.setSym1(result);
               break;
@@ -2402,7 +2404,7 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
                 
 				OperationCS result = createOperationCS(
 						getIToken(dtParser.getToken(1)),
-						(EList<VariableCS>)dtParser.getSym(3),
+						new BasicEList<VariableCS>(),
 						null
 					);
 				setOffsets(result, getIToken(dtParser.getToken(1)), getIToken(dtParser.getToken(5)));

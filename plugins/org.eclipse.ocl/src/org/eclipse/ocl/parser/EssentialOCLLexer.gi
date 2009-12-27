@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
+-- * $Id: EssentialOCLLexer.gi,v 1.1 2009/12/27 15:49:44 asanchez Exp $
 -- */
 --
 -- The Essential OCL Lexer
@@ -24,12 +24,16 @@
 %options single-productions
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/LexerTemplateD.g
-%options filter=EssentialOCLKWLexer.g
+%options template=../lpg/LexerTemplateD.gi
+%options filter=EssentialOCLKWLexer.gi
 %options export_terminals=("EssentialOCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
-$Define
+%Import
+	LexerBasicMap.gi
+%End
+
+%Define
 
 	--
 	-- Definition of macros used in the template
@@ -43,12 +47,12 @@ $Define
 	--
 	-- Definition of macro used in the included file LexerBasicMap.g
 	--
---	$kw_lexer_class /.EssentialOCLKWLexer./
---	$copyright_contributions /.*./
+	$kw_lexer_class /.EssentialOCLKWLexer./
+	$copyright_contributions /.*./
 
-$End
+%End
 
-$Notice
+%Notice
 	/./**
  * Essential OCL Lexer
  * <copyright>
@@ -64,25 +68,23 @@ $Notice
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
  *   Borland - Bug 242880
  *   E.D.Willink - Bug 292112
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCLLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
+ * $Id: EssentialOCLLexer.gi,v 1.1 2009/12/27 15:49:44 asanchez Exp $
  */
 	./
-$End
+%End
 
-$Include
-	LexerBasicMap.g
-$End
-
-$Globals
+%Globals
     /.import $environment_import;
     import org.eclipse.ocl.lpg.BasicEnvironment;
     import org.eclipse.ocl.util.OCLUtil;
     ./
-$End
+%End
 
-$Export
+%Export
 
 	IDENTIFIER
 	INTEGER_LITERAL
@@ -120,9 +122,9 @@ $Export
 	SINGLE_LINE_COMMENT
 	MULTI_LINE_COMMENT
 
-$End
+%End
 
-$Terminals
+%Terminals
 	CtlCharNotWS
 
 	LF   CR   HT   FF
@@ -147,7 +149,7 @@ $Terminals
 	Exclamation  ::= '!'
 	AtSign       ::= '@'
 	BackQuote    ::= '`'
-	Acute        ::= '�'
+	Acute        ::= 'Ã¯Â¿Â½'
 	Tilde        ::= '~'
 	Sharp        ::= '#'
 	DollarSign   ::= '$'
@@ -173,13 +175,13 @@ $Terminals
 	RightParen   ::= ')'
 	Equal        ::= '='
 
-$End
+%End
 
-$Start
+%Start
 	Token
-$End
+%End
 
-$Rules
+%Rules
 
 	---------------------  Rules for Scanned Tokens --------------------------------
 	-- The lexer creates an array list of tokens which is defined in the PrsStream class.
@@ -193,11 +195,11 @@ $Rules
 	--  
 	-- Regarding rules for parsing in general, note that for a rhs symbol Ai, the 
 	-- method $getToken(i) returns the location of the leftmost character derived from Ai.  
-	-- The method $getLeftSpan(i) returns the same location unless Ai produces $empty in which case
-	-- it returns the location of the last character derived before reducing Ai to $empty. 
+	-- The method $getLeftSpan(i) returns the same location unless Ai produces %empty in which case
+	-- it returns the location of the last character derived before reducing Ai to %empty. 
 	-- The method $getRightSpan(i) returns the location of the rightmost character derived from Ai 
-	-- unless Ai produces $empty in which case it returns the location of the last character 
-	-- derived before reducing Ai to $empty.
+	-- unless Ai produces %empty in which case it returns the location of the last character 
+	-- derived before reducing Ai to %empty.
 	--------------------------------------------------------------------------------
 	Token ::= Identifier
 		/.$BeginAction
@@ -431,7 +433,7 @@ $Rules
     Inside ::= Inside Stars NotSlashOrStar
              | Inside '/'
              | Inside NotSlashOrStar
-             | $empty
+             | %empty
 
     Stars -> '*'
            | Stars '*'
@@ -535,7 +537,7 @@ $Rules
 	SLNotSQ -> NotSQ
 	         | SLNotSQ NotSQ
 
-	SLNotSQOpt -> $empty
+	SLNotSQOpt -> %empty
 	            | SLNotSQ
 
-$End
+%End

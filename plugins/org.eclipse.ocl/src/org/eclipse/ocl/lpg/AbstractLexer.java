@@ -15,7 +15,7 @@
 *
 * </copyright>
 *
-* $Id: AbstractLexer.java,v 1.2 2008/10/04 00:54:10 cdamus Exp $
+* $Id: AbstractLexer.java,v 1.3 2009/12/27 15:49:49 asanchez Exp $
 */
 
 package org.eclipse.ocl.lpg;
@@ -23,9 +23,9 @@ package org.eclipse.ocl.lpg;
 import java.io.IOException;
 import java.io.Reader;
 
-import lpg.lpgjavaruntime.LpgLexStream;
-import lpg.lpgjavaruntime.Monitor;
-import lpg.lpgjavaruntime.RuleAction;
+import lpg.runtime.LpgLexStream;
+import lpg.runtime.Monitor;
+import lpg.runtime.RuleAction;
 
 
 /**
@@ -119,20 +119,25 @@ public abstract class AbstractLexer extends LpgLexStream implements RuleAction
 	}
 	
 	public abstract void lexToTokens(Monitor monitor, AbstractParser parser);
-
+	
 	/**
 	 * Errors generated within the lexer are redirected to the error handler if there is one.
 	 * 
-	 * Note that other variants of reportError either feed this one, are fed from a default implementation
+	 * Note that other variants of reportLexicalError and reportError either feed this one, are fed from a default implementation
 	 * of this one or originate in the parser, where a ParserErrorHandler can intercept them.
+	 * @since 3.0
 	 */
-	@Override public void reportError(int leftToken, int rightToken) {
+	@Override
+	public void reportLexicalError(int errorCode, int leftLoc, int rightLoc,
+			int errorLeftLoc, int errorRightLoc, String[] errorInfo) {
 		BasicEnvironment environment = getEnvironment();
 		if (environment != null)
-			environment.lexerError(computeErrorCode(leftToken, rightToken), leftToken, rightToken);
+			environment.lexerError(errorCode, leftLoc, rightLoc);
 		else
-			super.reportError(leftToken, rightToken);
+			super.reportLexicalError(errorCode, leftLoc, rightLoc, errorLeftLoc,
+			errorRightLoc, errorInfo);
 	}
+
 
     /**
 	 * Define the input text as a given array of characters.

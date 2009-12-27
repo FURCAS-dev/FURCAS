@@ -10,30 +10,30 @@
 --
 -- B E G I N N I N G   O F   T E M P L A T E   LexerTemplateD
 --
-%Options programming_language=java,margin=4
-%Options table
-%options action=("*.java", "/.", "./")
-%options ParseTable=lpg.lpgjavaruntime.ParseTable
-%Options prefix=Char_
+%options programming_language=java,margin=4
+%options table
+%options action-block=("*.java", "/.", "./")
+%options ParseTable=lpg.runtime.ParseTable
+%options prefix=Char_
 
 --
 -- This template requires that the name of the EOF token be set
 -- to EOF and that the prefix be "Char_" to be consistent with
 -- KeywordTemplateD.
 --
-$Eof
+%Eof
     EOF
-$End
+%End
 
 --
 -- This template also requires that the name of the parser EOF
 -- Token to be exported be set to EOF_TOKEN
 --
-$Export
+%Export
     EOF_TOKEN
-$End
+%End
 
-$Define
+%Define
     --
     -- Macros that are be needed in an instance of this template
     --
@@ -119,16 +119,16 @@ $Define
             }
             return;
         }./
-$End
+%End
 
-$Globals
-    /.import lpg.lpgjavaruntime.*;
+%Globals
+    /.import lpg.runtime.*;
     import org.eclipse.ocl.lpg.AbstractLexer;
     import org.eclipse.ocl.lpg.AbstractParser;
     ./
-$End
+%End
 
-$Headers
+%Headers
     /.
     @SuppressWarnings("nls")
     public class $action_type extends $super_stream_class implements $exp_type, $sym_type, RuleAction$additional_interfaces
@@ -218,18 +218,18 @@ $Headers
             return;
         }
     ./
-$End
+%End
 
-$Rules
+%Rules
     /.$BeginActions./
-$End
+%End
 
-$Trailers
+%Trailers
     /.
         $EndActions
     }
     ./
-$End
+%End
 
 --
 -- E N D   O F   T E M P L A T E

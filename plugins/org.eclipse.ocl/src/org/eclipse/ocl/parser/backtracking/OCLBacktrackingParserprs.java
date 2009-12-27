@@ -14,10 +14,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParserprs.java,v 1.12 2009/11/09 22:14:52 ewillink Exp $
+* $Id: OCLBacktrackingParserprs.java,v 1.13 2009/12/27 15:49:48 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -32,6 +33,7 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 * </copyright>
 */
 
@@ -45,7 +47,114 @@ package org.eclipse.ocl.parser.backtracking;
  * @since 1.3
  */
 @SuppressWarnings("nls")
-public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, OCLBacktrackingParsersym {
+public class OCLBacktrackingParserprs implements lpg.runtime.ParseTable, OCLBacktrackingParsersym {
+    public final static int ERROR_SYMBOL = 1;
+    public final int getErrorSymbol() { return ERROR_SYMBOL; }
+
+    public final static int SCOPE_UBOUND = 53;
+    public final int getScopeUbound() { return SCOPE_UBOUND; }
+
+    public final static int SCOPE_SIZE = 54;
+    public final int getScopeSize() { return SCOPE_SIZE; }
+
+    public final static int MAX_NAME_LENGTH = 29;
+    public final int getMaxNameLength() { return MAX_NAME_LENGTH; }
+
+    public final static int NUM_STATES = 255;
+    public final int getNumStates() { return NUM_STATES; }
+
+    public final static int NT_OFFSET = 78;
+    public final int getNtOffset() { return NT_OFFSET; }
+
+    public final static int LA_STATE_OFFSET = 4690;
+    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
+
+    public final static int MAX_LA = 1;
+    public final int getMaxLa() { return MAX_LA; }
+
+    public final static int NUM_RULES = 333;
+    public final int getNumRules() { return NUM_RULES; }
+
+    public final static int NUM_NONTERMINALS = 122;
+    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
+
+    public final static int NUM_SYMBOLS = 200;
+    public final int getNumSymbols() { return NUM_SYMBOLS; }
+
+    public final static int SEGMENT_SIZE = 8192;
+    public final int getSegmentSize() { return SEGMENT_SIZE; }
+
+    public final static int START_STATE = 3970;
+    public final int getStartState() { return START_STATE; }
+
+    public final static int IDENTIFIER_SYMBOL = 5;
+    public final int getIdentifier_SYMBOL() { return IDENTIFIER_SYMBOL; }
+
+    public final static int EOFT_SYMBOL = 72;
+    public final int getEoftSymbol() { return EOFT_SYMBOL; }
+
+    public final static int EOLT_SYMBOL = 72;
+    public final int getEoltSymbol() { return EOLT_SYMBOL; }
+
+    public final static int ACCEPT_ACTION = 4356;
+    public final int getAcceptAction() { return ACCEPT_ACTION; }
+
+    public final static int ERROR_ACTION = 4357;
+    public final int getErrorAction() { return ERROR_ACTION; }
+
+    public final static boolean BACKTRACK = true;
+    public final boolean getBacktrack() { return BACKTRACK; }
+
+    public final int getStartSymbol() { return lhs(0); }
+    public final boolean isValidForParser() { return OCLBacktrackingParsersym.isValidForParser; }
+
+
+    public interface IsNullable {
+        public final static byte isNullable[] = {0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            1,0,0,0,1,1,0,0,0,0,
+            0,0,0,0,0,0,0,0,0,0,
+            1,0,1,1,0,0,0,0,0,0,
+            1,0,1,0,0,1,0,0,0,0,
+            0,0,1,0,0,0,0,0,0,0
+        };
+    };
+    public final static byte isNullable[] = IsNullable.isNullable;
+    public final boolean isNullable(int index) { return isNullable[index] != 0; }
+
+    public interface ProsthesesIndex {
+        public final static byte prosthesesIndex[] = {0,
+            12,122,9,10,14,16,17,11,28,29,
+            30,31,32,37,38,39,40,41,42,43,
+            45,46,47,48,49,50,51,52,53,58,
+            59,60,85,87,88,89,90,99,82,83,
+            84,79,80,81,76,77,78,73,74,75,
+            70,71,72,67,68,69,64,65,66,23,
+            54,61,62,63,20,120,6,8,13,24,
+            55,98,56,15,21,22,57,96,93,27,
+            86,108,109,110,111,26,35,36,94,95,
+            102,25,33,34,97,100,101,104,107,113,
+            114,115,118,119,2,3,4,18,19,44,
+            91,92,103,105,106,112,116,117,121,1,
+            5,7
+        };
+    };
+    public final static byte prosthesesIndex[] = ProsthesesIndex.prosthesesIndex;
+    public final int prosthesesIndex(int index) { return prosthesesIndex[index]; }
 
     public interface IsKeyword {
         public final static byte isKeyword[] = {0,
@@ -1470,35 +1579,35 @@ public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, 
 
     public interface ScopeRhs {
         public final static char scopeRhs[] = {0,
-            138,2,0,79,0,138,30,0,138,74,
-            138,30,0,35,89,79,0,138,75,138,
-            74,138,30,0,36,89,79,0,35,89,
-            36,89,79,0,149,60,79,0,152,2,
-            81,0,174,2,79,41,104,0,12,0,
+            138,2,0,1,0,138,30,0,138,74,
+            138,30,0,74,138,1,0,138,75,138,
+            74,138,30,0,75,138,1,0,74,138,
+            75,138,1,0,149,60,79,0,152,2,
+            81,0,174,2,79,41,104,0,3,0,
             174,2,79,42,104,0,155,2,150,79,
-            39,104,0,189,31,0,44,89,0,37,
-            0,36,89,37,0,35,89,36,89,37,
-            0,118,0,4,126,0,3,126,0,121,
-            0,2,124,0,1,124,0,124,0,9,
-            121,0,8,121,0,6,121,0,5,121,
-            0,127,0,10,118,0,7,118,0,130,
-            0,38,115,0,133,0,39,112,0,136,
-            0,40,109,0,142,0,42,106,0,16,
-            0,0,149,60,79,40,104,0,155,2,
+            39,104,0,189,31,0,76,138,0,70,
+            0,75,138,70,0,74,138,75,138,70,
+            0,118,0,37,112,0,7,112,0,121,
+            0,6,119,0,36,119,0,124,0,46,
+            122,0,45,122,0,44,122,0,43,122,
+            0,127,0,47,125,0,23,125,0,130,
+            0,50,128,0,133,0,52,131,0,136,
+            0,55,134,0,142,0,61,137,0,68,
+            151,0,149,60,79,40,104,0,155,2,
             151,147,38,83,40,104,0,155,2,147,
             38,83,0,155,2,151,79,0,155,2,
             151,79,40,104,0,155,2,151,185,40,
             104,0,149,25,79,2,79,39,104,0,
             149,25,139,2,79,39,104,0,139,2,
-            79,39,104,0,19,100,12,0,138,2,
+            79,39,104,0,25,149,3,0,138,2,
             79,39,104,0,138,49,148,69,164,2,
             79,39,104,0,148,69,164,2,79,39,
-            104,0,18,89,12,0,138,49,148,2,
+            104,0,49,138,3,0,138,49,148,2,
             79,39,104,0,148,2,79,39,104,0,
             138,49,164,25,143,2,79,39,104,0,
             138,49,164,25,79,2,79,39,104,0,
             138,49,164,2,79,39,104,0,188,63,
-            18,0,14,0,171,63,84,0,171,63,
+            18,0,51,0,171,63,84,0,171,63,
             81,0,186,2,18,0
         };
     };
@@ -1708,53 +1817,6 @@ public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, 
     public final static String name[] = Name.name;
     public final String name(int index) { return name[index]; }
 
-    public final static int
-           ERROR_SYMBOL      = 1,
-           SCOPE_UBOUND      = 53,
-           SCOPE_SIZE        = 54,
-           MAX_NAME_LENGTH   = 29;
-
-    public final int getErrorSymbol() { return ERROR_SYMBOL; }
-    public final int getScopeUbound() { return SCOPE_UBOUND; }
-    public final int getScopeSize() { return SCOPE_SIZE; }
-    public final int getMaxNameLength() { return MAX_NAME_LENGTH; }
-
-    public final static int
-           NUM_STATES        = 255,
-           NT_OFFSET         = 78,
-           LA_STATE_OFFSET   = 4690,
-           MAX_LA            = 1,
-           NUM_RULES         = 333,
-           NUM_NONTERMINALS  = 122,
-           NUM_SYMBOLS       = 200,
-           SEGMENT_SIZE      = 8192,
-           START_STATE       = 3970,
-           IDENTIFIER_SYMBOL = 5,
-           EOFT_SYMBOL       = 72,
-           EOLT_SYMBOL       = 72,
-           ACCEPT_ACTION     = 4356,
-           ERROR_ACTION      = 4357;
-
-    public final static boolean BACKTRACK = true;
-
-    public final int getNumStates() { return NUM_STATES; }
-    public final int getNtOffset() { return NT_OFFSET; }
-    public final int getLaStateOffset() { return LA_STATE_OFFSET; }
-    public final int getMaxLa() { return MAX_LA; }
-    public final int getNumRules() { return NUM_RULES; }
-    public final int getNumNonterminals() { return NUM_NONTERMINALS; }
-    public final int getNumSymbols() { return NUM_SYMBOLS; }
-    public final int getSegmentSize() { return SEGMENT_SIZE; }
-    public final int getStartState() { return START_STATE; }
-    public final int getStartSymbol() { return lhs[0]; }
-    public final int getIdentifierSymbol() { return IDENTIFIER_SYMBOL; }
-    public final int getEoftSymbol() { return EOFT_SYMBOL; }
-    public final int getEoltSymbol() { return EOLT_SYMBOL; }
-    public final int getAcceptAction() { return ACCEPT_ACTION; }
-    public final int getErrorAction() { return ERROR_ACTION; }
-    public final boolean isValidForParser() { return isValidForParser; }
-    public final boolean getBacktrack() { return BACKTRACK; }
-
     public final int originalState(int state) {
         return -baseCheck[state];
     }
@@ -1768,10 +1830,16 @@ public class OCLBacktrackingParserprs implements lpg.lpgjavaruntime.ParseTable, 
         return inSymb[originalState(state)];
     }
 
+    /**
+     * assert(! goto_default);
+     */
     public final int ntAction(int state, int sym) {
         return baseAction[state + sym];
     }
 
+    /**
+     * assert(! shift_default);
+     */
     public final int tAction(int state, int sym) {
         int i = baseAction[state],
             k = i + sym;

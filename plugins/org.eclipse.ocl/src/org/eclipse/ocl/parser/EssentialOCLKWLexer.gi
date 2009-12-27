@@ -12,21 +12,25 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLKWLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
+-- * $Id: EssentialOCLKWLexer.gi,v 1.1 2009/12/27 15:49:43 asanchez Exp $
 -- */
 --
 -- The Essential OCL KeyWord Lexer
 --
 
-%Options slr
-%Options fp=OCLKWLexer,prefix=Char_
+%options slr
+%options fp=OCLKWLexer,prefix=Char_
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/KeywordTemplateD.g
+%options template=../lpg/KeywordTemplateD.gi
 %options export_terminals=("EssentialOCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
-$Define
+%Import
+	KWLexerMap.gi
+%End
+
+%Define
 
 	--
 	-- Definition of macros used in the template
@@ -35,9 +39,9 @@ $Define
 	$eof_char /.Char_EOF./
 	$copyright_contributions /.*./
 
-$End
+%End
 
-$Notice
+%Notice
 	/./**
  * Essential OCL Keyword Lexer
  * <copyright>
@@ -52,22 +56,20 @@ $Notice
  *   IBM - Initial API and implementation
  *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
  *   E.D.Willink - Bug 285633, 292112
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+$copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCLKWLexer.g,v 1.2 2009/11/09 22:01:36 ewillink Exp $
+ *
  */
 	./
-$End
+%End
 
-$Globals
+%Globals
 	/../
-$End
+%End
 
-$Include
-	KWLexerMap.g
-$End
-
-$Export
+%Export
 	self
 	if
 	then
@@ -106,23 +108,13 @@ $Export
 	OclAny
 	OclVoid
 	OclInvalid
-$End
+%End
 
-$Terminals
-	DollarSign
-	a b c d e f g h i j k l m n o p q r s t u v w x y z
-	A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-$End
-
-$Eof
-	EOF
-$End
-
-$Start
+%Start
 	KeyWord
-$End
+%End
 
-$Rules
+%Rules
 
 -- The Goal for the parser is a single Keyword
 
@@ -306,4 +298,4 @@ $Rules
 			$setResult($_invalid);
 		  $EndAction
 		./
-$End
+%End

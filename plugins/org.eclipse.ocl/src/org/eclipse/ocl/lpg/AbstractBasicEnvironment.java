@@ -16,7 +16,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.8 2009/10/23 21:00:38 ewillink Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.9 2009/12/27 15:49:50 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -25,8 +25,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import lpg.lpgjavaruntime.IToken;
-import lpg.lpgjavaruntime.ParseErrorCodes;
+import lpg.runtime.IToken;
+import lpg.runtime.ParseErrorCodes;
 
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.internal.OCLDebugOptions;

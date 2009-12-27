@@ -1,4 +1,4 @@
-$Headers
+%Headers
     --
     -- Additional methods for the action class not provided in the template
     --
@@ -19,7 +19,7 @@ $Headers
         {
             int startOffset = getLeftSpan(),
                 endOffset = getRightSpan();
-            super.getPrsStream().makeAdjunct(startOffset, endOffset, kind);
+            super.getIPrsStream().makeAdjunct(startOffset, endOffset, kind);
         }
 
         final void skipToken()
@@ -193,4 +193,4 @@ $Headers
                                Char_AfterASCIINotAcute;
         }
     ./
-$End
+%End

@@ -14,10 +14,11 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.16 2009/11/09 22:03:45 ewillink Exp $
+* $Id: OCLParsersym.java,v 1.17 2009/12/27 15:49:45 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -32,6 +33,7 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 * </copyright>
 */
 
@@ -128,7 +130,7 @@ public interface OCLParsersym {
       TK_MULTI_LINE_COMMENT = 77,
       TK_ERROR_TOKEN = 78;
 
-      public final static String orderedTerminalSymbols[] = {
+    public final static String orderedTerminalSymbols[] = {
                  "",
                  "LPAREN",
                  "RPAREN",
@@ -210,5 +212,6 @@ public interface OCLParsersym {
                  "ERROR_TOKEN"
              };
 
+    public final static int numTokenKinds = orderedTerminalSymbols.length;
     public final static boolean isValidForParser = true;
 }
