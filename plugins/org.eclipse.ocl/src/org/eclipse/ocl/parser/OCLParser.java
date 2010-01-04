@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.21 2009/12/27 15:49:44 asanchez Exp $
+* $Id: OCLParser.java,v 1.22 2010/01/04 23:22:45 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -142,7 +142,10 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
         }
 
         try {
-            return (CSTNode) dtParser.parse();
+            if (error_repair_count > 0)                
+            	return (CSTNode) dtParser.parse();
+            else
+                return (CSTNode) dtParser.parse();
         }
         catch (BadParseException e) {
             reset(e.error_token); // point to error token
