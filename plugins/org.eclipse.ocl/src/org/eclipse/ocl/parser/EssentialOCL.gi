@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.gi,v 1.2 2009/12/27 15:49:46 asanchez Exp $
+-- * $Id: EssentialOCL.gi,v 1.3 2010/01/04 23:22:45 asanchez Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -28,6 +28,8 @@
     $prs_parser_exception /.NotDeterministicParseTableException./
     $prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -NOBACKTRACK option")./
     $prs_parse_args /../
+    $prs_fuzzy_parse_call/.parse./
+    $prs_parse_call/.parse./
     $lex_stream_class /.AbstractLexer./
     $action_class /.$file_prefix./
     $copyright_contributions /.*./
@@ -156,7 +158,10 @@
             }
 
             try {
-                return ($ast_type) dtParser.parse($prs_parse_args);
+                if (error_repair_count > 0)                
+                	return ($ast_type) dtParser.$prs_fuzzy_parse_call($prs_parse_args);
+                else
+                    return ($ast_type) dtParser.$prs_parse_call($prs_parse_args);
             }
             catch (BadParseException e) {
                 reset(e.error_token); // point to error token
@@ -207,7 +212,7 @@
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.gi,v 1.2 2009/12/27 15:49:46 asanchez Exp $
+ * $Id: EssentialOCL.gi,v 1.3 2010/01/04 23:22:45 asanchez Exp $
  */
     ./
 %End

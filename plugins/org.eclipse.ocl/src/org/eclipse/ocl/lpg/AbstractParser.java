@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.7 2009/12/27 15:49:50 asanchez Exp $
+ * $Id: AbstractParser.java,v 1.8 2010/01/04 23:22:46 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -276,19 +276,16 @@ public abstract class AbstractParser
 	 * performing repairs (the BacktrackingParser) unless overridden on the
 	 * specific parser invocation method.
 	 * 
+     * When repair count is 0, no Error token recoveries occur.
+     * When repair count is > 0, it limits the number of Error token recoveries.
+     * When repair count is < 0, the number of error token recoveries is unlimited.
+     * 
 	 * @param defaultRepairCount
 	 *            the default repair count
-	 * 
-	 * @throws IllegalArgumentException
-	 *             if the <tt>defaultRepairCount</tt> is negative
 	 * 
 	 * @since 1.3
 	 */
 	public void setDefaultRepairCount(int defaultRepairCount) {
-		if (defaultRepairCount < 0) {
-			throw new IllegalArgumentException("negative default repair count"); //$NON-NLS-1$
-		}
-
 		this.defaultRepairCount = defaultRepairCount;
 	}
 

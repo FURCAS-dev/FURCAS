@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.16 2009/12/27 15:49:48 asanchez Exp $
+* $Id: OCLBacktrackingParser.java,v 1.17 2010/01/04 23:22:45 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -144,7 +144,10 @@ public class OCLBacktrackingParser extends AbstractOCLParser implements RuleActi
         }
 
         try {
-            return (CSTNode) dtParser.parse(error_repair_count);
+            if (error_repair_count > 0)                
+            	return (CSTNode) dtParser.fuzzyParse(error_repair_count);
+            else
+                return (CSTNode) dtParser.parse(error_repair_count);
         }
         catch (BadParseException e) {
             reset(e.error_token); // point to error token

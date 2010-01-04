@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLBacktrackingParser.g,v 1.3 2009/12/27 15:49:48 asanchez Exp $
+-- * $Id: OCLBacktrackingParser.g,v 1.4 2010/01/04 23:22:46 asanchez Exp $
 -- */
 --
 -- The OCL Backtracking Parser
@@ -55,5 +55,6 @@
 	$prs_parser_class /.BacktrackingParser./
 	$prs_parser_exception /.NotBacktrackParseTableException./
 	$prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -BACKTRACK option")./
+	$prs_fuzzy_parse_call/.fuzzyParse./
 	$prs_parse_args /.error_repair_count./
 %End

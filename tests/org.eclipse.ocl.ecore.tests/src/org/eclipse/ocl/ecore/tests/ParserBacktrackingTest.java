@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ParserBacktrackingTest.java,v 1.1 2009/10/15 19:46:28 ewillink Exp $
+ * $Id: ParserBacktrackingTest.java,v 1.2 2010/01/04 23:20:41 asanchez Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -159,7 +159,7 @@ public class ParserBacktrackingTest
 		AbstractBasicEnvironment abstractBasicEnvironment = (AbstractBasicEnvironment)environment;
 		OCLBacktrackingLexer lexer = new OCLBacktrackingLexer(environment, oclText.toCharArray());
 		OCLBacktrackingParser parser = new OCLBacktrackingParser(lexer);
-		parser.setDefaultRepairCount(10);
+		parser.setDefaultRepairCount(-1);
 		MyProblemHandler problemHandler = new MyProblemHandler(parser, oclText, failure);
 		abstractBasicEnvironment.setProblemHandler(problemHandler);
 		try {
