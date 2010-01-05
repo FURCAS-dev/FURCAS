@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllTestsBacktracking.java,v 1.1 2010/01/05 07:47:25 ewillink Exp $
+ * $Id: AllTestsBacktracking.java,v 1.2 2010/01/05 09:07:59 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -45,6 +45,7 @@ public class AllTestsBacktracking
 			Environment.Registry.INSTANCE.registerEnvironment(
 					new UMLEnvironmentFactory().createEnvironment());
 		}
+		System.setProperty(UMLTestReflection.PLUGIN_ID + ".repairs", "100");
 		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel");		
 		AbstractTestSuite.suite(result);
 		AbstractTestSuite.suiteBacktracking(result);
