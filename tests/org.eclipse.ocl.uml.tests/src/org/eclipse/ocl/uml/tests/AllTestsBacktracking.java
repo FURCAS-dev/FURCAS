@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2002, 2009 IBM Corporation and others.
+ * Copyright (c) 2009 Eclipse Modeling Project and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.4 2010/01/05 07:47:25 ewillink Exp $
+ * $Id: AllTestsBacktracking.java,v 1.1 2010/01/05 07:47:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -29,15 +29,13 @@ import org.eclipse.ocl.tests.GenericTestSuite.CheckedTestSuite;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 
 /**
- * Tests for the OCL engine plug-in.
- * 
- * @author Christian W. Damus (cdamus)
+ * Tests for the OCL engine plug-in using the backtracking parser.
  */
 @SuppressWarnings("nls")
-public class AllTests
+public class AllTestsBacktracking
 	extends TestCase {
 
-	public AllTests() {
+	public AllTestsBacktracking() {
 		super("");
 	}
 
@@ -49,6 +47,7 @@ public class AllTests
 		}
 		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel");		
 		AbstractTestSuite.suite(result);
+		AbstractTestSuite.suiteBacktracking(result);
 		return result;
 	}
 
