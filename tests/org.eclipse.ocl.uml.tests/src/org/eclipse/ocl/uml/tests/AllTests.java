@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2002, 2007 IBM Corporation and others.
+ * Copyright (c) 2002, 2009 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Bug 298634
  *
  * </copyright>
  *
- * $Id: AllTests.java,v 1.3 2009/11/28 18:18:14 ewillink Exp $
+ * $Id: AllTests.java,v 1.4 2010/01/05 07:47:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -24,6 +25,7 @@ import junit.framework.TestCase;
 import junit.textui.TestRunner;
 
 import org.eclipse.ocl.Environment;
+import org.eclipse.ocl.tests.GenericTestSuite.CheckedTestSuite;
 import org.eclipse.ocl.uml.UMLEnvironmentFactory;
 
 /**
@@ -45,8 +47,9 @@ public class AllTests
 			Environment.Registry.INSTANCE.registerEnvironment(
 					new UMLEnvironmentFactory().createEnvironment());
 		}
-		
-		return AbstractTestSuite.suite();
+		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for UML Metamodel");		
+		AbstractTestSuite.suite(result);
+		return result;
 	}
 
 	public Object run(Object args)

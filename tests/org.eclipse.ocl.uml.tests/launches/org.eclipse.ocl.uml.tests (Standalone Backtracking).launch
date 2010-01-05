@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="org.eclipse.jdt.junit.launchconfig">
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
-<listEntry value="/org.eclipse.ocl.uml.tests/src/org/eclipse/ocl/uml/tests/AllTests.java"/>
+<listEntry value="/org.eclipse.ocl.uml.tests/src/org/eclipse/ocl/uml/tests/AllTestsBacktracking.java"/>
 </listAttribute>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
 <listEntry value="1"/>
@@ -16,7 +16,7 @@
 <booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
 <stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
-<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.uml.tests.AllTests"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.eclipse.ocl.uml.tests.AllTestsBacktracking"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.ocl.uml.tests"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.uml.tests=${resource_loc:/org.eclipse.ocl.uml.tests}&#13;&#10;-Dorg.eclipse.ocl.uml=${resource_loc:/org.eclipse.ocl.uml}&#13;&#10;-Dorg.eclipse.ocl=${resource_loc:/org.eclipse.ocl}&#13;&#10;-Dorg.eclipse.uml2.uml.resources=${resource_loc:/org.eclipse.uml2.uml.resources}&#13;&#10;-Dorg.eclipse.ocl.uml.tests.nodebug=true&#13;&#10;-Dorg.eclipse.ocl.uml.tests.repairs=100&#13;&#10;-ea"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dorg.eclipse.ocl.uml.tests=${resource_loc:/org.eclipse.ocl.uml.tests}&#13;&#10;-Dorg.eclipse.ocl.uml=${resource_loc:/org.eclipse.ocl.uml}&#13;&#10;-Dorg.eclipse.ocl=${resource_loc:/org.eclipse.ocl}&#13;&#10;-Dorg.eclipse.uml2.uml.resources=${resource_loc:/org.eclipse.uml2.uml.resources}&#13;&#10;-Dorg.eclipse.ocl.uml.tests.nodebug=true&#13;&#10;-ea"/>
 </launchConfiguration>

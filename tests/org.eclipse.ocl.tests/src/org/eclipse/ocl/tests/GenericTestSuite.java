@@ -10,12 +10,12 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 243079, 244948, 244886, 245619
- *   E.D.Willink - Bug 254919, 296409
+ *   E.D.Willink - Bug 254919, 296409, 298634
  *   Obeo - Bug 291310
  *
  * </copyright>
  *
- * $Id: GenericTestSuite.java,v 1.4 2009/12/16 21:00:41 ewillink Exp $
+ * $Id: GenericTestSuite.java,v 1.5 2010/01/05 07:47:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -74,7 +74,7 @@ public abstract class GenericTestSuite<E extends EObject, PK extends E, T extend
 	// set this variable true when testing for memory leaks
     private static boolean DISPOSE_RESOURCE_SET = false;
 	
-    protected static final class CheckedTestSuite extends TestSuite {
+    public static final class CheckedTestSuite extends TestSuite {
 
 		public CheckedTestSuite(String name) {
 			super(name);
