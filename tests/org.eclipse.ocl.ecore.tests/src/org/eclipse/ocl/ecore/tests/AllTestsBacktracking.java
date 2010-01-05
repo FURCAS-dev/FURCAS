@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: AllTestsBacktracking.java,v 1.1 2010/01/05 07:47:24 ewillink Exp $
+ * $Id: AllTestsBacktracking.java,v 1.2 2010/01/05 09:07:58 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -45,6 +45,7 @@ public class AllTestsBacktracking
 			Environment.Registry.INSTANCE.registerEnvironment(
 					EcoreEnvironmentFactory.INSTANCE.createEnvironment());
 		}
+		System.setProperty(EcoreTestReflection.PLUGIN_ID + ".repairs", "100");
 		CheckedTestSuite result = new CheckedTestSuite("OCL Tests for Ecore Metamodel");			
 		AbstractTestSuite.suite(result);
 		AbstractTestSuite.suiteBacktracking(result);
