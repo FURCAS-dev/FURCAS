@@ -4,11 +4,9 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
+package de.hpi.sam.bp2009.solution.oclEvaluator.util;
 
-import de.hpi.sam.bp2009.solution.eventListener.EventListener;
-
-import de.hpi.sam.bp2009.solution.impactAnalyzer.*;
+import de.hpi.sam.bp2009.solution.oclEvaluator.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -22,17 +20,17 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage
+ * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage
  * @generated
  */
-public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
+public class OclEvaluatorAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ImpactAnalyzerPackage modelPackage;
+	protected static OclEvaluatorPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -40,9 +38,9 @@ public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactAnalyzerAdapterFactory() {
+	public OclEvaluatorAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = ImpactAnalyzerPackage.eINSTANCE;
+			modelPackage = OclEvaluatorPackage.eINSTANCE;
 		}
 	}
 
@@ -71,15 +69,15 @@ public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ImpactAnalyzerSwitch<Adapter> modelSwitch =
-		new ImpactAnalyzerSwitch<Adapter>() {
+	protected OclEvaluatorSwitch<Adapter> modelSwitch =
+		new OclEvaluatorSwitch<Adapter>() {
 			@Override
-			public Adapter caseImpactAnalyzer(ImpactAnalyzer object) {
-				return createImpactAnalyzerAdapter();
+			public Adapter caseOCLEvaluator(OCLEvaluator object) {
+				return createOCLEvaluatorAdapter();
 			}
 			@Override
-			public Adapter caseEventListener(EventListener object) {
-				return createEventListenerAdapter();
+			public Adapter caseOclQuery(OclQuery object) {
+				return createOclQueryAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -102,30 +100,30 @@ public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer <em>Impact Analyzer</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator <em>OCL Evaluator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator
 	 * @generated
 	 */
-	public Adapter createImpactAnalyzerAdapter() {
+	public Adapter createOCLEvaluatorAdapter() {
 		return null;
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventListener.EventListener <em>Event Listener</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery <em>Ocl Query</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventListener.EventListener
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery
 	 * @generated
 	 */
-	public Adapter createEventListenerAdapter() {
+	public Adapter createOclQueryAdapter() {
 		return null;
 	}
 
@@ -141,4 +139,4 @@ public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //ImpactAnalyzerAdapterFactory
+} //OclEvaluatorAdapterFactory

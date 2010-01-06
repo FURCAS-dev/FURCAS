@@ -9,8 +9,8 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer;
 import de.hpi.sam.bp2009.solution.eventListener.EventListenerPackage;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -71,24 +71,31 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	int IMPACT_ANALYZER = 0;
 
 	/**
+	 * The feature id for the '<em><b>Ocl Evaluator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPACT_ANALYZER__OCL_EVALUATOR = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Event Manager</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPACT_ANALYZER__EVENT_MANAGER = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Impact Analyzer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPACT_ANALYZER_FEATURE_COUNT = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 0;
-
-
-	/**
-	 * The meta object id for the '<em>Ocl Query</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition
-	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPackageImpl#getOclQuery()
-	 * @generated
-	 */
-	int OCL_QUERY = 1;
+	int IMPACT_ANALYZER_FEATURE_COUNT = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 2;
 
 
 	/**
@@ -102,15 +109,26 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	EClass getImpactAnalyzer();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition <em>Ocl Query</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getOclEvaluator <em>Ocl Evaluator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Ocl Query</em>'.
-	 * @see org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition
-	 * @model instanceClass="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition<java.lang.Object, java.lang.Object, java.lang.Object>"
+	 * @return the meta object for the reference '<em>Ocl Evaluator</em>'.
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getOclEvaluator()
+	 * @see #getImpactAnalyzer()
 	 * @generated
 	 */
-	EDataType getOclQuery();
+	EReference getImpactAnalyzer_OclEvaluator();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getEventManager <em>Event Manager</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Event Manager</em>'.
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getEventManager()
+	 * @see #getImpactAnalyzer()
+	 * @generated
+	 */
+	EReference getImpactAnalyzer_EventManager();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -143,15 +161,22 @@ public interface ImpactAnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass IMPACT_ANALYZER = eINSTANCE.getImpactAnalyzer();
+
 		/**
-		 * The meta object literal for the '<em>Ocl Query</em>' data type.
+		 * The meta object literal for the '<em><b>Ocl Evaluator</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition
-		 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPackageImpl#getOclQuery()
 		 * @generated
 		 */
-		EDataType OCL_QUERY = eINSTANCE.getOclQuery();
+		EReference IMPACT_ANALYZER__OCL_EVALUATOR = eINSTANCE.getImpactAnalyzer_OclEvaluator();
+
+		/**
+		 * The meta object literal for the '<em><b>Event Manager</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference IMPACT_ANALYZER__EVENT_MANAGER = eINSTANCE.getImpactAnalyzer_EventManager();
 
 	}
 

@@ -26,15 +26,6 @@ public interface EventListenerFactory extends EFactory {
 	EventListenerFactory eINSTANCE = de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Event Listener</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Event Listener</em>'.
-	 * @generated
-	 */
-	EventListener createEventListener();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

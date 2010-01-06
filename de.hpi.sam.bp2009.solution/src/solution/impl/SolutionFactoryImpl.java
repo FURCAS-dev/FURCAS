@@ -4,9 +4,7 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.solution.eventListener.impl;
-
-import de.hpi.sam.bp2009.solution.eventListener.*;
+package solution.impl;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -16,30 +14,32 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import solution.*;
+
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
  * @generated
  */
-public class EventListenerFactoryImpl extends EFactoryImpl implements EventListenerFactory {
+public class SolutionFactoryImpl extends EFactoryImpl implements SolutionFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static EventListenerFactory init() {
+	public static SolutionFactory init() {
 		try {
-			EventListenerFactory theEventListenerFactory = (EventListenerFactory)EPackage.Registry.INSTANCE.getEFactory("http://de.hpi.sam.bp2009.solution.eventListener"); 
-			if (theEventListenerFactory != null) {
-				return theEventListenerFactory;
+			SolutionFactory theSolutionFactory = (SolutionFactory)EPackage.Registry.INSTANCE.getEFactory("http://de.hpi.sam.bp2009.solution"); 
+			if (theSolutionFactory != null) {
+				return theSolutionFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new EventListenerFactoryImpl();
+		return new SolutionFactoryImpl();
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class EventListenerFactoryImpl extends EFactoryImpl implements EventListe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventListenerFactoryImpl() {
+	public SolutionFactoryImpl() {
 		super();
 	}
 
@@ -60,6 +60,8 @@ public class EventListenerFactoryImpl extends EFactoryImpl implements EventListe
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
+			case SolutionPackage.EXPRESSION_SUPPLIER: return createExpressionSupplier();
+			case SolutionPackage.PERSISTENCE: return createPersistence();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -70,8 +72,28 @@ public class EventListenerFactoryImpl extends EFactoryImpl implements EventListe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventListenerPackage getEventListenerPackage() {
-		return (EventListenerPackage)getEPackage();
+	public ExpressionSupplier createExpressionSupplier() {
+		ExpressionSupplierImpl expressionSupplier = new ExpressionSupplierImpl();
+		return expressionSupplier;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Persistence createPersistence() {
+		PersistenceImpl persistence = new PersistenceImpl();
+		return persistence;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public SolutionPackage getSolutionPackage() {
+		return (SolutionPackage)getEPackage();
 	}
 
 	/**
@@ -81,8 +103,8 @@ public class EventListenerFactoryImpl extends EFactoryImpl implements EventListe
 	 * @generated
 	 */
 	@Deprecated
-	public static EventListenerPackage getPackage() {
-		return EventListenerPackage.eINSTANCE;
+	public static SolutionPackage getPackage() {
+		return SolutionPackage.eINSTANCE;
 	}
 
-} //EventListenerFactoryImpl
+} //SolutionFactoryImpl

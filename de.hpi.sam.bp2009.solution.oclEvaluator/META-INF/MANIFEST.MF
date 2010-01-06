@@ -12,4 +12,6 @@ Require-Bundle: org.eclipse.core.runtime,
  de.hpi.sam.bp2009.solution.eventManager;visibility:=reexport,
  de.hpi.sam.bp2009.solution.events;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.emf.query.ocl.conditions
+Import-Package: org.eclipse.emf.query.conditions.eobjects,
+ org.eclipse.emf.query.ocl.conditions
+Export-Package: de.hpi.sam.bp2009.solution.oclEvaluator

@@ -4,10 +4,10 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.impactAnalyzer/src"
     modelPluginID="de.hpi.sam.bp2009.solution.impactAnalyzer" modelName="ImpactAnalyzer"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.genmodel#//eventListener ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager ../../de.hpi.sam.bp2009.solution.events/model/events.genmodel#//events ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.genmodel#//oclEvaluator ../../de.hpi.sam.bp2009.solution/model/sln.genmodel#//solution">
+    usedGenPackages="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.genmodel#//eventListener ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager ../../de.hpi.sam.bp2009.solution.events/model/events.genmodel#//events ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.genmodel#//oclEvaluator">
   <foreignModel>impactAnalyzer.ecore</foreignModel>
-  <genPackages prefix="ImpactAnalyzer" disposableProviderFactory="true" ecorePackage="impactAnalyzer.ecore#/">
-    <genDataTypes ecoreDataType="impactAnalyzer.ecore#//OclQuery"/>
+  <genPackages prefix="ImpactAnalyzer" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
+      ecorePackage="impactAnalyzer.ecore#/">
     <genClasses ecoreClass="impactAnalyzer.ecore#//ImpactAnalyzer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/oclEvaluator"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/eventManager"/>

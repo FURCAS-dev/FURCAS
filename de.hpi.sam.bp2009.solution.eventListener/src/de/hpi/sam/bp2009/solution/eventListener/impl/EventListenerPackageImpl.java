@@ -169,7 +169,7 @@ public class EventListenerPackageImpl extends EPackageImpl implements EventListe
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(eventListenerEClass, EventListener.class, "EventListener", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(eventListenerEClass, EventListener.class, "EventListener", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = addEOperation(eventListenerEClass, null, "callback", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEventsPackage.getModelChangeEvent(), "modelchangeEvent", 0, 1, IS_UNIQUE, IS_ORDERED);

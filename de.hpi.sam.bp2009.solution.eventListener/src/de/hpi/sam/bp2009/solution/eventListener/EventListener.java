@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  *
  * @see de.hpi.sam.bp2009.solution.eventListener.EventListenerPackage#getEventListener()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface EventListener extends EObject {

@@ -58,10 +58,10 @@ public interface EventListenerPackage extends EPackage {
 	EventListenerPackage eINSTANCE = de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerImpl <em>Event Listener</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventListener.EventListener <em>Event Listener</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerImpl
+	 * @see de.hpi.sam.bp2009.solution.eventListener.EventListener
 	 * @see de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerPackageImpl#getEventListener()
 	 * @generated
 	 */
@@ -110,10 +110,10 @@ public interface EventListenerPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerImpl <em>Event Listener</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventListener.EventListener <em>Event Listener</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerImpl
+		 * @see de.hpi.sam.bp2009.solution.eventListener.EventListener
 		 * @see de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerPackageImpl#getEventListener()
 		 * @generated
 		 */

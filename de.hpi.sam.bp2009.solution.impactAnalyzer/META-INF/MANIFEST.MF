@@ -10,7 +10,9 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.hpi.sam.bp2009.solution.eventListener;visibility:=reexport,
- de.hpi.sam.bp2009.solution.events;visibility:=reexport
+ de.hpi.sam.bp2009.solution.events;visibility:=reexport,
+ de.hpi.sam.bp2009.solution.eventManager;bundle-version="1.0.0",
+ de.hpi.sam.bp2009.solution.oclEvaluator;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.query.conditions.eobjects,
  org.eclipse.emf.query.ocl.conditions

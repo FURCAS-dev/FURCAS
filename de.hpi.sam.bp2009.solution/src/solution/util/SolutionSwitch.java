@@ -4,16 +4,14 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
-
-import de.hpi.sam.bp2009.solution.eventListener.EventListener;
-
-import de.hpi.sam.bp2009.solution.impactAnalyzer.*;
+package solution.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import solution.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,17 +23,17 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage
+ * @see solution.SolutionPackage
  * @generated
  */
-public class ImpactAnalyzerSwitch<T> {
+public class SolutionSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static ImpactAnalyzerPackage modelPackage;
+	protected static SolutionPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -43,9 +41,9 @@ public class ImpactAnalyzerSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImpactAnalyzerSwitch() {
+	public SolutionSwitch() {
 		if (modelPackage == null) {
-			modelPackage = ImpactAnalyzerPackage.eINSTANCE;
+			modelPackage = SolutionPackage.eINSTANCE;
 		}
 	}
 
@@ -89,10 +87,15 @@ public class ImpactAnalyzerSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case ImpactAnalyzerPackage.IMPACT_ANALYZER: {
-				ImpactAnalyzer impactAnalyzer = (ImpactAnalyzer)theEObject;
-				T result = caseImpactAnalyzer(impactAnalyzer);
-				if (result == null) result = caseEventListener(impactAnalyzer);
+			case SolutionPackage.EXPRESSION_SUPPLIER: {
+				ExpressionSupplier expressionSupplier = (ExpressionSupplier)theEObject;
+				T result = caseExpressionSupplier(expressionSupplier);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case SolutionPackage.PERSISTENCE: {
+				Persistence persistence = (Persistence)theEObject;
+				T result = casePersistence(persistence);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -101,32 +104,32 @@ public class ImpactAnalyzerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Impact Analyzer</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Supplier</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Impact Analyzer</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Supplier</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseImpactAnalyzer(ImpactAnalyzer object) {
+	public T caseExpressionSupplier(ExpressionSupplier object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Listener</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Persistence</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Listener</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Persistence</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseEventListener(EventListener object) {
+	public T casePersistence(Persistence object) {
 		return null;
 	}
 
@@ -145,4 +148,4 @@ public class ImpactAnalyzerSwitch<T> {
 		return null;
 	}
 
-} //ImpactAnalyzerSwitch
+} //SolutionSwitch

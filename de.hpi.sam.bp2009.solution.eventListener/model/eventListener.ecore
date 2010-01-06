@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="eventListener"
     nsURI="http://de.hpi.sam.bp2009.solution.eventListener" nsPrefix="solution.eventListener">
-  <eClassifiers xsi:type="ecore:EClass" name="EventListener">
+  <eClassifiers xsi:type="ecore:EClass" name="EventListener" abstract="true" interface="true">
     <eOperations name="callback">
       <eParameters name="modelchangeEvent" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
     </eOperations>
