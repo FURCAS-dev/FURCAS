@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="">
+  <eClassifiers xsi:type="ecore:EClass" name="ExpressionSupplier">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="" eType="#//ExpressionSupplier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="IA" eType="#//ImpactAnalyzer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer">
+    <eOperations name="analyze">
+      <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
+      <eParameters name="ExpressionSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EventManager" eType="#//EventManager"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="OclEvaluator" eType="#//OclEvaluator"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventManager">
+    <eOperations name="subscribe">
+      <eParameters name="modelChangeEvent" eType="#//ModelChangeEvent"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//EventManager"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OclEvaluator">
+    <eOperations name="evaluate">
+      <eParameters name="queryobject" eType="#//OclQuery"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Persistenz">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EventManager" eType="#//EventManager"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="OclQuery" instanceClassName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent" abstract="true"/>
+</ecore:EPackage>
