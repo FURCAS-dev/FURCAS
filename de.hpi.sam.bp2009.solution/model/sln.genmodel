@@ -7,7 +7,6 @@
   <foreignModel>sln.ecore</foreignModel>
   <genPackages prefix="Solution" basePackage="de.hpi.sam.bp2009" disposableProviderFactory="true"
       ecorePackage="sln.ecore#/">
-    <genDataTypes ecoreDataType="sln.ecore#//OclQuery"/>
     <genClasses ecoreClass="sln.ecore#//ExpressionSupplier">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference sln.ecore#//ExpressionSupplier/IA"/>
     </genClasses>

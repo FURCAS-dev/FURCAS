@@ -6,12 +6,12 @@
   <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.ecore#//EventListener">
     <eOperations name="analyze">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-        <eTypeArguments eClassifier="#//OclQuery"/>
+        <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
       </eGenericType>
       <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       <eParameters name="oclQueries">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-          <eTypeArguments eClassifier="#//OclQuery"/>
+          <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
         </eGenericType>
       </eParameters>
     </eOperations>
@@ -22,5 +22,4 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclEvaluator" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="OclQuery" instanceTypeName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition&lt;C, CLS, E>"/>
 </ecore:EPackage>

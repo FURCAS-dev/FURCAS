@@ -4,8 +4,25 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclEvaluator"
     nsURI="http://de.hpi.sam.bp2009.solution.oclEvaluator" nsPrefix="solution.oclEvaluator">
   <eClassifiers xsi:type="ecore:EClass" name="OCLEvaluator">
+    <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+      <eParameters name="queryobject" eType="#//OclCondition"/>
+      <eParameters name="context" eType="#//EObject"/>
+    </eOperations>
     <eOperations name="evaluate">
-      <eParameters name="queryobject" eType="ecore:EDataType ../../de.hpi.sam.bp2009.solution/model/sln.ecore#//OclQuery"/>
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      </eGenericType>
+      <eParameters name="queries">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments eClassifier="#//OclQuery"/>
+        </eGenericType>
+      </eParameters>
     </eOperations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OclQuery">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="context" eType="#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="#//OclCondition"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="OclCondition" instanceClassName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="EObject" instanceClassName="org.eclipse.emf.ecore.EObject"/>
 </ecore:EPackage>

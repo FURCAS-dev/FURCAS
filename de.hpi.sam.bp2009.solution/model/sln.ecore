@@ -9,5 +9,4 @@
   <eClassifiers xsi:type="ecore:EClass" name="Persistence">
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="OclQuery" instanceClassName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition"/>
 </ecore:EPackage>
