@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.impactAnalyzer/src"
+    modelPluginID="de.hpi.sam.bp2009.solution.impactAnalyzer" modelName="ImpactAnalyzer"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.genmodel#//eventListener ../../de.hpi.sam.bp2009.solution.events/model/events.genmodel#//events">
+  <foreignModel>impactAnalyzer.ecore</foreignModel>
+  <genPackages prefix="ImpactAnalyzer" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
+      ecorePackage="impactAnalyzer.ecore#/">
+    <genClasses ecoreClass="impactAnalyzer.ecore#//ImpactAnalyzer">
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/analyze">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/analyze/resourceSet"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/analyze/oclQueries"/>
+      </genOperations>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/registerFor">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/registerFor/events"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

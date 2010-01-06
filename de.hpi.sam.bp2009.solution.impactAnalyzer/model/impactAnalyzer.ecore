@@ -3,17 +3,18 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="impactAnalyzer"
     nsURI="http://de.hpi.sam.bp2009.solution.impactAnalyzer" nsPrefix="solution.impactAnalyzer">
-  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EObject">
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.ecore#//EventListener">
     <eOperations name="analyze">
       <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       <eParameters name="oclQueries">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-          <eTypeArguments/>
+          <eTypeArguments eClassifier="#//OclQuery"/>
         </eGenericType>
       </eParameters>
     </eOperations>
     <eOperations name="registerFor">
-      <eParameters name="events"/>
+      <eParameters name="events" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
     </eOperations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="OclQuery" instanceTypeName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition&lt;C, CLS, E>"/>
 </ecore:EPackage>
