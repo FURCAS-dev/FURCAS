@@ -12,15 +12,9 @@
       <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       <eParameters name="ExpressionSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EventManager" eType="#//EventManager"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="OclEvaluator" eType="#//OclEvaluator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="oclEvaluator" eType="#//OclEvaluator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="imp" eType="#//EventListener"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EventManager">
-    <eOperations name="subscribe">
-      <eParameters name="modelChangeEvent" eType="#//ModelChangeEvent"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EReference0" eType="#//EventManager"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclEvaluator">
     <eOperations name="evaluate">
@@ -28,13 +22,12 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Persistenz">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="EventManager" eType="#//EventManager"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="OclQuery" instanceClassName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventListener" interface="true">
     <eOperations name="callback">
-      <eParameters name="event" eType="#//ModelChangeEvent"/>
+      <eParameters name="event" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
     </eOperations>
   </eClassifiers>
 </ecore:EPackage>
