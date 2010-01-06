@@ -5,7 +5,7 @@
     nsURI="http://de.hpi.sam.bp2009.solution.oclEvaluator" nsPrefix="solution.oclEvaluator">
   <eClassifiers xsi:type="ecore:EClass" name="OCLEvaluator">
     <eOperations name="evaluate">
-      <eParameters name="queryobject" eType="ecore:EDataType ../../de.hpi.sam.bp2009.solution/model/solution.ecore#//OclQuery"/>
+      <eParameters name="queryobject" eType="ecore:EDataType ../../de.hpi.sam.bp2009.solution/model/sln.ecore#//OclQuery"/>
     </eOperations>
   </eClassifiers>
 </ecore:EPackage>

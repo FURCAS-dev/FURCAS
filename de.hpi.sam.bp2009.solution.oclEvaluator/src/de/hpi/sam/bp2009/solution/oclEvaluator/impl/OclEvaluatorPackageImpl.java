@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
+import de.hpi.sam.bp2009.solution.SolutionPackage;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
