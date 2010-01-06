@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="impactAnalyzer"
+    nsURI="http://de.hpi.sam.bp2009.solution.impactAnalyzer" nsPrefix="solution.impactAnalyzer">
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="http://www.eclipse.org/emf/2002/Ecore#//EObject">
+    <eOperations name="analyze">
+      <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
+      <eParameters name="oclQueries">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="registerFor">
+      <eParameters name="events"/>
+    </eOperations>
+  </eClassifiers>
+</ecore:EPackage>
