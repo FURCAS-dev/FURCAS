@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="events"
+    nsURI="http://de.hpi.sam.bp2009.solution.events" nsPrefix="solution.events">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementChangeEvent" eSuperTypes="#//ModelChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeValueChangeEvent" eSuperTypes="#//ElementChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementLifeCycleEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkLifeCycleEvent" eSuperTypes="#//ModelChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementCreateEvent" eSuperTypes="#//ElementLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementDeleteEvent" eSuperTypes="#//ElementLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkCreateEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkDeleteEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+</ecore:EPackage>
