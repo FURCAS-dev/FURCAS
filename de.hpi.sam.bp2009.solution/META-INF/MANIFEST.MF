@@ -15,6 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.query;bundle-version="1.2.100",
  org.eclipse.emf.query.ocl;bundle-version="1.2.0"
 Bundle-ActivationPolicy: lazy
-Export-Package: solution,
- solution.impl,
- solution.util
+Export-Package: de.hpi.sam.bp2009.solution,
+ de.hpi.sam.bp2009.solution.impl,
+ de.hpi.sam.bp2009.solution.util
