@@ -6,17 +6,21 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
+import de.hpi.sam.bp2009.solution.eventListener.EventListenerPackage;
+import de.hpi.sam.bp2009.solution.eventListener.impl.EventListenerPackageImpl;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 import de.hpi.sam.bp2009.solution.events.EventsPackage;
 
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -81,11 +85,16 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		// Initialize simple dependencies
 		EventsPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		EventListenerPackageImpl theEventListenerPackage = (EventListenerPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EventListenerPackage.eNS_URI) instanceof EventListenerPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EventListenerPackage.eNS_URI) : EventListenerPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theEventManagerPackage.createPackageContents();
+		theEventListenerPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theEventManagerPackage.initializePackageContents();
+		theEventListenerPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theEventManagerPackage.freeze();
@@ -160,6 +169,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		EventListenerPackage theEventListenerPackage = (EventListenerPackage)EPackage.Registry.INSTANCE.getEPackage(EventListenerPackage.eNS_URI);
 		EventsPackage theEventsPackage = (EventsPackage)EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
 
 		// Create type parameters
@@ -172,6 +182,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		initEClass(eventManagerEClass, EventManager.class, "EventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEventListenerPackage.getEventListener(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEventsPackage.getModelChangeEvent(), "modelChangeEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource

@@ -6,9 +6,12 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import de.hpi.sam.bp2009.solution.eventListener.EventListener;
 import de.hpi.sam.bp2009.solution.events.ModelChangeEvent;
 
+
 import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +30,6 @@ public interface EventManager extends EObject {
 	 * @model
 	 * @generated
 	 */
-	void subscribe(ModelChangeEvent modelChangeEvent);
+	void subscribe(EventListener caller, ModelChangeEvent modelChangeEvent);
 
 } // EventManager

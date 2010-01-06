@@ -5,6 +5,7 @@
     nsURI="http://de.hpi.sam.bp2009.solution.eventManager" nsPrefix="solution.eventManager">
   <eClassifiers xsi:type="ecore:EClass" name="EventManager">
     <eOperations name="subscribe">
+      <eParameters name="caller" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.ecore#//EventListener"/>
       <eParameters name="modelChangeEvent" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
     </eOperations>
   </eClassifiers>
