@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.events/src"
+    modelPluginID="de.hpi.sam.bp2009.solution.events" modelName="Events" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false">
+  <foreignModel>events.ecore</foreignModel>
+  <genPackages prefix="Events" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
+      ecorePackage="events.ecore#/">
+    <genClasses ecoreClass="events.ecore#//ModelChangeEvent">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute events.ecore#//ModelChangeEvent/sourceResourceSet"/>
+    </genClasses>
+    <genClasses ecoreClass="events.ecore#//ElementChangeEvent"/>
+    <genClasses ecoreClass="events.ecore#//AttributeValueChangeEvent"/>
+    <genClasses ecoreClass="events.ecore#//ElementLifeCycleEvent"/>
+    <genClasses ecoreClass="events.ecore#//LinkLifeCycleEvent"/>
+    <genClasses ecoreClass="events.ecore#//ElementCreateEvent"/>
+    <genClasses ecoreClass="events.ecore#//ElementDeleteEvent"/>
+    <genClasses ecoreClass="events.ecore#//LinkCreateEvent"/>
+    <genClasses ecoreClass="events.ecore#//LinkDeleteEvent"/>
+  </genPackages>
+</genmodel:GenModel>

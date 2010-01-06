@@ -2,8 +2,11 @@
 <ecore:EPackage xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="events"
-    nsURI="http://de.hpi.sam.bp2009.solution.events" nsPrefix="solution.events">
-  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent"/>
+    nsURI="http://de.hpi.sam.bp2009.solution.events" nsPrefix="events">
+  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceResourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+        transient="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementChangeEvent" eSuperTypes="#//ModelChangeEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeValueChangeEvent" eSuperTypes="#//ElementChangeEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="ElementLifeCycleEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
