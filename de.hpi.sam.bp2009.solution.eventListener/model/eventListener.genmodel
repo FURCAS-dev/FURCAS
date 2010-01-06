@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.eventListener/src"
+    modelPluginID="de.hpi.sam.bp2009.solution.eventListener" modelName="EventListener"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="../../de.hpi.sam.bp2009.solution.events/model/events.genmodel#//events">
+  <foreignModel>eventListener.ecore</foreignModel>
+  <genPackages prefix="EventListener" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
+      ecorePackage="eventListener.ecore#/">
+    <genClasses ecoreClass="eventListener.ecore#//EventListener">
+      <genOperations ecoreOperation="eventListener.ecore#//EventListener/callback">
+        <genParameters ecoreParameter="eventListener.ecore#//EventListener/callback/modelchangeEvent"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
