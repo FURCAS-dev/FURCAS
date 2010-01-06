@@ -4,17 +4,19 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="solution"
     nsURI="http://de.hpi.sam.bp2009.solution" nsPrefix="solution">
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionSupplier">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="" eType="#//ExpressionSupplier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="IA" eType="#//ImpactAnalyzer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="#//EventListener">
     <eOperations name="analyze">
       <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
-      <eParameters name="ExpressionSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList"/>
+      <eParameters name="ExpressionSet">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments eClassifier="#//OclQuery"/>
+        </eGenericType>
+      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclEvaluator" eType="#//OclEvaluator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="imp" eType="#//EventListener"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclEvaluator">
     <eOperations name="evaluate">
@@ -25,7 +27,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="OclQuery" instanceClassName="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition"/>
-  <eClassifiers xsi:type="ecore:EClass" name="EventListener" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="EventListener" abstract="true" interface="true">
     <eOperations name="callback">
       <eParameters name="event" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
     </eOperations>

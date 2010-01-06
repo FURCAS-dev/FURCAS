@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution/src"
+    modelPluginID="de.hpi.sam.bp2009.solution" modelName="Solution" importerID="org.eclipse.emf.importer.ecore"
+    complianceLevel="6.0" copyrightFields="false" usedGenPackages="../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager ../../de.hpi.sam.bp2009.solution.events/model/events.genmodel#//events">
+  <foreignModel>solution.ecore</foreignModel>
+  <genPackages prefix="Solution" basePackage="de.hpi.sam.bp2009" disposableProviderFactory="true"
+      ecorePackage="solution.ecore#/">
+    <genDataTypes ecoreDataType="solution.ecore#//OclQuery"/>
+    <genClasses ecoreClass="solution.ecore#//ExpressionSupplier">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference solution.ecore#//ExpressionSupplier/IA"/>
+    </genClasses>
+    <genClasses ecoreClass="solution.ecore#//ImpactAnalyzer">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference solution.ecore#//ImpactAnalyzer/eventManager"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference solution.ecore#//ImpactAnalyzer/oclEvaluator"/>
+      <genOperations ecoreOperation="solution.ecore#//ImpactAnalyzer/analyze">
+        <genParameters ecoreParameter="solution.ecore#//ImpactAnalyzer/analyze/resourceSet"/>
+        <genParameters ecoreParameter="solution.ecore#//ImpactAnalyzer/analyze/ExpressionSet"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="solution.ecore#//OclEvaluator">
+      <genOperations ecoreOperation="solution.ecore#//OclEvaluator/evaluate">
+        <genParameters ecoreParameter="solution.ecore#//OclEvaluator/evaluate/queryobject"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="solution.ecore#//Persistenz">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference solution.ecore#//Persistenz/eventManager"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="solution.ecore#//EventListener">
+      <genOperations ecoreOperation="solution.ecore#//EventListener/callback">
+        <genParameters ecoreParameter="solution.ecore#//EventListener/callback/event"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
