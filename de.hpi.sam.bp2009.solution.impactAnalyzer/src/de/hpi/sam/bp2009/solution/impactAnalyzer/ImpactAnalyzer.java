@@ -29,10 +29,10 @@ public interface ImpactAnalyzer extends EventListener {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model oclQueriesMany="false"
+	 * @model many="false" oclQueriesMany="false"
 	 * @generated
 	 */
-	void analyze(ResourceSet resourceSet, EList<AbstractOCLCondition<Object, Object, Object>> oclQueries);
+	EList<AbstractOCLCondition<Object, Object, Object>> analyze(ResourceSet resourceSet, EList<AbstractOCLCondition<Object, Object, Object>> oclQueries);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -40,6 +40,6 @@ public interface ImpactAnalyzer extends EventListener {
 	 * @model
 	 * @generated
 	 */
-	void registerFor(ModelChangeEvent events);
+	void registerFor(ModelChangeEvent events, ResourceSet resourceSet);
 
 } // ImpactAnalyzer

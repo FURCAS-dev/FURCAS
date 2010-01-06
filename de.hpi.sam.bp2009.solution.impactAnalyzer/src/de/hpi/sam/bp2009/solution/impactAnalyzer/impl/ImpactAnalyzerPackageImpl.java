@@ -203,9 +203,14 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		EGenericType g2 = createEGenericType(this.getOclQuery());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(this.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
 
 		op = addEOperation(impactAnalyzerEClass, null, "registerFor", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEventsPackage.getModelChangeEvent(), "events", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResourceSet(), "resourceSet", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(oclQueryEDataType, AbstractOCLCondition.class, "OclQuery", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS, "org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition<C, CLS, E>");

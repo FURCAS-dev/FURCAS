@@ -51,21 +51,19 @@ public class ImpactAnalyzerImpl extends EventListenerImpl implements ImpactAnaly
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
-	public void analyze(ResourceSet resourceSet, EList<AbstractOCLCondition<Object, Object, Object>> oclQueries) {
-		// TODO: implement this method
+	public EList<AbstractOCLCondition<Object, Object, Object>> analyze(ResourceSet resourceSet, EList<AbstractOCLCondition<Object, Object, Object>> oclQueries) {
+		// TODO: just naive implementation try to improve
 		// Ensure that you remove @generated or mark it @generated NOT
 		
-		throw new UnsupportedOperationException();
+		return oclQueries;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
-	public void registerFor(ModelChangeEvent events) {
+	public void registerFor(ModelChangeEvent events, ResourceSet resourceSet) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

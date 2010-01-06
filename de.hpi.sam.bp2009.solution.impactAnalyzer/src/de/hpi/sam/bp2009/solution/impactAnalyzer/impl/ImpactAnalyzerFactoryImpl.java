@@ -114,7 +114,7 @@ public class ImpactAnalyzerFactoryImpl extends EFactoryImpl implements ImpactAna
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
-	public AbstractOCLCondition<?, ?, ?> createOclQueryFromString(EDataType eDataType, String initialValue) {
+	public AbstractOCLCondition createOclQueryFromString(EDataType eDataType, String initialValue) {
 		return (AbstractOCLCondition)super.createFromString(initialValue);
 	}
 
