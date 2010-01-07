@@ -15,13 +15,13 @@ feature@org.eclipse.ocl.doc=v200912161120,:pserver:anonymous@dev.eclipse.org:/cv
 
 feature@org.eclipse.ocl.edit=v200912161120,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit-feature
 
-plugin@org.eclipse.ocl=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
+plugin@org.eclipse.ocl=v201001071540,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl
 plugin@org.eclipse.ocl.doc=v200912161120,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/doc/org.eclipse.ocl.doc
-plugin@org.eclipse.ocl.tests=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.tests
+plugin@org.eclipse.ocl.tests=v201001071540,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.tests
 plugin@org.eclipse.ocl.ecore=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.ecore
-plugin@org.eclipse.ocl.ecore.tests=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.ecore.tests
+plugin@org.eclipse.ocl.ecore.tests=v201001071540,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.ecore.tests
 plugin@org.eclipse.ocl.uml=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.uml
-plugin@org.eclipse.ocl.uml.tests=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests
+plugin@org.eclipse.ocl.uml.tests=v201001071540,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/tests/org.eclipse.ocl.uml.tests
 
 plugin@org.eclipse.ocl.edit=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.edit
 plugin@org.eclipse.ocl.ecore.edit=v200912282100,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/plugins/org.eclipse.ocl.ecore.edit
