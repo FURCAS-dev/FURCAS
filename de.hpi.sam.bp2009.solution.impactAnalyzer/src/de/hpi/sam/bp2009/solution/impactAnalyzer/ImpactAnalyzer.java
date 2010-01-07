@@ -17,6 +17,7 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
@@ -29,6 +30,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getOclEvaluator <em>Ocl Evaluator</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getEventManager <em>Event Manager</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getCurrentQueries <em>Current Queries</em>}</li>
  * </ul>
  * </p>
  *
@@ -90,19 +92,37 @@ public interface ImpactAnalyzer extends EventListener {
 	void setEventManager(EventManager value);
 
 	/**
+	 * Returns the value of the '<em><b>Current Queries</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Current Queries</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Current Queries</em>' attribute.
+	 * @see #setCurrentQueries(EList)
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage#getImpactAnalyzer_CurrentQueries()
+	 * @model many="false" transient="true"
+	 * @generated
+	 */
+	EList<OclQuery> getCurrentQueries();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getCurrentQueries <em>Current Queries</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Current Queries</em>' attribute.
+	 * @see #getCurrentQueries()
+	 * @generated
+	 */
+	void setCurrentQueries(EList<OclQuery> value);
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model many="false" oclQueriesMany="false"
 	 * @generated
 	 */
-	EList<OclQuery> analyze(ResourceSet resourceSet, EList<OclQuery> oclQueries);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void registerFor(ModelChangeEvent events, ResourceSet resourceSet);
+	EList<Object> analyze(ResourceSet resourceSet, EList<OclQuery> oclQueries);
 
 } // ImpactAnalyzer

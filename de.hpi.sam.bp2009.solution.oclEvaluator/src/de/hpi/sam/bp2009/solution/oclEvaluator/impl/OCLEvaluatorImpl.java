@@ -6,16 +6,20 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
+import java.util.ArrayList;
+
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
 
@@ -51,23 +55,21 @@ public class OCLEvaluatorImpl extends EObjectImpl implements OCLEvaluator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public Object evaluate(AbstractOCLCondition queryobject, EObject context) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return queryobject.evaluate(context);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public EList<Object> evaluate(EList<OclQuery> queries) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		EList<Object> result= new BasicEList<Object>();
+		for(OclQuery query: queries){
+			result.add(this.evaluate(query.getCondition(), query.getContext()));
+		}
+		return result;
 	}
 
 } //OCLEvaluatorImpl

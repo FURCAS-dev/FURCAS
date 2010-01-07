@@ -6,7 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.ecore#//EventListener">
     <eOperations name="analyze">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-        <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       </eGenericType>
       <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       <eParameters name="oclQueries">
@@ -15,11 +15,12 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="registerFor">
-      <eParameters name="events" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
-      <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclEvaluator" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentQueries" transient="true">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

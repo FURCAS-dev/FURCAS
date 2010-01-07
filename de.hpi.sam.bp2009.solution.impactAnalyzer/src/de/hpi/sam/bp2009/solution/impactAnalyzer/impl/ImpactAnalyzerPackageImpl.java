@@ -18,6 +18,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
@@ -138,6 +139,15 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getImpactAnalyzer_CurrentQueries() {
+		return (EAttribute)impactAnalyzerEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ImpactAnalyzerFactory getImpactAnalyzerFactory() {
 		return (ImpactAnalyzerFactory)getEFactoryInstance();
 	}
@@ -164,6 +174,7 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		impactAnalyzerEClass = createEClass(IMPACT_ANALYZER);
 		createEReference(impactAnalyzerEClass, IMPACT_ANALYZER__OCL_EVALUATOR);
 		createEReference(impactAnalyzerEClass, IMPACT_ANALYZER__EVENT_MANAGER);
+		createEAttribute(impactAnalyzerEClass, IMPACT_ANALYZER__CURRENT_QUERIES);
 	}
 
 	/**
@@ -193,7 +204,6 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		EventListenerPackage theEventListenerPackage = (EventListenerPackage)EPackage.Registry.INSTANCE.getEPackage(EventListenerPackage.eNS_URI);
 		OclEvaluatorPackage theOclEvaluatorPackage = (OclEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(OclEvaluatorPackage.eNS_URI);
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
-		EventsPackage theEventsPackage = (EventsPackage)EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -206,21 +216,21 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		initEClass(impactAnalyzerEClass, ImpactAnalyzer.class, "ImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getImpactAnalyzer_OclEvaluator(), theOclEvaluatorPackage.getOCLEvaluator(), null, "oclEvaluator", null, 0, 1, ImpactAnalyzer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getImpactAnalyzer_EventManager(), theEventManagerPackage.getEventManager(), null, "eventManager", null, 0, 1, ImpactAnalyzer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		EOperation op = addEOperation(impactAnalyzerEClass, null, "analyze", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResourceSet(), "resourceSet", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
 		EGenericType g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
 		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEAttribute(getImpactAnalyzer_CurrentQueries(), g1, "currentQueries", null, 0, 1, ImpactAnalyzer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		EOperation op = addEOperation(impactAnalyzerEClass, null, "analyze", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResourceSet(), "resourceSet", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEEList());
 		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
 		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
-
-		op = addEOperation(impactAnalyzerEClass, null, "registerFor", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEventsPackage.getModelChangeEvent(), "events", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResourceSet(), "resourceSet", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

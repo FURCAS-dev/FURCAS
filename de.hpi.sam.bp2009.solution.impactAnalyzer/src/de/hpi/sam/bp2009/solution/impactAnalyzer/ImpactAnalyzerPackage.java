@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
 import de.hpi.sam.bp2009.solution.eventListener.EventListenerPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -89,13 +90,22 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	int IMPACT_ANALYZER__EVENT_MANAGER = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Current Queries</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IMPACT_ANALYZER__CURRENT_QUERIES = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Impact Analyzer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int IMPACT_ANALYZER_FEATURE_COUNT = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 2;
+	int IMPACT_ANALYZER_FEATURE_COUNT = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 3;
 
 
 	/**
@@ -129,6 +139,17 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getImpactAnalyzer_EventManager();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getCurrentQueries <em>Current Queries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Current Queries</em>'.
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer#getCurrentQueries()
+	 * @see #getImpactAnalyzer()
+	 * @generated
+	 */
+	EAttribute getImpactAnalyzer_CurrentQueries();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -177,6 +198,14 @@ public interface ImpactAnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference IMPACT_ANALYZER__EVENT_MANAGER = eINSTANCE.getImpactAnalyzer_EventManager();
+
+		/**
+		 * The meta object literal for the '<em><b>Current Queries</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute IMPACT_ANALYZER__CURRENT_QUERIES = eINSTANCE.getImpactAnalyzer_CurrentQueries();
 
 	}
 
