@@ -202,6 +202,7 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * <!-- end-user-doc -->
 	 */
 	public EList<Object> analyze(ResourceSet resourceSet, EList<OclQuery> oclQueries) {
+		System.out.println("Start Analyse");
 		ModelChangeEvent event = EventsFactory.eINSTANCE.createModelChangeEvent();
 		event.setSourceResourceSet(resourceSet);
 		this.getEventManager().subscribe(this, event);
@@ -214,6 +215,7 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * <!-- end-user-doc -->
 	 */
 	public void callback(ModelChangeEvent modelchangeEvent) {
+		System.out.println("callback");
 		this.analyze(modelchangeEvent.getSourceResourceSet(), this.getCurrentQueries());
 	}
 

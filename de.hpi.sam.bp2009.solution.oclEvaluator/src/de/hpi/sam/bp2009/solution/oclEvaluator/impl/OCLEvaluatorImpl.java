@@ -65,6 +65,7 @@ public class OCLEvaluatorImpl extends EObjectImpl implements OCLEvaluator {
 	 * <!-- end-user-doc -->
 	 */
 	public EList<Object> evaluate(EList<OclQuery> queries) {
+		System.out.println("Eval Working");
 		EList<Object> result= new BasicEList<Object>();
 		for(OclQuery query: queries){
 			result.add(this.evaluate(query.getCondition(), query.getContext()));
