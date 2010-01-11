@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,13 +9,13 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Refactoring to support extensibility and flexible error handling
+ *   E.D.Willink - Refactoring to support extensibility and flexible error handling, 297541
  *   Zeligsoft - Bugs 243079, 179990
  *   Borland - Bug 179990
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.10 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: ValidationVisitor.java,v 1.11 2010/01/11 22:28:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -1003,7 +1003,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
                         PredefinedType.CLOSURE_NAME), "iteratorExp", ie); //$NON-NLS-1$
             }
 			
-			if (!(type instanceof SetType<?, ?>)) {
+			if (!(type instanceof SetType<?, ?>) && !(type instanceof OrderedSetType<?, ?>)) {
 				String message = OCLMessages.bind(
 					OCLMessages.TypeConformanceClosure_ERROR_,
 					ie.toString());

@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2007 IBM Corporation and others.
+ * Copyright (c) 2006, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,24 +9,23 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Bug 297541
  *
  * </copyright>
  *
- * $Id: IterationTemplateClosure.java,v 1.4 2009/09/01 20:11:23 ewillink Exp $
+ * $Id: IterationTemplateClosure.java,v 1.5 2010/01/11 22:28:16 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.ocl.EvaluationEnvironment;
 import org.eclipse.ocl.EvaluationVisitor;
 import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.ocl.expressions.Variable;
-import org.eclipse.ocl.util.CollectionUtil;
-
 
 /**
  * Instantiation of the iteration template for the <code>closure</code>
@@ -36,7 +35,8 @@ import org.eclipse.ocl.util.CollectionUtil;
  */
 public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		extends IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
-	private OCLExpression<C> body;
+	private OCLExpression<C> body;	
+	private int depth = 0;
 	
 	private IterationTemplateClosure(
 			EvaluationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> v,
@@ -59,40 +59,42 @@ public class IterationTemplateClosure<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS,
 	 */
 	@Override
     protected Object evaluateResult(List<Variable<C, PM>> iterators, String resultName, Object bodyVal) {
-		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();
-		
-		@SuppressWarnings("unchecked")
-		Set<Object> currVal = (Set<Object>) env.getValueOf(resultName);
-		
 		// If the body result is invalid then the entire expression's value
 		// is invalid, because OCL does not permit invalid in a collection
 		if (bodyVal == getInvalid()) {
 			setDone(true);
 			return getInvalid();
 		}
-		
-		Collection<Object> newResults = CollectionUtil.createNewSet();
-		
-		if (bodyVal instanceof Collection<?>) {
-			Collection<?> bodyColl = (Collection<?>) bodyVal;
-			
-			for (Object next : bodyColl) {
-				if ((next != null) && currVal.add(next)) {
-					newResults.add(next);
-				}
+		EvaluationEnvironment<C, O, P, CLS, E> env = getEvalEnvironment();		
+		@SuppressWarnings("unchecked")
+		Collection<Object> results = (Collection<Object>) env.getValueOf(resultName);
+		if (depth > 0) {
+			// If there is the parent is the iterator
+			String iterName = iterators.get(0).getName();
+			Object currObj = env.getValueOf(iterName);
+			if (!results.add(currObj)) {
+				return results;
 			}
-		} else if ((bodyVal != null) && currVal.add(bodyVal)) {
-			newResults.add(bodyVal);
 		}
-		
-		if (!newResults.isEmpty()) {
-			// recurse over the new results
-			Object[] iteratorValues = pauseIterators(iterators);
-			evaluate(newResults, iterators, body, resultName);
-			resumeIterators(iterators, iteratorValues);
+		if (bodyVal != null) {
+			try {
+				depth++;
+				Collection<?> bodyColl;
+				if (bodyVal instanceof Collection<?>) {
+					bodyColl = (Collection<?>) bodyVal;
+				}
+				else {
+					bodyColl = Collections.singleton(bodyVal);
+				}
+				Object[] iteratorValues = pauseIterators(iterators);
+				evaluate(bodyColl, iterators, body, resultName);
+				resumeIterators(iterators, iteratorValues);
+			}
+			finally {
+				depth--;
+			}
 		}
-		
-		return currVal;
+		return results;
 	}
 	
 	/**
