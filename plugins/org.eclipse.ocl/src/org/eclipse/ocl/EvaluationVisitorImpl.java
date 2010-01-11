@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 253252
  *   Radek Dvorak - Bugs 261128, 265066
+ *   E.D.Willink - Bug 297541
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.4 2009/12/18 06:26:03 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.5 2010/01/11 22:28:16 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -1828,9 +1829,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 		// get the body expression
 		OCLExpression<C> body = ie.getBody();
-
+		C type = ie.getType();
 		// create initial result value
-		Object initResultVal = CollectionUtil.createNewSet();
+		Object initResultVal = type instanceof OrderedSetType<?,?> ? CollectionUtil.createNewOrderedSet() : CollectionUtil.createNewSet();
 
 		// get an iteration template to evaluate the iterator
 		IterationTemplate<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> template =
