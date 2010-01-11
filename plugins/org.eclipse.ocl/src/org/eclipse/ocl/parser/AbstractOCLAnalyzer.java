@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,7 @@
  * Contributors: 
  *   IBM - Initial API and implementation
  *   E.D.Willink - refactored to separate from OCLAnalyzer and OCLParser
- *               - Bugs 184048, 237126, 245586, 213886, 242236, 259818, 259819
+ *               - Bugs 184048, 237126, 245586, 213886, 242236, 259818, 259819, 297541
  *   Adolfo Sanchez-Barbudo Herrera - Bug 237441
  *   Zeligsoft - Bugs 243526, 243079, 245586 (merging and docs), 213886, 179990,
  *               255599, 251349, 242236, 259740
@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.39 2009/12/18 06:26:04 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.40 2010/01/11 22:28:15 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -3643,14 +3643,23 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 			// get the body element type if it is a collection-type
 			// expression
 			C bodyType = expr.getType();
-			if (bodyType instanceof CollectionType<?, ?>) {
+			if ((bodyType instanceof OrderedSetType<?, ?>) || (bodyType instanceof SequenceType<?, ?>)) {
 				@SuppressWarnings("unchecked")
 				CollectionType<C, O> ct = (CollectionType<C, O>) bodyType;
 
 				bodyType = ct.getElementType();
+				astNode.setType(getOrderedSetType(exprCS, env, bodyType));
 			}
-
-			astNode.setType(getSetType(exprCS, env, bodyType));
+			else {
+				if (bodyType instanceof CollectionType<?, ?>) {
+					@SuppressWarnings("unchecked")
+					CollectionType<C, O> ct = (CollectionType<C, O>) bodyType;
+	
+					bodyType = ct.getElementType();
+				}
+	
+				astNode.setType(getSetType(exprCS, env, bodyType));
+			}
 		}
 
 		astNode.setBody(expr);
