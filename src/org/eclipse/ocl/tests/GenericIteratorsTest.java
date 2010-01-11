@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2006, 2008 IBM Corporation and others.
+ * Copyright (c) 2006, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   E.D.Willink - Bug 296409
+ *   E.D.Willink - Bug 296409, 297541
  *
  * </copyright>
  *
- * $Id: GenericIteratorsTest.java,v 1.2 2009/12/16 21:00:41 ewillink Exp $
+ * $Id: GenericIteratorsTest.java,v 1.3 2010/01/11 22:28:22 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -335,18 +335,27 @@ public abstract class GenericIteratorsTest<E extends EObject, PK extends E, T ex
      * Tests the closure() iterator.
      */
     public void test_closure() {
+    	boolean nestedIsOrdered = reflection.isOrdered("nestedPackage"); // Ecore and UML differ here
+    	boolean nestingIsOrdered = reflection.isOrdered("nestingPackage");
 	    @SuppressWarnings("unchecked")
-        Set<PK> expected1 = createSet(pkg1, pkg3, pkg5); // closure does not include self (george)
+        Collection<PK> expected1 = createCollection(nestingIsOrdered, true, pkg1, pkg3, pkg5); // closure does not include self (george)
         assertQueryEquals(george, expected1, "self->closure(%nestingPackage)");
 
 	    @SuppressWarnings("unchecked")
-        Set<PK> expected2 = createSet(pkg2, pkg3, pkg4, pkg5, jim, bob, george);
+	    Collection<PK> expected2 = createCollection(nestedIsOrdered, true, pkg2, jim, bob, pkg3, pkg4, pkg5, george);
         assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self->asSequence()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected2, "self->closure(%nestedPackage->asSequence())");
+	    @SuppressWarnings("unchecked")
+	    Collection<PK> expected3 = createSet(pkg2, jim, bob, pkg3, pkg4, pkg5, george);
+        assertQueryEquals(pkg1, expected3, "self->asBag()->closure(%nestedPackage)");
+        assertQueryEquals(pkg1, expected3, "self->closure(%nestedPackage->asBag())");
 
         // empty closure
-	    @SuppressWarnings("unchecked")
-        Set<PK> expected3 = createSet();
-        assertQueryEquals(pkg1, expected3, "self->closure(%nestingPackage)");
+        Collection<PK> expected4 = createCollection(nestingIsOrdered, true);
+        assertQueryEquals(pkg1, expected4, "self->closure(%nestingPackage)");
+        // empty closure
+        assertQueryEquals(pkg1, expected4, "self->asSequence()->closure(%nestingPackage)");
     }
 
     /**
