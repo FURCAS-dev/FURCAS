@@ -35,6 +35,195 @@ public interface EventManagerFactory extends EFactory {
 	EventManager createEventManager();
 
 	/**
+	 * Returns a new object of class '<em>Model Change Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Model Change Event</em>'.
+	 * @generated
+	 */
+	ModelChangeEvent createModelChangeEvent();
+
+	/**
+	 * Returns a new object of class '<em>Element Change Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Change Event</em>'.
+	 * @generated
+	 */
+	ElementChangeEvent createElementChangeEvent();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Value Change Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Value Change Event</em>'.
+	 * @generated
+	 */
+	AttributeValueChangeEvent createAttributeValueChangeEvent();
+
+	/**
+	 * Returns a new object of class '<em>Element Life Cycle Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Life Cycle Event</em>'.
+	 * @generated
+	 */
+	ElementLifeCycleEvent createElementLifeCycleEvent();
+
+	/**
+	 * Returns a new object of class '<em>Link Life Cycle Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Link Life Cycle Event</em>'.
+	 * @generated
+	 */
+	LinkLifeCycleEvent createLinkLifeCycleEvent();
+
+	/**
+	 * Returns a new object of class '<em>Element Create Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Create Event</em>'.
+	 * @generated
+	 */
+	ElementCreateEvent createElementCreateEvent();
+
+	/**
+	 * Returns a new object of class '<em>Element Delete Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Element Delete Event</em>'.
+	 * @generated
+	 */
+	ElementDeleteEvent createElementDeleteEvent();
+
+	/**
+	 * Returns a new object of class '<em>Link Create Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Link Create Event</em>'.
+	 * @generated
+	 */
+	LinkCreateEvent createLinkCreateEvent();
+
+	/**
+	 * Returns a new object of class '<em>Link Delete Event</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Link Delete Event</em>'.
+	 * @generated
+	 */
+	LinkDeleteEvent createLinkDeleteEvent();
+
+	/**
+	 * Returns a new object of class '<em>Event Type Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event Type Filter</em>'.
+	 * @generated
+	 */
+	EventTypeFilter createEventTypeFilter();
+
+	/**
+	 * Returns a new object of class '<em>And Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>And Filter</em>'.
+	 * @generated
+	 */
+	AndFilter createAndFilter();
+
+	/**
+	 * Returns a new object of class '<em>Or Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Or Filter</em>'.
+	 * @generated
+	 */
+	OrFilter createOrFilter();
+
+	/**
+	 * Returns a new object of class '<em>Not Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Not Filter</em>'.
+	 * @generated
+	 */
+	NotFilter createNotFilter();
+
+	/**
+	 * Returns a new object of class '<em>Class Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Class Filter</em>'.
+	 * @generated
+	 */
+	ClassFilter createClassFilter();
+
+	/**
+	 * Returns a new object of class '<em>Instance Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Instance Filter</em>'.
+	 * @generated
+	 */
+	InstanceFilter createInstanceFilter();
+
+	/**
+	 * Returns a new object of class '<em>Attribute Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Attribute Filter</em>'.
+	 * @generated
+	 */
+	AttributeFilter createAttributeFilter();
+
+	/**
+	 * Returns a new object of class '<em>Container Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Container Filter</em>'.
+	 * @generated
+	 */
+	ContainerFilter createContainerFilter();
+
+	/**
+	 * Returns a new object of class '<em>Composition Hierarchy Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Composition Hierarchy Filter</em>'.
+	 * @generated
+	 */
+	CompositionHierarchyFilter createCompositionHierarchyFilter();
+
+	/**
+	 * Returns a new object of class '<em>Package Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Package Filter</em>'.
+	 * @generated
+	 */
+	PackageFilter createPackageFilter();
+
+	/**
+	 * Returns a new object of class '<em>Association Filter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Association Filter</em>'.
+	 * @generated
+	 */
+	AssociationFilter createAssociationFilter();
+
+	/**
+	 * Returns a new object of class '<em>Event Notification</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event Notification</em>'.
+	 * @generated
+	 */
+	EventNotification createEventNotification();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -27,6 +27,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="LinkDeleteEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="EventFilter" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="filterMatcher" eType="#//FilterMatcher"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filterCriterion" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventTypeFilter" eSuperTypes="#//EventFilter"/>
   <eClassifiers xsi:type="ecore:EClass" name="AndFilter" eSuperTypes="#//EventFilter"/>
@@ -45,4 +46,5 @@
       <eParameters name="filter" eType="#//EventFilter"/>
     </eOperations>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventNotification"/>
 </ecore:EPackage>

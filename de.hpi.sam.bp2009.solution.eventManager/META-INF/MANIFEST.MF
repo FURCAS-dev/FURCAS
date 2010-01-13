@@ -10,8 +10,10 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.solution.eventManager,
  de.hpi.sam.bp2009.solution.eventManager.impl,
  de.hpi.sam.bp2009.solution.eventManager.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- de.hpi.sam.bp2009.solution.events;visibility:=reexport,
- de.hpi.sam.bp2009.solution.eventListener
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.common.notify,
+ org.eclipse.emf.common.notify.impl,
+ org.eclipse.emf.common.util,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.ecore.impl
+Require-Bundle: org.eclipse.emf.ecore
