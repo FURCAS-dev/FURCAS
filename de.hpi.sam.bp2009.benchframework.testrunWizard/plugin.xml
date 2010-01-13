@@ -14,7 +14,7 @@
          name="Your Testrunner"
          icon="icons/wizard.gif"
          category="wizard.category2"
-         class="de.hpi.sam.bp2009.benchframework.testrunWizard.TestrunWizard"
+         class="de.hpi.sam.bp2009.benchframework.testrunWizard.TestframeworkWizard"
          id="wizard.wizard2">
       <description>
       	Pick the components to use.
@@ -25,7 +25,7 @@
 <extension
       point="de.hpi.sam.bp2009.benchframework.userInterfaceExtensionPointID">
    <userInterface
-         userInterfaceClass="de.hpi.sam.bp2009.benchframework.testrunWizard.TestrunWizard">
+         userInterfaceClass="de.hpi.sam.bp2009.benchframework.testrunWizard.TestframeworkWizard">
    </userInterface>
 </extension>
 
