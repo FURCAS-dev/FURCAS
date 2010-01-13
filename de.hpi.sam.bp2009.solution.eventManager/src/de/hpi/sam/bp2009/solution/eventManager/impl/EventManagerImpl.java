@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
  *
  * @generated
  */
+
 public class EventManagerImpl extends EObjectImpl implements EventManager {
 	/**
 	 * <!-- begin-user-doc -->

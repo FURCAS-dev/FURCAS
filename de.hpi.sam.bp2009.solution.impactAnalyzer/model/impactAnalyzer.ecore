@@ -3,12 +3,11 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="impactAnalyzer"
     nsURI="http://de.hpi.sam.bp2009.solution.impactAnalyzer" nsPrefix="solution.impactAnalyzer">
-  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer" eSuperTypes="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.ecore#//EventListener">
-    <eOperations name="analyze">
+  <eClassifiers xsi:type="ecore:EClass" name="ImpactAnalyzer">
+    <eOperations name="registerQueries">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       </eGenericType>
-      <eParameters name="resourceSet" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       <eParameters name="oclQueries">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
           <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>

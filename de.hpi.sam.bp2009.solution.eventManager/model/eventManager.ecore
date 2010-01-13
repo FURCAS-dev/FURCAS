@@ -5,8 +5,44 @@
     nsURI="http://de.hpi.sam.bp2009.solution.eventManager" nsPrefix="solution.eventManager">
   <eClassifiers xsi:type="ecore:EClass" name="EventManager">
     <eOperations name="subscribe">
-      <eParameters name="caller" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.ecore#//EventListener"/>
-      <eParameters name="modelChangeEvent" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.events/model/events.ecore#//ModelChangeEvent"/>
+      <eParameters name="caller" eType="#//Adapter"/>
+      <eParameters name="filter" eType="#//EventFilter"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceObject" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Reference to the EObject that cause the event."/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementChangeEvent" eSuperTypes="#//ModelChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeValueChangeEvent" eSuperTypes="#//ElementChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementLifeCycleEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkLifeCycleEvent" eSuperTypes="#//ModelChangeEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementCreateEvent" eSuperTypes="#//ElementLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementDeleteEvent" eSuperTypes="#//ElementLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkCreateEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LinkDeleteEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EventFilter" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filterMatcher" eType="#//FilterMatcher"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventTypeFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AndFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OrFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NotFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClassFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InstanceFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AttributeFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ContainerFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CompositionHierarchyFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PackageFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AssociationFilter" eSuperTypes="#//EventFilter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FilterMatcher" abstract="true" interface="true">
+    <eOperations name="matchesForFilterType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eParameters name="event" eType="#//ModelChangeEvent"/>
+      <eParameters name="filter" eType="#//EventFilter"/>
     </eOperations>
   </eClassifiers>
 </ecore:EPackage>
