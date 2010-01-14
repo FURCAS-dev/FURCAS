@@ -13,13 +13,12 @@ import com.sap.tc.moin.ocl.ia.events.InternalEvent;
 import com.sap.tc.moin.ocl.utils.OclStatement;
 
 /**
- * @author Harald Fuchs This is the internal data structure of the
- * ImpactAnalyzer. It stores triples of OclStatement, InternalEvent and an OCL
- * description of how to compute instances. The first two parts of the triple
- * uniquely identify the last part.
+ * This is the internal data structure of the ImpactAnalyzer. It stores triples of OclStatement, InternalEvent and an
+ * OCL description of how to compute instances. The first two parts of the triple uniquely identify the last part.
  * <p>
- * Internally it keeps a Hashtable of Hashetables so information can be accessed
- * quickly.
+ * Internally it keeps a Hashtable of Hashetables so information can be accessed quickly.
+ * 
+ * @author Harald Fuchs
  */
 public class EventCache {
 

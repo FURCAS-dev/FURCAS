@@ -497,25 +497,26 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 			    TextBlockProxy leftHandSideTBProxy = (TextBlockProxy) leftHandSide.getTextBlock();
 			    //add all consumed tokens and textblock starting from the lefthand side proxy to the current textblock
 			    TextBlockProxy parent = leftHandSideTBProxy.getParent();
-			    int index = parent.getSubNodes().indexOf(leftHandSideTBProxy);
-			    List<Object> elementsMoved = new ArrayList<Object>();
-			    for (; index < parent.getSubNodes().size(); index++) {
-                                Object element = parent.getSubNodes().get(index);
-                                elementsMoved.add(element);
-                            }
-			    int position = 0;
-			    for (Object object : elementsMoved) {
-                                if (!object.equals(currentTextBlock)) {
-                                    // remove elements from their original parent
-                                    parent.getSubNodes().remove(object);
-                                    if (object instanceof TextBlockProxy) {
-                                        ((TextBlockProxy) object)
-                                                .setParent(currentTextBlock);
-                                    }
-                                    // add elements to current proxy at start index
-                                    currentTextBlock.addSubNodeAt(object, position++);
+			    if(parent != null) {
+			        int index = parent.getSubNodes().indexOf(leftHandSideTBProxy);
+                                List<Object> elementsMoved = new ArrayList<Object>();
+                                for (; index < parent.getSubNodes().size(); index++) {
+                                    Object element = parent.getSubNodes().get(index);
+                                    elementsMoved.add(element);
                                 }
-                            }
+                                int position = 0;
+                                for (Object object : elementsMoved) {
+                                    if (!object.equals(currentTextBlock)) {
+                                        // remove elements from their original parent
+                                        parent.getSubNodes().remove(object);
+                                        if (object instanceof TextBlockProxy) {
+                                            ((TextBlockProxy) object).setParent(currentTextBlock);
+                                        }
+                                        // add elements to current proxy at start index
+                                        currentTextBlock.addSubNodeAt(object, position++);
+                                    }
+                                }
+			    }
 			}
 		} else {
 			throw new RuntimeException("Expected IModelElementProxy but got: "

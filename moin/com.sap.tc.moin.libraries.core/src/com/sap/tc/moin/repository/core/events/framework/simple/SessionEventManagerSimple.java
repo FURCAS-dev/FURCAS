@@ -145,8 +145,11 @@ public class SessionEventManagerSimple implements SessionEventManager {
         register( updateListeners, new UpdateNotifier( listenerHelper, listener, eventFilterTree ), ListenerTypeEnum.update );
     }
 
+    // TODO remove again; only for statistics purposes
+    public static int eventListenerRegistrations = 0;
+    
     private void register( List<NotifierSimple> listeners, NotifierSimple notifier, ListenerTypeEnum listenerType ) {
-
+	eventListenerRegistrations++;
         // first check if the listener has already been registered.
         // If yes, then combine the old filter and the new filter with "Or"
         NotifierSimple notifierInList = null;
@@ -230,15 +233,18 @@ public class SessionEventManagerSimple implements SessionEventManager {
         }
     }
 
+    // TODO remove again; used only for statistics purposes
+    public static int changeEvents = 0;
+    
     /*
      * @see com.sap.tc.moin.repository.events.EventManager
      */
     public void fireChangeEvent( ChangeEvent event ) {
-
+	
         if ( !doFireEvents ) {
             return;
         }
-
+        changeEvents++;
         fireEvent( event, postChangeListeners );
         fireEventDeferred( event, preCommitListeners );
         fireEventDeferred( event, postCommitListeners );
@@ -472,6 +478,8 @@ public class SessionEventManagerSimple implements SessionEventManager {
         }
     }
 
+    // TODO remove again; this is only for statistics purposes
+    public static int deliveredEvents = 0;
     /**
      * This method notifies all interested listeners by invoking the fireEvent()
      * method on their associated Notifier.
@@ -495,6 +503,7 @@ public class SessionEventManagerSimple implements SessionEventManager {
             } else {
                 // Check if listener matches the event
                 if ( FilterMatchesEvent.matches( event, notifier.getFilter( ) ) ) {
+                    deliveredEvents++;
                     notifier.fireEvent( event );
                 }
             }

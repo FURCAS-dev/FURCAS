@@ -24,17 +24,14 @@ import com.sap.tc.moin.ocl.utils.OclStatement;
 import com.sap.tc.moin.repository.core.CoreConnection;
 
 /**
- * Sub expressions identify parts of an OclExpression which contain navigation
- * starting with self, an iterator variable, or allInstances() and ending with
- * an operation returning a primitive type or with a node being the body of a
- * LoopExp.
+ * Sub expressions identify parts of an OclExpression which contain navigation starting with self, an iterator variable,
+ * operation parameter, literal or allInstances() and ending with an operation returning a primitive type or with a node
+ * being the body of a LoopExp.
  * <p>
- * Sub classes of this class model direct sub expressions (i.e. starting with
- * self or allInstance()) and indirect sub expressions (i.e. starting with a
- * iterator variable) Sub expressions can have a kind (i.e. CLASS or INSTANCE).
- * They are of kind CLASS if they contain a call to allInstances() and else of
- * kind INSTANCE. Furthermore sub expressions can have a number of children
- * (i.e. indirect sub expressions).
+ * Sub classes of this class model direct sub expressions (i.e. starting with self or allInstance()) and indirect sub
+ * expressions (i.e. starting with a iterator variable) Sub expressions can have a kind (i.e. CLASS or INSTANCE). They
+ * are of kind CLASS if they contain a call to allInstances() and else of kind INSTANCE. Furthermore sub expressions can
+ * have a number of children (i.e. indirect sub expressions).
  */
 public abstract class SubExpression {
 
