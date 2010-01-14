@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: NavigationCallExpItemProvider.java,v 1.1 2009/10/30 19:05:14 ewillink Exp $
+ * $Id: NavigationCallExpItemProvider.java,v 1.2 2010/01/14 12:44:50 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -124,6 +124,16 @@ public class NavigationCallExpItemProvider extends FeatureCallExpItemProvider
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
