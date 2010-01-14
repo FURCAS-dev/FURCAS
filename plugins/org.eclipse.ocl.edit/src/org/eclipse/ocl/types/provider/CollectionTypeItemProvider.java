@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionTypeItemProvider.java,v 1.1 2009/10/30 18:47:59 ewillink Exp $
+ * $Id: CollectionTypeItemProvider.java,v 1.2 2010/01/14 12:44:25 ewillink Exp $
  */
 package org.eclipse.ocl.types.provider;
 
@@ -211,6 +211,16 @@ public class CollectionTypeItemProvider extends ItemProviderAdapter implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/CollectionType")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
