@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: VariableItemProvider.java,v 1.1 2009/10/30 18:58:14 ewillink Exp $
+ * $Id: VariableItemProvider.java,v 1.2 2010/01/14 12:45:05 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -229,6 +229,16 @@ public class VariableItemProvider extends ETypedElementItemProvider implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/Variable")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

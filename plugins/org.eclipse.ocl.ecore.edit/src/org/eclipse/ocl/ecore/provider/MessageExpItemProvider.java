@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageExpItemProvider.java,v 1.2 2009/12/06 18:33:03 ewillink Exp $
+ * $Id: MessageExpItemProvider.java,v 1.3 2010/01/14 12:45:05 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -169,6 +169,16 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/MessageExp")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -756,10 +766,6 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				EcoreFactory.eINSTANCE.createVariableExp()));
 
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
-				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
-
 		newChildDescriptors
 				.add(createChildParameter(
 						ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
@@ -793,6 +799,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
 				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__CALLED_OPERATION,
+				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors
 				.add(createChildParameter(
@@ -1170,10 +1180,6 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				EcoreFactory.eINSTANCE.createVariableExp()));
 
-		newChildDescriptors.add(createChildParameter(
-				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
-				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
-
 		newChildDescriptors
 				.add(createChildParameter(
 						ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
@@ -1207,6 +1213,10 @@ public class MessageExpItemProvider extends OCLExpressionItemProvider implements
 		newChildDescriptors.add(createChildParameter(
 				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
 				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+				ExpressionsPackage.Literals.MESSAGE_EXP__SENT_SIGNAL,
+				org.eclipse.emf.ecore.EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors
 				.add(createChildParameter(

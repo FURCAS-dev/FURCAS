@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: CollectionLiteralPartItemProvider.java,v 1.1 2009/10/30 18:57:59 ewillink Exp $
+ * $Id: CollectionLiteralPartItemProvider.java,v 1.2 2010/01/14 12:45:05 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -70,6 +70,16 @@ public class CollectionLiteralPartItemProvider extends
 
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
