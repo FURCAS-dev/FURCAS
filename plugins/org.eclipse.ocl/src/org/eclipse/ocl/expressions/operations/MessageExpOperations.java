@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: MessageExpOperations.java,v 1.4 2009/06/25 19:23:52 ewillink Exp $
+ * $Id: MessageExpOperations.java,v 1.5 2010/01/14 12:44:33 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.operations;
 
@@ -342,7 +342,8 @@ public class MessageExpOperations
 		boolean result = true;
 
 		OCLExpression<C> target = messageExp.getTarget();
-		if ((target != null) && (target.getType() instanceof CollectionType<?, ?>)) {
+		if ((target != null)
+			&& (target.getType() instanceof CollectionType<?, ?>)) {
 			result = false;
 		}
 
