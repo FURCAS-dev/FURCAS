@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: ExpressionInOCLItemProvider.java,v 1.2 2009/12/06 18:27:38 ewillink Exp $
+ * $Id: ExpressionInOCLItemProvider.java,v 1.3 2010/01/14 12:44:49 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -125,6 +125,16 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/ExpressionInOCL")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -546,10 +556,6 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
-				EcoreFactory.eINSTANCE.createEObject()));
-
-		newChildDescriptors.add(createChildParameter(
-				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				EcoreFactory.eINSTANCE.createEAttribute()));
 
 		newChildDescriptors.add(createChildParameter(
@@ -575,6 +581,10 @@ public class ExpressionInOCLItemProvider extends OpaqueExpressionItemProvider
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
 				EcoreFactory.eINSTANCE.createEFactory()));
+
+		newChildDescriptors.add(createChildParameter(
+				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,
+				EcoreFactory.eINSTANCE.createEObject()));
 
 		newChildDescriptors.add(createChildParameter(
 				UtilitiesPackage.Literals.EXPRESSION_IN_OCL__GENERATED_TYPE,

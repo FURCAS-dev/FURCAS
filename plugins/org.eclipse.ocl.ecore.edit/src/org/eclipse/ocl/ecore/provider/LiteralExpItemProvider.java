@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: LiteralExpItemProvider.java,v 1.1 2009/10/30 18:58:13 ewillink Exp $
+ * $Id: LiteralExpItemProvider.java,v 1.2 2010/01/14 12:45:05 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.provider;
 
@@ -63,6 +63,16 @@ public class LiteralExpItemProvider extends OCLExpressionItemProvider implements
 
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

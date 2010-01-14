@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OperationCallExpItemProvider.java,v 1.1 2009/10/30 19:04:35 ewillink Exp $
+ * $Id: OperationCallExpItemProvider.java,v 1.2 2010/01/14 12:44:49 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -158,6 +158,16 @@ public class OperationCallExpItemProvider extends FeatureCallExpItemProvider
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/OperationCallExp")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

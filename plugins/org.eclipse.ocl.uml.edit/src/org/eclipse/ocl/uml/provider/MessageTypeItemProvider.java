@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: MessageTypeItemProvider.java,v 1.1 2009/10/30 19:05:20 ewillink Exp $
+ * $Id: MessageTypeItemProvider.java,v 1.2 2010/01/14 12:44:50 ewillink Exp $
  */
 package org.eclipse.ocl.uml.provider;
 
@@ -164,6 +164,16 @@ public class MessageTypeItemProvider extends ClassifierItemProvider implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/MessageType")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

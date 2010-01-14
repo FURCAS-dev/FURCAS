@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: TupleLiteralPartItemProvider.java,v 1.2 2009/12/06 18:26:52 ewillink Exp $
+ * $Id: TupleLiteralPartItemProvider.java,v 1.3 2010/01/14 12:44:24 ewillink Exp $
  */
 package org.eclipse.ocl.expressions.provider;
 
@@ -209,6 +209,16 @@ public class TupleLiteralPartItemProvider extends ItemProviderAdapter implements
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage(
 				"full/obj16/TupleLiteralPart")); //$NON-NLS-1$
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**

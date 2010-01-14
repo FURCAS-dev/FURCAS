@@ -13,7 +13,7 @@
  * 
  * </copyright>
  *
- * $Id: UMLPackageImpl.java,v 1.12 2009/12/06 18:21:35 ewillink Exp $
+ * $Id: UMLPackageImpl.java,v 1.13 2010/01/14 12:44:14 ewillink Exp $
  */
 package org.eclipse.ocl.uml.impl;
 
@@ -1876,7 +1876,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createSubsetsAnnotations() {
-		String source = "subsets"; //$NON-NLS-1$	    
+		String source = "subsets"; //$NON-NLS-1$		
 		addAnnotation(getAnyType_OwnedOperation(), source, new String[]{},
 			new URI[]{URI.createURI(org.eclipse.uml2.uml.UMLPackage.eNS_URI)
 				.appendFragment("//Classifier/feature") //$NON-NLS-1$
@@ -1915,7 +1915,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {
-		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$							    
+		String source = "http:///org/eclipse/emf/ecore/util/ExtendedMetaData"; //$NON-NLS-1$								
 		addAnnotation(expressionInOCLEClass, source, new String[]{
 			"name", "ExpressionInOcl" //$NON-NLS-1$ //$NON-NLS-2$
 		});
@@ -1931,7 +1931,7 @@ public class UMLPackageImpl
 	 * @generated
 	 */
 	protected void createEcoreAnnotations() {
-		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$									    
+		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$										
 		addAnnotation(oclExpressionEClass, source, new String[]{
 			"constraints", "has_type" //$NON-NLS-1$ //$NON-NLS-2$
 		});
