@@ -814,9 +814,12 @@ public class StackedEvaluator extends ExpressionEvaluator {
 
     private final OclFactory oclFactory = OclFactory.instance( );
 
+    // TODO remove again; only for statistics purposes
+    public static int evaluations = 0;
+    
     @Override
     public OclAny evaluate( CoreConnection connection, OclExpression expression, EvaluationContext dummy ) {
-
+	evaluations++;
         return this.evaluateInt( connection, expression, dummy, false ).getValue( );
     }
 
@@ -833,7 +836,7 @@ public class StackedEvaluator extends ExpressionEvaluator {
         return this.evaluateInt( connection, expression, dummy, true );
     }
 
-    private MyContext evaluateInt( CoreConnection connection, OclExpression expression, @SuppressWarnings( "unused" ) EvaluationContext dummy, boolean debugMode ) {
+    private MyContext evaluateInt( CoreConnection connection, OclExpression expression, EvaluationContext dummy, boolean debugMode ) {
 
         CoreSession session = connection.getSession( );
         ContextStack contextStack = new ContextStack( );

@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Tue Dec 15 15:55:50 2009' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Mon Dec 21 16:58:07 2009' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -167,6 +167,7 @@ inv:
             <Model:ModelElement xmi.idref = 'a46FB601102FD'/>
             <Model:ModelElement xmi.idref = 'a4783730C01A5'/>
             <Model:ModelElement xmi.idref = 'a4784F7F5005F'/>
+            <Model:ModelElement xmi.idref = 'a4795A52A03A9'/>
             <Model:ModelElement xmi.idref = 'a4795967B0020'/>
             <Model:ModelElement xmi.idref = 'a47B9ABAF02AF'/>
             <Model:ModelElement xmi.idref = 'a47B9EDFD0001'/>
@@ -186,8 +187,57 @@ inv:
             <Model:ModelElement xmi.idref = 'a4AD595C100DA'/>
           </Model:Tag.elements>
         </Model:Tag>
-        <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Uniqueness on both ends must be the same'    [Tag] ==================== -->
+        <!-- ==================== data.classes.org.omg.sap2mof.store=yes    [Tag] ==================== -->
         <Model:Tag xmi.id = 'G.761' 
+          name = 'org.omg.sap2mof.store=yes' annotation = '' 
+          tagId = 'org.omg.sap2mof.store' >
+          <Model:Tag.values>
+            <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
+          </Model:Tag.values>
+          <Model:Tag.elements>
+            <Model:ModelElement xmi.idref = 'ra4795A52A03B9'/>  <!-- data.classes.Association.package_ -->
+            <Model:ModelElement xmi.idref = 'ra44EC5662005B'/>  <!-- data.classes.AssociationEnd.association -->
+            <Model:ModelElement xmi.idref = 'ra456DB5E0037D'/>  <!-- data.classes.AssociationEnd.delegation -->
+            <Model:ModelElement xmi.idref = 'ra4784F7F5005E'/>  <!-- data.classes.SapClass.elementsOfType -->
+            <Model:ModelElement xmi.idref = 'ra47F112BE0232'/>  <!-- data.classes.SapClass.adaptedBy -->
+            <Model:ModelElement xmi.idref = 'ra47F112EE01EC'/>  <!-- data.classes.SapClass.adapters -->
+            <Model:ModelElement xmi.idref = 'ra49B15A620399'/>  <!-- data.classes.SapClass.converterBetweenParametrizations -->
+            <Model:ModelElement xmi.idref = 'ra46FB601102EE'/>  <!-- data.classes.Context.constraints -->
+            <Model:ModelElement xmi.idref = 'ra47B9ABAF02BF'/>  <!-- data.classes.ClassTypeDefinition.associationEnd -->
+            <Model:ModelElement xmi.idref = 'ra47CBF418010B'/>  <!-- data.classes.TypeDefinition.ownerTypedElement -->
+            <Model:ModelElement xmi.idref = 'ra47CBF46E03DA'/>  <!-- data.classes.TypeDefinition.ownerSignature -->
+            <Model:ModelElement xmi.idref = 'ra47CD54E60251'/>  <!-- data.classes.NestedTypeDefinition.ownedTypeDefinition -->
+            <Model:ModelElement xmi.idref = 'ra47D67F7201BD'/>  <!-- data.classes.MethodSignature.implementation -->
+            <Model:ModelElement xmi.idref = 'ra48A04147011A'/>  <!-- data.classes.MethodSignature.owner -->
+            <Model:ModelElement xmi.idref = 'ra489CAD350177'/>  <!-- data.classes.NativeImpl.platformSpecificImplementaiton -->
+            <Model:ModelElement xmi.idref = 'ra4975FB7F01F6'/>  <!-- data.classes.FunctionSignatureImplementation.functionSignature -->
+            <Model:ModelElement xmi.idref = 'ra49B1561E0159'/>  <!-- data.classes.ActualObjectParameter.classTypeDefinitions -->
+            <Model:ModelElement xmi.idref = 'ra4AD595C100DC'/>  <!-- data.classes.ActualObjectParameter.owningClassTypeDefinition -->
+            <Model:ModelElement xmi.idref = 'ra49B15BB60138'/>  <!-- data.classes.ConverterBetweenParametrizations.conversionMethod -->
+            <Model:ModelElement xmi.idref = 'a44EC5662005B'/>
+            <Model:ModelElement xmi.idref = 'a456DB5E0037D'/>
+            <Model:ModelElement xmi.idref = 'a46FB601102EE'/>
+            <Model:ModelElement xmi.idref = 'a4784F7F5005E'/>
+            <Model:ModelElement xmi.idref = 'a4795A52A03B9'/>
+            <Model:ModelElement xmi.idref = 'a4795967B0021'/>
+            <Model:ModelElement xmi.idref = 'a47B9ABAF02BF'/>
+            <Model:ModelElement xmi.idref = 'a47CBF418010B'/>
+            <Model:ModelElement xmi.idref = 'a47CBF46E03DA'/>
+            <Model:ModelElement xmi.idref = 'a47CD54E60251'/>
+            <Model:ModelElement xmi.idref = 'a47D67F7201BD'/>
+            <Model:ModelElement xmi.idref = 'a47F112BE0232'/>
+            <Model:ModelElement xmi.idref = 'a47F112EE01EC'/>
+            <Model:ModelElement xmi.idref = 'a489CAD350177'/>
+            <Model:ModelElement xmi.idref = 'a48A04147011A'/>
+            <Model:ModelElement xmi.idref = 'a4975FB7F01F6'/>
+            <Model:ModelElement xmi.idref = 'a49B1561E0159'/>
+            <Model:ModelElement xmi.idref = 'a49B15A620399'/>
+            <Model:ModelElement xmi.idref = 'a49B15BB60138'/>
+            <Model:ModelElement xmi.idref = 'a4AD595C100DC'/>
+          </Model:Tag.elements>
+        </Model:Tag>
+        <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Uniqueness on both ends must be the same'    [Tag] ==================== -->
+        <Model:Tag xmi.id = 'G.762' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Uniqueness on both ends must be the same&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -198,7 +248,7 @@ inv:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.violationMessageExpression='Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.'    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.762' 
+        <Model:Tag xmi.id = 'G.763' 
           name = 'org.omg.sap2mof.violationMessageExpression=&apos;Associations between two value types that affect equality of both types are currently not supported. It would lead to a recursive equality definition and therefore to recursive value constructors.&apos;' annotation = '' 
           tagId = 'org.omg.sap2mof.violationMessageExpression' >
           <Model:Tag.values>
@@ -391,7 +441,7 @@ inv:
           </Model:Namespace.contents>
         </Model:Class>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::conformsTo(s:Signature):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.764' 
+        <Model:Tag xmi.id = 'G.765' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::conformsTo(s:Signature):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -408,7 +458,7 @@ body:
           </Model:Tag.elements>
         </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context Signature::conformsToExcluding(s:Signature, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.765' 
+        <Model:Tag xmi.id = 'G.766' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context Signature::conformsToExcluding(s:Signature, excludingConforming:Sequence(SapClass), excludingTo:Sequence(SapClass)):Boolean...' annotation = '' 
           tagId = 'org.omg.sap2mof.OperationCodeOcl' >
           <Model:Tag.values>
@@ -628,54 +678,6 @@ inv:
             </Model:Constraint>
           </Model:Namespace.contents>
         </Model:Class>
-        <!-- ==================== data.classes.org.omg.sap2mof.store=yes    [Tag] ==================== -->
-        <Model:Tag xmi.id = 'G.766' 
-          name = 'org.omg.sap2mof.store=yes' annotation = '' 
-          tagId = 'org.omg.sap2mof.store' >
-          <Model:Tag.values>
-            <XMI.any xmi.type = 'string' xmi.name = ''>yes</XMI.any>
-          </Model:Tag.values>
-          <Model:Tag.elements>
-            <Model:ModelElement xmi.idref = 'ra44EC5662005B'/>  <!-- data.classes.AssociationEnd.association -->
-            <Model:ModelElement xmi.idref = 'ra456DB5E0037D'/>  <!-- data.classes.AssociationEnd.delegation -->
-            <Model:ModelElement xmi.idref = 'ra4784F7F5005E'/>  <!-- data.classes.SapClass.elementsOfType -->
-            <Model:ModelElement xmi.idref = 'ra47F112BE0232'/>  <!-- data.classes.SapClass.adaptedBy -->
-            <Model:ModelElement xmi.idref = 'ra47F112EE01EC'/>  <!-- data.classes.SapClass.adapters -->
-            <Model:ModelElement xmi.idref = 'ra49B15A620399'/>  <!-- data.classes.SapClass.converterBetweenParametrizations -->
-            <Model:ModelElement xmi.idref = 'ra46FB601102EE'/>  <!-- data.classes.Context.constraints -->
-            <Model:ModelElement xmi.idref = 'ra47B9ABAF02BF'/>  <!-- data.classes.ClassTypeDefinition.associationEnd -->
-            <Model:ModelElement xmi.idref = 'ra47CBF418010B'/>  <!-- data.classes.TypeDefinition.ownerTypedElement -->
-            <Model:ModelElement xmi.idref = 'ra47CBF46E03DA'/>  <!-- data.classes.TypeDefinition.ownerSignature -->
-            <Model:ModelElement xmi.idref = 'ra47CD54E60251'/>  <!-- data.classes.NestedTypeDefinition.ownedTypeDefinition -->
-            <Model:ModelElement xmi.idref = 'ra47D67F7201BD'/>  <!-- data.classes.MethodSignature.implementation -->
-            <Model:ModelElement xmi.idref = 'ra48A04147011A'/>  <!-- data.classes.MethodSignature.owner -->
-            <Model:ModelElement xmi.idref = 'ra489CAD350177'/>  <!-- data.classes.NativeImpl.platformSpecificImplementaiton -->
-            <Model:ModelElement xmi.idref = 'ra4975FB7F01F6'/>  <!-- data.classes.FunctionSignatureImplementation.functionSignature -->
-            <Model:ModelElement xmi.idref = 'ra49B1561E0159'/>  <!-- data.classes.ActualObjectParameter.classTypeDefinitions -->
-            <Model:ModelElement xmi.idref = 'ra4AD595C100DC'/>  <!-- data.classes.ActualObjectParameter.owningClassTypeDefinition -->
-            <Model:ModelElement xmi.idref = 'ra49B15BB60138'/>  <!-- data.classes.ConverterBetweenParametrizations.conversionMethod -->
-            <Model:ModelElement xmi.idref = 'a44EC5662005B'/>
-            <Model:ModelElement xmi.idref = 'a456DB5E0037D'/>
-            <Model:ModelElement xmi.idref = 'a46FB601102EE'/>
-            <Model:ModelElement xmi.idref = 'a4784F7F5005E'/>
-            <Model:ModelElement xmi.idref = 'a4795A52A03A9'/>
-            <Model:ModelElement xmi.idref = 'a4795967B0021'/>
-            <Model:ModelElement xmi.idref = 'a47B9ABAF02BF'/>
-            <Model:ModelElement xmi.idref = 'a47CBF418010B'/>
-            <Model:ModelElement xmi.idref = 'a47CBF46E03DA'/>
-            <Model:ModelElement xmi.idref = 'a47CD54E60251'/>
-            <Model:ModelElement xmi.idref = 'a47D67F7201BD'/>
-            <Model:ModelElement xmi.idref = 'a47F112BE0232'/>
-            <Model:ModelElement xmi.idref = 'a47F112EE01EC'/>
-            <Model:ModelElement xmi.idref = 'a489CAD350177'/>
-            <Model:ModelElement xmi.idref = 'a48A04147011A'/>
-            <Model:ModelElement xmi.idref = 'a4975FB7F01F6'/>
-            <Model:ModelElement xmi.idref = 'a49B1561E0159'/>
-            <Model:ModelElement xmi.idref = 'a49B15A620399'/>
-            <Model:ModelElement xmi.idref = 'a49B15BB60138'/>
-            <Model:ModelElement xmi.idref = 'a4AD595C100DC'/>
-          </Model:Tag.elements>
-        </Model:Tag>
         <!-- ==================== data.classes.org.omg.sap2mof.OperationCodeOcl=context AssociationEnd::otherEnd():AssociationEnd...    [Tag] ==================== -->
         <Model:Tag xmi.id = 'G.767' 
           name = 'org.omg.sap2mof.OperationCodeOcl=context AssociationEnd::otherEnd():AssociationEnd...' annotation = '' 
@@ -5033,7 +5035,7 @@ Note that the input argument itself is not tagged with a name. It is not intende
         </Model:Association>
       </Model:Namespace.contents>
     </Model:Package>
-    <Model:Import xmi.id = 'G.763' 
+    <Model:Import xmi.id = 'G.764' 
       name = 'PrimitiveTypes' annotation = '' 
       visibility = 'public_vis' isClustered = 'false' >
       <Model:Import.importedNamespace>

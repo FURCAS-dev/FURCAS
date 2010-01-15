@@ -153,8 +153,8 @@ public class ClassScopeAnalysis extends TreeWalker {
         NodeTag tag = this.tagFactory.createTag( exp );
 
         AssociationEnd assocEnd = ( (AssociationEndCallExpImpl) exp ).getReferredAssociationEnd( this.connection );
-        tag.getEvents( ).add( this.eventFactory.createInsertRT( this.connection, assocEnd, (MofClassImpl) exp.getSource().getType() ) );
-        tag.getEvents( ).add( this.eventFactory.createDeleteRT( this.connection, assocEnd, (MofClassImpl) exp.getSource().getType() ) );
+        tag.getEvents( ).add( this.eventFactory.createInsertRT( this.connection, assocEnd, (MofClassImpl) ((OclExpressionInternal) ( (AssociationEndCallExpImpl) exp ).getSource(this.connection)).getType(this.connection) ) );
+        tag.getEvents( ).add( this.eventFactory.createDeleteRT( this.connection, assocEnd, (MofClassImpl) ((OclExpressionInternal) ( (AssociationEndCallExpImpl) exp ).getSource(this.connection)).getType(this.connection) ) );
         tag.getAccumulatedEvents( ).addAll( tag.getEvents( ) );
         // add the child node's events
         NodeTag sourceTag = getTag( ( (AssociationEndCallExpImpl) exp ).getSource( this.connection ) );
@@ -179,7 +179,7 @@ public class ClassScopeAnalysis extends TreeWalker {
 
         NodeTag tag = this.tagFactory.createTag( exp );
         // add the relevant events for this node
-        Classifier sourceType = exp.getSource().getType(); // may be a tuple / structure type or a class
+        Classifier sourceType = ((AttributeCallExpImpl) exp).getSource(this.connection).getType(); // may be a tuple / structure type or a class
         UpdateAttribute upd;
 	if (sourceType instanceof MofClassImpl) {
 	    upd = this.eventFactory.createUpdateAttribute(this.connection, ((AttributeCallExpImpl) exp)

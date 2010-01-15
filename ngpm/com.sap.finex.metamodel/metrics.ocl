@@ -1,0 +1,68 @@
+-- Number of classes:
+
+Mof::Model::Class.allInstances()->select(c |
+  (c.container.importer->select(isClustered).container->notEmpty() and c.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex'))->size()
+
+226
+
+
+
+-- Number of methods:
+
+Mof::Model::Class.allInstances()->select(c |
+  (c.container.importer->select(isClustered).container->notEmpty() and c.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex')).contents->select(m | m.oclIsKindOf(Mof::Model::Operation))->size()
+
+
+Constraints:
+
+Mof::Model::Class.allInstances()->select(c |
+  (c.container.importer->select(isClustered).container->notEmpty() and c.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex')).contents->select(m | m.oclIsKindOf(Mof::Model::Constraint))->select(
+		oc | oc.oclAsType(Mof::Model::Constraint).language='OCL')->size()
+
+"Formatted" metamodel statistics:
+
+Sequence{'Number of classes', Mof::Model::Class.allInstances()->select(c |
+  (c.container.importer->select(isClustered).container->notEmpty() and c.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex'))->size(),
+         'Number of methods', Mof::Model::Class.allInstances()->select(c |
+  (c.container.importer->select(isClustered).container->notEmpty() and c.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex')).contents->select(m | m.oclIsKindOf(Mof::Model::Operation))->size(),
+         'Number of OCL constraints/invariants', Mof::Model::Class.allInstances()->select(c |
+  (c.container.importer->select(isClustered).container->notEmpty() and c.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex') or
+  (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='finex')).contents->select(m | m.oclIsKindOf(Mof::Model::Constraint))->select(
+		oc | oc.oclAsType(Mof::Model::Constraint).language='OCL')->size()}
+
+
+
+Model metrics:
+
+Sequence{'Number of FINEX classes', structure::FinexClass.allInstances()->size(),
+                 'Number of FINEX associations', structure::Association.allInstances()->size(),
+                 'Number of FINEX expressions', behavior::expressions::Expression.allInstances()->size()}
