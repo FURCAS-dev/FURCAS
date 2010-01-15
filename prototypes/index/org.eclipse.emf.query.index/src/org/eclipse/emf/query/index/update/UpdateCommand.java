@@ -10,7 +10,6 @@
  *******************************************************************************/
 package org.eclipse.emf.query.index.update;
 
-
 /**
  * @author Martin Strenge - Initial API and implementation
  * @author Bernd Kolb - Initial API and implementation
@@ -20,6 +19,12 @@ public interface UpdateCommand {
 
 	void execute(IndexUpdater updater);
 
+	void preCommitAction(IndexUpdater updater);
+
+	/**
+	 * 
+	 * @Deprecated Use {@link #preCommitAction(IndexUpdater)} instead
+	 */
 	void preCommitAction();
 
 	void postCommitAction();

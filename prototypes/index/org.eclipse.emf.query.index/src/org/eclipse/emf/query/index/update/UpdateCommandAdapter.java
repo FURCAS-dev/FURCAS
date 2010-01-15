@@ -22,6 +22,10 @@ public abstract class UpdateCommandAdapter implements UpdateCommand {
 	}
 
 	@Override
+	public void preCommitAction(IndexUpdater updater) {
+	}
+
+	@Override
 	public void preCommitAction() {
 	}
 
