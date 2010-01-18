@@ -53,6 +53,15 @@ public interface BenchframeworkFactory extends EFactory {
 	ResultObject createResultObject();
 
 	/**
+	 * Returns a new object of class '<em>Test Run</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Test Run</em>'.
+	 * @generated
+	 */
+	TestRun createTestRun();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

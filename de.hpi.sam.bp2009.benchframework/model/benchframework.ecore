@@ -4,19 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="benchframework"
     nsURI="http://de.hpi.sam.bp2009.benchframework" nsPrefix="benchframework">
   <eClassifiers xsi:type="ecore:EClass" name="Engine">
-    <eOperations name="benchmark">
-      <eParameters name="outputStream" eType="#//OutputStream"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//Operator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="results" upperBound="-1"
-        eType="#//ResultProcessor"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="generators" upperBound="-1"
-        eType="#//Generator"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="benchMarkers" upperBound="-1"
-        eType="#//BenchMarker"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="userInterfaces" upperBound="-1"
-        eType="#//UserInterface"/>
+    <eOperations name="benchmark"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testRuns" upperBound="-1"
+        eType="#//TestRun"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true">
     <eOperations name="execute">
@@ -24,52 +14,57 @@
       <eParameters name="option" eType="#//OptionObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultOption" eType="#//OptionObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Generator" abstract="true">
-    <eOperations name="execute" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource">
-      <eParameters name="option" eType="#//OptionObject"/>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="defaultOption" eType="#//OptionObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//ResultObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testRun" eType="#//TestRun"
+        eOpposite="#//TestRun/operators"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultProcessor" abstract="true">
-    <eOperations name="addRun" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
-      <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
-      <eParameters name="generatorOption" eType="#//OptionObject"/>
-      <eParameters name="operatorOption" eType="#//OptionObject"/>
-      <eParameters name="benchmarker" eType="#//BenchMarker"/>
+    <eOperations name="showResults" eType="#//WizardPage">
+      <eParameters name="resultObjects">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments eClassifier="#//ResultObject"/>
+        </eGenericType>
+      </eParameters>
     </eOperations>
-    <eOperations name="streamTo">
-      <eParameters name="out" eType="#//OutputStream"/>
-    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultPage" eType="#//WizardPage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OptionObject">
-    <eOperations name="getPropertyMap">
+    <eOperations name="getOptionMap">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments/>
-        <eTypeArguments/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       </eGenericType>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardPage" eType="#//WizardPage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultObject">
     <eOperations name="getPropertyMap">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments/>
-        <eTypeArguments/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       </eGenericType>
     </eOperations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="OutputStream" instanceClassName="java.io.OutputStream"/>
-  <eClassifiers xsi:type="ecore:EClass" name="BenchMarker" abstract="true">
-    <eOperations name="start"/>
-    <eOperations name="end"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//ResultObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultDisplay" eType="#//UIComponent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
-    <eOperations name="startUI">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments/>
-        <eTypeArguments/>
-      </eGenericType>
-    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="engine" eType="#//Engine"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="availableOperators" eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="resultProcessor" eType="#//ResultProcessor"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestRun">
+    <eOperations name="getInstanceForClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
+      <eParameters name="aClass">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="model" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
+        transient="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
+        eType="#//Operator" eOpposite="#//Operator/testRun"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="OutputStream" instanceClassName="java.io.OutputStream"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="WizardPage" instanceClassName="org.eclipse.jface.wizard.WizardPage"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="UIComponent" instanceClassName="org.eclipse.swt.widgets.Composite"/>
 </ecore:EPackage>

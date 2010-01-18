@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
@@ -70,49 +71,13 @@ public interface BenchframeworkPackage extends EPackage {
 	int ENGINE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Operators</b></em>' reference list.
+	 * The feature id for the '<em><b>Test Runs</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENGINE__OPERATORS = 0;
-
-	/**
-	 * The feature id for the '<em><b>Results</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE__RESULTS = 1;
-
-	/**
-	 * The feature id for the '<em><b>Generators</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE__GENERATORS = 2;
-
-	/**
-	 * The feature id for the '<em><b>Bench Markers</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE__BENCH_MARKERS = 3;
-
-	/**
-	 * The feature id for the '<em><b>User Interfaces</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ENGINE__USER_INTERFACES = 4;
+	int ENGINE__TEST_RUNS = 0;
 
 	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
@@ -121,7 +86,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ENGINE_FEATURE_COUNT = 5;
+	int ENGINE_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl <em>Operator</em>}' class.
@@ -143,41 +108,31 @@ public interface BenchframeworkPackage extends EPackage {
 	int OPERATOR__DEFAULT_OPTION = 0;
 
 	/**
+	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__RESULT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__TEST_RUN = 2;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.GeneratorImpl <em>Generator</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.GeneratorImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getGenerator()
-	 * @generated
-	 */
-	int GENERATOR = 2;
-
-	/**
-	 * The feature id for the '<em><b>Default Option</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERATOR__DEFAULT_OPTION = 0;
-
-	/**
-	 * The number of structural features of the '<em>Generator</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int GENERATOR_FEATURE_COUNT = 1;
+	int OPERATOR_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl <em>Result Processor</em>}' class.
@@ -187,7 +142,16 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultProcessor()
 	 * @generated
 	 */
-	int RESULT_PROCESSOR = 3;
+	int RESULT_PROCESSOR = 2;
+
+	/**
+	 * The feature id for the '<em><b>Result Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_PROCESSOR__RESULT_PAGE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Result Processor</em>' class.
@@ -196,7 +160,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_PROCESSOR_FEATURE_COUNT = 0;
+	int RESULT_PROCESSOR_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl <em>Option Object</em>}' class.
@@ -206,7 +170,16 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOptionObject()
 	 * @generated
 	 */
-	int OPTION_OBJECT = 4;
+	int OPTION_OBJECT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPTION_OBJECT__WIZARD_PAGE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Option Object</em>' class.
@@ -215,7 +188,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPTION_OBJECT_FEATURE_COUNT = 0;
+	int OPTION_OBJECT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl <em>Result Object</em>}' class.
@@ -225,7 +198,16 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultObject()
 	 * @generated
 	 */
-	int RESULT_OBJECT = 5;
+	int RESULT_OBJECT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Result Display</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_OBJECT__RESULT_DISPLAY = 0;
 
 	/**
 	 * The number of structural features of the '<em>Result Object</em>' class.
@@ -234,35 +216,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_OBJECT_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.BenchMarkerImpl <em>Bench Marker</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchMarkerImpl
-	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getBenchMarker()
-	 * @generated
-	 */
-	int BENCH_MARKER = 6;
-
-	/**
-	 * The feature id for the '<em><b>Result</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BENCH_MARKER__RESULT = 0;
-
-	/**
-	 * The number of structural features of the '<em>Bench Marker</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int BENCH_MARKER_FEATURE_COUNT = 1;
+	int RESULT_OBJECT_FEATURE_COUNT = 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
@@ -272,7 +226,34 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUserInterface()
 	 * @generated
 	 */
-	int USER_INTERFACE = 7;
+	int USER_INTERFACE = 5;
+
+	/**
+	 * The feature id for the '<em><b>Engine</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__ENGINE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Available Operators</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__AVAILABLE_OPERATORS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Result Processor</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER_INTERFACE__RESULT_PROCESSOR = 2;
 
 	/**
 	 * The number of structural features of the '<em>User Interface</em>' class.
@@ -281,7 +262,44 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_INTERFACE_FEATURE_COUNT = 0;
+	int USER_INTERFACE_FEATURE_COUNT = 3;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.TestRunImpl <em>Test Run</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.impl.TestRunImpl
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getTestRun()
+	 * @generated
+	 */
+	int TEST_RUN = 6;
+
+	/**
+	 * The feature id for the '<em><b>Model</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_RUN__MODEL = 0;
+
+	/**
+	 * The feature id for the '<em><b>Operators</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_RUN__OPERATORS = 1;
+
+	/**
+	 * The number of structural features of the '<em>Test Run</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_RUN_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '<em>Output Stream</em>' data type.
@@ -291,7 +309,27 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOutputStream()
 	 * @generated
 	 */
-	int OUTPUT_STREAM = 8;
+	int OUTPUT_STREAM = 7;
+
+	/**
+	 * The meta object id for the '<em>Wizard Page</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.jface.wizard.WizardPage
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getWizardPage()
+	 * @generated
+	 */
+	int WIZARD_PAGE = 8;
+
+	/**
+	 * The meta object id for the '<em>UI Component</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.swt.widgets.Composite
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUIComponent()
+	 * @generated
+	 */
+	int UI_COMPONENT = 9;
 
 
 	/**
@@ -305,59 +343,15 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getEngine();
 
 	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getOperators <em>Operators</em>}'.
+	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getTestRuns <em>Test Runs</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Operators</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Engine#getOperators()
+	 * @return the meta object for the reference list '<em>Test Runs</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Engine#getTestRuns()
 	 * @see #getEngine()
 	 * @generated
 	 */
-	EReference getEngine_Operators();
-
-	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getResults <em>Results</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Results</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Engine#getResults()
-	 * @see #getEngine()
-	 * @generated
-	 */
-	EReference getEngine_Results();
-
-	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getGenerators <em>Generators</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Generators</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Engine#getGenerators()
-	 * @see #getEngine()
-	 * @generated
-	 */
-	EReference getEngine_Generators();
-
-	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getBenchMarkers <em>Bench Markers</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Bench Markers</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Engine#getBenchMarkers()
-	 * @see #getEngine()
-	 * @generated
-	 */
-	EReference getEngine_BenchMarkers();
-
-	/**
-	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.Engine#getUserInterfaces <em>User Interfaces</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>User Interfaces</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Engine#getUserInterfaces()
-	 * @see #getEngine()
-	 * @generated
-	 */
-	EReference getEngine_UserInterfaces();
+	EReference getEngine_TestRuns();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
@@ -381,25 +375,26 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getOperator_DefaultOption();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.Generator <em>Generator</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Generator</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Generator
+	 * @return the meta object for the reference '<em>Result</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator#getResult()
+	 * @see #getOperator()
 	 * @generated
 	 */
-	EClass getGenerator();
+	EReference getOperator_Result();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Generator#getDefaultOption <em>Default Option</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Default Option</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Generator#getDefaultOption()
-	 * @see #getGenerator()
+	 * @return the meta object for the reference '<em>Test Run</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator#getTestRun()
+	 * @see #getOperator()
 	 * @generated
 	 */
-	EReference getGenerator_DefaultOption();
+	EReference getOperator_TestRun();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.ResultProcessor <em>Result Processor</em>}'.
@@ -412,6 +407,17 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getResultProcessor();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultProcessor#getResultPage <em>Result Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Result Page</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultProcessor#getResultPage()
+	 * @see #getResultProcessor()
+	 * @generated
+	 */
+	EAttribute getResultProcessor_ResultPage();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -420,6 +426,17 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOptionObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.OptionObject#getWizardPage <em>Wizard Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Wizard Page</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.OptionObject#getWizardPage()
+	 * @see #getOptionObject()
+	 * @generated
+	 */
+	EAttribute getOptionObject_WizardPage();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.ResultObject <em>Result Object</em>}'.
@@ -432,25 +449,15 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getResultObject();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.BenchMarker <em>Bench Marker</em>}'.
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultDisplay <em>Result Display</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Bench Marker</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.BenchMarker
+	 * @return the meta object for the attribute '<em>Result Display</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultObject#getResultDisplay()
+	 * @see #getResultObject()
 	 * @generated
 	 */
-	EClass getBenchMarker();
-
-	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.BenchMarker#getResult <em>Result</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Result</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.BenchMarker#getResult()
-	 * @see #getBenchMarker()
-	 * @generated
-	 */
-	EReference getBenchMarker_Result();
+	EAttribute getResultObject_ResultDisplay();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.UserInterface <em>User Interface</em>}'.
@@ -463,6 +470,71 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getUserInterface();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.UserInterface#getEngine <em>Engine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Engine</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.UserInterface#getEngine()
+	 * @see #getUserInterface()
+	 * @generated
+	 */
+	EReference getUserInterface_Engine();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.UserInterface#getAvailableOperators <em>Available Operators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Available Operators</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.UserInterface#getAvailableOperators()
+	 * @see #getUserInterface()
+	 * @generated
+	 */
+	EReference getUserInterface_AvailableOperators();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.UserInterface#getResultProcessor <em>Result Processor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Result Processor</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.UserInterface#getResultProcessor()
+	 * @see #getUserInterface()
+	 * @generated
+	 */
+	EReference getUserInterface_ResultProcessor();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.TestRun <em>Test Run</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Test Run</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.TestRun
+	 * @generated
+	 */
+	EClass getTestRun();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.TestRun#getModel <em>Model</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Model</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.TestRun#getModel()
+	 * @see #getTestRun()
+	 * @generated
+	 */
+	EAttribute getTestRun_Model();
+
+	/**
+	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.TestRun#getOperators <em>Operators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Operators</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.TestRun#getOperators()
+	 * @see #getTestRun()
+	 * @generated
+	 */
+	EReference getTestRun_Operators();
+
+	/**
 	 * Returns the meta object for data type '{@link java.io.OutputStream <em>Output Stream</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -472,6 +544,28 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EDataType getOutputStream();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.jface.wizard.WizardPage <em>Wizard Page</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Wizard Page</em>'.
+	 * @see org.eclipse.jface.wizard.WizardPage
+	 * @model instanceClass="org.eclipse.jface.wizard.WizardPage"
+	 * @generated
+	 */
+	EDataType getWizardPage();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.swt.widgets.Composite <em>UI Component</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>UI Component</em>'.
+	 * @see org.eclipse.swt.widgets.Composite
+	 * @model instanceClass="org.eclipse.swt.widgets.Composite"
+	 * @generated
+	 */
+	EDataType getUIComponent();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -506,44 +600,12 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass ENGINE = eINSTANCE.getEngine();
 
 		/**
-		 * The meta object literal for the '<em><b>Operators</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Test Runs</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ENGINE__OPERATORS = eINSTANCE.getEngine_Operators();
-
-		/**
-		 * The meta object literal for the '<em><b>Results</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENGINE__RESULTS = eINSTANCE.getEngine_Results();
-
-		/**
-		 * The meta object literal for the '<em><b>Generators</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENGINE__GENERATORS = eINSTANCE.getEngine_Generators();
-
-		/**
-		 * The meta object literal for the '<em><b>Bench Markers</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENGINE__BENCH_MARKERS = eINSTANCE.getEngine_BenchMarkers();
-
-		/**
-		 * The meta object literal for the '<em><b>User Interfaces</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ENGINE__USER_INTERFACES = eINSTANCE.getEngine_UserInterfaces();
+		EReference ENGINE__TEST_RUNS = eINSTANCE.getEngine_TestRuns();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl <em>Operator</em>}' class.
@@ -564,22 +626,20 @@ public interface BenchframeworkPackage extends EPackage {
 		EReference OPERATOR__DEFAULT_OPTION = eINSTANCE.getOperator_DefaultOption();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.GeneratorImpl <em>Generator</em>}' class.
+		 * The meta object literal for the '<em><b>Result</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.impl.GeneratorImpl
-		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getGenerator()
 		 * @generated
 		 */
-		EClass GENERATOR = eINSTANCE.getGenerator();
+		EReference OPERATOR__RESULT = eINSTANCE.getOperator_Result();
 
 		/**
-		 * The meta object literal for the '<em><b>Default Option</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Test Run</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference GENERATOR__DEFAULT_OPTION = eINSTANCE.getGenerator_DefaultOption();
+		EReference OPERATOR__TEST_RUN = eINSTANCE.getOperator_TestRun();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl <em>Result Processor</em>}' class.
@@ -592,6 +652,14 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass RESULT_PROCESSOR = eINSTANCE.getResultProcessor();
 
 		/**
+		 * The meta object literal for the '<em><b>Result Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULT_PROCESSOR__RESULT_PAGE = eINSTANCE.getResultProcessor_ResultPage();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl <em>Option Object</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -600,6 +668,14 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OPTION_OBJECT = eINSTANCE.getOptionObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Wizard Page</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPTION_OBJECT__WIZARD_PAGE = eINSTANCE.getOptionObject_WizardPage();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl <em>Result Object</em>}' class.
@@ -612,22 +688,12 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass RESULT_OBJECT = eINSTANCE.getResultObject();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.BenchMarkerImpl <em>Bench Marker</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchMarkerImpl
-		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getBenchMarker()
-		 * @generated
-		 */
-		EClass BENCH_MARKER = eINSTANCE.getBenchMarker();
-
-		/**
-		 * The meta object literal for the '<em><b>Result</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Result Display</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference BENCH_MARKER__RESULT = eINSTANCE.getBenchMarker_Result();
+		EAttribute RESULT_OBJECT__RESULT_DISPLAY = eINSTANCE.getResultObject_ResultDisplay();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
@@ -640,6 +706,56 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass USER_INTERFACE = eINSTANCE.getUserInterface();
 
 		/**
+		 * The meta object literal for the '<em><b>Engine</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_INTERFACE__ENGINE = eINSTANCE.getUserInterface_Engine();
+
+		/**
+		 * The meta object literal for the '<em><b>Available Operators</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_INTERFACE__AVAILABLE_OPERATORS = eINSTANCE.getUserInterface_AvailableOperators();
+
+		/**
+		 * The meta object literal for the '<em><b>Result Processor</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference USER_INTERFACE__RESULT_PROCESSOR = eINSTANCE.getUserInterface_ResultProcessor();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.TestRunImpl <em>Test Run</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.impl.TestRunImpl
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getTestRun()
+		 * @generated
+		 */
+		EClass TEST_RUN = eINSTANCE.getTestRun();
+
+		/**
+		 * The meta object literal for the '<em><b>Model</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_RUN__MODEL = eINSTANCE.getTestRun_Model();
+
+		/**
+		 * The meta object literal for the '<em><b>Operators</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_RUN__OPERATORS = eINSTANCE.getTestRun_Operators();
+
+		/**
 		 * The meta object literal for the '<em>Output Stream</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -648,6 +764,26 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType OUTPUT_STREAM = eINSTANCE.getOutputStream();
+
+		/**
+		 * The meta object literal for the '<em>Wizard Page</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.jface.wizard.WizardPage
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getWizardPage()
+		 * @generated
+		 */
+		EDataType WIZARD_PAGE = eINSTANCE.getWizardPage();
+
+		/**
+		 * The meta object literal for the '<em>UI Component</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.swt.widgets.Composite
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUIComponent()
+		 * @generated
+		 */
+		EDataType UI_COMPONENT = eINSTANCE.getUIComponent();
 
 	}
 
