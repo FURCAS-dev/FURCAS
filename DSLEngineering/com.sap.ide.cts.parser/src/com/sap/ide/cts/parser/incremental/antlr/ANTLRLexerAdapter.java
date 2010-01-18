@@ -151,6 +151,7 @@ public class ANTLRLexerAdapter implements LexerAdapter {
 	 */
 	private AbstractToken getReuseableToken(Token nextToken) {
 		//The order of tries is important!
+	        //construction loc is always the PREVIOUS version of the token!
 		AbstractToken candidate = incrementalLexer.getConstructionLoc().getTok();
 		while(true) {
 			//first check if the token was already re-used, if not check if it can be re-used now 

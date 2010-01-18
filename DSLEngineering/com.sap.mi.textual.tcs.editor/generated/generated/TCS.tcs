@@ -11,7 +11,7 @@ syntax TCS {
 
         primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:
                 value = "unescapeString(%token%)",
-                serializer="'\\\"' + %value%.toCString() + '\\\"'";
+		serializer="\"%value%\"";
 
         primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
                 value = "Integer.valueOf(%token%)";

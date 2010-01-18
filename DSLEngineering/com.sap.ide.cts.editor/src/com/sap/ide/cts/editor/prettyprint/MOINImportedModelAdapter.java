@@ -13,8 +13,58 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
 import com.sap.tc.moin.repository.mmi.reflect.RefEnum;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
 
 public class MOINImportedModelAdapter {
+    
+    public static Object get(RefStruct me, String propName) {
+        if (me == null || propName == null) {
+                return null;
+        }
+
+        RefStruct ref = me;
+
+        return ref.refGetValue(propName);
+    }
+    
+    public static boolean getBool(RefStruct me, String propName) {
+            return (Boolean) get(me, propName);
+    }
+    
+    public static boolean getBoolUndefinedIsFalse(RefStruct me, String propName) {
+            Object result = get(me, propName);
+            if (result == null) {
+                    return false;
+            }
+    
+            return (Boolean) result;
+    }
+    
+    public static Iterator<?> getCol(RefStruct me, String propName) {
+            Collection<?> c = (Collection<?>) get(me, propName);
+            return c.iterator();
+    }
+    
+    public static int getInt(RefStruct me, String propName) {
+            return (Integer) get(me, propName);
+    }
+    
+    public static RefStruct getME(RefStruct me, String propName) {
+            return (RefStruct) get(me, propName);
+    }
+    
+    public static String getName(RefStruct me) {
+            return getString(me, "name");
+    }
+    
+    public static String getString(RefStruct me, String propName) {
+            try {
+                    return (String) get(me, propName);
+            } catch (Exception e) {
+                    e.printStackTrace();
+                    return null;
+            }
+    }
 
 	public static Object get(RefObject me, String propName) {
 		if (me == null || propName == null) {
