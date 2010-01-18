@@ -3,7 +3,15 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="executionTimeBenchmarker"
     nsURI="http://de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker" nsPrefix="benchframework.executionTimeBenchmarker">
-  <eClassifiers xsi:type="ecore:EClass" name="ExecutionTimeBenchmarker" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//BenchMarker"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionTimeBenchmarkerStart" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
+    <eOperations name="start"/>
+    <eOperations name="end"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" eType="#//ExecutionTimeBenchmarkerEnd"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionTimeBenchmarkerEnd" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
+    <eOperations name="end"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startPoint" eType="#//ExecutionTimeBenchmarkerStart"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JETMResultObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultObject">
     <eOperations name="getDuration" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="startTime" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELong"/>

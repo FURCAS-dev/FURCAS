@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -50,7 +51,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "executionTimeBenchmarker";
+	String eNS_PREFIX = "benchframework.executionTimeBenchmarker";
 
 	/**
 	 * The singleton instance of the package.
@@ -61,14 +62,23 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	ExecutionTimeBenchmarkerPackage eINSTANCE = executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerImpl <em>Execution Time Benchmarker</em>}' class.
+	 * The meta object id for the '{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl <em>Start</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerImpl
-	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarker()
+	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl
+	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarkerStart()
 	 * @generated
 	 */
-	int EXECUTION_TIME_BENCHMARKER = 0;
+	int EXECUTION_TIME_BENCHMARKER_START = 0;
+
+	/**
+	 * The feature id for the '<em><b>Default Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_START__DEFAULT_OPTION = BenchframeworkPackage.OPERATOR__DEFAULT_OPTION;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' reference.
@@ -77,17 +87,89 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER__RESULT = BenchframeworkPackage.BENCH_MARKER__RESULT;
+	int EXECUTION_TIME_BENCHMARKER_START__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
 
 	/**
-	 * The number of structural features of the '<em>Execution Time Benchmarker</em>' class.
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_FEATURE_COUNT = BenchframeworkPackage.BENCH_MARKER_FEATURE_COUNT + 0;
+	int EXECUTION_TIME_BENCHMARKER_START__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
 
+	/**
+	 * The feature id for the '<em><b>End Point</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_START__END_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Start</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl
+	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarkerEnd()
+	 * @generated
+	 */
+	int EXECUTION_TIME_BENCHMARKER_END = 1;
+
+	/**
+	 * The feature id for the '<em><b>Default Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_END__DEFAULT_OPTION = BenchframeworkPackage.OPERATOR__DEFAULT_OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_END__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_END__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Start Point</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_END__START_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>End</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_END_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link executionTimeBenchmarker.impl.JETMResultObjectImpl <em>JETM Result Object</em>}' class.
@@ -97,7 +179,16 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getJETMResultObject()
 	 * @generated
 	 */
-	int JETM_RESULT_OBJECT = 1;
+	int JETM_RESULT_OBJECT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Result Display</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JETM_RESULT_OBJECT__RESULT_DISPLAY = BenchframeworkPackage.RESULT_OBJECT__RESULT_DISPLAY;
 
 	/**
 	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
@@ -146,14 +237,46 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 
 
 	/**
-	 * Returns the meta object for class '{@link executionTimeBenchmarker.ExecutionTimeBenchmarker <em>Execution Time Benchmarker</em>}'.
+	 * Returns the meta object for class '{@link executionTimeBenchmarker.ExecutionTimeBenchmarkerStart <em>Start</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Execution Time Benchmarker</em>'.
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarker
+	 * @return the meta object for class '<em>Start</em>'.
+	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerStart
 	 * @generated
 	 */
-	EClass getExecutionTimeBenchmarker();
+	EClass getExecutionTimeBenchmarkerStart();
+
+	/**
+	 * Returns the meta object for the reference '{@link executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getEndPoint <em>End Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>End Point</em>'.
+	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getEndPoint()
+	 * @see #getExecutionTimeBenchmarkerStart()
+	 * @generated
+	 */
+	EReference getExecutionTimeBenchmarkerStart_EndPoint();
+
+	/**
+	 * Returns the meta object for class '{@link executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>End</em>'.
+	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd
+	 * @generated
+	 */
+	EClass getExecutionTimeBenchmarkerEnd();
+
+	/**
+	 * Returns the meta object for the reference '{@link executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd#getStartPoint <em>Start Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Start Point</em>'.
+	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd#getStartPoint()
+	 * @see #getExecutionTimeBenchmarkerEnd()
+	 * @generated
+	 */
+	EReference getExecutionTimeBenchmarkerEnd_StartPoint();
 
 	/**
 	 * Returns the meta object for class '{@link executionTimeBenchmarker.JETMResultObject <em>JETM Result Object</em>}'.
@@ -232,14 +355,41 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerImpl <em>Execution Time Benchmarker</em>}' class.
+		 * The meta object literal for the '{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl <em>Start</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerImpl
-		 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarker()
+		 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl
+		 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarkerStart()
 		 * @generated
 		 */
-		EClass EXECUTION_TIME_BENCHMARKER = eINSTANCE.getExecutionTimeBenchmarker();
+		EClass EXECUTION_TIME_BENCHMARKER_START = eINSTANCE.getExecutionTimeBenchmarkerStart();
+
+		/**
+		 * The meta object literal for the '<em><b>End Point</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_TIME_BENCHMARKER_START__END_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_EndPoint();
+
+		/**
+		 * The meta object literal for the '{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl
+		 * @see executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarkerEnd()
+		 * @generated
+		 */
+		EClass EXECUTION_TIME_BENCHMARKER_END = eINSTANCE.getExecutionTimeBenchmarkerEnd();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Point</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EXECUTION_TIME_BENCHMARKER_END__START_POINT = eINSTANCE.getExecutionTimeBenchmarkerEnd_StartPoint();
+
 		/**
 		 * The meta object literal for the '{@link executionTimeBenchmarker.impl.JETMResultObjectImpl <em>JETM Result Object</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -249,6 +399,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass JETM_RESULT_OBJECT = eINSTANCE.getJETMResultObject();
+
 		/**
 		 * The meta object literal for the '<em><b>Start Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -256,6 +407,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JETM_RESULT_OBJECT__START_TIME = eINSTANCE.getJETMResultObject_StartTime();
+
 		/**
 		 * The meta object literal for the '<em><b>End Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -263,6 +415,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JETM_RESULT_OBJECT__END_TIME = eINSTANCE.getJETMResultObject_EndTime();
+
 		/**
 		 * The meta object literal for the '<em><b>Ticks</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
@@ -270,6 +423,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JETM_RESULT_OBJECT__TICKS = eINSTANCE.getJETMResultObject_Ticks();
+
 		/**
 		 * The meta object literal for the '<em><b>Transaction Time</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->

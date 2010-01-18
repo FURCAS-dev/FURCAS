@@ -26,13 +26,22 @@ public interface ExecutionTimeBenchmarkerFactory extends EFactory {
 	ExecutionTimeBenchmarkerFactory eINSTANCE = executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Execution Time Benchmarker</em>'.
+	 * Returns a new object of class '<em>Start</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Execution Time Benchmarker</em>'.
+	 * @return a new object of class '<em>Start</em>'.
 	 * @generated
 	 */
-	ExecutionTimeBenchmarker createExecutionTimeBenchmarker();
+	ExecutionTimeBenchmarkerStart createExecutionTimeBenchmarkerStart();
+
+	/**
+	 * Returns a new object of class '<em>End</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>End</em>'.
+	 * @generated
+	 */
+	ExecutionTimeBenchmarkerEnd createExecutionTimeBenchmarkerEnd();
 
 	/**
 	 * Returns a new object of class '<em>JETM Result Object</em>'.
