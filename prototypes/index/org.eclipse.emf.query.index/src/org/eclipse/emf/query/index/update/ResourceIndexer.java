@@ -39,18 +39,20 @@ public class ResourceIndexer {
 		Map<Object, String> typeCache = new IdentityHashMap<Object, String>();
 		Map<Resource, URI> resourceCache = new IdentityHashMap<Resource, URI>();
 		for (Resource resource : resources) {
-			Map<Object, String> objectCache = new IdentityHashMap<Object, String>();
-			ResourceSet resourceSet = resource.getResourceSet();
-			URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
-			URI resourceUri;
-			if ((resourceUri = resourceCache.get(resource)) == null) {
-				resourceCache.put(resource, resourceUri = uriConverter.normalize(resource.getURI()));
-			}
+			if (resource != null) {
+				Map<Object, String> objectCache = new IdentityHashMap<Object, String>();
+				ResourceSet resourceSet = resource.getResourceSet();
+				URIConverter uriConverter = (resourceSet != null) ? resourceSet.getURIConverter() : URIConverter.INSTANCE;
+				URI resourceUri;
+				if ((resourceUri = resourceCache.get(resource)) == null) {
+					resourceCache.put(resource, resourceUri = uriConverter.normalize(resource.getURI()));
+				}
 
-			updater.insertResource(resourceUri, this.getVersion(resource), getResourceUserData(resource));
+				updater.insertResource(resourceUri, this.getVersion(resource), getResourceUserData(resource));
 
-			for (EObject child : resource.getContents()) {
-				addContent(updater, uriConverter, resourceCache, typeCache, objectCache, resource, resourceUri, child);
+				for (EObject child : resource.getContents()) {
+					addContent(updater, uriConverter, resourceCache, typeCache, objectCache, resource, resourceUri, child);
+				}
 			}
 		}
 	}

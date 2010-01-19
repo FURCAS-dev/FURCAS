@@ -85,19 +85,23 @@ public class EmfHelper {
 	public void createDirtyIndex() {
 		this.dirtyIndex = new PageableIndexImpl(Options.PAGING_AND_DUMPING_DISABLED);
 
-		dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
+		if (!rs.getResources().isEmpty()) {
+			dirtyIndex.executeUpdateCommand(new UpdateCommandAdapter() {
 
-			@Override
-			public void execute(IndexUpdater updater) {
-				ResourceIndexer rd = new ResourceIndexer();
-				for (Resource r : rs.getResources()) {
-					if (r.isLoaded()) {
-						rd.resourceChanged(updater, r);
+				@Override
+				public void execute(IndexUpdater updater) {
+					ResourceIndexer rd = new ResourceIndexer();
+					Resource[] array = rs.getResources().toArray(new Resource[rs.getResources().size()]);
+					for (int i = 0; i < array.length; i++) {
+						Resource r = array[i];
+						if (r.isLoaded() /* && (!r.isTrackingModification() || r.isModified()) */) {
+							rd.resourceChanged(updater, r);
+						}
 					}
 				}
-			}
 
-		});
+			});
+		}
 	}
 
 	public URI createUri(String uriString) {
@@ -200,7 +204,7 @@ public class EmfHelper {
 			for (; i < result.size(); i++) {
 				EObject next = result.get(i);
 				for (EObject ob : next.eContents()) {
-					if (seen.add(ob) && ob.eResource() == mp) {
+					if (!ob.eIsProxy() && seen.add(ob) && ob.eResource() == mp) {
 						result.add(ob);
 					}
 				}
