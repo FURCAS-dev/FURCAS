@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 
 import org.eclipse.emf.ecore.resource.Resource;
@@ -28,14 +29,6 @@ public interface OclOperator extends Operator {
 	 * @model
 	 * @generated
 	 */
-	void execute(Resource resource, OptionObject options);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void executeQueries(Resource resource, OclOptionObject option);
+	void executeQueries(ResourceSet resource, OclOptionObject option);
 
 } // OclOperator

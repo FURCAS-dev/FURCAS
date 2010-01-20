@@ -14,8 +14,10 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -145,6 +147,15 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOclOptionObject_Constraints() {
+		return (EAttribute)oclOptionObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOclUtil() {
 		return oclUtilEClass;
 	}
@@ -189,6 +200,7 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		oclOperatorEClass = createEClass(OCL_OPERATOR);
 
 		oclOptionObjectEClass = createEClass(OCL_OPTION_OBJECT);
+		createEAttribute(oclOptionObjectEClass, OCL_OPTION_OBJECT__CONSTRAINTS);
 
 		oclUtilEClass = createEClass(OCL_UTIL);
 
@@ -233,21 +245,21 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		// Initialize classes and features; add operations and parameters
 		initEClass(oclOperatorEClass, OclOperator.class, "OclOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(oclOperatorEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResource(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theBenchframeworkPackage.getOptionObject(), "options", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(oclOperatorEClass, null, "executeQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResource(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(oclOperatorEClass, null, "executeQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResourceSet(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getOclOptionObject(), "option", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(oclOptionObjectEClass, OclOptionObject.class, "OclOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getOclOptionObject_Constraints(), g1, "constraints", null, 0, 1, OclOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclUtilEClass, OclUtil.class, "OclUtil", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		op = addEOperation(oclUtilEClass, this.getIQueryResult(), "executeQueryOn", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "completeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResource(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResourceSet(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(iQueryResultEDataType, IQueryResult.class, "IQueryResult", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

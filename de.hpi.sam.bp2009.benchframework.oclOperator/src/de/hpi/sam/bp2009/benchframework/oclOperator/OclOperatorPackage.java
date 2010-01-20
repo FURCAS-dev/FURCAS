@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.oclOperator;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
@@ -126,13 +127,22 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
 
 	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPTION_OBJECT__CONSTRAINTS = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>Ocl Option Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+	int OCL_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.
@@ -183,6 +193,17 @@ public interface OclOperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOclOptionObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Constraints</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints()
+	 * @see #getOclOptionObject()
+	 * @generated
+	 */
+	EAttribute getOclOptionObject_Constraints();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil <em>Ocl Util</em>}'.
@@ -246,6 +267,14 @@ public interface OclOperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OCL_OPTION_OBJECT = eINSTANCE.getOclOptionObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_OPTION_OBJECT__CONSTRAINTS = eINSTANCE.getOclOptionObject_Constraints();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.

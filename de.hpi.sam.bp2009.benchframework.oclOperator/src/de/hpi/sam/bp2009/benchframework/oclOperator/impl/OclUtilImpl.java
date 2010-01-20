@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource;
 
 import org.eclipse.emf.query.conditions.Condition;
@@ -61,6 +62,17 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	@Override
 	protected EClass eStaticClass() {
 		return OclOperatorPackage.Literals.OCL_UTIL;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IQueryResult executeQueryOn(String completeConstraint, ResourceSet resource) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	public IQueryResult executeQueryOn(String completeConstraint, Resource resource) {

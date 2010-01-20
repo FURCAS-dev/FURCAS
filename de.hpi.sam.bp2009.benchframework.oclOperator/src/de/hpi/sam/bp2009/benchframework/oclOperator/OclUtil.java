@@ -9,6 +9,7 @@ package de.hpi.sam.bp2009.benchframework.oclOperator;
 import org.eclipse.emf.ecore.EObject;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 import org.eclipse.emf.query.statements.IQueryResult;
 
@@ -29,6 +30,6 @@ public interface OclUtil extends EObject {
 	 * @model dataType="de.hpi.sam.bp2009.benchframework.oclOperator.IQueryResult"
 	 * @generated
 	 */
-	IQueryResult executeQueryOn(String completeConstraint, Resource resource);
+	IQueryResult executeQueryOn(String completeConstraint, ResourceSet resource);
 
 } // OclUtil

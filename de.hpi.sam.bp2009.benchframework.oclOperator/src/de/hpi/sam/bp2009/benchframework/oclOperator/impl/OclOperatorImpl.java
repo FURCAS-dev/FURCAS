@@ -10,6 +10,7 @@ import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
 
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
@@ -17,6 +18,7 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -53,23 +55,17 @@ public class OclOperatorImpl extends OperatorImpl implements OclOperator {
 	 * 
 	 */
 	
-	public void execute(Resource resource, Object option) {
+	public void execute() {
 		if (option instanceof OclOptionObject){
-			executeQueries(resource, (OclOptionObject) option);
+			executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
 		}
 	}
 	
-	public void executeQueries(Resource resource, OclOptionObject option) {
-		for(String con: option.oclConstraints){
-			OclUtil ocl = new OclUtilImpl();
+	public void executeQueries(ResourceSet resource, OclOptionObject option) {
+		for(String con: option.getConstraints()){
+			OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
 			ocl.executeQueryOn(con, resource);
 		}
-		
-	}
-
-	@Override
-	public void execute(Resource resource, OptionObject options) {
-		// TODO Auto-generated method stub
 		
 	}
 
