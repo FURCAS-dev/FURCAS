@@ -7,26 +7,22 @@
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
+
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGenerator;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
-
-import org.eclipse.emf.common.notify.Notifier;
-import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -70,7 +66,7 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 	@Override
 	public void execute() {
 		ResourceSetImpl resultRS = new ResourceSetImpl();
-		resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
+		Resource result = resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
 		RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
 		ResourceSet metaModel = options.getMetaModel();
 		metaClasses = new ArrayList<EClass>();
@@ -87,7 +83,36 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 			}
 		}
 		//instantiate the meta model
+		instantiate(metaClasses.get(new Random().nextInt(metaClasses.size())), result);
 		
+	}
+	
+	private EObject instantiate(EClass cls, Resource res){
+		//create an instance of the given meta class and add it to the resource
+		EObject current = cls.getEPackage().getEFactoryInstance().create(cls);
+		res.getContents().add(current);
 		
+		//get all references of the meta class and link the instance accordingly
+		for (EReference ref:cls.getEAllReferences()){
+			
+			//link to already existing classes
+			int lowerBound = ref.getLowerBound();
+			for (EObject resContent:res.getContents()){
+				if (resContent instanceof EClass && (EClass)resContent.eClass() == ref.getEReferenceType()){
+					if (lowerBound == 0){
+						break;
+					}
+					cls.eSet(ref, resContent);
+					lowerBound--;
+				}
+			}
+			
+			//create remaining needed classes and link them
+			for (int i = 0; i < lowerBound; i++){
+				EObject nextCls = instantiate(ref.getEReferenceType(), res);
+				cls.eSet(ref, nextCls);
+			}
+		}
+		return current;
 	}
 } //RandomGeneratorImpl
