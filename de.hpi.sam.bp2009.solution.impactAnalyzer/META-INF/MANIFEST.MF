@@ -14,6 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  de.hpi.sam.bp2009.solution.oclEvaluator;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.query.conditions.eobjects,
- org.eclipse.emf.query.ocl.conditions
+ org.eclipse.emf.query.ocl.conditions,
+ org.eclipse.ocl.ecore
 Export-Package: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.solution.impactAnalyzer.impl

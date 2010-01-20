@@ -6,11 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
-import de.hpi.sam.bp2009.solution.eventListener.EventListenerPackage;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
-import de.hpi.sam.bp2009.solution.events.EventsPackage;
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
