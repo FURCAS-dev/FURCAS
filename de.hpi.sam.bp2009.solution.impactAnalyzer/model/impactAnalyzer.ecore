@@ -14,6 +14,30 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="register">
+      <eParameters name="root" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="oclQueries">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="register">
+      <eParameters name="root" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
+      <eParameters name="oclQueries">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="register">
+      <eParameters name="root" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
+      <eParameters name="oclQueries">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclEvaluator" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="currentQueries" transient="true">

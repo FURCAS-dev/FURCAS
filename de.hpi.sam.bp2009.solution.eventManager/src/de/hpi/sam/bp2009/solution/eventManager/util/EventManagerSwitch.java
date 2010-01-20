@@ -246,12 +246,6 @@ public class EventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case EventManagerPackage.FILTER_MATCHER: {
-				FilterMatcher filterMatcher = (FilterMatcher)theEObject;
-				T result = caseFilterMatcher(filterMatcher);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case EventManagerPackage.EVENT_NOTIFICATION: {
 				EventNotification eventNotification = (EventNotification)theEObject;
 				T result = caseEventNotification(eventNotification);
@@ -589,21 +583,6 @@ public class EventManagerSwitch<T> {
 	 * @generated
 	 */
 	public T caseAssociationFilter(AssociationFilter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Filter Matcher</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Filter Matcher</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseFilterMatcher(FilterMatcher object) {
 		return null;
 	}
 

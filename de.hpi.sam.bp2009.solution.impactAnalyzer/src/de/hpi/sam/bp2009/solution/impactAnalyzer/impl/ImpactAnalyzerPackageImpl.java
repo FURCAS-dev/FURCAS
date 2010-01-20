@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.ocl.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,8 +89,8 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		isInited = true;
 
 		// Initialize simple dependencies
-		EventListenerPackage.eINSTANCE.eClass();
 		EventManagerPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 		OclEvaluatorPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -201,7 +202,6 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EventListenerPackage theEventListenerPackage = (EventListenerPackage)EPackage.Registry.INSTANCE.getEPackage(EventListenerPackage.eNS_URI);
 		OclEvaluatorPackage theOclEvaluatorPackage = (OclEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(OclEvaluatorPackage.eNS_URI);
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
 
@@ -210,7 +210,6 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		impactAnalyzerEClass.getESuperTypes().add(theEventListenerPackage.getEventListener());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(impactAnalyzerEClass, ImpactAnalyzer.class, "ImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -221,8 +220,7 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getImpactAnalyzer_CurrentQueries(), g1, "currentQueries", null, 0, 1, ImpactAnalyzer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(impactAnalyzerEClass, null, "analyze", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResourceSet(), "resourceSet", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(impactAnalyzerEClass, null, "registerQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEEList());
 		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
 		g1.getETypeArguments().add(g2);
@@ -231,6 +229,27 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
+
+		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEObject(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResource(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEResourceSet(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

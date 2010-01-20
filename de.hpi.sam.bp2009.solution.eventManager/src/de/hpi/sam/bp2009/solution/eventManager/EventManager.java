@@ -9,6 +9,8 @@ package de.hpi.sam.bp2009.solution.eventManager;
 import org.eclipse.emf.common.notify.Adapter;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +29,22 @@ public interface EventManager extends EObject {
 	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
 	 * @generated
 	 */
-	void subscribe(Adapter caller, EventFilter filter);
+	void subscribe(EObject root, EventFilter filter, Adapter caller);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	void subscribe(Resource root, EventFilter filter, Adapter caller);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	void subscribe(ResourceSet root, EventFilter filter, Adapter caller);
 
 } // EventManager

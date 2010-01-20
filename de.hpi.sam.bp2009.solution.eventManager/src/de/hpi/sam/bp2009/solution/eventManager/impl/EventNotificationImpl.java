@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  *
  * @generated
  */
-public class EventNotificationImpl extends EObjectImpl implements EventNotification, Notification {
+public class EventNotificationImpl extends EObjectImpl implements EventNotification {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

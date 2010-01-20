@@ -160,10 +160,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createAssociationFilterAdapter();
 			}
 			@Override
-			public Adapter caseFilterMatcher(FilterMatcher object) {
-				return createFilterMatcherAdapter();
-			}
-			@Override
 			public Adapter caseEventNotification(EventNotification object) {
 				return createEventNotificationAdapter();
 			}
@@ -492,20 +488,6 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAssociationFilterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.FilterMatcher <em>Filter Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.FilterMatcher
-	 * @generated
-	 */
-	public Adapter createFilterMatcherAdapter() {
 		return null;
 	}
 

@@ -8,11 +8,9 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
-import de.hpi.sam.bp2009.solution.events.EventsFactory;
-import de.hpi.sam.bp2009.solution.events.ModelChangeEvent;
-import de.hpi.sam.bp2009.solution.events.impl.EventsFactoryImpl;
-import de.hpi.sam.bp2009.solution.events.impl.ModelChangeEventImpl;
+
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
@@ -32,6 +30,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
@@ -200,14 +199,56 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Object> registerQueries(EList<OclQuery> oclQueries) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void register(EObject root, EList<OclQuery> oclQueries) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void register(Resource root, EList<OclQuery> oclQueries) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 */
 	public EList<Object> analyze(ResourceSet resourceSet, EList<OclQuery> oclQueries) {
+
+		return this.getOclEvaluator().evaluate(oclQueries);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return 
+	 */
+	public void register(ResourceSet resourceSet, EList<OclQuery> oclQueries) {
 		System.out.println("Start Analyse");
-		ModelChangeEvent event = EventsFactory.eINSTANCE.createModelChangeEvent();
+		ModelChangeEvent event = EventManagerFactory.eINSTANCE.createModelChangeEvent();
 		event.setSourceResourceSet(resourceSet);
 		this.getEventManager().subscribe(this, event);
 		this.setCurrentQueries(oclQueries);
-		return this.getOclEvaluator().evaluate(oclQueries);
 	}
 
 	/**

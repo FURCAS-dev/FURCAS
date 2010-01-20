@@ -4,20 +4,28 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.impactAnalyzer/src"
     modelPluginID="de.hpi.sam.bp2009.solution.impactAnalyzer" modelName="ImpactAnalyzer"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    usedGenPackages="../../de.hpi.sam.bp2009.solution.eventListener/model/eventListener.genmodel#//eventListener ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager ../../de.hpi.sam.bp2009.solution.events/model/events.genmodel#//events ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.genmodel#//oclEvaluator">
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.genmodel#//eventManager platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.genmodel#//oclEvaluator">
   <foreignModel>impactAnalyzer.ecore</foreignModel>
-  <genPackages prefix="ImpactAnalyzer" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
-      ecorePackage="impactAnalyzer.ecore#/">
+  <genPackages prefix="ImpactAnalyzer" basePackage="de.hpi.sam.bp2009.solution" resource="XML"
+      disposableProviderFactory="true" ecorePackage="impactAnalyzer.ecore#/">
     <genClasses ecoreClass="impactAnalyzer.ecore#//ImpactAnalyzer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/oclEvaluator"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/eventManager"/>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/analyze">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/analyze/resourceSet"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/analyze/oclQueries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute impactAnalyzer.ecore#//ImpactAnalyzer/currentQueries"/>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/registerQueries">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/registerQueries/oclQueries"/>
       </genOperations>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/registerFor">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/registerFor/events"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/registerFor/resourceSet"/>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/root"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/oclQueries"/>
+      </genOperations>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register.1">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.1/root"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.1/oclQueries"/>
+      </genOperations>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register.2">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.2/root"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.2/oclQueries"/>
       </genOperations>
     </genClasses>
   </genPackages>

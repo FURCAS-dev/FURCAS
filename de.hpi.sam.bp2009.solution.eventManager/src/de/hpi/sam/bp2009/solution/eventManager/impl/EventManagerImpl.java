@@ -18,7 +18,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceFactoryRegistryImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -68,13 +70,46 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 
 	/**
 	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribe(EObject root, EventFilter filter, Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribe(Resource root, EventFilter filter, Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void subscribe(ResourceSet root, EventFilter filter, Adapter caller) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
 	 * naively subscribe to the whole resource
 	 * <!-- end-user-doc -->
 	 */
 	public void subscribe(Adapter caller, EventFilter filter) {
 		//TODO implement me
 		ResourceSet resource = modelChangeEvent.getSourceResourceSet();
-		if (null == resource) throw new IllegalArgumentException("model change event has no resource";
+		if (null == resource) throw new IllegalArgumentException("model change event has no resource");
 
 		resource.eAdapters().add(new EventAdapter(caller, modelChangeEvent));
 	}

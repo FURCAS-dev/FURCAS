@@ -78,7 +78,7 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPACT_ANALYZER__OCL_EVALUATOR = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 0;
+	int IMPACT_ANALYZER__OCL_EVALUATOR = 0;
 
 	/**
 	 * The feature id for the '<em><b>Event Manager</b></em>' reference.
@@ -87,7 +87,7 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPACT_ANALYZER__EVENT_MANAGER = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 1;
+	int IMPACT_ANALYZER__EVENT_MANAGER = 1;
 
 	/**
 	 * The feature id for the '<em><b>Current Queries</b></em>' attribute.
@@ -96,7 +96,7 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPACT_ANALYZER__CURRENT_QUERIES = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 2;
+	int IMPACT_ANALYZER__CURRENT_QUERIES = 2;
 
 	/**
 	 * The number of structural features of the '<em>Impact Analyzer</em>' class.
@@ -105,7 +105,7 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int IMPACT_ANALYZER_FEATURE_COUNT = EventListenerPackage.EVENT_LISTENER_FEATURE_COUNT + 3;
+	int IMPACT_ANALYZER_FEATURE_COUNT = 3;
 
 
 	/**

@@ -332,32 +332,14 @@ public interface EventManagerPackage extends EPackage {
 	int LINK_DELETE_EVENT_FEATURE_COUNT = LINK_LIFE_CYCLE_EVENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventFilterImpl <em>Event Filter</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter <em>Event Filter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventFilterImpl
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventFilter()
 	 * @generated
 	 */
 	int EVENT_FILTER = 10;
-
-	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_FILTER__FILTER_MATCHER = 0;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_FILTER__FILTER_CRITERION = 1;
 
 	/**
 	 * The number of structural features of the '<em>Event Filter</em>' class.
@@ -366,7 +348,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_FILTER_FEATURE_COUNT = 2;
+	int EVENT_FILTER_FEATURE_COUNT = 0;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventTypeFilterImpl <em>Event Type Filter</em>}' class.
@@ -379,22 +361,13 @@ public interface EventManagerPackage extends EPackage {
 	int EVENT_TYPE_FILTER = 11;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_TYPE_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int EVENT_TYPE_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Event Type Filter</em>' class.
@@ -403,7 +376,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_TYPE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int EVENT_TYPE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AndFilterImpl <em>And Filter</em>}' class.
@@ -416,22 +389,13 @@ public interface EventManagerPackage extends EPackage {
 	int AND_FILTER = 12;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AND_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AND_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int AND_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>And Filter</em>' class.
@@ -440,7 +404,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AND_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int AND_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.OrFilterImpl <em>Or Filter</em>}' class.
@@ -453,22 +417,13 @@ public interface EventManagerPackage extends EPackage {
 	int OR_FILTER = 13;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OR_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OR_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int OR_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Or Filter</em>' class.
@@ -477,7 +432,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OR_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int OR_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.NotFilterImpl <em>Not Filter</em>}' class.
@@ -490,22 +445,13 @@ public interface EventManagerPackage extends EPackage {
 	int NOT_FILTER = 14;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NOT_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int NOT_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Not Filter</em>' class.
@@ -514,7 +460,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NOT_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int NOT_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ClassFilterImpl <em>Class Filter</em>}' class.
@@ -527,22 +473,13 @@ public interface EventManagerPackage extends EPackage {
 	int CLASS_FILTER = 15;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CLASS_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int CLASS_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Class Filter</em>' class.
@@ -551,7 +488,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLASS_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int CLASS_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl <em>Instance Filter</em>}' class.
@@ -564,22 +501,13 @@ public interface EventManagerPackage extends EPackage {
 	int INSTANCE_FILTER = 16;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INSTANCE_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int INSTANCE_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Instance Filter</em>' class.
@@ -588,7 +516,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int INSTANCE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int INSTANCE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeFilterImpl <em>Attribute Filter</em>}' class.
@@ -601,22 +529,13 @@ public interface EventManagerPackage extends EPackage {
 	int ATTRIBUTE_FILTER = 17;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ATTRIBUTE_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int ATTRIBUTE_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Attribute Filter</em>' class.
@@ -625,7 +544,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int ATTRIBUTE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ContainerFilterImpl <em>Container Filter</em>}' class.
@@ -638,22 +557,13 @@ public interface EventManagerPackage extends EPackage {
 	int CONTAINER_FILTER = 18;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTAINER_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int CONTAINER_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Container Filter</em>' class.
@@ -662,7 +572,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTAINER_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int CONTAINER_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.CompositionHierarchyFilterImpl <em>Composition Hierarchy Filter</em>}' class.
@@ -675,22 +585,13 @@ public interface EventManagerPackage extends EPackage {
 	int COMPOSITION_HIERARCHY_FILTER = 19;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITION_HIERARCHY_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITION_HIERARCHY_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int COMPOSITION_HIERARCHY_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Composition Hierarchy Filter</em>' class.
@@ -699,7 +600,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITION_HIERARCHY_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int COMPOSITION_HIERARCHY_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.PackageFilterImpl <em>Package Filter</em>}' class.
@@ -712,22 +613,13 @@ public interface EventManagerPackage extends EPackage {
 	int PACKAGE_FILTER = 20;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int PACKAGE_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int PACKAGE_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Package Filter</em>' class.
@@ -736,7 +628,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PACKAGE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
+	int PACKAGE_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AssociationFilterImpl <em>Association Filter</em>}' class.
@@ -749,22 +641,13 @@ public interface EventManagerPackage extends EPackage {
 	int ASSOCIATION_FILTER = 21;
 
 	/**
-	 * The feature id for the '<em><b>Filter Matcher</b></em>' reference.
+	 * The feature id for the '<em><b>Filters</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FILTER__FILTER_MATCHER = EVENT_FILTER__FILTER_MATCHER;
-
-	/**
-	 * The feature id for the '<em><b>Filter Criterion</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ASSOCIATION_FILTER__FILTER_CRITERION = EVENT_FILTER__FILTER_CRITERION;
+	int ASSOCIATION_FILTER__FILTERS = EVENT_FILTER_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Association Filter</em>' class.
@@ -773,26 +656,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ASSOCIATION_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.FilterMatcher <em>Filter Matcher</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.solution.eventManager.FilterMatcher
-	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getFilterMatcher()
-	 * @generated
-	 */
-	int FILTER_MATCHER = 22;
-
-	/**
-	 * The number of structural features of the '<em>Filter Matcher</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FILTER_MATCHER_FEATURE_COUNT = 0;
+	int ASSOCIATION_FILTER_FEATURE_COUNT = EVENT_FILTER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventNotificationImpl <em>Event Notification</em>}' class.
@@ -802,7 +666,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventNotification()
 	 * @generated
 	 */
-	int EVENT_NOTIFICATION = 23;
+	int EVENT_NOTIFICATION = 22;
 
 	/**
 	 * The number of structural features of the '<em>Event Notification</em>' class.
@@ -821,7 +685,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getAdapter()
 	 * @generated
 	 */
-	int ADAPTER = 24;
+	int ADAPTER = 23;
 
 
 	/**
@@ -946,28 +810,6 @@ public interface EventManagerPackage extends EPackage {
 	EClass getEventFilter();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#getFilterMatcher <em>Filter Matcher</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Filter Matcher</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#getFilterMatcher()
-	 * @see #getEventFilter()
-	 * @generated
-	 */
-	EReference getEventFilter_FilterMatcher();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter#getFilterCriterion <em>Filter Criterion</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Filter Criterion</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter#getFilterCriterion()
-	 * @see #getEventFilter()
-	 * @generated
-	 */
-	EAttribute getEventFilter_FilterCriterion();
-
-	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter <em>Event Type Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -976,6 +818,17 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEventTypeFilter();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getFilters()
+	 * @see #getEventTypeFilter()
+	 * @generated
+	 */
+	EReference getEventTypeFilter_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.AndFilter <em>And Filter</em>}'.
@@ -988,6 +841,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getAndFilter();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.AndFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AndFilter#getFilters()
+	 * @see #getAndFilter()
+	 * @generated
+	 */
+	EReference getAndFilter_Filters();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.OrFilter <em>Or Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -996,6 +860,17 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOrFilter();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.OrFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.OrFilter#getFilters()
+	 * @see #getOrFilter()
+	 * @generated
+	 */
+	EReference getOrFilter_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter <em>Not Filter</em>}'.
@@ -1008,6 +883,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getNotFilter();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.NotFilter#getFilters()
+	 * @see #getNotFilter()
+	 * @generated
+	 */
+	EReference getNotFilter_Filters();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.ClassFilter <em>Class Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1016,6 +902,17 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getClassFilter();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.ClassFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.ClassFilter#getFilters()
+	 * @see #getClassFilter()
+	 * @generated
+	 */
+	EReference getClassFilter_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.InstanceFilter <em>Instance Filter</em>}'.
@@ -1028,6 +925,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getInstanceFilter();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.InstanceFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.InstanceFilter#getFilters()
+	 * @see #getInstanceFilter()
+	 * @generated
+	 */
+	EReference getInstanceFilter_Filters();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter <em>Attribute Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1036,6 +944,17 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getAttributeFilter();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#getFilters()
+	 * @see #getAttributeFilter()
+	 * @generated
+	 */
+	EReference getAttributeFilter_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter <em>Container Filter</em>}'.
@@ -1048,6 +967,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getContainerFilter();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.ContainerFilter#getFilters()
+	 * @see #getContainerFilter()
+	 * @generated
+	 */
+	EReference getContainerFilter_Filters();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter <em>Composition Hierarchy Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1056,6 +986,17 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getCompositionHierarchyFilter();
+
+	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter#getFilters()
+	 * @see #getCompositionHierarchyFilter()
+	 * @generated
+	 */
+	EReference getCompositionHierarchyFilter_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter <em>Package Filter</em>}'.
@@ -1068,6 +1009,17 @@ public interface EventManagerPackage extends EPackage {
 	EClass getPackageFilter();
 
 	/**
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getFilters <em>Filters</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getFilters()
+	 * @see #getPackageFilter()
+	 * @generated
+	 */
+	EReference getPackageFilter_Filters();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter <em>Association Filter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1078,14 +1030,15 @@ public interface EventManagerPackage extends EPackage {
 	EClass getAssociationFilter();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.FilterMatcher <em>Filter Matcher</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#getFilters <em>Filters</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Filter Matcher</em>'.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.FilterMatcher
+	 * @return the meta object for the reference '<em>Filters</em>'.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#getFilters()
+	 * @see #getAssociationFilter()
 	 * @generated
 	 */
-	EClass getFilterMatcher();
+	EReference getAssociationFilter_Filters();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventNotification <em>Event Notification</em>}'.
@@ -1239,30 +1192,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass LINK_DELETE_EVENT = eINSTANCE.getLinkDeleteEvent();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventFilterImpl <em>Event Filter</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.EventFilter <em>Event Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventFilterImpl
+		 * @see de.hpi.sam.bp2009.solution.eventManager.EventFilter
 		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getEventFilter()
 		 * @generated
 		 */
 		EClass EVENT_FILTER = eINSTANCE.getEventFilter();
-
-		/**
-		 * The meta object literal for the '<em><b>Filter Matcher</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference EVENT_FILTER__FILTER_MATCHER = eINSTANCE.getEventFilter_FilterMatcher();
-
-		/**
-		 * The meta object literal for the '<em><b>Filter Criterion</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EVENT_FILTER__FILTER_CRITERION = eINSTANCE.getEventFilter_FilterCriterion();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventTypeFilterImpl <em>Event Type Filter</em>}' class.
@@ -1275,6 +1212,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass EVENT_TYPE_FILTER = eINSTANCE.getEventTypeFilter();
 
 		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT_TYPE_FILTER__FILTERS = eINSTANCE.getEventTypeFilter_Filters();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AndFilterImpl <em>And Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1283,6 +1228,14 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass AND_FILTER = eINSTANCE.getAndFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference AND_FILTER__FILTERS = eINSTANCE.getAndFilter_Filters();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.OrFilterImpl <em>Or Filter</em>}' class.
@@ -1295,6 +1248,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass OR_FILTER = eINSTANCE.getOrFilter();
 
 		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OR_FILTER__FILTERS = eINSTANCE.getOrFilter_Filters();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.NotFilterImpl <em>Not Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1303,6 +1264,14 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass NOT_FILTER = eINSTANCE.getNotFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference NOT_FILTER__FILTERS = eINSTANCE.getNotFilter_Filters();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ClassFilterImpl <em>Class Filter</em>}' class.
@@ -1315,6 +1284,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass CLASS_FILTER = eINSTANCE.getClassFilter();
 
 		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CLASS_FILTER__FILTERS = eINSTANCE.getClassFilter_Filters();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl <em>Instance Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1323,6 +1300,14 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass INSTANCE_FILTER = eINSTANCE.getInstanceFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference INSTANCE_FILTER__FILTERS = eINSTANCE.getInstanceFilter_Filters();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeFilterImpl <em>Attribute Filter</em>}' class.
@@ -1335,6 +1320,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass ATTRIBUTE_FILTER = eINSTANCE.getAttributeFilter();
 
 		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ATTRIBUTE_FILTER__FILTERS = eINSTANCE.getAttributeFilter_Filters();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ContainerFilterImpl <em>Container Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1343,6 +1336,14 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONTAINER_FILTER = eINSTANCE.getContainerFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONTAINER_FILTER__FILTERS = eINSTANCE.getContainerFilter_Filters();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.CompositionHierarchyFilterImpl <em>Composition Hierarchy Filter</em>}' class.
@@ -1355,6 +1356,14 @@ public interface EventManagerPackage extends EPackage {
 		EClass COMPOSITION_HIERARCHY_FILTER = eINSTANCE.getCompositionHierarchyFilter();
 
 		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMPOSITION_HIERARCHY_FILTER__FILTERS = eINSTANCE.getCompositionHierarchyFilter_Filters();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.PackageFilterImpl <em>Package Filter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1363,6 +1372,14 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PACKAGE_FILTER = eINSTANCE.getPackageFilter();
+
+		/**
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PACKAGE_FILTER__FILTERS = eINSTANCE.getPackageFilter_Filters();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.AssociationFilterImpl <em>Association Filter</em>}' class.
@@ -1375,14 +1392,12 @@ public interface EventManagerPackage extends EPackage {
 		EClass ASSOCIATION_FILTER = eINSTANCE.getAssociationFilter();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.FilterMatcher <em>Filter Matcher</em>}' class.
+		 * The meta object literal for the '<em><b>Filters</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.solution.eventManager.FilterMatcher
-		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getFilterMatcher()
 		 * @generated
 		 */
-		EClass FILTER_MATCHER = eINSTANCE.getFilterMatcher();
+		EReference ASSOCIATION_FILTER__FILTERS = eINSTANCE.getAssociationFilter_Filters();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.EventNotificationImpl <em>Event Notification</em>}' class.

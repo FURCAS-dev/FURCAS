@@ -6,11 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
-import de.hpi.sam.bp2009.solution.eventListener.EventListener;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-
-import de.hpi.sam.bp2009.solution.events.ModelChangeEvent;
 
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
@@ -18,6 +14,7 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
@@ -38,7 +35,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * @model
  * @generated
  */
-public interface ImpactAnalyzer extends EventListener {
+public interface ImpactAnalyzer extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Ocl Evaluator</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -123,6 +120,30 @@ public interface ImpactAnalyzer extends EventListener {
 	 * @model many="false" oclQueriesMany="false"
 	 * @generated
 	 */
-	EList<Object> analyze(ResourceSet resourceSet, EList<OclQuery> oclQueries);
+	EList<Object> registerQueries(EList<OclQuery> oclQueries);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model oclQueriesMany="false"
+	 * @generated
+	 */
+	void register(EObject root, EList<OclQuery> oclQueries);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model oclQueriesMany="false"
+	 * @generated
+	 */
+	void register(Resource root, EList<OclQuery> oclQueries);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model oclQueriesMany="false"
+	 * @generated
+	 */
+	void register(ResourceSet root, EList<OclQuery> oclQueries);
 
 } // ImpactAnalyzer

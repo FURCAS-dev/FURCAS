@@ -92,7 +92,6 @@ public class ImpactAnalyzerSwitch<T> {
 			case ImpactAnalyzerPackage.IMPACT_ANALYZER: {
 				ImpactAnalyzer impactAnalyzer = (ImpactAnalyzer)theEObject;
 				T result = caseImpactAnalyzer(impactAnalyzer);
-				if (result == null) result = caseEventListener(impactAnalyzer);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -112,21 +111,6 @@ public class ImpactAnalyzerSwitch<T> {
 	 * @generated
 	 */
 	public T caseImpactAnalyzer(ImpactAnalyzer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Listener</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Listener</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEventListener(EventListener object) {
 		return null;
 	}
 
