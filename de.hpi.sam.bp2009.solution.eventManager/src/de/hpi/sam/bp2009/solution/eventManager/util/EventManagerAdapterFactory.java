@@ -164,6 +164,10 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createEventNotificationAdapter();
 			}
 			@Override
+			public Adapter caseEventMappper(EventMappper object) {
+				return createEventMappperAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -502,6 +506,20 @@ public class EventManagerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventNotificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventMappper <em>Event Mappper</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventMappper
+	 * @generated
+	 */
+	public Adapter createEventMappperAdapter() {
 		return null;
 	}
 

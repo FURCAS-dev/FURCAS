@@ -8,45 +8,50 @@ package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>And Filter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.AndFilterImpl#getFilters <em>Filters</em>}</li>
+ * </ul>
  * </p>
  *
+ * @generated
  */
-public class AndFilterImpl extends EventFilterImpl implements AndFilter {
+public class AndFilterImpl extends EObjectImpl implements AndFilter {
+
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference.
+	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFilters()
 	 * @generated
 	 * @ordered
 	 */
-	protected EventFilter filters;
+	protected EList<EventFilter> filters;
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected AndFilterImpl() {
 		super();
 	}
 
-	void setOperators(EventFilter... operators){
-		this.setFilterCriterion(operators);
-	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -56,19 +61,15 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	protected EClass eStaticClass() {
 		return EventManagerPackage.Literals.AND_FILTER;
 	}
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter getFilters() {
-		if (filters != null && filters.eIsProxy()) {
-			InternalEObject oldFilters = (InternalEObject)filters;
-			filters = (EventFilter)eResolveProxy(oldFilters);
-			if (filters != oldFilters) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.AND_FILTER__FILTERS, oldFilters, filters));
-			}
+	public EList<EventFilter> getFilters() {
+		if (filters == null) {
+			filters = new EObjectResolvingEList<EventFilter>(EventFilter.class, this, EventManagerPackage.AND_FILTER__FILTERS);
 		}
 		return filters;
 	}
@@ -76,31 +77,11 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public EventFilter basicGetFilters() {
-		return filters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setFilters(EventFilter newFilters) {
-		EventFilter oldFilters = filters;
-		filters = newFilters;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.AND_FILTER__FILTERS, oldFilters, filters));
-	}
-
-	@Override
 	public boolean matchesFor(ModelChangeEvent event) {
-
-		for(Object operator:(Collection)this.getFilterCriterion()){
-			if(!(operator instanceof EventFilter))
-				return false;
-			if(!((EventFilter) operator).matchesFor(event))
+		for(EventFilter operator:this.getFilters()){
+			if(!(operator.matchesFor(event)))
 				return false;
 		}
 		return true;
@@ -115,8 +96,7 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case EventManagerPackage.AND_FILTER__FILTERS:
-				if (resolve) return getFilters();
-				return basicGetFilters();
+				return getFilters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -126,11 +106,13 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case EventManagerPackage.AND_FILTER__FILTERS:
-				setFilters((EventFilter)newValue);
+				getFilters().clear();
+				getFilters().addAll((Collection<? extends EventFilter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -145,7 +127,7 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case EventManagerPackage.AND_FILTER__FILTERS:
-				setFilters((EventFilter)null);
+				getFilters().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -160,9 +142,10 @@ public class AndFilterImpl extends EventFilterImpl implements AndFilter {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case EventManagerPackage.AND_FILTER__FILTERS:
-				return filters != null;
+				return filters != null && !filters.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
+
 
 } //AndFilterImpl

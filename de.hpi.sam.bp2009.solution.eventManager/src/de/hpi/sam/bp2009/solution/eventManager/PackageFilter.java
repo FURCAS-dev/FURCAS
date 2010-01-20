@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.ecore.EPackage;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +17,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getWantedPackage <em>Wanted Package</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,28 +28,28 @@ package de.hpi.sam.bp2009.solution.eventManager;
 public interface PackageFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' reference.
+	 * Returns the value of the '<em><b>Wanted Package</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filters</em>' reference isn't clear,
+	 * If the meaning of the '<em>Wanted Package</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' reference.
-	 * @see #setFilters(EventFilter)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getPackageFilter_Filters()
+	 * @return the value of the '<em>Wanted Package</em>' reference.
+	 * @see #setWantedPackage(EPackage)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getPackageFilter_WantedPackage()
 	 * @model
 	 * @generated
 	 */
-	EventFilter getFilters();
+	EPackage getWantedPackage();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getFilters <em>Filters</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.PackageFilter#getWantedPackage <em>Wanted Package</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filters</em>' reference.
-	 * @see #getFilters()
+	 * @param value the new value of the '<em>Wanted Package</em>' reference.
+	 * @see #getWantedPackage()
 	 * @generated
 	 */
-	void setFilters(EventFilter value);
+	void setWantedPackage(EPackage value);
 } // PackageFilter

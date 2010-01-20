@@ -6,6 +6,19 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
+import static de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage.ADAPTER;
+
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
 import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
@@ -21,9 +34,9 @@ import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
 import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.FilterMatcher;
 import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
 import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
 import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
@@ -32,18 +45,6 @@ import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
 import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
 import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
-
-import org.eclipse.emf.common.notify.Adapter;
-
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -218,7 +219,21 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass eventMappperEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EDataType adapterEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType notificationEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -291,6 +306,15 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 */
 	public EClass getEventManager() {
 		return eventManagerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getEventManager_EventMapper() {
+		return (EReference)eventManagerEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -406,7 +430,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getEventTypeFilter_Filters() {
+	public EReference getEventTypeFilter_EventEClass() {
 		return (EReference)eventTypeFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -460,7 +484,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getNotFilter_Filters() {
+	public EReference getNotFilter_Filter() {
 		return (EReference)notFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -478,7 +502,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getClassFilter_Filters() {
+	public EReference getClassFilter_WantedClass() {
 		return (EReference)classFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -496,7 +520,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getInstanceFilter_Filters() {
+	public EReference getInstanceFilter_Instance() {
 		return (EReference)instanceFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -514,7 +538,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAttributeFilter_Filters() {
+	public EReference getAttributeFilter_Attribute() {
 		return (EReference)attributeFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -532,7 +556,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getContainerFilter_Filters() {
+	public EReference getContainerFilter_Container() {
 		return (EReference)containerFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -550,7 +574,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getCompositionHierarchyFilter_Filters() {
+	public EReference getCompositionHierarchyFilter_Root() {
 		return (EReference)compositionHierarchyFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -568,7 +592,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getPackageFilter_Filters() {
+	public EReference getPackageFilter_WantedPackage() {
 		return (EReference)packageFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -586,7 +610,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAssociationFilter_Filters() {
+	public EReference getAssociationFilter_Reference() {
 		return (EReference)associationFilterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -604,8 +628,44 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getEventNotification_Event() {
+		return (EReference)eventNotificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventNotification_Notification() {
+		return (EAttribute)eventNotificationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventMappper() {
+		return eventMappperEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getAdapter() {
 		return adapterEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getNotification() {
+		return notificationEDataType;
 	}
 
 	/**
@@ -637,6 +697,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 
 		// Create classes and their features
 		eventManagerEClass = createEClass(EVENT_MANAGER);
+		createEReference(eventManagerEClass, EVENT_MANAGER__EVENT_MAPPER);
 
 		modelChangeEventEClass = createEClass(MODEL_CHANGE_EVENT);
 		createEReference(modelChangeEventEClass, MODEL_CHANGE_EVENT__SOURCE_OBJECT);
@@ -660,7 +721,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		eventFilterEClass = createEClass(EVENT_FILTER);
 
 		eventTypeFilterEClass = createEClass(EVENT_TYPE_FILTER);
-		createEReference(eventTypeFilterEClass, EVENT_TYPE_FILTER__FILTERS);
+		createEReference(eventTypeFilterEClass, EVENT_TYPE_FILTER__EVENT_ECLASS);
 
 		andFilterEClass = createEClass(AND_FILTER);
 		createEReference(andFilterEClass, AND_FILTER__FILTERS);
@@ -669,33 +730,38 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		createEReference(orFilterEClass, OR_FILTER__FILTERS);
 
 		notFilterEClass = createEClass(NOT_FILTER);
-		createEReference(notFilterEClass, NOT_FILTER__FILTERS);
+		createEReference(notFilterEClass, NOT_FILTER__FILTER);
 
 		classFilterEClass = createEClass(CLASS_FILTER);
-		createEReference(classFilterEClass, CLASS_FILTER__FILTERS);
+		createEReference(classFilterEClass, CLASS_FILTER__WANTED_CLASS);
 
 		instanceFilterEClass = createEClass(INSTANCE_FILTER);
-		createEReference(instanceFilterEClass, INSTANCE_FILTER__FILTERS);
+		createEReference(instanceFilterEClass, INSTANCE_FILTER__INSTANCE);
 
 		attributeFilterEClass = createEClass(ATTRIBUTE_FILTER);
-		createEReference(attributeFilterEClass, ATTRIBUTE_FILTER__FILTERS);
+		createEReference(attributeFilterEClass, ATTRIBUTE_FILTER__ATTRIBUTE);
 
 		containerFilterEClass = createEClass(CONTAINER_FILTER);
-		createEReference(containerFilterEClass, CONTAINER_FILTER__FILTERS);
+		createEReference(containerFilterEClass, CONTAINER_FILTER__CONTAINER);
 
 		compositionHierarchyFilterEClass = createEClass(COMPOSITION_HIERARCHY_FILTER);
-		createEReference(compositionHierarchyFilterEClass, COMPOSITION_HIERARCHY_FILTER__FILTERS);
+		createEReference(compositionHierarchyFilterEClass, COMPOSITION_HIERARCHY_FILTER__ROOT);
 
 		packageFilterEClass = createEClass(PACKAGE_FILTER);
-		createEReference(packageFilterEClass, PACKAGE_FILTER__FILTERS);
+		createEReference(packageFilterEClass, PACKAGE_FILTER__WANTED_PACKAGE);
 
 		associationFilterEClass = createEClass(ASSOCIATION_FILTER);
-		createEReference(associationFilterEClass, ASSOCIATION_FILTER__FILTERS);
+		createEReference(associationFilterEClass, ASSOCIATION_FILTER__REFERENCE);
 
 		eventNotificationEClass = createEClass(EVENT_NOTIFICATION);
+		createEReference(eventNotificationEClass, EVENT_NOTIFICATION__EVENT);
+		createEAttribute(eventNotificationEClass, EVENT_NOTIFICATION__NOTIFICATION);
+
+		eventMappperEClass = createEClass(EVENT_MAPPPER);
 
 		// Create data types
 		adapterEDataType = createEDataType(ADAPTER);
+		notificationEDataType = createEDataType(NOTIFICATION);
 	}
 
 	/**
@@ -721,6 +787,9 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
 
+		// Obtain other dependent packages
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
 
 		// Set bounds for type parameters
@@ -728,7 +797,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		// Add supertypes to classes
 		elementChangeEventEClass.getESuperTypes().add(this.getModelChangeEvent());
 		attributeValueChangeEventEClass.getESuperTypes().add(this.getElementChangeEvent());
-		elementLifeCycleEventEClass.getESuperTypes().add(this.getLinkLifeCycleEvent());
+		elementLifeCycleEventEClass.getESuperTypes().add(this.getElementChangeEvent());
 		linkLifeCycleEventEClass.getESuperTypes().add(this.getModelChangeEvent());
 		elementCreateEventEClass.getESuperTypes().add(this.getElementLifeCycleEvent());
 		elementDeleteEventEClass.getESuperTypes().add(this.getElementLifeCycleEvent());
@@ -748,6 +817,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventManagerEClass, EventManager.class, "EventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventManager_EventMapper(), this.getEventMappper(), null, "eventMapper", null, 1, 1, EventManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEObject(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -789,42 +859,50 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		addEParameter(op, this.getModelChangeEvent(), "event", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(eventTypeFilterEClass, EventTypeFilter.class, "EventTypeFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getEventTypeFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, EventTypeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEventTypeFilter_EventEClass(), theEcorePackage.getEClass(), null, "eventEClass", null, 0, 1, EventTypeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(andFilterEClass, AndFilter.class, "AndFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAndFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, AndFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAndFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, -1, AndFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(orFilterEClass, OrFilter.class, "OrFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOrFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, OrFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOrFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, -1, OrFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(notFilterEClass, NotFilter.class, "NotFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNotFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, NotFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getNotFilter_Filter(), this.getEventFilter(), null, "filter", null, 0, 1, NotFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(classFilterEClass, ClassFilter.class, "ClassFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getClassFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, ClassFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getClassFilter_WantedClass(), theEcorePackage.getEClass(), null, "wantedClass", null, 0, 1, ClassFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(instanceFilterEClass, InstanceFilter.class, "InstanceFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getInstanceFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, InstanceFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getInstanceFilter_Instance(), theEcorePackage.getEObject(), null, "instance", null, 0, 1, InstanceFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(attributeFilterEClass, AttributeFilter.class, "AttributeFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttributeFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, AttributeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAttributeFilter_Attribute(), theEcorePackage.getEAttribute(), null, "attribute", null, 0, 1, AttributeFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(containerFilterEClass, ContainerFilter.class, "ContainerFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getContainerFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, ContainerFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContainerFilter_Container(), theEcorePackage.getEObject(), null, "container", null, 0, 1, ContainerFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositionHierarchyFilterEClass, CompositionHierarchyFilter.class, "CompositionHierarchyFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getCompositionHierarchyFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, CompositionHierarchyFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositionHierarchyFilter_Root(), theEcorePackage.getEObject(), null, "root", null, 0, 1, CompositionHierarchyFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(packageFilterEClass, PackageFilter.class, "PackageFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPackageFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, PackageFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPackageFilter_WantedPackage(), theEcorePackage.getEPackage(), null, "wantedPackage", null, 0, 1, PackageFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(associationFilterEClass, AssociationFilter.class, "AssociationFilter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAssociationFilter_Filters(), this.getEventFilter(), null, "filters", null, 0, 1, AssociationFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAssociationFilter_Reference(), theEcorePackage.getEReference(), null, "reference", null, 0, 1, AssociationFilter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventNotificationEClass, EventNotification.class, "EventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventNotification_Event(), this.getModelChangeEvent(), null, "event", null, 0, 1, EventNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getEventNotification_Notification(), this.getNotification(), "notification", null, 0, 1, EventNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventMappperEClass, EventMappper.class, "EventMappper", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		op = addEOperation(eventMappperEClass, this.getModelChangeEvent(), "mapNotificationToEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotification(), "notification", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(notificationEDataType, Notification.class, "Notification", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

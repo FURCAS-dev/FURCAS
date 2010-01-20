@@ -15,7 +15,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter#getFilter <em>Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,28 +26,28 @@ package de.hpi.sam.bp2009.solution.eventManager;
 public interface NotFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' reference.
+	 * Returns the value of the '<em><b>Filter</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filters</em>' reference isn't clear,
+	 * If the meaning of the '<em>Filter</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' reference.
-	 * @see #setFilters(EventFilter)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotFilter_Filters()
+	 * @return the value of the '<em>Filter</em>' reference.
+	 * @see #setFilter(EventFilter)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getNotFilter_Filter()
 	 * @model
 	 * @generated
 	 */
-	EventFilter getFilters();
+	EventFilter getFilter();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter#getFilters <em>Filters</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.NotFilter#getFilter <em>Filter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filters</em>' reference.
-	 * @see #getFilters()
+	 * @param value the new value of the '<em>Filter</em>' reference.
+	 * @see #getFilter()
 	 * @generated
 	 */
-	void setFilters(EventFilter value);
+	void setFilter(EventFilter value);
 } // NotFilter

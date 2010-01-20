@@ -17,12 +17,44 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * A representation of the model object '<em><b>Event Manager</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#getEventMapper <em>Event Mapper</em>}</li>
+ * </ul>
+ * </p>
  *
  * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventManager()
  * @model
  * @generated
  */
 public interface EventManager extends EObject {
+	/**
+	 * Returns the value of the '<em><b>Event Mapper</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Event Mapper</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Event Mapper</em>' reference.
+	 * @see #setEventMapper(EventMappper)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventManager_EventMapper()
+	 * @model required="true"
+	 * @generated
+	 */
+	EventMappper getEventMapper();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager#getEventMapper <em>Event Mapper</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Event Mapper</em>' reference.
+	 * @see #getEventMapper()
+	 * @generated
+	 */
+	void setEventMapper(EventMappper value);
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

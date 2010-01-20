@@ -8,7 +8,6 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
@@ -23,6 +22,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+
 import org.eclipse.ocl.ecore.EcorePackage;
 
 /**
@@ -137,7 +137,7 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getImpactAnalyzer_CurrentQueries() {
+	public EAttribute getImpactAnalyzer_Queries() {
 		return (EAttribute)impactAnalyzerEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -172,7 +172,7 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		impactAnalyzerEClass = createEClass(IMPACT_ANALYZER);
 		createEReference(impactAnalyzerEClass, IMPACT_ANALYZER__OCL_EVALUATOR);
 		createEReference(impactAnalyzerEClass, IMPACT_ANALYZER__EVENT_MANAGER);
-		createEAttribute(impactAnalyzerEClass, IMPACT_ANALYZER__CURRENT_QUERIES);
+		createEAttribute(impactAnalyzerEClass, IMPACT_ANALYZER__QUERIES);
 	}
 
 	/**
@@ -215,19 +215,9 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
 		EGenericType g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
 		g1.getETypeArguments().add(g2);
-		initEAttribute(getImpactAnalyzer_CurrentQueries(), g1, "currentQueries", null, 0, 1, ImpactAnalyzer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getImpactAnalyzer_Queries(), g1, "queries", null, 0, 1, ImpactAnalyzer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(impactAnalyzerEClass, null, "registerQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		initEOperation(op, g1);
-
-		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEObject(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEEList());
 		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());

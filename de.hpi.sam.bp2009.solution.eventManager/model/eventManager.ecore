@@ -22,6 +22,8 @@
       <eParameters name="filter" eType="#//EventFilter"/>
       <eParameters name="caller" eType="#//Adapter"/>
     </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventMapper" lowerBound="1"
+        eType="#//EventMappper"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"/>
   <eClassifiers xsi:type="ecore:EClass" name="ModelChangeEvent">
@@ -86,25 +88,27 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="eventEClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AndFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" upperBound="-1"
+        eType="#//EventFilter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" upperBound="-1"
+        eType="#//EventFilter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NotFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filter" eType="#//EventFilter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -134,7 +138,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageFilter" eSuperTypes="#//EventFilter">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -152,5 +156,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="event" eType="#//ModelChangeEvent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="notification" eType="#//Notification"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventMappper">
+    <eOperations name="mapNotificationToEvent" eType="#//ModelChangeEvent">
+      <eParameters name="notification" eType="#//Notification"/>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Notification" instanceClassName="org.eclipse.emf.common.notify.Notification"/>
 </ecore:EPackage>

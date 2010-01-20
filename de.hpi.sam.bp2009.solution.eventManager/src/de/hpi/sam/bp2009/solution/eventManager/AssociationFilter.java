@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.ecore.EReference;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +17,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#getReference <em>Reference</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,28 +28,28 @@ package de.hpi.sam.bp2009.solution.eventManager;
 public interface AssociationFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' reference.
+	 * Returns the value of the '<em><b>Reference</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filters</em>' reference isn't clear,
+	 * If the meaning of the '<em>Reference</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' reference.
-	 * @see #setFilters(EventFilter)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getAssociationFilter_Filters()
+	 * @return the value of the '<em>Reference</em>' reference.
+	 * @see #setReference(EReference)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getAssociationFilter_Reference()
 	 * @model
 	 * @generated
 	 */
-	EventFilter getFilters();
+	EReference getReference();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#getFilters <em>Filters</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.AssociationFilter#getReference <em>Reference</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filters</em>' reference.
-	 * @see #getFilters()
+	 * @param value the new value of the '<em>Reference</em>' reference.
+	 * @see #getReference()
 	 * @generated
 	 */
-	void setFilters(EventFilter value);
+	void setReference(EReference value);
 } // AssociationFilter

@@ -6,24 +6,16 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.FilterMatcher;
-import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
+
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,7 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl#getInstance <em>Instance</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,140 +32,21 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference.
+	 * The cached value of the '{@link #getInstance() <em>Instance</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilters()
+	 * @see #getInstance()
 	 * @generated
 	 * @ordered
 	 */
-	protected EventFilter filters;
-
+	protected EObject instance;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected InstanceFilterImpl() {
 		super();
-		this.setFilterMatcher(new FilterMatcher() {
-			
-			@Override
-			public void eSetDeliver(boolean deliver) {
-				
-			}
-			
-			@Override
-			public void eNotify(Notification notification) {
-				
-			}
-			
-			@Override
-			public boolean eDeliver() {
-				return false;
-			}
-			
-			@Override
-			public EList<Adapter> eAdapters() {
-				return null;
-			}
-			
-			@Override
-			public void eUnset(EStructuralFeature feature) {
-			
-				
-			}
-			
-			@Override
-			public void eSet(EStructuralFeature feature, Object newValue) {
-			
-				
-			}
-			
-			@Override
-			public Resource eResource() {
-			
-				return null;
-			}
-			
-			@Override
-			public boolean eIsSet(EStructuralFeature feature) {
-		
-				return false;
-			}
-			
-			@Override
-			public boolean eIsProxy() {
-		
-				return false;
-			}
-			
-			@Override
-			public Object eGet(EStructuralFeature feature, boolean resolve) {
-		
-				return null;
-			}
-			
-			@Override
-			public Object eGet(EStructuralFeature feature) {
-			
-				return null;
-			}
-			
-			@Override
-			public EList<EObject> eCrossReferences() {
-			
-				return null;
-			}
-			
-			@Override
-			public EList<EObject> eContents() {
-			
-				return null;
-			}
-			
-			@Override
-			public EReference eContainmentFeature() {
-			
-				return null;
-			}
-			
-			@Override
-			public EStructuralFeature eContainingFeature() {
-			
-				return null;
-			}
-			
-			@Override
-			public EObject eContainer() {
-			
-				return null;
-			}
-			
-			@Override
-			public EClass eClass() {
-				
-				return null;
-			}
-			
-			@Override
-			public TreeIterator<EObject> eAllContents() {
-			
-				return null;
-			}
-			
-			@Override
-			public boolean matchesForFilterType(ModelChangeEvent event,
-					EventFilter filter) {
-				if(!(filter instanceof InstanceFilter)){
-					return false;
-				}
-				Object crit = filter.getFilterCriterion();
-				if((crit instanceof EObject) && (event.getSourceObject().equals(crit))){
-					return true;
-				}
-				return false;
-			}
-		});
 	}
 
 	/**
@@ -191,16 +64,16 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter getFilters() {
-		if (filters != null && filters.eIsProxy()) {
-			InternalEObject oldFilters = (InternalEObject)filters;
-			filters = (EventFilter)eResolveProxy(oldFilters);
-			if (filters != oldFilters) {
+	public EObject getInstance() {
+		if (instance != null && instance.eIsProxy()) {
+			InternalEObject oldInstance = (InternalEObject)instance;
+			instance = eResolveProxy(oldInstance);
+			if (instance != oldInstance) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.INSTANCE_FILTER__FILTERS, oldFilters, filters));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.INSTANCE_FILTER__INSTANCE, oldInstance, instance));
 			}
 		}
-		return filters;
+		return instance;
 	}
 
 	/**
@@ -208,8 +81,8 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter basicGetFilters() {
-		return filters;
+	public EObject basicGetInstance() {
+		return instance;
 	}
 
 	/**
@@ -217,22 +90,20 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFilters(EventFilter newFilters) {
-		EventFilter oldFilters = filters;
-		filters = newFilters;
+	public void setInstance(EObject newInstance) {
+		EObject oldInstance = instance;
+		instance = newInstance;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.INSTANCE_FILTER__FILTERS, oldFilters, filters));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.INSTANCE_FILTER__INSTANCE, oldInstance, instance));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return event.getSourceObject().equals(getInstance());
 	}
 
 	/**
@@ -243,9 +114,9 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventManagerPackage.INSTANCE_FILTER__FILTERS:
-				if (resolve) return getFilters();
-				return basicGetFilters();
+			case EventManagerPackage.INSTANCE_FILTER__INSTANCE:
+				if (resolve) return getInstance();
+				return basicGetInstance();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,8 +129,8 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventManagerPackage.INSTANCE_FILTER__FILTERS:
-				setFilters((EventFilter)newValue);
+			case EventManagerPackage.INSTANCE_FILTER__INSTANCE:
+				setInstance((EObject)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,8 +144,8 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.INSTANCE_FILTER__FILTERS:
-				setFilters((EventFilter)null);
+			case EventManagerPackage.INSTANCE_FILTER__INSTANCE:
+				setInstance((EObject)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -288,8 +159,8 @@ public class InstanceFilterImpl extends EObjectImpl implements InstanceFilter {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.INSTANCE_FILTER__FILTERS:
-				return filters != null;
+			case EventManagerPackage.INSTANCE_FILTER__INSTANCE:
+				return instance != null;
 		}
 		return super.eIsSet(featureID);
 	}

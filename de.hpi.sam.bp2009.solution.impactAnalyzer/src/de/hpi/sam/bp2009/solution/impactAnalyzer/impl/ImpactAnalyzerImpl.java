@@ -6,9 +6,12 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
+import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl;
 
 
 
@@ -20,7 +23,9 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
@@ -42,7 +47,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl#getOclEvaluator <em>Ocl Evaluator</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl#getEventManager <em>Event Manager</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl#getCurrentQueries <em>Current Queries</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerImpl#getQueries <em>Queries</em>}</li>
  * </ul>
  * </p>
  *
@@ -58,6 +63,28 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * @ordered
 	 */
 	protected OCLEvaluator oclEvaluator;
+	private class TautologyFilter extends InstanceFilterImpl{
+		@Override
+		public boolean matchesFor(ModelChangeEvent event) {
+			return true;
+		}
+	}
+	private class EventManagerAdapter extends AdapterImpl {
+		private OclQuery query;
+		public EventManagerAdapter(OclQuery query) {
+			super();
+			this.query=query;
+		}
+		@Override
+		public void notifyChanged(Notification msg) {
+				if(msg instanceof EventNotification){
+					BasicEList<OclQuery> list= new BasicEList<OclQuery>();
+					list.add(query);
+					getOclEvaluator().evaluate(list);
+				}
+					
+		}
+	}
 
 	/**
 	 * The cached value of the '{@link #getEventManager() <em>Event Manager</em>}' reference.
@@ -70,14 +97,14 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	protected EventManager eventManager;
 
 	/**
-	 * The cached value of the '{@link #getCurrentQueries() <em>Current Queries</em>}' attribute.
+	 * The cached value of the '{@link #getQueries() <em>Queries</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getCurrentQueries()
+	 * @see #getQueries()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OclQuery> currentQueries;
+	protected EList<OclQuery> queries;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -180,8 +207,8 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OclQuery> getCurrentQueries() {
-		return currentQueries;
+	public EList<OclQuery> getQueries() {
+		return queries;
 	}
 
 	/**
@@ -189,75 +216,54 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCurrentQueries(EList<OclQuery> newCurrentQueries) {
-		EList<OclQuery> oldCurrentQueries = currentQueries;
-		currentQueries = newCurrentQueries;
+	public void setQueries(EList<OclQuery> newQueries) {
+		EList<OclQuery> oldQueries = queries;
+		queries = newQueries;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ImpactAnalyzerPackage.IMPACT_ANALYZER__CURRENT_QUERIES, oldCurrentQueries, currentQueries));
+			eNotify(new ENotificationImpl(this, Notification.SET, ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES, oldQueries, queries));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Object> registerQueries(EList<OclQuery> oclQueries) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void register(EObject root, EList<OclQuery> oclQueries) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//TODO do magic
+		System.out.println("Start Analyse");
+		EventFilter filter = new TautologyFilter();
+		for(OclQuery each: oclQueries)
+			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
+		this.setQueries(oclQueries);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void register(Resource root, EList<OclQuery> oclQueries) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		//TODO do magic
+		System.out.println("Start Analyse");
+		EventFilter filter = new TautologyFilter();
+		for(OclQuery each: oclQueries)
+			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
+		this.setQueries(oclQueries);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 */
-	public EList<Object> analyze(ResourceSet resourceSet, EList<OclQuery> oclQueries) {
-
-		return this.getOclEvaluator().evaluate(oclQueries);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 * @return 
 	 */
 	public void register(ResourceSet resourceSet, EList<OclQuery> oclQueries) {
+		//TODO do magic
 		System.out.println("Start Analyse");
-		ModelChangeEvent event = EventManagerFactory.eINSTANCE.createModelChangeEvent();
-		event.setSourceResourceSet(resourceSet);
-		this.getEventManager().subscribe(this, event);
-		this.setCurrentQueries(oclQueries);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 */
-	public void callback(ModelChangeEvent modelchangeEvent) {
-		System.out.println("callback");
-		this.analyze(modelchangeEvent.getSourceResourceSet(), this.getCurrentQueries());
+		EventFilter filter = new TautologyFilter();
+		for(OclQuery each: oclQueries)
+			this.getEventManager().subscribe(resourceSet,filter, new EventManagerAdapter(each));
+		this.setQueries(oclQueries);
 	}
 
 	/**
@@ -274,8 +280,8 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 			case ImpactAnalyzerPackage.IMPACT_ANALYZER__EVENT_MANAGER:
 				if (resolve) return getEventManager();
 				return basicGetEventManager();
-			case ImpactAnalyzerPackage.IMPACT_ANALYZER__CURRENT_QUERIES:
-				return getCurrentQueries();
+			case ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES:
+				return getQueries();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -295,8 +301,8 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 			case ImpactAnalyzerPackage.IMPACT_ANALYZER__EVENT_MANAGER:
 				setEventManager((EventManager)newValue);
 				return;
-			case ImpactAnalyzerPackage.IMPACT_ANALYZER__CURRENT_QUERIES:
-				setCurrentQueries((EList<OclQuery>)newValue);
+			case ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES:
+				setQueries((EList<OclQuery>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -316,8 +322,8 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 			case ImpactAnalyzerPackage.IMPACT_ANALYZER__EVENT_MANAGER:
 				setEventManager((EventManager)null);
 				return;
-			case ImpactAnalyzerPackage.IMPACT_ANALYZER__CURRENT_QUERIES:
-				setCurrentQueries((EList<OclQuery>)null);
+			case ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES:
+				setQueries((EList<OclQuery>)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -335,8 +341,8 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 				return oclEvaluator != null;
 			case ImpactAnalyzerPackage.IMPACT_ANALYZER__EVENT_MANAGER:
 				return eventManager != null;
-			case ImpactAnalyzerPackage.IMPACT_ANALYZER__CURRENT_QUERIES:
-				return currentQueries != null;
+			case ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES:
+				return queries != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -351,8 +357,8 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (currentQueries: ");
-		result.append(currentQueries);
+		result.append(" (queries: ");
+		result.append(queries);
 		result.append(')');
 		return result.toString();
 	}

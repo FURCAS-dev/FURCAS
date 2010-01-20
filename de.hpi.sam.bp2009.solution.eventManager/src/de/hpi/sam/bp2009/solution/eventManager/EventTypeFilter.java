@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.ecore.EClass;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +17,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getEventEClass <em>Event EClass</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,28 +28,28 @@ package de.hpi.sam.bp2009.solution.eventManager;
 public interface EventTypeFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' reference.
+	 * Returns the value of the '<em><b>Event EClass</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filters</em>' reference isn't clear,
+	 * If the meaning of the '<em>Event EClass</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' reference.
-	 * @see #setFilters(EventFilter)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventTypeFilter_Filters()
+	 * @return the value of the '<em>Event EClass</em>' reference.
+	 * @see #setEventEClass(EClass)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getEventTypeFilter_EventEClass()
 	 * @model
 	 * @generated
 	 */
-	EventFilter getFilters();
+	EClass getEventEClass();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getFilters <em>Filters</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter#getEventEClass <em>Event EClass</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filters</em>' reference.
-	 * @see #getFilters()
+	 * @param value the new value of the '<em>Event EClass</em>' reference.
+	 * @see #getEventEClass()
 	 * @generated
 	 */
-	void setFilters(EventFilter value);
+	void setEventEClass(EClass value);
 } // EventTypeFilter

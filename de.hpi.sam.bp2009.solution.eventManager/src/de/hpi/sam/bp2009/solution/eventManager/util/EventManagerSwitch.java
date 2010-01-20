@@ -117,7 +117,7 @@ public class EventManagerSwitch<T> {
 			case EventManagerPackage.ELEMENT_LIFE_CYCLE_EVENT: {
 				ElementLifeCycleEvent elementLifeCycleEvent = (ElementLifeCycleEvent)theEObject;
 				T result = caseElementLifeCycleEvent(elementLifeCycleEvent);
-				if (result == null) result = caseLinkLifeCycleEvent(elementLifeCycleEvent);
+				if (result == null) result = caseElementChangeEvent(elementLifeCycleEvent);
 				if (result == null) result = caseModelChangeEvent(elementLifeCycleEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -133,7 +133,7 @@ public class EventManagerSwitch<T> {
 				ElementCreateEvent elementCreateEvent = (ElementCreateEvent)theEObject;
 				T result = caseElementCreateEvent(elementCreateEvent);
 				if (result == null) result = caseElementLifeCycleEvent(elementCreateEvent);
-				if (result == null) result = caseLinkLifeCycleEvent(elementCreateEvent);
+				if (result == null) result = caseElementChangeEvent(elementCreateEvent);
 				if (result == null) result = caseModelChangeEvent(elementCreateEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -142,7 +142,7 @@ public class EventManagerSwitch<T> {
 				ElementDeleteEvent elementDeleteEvent = (ElementDeleteEvent)theEObject;
 				T result = caseElementDeleteEvent(elementDeleteEvent);
 				if (result == null) result = caseElementLifeCycleEvent(elementDeleteEvent);
-				if (result == null) result = caseLinkLifeCycleEvent(elementDeleteEvent);
+				if (result == null) result = caseElementChangeEvent(elementDeleteEvent);
 				if (result == null) result = caseModelChangeEvent(elementDeleteEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -249,6 +249,12 @@ public class EventManagerSwitch<T> {
 			case EventManagerPackage.EVENT_NOTIFICATION: {
 				EventNotification eventNotification = (EventNotification)theEObject;
 				T result = caseEventNotification(eventNotification);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventManagerPackage.EVENT_MAPPPER: {
+				EventMappper eventMappper = (EventMappper)theEObject;
+				T result = caseEventMappper(eventMappper);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -598,6 +604,21 @@ public class EventManagerSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventNotification(EventNotification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Event Mappper</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Event Mappper</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventMappper(EventMappper object) {
 		return null;
 	}
 

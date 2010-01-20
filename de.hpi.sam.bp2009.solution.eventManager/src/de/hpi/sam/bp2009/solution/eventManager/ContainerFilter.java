@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.ecore.EObject;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +17,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter#getContainer <em>Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,28 +28,28 @@ package de.hpi.sam.bp2009.solution.eventManager;
 public interface ContainerFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' reference.
+	 * Returns the value of the '<em><b>Container</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filters</em>' reference isn't clear,
+	 * If the meaning of the '<em>Container</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' reference.
-	 * @see #setFilters(EventFilter)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getContainerFilter_Filters()
+	 * @return the value of the '<em>Container</em>' reference.
+	 * @see #setContainer(EObject)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getContainerFilter_Container()
 	 * @model
 	 * @generated
 	 */
-	EventFilter getFilters();
+	EObject getContainer();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter#getFilters <em>Filters</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.ContainerFilter#getContainer <em>Container</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filters</em>' reference.
-	 * @see #getFilters()
+	 * @param value the new value of the '<em>Container</em>' reference.
+	 * @see #getContainer()
 	 * @generated
 	 */
-	void setFilters(EventFilter value);
+	void setContainer(EObject value);
 } // ContainerFilter

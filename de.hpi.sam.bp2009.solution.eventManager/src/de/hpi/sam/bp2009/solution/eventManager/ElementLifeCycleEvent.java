@@ -17,5 +17,5 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * @model
  * @generated
  */
-public interface ElementLifeCycleEvent extends LinkLifeCycleEvent {
+public interface ElementLifeCycleEvent extends ElementChangeEvent {
 } // ElementLifeCycleEvent

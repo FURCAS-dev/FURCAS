@@ -6,22 +6,14 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.FilterMatcher;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
 
@@ -32,7 +24,7 @@ import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.NotFilterImpl#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.NotFilterImpl#getFilter <em>Filter</em>}</li>
  * </ul>
  * </p>
  *
@@ -40,144 +32,21 @@ import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
  */
 public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference.
+	 * The cached value of the '{@link #getFilter() <em>Filter</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilters()
+	 * @see #getFilter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EventFilter filters;
-
+	protected EventFilter filter;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected NotFilterImpl() {
 		super();
-		this.setFilterMatcher(new FilterMatcher() {
-			
-			@Override
-			public void eSetDeliver(boolean deliver) {
-				
-			}
-			
-			@Override
-			public void eNotify(Notification notification) {
-				
-			}
-			
-			@Override
-			public boolean eDeliver() {
-				return false;
-			}
-			
-			@Override
-			public EList<Adapter> eAdapters() {
-				return null;
-			}
-			
-			@Override
-			public void eUnset(EStructuralFeature feature) {
-			
-				
-			}
-			
-			@Override
-			public void eSet(EStructuralFeature feature, Object newValue) {
-			
-				
-			}
-			
-			@Override
-			public Resource eResource() {
-			
-				return null;
-			}
-			
-			@Override
-			public boolean eIsSet(EStructuralFeature feature) {
-		
-				return false;
-			}
-			
-			@Override
-			public boolean eIsProxy() {
-		
-				return false;
-			}
-			
-			@Override
-			public Object eGet(EStructuralFeature feature, boolean resolve) {
-		
-				return null;
-			}
-			
-			@Override
-			public Object eGet(EStructuralFeature feature) {
-			
-				return null;
-			}
-			
-			@Override
-			public EList<EObject> eCrossReferences() {
-			
-				return null;
-			}
-			
-			@Override
-			public EList<EObject> eContents() {
-			
-				return null;
-			}
-			
-			@Override
-			public EReference eContainmentFeature() {
-			
-				return null;
-			}
-			
-			@Override
-			public EStructuralFeature eContainingFeature() {
-			
-				return null;
-			}
-			
-			@Override
-			public EObject eContainer() {
-			
-				return null;
-			}
-			
-			@Override
-			public EClass eClass() {
-				
-				return null;
-			}
-			
-			@Override
-			public TreeIterator<EObject> eAllContents() {
-			
-				return null;
-			}
-			
-			@Override
-			public boolean matchesForFilterType(ModelChangeEvent event,
-					EventFilter filter) {
-				if(!(filter instanceof NotFilter)){
-					return false;
-				}
-				Object crit = filter.getFilterCriterion();
-				if(!(crit instanceof EventFilter))
-					return false;
-				
-				FilterMatcher otherFilter = ((EventFilter)crit).getFilterMatcher();
-				if(otherFilter!=null && otherFilter.matchesForFilterType(event, (EventFilter)crit))
-					return false;
-				
-				return true;
-			}
-		});
 	}
 
 	/**
@@ -195,16 +64,16 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter getFilters() {
-		if (filters != null && filters.eIsProxy()) {
-			InternalEObject oldFilters = (InternalEObject)filters;
-			filters = (EventFilter)eResolveProxy(oldFilters);
-			if (filters != oldFilters) {
+	public EventFilter getFilter() {
+		if (filter != null && filter.eIsProxy()) {
+			InternalEObject oldFilter = (InternalEObject)filter;
+			filter = (EventFilter)eResolveProxy(oldFilter);
+			if (filter != oldFilter) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.NOT_FILTER__FILTERS, oldFilters, filters));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.NOT_FILTER__FILTER, oldFilter, filter));
 			}
 		}
-		return filters;
+		return filter;
 	}
 
 	/**
@@ -212,8 +81,8 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter basicGetFilters() {
-		return filters;
+	public EventFilter basicGetFilter() {
+		return filter;
 	}
 
 	/**
@@ -221,22 +90,20 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFilters(EventFilter newFilters) {
-		EventFilter oldFilters = filters;
-		filters = newFilters;
+	public void setFilter(EventFilter newFilter) {
+		EventFilter oldFilter = filter;
+		filter = newFilter;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.NOT_FILTER__FILTERS, oldFilters, filters));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.NOT_FILTER__FILTER, oldFilter, filter));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return !getFilter().matchesFor(event);
 	}
 
 	/**
@@ -247,9 +114,9 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventManagerPackage.NOT_FILTER__FILTERS:
-				if (resolve) return getFilters();
-				return basicGetFilters();
+			case EventManagerPackage.NOT_FILTER__FILTER:
+				if (resolve) return getFilter();
+				return basicGetFilter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -262,8 +129,8 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventManagerPackage.NOT_FILTER__FILTERS:
-				setFilters((EventFilter)newValue);
+			case EventManagerPackage.NOT_FILTER__FILTER:
+				setFilter((EventFilter)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -277,8 +144,8 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.NOT_FILTER__FILTERS:
-				setFilters((EventFilter)null);
+			case EventManagerPackage.NOT_FILTER__FILTER:
+				setFilter((EventFilter)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -292,8 +159,8 @@ public class NotFilterImpl extends EObjectImpl implements NotFilter {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.NOT_FILTER__FILTERS:
-				return filters != null;
+			case EventManagerPackage.NOT_FILTER__FILTER:
+				return filter != null;
 		}
 		return super.eIsSet(featureID);
 	}

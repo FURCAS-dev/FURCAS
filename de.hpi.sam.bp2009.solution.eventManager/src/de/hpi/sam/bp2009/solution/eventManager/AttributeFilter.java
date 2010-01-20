@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager;
 
+import org.eclipse.emf.ecore.EAttribute;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -15,7 +17,7 @@ package de.hpi.sam.bp2009.solution.eventManager;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -26,30 +28,30 @@ package de.hpi.sam.bp2009.solution.eventManager;
 public interface AttributeFilter extends EventFilter {
 
 	/**
-	 * Returns the value of the '<em><b>Filters</b></em>' reference.
+	 * Returns the value of the '<em><b>Attribute</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Filters</em>' reference isn't clear,
+	 * If the meaning of the '<em>Attribute</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Filters</em>' reference.
-	 * @see #setFilters(EventFilter)
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getAttributeFilter_Filters()
+	 * @return the value of the '<em>Attribute</em>' reference.
+	 * @see #setAttribute(EAttribute)
+	 * @see de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage#getAttributeFilter_Attribute()
 	 * @model
 	 * @generated
 	 */
-	EventFilter getFilters();
+	EAttribute getAttribute();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#getFilters <em>Filters</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.eventManager.AttributeFilter#getAttribute <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Filters</em>' reference.
-	 * @see #getFilters()
+	 * @param value the new value of the '<em>Attribute</em>' reference.
+	 * @see #getAttribute()
 	 * @generated
 	 */
-	void setFilters(EventFilter value);
+	void setAttribute(EAttribute value);
 
 
 } // AttributeFilter

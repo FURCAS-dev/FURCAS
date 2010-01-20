@@ -6,25 +6,16 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
-import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.FilterMatcher;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
+
+import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +24,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeFilterImpl#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.AttributeFilterImpl#getAttribute <em>Attribute</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,14 +33,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter {
 	
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference.
+	 * The cached value of the '{@link #getAttribute() <em>Attribute</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilters()
+	 * @see #getAttribute()
 	 * @generated
 	 * @ordered
 	 */
-	protected EventFilter filters;
+	protected EAttribute attribute;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,35 +63,35 @@ public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter getFilters() {
-		if (filters != null && filters.eIsProxy()) {
-			InternalEObject oldFilters = (InternalEObject)filters;
-			filters = (EventFilter)eResolveProxy(oldFilters);
-			if (filters != oldFilters) {
+	public EAttribute getAttribute() {
+		if (attribute != null && attribute.eIsProxy()) {
+			InternalEObject oldAttribute = (InternalEObject)attribute;
+			attribute = (EAttribute)eResolveProxy(oldAttribute);
+			if (attribute != oldAttribute) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.ATTRIBUTE_FILTER__FILTERS, oldFilters, filters));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.ATTRIBUTE_FILTER__ATTRIBUTE, oldAttribute, attribute));
 			}
 		}
-		return filters;
+		return attribute;
 	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter basicGetFilters() {
-		return filters;
+	public EAttribute basicGetAttribute() {
+		return attribute;
 	}
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFilters(EventFilter newFilters) {
-		EventFilter oldFilters = filters;
-		filters = newFilters;
+	public void setAttribute(EAttribute newAttribute) {
+		EAttribute oldAttribute = attribute;
+		attribute = newAttribute;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.ATTRIBUTE_FILTER__FILTERS, oldFilters, filters));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.ATTRIBUTE_FILTER__ATTRIBUTE, oldAttribute, attribute));
 	}
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,9 +111,9 @@ public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventManagerPackage.ATTRIBUTE_FILTER__FILTERS:
-				if (resolve) return getFilters();
-				return basicGetFilters();
+			case EventManagerPackage.ATTRIBUTE_FILTER__ATTRIBUTE:
+				if (resolve) return getAttribute();
+				return basicGetAttribute();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -134,8 +125,8 @@ public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventManagerPackage.ATTRIBUTE_FILTER__FILTERS:
-				setFilters((EventFilter)newValue);
+			case EventManagerPackage.ATTRIBUTE_FILTER__ATTRIBUTE:
+				setAttribute((EAttribute)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -148,8 +139,8 @@ public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.ATTRIBUTE_FILTER__FILTERS:
-				setFilters((EventFilter)null);
+			case EventManagerPackage.ATTRIBUTE_FILTER__ATTRIBUTE:
+				setAttribute((EAttribute)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -162,8 +153,8 @@ public class AttributeFilterImpl extends EObjectImpl implements AttributeFilter 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.ATTRIBUTE_FILTER__FILTERS:
-				return filters != null;
+			case EventManagerPackage.ATTRIBUTE_FILTER__ATTRIBUTE:
+				return attribute != null;
 		}
 		return super.eIsSet(featureID);
 	}

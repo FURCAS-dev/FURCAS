@@ -224,6 +224,15 @@ public interface EventManagerFactory extends EFactory {
 	EventNotification createEventNotification();
 
 	/**
+	 * Returns a new object of class '<em>Event Mappper</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Event Mappper</em>'.
+	 * @generated
+	 */
+	EventMappper createEventMappper();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

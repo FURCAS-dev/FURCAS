@@ -6,8 +6,6 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.util;
 
-import de.hpi.sam.bp2009.solution.eventListener.EventListener;
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.*;
 
 import org.eclipse.emf.common.notify.Adapter;

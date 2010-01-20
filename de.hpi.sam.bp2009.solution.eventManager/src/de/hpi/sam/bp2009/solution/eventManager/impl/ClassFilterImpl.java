@@ -6,24 +6,15 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.eventManager.FilterMatcher;
-import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
-
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
+
+import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,134 +23,31 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.ClassFilterImpl#getFilters <em>Filters</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.eventManager.impl.ClassFilterImpl#getWantedClass <em>Wanted Class</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
+
 	/**
-	 * The cached value of the '{@link #getFilters() <em>Filters</em>}' reference.
+	 * The cached value of the '{@link #getWantedClass() <em>Wanted Class</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFilters()
+	 * @see #getWantedClass()
 	 * @generated
 	 * @ordered
 	 */
-	protected EventFilter filters;
+	protected EClass wantedClass;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
 	 */
 	protected ClassFilterImpl() {
 		super();
-		this.setFilterMatcher(new FilterMatcher() {
-			
-			@Override
-			public void eSetDeliver(boolean deliver) {
-					
-			}
-			
-			@Override
-			public void eNotify(Notification notification) {
-				
-			}
-			
-			@Override
-			public boolean eDeliver() {
-				return false;
-			}
-			
-			@Override
-			public EList<Adapter> eAdapters() {
-				return null;
-			}
-			
-			@Override
-			public void eUnset(EStructuralFeature feature) {
-				
-			}
-			
-			@Override
-			public void eSet(EStructuralFeature feature, Object newValue) {
-				
-			}
-			
-			@Override
-			public Resource eResource() {
-				return null;
-			}
-			
-			@Override
-			public boolean eIsSet(EStructuralFeature feature) {
-				return false;
-			}
-			
-			@Override
-			public boolean eIsProxy() {
-				return false;
-			}
-			
-			@Override
-			public Object eGet(EStructuralFeature feature, boolean resolve) {
-				return null;
-			}
-			
-			@Override
-			public Object eGet(EStructuralFeature feature) {
-				return null;
-			}
-			
-			@Override
-			public EList<EObject> eCrossReferences() {
-				return null;
-			}
-			
-			@Override
-			public EList<EObject> eContents() {
-				return null;
-			}
-			
-			@Override
-			public EReference eContainmentFeature() {
-				return null;
-			}
-			
-			@Override
-			public EStructuralFeature eContainingFeature() {
-				return null;
-			}
-			
-			@Override
-			public EObject eContainer() {
-				return null;
-			}
-			
-			@Override
-			public EClass eClass() {
-				return null;
-			}
-			
-			@Override
-			public TreeIterator<EObject> eAllContents() {
-				return null;
-			}
-			
-			@Override
-			public boolean matchesForFilterType(ModelChangeEvent event,
-					EventFilter filter) {
-				if(!(filter instanceof ClassFilter)){
-					return false;
-				}
-				if((filter.getFilterCriterion() instanceof EClass) && (event.getSourceObject().eClass().equals(filter.getFilterCriterion()))){
-					return true;
-				}
-				
-				return false;
-			}
-		});
 	}
 
 	/**
@@ -177,16 +65,16 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter getFilters() {
-		if (filters != null && filters.eIsProxy()) {
-			InternalEObject oldFilters = (InternalEObject)filters;
-			filters = (EventFilter)eResolveProxy(oldFilters);
-			if (filters != oldFilters) {
+	public EClass getWantedClass() {
+		if (wantedClass != null && wantedClass.eIsProxy()) {
+			InternalEObject oldWantedClass = (InternalEObject)wantedClass;
+			wantedClass = (EClass)eResolveProxy(oldWantedClass);
+			if (wantedClass != oldWantedClass) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.CLASS_FILTER__FILTERS, oldFilters, filters));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, EventManagerPackage.CLASS_FILTER__WANTED_CLASS, oldWantedClass, wantedClass));
 			}
 		}
-		return filters;
+		return wantedClass;
 	}
 
 	/**
@@ -194,8 +82,8 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventFilter basicGetFilters() {
-		return filters;
+	public EClass basicGetWantedClass() {
+		return wantedClass;
 	}
 
 	/**
@@ -203,24 +91,22 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFilters(EventFilter newFilters) {
-		EventFilter oldFilters = filters;
-		filters = newFilters;
+	public void setWantedClass(EClass newWantedClass) {
+		EClass oldWantedClass = wantedClass;
+		wantedClass = newWantedClass;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.CLASS_FILTER__FILTERS, oldFilters, filters));
+			eNotify(new ENotificationImpl(this, Notification.SET, EventManagerPackage.CLASS_FILTER__WANTED_CLASS, oldWantedClass, wantedClass));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	public boolean matchesFor(ModelChangeEvent event) {
-		if((this.filters.getFilterCriterion() instanceof EClass) && (event.getSourceObject().eClass().equals(filter.getFilterCriterion()))){
-			return true;
-		}
-		
-		return false;
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -231,9 +117,9 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case EventManagerPackage.CLASS_FILTER__FILTERS:
-				if (resolve) return getFilters();
-				return basicGetFilters();
+			case EventManagerPackage.CLASS_FILTER__WANTED_CLASS:
+				if (resolve) return getWantedClass();
+				return basicGetWantedClass();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -246,8 +132,8 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case EventManagerPackage.CLASS_FILTER__FILTERS:
-				setFilters((EventFilter)newValue);
+			case EventManagerPackage.CLASS_FILTER__WANTED_CLASS:
+				setWantedClass((EClass)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -261,8 +147,8 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.CLASS_FILTER__FILTERS:
-				setFilters((EventFilter)null);
+			case EventManagerPackage.CLASS_FILTER__WANTED_CLASS:
+				setWantedClass((EClass)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -276,10 +162,9 @@ public class ClassFilterImpl extends EObjectImpl implements ClassFilter {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case EventManagerPackage.CLASS_FILTER__FILTERS:
-				return filters != null;
+			case EventManagerPackage.CLASS_FILTER__WANTED_CLASS:
+				return wantedClass != null;
 		}
 		return super.eIsSet(featureID);
 	}
-
 } //ClassFilterImpl

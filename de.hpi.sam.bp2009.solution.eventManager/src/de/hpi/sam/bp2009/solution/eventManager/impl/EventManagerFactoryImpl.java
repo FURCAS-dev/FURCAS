@@ -10,6 +10,7 @@ import de.hpi.sam.bp2009.solution.eventManager.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -85,6 +86,7 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 			case EventManagerPackage.PACKAGE_FILTER: return createPackageFilter();
 			case EventManagerPackage.ASSOCIATION_FILTER: return createAssociationFilter();
 			case EventManagerPackage.EVENT_NOTIFICATION: return createEventNotification();
+			case EventManagerPackage.EVENT_MAPPPER: return createEventMappper();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -100,6 +102,8 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 		switch (eDataType.getClassifierID()) {
 			case EventManagerPackage.ADAPTER:
 				return createAdapterFromString(eDataType, initialValue);
+			case EventManagerPackage.NOTIFICATION:
+				return createNotificationFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -115,6 +119,8 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 		switch (eDataType.getClassifierID()) {
 			case EventManagerPackage.ADAPTER:
 				return convertAdapterToString(eDataType, instanceValue);
+			case EventManagerPackage.NOTIFICATION:
+				return convertNotificationToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -345,6 +351,16 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EventMappper createEventMappper() {
+		EventMappperImpl eventMappper = new EventMappperImpl();
+		return eventMappper;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Adapter createAdapterFromString(EDataType eDataType, String initialValue) {
 		return (Adapter)super.createFromString(eDataType, initialValue);
 	}
@@ -355,6 +371,24 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * @generated
 	 */
 	public String convertAdapterToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Notification createNotificationFromString(EDataType eDataType, String initialValue) {
+		return (Notification)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNotificationToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
