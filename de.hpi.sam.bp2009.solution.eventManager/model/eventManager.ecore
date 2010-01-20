@@ -30,7 +30,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElementChangeEvent" eSuperTypes="#//ModelChangeEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeValueChangeEvent" eSuperTypes="#//ElementChangeEvent"/>
-  <eClassifiers xsi:type="ecore:EClass" name="ElementLifeCycleEvent" eSuperTypes="#//LinkLifeCycleEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ElementLifeCycleEvent" eSuperTypes="#//ElementChangeEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="LinkLifeCycleEvent" eSuperTypes="#//ModelChangeEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="ElementCreateEvent" eSuperTypes="#//ElementLifeCycleEvent"/>
   <eClassifiers xsi:type="ecore:EClass" name="ElementDeleteEvent" eSuperTypes="#//ElementLifeCycleEvent"/>
@@ -54,25 +54,25 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ClassFilter" eSuperTypes="#//EventFilter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wantedClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstanceFilter" eSuperTypes="#//EventFilter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instance" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AttributeFilter" eSuperTypes="#//EventFilter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EAttribute"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContainerFilter" eSuperTypes="#//EventFilter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CompositionHierarchyFilter" eSuperTypes="#//EventFilter">
     <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PackageFilter" eSuperTypes="#//EventFilter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="wantedPackage" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AssociationFilter" eSuperTypes="#//EventFilter">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" eType="#//EventFilter"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="reference" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EReference"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventNotification"/>
 </ecore:EPackage>
