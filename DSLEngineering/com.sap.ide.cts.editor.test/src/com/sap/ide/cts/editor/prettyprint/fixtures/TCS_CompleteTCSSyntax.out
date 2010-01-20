@@ -4,7 +4,7 @@ syntax TCS{
 
   primitiveTemplate identifierOrKeyword for PrimitiveTypes::String using NAME orKeyword:value="unescapeString(%token%)";
 
-  primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="'\\\"' + %value%.toCString() + '\\\"'";
+  primitiveTemplate stringSymbol for PrimitiveTypes::String using STRING:value="unescapeString(%token%)",serializer="\"%value%\"";
 
   primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:value="Integer.valueOf(%token%)";
 

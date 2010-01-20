@@ -17,7 +17,7 @@ syntax MofClass(k=0) {
 
 	primitiveTemplate annotationSymbol for PrimitiveTypes::String using MULTI_LINE_COMMENT:
 		value = "unescapeString(%token%)",
-		serializer="/** %value% \n*/";
+		serializer="/** %value% */";
 
 	primitiveTemplate integerSymbol for PrimitiveTypes::Integer default using INT:
 		value = "Integer.valueOf(%token%)";
