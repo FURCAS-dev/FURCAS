@@ -80,6 +80,14 @@ public interface TestRun extends EObject {
 	 * @model
 	 * @generated
 	 */
-	Object getInstanceForClass(Class<?> aClass);
+	<returnType> returnType getInstanceForClass(Class<returnType> aClass);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	boolean setInstanceForClass(Class<?> aClass, Object anObject);
 
 } // TestRun

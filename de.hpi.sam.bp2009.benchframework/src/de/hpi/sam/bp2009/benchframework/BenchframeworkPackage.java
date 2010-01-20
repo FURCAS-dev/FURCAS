@@ -99,13 +99,13 @@ public interface BenchframeworkPackage extends EPackage {
 	int OPERATOR = 1;
 
 	/**
-	 * The feature id for the '<em><b>Default Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR__DEFAULT_OPTION = 0;
+	int OPERATOR__OPTION = 0;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' reference.
@@ -364,15 +364,15 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getOperator();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getDefaultOption <em>Default Option</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Default Option</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.Operator#getDefaultOption()
+	 * @return the meta object for the reference '<em>Option</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator#getOption()
 	 * @see #getOperator()
 	 * @generated
 	 */
-	EReference getOperator_DefaultOption();
+	EReference getOperator_Option();
 
 	/**
 	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}'.
@@ -618,12 +618,12 @@ public interface BenchframeworkPackage extends EPackage {
 		EClass OPERATOR = eINSTANCE.getOperator();
 
 		/**
-		 * The meta object literal for the '<em><b>Default Option</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Option</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OPERATOR__DEFAULT_OPTION = eINSTANCE.getOperator_DefaultOption();
+		EReference OPERATOR__OPTION = eINSTANCE.getOperator_Option();
 
 		/**
 		 * The meta object literal for the '<em><b>Result</b></em>' reference feature.

@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getDefaultOption <em>Default Option</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getOption <em>Option</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getResult <em>Result</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getTestRun <em>Test Run</em>}</li>
  * </ul>
@@ -40,14 +40,14 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	/**
-	 * The cached value of the '{@link #getDefaultOption() <em>Default Option</em>}' reference.
+	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getDefaultOption()
+	 * @see #getOption()
 	 * @generated
 	 * @ordered
 	 */
-	protected OptionObject defaultOption;
+	protected OptionObject option;
 
 	/**
 	 * The cached value of the '{@link #getResult() <em>Result</em>}' reference.
@@ -93,16 +93,16 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionObject getDefaultOption() {
-		if (defaultOption != null && defaultOption.eIsProxy()) {
-			InternalEObject oldDefaultOption = (InternalEObject)defaultOption;
-			defaultOption = (OptionObject)eResolveProxy(oldDefaultOption);
-			if (defaultOption != oldDefaultOption) {
+	public OptionObject getOption() {
+		if (option != null && option.eIsProxy()) {
+			InternalEObject oldOption = (InternalEObject)option;
+			option = (OptionObject)eResolveProxy(oldOption);
+			if (option != oldOption) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.OPERATOR__DEFAULT_OPTION, oldDefaultOption, defaultOption));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.OPERATOR__OPTION, oldOption, option));
 			}
 		}
-		return defaultOption;
+		return option;
 	}
 
 	/**
@@ -110,8 +110,8 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OptionObject basicGetDefaultOption() {
-		return defaultOption;
+	public OptionObject basicGetOption() {
+		return option;
 	}
 
 	/**
@@ -119,11 +119,11 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDefaultOption(OptionObject newDefaultOption) {
-		OptionObject oldDefaultOption = defaultOption;
-		defaultOption = newDefaultOption;
+	public void setOption(OptionObject newOption) {
+		OptionObject oldOption = option;
+		option = newOption;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.OPERATOR__DEFAULT_OPTION, oldDefaultOption, defaultOption));
+			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.OPERATOR__OPTION, oldOption, option));
 	}
 
 	/**
@@ -229,7 +229,7 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void execute(Resource resource, OptionObject option) {
+	public void execute() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -273,9 +273,9 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BenchframeworkPackage.OPERATOR__DEFAULT_OPTION:
-				if (resolve) return getDefaultOption();
-				return basicGetDefaultOption();
+			case BenchframeworkPackage.OPERATOR__OPTION:
+				if (resolve) return getOption();
+				return basicGetOption();
 			case BenchframeworkPackage.OPERATOR__RESULT:
 				if (resolve) return getResult();
 				return basicGetResult();
@@ -294,8 +294,8 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BenchframeworkPackage.OPERATOR__DEFAULT_OPTION:
-				setDefaultOption((OptionObject)newValue);
+			case BenchframeworkPackage.OPERATOR__OPTION:
+				setOption((OptionObject)newValue);
 				return;
 			case BenchframeworkPackage.OPERATOR__RESULT:
 				setResult((ResultObject)newValue);
@@ -315,8 +315,8 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.OPERATOR__DEFAULT_OPTION:
-				setDefaultOption((OptionObject)null);
+			case BenchframeworkPackage.OPERATOR__OPTION:
+				setOption((OptionObject)null);
 				return;
 			case BenchframeworkPackage.OPERATOR__RESULT:
 				setResult((ResultObject)null);
@@ -336,8 +336,8 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.OPERATOR__DEFAULT_OPTION:
-				return defaultOption != null;
+			case BenchframeworkPackage.OPERATOR__OPTION:
+				return option != null;
 			case BenchframeworkPackage.OPERATOR__RESULT:
 				return result != null;
 			case BenchframeworkPackage.OPERATOR__TEST_RUN:

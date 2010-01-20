@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getDefaultOption <em>Default Option</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}</li>
  * </ul>
@@ -30,30 +30,30 @@ import org.eclipse.emf.ecore.resource.Resource;
  */
 public interface Operator extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Default Option</b></em>' reference.
+	 * Returns the value of the '<em><b>Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Default Option</em>' reference isn't clear,
+	 * If the meaning of the '<em>Option</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Default Option</em>' reference.
-	 * @see #setDefaultOption(OptionObject)
-	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_DefaultOption()
+	 * @return the value of the '<em>Option</em>' reference.
+	 * @see #setOption(OptionObject)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_Option()
 	 * @model
 	 * @generated
 	 */
-	OptionObject getDefaultOption();
+	OptionObject getOption();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getDefaultOption <em>Default Option</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Default Option</em>' reference.
-	 * @see #getDefaultOption()
+	 * @param value the new value of the '<em>Option</em>' reference.
+	 * @see #getOption()
 	 * @generated
 	 */
-	void setDefaultOption(OptionObject value);
+	void setOption(OptionObject value);
 
 	/**
 	 * Returns the value of the '<em><b>Result</b></em>' reference.
@@ -115,6 +115,6 @@ public interface Operator extends EObject {
 	 * @model
 	 * @generated
 	 */
-	void execute(Resource resource, OptionObject option);
+	void execute();
 
 } // Operator

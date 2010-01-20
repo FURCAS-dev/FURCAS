@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 
 import java.util.Collection;
+import java.util.HashMap;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -43,6 +44,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class TestRunImpl extends EObjectImpl implements TestRun {
+
 	/**
 	 * The default value of the '{@link #getModel() <em>Model</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,7 +54,6 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 * @ordered
 	 */
 	protected static final ResourceSet MODEL_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getModel() <em>Model</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -62,7 +63,6 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 * @ordered
 	 */
 	protected ResourceSet model = MODEL_EDEFAULT;
-
 	/**
 	 * The cached value of the '{@link #getOperators() <em>Operators</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -130,7 +130,18 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getInstanceForClass(Class<?> aClass) {
+	public <returnType> returnType getInstanceForClass(Class<returnType> aClass) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean setInstanceForClass(Class<?> aClass, Object anObject) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -250,5 +261,5 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 		result.append(')');
 		return result.toString();
 	}
-
+	
 } //TestRunImpl

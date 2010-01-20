@@ -8,53 +8,47 @@
   <genPackages prefix="Benchframework" basePackage="de.hpi.sam.bp2009" disposableProviderFactory="true"
       ecorePackage="benchframework.ecore#/">
     <genDataTypes ecoreDataType="benchframework.ecore#//OutputStream"/>
+    <genDataTypes ecoreDataType="benchframework.ecore#//WizardPage"/>
+    <genDataTypes ecoreDataType="benchframework.ecore#//UIComponent"/>
     <genClasses ecoreClass="benchframework.ecore#//Engine">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/operators"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/results"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/generators"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/benchMarkers"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/userInterfaces"/>
-      <genOperations ecoreOperation="benchframework.ecore#//Engine/benchmark">
-        <genParameters ecoreParameter="benchframework.ecore#//Engine/benchmark/outputStream"/>
-      </genOperations>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Engine/testRuns"/>
+      <genOperations ecoreOperation="benchframework.ecore#//Engine/benchmark"/>
     </genClasses>
     <genClasses image="false" ecoreClass="benchframework.ecore#//Operator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Operator/defaultOption"/>
-      <genOperations ecoreOperation="benchframework.ecore#//Operator/execute">
-        <genParameters ecoreParameter="benchframework.ecore#//Operator/execute/resource"/>
-        <genParameters ecoreParameter="benchframework.ecore#//Operator/execute/option"/>
-      </genOperations>
-    </genClasses>
-    <genClasses image="false" ecoreClass="benchframework.ecore#//Generator">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Generator/defaultOption"/>
-      <genOperations ecoreOperation="benchframework.ecore#//Generator/execute">
-        <genParameters ecoreParameter="benchframework.ecore#//Generator/execute/option"/>
-      </genOperations>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Operator/option"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Operator/result"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//Operator/testRun"/>
+      <genOperations ecoreOperation="benchframework.ecore#//Operator/execute"/>
     </genClasses>
     <genClasses image="false" ecoreClass="benchframework.ecore#//ResultProcessor">
-      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/addRun">
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/resource"/>
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/generatorOption"/>
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/operatorOption"/>
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/addRun/benchmarker"/>
-      </genOperations>
-      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/streamTo">
-        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/streamTo/out"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute benchframework.ecore#//ResultProcessor/resultPage"/>
+      <genOperations ecoreOperation="benchframework.ecore#//ResultProcessor/showResults">
+        <genParameters ecoreParameter="benchframework.ecore#//ResultProcessor/showResults/resultObjects"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="benchframework.ecore#//OptionObject">
-      <genOperations ecoreOperation="benchframework.ecore#//OptionObject/getPropertyMap"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute benchframework.ecore#//OptionObject/wizardPage"/>
+      <genOperations ecoreOperation="benchframework.ecore#//OptionObject/getOptionMap"/>
     </genClasses>
     <genClasses ecoreClass="benchframework.ecore#//ResultObject">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute benchframework.ecore#//ResultObject/resultDisplay"/>
       <genOperations ecoreOperation="benchframework.ecore#//ResultObject/getPropertyMap"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="benchframework.ecore#//BenchMarker">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//BenchMarker/result"/>
-      <genOperations ecoreOperation="benchframework.ecore#//BenchMarker/start"/>
-      <genOperations ecoreOperation="benchframework.ecore#//BenchMarker/end"/>
-    </genClasses>
     <genClasses image="false" ecoreClass="benchframework.ecore#//UserInterface">
-      <genOperations ecoreOperation="benchframework.ecore#//UserInterface/startUI"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//UserInterface/engine"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//UserInterface/availableOperators"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//UserInterface/resultProcessor"/>
+    </genClasses>
+    <genClasses ecoreClass="benchframework.ecore#//TestRun">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute benchframework.ecore#//TestRun/model"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//TestRun/operators"/>
+      <genOperations ecoreOperation="benchframework.ecore#//TestRun/getInstanceForClass">
+        <genParameters ecoreParameter="benchframework.ecore#//TestRun/getInstanceForClass/aClass"/>
+      </genOperations>
+      <genOperations ecoreOperation="benchframework.ecore#//TestRun/setInstanceForClass">
+        <genParameters ecoreParameter="benchframework.ecore#//TestRun/setInstanceForClass/class"/>
+        <genParameters ecoreParameter="benchframework.ecore#//TestRun/setInstanceForClass/object"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

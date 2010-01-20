@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.impl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.Engine;
+import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 
 import java.util.Collection;
