@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  de.hpi.sam.bp2009.solution.eventManager;visibility:=reexport,
- de.hpi.sam.bp2009.solution.events;visibility:=reexport,
  de.hpi.sam.bp2009.solution.impactAnalyzer;bundle-version="1.0.0",
  org.eclipse.emf.query;bundle-version="1.2.100",
  org.eclipse.emf.query.ocl;bundle-version="1.2.0"

@@ -10,7 +10,7 @@ import de.hpi.sam.bp2009.solution.eventListener.EventListener;
 import de.hpi.sam.bp2009.solution.eventListener.EventListenerFactory;
 import de.hpi.sam.bp2009.solution.eventListener.EventListenerPackage;
 
-import de.hpi.sam.bp2009.solution.events.EventsPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
@@ -79,7 +79,7 @@ public class EventListenerPackageImpl extends EPackageImpl implements EventListe
 		isInited = true;
 
 		// Initialize simple dependencies
-		EventsPackage.eINSTANCE.eClass();
+		EventManagerPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		theEventListenerPackage.createPackageContents();
@@ -160,7 +160,7 @@ public class EventListenerPackageImpl extends EPackageImpl implements EventListe
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EventsPackage theEventsPackage = (EventsPackage)EPackage.Registry.INSTANCE.getEPackage(EventsPackage.eNS_URI);
+		EventManagerPackage theEventsPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
 
 		// Create type parameters
 

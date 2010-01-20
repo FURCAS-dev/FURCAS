@@ -6,7 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventListener;
 
-import de.hpi.sam.bp2009.solution.events.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 
 import org.eclipse.emf.ecore.EObject;
 
