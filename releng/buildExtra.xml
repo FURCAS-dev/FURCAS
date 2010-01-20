@@ -103,7 +103,7 @@
 			<zipfileset src="${buildDirectory}/${buildLabel}/${allZip}"
 			            dirmode="775"
 			            filemode="664"
-						includes="**/org.eclipse.ocl.all.sdk*.jar"
+						includes="**/org.eclipse.ocl.all.sdk*"
 			/>
 			<zipfileset dir="${buildDirectory}" 
 						includes="epl-v10.html, notice.html" prefix="eclipse"
