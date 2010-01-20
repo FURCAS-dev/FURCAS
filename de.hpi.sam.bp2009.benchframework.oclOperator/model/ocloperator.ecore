@@ -4,12 +4,18 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="oclOperator"
     nsURI="http://de.hpi.sam.bp2009.benchframework.oclOperator" nsPrefix="oclOperator">
   <eClassifiers xsi:type="ecore:EClass" name="OclOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="executeQueries">
       <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
       <eParameters name="option" eType="#//OclOptionObject"/>
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="constraints" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -17,6 +23,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclUtil">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="executeQueryOn" eType="#//IQueryResult">
       <eParameters name="completeConstraint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eParameters name="resource" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>

@@ -4,6 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="benchframework"
     nsURI="http://de.hpi.sam.bp2009.benchframework" nsPrefix="benchframework">
   <eClassifiers xsi:type="ecore:EClass" name="Engine">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="benchmark"/>
     <eOperations name="getRegisteredOperators">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
@@ -14,6 +17,9 @@
         eType="#//TestRun"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="execute"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="option" eType="#//OptionObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//ResultObject"/>
@@ -24,6 +30,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultProcessor" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="showResults" eType="#//WizardPage">
       <eParameters name="resultObjects">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
@@ -34,6 +43,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultPage" eType="#//WizardPage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OptionObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="getOptionMap">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -43,6 +55,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardPage" eType="#//WizardPage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultObject">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eOperations name="getPropertyMap">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -52,6 +67,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultDisplay" eType="#//UIComponent"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="engine" eType="#//Engine"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="availableOperators" upperBound="-1"
         eType="#//Operator"/>
