@@ -72,13 +72,13 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_START = 0;
 
 	/**
-	 * The feature id for the '<em><b>Default Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START__DEFAULT_OPTION = BenchframeworkPackage.OPERATOR__DEFAULT_OPTION;
+	int EXECUTION_TIME_BENCHMARKER_START__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' reference.
@@ -127,13 +127,13 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_END = 1;
 
 	/**
-	 * The feature id for the '<em><b>Default Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_END__DEFAULT_OPTION = BenchframeworkPackage.OPERATOR__DEFAULT_OPTION;
+	int EXECUTION_TIME_BENCHMARKER_END__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' reference.

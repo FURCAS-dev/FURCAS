@@ -7,7 +7,6 @@
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import org.eclipse.emf.ecore.EClass;
-
 import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;

@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
 
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
@@ -63,6 +64,12 @@ public class OclOperatorImpl extends OperatorImpl implements OclOperator {
 			OclUtil ocl = new OclUtilImpl();
 			ocl.executeQueryOn(con, resource);
 		}
+		
+	}
+
+	@Override
+	public void execute(Resource resource, OptionObject options) {
+		// TODO Auto-generated method stub
 		
 	}
 

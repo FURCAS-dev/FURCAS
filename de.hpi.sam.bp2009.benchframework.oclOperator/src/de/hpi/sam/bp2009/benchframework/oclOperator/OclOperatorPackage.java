@@ -71,13 +71,31 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_OPERATOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Default Option</b></em>' reference.
+	 * The feature id for the '<em><b>Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_OPERATOR__DEFAULT_OPTION = BenchframeworkPackage.OPERATOR__DEFAULT_OPTION;
+	int OCL_OPERATOR__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPERATOR__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPERATOR__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Operator</em>' class.
@@ -97,6 +115,15 @@ public interface OclOperatorPackage extends EPackage {
 	 * @generated
 	 */
 	int OCL_OPTION_OBJECT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Option Object</em>' class.

@@ -61,10 +61,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	protected ExecutionTimeBenchmarkerStartImpl() {
 		super();
 	}
-	private void setup() {
-		  BasicEtmConfigurator.configure();
-		  etmMonitor.start();
-		 }
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -114,6 +111,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	}
 
 	public void start() {
+		BasicEtmConfigurator.configure();
+		etmMonitor.start();
 		EtmPoint point = etmMonitor.createPoint("Run: " + measurePoints.size()+1);
 		measurePoints.add(0, point);
 	}
