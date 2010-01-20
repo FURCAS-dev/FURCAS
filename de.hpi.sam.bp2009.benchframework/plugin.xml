@@ -9,10 +9,8 @@
 -->
 
 <plugin>
-   <extension-point id="generatorExtensionPointID" name="Generator Extension Point" schema="schema/generatorExtensionPointID.exsd"/>
    <extension-point id="operatorExtensionPointID" name="Operator Extension Point" schema="schema/operatorExtensionPointID.exsd"/>
    <extension-point id="resultExtensionPointID" name="Result Extension Point" schema="schema/resultExtensionPointID.exsd"/>
-   <extension-point id="benchmarkExtensionPointID" name="Benchmark Extension Point" schema="schema/benchmarkExtensionPointID.exsd"/>
    <extension-point id="userInterfaceExtensionPointID" name="user interface extension point" schema="schema/userInterfaceExtensionPointID.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">

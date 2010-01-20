@@ -230,6 +230,24 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOperator_Name() {
+		return (EAttribute)operatorEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOperator_Description() {
+		return (EAttribute)operatorEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getResultProcessor() {
 		return resultProcessorEClass;
 	}
@@ -404,6 +422,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEReference(operatorEClass, OPERATOR__OPTION);
 		createEReference(operatorEClass, OPERATOR__RESULT);
 		createEReference(operatorEClass, OPERATOR__TEST_RUN);
+		createEAttribute(operatorEClass, OPERATOR__NAME);
+		createEAttribute(operatorEClass, OPERATOR__DESCRIPTION);
 
 		resultProcessorEClass = createEClass(RESULT_PROCESSOR);
 		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__RESULT_PAGE);
@@ -464,19 +484,27 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		addEOperation(engineEClass, null, "benchmark", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		EOperation op = addEOperation(engineEClass, null, "getRegisteredOperators", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType(this.getOperator());
+		g1.getETypeArguments().add(g2);
+		initEOperation(op, g1);
+
 		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperator_Option(), this.getOptionObject(), null, "option", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_Result(), this.getResultObject(), null, "result", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_TestRun(), this.getTestRun(), this.getTestRun_Operators(), "testRun", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperator_Name(), ecorePackage.getEString(), "name", "", 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOperator_Description(), ecorePackage.getEString(), "description", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(operatorEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultProcessor_ResultPage(), this.getWizardPage(), "resultPage", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(resultProcessorEClass, this.getWizardPage(), "showResults", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(this.getResultObject());
+		op = addEOperation(resultProcessorEClass, this.getWizardPage(), "showResults", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(this.getResultObject());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "resultObjects", 0, 1, IS_UNIQUE, IS_ORDERED);
 
@@ -504,7 +532,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserInterface_Engine(), this.getEngine(), null, "engine", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getUserInterface_AvailableOperators(), this.getOperator(), null, "availableOperators", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUserInterface_AvailableOperators(), this.getOperator(), null, "availableOperators", null, 0, -1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUserInterface_ResultProcessor(), this.getResultProcessor(), null, "resultProcessor", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testRunEClass, TestRun.class, "TestRun", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

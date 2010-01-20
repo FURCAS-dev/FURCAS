@@ -9,11 +9,11 @@ import org.eclipse.ui.IWorkbench;
 public class TestrunWizard extends Wizard implements INewWizard
 {
 
-	StartPage startPage;
-	OptionPage optionPage;
-	FinalPage finalPage;
-	
-	TestrunModel model;
+//	StartPage startPage;
+//	OptionPage optionPage;
+//	FinalPage finalPage;
+//	
+//	TestrunModel model;
 	
 	protected IStructuredSelection selection;
 	
@@ -21,17 +21,17 @@ public class TestrunWizard extends Wizard implements INewWizard
 
 	public TestrunWizard() {
 		super();
-		model = new TestrunModel();
+//		model = new TestrunModel();
 	}
 	
 	public void addPages()
 	{
-		startPage = new StartPage(workbench, selection);
-		addPage(startPage);
-		optionPage = new OptionPage("Option Page");
-		addPage(optionPage);
-		finalPage = new FinalPage("Final Page");
-		addPage(finalPage);
+//		startPage = new StartPage(workbench, selection);
+//		addPage(startPage);
+//		optionPage = new OptionPage("Option Page");
+//		addPage(optionPage);
+//		finalPage = new FinalPage("Final Page");
+//		addPage(finalPage);
 	}
 
 	/**

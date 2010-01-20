@@ -51,4 +51,12 @@ public interface Engine extends EObject {
 	 */
 	void benchmark();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" many="false"
+	 * @generated
+	 */
+	EList<Operator> getRegisteredOperators();
+
 } // Engine

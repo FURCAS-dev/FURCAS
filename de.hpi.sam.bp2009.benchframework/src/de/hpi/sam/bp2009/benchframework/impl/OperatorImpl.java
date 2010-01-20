@@ -33,6 +33,8 @@ import org.eclipse.emf.ecore.resource.Resource;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getOption <em>Option</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getResult <em>Result</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getTestRun <em>Test Run</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getName <em>Name</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -68,6 +70,46 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	 * @ordered
 	 */
 	protected TestRun testRun;
+
+	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String NAME_EDEFAULT = "";
+
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String DESCRIPTION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getDescription()
+	 * @generated
+	 * @ordered
+	 */
+	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,6 +271,48 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.OPERATOR__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDescription(String newDescription) {
+		String oldDescription = description;
+		description = newDescription;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.OPERATOR__DESCRIPTION, oldDescription, description));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public void execute() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -282,6 +366,10 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 			case BenchframeworkPackage.OPERATOR__TEST_RUN:
 				if (resolve) return getTestRun();
 				return basicGetTestRun();
+			case BenchframeworkPackage.OPERATOR__NAME:
+				return getName();
+			case BenchframeworkPackage.OPERATOR__DESCRIPTION:
+				return getDescription();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -302,6 +390,12 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 				return;
 			case BenchframeworkPackage.OPERATOR__TEST_RUN:
 				setTestRun((TestRun)newValue);
+				return;
+			case BenchframeworkPackage.OPERATOR__NAME:
+				setName((String)newValue);
+				return;
+			case BenchframeworkPackage.OPERATOR__DESCRIPTION:
+				setDescription((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,6 +418,12 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 			case BenchframeworkPackage.OPERATOR__TEST_RUN:
 				setTestRun((TestRun)null);
 				return;
+			case BenchframeworkPackage.OPERATOR__NAME:
+				setName(NAME_EDEFAULT);
+				return;
+			case BenchframeworkPackage.OPERATOR__DESCRIPTION:
+				setDescription(DESCRIPTION_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -342,8 +442,30 @@ public abstract class OperatorImpl extends EObjectImpl implements Operator {
 				return result != null;
 			case BenchframeworkPackage.OPERATOR__TEST_RUN:
 				return testRun != null;
+			case BenchframeworkPackage.OPERATOR__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case BenchframeworkPackage.OPERATOR__DESCRIPTION:
+				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (name: ");
+		result.append(name);
+		result.append(", description: ");
+		result.append(description);
+		result.append(')');
+		return result.toString();
 	}
 
 } //OperatorImpl

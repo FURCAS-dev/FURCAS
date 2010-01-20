@@ -30,7 +30,7 @@ public class ListPage extends WizardPage {
 		//create the widgets for the page
 		Composite composite = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
+        layout.numColumns = 3;
         composite.setLayout(layout);
         table = new Table(composite, SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
         table.setLinesVisible(true);

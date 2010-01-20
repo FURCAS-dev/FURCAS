@@ -12,13 +12,16 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 import de.hpi.sam.bp2009.benchframework.UserInterface;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,14 +50,14 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 	protected Engine engine;
 
 	/**
-	 * The cached value of the '{@link #getAvailableOperators() <em>Available Operators</em>}' reference.
+	 * The cached value of the '{@link #getAvailableOperators() <em>Available Operators</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getAvailableOperators()
 	 * @generated
 	 * @ordered
 	 */
-	protected Operator availableOperators;
+	protected EList<Operator> availableOperators;
 
 	/**
 	 * The cached value of the '{@link #getResultProcessor() <em>Result Processor</em>}' reference.
@@ -128,37 +131,11 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operator getAvailableOperators() {
-		if (availableOperators != null && availableOperators.eIsProxy()) {
-			InternalEObject oldAvailableOperators = (InternalEObject)availableOperators;
-			availableOperators = (Operator)eResolveProxy(oldAvailableOperators);
-			if (availableOperators != oldAvailableOperators) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS, oldAvailableOperators, availableOperators));
-			}
+	public EList<Operator> getAvailableOperators() {
+		if (availableOperators == null) {
+			availableOperators = new EObjectResolvingEList<Operator>(Operator.class, this, BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS);
 		}
 		return availableOperators;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Operator basicGetAvailableOperators() {
-		return availableOperators;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAvailableOperators(Operator newAvailableOperators) {
-		Operator oldAvailableOperators = availableOperators;
-		availableOperators = newAvailableOperators;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS, oldAvailableOperators, availableOperators));
 	}
 
 	/**
@@ -211,8 +188,7 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 				if (resolve) return getEngine();
 				return basicGetEngine();
 			case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-				if (resolve) return getAvailableOperators();
-				return basicGetAvailableOperators();
+				return getAvailableOperators();
 			case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
 				if (resolve) return getResultProcessor();
 				return basicGetResultProcessor();
@@ -225,6 +201,7 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -232,7 +209,8 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 				setEngine((Engine)newValue);
 				return;
 			case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-				setAvailableOperators((Operator)newValue);
+				getAvailableOperators().clear();
+				getAvailableOperators().addAll((Collection<? extends Operator>)newValue);
 				return;
 			case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
 				setResultProcessor((ResultProcessor)newValue);
@@ -253,7 +231,7 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 				setEngine((Engine)null);
 				return;
 			case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-				setAvailableOperators((Operator)null);
+				getAvailableOperators().clear();
 				return;
 			case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
 				setResultProcessor((ResultProcessor)null);
@@ -273,7 +251,7 @@ public abstract class UserInterfaceImpl extends EObjectImpl implements UserInter
 			case BenchframeworkPackage.USER_INTERFACE__ENGINE:
 				return engine != null;
 			case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-				return availableOperators != null;
+				return availableOperators != null && !availableOperators.isEmpty();
 			case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
 				return resultProcessor != null;
 		}

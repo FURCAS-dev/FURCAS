@@ -21,6 +21,8 @@ import org.eclipse.emf.ecore.resource.Resource;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getOption <em>Option</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getResult <em>Result</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getTestRun <em>Test Run</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getName <em>Name</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.Operator#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
  *
@@ -108,6 +110,59 @@ public interface Operator extends EObject {
 	 * @generated
 	 */
 	void setTestRun(TestRun value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * The default value is <code>""</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_Name()
+	 * @model default=""
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Description</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator_Description()
+	 * @model
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Operator#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 	/**
 	 * <!-- begin-user-doc -->

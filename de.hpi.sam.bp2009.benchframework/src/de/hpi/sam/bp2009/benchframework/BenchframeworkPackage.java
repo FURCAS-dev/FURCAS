@@ -126,13 +126,31 @@ public interface BenchframeworkPackage extends EPackage {
 	int OPERATOR__TEST_RUN = 2;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__NAME = 3;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR__DESCRIPTION = 4;
+
+	/**
 	 * The number of structural features of the '<em>Operator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATOR_FEATURE_COUNT = 3;
+	int OPERATOR_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl <em>Result Processor</em>}' class.
@@ -238,7 +256,7 @@ public interface BenchframeworkPackage extends EPackage {
 	int USER_INTERFACE__ENGINE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Available Operators</b></em>' reference.
+	 * The feature id for the '<em><b>Available Operators</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -397,6 +415,28 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getOperator_TestRun();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.Operator#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator#getName()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EAttribute getOperator_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.Operator#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator#getDescription()
+	 * @see #getOperator()
+	 * @generated
+	 */
+	EAttribute getOperator_Description();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.ResultProcessor <em>Result Processor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -481,10 +521,10 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getUserInterface_Engine();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.UserInterface#getAvailableOperators <em>Available Operators</em>}'.
+	 * Returns the meta object for the reference list '{@link de.hpi.sam.bp2009.benchframework.UserInterface#getAvailableOperators <em>Available Operators</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Available Operators</em>'.
+	 * @return the meta object for the reference list '<em>Available Operators</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.UserInterface#getAvailableOperators()
 	 * @see #getUserInterface()
 	 * @generated
@@ -642,6 +682,22 @@ public interface BenchframeworkPackage extends EPackage {
 		EReference OPERATOR__TEST_RUN = eINSTANCE.getOperator_TestRun();
 
 		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR__NAME = eINSTANCE.getOperator_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OPERATOR__DESCRIPTION = eINSTANCE.getOperator_Description();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl <em>Result Processor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -714,7 +770,7 @@ public interface BenchframeworkPackage extends EPackage {
 		EReference USER_INTERFACE__ENGINE = eINSTANCE.getUserInterface_Engine();
 
 		/**
-		 * The meta object literal for the '<em><b>Available Operators</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Available Operators</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

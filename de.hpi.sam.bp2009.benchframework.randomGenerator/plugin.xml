@@ -16,11 +16,5 @@
             class="de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage"
             genModel="model/randomGenerator.genmodel"/>
    </extension>
-   <extension
-         point="de.hpi.sam.bp2009.benchframework.generatorExtensionPointID">
-      <generator
-            generatorClass="de.hpi.sam.bp2009.benchframework.randomGenerator.impl.RandomGeneratorImpl">
-      </generator>
-   </extension>
 
 </plugin>

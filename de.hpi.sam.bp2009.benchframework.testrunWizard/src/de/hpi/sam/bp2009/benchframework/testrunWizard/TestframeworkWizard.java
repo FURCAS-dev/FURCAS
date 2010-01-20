@@ -20,153 +20,43 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.Engine;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 import de.hpi.sam.bp2009.benchframework.UserInterface;
 
-public class TestframeworkWizard extends Wizard implements INewWizard, UserInterface {
+public class TestframeworkWizard extends Wizard implements INewWizard {
 
 	ListPage listPage;
 	ChooseModulePage chooseModulePage;
+	private WizardUserInterfaceImpl intImpl;
 	
+	public WizardUserInterfaceImpl getIntImpl() {
+		return intImpl;
+	}
+
+	public void setIntImpl(WizardUserInterfaceImpl intImpl) {
+		this.intImpl = intImpl;
+	}
+
 	public void addPages() {
         listPage = new ListPage("Module List");
         addPage(listPage);
         chooseModulePage = new ChooseModulePage("Add Module");
         addPage(chooseModulePage);
 	}
+
 	@Override
 	public boolean performFinish() {
-
+		// TODO Auto-generated method stub
 		return false;
 	}
-	public boolean canFinish() {
-		return false;		
-	}
+
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		
-		
+		this.intImpl= new WizardUserInterfaceImpl();
+		this.intImpl.setEngine(BenchframeworkFactory.eINSTANCE.createEngine());
 	}
-	@Override
-	public Operator getAvailableOperators() {
-		
-		return null;
-	}
-	@Override
-	public Engine getEngine() {
-		
-		return null;
-	}
-	@Override
-	public ResultProcessor getResultProcessor() {
-		
-		return null;
-	}
-	@Override
-	public void setAvailableOperators(Operator value) {
-		
-		
-	}
-	@Override
-	public void setEngine(Engine value) {
-		
-		
-	}
-	@Override
-	public void setResultProcessor(ResultProcessor value) {
-		
-		
-	}
-	@Override
-	public TreeIterator<EObject> eAllContents() {
-		
-		return null;
-	}
-	@Override
-	public EClass eClass() {
-		
-		return null;
-	}
-	@Override
-	public EObject eContainer() {
-		
-		return null;
-	}
-	@Override
-	public EStructuralFeature eContainingFeature() {
-		
-		return null;
-	}
-	@Override
-	public EReference eContainmentFeature() {
-		
-		return null;
-	}
-	@Override
-	public EList<EObject> eContents() {
-		
-		return null;
-	}
-	@Override
-	public EList<EObject> eCrossReferences() {
-		
-		return null;
-	}
-	@Override
-	public Object eGet(EStructuralFeature feature) {
-		
-		return null;
-	}
-	@Override
-	public Object eGet(EStructuralFeature feature, boolean resolve) {
-		
-		return null;
-	}
-	@Override
-	public boolean eIsProxy() {
-		
-		return false;
-	}
-	@Override
-	public boolean eIsSet(EStructuralFeature feature) {
-		
-		return false;
-	}
-	@Override
-	public Resource eResource() {
-		
-		return null;
-	}
-	@Override
-	public void eSet(EStructuralFeature feature, Object newValue) {
-		
-		
-	}
-	@Override
-	public void eUnset(EStructuralFeature feature) {
-		
-		
-	}
-	@Override
-	public EList<Adapter> eAdapters() {
-		
-		return null;
-	}
-	@Override
-	public boolean eDeliver() {
-		
-		return false;
-	}
-	@Override
-	public void eNotify(Notification notification) {
 
-		
-	}
-	@Override
-	public void eSetDeliver(boolean deliver) {
-	
-		
-	}
 }

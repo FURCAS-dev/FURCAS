@@ -72,6 +72,8 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 * @ordered
 	 */
 	protected EList<Operator> operators;
+	
+	private HashMap<Class, Object> mapClassToObject= new HashMap<Class, Object>();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,23 +130,29 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public <returnType> returnType getInstanceForClass(Class<returnType> aClass) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Object rtr = this.mapClassToObject.get(aClass);
+		try {
+			return (returnType)rtr;
+		} catch (ClassCastException e) {
+			this.mapClassToObject.remove(aClass);
+			return null;
+		}
+	
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
 	 */
 	public boolean setInstanceForClass(Class<?> aClass, Object anObject) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if(! (anObject.getClass().equals(aClass)))
+			throw new IllegalArgumentException(new ClassCastException("Wrong Object for given class"));
+		boolean rtr=this.mapClassToObject.containsKey(aClass);
+		this.mapClassToObject.put(aClass, anObject);
+		return rtr;
 	}
 
 	/**

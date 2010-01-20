@@ -5,6 +5,11 @@
     nsURI="http://de.hpi.sam.bp2009.benchframework" nsPrefix="benchframework">
   <eClassifiers xsi:type="ecore:EClass" name="Engine">
     <eOperations name="benchmark"/>
+    <eOperations name="getRegisteredOperators">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="#//Operator"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testRuns" upperBound="-1"
         eType="#//TestRun"/>
   </eClassifiers>
@@ -14,6 +19,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//ResultObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testRun" eType="#//TestRun"
         eOpposite="#//TestRun/operators"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ResultProcessor" abstract="true">
     <eOperations name="showResults" eType="#//WizardPage">
@@ -45,7 +53,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="engine" eType="#//Engine"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="availableOperators" eType="#//Operator"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="availableOperators" upperBound="-1"
+        eType="#//Operator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="resultProcessor" eType="#//ResultProcessor"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestRun">

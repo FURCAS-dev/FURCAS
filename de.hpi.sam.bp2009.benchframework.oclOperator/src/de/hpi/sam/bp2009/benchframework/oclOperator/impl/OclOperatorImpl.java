@@ -35,7 +35,7 @@ public class OclOperatorImpl extends OperatorImpl implements OclOperator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected OclOperatorImpl() {
+	public OclOperatorImpl() {
 		super();
 	}
 

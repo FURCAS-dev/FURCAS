@@ -16,11 +16,5 @@
             class="executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage"
             genModel="model/executionTimeBenchmarker.genmodel"/>
    </extension>
-   <extension
-         point="de.hpi.sam.bp2009.benchframework.benchmarkExtensionPointID">
-      <benchmark
-            benchmarkClass="executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerImpl">
-      </benchmark>
-   </extension>
 
 </plugin>

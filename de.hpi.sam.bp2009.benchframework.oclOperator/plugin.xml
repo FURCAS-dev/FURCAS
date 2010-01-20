@@ -19,7 +19,7 @@
    <extension
          point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
       <operator
-            operatorClass="de.hpi.sam.bp2009.benchframework.ocloperator.OperatorImpl:1">
+            operatorClass="de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl">
       </operator>
    </extension>
 

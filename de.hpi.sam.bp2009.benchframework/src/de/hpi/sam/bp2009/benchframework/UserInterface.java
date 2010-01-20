@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -54,30 +55,20 @@ public interface UserInterface extends EObject {
 	void setEngine(Engine value);
 
 	/**
-	 * Returns the value of the '<em><b>Available Operators</b></em>' reference.
+	 * Returns the value of the '<em><b>Available Operators</b></em>' reference list.
+	 * The list contents are of type {@link de.hpi.sam.bp2009.benchframework.Operator}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Available Operators</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Available Operators</em>' reference.
-	 * @see #setAvailableOperators(Operator)
+	 * @return the value of the '<em>Available Operators</em>' reference list.
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getUserInterface_AvailableOperators()
 	 * @model
 	 * @generated
 	 */
-	Operator getAvailableOperators();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.UserInterface#getAvailableOperators <em>Available Operators</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Available Operators</em>' reference.
-	 * @see #getAvailableOperators()
-	 * @generated
-	 */
-	void setAvailableOperators(Operator value);
+	EList<Operator> getAvailableOperators();
 
 	/**
 	 * Returns the value of the '<em><b>Result Processor</b></em>' reference.

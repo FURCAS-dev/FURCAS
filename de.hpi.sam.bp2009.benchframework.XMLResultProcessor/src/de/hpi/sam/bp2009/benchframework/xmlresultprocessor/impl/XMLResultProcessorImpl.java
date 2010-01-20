@@ -20,7 +20,6 @@ import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import de.hpi.sam.bp2009.benchframework.BenchMarker;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl;
 
@@ -70,7 +69,6 @@ public class XMLResultProcessorImpl extends ResultProcessorImpl implements XMLRe
 		return XmlresultprocessorPackage.Literals.XML_RESULT_PROCESSOR;
 	}
 	
-	@Override
 	public boolean addRun(Resource resource, OptionObject generatorOption,
 			OptionObject operatorOption, BenchMarker benchmarker) {
 		
@@ -84,8 +82,8 @@ public class XMLResultProcessorImpl extends ResultProcessorImpl implements XMLRe
 			return false;
 		
 		Element em = document.createElement(RUNID);
-		em.appendChild(generatePropertyMap(GENERATOROPTIONID,OPTIONID, generatorOption.getPropertyMap()));
-		em.appendChild(generatePropertyMap(OPERATOROPTIONID,OPTIONID, operatorOption.getPropertyMap()));
+		em.appendChild(generatePropertyMap(GENERATOROPTIONID,OPTIONID, generatorOption.getOptionMap()));
+		em.appendChild(generatePropertyMap(OPERATOROPTIONID,OPTIONID, operatorOption.getOptionMap()));
 		em.appendChild(generatePropertyMap(RESULTID,RESULTELEMENTID, benchmarker.getResult().getPropertyMap()));
 		Element benchmarkerelement = document.createElement(BENCHMARKERID);
 		benchmarkerelement.setAttribute(NAMEID, benchmarker.getClass().getName());
