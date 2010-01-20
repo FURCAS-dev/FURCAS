@@ -10,9 +10,12 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGenerator;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
+import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -30,6 +33,13 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 	 * @generated
 	 */
 	private EClass randomGeneratorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass randomGeneratorOptionObjectEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -109,6 +119,33 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getRandomGeneratorOptionObject() {
+		return randomGeneratorOptionObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRandomGeneratorOptionObject_MetaModel() {
+		return (EAttribute)randomGeneratorOptionObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getRandomGeneratorOptionObject_InstanceParameters() {
+		return (EAttribute)randomGeneratorOptionObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public RandomGeneratorFactory getRandomGeneratorFactory() {
 		return (RandomGeneratorFactory)getEFactoryInstance();
 	}
@@ -133,6 +170,10 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 
 		// Create classes and their features
 		randomGeneratorEClass = createEClass(RANDOM_GENERATOR);
+
+		randomGeneratorOptionObjectEClass = createEClass(RANDOM_GENERATOR_OPTION_OBJECT);
+		createEAttribute(randomGeneratorOptionObjectEClass, RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL);
+		createEAttribute(randomGeneratorOptionObjectEClass, RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS);
 	}
 
 	/**
@@ -166,10 +207,20 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		randomGeneratorEClass.getESuperTypes().add(theBenchframeworkPackage.getGenerator());
+		randomGeneratorEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
+		randomGeneratorOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getOptionObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(randomGeneratorEClass, RandomGenerator.class, "RandomGenerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(randomGeneratorOptionObjectEClass, RandomGeneratorOptionObject.class, "RandomGeneratorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getRandomGeneratorOptionObject_MetaModel(), ecorePackage.getEResourceSet(), "metaModel", null, 0, 1, RandomGeneratorOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getRandomGeneratorOptionObject_InstanceParameters(), g1, "instanceParameters", null, 0, 1, RandomGeneratorOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

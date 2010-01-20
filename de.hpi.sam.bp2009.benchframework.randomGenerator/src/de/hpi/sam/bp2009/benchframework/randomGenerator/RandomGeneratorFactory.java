@@ -35,6 +35,15 @@ public interface RandomGeneratorFactory extends EFactory {
 	RandomGenerator createRandomGenerator();
 
 	/**
+	 * Returns a new object of class '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Option Object</em>'.
+	 * @generated
+	 */
+	RandomGeneratorOptionObject createRandomGeneratorOptionObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

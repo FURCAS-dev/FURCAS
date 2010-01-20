@@ -6,8 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator.util;
 
-import de.hpi.sam.bp2009.benchframework.Generator;
-
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -78,8 +78,16 @@ public class RandomGeneratorAdapterFactory extends AdapterFactoryImpl {
 				return createRandomGeneratorAdapter();
 			}
 			@Override
-			public Adapter caseGenerator(Generator object) {
-				return createGeneratorAdapter();
+			public Adapter caseRandomGeneratorOptionObject(RandomGeneratorOptionObject object) {
+				return createRandomGeneratorOptionObjectAdapter();
+			}
+			@Override
+			public Adapter caseOperator(Operator object) {
+				return createOperatorAdapter();
+			}
+			@Override
+			public Adapter caseOptionObject(OptionObject object) {
+				return createOptionObjectAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -116,16 +124,44 @@ public class RandomGeneratorAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Generator <em>Generator</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject <em>Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.Generator
+	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject
 	 * @generated
 	 */
-	public Adapter createGeneratorAdapter() {
+	public Adapter createRandomGeneratorOptionObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator
+	 * @generated
+	 */
+	public Adapter createOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.OptionObject
+	 * @generated
+	 */
+	public Adapter createOptionObjectAdapter() {
 		return null;
 	}
 

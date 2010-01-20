@@ -61,6 +61,7 @@ public class RandomGeneratorFactoryImpl extends EFactoryImpl implements RandomGe
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR: return createRandomGenerator();
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT: return createRandomGeneratorOptionObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,6 +75,16 @@ public class RandomGeneratorFactoryImpl extends EFactoryImpl implements RandomGe
 	public RandomGenerator createRandomGenerator() {
 		RandomGeneratorImpl randomGenerator = new RandomGeneratorImpl();
 		return randomGenerator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public RandomGeneratorOptionObject createRandomGeneratorOptionObject() {
+		RandomGeneratorOptionObjectImpl randomGeneratorOptionObject = new RandomGeneratorOptionObjectImpl();
+		return randomGeneratorOptionObject;
 	}
 
 	/**

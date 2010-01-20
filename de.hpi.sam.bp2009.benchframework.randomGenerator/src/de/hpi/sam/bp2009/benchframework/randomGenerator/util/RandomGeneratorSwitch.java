@@ -6,8 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator.util;
 
-import de.hpi.sam.bp2009.benchframework.Generator;
-
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.*;
 
 import java.util.List;
@@ -92,7 +92,14 @@ public class RandomGeneratorSwitch<T> {
 			case RandomGeneratorPackage.RANDOM_GENERATOR: {
 				RandomGenerator randomGenerator = (RandomGenerator)theEObject;
 				T result = caseRandomGenerator(randomGenerator);
-				if (result == null) result = caseGenerator(randomGenerator);
+				if (result == null) result = caseOperator(randomGenerator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT: {
+				RandomGeneratorOptionObject randomGeneratorOptionObject = (RandomGeneratorOptionObject)theEObject;
+				T result = caseRandomGeneratorOptionObject(randomGeneratorOptionObject);
+				if (result == null) result = caseOptionObject(randomGeneratorOptionObject);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -116,17 +123,47 @@ public class RandomGeneratorSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Generator</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Option Object</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Generator</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Option Object</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseGenerator(Generator object) {
+	public T caseRandomGeneratorOptionObject(RandomGeneratorOptionObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperator(Operator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOptionObject(OptionObject object) {
 		return null;
 	}
 
