@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
+import java.awt.Composite;
 import java.util.ArrayList;
 
 import org.eclipse.core.runtime.CoreException;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -28,8 +30,12 @@ import de.hpi.sam.bp2009.benchframework.UserInterface;
 
 public class TestframeworkWizard extends Wizard implements INewWizard {
 
-	ListPage listPage;
-	ChooseModulePage chooseModulePage;
+	private ListPage listPage = new ListPage("Module List");
+	private ChooseModulePage chooseModulePage;
+	
+	protected IStructuredSelection selection;
+	
+	protected IWorkbench workbench;
 	private WizardUserInterfaceImpl intImpl;
 	
 	public WizardUserInterfaceImpl getIntImpl() {
@@ -40,13 +46,26 @@ public class TestframeworkWizard extends Wizard implements INewWizard {
 		this.intImpl = intImpl;
 	}
 
+	
 	public void addPages() {
-        listPage = new ListPage("Module List");
-        addPage(listPage);
-        chooseModulePage = new ChooseModulePage("Add Module");
+        try {
+			addPage(listPage);
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}  
+        try {
+			chooseModulePage = new ChooseModulePage("Add Module");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         addPage(chooseModulePage);
 	}
 
+	public IWizardPage getChooseModulePage(){
+		return chooseModulePage;
+	}
 	@Override
 	public boolean performFinish() {
 		// TODO Auto-generated method stub
@@ -55,8 +74,13 @@ public class TestframeworkWizard extends Wizard implements INewWizard {
 
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
+		
+		this.workbench = workbench;
+		this.selection = selection;
 		this.intImpl= new WizardUserInterfaceImpl();
 		this.intImpl.setEngine(BenchframeworkFactory.eINSTANCE.createEngine());
+		
+		
 	}
 
 }

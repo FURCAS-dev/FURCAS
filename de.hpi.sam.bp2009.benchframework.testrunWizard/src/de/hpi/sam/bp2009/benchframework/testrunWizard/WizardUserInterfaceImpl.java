@@ -9,6 +9,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.IWorkbench;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.Engine;
@@ -61,10 +63,10 @@ public class WizardUserInterfaceImpl extends EObjectImpl implements UserInterfac
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		@Override
-		protected EClass eStaticClass() {
-			return BenchframeworkPackage.Literals.USER_INTERFACE;
-		}
+//		@Override
+//		protected EClass eStaticClass() {
+//			return BenchframeworkPackage.Literals.USER_INTERFACE;
+//		}
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -83,14 +85,14 @@ public class WizardUserInterfaceImpl extends EObjectImpl implements UserInterfac
 			return engine;
 		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public Engine basicGetEngine() {
-			return engine;
-		}
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		public Engine basicGetEngine() {
+//			return engine;
+//		}
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -134,14 +136,14 @@ public class WizardUserInterfaceImpl extends EObjectImpl implements UserInterfac
 			return resultProcessor;
 		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		public ResultProcessor basicGetResultProcessor() {
-			return resultProcessor;
-		}
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		public ResultProcessor basicGetResultProcessor() {
+//			return resultProcessor;
+//		}
 
 		/**
 		 * <!-- begin-user-doc -->
@@ -155,86 +157,86 @@ public class WizardUserInterfaceImpl extends EObjectImpl implements UserInterfac
 				eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR, oldResultProcessor, resultProcessor));
 		}
 
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public Object eGet(int featureID, boolean resolve, boolean coreType) {
-			switch (featureID) {
-				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
-					if (resolve) return getEngine();
-					return basicGetEngine();
-				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-					return getAvailableOperators();
-				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
-					if (resolve) return getResultProcessor();
-					return basicGetResultProcessor();
-			}
-			return super.eGet(featureID, resolve, coreType);
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@SuppressWarnings("unchecked")
-		@Override
-		public void eSet(int featureID, Object newValue) {
-			switch (featureID) {
-				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
-					setEngine((Engine)newValue);
-					return;
-				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-					getAvailableOperators().clear();
-					getAvailableOperators().addAll((Collection<? extends Operator>)newValue);
-					return;
-				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
-					setResultProcessor((ResultProcessor)newValue);
-					return;
-			}
-			super.eSet(featureID, newValue);
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public void eUnset(int featureID) {
-			switch (featureID) {
-				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
-					setEngine((Engine)null);
-					return;
-				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-					getAvailableOperators().clear();
-					return;
-				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
-					setResultProcessor((ResultProcessor)null);
-					return;
-			}
-			super.eUnset(featureID);
-		}
-
-		/**
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		@Override
-		public boolean eIsSet(int featureID) {
-			switch (featureID) {
-				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
-					return engine != null;
-				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
-					return availableOperators != null && !availableOperators.isEmpty();
-				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
-					return resultProcessor != null;
-			}
-			return super.eIsSet(featureID);
-		}
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		@Override
+//		public Object eGet(int featureID, boolean resolve, boolean coreType) {
+//			switch (featureID) {
+//				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
+//					if (resolve) return getEngine();
+//					return basicGetEngine();
+//				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
+//					return getAvailableOperators();
+//				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
+//					if (resolve) return getResultProcessor();
+//					return basicGetResultProcessor();
+//			}
+//			return super.eGet(featureID, resolve, coreType);
+//		}
+//
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		@SuppressWarnings("unchecked")
+//		@Override
+//		public void eSet(int featureID, Object newValue) {
+//			switch (featureID) {
+//				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
+//					setEngine((Engine)newValue);
+//					return;
+//				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
+//					getAvailableOperators().clear();
+//					getAvailableOperators().addAll((Collection<? extends Operator>)newValue);
+//					return;
+//				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
+//					setResultProcessor((ResultProcessor)newValue);
+//					return;
+//			}
+//			super.eSet(featureID, newValue);
+//		}
+//
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		@Override
+//		public void eUnset(int featureID) {
+//			switch (featureID) {
+//				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
+//					setEngine((Engine)null);
+//					return;
+//				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
+//					getAvailableOperators().clear();
+//					return;
+//				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
+//					setResultProcessor((ResultProcessor)null);
+//					return;
+//			}
+//			super.eUnset(featureID);
+//		}
+//
+//		/**
+//		 * <!-- begin-user-doc -->
+//		 * <!-- end-user-doc -->
+//		 * @generated
+//		 */
+//		@Override
+//		public boolean eIsSet(int featureID) {
+//			switch (featureID) {
+//				case BenchframeworkPackage.USER_INTERFACE__ENGINE:
+//					return engine != null;
+//				case BenchframeworkPackage.USER_INTERFACE__AVAILABLE_OPERATORS:
+//					return availableOperators != null && !availableOperators.isEmpty();
+//				case BenchframeworkPackage.USER_INTERFACE__RESULT_PROCESSOR:
+//					return resultProcessor != null;
+//			}
+//			return super.eIsSet(featureID);
+//		}
 
 	}
