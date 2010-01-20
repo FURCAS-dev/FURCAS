@@ -100,6 +100,9 @@
 			<zipfileset dir="${buildDirectory}/LPG" 
 						includes="**/lpg.runtime.java*_${LPGRuntimeVersion}.*.jar"
 			/>
+			<zipfileset dir="${buildDirectory}/tmp/eclipse/features/" 
+						includes="**/org.eclipse.ocl.all.sdk*.jar"
+			/>
 			<zipfileset dir="${buildDirectory}" 
 						includes="epl-v10.html, notice.html" prefix="eclipse"
 			/>
