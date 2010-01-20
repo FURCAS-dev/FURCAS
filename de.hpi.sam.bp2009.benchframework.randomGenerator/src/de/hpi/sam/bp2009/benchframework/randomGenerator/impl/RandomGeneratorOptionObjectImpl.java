@@ -14,12 +14,21 @@ import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.URI;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -73,6 +82,7 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 */
 	protected RandomGeneratorOptionObjectImpl() {
 		super();
+		metaModel = defaultModel();
 	}
 
 	/**
@@ -212,6 +222,117 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 		result.append(instanceParameters);
 		result.append(')');
 		return result.toString();
+	}
+	
+	private ResourceSet defaultModel(){
+		ResourceSet result = new ResourceSetImpl();
+		Resource resource = result.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/defaultMetaModel"));
+		
+		//get the instance of EcoreFactory
+		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
+			
+		//classes
+		EClass petriNetClass = ecoreFactory.createEClass();
+		petriNetClass.setName("PetriNet");
+		
+		EClass elementClass = ecoreFactory.createEClass();
+		elementClass.setName("Element");
+		elementClass.setAbstract(true);
+		
+		EClass arcClass = ecoreFactory.createEClass();
+		arcClass.setName("Arc");
+		arcClass.getESuperTypes().add(elementClass);
+		
+		EClass nodeClass = ecoreFactory.createEClass();
+		nodeClass.setName("Node");
+		nodeClass.setAbstract(true);
+		nodeClass.getESuperTypes().add(elementClass);
+		
+		EClass placeClass = ecoreFactory.createEClass();
+		placeClass.setName("Place");
+		placeClass.getESuperTypes().add(nodeClass);
+		
+		EClass transitionClass = ecoreFactory.createEClass();
+		transitionClass.setName("Transition");
+		transitionClass.getESuperTypes().add(nodeClass);
+		
+		//package
+		EPackage petriNetEPackage = ecoreFactory.createEPackage();
+		petriNetEPackage.setName("petriNet");
+		petriNetEPackage.setNsPrefix("petriNet");
+		petriNetEPackage.setNsURI("http://petriNet/1.1");
+		
+		EcorePackage ecorePackage = EcorePackage.eINSTANCE;
+		
+		//attributes
+		EAttribute placeTokens = ecoreFactory.createEAttribute();
+		placeTokens.setName("nrTokens");
+		placeTokens.setEType(ecorePackage.getEInt());
+
+		//references
+		EReference elementsRef = ecoreFactory.createEReference();
+		elementsRef.setName("elements");
+		elementsRef.setContainment(true);
+		elementsRef.setEType(elementClass);
+		elementsRef.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
+		elementsRef.setLowerBound(0);
+		
+		EReference diagramRef = ecoreFactory.createEReference();
+		diagramRef.setName("diagram");
+		diagramRef.setEType(petriNetClass);
+		diagramRef.setUpperBound(1);
+		diagramRef.setLowerBound(0);
+		diagramRef.setEOpposite(elementsRef);
+		elementsRef.setEOpposite(diagramRef);
+		
+		EReference incomingArcsRef = ecoreFactory.createEReference();
+		incomingArcsRef.setName("incomingArcs");
+		incomingArcsRef.setEType(nodeClass);
+		incomingArcsRef.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
+		incomingArcsRef.setLowerBound(0);
+		
+		EReference sourceRef = ecoreFactory.createEReference();
+		sourceRef.setName("source");
+		sourceRef.setEType(nodeClass);
+		sourceRef.setUpperBound(1);
+		sourceRef.setLowerBound(1);
+		sourceRef.setEOpposite(incomingArcsRef);
+		incomingArcsRef.setEOpposite(sourceRef);
+		
+		EReference outgoingArcsRef = ecoreFactory.createEReference();
+		outgoingArcsRef.setName("incomingArcs");
+		outgoingArcsRef.setEType(nodeClass);
+		outgoingArcsRef.setUpperBound(EStructuralFeature.UNBOUNDED_MULTIPLICITY);
+		outgoingArcsRef.setLowerBound(0);
+		
+		EReference targetRef = ecoreFactory.createEReference();
+		targetRef.setName("source");
+		targetRef.setEType(nodeClass);
+		targetRef.setUpperBound(1);
+		targetRef.setLowerBound(1);
+		targetRef.setEOpposite(outgoingArcsRef);
+		outgoingArcsRef.setEOpposite(targetRef);
+
+		//attach attributes and references to their classes
+		placeClass.getEStructuralFeatures().add(placeTokens);
+		
+		elementClass.getEStructuralFeatures().add(diagramRef);
+		petriNetClass.getEStructuralFeatures().add(elementsRef);
+		nodeClass.getEStructuralFeatures().add(outgoingArcsRef);
+		nodeClass.getEStructuralFeatures().add(incomingArcsRef);
+		arcClass.getEStructuralFeatures().add(targetRef);
+		arcClass.getEStructuralFeatures().add(sourceRef);
+
+		petriNetEPackage.getEClassifiers().add(petriNetClass);
+		petriNetEPackage.getEClassifiers().add(elementClass);
+		petriNetEPackage.getEClassifiers().add(arcClass);
+		petriNetEPackage.getEClassifiers().add(placeClass);
+		petriNetEPackage.getEClassifiers().add(transitionClass);
+		petriNetEPackage.getEClassifiers().add(nodeClass);
+		
+		resource.getContents().add(petriNetEPackage);
+		
+		return result;
 	}
 
 } //RandomGeneratorOptionObjectImpl
