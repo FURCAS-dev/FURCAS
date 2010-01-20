@@ -44,10 +44,11 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference benchframework.ecore#//TestRun/operators"/>
       <genOperations ecoreOperation="benchframework.ecore#//TestRun/getInstanceForClass">
         <genParameters ecoreParameter="benchframework.ecore#//TestRun/getInstanceForClass/aClass"/>
+        <genTypeParameters ecoreTypeParameter="benchframework.ecore#//TestRun/getInstanceForClass/returnType"/>
       </genOperations>
       <genOperations ecoreOperation="benchframework.ecore#//TestRun/setInstanceForClass">
-        <genParameters ecoreParameter="benchframework.ecore#//TestRun/setInstanceForClass/class"/>
-        <genParameters ecoreParameter="benchframework.ecore#//TestRun/setInstanceForClass/object"/>
+        <genParameters ecoreParameter="benchframework.ecore#//TestRun/setInstanceForClass/aClass"/>
+        <genParameters ecoreParameter="benchframework.ecore#//TestRun/setInstanceForClass/anObject"/>
       </genOperations>
     </genClasses>
   </genPackages>

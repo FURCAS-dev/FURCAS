@@ -17,6 +17,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * A representation of the model object '<em><b>Test Run</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A testrun is an internal representation of one single run of the benchmarking framework, containing an ordered list of operators.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>

@@ -547,7 +547,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	protected void createNullAnnotations() {
-		String source = null;		
+		String source = null;			
 		addAnnotation
 		  ((testRunEClass.getEOperations().get(0)).getEParameters().get(0), 
 		   source, 
