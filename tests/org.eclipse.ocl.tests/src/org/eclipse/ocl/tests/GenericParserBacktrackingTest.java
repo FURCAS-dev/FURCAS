@@ -13,7 +13,7 @@
  *
  * </copyright>
  *
- * $Id: GenericParserBacktrackingTest.java,v 1.1 2010/01/05 07:47:27 ewillink Exp $
+ * $Id: GenericParserBacktrackingTest.java,v 1.2 2010/01/22 18:37:28 asanchez Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -154,8 +154,8 @@ extends GenericTestSuite<E, PK, T, C, CLS, DT, PT, ET, O, PM, P, PA, PR, EL, S, 
 		MyProblemHandler problemHandler = new MyProblemHandler(parser, oclText, failure);
 		abstractBasicEnvironment.setProblemHandler(problemHandler);
 		try {
-			lexer.lexToTokens(parser);
-			CSTNode cst = parser.parseTokensToCST();
+			lexer.lexer(parser.getIPrsStream());
+			CSTNode cst = parser.parser();
 			if (problemHandler.getErrors() != 1)
 				fail("Expected failure '" + failure + "' not found in '" + oclText + "'");
 			assertNotNull(cst);
