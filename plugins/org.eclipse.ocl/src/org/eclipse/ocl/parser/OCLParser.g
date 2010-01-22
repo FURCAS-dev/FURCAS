@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.11 2009/12/27 15:49:46 asanchez Exp $
+-- * $Id: OCLParser.g,v 1.12 2010/01/22 18:37:52 asanchez Exp $
 -- */
 --
 -- The Complete OCL Parser
@@ -20,18 +20,12 @@
 
 %options escape=$
 %options la=1
-%options table=java
 %options fp=OCLParser,prefix=TK_
-%options error-maps
-%options scopes
-%options margin=4
 %options noserialize
 %options package=org.eclipse.ocl.parser
 %options import_terminals=OCLLexer.gi
 %options ast_type=CSTNode
-%options programming_language=java
-%options action-block=("*.java", "/.", "./")
-%options ParseTable=lpg.runtime.ParseTable
+%options template=dtParserTemplateF.gi
 %options include_directory=".;../lpg"
 
 %Start
@@ -57,6 +51,7 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Bug 259818, 285633, 292112
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
  * </copyright>
  */
 	./
@@ -64,7 +59,7 @@
 
 %Define
     $environment_class /.Environment<?,?,?,?,?,?,?,?,?,?,?,?>./
-	$lex_stream_class /.OCLLexer./
+	$super_lexer_class /.OCLLexer./
 %End
 
 %Globals

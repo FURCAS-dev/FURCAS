@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: OCLSyntaxHelper.java,v 1.17 2009/12/27 15:49:52 asanchez Exp $
+ * $Id: OCLSyntaxHelper.java,v 1.18 2010/01/22 18:38:12 asanchez Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Set;
 
+import lpg.runtime.IPrsStream;
 import lpg.runtime.IToken;
 
 import org.eclipse.emf.common.util.EList;
@@ -71,7 +72,6 @@ import org.eclipse.ocl.expressions.VariableExp;
 import org.eclipse.ocl.helper.Choice;
 import org.eclipse.ocl.helper.ChoiceKind;
 import org.eclipse.ocl.helper.ConstraintKind;
-import org.eclipse.ocl.lpg.AbstractParser;
 import org.eclipse.ocl.lpg.ProblemHandler;
 import org.eclipse.ocl.parser.AbstractOCLAnalyzer;
 import org.eclipse.ocl.parser.OCLAnalyzer;
@@ -867,7 +867,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<IToken> tokenize(OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer) {
 		IToken token = null;
 		List<IToken> result = new ArrayList<IToken>();
-		AbstractParser parser = analyzer.getAbstractParser();
+		IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();
 		for (;;) {
 			try {
 				token = parser.getIToken(parser.getToken());
@@ -951,7 +951,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 				OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer =
 					new OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>(
 							environment, txt);
-				AbstractParser parser = analyzer.getAbstractParser();		
+				IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();		
 				List<IToken> tokens = tokenize(analyzer);
 				
 				ListIterator<IToken> iter = tokens.listIterator(tokens.size());
@@ -1110,7 +1110,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 	private List<String> parseTokensPathNameCS(
 			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer,
 			List<IToken> tokens) {
-		AbstractParser parser = analyzer.getAbstractParser();		
+		IPrsStream parser = analyzer.getAbstractParser().getIPrsStream();		
 		ArrayList<String> path = new ArrayList<String>();
 		IToken token;
 		int index = tokens.size() - 1;
@@ -1155,7 +1155,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
         // right-most subexpression that parses
         
         // initialize the token list
-        analyzer.getLexer().reset();
+        analyzer.getLexer().getILexStream().reset();
         List<IToken> tokens = tokenize(analyzer);
         
         ListIterator<IToken> it = tokens.listIterator(tokens.size());
@@ -1361,7 +1361,7 @@ final class OCLSyntaxHelper<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> {
 					env, variables);
 		
 		if (!parseVariableDeclaration(env, mainAnalyzer)) {
-			AbstractParser parser = mainAnalyzer.getAbstractParser();		
+			IPrsStream parser = mainAnalyzer.getAbstractParser().getIPrsStream();		
 			parser.reset();
 			OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> analyzer;
 			String newTxt;

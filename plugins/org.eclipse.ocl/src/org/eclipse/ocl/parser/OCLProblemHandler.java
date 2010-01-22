@@ -13,9 +13,11 @@
  *
  * </copyright>
  *
- * $Id: OCLProblemHandler.java,v 1.2 2009/10/23 21:00:49 ewillink Exp $
+ * $Id: OCLProblemHandler.java,v 1.3 2010/01/22 18:37:46 asanchez Exp $
  */
 package org.eclipse.ocl.parser;
+
+import lpg.runtime.IPrsStream;
 
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -75,22 +77,30 @@ public class OCLProblemHandler extends AbstractProblemHandler {
 	@Override
 	public void parserProblem(Severity problemSeverity, String problemMessage,
 			String processingContext, int startOffset, int endOffset) {
-		int leftToken = getParser().getTokenIndexAtCharacter(startOffset);
-		int rightToken = getParser().getTokenIndexAtCharacter(endOffset);
+		IPrsStream prsStream = getIPrsStream();
+		int leftToken = prsStream.getTokenIndexAtCharacter(startOffset);
+		int rightToken = prsStream.getTokenIndexAtCharacter(endOffset);
 		int leftTokenLoc = (leftToken > rightToken ? rightToken : leftToken);
 		int rightTokenLoc = rightToken;
-	    int line = getParser().getLine(leftTokenLoc) + getErrorReportLineOffset();
+	    int line = prsStream.getLine(leftTokenLoc) + getErrorReportLineOffset();
 	    if (line > 0) {
 			String locInfo = OCLMessages.bind(OCLMessages.ErrorReport_RowColumn,
 					new Object[]{
-						new Integer((getParser().getLine(leftTokenLoc) + getErrorReportLineOffset())),
-						new Integer(getParser().getColumn(leftTokenLoc)),
-						new Integer((getParser().getEndLine(rightTokenLoc) + getErrorReportLineOffset())),
-						new Integer(getParser().getEndColumn(rightTokenLoc))
+						new Integer(prsStream.getLine(leftTokenLoc) + getErrorReportLineOffset()),
+						new Integer(prsStream.getColumn(leftTokenLoc)),
+						new Integer(prsStream.getEndLine(rightTokenLoc) + getErrorReportLineOffset()),
+						new Integer(prsStream.getEndColumn(rightTokenLoc))
 				});
 			problemMessage = locInfo + " " + problemMessage; //$NON-NLS-1$
 	    }
 	    handleProblem(problemSeverity, Phase.PARSER, problemMessage,
 				processingContext, startOffset, endOffset);
+	}
+	
+	/**
+	 * @since 3.0
+	 */
+	protected IPrsStream getIPrsStream() {
+		return getParser().getIPrsStream();
 	}
 }
