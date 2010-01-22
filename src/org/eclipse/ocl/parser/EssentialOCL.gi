@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.gi,v 1.3 2010/01/04 23:22:45 asanchez Exp $
+-- * $Id: EssentialOCL.gi,v 1.4 2010/01/22 18:37:50 asanchez Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -20,175 +20,50 @@
 
 
 %Define
-
-    -- Definition of macros used in the parser template
+    -- Redefinition of macros used in the parser template
     --
-    $prs_stream_class /.AbstractOCLParser./
-    $prs_parser_class /.DeterministicParser./
-    $prs_parser_exception /.NotDeterministicParseTableException./
-    $prs_parser_throw /.throw new RuntimeException("****Error: Regenerate $prs_type.java with -NOBACKTRACK option")./
-    $prs_parse_args /../
-    $prs_fuzzy_parse_call/.parse./
-    $prs_parse_call/.parse./
-    $lex_stream_class /.AbstractLexer./
-    $action_class /.$file_prefix./
+    $default_repair_count /.getDefaultRepairCount()./
+	$super_parser_class /.AbstractOCLParser./
+    $prs_stream_class /.DerivedPrsStream./
+
+	-- Definition of new macros used by the grammar file
+	-- which may be redefined by extended files.
     $copyright_contributions /.*./
 
-    -- package namespace of the LPG Runtime API
-    $lpg_ns /.lpg.runtime./
+	-- Definition of new macros used by the grammar file
+	-- which are not intended to be extended.
+	$lpg_ns /.lpg.runtime./ -- package namespace of the LPG Runtime API
+	
 
+	-- Some useful macros	
     $NewCase
     /. $Header
                 case $rule_number:./
 
-    -- From bt/dtParserTemplateD.g
-    ------------------------------------------------------
-    $Header
-    /.
-                //
-                // Rule $rule_number:  $rule_text
-                //./
 
-    $BeginAction
-    /. $Header
-                case $rule_number: {./
-
-    $EndAction
-    /.        break;
-                }./
-
-    $BeginJava
-    /../
-    
-    $EndJava
-    /../
-
-	$BeginCode
-	/.$BeginAction
-                    $symbol_declarations./
-
-	$EndCode /.$EndAction./
-
-    $NoAction
-    /. $Header
-                case $rule_number:
-                    break;./
-
-    $NullAction
-    /. $Header
-                case $rule_number:
-                    $setResult(null);
-                    break;./
-
-	-- Deprecated, code inline with correct generic parameter type
-    $EmptyListAction
+	
+    $EmptyListAction -- Deprecated, code inline with correct generic parameter type
     /. $Header
                 case $rule_number:
                     $setResult(new BasicEList<Object>());
                     break;./
+                    
+    -- BeginJava and EndJava need to be reworked in order to be able to properly use $NewCase macro
     
-    $BeginActions
-    /.
-        @SuppressWarnings("unchecked")
-        public void ruleAction(int ruleNumber)
-        {
-            switch (ruleNumber) {
-            ./
-
-    $EndActions
-    /.
-                default:
-                    break;
-            }
-            return;
-        }./
-
-    $additional_interfaces /../
-    $action_class /.$file_prefix./
-    $setSym1 /.dtParser.setSym1./
-    $setResult /.dtParser.setSym1./
-    $getSym /.dtParser.getSym./
-    $getToken /.dtParser.getToken./
-    $getIToken /.getIToken./
-    $getLeftSpan /.dtParser.getFirstToken./
-    $getRightSpan /.dtParser.getLastToken./
-    $prs_stream /.prsStream./
+    -- BeginJava does nothing
+	-- block-actions should call BeginCode, instead
+    $BeginJava /../
     
-    -- modified to include throwing exceptions
-    $parserCore
-    /.
-    public class $action_class extends $prs_stream_class implements RuleAction$additional_interfaces
-    {
-        protected static ParseTable prs = new $prs_type();
-        private $prs_parser_class dtParser;
+  	-- EndJava does nothing
+	-- block-actions should call EndCode, instead
+	$EndJava /../
+	
+	$BeginCode
+	/.$BeginAction
+					$symbol_declarations./
 
-        public $action_class($lex_stream_class lexer) {
-            super(lexer);
-        }
+	$EndCode /.$EndAction./
 
-        public int getEOFTokenKind() { return $prs_type.EOFT_SYMBOL; }
-    
-        public $environment_class getOCLEnvironment() {
-            return getLexer().getOCLEnvironment();
-        }
-        
-        @Override 
-        public $lex_stream_class getLexer() {
-            return ($lex_stream_class)super.getLexer();
-        }
-
-        public String getTokenKindName(int kind) { return $sym_type.orderedTerminalSymbols[kind]; }         
-
-        @Override
-        public String[] orderedTerminalSymbols() { return $sym_type.orderedTerminalSymbols; }
-            
-        @SuppressWarnings("nls")
-        @Override
-        public $ast_type parseTokensToCST(Monitor monitor, int error_repair_count) {
-            ParseTable prsTable = new $prs_type();
-
-            try {
-                dtParser = new $prs_parser_class(monitor, this, prsTable, this);
-            }
-            catch ($prs_parser_exception e) {
-                $prs_parser_throw;
-            }
-            catch (BadParseSymFileException e) {
-                throw new RuntimeException("****Error: Bad Parser Symbol File -- $sym_type.java. Regenerate $prs_type.java");
-            }
-
-            try {
-                if (error_repair_count > 0)                
-                	return ($ast_type) dtParser.$prs_fuzzy_parse_call($prs_parse_args);
-                else
-                    return ($ast_type) dtParser.$prs_parse_call($prs_parse_args);
-            }
-            catch (BadParseException e) {
-                reset(e.error_token); // point to error token
-
-                DiagnoseParser diagnoseParser = new DiagnoseParser(this, prsTable);
-                diagnoseParser.diagnose(e.error_token);
-            }
-
-            return null;
-        }
-    
-        /**
-         * Initializes a concrete-syntax node's start and end offsets from the
-         * current token in the parser stream.
-         * 
-         * @param cstNode a concrete-syntax node
-         * 
-         * @since 1.2
-         */
-        protected void setOffsets(CSTNode cstNode) {
-            IToken firstToken = getIToken($getToken(1));
-            cstNode.setStartToken(firstToken);
-            cstNode.setEndToken(firstToken);
-            cstNode.setStartOffset(firstToken.getStartOffset());
-            cstNode.setEndOffset(firstToken.getEndOffset()-1);
-        }
-    ./
 %End
 
 %Notice
@@ -209,57 +84,63 @@
  *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
  *   Borland - Bug 242880
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCL.gi,v 1.3 2010/01/04 23:22:45 asanchez Exp $
+ * $Id: EssentialOCL.gi,v 1.4 2010/01/22 18:37:50 asanchez Exp $
  */
     ./
 %End
 
 %Globals
     /.import org.eclipse.emf.common.util.BasicEList;
-    import org.eclipse.emf.common.util.EList;
-    import org.eclipse.ocl.cst.BooleanLiteralExpCS;
-    import org.eclipse.ocl.cst.CSTNode;
-    import org.eclipse.ocl.cst.CallExpCS;
-    import org.eclipse.ocl.cst.CollectionLiteralExpCS;
-    import org.eclipse.ocl.cst.CollectionLiteralPartCS;
-    import org.eclipse.ocl.cst.CollectionTypeCS;
-    import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
-    import org.eclipse.ocl.cst.FeatureCallExpCS;
-    import org.eclipse.ocl.cst.IfExpCS;
-    import org.eclipse.ocl.cst.IntegerLiteralExpCS;
-    import org.eclipse.ocl.cst.InvalidLiteralExpCS;
-    import org.eclipse.ocl.cst.IsMarkedPreCS;
-    import org.eclipse.ocl.cst.IterateExpCS;
-    import org.eclipse.ocl.cst.IteratorExpCS;
-    import org.eclipse.ocl.cst.LetExpCS;
-    import org.eclipse.ocl.cst.NullLiteralExpCS;
-    import org.eclipse.ocl.cst.OCLExpressionCS;
-    import org.eclipse.ocl.cst.OperationCallExpCS;
-    import org.eclipse.ocl.cst.PathNameCS;
-    import org.eclipse.ocl.cst.PrimitiveTypeCS;
-    import org.eclipse.ocl.cst.RealLiteralExpCS;
-    import org.eclipse.ocl.cst.SimpleNameCS;
-    import org.eclipse.ocl.cst.SimpleTypeEnum;
-    import org.eclipse.ocl.cst.StringLiteralExpCS;
-    import org.eclipse.ocl.cst.TupleLiteralExpCS;
-    import org.eclipse.ocl.cst.TupleTypeCS;
-    import org.eclipse.ocl.cst.TypeCS;
-    import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
-    import org.eclipse.ocl.cst.VariableCS;
-    import org.eclipse.ocl.cst.VariableExpCS;
-    
-    import $lpg_ns.BadParseException;
-    import $lpg_ns.BadParseSymFileException;
-    import $lpg_ns.$prs_parser_class;
-    import $lpg_ns.DiagnoseParser;
-    import $lpg_ns.IToken;
-    import $lpg_ns.Monitor;
-    import $lpg_ns.$prs_parser_exception;
-    import $lpg_ns.ParseTable;
-    import $lpg_ns.RuleAction;
+	import org.eclipse.emf.common.util.EList;
+	import org.eclipse.ocl.cst.BooleanLiteralExpCS;
+	import org.eclipse.ocl.cst.CSTNode;
+	import org.eclipse.ocl.cst.CallExpCS;
+	import org.eclipse.ocl.cst.CollectionLiteralExpCS;
+	import org.eclipse.ocl.cst.CollectionLiteralPartCS;
+	import org.eclipse.ocl.cst.CollectionTypeCS;
+	import org.eclipse.ocl.cst.CollectionTypeIdentifierEnum;
+	import org.eclipse.ocl.cst.FeatureCallExpCS;
+	import org.eclipse.ocl.cst.IfExpCS;
+	import org.eclipse.ocl.cst.IntegerLiteralExpCS;
+	import org.eclipse.ocl.cst.InvalidLiteralExpCS;
+	import org.eclipse.ocl.cst.IsMarkedPreCS;
+	import org.eclipse.ocl.cst.IterateExpCS;
+	import org.eclipse.ocl.cst.IteratorExpCS;
+	import org.eclipse.ocl.cst.LetExpCS;
+	import org.eclipse.ocl.cst.NullLiteralExpCS;
+	import org.eclipse.ocl.cst.OCLExpressionCS;
+	import org.eclipse.ocl.cst.OperationCallExpCS;
+	import org.eclipse.ocl.cst.PathNameCS;
+	import org.eclipse.ocl.cst.PrimitiveTypeCS;
+	import org.eclipse.ocl.cst.RealLiteralExpCS;
+	import org.eclipse.ocl.cst.SimpleNameCS;
+	import org.eclipse.ocl.cst.SimpleTypeEnum;
+	import org.eclipse.ocl.cst.StringLiteralExpCS;
+	import org.eclipse.ocl.cst.TupleLiteralExpCS;
+	import org.eclipse.ocl.cst.TupleTypeCS;
+	import org.eclipse.ocl.cst.TypeCS;
+	import org.eclipse.ocl.cst.UnlimitedNaturalLiteralExpCS;
+	import org.eclipse.ocl.cst.VariableCS;
+	import org.eclipse.ocl.cst.VariableExpCS;	
+	import org.eclipse.ocl.lpg.DerivedPrsStream;
+	
+	import $lpg_ns.BadParseException;
+	import $lpg_ns.BadParseSymFileException;
+	import $lpg_ns.DiagnoseParser;
+	import $lpg_ns.ErrorToken;
+	import $lpg_ns.IToken;
+	import $lpg_ns.ILexStream;
+	import $lpg_ns.Monitor;
+	import $lpg_ns.NullExportedSymbolsException;
+	import $lpg_ns.NullTerminalSymbolsException;
+	import $lpg_ns.ParseTable;
+	import $lpg_ns.RuleAction;
+	import $lpg_ns.UndefinedEofSymbolException;
+	import $lpg_ns.UnimplementedTerminalsException;	
     ./
 %End
 
@@ -317,22 +198,36 @@ $copyright_contributions
     DOTDOT     ::= '..'
 %End
 
-%EOF
-    EOF_TOKEN
-%End
-
-%ERROR
-    ERROR_TOKEN
-%End
-
 %Headers
-	/.$parserCore
-
+	/.
+	
+	public $environment_class getOCLEnvironment() {
+		return getLexer().getOCLEnvironment();
+	}
+		
+	@Override
+	public $super_lexer_class getLexer() {
+		return ($super_lexer_class) super.getLexer();
+	}
+	
+	
+	
+	// Some methods for backwards compatibility 
+	/**
+	* @since 3.0
+	*/
+	protected IToken getIToken(int i) {
+		return prsStream.getIToken(i);
+	}
+		
+	protected String getTokenText(int i) {
+		return prsStream.getTokenText(i);
+	}
+	
 	./
 %End
 
 %Rules
-	/.$BeginActions./
 
 -----------------------------------------------------------------------
 --  Names
@@ -1522,11 +1417,4 @@ $copyright_contributions
                     $setResult(result);
           $EndCode
         ./
-%End
-
-%Trailers
-    /.
-        $EndActions
-    }
-    ./
 %End

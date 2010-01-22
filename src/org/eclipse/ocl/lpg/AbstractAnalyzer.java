@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractAnalyzer.java,v 1.4 2009/10/15 19:38:31 ewillink Exp $
+ * $Id: AbstractAnalyzer.java,v 1.5 2010/01/22 18:38:02 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -79,7 +79,7 @@ public abstract class AbstractAnalyzer {
 	}
 
 	public void dumpTokens() {
-		parser.dumpTokens();
+		parser.getIPrsStream().dumpTokens();
 	}
 
 	public String formatClass(Object object) {
@@ -279,7 +279,7 @@ public abstract class AbstractAnalyzer {
 	}
 
 	public void setFileName(String filename) {
-		getLexer().setFileName(filename);
+		getLexer().getILexStream().setFileName(filename);
 	}
 
 	/**
@@ -287,9 +287,11 @@ public abstract class AbstractAnalyzer {
 	 * 
 	 * @param buffer
 	 *            the characters
+	 * 
+	 * @deprecated clients should invoke {@link #reset(char[], String)}
 	 */
 	public void initialize(char[] buffer) {
-		getLexer().initialize(buffer);
+		reset(buffer, null);
 	}
 
 	/**
@@ -299,14 +301,49 @@ public abstract class AbstractAnalyzer {
 	 *            providing the source text
 	 * @throws IOException
 	 *             if reading fails
+	 * 
+	 * @deprecated clients should invoke {@link #reset(Reader, String)}
 	 */
 	public void initialize(Reader reader)
 			throws IOException {
-		getLexer().initialize(reader);
+		reset(reader, null);
+	}
+	
+	/**
+	 *  Define the input text as a given array of characters.
+     *
+	 * @param buffer
+	 *            the characters
+	 * @param fileName
+     *            the associated finleName of the input, or <code>null</code> if none.
+	 * @since 3.0
+	 */
+	public void reset(char[] buffer, String fileName) {
+		getLexer().reset(buffer, fileName);
+	}
+
+	/**
+	 * Define the input text by reading from a reader.
+	 * 
+	 * @param reader
+	 *            providing the source text
+	 * @param fileName
+     *            the associated finleName of the input, or <code>null</code> if none.
+	 * @throws IOException
+	 *             if reading fails
+	 * @since 3.0
+	 */
+	public void reset(Reader reader, String fileName) throws IOException {
+		AbstractLexer lexer = getLexer();
+		lexer.reset(reader, fileName);
+		AbstractParser parser = getAbstractParser();
+		if (parser.getIPrsStream() == null) {
+			parser.reset(lexer.getILexStream());
+		}
 	}
 
 	public void setTab(int tab) {
-		getLexer().setTab(tab);
+		getLexer().getILexStream().setTab(tab);
 	}
 
 	public void setTraceFlag(boolean flag) {

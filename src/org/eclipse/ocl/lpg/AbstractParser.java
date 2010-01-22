@@ -15,19 +15,19 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.8 2010/01/04 23:22:46 asanchez Exp $
+ * $Id: AbstractParser.java,v 1.9 2010/01/22 18:38:03 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 
 import java.text.StringCharacterIterator;
-import java.util.ArrayList;
 
 import lpg.runtime.ErrorToken;
+import lpg.runtime.ILexStream;
+import lpg.runtime.IPrsStream;
 import lpg.runtime.IToken;
 import lpg.runtime.LexStream;
 import lpg.runtime.Monitor;
-import lpg.runtime.ParseErrorCodes;
-import lpg.runtime.PrsStream;
+import lpg.runtime.ParseTable;
 
 import org.eclipse.ocl.cst.CSTNode;
 import org.eclipse.ocl.internal.l10n.OCLMessages;
@@ -44,12 +44,13 @@ import org.eclipse.ocl.options.ProblemOption;
  * tokens from text parsing and analysis to support the AST and CST classes
  * appropriate to a particular language.
  */
-public abstract class AbstractParser
-		extends PrsStream {
+public abstract class AbstractParser {
 
 	private final BasicEnvironment environment;
 
 	private int defaultRepairCount = 0;
+
+	private AbstractLexer lexer;
 
 	public AbstractParser(BasicEnvironment environment) {
 		this.environment = environment;
@@ -57,7 +58,7 @@ public abstract class AbstractParser
 	}
 
 	public AbstractParser(AbstractLexer lexer) {
-		super(lexer);
+		this.lexer = lexer;
 		this.environment = lexer.getEnvironment();
 		environment.setParser(this);
 	}
@@ -74,7 +75,7 @@ public abstract class AbstractParser
 	 */
 	public String computeInputString(int left, int right) {
 		StringBuffer result = new StringBuffer(right - left + 1);
-		char[] chars = getInputChars();
+		char[] chars = getIPrsStream().getInputChars();
 		if (chars.length > 0) {
 			for (int i = left; i <= right; i++) {
 				if (chars[i] == '\t') {
@@ -100,177 +101,34 @@ public abstract class AbstractParser
 	}
 
 	/**
-	 * This function returns the index of the token element containing the
-	 * offset specified. If such a token does not exist, it returns the negation
-	 * of the index of the element immediately preceding the offset.
-	 * 
-	 * @since 1.3
-	 */
-	public ErrorToken getErrorTokenAtCharacter(int offset) {
-		ErrorToken bestToken = null;
-		for (int i = getSize(); --i >= 0;) {
-			IToken token = getTokenAt(i);
-			if (!(token instanceof ErrorToken)) {
-				break;
-			}
-			IToken errorToken = ((ErrorToken) token).getErrorToken();
-			if (offset >= errorToken.getStartOffset()
-				&& offset <= errorToken.getEndOffset()) {
-				if ((bestToken == null)
-					|| ((bestToken.getStartOffset() <= errorToken
-						.getStartOffset()) && (token.getEndOffset() <= errorToken
-						.getEndOffset()))) {
-					bestToken = (ErrorToken) token;
-				}
-			}
-		}
-		return bestToken;
-	}
-
-	/**
 	 * @since 1.3
 	 */
 	public int getDefaultRepairCount() {
 		return defaultRepairCount;
 	}
 
-	/**
-	 * @since 1.3
-	 */
-	public int getErrorTokens() {
-		return getTokens().size() - getStreamLength();
-	}
-
 	public AbstractLexer getLexer() {
-		return (AbstractLexer) super.getILexStream();
+		return lexer;
 	}
 
 	/**
-	 * Overridden to search only the non-Error nodes, which are the only tokens
-	 * in monotonic order.
+	 * @return
+	 * @deprecated clients should invoke {@link #parser()}
 	 */
-	@Override
-	public int getTokenIndexAtCharacter(int offset) {
-		int low = 0;
-		int high = getSize();
-		while (high > low) {
-			IToken highToken = getTokenAt(high - 1);
-			if (!(highToken instanceof ErrorToken)) {
-				break;
-			}
-			high--;
-		}
-		while (high > low) {
-			int mid = (high + low) / 2;
-			IToken mid_element = getTokenAt(mid);
-			if (offset >= mid_element.getStartOffset()
-				&& offset <= mid_element.getEndOffset()) {
-				return mid;
-			} else if (offset < mid_element.getStartOffset()) {
-				high = mid;
-			} else {
-				low = mid + 1;
-			}
-		}
-
-		return -(low - 1);
-	}
-
-	@Override
-	public int makeErrorToken(int firsttok, int lasttok, int errortok, int kind) {
-		@SuppressWarnings("unchecked")
-		ArrayList<IToken> tokens = getTokens();
-		int index = tokens.size(); // the next index
-
-		//
-		// Note that when creating an error token, we do not remap its kind.
-		// Since this is not a lexical operation, it is the responsibility of
-		// the calling program (a parser driver) to pass to us the proper kind
-		// that it wants for an error token.
-		//
-		IToken token = new ErrorToken(getIToken(firsttok), getIToken(lasttok),
-			getIToken(errortok), getStartOffset(firsttok),
-			getEndOffset(lasttok), kind) {
-
-			@Override
-			public String toString() {
-				if (getIPrsStream() == null) {
-					return "<toString>"; //$NON-NLS-1$
-				}
-				int startOffset = getStartOffset();
-				int length = getEndOffset() + 1 - startOffset;
-				if (length < 0) {
-					length = -length - 1;
-					startOffset = getEndOffset();
-				}
-				if ((startOffset + length) > getIPrsStream().getInputChars().length) {
-					return String.valueOf(IToken.EOF);
-				}
-				return new String(getIPrsStream().getInputChars(), startOffset,
-					length);
-			}
-
-		};
-		token.setTokenIndex(index);
-		tokens.add(token);
-		token.setAdjunctIndex(getAdjuncts().size());
-		return index;
-	}
-
 	public CSTNode parseTokensToCST() {
-		return parseTokensToCST(null, defaultRepairCount);
+		return parser(null, defaultRepairCount);
 	}
-
-	public abstract CSTNode parseTokensToCST(Monitor monitor,
-			int error_repair_count);
-
+	
 	/**
-	 * 
-	 * @since 3.0
-	 */
-	@Override 
-	public void reportError(int errorCode, int leftToken, int errorToken, 
-			int rightToken, String[] errorInfo) { 
-		BasicEnvironment environment = getEnvironment(); 
-		if (environment == null) { 
-			super.reportError(errorCode, leftToken, errorToken, rightToken, errorInfo); 
-		} else {			 
-			// TODO Revise this. BasicEnvironment.parserError doesn't have a String[] argument
-			String tokenText = errorInfo.length > 0 ? errorInfo[0] : ""; //$NON-NLS-1$
-			if (errorCode == PrsStream.DELETION_CODE || errorCode == PrsStream.MISPLACED_CODE) {  
-				tokenText = ""; //$NON-NLS-1$  
-			}  
-			environment.parserError(errorCode, leftToken, rightToken, tokenText); 
-		} 
-	}
-
-	/**
-	 * Report error message for given error_token.
-	 * 
-	 * @param error_token
-	 *            the error taken index
-	 * @param msg
-	 *            the message to report
-	 * 
-	 * @since 1.3
-	 */
-	public final void reportErrorTokenMessage(int error_token, String msg) {
-		int firsttok = super.getFirstRealToken(error_token);
-		int lasttok = super.getLastRealToken(error_token);
-		if (firsttok > lasttok) {
-			reportError(ParseErrorCodes.INSERTION_CODE, lasttok,
-				lasttok, msg);
-		} else {
-			reportError(ParseErrorCodes.SUBSTITUTION_CODE, firsttok,
-				lasttok, msg);
-		}
-	}
-
-	@Override
+	 * @param lexStream
+     * @deprecated To set/reset the lex stream use {@link #reset(ILexStream)}
+	 */	
 	public void resetLexStream(LexStream lexStream) {
-		setLexStream((AbstractLexer) lexStream);
+		getIPrsStream().resetLexStream(lexStream);
 	}
 
+
+	
 	/**
 	 * Sets the number of repairs to be performed by a parser capable of
 	 * performing repairs (the BacktrackingParser) unless overridden on the
@@ -288,9 +146,15 @@ public abstract class AbstractParser
 	public void setDefaultRepairCount(int defaultRepairCount) {
 		this.defaultRepairCount = defaultRepairCount;
 	}
-
-	public void setLexStream(AbstractLexer lexStream) {
-		super.resetLexStream(lexStream);
+	
+	/**
+     * 
+	 * @param lexer
+     * @deprecated To set/reset the lex stream use {@link #reset(ILexStream)}
+	 */
+	public void setLexStream(AbstractLexer lexer) {
+		this.lexer = lexer;
+		getIPrsStream().resetLexStream(lexer.getILexStream());
 	}
 
 	/**
@@ -407,7 +271,30 @@ public abstract class AbstractParser
 		cstNode.setStartOffset(start.getStartOffset());
 		cstNode.setEndOffset(end.getEndOffset());
 	}
-	
+
+    /**
+     * <p>
+     * Initializes a concrete-syntax node's start and end offsets from the
+     * current token in the parser stream.
+     * <p>
+     * 
+     * <p>
+     * <b>Note:</b> this method resided in the OCLEssential.g template since 1.2 
+     * It has been incorporated in the abstract parser since 3.0
+     * </p>
+     * 
+     * @param cstNode a concrete-syntax node
+     * 
+     * @since 3.0
+     */
+	protected void setOffsets(CSTNode cstNode) {
+		IToken firstToken = getRhsIToken(1);
+		cstNode.setStartToken(firstToken);
+		cstNode.setEndToken(firstToken);
+		cstNode.setStartOffset(firstToken.getStartOffset());
+		cstNode.setEndOffset(firstToken.getEndOffset()-1);
+	}
+
 	/**
 	 * Removes the "s surrounding a quoted string, if any.
 	 * 
@@ -702,4 +589,140 @@ public abstract class AbstractParser
 		i.previous();
 		return -1;
 	}
+	
+	// Some useful methods which will be implemented in the generated Parser
+	abstract public String[] orderedTerminalSymbols();
+	
+	/**
+	 * @return the number of different parser tokens
+	 * 
+	 * @since 3.0
+	 */
+	abstract public int numTokenKinds();
+	
+	/**
+	 * @return the parser's {@link IPrsStream parseStream}
+	 * 
+	 * @since 3.0
+	 */
+	abstract public DerivedPrsStream getIPrsStream();
+	
+	/**
+	 * Resets the parser's {@link ILexStream lexStream}
+	 * @param lexStream
+	 * 
+	 * @since 3.0
+	 */
+	abstract public void reset(ILexStream lexStream);
+
+	/**
+	 * Runs the parser with the current  {@link ILexStream lex} and {@link IPrsStream parse} streams
+	 * 
+	 * @return the root {@link CSTNode} which results from the parsing process  
+	 * @since 3.0
+	 */
+	abstract public CSTNode parser();
+        
+	/**
+	 * Runs the parser with the current  {@link ILexStream lex} and {@link IPrsStream parse} streams
+	 * using the given {@link Monitor}
+	 * 
+	 * @return the root {@link CSTNode} which results from the parsing process  
+	 * @since 3.0
+	 */
+	abstract public CSTNode parser(Monitor monitor);
+        
+	/**
+	 * Runs the parser with the current  {@link ILexStream lex} and {@link IPrsStream parse} streams
+	 * using a given error_repair_count (useful for a backtracking parser) 
+	 * 
+	 * @return the root {@link CSTNode} which results from the parsing process  
+	 * @since 3.0
+	 */
+	abstract public CSTNode parser(int error_repair_count);
+        
+	/**
+	 * Runs the parser with the current  {@link ILexStream lex} and {@link IPrsStream parse} streams
+	 * using the given {@link Monitor} and error_repair_count (useful for a backtracking parser) 
+	 * 
+	 * @return the root {@link CSTNode} which results from the parsing process  
+	 * @since 3.0
+	 */
+	abstract public CSTNode parser(Monitor monitor, int error_repair_count);
+	
+	/**
+	 * @return the {@link ParseTable} used by the parser
+	 * @since 3.0
+	 */
+	abstract public ParseTable getParseTable();
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected Object getRhsSym(int i);
+
+	/**
+	 * @since 3.0
+	 */
+	abstract protected int getRhsTokenIndex(int i);
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected IToken getRhsIToken(int i);
+    
+	/**
+	 * @since 3.0
+	 */
+	abstract protected int getRhsFirstTokenIndex(int i);
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected IToken getRhsFirstIToken(int i);
+
+	/**
+	 * @since 3.0
+	 */
+	abstract protected int getRhsLastTokenIndex(int i);
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected IToken getRhsLastIToken(int i);
+
+	/**
+	 * @since 3.0
+	 */
+	abstract protected int getLeftSpan();
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected IToken getLeftIToken();
+
+	/**
+	 * @since 3.0
+	 */
+	abstract protected int getRightSpan();
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected IToken getRightIToken();
+
+	/**
+	 * @since 3.0
+	 */
+	abstract protected int getRhsErrorTokenIndex(int i);
+	
+	/**
+	 * @since 3.0
+	 */
+	abstract protected ErrorToken getRhsErrorIToken(int i);
+    
+    /**
+     * @since 3.0
+	 */
+	abstract protected void setResult(Object object);
 }

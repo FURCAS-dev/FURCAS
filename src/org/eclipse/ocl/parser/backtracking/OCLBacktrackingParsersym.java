@@ -15,10 +15,11 @@
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 *
 * </copyright>
 *
-* $Id: OCLBacktrackingParsersym.java,v 1.14 2010/01/04 23:22:45 asanchez Exp $
+* $Id: OCLBacktrackingParsersym.java,v 1.15 2010/01/22 18:38:04 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -34,6 +35,7 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 * </copyright>
 */
 

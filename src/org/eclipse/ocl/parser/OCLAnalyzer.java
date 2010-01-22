@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: OCLAnalyzer.java,v 1.9 2009/01/13 19:44:29 cdamus Exp $
+ * $Id: OCLAnalyzer.java,v 1.10 2010/01/22 18:37:52 asanchez Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -105,7 +105,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			Environment<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E> environment,
 			String text) {
 		this(new OCLParser(new OCLLexer(environment, text.toCharArray())));
-		getLexer().lexToTokens(getAbstractParser());
+		getLexer().lexer(getAbstractParser().getIPrsStream());
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class OCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 	 * @return the parsed CST, or <code>null</code> if it could not be parsed
 	 */
 	public CSTNode parseConcreteSyntax() {
-		return getAbstractParser().parseTokensToCST();
+		return getAbstractParser().parser();
 	}
 
 	/**

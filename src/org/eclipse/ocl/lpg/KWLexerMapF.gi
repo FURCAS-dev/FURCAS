@@ -70,9 +70,10 @@
             tokenKind['Z'] = $sym_type.$prefix$Z$suffix$;
         };
     
-        final int getKind(int c)
+        final int getKind(char c)
         {
             return (((c & 0xFFFFFF80) == 0) /* 0 <= c < 128? */ ? tokenKind[c] : 0);
         }
     ./
 %End
+
