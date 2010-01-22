@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: OCLLexer.gi,v 1.2 2009/12/27 15:49:46 asanchez Exp $
+-- * $Id: OCLLexer.gi,v 1.3 2010/01/22 18:37:51 asanchez Exp $
 -- */
 --
 -- The Complete OCL Lexer
@@ -24,7 +24,7 @@
 %options single-productions
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/LexerTemplateD.gi
+%options template=../lpg/LexerTemplateF.gi
 %options filter=OCLKWLexer.gi
 %options export_terminals=("OCLParsersym.java", "TK_")
 %options include_directory="../lpg"
@@ -40,7 +40,6 @@
 	-- We redefine that one defined by EssentialOCLLexer
 	--
 	$kw_lexer_class /.OCLKWLexer./
-	$copyright_contributions /.*./
 
 %End
 
@@ -59,6 +58,7 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Bug 292112, 292594
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
  $copyright_contributions
  * </copyright>
  */

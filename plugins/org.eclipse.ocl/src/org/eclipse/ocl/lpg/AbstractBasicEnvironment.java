@@ -16,7 +16,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractBasicEnvironment.java,v 1.9 2009/12/27 15:49:50 asanchez Exp $
+ * $Id: AbstractBasicEnvironment.java,v 1.10 2010/01/22 18:37:57 asanchez Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -227,12 +227,12 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment2 {
 		ProblemHandler problemHandler = getProblemHandler();
 		if (problemHandler != null) {
 			String inputText = '"' + parser.computeInputString(startOffset, endOffset) + '"';
-	        int tokenIndex = parser.getTokenIndexAtCharacter(startOffset);
+	        int tokenIndex = parser.getIPrsStream().getTokenIndexAtCharacter(startOffset);
 	        if (tokenIndex < 0) {
 	        	tokenIndex = -tokenIndex;
 	        }
-			String locInfo = parser.getEndLineNumberOfTokenAt(tokenIndex)
-				+ ":" + parser.getEndColumnOfTokenAt(tokenIndex); //$NON-NLS-1$
+			String locInfo = parser.getIPrsStream().getEndLineNumberOfTokenAt(tokenIndex)
+				+ ":" + parser.getIPrsStream().getEndColumnOfTokenAt(tokenIndex); //$NON-NLS-1$
 			String messageTemplate = ProblemHandler.ERROR_MESSAGES[errorCode];
 			String message = OCLMessages.bind(messageTemplate, locInfo, inputText);
 			problemHandler.lexerProblem(Severity.ERROR, message, null, startOffset, endOffset);
@@ -246,9 +246,9 @@ public abstract class AbstractBasicEnvironment implements BasicEnvironment2 {
         }
 		int leftTokenLoc = (leftToken > rightToken ? rightToken : leftToken);
 		int rightTokenLoc = rightToken;
-		int startOffset = parser.getStartOffset(leftTokenLoc);
-		int endOffset = parser.getEndOffset(rightTokenLoc);
-		int line = leftTokenLoc >= 0 ? parser.getLine(leftTokenLoc) : -1;
+		int startOffset = parser.getIPrsStream().getStartOffset(leftTokenLoc);
+		int endOffset = parser.getIPrsStream().getEndOffset(rightTokenLoc);
+		int line = leftTokenLoc >= 0 ? parser.getIPrsStream().getLine(leftTokenLoc) : -1;
 		String message;
         if (line <= 0) {
         	message = OCLMessages.InvalidOCL_ERROR_;

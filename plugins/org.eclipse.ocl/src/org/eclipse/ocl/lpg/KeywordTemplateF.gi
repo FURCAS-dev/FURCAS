@@ -9,14 +9,14 @@
 --
 --     $eof_char
 --
--- B E G I N N I N G   O F   T E M P L A T E   KeywordTemplateD
+-- B E G I N N I N G   O F   T E M P L A T E   KeywordTemplateF (Similar to KeywordTemplateD)
 --
-%options Programming_Language=java,margin=4
-%options table
+%Options Programming_Language=java,margin=4
+%Options table
 %options action-block=("*.java", "/.", "./")
 %options ParseTable=lpg.runtime.ParseTable
-%options prefix=Char_
-%options single-productions
+%Options prefix=Char_
+%Options single-productions
 
 --
 -- This template requires that the name of the EOF token be set
@@ -31,7 +31,7 @@
     --
     -- Macro that may be respecified in an instance of this template
     --
-    $eof_char /.Char_EOF./
+    $eof_char /.$sym_type$.$prefix$EOF$suffix$./
 
     --
     -- Macros useful for specifying actions
@@ -56,7 +56,7 @@
 
 %Headers
     /.
-    public class $action_type extends $prs_type implements $exp_type
+    public class $action_type extends $prs_type
     {
         private char[] inputChars;
         private final int keywordKind[] = new int[$num_rules + 1];
@@ -104,7 +104,6 @@
 
 %Trailers
     /.
-
             for (int i = 0; i < keywordKind.length; i++)
             {
                 if (keywordKind[i] == 0)

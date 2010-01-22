@@ -10,14 +10,35 @@
 -- * Contributors:
 -- *   E.D.Willink - Initial API and implementation
 -- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.gi,v 1.2 2009/12/27 15:49:49 asanchez Exp $
+-- * $Id: EssentialOCLErrors.gi,v 1.3 2010/01/22 18:38:11 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
 --
+
+%Headers
+	/.
+	// Some methods for backwards compatibility
+	
+	/**
+	 * Report error message for given error_token.
+	 * 
+	 * @param error_token
+	 *            the error taken index
+	 * @param msg
+	 *            the message to report
+	 * 
+	 * @since 1.3
+	 */
+	protected final void reportErrorTokenMessage(int error_token, String msg) {
+		getIPrsStream().reportErrorTokenMessage(error_token, msg); 
+	}
+	./
+%End
 
 %Rules
 	ERROR_Colon ::= ERROR_TOKEN
@@ -58,8 +79,8 @@
 	collectionTypeCS ::= CollectionTypeIdentifierCS '(' typeCS ERROR_TOKEN
 		/.$BeginCode
 					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RPAREN);
-					CollectionTypeCS result = (CollectionTypeCS)dtParser.getSym(1); 
-					result.setTypeCS((TypeCS)dtParser.getSym(3));
+					CollectionTypeCS result = (CollectionTypeCS)$getSym(1); 
+					result.setTypeCS((TypeCS)$getSym(3));
 					setOffsets(result, result, getIToken($getToken(4)));
 					$setResult(result);
 		  $EndCode

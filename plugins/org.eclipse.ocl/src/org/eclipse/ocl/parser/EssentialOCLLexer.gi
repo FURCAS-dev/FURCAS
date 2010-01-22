@@ -12,7 +12,7 @@
 -- *   
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLLexer.gi,v 1.1 2009/12/27 15:49:44 asanchez Exp $
+-- * $Id: EssentialOCLLexer.gi,v 1.2 2010/01/22 18:37:47 asanchez Exp $
 -- */
 --
 -- The Essential OCL Lexer
@@ -20,17 +20,17 @@
 
 %options escape=$
 %options la=2
-%options fp=OCLLexer,prefix=Char_
+%options fp=EssentialOCLLexer,prefix=Char_
 %options single-productions
 %options noserialize
 %options package=org.eclipse.ocl.parser
-%options template=../lpg/LexerTemplateD.gi
+%options template=../lpg/LexerTemplateF.gi
 %options filter=EssentialOCLKWLexer.gi
 %options export_terminals=("EssentialOCLParsersym.java", "TK_")
 %options include_directory="../lpg"
 
 %Import
-	LexerBasicMap.gi
+	LexerBasicMapF.gi
 %End
 
 %Define
@@ -38,20 +38,51 @@
 	--
 	-- Definition of macros used in the template
 	--
-	$action_class /.$file_prefix./
+	$action_class /.$file_prefix./  -- Deprecated.
 	$eof_token /.$_EOF_TOKEN./
     $environment_class /.Environment<?,?,?,?,?,?,?,?,?,?,?,?>./
     $adapt_environment /.OCLUtil.getAdapter(environment, BasicEnvironment.class)./
     $environment_import /.org.eclipse.ocl.Environment./
  
+ 	--
+	-- Redefinition of macros used in the template
+	-- NB: They are also used in the included file LexerBasicMapF.g
 	--
-	-- Definition of macro used in the included file LexerBasicMap.g
+ 	$prs_stream_class /.DerivedPrsStream./
+ 	$lex_stream_class /.DerivedLexStream./
+ 	
+ 	 	
+	--
+	-- Definition of macro used in the included file LexerBasicMapF.g
 	--
 	$kw_lexer_class /.EssentialOCLKWLexer./
 	$copyright_contributions /.*./
 
 %End
 
+%Headers
+	/.
+        
+    // Some OCL additions to make lexer work with an input reader
+	/**
+	 * @since 3.0
+	 */
+	public $action_type($environment_class environment, Reader reader, String filename) throws java.io.IOException {
+		super($adapt_environment);
+		oclEnvironment = environment;
+		reset(reader, filename);
+	}
+  
+   // OCL addition to reset the lexer stream from an input reader
+	/**
+	 * @since 3.0
+	 */
+    public void reset(Reader reader, String filename) throws java.io.IOException {
+    	char[] input_chars = getInputChars(reader);
+        reset(input_chars, filename, ECLIPSE_TAB_VALUE);
+    }
+	./
+%End
 %Notice
 	/./**
  * Essential OCL Lexer
@@ -69,17 +100,23 @@
  *   Borland - Bug 242880
  *   E.D.Willink - Bug 292112
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
  $copyright_contributions
  * </copyright>
  *
- * $Id: EssentialOCLLexer.gi,v 1.1 2009/12/27 15:49:44 asanchez Exp $
+ * $Id: EssentialOCLLexer.gi,v 1.2 2010/01/22 18:37:47 asanchez Exp $
  */
 	./
 %End
 
 %Globals
-    /.import $environment_import;
+    /.
+    import java.io.Reader;
+    
+    import $environment_import;
     import org.eclipse.ocl.lpg.BasicEnvironment;
+    import org.eclipse.ocl.lpg.DerivedPrsStream;
+    import org.eclipse.ocl.lpg.DerivedLexStream;
     import org.eclipse.ocl.util.OCLUtil;
     ./
 %End
