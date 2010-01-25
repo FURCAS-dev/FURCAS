@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker;
 
 import org.eclipse.emf.ecore.EFactory;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage
+ * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage
  * @generated
  */
 public interface ExecutionTimeBenchmarkerFactory extends EFactory {
@@ -23,7 +23,7 @@ public interface ExecutionTimeBenchmarkerFactory extends EFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	ExecutionTimeBenchmarkerFactory eINSTANCE = executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerFactoryImpl.init();
+	ExecutionTimeBenchmarkerFactory eINSTANCE = de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Start</em>'.

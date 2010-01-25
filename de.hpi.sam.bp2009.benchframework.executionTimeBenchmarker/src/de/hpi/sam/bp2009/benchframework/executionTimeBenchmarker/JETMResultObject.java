@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker;
 
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
@@ -16,14 +16,14 @@ import de.hpi.sam.bp2009.benchframework.ResultObject;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link executionTimeBenchmarker.JETMResultObject#getStartTime <em>Start Time</em>}</li>
- *   <li>{@link executionTimeBenchmarker.JETMResultObject#getEndTime <em>End Time</em>}</li>
- *   <li>{@link executionTimeBenchmarker.JETMResultObject#getTicks <em>Ticks</em>}</li>
- *   <li>{@link executionTimeBenchmarker.JETMResultObject#getTransactionTime <em>Transaction Time</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getStartTime <em>Start Time</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getEndTime <em>End Time</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getTicks <em>Ticks</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getTransactionTime <em>Transaction Time</em>}</li>
  * </ul>
  * </p>
  *
- * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject()
+ * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject()
  * @model
  * @generated
  */
@@ -38,14 +38,14 @@ public interface JETMResultObject extends ResultObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Start Time</em>' attribute.
 	 * @see #setStartTime(long)
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_StartTime()
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_StartTime()
 	 * @model
 	 * @generated
 	 */
 	long getStartTime();
 
 	/**
-	 * Sets the value of the '{@link executionTimeBenchmarker.JETMResultObject#getStartTime <em>Start Time</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getStartTime <em>Start Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Start Time</em>' attribute.
@@ -64,14 +64,14 @@ public interface JETMResultObject extends ResultObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>End Time</em>' attribute.
 	 * @see #setEndTime(long)
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_EndTime()
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_EndTime()
 	 * @model
 	 * @generated
 	 */
 	long getEndTime();
 
 	/**
-	 * Sets the value of the '{@link executionTimeBenchmarker.JETMResultObject#getEndTime <em>End Time</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getEndTime <em>End Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>End Time</em>' attribute.
@@ -90,14 +90,14 @@ public interface JETMResultObject extends ResultObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Ticks</em>' attribute.
 	 * @see #setTicks(long)
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_Ticks()
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_Ticks()
 	 * @model
 	 * @generated
 	 */
 	long getTicks();
 
 	/**
-	 * Sets the value of the '{@link executionTimeBenchmarker.JETMResultObject#getTicks <em>Ticks</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getTicks <em>Ticks</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Ticks</em>' attribute.
@@ -116,14 +116,14 @@ public interface JETMResultObject extends ResultObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Transaction Time</em>' attribute.
 	 * @see #setTransactionTime(double)
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_TransactionTime()
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getJETMResultObject_TransactionTime()
 	 * @model
 	 * @generated
 	 */
 	double getTransactionTime();
 
 	/**
-	 * Sets the value of the '{@link executionTimeBenchmarker.JETMResultObject#getTransactionTime <em>Transaction Time</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject#getTransactionTime <em>Transaction Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Transaction Time</em>' attribute.

@@ -4,15 +4,15 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.impl;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
-import executionTimeBenchmarker.JETMResultObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -60,7 +60,7 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#eNS_URI
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
@@ -274,14 +274,12 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		initEClass(executionTimeBenchmarkerStartEClass, ExecutionTimeBenchmarkerStart.class, "ExecutionTimeBenchmarkerStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExecutionTimeBenchmarkerStart_EndPoint(), this.getExecutionTimeBenchmarkerEnd(), null, "endPoint", null, 0, 1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(executionTimeBenchmarkerStartEClass, null, "start", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		addEOperation(executionTimeBenchmarkerStartEClass, null, "end", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(executionTimeBenchmarkerStartEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(executionTimeBenchmarkerEndEClass, ExecutionTimeBenchmarkerEnd.class, "ExecutionTimeBenchmarkerEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExecutionTimeBenchmarkerEnd_StartPoint(), this.getExecutionTimeBenchmarkerStart(), null, "startPoint", null, 0, 1, ExecutionTimeBenchmarkerEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(executionTimeBenchmarkerEndEClass, null, "end", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEOperation(executionTimeBenchmarkerEndEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(jetmResultObjectEClass, JETMResultObject.class, "JETMResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJETMResultObject_StartTime(), ecorePackage.getELong(), "startTime", null, 0, 1, JETMResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

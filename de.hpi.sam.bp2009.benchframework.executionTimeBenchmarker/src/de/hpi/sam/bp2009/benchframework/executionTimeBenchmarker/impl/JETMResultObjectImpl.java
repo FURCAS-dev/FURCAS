@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.impl;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
+
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
 
 import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
-
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
-import executionTimeBenchmarker.JETMResultObject;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -24,10 +24,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link executionTimeBenchmarker.impl.JETMResultObjectImpl#getStartTime <em>Start Time</em>}</li>
- *   <li>{@link executionTimeBenchmarker.impl.JETMResultObjectImpl#getEndTime <em>End Time</em>}</li>
- *   <li>{@link executionTimeBenchmarker.impl.JETMResultObjectImpl#getTicks <em>Ticks</em>}</li>
- *   <li>{@link executionTimeBenchmarker.impl.JETMResultObjectImpl#getTransactionTime <em>Transaction Time</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getStartTime <em>Start Time</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getEndTime <em>End Time</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getTicks <em>Ticks</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getTransactionTime <em>Transaction Time</em>}</li>
  * </ul>
  * </p>
  *

@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker"
-            class="executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage"
+            class="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage"
             genModel="model/executionTimeBenchmarker.genmodel"/>
    </extension>
 

@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.util;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
-import executionTimeBenchmarker.*;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EObject;
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage
+ * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage
  * @generated
  */
 public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
@@ -115,13 +115,13 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link executionTimeBenchmarker.ExecutionTimeBenchmarkerStart <em>Start</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart <em>Start</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerStart
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart
 	 * @generated
 	 */
 	public Adapter createExecutionTimeBenchmarkerStartAdapter() {
@@ -129,13 +129,13 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd
 	 * @generated
 	 */
 	public Adapter createExecutionTimeBenchmarkerEndAdapter() {
@@ -143,13 +143,13 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link executionTimeBenchmarker.JETMResultObject <em>JETM Result Object</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject <em>JETM Result Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see executionTimeBenchmarker.JETMResultObject
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject
 	 * @generated
 	 */
 	public Adapter createJETMResultObjectAdapter() {

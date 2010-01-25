@@ -4,12 +4,12 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.util;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
-import executionTimeBenchmarker.*;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage
+ * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage
  * @generated
  */
 public class ExecutionTimeBenchmarkerSwitch<T> {

@@ -4,13 +4,13 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.impl;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
+
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
 
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
-
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl#getStartPoint <em>Start Point</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl#getStartPoint <em>Start Point</em>}</li>
  * </ul>
  * </p>
  *
@@ -98,17 +98,6 @@ public class ExecutionTimeBenchmarkerEndImpl extends OperatorImpl implements Exe
 		startPoint = newStartPoint;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, oldStartPoint, startPoint));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void end() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
 	}
 
 	/**

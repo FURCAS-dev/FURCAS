@@ -4,21 +4,13 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.impl;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import java.util.ArrayList;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
 
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
-
-import etm.core.configuration.BasicEtmConfigurator;
-import etm.core.configuration.EtmManager;
-import etm.core.monitor.EtmMonitor;
-import etm.core.monitor.EtmPoint;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
-import executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
-import executionTimeBenchmarker.JETMResultObject;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -34,14 +26,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getEndPoint <em>End Point</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getEndPoint <em>End Point</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements ExecutionTimeBenchmarkerStart {
-	private final EtmMonitor etmMonitor= EtmManager.getEtmMonitor();
 	/**
 	 * The cached value of the '{@link #getEndPoint() <em>End Point</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -51,7 +42,6 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	 * @ordered
 	 */
 	protected ExecutionTimeBenchmarkerEnd endPoint;
-	private ArrayList<EtmPoint> measurePoints = new ArrayList<EtmPoint>();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -108,25 +98,6 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 		endPoint = newEndPoint;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, oldEndPoint, endPoint));
-	}
-
-	public void start() {
-		BasicEtmConfigurator.configure();
-		etmMonitor.start();
-		EtmPoint point = etmMonitor.createPoint("Run: " + measurePoints.size()+1);
-		measurePoints.add(0, point);
-	}
-	
-	public void end() {
-		EtmPoint point = measurePoints.get(0);
-		point.collect();
-		//create ResultObject
-		JETMResultObject tmpResult = ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMResultObject();
-		tmpResult.setStartTime(point.getStartTime());
-		tmpResult.setEndTime(point.getEndTime());
-		tmpResult.setTicks(point.getTicks());
-		tmpResult.setTransactionTime(point.getTransactionTime());
-		etmMonitor.stop();
 	}
 
 	/**

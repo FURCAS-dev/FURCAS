@@ -4,9 +4,9 @@
  *
  * $Id$
  */
-package executionTimeBenchmarker.impl;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import executionTimeBenchmarker.*;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
