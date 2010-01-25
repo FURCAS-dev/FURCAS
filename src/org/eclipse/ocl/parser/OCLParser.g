@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.12 2010/01/22 18:37:52 asanchez Exp $
+-- * $Id: OCLParser.g,v 1.13 2010/01/25 11:10:05 asanchez Exp $
 -- */
 --
 -- The Complete OCL Parser
@@ -133,10 +133,10 @@
 		/.$BeginCode
 					PrimitiveTypeCS result = createPrimitiveTypeCS(
 							SimpleTypeEnum.OCL_MESSAGE_LITERAL,
-							getTokenText($getToken(1))
+							getRhsTokenText(1)
 						);
-					setOffsets(result, getIToken($getToken(1)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1));
+					setResult(result);
 		  $EndCode
 		./
 
@@ -150,38 +150,38 @@
 	OperationCallExpCS ::= -- [B]
 		primaryExpCS '->' simpleNameCS isMarkedPreCS '(' argumentsCSopt ')'
 		/.$BeginCode
-					OCLExpressionCS source = (OCLExpressionCS)$getSym(1);
+					OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
 					OperationCallExpCS result = createArrowOperationCallExpCS(
 							source,
-							(SimpleNameCS)$getSym(3),
-							(IsMarkedPreCS)$getSym(4),
-							(EList<OCLExpressionCS>)$getSym(6)
+							(SimpleNameCS)getRhsSym(3),
+							(IsMarkedPreCS)getRhsSym(4),
+							(EList<OCLExpressionCS>)getRhsSym(6)
 						);
-					setOffsets(result, source, getIToken($getToken(7)));
-					$setResult(result);
+					setOffsets(result, source, getRhsIToken(7));
+					setResult(result);
 		  $EndCode
 		./	
 
 	AssociationClassCallExpCS ::= -- [B.1],PropertyCallExpCS[B]
 		simpleNameCS isMarkedPreCS
 		/.$BeginCode
-					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(1);
-					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)$getSym(2);
+					SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
+					IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(2);
 					VariableExpCS result = createVariableExpCS(
 							simpleNameCS,
 							new BasicEList<OCLExpressionCS>(),
 							isMarkedPreCS
 						);
 					setOffsets(result, simpleNameCS, isMarkedPreCS);
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 
 	isMarkedPreCS ::= '@' pre
 		/.$BeginCode
 					IsMarkedPreCS result = createIsMarkedPreCS();
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(2));
+					setResult(result);
 		  $EndCode
 		./
 	isMarkedPreCSopt -> isMarkedPreCS
@@ -190,21 +190,21 @@
 		/.$NewCase./
 	OclMessageExpCS ::= primaryExpCS '^' simpleNameCS '(' OclMessageArgumentsCSopt ')'
 		/.$BeginCode
-					OCLExpressionCS target = (OCLExpressionCS)$getSym(1);
+					OCLExpressionCS target = (OCLExpressionCS)getRhsSym(1);
 					MessageExpCS result = createMessageExpCS(
 							target,
-							getIToken($getToken(2)).getKind() == $sym_type.TK_CARET,
-							(SimpleNameCS)$getSym(3),
-							(EList<OCLMessageArgCS>)$getSym(5)
+							getRhsIToken(2).getKind() == $sym_type.TK_CARET,
+							(SimpleNameCS)getRhsSym(3),
+							(EList<OCLMessageArgCS>)getRhsSym(5)
 						);
-					setOffsets(result, target, getIToken($getToken(6)));
-					$setResult(result);
+					setOffsets(result, target, getRhsIToken(6));
+					setResult(result);
 		  $EndCode
 		./
 
 	OclMessageArgumentsCSopt ::= %empty
         /.$BeginCode
-                    $setResult(new BasicEList<OCLMessageArgCS>());
+                    setResult(new BasicEList<OCLMessageArgCS>());
           $EndCode
         ./
 	OclMessageArgumentsCSopt -> OclMessageArgumentsCS
@@ -212,15 +212,15 @@
 	OclMessageArgumentsCS ::= OclMessageArgCS
 		/.$BeginCode
 					EList<OCLMessageArgCS> result = new BasicEList<OCLMessageArgCS>();
-					result.add((OCLMessageArgCS)$getSym(1));
-					$setResult(result);
+					result.add((OCLMessageArgCS)getRhsSym(1));
+					setResult(result);
 		  $EndCode
 		./
 	OclMessageArgumentsCS ::= OclMessageArgumentsCS ',' OclMessageArgCS
 		/.$BeginCode
-					EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)$getSym(1);
-					result.add((OCLMessageArgCS)$getSym(3));
-					$setResult(result);
+					EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)getRhsSym(1);
+					result.add((OCLMessageArgCS)getRhsSym(3));
+					setResult(result);
 		  $EndCode
 		./
 
@@ -230,28 +230,28 @@
 							null,
 							null
 						);
-					setOffsets(result, getIToken($getToken(1)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1));
+					setResult(result);
 		  $EndCode
 		./
 	OclMessageArgCS ::= '?' ':' typeCS
 		/.$BeginCode
 					OCLMessageArgCS result = createOCLMessageArgCS(
-							(TypeCS)$getSym(3),
+							(TypeCS)getRhsSym(3),
 							null
 						);
-					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
+					setResult(result);
 		  $EndCode
 		./
 	OclMessageArgCS ::= OclExpressionCS
 		/.$BeginCode
 					OCLMessageArgCS result = createOCLMessageArgCS(
 							null,
-							(OCLExpressionCS)$getSym(1)
+							(OCLExpressionCS)getRhsSym(1)
 						);
-					setOffsets(result, (CSTNode)$getSym(1));
-					$setResult(result);
+					setOffsets(result, (CSTNode)getRhsSym(1));
+					setResult(result);
 		  $EndCode
 		./
 
@@ -266,9 +266,9 @@
     packageDeclarationsCS -> packageDeclarationCS
     packageDeclarationsCS ::= packageDeclarationsCS packageDeclarationCS_A
         /.$BeginCode
-                    PackageDeclarationCS result = (PackageDeclarationCS)$getSym(2);
-                    result.setPackageDeclarationCS((PackageDeclarationCS) $getSym(1));
-                    $setResult(result);
+                    PackageDeclarationCS result = (PackageDeclarationCS)getRhsSym(2);
+                    result.setPackageDeclarationCS((PackageDeclarationCS) getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
 
@@ -277,28 +277,28 @@
     packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt endpackage
         /.$BeginCode
                     PackageDeclarationCS result = createPackageDeclarationCS(
-                            (PathNameCS)$getSym(2),
-                            (EList<ContextDeclCS>)$getSym(3)
+                            (PathNameCS)getRhsSym(2),
+                            (EList<ContextDeclCS>)getRhsSym(3)
                         );
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
     
     packageDeclarationCS_B ::= contextDeclsCS
         /.$BeginCode
-                    EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)$getSym(1);
+                    EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)getRhsSym(1);
                     PackageDeclarationCS result = createPackageDeclarationCS(null, contextDecls);
                     if (!contextDecls.isEmpty()) {
                         setOffsets(result, contextDecls.get(0), contextDecls.get(contextDecls.size()-1));
                     }
-                    $setResult(result);
+                    setResult(result);
           $EndCode
         ./
 
     contextDeclsCSopt ::= %empty
         /.$BeginCode
-                    $setResult(new BasicEList<ContextDeclCS>());
+                    setResult(new BasicEList<ContextDeclCS>());
           $EndCode
         ./
     contextDeclsCSopt -> contextDeclsCS
@@ -306,15 +306,15 @@
     contextDeclsCS ::= contextDeclCS
         /.$BeginCode
                     EList<ContextDeclCS> result = new BasicEList<ContextDeclCS>();
-                    result.add((ContextDeclCS)$getSym(1));
-                    $setResult(result);
+                    result.add((ContextDeclCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     contextDeclsCS ::= contextDeclsCS contextDeclCS
         /.$BeginCode
-                    EList<ContextDeclCS> result = (EList<ContextDeclCS>)$getSym(1);
-                    result.add((ContextDeclCS)$getSym(2));
-                    $setResult(result);
+                    EList<ContextDeclCS> result = (EList<ContextDeclCS>)getRhsSym(1);
+                    result.add((ContextDeclCS)getRhsSym(2));
+                    setResult(result);
           $EndCode
         ./
 
@@ -325,174 +325,174 @@
     propertyContextDeclCS ::= context pathNameCS '::' unreservedSimpleNameCS
         ':' typeCS initOrDerValuesCS
         /.$BeginCode
-                    PathNameCS pathNameCS = (PathNameCS)$getSym(2);
-                    SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(4);
-                    EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)$getSym(7);
+                    PathNameCS pathNameCS = (PathNameCS)getRhsSym(2);
+                    SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(4);
+                    EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)getRhsSym(7);
                     PropertyContextCS result = createPropertyContextCS(
                             pathNameCS,
                             simpleNameCS,
-                            (TypeCS)$getSym(6),
+                            (TypeCS)getRhsSym(6),
                             list
                         );
-                    setOffsets(result, getIToken($getToken(1)), list.get(list.size()-1));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), list.get(list.size()-1));
+                    setResult(result);
           $EndCode
         ./
 
     initOrDerValuesCS ::= initOrDerValueCS
         /.$BeginCode
                     EList<InitOrDerValueCS> result = new BasicEList<InitOrDerValueCS>();
-                    result.add((InitOrDerValueCS)$getSym(1));
-                    $setResult(result);
+                    result.add((InitOrDerValueCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     initOrDerValuesCS ::= initOrDerValuesCS initOrDerValueCS
         /.$BeginCode
-                    EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>)$getSym(1);
-                    result.add((InitOrDerValueCS)$getSym(2));
-                    $setResult(result);
+                    EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>)getRhsSym(1);
+                    result.add((InitOrDerValueCS)getRhsSym(2));
+                    setResult(result);
           $EndCode
         ./
 
     initOrDerValueCS ::= init ':' OclExpressionCS
         /.$BeginCode
-                    InitValueCS result = createInitValueCS((OCLExpressionCS)$getSym(3));
-                    setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
-                    $setResult(result);
+                    InitValueCS result = createInitValueCS((OCLExpressionCS)getRhsSym(3));
+                    setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
     initOrDerValueCS ::= derive ':' OclExpressionCS
         /.$BeginCode
-                    DerValueCS result = createDerValueCS((OCLExpressionCS)$getSym(3));
-                    setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(3));
-                    $setResult(result);
+                    DerValueCS result = createDerValueCS((OCLExpressionCS)getRhsSym(3));
+                    setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
+                    setResult(result);
           $EndCode
         ./
 
 	classifierContextDeclCS ::= context pathNameCS invOrDefsCS
 		/.$BeginCode
-					EList<InvOrDefCS> list = (EList<InvOrDefCS>)$getSym(3);
+					EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(3);
 					ClassifierContextDeclCS result = createClassifierContextDeclCS(
 							null,
-							(PathNameCS)$getSym(2),
+							(PathNameCS)getRhsSym(2),
 							list
 						);
-					setOffsets(result, getIToken($getToken(1)), list.get(list.size()-1));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), list.get(list.size()-1));
+					setResult(result);
 		  $EndCode
 		./
 	classifierContextDeclCS ::= context simpleNameCS ':' pathNameCS invOrDefsCS
 		/.$BeginCode
-					EList<InvOrDefCS> list = (EList<InvOrDefCS>)$getSym(5);
+					EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(5);
 					ClassifierContextDeclCS result = createClassifierContextDeclCS(
-							(SimpleNameCS)$getSym(2),
-							(PathNameCS)$getSym(4),
+							(SimpleNameCS)getRhsSym(2),
+							(PathNameCS)getRhsSym(4),
 							list
 						);
-					setOffsets(result, getIToken($getToken(1)), list.get(list.size()-1));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), list.get(list.size()-1));
+					setResult(result);
 		  $EndCode
 		./
 
     invOrDefsCS ::= invOrDefCS
         /.$BeginCode
                     EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
-                    result.add((InvOrDefCS)$getSym(1));
-                    $setResult(result);
+                    result.add((InvOrDefCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     invOrDefsCS ::= invOrDefsCS invOrDefCS
         /.$BeginCode
-                    EList<InvOrDefCS> result = (EList<InvOrDefCS>)$getSym(1);
-                    result.add((InvOrDefCS)$getSym(2));
-                    $setResult(result);
+                    EList<InvOrDefCS> result = (EList<InvOrDefCS>)getRhsSym(1);
+                    result.add((InvOrDefCS)getRhsSym(2));
+                    setResult(result);
           $EndCode
         ./
 
 	invOrDefCS ::= inv unreservedSimpleNameCSopt ':' OclExpressionCS
 		/.$BeginCode
 					InvCS result = createInvCS(
-							(SimpleNameCS)$getSym(2),
-							(OCLExpressionCS)$getSym(4)
+							(SimpleNameCS)getRhsSym(2),
+							(OCLExpressionCS)getRhsSym(4)
 						);
-					setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+					setResult(result);
 		  $EndCode
 		./	
     invOrDefCS ::= def unreservedSimpleNameCSopt ':' defExpressionCS
         /.$BeginCode
-                    DefExpressionCS defExpressionCS = (DefExpressionCS)$getSym(4);
+                    DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(4);
                     DefCS result = createDefCS(
                             false,
-                            (SimpleNameCS)$getSym(2),
+                            (SimpleNameCS)getRhsSym(2),
                             defExpressionCS
                         );
-                    setOffsets(result, getIToken($getToken(1)), defExpressionCS);
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), defExpressionCS);
+                    setResult(result);
           $EndCode
         ./
     invOrDefCS ::= static def unreservedSimpleNameCSopt ':' defExpressionCS
         /.$BeginCode
-                    DefExpressionCS defExpressionCS = (DefExpressionCS)$getSym(5);
+                    DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(5);
                     DefCS result = createDefCS(
                             true,
-                            (SimpleNameCS)$getSym(3),
+                            (SimpleNameCS)getRhsSym(3),
                             defExpressionCS
                         );
-                    setOffsets(result, getIToken($getToken(1)), defExpressionCS);
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), defExpressionCS);
+                    setResult(result);
           $EndCode
         ./
 
 	defExpressionCS ::= typedUninitializedVariableCS '=' OclExpressionCS
 		/.$BeginCode
-					VariableCS variableCS = (VariableCS)$getSym(1);
-					OCLExpressionCS expressionCS = (OCLExpressionCS)$getSym(3);
+					VariableCS variableCS = (VariableCS)getRhsSym(1);
+					OCLExpressionCS expressionCS = (OCLExpressionCS)getRhsSym(3);
 					DefExpressionCS result = createDefExpressionCS(
 							variableCS,
 							null,
 							expressionCS
 						);
 					setOffsets(result, variableCS, expressionCS);
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 	defExpressionCS ::= operationCS1 '=' OclExpressionCS
 		/.$BeginCode
 					DefExpressionCS result = createDefExpressionCS(
 							null,
-							(OperationCS)$getSym(1),
-							(OCLExpressionCS)$getSym(3)
+							(OperationCS)getRhsSym(1),
+							(OCLExpressionCS)getRhsSym(3)
 						);
-					setOffsets(result, (CSTNode)$getSym(1), (CSTNode)$getSym(3));
-					$setResult(result);
+					setOffsets(result, (CSTNode)getRhsSym(1), (CSTNode)getRhsSym(3));
+					setResult(result);
 		  $EndCode
 		./
 
 	operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclsCS
 		/.$BeginCode
-					EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)$getSym(3);
+					EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)getRhsSym(3);
 					OperationContextDeclCS result = createOperationContextDeclCS(
-							(OperationCS)$getSym(2),
+							(OperationCS)getRhsSym(2),
 							prePostOrBodyDecls
 						);
-					setOffsets(result, getIToken($getToken(1)), prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
+					setResult(result);
 		  $EndCode
 		./
 
     prePostOrBodyDeclsCS ::= prePostOrBodyDeclCS
         /.$BeginCode
                     EList<PrePostOrBodyDeclCS> result = new BasicEList<PrePostOrBodyDeclCS>();
-                    result.add((PrePostOrBodyDeclCS)$getSym(1));
-                    $setResult(result);
+                    result.add((PrePostOrBodyDeclCS)getRhsSym(1));
+                    setResult(result);
           $EndCode
         ./
     prePostOrBodyDeclsCS ::= prePostOrBodyDeclsCS prePostOrBodyDeclCS
         /.$BeginCode
-                    EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)$getSym(1);
-                    result.add((PrePostOrBodyDeclCS)$getSym(2));
-                    $setResult(result);
+                    EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)getRhsSym(1);
+                    result.add((PrePostOrBodyDeclCS)getRhsSym(2));
+                    setResult(result);
           $EndCode
         ./
 
@@ -500,75 +500,75 @@
         /.$BeginCode
                     PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                             PrePostOrBodyEnum.PRE_LITERAL,
-                            (SimpleNameCS)$getSym(2),
-                            (OCLExpressionCS)$getSym(4)
+                            (SimpleNameCS)getRhsSym(2),
+                            (OCLExpressionCS)getRhsSym(4)
                         );
-                    setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+                    setResult(result);
           $EndCode
         ./
     prePostOrBodyDeclCS ::= post unreservedSimpleNameCSopt ':' OclExpressionCS
         /.$BeginCode
                     PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                             PrePostOrBodyEnum.POST_LITERAL,
-                            (SimpleNameCS)$getSym(2),
-                            (OCLExpressionCS)$getSym(4)
+                            (SimpleNameCS)getRhsSym(2),
+                            (OCLExpressionCS)getRhsSym(4)
                         );
-                    setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+                    setResult(result);
           $EndCode
         ./
     prePostOrBodyDeclCS ::= body unreservedSimpleNameCSopt ':' OclExpressionCS
         /.$BeginCode
                     PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                             PrePostOrBodyEnum.BODY_LITERAL,
-                            (SimpleNameCS)$getSym(2),
-                            (OCLExpressionCS)$getSym(4)
+                            (SimpleNameCS)getRhsSym(2),
+                            (OCLExpressionCS)getRhsSym(4)
                         );
-                    setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(4));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+                    setResult(result);
           $EndCode
         ./
 
 	operationCS1 ::= simpleNameCS '(' parametersCSopt ')' ':' typeCSopt
 		/.$BeginCode
 					OperationCS result = createOperationCS(
-							getIToken($getToken(1)),
-							(EList<VariableCS>)$getSym(3),
-							(TypeCS)$getSym(6)
+							getRhsIToken(1),
+							(EList<VariableCS>)getRhsSym(3),
+							(TypeCS)getRhsSym(6)
 						);
-					if ($getSym(6) != null) {
-						setOffsets(result, getIToken($getToken(1)), (CSTNode)$getSym(6));
+					if (getRhsSym(6) != null) {
+						setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(6));
 					} else {
-						setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
+						setOffsets(result, getRhsIToken(1), getRhsIToken(5));
 					}
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' unreservedSimpleNameCS '(' parametersCSopt ')'
 	   ':' typeCSopt
 		/.$BeginCode
-					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
-					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
-					TypeCS typeCS = (TypeCS)$getSym(8);
+					PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+					SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+					TypeCS typeCS = (TypeCS)getRhsSym(8);
 					OperationCS result = createOperationCS(
 							pathNameCS,
 							simpleNameCS,
-							(EList<VariableCS>)$getSym(5),
+							(EList<VariableCS>)getRhsSym(5),
 							typeCS
 						);
 					if (typeCS != null) {
 						setOffsets(result, pathNameCS, typeCS);
 					} else {
-						setOffsets(result, pathNameCS, getIToken($getToken(7)));
+						setOffsets(result, pathNameCS, getRhsIToken(7));
 					}
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 
     parametersCSopt ::= %empty
         /.$BeginCode
-                    $setResult(new BasicEList<VariableCS>());
+                    setResult(new BasicEList<VariableCS>());
           $EndCode
         ./
     parametersCSopt -> parametersCS
@@ -576,15 +576,15 @@
 	parametersCS ::= VariableDeclarationCS 
 		/.$BeginCode
 					EList<VariableCS> result = new BasicEList<VariableCS>();
-					result.add((VariableCS)$getSym(1));
-					$setResult(result);
+					result.add((VariableCS)getRhsSym(1));
+					setResult(result);
 		  $EndCode
 		./
 	parametersCS ::= parametersCS ',' VariableDeclarationCS
 		/.$BeginCode
-					EList<VariableCS> result = (EList<VariableCS>)$getSym(1);
-					result.add((VariableCS)$getSym(3));
-					$setResult(result);
+					EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+					result.add((VariableCS)getRhsSym(3));
+					setResult(result);
 		  $EndCode
 		./
 %End

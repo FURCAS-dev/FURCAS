@@ -14,7 +14,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCLErrors.gi,v 1.3 2010/01/22 18:38:11 asanchez Exp $
+-- * $Id: EssentialOCLErrors.gi,v 1.4 2010/01/25 11:10:05 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The EssentialOCL Backtracking Parser
@@ -43,12 +43,12 @@
 %Rules
 	ERROR_Colon ::= ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_COLON);
+					reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_COLON);
 		  $EndCode
 		./
 	ERROR_Empty ::= ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(1), OCLParserErrors.EXTRA_TOKENS);
+					reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.EXTRA_TOKENS);
 		  $EndCode
 		./
 
@@ -57,16 +57,15 @@
 -----------------------------------------------------------------------
 		
 	ERROR_SimpleNameCS ::= ERROR_TOKEN
-		/.$BeginCode
-					int token = $getToken(1);
-					reportErrorTokenMessage(token, OCLParserErrors.MISSING_SIMPLE_NAME);
-                    IToken iToken = getIToken(token);
+		/.$BeginCode					
+					reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_SIMPLE_NAME);
+                    IToken iToken = getRhsIToken(1);
 					SimpleNameCS result = createSimpleNameCS(
 							SimpleTypeEnum.IDENTIFIER_LITERAL,
 							iToken
 						);
 					setOffsets(result, iToken);
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 
@@ -78,11 +77,11 @@
 -----------------------------------------------------------------------		
 	collectionTypeCS ::= CollectionTypeIdentifierCS '(' typeCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RPAREN);
-					CollectionTypeCS result = (CollectionTypeCS)$getSym(1); 
-					result.setTypeCS((TypeCS)$getSym(3));
-					setOffsets(result, result, getIToken($getToken(4)));
-					$setResult(result);
+					reportErrorTokenMessage(getRhsTokenIndex(4), OCLParserErrors.MISSING_RPAREN);
+					CollectionTypeCS result = (CollectionTypeCS)getRhsSym(1); 
+					result.setTypeCS((TypeCS)getRhsSym(3));
+					setOffsets(result, result, getRhsIToken(4));
+					setResult(result);
 		  $EndCode
 		./
 
@@ -91,19 +90,19 @@
 -----------------------------------------------------------------------
 --	VariableDeclarationCS ::= notLiteralNorReservedSimpleNameCS ERROR_TOKEN
 --		/.$BeginCode
---					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_VARIABLE_TYPE);
---					SimpleNameCS name = (SimpleNameCS)$getSym(1);
+--					reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_VARIABLE_TYPE);
+--					SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
 --					VariableCS result = createVariableCS(name, null, null);
---					setOffsets(result, name, getIToken($getToken(2)));
---					$setResult(result);
+--					setOffsets(result, name, getRhsIToken(2));
+--					setResult(result);
 --		  $EndCode
 --		./
 
 --	variableDeclarationListCS ::= ERROR_TOKEN
 --		/.$BeginCode
---					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_VARIABLES);
+--					reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_VARIABLES);
 --					EList result = new BasicEList();
---					$setResult(result);
+--					setResult(result);
 --		  $EndCode
 --		./
 
@@ -112,18 +111,18 @@
 -----------------------------------------------------------------------
 	TupleLiteralExpCS ::= Tuple ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_LBRACE);
-					TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)$getSym(3));
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-					$setResult(result);
+					reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_LBRACE);
+					TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)getRhsSym(3));
+					setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+					setResult(result);
 		  $EndCode
 		./
 
 	TupleLiteralPartsCS ::= ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_VARIABLES);
+					reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_VARIABLES);
 					EList<VariableCS> result = new BasicEList<VariableCS>();
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 
@@ -132,14 +131,14 @@
 -----------------------------------------------------------------------		
 	AssociationClassCallExpCS ::= simpleNameCS '[' argumentsCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_RBRACK);
+					reportErrorTokenMessage(getRhsTokenIndex(4), OCLParserErrors.MISSING_RBRACK);
 					VariableExpCS result = createVariableExpCS(
-							(SimpleNameCS)$getSym(1),
-							(EList<OCLExpressionCS>)$getSym(3),
+							(SimpleNameCS)getRhsSym(1),
+							(EList<OCLExpressionCS>)getRhsSym(3),
 							null
 						);
-					setOffsets(result, (CSTNode)$getSym(1), getIToken($getToken(4)));
-					$setResult(result);
+					setOffsets(result, (CSTNode)getRhsSym(1), getRhsIToken(4));
+					setResult(result);
 		  $EndCode
 		./
 
@@ -148,59 +147,59 @@
 -----------------------------------------------------------------------
 	IfExpCS ::= if OclExpressionCS then OclExpressionCS else OclExpressionCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(7), OCLParserErrors.MISSING_ENDIF);
+					reportErrorTokenMessage(getRhsTokenIndex(7), OCLParserErrors.MISSING_ENDIF);
 					IfExpCS result = createIfExpCS(
-							(OCLExpressionCS)$getSym(2),
-							(OCLExpressionCS)$getSym(4),
-							(OCLExpressionCS)$getSym(6)
+							(OCLExpressionCS)getRhsSym(2),
+							(OCLExpressionCS)getRhsSym(4),
+							(OCLExpressionCS)getRhsSym(6)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(7)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(7));
+					setResult(result);
 		  $EndCode
 		./
 	IfExpCS ::= if OclExpressionCS then OclExpressionCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(5), OCLParserErrors.MISSING_ELSE_ENDIF);
+					reportErrorTokenMessage(getRhsTokenIndex(5), OCLParserErrors.MISSING_ELSE_ENDIF);
 					IfExpCS result = createIfExpCS(
-							(OCLExpressionCS)$getSym(2),
-							(OCLExpressionCS)$getSym(4),
-							createInvalidLiteralExpCS(getTokenText($getToken(5)))
+							(OCLExpressionCS)getRhsSym(2),
+							(OCLExpressionCS)getRhsSym(4),
+							createInvalidLiteralExpCS(getRhsTokenText(5))
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(5));
+					setResult(result);
 		  $EndCode
 		./
 	IfExpCS ::= if OclExpressionCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE_ENDIF);
+					reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_THEN_ELSE_ENDIF);
 					IfExpCS result = createIfExpCS(
-							(OCLExpressionCS)$getSym(2),
-							createInvalidLiteralExpCS(getTokenText($getToken(3))),
-							createInvalidLiteralExpCS(getTokenText($getToken(3)))
+							(OCLExpressionCS)getRhsSym(2),
+							createInvalidLiteralExpCS(getRhsTokenText(3)),
+							createInvalidLiteralExpCS(getRhsTokenText(3))
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 	IfExpCS ::= if ERROR_TOKEN endif
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_THEN_ELSE);
+					reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_THEN_ELSE);
 					IfExpCS result = createIfExpCS(
-							createInvalidLiteralExpCS(getTokenText($getToken(2))),
-							createInvalidLiteralExpCS(getTokenText($getToken(2))),
-							createInvalidLiteralExpCS(getTokenText($getToken(2)))
+							createInvalidLiteralExpCS(getRhsTokenText(2)),
+							createInvalidLiteralExpCS(getRhsTokenText(2)),
+							createInvalidLiteralExpCS(getRhsTokenText(2))
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 
 	primaryExpCS ::= '(' OclExpressionCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_RPAREN);
-					OCLExpressionCS result = (OCLExpressionCS)$getSym(2);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_RPAREN);
+					OCLExpressionCS result = (OCLExpressionCS)getRhsSym(2);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 %End
