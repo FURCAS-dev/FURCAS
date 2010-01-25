@@ -6,13 +6,36 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.util;
 
-import de.hpi.sam.bp2009.solution.eventManager.*;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.common.util.EList;
+
+import de.hpi.sam.bp2009.solution.eventManager.AndFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AssociationFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.AttributeValueChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ClassFilter;
+import de.hpi.sam.bp2009.solution.eventManager.CompositionHierarchyFilter;
+import de.hpi.sam.bp2009.solution.eventManager.ContainerFilter;
+import de.hpi.sam.bp2009.solution.eventManager.ElementChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementDeleteEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ElementLifeCycleEvent;
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventMappper;
+import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
+import de.hpi.sam.bp2009.solution.eventManager.EventTypeFilter;
+import de.hpi.sam.bp2009.solution.eventManager.InstanceFilter;
+import de.hpi.sam.bp2009.solution.eventManager.LinkCreateEvent;
+import de.hpi.sam.bp2009.solution.eventManager.LinkDeleteEvent;
+import de.hpi.sam.bp2009.solution.eventManager.LinkLifeCycleEvent;
+import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
+import de.hpi.sam.bp2009.solution.eventManager.NotFilter;
+import de.hpi.sam.bp2009.solution.eventManager.OrFilter;
+import de.hpi.sam.bp2009.solution.eventManager.PackageFilter;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.

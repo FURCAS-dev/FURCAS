@@ -6,22 +6,16 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
-import java.util.ArrayList;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
 
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-
-import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
 
 /**
  * <!-- begin-user-doc -->
@@ -56,6 +50,7 @@ public class OCLEvaluatorImpl extends EObjectImpl implements OCLEvaluator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 */
+	@SuppressWarnings("unchecked")
 	public Object evaluate(AbstractOCLCondition queryobject, EObject context) {
 		return queryobject.evaluate(context);
 	}

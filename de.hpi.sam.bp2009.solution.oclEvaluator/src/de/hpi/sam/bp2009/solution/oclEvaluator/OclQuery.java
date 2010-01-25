@@ -68,6 +68,7 @@ public interface OclQuery extends EObject {
 	 * @model dataType="de.hpi.sam.bp2009.solution.oclEvaluator.OclCondition"
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	AbstractOCLCondition getCondition();
 
 	/**
@@ -78,6 +79,7 @@ public interface OclQuery extends EObject {
 	 * @see #getCondition()
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	void setCondition(AbstractOCLCondition value);
 
 } // OclQuery

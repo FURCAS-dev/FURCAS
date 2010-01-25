@@ -6,8 +6,6 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.impl;
 
-import static de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage.ADAPTER;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;

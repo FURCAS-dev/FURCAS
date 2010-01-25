@@ -29,6 +29,7 @@ public interface OCLEvaluator extends EObject {
 	 * @model queryobjectDataType="de.hpi.sam.bp2009.solution.oclEvaluator.OclCondition" contextDataType="de.hpi.sam.bp2009.solution.oclEvaluator.EObject"
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	Object evaluate(AbstractOCLCondition queryobject, EObject context);
 
 	/**

@@ -6,18 +6,15 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
-import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
-import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
+
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -62,6 +59,7 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * @generated
 	 * @ordered
 	 */
+	@SuppressWarnings("unchecked")
 	protected static final AbstractOCLCondition CONDITION_EDEFAULT = null;
 
 	/**
@@ -72,6 +70,7 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * @generated
 	 * @ordered
 	 */
+	@SuppressWarnings("unchecked")
 	protected AbstractOCLCondition condition = CONDITION_EDEFAULT;
 
 	/**
@@ -119,6 +118,7 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public AbstractOCLCondition getCondition() {
 		return condition;
 	}
@@ -128,6 +128,7 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public void setCondition(AbstractOCLCondition newCondition) {
 		AbstractOCLCondition oldCondition = condition;
 		condition = newCondition;
@@ -156,6 +157,7 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

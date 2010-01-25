@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://de.hpi.sam.bp2009.solution.impactAnalyzer"
-            class="impactAnalyzer.ImpactAnalyzerPackage"
+            class="de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage"
             genModel="model/impactAnalyzer.genmodel"/>
    </extension>
 

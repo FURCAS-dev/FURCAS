@@ -6,18 +6,18 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
-import de.hpi.sam.bp2009.solution.oclEvaluator.*;
-import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
 import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
+
+import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -129,6 +129,7 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public AbstractOCLCondition createOclConditionFromString(EDataType eDataType, String initialValue) {
 		return (AbstractOCLCondition)super.createFromString(eDataType, initialValue);
 	}
