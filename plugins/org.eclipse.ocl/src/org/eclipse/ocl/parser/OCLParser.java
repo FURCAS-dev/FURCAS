@@ -19,7 +19,7 @@
 *
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.23 2010/01/22 18:37:49 asanchez Exp $
+* $Id: OCLParser.java,v 1.24 2010/01/25 11:10:05 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -270,16 +270,59 @@ public OCLLexer getLexer() {
 
 // Some methods for backwards compatibility 
 /**
-* @since 3.0
+* <p>
+* Before 3.0, this method was used with the now-deprecated  "dollar"getToken macro (which
+* provided token index in the prsStream) to obtain an IToken f a rule given the index of the
+* right hand side token in the said rule. In 3.0 a convenience method has been introduced
+* in order to directly return the IToken, given the index of the right hand side token in the rule.
+* </p> 
+*
+* <p>
+* In an action-block of a rule, instead of doing <code>getIToken("dollar"getToken(i))</code> 
+* you should do <code>getRhsTokenText(i)</code>
+* </p>
+* @param i the right hand side token index
+* @return the correspondent IToken.
+*
+* @since 3.0	
+* @deprecated
 */
 protected IToken getIToken(int i) {
 	return prsStream.getIToken(i);
 }
-	
+
+/**
+* <p>
+* Before 3.0, this method was used with the now-deprecated "dollar"getToken macro (which
+* provided token index in the prsStream) to obtain an IToken f a rule given the index of the
+* right hand side token in the said rule. In 3.0 a convenience method has been introduced
+* in order to directly return the IToken, given the index of the right hand side token in the rule.
+* </p> 
+* 
+* <p>
+* In an action-block of a rule, instead of doing <code>getTokenText("dollar"getToken(i))</code> 
+* you should do <code>getRhsTokenText(i)</code>
+* </p>
+* @param i the right hand side token index
+* @result the text of the correspondent right hand side IToken.
+*
+* @deprecated 
+*/
 protected String getTokenText(int i) {
 	return prsStream.getTokenText(i);
 }
 
+/**
+* A convenience method to obtain the text of a right hand side IToken.
+*  
+* @param i the right hand side token index
+* @result the text of the correspondent right hand side IToken.
+*
+* @since 3.0
+*/
+protected String getRhsTokenText(int i) { 
+	return prsStream.getTokenText(getRhsTokenIndex(i));
+}
 
 	@SuppressWarnings("unchecked")
     public void ruleAction(int ruleNumber)
@@ -292,10 +335,10 @@ protected String getTokenText(int i) {
 			//
 			case 16: {
 				
-                IToken iToken = getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1));
+                IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createConceptualOperationNameCS(iToken);
                 setOffsets(result, iToken);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
      
@@ -310,13 +353,13 @@ protected String getTokenText(int i) {
 			//
 			case 29: {
 				
-                IToken iToken = getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1));
+                IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createSimpleNameCS(
                             SimpleTypeEnum.KEYWORD_LITERAL,
                             iToken
                         );
                 setOffsets(result, iToken);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -325,13 +368,13 @@ protected String getTokenText(int i) {
 			//
 			case 33: {
 				
-                IToken iToken = getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1));
+                IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createSimpleNameCS(
                         SimpleTypeEnum.SELF_LITERAL,
                         iToken
                     );
                 setOffsets(result, iToken);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -340,13 +383,13 @@ protected String getTokenText(int i) {
 			//
 			case 34: {
 				
-                IToken iToken = getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1));
+                IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createSimpleNameCS(
                         SimpleTypeEnum.IDENTIFIER_LITERAL,
                         iToken
                     );
                 setOffsets(result, iToken);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -355,10 +398,10 @@ protected String getTokenText(int i) {
 			//
 			case 37: {
 				
-                SimpleNameCS simpleName = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                SimpleNameCS simpleName = (SimpleNameCS)getRhsSym(1);
                 PathNameCS result = createPathNameCS(simpleName);
                 setOffsets(result, simpleName);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -367,11 +410,11 @@ protected String getTokenText(int i) {
 			//
 			case 38: {
 				
-                PathNameCS result = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                PathNameCS result = (PathNameCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 result = extendPathNameCS(result, simpleNameCS);
                 setOffsets(result, result, simpleNameCS);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -382,10 +425,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.BOOLEAN_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -396,10 +439,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.INTEGER_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -410,10 +453,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.REAL_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -424,10 +467,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.STRING_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -438,10 +481,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.UNLIMITED_NATURAL_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -452,10 +495,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_ANY_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -466,10 +509,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_INVALID_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -480,10 +523,10 @@ protected String getTokenText(int i) {
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_VOID_LITERAL,
-                        getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                        getRhsTokenText(1)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -494,10 +537,10 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.SET_LITERAL,
-                            getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                            getRhsTokenText(1)
                         );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -508,10 +551,10 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.BAG_LITERAL,
-                            getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                            getRhsTokenText(1)
                         );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -522,10 +565,10 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.SEQUENCE_LITERAL,
-                            getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                            getRhsTokenText(1)
                         );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -536,10 +579,10 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.COLLECTION_LITERAL,
-                            getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                            getRhsTokenText(1)
                         );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -550,10 +593,10 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.ORDERED_SET_LITERAL,
-                            getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                            getRhsTokenText(1)
                         );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -562,10 +605,10 @@ protected String getTokenText(int i) {
 			//
 			case 56: {
 				
-                CollectionTypeCS result = (CollectionTypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.setTypeCS((TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                setOffsets(result, result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                CollectionTypeCS result = (CollectionTypeCS)getRhsSym(1);
+                result.setTypeCS((TypeCS)getRhsSym(3));
+                setOffsets(result, result, getRhsIToken(4));
+                setResult(result);
                       break;
             }
     
@@ -574,9 +617,9 @@ protected String getTokenText(int i) {
 			//
 			case 57: {
 				
-                 TupleTypeCS result = createTupleTypeCS((EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                 TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)getRhsSym(3));
+                setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                setResult(result);
                       break;
             }
     
@@ -585,7 +628,7 @@ protected String getTokenText(int i) {
 			//
 			case 58: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(new BasicEList<VariableCS>());
+                setResult(new BasicEList<VariableCS>());
                       break;
             }
     
@@ -595,8 +638,8 @@ protected String getTokenText(int i) {
 			case 60: {
 				
                 EList<VariableCS> result = new BasicEList<VariableCS>();
-                result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((VariableCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -605,9 +648,9 @@ protected String getTokenText(int i) {
 			//
 			case 61: {
 				
-                EList<VariableCS> result = (EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+                result.add((VariableCS)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -616,10 +659,10 @@ protected String getTokenText(int i) {
 			//
 			case 62: {
 				
-                SimpleNameCS name = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
                 VariableCS result = createVariableCS(name, null, null);
                 setOffsets(result, name);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -628,11 +671,11 @@ protected String getTokenText(int i) {
 			//
 			case 63: {
 				
-                SimpleNameCS name = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                TypeCS type = (TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
+                TypeCS type = (TypeCS)getRhsSym(3);
                 VariableCS result = createVariableCS(name, type, null);
                 setOffsets(result, name, type);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -641,11 +684,11 @@ protected String getTokenText(int i) {
 			//
 			case 64: {
 				
-                SimpleNameCS name = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                OCLExpressionCS initExpression = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
+                OCLExpressionCS initExpression = (OCLExpressionCS)getRhsSym(3);
                 VariableCS result = createVariableCS(name, null, initExpression);
                 setOffsets(result, name, initExpression);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -654,12 +697,12 @@ protected String getTokenText(int i) {
 			//
 			case 65: {
 				
-                SimpleNameCS name = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                TypeCS type = (TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                OCLExpressionCS initExpression = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+                SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
+                TypeCS type = (TypeCS)getRhsSym(3);
+                OCLExpressionCS initExpression = (OCLExpressionCS)getRhsSym(5);
                 VariableCS result = createVariableCS(name, type, initExpression);
                 setOffsets(result, name, initExpression);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -668,13 +711,13 @@ protected String getTokenText(int i) {
 			//
 			case 78: {
 				
-                CollectionTypeCS typeCS = (CollectionTypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                CollectionTypeCS typeCS = (CollectionTypeCS)getRhsSym(1);
                 CollectionLiteralExpCS result = createCollectionLiteralExpCS(
                         typeCS,
-                        (EList<CollectionLiteralPartCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3)
+                        (EList<CollectionLiteralPartCS>)getRhsSym(3)
                     );
-                setOffsets(result, typeCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, typeCS, getRhsIToken(4));
+                setResult(result);
                       break;
             }
     
@@ -683,13 +726,13 @@ protected String getTokenText(int i) {
 			//
 			case 79: {
 				
-                CollectionTypeCS typeCS = (CollectionTypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                CollectionTypeCS typeCS = (CollectionTypeCS)getRhsSym(1);
                 CollectionLiteralExpCS result = createCollectionLiteralExpCS(
                         typeCS,
-                        (EList<CollectionLiteralPartCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3)
+                        (EList<CollectionLiteralPartCS>)getRhsSym(3)
                     );
-                setOffsets(result, typeCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, typeCS, getRhsIToken(4));
+                setResult(result);
                       break;
             }
     
@@ -698,7 +741,7 @@ protected String getTokenText(int i) {
 			//
 			case 80: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(new BasicEList<CollectionLiteralPartCS>());
+                setResult(new BasicEList<CollectionLiteralPartCS>());
                       break;
             }
     
@@ -708,8 +751,8 @@ protected String getTokenText(int i) {
 			case 82: {
 				
                 EList<CollectionLiteralPartCS> result = new BasicEList<CollectionLiteralPartCS>();
-                result.add((CollectionLiteralPartCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((CollectionLiteralPartCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -718,9 +761,9 @@ protected String getTokenText(int i) {
 			//
 			case 83: {
 				
-                EList<CollectionLiteralPartCS> result = (EList<CollectionLiteralPartCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((CollectionLiteralPartCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<CollectionLiteralPartCS> result = (EList<CollectionLiteralPartCS>)getRhsSym(1);
+                result.add((CollectionLiteralPartCS)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -730,10 +773,10 @@ protected String getTokenText(int i) {
 			case 85: {
 				
                 CollectionLiteralPartCS result = createCollectionLiteralPartCS(
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1)
+                        (OCLExpressionCS)getRhsSym(1)
                     );
-                setOffsets(result, (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, (CSTNode)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -743,11 +786,11 @@ protected String getTokenText(int i) {
 			case 86: {
 				
                 CollectionLiteralPartCS result = createCollectionRangeCS(
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3)
+                        (OCLExpressionCS)getRhsSym(1),
+                        (OCLExpressionCS)getRhsSym(3)
                     );
-                setOffsets(result, (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, (CSTNode)getRhsSym(1), (CSTNode)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -756,9 +799,9 @@ protected String getTokenText(int i) {
 			//
 			case 94: {
 				
-                TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)getRhsSym(3));
+                setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                setResult(result);
                       break;
             }
     
@@ -768,8 +811,8 @@ protected String getTokenText(int i) {
 			case 95: {
 				
                 EList<VariableCS> result = new BasicEList<VariableCS>();
-                result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((VariableCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -778,9 +821,9 @@ protected String getTokenText(int i) {
 			//
 			case 96: {
 				
-                EList<VariableCS> result = (EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+                result.add((VariableCS)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -789,9 +832,9 @@ protected String getTokenText(int i) {
 			//
 			case 97: {
 				
-                IntegerLiteralExpCS result = createIntegerLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                IntegerLiteralExpCS result = createIntegerLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -800,9 +843,9 @@ protected String getTokenText(int i) {
 			//
 			case 98: {
 				
-                RealLiteralExpCS result = createRealLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                RealLiteralExpCS result = createRealLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -811,10 +854,10 @@ protected String getTokenText(int i) {
 			//
 			case 99: {
 				
-                IToken literalToken = getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1));
+                IToken literalToken = getRhsIToken(1);
                 StringLiteralExpCS result = createStringLiteralExpCS(literalToken);
                 setOffsets(result, literalToken);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -823,11 +866,11 @@ protected String getTokenText(int i) {
 			//
 			case 100: {
 				
-                StringLiteralExpCS string = (StringLiteralExpCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                IToken literalToken = getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(2));
+                StringLiteralExpCS string = (StringLiteralExpCS)getRhsSym(1);
+                IToken literalToken = getRhsIToken(2);
                 StringLiteralExpCS result = extendStringLiteralExpCS(string, literalToken);
                 setOffsets(result, string, literalToken);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -836,9 +879,9 @@ protected String getTokenText(int i) {
 			//
 			case 101: {
 				
-                BooleanLiteralExpCS result = createBooleanLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                BooleanLiteralExpCS result = createBooleanLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -847,9 +890,9 @@ protected String getTokenText(int i) {
 			//
 			case 102: {
 				
-                BooleanLiteralExpCS result = createBooleanLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                BooleanLiteralExpCS result = createBooleanLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -858,9 +901,9 @@ protected String getTokenText(int i) {
 			//
 			case 103: {
 				
-                UnlimitedNaturalLiteralExpCS result = createUnlimitedNaturalLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                UnlimitedNaturalLiteralExpCS result = createUnlimitedNaturalLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -869,9 +912,9 @@ protected String getTokenText(int i) {
 			//
 			case 104: {
 				
-                InvalidLiteralExpCS result = createInvalidLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                InvalidLiteralExpCS result = createInvalidLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
     
@@ -880,9 +923,9 @@ protected String getTokenText(int i) {
 			//
 			case 105: {
 				
-                NullLiteralExpCS result = createNullLiteralExpCS(getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                NullLiteralExpCS result = createNullLiteralExpCS(getRhsTokenText(1));
+                setOffsets(result, getRhsIToken(1));
+                setResult(result);
                       break;
             }
      
@@ -903,14 +946,14 @@ protected String getTokenText(int i) {
 			//
 			case 108: {
 				
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
                         new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(result, simpleNameCS);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -919,17 +962,17 @@ protected String getTokenText(int i) {
 			//
 			case 113: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 IteratorExpCS result = createIteratorExpCS(
                         source,
                         simpleNameCS,
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5),
+                        (VariableCS)getRhsSym(5),
                         null,
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7)
+                        (OCLExpressionCS)getRhsSym(7)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(8)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(8));
+                setResult(result);
                       break;
             }
     
@@ -938,20 +981,20 @@ protected String getTokenText(int i) {
 			//
 			case 114: {
 				
-                SimpleNameCS name = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+                SimpleNameCS name = (SimpleNameCS)getRhsSym(5);
                 VariableCS variableCS = createVariableCS(name, null, null);
                 setOffsets(variableCS, name);
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 IteratorExpCS result = createIteratorExpCS(
                         source,
                         simpleNameCS,
                         variableCS,
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(9)
+                        (VariableCS)getRhsSym(7),
+                        (OCLExpressionCS)getRhsSym(9)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(10)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(10));
+                setResult(result);
                       break;
             }
     
@@ -960,17 +1003,17 @@ protected String getTokenText(int i) {
 			//
 			case 115: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 IteratorExpCS result = createIteratorExpCS(
                         source,
                         simpleNameCS,
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5),
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(9)
+                        (VariableCS)getRhsSym(5),
+                        (VariableCS)getRhsSym(7),
+                        (OCLExpressionCS)getRhsSym(9)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(10)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(10));
+                setResult(result);
                       break;
             }
     
@@ -979,17 +1022,17 @@ protected String getTokenText(int i) {
 			//
 			case 116: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 IterateExpCS result = createIterateExpCS(
                         source,
                         simpleNameCS,
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5),
+                        (VariableCS)getRhsSym(5),
                         null,
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7)
+                        (OCLExpressionCS)getRhsSym(7)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(8)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(8));
+                setResult(result);
                       break;
             }
     
@@ -998,17 +1041,17 @@ protected String getTokenText(int i) {
 			//
 			case 117: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 IterateExpCS result = createIterateExpCS(
                         source,
                         simpleNameCS,
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5),
-                        (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(9)
+                        (VariableCS)getRhsSym(5),
+                        (VariableCS)getRhsSym(7),
+                        (OCLExpressionCS)getRhsSym(9)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(10)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(10));
+                setResult(result);
                       break;
             }
     
@@ -1017,15 +1060,15 @@ protected String getTokenText(int i) {
 			//
 			case 121: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 OperationCallExpCS result = createArrowOperationCallExpCS(
                         source,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
+                        (SimpleNameCS)getRhsSym(3),
                         null,
                         new BasicEList<OCLExpressionCS>()
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(5)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(5));
+                setResult(result);
                       break;
             }
     
@@ -1034,9 +1077,9 @@ protected String getTokenText(int i) {
 			//
 			case 122: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                OCLExpressionCS arg = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                OCLExpressionCS arg = (OCLExpressionCS)getRhsSym(5);
                 OCLExpressionCS result;
                 if (isIterator(simpleNameCS.getValue())) {
                     result = createIteratorExpCS(
@@ -1057,8 +1100,8 @@ protected String getTokenText(int i) {
                             args
                         );
                 }
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(6)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(6));
+                setResult(result);
                       break;
             }
     
@@ -1067,17 +1110,17 @@ protected String getTokenText(int i) {
 			//
 			case 123: {
 				
-                EList<OCLExpressionCS> args = (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7);
-                args.add(0, (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5));
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)getRhsSym(7);
+                args.add(0, (OCLExpressionCS)getRhsSym(5));
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 OperationCallExpCS result = createArrowOperationCallExpCS(
                         source,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
+                        (SimpleNameCS)getRhsSym(3),
                         null,
                         args
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(8)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(8));
+                setResult(result);
                       break;
             }
     
@@ -1086,24 +1129,24 @@ protected String getTokenText(int i) {
 			//
 			case 124: {
 				
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
                 OCLExpressionCS variableExpCS = createVariableExpCS(
                         simpleNameCS,
                         new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(variableExpCS, simpleNameCS);
-                EList<OCLExpressionCS> args = (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7);
+                EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)getRhsSym(7);
                 args.add(0, variableExpCS);
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 OperationCallExpCS result = createArrowOperationCallExpCS(
                         source,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
+                        (SimpleNameCS)getRhsSym(3),
                         null,
                         args
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(8)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(8));
+                setResult(result);
                       break;
             }
      
@@ -1118,17 +1161,17 @@ protected String getTokenText(int i) {
 			//
 			case 126: {
 				
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 CallExpCS result = createDotOperationCallExpCS(
                         source,
                         null,
                         simpleNameCS,
-                        (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4),
-                        (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6)
+                        (IsMarkedPreCS)getRhsSym(4),
+                        (EList<OCLExpressionCS>)getRhsSym(6)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(7)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(7));
+                setResult(result);
                       break;
             }
     
@@ -1140,12 +1183,12 @@ protected String getTokenText(int i) {
                 OperationCallExpCS result = createDotOperationCallExpCS(
                         null,
                         null,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1),
-                        (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-                        (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4)
+                        (SimpleNameCS)getRhsSym(1),
+                        (IsMarkedPreCS)getRhsSym(2),
+                        (EList<OCLExpressionCS>)getRhsSym(4)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(5)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), getRhsIToken(5));
+                setResult(result);
                       break;
             }
     
@@ -1154,17 +1197,17 @@ protected String getTokenText(int i) {
 			//
 			case 128: {
 				
-                PathNameCS pathNameCS = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 OperationCallExpCS result = createDotOperationCallExpCS(
                         null,
                         pathNameCS,
                         simpleNameCS,
                         null,
-                        (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5)
+                        (EList<OCLExpressionCS>)getRhsSym(5)
                     );
-                setOffsets(result, pathNameCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(6)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, pathNameCS, getRhsIToken(6));
+                setResult(result);
                       break;
             }
     
@@ -1173,18 +1216,18 @@ protected String getTokenText(int i) {
 			//
 			case 129: {
 				
-                PathNameCS pathNameCS = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                PathNameCS pathNameCS = (PathNameCS)getRhsSym(3);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 CallExpCS result = createDotOperationCallExpCS(
                         source,
                         pathNameCS,
                         simpleNameCS,
-                        (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6),
-                        (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(8)
+                        (IsMarkedPreCS)getRhsSym(6),
+                        (EList<OCLExpressionCS>)getRhsSym(8)
                     );
-                setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(9)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, source, getRhsIToken(9));
+                setResult(result);
                       break;
             }
     
@@ -1193,9 +1236,9 @@ protected String getTokenText(int i) {
 			//
 			case 131: {
 				
-                PathNameCS pathNameCS = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4);
+                PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(4);
                 FeatureCallExpCS result = createFeatureCallExpCS(
                         null,
                         pathNameCS,
@@ -1208,7 +1251,7 @@ protected String getTokenText(int i) {
                 } else {
                     setOffsets(result, pathNameCS, simpleNameCS);
                 }
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1217,10 +1260,10 @@ protected String getTokenText(int i) {
 			//
 			case 132: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                PathNameCS pathNameCS = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
-                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                PathNameCS pathNameCS = (PathNameCS)getRhsSym(3);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
+                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(6);
                 FeatureCallExpCS result = createFeatureCallExpCS(
                         source,
                         pathNameCS,
@@ -1233,7 +1276,7 @@ protected String getTokenText(int i) {
                 } else {
                     setOffsets(result, source, simpleNameCS);
                 }
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1242,9 +1285,9 @@ protected String getTokenText(int i) {
 			//
 			case 133: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(4);
                 FeatureCallExpCS result = createFeatureCallExpCS(
                         source,
                         null,
@@ -1257,7 +1300,7 @@ protected String getTokenText(int i) {
                 } else {
                     setOffsets(result, source, simpleNameCS);
                 }
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1266,22 +1309,22 @@ protected String getTokenText(int i) {
 			//
 			case 134: {
 				
-                OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7);
+                OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(7);
                 FeatureCallExpCS result = createFeatureCallExpCS(
                         source,
                         null,
                         simpleNameCS,
-                        (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5),
+                        (EList<OCLExpressionCS>)getRhsSym(5),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
                     setOffsets(result, source, isMarkedPreCS);
                 } else {
-                    setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(6)));
+                    setOffsets(result, source, getRhsIToken(6));
                 }
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1290,19 +1333,19 @@ protected String getTokenText(int i) {
 			//
 			case 135: {
 				
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
+                IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(5);
                 VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
-                        (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
+                        (EList<OCLExpressionCS>)getRhsSym(3),
                         isMarkedPreCS
                     );
                 if (isMarkedPreCS != null) {
                     setOffsets(result, simpleNameCS, isMarkedPreCS);
                 } else {
-                    setOffsets(result, simpleNameCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
+                    setOffsets(result, simpleNameCS, getRhsIToken(4));
                 }
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1311,7 +1354,7 @@ protected String getTokenText(int i) {
 			//
 			case 136: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(null);
+                setResult(null);
                       break;
             }
     
@@ -1320,7 +1363,7 @@ protected String getTokenText(int i) {
 			//
 			case 137: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(new BasicEList<OCLExpressionCS>());
+                setResult(new BasicEList<OCLExpressionCS>());
                       break;
             }
     
@@ -1330,8 +1373,8 @@ protected String getTokenText(int i) {
 			case 139: {
 				
                 EList<OCLExpressionCS> result = new BasicEList<OCLExpressionCS>();
-                result.add((OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((OCLExpressionCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -1340,9 +1383,9 @@ protected String getTokenText(int i) {
 			//
 			case 140: {
 				
-                EList<OCLExpressionCS> result = (EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<OCLExpressionCS> result = (EList<OCLExpressionCS>)getRhsSym(1);
+                result.add((OCLExpressionCS)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -1351,14 +1394,14 @@ protected String getTokenText(int i) {
 			//
 			case 143: {
 				
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
                         new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(result, simpleNameCS);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1367,14 +1410,14 @@ protected String getTokenText(int i) {
 			//
 			case 144: {
 				
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 VariableExpCS result = createVariableExpCS(
                         simpleNameCS,
                         new BasicEList<OCLExpressionCS>(),
                         null
                     );
                 setOffsets(result, simpleNameCS);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
      
@@ -1547,11 +1590,11 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS simpleNameCS = createSimpleNameCS(
                             SimpleTypeEnum.KEYWORD_LITERAL,
-                            getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(2))
+                            getRhsIToken(2)
                         );
-                setOffsets(simpleNameCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(2)));
-                OCLExpressionCS left = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                OCLExpressionCS right = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+                setOffsets(simpleNameCS, getRhsIToken(2));
+                OCLExpressionCS left = (OCLExpressionCS)getRhsSym(1);
+                OCLExpressionCS right = (OCLExpressionCS)getRhsSym(3);
                 EList<OCLExpressionCS> args = new BasicEList<OCLExpressionCS>();
                 args.add(right);
                 OperationCallExpCS result = createOperationCallExpCS(
@@ -1560,7 +1603,7 @@ protected String getTokenText(int i) {
                         args
                     );
                 setOffsets(result, left, right);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
      
@@ -1589,17 +1632,17 @@ protected String getTokenText(int i) {
 				
                 SimpleNameCS simpleNameCS = createSimpleNameCS(
                             SimpleTypeEnum.KEYWORD_LITERAL,
-                            getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+                            getRhsIToken(1)
                         );
-                setOffsets(simpleNameCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-                OCLExpressionCS expr = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2);
+                setOffsets(simpleNameCS, getRhsIToken(1));
+                OCLExpressionCS expr = (OCLExpressionCS)getRhsSym(2);
                 OperationCallExpCS result = createOperationCallExpCS(
                         expr,
                         simpleNameCS,
                         new BasicEList<OCLExpressionCS>()
                     );
                 setOffsets(result, simpleNameCS, expr);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1608,12 +1651,12 @@ protected String getTokenText(int i) {
 			//
 			case 221: {
 				
-                OCLExpressionCS result = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2);
+                OCLExpressionCS result = (OCLExpressionCS)getRhsSym(2);
                 if (result instanceof OperationCallExpCS) {
                     ((OperationCallExpCS)result).setIsAtomic(true);
                 }
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(3)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+                setResult(result);
                       break;
             }
     
@@ -1623,12 +1666,12 @@ protected String getTokenText(int i) {
 			case 222: {
 				
                 IfExpCS result = createIfExpCS(
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6)
+                        (OCLExpressionCS)getRhsSym(2),
+                        (OCLExpressionCS)getRhsSym(4),
+                        (OCLExpressionCS)getRhsSym(6)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(7)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), getRhsIToken(7));
+                setResult(result);
                       break;
             }
     
@@ -1637,13 +1680,13 @@ protected String getTokenText(int i) {
 			//
 			case 223: {
 				
-                OCLExpressionCS expr = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4);
+                OCLExpressionCS expr = (OCLExpressionCS)getRhsSym(4);
                 LetExpCS result = createLetExpCS(
-                        (EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
+                        (EList<VariableCS>)getRhsSym(2),
                         expr
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), expr);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), expr);
+                setResult(result);
                       break;
             }
     
@@ -1653,8 +1696,8 @@ protected String getTokenText(int i) {
 			case 224: {
 				
                 EList<VariableCS> result = new BasicEList<VariableCS>();
-                result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((VariableCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -1663,9 +1706,9 @@ protected String getTokenText(int i) {
 			//
 			case 225: {
 				
-                EList<VariableCS> result = (EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+                result.add((VariableCS)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -1683,10 +1726,10 @@ protected String getTokenText(int i) {
 				
 				PrimitiveTypeCS result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_MESSAGE_LITERAL,
-						getTokenText( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1))
+						getRhsTokenText(1)
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1));
+				setResult(result);
 	                  break;
             }
 	
@@ -1702,15 +1745,15 @@ protected String getTokenText(int i) {
 			//
 			case 248: {
 				
-				OCLExpressionCS source = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+				OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
 				OperationCallExpCS result = createArrowOperationCallExpCS(
 						source,
-						(SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
-						(IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4),
-						(EList<OCLExpressionCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6)
+						(SimpleNameCS)getRhsSym(3),
+						(IsMarkedPreCS)getRhsSym(4),
+						(EList<OCLExpressionCS>)getRhsSym(6)
 					);
-				setOffsets(result, source, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(7)));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, source, getRhsIToken(7));
+				setResult(result);
 	                  break;
             }
 	
@@ -1719,15 +1762,15 @@ protected String getTokenText(int i) {
 			//
 			case 249: {
 				
-				SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2);
+				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
+				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(2);
 				VariableExpCS result = createVariableExpCS(
 						simpleNameCS,
 						new BasicEList<OCLExpressionCS>(),
 						isMarkedPreCS
 					);
 				setOffsets(result, simpleNameCS, isMarkedPreCS);
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setResult(result);
 	                  break;
             }
 	
@@ -1737,8 +1780,8 @@ protected String getTokenText(int i) {
 			case 250: {
 				
 				IsMarkedPreCS result = createIsMarkedPreCS();
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(2)));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1), getRhsIToken(2));
+				setResult(result);
 	                  break;
             }
 	 
@@ -1753,15 +1796,15 @@ protected String getTokenText(int i) {
 			//
 			case 253: {
 				
-				OCLExpressionCS target = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+				OCLExpressionCS target = (OCLExpressionCS)getRhsSym(1);
 				MessageExpCS result = createMessageExpCS(
 						target,
-						getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(2)).getKind() == OCLParsersym.TK_CARET,
-						(SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
-						(EList<OCLMessageArgCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5)
+						getRhsIToken(2).getKind() == OCLParsersym.TK_CARET,
+						(SimpleNameCS)getRhsSym(3),
+						(EList<OCLMessageArgCS>)getRhsSym(5)
 					);
-				setOffsets(result, target, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(6)));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, target, getRhsIToken(6));
+				setResult(result);
 	                  break;
             }
 	
@@ -1770,7 +1813,7 @@ protected String getTokenText(int i) {
 			//
 			case 254: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(new BasicEList<OCLMessageArgCS>());
+                setResult(new BasicEList<OCLMessageArgCS>());
                       break;
             }
     
@@ -1780,8 +1823,8 @@ protected String getTokenText(int i) {
 			case 256: {
 				
 				EList<OCLMessageArgCS> result = new BasicEList<OCLMessageArgCS>();
-				result.add((OCLMessageArgCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				result.add((OCLMessageArgCS)getRhsSym(1));
+				setResult(result);
 	                  break;
             }
 	
@@ -1790,9 +1833,9 @@ protected String getTokenText(int i) {
 			//
 			case 257: {
 				
-				EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-				result.add((OCLMessageArgCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)getRhsSym(1);
+				result.add((OCLMessageArgCS)getRhsSym(3));
+				setResult(result);
 	                  break;
             }
 	
@@ -1805,8 +1848,8 @@ protected String getTokenText(int i) {
 						null,
 						null
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1));
+				setResult(result);
 	                  break;
             }
 	
@@ -1816,11 +1859,11 @@ protected String getTokenText(int i) {
 			case 259: {
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
-						(TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
+						(TypeCS)getRhsSym(3),
 						null
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
+				setResult(result);
 	                  break;
             }
 	
@@ -1831,10 +1874,10 @@ protected String getTokenText(int i) {
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
-						(OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1)
+						(OCLExpressionCS)getRhsSym(1)
 					);
-				setOffsets(result, (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, (CSTNode)getRhsSym(1));
+				setResult(result);
 	                  break;
             }
 	
@@ -1843,9 +1886,9 @@ protected String getTokenText(int i) {
 			//
 			case 263: {
 				
-                PackageDeclarationCS result = (PackageDeclarationCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2);
-                result.setPackageDeclarationCS((PackageDeclarationCS)  /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                PackageDeclarationCS result = (PackageDeclarationCS)getRhsSym(2);
+                result.setPackageDeclarationCS((PackageDeclarationCS) getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -1855,11 +1898,11 @@ protected String getTokenText(int i) {
 			case 266: {
 				
                 PackageDeclarationCS result = createPackageDeclarationCS(
-                        (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-                        (EList<ContextDeclCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3)
+                        (PathNameCS)getRhsSym(2),
+                        (EList<ContextDeclCS>)getRhsSym(3)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(4)));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                setResult(result);
                       break;
             }
     
@@ -1868,12 +1911,12 @@ protected String getTokenText(int i) {
 			//
 			case 267: {
 				
-                EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
+                EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)getRhsSym(1);
                 PackageDeclarationCS result = createPackageDeclarationCS(null, contextDecls);
                 if (!contextDecls.isEmpty()) {
                     setOffsets(result, contextDecls.get(0), contextDecls.get(contextDecls.size()-1));
                 }
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setResult(result);
                       break;
             }
     
@@ -1882,7 +1925,7 @@ protected String getTokenText(int i) {
 			//
 			case 268: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(new BasicEList<ContextDeclCS>());
+                setResult(new BasicEList<ContextDeclCS>());
                       break;
             }
     
@@ -1892,8 +1935,8 @@ protected String getTokenText(int i) {
 			case 270: {
 				
                 EList<ContextDeclCS> result = new BasicEList<ContextDeclCS>();
-                result.add((ContextDeclCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((ContextDeclCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -1902,9 +1945,9 @@ protected String getTokenText(int i) {
 			//
 			case 271: {
 				
-                EList<ContextDeclCS> result = (EList<ContextDeclCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((ContextDeclCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<ContextDeclCS> result = (EList<ContextDeclCS>)getRhsSym(1);
+                result.add((ContextDeclCS)getRhsSym(2));
+                setResult(result);
                       break;
             }
     
@@ -1913,17 +1956,17 @@ protected String getTokenText(int i) {
 			//
 			case 275: {
 				
-                PathNameCS pathNameCS = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2);
-                SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4);
-                EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(7);
+                PathNameCS pathNameCS = (PathNameCS)getRhsSym(2);
+                SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(4);
+                EList<InitOrDerValueCS> list = (EList<InitOrDerValueCS>)getRhsSym(7);
                 PropertyContextCS result = createPropertyContextCS(
                         pathNameCS,
                         simpleNameCS,
-                        (TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6),
+                        (TypeCS)getRhsSym(6),
                         list
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), list.get(list.size()-1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), list.get(list.size()-1));
+                setResult(result);
                       break;
             }
     
@@ -1933,8 +1976,8 @@ protected String getTokenText(int i) {
 			case 276: {
 				
                 EList<InitOrDerValueCS> result = new BasicEList<InitOrDerValueCS>();
-                result.add((InitOrDerValueCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((InitOrDerValueCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -1943,9 +1986,9 @@ protected String getTokenText(int i) {
 			//
 			case 277: {
 				
-                EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((InitOrDerValueCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>)getRhsSym(1);
+                result.add((InitOrDerValueCS)getRhsSym(2));
+                setResult(result);
                       break;
             }
     
@@ -1954,9 +1997,9 @@ protected String getTokenText(int i) {
 			//
 			case 278: {
 				
-                InitValueCS result = createInitValueCS((OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                InitValueCS result = createInitValueCS((OCLExpressionCS)getRhsSym(3));
+                setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -1965,9 +2008,9 @@ protected String getTokenText(int i) {
 			//
 			case 279: {
 				
-                DerValueCS result = createDerValueCS((OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                DerValueCS result = createDerValueCS((OCLExpressionCS)getRhsSym(3));
+                setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
+                setResult(result);
                       break;
             }
     
@@ -1976,14 +2019,14 @@ protected String getTokenText(int i) {
 			//
 			case 280: {
 				
-				EList<InvOrDefCS> list = (EList<InvOrDefCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+				EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(3);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
 						null,
-						(PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
+						(PathNameCS)getRhsSym(2),
 						list
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), list.get(list.size()-1));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1), list.get(list.size()-1));
+				setResult(result);
 	                  break;
             }
 	
@@ -1992,14 +2035,14 @@ protected String getTokenText(int i) {
 			//
 			case 281: {
 				
-				EList<InvOrDefCS> list = (EList<InvOrDefCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+				EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(5);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
-						(SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-						(PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4),
+						(SimpleNameCS)getRhsSym(2),
+						(PathNameCS)getRhsSym(4),
 						list
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), list.get(list.size()-1));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1), list.get(list.size()-1));
+				setResult(result);
 	                  break;
             }
 	
@@ -2009,8 +2052,8 @@ protected String getTokenText(int i) {
 			case 282: {
 				
                 EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
-                result.add((InvOrDefCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((InvOrDefCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -2019,9 +2062,9 @@ protected String getTokenText(int i) {
 			//
 			case 283: {
 				
-                EList<InvOrDefCS> result = (EList<InvOrDefCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((InvOrDefCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<InvOrDefCS> result = (EList<InvOrDefCS>)getRhsSym(1);
+                result.add((InvOrDefCS)getRhsSym(2));
+                setResult(result);
                       break;
             }
     
@@ -2031,11 +2074,11 @@ protected String getTokenText(int i) {
 			case 284: {
 				
 				InvCS result = createInvCS(
-						(SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-						(OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4)
+						(SimpleNameCS)getRhsSym(2),
+						(OCLExpressionCS)getRhsSym(4)
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+				setResult(result);
 	                  break;
             }
 	
@@ -2044,14 +2087,14 @@ protected String getTokenText(int i) {
 			//
 			case 285: {
 				
-                DefExpressionCS defExpressionCS = (DefExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4);
+                DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(4);
                 DefCS result = createDefCS(
                         false,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
+                        (SimpleNameCS)getRhsSym(2),
                         defExpressionCS
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), defExpressionCS);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), defExpressionCS);
+                setResult(result);
                       break;
             }
     
@@ -2060,14 +2103,14 @@ protected String getTokenText(int i) {
 			//
 			case 286: {
 				
-                DefExpressionCS defExpressionCS = (DefExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5);
+                DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(5);
                 DefCS result = createDefCS(
                         true,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
+                        (SimpleNameCS)getRhsSym(3),
                         defExpressionCS
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), defExpressionCS);
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), defExpressionCS);
+                setResult(result);
                       break;
             }
     
@@ -2076,15 +2119,15 @@ protected String getTokenText(int i) {
 			//
 			case 287: {
 				
-				VariableCS variableCS = (VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-				OCLExpressionCS expressionCS = (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+				VariableCS variableCS = (VariableCS)getRhsSym(1);
+				OCLExpressionCS expressionCS = (OCLExpressionCS)getRhsSym(3);
 				DefExpressionCS result = createDefExpressionCS(
 						variableCS,
 						null,
 						expressionCS
 					);
 				setOffsets(result, variableCS, expressionCS);
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setResult(result);
 	                  break;
             }
 	
@@ -2095,11 +2138,11 @@ protected String getTokenText(int i) {
 				
 				DefExpressionCS result = createDefExpressionCS(
 						null,
-						(OperationCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1),
-						(OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3)
+						(OperationCS)getRhsSym(1),
+						(OCLExpressionCS)getRhsSym(3)
 					);
-				setOffsets(result, (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, (CSTNode)getRhsSym(1), (CSTNode)getRhsSym(3));
+				setResult(result);
 	                  break;
             }
 	
@@ -2108,13 +2151,13 @@ protected String getTokenText(int i) {
 			//
 			case 289: {
 				
-				EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
+				EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)getRhsSym(3);
 				OperationContextDeclCS result = createOperationContextDeclCS(
-						(OperationCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
+						(OperationCS)getRhsSym(2),
 						prePostOrBodyDecls
 					);
-				setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setOffsets(result, getRhsIToken(1), prePostOrBodyDecls.get(prePostOrBodyDecls.size()-1));
+				setResult(result);
 	                  break;
             }
 	
@@ -2124,8 +2167,8 @@ protected String getTokenText(int i) {
 			case 290: {
 				
                 EList<PrePostOrBodyDeclCS> result = new BasicEList<PrePostOrBodyDeclCS>();
-                result.add((PrePostOrBodyDeclCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                result.add((PrePostOrBodyDeclCS)getRhsSym(1));
+                setResult(result);
                       break;
             }
     
@@ -2134,9 +2177,9 @@ protected String getTokenText(int i) {
 			//
 			case 291: {
 				
-                EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-                result.add((PrePostOrBodyDeclCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)getRhsSym(1);
+                result.add((PrePostOrBodyDeclCS)getRhsSym(2));
+                setResult(result);
                       break;
             }
     
@@ -2147,11 +2190,11 @@ protected String getTokenText(int i) {
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.PRE_LITERAL,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4)
+                        (SimpleNameCS)getRhsSym(2),
+                        (OCLExpressionCS)getRhsSym(4)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+                setResult(result);
                       break;
             }
     
@@ -2162,11 +2205,11 @@ protected String getTokenText(int i) {
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.POST_LITERAL,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4)
+                        (SimpleNameCS)getRhsSym(2),
+                        (OCLExpressionCS)getRhsSym(4)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+                setResult(result);
                       break;
             }
     
@@ -2177,11 +2220,11 @@ protected String getTokenText(int i) {
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.BODY_LITERAL,
-                        (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(2),
-                        (OCLExpressionCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4)
+                        (SimpleNameCS)getRhsSym(2),
+                        (OCLExpressionCS)getRhsSym(4)
                     );
-                setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(4));
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+                setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(4));
+                setResult(result);
                       break;
             }
     
@@ -2191,16 +2234,16 @@ protected String getTokenText(int i) {
 			case 295: {
 				
 				OperationCS result = createOperationCS(
-						getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)),
-						(EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3),
-						(TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6)
+						getRhsIToken(1),
+						(EList<VariableCS>)getRhsSym(3),
+						(TypeCS)getRhsSym(6)
 					);
-				if ( /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6) != null) {
-					setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), (CSTNode) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(6));
+				if (getRhsSym(6) != null) {
+					setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(6));
 				} else {
-					setOffsets(result, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(1)), getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(5)));
+					setOffsets(result, getRhsIToken(1), getRhsIToken(5));
 				}
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setResult(result);
 	                  break;
             }
 	
@@ -2209,21 +2252,21 @@ protected String getTokenText(int i) {
 			//
 			case 296: {
 				
-				PathNameCS pathNameCS = (PathNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-				SimpleNameCS simpleNameCS = (SimpleNameCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3);
-				TypeCS typeCS = (TypeCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(8);
+				PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
+				TypeCS typeCS = (TypeCS)getRhsSym(8);
 				OperationCS result = createOperationCS(
 						pathNameCS,
 						simpleNameCS,
-						(EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(5),
+						(EList<VariableCS>)getRhsSym(5),
 						typeCS
 					);
 				if (typeCS != null) {
 					setOffsets(result, pathNameCS, typeCS);
 				} else {
-					setOffsets(result, pathNameCS, getIToken( /* macro getToken is deprecated. Use function getRhsTokenIndex */ getParser().getToken(7)));
+					setOffsets(result, pathNameCS, getRhsIToken(7));
 				}
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				setResult(result);
 	                  break;
             }
 	
@@ -2232,7 +2275,7 @@ protected String getTokenText(int i) {
 			//
 			case 297: {
 				
-                 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(new BasicEList<VariableCS>());
+                setResult(new BasicEList<VariableCS>());
                       break;
             }
     
@@ -2242,8 +2285,8 @@ protected String getTokenText(int i) {
 			case 299: {
 				
 				EList<VariableCS> result = new BasicEList<VariableCS>();
-				result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				result.add((VariableCS)getRhsSym(1));
+				setResult(result);
 	                  break;
             }
 	
@@ -2252,9 +2295,9 @@ protected String getTokenText(int i) {
 			//
 			case 300: {
 				
-				EList<VariableCS> result = (EList<VariableCS>) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(1);
-				result.add((VariableCS) /* macro getSym is deprecated. Use function getRhsSym */ getParser().getSym(3));
-				 /* macro setResult is deprecated. Use function setResult */ getParser().setSym1(result);
+				EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
+				result.add((VariableCS)getRhsSym(3));
+				setResult(result);
 	                  break;
             }
 	
