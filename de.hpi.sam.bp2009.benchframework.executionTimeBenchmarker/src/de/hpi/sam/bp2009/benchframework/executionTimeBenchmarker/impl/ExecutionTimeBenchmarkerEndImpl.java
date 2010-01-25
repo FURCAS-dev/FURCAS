@@ -6,18 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
-import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
-import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
-import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
-
-import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
+import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,9 +47,9 @@ public class ExecutionTimeBenchmarkerEndImpl extends OperatorImpl implements Exe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected ExecutionTimeBenchmarkerEndImpl() {
+	public ExecutionTimeBenchmarkerEndImpl() {
 		super();
 	}
 
@@ -157,6 +158,18 @@ public class ExecutionTimeBenchmarkerEndImpl extends OperatorImpl implements Exe
 				return startPoint != null;
 		}
 		return super.eIsSet(featureID);
+	}
+	@Override
+	public void execute(){
+		EtmMonitor monitor = getStartPoint().getMonitor();
+		EtmPoint point = getStartPoint().getPoint();
+		point.collect();
+		monitor.stop();
+		JETMResultObject rslt = ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMResultObject();
+		rslt.setStartTime(point.getStartTime());
+		rslt.setEndTime(point.getEndTime());
+		rslt.setTicks(point.getTicks());
+		rslt.setTransactionTime(point.getTransactionTime());
 	}
 
 } //ExecutionTimeBenchmarkerEndImpl

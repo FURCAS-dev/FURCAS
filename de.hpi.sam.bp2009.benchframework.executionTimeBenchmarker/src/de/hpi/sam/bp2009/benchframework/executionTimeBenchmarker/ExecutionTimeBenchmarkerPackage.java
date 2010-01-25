@@ -10,6 +10,7 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -126,13 +127,31 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_START__END_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Monitor</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_START__MONITOR = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Point</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_START__POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Start</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
+	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
@@ -273,6 +292,28 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>ETM Monitor</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see etm.core.monitor.EtmMonitor
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMMonitor()
+	 * @generated
+	 */
+	int ETM_MONITOR = 3;
+
+
+	/**
+	 * The meta object id for the '<em>ETM Point</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see etm.core.monitor.EtmPoint
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMPoint()
+	 * @generated
+	 */
+	int ETM_POINT = 4;
+
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart <em>Start</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -292,6 +333,28 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getExecutionTimeBenchmarkerStart_EndPoint();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getMonitor <em>Monitor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Monitor</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getMonitor()
+	 * @see #getExecutionTimeBenchmarkerStart()
+	 * @generated
+	 */
+	EAttribute getExecutionTimeBenchmarkerStart_Monitor();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getPoint <em>Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Point</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getPoint()
+	 * @see #getExecutionTimeBenchmarkerStart()
+	 * @generated
+	 */
+	EAttribute getExecutionTimeBenchmarkerStart_Point();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
@@ -369,6 +432,28 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	EAttribute getJETMResultObject_TransactionTime();
 
 	/**
+	 * Returns the meta object for data type '{@link etm.core.monitor.EtmMonitor <em>ETM Monitor</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>ETM Monitor</em>'.
+	 * @see etm.core.monitor.EtmMonitor
+	 * @model instanceClass="etm.core.monitor.EtmMonitor"
+	 * @generated
+	 */
+	EDataType getETMMonitor();
+
+	/**
+	 * Returns the meta object for data type '{@link etm.core.monitor.EtmPoint <em>ETM Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>ETM Point</em>'.
+	 * @see etm.core.monitor.EtmPoint
+	 * @model instanceClass="etm.core.monitor.EtmPoint"
+	 * @generated
+	 */
+	EDataType getETMPoint();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -407,6 +492,22 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EXECUTION_TIME_BENCHMARKER_START__END_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_EndPoint();
+
+		/**
+		 * The meta object literal for the '<em><b>Monitor</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_TIME_BENCHMARKER_START__MONITOR = eINSTANCE.getExecutionTimeBenchmarkerStart_Monitor();
+
+		/**
+		 * The meta object literal for the '<em><b>Point</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_TIME_BENCHMARKER_START__POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_Point();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
@@ -467,6 +568,26 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JETM_RESULT_OBJECT__TRANSACTION_TIME = eINSTANCE.getJETMResultObject_TransactionTime();
+
+		/**
+		 * The meta object literal for the '<em>ETM Monitor</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see etm.core.monitor.EtmMonitor
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMMonitor()
+		 * @generated
+		 */
+		EDataType ETM_MONITOR = eINSTANCE.getETMMonitor();
+
+		/**
+		 * The meta object literal for the '<em>ETM Point</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see etm.core.monitor.EtmPoint
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMPoint()
+		 * @generated
+		 */
+		EDataType ETM_POINT = eINSTANCE.getETMPoint();
 
 	}
 

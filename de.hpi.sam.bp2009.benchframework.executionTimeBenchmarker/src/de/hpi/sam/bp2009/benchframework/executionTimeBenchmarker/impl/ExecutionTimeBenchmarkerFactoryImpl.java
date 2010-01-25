@@ -8,7 +8,10 @@ package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
 
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -73,6 +76,40 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case ExecutionTimeBenchmarkerPackage.ETM_MONITOR:
+				return createETMMonitorFromString(eDataType, initialValue);
+			case ExecutionTimeBenchmarkerPackage.ETM_POINT:
+				return createETMPointFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case ExecutionTimeBenchmarkerPackage.ETM_MONITOR:
+				return convertETMMonitorToString(eDataType, instanceValue);
+			case ExecutionTimeBenchmarkerPackage.ETM_POINT:
+				return convertETMPointToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExecutionTimeBenchmarkerStart createExecutionTimeBenchmarkerStart() {
 		ExecutionTimeBenchmarkerStartImpl executionTimeBenchmarkerStart = new ExecutionTimeBenchmarkerStartImpl();
 		return executionTimeBenchmarkerStart;
@@ -96,6 +133,42 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	public JETMResultObject createJETMResultObject() {
 		JETMResultObjectImpl jetmResultObject = new JETMResultObjectImpl();
 		return jetmResultObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EtmMonitor createETMMonitorFromString(EDataType eDataType, String initialValue) {
+		return (EtmMonitor)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertETMMonitorToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EtmPoint createETMPointFromString(EDataType eDataType, String initialValue) {
+		return (EtmPoint)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertETMPointToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

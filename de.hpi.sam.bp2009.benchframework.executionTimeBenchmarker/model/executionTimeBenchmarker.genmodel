@@ -8,13 +8,13 @@
   <foreignModel>executionTimeBenchmarker.ecore</foreignModel>
   <genPackages prefix="ExecutionTimeBenchmarker" basePackage="de.hpi.sam.bp2009.benchframework"
       disposableProviderFactory="true" ecorePackage="executionTimeBenchmarker.ecore#/">
+    <genDataTypes ecoreDataType="executionTimeBenchmarker.ecore#//ETMMonitor"/>
     <genClasses ecoreClass="executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerStart">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerStart/endPoint"/>
-      <genOperations ecoreOperation="executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerStart/execute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerStart/monitor"/>
     </genClasses>
     <genClasses ecoreClass="executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerEnd">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerEnd/startPoint"/>
-      <genOperations ecoreOperation="executionTimeBenchmarker.ecore#//ExecutionTimeBenchmarkerEnd/execute"/>
     </genClasses>
     <genClasses ecoreClass="executionTimeBenchmarker.ecore#//JETMResultObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute executionTimeBenchmarker.ecore#//JETMResultObject/startTime"/>

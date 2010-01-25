@@ -16,5 +16,17 @@
             class="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage"
             genModel="model/executionTimeBenchmarker.genmodel"/>
    </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
+      <operator
+            operatorClass="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl">
+      </operator>
+   </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
+      <operator
+            operatorClass="de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl">
+      </operator>
+   </extension>
 
 </plugin>

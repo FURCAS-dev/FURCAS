@@ -14,8 +14,11 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
 
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -48,6 +51,20 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * @generated
 	 */
 	private EClass jetmResultObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType etmMonitorEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType etmPointEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -136,6 +153,24 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExecutionTimeBenchmarkerStart_Monitor() {
+		return (EAttribute)executionTimeBenchmarkerStartEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getExecutionTimeBenchmarkerStart_Point() {
+		return (EAttribute)executionTimeBenchmarkerStartEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getExecutionTimeBenchmarkerEnd() {
 		return executionTimeBenchmarkerEndEClass;
 	}
@@ -199,6 +234,24 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getETMMonitor() {
+		return etmMonitorEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getETMPoint() {
+		return etmPointEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExecutionTimeBenchmarkerFactory getExecutionTimeBenchmarkerFactory() {
 		return (ExecutionTimeBenchmarkerFactory)getEFactoryInstance();
 	}
@@ -224,6 +277,8 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		// Create classes and their features
 		executionTimeBenchmarkerStartEClass = createEClass(EXECUTION_TIME_BENCHMARKER_START);
 		createEReference(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__END_POINT);
+		createEAttribute(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__MONITOR);
+		createEAttribute(executionTimeBenchmarkerStartEClass, EXECUTION_TIME_BENCHMARKER_START__POINT);
 
 		executionTimeBenchmarkerEndEClass = createEClass(EXECUTION_TIME_BENCHMARKER_END);
 		createEReference(executionTimeBenchmarkerEndEClass, EXECUTION_TIME_BENCHMARKER_END__START_POINT);
@@ -233,6 +288,10 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		createEAttribute(jetmResultObjectEClass, JETM_RESULT_OBJECT__END_TIME);
 		createEAttribute(jetmResultObjectEClass, JETM_RESULT_OBJECT__TICKS);
 		createEAttribute(jetmResultObjectEClass, JETM_RESULT_OBJECT__TRANSACTION_TIME);
+
+		// Create data types
+		etmMonitorEDataType = createEDataType(ETM_MONITOR);
+		etmPointEDataType = createEDataType(ETM_POINT);
 	}
 
 	/**
@@ -273,13 +332,11 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		// Initialize classes and features; add operations and parameters
 		initEClass(executionTimeBenchmarkerStartEClass, ExecutionTimeBenchmarkerStart.class, "ExecutionTimeBenchmarkerStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExecutionTimeBenchmarkerStart_EndPoint(), this.getExecutionTimeBenchmarkerEnd(), null, "endPoint", null, 0, 1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		addEOperation(executionTimeBenchmarkerStartEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		initEAttribute(getExecutionTimeBenchmarkerStart_Monitor(), this.getETMMonitor(), "monitor", null, 0, 1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExecutionTimeBenchmarkerStart_Point(), this.getETMPoint(), "point", null, 0, 1, ExecutionTimeBenchmarkerStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(executionTimeBenchmarkerEndEClass, ExecutionTimeBenchmarkerEnd.class, "ExecutionTimeBenchmarkerEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getExecutionTimeBenchmarkerEnd_StartPoint(), this.getExecutionTimeBenchmarkerStart(), null, "startPoint", null, 0, 1, ExecutionTimeBenchmarkerEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		addEOperation(executionTimeBenchmarkerEndEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(jetmResultObjectEClass, JETMResultObject.class, "JETMResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getJETMResultObject_StartTime(), ecorePackage.getELong(), "startTime", null, 0, 1, JETMResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -288,6 +345,10 @@ public class ExecutionTimeBenchmarkerPackageImpl extends EPackageImpl implements
 		initEAttribute(getJETMResultObject_TransactionTime(), ecorePackage.getEDouble(), "transactionTime", null, 0, 1, JETMResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(jetmResultObjectEClass, ecorePackage.getELong(), "getDuration", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		// Initialize data types
+		initEDataType(etmMonitorEDataType, EtmMonitor.class, "ETMMonitor", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(etmPointEDataType, EtmPoint.class, "ETMPoint", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

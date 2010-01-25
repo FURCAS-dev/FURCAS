@@ -55,12 +55,4 @@ public interface ExecutionTimeBenchmarkerEnd extends Operator {
 	 */
 	void setStartPoint(ExecutionTimeBenchmarkerStart value);
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void execute();
-
 } // ExecutionTimeBenchmarkerEnd

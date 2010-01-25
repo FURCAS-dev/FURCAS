@@ -13,6 +13,10 @@ import de.hpi.sam.bp2009.benchframework.ResultObject;
  * A representation of the model object '<em><b>JETM Result Object</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * This class represents a result of an execution time measurement.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
