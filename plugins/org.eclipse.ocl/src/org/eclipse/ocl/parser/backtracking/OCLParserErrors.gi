@@ -9,11 +9,14 @@
 -- *
 -- * Contributors:
 -- *   E.D. Willink - Initial API and implementation
--- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
+-- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+-- *        - 242153: LPG v 2.0.17 adoption.
+-- *        - 299396: Introducing new LPG templates.
+-- *        - 300534: Removing the use of deprecated macros.
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParserErrors.gi,v 1.3 2010/01/25 11:10:05 asanchez Exp $
+-- * $Id: OCLParserErrors.gi,v 1.4 2010/01/25 11:31:46 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser
