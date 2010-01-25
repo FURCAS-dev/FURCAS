@@ -13,7 +13,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParserErrors.gi,v 1.2 2009/12/27 15:49:47 asanchez Exp $
+-- * $Id: OCLParserErrors.gi,v 1.3 2010/01/25 11:10:05 asanchez Exp $
 -- */
 --
 -- Additional ERROR_TOKEN rules for The OCL Parser
@@ -36,16 +36,16 @@
 		/.$NewCase./
 	OclMessageExpCS ::= primaryExpCS '^' simpleNameCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_MESSAGE_ARGUMENTS);
-					OCLExpressionCS target = (OCLExpressionCS)$getSym(1);
+					reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_MESSAGE_ARGUMENTS);
+					OCLExpressionCS target = (OCLExpressionCS)getRhsSym(1);
 					MessageExpCS result = createMessageExpCS(
 							target,
-							getIToken($getToken(2)).getKind() == $sym_type.TK_CARET,
-							(SimpleNameCS)$getSym(3),
+							getRhsIToken(2).getKind() == $sym_type.TK_CARET,
+							(SimpleNameCS)getRhsSym(3),
 							new BasicEList<OCLMessageArgCS>()
 						);
-					setOffsets(result, target, getIToken($getToken(4)));
-					$setResult(result);
+					setOffsets(result, target, getRhsIToken(4));
+					setResult(result);
 		  $EndCode
 		./
 
@@ -54,131 +54,131 @@
 -----------------------------------------------------------------------
 	classifierContextDeclCS ::= context pathNameCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(3), OCLParserErrors.MISSING_INV_OR_DEF);
+					reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_INV_OR_DEF);
 					ClassifierContextDeclCS result = createClassifierContextDeclCS(
 							null,
-							(PathNameCS)$getSym(2),
+							(PathNameCS)getRhsSym(2),
 							new BasicEList<InvOrDefCS>()
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 		
 	defExpressionCS ::= typedUninitializedVariableCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_EQUALS);
-					VariableCS variableCS = (VariableCS)$getSym(1);
+					reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_EQUALS);
+					VariableCS variableCS = (VariableCS)getRhsSym(1);
 					DefExpressionCS result = createDefExpressionCS(
 							variableCS,
 							null,
 							null
 						);
-					setOffsets(result, variableCS, getIToken($getToken(2)));
-					$setResult(result);
+					setOffsets(result, variableCS, getRhsIToken(2));
+					setResult(result);
 		  $EndCode
 		./
 	defExpressionCS ::= simpleNameCS ERROR_Colon
 		/.$BeginCode
-					SimpleNameCS name = (SimpleNameCS)$getSym(1);
+					SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
 					VariableCS variableCS = createVariableCS(name, null, null);
-					setOffsets(variableCS, name, getIToken($getToken(2)));
+					setOffsets(variableCS, name, getRhsIToken(2));
 					DefExpressionCS result = createDefExpressionCS(
 							variableCS,
 							null,
 							null
 						);
-					setOffsets(result, variableCS, getIToken($getToken(2)));
-					$setResult(result);
+					setOffsets(result, variableCS, getRhsIToken(2));
+					setResult(result);
 		  $EndCode
 		./
 		
 	invOrDefCS ::= inv unreservedSimpleNameCS ERROR_Colon
 		/.$BeginCode
 					InvCS result = createInvCS(
-							(SimpleNameCS)$getSym(2),
+							(SimpleNameCS)getRhsSym(2),
 							null
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./	
     invOrDefCS ::= def unreservedSimpleNameCS ERROR_Colon
         /.$BeginCode
                     DefCS result = createDefCS(
                             false,
-                            (SimpleNameCS)$getSym(2),
+                            (SimpleNameCS)getRhsSym(2),
                             null
                         );
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+                    setResult(result);
           $EndCode
         ./
     invOrDefCS ::= static def unreservedSimpleNameCS ERROR_Colon
         /.$BeginCode
                     DefCS result = createDefCS(
                             true,
-                            (SimpleNameCS)$getSym(3),
+                            (SimpleNameCS)getRhsSym(3),
                             null
                         );
-                    setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-                    $setResult(result);
+                    setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+                    setResult(result);
           $EndCode
         ./
 
 	operationCS1 ::= simpleNameCS '(' parametersCSopt ')' ERROR_Colon
 		/.$BeginCode
 					OperationCS result = createOperationCS(
-							getIToken($getToken(1)),
+							getRhsIToken(1),
 							new BasicEList<VariableCS>(),
 							null
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(5));
+					setResult(result);
 		  $EndCode
 		./
 	operationCS1 ::= simpleNameCS ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(2), OCLParserErrors.MISSING_LPAREN);
+					reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_LPAREN);
 					OperationCS result = createOperationCS(
-							getIToken($getToken(1)),
+							getRhsIToken(1),
 							new BasicEList<VariableCS>(),
 							null
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(2)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(2));
+					setResult(result);
 		  $EndCode
 		./
 	operationCS1 ::= ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(1), OCLParserErrors.MISSING_IDENTIFIER);
+					reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_IDENTIFIER);
 					OperationCS result = createOperationCS(
-							getIToken($getToken(1)),
+							getRhsIToken(1),
 							new BasicEList<VariableCS>(),
 							null
 						);
-					setOffsets(result, getIToken($getToken(1)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1));
+					setResult(result);
 		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' unreservedSimpleNameCS '(' parametersCSopt ')' ERROR_Colon
 		/.$BeginCode
-					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
-					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+					PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+					SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
 					OperationCS result = createOperationCS(
 							pathNameCS,
 							simpleNameCS,
-							(EList<VariableCS>)$getSym(5),
+							(EList<VariableCS>)getRhsSym(5),
 							null
 						);
-					setOffsets(result, pathNameCS, getIToken($getToken(7)));
-					$setResult(result);
+					setOffsets(result, pathNameCS, getRhsIToken(7));
+					setResult(result);
 		  $EndCode
 		./
 	operationCS2 ::= pathNameCS '::' ERROR_SimpleNameCS
 		/.$BeginCode
-					PathNameCS pathNameCS = (PathNameCS)$getSym(1);
-					SimpleNameCS simpleNameCS = (SimpleNameCS)$getSym(3);
+					PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
+					SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
 					OperationCS result = createOperationCS(
 							pathNameCS,
 							simpleNameCS,
@@ -186,7 +186,7 @@
 							null
 						);
 					setOffsets(result, pathNameCS, simpleNameCS);
-					$setResult(result);
+					setResult(result);
 		  $EndCode
 		./
 		
@@ -194,70 +194,70 @@
 		/.$BeginCode
 					PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
 							PrePostOrBodyEnum.PRE_LITERAL,
-							(SimpleNameCS)$getSym(2),
-							createInvalidLiteralExpCS(getTokenText($getToken(3)))
+							(SimpleNameCS)getRhsSym(2),
+							createInvalidLiteralExpCS(getRhsTokenText(3))
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 	prePostOrBodyDeclCS ::= post unreservedSimpleNameCS ERROR_Colon
 		/.$BeginCode
 					PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
 							PrePostOrBodyEnum.POST_LITERAL,
-							(SimpleNameCS)$getSym(2),
-							createInvalidLiteralExpCS(getTokenText($getToken(3)))
+							(SimpleNameCS)getRhsSym(2),
+							createInvalidLiteralExpCS(getRhsTokenText(3))
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 	prePostOrBodyDeclCS ::= body unreservedSimpleNameCS ERROR_Colon
 		/.$BeginCode
 					PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
 							PrePostOrBodyEnum.BODY_LITERAL,
-							(SimpleNameCS)$getSym(2),
-							createInvalidLiteralExpCS(getTokenText($getToken(3)))
+							(SimpleNameCS)getRhsSym(2),
+							createInvalidLiteralExpCS(getRhsTokenText(3))
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 		
 	initOrDerValueCS ::= init ERROR_Colon
 		/.$BeginCode
 					InitValueCS result = createInitValueCS(null);
-					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(2), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 	initOrDerValueCS ::= derive ERROR_Colon
 		/.$BeginCode
 					DerValueCS result = createDerValueCS(null);
-					setOffsets(result, getIToken($getToken(2)), getIToken($getToken(3)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(2), getRhsIToken(3));
+					setResult(result);
 		  $EndCode
 		./
 
 	packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt ERROR_Empty endpackage
 		/.$BeginCode
 					PackageDeclarationCS result = createPackageDeclarationCS(
-							(PathNameCS)$getSym(2),
-							(EList<ContextDeclCS>)$getSym(3)
+							(PathNameCS)getRhsSym(2),
+							(EList<ContextDeclCS>)getRhsSym(3)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(5)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(5));
+					setResult(result);
 		  $EndCode
 		./
 	packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt ERROR_TOKEN
 		/.$BeginCode
-					reportErrorTokenMessage($getToken(4), OCLParserErrors.MISSING_ENDPACKAGE);
+					reportErrorTokenMessage(getRhsTokenIndex(4), OCLParserErrors.MISSING_ENDPACKAGE);
 					PackageDeclarationCS result = createPackageDeclarationCS(
-							(PathNameCS)$getSym(2),
-							(EList<ContextDeclCS>)$getSym(3)
+							(PathNameCS)getRhsSym(2),
+							(EList<ContextDeclCS>)getRhsSym(3)
 						);
-					setOffsets(result, getIToken($getToken(1)), getIToken($getToken(4)));
-					$setResult(result);
+					setOffsets(result, getRhsIToken(1), getRhsIToken(4));
+					setResult(result);
 		  $EndCode
 		./
 %End
