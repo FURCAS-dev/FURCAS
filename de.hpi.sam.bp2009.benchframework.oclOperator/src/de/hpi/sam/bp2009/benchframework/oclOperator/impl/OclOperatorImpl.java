@@ -6,19 +6,15 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import de.hpi.sam.bp2009.benchframework.OptionObject;
-import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 
+import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,7 +29,7 @@ public class OclOperatorImpl extends OperatorImpl implements OclOperator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public OclOperatorImpl() {
 		super();

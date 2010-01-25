@@ -6,20 +6,15 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
-import java.util.ArrayList;
-
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EcoreEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->

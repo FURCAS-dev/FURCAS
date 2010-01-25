@@ -6,8 +6,6 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator;
 
-import java.util.ArrayList;
-
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import org.eclipse.emf.common.util.EList;
 

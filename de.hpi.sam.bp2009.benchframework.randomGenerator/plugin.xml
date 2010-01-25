@@ -9,13 +9,14 @@
 -->
 
 <plugin>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
       <package
-            uri="http://de.hpi.sam.bp2009.benchframework.randomGenerator"
             class="randomGenerator.RandomGeneratorPackage"
-            genModel="model/randomGenerator.genmodel"/>
+            uri="http://de.hpi.sam.bp2009.benchframework.randomGenerator">
+      </package>
    </extension>
+
    <extension
          point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
       <operator

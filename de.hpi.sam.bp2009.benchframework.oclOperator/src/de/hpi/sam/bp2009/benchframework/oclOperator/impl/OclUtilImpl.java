@@ -10,20 +10,14 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
-import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.Resource;
-
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.statements.FROM;
@@ -32,6 +26,9 @@ import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
 import org.eclipse.ocl.ParserException;
 import org.eclipse.ocl.ecore.OCL;
+
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 /**
  * <!-- begin-user-doc -->

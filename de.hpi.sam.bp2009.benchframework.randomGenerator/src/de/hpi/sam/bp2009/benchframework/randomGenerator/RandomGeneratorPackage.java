@@ -98,6 +98,24 @@ public interface RandomGeneratorPackage extends EPackage {
 	int RANDOM_GENERATOR__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_GENERATOR__NAME = BenchframeworkPackage.OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RANDOM_GENERATOR__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+
+	/**
 	 * The number of structural features of the '<em>Random Generator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

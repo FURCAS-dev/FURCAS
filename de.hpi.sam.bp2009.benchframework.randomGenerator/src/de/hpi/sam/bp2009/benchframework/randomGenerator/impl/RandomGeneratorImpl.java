@@ -40,7 +40,7 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected RandomGeneratorImpl() {
+	public RandomGeneratorImpl() {
 		super();
 		RandomGeneratorOptionObject options = RandomGeneratorFactory.eINSTANCE.createRandomGeneratorOptionObject();
 		this.setOption(options);

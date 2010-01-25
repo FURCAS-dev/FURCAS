@@ -82,7 +82,6 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 */
 	protected RandomGeneratorOptionObjectImpl() {
 		super();
-		metaModel = defaultModel();
 	}
 
 	/**

@@ -51,7 +51,7 @@ public interface OclOperatorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_PREFIX = "oclOperator";
+	String eNS_PREFIX = "benchframework.oclOperator";
 
 	/**
 	 * The singleton instance of the package.
@@ -97,6 +97,24 @@ public interface OclOperatorPackage extends EPackage {
 	 * @ordered
 	 */
 	int OCL_OPERATOR__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPERATOR__NAME = BenchframeworkPackage.OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPERATOR__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Operator</em>' class.
