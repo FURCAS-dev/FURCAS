@@ -6,22 +6,18 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.TestRun;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->

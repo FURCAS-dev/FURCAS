@@ -8,8 +8,6 @@ package de.hpi.sam.bp2009.benchframework;
 
 import org.eclipse.emf.ecore.EObject;
 
-import org.eclipse.emf.ecore.resource.Resource;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operator</b></em>'.
