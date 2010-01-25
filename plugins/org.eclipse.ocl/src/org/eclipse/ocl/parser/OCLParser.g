@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: OCLParser.g,v 1.13 2010/01/25 11:10:05 asanchez Exp $
+-- * $Id: OCLParser.g,v 1.14 2010/01/25 11:31:46 asanchez Exp $
 -- */
 --
 -- The Complete OCL Parser
@@ -50,8 +50,10 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   E.D.Willink - Bug 259818, 285633, 292112
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+ *        - 242153: LPG v 2.0.17 adoption.
+ *        - 299396: Introducing new LPG templates
+ *        - 300534: Removing the use of deprecated macros.
  * </copyright>
  */
 	./

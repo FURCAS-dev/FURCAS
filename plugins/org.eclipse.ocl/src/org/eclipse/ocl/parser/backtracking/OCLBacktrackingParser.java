@@ -14,12 +14,13 @@
 *   E.D.Willink - Remove unnecessary warning suppression
 *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
 *   Borland - Bug 242880
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
-*
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+*        - 242153: LPG v 2.0.17 adoption.
+*        - 299396: Introducing new LPG templates
+*        - 300534: Removing the use of deprecated macros.
 * </copyright>
 *
-* $Id: OCLBacktrackingParser.java,v 1.19 2010/01/25 11:10:05 asanchez Exp $
+* $Id: OCLBacktrackingParser.java,v 1.20 2010/01/25 11:31:46 asanchez Exp $
 */
 /**
 * Complete OCL Grammar
@@ -34,8 +35,10 @@
 * Contributors:
 *   IBM - Initial API and implementation
 *   E.D.Willink - Bug 259818, 285633, 292112
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
-*   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
+*   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+*        - 242153: LPG v 2.0.17 adoption.
+*        - 299396: Introducing new LPG templates
+*        - 300534: Removing the use of deprecated macros.
 * </copyright>
 */
 
@@ -355,7 +358,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 16:  conceptualOperationNameCS ::= conceptualOperationName
             //
             case 16: {
-               //#line 296 "../../lpg/btParserTemplateF.gi"
+               //#line 297 "../../lpg/btParserTemplateF.gi"
 				
                 IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createConceptualOperationNameCS(iToken);
@@ -374,7 +377,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 29:  reservedKeywordCS ::= reservedKeyword
             //
             case 29: {
-               //#line 319 "../../lpg/btParserTemplateF.gi"
+               //#line 320 "../../lpg/btParserTemplateF.gi"
 				
                 IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createSimpleNameCS(
@@ -390,7 +393,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 33:  selfKeywordCS ::= self
             //
             case 33: {
-               //#line 338 "../../lpg/btParserTemplateF.gi"
+               //#line 339 "../../lpg/btParserTemplateF.gi"
 				
                 IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createSimpleNameCS(
@@ -406,7 +409,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 34:  simpleNameCS ::= IDENTIFIER
             //
             case 34: {
-               //#line 350 "../../lpg/btParserTemplateF.gi"
+               //#line 351 "../../lpg/btParserTemplateF.gi"
 				
                 IToken iToken = getRhsIToken(1);
                 SimpleNameCS result = createSimpleNameCS(
@@ -422,7 +425,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 37:  pathNameCS ::= simpleNameCS
             //
             case 37: {
-               //#line 365 "../../lpg/btParserTemplateF.gi"
+               //#line 366 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleName = (SimpleNameCS)getRhsSym(1);
                 PathNameCS result = createPathNameCS(simpleName);
@@ -435,7 +438,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 38:  pathNameCS ::= pathNameCS :: unreservedSimpleNameCS
             //
             case 38: {
-               //#line 373 "../../lpg/btParserTemplateF.gi"
+               //#line 374 "../../lpg/btParserTemplateF.gi"
 				
                 PathNameCS result = (PathNameCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -449,7 +452,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 39:  primitiveTypeCS ::= Boolean
             //
             case 39: {
-               //#line 386 "../../lpg/btParserTemplateF.gi"
+               //#line 387 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.BOOLEAN_LITERAL,
@@ -464,7 +467,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 40:  primitiveTypeCS ::= Integer
             //
             case 40: {
-               //#line 396 "../../lpg/btParserTemplateF.gi"
+               //#line 397 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.INTEGER_LITERAL,
@@ -479,7 +482,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 41:  primitiveTypeCS ::= Real
             //
             case 41: {
-               //#line 406 "../../lpg/btParserTemplateF.gi"
+               //#line 407 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.REAL_LITERAL,
@@ -494,7 +497,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 42:  primitiveTypeCS ::= String
             //
             case 42: {
-               //#line 416 "../../lpg/btParserTemplateF.gi"
+               //#line 417 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.STRING_LITERAL,
@@ -509,7 +512,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 43:  primitiveTypeCS ::= UnlimitedNatural
             //
             case 43: {
-               //#line 426 "../../lpg/btParserTemplateF.gi"
+               //#line 427 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.UNLIMITED_NATURAL_LITERAL,
@@ -524,7 +527,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 44:  primitiveTypeCS ::= OclAny
             //
             case 44: {
-               //#line 437 "../../lpg/btParserTemplateF.gi"
+               //#line 438 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_ANY_LITERAL,
@@ -539,7 +542,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 45:  primitiveTypeCS ::= OclInvalid
             //
             case 45: {
-               //#line 447 "../../lpg/btParserTemplateF.gi"
+               //#line 448 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_INVALID_LITERAL,
@@ -554,7 +557,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 46:  primitiveTypeCS ::= OclVoid
             //
             case 46: {
-               //#line 457 "../../lpg/btParserTemplateF.gi"
+               //#line 458 "../../lpg/btParserTemplateF.gi"
 				
                 PrimitiveTypeCS result = createPrimitiveTypeCS(
                         SimpleTypeEnum.OCL_VOID_LITERAL,
@@ -569,7 +572,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 47:  CollectionTypeIdentifierCS ::= Set
             //
             case 47: {
-               //#line 468 "../../lpg/btParserTemplateF.gi"
+               //#line 469 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.SET_LITERAL,
@@ -584,7 +587,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 48:  CollectionTypeIdentifierCS ::= Bag
             //
             case 48: {
-               //#line 478 "../../lpg/btParserTemplateF.gi"
+               //#line 479 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.BAG_LITERAL,
@@ -599,7 +602,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 49:  CollectionTypeIdentifierCS ::= Sequence
             //
             case 49: {
-               //#line 488 "../../lpg/btParserTemplateF.gi"
+               //#line 489 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.SEQUENCE_LITERAL,
@@ -614,7 +617,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 50:  CollectionTypeIdentifierCS ::= Collection
             //
             case 50: {
-               //#line 498 "../../lpg/btParserTemplateF.gi"
+               //#line 499 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.COLLECTION_LITERAL,
@@ -629,7 +632,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 51:  CollectionTypeIdentifierCS ::= OrderedSet
             //
             case 51: {
-               //#line 508 "../../lpg/btParserTemplateF.gi"
+               //#line 509 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS result = createCollectionTypeCS(
                             CollectionTypeIdentifierEnum.ORDERED_SET_LITERAL,
@@ -644,7 +647,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 56:  collectionTypeCS ::= CollectionTypeIdentifierCS ( typeCS )
             //
             case 56: {
-               //#line 524 "../../lpg/btParserTemplateF.gi"
+               //#line 525 "../../lpg/btParserTemplateF.gi"
 				
                 CollectionTypeCS result = (CollectionTypeCS)getRhsSym(1);
                 result.setTypeCS((TypeCS)getRhsSym(3));
@@ -657,7 +660,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 57:  tupleTypeCS ::= Tuple ( tupleTypePartsCSopt )
             //
             case 57: {
-               //#line 533 "../../lpg/btParserTemplateF.gi"
+               //#line 534 "../../lpg/btParserTemplateF.gi"
 				
                  TupleTypeCS result = createTupleTypeCS((EList<VariableCS>)getRhsSym(3));
                 setOffsets(result, getRhsIToken(1), getRhsIToken(4));
@@ -669,7 +672,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 58:  tupleTypePartsCSopt ::= $Empty
             //
             case 58: {
-               //#line 541 "../../lpg/btParserTemplateF.gi"
+               //#line 542 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(new BasicEList<VariableCS>());
                       break;
@@ -679,7 +682,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 60:  tupleTypePartsCS ::= typedUninitializedVariableCS
             //
             case 60: {
-               //#line 548 "../../lpg/btParserTemplateF.gi"
+               //#line 549 "../../lpg/btParserTemplateF.gi"
 				
                 EList<VariableCS> result = new BasicEList<VariableCS>();
                 result.add((VariableCS)getRhsSym(1));
@@ -691,7 +694,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 61:  tupleTypePartsCS ::= tupleTypePartsCS , typedUninitializedVariableCS
             //
             case 61: {
-               //#line 555 "../../lpg/btParserTemplateF.gi"
+               //#line 556 "../../lpg/btParserTemplateF.gi"
 				
                 EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
                 result.add((VariableCS)getRhsSym(3));
@@ -703,7 +706,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 62:  untypedUninitializedVariableCS ::= simpleNameCS
             //
             case 62: {
-               //#line 566 "../../lpg/btParserTemplateF.gi"
+               //#line 567 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
                 VariableCS result = createVariableCS(name, null, null);
@@ -716,7 +719,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 63:  typedUninitializedVariableCS ::= simpleNameCS : typeCS
             //
             case 63: {
-               //#line 575 "../../lpg/btParserTemplateF.gi"
+               //#line 576 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
                 TypeCS type = (TypeCS)getRhsSym(3);
@@ -730,7 +733,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 64:  untypedInitializedVariableCS ::= simpleNameCS = OclExpressionCS
             //
             case 64: {
-               //#line 585 "../../lpg/btParserTemplateF.gi"
+               //#line 586 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
                 OCLExpressionCS initExpression = (OCLExpressionCS)getRhsSym(3);
@@ -744,7 +747,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 65:  typedInitializedVariableCS ::= simpleNameCS : typeCS = OclExpressionCS
             //
             case 65: {
-               //#line 595 "../../lpg/btParserTemplateF.gi"
+               //#line 596 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
                 TypeCS type = (TypeCS)getRhsSym(3);
@@ -759,7 +762,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 78:  CollectionLiteralExpCS ::= CollectionTypeIdentifierCS { CollectionLiteralPartsCSopt }
             //
             case 78: {
-               //#line 628 "../../lpg/btParserTemplateF.gi"
+               //#line 629 "../../lpg/btParserTemplateF.gi"
 				
                 CollectionTypeCS typeCS = (CollectionTypeCS)getRhsSym(1);
                 CollectionLiteralExpCS result = createCollectionLiteralExpCS(
@@ -775,7 +778,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 79:  CollectionLiteralExpCS ::= collectionTypeCS { CollectionLiteralPartsCSopt }
             //
             case 79: {
-               //#line 639 "../../lpg/btParserTemplateF.gi"
+               //#line 640 "../../lpg/btParserTemplateF.gi"
 				
                 CollectionTypeCS typeCS = (CollectionTypeCS)getRhsSym(1);
                 CollectionLiteralExpCS result = createCollectionLiteralExpCS(
@@ -791,7 +794,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 80:  CollectionLiteralPartsCSopt ::= $Empty
             //
             case 80: {
-               //#line 651 "../../lpg/btParserTemplateF.gi"
+               //#line 652 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(new BasicEList<CollectionLiteralPartCS>());
                       break;
@@ -801,7 +804,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 82:  CollectionLiteralPartsCS ::= CollectionLiteralPartCS
             //
             case 82: {
-               //#line 658 "../../lpg/btParserTemplateF.gi"
+               //#line 659 "../../lpg/btParserTemplateF.gi"
 				
                 EList<CollectionLiteralPartCS> result = new BasicEList<CollectionLiteralPartCS>();
                 result.add((CollectionLiteralPartCS)getRhsSym(1));
@@ -813,7 +816,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 83:  CollectionLiteralPartsCS ::= CollectionLiteralPartsCS , CollectionLiteralPartCS
             //
             case 83: {
-               //#line 665 "../../lpg/btParserTemplateF.gi"
+               //#line 666 "../../lpg/btParserTemplateF.gi"
 				
                 EList<CollectionLiteralPartCS> result = (EList<CollectionLiteralPartCS>)getRhsSym(1);
                 result.add((CollectionLiteralPartCS)getRhsSym(3));
@@ -825,7 +828,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 85:  CollectionLiteralPartCS ::= OclExpressionCS
             //
             case 85: {
-               //#line 674 "../../lpg/btParserTemplateF.gi"
+               //#line 675 "../../lpg/btParserTemplateF.gi"
 				
                 CollectionLiteralPartCS result = createCollectionLiteralPartCS(
                         (OCLExpressionCS)getRhsSym(1)
@@ -839,7 +842,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 86:  CollectionRangeCS ::= OclExpressionCS .. OclExpressionCS
             //
             case 86: {
-               //#line 684 "../../lpg/btParserTemplateF.gi"
+               //#line 685 "../../lpg/btParserTemplateF.gi"
 				
                 CollectionLiteralPartCS result = createCollectionRangeCS(
                         (OCLExpressionCS)getRhsSym(1),
@@ -854,7 +857,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 94:  TupleLiteralExpCS ::= Tuple { TupleLiteralPartsCS }
             //
             case 94: {
-               //#line 703 "../../lpg/btParserTemplateF.gi"
+               //#line 704 "../../lpg/btParserTemplateF.gi"
 				
                 TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)getRhsSym(3));
                 setOffsets(result, getRhsIToken(1), getRhsIToken(4));
@@ -866,7 +869,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 95:  TupleLiteralPartsCS ::= initializedVariableCS
             //
             case 95: {
-               //#line 711 "../../lpg/btParserTemplateF.gi"
+               //#line 712 "../../lpg/btParserTemplateF.gi"
 				
                 EList<VariableCS> result = new BasicEList<VariableCS>();
                 result.add((VariableCS)getRhsSym(1));
@@ -878,7 +881,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 96:  TupleLiteralPartsCS ::= TupleLiteralPartsCS , initializedVariableCS
             //
             case 96: {
-               //#line 718 "../../lpg/btParserTemplateF.gi"
+               //#line 719 "../../lpg/btParserTemplateF.gi"
 				
                 EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
                 result.add((VariableCS)getRhsSym(3));
@@ -890,7 +893,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 97:  IntegerLiteralExpCS ::= INTEGER_LITERAL
             //
             case 97: {
-               //#line 726 "../../lpg/btParserTemplateF.gi"
+               //#line 727 "../../lpg/btParserTemplateF.gi"
 				
                 IntegerLiteralExpCS result = createIntegerLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -902,7 +905,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 98:  RealLiteralExpCS ::= REAL_LITERAL
             //
             case 98: {
-               //#line 734 "../../lpg/btParserTemplateF.gi"
+               //#line 735 "../../lpg/btParserTemplateF.gi"
 				
                 RealLiteralExpCS result = createRealLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -914,7 +917,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 99:  StringLiteralExpCS ::= STRING_LITERAL
             //
             case 99: {
-               //#line 742 "../../lpg/btParserTemplateF.gi"
+               //#line 743 "../../lpg/btParserTemplateF.gi"
 				
                 IToken literalToken = getRhsIToken(1);
                 StringLiteralExpCS result = createStringLiteralExpCS(literalToken);
@@ -927,7 +930,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 100:  StringLiteralExpCS ::= StringLiteralExpCS STRING_LITERAL
             //
             case 100: {
-               //#line 750 "../../lpg/btParserTemplateF.gi"
+               //#line 751 "../../lpg/btParserTemplateF.gi"
 				
                 StringLiteralExpCS string = (StringLiteralExpCS)getRhsSym(1);
                 IToken literalToken = getRhsIToken(2);
@@ -941,7 +944,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 101:  BooleanLiteralExpCS ::= true
             //
             case 101: {
-               //#line 760 "../../lpg/btParserTemplateF.gi"
+               //#line 761 "../../lpg/btParserTemplateF.gi"
 				
                 BooleanLiteralExpCS result = createBooleanLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -953,7 +956,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 102:  BooleanLiteralExpCS ::= false
             //
             case 102: {
-               //#line 767 "../../lpg/btParserTemplateF.gi"
+               //#line 768 "../../lpg/btParserTemplateF.gi"
 				
                 BooleanLiteralExpCS result = createBooleanLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -965,7 +968,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 103:  UnlimitedNaturalLiteralExpCS ::= *
             //
             case 103: {
-               //#line 775 "../../lpg/btParserTemplateF.gi"
+               //#line 776 "../../lpg/btParserTemplateF.gi"
 				
                 UnlimitedNaturalLiteralExpCS result = createUnlimitedNaturalLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -977,7 +980,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 104:  InvalidLiteralExpCS ::= invalid
             //
             case 104: {
-               //#line 783 "../../lpg/btParserTemplateF.gi"
+               //#line 784 "../../lpg/btParserTemplateF.gi"
 				
                 InvalidLiteralExpCS result = createInvalidLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -989,7 +992,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 105:  NullLiteralExpCS ::= null
             //
             case 105: {
-               //#line 791 "../../lpg/btParserTemplateF.gi"
+               //#line 792 "../../lpg/btParserTemplateF.gi"
 				
                 NullLiteralExpCS result = createNullLiteralExpCS(getRhsTokenText(1));
                 setOffsets(result, getRhsIToken(1));
@@ -1013,7 +1016,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 108:  TypeLiteralExpCS ::= tupleTypeCS
             //
             case 108: {
-               //#line 805 "../../lpg/btParserTemplateF.gi"
+               //#line 806 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 VariableExpCS result = createVariableExpCS(
@@ -1030,7 +1033,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 113:  IteratorExpCS ::= primaryExpCS -> simpleNameCS ( uninitializedVariableCS | OclExpressionCS )
             //
             case 113: {
-               //#line 830 "../../lpg/btParserTemplateF.gi"
+               //#line 831 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1050,7 +1053,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 114:  IteratorExpCS ::= primaryExpCS -> simpleNameCS ( simpleNameCS , uninitializedVariableCS | OclExpressionCS )
             //
             case 114: {
-               //#line 847 "../../lpg/btParserTemplateF.gi"
+               //#line 848 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS name = (SimpleNameCS)getRhsSym(5);
                 VariableCS variableCS = createVariableCS(name, null, null);
@@ -1073,7 +1076,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 115:  IteratorExpCS ::= primaryExpCS -> simpleNameCS ( typedUninitializedVariableCS , uninitializedVariableCS | OclExpressionCS )
             //
             case 115: {
-               //#line 867 "../../lpg/btParserTemplateF.gi"
+               //#line 868 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1093,7 +1096,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 116:  IterateExpCS ::= primaryExpCS -> simpleNameCS ( typedInitializedVariableCS | OclExpressionCS )
             //
             case 116: {
-               //#line 888 "../../lpg/btParserTemplateF.gi"
+               //#line 889 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1113,7 +1116,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 117:  IterateExpCS ::= primaryExpCS -> simpleNameCS ( uninitializedVariableCS ; typedInitializedVariableCS | OclExpressionCS )
             //
             case 117: {
-               //#line 904 "../../lpg/btParserTemplateF.gi"
+               //#line 905 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1133,7 +1136,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 121:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS ( )
             //
             case 121: {
-               //#line 926 "../../lpg/btParserTemplateF.gi"
+               //#line 927 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 OperationCallExpCS result = createArrowOperationCallExpCS(
@@ -1151,7 +1154,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 122:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS ( OclExpressionCS )
             //
             case 122: {
-               //#line 940 "../../lpg/btParserTemplateF.gi"
+               //#line 941 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1185,7 +1188,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 123:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS ( notNameExpressionCS , argumentsCS )
             //
             case 123: {
-               //#line 970 "../../lpg/btParserTemplateF.gi"
+               //#line 971 "../../lpg/btParserTemplateF.gi"
 				
                 EList<OCLExpressionCS> args = (EList<OCLExpressionCS>)getRhsSym(7);
                 args.add(0, (OCLExpressionCS)getRhsSym(5));
@@ -1205,7 +1208,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 124:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS ( simpleNameCS , argumentsCS )
             //
             case 124: {
-               //#line 986 "../../lpg/btParserTemplateF.gi"
+               //#line 987 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
                 OCLExpressionCS variableExpCS = createVariableExpCS(
@@ -1238,7 +1241,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 126:  OperationCallExpCS ::= primaryExpCS . simpleNameCS isMarkedPreCSopt ( argumentsCSopt )
             //
             case 126: {
-               //#line 1012 "../../lpg/btParserTemplateF.gi"
+               //#line 1013 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
@@ -1258,7 +1261,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 127:  OperationCallExpCS ::= simpleNameCS isMarkedPreCSopt ( argumentsCSopt )
             //
             case 127: {
-               //#line 1028 "../../lpg/btParserTemplateF.gi"
+               //#line 1029 "../../lpg/btParserTemplateF.gi"
 				
                 OperationCallExpCS result = createDotOperationCallExpCS(
                         null,
@@ -1276,7 +1279,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 128:  OperationCallExpCS ::= pathNameCS :: unreservedSimpleNameCS ( argumentsCSopt )
             //
             case 128: {
-               //#line 1042 "../../lpg/btParserTemplateF.gi"
+               //#line 1043 "../../lpg/btParserTemplateF.gi"
 				
                 PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1296,7 +1299,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 129:  OperationCallExpCS ::= primaryExpCS . pathNameCS :: unreservedSimpleNameCS isMarkedPreCSopt ( argumentsCSopt )
             //
             case 129: {
-               //#line 1060 "../../lpg/btParserTemplateF.gi"
+               //#line 1061 "../../lpg/btParserTemplateF.gi"
 				
                 PathNameCS pathNameCS = (PathNameCS)getRhsSym(3);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(5);
@@ -1317,7 +1320,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 131:  PropertyCallExpCS ::= pathNameCS :: unreservedSimpleNameCS isMarkedPreCSopt
             //
             case 131: {
-               //#line 1084 "../../lpg/btParserTemplateF.gi"
+               //#line 1085 "../../lpg/btParserTemplateF.gi"
 				
                 PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1342,7 +1345,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 132:  PropertyCallExpCS ::= primaryExpCS . pathNameCS :: unreservedSimpleNameCS isMarkedPreCSopt
             //
             case 132: {
-               //#line 1105 "../../lpg/btParserTemplateF.gi"
+               //#line 1106 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 PathNameCS pathNameCS = (PathNameCS)getRhsSym(3);
@@ -1368,7 +1371,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 133:  AssociationClassCallExpCS ::= primaryExpCS . simpleNameCS isMarkedPreCSopt
             //
             case 133: {
-               //#line 1128 "../../lpg/btParserTemplateF.gi"
+               //#line 1129 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1393,7 +1396,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 134:  AssociationClassCallExpCS ::= primaryExpCS . simpleNameCS [ argumentsCS ] isMarkedPreCSopt
             //
             case 134: {
-               //#line 1149 "../../lpg/btParserTemplateF.gi"
+               //#line 1150 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -1418,7 +1421,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 135:  AssociationClassCallExpCS ::= simpleNameCS [ argumentsCS ] isMarkedPreCSopt
             //
             case 135: {
-               //#line 1172 "../../lpg/btParserTemplateF.gi"
+               //#line 1173 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(5);
@@ -1440,7 +1443,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 136:  isMarkedPreCSopt ::= $Empty
             //
             case 136: {
-               //#line 1190 "../../lpg/btParserTemplateF.gi"
+               //#line 1191 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(null);
                       break;
@@ -1450,7 +1453,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 137:  argumentsCSopt ::= $Empty
             //
             case 137: {
-               //#line 1196 "../../lpg/btParserTemplateF.gi"
+               //#line 1197 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(new BasicEList<OCLExpressionCS>());
                       break;
@@ -1460,7 +1463,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 139:  argumentsCS ::= OclExpressionCS
             //
             case 139: {
-               //#line 1203 "../../lpg/btParserTemplateF.gi"
+               //#line 1204 "../../lpg/btParserTemplateF.gi"
 				
                 EList<OCLExpressionCS> result = new BasicEList<OCLExpressionCS>();
                 result.add((OCLExpressionCS)getRhsSym(1));
@@ -1472,7 +1475,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 140:  argumentsCS ::= argumentsCS , OclExpressionCS
             //
             case 140: {
-               //#line 1210 "../../lpg/btParserTemplateF.gi"
+               //#line 1211 "../../lpg/btParserTemplateF.gi"
 				
                 EList<OCLExpressionCS> result = (EList<OCLExpressionCS>)getRhsSym(1);
                 result.add((OCLExpressionCS)getRhsSym(3));
@@ -1484,7 +1487,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 143:  VariableExpCS ::= selfKeywordCS
             //
             case 143: {
-               //#line 1235 "../../lpg/btParserTemplateF.gi"
+               //#line 1236 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 VariableExpCS result = createVariableExpCS(
@@ -1501,7 +1504,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 144:  SimpleNameExpCS ::= simpleNameCS
             //
             case 144: {
-               //#line 1250 "../../lpg/btParserTemplateF.gi"
+               //#line 1251 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
                 VariableExpCS result = createVariableExpCS(
@@ -1680,7 +1683,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 206:  multiplicativeWithLetCS ::= multiplicativeNotLetCS / unaryWithLetCS
             //
             case 206: {
-               //#line 1359 "../../lpg/btParserTemplateF.gi"
+               //#line 1360 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = createSimpleNameCS(
                             SimpleTypeEnum.KEYWORD_LITERAL,
@@ -1723,7 +1726,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 214:  unaryWithLetCS ::= not unaryWithLetCS
             //
             case 214: {
-               //#line 1390 "../../lpg/btParserTemplateF.gi"
+               //#line 1391 "../../lpg/btParserTemplateF.gi"
 				
                 SimpleNameCS simpleNameCS = createSimpleNameCS(
                             SimpleTypeEnum.KEYWORD_LITERAL,
@@ -1745,7 +1748,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 221:  primaryNotNameCS ::= ( OclExpressionCS )
             //
             case 221: {
-               //#line 1416 "../../lpg/btParserTemplateF.gi"
+               //#line 1417 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS result = (OCLExpressionCS)getRhsSym(2);
                 if (result instanceof OperationCallExpCS) {
@@ -1760,7 +1763,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 222:  IfExpCS ::= if OclExpressionCS then OclExpressionCS else OclExpressionCS endif
             //
             case 222: {
-               //#line 1427 "../../lpg/btParserTemplateF.gi"
+               //#line 1428 "../../lpg/btParserTemplateF.gi"
 				
                 IfExpCS result = createIfExpCS(
                         (OCLExpressionCS)getRhsSym(2),
@@ -1776,7 +1779,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 223:  LetExpCS ::= let letVariablesCS in OclExpressionCS
             //
             case 223: {
-               //#line 1439 "../../lpg/btParserTemplateF.gi"
+               //#line 1440 "../../lpg/btParserTemplateF.gi"
 				
                 OCLExpressionCS expr = (OCLExpressionCS)getRhsSym(4);
                 LetExpCS result = createLetExpCS(
@@ -1792,7 +1795,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 224:  letVariablesCS ::= typedInitializedVariableCS
             //
             case 224: {
-               //#line 1451 "../../lpg/btParserTemplateF.gi"
+               //#line 1452 "../../lpg/btParserTemplateF.gi"
 				
                 EList<VariableCS> result = new BasicEList<VariableCS>();
                 result.add((VariableCS)getRhsSym(1));
@@ -1804,7 +1807,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 225:  letVariablesCS ::= letVariablesCS , typedInitializedVariableCS
             //
             case 225: {
-               //#line 1458 "../../lpg/btParserTemplateF.gi"
+               //#line 1459 "../../lpg/btParserTemplateF.gi"
 				
                 EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
                 result.add((VariableCS)getRhsSym(3));
@@ -1823,7 +1826,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 245:  primitiveTypeCS ::= OclMessage
             //
             case 245: {
-               //#line 134 "../../lpg/btParserTemplateF.gi"
+               //#line 136 "../../lpg/btParserTemplateF.gi"
 				
 				PrimitiveTypeCS result = createPrimitiveTypeCS(
 						SimpleTypeEnum.OCL_MESSAGE_LITERAL,
@@ -1845,7 +1848,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 248:  OperationCallExpCS ::= primaryExpCS -> simpleNameCS isMarkedPreCS ( argumentsCSopt )
             //
             case 248: {
-               //#line 153 "../../lpg/btParserTemplateF.gi"
+               //#line 155 "../../lpg/btParserTemplateF.gi"
 				
 				OCLExpressionCS source = (OCLExpressionCS)getRhsSym(1);
 				OperationCallExpCS result = createArrowOperationCallExpCS(
@@ -1863,7 +1866,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 249:  AssociationClassCallExpCS ::= simpleNameCS isMarkedPreCS
             //
             case 249: {
-               //#line 168 "../../lpg/btParserTemplateF.gi"
+               //#line 170 "../../lpg/btParserTemplateF.gi"
 				
 				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(1);
 				IsMarkedPreCS isMarkedPreCS = (IsMarkedPreCS)getRhsSym(2);
@@ -1881,7 +1884,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 250:  isMarkedPreCS ::= @ pre
             //
             case 250: {
-               //#line 182 "../../lpg/btParserTemplateF.gi"
+               //#line 184 "../../lpg/btParserTemplateF.gi"
 				
 				IsMarkedPreCS result = createIsMarkedPreCS();
 				setOffsets(result, getRhsIToken(1), getRhsIToken(2));
@@ -1899,7 +1902,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 253:  OclMessageExpCS ::= primaryExpCS ^ simpleNameCS ( OclMessageArgumentsCSopt )
             //
             case 253: {
-               //#line 193 "../../lpg/btParserTemplateF.gi"
+               //#line 195 "../../lpg/btParserTemplateF.gi"
 				
 				OCLExpressionCS target = (OCLExpressionCS)getRhsSym(1);
 				MessageExpCS result = createMessageExpCS(
@@ -1917,7 +1920,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 254:  OclMessageArgumentsCSopt ::= $Empty
             //
             case 254: {
-               //#line 207 "../../lpg/btParserTemplateF.gi"
+               //#line 209 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(new BasicEList<OCLMessageArgCS>());
                       break;
@@ -1927,7 +1930,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 256:  OclMessageArgumentsCS ::= OclMessageArgCS
             //
             case 256: {
-               //#line 214 "../../lpg/btParserTemplateF.gi"
+               //#line 216 "../../lpg/btParserTemplateF.gi"
 				
 				EList<OCLMessageArgCS> result = new BasicEList<OCLMessageArgCS>();
 				result.add((OCLMessageArgCS)getRhsSym(1));
@@ -1939,7 +1942,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 257:  OclMessageArgumentsCS ::= OclMessageArgumentsCS , OclMessageArgCS
             //
             case 257: {
-               //#line 221 "../../lpg/btParserTemplateF.gi"
+               //#line 223 "../../lpg/btParserTemplateF.gi"
 				
 				EList<OCLMessageArgCS> result = (EList<OCLMessageArgCS>)getRhsSym(1);
 				result.add((OCLMessageArgCS)getRhsSym(3));
@@ -1951,7 +1954,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 258:  OclMessageArgCS ::= ?
             //
             case 258: {
-               //#line 229 "../../lpg/btParserTemplateF.gi"
+               //#line 231 "../../lpg/btParserTemplateF.gi"
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
@@ -1966,7 +1969,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 259:  OclMessageArgCS ::= ? : typeCS
             //
             case 259: {
-               //#line 239 "../../lpg/btParserTemplateF.gi"
+               //#line 241 "../../lpg/btParserTemplateF.gi"
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						(TypeCS)getRhsSym(3),
@@ -1981,7 +1984,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 260:  OclMessageArgCS ::= OclExpressionCS
             //
             case 260: {
-               //#line 249 "../../lpg/btParserTemplateF.gi"
+               //#line 251 "../../lpg/btParserTemplateF.gi"
 				
 				OCLMessageArgCS result = createOCLMessageArgCS(
 						null,
@@ -1996,7 +1999,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 263:  packageDeclarationsCS ::= packageDeclarationsCS packageDeclarationCS_A
             //
             case 263: {
-               //#line 269 "../../lpg/btParserTemplateF.gi"
+               //#line 271 "../../lpg/btParserTemplateF.gi"
 				
                 PackageDeclarationCS result = (PackageDeclarationCS)getRhsSym(2);
                 result.setPackageDeclarationCS((PackageDeclarationCS) getRhsSym(1));
@@ -2008,7 +2011,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 266:  packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt endpackage
             //
             case 266: {
-               //#line 279 "../../lpg/btParserTemplateF.gi"
+               //#line 281 "../../lpg/btParserTemplateF.gi"
 				
                 PackageDeclarationCS result = createPackageDeclarationCS(
                         (PathNameCS)getRhsSym(2),
@@ -2023,7 +2026,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 267:  packageDeclarationCS_B ::= contextDeclsCS
             //
             case 267: {
-               //#line 290 "../../lpg/btParserTemplateF.gi"
+               //#line 292 "../../lpg/btParserTemplateF.gi"
 				
                 EList<ContextDeclCS> contextDecls = (EList<ContextDeclCS>)getRhsSym(1);
                 PackageDeclarationCS result = createPackageDeclarationCS(null, contextDecls);
@@ -2038,7 +2041,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 268:  contextDeclsCSopt ::= $Empty
             //
             case 268: {
-               //#line 301 "../../lpg/btParserTemplateF.gi"
+               //#line 303 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(new BasicEList<ContextDeclCS>());
                       break;
@@ -2048,7 +2051,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 270:  contextDeclsCS ::= contextDeclCS
             //
             case 270: {
-               //#line 308 "../../lpg/btParserTemplateF.gi"
+               //#line 310 "../../lpg/btParserTemplateF.gi"
 				
                 EList<ContextDeclCS> result = new BasicEList<ContextDeclCS>();
                 result.add((ContextDeclCS)getRhsSym(1));
@@ -2060,7 +2063,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 271:  contextDeclsCS ::= contextDeclsCS contextDeclCS
             //
             case 271: {
-               //#line 315 "../../lpg/btParserTemplateF.gi"
+               //#line 317 "../../lpg/btParserTemplateF.gi"
 				
                 EList<ContextDeclCS> result = (EList<ContextDeclCS>)getRhsSym(1);
                 result.add((ContextDeclCS)getRhsSym(2));
@@ -2072,7 +2075,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 275:  propertyContextDeclCS ::= context pathNameCS :: unreservedSimpleNameCS : typeCS initOrDerValuesCS
             //
             case 275: {
-               //#line 328 "../../lpg/btParserTemplateF.gi"
+               //#line 330 "../../lpg/btParserTemplateF.gi"
 				
                 PathNameCS pathNameCS = (PathNameCS)getRhsSym(2);
                 SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(4);
@@ -2092,7 +2095,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 276:  initOrDerValuesCS ::= initOrDerValueCS
             //
             case 276: {
-               //#line 344 "../../lpg/btParserTemplateF.gi"
+               //#line 346 "../../lpg/btParserTemplateF.gi"
 				
                 EList<InitOrDerValueCS> result = new BasicEList<InitOrDerValueCS>();
                 result.add((InitOrDerValueCS)getRhsSym(1));
@@ -2104,7 +2107,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 277:  initOrDerValuesCS ::= initOrDerValuesCS initOrDerValueCS
             //
             case 277: {
-               //#line 351 "../../lpg/btParserTemplateF.gi"
+               //#line 353 "../../lpg/btParserTemplateF.gi"
 				
                 EList<InitOrDerValueCS> result = (EList<InitOrDerValueCS>)getRhsSym(1);
                 result.add((InitOrDerValueCS)getRhsSym(2));
@@ -2116,7 +2119,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 278:  initOrDerValueCS ::= init : OclExpressionCS
             //
             case 278: {
-               //#line 359 "../../lpg/btParserTemplateF.gi"
+               //#line 361 "../../lpg/btParserTemplateF.gi"
 				
                 InitValueCS result = createInitValueCS((OCLExpressionCS)getRhsSym(3));
                 setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
@@ -2128,7 +2131,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 279:  initOrDerValueCS ::= derive : OclExpressionCS
             //
             case 279: {
-               //#line 366 "../../lpg/btParserTemplateF.gi"
+               //#line 368 "../../lpg/btParserTemplateF.gi"
 				
                 DerValueCS result = createDerValueCS((OCLExpressionCS)getRhsSym(3));
                 setOffsets(result, getRhsIToken(1), (CSTNode)getRhsSym(3));
@@ -2140,7 +2143,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 280:  classifierContextDeclCS ::= context pathNameCS invOrDefsCS
             //
             case 280: {
-               //#line 374 "../../lpg/btParserTemplateF.gi"
+               //#line 376 "../../lpg/btParserTemplateF.gi"
 				
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(3);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
@@ -2157,7 +2160,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 281:  classifierContextDeclCS ::= context simpleNameCS : pathNameCS invOrDefsCS
             //
             case 281: {
-               //#line 386 "../../lpg/btParserTemplateF.gi"
+               //#line 388 "../../lpg/btParserTemplateF.gi"
 				
 				EList<InvOrDefCS> list = (EList<InvOrDefCS>)getRhsSym(5);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
@@ -2174,7 +2177,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 282:  invOrDefsCS ::= invOrDefCS
             //
             case 282: {
-               //#line 399 "../../lpg/btParserTemplateF.gi"
+               //#line 401 "../../lpg/btParserTemplateF.gi"
 				
                 EList<InvOrDefCS> result = new BasicEList<InvOrDefCS>();
                 result.add((InvOrDefCS)getRhsSym(1));
@@ -2186,7 +2189,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 283:  invOrDefsCS ::= invOrDefsCS invOrDefCS
             //
             case 283: {
-               //#line 406 "../../lpg/btParserTemplateF.gi"
+               //#line 408 "../../lpg/btParserTemplateF.gi"
 				
                 EList<InvOrDefCS> result = (EList<InvOrDefCS>)getRhsSym(1);
                 result.add((InvOrDefCS)getRhsSym(2));
@@ -2198,7 +2201,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 284:  invOrDefCS ::= inv unreservedSimpleNameCSopt : OclExpressionCS
             //
             case 284: {
-               //#line 414 "../../lpg/btParserTemplateF.gi"
+               //#line 416 "../../lpg/btParserTemplateF.gi"
 				
 				InvCS result = createInvCS(
 						(SimpleNameCS)getRhsSym(2),
@@ -2213,7 +2216,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 285:  invOrDefCS ::= def unreservedSimpleNameCSopt : defExpressionCS
             //
             case 285: {
-               //#line 424 "../../lpg/btParserTemplateF.gi"
+               //#line 426 "../../lpg/btParserTemplateF.gi"
 				
                 DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(4);
                 DefCS result = createDefCS(
@@ -2230,7 +2233,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 286:  invOrDefCS ::= static def unreservedSimpleNameCSopt : defExpressionCS
             //
             case 286: {
-               //#line 436 "../../lpg/btParserTemplateF.gi"
+               //#line 438 "../../lpg/btParserTemplateF.gi"
 				
                 DefExpressionCS defExpressionCS = (DefExpressionCS)getRhsSym(5);
                 DefCS result = createDefCS(
@@ -2247,7 +2250,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 287:  defExpressionCS ::= typedUninitializedVariableCS = OclExpressionCS
             //
             case 287: {
-               //#line 449 "../../lpg/btParserTemplateF.gi"
+               //#line 451 "../../lpg/btParserTemplateF.gi"
 				
 				VariableCS variableCS = (VariableCS)getRhsSym(1);
 				OCLExpressionCS expressionCS = (OCLExpressionCS)getRhsSym(3);
@@ -2265,7 +2268,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 288:  defExpressionCS ::= operationCS1 = OclExpressionCS
             //
             case 288: {
-               //#line 462 "../../lpg/btParserTemplateF.gi"
+               //#line 464 "../../lpg/btParserTemplateF.gi"
 				
 				DefExpressionCS result = createDefExpressionCS(
 						null,
@@ -2281,7 +2284,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 289:  operationContextDeclCS ::= context operationCS2 prePostOrBodyDeclsCS
             //
             case 289: {
-               //#line 474 "../../lpg/btParserTemplateF.gi"
+               //#line 476 "../../lpg/btParserTemplateF.gi"
 				
 				EList<PrePostOrBodyDeclCS> prePostOrBodyDecls = (EList<PrePostOrBodyDeclCS>)getRhsSym(3);
 				OperationContextDeclCS result = createOperationContextDeclCS(
@@ -2297,7 +2300,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 290:  prePostOrBodyDeclsCS ::= prePostOrBodyDeclCS
             //
             case 290: {
-               //#line 486 "../../lpg/btParserTemplateF.gi"
+               //#line 488 "../../lpg/btParserTemplateF.gi"
 				
                 EList<PrePostOrBodyDeclCS> result = new BasicEList<PrePostOrBodyDeclCS>();
                 result.add((PrePostOrBodyDeclCS)getRhsSym(1));
@@ -2309,7 +2312,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 291:  prePostOrBodyDeclsCS ::= prePostOrBodyDeclsCS prePostOrBodyDeclCS
             //
             case 291: {
-               //#line 493 "../../lpg/btParserTemplateF.gi"
+               //#line 495 "../../lpg/btParserTemplateF.gi"
 				
                 EList<PrePostOrBodyDeclCS> result = (EList<PrePostOrBodyDeclCS>)getRhsSym(1);
                 result.add((PrePostOrBodyDeclCS)getRhsSym(2));
@@ -2321,7 +2324,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 292:  prePostOrBodyDeclCS ::= pre unreservedSimpleNameCSopt : OclExpressionCS
             //
             case 292: {
-               //#line 501 "../../lpg/btParserTemplateF.gi"
+               //#line 503 "../../lpg/btParserTemplateF.gi"
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.PRE_LITERAL,
@@ -2337,7 +2340,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 293:  prePostOrBodyDeclCS ::= post unreservedSimpleNameCSopt : OclExpressionCS
             //
             case 293: {
-               //#line 512 "../../lpg/btParserTemplateF.gi"
+               //#line 514 "../../lpg/btParserTemplateF.gi"
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.POST_LITERAL,
@@ -2353,7 +2356,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 294:  prePostOrBodyDeclCS ::= body unreservedSimpleNameCSopt : OclExpressionCS
             //
             case 294: {
-               //#line 523 "../../lpg/btParserTemplateF.gi"
+               //#line 525 "../../lpg/btParserTemplateF.gi"
 				
                 PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
                         PrePostOrBodyEnum.BODY_LITERAL,
@@ -2369,7 +2372,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 295:  operationCS1 ::= simpleNameCS ( parametersCSopt ) : typeCSopt
             //
             case 295: {
-               //#line 535 "../../lpg/btParserTemplateF.gi"
+               //#line 537 "../../lpg/btParserTemplateF.gi"
 				
 				OperationCS result = createOperationCS(
 						getRhsIToken(1),
@@ -2389,7 +2392,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 296:  operationCS2 ::= pathNameCS :: unreservedSimpleNameCS ( parametersCSopt ) : typeCSopt
             //
             case 296: {
-               //#line 551 "../../lpg/btParserTemplateF.gi"
+               //#line 553 "../../lpg/btParserTemplateF.gi"
 				
 				PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
 				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -2413,7 +2416,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 297:  parametersCSopt ::= $Empty
             //
             case 297: {
-               //#line 571 "../../lpg/btParserTemplateF.gi"
+               //#line 573 "../../lpg/btParserTemplateF.gi"
 				
                 setResult(new BasicEList<VariableCS>());
                       break;
@@ -2423,7 +2426,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 299:  parametersCS ::= VariableDeclarationCS
             //
             case 299: {
-               //#line 578 "../../lpg/btParserTemplateF.gi"
+               //#line 580 "../../lpg/btParserTemplateF.gi"
 				
 				EList<VariableCS> result = new BasicEList<VariableCS>();
 				result.add((VariableCS)getRhsSym(1));
@@ -2435,7 +2438,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 300:  parametersCS ::= parametersCS , VariableDeclarationCS
             //
             case 300: {
-               //#line 585 "../../lpg/btParserTemplateF.gi"
+               //#line 587 "../../lpg/btParserTemplateF.gi"
 				
 				EList<VariableCS> result = (EList<VariableCS>)getRhsSym(1);
 				result.add((VariableCS)getRhsSym(3));
@@ -2447,7 +2450,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 301:  ERROR_Colon ::= ERROR_TOKEN
             //
             case 301: {
-               //#line 46 "../../lpg/btParserTemplateF.gi"
+               //#line 48 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_COLON);
 	                  break;
@@ -2457,7 +2460,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 302:  ERROR_Empty ::= ERROR_TOKEN
             //
             case 302: {
-               //#line 51 "../../lpg/btParserTemplateF.gi"
+               //#line 53 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.EXTRA_TOKENS);
 	                  break;
@@ -2467,7 +2470,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 303:  ERROR_SimpleNameCS ::= ERROR_TOKEN
             //
             case 303: {
-               //#line 61 "../../lpg/btParserTemplateF.gi"
+               //#line 63 "../../lpg/btParserTemplateF.gi"
 									
 				reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_SIMPLE_NAME);
                 IToken iToken = getRhsIToken(1);
@@ -2484,7 +2487,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 305:  collectionTypeCS ::= CollectionTypeIdentifierCS ( typeCS ERROR_TOKEN
             //
             case 305: {
-               //#line 80 "../../lpg/btParserTemplateF.gi"
+               //#line 82 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(4), OCLParserErrors.MISSING_RPAREN);
 				CollectionTypeCS result = (CollectionTypeCS)getRhsSym(1); 
@@ -2498,7 +2501,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 306:  TupleLiteralExpCS ::= Tuple ERROR_TOKEN
             //
             case 306: {
-               //#line 114 "../../lpg/btParserTemplateF.gi"
+               //#line 116 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_LBRACE);
 				TupleLiteralExpCS result = createTupleLiteralExpCS((EList<VariableCS>)getRhsSym(3));
@@ -2511,7 +2514,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 307:  TupleLiteralPartsCS ::= ERROR_TOKEN
             //
             case 307: {
-               //#line 123 "../../lpg/btParserTemplateF.gi"
+               //#line 125 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_VARIABLES);
 				EList<VariableCS> result = new BasicEList<VariableCS>();
@@ -2523,7 +2526,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 308:  AssociationClassCallExpCS ::= simpleNameCS [ argumentsCS ERROR_TOKEN
             //
             case 308: {
-               //#line 134 "../../lpg/btParserTemplateF.gi"
+               //#line 136 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(4), OCLParserErrors.MISSING_RBRACK);
 				VariableExpCS result = createVariableExpCS(
@@ -2540,7 +2543,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 309:  IfExpCS ::= if OclExpressionCS then OclExpressionCS else OclExpressionCS ERROR_TOKEN
             //
             case 309: {
-               //#line 150 "../../lpg/btParserTemplateF.gi"
+               //#line 152 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(7), OCLParserErrors.MISSING_ENDIF);
 				IfExpCS result = createIfExpCS(
@@ -2557,7 +2560,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 310:  IfExpCS ::= if OclExpressionCS then OclExpressionCS ERROR_TOKEN
             //
             case 310: {
-               //#line 162 "../../lpg/btParserTemplateF.gi"
+               //#line 164 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(5), OCLParserErrors.MISSING_ELSE_ENDIF);
 				IfExpCS result = createIfExpCS(
@@ -2574,7 +2577,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 311:  IfExpCS ::= if OclExpressionCS ERROR_TOKEN
             //
             case 311: {
-               //#line 174 "../../lpg/btParserTemplateF.gi"
+               //#line 176 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_THEN_ELSE_ENDIF);
 				IfExpCS result = createIfExpCS(
@@ -2591,7 +2594,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 312:  IfExpCS ::= if ERROR_TOKEN endif
             //
             case 312: {
-               //#line 186 "../../lpg/btParserTemplateF.gi"
+               //#line 188 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_THEN_ELSE);
 				IfExpCS result = createIfExpCS(
@@ -2608,7 +2611,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 313:  primaryExpCS ::= ( OclExpressionCS ERROR_TOKEN
             //
             case 313: {
-               //#line 199 "../../lpg/btParserTemplateF.gi"
+               //#line 201 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_RPAREN);
 				OCLExpressionCS result = (OCLExpressionCS)getRhsSym(2);
@@ -2627,7 +2630,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 315:  OclMessageExpCS ::= primaryExpCS ^ simpleNameCS ERROR_TOKEN
             //
             case 315: {
-               //#line 39 "../../lpg/btParserTemplateF.gi"
+               //#line 42 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_MESSAGE_ARGUMENTS);
 				OCLExpressionCS target = (OCLExpressionCS)getRhsSym(1);
@@ -2646,7 +2649,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 316:  classifierContextDeclCS ::= context pathNameCS ERROR_TOKEN
             //
             case 316: {
-               //#line 57 "../../lpg/btParserTemplateF.gi"
+               //#line 60 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(3), OCLParserErrors.MISSING_INV_OR_DEF);
 				ClassifierContextDeclCS result = createClassifierContextDeclCS(
@@ -2663,7 +2666,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 317:  defExpressionCS ::= typedUninitializedVariableCS ERROR_TOKEN
             //
             case 317: {
-               //#line 70 "../../lpg/btParserTemplateF.gi"
+               //#line 73 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_EQUALS);
 				VariableCS variableCS = (VariableCS)getRhsSym(1);
@@ -2681,7 +2684,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 318:  defExpressionCS ::= simpleNameCS ERROR_Colon
             //
             case 318: {
-               //#line 83 "../../lpg/btParserTemplateF.gi"
+               //#line 86 "../../lpg/btParserTemplateF.gi"
 				
 				SimpleNameCS name = (SimpleNameCS)getRhsSym(1);
 				VariableCS variableCS = createVariableCS(name, null, null);
@@ -2700,7 +2703,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 319:  invOrDefCS ::= inv unreservedSimpleNameCS ERROR_Colon
             //
             case 319: {
-               //#line 98 "../../lpg/btParserTemplateF.gi"
+               //#line 101 "../../lpg/btParserTemplateF.gi"
 				
 				InvCS result = createInvCS(
 						(SimpleNameCS)getRhsSym(2),
@@ -2715,7 +2718,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 320:  invOrDefCS ::= def unreservedSimpleNameCS ERROR_Colon
             //
             case 320: {
-               //#line 108 "../../lpg/btParserTemplateF.gi"
+               //#line 111 "../../lpg/btParserTemplateF.gi"
 				
                 DefCS result = createDefCS(
                         false,
@@ -2731,7 +2734,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 321:  invOrDefCS ::= static def unreservedSimpleNameCS ERROR_Colon
             //
             case 321: {
-               //#line 119 "../../lpg/btParserTemplateF.gi"
+               //#line 122 "../../lpg/btParserTemplateF.gi"
 				
                 DefCS result = createDefCS(
                         true,
@@ -2747,7 +2750,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 322:  operationCS1 ::= simpleNameCS ( parametersCSopt ) ERROR_Colon
             //
             case 322: {
-               //#line 131 "../../lpg/btParserTemplateF.gi"
+               //#line 134 "../../lpg/btParserTemplateF.gi"
 				
 				OperationCS result = createOperationCS(
 						getRhsIToken(1),
@@ -2763,7 +2766,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 323:  operationCS1 ::= simpleNameCS ERROR_TOKEN
             //
             case 323: {
-               //#line 142 "../../lpg/btParserTemplateF.gi"
+               //#line 145 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(2), OCLParserErrors.MISSING_LPAREN);
 				OperationCS result = createOperationCS(
@@ -2780,7 +2783,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 324:  operationCS1 ::= ERROR_TOKEN
             //
             case 324: {
-               //#line 154 "../../lpg/btParserTemplateF.gi"
+               //#line 157 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(1), OCLParserErrors.MISSING_IDENTIFIER);
 				OperationCS result = createOperationCS(
@@ -2797,7 +2800,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 325:  operationCS2 ::= pathNameCS :: unreservedSimpleNameCS ( parametersCSopt ) ERROR_Colon
             //
             case 325: {
-               //#line 166 "../../lpg/btParserTemplateF.gi"
+               //#line 169 "../../lpg/btParserTemplateF.gi"
 				
 				PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
 				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -2816,7 +2819,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 326:  operationCS2 ::= pathNameCS :: ERROR_SimpleNameCS
             //
             case 326: {
-               //#line 180 "../../lpg/btParserTemplateF.gi"
+               //#line 183 "../../lpg/btParserTemplateF.gi"
 				
 				PathNameCS pathNameCS = (PathNameCS)getRhsSym(1);
 				SimpleNameCS simpleNameCS = (SimpleNameCS)getRhsSym(3);
@@ -2835,7 +2838,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 327:  prePostOrBodyDeclCS ::= pre unreservedSimpleNameCS ERROR_Colon
             //
             case 327: {
-               //#line 195 "../../lpg/btParserTemplateF.gi"
+               //#line 198 "../../lpg/btParserTemplateF.gi"
 				
 				PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.PRE_LITERAL,
@@ -2851,7 +2854,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 328:  prePostOrBodyDeclCS ::= post unreservedSimpleNameCS ERROR_Colon
             //
             case 328: {
-               //#line 206 "../../lpg/btParserTemplateF.gi"
+               //#line 209 "../../lpg/btParserTemplateF.gi"
 				
 				PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.POST_LITERAL,
@@ -2867,7 +2870,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 329:  prePostOrBodyDeclCS ::= body unreservedSimpleNameCS ERROR_Colon
             //
             case 329: {
-               //#line 217 "../../lpg/btParserTemplateF.gi"
+               //#line 220 "../../lpg/btParserTemplateF.gi"
 				
 				PrePostOrBodyDeclCS result = createPrePostOrBodyDeclCS(
 						PrePostOrBodyEnum.BODY_LITERAL,
@@ -2883,7 +2886,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 330:  initOrDerValueCS ::= init ERROR_Colon
             //
             case 330: {
-               //#line 229 "../../lpg/btParserTemplateF.gi"
+               //#line 232 "../../lpg/btParserTemplateF.gi"
 				
 				InitValueCS result = createInitValueCS(null);
 				setOffsets(result, getRhsIToken(2), getRhsIToken(3));
@@ -2895,7 +2898,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 331:  initOrDerValueCS ::= derive ERROR_Colon
             //
             case 331: {
-               //#line 236 "../../lpg/btParserTemplateF.gi"
+               //#line 239 "../../lpg/btParserTemplateF.gi"
 				
 				DerValueCS result = createDerValueCS(null);
 				setOffsets(result, getRhsIToken(2), getRhsIToken(3));
@@ -2907,7 +2910,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 332:  packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt ERROR_Empty endpackage
             //
             case 332: {
-               //#line 244 "../../lpg/btParserTemplateF.gi"
+               //#line 247 "../../lpg/btParserTemplateF.gi"
 				
 				PackageDeclarationCS result = createPackageDeclarationCS(
 						(PathNameCS)getRhsSym(2),
@@ -2922,7 +2925,7 @@ protected final void reportErrorTokenMessage(int error_token, String msg) {
             // Rule 333:  packageDeclarationCS_A ::= package pathNameCS contextDeclsCSopt ERROR_TOKEN
             //
             case 333: {
-               //#line 254 "../../lpg/btParserTemplateF.gi"
+               //#line 257 "../../lpg/btParserTemplateF.gi"
 				
 				reportErrorTokenMessage(getRhsTokenIndex(4), OCLParserErrors.MISSING_ENDPACKAGE);
 				PackageDeclarationCS result = createPackageDeclarationCS(
