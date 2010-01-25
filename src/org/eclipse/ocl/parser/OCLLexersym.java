@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.15 2010/01/25 11:10:05 asanchez Exp $
+* $Id: OCLLexersym.java,v 1.16 2010/01/25 11:31:46 asanchez Exp $
 */
 /**
 * Complete OCL Lexer

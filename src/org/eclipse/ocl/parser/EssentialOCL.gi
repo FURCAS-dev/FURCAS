@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.gi,v 1.5 2010/01/25 11:10:05 asanchez Exp $
+-- * $Id: EssentialOCL.gi,v 1.6 2010/01/25 11:31:46 asanchez Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -83,12 +83,13 @@
  *   E.D.Willink - Remove unnecessary warning suppression
  *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
  *   Borland - Bug 242880
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
- *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
-$copyright_contributions
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
+ *        - 242153: LPG v 2.0.17 adoption.
+ *        - 299396: Introducing new LPG templates
+ *        - 300534: Removing the use of deprecated macros.
  * </copyright>
  *
- * $Id: EssentialOCL.gi,v 1.5 2010/01/25 11:10:05 asanchez Exp $
+ * $Id: EssentialOCL.gi,v 1.6 2010/01/25 11:31:46 asanchez Exp $
  */
     ./
 %End
