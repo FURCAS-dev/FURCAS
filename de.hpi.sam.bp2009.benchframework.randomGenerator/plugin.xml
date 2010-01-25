@@ -13,8 +13,14 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://de.hpi.sam.bp2009.benchframework.randomGenerator"
-            class="de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage"
+            class="randomGenerator.RandomGeneratorPackage"
             genModel="model/randomGenerator.genmodel"/>
+   </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
+      <operator
+            operatorClass="de.hpi.sam.bp2009.benchframework.randomGenerator.impl.RandomGeneratorImpl">
+      </operator>
    </extension>
 
 </plugin>

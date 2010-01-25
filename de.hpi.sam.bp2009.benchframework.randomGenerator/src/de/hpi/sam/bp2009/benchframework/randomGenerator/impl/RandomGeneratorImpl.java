@@ -44,6 +44,8 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 		super();
 		RandomGeneratorOptionObject options = RandomGeneratorFactory.eINSTANCE.createRandomGeneratorOptionObject();
 		this.setOption(options);
+		this.setName("Random Generator");
+		this.setDescription("Instantiates a random instance of the model and adds all needed references to it.");
 	}
 
 	/**
@@ -84,11 +86,15 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 		}
 		//instantiate the meta model
 		instantiate(metaClasses.get(new Random().nextInt(metaClasses.size())), result);
-		
+		this.getTestRun().setModel(resultRS);
 	}
 	
+	/**Create an instance of the given meta class and add it to the resource
+	 * @param cls the meta class to instantiate
+	 * @param res the resource to instantiate the meta class in
+	 * @return the instance of the meta class
+	 */
 	private EObject instantiate(EClass cls, Resource res){
-		//create an instance of the given meta class and add it to the resource
 		EObject current = cls.getEPackage().getEFactoryInstance().create(cls);
 		res.getContents().add(current);
 		
