@@ -23,6 +23,7 @@ import org.eclipse.swt.widgets.Table;
 import de.hpi.sam.bp2009.benchframework.Operator;
 
 public class ListPage extends WizardPage {
+	private static final char[] Operator = null;
 	Table table;
 	ExpandBar expandBar;
 	public ArrayList<Operator> currentOperators;
@@ -46,7 +47,7 @@ public class ListPage extends WizardPage {
 			GridLayout layout = new GridLayout();
 			layout.numColumns = 1;
 			composite.setLayout(layout);
-			table = new Table(composite,SWT.MULTI | SWT.BORDER | SWT.FULL_SELECTION);
+			table = new Table(composite,SWT.CHECK | SWT.BORDER | SWT.FULL_SELECTION);
 		} catch (Exception e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -84,17 +85,16 @@ public class ListPage extends WizardPage {
 				TableColumn column = new TableColumn(table, SWT.NONE);
 				column.setText(header);
 			}
-			//fill one line of the table
-			int z=0;
 			for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){ 
+				System.out.println("schleife");
 			    TableItem item = new TableItem(table, SWT.NONE);
-			    item.addListener(SWT.MouseDown, new Listener() {
-					
-					@Override
-					public void handleEvent(Event event) {
-						System.out.println("event");
-					}
-				});
+//			    item.addListener(SWT.MouseDown, new Listener() {
+//					
+//					@Override
+//					public void handleEvent(Event event) {
+//						System.out.println("event");
+//					}
+//				});
 			    item.setData(op);
 			    String[] line = {"",op.getName(), op.getDescription()};
 			    item.setText(line);
@@ -111,21 +111,22 @@ public class ListPage extends WizardPage {
 			e1.printStackTrace();
 		}
 	}
-//	@Override
-//	public boolean canFlipToNextPage() {
-//		// TODO Auto-generated method stub
-//		return true;
-//	}
-//	@Override
-//	public IWizardPage getNextPage() {
-//		// TODO Auto-generated method stub
-//		IWizardPage choose = null;
-//		try {
-//			choose = ((TestframeworkWizard) this.getWizard()).getChooseModulePage();
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		return choose;
-//	}
+	@Override
+	public boolean canFlipToNextPage() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	@Override
+	public IWizardPage getNextPage() {
+		// TODO Auto-generated method stub
+		IWizardPage choose = null;
+		try {
+			choose = ((TestframeworkWizard) this.getWizard()).getChooseModulePage();
+			System.out.println("choosemodulepage");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return choose;
+	}
 }

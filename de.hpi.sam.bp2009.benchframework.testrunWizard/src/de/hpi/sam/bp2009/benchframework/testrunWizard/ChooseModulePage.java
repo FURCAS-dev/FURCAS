@@ -73,6 +73,7 @@ public class ChooseModulePage extends WizardPage {
 			if (((ListPage) this.getPreviousPage()).currentOperators != null) {
 				for (Operator op : ((ListPage) this.getPreviousPage()).currentOperators) {
 					TableItem item = new TableItem(table, SWT.NONE);
+					System.out.println("ghhgjhj");
 					item.addListener(SWT.MouseDown, new Listener() {
 
 						@Override
