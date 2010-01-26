@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.antlr.runtime.ANTLRStringStream;
 import org.antlr.runtime.CommonTokenStream;
@@ -257,6 +258,13 @@ public abstract class AbstractGrammarBasedEditor extends
 	private ShortPrettyPrinter shortPrettyPrinter;
 	private Job parseRunnable;
 	
+	/**
+	 * A thread-safe queue with the data which {@link OnMarkerChangeJob} needs to process it's work.
+	 */
+	private ConcurrentLinkedQueue<IDocumentProvider> providerTaskQueue = new ConcurrentLinkedQueue<IDocumentProvider>();
+	
+	private OnMarkerChangeJob onMarkerChangeJob = null;
+	
 	public AbstractGrammarBasedEditor(
 			ParserFactory<?, ?> parserFactory, ITokenMapper tokenMapper) {
 		super();
@@ -355,7 +363,7 @@ public abstract class AbstractGrammarBasedEditor extends
 
 		ap.addAnnotationType(HighlightTextBlockAction.TB_HIGHLIGHT_ANNOTATION,
 				BOX_DRAWING_STRATEGY);
-		ap.setAnnotationTypeColor(
+		ap.setAnnotationTypeColor( 
 				HighlightTextBlockAction.TB_HIGHLIGHT_ANNOTATION, new Color(
 						Display.getDefault(), new RGB(122, 122, 122)));
 
@@ -389,20 +397,43 @@ public abstract class AbstractGrammarBasedEditor extends
 		parseInputAndRefreshAnnotations(true);
 	}
 	
-	public void onMarkerChange(IProject affectedProject){
-		if(getEditorInput().getAdapter(IProject.class).equals(affectedProject)){
-			IDocumentProvider provider =  getDocumentProvider();
-			if(provider != null) {
-				CtsDocument document = (CtsDocument)provider.getDocument(getEditorInput());
-				if(document != null) {
-        				if(document.isCompletelyItitialized() && ((Partitionable)document.getRootObject()).is___Alive()){
-        					ModelPartition rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
-        					refreshModelAnnotations(rootPartition);
-        				}
-				}
-			}
+	@Override
+	public void onMarkerChange(IProject affectedProject) {
+
+		if (onMarkerChangeJob == null) {
+			
+			onMarkerChangeJob = new OnMarkerChangeJob("MarkerChangedJob", this, providerTaskQueue);
 		}
+		
+		// Refresh necessary ?
+		if (getEditorInput().getAdapter(IProject.class).equals(affectedProject)) {
+			
+			providerTaskQueue.add(getDocumentProvider());
+		}
+ 
+		if (onMarkerChangeJob.getState() == Job.SLEEPING) { onMarkerChangeJob.wakeUp(); }
+		
+		else if (onMarkerChangeJob.getState() == Job.NONE) { onMarkerChangeJob.schedule(); }
+		
+		// In all other cases the onMarkerChangeJob is WAITING or RUNNING.
 	}
+	
+
+// 
+//	public void onMarkerChange(IProject affectedProject){
+//		if(getEditorInput().getAdapter(IProject.class).equals(affectedProject)){
+//			IDocumentProvider provider =  getDocumentProvider();
+//			if(provider != null) {
+//				CtsDocument document = (CtsDocument)provider.getDocument(getEditorInput());
+//				if(document != null) {
+//        				if(document.isCompletelyItitialized() && ((Partitionable)document.getRootObject()).is___Alive()){
+//        					ModelPartition rootPartition = ((Partitionable)document.getRootObject()).get___Partition();
+//        					refreshModelAnnotations(rootPartition);
+//        				}
+//				}
+//			}
+//		}
+//	}
 
 	private Collection<DocumentNode> checkPartitioning(DocumentNode start, ModelPartition rootPartition) {
 		ArrayList<DocumentNode> subNodesInOtherPartitions = new ArrayList<DocumentNode>();
@@ -810,7 +841,7 @@ public abstract class AbstractGrammarBasedEditor extends
 	    }
 	}
 
-	private void refreshModelAnnotations(ModelPartition rootPartition) {
+	void refreshModelAnnotations(ModelPartition rootPartition) {
 		for (Annotation markerAnnotation : new HashSet<Annotation>(markerAnnotations)) {
 			getDocumentProvider().getAnnotationModel(getEditorInput()).removeAnnotation(markerAnnotation);
 			markerAnnotations.remove(markerAnnotation);

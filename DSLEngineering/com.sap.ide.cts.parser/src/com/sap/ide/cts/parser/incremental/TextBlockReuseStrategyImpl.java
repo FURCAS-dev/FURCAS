@@ -322,6 +322,9 @@ public class TextBlockReuseStrategyImpl implements TextBlockReuseStrategy {
 	 * @return
 	 */
 	public boolean canBeReUsed(AbstractToken candidate, Object lexerToken) {
+	        if(!VersionEnum.PREVIOUS.equals(candidate.getVersion())) {
+	            throw new IllegalArgumentException("Candidate token has to be in PREVIOUS Version but was: " + candidate.getVersion());
+	        }
 		Token nextToken = (Token) lexerToken;
 		boolean typeEquals = nextToken.getType() == candidate.getType();
 		if (!typeEquals) {

@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g 2010-01-21 15:13:55
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g 2009-12-22 13:24:09
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class MofPackageParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "QNAME", "STRING", "MULTI_LINE_COMMENT", "INT", "BOOL", "LCURL", "RCURL", "DDOT", "STAR", "LBRACKET", "RBRACKET", "LBRACK_LCURL", "RCURL_RBRACK", "LCURL_LBRACK", "RBRACK_RCURL", "COMMENT", "LPAREN", "RPAREN", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "FLOAT", "RANGE_OR_INT", "'class'", "'->'", "'abstract'", "'package'", "'public'", "'association'", "'<>'", "'private'", "'protected'", "';'", "'readonly'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "QNAME", "STRING", "MULTI_LINE_COMMENT", "INT", "BOOL", "LCURL", "RCURL", "DDOT", "STAR", "LBRACKET", "RBRACKET", "LBRACK_LCURL", "RCURL_RBRACK", "LCURL_LBRACK", "RBRACK_RCURL", "COMMENT", "LPAREN", "RPAREN", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "FLOAT", "RANGE_OR_INT", "'private'", "'public'", "'->'", "'protected'", "'readonly'", "'class'", "'package'", "'abstract'", "'association'", "';'", "'<>'"
     };
     public static final int RCURL_RBRACK=17;
     public static final int LCURL_LBRACK=18;
@@ -74,10 +74,10 @@ public class MofPackageParser extends ObservableInjectingParser {
         
 
     public String[] getTokenNames() { return MofPackageParser.tokenNames; }
-    public String getGrammarFileName() { return "/home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g"; }
+    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g"; }
 
 
-       private static final String syntaxUUID = "E0677A9A344A7F10069711DFC262CDAB0A1CE22F";
+       private static final String syntaxUUID = "E0C26B3DE6039940EEF411DECC63FB9C8D1505E2";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -152,7 +152,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifier"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:207:1: identifier returns [Object ret2] : (ast= NAME ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:207:1: identifier returns [Object ret2] : (ast= NAME ) ;
     public final Object identifier() throws RecognitionException {
         Object ret2 = null;
 
@@ -160,11 +160,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:208:3: ( (ast= NAME ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:209:3: (ast= NAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:208:3: ( (ast= NAME ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:209:3: (ast= NAME )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:209:3: (ast= NAME )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:209:4: ast= NAME
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:209:3: (ast= NAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:209:4: ast= NAME
             {
             ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier69); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -195,7 +195,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifierOrKeyword"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'class' | '->' | 'abstract' | 'package' | 'public' | 'association' | '<>' | 'private' | 'protected' | ';' | 'readonly' ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' ) ;
     public final Object identifierOrKeyword() throws RecognitionException {
         Object ret2 = null;
 
@@ -203,10 +203,10 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:218:3: ( (ast= NAME | 'class' | '->' | 'abstract' | 'package' | 'public' | 'association' | '<>' | 'private' | 'protected' | ';' | 'readonly' ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:219:3: (ast= NAME | 'class' | '->' | 'abstract' | 'package' | 'public' | 'association' | '<>' | 'private' | 'protected' | ';' | 'readonly' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:218:3: ( (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:3: (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:219:3: (ast= NAME | 'class' | '->' | 'abstract' | 'package' | 'public' | 'association' | '<>' | 'private' | 'protected' | ';' | 'readonly' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:3: (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' )
             int alt1=12;
             switch ( input.LA(1) ) {
             case NAME:
@@ -279,7 +279,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
             switch (alt1) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:219:4: ast= NAME
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:4: ast= NAME
                     {
                     ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifierOrKeyword100); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -290,97 +290,97 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:221:5: 'class'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:221:5: 'private'
                     {
                     match(input,30,FOLLOW_30_in_identifierOrKeyword108); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "class";
-                    }
-
-                    }
-                    break;
-                case 3 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:222:5: '->'
-                    {
-                    match(input,31,FOLLOW_31_in_identifierOrKeyword116); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "->";
-                    }
-
-                    }
-                    break;
-                case 4 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:223:5: 'abstract'
-                    {
-                    match(input,32,FOLLOW_32_in_identifierOrKeyword124); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "abstract";
-                    }
-
-                    }
-                    break;
-                case 5 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:224:5: 'package'
-                    {
-                    match(input,33,FOLLOW_33_in_identifierOrKeyword132); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "package";
-                    }
-
-                    }
-                    break;
-                case 6 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:225:5: 'public'
-                    {
-                    match(input,34,FOLLOW_34_in_identifierOrKeyword140); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "public";
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:226:5: 'association'
-                    {
-                    match(input,35,FOLLOW_35_in_identifierOrKeyword148); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "association";
-                    }
-
-                    }
-                    break;
-                case 8 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:227:5: '<>'
-                    {
-                    match(input,36,FOLLOW_36_in_identifierOrKeyword156); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "<>";
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:228:5: 'private'
-                    {
-                    match(input,37,FOLLOW_37_in_identifierOrKeyword164); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "private";
                     }
 
                     }
                     break;
-                case 10 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:229:5: 'protected'
+                case 3 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:222:5: 'public'
                     {
-                    match(input,38,FOLLOW_38_in_identifierOrKeyword172); if (state.failed) return ret2;
+                    match(input,31,FOLLOW_31_in_identifierOrKeyword116); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "public";
+                    }
+
+                    }
+                    break;
+                case 4 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:223:5: '->'
+                    {
+                    match(input,32,FOLLOW_32_in_identifierOrKeyword124); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "->";
+                    }
+
+                    }
+                    break;
+                case 5 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:224:5: 'protected'
+                    {
+                    match(input,33,FOLLOW_33_in_identifierOrKeyword132); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "protected";
                     }
 
                     }
                     break;
+                case 6 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:225:5: 'readonly'
+                    {
+                    match(input,34,FOLLOW_34_in_identifierOrKeyword140); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "readonly";
+                    }
+
+                    }
+                    break;
+                case 7 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:226:5: 'class'
+                    {
+                    match(input,35,FOLLOW_35_in_identifierOrKeyword148); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "class";
+                    }
+
+                    }
+                    break;
+                case 8 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:227:5: 'package'
+                    {
+                    match(input,36,FOLLOW_36_in_identifierOrKeyword156); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "package";
+                    }
+
+                    }
+                    break;
+                case 9 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:228:5: 'abstract'
+                    {
+                    match(input,37,FOLLOW_37_in_identifierOrKeyword164); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "abstract";
+                    }
+
+                    }
+                    break;
+                case 10 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:229:5: 'association'
+                    {
+                    match(input,38,FOLLOW_38_in_identifierOrKeyword172); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "association";
+                    }
+
+                    }
+                    break;
                 case 11 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:230:5: ';'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:230:5: ';'
                     {
                     match(input,39,FOLLOW_39_in_identifierOrKeyword180); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -390,11 +390,11 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 12 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:231:5: 'readonly'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:231:5: '<>'
                     {
                     match(input,40,FOLLOW_40_in_identifierOrKeyword188); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "readonly";
+                      ret = "<>";
                     }
 
                     }
@@ -423,7 +423,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "qualifiedNameSymbol"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:238:1: qualifiedNameSymbol returns [Object ret2] : (ast= QNAME ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:238:1: qualifiedNameSymbol returns [Object ret2] : (ast= QNAME ) ;
     public final Object qualifiedNameSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -431,11 +431,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:239:3: ( (ast= QNAME ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:240:3: (ast= QNAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:239:3: ( (ast= QNAME ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:240:3: (ast= QNAME )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:240:3: (ast= QNAME )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:240:4: ast= QNAME
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:240:3: (ast= QNAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:240:4: ast= QNAME
             {
             ast=(Token)match(input,QNAME,FOLLOW_QNAME_in_qualifiedNameSymbol219); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -466,7 +466,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "stringSymbol"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:248:1: stringSymbol returns [Object ret2] : (ast= STRING ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:248:1: stringSymbol returns [Object ret2] : (ast= STRING ) ;
     public final Object stringSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -474,11 +474,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:249:3: ( (ast= STRING ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:250:3: (ast= STRING )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:249:3: ( (ast= STRING ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:250:3: (ast= STRING )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:250:3: (ast= STRING )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:250:4: ast= STRING
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:250:3: (ast= STRING )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:250:4: ast= STRING
             {
             ast=(Token)match(input,STRING,FOLLOW_STRING_in_stringSymbol250); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -509,7 +509,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "annotationSymbol"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:258:1: annotationSymbol returns [Object ret2] : (ast= MULTI_LINE_COMMENT ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:258:1: annotationSymbol returns [Object ret2] : (ast= MULTI_LINE_COMMENT ) ;
     public final Object annotationSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -517,11 +517,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:259:3: ( (ast= MULTI_LINE_COMMENT ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:260:3: (ast= MULTI_LINE_COMMENT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:259:3: ( (ast= MULTI_LINE_COMMENT ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:260:3: (ast= MULTI_LINE_COMMENT )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:260:3: (ast= MULTI_LINE_COMMENT )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:260:4: ast= MULTI_LINE_COMMENT
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:260:3: (ast= MULTI_LINE_COMMENT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:260:4: ast= MULTI_LINE_COMMENT
             {
             ast=(Token)match(input,MULTI_LINE_COMMENT,FOLLOW_MULTI_LINE_COMMENT_in_annotationSymbol281); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -552,7 +552,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "integerSymbol"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:268:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:268:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
     public final Object integerSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -560,11 +560,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:269:3: ( (ast= INT ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:270:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:269:3: ( (ast= INT ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:270:3: (ast= INT )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:270:3: (ast= INT )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:270:4: ast= INT
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:270:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:270:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol312); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -595,7 +595,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "longSymbol"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:278:1: longSymbol returns [Object ret2] : (ast= INT ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:278:1: longSymbol returns [Object ret2] : (ast= INT ) ;
     public final Object longSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -603,11 +603,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:279:3: ( (ast= INT ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:280:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:279:3: ( (ast= INT ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:280:3: (ast= INT )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:280:3: (ast= INT )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:280:4: ast= INT
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:280:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:280:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_longSymbol343); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -638,7 +638,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "booleanSymbol"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:288:1: booleanSymbol returns [Object ret2] : (ast= BOOL ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:288:1: booleanSymbol returns [Object ret2] : (ast= BOOL ) ;
     public final Object booleanSymbol() throws RecognitionException {
         Object ret2 = null;
 
@@ -646,11 +646,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:289:3: ( (ast= BOOL ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:290:3: (ast= BOOL )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:289:3: ( (ast= BOOL ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:290:3: (ast= BOOL )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:290:3: (ast= BOOL )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:290:4: ast= BOOL
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:290:3: (ast= BOOL )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:290:4: ast= BOOL
             {
             ast=(Token)match(input,BOOL,FOLLOW_BOOL_in_booleanSymbol374); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -681,7 +681,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "main"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:298:1: main returns [Object ret2] : ( (ret= model_package ) EOF ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:298:1: main returns [Object ret2] : ( (ret= model_package ) EOF ) ;
     public final Object main() throws RecognitionException {
         Object ret2 = null;
 
@@ -689,14 +689,14 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:299:3: ( ( (ret= model_package ) EOF ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:300:3: ( (ret= model_package ) EOF )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:299:3: ( ( (ret= model_package ) EOF ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:300:3: ( (ret= model_package ) EOF )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:300:3: ( (ret= model_package ) EOF )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:300:4: (ret= model_package ) EOF
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:300:3: ( (ret= model_package ) EOF )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:300:4: (ret= model_package ) EOF
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:300:4: (ret= model_package )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:300:5: ret= model_package
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:300:4: (ret= model_package )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:300:5: ret= model_package
             {
             pushFollow(FOLLOW_model_package_in_main402);
             ret=model_package();
@@ -732,7 +732,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_package"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:307:1: model_package returns [Object ret2] : ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:307:1: model_package returns [Object ret2] : ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL ) ;
     public final Object model_package() throws RecognitionException {
         Object ret2 = null;
 
@@ -745,14 +745,14 @@ public class MofPackageParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:312:3: ( ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:3: ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:312:3: ( ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:3: ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:3: ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:4: annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:3: ( annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:4: annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3419AB10069711DFCADBCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DD2580EEF411DEC927FB9C8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_package436);
             annotation(ret);
@@ -764,17 +764,17 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3419D220069711DF96B5CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DD4C90EEF411DE876DFB9C8D1505E2");
             }
-            match(input,33,FOLLOW_33_in_model_package440); if (state.failed) return ret2;
+            match(input,36,FOLLOW_36_in_model_package440); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3419D222069711DFB891CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DD4C92EEF411DE90B7FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:237: (temp= identifier )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:239: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:237: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:239: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_model_package447);
             temp=identifier();
@@ -792,102 +792,102 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A341A4750069711DF8045CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DD73A0EEF411DE9A25FB9C8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A341A6E60069711DFC78FCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DD73A1EEF411DE997CFB9C8D1505E2");
             }
             match(input,LCURL,FOLLOW_LCURL_in_model_package456); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A341BCDF0069711DFC842CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DE0FE1EEF411DE816FFB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:521: ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:522: ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:521: ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:522: ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:522: ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:523: (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:522: ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:523: (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A341B0AA0069711DF8029CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DD9AB1EEF411DEB1F1FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:582: (temp= model_modelelement_classes (temp= model_modelelement_classes )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:582: (temp= model_modelelement_classes (temp= model_modelelement_classes )* )?
             int alt3=2;
             switch ( input.LA(1) ) {
                 case MULTI_LINE_COMMENT:
                     {
                     switch ( input.LA(2) ) {
-                        case 34:
+                        case 35:
+                        case 37:
+                            {
+                            alt3=1;
+                            }
+                            break;
+                        case 31:
                             {
                             int LA3_3 = input.LA(3);
 
-                            if ( (LA3_3==30||LA3_3==32) ) {
+                            if ( (LA3_3==35||LA3_3==37) ) {
                                 alt3=1;
                             }
                             }
                             break;
-                        case 38:
+                        case 33:
                             {
                             int LA3_4 = input.LA(3);
 
-                            if ( (LA3_4==30||LA3_4==32) ) {
-                                alt3=1;
-                            }
-                            }
-                            break;
-                        case 37:
-                            {
-                            int LA3_5 = input.LA(3);
-
-                            if ( (LA3_5==30||LA3_5==32) ) {
+                            if ( (LA3_4==35||LA3_4==37) ) {
                                 alt3=1;
                             }
                             }
                             break;
                         case 30:
-                        case 32:
                             {
-                            alt3=1;
+                            int LA3_5 = input.LA(3);
+
+                            if ( (LA3_5==35||LA3_5==37) ) {
+                                alt3=1;
+                            }
                             }
                             break;
                     }
 
                     }
                     break;
-                case 30:
-                case 32:
+                case 35:
+                case 37:
                     {
                     alt3=1;
                     }
                     break;
-                case 34:
+                case 31:
                     {
                     int LA3_3 = input.LA(2);
 
-                    if ( (LA3_3==30||LA3_3==32) ) {
+                    if ( (LA3_3==35||LA3_3==37) ) {
                         alt3=1;
                     }
                     }
                     break;
-                case 38:
+                case 33:
                     {
                     int LA3_4 = input.LA(2);
 
-                    if ( (LA3_4==30||LA3_4==32) ) {
+                    if ( (LA3_4==35||LA3_4==37) ) {
                         alt3=1;
                     }
                     }
                     break;
-                case 37:
+                case 30:
                     {
                     int LA3_5 = input.LA(2);
 
-                    if ( (LA3_5==30||LA3_5==32) ) {
+                    if ( (LA3_5==35||LA3_5==37) ) {
                         alt3=1;
                     }
                     }
@@ -896,7 +896,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
             switch (alt3) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:584: temp= model_modelelement_classes (temp= model_modelelement_classes )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:584: temp= model_modelelement_classes (temp= model_modelelement_classes )*
                     {
                     pushFollow(FOLLOW_model_modelelement_classes_in_model_package467);
                     temp=model_modelelement_classes();
@@ -907,7 +907,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "contents", temp);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:654: (temp= model_modelelement_classes )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:654: (temp= model_modelelement_classes )*
                     loop2:
                     do {
                         int alt2=2;
@@ -915,39 +915,39 @@ public class MofPackageParser extends ObservableInjectingParser {
                         case MULTI_LINE_COMMENT:
                             {
                             switch ( input.LA(2) ) {
-                            case 30:
-                            case 32:
+                            case 35:
+                            case 37:
                                 {
                                 alt2=1;
                                 }
                                 break;
-                            case 34:
+                            case 31:
                                 {
                                 int LA2_3 = input.LA(3);
 
-                                if ( (LA2_3==30||LA2_3==32) ) {
+                                if ( (LA2_3==35||LA2_3==37) ) {
                                     alt2=1;
                                 }
 
 
                                 }
                                 break;
-                            case 38:
+                            case 33:
                                 {
                                 int LA2_4 = input.LA(3);
 
-                                if ( (LA2_4==30||LA2_4==32) ) {
+                                if ( (LA2_4==35||LA2_4==37) ) {
                                     alt2=1;
                                 }
 
 
                                 }
                                 break;
-                            case 37:
+                            case 30:
                                 {
                                 int LA2_5 = input.LA(3);
 
-                                if ( (LA2_5==30||LA2_5==32) ) {
+                                if ( (LA2_5==35||LA2_5==37) ) {
                                     alt2=1;
                                 }
 
@@ -959,33 +959,22 @@ public class MofPackageParser extends ObservableInjectingParser {
 
                             }
                             break;
-                        case 34:
+                        case 31:
                             {
                             int LA2_3 = input.LA(2);
 
-                            if ( (LA2_3==30||LA2_3==32) ) {
+                            if ( (LA2_3==35||LA2_3==37) ) {
                                 alt2=1;
                             }
 
 
                             }
                             break;
-                        case 38:
+                        case 33:
                             {
                             int LA2_4 = input.LA(2);
 
-                            if ( (LA2_4==30||LA2_4==32) ) {
-                                alt2=1;
-                            }
-
-
-                            }
-                            break;
-                        case 37:
-                            {
-                            int LA2_5 = input.LA(2);
-
-                            if ( (LA2_5==30||LA2_5==32) ) {
+                            if ( (LA2_4==35||LA2_4==37) ) {
                                 alt2=1;
                             }
 
@@ -993,7 +982,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 30:
-                        case 32:
+                            {
+                            int LA2_5 = input.LA(2);
+
+                            if ( (LA2_5==35||LA2_5==37) ) {
+                                alt2=1;
+                            }
+
+
+                            }
+                            break;
+                        case 35:
+                        case 37:
                             {
                             alt2=1;
                             }
@@ -1003,7 +1003,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
                         switch (alt2) {
                     	case 1 :
-                    	    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:656: temp= model_modelelement_classes
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:656: temp= model_modelelement_classes
                     	    {
                     	    pushFollow(FOLLOW_model_modelelement_classes_in_model_package475);
                     	    temp=model_modelelement_classes();
@@ -1033,9 +1033,9 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A341B58C3069711DFACA9CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DDE8D0EEF411DE8FC6FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:806: (temp= model_modelelement_associations (temp= model_modelelement_associations )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:806: (temp= model_modelelement_associations (temp= model_modelelement_associations )* )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
@@ -1044,7 +1044,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt5) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:808: temp= model_modelelement_associations (temp= model_modelelement_associations )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:808: temp= model_modelelement_associations (temp= model_modelelement_associations )*
                     {
                     pushFollow(FOLLOW_model_modelelement_associations_in_model_package490);
                     temp=model_modelelement_associations();
@@ -1055,7 +1055,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "contents", temp);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:883: (temp= model_modelelement_associations )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:883: (temp= model_modelelement_associations )*
                     loop4:
                     do {
                         int alt4=2;
@@ -1068,7 +1068,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
                         switch (alt4) {
                     	case 1 :
-                    	    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:313:885: temp= model_modelelement_associations
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:885: temp= model_modelelement_associations
                     	    {
                     	    pushFollow(FOLLOW_model_modelelement_associations_in_model_package498);
                     	    temp=model_modelelement_associations();
@@ -1107,7 +1107,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A341BCDF1069711DFA279CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5DE36F0EEF411DE9B28FB9C8D1505E2");
             }
             match(input,RCURL,FOLLOW_RCURL_in_model_package513); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1138,7 +1138,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_modelelement_classes"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:321:1: model_modelelement_classes returns [Object ret2] : (ret= model_namespace_classes ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:321:1: model_modelelement_classes returns [Object ret2] : (ret= model_namespace_classes ) ;
     public final Object model_modelelement_classes() throws RecognitionException {
         Object ret2 = null;
 
@@ -1146,11 +1146,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:322:3: ( (ret= model_namespace_classes ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:323:3: (ret= model_namespace_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:322:3: ( (ret= model_namespace_classes ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:323:3: (ret= model_namespace_classes )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:323:3: (ret= model_namespace_classes )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:323:4: ret= model_namespace_classes
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:323:3: (ret= model_namespace_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:323:4: ret= model_namespace_classes
             {
             pushFollow(FOLLOW_model_namespace_classes_in_model_modelelement_classes551);
             ret=model_namespace_classes();
@@ -1182,7 +1182,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_namespace_classes"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:330:1: model_namespace_classes returns [Object ret2] : (ret= model_generalizableelement_classes ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:330:1: model_namespace_classes returns [Object ret2] : (ret= model_generalizableelement_classes ) ;
     public final Object model_namespace_classes() throws RecognitionException {
         Object ret2 = null;
 
@@ -1190,11 +1190,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:331:3: ( (ret= model_generalizableelement_classes ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:332:3: (ret= model_generalizableelement_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:331:3: ( (ret= model_generalizableelement_classes ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:332:3: (ret= model_generalizableelement_classes )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:332:3: (ret= model_generalizableelement_classes )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:332:4: ret= model_generalizableelement_classes
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:332:3: (ret= model_generalizableelement_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:332:4: ret= model_generalizableelement_classes
             {
             pushFollow(FOLLOW_model_generalizableelement_classes_in_model_namespace_classes578);
             ret=model_generalizableelement_classes();
@@ -1226,7 +1226,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_generalizableelement_classes"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:339:1: model_generalizableelement_classes returns [Object ret2] : (ret= model_classifier_classes ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:339:1: model_generalizableelement_classes returns [Object ret2] : (ret= model_classifier_classes ) ;
     public final Object model_generalizableelement_classes() throws RecognitionException {
         Object ret2 = null;
 
@@ -1234,11 +1234,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:340:3: ( (ret= model_classifier_classes ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:341:3: (ret= model_classifier_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:340:3: ( (ret= model_classifier_classes ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:341:3: (ret= model_classifier_classes )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:341:3: (ret= model_classifier_classes )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:341:4: ret= model_classifier_classes
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:341:3: (ret= model_classifier_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:341:4: ret= model_classifier_classes
             {
             pushFollow(FOLLOW_model_classifier_classes_in_model_generalizableelement_classes605);
             ret=model_classifier_classes();
@@ -1270,7 +1270,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_classifier_classes"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:348:1: model_classifier_classes returns [Object ret2] : (ret= model_class_classes ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:348:1: model_classifier_classes returns [Object ret2] : (ret= model_class_classes ) ;
     public final Object model_classifier_classes() throws RecognitionException {
         Object ret2 = null;
 
@@ -1278,11 +1278,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:349:3: ( (ret= model_class_classes ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:350:3: (ret= model_class_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:349:3: ( (ret= model_class_classes ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:350:3: (ret= model_class_classes )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:350:3: (ret= model_class_classes )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:350:4: ret= model_class_classes
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:350:3: (ret= model_class_classes )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:350:4: ret= model_class_classes
             {
             pushFollow(FOLLOW_model_class_classes_in_model_classifier_classes632);
             ret=model_class_classes();
@@ -1314,7 +1314,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_class_classes"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:357:1: model_class_classes returns [Object ret2] : ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:357:1: model_class_classes returns [Object ret2] : ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' ) ;
     public final Object model_class_classes() throws RecognitionException {
         Object ret2 = null;
 
@@ -1327,14 +1327,14 @@ public class MofPackageParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:362:3: ( ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:3: ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:362:3: ( ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:3: ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:3: ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:4: annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:3: ( annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:4: annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3420AFF0069711DFC61ECDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E080E0EEF411DEA4C7FB9C8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_class_classes662);
             annotation(ret);
@@ -1346,7 +1346,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3420D700069711DF86F7CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E0A7F0EEF411DE9331FB9C8D1505E2");
             }
             pushFollow(FOLLOW_visibility_in_model_class_classes666);
             visibility(ret);
@@ -1358,16 +1358,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34217341069711DFCB49CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E0F610EEF411DEC24DFB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:244: ( ( 'abstract' ) | )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:244: ( ( 'abstract' ) | )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==32) ) {
+            if ( (LA6_0==37) ) {
                 alt6=1;
             }
-            else if ( (LA6_0==30) ) {
+            else if ( (LA6_0==35) ) {
                 alt6=2;
             }
             else {
@@ -1379,18 +1379,18 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt6) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:245: ( 'abstract' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:245: ( 'abstract' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:261: ( 'abstract' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:262: 'abstract'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:261: ( 'abstract' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:262: 'abstract'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34214C31069711DF8F33CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E0CF01EEF411DEB228FB9C8D1505E2");
                     }
-                    match(input,32,FOLLOW_32_in_model_class_classes676); if (state.failed) return ret2;
+                    match(input,37,FOLLOW_37_in_model_class_classes676); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -1407,7 +1407,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:363:422: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:422: 
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
@@ -1428,17 +1428,17 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34219A50069711DFC67ECDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E11D20EEF411DEB906FB9C8D1505E2");
             }
-            match(input,30,FOLLOW_30_in_model_class_classes694); if (state.failed) return ret2;
+            match(input,35,FOLLOW_35_in_model_class_classes694); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34219A52069711DF8F02CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E11D22EEF411DEA2EAFB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:364:158: (temp= identifier )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:364:160: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:364:158: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:364:160: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_model_class_classes701);
             temp=identifier();
@@ -1456,13 +1456,13 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3421C160069711DF96B2CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E11D23EEF411DEBFC9FB9C8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3421C161069711DFCA1BCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E14430EEF411DE8A34FB9C8D1505E2");
             }
             match(input,39,FOLLOW_39_in_model_class_classes709); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1493,7 +1493,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_modelelement_associations"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:372:1: model_modelelement_associations returns [Object ret2] : (ret= model_namespace_associations ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:372:1: model_modelelement_associations returns [Object ret2] : (ret= model_namespace_associations ) ;
     public final Object model_modelelement_associations() throws RecognitionException {
         Object ret2 = null;
 
@@ -1501,11 +1501,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:373:3: ( (ret= model_namespace_associations ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:374:3: (ret= model_namespace_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:373:3: ( (ret= model_namespace_associations ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:374:3: (ret= model_namespace_associations )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:374:3: (ret= model_namespace_associations )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:374:4: ret= model_namespace_associations
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:374:3: (ret= model_namespace_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:374:4: ret= model_namespace_associations
             {
             pushFollow(FOLLOW_model_namespace_associations_in_model_modelelement_associations746);
             ret=model_namespace_associations();
@@ -1537,7 +1537,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_namespace_associations"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:381:1: model_namespace_associations returns [Object ret2] : (ret= model_generalizableelement_associations ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:381:1: model_namespace_associations returns [Object ret2] : (ret= model_generalizableelement_associations ) ;
     public final Object model_namespace_associations() throws RecognitionException {
         Object ret2 = null;
 
@@ -1545,11 +1545,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:382:3: ( (ret= model_generalizableelement_associations ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:383:3: (ret= model_generalizableelement_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:382:3: ( (ret= model_generalizableelement_associations ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:383:3: (ret= model_generalizableelement_associations )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:383:3: (ret= model_generalizableelement_associations )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:383:4: ret= model_generalizableelement_associations
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:383:3: (ret= model_generalizableelement_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:383:4: ret= model_generalizableelement_associations
             {
             pushFollow(FOLLOW_model_generalizableelement_associations_in_model_namespace_associations773);
             ret=model_generalizableelement_associations();
@@ -1581,7 +1581,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_generalizableelement_associations"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:390:1: model_generalizableelement_associations returns [Object ret2] : (ret= model_classifier_associations ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:390:1: model_generalizableelement_associations returns [Object ret2] : (ret= model_classifier_associations ) ;
     public final Object model_generalizableelement_associations() throws RecognitionException {
         Object ret2 = null;
 
@@ -1589,11 +1589,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:391:3: ( (ret= model_classifier_associations ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:392:3: (ret= model_classifier_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:391:3: ( (ret= model_classifier_associations ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:392:3: (ret= model_classifier_associations )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:392:3: (ret= model_classifier_associations )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:392:4: ret= model_classifier_associations
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:392:3: (ret= model_classifier_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:392:4: ret= model_classifier_associations
             {
             pushFollow(FOLLOW_model_classifier_associations_in_model_generalizableelement_associations800);
             ret=model_classifier_associations();
@@ -1625,7 +1625,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_classifier_associations"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:399:1: model_classifier_associations returns [Object ret2] : (ret= model_association_associations ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:399:1: model_classifier_associations returns [Object ret2] : (ret= model_association_associations ) ;
     public final Object model_classifier_associations() throws RecognitionException {
         Object ret2 = null;
 
@@ -1633,11 +1633,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:400:3: ( (ret= model_association_associations ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:401:3: (ret= model_association_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:400:3: ( (ret= model_association_associations ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:401:3: (ret= model_association_associations )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:401:3: (ret= model_association_associations )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:401:4: ret= model_association_associations
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:401:3: (ret= model_association_associations )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:401:4: ret= model_association_associations
             {
             pushFollow(FOLLOW_model_association_associations_in_model_classifier_associations827);
             ret=model_association_associations();
@@ -1669,7 +1669,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_association_associations"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:408:1: model_association_associations returns [Object ret2] : ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:408:1: model_association_associations returns [Object ret2] : ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL ) ;
     public final Object model_association_associations() throws RecognitionException {
         Object ret2 = null;
 
@@ -1682,14 +1682,14 @@ public class MofPackageParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:413:3: ( ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:3: ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:413:3: ( ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:3: ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:3: ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:4: annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:3: ( annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:4: annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34243260069711DF8E2ECDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E3B530EEF411DE894FFB9C8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_association_associations857);
             annotation(ret);
@@ -1701,7 +1701,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34245970069711DF8B84CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E3B531EEF411DE9D93FB9C8D1505E2");
             }
             pushFollow(FOLLOW_visibility_in_model_association_associations861);
             visibility(ret);
@@ -1713,17 +1713,17 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34245971069711DF94ECCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E3B532EEF411DEB31FFB9C8D1505E2");
             }
-            match(input,35,FOLLOW_35_in_model_association_associations865); if (state.failed) return ret2;
+            match(input,38,FOLLOW_38_in_model_association_associations865); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34245973069711DFAD59CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E3B534EEF411DEB00CFB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:331: (temp= identifier )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:333: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:331: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:333: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_model_association_associations872);
             temp=identifier();
@@ -1741,32 +1741,32 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34248080069711DFC148CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E3DC40EEF411DEA975FB9C8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34248081069711DFCF7ACDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E3DC41EEF411DE8C7DFB9C8D1505E2");
             }
             match(input,LCURL,FOLLOW_LCURL_in_model_association_associations881); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34260720069711DF9A34CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E49F90EEF411DEC357FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:615: ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:616: ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:615: ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:616: ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:616: ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:617: (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:616: ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:617: (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3425B900069711DFA75DCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E45170EEF411DECB31FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:676: (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:678: temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:676: (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:678: temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds )
             {
             pushFollow(FOLLOW_model_modelelement_associationEnds_in_model_association_associations892);
             temp=model_modelelement_associationEnds();
@@ -1777,17 +1777,17 @@ public class MofPackageParser extends ObservableInjectingParser {
             if ( state.backtracking==0 ) {
               setProperty(ret, "contents", temp);
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:756: ( ( ';' ) temp= model_modelelement_associationEnds )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:757: ( ';' ) temp= model_modelelement_associationEnds
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:756: ( ( ';' ) temp= model_modelelement_associationEnds )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:757: ( ';' ) temp= model_modelelement_associationEnds
             {
             if ( state.backtracking==0 ) {
               _enterSepSeq();
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:774: ( ';' )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:414:775: ';'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:774: ( ';' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:775: ';'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34251CC0069711DFC4FCCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E42A60EEF411DEB0A1FB9C8D1505E2");
             }
             match(input,39,FOLLOW_39_in_model_association_associations900); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1818,7 +1818,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A3425E010069711DFC12ECDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E47880EEF411DEBFC5FB9C8D1505E2");
             }
             match(input,39,FOLLOW_39_in_model_association_associations914); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1834,7 +1834,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34262E30069711DFB83CCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E49F91EEF411DE8E26FB9C8D1505E2");
             }
             match(input,RCURL,FOLLOW_RCURL_in_model_association_associations921); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1865,7 +1865,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_modelelement_associationEnds"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:422:1: model_modelelement_associationEnds returns [Object ret2] : (ret= model_typedelement_associationEnds ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:422:1: model_modelelement_associationEnds returns [Object ret2] : (ret= model_typedelement_associationEnds ) ;
     public final Object model_modelelement_associationEnds() throws RecognitionException {
         Object ret2 = null;
 
@@ -1873,11 +1873,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:423:3: ( (ret= model_typedelement_associationEnds ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:424:3: (ret= model_typedelement_associationEnds )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:423:3: ( (ret= model_typedelement_associationEnds ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:424:3: (ret= model_typedelement_associationEnds )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:424:3: (ret= model_typedelement_associationEnds )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:424:4: ret= model_typedelement_associationEnds
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:424:3: (ret= model_typedelement_associationEnds )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:424:4: ret= model_typedelement_associationEnds
             {
             pushFollow(FOLLOW_model_typedelement_associationEnds_in_model_modelelement_associationEnds959);
             ret=model_typedelement_associationEnds();
@@ -1909,7 +1909,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_typedelement_associationEnds"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:431:1: model_typedelement_associationEnds returns [Object ret2] : (ret= model_associationend_associationEnds ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:431:1: model_typedelement_associationEnds returns [Object ret2] : (ret= model_associationend_associationEnds ) ;
     public final Object model_typedelement_associationEnds() throws RecognitionException {
         Object ret2 = null;
 
@@ -1917,11 +1917,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:432:3: ( (ret= model_associationend_associationEnds ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:433:3: (ret= model_associationend_associationEnds )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:432:3: ( (ret= model_associationend_associationEnds ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:433:3: (ret= model_associationend_associationEnds )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:433:3: (ret= model_associationend_associationEnds )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:433:4: ret= model_associationend_associationEnds
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:433:3: (ret= model_associationend_associationEnds )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:433:4: ret= model_associationend_associationEnds
             {
             pushFollow(FOLLOW_model_associationend_associationEnds_in_model_typedelement_associationEnds986);
             ret=model_associationend_associationEnds();
@@ -1953,7 +1953,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_associationend_associationEnds"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:440:1: model_associationend_associationEnds returns [Object ret2] : ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:440:1: model_associationend_associationEnds returns [Object ret2] : ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) ) ;
     public final Object model_associationend_associationEnds() throws RecognitionException {
         Object ret2 = null;
 
@@ -1966,14 +1966,14 @@ public class MofPackageParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:445:3: ( ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:3: ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:445:3: ( ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:3: ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:3: ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:4: annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:3: ( annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:4: annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342802F0069711DFC5C1CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E64D40EEF411DEA706FB9C8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_associationend_associationEnds1016);
             annotation(ret);
@@ -1985,16 +1985,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34285111069711DFB88DCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E69B62EEF411DE91D0FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:154: ( ( '->' ) | )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:154: ( ( '->' ) | )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==31) ) {
+            if ( (LA7_0==32) ) {
                 alt7=1;
             }
-            else if ( ((LA7_0>=NAME && LA7_0<=QNAME)||LA7_0==36||LA7_0==40) ) {
+            else if ( ((LA7_0>=NAME && LA7_0<=QNAME)||LA7_0==34||LA7_0==40) ) {
                 alt7=2;
             }
             else {
@@ -2006,18 +2006,18 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt7) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:155: ( '->' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:155: ( '->' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:171: ( '->' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:172: '->'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:171: ( '->' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:172: '->'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34282A01069711DF9B26CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E69B60EEF411DEA656FB9C8D1505E2");
                     }
-                    match(input,31,FOLLOW_31_in_model_associationend_associationEnds1026); if (state.failed) return ret2;
+                    match(input,32,FOLLOW_32_in_model_associationend_associationEnds1026); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2034,7 +2034,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:446:327: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:327: 
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
@@ -2055,16 +2055,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342A25D0069711DF8607CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E75EB0EEF411DEC442FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:447:76: ( () | ( '<>' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:447:76: ( () | ( '<>' ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( ((LA8_0>=NAME && LA8_0<=QNAME)||LA8_0==40) ) {
+            if ( ((LA8_0>=NAME && LA8_0<=QNAME)||LA8_0==34) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==36) ) {
+            else if ( (LA8_0==40) ) {
                 alt8=2;
             }
             else {
@@ -2076,16 +2076,16 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt8) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:447:77: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:447:77: ()
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:447:93: ()
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:447:94: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:447:93: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:447:94: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34296280069711DFC035CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E6E980EEF411DEB8C2FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "aggregation", com.sap.tc.moin.repository.mmi.model.AggregationKindEnum.NONE);_exitInjectorAction();
@@ -2103,23 +2103,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:4: ( '<>' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:4: ( '<>' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:20: ( '<>' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:21: '<>'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:20: ( '<>' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:21: '<>'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3429B0A1069711DFA33CCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E71090EEF411DE8BFCFB9C8D1505E2");
                     }
-                    match(input,36,FOLLOW_36_in_model_associationend_associationEnds1062); if (state.failed) return ret2;
+                    match(input,40,FOLLOW_40_in_model_associationend_associationEnds1062); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3429D7B2069711DF8DF4CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E737A0EEF411DEBF6FFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "aggregation", com.sap.tc.moin.repository.mmi.model.AggregationKindEnum.COMPOSITE);_exitInjectorAction();
@@ -2143,16 +2143,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342A73F3069711DFCC7FCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E7D3E1EEF411DE8F02FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:391: ( () | ( 'readonly' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:391: ( () | ( 'readonly' ) )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
             if ( ((LA9_0>=NAME && LA9_0<=QNAME)) ) {
                 alt9=1;
             }
-            else if ( (LA9_0==40) ) {
+            else if ( (LA9_0==34) ) {
                 alt9=2;
             }
             else {
@@ -2164,13 +2164,13 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt9) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:392: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:392: ()
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:408: ()
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:409: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:408: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:409: 
                     {
                     }
 
@@ -2184,18 +2184,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:486: ( 'readonly' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:486: ( 'readonly' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:502: ( 'readonly' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:448:503: 'readonly'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:502: ( 'readonly' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:503: 'readonly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342A73F1069711DFCC6DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E7ACD1EEF411DE912EFB9C8D1505E2");
                     }
-                    match(input,40,FOLLOW_40_in_model_associationend_associationEnds1089); if (state.failed) return ret2;
+                    match(input,34,FOLLOW_34_in_model_associationend_associationEnds1089); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2218,7 +2218,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342AC210069711DFB59BCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E7FAF0EEF411DE9D56FB9C8D1505E2");
             }
             pushFollow(FOLLOW_typereference_in_model_associationend_associationEnds1099);
             typereference(ret);
@@ -2230,10 +2230,10 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342AC212069711DFC98FCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E82200EEF411DE8830FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:449:169: (temp= model_multiplicitytype )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:449:171: temp= model_multiplicitytype
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:169: (temp= model_multiplicitytype )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:171: temp= model_multiplicitytype
             {
             pushFollow(FOLLOW_model_multiplicitytype_in_model_associationend_associationEnds1107);
             temp=model_multiplicitytype();
@@ -2251,12 +2251,18 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342AE920069711DFBA2FCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5E82201EEF411DEAAE9FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:449:316: (temp= identifier )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:449:318: temp= identifier
+            if ( state.backtracking==0 ) {
+              _afterSeqEl();
+            }
+            if ( state.backtracking==0 ) {
+              _beforeSeqEl("E0C26B3DE5E84910EEF411DEC9D3FB9C8D1505E2");
+            }
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:391: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:393: temp= identifier
             {
-            pushFollow(FOLLOW_identifier_in_model_associationend_associationEnds1117);
+            pushFollow(FOLLOW_identifier_in_model_associationend_associationEnds1119);
             temp=identifier();
 
             checkFollows();
@@ -2296,22 +2302,22 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "typereference"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:457:1: typereference[Object ret] : ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:457:1: typereference[Object ret] : ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) ) ;
     public final void typereference(Object ret) throws RecognitionException {
         Object temp = null;
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:458:3: ( ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:3: ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:458:3: ( ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:3: ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:3: ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:4: ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:3: ( ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:4: ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342C96D1069711DFBC8CCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5EA44E0EEF411DE8915FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:63: ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:63: ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) )
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -2330,21 +2336,21 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt10) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:64: ( (temp= qualifiedNameSymbol ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:64: ( (temp= qualifiedNameSymbol ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:80: ( (temp= qualifiedNameSymbol ) )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:81: (temp= qualifiedNameSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:80: ( (temp= qualifiedNameSymbol ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:81: (temp= qualifiedNameSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342BFA91069711DFB6A9CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E98192EEF411DEC9DBFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:140: (temp= qualifiedNameSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:459:142: temp= qualifiedNameSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:140: (temp= qualifiedNameSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:142: temp= qualifiedNameSymbol
                     {
-                    pushFollow(FOLLOW_qualifiedNameSymbol_in_typereference1163);
+                    pushFollow(FOLLOW_qualifiedNameSymbol_in_typereference1165);
                     temp=qualifiedNameSymbol();
 
                     checkFollows();
@@ -2369,21 +2375,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:460:4: ( (temp= identifier ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:4: ( (temp= identifier ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:460:20: ( (temp= identifier ) )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:460:21: (temp= identifier )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:20: ( (temp= identifier ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:21: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342C48B4069711DFCDE6CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5E9F6C1EEF411DEB92BFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:460:80: (temp= identifier )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:460:82: temp= identifier
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:80: (temp= identifier )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:82: temp= identifier
                     {
-                    pushFollow(FOLLOW_identifier_in_typereference1183);
+                    pushFollow(FOLLOW_identifier_in_typereference1185);
                     temp=identifier();
 
                     checkFollows();
@@ -2436,39 +2442,39 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "visibility"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:467:1: visibility[Object ret] : ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:467:1: visibility[Object ret] : ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) ) ;
     public final void visibility(Object ret) throws RecognitionException {
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:468:3: ( ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:3: ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:468:3: ( ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:3: ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:3: ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:4: ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:3: ( ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:4: ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A342F55F0069711DF93F2CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5EC67C1EEF411DE9346FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:63: ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:63: ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) )
             int alt11=4;
             switch ( input.LA(1) ) {
-            case 30:
-            case 32:
             case 35:
+            case 37:
+            case 38:
                 {
                 alt11=1;
                 }
                 break;
-            case 34:
+            case 31:
                 {
                 alt11=2;
                 }
                 break;
-            case 38:
+            case 33:
                 {
                 alt11=3;
                 }
                 break;
-            case 37:
+            case 30:
                 {
                 alt11=4;
                 }
@@ -2483,16 +2489,16 @@ public class MofPackageParser extends ObservableInjectingParser {
 
             switch (alt11) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:64: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:64: ()
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:80: ()
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:469:81: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:80: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:81: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342E1D70069711DF9E6DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EB0831EEF411DEB2BEFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS);_exitInjectorAction();
@@ -2510,23 +2516,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:470:4: ( 'public' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:470:4: ( 'public' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:470:20: ( 'public' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:470:21: 'public'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:470:20: ( 'public' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:470:21: 'public'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342E4480069711DF82DBCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EB5651EEF411DEAC46FB9C8D1505E2");
                     }
-                    match(input,34,FOLLOW_34_in_visibility1233); if (state.failed) return ;
+                    match(input,31,FOLLOW_31_in_visibility1235); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342E6B90069711DFA90CCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EBA470EEF411DEAC45FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS);_exitInjectorAction();
@@ -2544,23 +2550,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 3 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:471:4: ( 'protected' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:471:4: ( 'protected' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(2);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:471:20: ( 'protected' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:471:21: 'protected'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:471:20: ( 'protected' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:471:21: 'protected'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342E92A0069711DFB3FECDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EBCB80EEF411DE9634FB9C8D1505E2");
                     }
-                    match(input,38,FOLLOW_38_in_visibility1249); if (state.failed) return ;
+                    match(input,33,FOLLOW_33_in_visibility1251); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342EB9B1069711DF84A7CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EBF290EEF411DEC0ABFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PROTECTED_VIS);_exitInjectorAction();
@@ -2578,23 +2584,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 4 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:472:4: ( 'private' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:472:4: ( 'private' )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(3);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:472:20: ( 'private' )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:472:21: 'private'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:472:20: ( 'private' )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:472:21: 'private'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342EE0C1069711DFB00ECDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EC19A0EEF411DEAD62FB9C8D1505E2");
                     }
-                    match(input,37,FOLLOW_37_in_visibility1265); if (state.failed) return ;
+                    match(input,30,FOLLOW_30_in_visibility1267); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A342F07D2069711DFA1E2CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EC40B1EEF411DEAF16FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PRIVATE_VIS);_exitInjectorAction();
@@ -2640,22 +2646,22 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "annotation"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:479:1: annotation[Object ret] : ( ( ( (temp= annotationSymbol ) ) | ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:479:1: annotation[Object ret] : ( ( ( (temp= annotationSymbol ) ) | ) ) ;
     public final void annotation(Object ret) throws RecognitionException {
         Object temp = null;
 
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:480:3: ( ( ( ( (temp= annotationSymbol ) ) | ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:3: ( ( ( (temp= annotationSymbol ) ) | ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:480:3: ( ( ( ( (temp= annotationSymbol ) ) | ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:3: ( ( ( (temp= annotationSymbol ) ) | ) )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:3: ( ( ( (temp= annotationSymbol ) ) | ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:4: ( ( (temp= annotationSymbol ) ) | )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:3: ( ( ( (temp= annotationSymbol ) ) | ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:4: ( ( (temp= annotationSymbol ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34308E70069711DF993BCDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE5EDC750EEF411DEC240FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:64: ( ( (temp= annotationSymbol ) ) | )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:64: ( ( (temp= annotationSymbol ) ) | )
             int alt12=2;
             int LA12_0 = input.LA(1);
 
@@ -2674,21 +2680,21 @@ public class MofPackageParser extends ObservableInjectingParser {
             }
             switch (alt12) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:65: ( (temp= annotationSymbol ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:65: ( (temp= annotationSymbol ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:81: ( (temp= annotationSymbol ) )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:82: (temp= annotationSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:81: ( (temp= annotationSymbol ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:82: (temp= annotationSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34304052069711DFC70DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5ED7932EEF411DEB45AFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:141: (temp= annotationSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:143: temp= annotationSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:141: (temp= annotationSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:143: temp= annotationSymbol
                     {
-                    pushFollow(FOLLOW_annotationSymbol_in_annotation1307);
+                    pushFollow(FOLLOW_annotationSymbol_in_annotation1309);
                     temp=annotationSymbol();
 
                     checkFollows();
@@ -2704,7 +2710,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34306760069711DFA3D2CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EDA040EEF411DE9DA5FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -2719,7 +2725,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:481:314: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:314: 
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
@@ -2759,7 +2765,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "model_multiplicitytype"
-    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:489:1: model_multiplicitytype returns [Object ret2] : ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:489:1: model_multiplicitytype returns [Object ret2] : ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) ) ;
     public final Object model_multiplicitytype() throws RecognitionException {
         Object ret2 = null;
 
@@ -2772,35 +2778,35 @@ public class MofPackageParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:494:3: ( ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:3: ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:494:3: ( ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:3: ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) )
             {
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:3: ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) )
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:4: ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:3: ( ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:4: ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0677A9A34459D11069711DF8388CDAB0A1CE22F");
+              _beforeSeqEl("E0C26B3DE6012841EEF411DEB538FB9C8D1505E2");
             }
-            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:63: ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:63: ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () )
             int alt23=15;
             alt23 = dfa23.predict(input);
             switch (alt23) {
                 case 1 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:64: ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:64: ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(0);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:144: ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:145: (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:144: ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:145: (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343151C1069711DFBE65CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EE8AA0EEF411DE840DFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:204: (temp= integerSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:206: temp= integerSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:204: (temp= integerSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:206: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1382);
+                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1384);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -2816,16 +2822,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343178D0069711DF98FACDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EE8AA1EEF411DEA9D4FB9C8D1505E2");
                     }
-                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1389); if (state.failed) return ret2;
+                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1391); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3432D861069711DFA360CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EF26E0EEF411DEAFF0FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:417: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:417: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt13=2;
                     int LA13_0 = input.LA(1);
 
@@ -2844,18 +2850,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt13) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:418: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:418: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:434: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:435: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:434: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:435: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A34328A41069711DF8AB4CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5EED8C1EEF411DEBF99FB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1400); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1402); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -2872,21 +2878,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:579: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:579: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:595: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:596: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:595: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:596: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A3432B152069711DFAFB5CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5EEFFD1EEF411DE92ADFB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:655: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:657: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:655: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:657: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1418);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1420);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -2919,7 +2925,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34334D91069711DF9E6FCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EF7501EEF411DEADF0FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -2937,28 +2943,28 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:4: ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:4: ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(1);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:53: ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:54: LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:53: ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:54: LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34339BB0069711DF84BECDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EFC320EEF411DEA625FB9C8D1505E2");
                     }
-                    match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1455); if (state.failed) return ret2;
+                    match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1457); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3433C2C1069711DFAF2DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EFEA30EEF411DEC7EDFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:198: (temp= integerSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:200: temp= integerSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:198: (temp= integerSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:200: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1463);
+                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1465);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -2974,16 +2980,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3433C2C2069711DFADFFCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5EFEA31EEF411DEC953FB9C8D1505E2");
                     }
-                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1470); if (state.failed) return ret2;
+                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1472); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34345F00069711DFB365CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F08670EEF411DECE73FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:411: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:411: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt14=2;
                     int LA14_0 = input.LA(1);
 
@@ -3002,18 +3008,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt14) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:412: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:412: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:428: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:429: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:428: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:429: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343410E0069711DF8D7ECDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F03850EEF411DEB400FB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1481); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1483); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3030,21 +3036,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:573: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:573: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:589: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:590: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:589: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:590: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343437F0069711DFA97CCDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F05F61EEF411DE8BD9FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:649: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:651: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:649: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:651: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1499);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1501);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -3077,7 +3083,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3434AD22069711DFA6A7CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F0D492EEF411DEBEFBFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3086,9 +3092,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3434D430069711DF98F7CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F0FBA0EEF411DEA1D6FB9C8D1505E2");
                     }
-                    match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1516); if (state.failed) return ret2;
+                    match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1518); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3102,28 +3108,28 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 3 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:4: ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:4: ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(2);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:50: ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:51: LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:50: ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:51: LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34352250069711DF82BDCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F149C0EEF411DE9331FB9C8D1505E2");
                     }
-                    match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype1541); if (state.failed) return ret2;
+                    match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype1543); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34352252069711DFA946CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F149C2EEF411DEAC31FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:192: (temp= integerSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:194: temp= integerSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:192: (temp= integerSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:194: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1549);
+                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1551);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -3139,16 +3145,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34354960069711DFAC0ACDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F170D0EEF411DEAC01FB9C8D1505E2");
                     }
-                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1556); if (state.failed) return ret2;
+                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1558); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3435E5A0069711DF8389CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F1E601EEF411DEA610FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:405: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:405: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt15=2;
                     int LA15_0 = input.LA(1);
 
@@ -3167,18 +3173,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt15) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:406: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:406: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:422: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:423: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:422: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:423: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A34359780069711DFC13CCDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F1BEF0EEF411DEA48BFB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1567); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1569); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3195,21 +3201,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:567: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:567: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:583: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:584: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:583: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:584: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A34359783069711DFCD2ACDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F1BEF3EEF411DEB995FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:643: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:645: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:643: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:645: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1585);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1587);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -3242,7 +3248,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343633C1069711DFBC8DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F25B30EEF411DECEB4FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -3251,9 +3257,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34365AD0069711DFB117CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F28240EEF411DEB188FB9C8D1505E2");
                     }
-                    match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype1602); if (state.failed) return ret2;
+                    match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype1604); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3267,28 +3273,28 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 4 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:4: ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:4: ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(3);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:57: ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:58: LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:57: ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:58: LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3436A8F0069711DFB8FBCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F2A950EEF411DEAAC3FB9C8D1505E2");
                     }
-                    match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype1627); if (state.failed) return ret2;
+                    match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype1629); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3436A8F2069711DFB137CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F2D061EEF411DEA72BFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:206: (temp= integerSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:208: temp= integerSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:206: (temp= integerSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:208: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1635);
+                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1637);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -3304,16 +3310,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3436D000069711DF9ACCCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F2D062EEF411DEA6B5FB9C8D1505E2");
                     }
-                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1642); if (state.failed) return ret2;
+                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1644); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34374531069711DFAE90CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F36CA0EEF411DE88F3FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:419: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:419: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt16=2;
                     int LA16_0 = input.LA(1);
 
@@ -3332,18 +3338,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt16) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:420: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:420: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:436: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:437: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:436: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:437: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A3436F711069711DFBC08CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F31E81EEF411DEC309FB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1653); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1655); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3360,21 +3366,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:581: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:581: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:597: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:598: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:597: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:598: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A34371E21069711DFC275CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F34591EEF411DE95E8FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:657: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:659: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:657: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:659: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1671);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1673);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -3407,7 +3413,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3437BA60069711DFC863CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F3BAC1EEF411DEA2D9FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3416,9 +3422,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3437E170069711DF9106CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F3E1D0EEF411DEB8EEFB9C8D1505E2");
                     }
-                    match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype1688); if (state.failed) return ret2;
+                    match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype1690); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3432,28 +3438,28 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 5 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:4: ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:4: ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(4);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:57: ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:58: LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:57: ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:58: LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34382F90069711DFCDB7CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F42FF0EEF411DE9587FB9C8D1505E2");
                     }
-                    match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype1713); if (state.failed) return ret2;
+                    match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype1715); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34382F92069711DF96EFCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F42FF2EEF411DEC12DFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:206: (temp= integerSymbol )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:208: temp= integerSymbol
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:206: (temp= integerSymbol )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:208: temp= integerSymbol
                     {
-                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1721);
+                    pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1723);
                     temp=integerSymbol();
 
                     checkFollows();
@@ -3469,16 +3475,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343856A0069711DFCD54CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F45700EEF411DEA92AFB9C8D1505E2");
                     }
-                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1728); if (state.failed) return ret2;
+                    match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1730); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3438CBD0069711DF89A8CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F4CC31EEF411DE81BBFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:419: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:419: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt17=2;
                     int LA17_0 = input.LA(1);
 
@@ -3497,18 +3503,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt17) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:420: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:420: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:436: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:437: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:436: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:437: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A34387DB1069711DFAA6ACDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F47E11EEF411DECA98FB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1739); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1741); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3525,21 +3531,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:581: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:581: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:597: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:598: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:597: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:598: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A3438A4C1069711DF9BC0CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F4A522EEF411DEA934FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:657: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:659: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:657: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:659: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1757);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1759);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -3572,7 +3578,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34394100069711DFC7EBCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F54160EEF411DEA3C5FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3581,9 +3587,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34396810069711DFCA5DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F56870EEF411DEA4C0FB9C8D1505E2");
                     }
-                    match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype1774); if (state.failed) return ret2;
+                    match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype1776); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3597,18 +3603,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 6 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:4: ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:4: ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(5);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:52: ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:53: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:52: ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:53: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343A5270069711DF9E98CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F62BC1EEF411DE95DAFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:113: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:113: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt18=2;
                     int LA18_0 = input.LA(1);
 
@@ -3627,18 +3633,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt18) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:114: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:114: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:130: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:131: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:130: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:131: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343A0450069711DFAA50CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F5DDA1EEF411DECBC3FB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1808); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1810); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3655,21 +3661,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:275: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:275: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:291: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:292: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:291: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:292: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343A2B61069711DFCCB4CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F604B2EEF411DEB1B0FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:351: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:353: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:351: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:353: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1826);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1828);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -3702,7 +3708,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343AC7A1069711DF974DCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F6C800EEF411DEB433FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -3720,25 +3726,25 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 7 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:4: ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:4: ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(6);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:82: ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:83: LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:82: ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:83: LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343B15C0069711DFA1D2CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F6EF10EEF411DE8B79FB9C8D1505E2");
                     }
-                    match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1871); if (state.failed) return ret2;
+                    match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1873); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343BB200069711DFB78CCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F78B50EEF411DE9301FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:228: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:228: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt19=2;
                     int LA19_0 = input.LA(1);
 
@@ -3757,18 +3763,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt19) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:229: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:229: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:245: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:246: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:245: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:246: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343B63E0069711DFC6CBCDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F73D31EEF411DEB4A5FB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1882); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1884); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3785,21 +3791,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:390: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:390: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:406: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:407: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:406: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:407: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343B8AF1069711DFAAEFCDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F76441EEF411DE9F39FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:466: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:468: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:466: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:468: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1900);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype1902);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -3832,7 +3838,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343C4E40069711DF93FECDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F80082EEF411DEBA3FFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -3841,9 +3847,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343C7550069711DF835ECDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F82790EEF411DE8ECFFB9C8D1505E2");
                     }
-                    match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1917); if (state.failed) return ret2;
+                    match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1919); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3857,23 +3863,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 8 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:509:4: ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:509:4: ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(7);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:509:43: ( LBRACKET RBRACKET )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:509:44: LBRACKET RBRACKET
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:509:43: ( LBRACKET RBRACKET )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:509:44: LBRACKET RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343C9C60069711DFA24CCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F875B0EEF411DEC7E4FB9C8D1505E2");
                     }
-                    match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1940); if (state.failed) return ret2;
+                    match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1942); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343D38A0069711DF931FCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F8EAE1EEF411DECC43FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3882,9 +3888,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343D5FB0069711DFBDC4CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F911F0EEF411DE9042FB9C8D1505E2");
                     }
-                    match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1948); if (state.failed) return ret2;
+                    match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1950); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -3898,25 +3904,25 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 9 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:4: ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:4: ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(8);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:70: ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:71: LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:70: ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:71: LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343D86C0069711DF90C3CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F93900EEF411DEC550FB9C8D1505E2");
                     }
-                    match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype1981); if (state.failed) return ret2;
+                    match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype1983); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343E2300069711DFB70BCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5F9FC50EEF411DE9DADFB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:213: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:213: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt20=2;
                     int LA20_0 = input.LA(1);
 
@@ -3935,18 +3941,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt20) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:214: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:214: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:230: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:231: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:230: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:231: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343DD4E0069711DF9445CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F9AE30EEF411DECCCDFB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1992); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1994); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -3963,21 +3969,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:375: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:375: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:391: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:392: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:391: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:392: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A343DFBF1069711DFB78BCDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5F9D541EEF411DEC8FAFB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:451: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:453: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:451: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:453: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype2010);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype2012);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -4010,7 +4016,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343E9832069711DFCC40CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FA7182EEF411DEACBFFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -4019,9 +4025,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343EBF40069711DFA703CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FA9890EEF411DE8557FB9C8D1505E2");
                     }
-                    match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype2027); if (state.failed) return ret2;
+                    match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype2029); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4035,23 +4041,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 10 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:512:4: ( LCURL RCURL )=> ( LCURL RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:512:4: ( LCURL RCURL )=> ( LCURL RCURL )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(9);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:512:37: ( LCURL RCURL )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:512:38: LCURL RCURL
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:512:37: ( LCURL RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:512:38: LCURL RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343F0D60069711DF8C57CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FAE6B0EEF411DEAB2BFB9C8D1505E2");
                     }
-                    match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype2050); if (state.failed) return ret2;
+                    match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype2052); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343F8291069711DFB5D8CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FB5BE1EEF411DEAD1FFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -4060,9 +4066,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343FD0B0069711DFA9FDCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FB82F0EEF411DEA258FB9C8D1505E2");
                     }
-                    match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype2058); if (state.failed) return ret2;
+                    match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype2060); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4076,25 +4082,25 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 11 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:4: ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:4: ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(10);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:99: ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:100: LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:99: ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:100: LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A343FF7C0069711DFA2CBCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FBD110EEF411DEC3D7FB9C8D1505E2");
                     }
-                    match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2091); if (state.failed) return ret2;
+                    match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2093); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34409400069711DFC172CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FC4641EEF411DEACF6FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:249: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:249: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt21=2;
                     int LA21_0 = input.LA(1);
 
@@ -4113,18 +4119,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt21) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:250: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:250: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:266: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:267: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:266: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:267: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A344045E0069711DFB073CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5FBF821EEF411DEC12AFB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype2102); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype2104); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -4141,21 +4147,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:411: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:411: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:427: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:428: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:427: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:428: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A34406CF1069711DFCD18CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5FC1F32EEF411DEA92BFB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:487: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:489: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:487: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:489: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype2120);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype2122);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -4188,7 +4194,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34413040069711DF9831CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FCE280EEF411DEB7B9FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4197,9 +4203,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34413041069711DFA3F7CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FD0990EEF411DEBD25FB9C8D1505E2");
                     }
-                    match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2137); if (state.failed) return ret2;
+                    match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2139); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4213,25 +4219,25 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 12 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:4: ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:4: ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(11);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:99: ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:100: LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:99: ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:100: LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34417E60069711DFCCABCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FD30A0EEF411DE98D2FB9C8D1505E2");
                     }
-                    match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2170); if (state.failed) return ret2;
+                    match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2172); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34421AA1069711DFA700CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FDCCE0EEF411DE9D71FB9C8D1505E2");
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:249: ( ( STAR ) | ( (temp= integerSymbol ) ) )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:249: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt22=2;
                     int LA22_0 = input.LA(1);
 
@@ -4250,18 +4256,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     switch (alt22) {
                         case 1 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:250: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:250: ( STAR )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(0);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:266: ( STAR )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:267: STAR
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:266: ( STAR )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:267: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A3441CC80069711DFA02CCDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5FD7EC1EEF411DEC9FFFB9C8D1505E2");
                             }
-                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype2181); if (state.failed) return ret2;
+                            match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype2183); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
                               _afterSeqEl();
                             }
@@ -4278,21 +4284,21 @@ public class MofPackageParser extends ObservableInjectingParser {
                             }
                             break;
                         case 2 :
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:411: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:411: ( (temp= integerSymbol ) )
                             {
                             if ( state.backtracking==0 ) {
                               _enterAlt(1);
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:427: ( (temp= integerSymbol ) )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:428: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:427: ( (temp= integerSymbol ) )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:428: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0677A9A3441F391069711DFC280CDAB0A1CE22F");
+                              _beforeSeqEl("E0C26B3DE5FDA5D1EEF411DECCE8FB9C8D1505E2");
                             }
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:487: (temp= integerSymbol )
-                            // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:489: temp= integerSymbol
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:487: (temp= integerSymbol )
+                            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:489: temp= integerSymbol
                             {
-                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype2199);
+                            pushFollow(FOLLOW_integerSymbol_in_model_multiplicitytype2201);
                             temp=integerSymbol();
 
                             checkFollows();
@@ -4325,7 +4331,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3442B6E0069711DFAA91CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FE4211EEF411DEB90DFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4334,9 +4340,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3442DDF0069711DF89CFCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FE6920EEF411DEAD33FB9C8D1505E2");
                     }
-                    match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2216); if (state.failed) return ret2;
+                    match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2218); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4350,23 +4356,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 13 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:517:4: ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:517:4: ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(12);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:517:52: ( LCURL_LBRACK RBRACK_RCURL )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:517:53: LCURL_LBRACK RBRACK_RCURL
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:517:52: ( LCURL_LBRACK RBRACK_RCURL )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:517:53: LCURL_LBRACK RBRACK_RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34430500069711DF931ECDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FEB740EEF411DEBA94FB9C8D1505E2");
                     }
-                    match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2239); if (state.failed) return ret2;
+                    match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2241); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3443A140069711DF89A1CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FF2C71EEF411DE9D54FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4375,9 +4381,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3443C850069711DF8DBDCDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FF5380EEF411DE9433FB9C8D1505E2");
                     }
-                    match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2247); if (state.failed) return ret2;
+                    match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2249); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4391,23 +4397,23 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 14 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:518:4: ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:518:4: ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK )
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(13);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:518:52: ( LBRACK_LCURL RCURL_RBRACK )
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:518:53: LBRACK_LCURL RCURL_RBRACK
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:518:52: ( LBRACK_LCURL RCURL_RBRACK )
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:518:53: LBRACK_LCURL RCURL_RBRACK
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3443EF60069711DFB077CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE5FFA1A0EEF411DE9796FB9C8D1505E2");
                     }
-                    match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2270); if (state.failed) return ret2;
+                    match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2272); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34448BA0069711DFB524CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE60016D0EEF411DEA92BFB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4416,9 +4422,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A3444B2B0069711DF924ACDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE6003DE0EEF411DE82A5FB9C8D1505E2");
                     }
-                    match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2278); if (state.failed) return ret2;
+                    match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2280); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -4432,16 +4438,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 15 :
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:519:4: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:519:4: ()
                     {
                     if ( state.backtracking==0 ) {
                       _enterAlt(14);
                     }
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:519:21: ()
-                    // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:519:22: 
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:519:21: ()
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:519:22: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0677A9A34457600069711DFC004CDAB0A1CE22F");
+                      _beforeSeqEl("E0C26B3DE600DA22EEF411DEBDE9FB9C8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "upper", 1);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();
@@ -4489,7 +4495,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred26_MofPackage
     public final void synpred26_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:64: ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:64: ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )
         int alt26=2;
         int LA26_0 = input.LA(1);
 
@@ -4530,30 +4536,30 @@ public class MofPackageParser extends ObservableInjectingParser {
         }
         switch (alt26) {
             case 1 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:65: integerSymbol DDOT STAR
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:65: integerSymbol DDOT STAR
                 {
-                pushFollow(FOLLOW_integerSymbol_in_synpred26_MofPackage1357);
+                pushFollow(FOLLOW_integerSymbol_in_synpred26_MofPackage1359);
                 integerSymbol();
 
                 checkFollows();
                 state._fsp--;
                 if (state.failed) return ;
-                match(input,DDOT,FOLLOW_DDOT_in_synpred26_MofPackage1359); if (state.failed) return ;
-                match(input,STAR,FOLLOW_STAR_in_synpred26_MofPackage1361); if (state.failed) return ;
+                match(input,DDOT,FOLLOW_DDOT_in_synpred26_MofPackage1361); if (state.failed) return ;
+                match(input,STAR,FOLLOW_STAR_in_synpred26_MofPackage1363); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:495:91: integerSymbol DDOT integerSymbol
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:91: integerSymbol DDOT integerSymbol
                 {
-                pushFollow(FOLLOW_integerSymbol_in_synpred26_MofPackage1365);
+                pushFollow(FOLLOW_integerSymbol_in_synpred26_MofPackage1367);
                 integerSymbol();
 
                 checkFollows();
                 state._fsp--;
                 if (state.failed) return ;
-                match(input,DDOT,FOLLOW_DDOT_in_synpred26_MofPackage1367); if (state.failed) return ;
-                pushFollow(FOLLOW_integerSymbol_in_synpred26_MofPackage1369);
+                match(input,DDOT,FOLLOW_DDOT_in_synpred26_MofPackage1369); if (state.failed) return ;
+                pushFollow(FOLLOW_integerSymbol_in_synpred26_MofPackage1371);
                 integerSymbol();
 
                 checkFollows();
@@ -4568,17 +4574,17 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred28_MofPackage
     public final void synpred28_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:4: ( LBRACKET integerSymbol DDOT )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:497:5: LBRACKET integerSymbol DDOT
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:4: ( LBRACKET integerSymbol DDOT )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:5: LBRACKET integerSymbol DDOT
         {
-        match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred28_MofPackage1441); if (state.failed) return ;
-        pushFollow(FOLLOW_integerSymbol_in_synpred28_MofPackage1443);
+        match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred28_MofPackage1443); if (state.failed) return ;
+        pushFollow(FOLLOW_integerSymbol_in_synpred28_MofPackage1445);
         integerSymbol();
 
         checkFollows();
         state._fsp--;
         if (state.failed) return ;
-        match(input,DDOT,FOLLOW_DDOT_in_synpred28_MofPackage1445); if (state.failed) return ;
+        match(input,DDOT,FOLLOW_DDOT_in_synpred28_MofPackage1447); if (state.failed) return ;
 
         }
     }
@@ -4586,17 +4592,17 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred30_MofPackage
     public final void synpred30_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:4: ( LCURL integerSymbol DDOT )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:499:5: LCURL integerSymbol DDOT
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:4: ( LCURL integerSymbol DDOT )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:5: LCURL integerSymbol DDOT
         {
-        match(input,LCURL,FOLLOW_LCURL_in_synpred30_MofPackage1527); if (state.failed) return ;
-        pushFollow(FOLLOW_integerSymbol_in_synpred30_MofPackage1529);
+        match(input,LCURL,FOLLOW_LCURL_in_synpred30_MofPackage1529); if (state.failed) return ;
+        pushFollow(FOLLOW_integerSymbol_in_synpred30_MofPackage1531);
         integerSymbol();
 
         checkFollows();
         state._fsp--;
         if (state.failed) return ;
-        match(input,DDOT,FOLLOW_DDOT_in_synpred30_MofPackage1531); if (state.failed) return ;
+        match(input,DDOT,FOLLOW_DDOT_in_synpred30_MofPackage1533); if (state.failed) return ;
 
         }
     }
@@ -4604,17 +4610,17 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred32_MofPackage
     public final void synpred32_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:4: ( LBRACK_LCURL integerSymbol DDOT )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:501:5: LBRACK_LCURL integerSymbol DDOT
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:4: ( LBRACK_LCURL integerSymbol DDOT )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:5: LBRACK_LCURL integerSymbol DDOT
         {
-        match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred32_MofPackage1613); if (state.failed) return ;
-        pushFollow(FOLLOW_integerSymbol_in_synpred32_MofPackage1615);
+        match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred32_MofPackage1615); if (state.failed) return ;
+        pushFollow(FOLLOW_integerSymbol_in_synpred32_MofPackage1617);
         integerSymbol();
 
         checkFollows();
         state._fsp--;
         if (state.failed) return ;
-        match(input,DDOT,FOLLOW_DDOT_in_synpred32_MofPackage1617); if (state.failed) return ;
+        match(input,DDOT,FOLLOW_DDOT_in_synpred32_MofPackage1619); if (state.failed) return ;
 
         }
     }
@@ -4622,17 +4628,17 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred34_MofPackage
     public final void synpred34_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:4: ( LCURL_LBRACK integerSymbol DDOT )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:503:5: LCURL_LBRACK integerSymbol DDOT
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:4: ( LCURL_LBRACK integerSymbol DDOT )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:5: LCURL_LBRACK integerSymbol DDOT
         {
-        match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred34_MofPackage1699); if (state.failed) return ;
-        pushFollow(FOLLOW_integerSymbol_in_synpred34_MofPackage1701);
+        match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred34_MofPackage1701); if (state.failed) return ;
+        pushFollow(FOLLOW_integerSymbol_in_synpred34_MofPackage1703);
         integerSymbol();
 
         checkFollows();
         state._fsp--;
         if (state.failed) return ;
-        match(input,DDOT,FOLLOW_DDOT_in_synpred34_MofPackage1703); if (state.failed) return ;
+        match(input,DDOT,FOLLOW_DDOT_in_synpred34_MofPackage1705); if (state.failed) return ;
 
         }
     }
@@ -4640,7 +4646,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred37_MofPackage
     public final void synpred37_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:4: ( STAR | integerSymbol ~ DDOT )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:4: ( STAR | integerSymbol ~ DDOT )
         int alt27=2;
         int LA27_0 = input.LA(1);
 
@@ -4659,16 +4665,16 @@ public class MofPackageParser extends ObservableInjectingParser {
         }
         switch (alt27) {
             case 1 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:5: STAR
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:5: STAR
                 {
-                match(input,STAR,FOLLOW_STAR_in_synpred37_MofPackage1785); if (state.failed) return ;
+                match(input,STAR,FOLLOW_STAR_in_synpred37_MofPackage1787); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:505:12: integerSymbol ~ DDOT
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:12: integerSymbol ~ DDOT
                 {
-                pushFollow(FOLLOW_integerSymbol_in_synpred37_MofPackage1789);
+                pushFollow(FOLLOW_integerSymbol_in_synpred37_MofPackage1791);
                 integerSymbol();
 
                 checkFollows();
@@ -4693,7 +4699,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred40_MofPackage
     public final void synpred40_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:4: ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:4: ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )
         int alt28=2;
         int LA28_0 = input.LA(1);
 
@@ -4723,25 +4729,25 @@ public class MofPackageParser extends ObservableInjectingParser {
         }
         switch (alt28) {
             case 1 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:5: LBRACKET integerSymbol RBRACKET
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:5: LBRACKET integerSymbol RBRACKET
                 {
-                match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred40_MofPackage1849); if (state.failed) return ;
-                pushFollow(FOLLOW_integerSymbol_in_synpred40_MofPackage1851);
+                match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred40_MofPackage1851); if (state.failed) return ;
+                pushFollow(FOLLOW_integerSymbol_in_synpred40_MofPackage1853);
                 integerSymbol();
 
                 checkFollows();
                 state._fsp--;
                 if (state.failed) return ;
-                match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred40_MofPackage1853); if (state.failed) return ;
+                match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred40_MofPackage1855); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:507:39: LBRACKET STAR RBRACKET
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:39: LBRACKET STAR RBRACKET
                 {
-                match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred40_MofPackage1857); if (state.failed) return ;
-                match(input,STAR,FOLLOW_STAR_in_synpred40_MofPackage1859); if (state.failed) return ;
-                match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred40_MofPackage1861); if (state.failed) return ;
+                match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred40_MofPackage1859); if (state.failed) return ;
+                match(input,STAR,FOLLOW_STAR_in_synpred40_MofPackage1861); if (state.failed) return ;
+                match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred40_MofPackage1863); if (state.failed) return ;
 
                 }
                 break;
@@ -4751,11 +4757,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred42_MofPackage
     public final void synpred42_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:509:4: ( LBRACKET RBRACKET )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:509:5: LBRACKET RBRACKET
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:509:4: ( LBRACKET RBRACKET )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:509:5: LBRACKET RBRACKET
         {
-        match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred42_MofPackage1928); if (state.failed) return ;
-        match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred42_MofPackage1930); if (state.failed) return ;
+        match(input,LBRACKET,FOLLOW_LBRACKET_in_synpred42_MofPackage1930); if (state.failed) return ;
+        match(input,RBRACKET,FOLLOW_RBRACKET_in_synpred42_MofPackage1932); if (state.failed) return ;
 
         }
     }
@@ -4763,7 +4769,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred44_MofPackage
     public final void synpred44_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:4: ( LCURL STAR RCURL | LCURL integerSymbol RCURL )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:4: ( LCURL STAR RCURL | LCURL integerSymbol RCURL )
         int alt29=2;
         int LA29_0 = input.LA(1);
 
@@ -4793,25 +4799,25 @@ public class MofPackageParser extends ObservableInjectingParser {
         }
         switch (alt29) {
             case 1 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:5: LCURL STAR RCURL
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:5: LCURL STAR RCURL
                 {
-                match(input,LCURL,FOLLOW_LCURL_in_synpred44_MofPackage1959); if (state.failed) return ;
-                match(input,STAR,FOLLOW_STAR_in_synpred44_MofPackage1961); if (state.failed) return ;
-                match(input,RCURL,FOLLOW_RCURL_in_synpred44_MofPackage1963); if (state.failed) return ;
+                match(input,LCURL,FOLLOW_LCURL_in_synpred44_MofPackage1961); if (state.failed) return ;
+                match(input,STAR,FOLLOW_STAR_in_synpred44_MofPackage1963); if (state.failed) return ;
+                match(input,RCURL,FOLLOW_RCURL_in_synpred44_MofPackage1965); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:510:24: LCURL integerSymbol RCURL
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:24: LCURL integerSymbol RCURL
                 {
-                match(input,LCURL,FOLLOW_LCURL_in_synpred44_MofPackage1967); if (state.failed) return ;
-                pushFollow(FOLLOW_integerSymbol_in_synpred44_MofPackage1969);
+                match(input,LCURL,FOLLOW_LCURL_in_synpred44_MofPackage1969); if (state.failed) return ;
+                pushFollow(FOLLOW_integerSymbol_in_synpred44_MofPackage1971);
                 integerSymbol();
 
                 checkFollows();
                 state._fsp--;
                 if (state.failed) return ;
-                match(input,RCURL,FOLLOW_RCURL_in_synpred44_MofPackage1971); if (state.failed) return ;
+                match(input,RCURL,FOLLOW_RCURL_in_synpred44_MofPackage1973); if (state.failed) return ;
 
                 }
                 break;
@@ -4821,11 +4827,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred46_MofPackage
     public final void synpred46_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:512:4: ( LCURL RCURL )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:512:5: LCURL RCURL
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:512:4: ( LCURL RCURL )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:512:5: LCURL RCURL
         {
-        match(input,LCURL,FOLLOW_LCURL_in_synpred46_MofPackage2038); if (state.failed) return ;
-        match(input,RCURL,FOLLOW_RCURL_in_synpred46_MofPackage2040); if (state.failed) return ;
+        match(input,LCURL,FOLLOW_LCURL_in_synpred46_MofPackage2040); if (state.failed) return ;
+        match(input,RCURL,FOLLOW_RCURL_in_synpred46_MofPackage2042); if (state.failed) return ;
 
         }
     }
@@ -4833,7 +4839,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred48_MofPackage
     public final void synpred48_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:4: ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:4: ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )
         int alt30=2;
         int LA30_0 = input.LA(1);
 
@@ -4863,25 +4869,25 @@ public class MofPackageParser extends ObservableInjectingParser {
         }
         switch (alt30) {
             case 1 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:5: LBRACK_LCURL STAR RCURL_RBRACK
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:5: LBRACK_LCURL STAR RCURL_RBRACK
                 {
-                match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2069); if (state.failed) return ;
-                match(input,STAR,FOLLOW_STAR_in_synpred48_MofPackage2071); if (state.failed) return ;
-                match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2073); if (state.failed) return ;
+                match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2071); if (state.failed) return ;
+                match(input,STAR,FOLLOW_STAR_in_synpred48_MofPackage2073); if (state.failed) return ;
+                match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2075); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:513:38: LBRACK_LCURL integerSymbol RCURL_RBRACK
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:38: LBRACK_LCURL integerSymbol RCURL_RBRACK
                 {
-                match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2077); if (state.failed) return ;
-                pushFollow(FOLLOW_integerSymbol_in_synpred48_MofPackage2079);
+                match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2079); if (state.failed) return ;
+                pushFollow(FOLLOW_integerSymbol_in_synpred48_MofPackage2081);
                 integerSymbol();
 
                 checkFollows();
                 state._fsp--;
                 if (state.failed) return ;
-                match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2081); if (state.failed) return ;
+                match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2083); if (state.failed) return ;
 
                 }
                 break;
@@ -4891,7 +4897,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred51_MofPackage
     public final void synpred51_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:4: ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:4: ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )
         int alt31=2;
         int LA31_0 = input.LA(1);
 
@@ -4921,25 +4927,25 @@ public class MofPackageParser extends ObservableInjectingParser {
         }
         switch (alt31) {
             case 1 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:5: LCURL_LBRACK STAR RBRACK_RCURL
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:5: LCURL_LBRACK STAR RBRACK_RCURL
                 {
-                match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2148); if (state.failed) return ;
-                match(input,STAR,FOLLOW_STAR_in_synpred51_MofPackage2150); if (state.failed) return ;
-                match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2152); if (state.failed) return ;
+                match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2150); if (state.failed) return ;
+                match(input,STAR,FOLLOW_STAR_in_synpred51_MofPackage2152); if (state.failed) return ;
+                match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2154); if (state.failed) return ;
 
                 }
                 break;
             case 2 :
-                // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:515:38: LCURL_LBRACK integerSymbol RBRACK_RCURL
+                // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:38: LCURL_LBRACK integerSymbol RBRACK_RCURL
                 {
-                match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2156); if (state.failed) return ;
-                pushFollow(FOLLOW_integerSymbol_in_synpred51_MofPackage2158);
+                match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2158); if (state.failed) return ;
+                pushFollow(FOLLOW_integerSymbol_in_synpred51_MofPackage2160);
                 integerSymbol();
 
                 checkFollows();
                 state._fsp--;
                 if (state.failed) return ;
-                match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2160); if (state.failed) return ;
+                match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2162); if (state.failed) return ;
 
                 }
                 break;
@@ -4949,11 +4955,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred53_MofPackage
     public final void synpred53_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:517:4: ( LCURL_LBRACK RBRACK_RCURL )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:517:5: LCURL_LBRACK RBRACK_RCURL
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:517:4: ( LCURL_LBRACK RBRACK_RCURL )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:517:5: LCURL_LBRACK RBRACK_RCURL
         {
-        match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred53_MofPackage2227); if (state.failed) return ;
-        match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_synpred53_MofPackage2229); if (state.failed) return ;
+        match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_synpred53_MofPackage2229); if (state.failed) return ;
+        match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_synpred53_MofPackage2231); if (state.failed) return ;
 
         }
     }
@@ -4961,11 +4967,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
     // $ANTLR start synpred54_MofPackage
     public final void synpred54_MofPackage_fragment() throws RecognitionException {   
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:518:4: ( LBRACK_LCURL RCURL_RBRACK )
-        // /home/trxadm/workspace/furcas_full/DSLEngineering/com.sap.tc.moin.tcs.mof.editor/generated/generated/MofPackage.g:518:5: LBRACK_LCURL RCURL_RBRACK
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:518:4: ( LBRACK_LCURL RCURL_RBRACK )
+        // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:518:5: LBRACK_LCURL RCURL_RBRACK
         {
-        match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred54_MofPackage2258); if (state.failed) return ;
-        match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_synpred54_MofPackage2260); if (state.failed) return ;
+        match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_synpred54_MofPackage2260); if (state.failed) return ;
+        match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_synpred54_MofPackage2262); if (state.failed) return ;
 
         }
     }
@@ -5177,41 +5183,40 @@ public class MofPackageParser extends ObservableInjectingParser {
     static final String DFA23_eofS =
         "\36\uffff";
     static final String DFA23_minS =
-        "\2\4\4\10\5\uffff\1\14\2\uffff\1\13\1\uffff\1\14\3\uffff\1\14\11"+
-        "\uffff";
+        "\2\4\4\10\6\uffff\1\14\1\13\3\uffff\1\14\3\uffff\1\14\10\uffff";
     static final String DFA23_maxS =
-        "\1\22\1\14\1\17\1\15\1\21\1\23\5\uffff\1\17\2\uffff\1\14\1\uffff"+
-        "\1\21\3\uffff\1\23\11\uffff";
+        "\1\22\1\14\1\17\1\15\1\21\1\23\6\uffff\1\17\1\14\3\uffff\1\21\3"+
+        "\uffff\1\23\10\uffff";
     static final String DFA23_acceptS =
-        "\6\uffff\1\6\1\17\1\1\1\6\1\7\1\uffff\1\10\1\11\1\uffff\1\12\1\uffff"+
-        "\1\16\1\13\1\15\1\uffff\1\14\1\7\1\2\1\11\1\3\1\4\1\13\1\14\1\5";
+        "\6\uffff\1\6\1\17\1\1\1\6\1\10\1\7\2\uffff\1\12\1\11\1\16\1\uffff"+
+        "\1\13\1\15\1\14\1\uffff\1\7\1\2\1\11\1\3\1\4\1\13\1\14\1\5";
     static final String DFA23_specialS =
-        "\1\0\1\4\1\2\1\6\1\5\1\3\5\uffff\1\10\2\uffff\1\1\1\uffff\1\11\3"+
-        "\uffff\1\7\11\uffff}>";
+        "\1\11\1\2\1\3\1\1\1\0\1\10\6\uffff\1\5\1\4\3\uffff\1\6\3\uffff"+
+        "\1\7\10\uffff}>";
     static final String[] DFA23_transitionS = {
-            "\1\7\3\uffff\1\1\1\uffff\1\3\2\uffff\1\6\1\2\1\uffff\1\4\1\uffff"+
-            "\1\5",
+            "\1\7\3\uffff\1\1\1\uffff\1\3\2\uffff\1\6\1\2\1\uffff\1\4\1"+
+            "\uffff\1\5",
             "\1\11\7\uffff\1\10",
-            "\1\13\4\uffff\1\12\1\uffff\1\14",
-            "\1\16\2\uffff\1\17\1\uffff\1\15",
-            "\1\20\4\uffff\1\22\3\uffff\1\21",
-            "\1\24\4\uffff\1\25\5\uffff\1\23",
+            "\1\14\4\uffff\1\13\1\uffff\1\12",
+            "\1\15\2\uffff\1\16\1\uffff\1\17",
+            "\1\21\4\uffff\1\22\3\uffff\1\20",
+            "\1\25\4\uffff\1\24\5\uffff\1\23",
+            "",
             "",
             "",
             "",
             "",
             "",
             "\1\27\2\uffff\1\26",
-            "",
-            "",
             "\1\30\1\31",
+            "",
+            "",
             "",
             "\1\32\4\uffff\1\33",
             "",
             "",
             "",
             "\1\35\6\uffff\1\34",
-            "",
             "",
             "",
             "",
@@ -5259,6 +5264,149 @@ public class MofPackageParser extends ObservableInjectingParser {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
+                        int LA23_4 = input.LA(1);
+
+                         
+                        int index23_4 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_4==RCURL_RBRACK) && (synpred54_MofPackage())) {s = 16;}
+
+                        else if ( (LA23_4==INT) ) {s = 17;}
+
+                        else if ( (LA23_4==STAR) && (synpred48_MofPackage())) {s = 18;}
+
+                         
+                        input.seek(index23_4);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 1 : 
+                        int LA23_3 = input.LA(1);
+
+                         
+                        int index23_3 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_3==INT) ) {s = 13;}
+
+                        else if ( (LA23_3==RCURL) && (synpred46_MofPackage())) {s = 14;}
+
+                        else if ( (LA23_3==STAR) && (synpred44_MofPackage())) {s = 15;}
+
+                         
+                        input.seek(index23_3);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 2 : 
+                        int LA23_1 = input.LA(1);
+
+                         
+                        int index23_1 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_1==DDOT) && (synpred26_MofPackage())) {s = 8;}
+
+                        else if ( (LA23_1==NAME) && (synpred37_MofPackage())) {s = 9;}
+
+                         
+                        input.seek(index23_1);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 3 : 
+                        int LA23_2 = input.LA(1);
+
+                         
+                        int index23_2 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_2==RBRACKET) && (synpred42_MofPackage())) {s = 10;}
+
+                        else if ( (LA23_2==STAR) && (synpred40_MofPackage())) {s = 11;}
+
+                        else if ( (LA23_2==INT) ) {s = 12;}
+
+                         
+                        input.seek(index23_2);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 4 : 
+                        int LA23_13 = input.LA(1);
+
+                         
+                        int index23_13 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_13==RCURL) && (synpred44_MofPackage())) {s = 24;}
+
+                        else if ( (LA23_13==DDOT) && (synpred30_MofPackage())) {s = 25;}
+
+                         
+                        input.seek(index23_13);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 5 : 
+                        int LA23_12 = input.LA(1);
+
+                         
+                        int index23_12 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_12==RBRACKET) && (synpred40_MofPackage())) {s = 22;}
+
+                        else if ( (LA23_12==DDOT) && (synpred28_MofPackage())) {s = 23;}
+
+                         
+                        input.seek(index23_12);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 6 : 
+                        int LA23_17 = input.LA(1);
+
+                         
+                        int index23_17 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_17==DDOT) && (synpred32_MofPackage())) {s = 26;}
+
+                        else if ( (LA23_17==RCURL_RBRACK) && (synpred48_MofPackage())) {s = 27;}
+
+                         
+                        input.seek(index23_17);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 7 : 
+                        int LA23_21 = input.LA(1);
+
+                         
+                        int index23_21 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_21==RBRACK_RCURL) && (synpred51_MofPackage())) {s = 28;}
+
+                        else if ( (LA23_21==DDOT) && (synpred34_MofPackage())) {s = 29;}
+
+                         
+                        input.seek(index23_21);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 8 : 
+                        int LA23_5 = input.LA(1);
+
+                         
+                        int index23_5 = input.index();
+                        input.rewind();
+                        s = -1;
+                        if ( (LA23_5==RBRACK_RCURL) && (synpred53_MofPackage())) {s = 19;}
+
+                        else if ( (LA23_5==STAR) && (synpred51_MofPackage())) {s = 20;}
+
+                        else if ( (LA23_5==INT) ) {s = 21;}
+
+                         
+                        input.seek(index23_5);
+                        if ( s>=0 ) return s;
+                        break;
+                    case 9 : 
                         int LA23_0 = input.LA(1);
 
                          
@@ -5281,149 +5429,6 @@ public class MofPackageParser extends ObservableInjectingParser {
 
                          
                         input.seek(index23_0);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 1 : 
-                        int LA23_14 = input.LA(1);
-
-                         
-                        int index23_14 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_14==RCURL) && (synpred44_MofPackage())) {s = 24;}
-
-                        else if ( (LA23_14==DDOT) && (synpred30_MofPackage())) {s = 25;}
-
-                         
-                        input.seek(index23_14);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 2 : 
-                        int LA23_2 = input.LA(1);
-
-                         
-                        int index23_2 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_2==STAR) && (synpred40_MofPackage())) {s = 10;}
-
-                        else if ( (LA23_2==INT) ) {s = 11;}
-
-                        else if ( (LA23_2==RBRACKET) && (synpred42_MofPackage())) {s = 12;}
-
-                         
-                        input.seek(index23_2);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 3 : 
-                        int LA23_5 = input.LA(1);
-
-                         
-                        int index23_5 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_5==RBRACK_RCURL) && (synpred53_MofPackage())) {s = 19;}
-
-                        else if ( (LA23_5==INT) ) {s = 20;}
-
-                        else if ( (LA23_5==STAR) && (synpred51_MofPackage())) {s = 21;}
-
-                         
-                        input.seek(index23_5);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 4 : 
-                        int LA23_1 = input.LA(1);
-
-                         
-                        int index23_1 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_1==DDOT) && (synpred26_MofPackage())) {s = 8;}
-
-                        else if ( (LA23_1==NAME) && (synpred37_MofPackage())) {s = 9;}
-
-                         
-                        input.seek(index23_1);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 5 : 
-                        int LA23_4 = input.LA(1);
-
-                         
-                        int index23_4 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_4==INT) ) {s = 16;}
-
-                        else if ( (LA23_4==RCURL_RBRACK) && (synpred54_MofPackage())) {s = 17;}
-
-                        else if ( (LA23_4==STAR) && (synpred48_MofPackage())) {s = 18;}
-
-                         
-                        input.seek(index23_4);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 6 : 
-                        int LA23_3 = input.LA(1);
-
-                         
-                        int index23_3 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_3==STAR) && (synpred44_MofPackage())) {s = 13;}
-
-                        else if ( (LA23_3==INT) ) {s = 14;}
-
-                        else if ( (LA23_3==RCURL) && (synpred46_MofPackage())) {s = 15;}
-
-                         
-                        input.seek(index23_3);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 7 : 
-                        int LA23_20 = input.LA(1);
-
-                         
-                        int index23_20 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_20==RBRACK_RCURL) && (synpred51_MofPackage())) {s = 28;}
-
-                        else if ( (LA23_20==DDOT) && (synpred34_MofPackage())) {s = 29;}
-
-                         
-                        input.seek(index23_20);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 8 : 
-                        int LA23_11 = input.LA(1);
-
-                         
-                        int index23_11 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_11==RBRACKET) && (synpred40_MofPackage())) {s = 22;}
-
-                        else if ( (LA23_11==DDOT) && (synpred28_MofPackage())) {s = 23;}
-
-                         
-                        input.seek(index23_11);
-                        if ( s>=0 ) return s;
-                        break;
-                    case 9 : 
-                        int LA23_16 = input.LA(1);
-
-                         
-                        int index23_16 = input.index();
-                        input.rewind();
-                        s = -1;
-                        if ( (LA23_16==DDOT) && (synpred32_MofPackage())) {s = 26;}
-
-                        else if ( (LA23_16==RCURL_RBRACK) && (synpred48_MofPackage())) {s = 27;}
-
-                         
-                        input.seek(index23_16);
                         if ( s>=0 ) return s;
                         break;
             }
@@ -5457,160 +5462,160 @@ public class MofPackageParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_BOOL_in_booleanSymbol374 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_package_in_main402 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_main405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_package436 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_33_in_model_package440 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotation_in_model_package436 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_model_package440 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_model_package447 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LCURL_in_model_package456 = new BitSet(new long[]{0x0000006D40000880L});
-    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package467 = new BitSet(new long[]{0x0000006D40000880L});
-    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package475 = new BitSet(new long[]{0x0000006D40000880L});
-    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package490 = new BitSet(new long[]{0x0000006C00000880L});
-    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package498 = new BitSet(new long[]{0x0000006C00000880L});
+    public static final BitSet FOLLOW_LCURL_in_model_package456 = new BitSet(new long[]{0x0000006AC0000880L});
+    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package467 = new BitSet(new long[]{0x0000006AC0000880L});
+    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package475 = new BitSet(new long[]{0x0000006AC0000880L});
+    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package490 = new BitSet(new long[]{0x00000042C0000880L});
+    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package498 = new BitSet(new long[]{0x00000042C0000880L});
     public static final BitSet FOLLOW_RCURL_in_model_package513 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_namespace_classes_in_model_modelelement_classes551 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_generalizableelement_classes_in_model_namespace_classes578 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_classifier_classes_in_model_generalizableelement_classes605 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_class_classes_in_model_classifier_classes632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_class_classes662 = new BitSet(new long[]{0x0000006540000000L});
-    public static final BitSet FOLLOW_visibility_in_model_class_classes666 = new BitSet(new long[]{0x0000000140000000L});
-    public static final BitSet FOLLOW_32_in_model_class_classes676 = new BitSet(new long[]{0x0000000040000000L});
-    public static final BitSet FOLLOW_30_in_model_class_classes694 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotation_in_model_class_classes662 = new BitSet(new long[]{0x0000002AC0000000L});
+    public static final BitSet FOLLOW_visibility_in_model_class_classes666 = new BitSet(new long[]{0x0000002800000000L});
+    public static final BitSet FOLLOW_37_in_model_class_classes676 = new BitSet(new long[]{0x0000000800000000L});
+    public static final BitSet FOLLOW_35_in_model_class_classes694 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_model_class_classes701 = new BitSet(new long[]{0x0000008000000000L});
     public static final BitSet FOLLOW_39_in_model_class_classes709 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_namespace_associations_in_model_modelelement_associations746 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_generalizableelement_associations_in_model_namespace_associations773 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_classifier_associations_in_model_generalizableelement_associations800 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_association_associations_in_model_classifier_associations827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_association_associations857 = new BitSet(new long[]{0x0000006C00000000L});
-    public static final BitSet FOLLOW_visibility_in_model_association_associations861 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_model_association_associations865 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotation_in_model_association_associations857 = new BitSet(new long[]{0x00000042C0000000L});
+    public static final BitSet FOLLOW_visibility_in_model_association_associations861 = new BitSet(new long[]{0x0000004000000000L});
+    public static final BitSet FOLLOW_38_in_model_association_associations865 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_model_association_associations872 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LCURL_in_model_association_associations881 = new BitSet(new long[]{0x00000110800000B0L});
+    public static final BitSet FOLLOW_LCURL_in_model_association_associations881 = new BitSet(new long[]{0x00000105000000B0L});
     public static final BitSet FOLLOW_model_modelelement_associationEnds_in_model_association_associations892 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_model_association_associations900 = new BitSet(new long[]{0x00000110800000B0L});
+    public static final BitSet FOLLOW_39_in_model_association_associations900 = new BitSet(new long[]{0x00000105000000B0L});
     public static final BitSet FOLLOW_model_modelelement_associationEnds_in_model_association_associations907 = new BitSet(new long[]{0x0000008000000000L});
     public static final BitSet FOLLOW_39_in_model_association_associations914 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_RCURL_in_model_association_associations921 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_typedelement_associationEnds_in_model_modelelement_associationEnds959 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_associationend_associationEnds_in_model_typedelement_associationEnds986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_associationend_associationEnds1016 = new BitSet(new long[]{0x0000011080000030L});
-    public static final BitSet FOLLOW_31_in_model_associationend_associationEnds1026 = new BitSet(new long[]{0x0000011000000030L});
-    public static final BitSet FOLLOW_36_in_model_associationend_associationEnds1062 = new BitSet(new long[]{0x0000010000000030L});
-    public static final BitSet FOLLOW_40_in_model_associationend_associationEnds1089 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_annotation_in_model_associationend_associationEnds1016 = new BitSet(new long[]{0x0000010500000030L});
+    public static final BitSet FOLLOW_32_in_model_associationend_associationEnds1026 = new BitSet(new long[]{0x0000010400000030L});
+    public static final BitSet FOLLOW_40_in_model_associationend_associationEnds1062 = new BitSet(new long[]{0x0000000400000030L});
+    public static final BitSet FOLLOW_34_in_model_associationend_associationEnds1089 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_typereference_in_model_associationend_associationEnds1099 = new BitSet(new long[]{0x0000000000056510L});
     public static final BitSet FOLLOW_model_multiplicitytype_in_model_associationend_associationEnds1107 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_model_associationend_associationEnds1117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_qualifiedNameSymbol_in_typereference1163 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_identifier_in_typereference1183 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_visibility1233 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_visibility1249 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_visibility1265 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotationSymbol_in_annotation1307 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1382 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1389 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1400 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1418 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_model_multiplicitytype1455 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1463 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1470 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1481 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1499 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_model_multiplicitytype1516 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_model_multiplicitytype1541 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1549 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1556 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1567 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1585 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RCURL_in_model_multiplicitytype1602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_model_multiplicitytype1627 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1635 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1642 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1653 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1671 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_RCURL_RBRACK_in_model_multiplicitytype1688 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_model_multiplicitytype1713 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1721 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1728 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1739 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1757 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_RBRACK_RCURL_in_model_multiplicitytype1774 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1808 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1826 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_model_multiplicitytype1871 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1882 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1900 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_model_multiplicitytype1917 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_model_multiplicitytype1940 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_model_multiplicitytype1948 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_model_multiplicitytype1981 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1992 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype2010 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RCURL_in_model_multiplicitytype2027 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_model_multiplicitytype2050 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RCURL_in_model_multiplicitytype2058 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2091 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype2102 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype2120 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2170 = new BitSet(new long[]{0x0000000000002100L});
-    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype2181 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype2199 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2216 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2239 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2247 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2270 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2278 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred26_MofPackage1357 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_synpred26_MofPackage1359 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STAR_in_synpred26_MofPackage1361 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred26_MofPackage1365 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_synpred26_MofPackage1367 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred26_MofPackage1369 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_synpred28_MofPackage1441 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred28_MofPackage1443 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_synpred28_MofPackage1445 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_synpred30_MofPackage1527 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred30_MofPackage1529 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_synpred30_MofPackage1531 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred32_MofPackage1613 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred32_MofPackage1615 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_synpred32_MofPackage1617 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred34_MofPackage1699 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred34_MofPackage1701 = new BitSet(new long[]{0x0000000000001000L});
-    public static final BitSet FOLLOW_DDOT_in_synpred34_MofPackage1703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_STAR_in_synpred37_MofPackage1785 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred37_MofPackage1789 = new BitSet(new long[]{0x000001FFFFFFEFF0L});
-    public static final BitSet FOLLOW_set_in_synpred37_MofPackage1791 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_synpred40_MofPackage1849 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred40_MofPackage1851 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_synpred40_MofPackage1853 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_synpred40_MofPackage1857 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STAR_in_synpred40_MofPackage1859 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_synpred40_MofPackage1861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACKET_in_synpred42_MofPackage1928 = new BitSet(new long[]{0x0000000000008000L});
-    public static final BitSet FOLLOW_RBRACKET_in_synpred42_MofPackage1930 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_synpred44_MofPackage1959 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STAR_in_synpred44_MofPackage1961 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RCURL_in_synpred44_MofPackage1963 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_synpred44_MofPackage1967 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred44_MofPackage1969 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RCURL_in_synpred44_MofPackage1971 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_in_synpred46_MofPackage2038 = new BitSet(new long[]{0x0000000000000800L});
-    public static final BitSet FOLLOW_RCURL_in_synpred46_MofPackage2040 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2069 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STAR_in_synpred48_MofPackage2071 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2073 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2077 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred48_MofPackage2079 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2081 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2148 = new BitSet(new long[]{0x0000000000002000L});
-    public static final BitSet FOLLOW_STAR_in_synpred51_MofPackage2150 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2152 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2156 = new BitSet(new long[]{0x0000000000000100L});
-    public static final BitSet FOLLOW_integerSymbol_in_synpred51_MofPackage2158 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2160 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred53_MofPackage2227 = new BitSet(new long[]{0x0000000000080000L});
-    public static final BitSet FOLLOW_RBRACK_RCURL_in_synpred53_MofPackage2229 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred54_MofPackage2258 = new BitSet(new long[]{0x0000000000020000L});
-    public static final BitSet FOLLOW_RCURL_RBRACK_in_synpred54_MofPackage2260 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_model_associationend_associationEnds1119 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_qualifiedNameSymbol_in_typereference1165 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_identifier_in_typereference1185 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_visibility1235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_visibility1251 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_30_in_visibility1267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotationSymbol_in_annotation1309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1384 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1391 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1420 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_model_multiplicitytype1457 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1465 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1472 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1483 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1501 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_model_multiplicitytype1518 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_model_multiplicitytype1543 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1551 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1558 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1569 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1587 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURL_in_model_multiplicitytype1604 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_model_multiplicitytype1629 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1637 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1644 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1655 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1673 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_RCURL_RBRACK_in_model_multiplicitytype1690 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_model_multiplicitytype1715 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1723 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1730 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1741 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1759 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_RBRACK_RCURL_in_model_multiplicitytype1776 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1810 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1828 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_model_multiplicitytype1873 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1884 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1902 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_model_multiplicitytype1919 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_model_multiplicitytype1942 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_model_multiplicitytype1950 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_model_multiplicitytype1983 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype1994 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype2012 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURL_in_model_multiplicitytype2029 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_model_multiplicitytype2052 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURL_in_model_multiplicitytype2060 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2093 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype2104 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype2122 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2139 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2172 = new BitSet(new long[]{0x0000000000002100L});
+    public static final BitSet FOLLOW_STAR_in_model_multiplicitytype2183 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype2201 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2218 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2241 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2272 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2280 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred26_MofPackage1359 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_synpred26_MofPackage1361 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STAR_in_synpred26_MofPackage1363 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred26_MofPackage1367 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_synpred26_MofPackage1369 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred26_MofPackage1371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_synpred28_MofPackage1443 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred28_MofPackage1445 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_synpred28_MofPackage1447 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_synpred30_MofPackage1529 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred30_MofPackage1531 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_synpred30_MofPackage1533 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred32_MofPackage1615 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred32_MofPackage1617 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_synpred32_MofPackage1619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred34_MofPackage1701 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred34_MofPackage1703 = new BitSet(new long[]{0x0000000000001000L});
+    public static final BitSet FOLLOW_DDOT_in_synpred34_MofPackage1705 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_STAR_in_synpred37_MofPackage1787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred37_MofPackage1791 = new BitSet(new long[]{0x000001FFFFFFEFF0L});
+    public static final BitSet FOLLOW_set_in_synpred37_MofPackage1793 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_synpred40_MofPackage1851 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred40_MofPackage1853 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_synpred40_MofPackage1855 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_synpred40_MofPackage1859 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STAR_in_synpred40_MofPackage1861 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_synpred40_MofPackage1863 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACKET_in_synpred42_MofPackage1930 = new BitSet(new long[]{0x0000000000008000L});
+    public static final BitSet FOLLOW_RBRACKET_in_synpred42_MofPackage1932 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_synpred44_MofPackage1961 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STAR_in_synpred44_MofPackage1963 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURL_in_synpred44_MofPackage1965 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_synpred44_MofPackage1969 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred44_MofPackage1971 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURL_in_synpred44_MofPackage1973 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_in_synpred46_MofPackage2040 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_RCURL_in_synpred46_MofPackage2042 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2071 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STAR_in_synpred48_MofPackage2073 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2075 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred48_MofPackage2079 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred48_MofPackage2081 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_RCURL_RBRACK_in_synpred48_MofPackage2083 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2150 = new BitSet(new long[]{0x0000000000002000L});
+    public static final BitSet FOLLOW_STAR_in_synpred51_MofPackage2152 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred51_MofPackage2158 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_integerSymbol_in_synpred51_MofPackage2160 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_RBRACK_RCURL_in_synpred51_MofPackage2162 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LCURL_LBRACK_in_synpred53_MofPackage2229 = new BitSet(new long[]{0x0000000000080000L});
+    public static final BitSet FOLLOW_RBRACK_RCURL_in_synpred53_MofPackage2231 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_LBRACK_LCURL_in_synpred54_MofPackage2260 = new BitSet(new long[]{0x0000000000020000L});
+    public static final BitSet FOLLOW_RCURL_RBRACK_in_synpred54_MofPackage2262 = new BitSet(new long[]{0x0000000000000002L});
 
 }

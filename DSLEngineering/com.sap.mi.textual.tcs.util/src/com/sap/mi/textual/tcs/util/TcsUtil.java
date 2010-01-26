@@ -79,6 +79,7 @@ import com.sap.tc.moin.repository.mmi.model.TypedElement;
 import com.sap.tc.moin.repository.mmi.reflect.RefAssociation;
 import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefStruct;
 import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
 import com.sap.tc.moin.repository.mql.MQLPreparedQuery;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
@@ -1405,6 +1406,36 @@ public class TcsUtil {
 		return null;
 	}
 
+	 /**
+	     * Returns the value of the property identified by propName of the given target RefStruct.
+	     * 
+	     * 
+	     * @param target
+	     *            RefStruct to get the property value of.
+	     * @param propName
+	     *            Name of the property to get the value of.
+	     * @return The value of the given property for the target RefStruct. This can be a collection for multi-valued properties.
+	     */
+	        public static Object getPropertyValue(RefStruct target,
+	                        PropertyReference propRef) {
+	                assert (target != null);
+
+	                if (propRef != null) {
+
+	                        if (propRef.getName() != null) {
+	                                // assume that name can only refer to an attribute or reference,
+	                                // not an association link
+	                                return target.refGetValue(propRef.getName());
+	                        }
+	                        TypedElement elem = propRef.getStrucfeature();
+	                        if (elem != null) {
+	                            return target.refGetValue(elem.getName());
+	                        }
+	                }
+	                return null;
+	        }
+	
+	
     /**
      * Returns the value of the property identified by propName of the given target RefObject.
      * 
