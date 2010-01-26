@@ -9,15 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-
 import org.omg.ocl.expressions.OclExpression;
+import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.ocl.evaluator.EvaluationContext;
 import com.sap.tc.moin.ocl.evaluator.EvaluationContextImpl;
@@ -27,9 +20,9 @@ import com.sap.tc.moin.ocl.evaluator.stdlib.OclAny;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclCollection;
 import com.sap.tc.moin.ocl.evaluator.stdlib.OclFactory;
 import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclVoidImpl;
-import com.sap.tc.moin.ocl.ia.ImpactAnalyzer;
+import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.ia.Statistics;
-import com.sap.tc.moin.ocl.ia.result.EvaluationUnit;
+import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
 import com.sap.tc.moin.ocl.parser.IOclParser;
 import com.sap.tc.moin.ocl.parser.OclParserFactory;
 import com.sap.tc.moin.ocl.utils.OclStatement;
@@ -46,6 +39,13 @@ import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.exception.MoinIllegalArgumentException;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
+import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode;
 import com.sap.tc.moin.repository.ocl.exceptions.InvalidValueException;
 import com.sap.tc.moin.repository.ocl.exceptions.ParsingException;
@@ -83,9 +83,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     private EventFilter myEventFilter;
 
-    private ImpactAnalyzer analyzer;
-
-    private final EvaluationHelper evalHelper;
+    private InstanceScopeAnalysis analyzer;
 
     final Set<ModelChangeEvent> collectedEvents = new HashSet<ModelChangeEvent>( );
 
@@ -142,7 +140,6 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     public OclExpressionRegistrationImpl( CoreConnection connection, String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject context, RefPackage[] typesPackages ) throws OclManagerException {
 
         super( connection, name, OclRegistrationType.Expression, severity, categories, oclExpression, context, "ExpressionRegistration" ); //$NON-NLS-1$
-        this.evalHelper = new EvaluationHelper( );
         IOclParser parser = OclParserFactory.create( this.myJmiCreator );
         try {
             Set<OclStatement> parserResult = parser.parseString( this.getOclExpression( ), this.parsingConext, typesPackages );
@@ -176,7 +173,6 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     public OclExpressionRegistrationImpl( CoreConnection connection, String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject context, MofPackage[] packages) throws OclManagerException {
 
         super( connection, name, OclRegistrationType.Expression, severity, categories, oclExpression, context, "ExpressionRegistration" ); //$NON-NLS-1$
-        this.evalHelper = new EvaluationHelper( );
         IOclParser parser = OclParserFactory.create( this.myJmiCreator );
         try {
             ModelElementsByQualifiedNamesResult modelElementsByName = getModelElementsByQualifiedNamesList(packages, connection);
@@ -386,41 +382,36 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     }
 
     void triggerDeferredOclEvaluation( String category, Set<ModelPartition> partitions ) throws OclManagerException {
-
         Map<ExpressionInvalidationListener, Set<MRI>> categoryListeners = this.myCategoryListeners.get( category );
-
         if ( categoryListeners == null || categoryListeners.isEmpty( ) ) {
             return;
         }
 
-        Set<RefObject> checkObjects = new HashSet<RefObject>( );
-        Set<EvaluationUnit> units = this.getImpactAnalyzer( ).filterForClasses( this.getClassifiersFromPartition( partitions ) );
-
-        for ( EvaluationUnit unit : units ) {
-            Set<OclAny> instances = this.evalHelper.getAffectedInstances( this.myConnection, unit );
-            for ( OclAny resultObject : instances ) {
-                if ( resultObject.getWrappedObject( ) instanceof RefObject ) {
-                    checkObjects.add( (RefObject) resultObject.getWrappedObject( ) );
-                }
-            }
-        }
-
         Set<MRI> invalidObjects = new HashSet<MRI>( );
-        for ( RefObject checkObject : checkObjects ) {
-            if ( this.expressionValues.containsKey( checkObject.get___Mri( ) ) ) {
-                ValueInvalidationTuple tuple = this.expressionValues.get( checkObject.get___Mri( ) );
-                tuple.setNewValue( this.evaluateExpression( checkObject, true ) );
-                if ( !tuple.isValid( ) ) {
-                    tuple.refresh( );
-                    invalidObjects.add( checkObject.get___Mri( ) );
-                }
-            } else {
-                ValueInvalidationTuple tuple = new ValueInvalidationTuple( this.evaluateExpression( checkObject, true ) );
-                this.expressionValues.put( checkObject.get___Mri( ), tuple );
-                invalidObjects.add( checkObject.get___Mri( ) );
-            }
-        }
-
+	for (ModelPartition partition : partitions) {
+	    for (Partitionable partitionable : partition.getElements()) {
+		if (partitionable instanceof RefObject) {
+		    RefObject meta = ((RefObject) partitionable).refMetaObject();
+		    if (meta instanceof Classifier
+			    && (meta.equals(getOclStatement().getContext()) || ((Classifier) meta).allSupertypes().contains(getOclStatement().getContext()))) {
+			RefObject checkObject = (RefObject) partitionable;
+			if (this.expressionValues.containsKey(checkObject.get___Mri())) {
+			    ValueInvalidationTuple tuple = this.expressionValues.get(checkObject.get___Mri());
+			    tuple.setNewValue(this.evaluateExpression(checkObject, true));
+			    if (!tuple.isValid()) {
+				tuple.refresh();
+				invalidObjects.add(checkObject.get___Mri());
+			    }
+			} else {
+			    ValueInvalidationTuple tuple = new ValueInvalidationTuple(this.evaluateExpression(
+				    checkObject, true));
+			    this.expressionValues.put(checkObject.get___Mri(), tuple);
+			    invalidObjects.add(checkObject.get___Mri());
+			}
+		    }
+		}
+	    }
+	}
         if ( invalidObjects.isEmpty( ) ) {
             return;
         }
@@ -606,23 +597,13 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     @Override
     public Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn) {
 	Statistics.getInstance().receivedEvent(this, mce);
-	Set<EvaluationUnit> units = this.getImpactAnalyzer( ).filter( (CoreConnection) conn, mce );
-        Set<MRI> affectedModelElements = new HashSet<MRI>( );
-
-        for ( EvaluationUnit unit : units ) {
-            Set<OclAny> instances = this.evalHelper.getAffectedInstances( (CoreConnection) conn, unit );
-            for ( OclAny resultObject : instances ) {
-                if ( resultObject.getWrappedObject( ) instanceof RefObject ) {
-                    affectedModelElements.add( ( (RefObject) resultObject.getWrappedObject( ) ).get___Mri( ) );
-                }
-            }
-        }
+        Set<MRI> affectedModelElements = getImpactAnalyzer().getAffectedElements(getExpression(), getContext(), mce);
 	return affectedModelElements;
     }
 
     private void registerInEventFramework( ) {
 
-        this.myConnection.getSession( ).getEventRegistry( ).registerListener( this, this.getEventFilter( ) );
+        this.myConnection.getSession( ).getEventRegistry( ).registerListener( this, this.getEventFilter(/* notifyNewContextElement */ true ) );
         this.registeredInEventFramework = true;
     }
 
@@ -672,17 +653,9 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         if ( !notifyRequired ) {
             return;
         }
-
-        Set<EvaluationUnit> units = this.getImpactAnalyzer( ).filter( this.myConnection, this.collectedEvents );
         Set<MRI> affectedModelElements = new HashSet<MRI>( );
-
-        for ( EvaluationUnit unit : units ) {
-            Set<OclAny> instances = this.evalHelper.getAffectedInstances( this.myConnection, unit );
-            for ( OclAny resultObject : instances ) {
-                if ( resultObject.getWrappedObject( ) instanceof RefObject ) {
-                    affectedModelElements.add( ( (RefObject) resultObject.getWrappedObject( ) ).get___Mri( ) );
-                }
-            }
+        for (ModelChangeEvent mce : collectedEvents) {
+            affectedModelElements.addAll(getImpactAnalyzer().getAffectedElements(getExpression(), getContext(), mce));
         }
 
         if ( affectedModelElements.isEmpty( ) ) {
@@ -734,39 +707,30 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     }
 
     @Override
-    public EventFilter getEventFilter( ) {
-
-        if ( this.myEventFilter == null ) {
-            this.getImpactAnalyzer( );
-        }
-        return this.myEventFilter;
+    public EventFilter getEventFilter(boolean notifyNewContextElement ) {
+	if (this.myEventFilter == null) {
+	    this.myEventFilter = new ClassScopeAnalyzer(myConnection,
+		    (OclExpressionInternal) getOclStatement().getExpression(), /* notifyNewContextElement */
+		    false).getEventFilter();
+	}
+	return this.myEventFilter;
     }
 
-    private ImpactAnalyzer getImpactAnalyzer( ) {
+    private InstanceScopeAnalysis getImpactAnalyzer( ) {
 
         if ( this.analyzer == null ) {
-            Set<OclStatement> stmts = new HashSet<OclStatement>( );
-            stmts.add( this.statement );
-            this.analyzer = new ImpactAnalyzer( false );
-            this.myEventFilter = this.analyzer.analyze( stmts, this.myJmiCreator );
+            this.analyzer = new InstanceScopeAnalysis(this.myConnection);
         }
         return this.analyzer;
     }
 
-    private Set<Classifier> getClassifiersFromPartition( Set<ModelPartition> partitions ) {
+    @Override
+    public RefObject getContext() {
+	return getOclStatement().getContext();
+    }
 
-        Set<Classifier> result = new HashSet<Classifier>( );
-
-        for ( ModelPartition partition : partitions ) {
-            for ( Partitionable partitionable : partition.getElements( ) ) {
-                if ( partitionable instanceof RefObject ) {
-                    RefObject meta = ( (RefObject) partitionable ).refMetaObject( );
-                    if ( meta instanceof Classifier ) {
-                        result.add( (Classifier) meta );
-                    }
-                }
-            }
-        }
-        return result;
+    @Override
+    public OclExpression getExpression() {
+	return getOclStatement().getExpression();
     }
 }

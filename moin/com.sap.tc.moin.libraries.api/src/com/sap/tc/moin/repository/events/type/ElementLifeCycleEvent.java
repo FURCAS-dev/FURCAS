@@ -23,7 +23,7 @@ public interface ElementLifeCycleEvent extends ElementChangeEvent {
 
     /**
      * resolves the MRI which can be retrieved using the
-     * {@link #getMetaObjectMri()}method.
+     * {@link #getMetaObjectMri()} method.
      * 
      * @param resolvingConnection the connection used to resolve
      * @return the meta object of the deleted element

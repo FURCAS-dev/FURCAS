@@ -53,6 +53,8 @@ public class Activator extends Plugin implements BundleActivator, GlobalEventLis
      */
     private WeakHashMap<Session, Object> knownSessions;
     private Bundle myBundle;
+
+    private Set<Thread> blockedThreads = new HashSet<Thread>();
     
     public Activator() {
     }
@@ -230,8 +232,32 @@ public class Activator extends Plugin implements BundleActivator, GlobalEventLis
     }
 
     void sessionCreated(Session session) {
-	knownSessions.put(session, null);
-	registerFilters(session);
+	if (acceptingSessionsForCurrentThread()) {
+	    knownSessions.put(session, null);
+	    registerFilters(session);
+	}
+    }
+    
+    private boolean acceptingSessionsForCurrentThread() {
+	return !blockedThreads.contains(Thread.currentThread());
+    }
+
+    private void acceptNoNewSessionsForCurrentThread() {
+	blockedThreads.add(Thread.currentThread());
+    }
+
+    private void acceptNewSessionsForCurrentThread() {
+	blockedThreads.remove(Thread.currentThread());
+    }
+
+    @Override
+    public void executeWithoutRegisteringListenersForNewSessions(Runnable runnable) {
+	try {
+	    acceptNoNewSessionsForCurrentThread();
+	    runnable.run();
+	} finally {
+	    acceptNewSessionsForCurrentThread();
+	}
     }
 
     BundleContext getBundleContext() {

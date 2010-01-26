@@ -34,14 +34,13 @@ import com.sap.tc.moin.repository.events.filter.AndFilter;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.filter.EventTypeFilter;
 import com.sap.tc.moin.repository.events.filter.LogicalOperationFilter;
+import com.sap.tc.moin.repository.events.filter.NotFilter;
 import com.sap.tc.moin.repository.events.filter.OrFilter;
 import com.sap.tc.moin.repository.events.type.AttributeValueEvent;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementCreateEvent;
 import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
-import com.sap.tc.moin.repository.events.type.ElementLifeCycleEvent;
 import com.sap.tc.moin.repository.events.type.LinkAddEvent;
-import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
@@ -431,6 +430,16 @@ public class ImpactAnalyzer {
         this.testingRevelanceSet.addAll( analysis.testingGetRelevances( ) );
     }
 
+    /**
+     * For a non-empty filter set <tt>ev</tt> merges those filters (combining them with a logical "or" operator)
+     * and adds an {@link EventTypeFilter} for class <tt>filterClass</tt> using a logical "and" operator. The
+     * resulting single combined event filter is added to <tt>mfs</tt>. Those filters from <tt>ev</tt> that
+     * cannot be merged into the first element returned from <tt>ev</tt>'s iterator are added separately to
+     * <tt>mfs</tt>, each <tt>and</tt>-ed with an {@link EventTypeFilter} for <tt>filterClass</tt>. This assumes
+     * that <tt>mfs</tt> has "or" semantics.<p>
+     * 
+     * For an empty set <tt>ev</tt> this operation does nothing.
+     */
     private void addTo( Set<EventFilter> mfs, Set<EventFilter> ev, Class<? extends ChangeEvent> filterClass ) {
 
         if ( ev.isEmpty( ) ) {
@@ -441,8 +450,9 @@ public class ImpactAnalyzer {
         EventFilter firstFilter = it.next( );
         while ( it.hasNext( ) ) {
             EventFilter nextFilter = it.next( );
-            if (nextFilter.getClass().equals(firstFilter.getClass())) {
-        	firstFilter.merge( nextFilter );
+            if (!(nextFilter instanceof AndFilter) && !(nextFilter instanceof NotFilter)
+		    && nextFilter.getClass().equals(firstFilter.getClass())) {
+		firstFilter.merge(nextFilter);
             } else {
         	// add instead of merge if filter types are different
         	mfs.add(x_and(new EventTypeFilter( filterClass ), nextFilter));
@@ -484,43 +494,21 @@ public class ImpactAnalyzer {
             Set<EventFilter> filter = filters.get( ev.getType( ) );
             filter.add( ev.getFilter( connection ) );
         }
+        // Invariant: each filter from internalEvents is contained only in the set for *one* key in filters because each one has a single type
 
         // new we merge element deleted and element added where possible
         Set<EventFilter> elementCreatedFilters = filters.get( InsertET.class );
         Set<EventFilter> elementDeletedFilters = filters.get( DeleteET.class );
-        Set<EventFilter> elementChangedFilters = new HashSet<EventFilter>( );
-        // this assumes that equals is implemented correctly
-        for ( EventFilter createdFilter : elementCreatedFilters ) {
-            if ( elementDeletedFilters.contains( createdFilter ) ) {
-                elementChangedFilters.add( createdFilter );
-            }
-        }
-
-        elementCreatedFilters.removeAll( elementChangedFilters );
-        elementDeletedFilters.removeAll( elementChangedFilters );
 
         // Add event type filters
         Set<EventFilter> mfs = new HashSet<EventFilter>( );
-
-        addTo( mfs, elementChangedFilters, ElementLifeCycleEvent.class );
         addTo( mfs, elementCreatedFilters, ElementCreateEvent.class );
         addTo( mfs, elementDeletedFilters, ElementDeleteEvent.class );
 
-        // new we merge link deleted and element added where possible
+        // now we merge link deleted and element added where possible
         Set<EventFilter> linkCreatedFilters = filters.get( InsertRT.class );
         Set<EventFilter> linkDeletedFilters = filters.get( DeleteRT.class );
-        Set<EventFilter> linkChangedFilters = new HashSet<EventFilter>( );
-        // this assumes that equals is implemented correctly
-        for ( EventFilter createdFilter : linkCreatedFilters ) {
-            if ( linkDeletedFilters.contains( createdFilter ) ) {
-                linkChangedFilters.add( createdFilter );
-            }
-        }
 
-        linkCreatedFilters.removeAll( linkChangedFilters );
-        linkDeletedFilters.removeAll( linkChangedFilters );
-
-        addTo( mfs, linkChangedFilters, LinkChangeEvent.class );
         addTo( mfs, linkCreatedFilters, LinkAddEvent.class );
         addTo( mfs, linkDeletedFilters, LinkRemoveEvent.class );
         addTo( mfs, filters.get( UpdateAttribute.class ), AttributeValueEvent.class );

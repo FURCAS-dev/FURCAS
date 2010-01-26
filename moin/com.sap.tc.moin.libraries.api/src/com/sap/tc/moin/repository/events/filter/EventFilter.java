@@ -146,7 +146,9 @@ public abstract class EventFilter implements Cloneable {
         }
         if ( obj instanceof EventFilter ) {
             EventFilter other = (EventFilter) obj;
-            return _filterCriterion.equals( other._filterCriterion ) && _negated == other._negated;
+            return ((_filterCriterion == null && other._filterCriterion == null) ||
+        	    (_filterCriterion != null && _filterCriterion.equals(other._filterCriterion))) &&
+        	    _negated == other._negated;
         }
         return false;
     }
@@ -184,7 +186,7 @@ public abstract class EventFilter implements Cloneable {
             result.append( " negated='true'" ); //$NON-NLS-1$
         }
 
-        if ( _filterCriterion instanceof Collection ) {
+        if ( _filterCriterion instanceof Collection<?> ) {
             Collection<Object> criteria = (Collection<Object>) _filterCriterion;
 
             result.append( " criteria='" + criteria.size( ) + "'" ); //$NON-NLS-1$ //$NON-NLS-2$
@@ -218,41 +220,56 @@ public abstract class EventFilter implements Cloneable {
     }
 
     /**
-     * Merges the content of the given filter into the current filter. Not all
-     * filter types support this operation. Those which do not support it will
-     * throw an {@link UnsupportedOperationException}. Only filters that have
-     * the same type, will support merging. If an incompatible type is passed to
-     * this method, it will throw an {@link IllegalArgumentException}.
+     * Merges the content of the given filter into the current filter with "or" semantics. After this operation returns,
+     * this filter responds to all events to which it responded before <em>plus</em> all events that
+     * <tt>otherFilter</tt> responds to.
+     * <p>
      * 
-     * @param otherFilter with the content to be merges into this filter
+     * Not all filter types support this operation. Those which do not support it will throw an
+     * {@link UnsupportedOperationException}. If an incompatible type is passed to this method, it will throw an
+     * {@link IllegalArgumentException}.
+     * 
+     * @param otherFilter
+     *            with the content to be merges into this filter
      */
-    public final void merge( EventFilter otherFilter ) {
+    public void merge( EventFilter otherFilter ) {
 
         if ( !otherFilter.getClass( ).equals( this.getClass( ) ) ) {
             throw new MoinIllegalArgumentException( RepositoryEventsFilterMessages.FILTERCANNOTMERGEWITH, otherFilter.toString( ) );
         }
-
-        Object otherFilterCriterion = otherFilter.getFilterCriterion( );
-        if ( otherFilterCriterion instanceof Collection ) {
-            Collection otherLris = (Collection) otherFilterCriterion;
-            if ( this._filterCriterion instanceof Collection ) {
-                Collection lris = (Collection) _filterCriterion;
-                lris.addAll( otherLris );
-            } else {
-                otherLris.add( _filterCriterion );
-                _filterCriterion = otherLris;
-            }
-        } else {
-            if ( this._filterCriterion instanceof Collection ) {
-                Collection lris = (Collection) _filterCriterion;
-                lris.add( otherFilterCriterion );
-            } else {
-                Set lris = new HashSet( );
-                lris.add( _filterCriterion );
-                lris.add( otherFilterCriterion );
-                _filterCriterion = lris;
-            }
-        }
+        // Don't need to merge if the other filter equals this filter
+	if (!this.equals(otherFilter)) {
+	    Object otherFilterCriterion = otherFilter.getFilterCriterion();
+	    if (otherFilterCriterion instanceof Collection) {
+		Collection otherLris = (Collection) otherFilterCriterion;
+		if (this._filterCriterion instanceof Collection) {
+		    Collection lris = (Collection) _filterCriterion;
+		    lris.addAll(otherLris);
+		} else {
+		    Set newFilterCriterion = new HashSet(otherLris);
+		    if (_filterCriterion != null) {
+			newFilterCriterion.add(_filterCriterion);
+		    }
+		    _filterCriterion = newFilterCriterion;
+		}
+	    } else {
+		if (this._filterCriterion instanceof Collection) {
+		    if (otherFilterCriterion != null) {
+			Collection lris = (Collection) _filterCriterion;
+			lris.add(otherFilterCriterion);
+		    }
+		} else {
+		    if (_filterCriterion == null) {
+			_filterCriterion = otherFilterCriterion;
+		    } else if (otherFilterCriterion != null) {
+			Set lris = new HashSet();
+			lris.add(_filterCriterion);
+			lris.add(otherFilterCriterion);
+			_filterCriterion = lris;
+		    }
+		}
+	    }
+	}
     }
 
     /**

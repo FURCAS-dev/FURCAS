@@ -1,6 +1,5 @@
 package com.sap.tc.moin.ocl.evaluator.stdlib.impl;
 
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -25,7 +24,6 @@ import com.sap.tc.moin.repository.exception.MoinUnsupportedOperationException;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
 import com.sap.tc.moin.repository.mmi.model.__impl.ClassifierInternal;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mql.FromEntry;
 import com.sap.tc.moin.repository.mql.FromType;
 import com.sap.tc.moin.repository.mql.MQLPreparedQuery;
@@ -106,7 +104,7 @@ public class OclTypeImpl extends BaseOclAny implements OclType {
             return OclFactory.instance( ).createSetFromOclAnyObjects( objects );
         }
 
-        Collection<RefObject> allInstances = getAllInstances( connection, ( (ClassifierInternal) this.underlyingClassifier ).getQualifiedName( connection ) );
+        Set<RefObjectImpl> allInstances = getAllInstances( connection, ( (ClassifierInternal) this.underlyingClassifier ).getQualifiedName( connection ) );
         return OclFactory.instance( ).createSetFromRefObjects( allInstances );
     }
 
@@ -139,10 +137,20 @@ public class OclTypeImpl extends BaseOclAny implements OclType {
         return new OclStringImpl( stringValue.toString( ) );
     }
 
-    private Collection<RefObject> getAllInstances( CoreConnection connection, List<String> classQname ) {
-	Statistics.getInstance().allInstancesCalled(this, classQname);
+    public static Set<RefObjectImpl> getAllInstances( CoreConnection connection, List<String> classQname ) {
+	Set<MRI> foundMris = getAllInstancesMris(connection, classQname);
+        Set<RefObjectImpl> instances = new HashSet<RefObjectImpl>( );
+        if ( !foundMris.isEmpty( ) ) {
+            for ( MRI mri : foundMris ) {
+                instances.add( (RefObjectImpl) connection.getElement( mri ) );
+            }
+        }
+        return instances;
+    }
+
+    public static Set<MRI> getAllInstancesMris(CoreConnection connection, List<String> classQname) {
+	Statistics.getInstance().allInstancesCalled(classQname);
         Set<MRI> foundMris = new HashSet<MRI>( );
-        Set<RefObject> instances = new HashSet<RefObject>( );
 
         String[] className = new String[classQname.size( )];
         classQname.toArray( className );
@@ -187,12 +195,6 @@ public class OclTypeImpl extends BaseOclAny implements OclType {
                 foundMris.add( foundConstraints.getMri( i, "constraint" ) ); //$NON-NLS-1$
             }
         }
-
-        if ( !foundMris.isEmpty( ) ) {
-            for ( MRI mri : foundMris ) {
-                instances.add( (RefObject) connection.getElement( mri ) );
-            }
-        }
-        return instances;
+	return foundMris;
     }
 }

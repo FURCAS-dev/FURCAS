@@ -791,16 +791,17 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 						ModelManager.getPartitionService().getPartition(
 								connection, getProject(),
 								new Path("src/Package1235568260162.types")));
-		clazz2.setName("test");
+		final String testClassName = "test";
+		clazz2.setName(testClassName);
 		connection.save();
 
 		editor = openEditor(clazz2);
 		document = getDocument(editor);
 
 		contents = document.get();
-		int indexofName = contents.indexOf("test");
+		int indexofName = contents.indexOf(testClassName);
 		String newName = "C2";
-		document.replace(indexofName, "test".length(), newName);
+		document.replace(indexofName, testClassName.length(), newName);
 
 		saveAll(editor);
 		//save twice to be sure all delayed references have been resolved

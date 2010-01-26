@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import com.sap.tc.moin.repository.exception.MoinIllegalArgumentException;
+
 /**
  * LogicalOperationFilters are used to connect MoinEventFilters using Boolean
  * operations. The depth or size of the resulting tree is not limited, but it
@@ -22,6 +24,15 @@ public abstract class LogicalOperationFilter extends EventFilter {
 
         return _operands;
     }
+    
+    /**
+     * Generally, the merge of logical operation filters is unsupported; an exception is the {@link OrFilter}
+     * which redefines this method. 
+     */
+    @Override
+    public void merge(EventFilter otherFilter) {
+	throw new UnsupportedOperationException("Can't merge logical operation filters except OrFilter");
+    }
 
     /**
      * creates a (deep) clone of the current element.
@@ -30,14 +41,14 @@ public abstract class LogicalOperationFilter extends EventFilter {
 
         LogicalOperationFilter result;
         try {
-            result = (LogicalOperationFilter) this.getClass( ).newInstance( );
+            result = this.getClass( ).newInstance( );
         } catch ( Exception e ) {
             result = null;
         }
         // perform a deep clone => clone the contained filters and add them to
         // the result
         for ( EventFilter operand : _operands ) {
-            EventFilter clonedFilter = (EventFilter) operand.clone( );
+            EventFilter clonedFilter = operand.clone( );
             result._operands.add( clonedFilter );
         }
         return result;

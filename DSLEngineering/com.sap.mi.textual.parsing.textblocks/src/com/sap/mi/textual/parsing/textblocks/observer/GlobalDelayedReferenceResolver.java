@@ -118,9 +118,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	    if (events.getEvents().size() > 0) {
 		ChangeEvent event = events.getEvents().iterator().next();
 		Connection conn = event.getEventTriggerConnection();
-		Set<MRI> affectedElements = getAffectedElements(events, conn);
-		
-		 if(reference.isGenericReference()) {
+		if(reference.isGenericReference()) {
 		     //Its a generic reference not an unresolved one
 		     if(reference.getQueryElement() != null) {
 			 if(reference.getQueryElement() instanceof InjectorAction) {
@@ -137,6 +135,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 //			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
 //			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
 //			     tbs.addAll(additionalTbs);
+			     Set<MRI> affectedElements = null;
 			     for (TextBlock textBlock : tbs) {
 				//first check if the alternative in which the injector action resides was
 				//chosen during the parsing process
@@ -157,18 +156,21 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 					}
 				}
 				
-				if(wasInChosenAlternative) {
-					Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-						conn, affectedElements, textBlock);
-					for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-					    DelayedReference clonedRef = (DelayedReference) reference.clone();
-					    clonedRef.setModelElement(ro);
-					    clonedRef.setRealValue(null);
-					    clonedRef.setTextBlock(textBlock);
-					    clonedRef.setConnection(conn);
-					    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-					    //reference.setModelElement(null);
-					}
+				if (wasInChosenAlternative) {
+				    if (affectedElements == null) {
+					affectedElements = getAffectedElements(events, conn);
+				    }
+				    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+					    conn, affectedElements, textBlock);
+				    for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
+					DelayedReference clonedRef = (DelayedReference) reference.clone();
+					clonedRef.setModelElement(ro);
+					clonedRef.setRealValue(null);
+					clonedRef.setTextBlock(textBlock);
+					clonedRef.setConnection(conn);
+					GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+					// reference.setModelElement(null);
+				    }
 				}
 			    }
 			 } else if(reference.getQueryElement() instanceof Property) {
@@ -176,7 +178,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			     //now find all TextBlocks referencing this property;
 			     LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
 			     Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
+			     Set<MRI> affectedElements = null;
 			     for (LexedToken lt : toks) {
+				 if (affectedElements == null) {
+				     affectedElements = getAffectedElements(events, conn);
+				 }
 				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
 					conn, affectedElements, lt.getParentBlock());
 				for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
@@ -194,26 +200,24 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			    }
 			 }
 		     }
-                    if (backgroundResolver.getState() != Job.SLEEPING
-                            && backgroundResolver.getState() != Job.WAITING
-                            && backgroundResolver.getState() != Job.RUNNING) {
+		     int state = backgroundResolver.getState();
+                    if (state != Job.SLEEPING
+                            && state != Job.WAITING
+                            && state != Job.RUNNING) {
                         backgroundResolver.schedule(500);
                     }
 		 } else {
-
-		RefObject element = (RefObject) conn
-			.getElement(((RefObject) reference.getModelElement())
-				.get___Mri());
-		if(element == null) {
-		    //Element doesnt exist anymore, so reference can be removed
-		    GlobalDelayedReferenceResolver.this.removeRegistration(reference);
-		    return;
+		    // TODO (for Thomas) this code can probably be removed
+		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
+			    .get___Mri());
+		    if (element == null) {
+			// Element doesnt exist anymore, so reference can be removed
+			GlobalDelayedReferenceResolver.this.removeRegistration(reference);
+			return;
+		    }
+		    RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(conn, element);
+		    GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(conn, outermostPackage, this.reference);
 		}
-		RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-			conn, element);
-		GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(
-			conn, outermostPackage, this.reference);
-		 }
 	    }
 	}
 
@@ -597,6 +601,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     @Override
     public void prepare(ChangeEvent event) {
+	// TODO this is probably also dead code
 	if (event instanceof LinkRemoveEvent) {
 	    LinkRemoveEvent lre = (LinkRemoveEvent) event;
 	    MRI documentNodeMri = lre.getFirstLinkEndMri();
@@ -1236,7 +1241,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     private Map<EventFilter, Map<ListenerType, EventListener>> createReEvaluationListener(
 	    OclExpressionRegistration registration, DelayedReference ref) {
-	EventFilter filter = registration.getEventFilter();
+	EventFilter filter = registration.getEventFilter(/* notifyNewContextElement */ true); // TODO clarify if this should be false
 	// if(ref.getToken() != null) {
 	// //for refersTo References add filter that only re-evaluates the Query
 	// if

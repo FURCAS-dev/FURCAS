@@ -14,10 +14,16 @@ import org.omg.ocl.expressions.ModelPropertyCallExp;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
+import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclTypeImpl;
+import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectWrapperImpl;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
 import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
+import com.sap.tc.moin.repository.events.type.ElementLifeCycleEvent;
 import com.sap.tc.moin.repository.events.type.LinkChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.Association;
@@ -25,10 +31,12 @@ import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.Operation;
+import com.sap.tc.moin.repository.mmi.model.__impl.ClassifierInternal;
 import com.sap.tc.moin.repository.mmi.model.__impl.OperationImpl;
 import com.sap.tc.moin.repository.mmi.reflect.JmiException;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
+import com.sap.tc.moin.repository.spi.core.Wrapper;
 
 /**
  * Supports a lookup from a source model element of either an attribute value change event
@@ -47,18 +55,58 @@ public class InstanceScopeAnalysis {
 	this.conn = conn;
 	associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(conn);
     }
+    
+    public InstanceScopeAnalysis(Connection conn) {
+	this(((ConnectionWrapper) conn).unwrap());
+    }
+    
+    public Set<MRI> getAffectedElements(OclExpression expression, RefObject context, ModelChangeEvent changeEvent) {
+	return getAffectedElements((OclExpressionInternal) ((Wrapper<?>) expression).unwrap(),
+		(RefObjectImpl) ((RefObjectWrapperImpl<?>) context).unwrap(), changeEvent);
+    }
 
     /**
      * Tells the context model elements on which <tt>expression</tt> may now return a result different from
      * before the <tt>changeEvent</tt> occurred.
      */
-    public Set<RefObjectImpl> getAffectedExpressionsForElements(OclExpression expression, ModelChangeEvent changeEvent) {
-	Set<RefObjectImpl> result = new LinkedHashSet<RefObjectImpl>();
-	for (ModelPropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(expression, changeEvent)) {
-	    result.addAll(self(attributeOrAssociationEndCall,
-		    getSourceElement(changeEvent, attributeOrAssociationEndCall)));
+    public Set<MRI> getAffectedElements(OclExpressionInternal expression, RefObjectImpl context, ModelChangeEvent changeEvent) {
+	if (changeEvent instanceof ElementLifeCycleEvent) {
+	    // create and delete of elements only affects the allInstances expressions;
+	    // for those, however, no "self" context can easily be determined and therefore
+	    // the expression may change value on all possible context instances:
+	    RefObject metaObject = ((ElementLifeCycleEvent) changeEvent).getMetaObject(changeEvent.getEventTriggerConnection());
+	    // If package extents are created (RefPackage), those may also trigger ElementLifeCycleEvents.
+	    // However, their meta object would not be a Classifier but rather a package. Filter this case:
+	    if (metaObject instanceof Classifier && expressionContainsAllInstancesCallForType(expression,
+		    (ClassifierInternal) ((Wrapper<?>) metaObject).unwrap())) {
+		return getAllPossibleContextInstancesMris(conn, context);
+	    } else {
+		return Collections.emptySet();
+	    }
+	} else {
+	    Set<MRI> result = new LinkedHashSet<MRI>();
+	    for (ModelPropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(expression,
+		    changeEvent)) {
+		for (RefObjectImpl roi : self(attributeOrAssociationEndCall, getSourceElement(changeEvent,
+			attributeOrAssociationEndCall), (Classifier) context)) {
+		    result.add(roi.get___Mri());
+		}
+	    }
+	    return result;
 	}
-	return result;
+    }
+
+    private boolean expressionContainsAllInstancesCallForType(OclExpressionInternal expression, ClassifierInternal classifier) {
+	associationEndAndAttributeCallFinder.walk(expression);
+	return !associationEndAndAttributeCallFinder.getAllInstancesCallsFor(classifier).isEmpty();
+    }
+
+    protected static Set<MRI> getAllPossibleContextInstancesMris(CoreConnection conn, RefObject context) {
+	return OclTypeImpl.getAllInstancesMris(conn, ((MofClass) context).getQualifiedName());
+    }
+
+    protected static Set<RefObjectImpl> getAllPossibleContextInstances(CoreConnection conn, RefObject context) {
+	return OclTypeImpl.getAllInstances(conn, ((MofClass) context).getQualifiedName());
     }
 
     /**
@@ -71,9 +119,10 @@ public class InstanceScopeAnalysis {
      * there are no other {@link RefObject} elements that are not part of the result and for which the source expression
      * evaluates to <tt>sourceElement</tt>. This means, all contexts for which the source expression evaluates to
      * <tt>sourceElement</tt> are guaranteed to be found.
+     * @param context TODO
      */
-    private Set<RefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement) {
-	return getTracer(conn, attributeOrAssociationEndCall.getSource()).traceback(sourceElement);
+    private Set<RefObjectImpl> self(ModelPropertyCallExp attributeOrAssociationEndCall, RefObjectImpl sourceElement, Classifier context) {
+	return getTracer(conn, attributeOrAssociationEndCall.getSource()).traceback(sourceElement, context);
     }
     
     /**
@@ -114,6 +163,7 @@ public class InstanceScopeAnalysis {
      *            {@link AssociationEndCallExp} in case <tt>changeEvent</tt> is of type {@link LinkChangeEvent}.
      */
     private RefObjectImpl getSourceElement(ModelChangeEvent changeEvent, OclExpression attributeOrAssociationEndCall) {
+	assert changeEvent instanceof AttributeValueChangeEvent || changeEvent instanceof LinkChangeEvent;
 	RefObjectImpl result;
 	if (changeEvent instanceof AttributeValueChangeEvent) {
 	    result = (RefObjectImpl) ((AttributeValueChangeEvent) changeEvent).getAffectedElement(conn);
@@ -134,7 +184,8 @@ public class InstanceScopeAnalysis {
      * Finds all attribute and association end call expressions in <tt>expression</tt> that are affected by the
      * <tt>changeEvent</tt>. The result is always non-<tt>null</tt> but may be empty.
      */
-    private Set<? extends ModelPropertyCallExp> getAttributeOrAssociationEndCalls(OclExpression expression, ModelChangeEvent changeEvent) {
+    private Set<? extends ModelPropertyCallExp> getAttributeOrAssociationEndCalls(OclExpressionInternal expression,
+	    ModelChangeEvent changeEvent) {
 	associationEndAndAttributeCallFinder.walk(expression);
 	Set<? extends ModelPropertyCallExp> result;
 	if (changeEvent instanceof AttributeValueChangeEvent) {

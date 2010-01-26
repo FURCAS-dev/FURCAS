@@ -60,35 +60,38 @@ public class CellSetFunctionSignatureParameterSetter implements GlobalEventListe
 		LinkChangeEvent lce = (LinkChangeEvent) event;
 		if (lce.getAffectedMetaObject(conn).equals(conn.getAssociation(ADimensionsCellSet.ASSOCIATION_DESCRIPTOR).refMetaObject())) {
 		    Dimension dimension = (Dimension) lce.getFirstLinkEnd(conn);
-		    CellSet cellSet = dimension.getCellSet();
-		    // continue only if a function signature has already been set
-		    if (cellSet.getFunctionSignature() != null) {
-			int pos = lce.getPosition();
-			if (event instanceof LinkAddEvent) {
-			    Parameter p = conn.createElement(Parameter.CLASS_DESCRIPTOR);
-			    p.setName(dimension.getName());
-			    // add 1 to skip the first argument which is the facts base
-			    cellSet.getFunctionSignature().getInput().add(
-				    (pos == -1) ? cellSet.getFunctionSignature().getInput().size() : pos+1, p);
-			}
-			if (event instanceof LinkRemoveEvent) {
-			    // add 1 to skip the first argument which is the facts base
-			    cellSet.getFunctionSignature().getInput().remove(pos+1);
+		    if (dimension != null) { // if it has been deleted already, we're out of luck
+			CellSet cellSet = dimension.getCellSet();
+			// continue only if a function signature has already been set
+			if (cellSet.getFunctionSignature() != null) {
+			    int pos = lce.getPosition();
+			    if (event instanceof LinkAddEvent) {
+				Parameter p = conn.createElement(Parameter.CLASS_DESCRIPTOR);
+				p.setName(dimension.getName());
+				// add 1 to skip the first argument which is the facts base
+				cellSet.getFunctionSignature().getInput().add(
+					(pos == -1) ? cellSet.getFunctionSignature().getInput().size() : pos + 1, p);
+			    }
+			    if (event instanceof LinkRemoveEvent) {
+				// add 1 to skip the first argument which is the facts base
+				cellSet.getFunctionSignature().getInput().remove(pos + 1);
+			    }
 			}
 		    }
 		} else if (lce.getAffectedMetaObject(conn).equals(
 			conn.getAssociation(AImplementationFunctionSignature.ASSOCIATION_DESCRIPTOR).refMetaObject())) {
 		    if (lce instanceof LinkAddEvent) {
 			CellSet cellSet = (CellSet) lce.getFirstLinkEnd(conn);
-			setFactsAndDimensionParams(conn, cellSet,
-				cellSet.getFunctionSignature());
+			if (cellSet != null) { // if deleted by later change, we're out of luck
+			    setFactsAndDimensionParams(conn, cellSet, cellSet.getFunctionSignature());
+			}
 		    }
 		}
 	    } else if (event instanceof AttributeValueEvent) {
 		// synchronize the dimension's name to the parameter name
 		AttributeValueEvent ave = (AttributeValueEvent) event;
 		Dimension dim = (Dimension) ave.getAffectedElement(conn);
-		if (dim.getCellSet() != null) {
+		if (dim != null && dim.getCellSet() != null) {
 		    FunctionSignature sig = dim.getCellSet().getFunctionSignature();
 		    if (sig != null) {
 			int pos = dim.getCellSet().getDimensions().indexOf(dim);

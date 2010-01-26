@@ -7,6 +7,7 @@ import org.omg.ocl.expressions.__impl.IfExpImpl;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
 
 public class IfExpTracer extends AbstractTracer<IfExpImpl> {
     public IfExpTracer(CoreConnection conn, IfExpImpl expression) {
@@ -14,12 +15,12 @@ public class IfExpTracer extends AbstractTracer<IfExpImpl> {
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	Tracer thenTracer = InstanceScopeAnalysis.getTracer(getConnection(), getExpression().getThenExpression(getConnection()));
 	Tracer elseTracer = InstanceScopeAnalysis.getTracer(getConnection(), getExpression().getElseExpression(getConnection()));
 	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
-	result.addAll(thenTracer.traceback(s));
-	result.addAll(elseTracer.traceback(s));
+	result.addAll(thenTracer.traceback(s, context));
+	result.addAll(elseTracer.traceback(s, context));
 	return result;
     }
 

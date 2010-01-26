@@ -22,7 +22,7 @@ public class AssociationEndCallExpTracer extends AbstractTracer<AssociationEndCa
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	Association assoc = (Association) (((AssociationEndImpl) getExpression().getReferredAssociationEnd(
 		getConnection()))).getContainer(getConnection());
 	Classifier sourceType = InstanceScopeAnalysis.getType(getConnection(), getExpression().getSource(getConnection()));
@@ -35,7 +35,7 @@ public class AssociationEndCallExpTracer extends AbstractTracer<AssociationEndCa
 	for (Iterator<RefObject> i=sourceObjects.iterator(getConnection()); i.hasNext(); ) {
 	    RefObjectImpl next = (RefObjectImpl) i.next();
 	    if (next.refIsInstanceOf(getConnection().getSession(), sourceType, /* considerSubtypes */ true)) {
-		result.addAll(sourceTracer.traceback(next));
+		result.addAll(sourceTracer.traceback(next, context));
 	    }
 	}
 	return result;

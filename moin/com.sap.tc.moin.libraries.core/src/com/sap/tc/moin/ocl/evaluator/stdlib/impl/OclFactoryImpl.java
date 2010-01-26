@@ -121,7 +121,7 @@ public class OclFactoryImpl extends OclFactory {
     }
 
     @Override
-    public OclSet createSetFromRefObjects( Collection<RefObject> refObjects ) {
+    public OclSet createSetFromRefObjects( Collection<? extends RefObject> refObjects ) {
 
         Set<OclAny> underlyingSet = (Set<OclAny>) OclSetImpl.newCollection( );
         populateOclAnySetFromRefObjects( refObjects, underlyingSet );
@@ -179,9 +179,9 @@ public class OclFactoryImpl extends OclFactory {
      * Creates a new OclModelObject to the supplied <code>set</code> for each
      * RefObject in the supplied <code>refObjects</code> collection.
      */
-    private void populateOclAnySetFromRefObjects( Collection<RefObject> refObjects, Set<OclAny> set ) {
+    private void populateOclAnySetFromRefObjects( Collection<? extends RefObject> refObjects, Set<OclAny> set ) {
 
-        for ( Iterator<RefObject> it = refObjects.iterator( ); it.hasNext( ); ) {
+        for ( Iterator<? extends RefObject> it = refObjects.iterator( ); it.hasNext( ); ) {
             RefObject refObject = it.next( );
             set.add( createModelObject( refObject ) );
         }
@@ -189,8 +189,8 @@ public class OclFactoryImpl extends OclFactory {
 
     private OclAny createModelObject( RefObject underlyingObject ) {
 
-        if ( underlyingObject instanceof Wrapper ) {
-            return new OclModelElementImpl( ( (Wrapper<RefObject>) underlyingObject ).unwrap( ) );
+        if ( underlyingObject instanceof Wrapper<?> ) {
+            return new OclModelElementImpl( (RefObject) ( (Wrapper<?>) underlyingObject ).unwrap( ) );
         }
         return new OclModelElementImpl( underlyingObject );
     }

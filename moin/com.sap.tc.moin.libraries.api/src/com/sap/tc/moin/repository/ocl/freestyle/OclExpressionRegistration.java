@@ -3,12 +3,14 @@ package com.sap.tc.moin.repository.ocl.freestyle;
 import java.util.Collection;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.events.filter.EventFilter;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.events.filter.EventFilter;
+import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.OclRegistryService;
 import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode;
 import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
@@ -149,13 +151,29 @@ public interface OclExpressionRegistration extends OclRegistration {
      */
     Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn);
 
-    
     /**
      * Returns the EventFilter that was computed by the Impact Analysis for 
      * the current OCL registration.
      * 
+     * @param notifyNewContextElements
+     *            The analyzer can be parameterized during construction such that it either registers for creation
+     *            events on the context type or not. Registering for element creation on the context type is useful for
+     *            invariants / constraints because when a new element is created, validating the constraint may be
+     *            useful. For other use cases, registering for element creation may not be so useful. For example, when
+     *            a type inferencer defines its rules using OCL, it only wants to receive <em>update</em> events after
+     *            the element has been fully initialized from those OCL expressions. In those cases, some framework may
+     *            be responsible for the initial evaluation of those OCL expressions on new elementt, and therefore,
+     *            context element creation events are not of interest.
+     * 
      * @return The {@link EventFilter} constructed by the Impact Analysis.
      */
-    EventFilter getEventFilter();
+    EventFilter getEventFilter(boolean notifyNewContextElement);
+    
+    /**
+     * Fetches the registration's context type. Usually, this would be a {@link MofClass} object.
+     */
+    RefObject getContext();
+
+    OclExpression getExpression();
 
 }

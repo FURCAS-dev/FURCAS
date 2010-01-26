@@ -6,6 +6,7 @@ import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
 
 /**
  * All implementations must offer a constructor that takes a {@link CoreConnection} and a {@link OclExpression} impl
@@ -23,6 +24,7 @@ public interface Tracer {
      * element, the sub-expression represented by this tracer evaluates to <tt>s</tt>. The result may
      * also contain more elements for which this does not hold. It hence represents a conservative
      * estimate.
+     * @param context TODO
      */
-    Set<RefObjectImpl> traceback(RefObjectImpl s);
+    Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context);
 }

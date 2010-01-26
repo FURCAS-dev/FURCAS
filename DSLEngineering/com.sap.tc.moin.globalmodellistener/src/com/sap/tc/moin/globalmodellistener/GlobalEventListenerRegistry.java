@@ -52,4 +52,12 @@ public interface GlobalEventListenerRegistry {
 	 */
 	public abstract void deregisterFilters(Session session);
 
+	
+	/**
+	 * When during the execution of <tt>runnable</tt> in the calling thread a new {@link session}
+	 * is created, event listeners will <em>not</em> be registered for the events caused by that
+	 * session.
+	 */
+	void executeWithoutRegisteringListenersForNewSessions(Runnable runnable);
+
 }

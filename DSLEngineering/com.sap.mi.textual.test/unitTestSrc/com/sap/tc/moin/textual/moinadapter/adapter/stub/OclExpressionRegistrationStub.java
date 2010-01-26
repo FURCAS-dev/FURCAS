@@ -3,6 +3,8 @@ package com.sap.tc.moin.textual.moinadapter.adapter.stub;
 import java.util.Collection;
 import java.util.Set;
 
+import org.omg.ocl.expressions.OclExpression;
+
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
@@ -12,7 +14,6 @@ import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode;
 import com.sap.tc.moin.repository.ocl.freestyle.ExpressionInvalidationListener;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 import com.sap.tc.moin.repository.ocl.freestyle.OclRegistrationType;
-import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
 import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
 
 public class OclExpressionRegistrationStub implements OclExpressionRegistration {
@@ -20,15 +21,13 @@ public class OclExpressionRegistrationStub implements OclExpressionRegistration 
 	public RefObject result;
 	
 	@Override
-	public OclDebuggerNode debugExpression(RefObject context)
-			throws OclManagerException {
+	public OclDebuggerNode debugExpression(RefObject context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evaluateExpression(RefObject context)
-			throws OclManagerException {
+	public Object evaluateExpression(RefObject context) {
 		return result;
 	}
 
@@ -85,14 +84,13 @@ public class OclExpressionRegistrationStub implements OclExpressionRegistration 
 	}
 
 	@Override
-	public OclDebuggerNode debugExpression(MRI context)
-			throws OclManagerException {
+	public OclDebuggerNode debugExpression(MRI context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object evaluateExpression(MRI context) throws OclManagerException {
+	public Object evaluateExpression(MRI context) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -120,7 +118,19 @@ public class OclExpressionRegistrationStub implements OclExpressionRegistration 
 	}
 
 	@Override
-	public EventFilter getEventFilter() {
+	public EventFilter getEventFilter(boolean notifyNewContextElement) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	@Override
+	public RefObject getContext() {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	@Override
+	public OclExpression getExpression() {
 	    // TODO Auto-generated method stub
 	    return null;
 	}

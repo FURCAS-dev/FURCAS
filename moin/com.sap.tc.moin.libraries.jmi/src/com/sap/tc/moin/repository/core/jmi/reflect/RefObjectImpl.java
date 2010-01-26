@@ -285,9 +285,7 @@ public abstract class RefObjectImpl extends RefFeaturedImpl implements RefObject
      * ref methods
      **************************************************************************/
 
-    @SuppressWarnings( "unchecked" )
     public boolean refIsInstanceOf( RefObject objType, boolean considerSubtypes ) {
-
         return refIsInstanceOf( get___CurrentConnection( ).getSession( ), objType, considerSubtypes );
     }
 
@@ -304,32 +302,35 @@ public abstract class RefObjectImpl extends RefFeaturedImpl implements RefObject
 
         boolean result = false;
 
-        MofClass refMetaObject = (MofClass) refMetaObject( );
-        MofClass mcObjType;
-        MRI mriRefMetaObject = ( (Partitionable) refMetaObject ).get___Mri( );
-        mcObjType = (MofClass) objType;
-        MRI mriObjType = ( (Partitionable) mcObjType ).get___Mri( );
-        result = mriRefMetaObject.equals( mriObjType );
+	if (objType instanceof MofClass) { // a RefObject doesn't conform to a non-class object
+	    MofClass refMetaObject = (MofClass) refMetaObject();
+	    MofClass mcObjType;
+	    MRI mriRefMetaObject = ((Partitionable) refMetaObject).get___Mri();
+	    mcObjType = (MofClass) objType;
+	    MRI mriObjType = ((Partitionable) mcObjType).get___Mri();
+	    result = mriRefMetaObject.equals(mriObjType);
 
-        if ( !result && considerSubtypes ) {
-            DeploymentExtension depl = ( (RefBaseObjectImpl) refMetaObject ).get___DeploymentExtension( );
+	    if (!result && considerSubtypes) {
+		DeploymentExtension depl = ((RefBaseObjectImpl) refMetaObject).get___DeploymentExtension();
 
-            result = depl.getTypeToSupertypeMapping( ).get( refMetaObject.refMofId( ) ).contains( objType.refMofId( ) );
-//                List<GeneralizableElement> allSupertypes = ( (MofClassImpl) refMetaObject ).allSupertypes( connection );
-//                for ( int i = 0; !result && i < allSupertypes.size( ); i++ ) {
-//                    result = ( (Partitionable) allSupertypes.get( i ) ).get___Mri( ).equals( mriObjType );
-//                }
-        }
+		result = depl.getTypeToSupertypeMapping().get(refMetaObject.refMofId()).contains(objType.refMofId());
+		// List<GeneralizableElement> allSupertypes = ( (MofClassImpl) refMetaObject ).allSupertypes( connection
+		// );
+		// for ( int i = 0; !result && i < allSupertypes.size( ); i++ ) {
+		// result = ( (Partitionable) allSupertypes.get( i ) ).get___Mri( ).equals( mriObjType );
+		// }
+	    }
 
-        //FIXME HACK!!!
-        CoreConnection connection = session != null ? session.getConnections( ).iterator( ).next( ) : null;
-        if ( !result && mcObjType.getName( ).equals( "Element" ) ) { //$NON-NLS-1$
-            // this is cheap!
-            List<String> qn = ( (MofClassImpl) mcObjType ).getQualifiedName( connection );
-            if ( qn.size( ) == 2 && qn.get( 0 ).equals( "Reflect" ) ) { //$NON-NLS-1$
-                result = true;
-            }
-        }
+	    // FIXME HACK!!!
+	    CoreConnection connection = session != null ? session.getConnections().iterator().next() : null;
+	    if (!result && mcObjType.getName().equals("Element")) { //$NON-NLS-1$
+		// this is cheap!
+		List<String> qn = ((MofClassImpl) mcObjType).getQualifiedName(connection);
+		if (qn.size() == 2 && qn.get(0).equals("Reflect")) { //$NON-NLS-1$
+		    result = true;
+		}
+	    }
+	}
         return result;
     }
 
@@ -617,13 +618,14 @@ public abstract class RefObjectImpl extends RefFeaturedImpl implements RefObject
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     public Map<SpiAssociation, List<SpiLink>> get___LinksByAssociation( ) {
 
         Map<SpiAssociation, List<SpiLink>> result = null;
         List<EndStorageLink> allLinks = get___AllStoredAssociationLinks( );
         if ( allLinks != null ) {
-            Comparator mofIdComparator = get___Workspace( ).getWorkspaceSet( ).getMoin( ).getByMofIdComparator( );
-            result = new TreeMap<SpiAssociation, List<SpiLink>>( mofIdComparator );
+            Comparator<?> mofIdComparator = get___Workspace( ).getWorkspaceSet( ).getMoin( ).getByMofIdComparator( );
+            result = new TreeMap<SpiAssociation, List<SpiLink>>( (Comparator<? super SpiAssociation>) mofIdComparator );
             SpiJmiHelper jmiHelper = get___JmiHelper( );
             for ( int i = 0, n = allLinks.size( ); i < n; i++ ) {
                 EndStorageLink link = allLinks.get( i );

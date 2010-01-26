@@ -22,6 +22,7 @@ import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
 import com.sap.mi.textual.common.exceptions.GrammarGenerationException;
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
 import com.sap.mi.textual.common.interfaces.IMetaModelLookup;
+import com.sap.mi.textual.common.interfaces.IModelElementProxy;
 import com.sap.mi.textual.epi.filedefinition.GrammarWritingHelper;
 import com.sap.mi.textual.grammar.IModelAdapter;
 import com.sap.mi.textual.grammar.ModelParsingResult;
@@ -30,6 +31,7 @@ import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.PRI;
 import com.sun.tools.javac.Main;
@@ -43,7 +45,7 @@ public class ParserGenerationTestHelper {
 	private static final String DEFAULT_PACKAGE = "generated2";
 	private static final String DEFAULT_GENERATIONDIR = DEFAULT_GENERATIONDIR_SOURCEROOT
 			+ "/" + DEFAULT_PACKAGE + "/";
-	private static final String DEFAULT_TCSPATH = "./scenariotestResource";
+	private static final String DEFAULT_TCSPATH = "./scenarioTestResource";
 
 	private String generationSourceRoot;
 	private String generationDirectory;
@@ -225,9 +227,9 @@ public class ParserGenerationTestHelper {
 				generationDirectory + languageName + "Lexer.java",
 				generationDirectory + languageName + "Parser.java",
 				"-cp",
-				System.getProperty("antlr.lib.dir") + ";"
-						+ "../com.sap.mi.textual.parsing/bin;"
-						+ "../com.sap.mi.textual.common/bin;"
+				System.getProperty("antlr.lib.dir") + File.pathSeparator
+						+ "../com.sap.mi.textual.parsing/bin" + File.pathSeparator
+						+ "../com.sap.mi.textual.common/bin" + File.pathSeparator
 						+ "../com.sap.mi.textual.moinlookup/bin" });
 
 		return success;
@@ -240,13 +242,15 @@ public class ParserGenerationTestHelper {
 		int success = Main.compile(new String[] {
 				generationDirectory + languageName + "ParserFactory.java",
 				"-cp",
-				generationSourceRoot + ";" + "../" + metamodelProjectName
-						+ "/bin" + ";"
-						+ getSourceRoot(AbstractParserFactory.class) + ";"
-						+ getSourceRoot(Connection.class) + ";"
-						+ getSourceRoot(ANTLRParserFactory.class) + ";"
-						+ getSourceRoot(ITokenFactory.class) + ";"
-						+ getSourceRoot(Lexer.class) + ";"});
+				generationSourceRoot + File.pathSeparator + "../" + metamodelProjectName
+						+ "/bin" + File.pathSeparator
+						+ getSourceRoot(AbstractParserFactory.class) + File.pathSeparator
+						+ getSourceRoot(Connection.class) + File.pathSeparator
+						+ getSourceRoot(ANTLRParserFactory.class) + File.pathSeparator
+						+ getSourceRoot(ITokenFactory.class) + File.pathSeparator
+						+ getSourceRoot(RuleNameFinder.class) + File.pathSeparator
+						+ getSourceRoot(IModelElementProxy.class) + File.pathSeparator
+						+ getSourceRoot(Lexer.class) + File.pathSeparator});
 
 		return success;
 	}

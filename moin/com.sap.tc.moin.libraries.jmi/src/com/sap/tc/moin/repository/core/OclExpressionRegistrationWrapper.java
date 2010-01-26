@@ -7,6 +7,8 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.omg.ocl.expressions.OclExpression;
+
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
@@ -297,12 +299,36 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
     }
 
     @Override
-    public EventFilter getEventFilter() {
+    public EventFilter getEventFilter(boolean notifyNewContextElement) {
 	this.synchronizationManager.acquireReadLock( );
         try {
             assertConnectionAlive( );
             attachConnectionIfRequired( );
-            return this.oclExpressionRegistration.getEventFilter();
+            return this.oclExpressionRegistration.getEventFilter(/* notifyNewContextElement */ true);
+        } finally {
+            this.synchronizationManager.releaseReadLock( );
+        }    
+    }
+
+    @Override
+    public RefObject getContext() {
+	this.synchronizationManager.acquireReadLock( );
+        try {
+            assertConnectionAlive( );
+            attachConnectionIfRequired( );
+            return connection.getWrapperForJmiObject(this.oclExpressionRegistration.getContext());
+        } finally {
+            this.synchronizationManager.releaseReadLock( );
+        }    
+    }
+
+    @Override
+    public OclExpression getExpression() {
+	this.synchronizationManager.acquireReadLock( );
+        try {
+            assertConnectionAlive( );
+            attachConnectionIfRequired( );
+            return connection.getWrapperForJmiObject(this.oclExpressionRegistration.getExpression());
         } finally {
             this.synchronizationManager.releaseReadLock( );
         }    

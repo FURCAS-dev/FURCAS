@@ -1,6 +1,6 @@
 package com.sap.ide.cts.editor.test.util;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,12 +19,16 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 import org.junit.After;
 import org.junit.Before;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 
+import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.mi.fwk.ConnectionManager;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.fwk.PartitionService;
 import com.sap.mi.fwk.services.local.FileServices;
 import com.sap.mi.fwk.services.local.ZipService;
+import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
 import com.sap.tc.moin.repository.Connection;
 
 /**
@@ -104,8 +108,20 @@ public abstract class ProjectConnectionBasedTest {
 		// align MOIN DB to prevent testcases influencing each other 
 		IRunnableWithProgress operation = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) {
-				PartitionService.getInstance().deletePartitions(getProject(), null);
+			    // avoid that the many delete events that occur during deleting all partitions
+			    // trigger the event listeners through the global event listener registry
+			    getGlobalEventListenerRegistry().executeWithoutRegisteringListenersForNewSessions(new Runnable() {
+				public void run() {
+				    PartitionService.getInstance().deletePartitions(getProject(), null);
+				}
+			    });
+			}
 
+			private GlobalEventListenerRegistry getGlobalEventListenerRegistry() {
+			    BundleContext context = CtsActivator.getDefault().getBundle().getBundleContext();
+			    ServiceReference ref = context.getServiceReference(GlobalEventListenerRegistry.class.getName());
+			    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context.getService(ref);
+			    return registry;
 			}
 		};
 		IProgressService ps = PlatformUI.getWorkbench().getProgressService();

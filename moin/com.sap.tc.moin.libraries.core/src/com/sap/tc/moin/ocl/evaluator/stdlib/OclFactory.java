@@ -130,7 +130,7 @@ public abstract class OclFactory {
      * @throws ClassCastException Thrown if the supplied collection does not
      * contain all objects of type {@link com.sap.tc.moin.repository.mmi.reflect.RefObject}.
      */
-    public abstract OclSet createSetFromRefObjects( Collection<RefObject> refObjects );
+    public abstract OclSet createSetFromRefObjects( Collection<? extends RefObject> refObjects );
 
     /**
      * Create an <code>OclOrderedSet</code> of {@link OclModelElement}s from the

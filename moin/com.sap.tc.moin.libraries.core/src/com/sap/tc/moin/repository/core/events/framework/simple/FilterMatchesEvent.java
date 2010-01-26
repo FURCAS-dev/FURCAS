@@ -109,7 +109,7 @@ public abstract class FilterMatchesEvent implements FilterMatcher {
         public boolean matchesForFilterType( ChangeEvent event, EventFilter filter ) {
 
             // The OrFilter is true if at least one operand is true.
-            // So the operands need only be checked up to the fist one that is
+            // So the operands need only be checked up to the first one that is
             // true.
             List<EventFilter> operands = ( (OrFilter) filter ).getOperands( );
             for ( int i = 0; i < operands.size( ); i++ ) {

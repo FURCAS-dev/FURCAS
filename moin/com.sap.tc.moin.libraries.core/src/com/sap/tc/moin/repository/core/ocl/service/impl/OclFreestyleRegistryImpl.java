@@ -477,29 +477,6 @@ public class OclFreestyleRegistryImpl implements OclFreestyleRegistry {
      * Called by the OclRegistryServiceImpl
      * 
      * @param category category
-     * @param partitions partitions
-     * @return true if anything was evaluated
-     * @throws OclManagerException Exception
-     */
-    public boolean evaluatePartitionsDeprecated( String category, Set<ModelPartition> partitions ) throws OclManagerException {
-
-        boolean evaluated = false;
-        Set<OclExpressionRegistrationImpl> expRegs = this.categoryExpressionRegistrationMapping.get( category );
-        if ( expRegs != null ) {
-            for ( OclExpressionRegistrationImpl expressionRegistration : expRegs ) {
-                expressionRegistration.triggerDeferredOclEvaluation( category, partitions );
-                evaluated = true;
-            }
-        }
-        CategoryInvariantHandler handler = this.getOrCreateCategoryInvariantHandler( category );
-        evaluated = handler.evaluatePartitions( partitions ) || evaluated;
-        return evaluated;
-    }
-
-    /**
-     * Called by the OclRegistryServiceImpl
-     * 
-     * @param category category
      * @param partitionPris partitions
      * @return true if anything was evaluated
      * @throws OclManagerException Exception

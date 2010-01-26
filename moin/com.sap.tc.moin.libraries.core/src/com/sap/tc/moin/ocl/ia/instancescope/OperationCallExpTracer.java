@@ -9,7 +9,9 @@ import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.TypeExp;
 import org.omg.ocl.expressions.__impl.OperationCallExpImpl;
 import org.omg.ocl.expressions.__impl.TypeExpImpl;
+import org.omg.ocl.expressions.__impl.TypeExpInternal;
 
+import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
@@ -23,7 +25,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	Set<RefObjectImpl> result;
 	OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) getConnection().getAssociation(
 		OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
@@ -31,22 +33,29 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 	if (body != null) {
 	    // an OCL-specified operation; trace back using the body expression
 	    Tracer bodyTracer = InstanceScopeAnalysis.getTracer(getConnection(), body);
-	    result = bodyTracer.traceback(s);
+	    result = bodyTracer.traceback(s, context);
 	} else if (((OperationImpl) getExpression().getReferredOperation(getConnection())).getName().equals(
-		"oclAsType")) {
+		OclConstants.OP_OCLASTYPE)) {
 	    OclExpression argument = ((JmiListImpl<OclExpression>) getExpression().getArguments(getConnection())).get(
 		    getConnection().getSession(), 0);
 	    if (argument instanceof TypeExp) {
 		Classifier type = ((TypeExpImpl) argument).getReferredType(getConnection());
 		if (s.refIsInstanceOf(getConnection().getSession(), type, /* considerSubtypes */ true)) {
 		    result = InstanceScopeAnalysis.getTracer(getConnection(),
-			    getExpression().getSource(getConnection())).traceback(s);
+			    getExpression().getSource(getConnection())).traceback(s, context);
 		} else {
 		    result = Collections.emptySet();
 		}
 	    } else {
 		throw new RuntimeException("What else could be the argument of oclAsType if not a TypeExp? "+
 			((MofClass) argument.refMetaObject()).getName());
+	    }
+	} else if (getExpression().getReferredOperation(getConnection()).getName().equals(OclConstants.OP_ALLINSTANCES)) {
+	    Classifier classifier = ((TypeExpInternal) getExpression().getSource(getConnection())).getReferredType(getConnection());
+	    if (s.refIsInstanceOf(getConnection().getSession(), classifier, /* considerSubtypes */ true)) {
+		return InstanceScopeAnalysis.getAllPossibleContextInstances(getConnection(), context);
+	    } else {
+		result = Collections.emptySet();
 	    }
 	} else {
 	    // TODO handle stdlib operations

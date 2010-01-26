@@ -38,6 +38,15 @@ public class OrFilter extends LogicalOperationFilter {
      * Creates an empty OrFilter. Operands can be added via {@link #getOperands()} 
      */
     public OrFilter( ) {
-
+    }
+    
+    /**
+     * Appends <tt>otherFilter</tt> to this filter's operands.
+     */
+    @Override
+    public void merge(EventFilter otherFilter) {
+	if (!this.equals(otherFilter) && !_operands.contains(otherFilter)) {
+	    _operands.add(otherFilter);
+	}
     }
 }

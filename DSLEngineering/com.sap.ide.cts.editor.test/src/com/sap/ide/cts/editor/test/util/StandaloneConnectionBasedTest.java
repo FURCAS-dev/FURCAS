@@ -26,7 +26,7 @@ public class StandaloneConnectionBasedTest {
 	public void tearDown() {
 
 		// should be @After and execute after every test
-		if (connection != null) {
+		if (connection != null && connection.isAlive()) {
 			connection.revert();
 		}
 

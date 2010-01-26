@@ -23,7 +23,7 @@ public class AttributeCallExpTracer extends AbstractTracer<AttributeCallExpImpl>
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	String referredAttributeName = getExpression().getReferredAttribute(getConnection()).getName();
 	OclExpression source = getExpression().getSource(getConnection());
 	Classifier type = InstanceScopeAnalysis.getType(getConnection(), source);
@@ -48,7 +48,7 @@ public class AttributeCallExpTracer extends AbstractTracer<AttributeCallExpImpl>
 	    sourceExpression = getExpression().getSource(getConnection());
 	    sourceObject = (RefObjectImpl) s.refImmediateComposite(getConnection().getSession());
 	}
-	return InstanceScopeAnalysis.getTracer(getConnection(), sourceExpression).traceback(sourceObject);
+	return InstanceScopeAnalysis.getTracer(getConnection(), sourceExpression).traceback(sourceObject, context);
     }
 
 }

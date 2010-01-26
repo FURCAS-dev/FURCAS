@@ -10,6 +10,7 @@ import org.omg.ocl.expressions.__impl.CollectionLiteralExpImpl;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
 
 public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteralExpImpl> {
     public CollectionLiteralExpTracer(CoreConnection conn, CollectionLiteralExpImpl expression) {
@@ -17,13 +18,13 @@ public class CollectionLiteralExpTracer extends AbstractTracer<CollectionLiteral
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
 	for (CollectionLiteralPart part : getExpression().getParts(getConnection())) {
 	    if (part instanceof CollectionItem) {
 		Tracer itemTracer = InstanceScopeAnalysis.getTracer(getConnection(),
 			((CollectionItemImpl) part).getItem(getConnection()));
-		result.addAll(itemTracer.traceback(s));
+		result.addAll(itemTracer.traceback(s, context));
 	    }
 	}
 	return result;

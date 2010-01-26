@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.ocl.evaluator.stdlib.OclType;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
 
@@ -89,7 +88,7 @@ public class Statistics {
 	currentlyHandlingEvent = event;
     }
 
-    public void allInstancesCalled(OclType onType, List<String> classQname) {
+    public void allInstancesCalled(List<String> classQname) {
 	if (currentlyHandlingEventFor != null && currentlyHandlingEvent != null) {
 	    Record record = new Record(currentlyHandlingEventFor, currentlyHandlingEvent, classQname,
 		    currentObjectForSelf);

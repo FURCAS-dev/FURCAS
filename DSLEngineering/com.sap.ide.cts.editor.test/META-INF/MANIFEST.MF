@@ -47,7 +47,8 @@ Require-Bundle: com.sap.mi.fwk,
  com.sap.tc.moin.metamodel.generatedmetamodel,
  com.sap.mi.textual.tcs.editor,
  com.sap.mi.gfw.mm.eclipse,
- com.sap.tc.moin.libraries.core
+ com.sap.tc.moin.libraries.core,
+ com.sap.tc.moin.globalmodellistener;bundle-version="1.0.0"
 Export-Package: com.sap.ide.cts.editor.test,
  com.sap.ide.cts.editor.test.util,
  com.sap.mi.textual.parsing.textblocks

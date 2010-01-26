@@ -1,5 +1,6 @@
 package com.sap.ide.cts.editor;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -77,8 +78,8 @@ import com.sap.ide.cts.editor.commands.ParseCommand;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.matching.CtsStaticMatcher;
 import com.sap.ide.cts.editor.preferences.PreferenceInitializer;
-import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.imported.PrettyPrinter;
+import com.sap.ide.cts.editor.prettyprint.imported.TCSExtractorPrintStream;
 import com.sap.ide.cts.editor.recovery.ModelEditorInputRecoveryStrategy;
 import com.sap.ide.cts.editor.recovery.TbRecoverUtil;
 import com.sap.ide.cts.parser.errorhandling.ErrorEntry;
@@ -579,11 +580,13 @@ public abstract class AbstractGrammarBasedEditor extends
 							try
 							{
 								PrettyPrinter pp = new PrettyPrinter();
-								CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(
-										TcsUtil.getConnectionFromRefObject(rootObject).getPackage(
-												TextblocksPackage.PACKAGE_DESCRIPTOR), null, getParserFactory());
+//								CtsTextBlockTCSExtractorStream target = new CtsTextBlockTCSExtractorStream(
+//										TcsUtil.getConnectionFromRefObject(rootObject).getPackage(
+//												TextblocksPackage.PACKAGE_DESCRIPTOR), null, getParserFactory());
+								ByteArrayOutputStream stream = new ByteArrayOutputStream();
+								TCSExtractorPrintStream target = new TCSExtractorPrintStream(stream);
 								pp.prettyPrint(rootObject, rootTemplate.getConcretesyntax(), target);
-								newClass = target.getRootBlock().getCachedString();
+								newClass = stream.toString();
 								//newClass = TcsPrettyPrinterTestHelper.prettyPrintTextBlock(rootObject, rootTemplate.getConcretesyntax(), getParserFactory()).getCachedString();
 							}
 							catch(Exception e)
@@ -599,6 +602,8 @@ public abstract class AbstractGrammarBasedEditor extends
 								PrettyPrintAction action = new PrettyPrintAction((MofClass) rootObject.refMetaObject(), rootObject, false);
 								action.runWithEvent(null);
 								rootBlock = action.getRootBlock();
+							} else {
+							    rootBlock = blockInError;
 							}
 				    	}
 						else

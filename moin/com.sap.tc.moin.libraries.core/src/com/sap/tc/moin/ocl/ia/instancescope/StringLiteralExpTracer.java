@@ -7,6 +7,7 @@ import org.omg.ocl.expressions.__impl.StringLiteralExpImpl;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
 
 public class StringLiteralExpTracer extends AbstractTracer<StringLiteralExpImpl> {
     public StringLiteralExpTracer(CoreConnection conn, StringLiteralExpImpl expression) {
@@ -14,7 +15,7 @@ public class StringLiteralExpTracer extends AbstractTracer<StringLiteralExpImpl>
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	return Collections.emptySet();
     }
 

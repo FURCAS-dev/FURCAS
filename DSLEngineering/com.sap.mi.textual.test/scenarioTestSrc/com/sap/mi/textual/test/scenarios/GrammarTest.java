@@ -28,7 +28,7 @@ public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
 	public void testBibTextGrammarGeneration() throws Exception {
 	
 		// this test relies on the contents of the BibText sample file
-		File sample = new File("scenariotestResource/Bibtext.tcs");
+		File sample = new File("scenarioTestResource/Bibtext.tcs");
 		assertTrue(sample.exists());
 		InputStream in = new FileInputStream(sample);
 
@@ -54,7 +54,7 @@ public class GrammarTest  extends ExtendedGeneratedParserBasedTest {
     public void testExpressionGrammarGeneration() throws Exception {
     
         // this test relies on the contents of the Expression sample file
-        File sample = new File("scenariotestResource/Expression.tcs");
+        File sample = new File("scenarioTestResource/Expression.tcs");
         assertTrue(sample.exists());
         InputStream in = new FileInputStream(sample);
 

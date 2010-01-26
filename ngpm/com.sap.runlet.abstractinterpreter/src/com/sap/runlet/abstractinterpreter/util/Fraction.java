@@ -227,6 +227,15 @@ public class Fraction implements Cloneable, Comparable<Fraction>, java.io.Serial
 	BigInteger bn = n;
 	return new Fraction(an, ad.multiply(bn));
     }
+    
+    /**
+     * Returns a fraction that is this fraction raised to the power specified.
+     */
+    public Fraction pow(int p) {
+	BigInteger an = numerator().pow(p);
+	BigInteger ad = denominator().pow(p);
+	return new Fraction(an, ad);
+    }
 
     /**
      * return a number less, equal, or greater than zero reflecting whether this Fraction is less,

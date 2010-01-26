@@ -18,11 +18,13 @@ import org.omg.ocl.expressions.__impl.PropertyCallExpInternal;
 import org.omg.ocl.expressions.__impl.VariableDeclarationImpl;
 import org.omg.ocl.expressions.__impl.VariableExpImpl;
 
+import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.core.links.JmiListImpl;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.DirectionKindEnum;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
 import com.sap.tc.moin.repository.mmi.model.ModelPackage;
@@ -39,18 +41,18 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
     }
 
     @Override
-    public Set<RefObjectImpl> traceback(RefObjectImpl s) {
+    public Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context) {
 	Set<RefObjectImpl> result;
 	if (isSelf()) {
-	    result = tracebackSelf(s);
+	    result = tracebackSelf(s, context);
 	} else if (isIteratorVariable()) {
-	    result = tracebackIteratorVariable(s);
+	    result = tracebackIteratorVariable(s, context);
 	} else if (isIterateResultVariable()) {
-	    result = tracebackIterateResultVariable(s);
+	    result = tracebackIterateResultVariable(s, context);
 	} else if (isLetVariable()) {
-	    result = tracebackLetVariable(s);
+	    result = tracebackLetVariable(s, context);
 	} else if (isOperationParameter()) {
-	    result = tracebackOperationParameter(s);
+	    result = tracebackOperationParameter(s, context);
 	} else if (isNull()) {
 	    result = Collections.emptySet();
 	} else {
@@ -65,10 +67,10 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	return getVariableDeclaration().getName().equals("null");
     }
 
-    private Set<RefObjectImpl> tracebackLetVariable(RefObjectImpl s) {
+    private Set<RefObjectImpl> tracebackLetVariable(RefObjectImpl s, Classifier context) {
 	Tracer sourceTracer = InstanceScopeAnalysis.getTracer(getConnection(), getVariableDeclaration()
 		.getInitExpression(getConnection()));
-	return sourceTracer.traceback(s);
+	return sourceTracer.traceback(s, context);
     }
 
     private boolean isLetVariable() {
@@ -76,7 +78,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 		.getLetExp(getConnection(), getVariableDeclaration()) != null;
     }
 
-    private Set<RefObjectImpl> tracebackOperationParameter(RefObjectImpl s) {
+    private Set<RefObjectImpl> tracebackOperationParameter(RefObjectImpl s, Classifier context) {
 	OclExpression rootExpression = getRootExpression();
 	OperationImpl op = InstanceScopeAnalysis.getDefines(getConnection(), rootExpression);
 	String variableName = getVariableDeclaration().getName();
@@ -96,7 +98,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	    Tracer actualParameterExpressionTracer = InstanceScopeAnalysis.getTracer(getConnection(),
 		    ((JmiListImpl<OclExpression>) ((OperationCallExpImpl) call).getArguments(getConnection())).
 		    get(getConnection().getSession(), pos));
-	    result.addAll(actualParameterExpressionTracer.traceback(s));
+	    result.addAll(actualParameterExpressionTracer.traceback(s, context));
 	}
 	return result;
     }
@@ -114,14 +116,14 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	return false;
     }
 
-    private Set<RefObjectImpl> tracebackIterateResultVariable(RefObjectImpl s) {
+    private Set<RefObjectImpl> tracebackIterateResultVariable(RefObjectImpl s, Classifier context) {
 	Tracer initTracer = InstanceScopeAnalysis.getTracer(getConnection(), getVariableDeclaration()
 		.getInitExpression(getConnection()));
 	Tracer bodyTracer = InstanceScopeAnalysis.getTracer(getConnection(), ((IterateExpImpl) getVariableDeclaration()
 		.getBaseExp(getConnection())).getBody(getConnection()));
 	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
-	result.addAll(initTracer.traceback(s));
-	result.addAll(bodyTracer.traceback(s));
+	result.addAll(initTracer.traceback(s, context));
+	result.addAll(bodyTracer.traceback(s, context));
 	return result;
     }
 
@@ -129,11 +131,11 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	return getVariableDeclaration().getBaseExp(getConnection()) != null;
     }
 
-    private Set<RefObjectImpl> tracebackIteratorVariable(RefObjectImpl s) {
+    private Set<RefObjectImpl> tracebackIteratorVariable(RefObjectImpl s, Classifier context) {
 	Tracer sourceTracer = InstanceScopeAnalysis.getTracer(getConnection(),
 		((PropertyCallExpInternal) getVariableDeclaration().getLoopExpr(getConnection()))
 			.getSource(getConnection()));
-	return sourceTracer.traceback(s);
+	return sourceTracer.traceback(s, context);
     }
 
     private boolean isIteratorVariable() {
@@ -141,7 +143,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
     }
 
     private boolean isSelf() {
-	return getVariableDeclaration().getName().startsWith("self(") || getVariableDeclaration().getName().equals("self");
+	return getVariableDeclaration().getVarName().equals(OclConstants.VAR_SELF);
     }
 
     private Collection<OperationCallExp> getCallsOf(OperationImpl operation) {
@@ -166,7 +168,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	return result;
     }
 
-    private Set<RefObjectImpl> tracebackSelf(RefObjectImpl s) {
+    private Set<RefObjectImpl> tracebackSelf(RefObjectImpl s, Classifier context) {
 	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
 	OperationImpl op = InstanceScopeAnalysis.getDefines(getConnection(), getRootExpression());
 	if (op != null) {
@@ -176,7 +178,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	    for (OperationCallExp call : calls) {
 		OclExpression callSource = ((OperationCallExpImpl) call).getSource(getConnection());
 		Tracer sourceTracer = InstanceScopeAnalysis.getTracer(getConnection(), callSource);
-		result.addAll(sourceTracer.traceback(s));
+		result.addAll(sourceTracer.traceback(s, context));
 	    }
 	} else {
 	    // self occurred outside of an operation; it evaluates to s for s being the context
