@@ -47,4 +47,8 @@ http://www.eclipse.org/legal/epl-v10.html
          id="org.eclipse.ocl.edit"
          version="0.0.0"/>
 
+   <includes
+         id="org.eclipse.ocl.edit.source"
+         version="0.0.0"/>
+
 </feature>
