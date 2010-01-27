@@ -37,6 +37,7 @@ plugin@org.eclipse.emf.ocl.examples.interpreter=v200912161120,:pserver:anonymous
 
 feature@org.eclipse.ocl.all=v200912161120,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all-feature
 feature@org.eclipse.ocl.all.sdk=v201001271420,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.all.sdk-feature
+feature@org.eclipse.ocl.core.sdk=v201001280030,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.mdt/org.eclipse.ocl/coordinated/org.eclipse.ocl.core.sdk-feature
 
 !*** EMF Examples plugins
 plugin@org.eclipse.emf.examples.library=R2_3_1RC,:pserver:anonymous@dev.eclipse.org:/cvsroot/modeling,,org.eclipse.emf/org.eclipse.emf/examples/org.eclipse.emf.examples.library
