@@ -35,6 +35,7 @@ import etm.core.monitor.EtmPoint;
 public interface ExecutionTimeBenchmarkerStart extends Operator {
 	/**
 	 * Returns the value of the '<em><b>End Point</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd#getStartPoint <em>Start Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>End Point</em>' reference isn't clear,
@@ -44,7 +45,8 @@ public interface ExecutionTimeBenchmarkerStart extends Operator {
 	 * @return the value of the '<em>End Point</em>' reference.
 	 * @see #setEndPoint(ExecutionTimeBenchmarkerEnd)
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getExecutionTimeBenchmarkerStart_EndPoint()
-	 * @model
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd#getStartPoint
+	 * @model opposite="startPoint"
 	 * @generated
 	 */
 	ExecutionTimeBenchmarkerEnd getEndPoint();

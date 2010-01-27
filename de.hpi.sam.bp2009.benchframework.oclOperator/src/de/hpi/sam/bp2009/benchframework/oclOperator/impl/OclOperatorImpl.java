@@ -33,6 +33,7 @@ public class OclOperatorImpl extends OperatorImpl implements OclOperator {
 	 */
 	public OclOperatorImpl() {
 		super();
+		setOption(OclOperatorFactory.eINSTANCE.createOclOptionObject());
 		this.setName("OCLOperator");
 		this.setDescription("Evaluates a specific ocl expression");
 	}

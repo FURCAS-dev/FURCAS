@@ -6,10 +6,12 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.emf.ecore.impl.EcorePackageImpl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGenerator;
@@ -87,11 +89,16 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 		// Initialize simple dependencies
 		BenchframeworkPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		EcorePackageImpl theEcorePackage = (EcorePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI) instanceof EcorePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI) : EcorePackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theRandomGeneratorPackage.createPackageContents();
+		theEcorePackage.createPackageContents();
 
 		// Initialize created meta-data
 		theRandomGeneratorPackage.initializePackageContents();
+		theEcorePackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theRandomGeneratorPackage.freeze();
@@ -125,8 +132,8 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getRandomGeneratorOptionObject_MetaModel() {
-		return (EAttribute)randomGeneratorOptionObjectEClass.getEStructuralFeatures().get(0);
+	public EReference getRandomGeneratorOptionObject_MetaModel() {
+		return (EReference)randomGeneratorOptionObjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -160,7 +167,7 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 		randomGeneratorEClass = createEClass(RANDOM_GENERATOR);
 
 		randomGeneratorOptionObjectEClass = createEClass(RANDOM_GENERATOR_OPTION_OBJECT);
-		createEAttribute(randomGeneratorOptionObjectEClass, RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL);
+		createEReference(randomGeneratorOptionObjectEClass, RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL);
 	}
 
 	/**
@@ -188,6 +195,7 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 
 		// Obtain other dependent packages
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -201,7 +209,7 @@ public class RandomGeneratorPackageImpl extends EPackageImpl implements RandomGe
 		initEClass(randomGeneratorEClass, RandomGenerator.class, "RandomGenerator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(randomGeneratorOptionObjectEClass, RandomGeneratorOptionObject.class, "RandomGeneratorOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getRandomGeneratorOptionObject_MetaModel(), ecorePackage.getEResourceSet(), "metaModel", null, 0, 1, RandomGeneratorOptionObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getRandomGeneratorOptionObject_MetaModel(), theEcorePackage.getEPackage(), null, "metaModel", null, 0, 1, RandomGeneratorOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

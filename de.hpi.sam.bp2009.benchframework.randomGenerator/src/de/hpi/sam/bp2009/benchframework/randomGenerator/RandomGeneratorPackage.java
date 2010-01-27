@@ -6,11 +6,11 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -145,7 +145,7 @@ public interface RandomGeneratorPackage extends EPackage {
 	int RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
 
 	/**
-	 * The feature id for the '<em><b>Meta Model</b></em>' attribute.
+	 * The feature id for the '<em><b>Meta Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -184,15 +184,15 @@ public interface RandomGeneratorPackage extends EPackage {
 	EClass getRandomGeneratorOptionObject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Meta Model</em>'.
+	 * @return the meta object for the reference '<em>Meta Model</em>'.
 	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel()
 	 * @see #getRandomGeneratorOptionObject()
 	 * @generated
 	 */
-	EAttribute getRandomGeneratorOptionObject_MetaModel();
+	EReference getRandomGeneratorOptionObject_MetaModel();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -235,12 +235,12 @@ public interface RandomGeneratorPackage extends EPackage {
 		 */
 		EClass RANDOM_GENERATOR_OPTION_OBJECT = eINSTANCE.getRandomGeneratorOptionObject();
 		/**
-		 * The meta object literal for the '<em><b>Meta Model</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Meta Model</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL = eINSTANCE.getRandomGeneratorOptionObject_MetaModel();
+		EReference RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL = eINSTANCE.getRandomGeneratorOptionObject_MetaModel();
 
 	}
 

@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
@@ -87,12 +88,20 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 				return createJETMResultObjectAdapter();
 			}
 			@Override
+			public Adapter caseExecutionTimeBenchmarkerOptionObject(ExecutionTimeBenchmarkerOptionObject object) {
+				return createExecutionTimeBenchmarkerOptionObjectAdapter();
+			}
+			@Override
 			public Adapter caseOperator(Operator object) {
 				return createOperatorAdapter();
 			}
 			@Override
 			public Adapter caseResultObject(ResultObject object) {
 				return createResultObjectAdapter();
+			}
+			@Override
+			public Adapter caseOptionObject(OptionObject object) {
+				return createOptionObjectAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -157,6 +166,20 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject <em>Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject
+	 * @generated
+	 */
+	public Adapter createExecutionTimeBenchmarkerOptionObjectAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -181,6 +204,20 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createResultObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.OptionObject
+	 * @generated
+	 */
+	public Adapter createOptionObjectAdapter() {
 		return null;
 	}
 

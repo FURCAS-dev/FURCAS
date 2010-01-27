@@ -45,6 +45,8 @@ public class OclOptionObjectImpl extends OptionObjectImpl implements OclOptionOb
 	 * 
 	 */
 	public OclOptionObjectImpl() {
+		super();
+		setWizardPage(new OclOperatorWizardPage("OCL Operator"));
 		
 	}
 

@@ -292,6 +292,34 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl <em>Option Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarkerOptionObject()
+	 * @generated
+	 */
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Wizard Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
+
+	/**
+	 * The number of structural features of the '<em>Option Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+
+	/**
 	 * The meta object id for the '<em>ETM Monitor</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -299,7 +327,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMMonitor()
 	 * @generated
 	 */
-	int ETM_MONITOR = 3;
+	int ETM_MONITOR = 4;
 
 
 	/**
@@ -310,7 +338,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMPoint()
 	 * @generated
 	 */
-	int ETM_POINT = 4;
+	int ETM_POINT = 5;
 
 
 	/**
@@ -430,6 +458,16 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getJETMResultObject_TransactionTime();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject <em>Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Option Object</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject
+	 * @generated
+	 */
+	EClass getExecutionTimeBenchmarkerOptionObject();
 
 	/**
 	 * Returns the meta object for data type '{@link etm.core.monitor.EtmMonitor <em>ETM Monitor</em>}'.
@@ -568,6 +606,16 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute JETM_RESULT_OBJECT__TRANSACTION_TIME = eINSTANCE.getJETMResultObject_TransactionTime();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl <em>Option Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerOptionObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getExecutionTimeBenchmarkerOptionObject()
+		 * @generated
+		 */
+		EClass EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT = eINSTANCE.getExecutionTimeBenchmarkerOptionObject();
 
 		/**
 		 * The meta object literal for the '<em>ETM Monitor</em>' data type.

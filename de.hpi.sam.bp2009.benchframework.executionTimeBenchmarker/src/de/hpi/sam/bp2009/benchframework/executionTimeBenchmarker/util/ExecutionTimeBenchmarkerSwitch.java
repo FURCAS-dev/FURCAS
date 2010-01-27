@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.*;
@@ -111,6 +112,13 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT: {
+				ExecutionTimeBenchmarkerOptionObject executionTimeBenchmarkerOptionObject = (ExecutionTimeBenchmarkerOptionObject)theEObject;
+				T result = caseExecutionTimeBenchmarkerOptionObject(executionTimeBenchmarkerOptionObject);
+				if (result == null) result = caseOptionObject(executionTimeBenchmarkerOptionObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -161,6 +169,21 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExecutionTimeBenchmarkerOptionObject(ExecutionTimeBenchmarkerOptionObject object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -187,6 +210,21 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 	 * @generated
 	 */
 	public T caseResultObject(ResultObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOptionObject(OptionObject object) {
 		return null;
 	}
 

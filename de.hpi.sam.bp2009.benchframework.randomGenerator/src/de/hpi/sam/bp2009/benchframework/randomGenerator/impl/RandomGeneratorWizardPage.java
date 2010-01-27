@@ -1,23 +1,23 @@
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
 
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-public class RandomGeneratorWizardPage extends WizardPage {
+import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
 
-	private static final String[] FILTER_NAMES = {"Ecore Model (*.ecore)"};
-	private static final String[] FILTER_EXTS = {"*.ecore"};
+public class RandomGeneratorWizardPage extends WizardPage {
 	
 	Text fileName;
+	private RandomGeneratorOptionObject option;
+	protected boolean validPackage = false;
 	
 	protected RandomGeneratorWizardPage(String pageName) {
 		super(pageName);
@@ -25,36 +25,33 @@ public class RandomGeneratorWizardPage extends WizardPage {
 		setDescription("Set the options for the Random Generator.");
 		setPageComplete(false);
 	}
-
+	protected RandomGeneratorWizardPage(String pageName, RandomGeneratorOptionObject option) {
+		this(pageName);
+		this.option = option;
+	}
 	public void createControl(Composite parent) {
 		//create the widgets for the page
 		Composite composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout(2, false);
+		GridLayout layout = new GridLayout(1, false);
 		composite.setLayout(layout);
 		fileName = new Text(composite, SWT.BORDER);
-		Button open = new Button(composite, SWT.PUSH);
-	    open.setText("Open...");
-	    open.addSelectionListener(new SelectionAdapter() {
-	      public void widgetSelected(SelectionEvent event) {
-	        // User has selected to open a single file
-	        FileDialog dlg = new FileDialog(new Shell(), SWT.OPEN);
-	        dlg.setFilterNames(FILTER_NAMES);
-	        dlg.setFilterExtensions(FILTER_EXTS);
-	        String fn = dlg.open();
-	        if (fn != null) {
-	          fileName.setText(fn);
-	        }
-	      }
-	    });
+		fileName.addModifyListener(new ModifyListener() {
+			
+			@Override
+			public void modifyText(ModifyEvent e) {
+				//check if given URI is a package in package registry
+				EPackage pckg = Registry.INSTANCE.getEPackage(((Text)e.getSource()).getText());
+				if (pckg != null){
+					option.setMetaModel(pckg);
+					validPackage  = true;
+				}
+			}
+		});
 	    //setControl(composite);
 	}
 	
 	@Override
 	public boolean canFlipToNextPage() {
-		// TODO Auto-generated method stub
-		if ("".equals(fileName.getText())){
-				return false;
-		}
-		return true;
+		return validPackage;
 	}
 }

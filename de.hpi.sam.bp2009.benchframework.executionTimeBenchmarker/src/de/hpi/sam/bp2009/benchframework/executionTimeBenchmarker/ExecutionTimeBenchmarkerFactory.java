@@ -53,6 +53,15 @@ public interface ExecutionTimeBenchmarkerFactory extends EFactory {
 	JETMResultObject createJETMResultObject();
 
 	/**
+	 * Returns a new object of class '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Option Object</em>'.
+	 * @generated
+	 */
+	ExecutionTimeBenchmarkerOptionObject createExecutionTimeBenchmarkerOptionObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -6,7 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator;
 
-import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.EPackage;
 
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 
@@ -32,29 +32,29 @@ import de.hpi.sam.bp2009.benchframework.OptionObject;
  */
 public interface RandomGeneratorOptionObject extends OptionObject {
 	/**
-	 * Returns the value of the '<em><b>Meta Model</b></em>' attribute.
+	 * Returns the value of the '<em><b>Meta Model</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Meta Model</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Meta Model</em>' attribute.
-	 * @see #setMetaModel(ResourceSet)
+	 * @return the value of the '<em>Meta Model</em>' reference.
+	 * @see #setMetaModel(EPackage)
 	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage#getRandomGeneratorOptionObject_MetaModel()
-	 * @model transient="true"
+	 * @model
 	 * @generated
 	 */
-	ResourceSet getMetaModel();
+	EPackage getMetaModel();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Meta Model</em>' attribute.
+	 * @param value the new value of the '<em>Meta Model</em>' reference.
 	 * @see #getMetaModel()
 	 * @generated
 	 */
-	void setMetaModel(ResourceSet value);
+	void setMetaModel(EPackage value);
 
 } // RandomGeneratorOptionObject

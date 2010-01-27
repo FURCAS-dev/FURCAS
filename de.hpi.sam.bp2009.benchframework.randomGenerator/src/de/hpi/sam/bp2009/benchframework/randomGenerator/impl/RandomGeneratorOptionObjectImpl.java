@@ -7,7 +7,6 @@
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -15,10 +14,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
@@ -39,34 +36,24 @@ import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
  */
 public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements RandomGeneratorOptionObject {
 	/**
-	 * The default value of the '{@link #getMetaModel() <em>Meta Model</em>}' attribute.
+	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getMetaModel()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final ResourceSet META_MODEL_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getMetaModel()
-	 * @generated
-	 * @ordered
-	 */
-	protected ResourceSet metaModel = META_MODEL_EDEFAULT;
+	protected EPackage metaModel;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public RandomGeneratorOptionObjectImpl() {
 		super();
-		this.setWizardPage(new RandomGeneratorWizardPage("Random Generator"));
-		this.setMetaModel(defaultModel());
+		setWizardPage(new RandomGeneratorWizardPage("Random Generator", this));
+		setMetaModel(defaultModel());
 	}
 
 	/**
@@ -84,7 +71,15 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceSet getMetaModel() {
+	public EPackage getMetaModel() {
+		if (metaModel != null && metaModel.eIsProxy()) {
+			InternalEObject oldMetaModel = (InternalEObject)metaModel;
+			metaModel = (EPackage)eResolveProxy(oldMetaModel);
+			if (metaModel != oldMetaModel) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, oldMetaModel, metaModel));
+			}
+		}
 		return metaModel;
 	}
 
@@ -93,8 +88,17 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMetaModel(ResourceSet newMetaModel) {
-		ResourceSet oldMetaModel = metaModel;
+	public EPackage basicGetMetaModel() {
+		return metaModel;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMetaModel(EPackage newMetaModel) {
+		EPackage oldMetaModel = metaModel;
 		metaModel = newMetaModel;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL, oldMetaModel, metaModel));
@@ -109,7 +113,8 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
-				return getMetaModel();
+				if (resolve) return getMetaModel();
+				return basicGetMetaModel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -123,7 +128,7 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
-				setMetaModel((ResourceSet)newValue);
+				setMetaModel((EPackage)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -138,7 +143,7 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
-				setMetaModel(META_MODEL_EDEFAULT);
+				setMetaModel((EPackage)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -153,30 +158,12 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
-				return META_MODEL_EDEFAULT == null ? metaModel != null : !META_MODEL_EDEFAULT.equals(metaModel);
+				return metaModel != null;
 		}
 		return super.eIsSet(featureID);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String toString() {
-		if (eIsProxy()) return super.toString();
-
-		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (metaModel: ");
-		result.append(metaModel);
-		result.append(')');
-		return result.toString();
-	}
-	
-	private ResourceSet defaultModel(){
-		ResourceSet result = new ResourceSetImpl();
-		Resource resource = result.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/defaultMetaModel"));
+	private EPackage defaultModel(){
 		
 		//get the instance of EcoreFactory
 		EcoreFactory ecoreFactory = EcoreFactory.eINSTANCE;
@@ -280,9 +267,7 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 		petriNetEPackage.getEClassifiers().add(transitionClass);
 		petriNetEPackage.getEClassifiers().add(nodeClass);
 		
-		resource.getContents().add(petriNetEPackage);
-		
-		return result;
+		return petriNetEPackage;
 	}
 
 } //RandomGeneratorOptionObjectImpl

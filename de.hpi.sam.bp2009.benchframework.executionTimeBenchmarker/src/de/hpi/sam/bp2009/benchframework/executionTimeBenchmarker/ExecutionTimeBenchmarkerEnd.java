@@ -31,6 +31,7 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 public interface ExecutionTimeBenchmarkerEnd extends Operator {
 	/**
 	 * Returns the value of the '<em><b>Start Point</b></em>' reference.
+	 * It is bidirectional and its opposite is '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getEndPoint <em>End Point</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Start Point</em>' reference isn't clear,
@@ -40,7 +41,8 @@ public interface ExecutionTimeBenchmarkerEnd extends Operator {
 	 * @return the value of the '<em>Start Point</em>' reference.
 	 * @see #setStartPoint(ExecutionTimeBenchmarkerStart)
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getExecutionTimeBenchmarkerEnd_StartPoint()
-	 * @model
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getEndPoint
+	 * @model opposite="endPoint"
 	 * @generated
 	 */
 	ExecutionTimeBenchmarkerStart getStartPoint();

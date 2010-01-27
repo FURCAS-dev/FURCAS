@@ -7,7 +7,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This operator starts execution time measurement."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" eType="#//ExecutionTimeBenchmarkerEnd"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" eType="#//ExecutionTimeBenchmarkerEnd"
+        eOpposite="#//ExecutionTimeBenchmarkerEnd/startPoint"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="monitor" eType="#//ETMMonitor"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="point" eType="#//ETMPoint"/>
   </eClassifiers>
@@ -15,7 +16,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="This operator ends execution time measurement."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="startPoint" eType="#//ExecutionTimeBenchmarkerStart"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startPoint" eType="#//ExecutionTimeBenchmarkerStart"
+        eOpposite="#//ExecutionTimeBenchmarkerStart/endPoint"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JETMResultObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//ResultObject">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -29,4 +31,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="ETMMonitor" instanceClassName="etm.core.monitor.EtmMonitor"/>
   <eClassifiers xsi:type="ecore:EDataType" name="ETMPoint" instanceClassName="etm.core.monitor.EtmPoint"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExecutionTimeBenchmarkerOptionObject"
+      eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject"/>
 </ecore:EPackage>

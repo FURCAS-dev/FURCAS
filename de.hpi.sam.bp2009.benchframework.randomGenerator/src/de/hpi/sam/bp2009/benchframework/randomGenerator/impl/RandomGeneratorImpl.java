@@ -13,9 +13,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
@@ -31,7 +31,7 @@ import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
  * <p>
  * </p>
  *
- * @generated NOT
+ * @generated
  */
 public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator {
 	private ArrayList<EClass> metaClasses;
@@ -42,8 +42,7 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 	 */
 	public RandomGeneratorImpl() {
 		super();
-		RandomGeneratorOptionObject options = RandomGeneratorFactory.eINSTANCE.createRandomGeneratorOptionObject();
-		this.setOption(options);
+		this.setOption(RandomGeneratorFactory.eINSTANCE.createRandomGeneratorOptionObject());
 		this.setName("Random Generator");
 		this.setDescription("Instantiates a random instance of the model and adds all needed references to it.");
 	}
@@ -70,20 +69,16 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 		ResourceSetImpl resultRS = new ResourceSetImpl();
 		Resource result = resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
 		RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
-		ResourceSet metaModel = options.getMetaModel();
+		EPackage metaModel = options.getMetaModel();
 		metaClasses = new ArrayList<EClass>();
 		
 		//get all classes in the meta model
-		for (String name:metaModel.getPackageRegistry().keySet()){
-			if (metaModel.getPackageRegistry().getEPackage(name) == null){
-				continue;
-			}
-			for(EClassifier cls:metaModel.getPackageRegistry().getEPackage(name).getEClassifiers()){
-				if (cls instanceof EClass){
-					metaClasses.add((EClass) cls);
-				}
+		for(EClassifier cls:metaModel.getEClassifiers()){
+			if (cls instanceof EClass){
+				metaClasses.add((EClass) cls);
 			}
 		}
+
 		//instantiate the meta model
 		instantiate(metaClasses.get(new Random().nextInt(metaClasses.size())), result);
 		this.getTestRun().setModel(resultRS);

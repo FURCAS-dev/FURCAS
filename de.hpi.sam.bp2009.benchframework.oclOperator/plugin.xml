@@ -13,7 +13,7 @@
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://de.hpi.sam.bp2009.benchframework.oclOperator"
-            class="oclOperator.OclOperatorPackage"
+            class="de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage"
             genModel="model/ocloperator.genmodel"/>
    </extension>
    <extension

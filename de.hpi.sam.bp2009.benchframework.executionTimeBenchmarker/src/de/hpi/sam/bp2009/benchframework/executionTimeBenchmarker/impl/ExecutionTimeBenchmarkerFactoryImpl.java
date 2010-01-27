@@ -66,6 +66,7 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START: return createExecutionTimeBenchmarkerStart();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END: return createExecutionTimeBenchmarkerEnd();
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT: return createJETMResultObject();
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT: return createExecutionTimeBenchmarkerOptionObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -133,6 +134,16 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	public JETMResultObject createJETMResultObject() {
 		JETMResultObjectImpl jetmResultObject = new JETMResultObjectImpl();
 		return jetmResultObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExecutionTimeBenchmarkerOptionObject createExecutionTimeBenchmarkerOptionObject() {
+		ExecutionTimeBenchmarkerOptionObjectImpl executionTimeBenchmarkerOptionObject = new ExecutionTimeBenchmarkerOptionObjectImpl();
+		return executionTimeBenchmarkerOptionObject;
 	}
 
 	/**

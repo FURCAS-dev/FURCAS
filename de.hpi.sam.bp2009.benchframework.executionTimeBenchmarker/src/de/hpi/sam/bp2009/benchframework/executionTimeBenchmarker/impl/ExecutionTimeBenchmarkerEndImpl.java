@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -51,6 +52,8 @@ public class ExecutionTimeBenchmarkerEndImpl extends OperatorImpl implements Exe
 	 */
 	public ExecutionTimeBenchmarkerEndImpl() {
 		super();
+		setName("Execution Time Benchmark End");
+		setDescription("Ends a time measurement.");
 	}
 
 	/**
@@ -94,11 +97,63 @@ public class ExecutionTimeBenchmarkerEndImpl extends OperatorImpl implements Exe
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStartPoint(ExecutionTimeBenchmarkerStart newStartPoint) {
+	public NotificationChain basicSetStartPoint(ExecutionTimeBenchmarkerStart newStartPoint, NotificationChain msgs) {
 		ExecutionTimeBenchmarkerStart oldStartPoint = startPoint;
 		startPoint = newStartPoint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, oldStartPoint, startPoint));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, oldStartPoint, newStartPoint);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStartPoint(ExecutionTimeBenchmarkerStart newStartPoint) {
+		if (newStartPoint != startPoint) {
+			NotificationChain msgs = null;
+			if (startPoint != null)
+				msgs = ((InternalEObject)startPoint).eInverseRemove(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, ExecutionTimeBenchmarkerStart.class, msgs);
+			if (newStartPoint != null)
+				msgs = ((InternalEObject)newStartPoint).eInverseAdd(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, ExecutionTimeBenchmarkerStart.class, msgs);
+			msgs = basicSetStartPoint(newStartPoint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, newStartPoint, newStartPoint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT:
+				if (startPoint != null)
+					msgs = ((InternalEObject)startPoint).eInverseRemove(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, ExecutionTimeBenchmarkerStart.class, msgs);
+				return basicSetStartPoint((ExecutionTimeBenchmarkerStart)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT:
+				return basicSetStartPoint(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

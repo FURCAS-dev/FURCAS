@@ -8,7 +8,10 @@ package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import java.util.UUID;
 
+import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
 
@@ -20,6 +23,7 @@ import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
@@ -97,6 +101,13 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	 */
 	public ExecutionTimeBenchmarkerStartImpl() {
 		super();
+		ExecutionTimeBenchmarkerOptionObject options = ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerOptionObject();
+		setOption(options);
+		setName("Execution Time Benchmark Start");
+		setDescription("Starts a time measurement.");
+		ExecutionTimeBenchmarkerEnd end = ExecutionTimeBenchmarkerFactory.eINSTANCE.createExecutionTimeBenchmarkerEnd();
+		setEndPoint(end); //setStartPoint is the EOpposite of this reference, we don't need to set it explicitly
+		end.setOption(options);
 	}
 
 	/**
@@ -140,11 +151,33 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEndPoint(ExecutionTimeBenchmarkerEnd newEndPoint) {
+	public NotificationChain basicSetEndPoint(ExecutionTimeBenchmarkerEnd newEndPoint, NotificationChain msgs) {
 		ExecutionTimeBenchmarkerEnd oldEndPoint = endPoint;
 		endPoint = newEndPoint;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, oldEndPoint, endPoint));
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, oldEndPoint, newEndPoint);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setEndPoint(ExecutionTimeBenchmarkerEnd newEndPoint) {
+		if (newEndPoint != endPoint) {
+			NotificationChain msgs = null;
+			if (endPoint != null)
+				msgs = ((InternalEObject)endPoint).eInverseRemove(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, ExecutionTimeBenchmarkerEnd.class, msgs);
+			if (newEndPoint != null)
+				msgs = ((InternalEObject)newEndPoint).eInverseAdd(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, ExecutionTimeBenchmarkerEnd.class, msgs);
+			msgs = basicSetEndPoint(newEndPoint, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, newEndPoint, newEndPoint));
 	}
 
 	/**
@@ -195,6 +228,36 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	 * @generated
 	 */
 	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
+				if (endPoint != null)
+					msgs = ((InternalEObject)endPoint).eInverseRemove(this, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END__START_POINT, ExecutionTimeBenchmarkerEnd.class, msgs);
+				return basicSetEndPoint((ExecutionTimeBenchmarkerEnd)otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
+				return basicSetEndPoint(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT:
@@ -211,7 +274,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
@@ -225,6 +288,11 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				setPoint((EtmPoint)newValue);
 				return;
+				//make sure start and endpoint reference the same testrun
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
+				setTestRun((TestRun)newValue);
+				getEndPoint().setTestRun((TestRun)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -232,7 +300,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void eUnset(int featureID) {
@@ -245,6 +313,11 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				setPoint(POINT_EDEFAULT);
+				return;
+			//make sure start and endpoint reference the same testrun
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
+				setTestRun(null);
+				getEndPoint().setTestRun(null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -286,7 +359,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 		return result.toString();
 	}
 	
-	/* not sure if ETMMonitor is a singleton...mght lead to problems when using more than one ExecutionTimeBenchmarker
+	/* not sure if ETMMonitor is a singleton...might lead to problems when using more than one ExecutionTimeBenchmarker
 	 * @see de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#execute()
 	 */
 	@Override
@@ -296,5 +369,6 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 		monitor.start();
 		point = monitor.createPoint(UUID.randomUUID().toString());
 	}
+
 
 } //ExecutionTimeBenchmarkerStartImpl

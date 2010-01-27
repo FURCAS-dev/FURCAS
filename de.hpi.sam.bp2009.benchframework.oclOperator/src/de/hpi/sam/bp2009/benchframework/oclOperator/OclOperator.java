@@ -6,11 +6,9 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator;
 
-import de.hpi.sam.bp2009.benchframework.Operator;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import de.hpi.sam.bp2009.benchframework.OptionObject;
 
-import org.eclipse.emf.ecore.resource.Resource;
+import de.hpi.sam.bp2009.benchframework.Operator;
 
 /**
  * <!-- begin-user-doc -->
