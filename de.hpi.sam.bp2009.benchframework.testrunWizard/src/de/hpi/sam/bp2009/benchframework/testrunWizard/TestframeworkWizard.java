@@ -1,19 +1,18 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
-import java.awt.event.ActionEvent;
-
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
+import de.hpi.sam.bp2009.benchframework.TestRun;
+import de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl;
 
 public class TestframeworkWizard extends Wizard implements INewWizard {
 
 	private ListPage listPage = new ListPage("Module List");
-	private ChooseModulePage chooseModulePage;
+	TestRun run=BenchframeworkFactory.eINSTANCE.createTestRun();
 	
 	protected IStructuredSelection selection;
 	
@@ -30,24 +29,13 @@ public class TestframeworkWizard extends Wizard implements INewWizard {
 
 	
 	public void addPages() {
-        try {
-			addPage(listPage);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}  
-        try {
-			chooseModulePage = new ChooseModulePage("Add Module");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        addPage(chooseModulePage);
+		addPage(listPage);
+//		for(Operator op:this.getIntImpl().getAvailableOperators())
+//			addPage(op.getOption().getWizardPage());
+		addPage( new OclOperatorImpl().getOption().getWizardPage());
+
 	}
 
-	public IWizardPage getChooseModulePage(){
-		return chooseModulePage;
-	}
 	@Override
 	public boolean performFinish() {
 		// TODO Auto-generated method stub

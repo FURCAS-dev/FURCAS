@@ -1,21 +1,28 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.ColorCellEditor;
 import org.eclipse.jface.viewers.ComboBoxCellEditor;
+import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.ApplicationWindow;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.TableEditor;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Image;
@@ -30,6 +37,7 @@ import org.eclipse.swt.widgets.Item;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 
@@ -37,20 +45,25 @@ public class OperatorTable {
 	
 	public List<Operator> operatorList= new ArrayList<Operator>();
 	public List<Operator> selectedOperatorList= new ArrayList<Operator>();
+	private TableViewer tv;
+	private OperatorCellModifier modifier;
 
-	public static String INTESTRUN="InRun";
+	public static String ORDERNR="Order";
 	public static String NAME="Name";
 	public static String DESCRIPTION="Description";
-	public static final String[] PROPS = { INTESTRUN, NAME, DESCRIPTION};
+	public static final String[] PROPS = { ORDERNR, NAME, DESCRIPTION};
+	void refresh(){
+		tv.refresh();
+	}
 	void createTable(Composite parent){
-		 final TableViewer tv = new TableViewer(parent, SWT.FULL_SELECTION);
+		 	tv = new TableViewer(parent, SWT.BORDER |SWT.MULTI |SWT.FULL_SELECTION);
 		    tv.setContentProvider(new OperatorContentProvider());
 		    tv.setLabelProvider(new OperatorLabelProvider(this));
 		    tv.setInput(operatorList);
 		    Table table = tv.getTable();
 		    table.setLayoutData(new GridData(GridData.FILL_BOTH));
 		    
-		    new TableColumn(table, SWT.CENTER).setText(INTESTRUN);
+		    new TableColumn(table, SWT.CENTER).setText(ORDERNR);
 		    new TableColumn(table, SWT.CENTER).setText(NAME);
 		    new TableColumn(table, SWT.CENTER).setText(DESCRIPTION);
 
@@ -75,16 +88,35 @@ public class OperatorTable {
 //		    });
 
 		    CellEditor[] editors = new CellEditor[4];
-		    editors[0] = new CheckboxCellEditor(table);
-		    editors[1] = new TextCellEditor(table);
-//		    editors[2] = new ComboBoxCellEditor(table, AgeRange.INSTANCES, SWT.READ_ONLY);
-		    editors[2] = new TextCellEditor(table);
+		    TextCellEditor textEditor = new TextCellEditor(table);
+		    ((Text) textEditor.getControl()).setTextLimit(60);
+		    textEditor.setValidator(new ICellEditorValidator() {
+				
+				@Override
+				public String isValid(Object value) {
+					try{
+					Integer.parseInt(value.toString());
+					}catch (NumberFormatException e) {
+						return "No Valid Index";
+					}
+					// TODO Auto-generated method stub
+					return null;
+				}
+			});
+	        editors[0] = textEditor;
+	        //textEditor.activate();
 
+		    editors[1] = new TextCellEditor(table, SWT.Modify);
+//		    editors[2] = new ComboBoxCellEditor(table, AgeRange.INSTANCES, SWT.READ_ONLY);
+		    editors[2] = new TextCellEditor(table); 
 		    tv.setColumnProperties(PROPS);
 		    tv.setCellModifier(new OperatorCellModifier(tv,this));
 		    tv.setCellEditors(editors);
+		    System.out.println(tv.isCellEditorActive());
+		    table.pack();
 		    tv.refresh();
-
+		   		    
+		
 	}
 	
 	class OperatorCellModifier implements ICellModifier {
@@ -105,13 +137,13 @@ public class OperatorTable {
 		  }
 
 		  public Object getValue(Object element, String property) {
-		    Operator p = (Operator) element;
+		    Operator opObj = (Operator) element;
 		    if (OperatorTable.NAME.equals(property))
-		      return p.getName();
-		    else if (OperatorTable.INTESTRUN.equals(property))
-		      return table.selectedOperatorList.contains(p);
+		      return opObj.getName();
+		    else if (OperatorTable.ORDERNR.equals(property))
+		      return table.operatorList.indexOf(opObj)+"";
 		    else if (OperatorTable.DESCRIPTION.equals(property))
-		      return p.getDescription();
+		      return opObj.getDescription();
 		    else
 		      return null;
 		  }
@@ -120,13 +152,16 @@ public class OperatorTable {
 		    if (element instanceof Item) element = ((Item) element).getData();
 
 		    Operator p = (Operator) element;
-		    
-		    if (OperatorTable.INTESTRUN.equals(property)){
-		    		if((Boolean)value)
-		    			table.selectedOperatorList.add(p);
-		    		else
-		    			table.selectedOperatorList.remove(p);
+		    try{
+		    if (OperatorTable.ORDERNR.equals(property)){
+		    	Integer i=Integer.parseInt((String) value);
+		    	if(i>=table.operatorList.size())
+		    		i=table.operatorList.size()-1;
+		    	table.operatorList.remove(p);
+		    	table.operatorList.add(i,p);
 		    }
+		    }catch(NumberFormatException e)
+		    {e.printStackTrace();}
 
 		    viewer.refresh();
 		  }
@@ -158,7 +193,7 @@ public class OperatorTable {
 		    Operator op = (Operator) element;
 		    switch (columnIndex) {
 		    case 0:
-		      return Boolean.toString(table.selectedOperatorList.contains(op));
+		      return (table.operatorList.indexOf(op))+"";
 		    case 1:
 		      return op.getName();
 		    case 2:

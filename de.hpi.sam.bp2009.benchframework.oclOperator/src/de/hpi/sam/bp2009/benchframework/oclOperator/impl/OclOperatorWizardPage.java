@@ -19,7 +19,7 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 public class OclOperatorWizardPage extends WizardPage {
 	
 	private OclOptionObject option;
-	ArrayList<Text> textareas;
+	ArrayList<Text> textareas= new ArrayList<Text>();
 	
 	protected OclOperatorWizardPage(String pageName) {
 		super(pageName);
@@ -52,7 +52,7 @@ public class OclOperatorWizardPage extends WizardPage {
 				textareas.add(txt);
 			}
 		});
-	    //setControl(composite);
+	    setControl(composite);
 	}
 	
 	@Override
@@ -67,7 +67,10 @@ public class OclOperatorWizardPage extends WizardPage {
 		for (Text tb: textareas){
 			constraints.add(tb.getText());
 		}
-		option.setConstraints(constraints);
+		if (option==null)
+			return super.getNextPage();
+		else
+			option.setConstraints(constraints);
 		return super.getNextPage();
 	}
 }
