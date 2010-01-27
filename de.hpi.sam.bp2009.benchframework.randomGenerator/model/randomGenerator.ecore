@@ -14,11 +14,5 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metaModel" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
         transient="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instanceParameters" transient="true">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-      </eGenericType>
-    </eStructuralFeatures>
   </eClassifiers>
 </ecore:EPackage>

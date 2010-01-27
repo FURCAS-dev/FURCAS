@@ -154,22 +154,13 @@ public interface RandomGeneratorPackage extends EPackage {
 	int RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Instance Parameters</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
-
-	/**
 	 * The number of structural features of the '<em>Option Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RANDOM_GENERATOR_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 2;
+	int RANDOM_GENERATOR_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
 
 
 	/**
@@ -202,17 +193,6 @@ public interface RandomGeneratorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getRandomGeneratorOptionObject_MetaModel();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getInstanceParameters <em>Instance Parameters</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Instance Parameters</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getInstanceParameters()
-	 * @see #getRandomGeneratorOptionObject()
-	 * @generated
-	 */
-	EAttribute getRandomGeneratorOptionObject_InstanceParameters();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -261,13 +241,6 @@ public interface RandomGeneratorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL = eINSTANCE.getRandomGeneratorOptionObject_MetaModel();
-		/**
-		 * The meta object literal for the '<em><b>Instance Parameters</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS = eINSTANCE.getRandomGeneratorOptionObject_InstanceParameters();
 
 	}
 

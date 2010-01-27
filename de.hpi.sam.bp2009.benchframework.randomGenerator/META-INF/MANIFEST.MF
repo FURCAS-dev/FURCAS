@@ -12,4 +12,8 @@ Export-Package: de.hpi.sam.bp2009.benchframework.randomGenerator,
  de.hpi.sam.bp2009.benchframework.randomGenerator.util
 Require-Bundle: de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.jface.wizard
+Import-Package: org.eclipse.jface.wizard,
+ org.eclipse.swt,
+ org.eclipse.swt.events,
+ org.eclipse.swt.layout,
+ org.eclipse.swt.widgets

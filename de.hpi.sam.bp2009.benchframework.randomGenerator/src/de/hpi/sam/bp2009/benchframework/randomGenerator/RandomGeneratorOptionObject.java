@@ -6,11 +6,9 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator;
 
-import de.hpi.sam.bp2009.benchframework.OptionObject;
-
-import java.util.Map;
-
 import org.eclipse.emf.ecore.resource.ResourceSet;
+
+import de.hpi.sam.bp2009.benchframework.OptionObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +23,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getMetaModel <em>Meta Model</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getInstanceParameters <em>Instance Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -59,31 +56,5 @@ public interface RandomGeneratorOptionObject extends OptionObject {
 	 * @generated
 	 */
 	void setMetaModel(ResourceSet value);
-
-	/**
-	 * Returns the value of the '<em><b>Instance Parameters</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Instance Parameters</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Instance Parameters</em>' attribute.
-	 * @see #setInstanceParameters(Map)
-	 * @see de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage#getRandomGeneratorOptionObject_InstanceParameters()
-	 * @model transient="true"
-	 * @generated
-	 */
-	Map<String, Integer> getInstanceParameters();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject#getInstanceParameters <em>Instance Parameters</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Instance Parameters</em>' attribute.
-	 * @see #getInstanceParameters()
-	 * @generated
-	 */
-	void setInstanceParameters(Map<String, Integer> value);
 
 } // RandomGeneratorOptionObject

@@ -6,16 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
-import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
-
-import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
-import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
-
-import java.util.Map;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -23,12 +15,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+
+import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
+import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
+import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +32,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.randomGenerator.impl.RandomGeneratorOptionObjectImpl#getMetaModel <em>Meta Model</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.randomGenerator.impl.RandomGeneratorOptionObjectImpl#getInstanceParameters <em>Instance Parameters</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,22 +59,14 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	protected ResourceSet metaModel = META_MODEL_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getInstanceParameters() <em>Instance Parameters</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getInstanceParameters()
-	 * @generated
-	 * @ordered
-	 */
-	protected Map<String, Integer> instanceParameters;
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RandomGeneratorOptionObjectImpl() {
+	public RandomGeneratorOptionObjectImpl() {
 		super();
+		this.setWizardPage(new RandomGeneratorWizardPage("Random Generator"));
+		this.setMetaModel(defaultModel());
 	}
 
 	/**
@@ -120,34 +105,11 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map<String, Integer> getInstanceParameters() {
-		return instanceParameters;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setInstanceParameters(Map<String, Integer> newInstanceParameters) {
-		Map<String, Integer> oldInstanceParameters = instanceParameters;
-		instanceParameters = newInstanceParameters;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS, oldInstanceParameters, instanceParameters));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				return getMetaModel();
-			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS:
-				return getInstanceParameters();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -157,15 +119,11 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				setMetaModel((ResourceSet)newValue);
-				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS:
-				setInstanceParameters((Map<String, Integer>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -182,9 +140,6 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				setMetaModel(META_MODEL_EDEFAULT);
 				return;
-			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS:
-				setInstanceParameters((Map<String, Integer>)null);
-				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -199,8 +154,6 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 		switch (featureID) {
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				return META_MODEL_EDEFAULT == null ? metaModel != null : !META_MODEL_EDEFAULT.equals(metaModel);
-			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__INSTANCE_PARAMETERS:
-				return instanceParameters != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -217,8 +170,6 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (metaModel: ");
 		result.append(metaModel);
-		result.append(", instanceParameters: ");
-		result.append(instanceParameters);
 		result.append(')');
 		return result.toString();
 	}

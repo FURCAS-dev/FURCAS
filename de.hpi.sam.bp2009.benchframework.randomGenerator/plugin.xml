@@ -12,7 +12,7 @@
    <extension
          point="org.eclipse.emf.ecore.generated_package">
       <package
-            class="randomGenerator.RandomGeneratorPackage"
+            class="de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage"
             uri="http://de.hpi.sam.bp2009.benchframework.randomGenerator">
       </package>
    </extension>
