@@ -110,6 +110,20 @@
 			/>
 		</zip>
 
+		<!-- build Minimal SDK -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-MinimalSDK${incubation}-${buildAlias}.zip" update="true">
+			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
+			            dirmode="775"
+			            filemode="664"
+			            excludes="**/${domainNamespace}.*.examples*, **/${domainNamespace}.*.examples*/**, **/${domainNamespace}.*.samples*, **/${domainNamespace}.*.samples*/**, **/${domainNamespace}.*.doc*, **/${domainNamespace}.*.doc*/**, **/${domainNamespace}.*.edit*, **/${domainNamespace}.*.edit*/**"
+			>
+				<include name="**/${domainNamespace}.ocl*/" />
+				<include name="**/${domainNamespace}.ocl*/**" />
+				<include name="**/eclipse/epl-v10.html" />
+				<include name="**/eclipse/notice.html" />
+			</zipfileset>
+		</zip>
+
 		<!-- build runtime from SDK -->
 		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-runtime${incubation}-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
