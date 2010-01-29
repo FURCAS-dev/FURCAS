@@ -12,8 +12,8 @@ Export-Package: de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker,
  de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
- de.hpi.sam.bp2009.benchframework;visibility:=reexport
+ de.hpi.sam.bp2009.benchframework;visibility:=reexport,
+ org.eclipse.jface;bundle-version="3.5.1"
 Bundle-ActivationPolicy: lazy
 Import-Package: de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker,
- org.eclipse.jface.wizard,
  org.eclipse.swt.widgets

@@ -8,5 +8,6 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.resources,
  org.eclipse.jdt.core,
  org.eclipse.jdt.ui,
- de.hpi.sam.bp2009.benchframework
+ de.hpi.sam.bp2009.benchframework,
+ org.eclipse.jface;bundle-version="3.5.1"
 Eclipse-LazyStart: false

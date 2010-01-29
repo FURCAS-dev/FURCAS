@@ -1,10 +1,9 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWizard;
 
 public class TestrunWizard extends Wizard implements INewWizard
 {

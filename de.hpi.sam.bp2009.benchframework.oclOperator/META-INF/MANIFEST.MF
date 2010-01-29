@@ -13,7 +13,7 @@ Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  org.eclipse.emf.query,
  org.eclipse.emf.query.ocl,
  org.eclipse.swt,
- org.eclipse.jface
+ org.eclipse.jface;bundle-version="3.5.1"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.ocl.ecore,
  org.eclipse.swt

@@ -1,5 +1,6 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
+
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
@@ -32,7 +33,7 @@ public class TestframeworkWizard extends Wizard implements INewWizard {
 		addPage(listPage);
 //		for(Operator op:this.getIntImpl().getAvailableOperators())
 //			addPage(op.getOption().getWizardPage());
-		addPage( new OclOperatorImpl().getOption().getWizardPage());
+		//addPage( new OclOperatorImpl().getOption().getWizardPage());
 
 	}
 
