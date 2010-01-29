@@ -2,6 +2,7 @@ package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
 
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -11,9 +12,9 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl;
 
 public class TestframeworkWizard extends Wizard implements INewWizard {
-
 	private ListPage listPage = new ListPage("Module List");
 	TestRun run=BenchframeworkFactory.eINSTANCE.createTestRun();
+	RunningPage runningPage=new RunningPage("RunningPage");
 	
 	protected IStructuredSelection selection;
 	
@@ -31,6 +32,7 @@ public class TestframeworkWizard extends Wizard implements INewWizard {
 	
 	public void addPages() {
 		addPage(listPage);
+		addPage(runningPage);
 //		for(Operator op:this.getIntImpl().getAvailableOperators())
 //			addPage(op.getOption().getWizardPage());
 		//addPage( new OclOperatorImpl().getOption().getWizardPage());
@@ -50,6 +52,20 @@ public class TestframeworkWizard extends Wizard implements INewWizard {
 		this.selection = selection;
 		this.intImpl= new WizardUserInterfaceImpl();
 		this.intImpl.setEngine(BenchframeworkFactory.eINSTANCE.createEngine());	
+		
+	}
+	@Override
+	public IWizardPage getNextPage(IWizardPage page) {
+		if(runningPage==null){
+			runningPage=new RunningPage("RunningPage");
+			addPage(runningPage);}
+		
+		if(runningPage.equals(super.getNextPage(page)))
+			return this.getNextPage(runningPage);
+		
+		if(super.getNextPage(page)==null)
+			return runningPage;
+		return super.getNextPage(page);
 		
 	}
 

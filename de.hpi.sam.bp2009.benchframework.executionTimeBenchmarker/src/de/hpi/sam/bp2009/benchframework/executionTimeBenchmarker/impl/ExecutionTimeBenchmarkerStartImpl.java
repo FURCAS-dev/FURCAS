@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import java.util.UUID;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
@@ -153,6 +154,10 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	 */
 	public NotificationChain basicSetEndPoint(ExecutionTimeBenchmarkerEnd newEndPoint, NotificationChain msgs) {
 		ExecutionTimeBenchmarkerEnd oldEndPoint = endPoint;
+		if(oldEndPoint!=null)
+			oldEndPoint.setTestRun(null);
+		if(newEndPoint!=null)
+			newEndPoint.setTestRun(getTestRun());
 		endPoint = newEndPoint;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__END_POINT, oldEndPoint, newEndPoint);
@@ -274,7 +279,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated NOT
+	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
@@ -288,13 +293,23 @@ public class ExecutionTimeBenchmarkerStartImpl extends OperatorImpl implements E
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				setPoint((EtmPoint)newValue);
 				return;
-				//make sure start and endpoint reference the same testrun
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__TEST_RUN:
 				setTestRun((TestRun)newValue);
-				getEndPoint().setTestRun((TestRun)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
+	}
+	@Override
+	public NotificationChain basicSetTestRun(TestRun newTestRun, NotificationChain msgs) {
+		TestRun oldTestRun = testRun;
+		if(endPoint!=null)
+			endPoint.setTestRun(newTestRun);
+		testRun = newTestRun;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.OPERATOR__TEST_RUN, oldTestRun, newTestRun);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**

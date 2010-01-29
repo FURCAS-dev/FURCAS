@@ -1,8 +1,8 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -15,89 +15,121 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.ExpandBar;
-import org.eclipse.swt.widgets.Table;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 
 public class ListPage extends WizardPage {
-	private static final char[] Operator = null;
-	Table table;
-	ExpandBar expandBar;
-	public ArrayList<Operator> currentOperators;
-	public ArrayList<Button> checkboxes = new ArrayList<Button>();
-	OperatorTable tbl = new OperatorTable();
+	private static final String PAGETITEL="Testrun Configuration";
+	private static final String PAGEDESC="Choose the steps you want to perform during the test run.";
+	private static final String ADDBUTTONTEXT="Add";
+	private static final String REMOVEBUTTONTEXT = "Remove";
+	private OperatorTable tbl = new OperatorTable();
 	private Combo box;
-	private Button btn;
 	private Map<String, EClass> nameToEclass;
 
-    protected ListPage(String pageName) {
-        super(pageName);
-        setTitle("Testrun Configuration");
-        setDescription("Choose the steps you want to perform during the test run.");
-        setPageComplete(false);
-        System.out.println("list page");
-    }
-
-
+	protected ListPage(String pageName) {
+		super(pageName);
+		setTitle(PAGETITEL);
+		setDescription(PAGEDESC);
+		setPageComplete(false);
+	}
 
 	@Override
 	public void createControl(Composite parent) {
+
 		//create the widgets for the page
 		Composite composite = null;
-			composite = new Composite(parent, SWT.NONE);
-			GridLayout layout = new GridLayout();
-			layout.numColumns = 2;
-			composite.setLayout(layout);
-			box= new Combo(composite, SWT.UP);
-			nameToEclass=new HashMap<String,EClass>();
-			for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){
-				box.add(op.getName());
-				nameToEclass.put(op.getName(), op.eClass());
+		composite = new Composite(parent, SWT.NONE);
+		GridLayout layout = new GridLayout();
+		layout.numColumns = 2;
+		composite.setLayout(layout);
+		box= new Combo(composite, SWT.UP);
+		nameToEclass=new HashMap<String,EClass>();
+		for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){
+			box.add(op.getName());
+			nameToEclass.put(op.getName(), op.eClass());
+		}
+
+
+		buildAddButton(composite);
+
+		tbl.setOperatorList(((TestframeworkWizard)getWizard()).run.getOperators());
+		tbl.createTable(composite);
+		
+		buildRemoveButton(composite);
+		
+		
+		setControl(composite);
+		setPageComplete(true);
+	}
+
+	/** Generates an RemoveButton and add it to the Canvas
+	 *  this method access the operatortable tbl
+	 *  
+	 * @param parent to draw on
+	 */
+	private void buildRemoveButton(Composite parent) {
+		Button btn = new Button(parent, SWT.CENTER);
+		btn.setText(REMOVEBUTTONTEXT);
+		btn.addSelectionListener(new SelectionListener() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(tbl.getSelectedOperatorList().isEmpty())
+					return;
+				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
+				wiz.run.getOperators().removeAll(tbl.getSelectedOperatorList());
+				setPageComplete(true);
+				tbl.refresh();
 			}
-			
-			
-			btn= new Button(composite, SWT.CENTER);
-			btn.setText("Add");
-			btn.addSelectionListener(new SelectionListener() {
-				
-				@Override
-				public void widgetSelected(SelectionEvent e) {
-					
-					String item=box.getItem(box.getSelectionIndex());
-					System.out.println(item);
-					EClass cls = nameToEclass.get(item);
-					EObject obj=cls.getEPackage().getEFactoryInstance().create(cls);
-					if(obj instanceof Operator){
-						((TestframeworkWizard)getWizard()).run.getOperators().add((Operator)obj);
-						((TestframeworkWizard)getWizard()).addPage(((Operator)obj).getOption().getWizardPage());
-					}
-					tbl.refresh();
-				}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				//Do nothing
+			}
+		});
+	}
 
-				@Override
-				public void widgetDefaultSelected(SelectionEvent e) {
-					// TODO Auto-generated method stub
-					
-				}
-				
+	/** Generates an AddButton and add it to the Canvas
+	 *  this method access the selectionbox and the nameToClass map
+	 *  
+	 * @param parent to draw on
+	 */
+	private void buildAddButton(Composite parent) {
+		Button btn = new Button(parent, SWT.CENTER);
+		btn.setText(ADDBUTTONTEXT);
+		btn.addSelectionListener(new SelectionListener() {
 
-			});
-			
-			tbl.operatorList=((TestframeworkWizard)getWizard()).run.getOperators();
-			tbl.createTable(composite);
-			setControl(composite);
-			setPageComplete(true);
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(box.getSelectionIndex()==-1)
+					return;
+				EClass cls = nameToEclass.get(box.getItem(box.getSelectionIndex()));
+				EObject obj=cls.getEPackage().getEFactoryInstance().create(cls);
+				if(obj instanceof Operator){
+					Operator op= (Operator)obj;
+					TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
+					wiz.run.getOperators().add(op);
+					if(op.getOption()!=null && op.getOption().getWizardPage()!=null){
+						wiz.addPage(op.getOption().getWizardPage());
+						}
+					setPageComplete(true);
+				}
+				tbl.refresh();
+			}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				//Do nothing
+			}
+
+
+		});
 	}
 	@Override
 	public IWizardPage getNextPage() {
-		System.out.println(this.getWizard().getNextPage(this).getName());
-		// TODO Auto-generated method stub
 		return super.getNextPage();
 	}
 	@Override
 	public boolean canFlipToNextPage() {
-		// TODO Auto-generated method stub
-		return true;
+		return !((TestframeworkWizard)getWizard()).run.getOperators().isEmpty();
 	}
 }

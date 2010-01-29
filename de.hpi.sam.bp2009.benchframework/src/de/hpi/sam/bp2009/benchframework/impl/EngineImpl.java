@@ -91,7 +91,12 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	public void benchmark() {
 		for(TestRun run:getTestRuns()){
 			for(Operator op:run.getOperators()){
-				op.execute();
+				try {
+					op.execute();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}

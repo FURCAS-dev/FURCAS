@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
 import de.hpi.sam.bp2009.benchframework.impl.OperatorImpl;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGenerator;
@@ -74,8 +75,11 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 		
 		//get all classes in the meta model
 		for(EClassifier cls:metaModel.getEClassifiers()){
-			if (cls instanceof EClass){
-				metaClasses.add((EClass) cls);
+			if (cls instanceof EClass ){
+				EClass c = (EClass) cls;
+				if(c.isAbstract())
+					continue;
+				metaClasses.add(c);
 			}
 		}
 
@@ -90,12 +94,16 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 	 * @return the instance of the meta class
 	 */
 	private EObject instantiate(EClass cls, Resource res){
+		if(cls.isAbstract())
+			return instantiate(getImplementationForAbstractClass(cls), res);
 		EObject current = cls.getEPackage().getEFactoryInstance().create(cls);
 		res.getContents().add(current);
 		
 		//get all references of the meta class and link the instance accordingly
 		for (EReference ref:cls.getEAllReferences()){
-			
+			if( ExtendedMetaData.INSTANCE.getAffiliation(cls, ref)==null)
+				//TODO don't know how to handle this stuff
+				continue;
 			//link to already existing classes
 			int lowerBound = ref.getLowerBound();
 			for (EObject resContent:res.getContents()){
@@ -116,4 +124,18 @@ public class RandomGeneratorImpl extends OperatorImpl implements RandomGenerator
 		}
 		return current;
 	}
+
+	private EClass getImplementationForAbstractClass(EClass abstractCls) {
+		if(!abstractCls.isAbstract())
+			return abstractCls;
+		
+		for(EClass cls:metaClasses){
+			if(cls.getESuperTypes().contains(abstractCls)){
+				return getImplementationForAbstractClass(cls);
+			}
+				
+		}
+		return null;
+	}
+
 } //RandomGeneratorImpl

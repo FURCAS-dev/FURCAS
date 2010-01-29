@@ -9,20 +9,24 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
 
 public class RandomGeneratorWizardPage extends WizardPage {
+	private static final String PAGETITEL	=	"Random Generator Configuration";
+	private static final String PAGEDESC	=	"Set the options for the Random Generator.";
+	private static final String LABELTEXT 	= 	"Enter the URI of the metaModel, if empty we use petrinet";
+	private static final String TOOLTIPTEXT = 	"This url is used to load an EPackage from the PackageRegistry";
 	
-	Text fileName;
 	private RandomGeneratorOptionObject option;
-	protected boolean validPackage = false;
-	
+	protected boolean validPackage = true;
+
 	protected RandomGeneratorWizardPage(String pageName) {
 		super(pageName);
-		setTitle("Random Generator Configuration");
-		setDescription("Set the options for the Random Generator.");
+		setTitle(PAGETITEL);
+		setDescription(PAGEDESC);
 		setPageComplete(false);
 	}
 	protected RandomGeneratorWizardPage(String pageName, RandomGeneratorOptionObject option) {
@@ -32,11 +36,20 @@ public class RandomGeneratorWizardPage extends WizardPage {
 	public void createControl(Composite parent) {
 		//create the widgets for the page
 		Composite composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout(1, false);
+		GridLayout layout = new GridLayout(1, true);
 		composite.setLayout(layout);
-		fileName = new Text(composite, SWT.BORDER);
+
+		Label label = new Label(composite, SWT.CENTER);
+		label.setText(LABELTEXT);
+		buildTextBox(composite);
+		setControl(composite);
+	}
+	private void buildTextBox(Composite composite) {
+		Text fileName = new Text(composite, SWT.BORDER);
+		fileName.setText(option.getMetaModel().getNsURI());
+		fileName.setToolTipText(TOOLTIPTEXT);
 		fileName.addModifyListener(new ModifyListener() {
-			
+
 			@Override
 			public void modifyText(ModifyEvent e) {
 				//check if given URI is a package in package registry
@@ -44,12 +57,13 @@ public class RandomGeneratorWizardPage extends WizardPage {
 				if (pckg != null){
 					option.setMetaModel(pckg);
 					validPackage  = true;
+				}else{
+					validPackage=false;
 				}
 			}
 		});
-	    //setControl(composite);
 	}
-	
+
 	@Override
 	public boolean canFlipToNextPage() {
 		return validPackage;

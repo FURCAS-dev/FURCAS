@@ -7,8 +7,12 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ICellEditorValidator;
 import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.Viewer;
@@ -25,15 +29,25 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 
 public class OperatorTable {
 	
-	public List<Operator> operatorList= new ArrayList<Operator>();
-	public List<Operator> selectedOperatorList= new ArrayList<Operator>();
+	private List<Operator> operatorList= new ArrayList<Operator>();
+	/**
+	 * @return the selectedOperatorList
+	 */
+	public List<Operator> getSelectedOperatorList() {
+		return selectedOperatorList;
+	}
+	/**
+	 * @param operatorList the operatorList to set
+	 */
+	public void setOperatorList(List<Operator> operatorList) {
+		this.operatorList = operatorList;
+	}
+	private List<Operator> selectedOperatorList= new ArrayList<Operator>();
 	private TableViewer tv;
-	private OperatorCellModifier modifier;
-
-	public static String ORDERNR="Order";
-	public static String NAME="Name";
-	public static String DESCRIPTION="Description";
-	public static final String[] PROPS = { ORDERNR, NAME, DESCRIPTION};
+	private static final String ORDERNR="Order";
+	private static final String NAME="Name";
+	private static final String DESCRIPTION="Description";
+	private static final String[] PROPS = { ORDERNR, NAME, DESCRIPTION};
 	void refresh(){
 		tv.refresh();
 	}
@@ -42,6 +56,18 @@ public class OperatorTable {
 		    tv.setContentProvider(new OperatorContentProvider());
 		    tv.setLabelProvider(new OperatorLabelProvider(this));
 		    tv.setInput(operatorList);
+		    tv.addSelectionChangedListener(new ISelectionChangedListener() {
+				
+				@Override
+				public void selectionChanged(SelectionChangedEvent event) {
+					ISelection selection = tv.getSelection();
+					Object[] selectedArray = ((IStructuredSelection) selection).toArray();
+					selectedOperatorList=new ArrayList<Operator>();
+					for(Object o:selectedArray){
+						selectedOperatorList.add((Operator)o);
+					}
+				}
+			});
 		    Table table = tv.getTable();
 		    table.setLayoutData(new GridData(GridData.FILL_BOTH));
 		    
@@ -56,18 +82,6 @@ public class OperatorTable {
 
 		    table.setHeaderVisible(true);
 		    table.setLinesVisible(true);
-
-//		    newPerson.addSelectionListener(new SelectionAdapter() {
-//		      public void widgetSelected(SelectionEvent event) {
-//		        Student p = new Student();
-//		        p.setName("Name");
-//		        p.setMale(true);
-//		        p.setAgeRange(Integer.valueOf("0"));
-//		        p.setShirtColor(new RGB(255, 0, 0));
-//		        studentList.add(p);
-//		        tv.refresh();
-//		      }
-//		    });
 
 		    CellEditor[] editors = new CellEditor[4];
 		    TextCellEditor textEditor = new TextCellEditor(table);
@@ -149,7 +163,8 @@ public class OperatorTable {
 		  }
 		}
 	class OperatorContentProvider implements IStructuredContentProvider {
-		  public Object[] getElements(Object inputElement) {
+		  @SuppressWarnings("unchecked")
+		public Object[] getElements(Object inputElement) {
 		    return ((List) inputElement).toArray();
 		  }
 
