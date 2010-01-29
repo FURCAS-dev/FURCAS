@@ -107,13 +107,22 @@ public interface OclEvaluatorPackage extends EPackage {
 	int OCL_QUERY__CONDITION = 1;
 
 	/**
+	 * The feature id for the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_QUERY__RESULT = 2;
+
+	/**
 	 * The number of structural features of the '<em>Ocl Query</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_QUERY_FEATURE_COUNT = 2;
+	int OCL_QUERY_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '<em>Ocl Condition</em>' data type.
@@ -177,6 +186,17 @@ public interface OclEvaluatorPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getOclQuery_Condition();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Result</em>'.
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult()
+	 * @see #getOclQuery()
+	 * @generated
+	 */
+	EAttribute getOclQuery_Result();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition <em>Ocl Condition</em>}'.
@@ -257,6 +277,14 @@ public interface OclEvaluatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OCL_QUERY__CONDITION = eINSTANCE.getOclQuery_Condition();
+
+		/**
+		 * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_QUERY__RESULT = eINSTANCE.getOclQuery_Result();
 
 		/**
 		 * The meta object literal for the '<em>Ocl Condition</em>' data type.

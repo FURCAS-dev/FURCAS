@@ -20,6 +20,7 @@ import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getCondition <em>Condition</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}</li>
  * </ul>
  * </p>
  *
@@ -81,5 +82,31 @@ public interface OclQuery extends EObject {
 	 */
 	@SuppressWarnings("unchecked")
 	void setCondition(AbstractOCLCondition value);
+
+	/**
+	 * Returns the value of the '<em><b>Result</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Result</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Result</em>' attribute.
+	 * @see #setResult(Object)
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Result()
+	 * @model
+	 * @generated
+	 */
+	Object getResult();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Result</em>' attribute.
+	 * @see #getResult()
+	 * @generated
+	 */
+	void setResult(Object value);
 
 } // OclQuery

@@ -25,6 +25,7 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getContext <em>Context</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getResult <em>Result</em>}</li>
  * </ul>
  * </p>
  *
@@ -72,6 +73,26 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 */
 	@SuppressWarnings("unchecked")
 	protected AbstractOCLCondition condition = CONDITION_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getResult() <em>Result</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final Object RESULT_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getResult() <em>Result</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getResult()
+	 * @generated
+	 * @ordered
+	 */
+	protected Object result = RESULT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -141,6 +162,27 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Object getResult() {
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setResult(Object newResult) {
+		Object oldResult = result;
+		result = newResult;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OclEvaluatorPackage.OCL_QUERY__RESULT, oldResult, result));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -148,6 +190,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 				return getContext();
 			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
 				return getCondition();
+			case OclEvaluatorPackage.OCL_QUERY__RESULT:
+				return getResult();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -167,6 +211,9 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
 				setCondition((AbstractOCLCondition)newValue);
 				return;
+			case OclEvaluatorPackage.OCL_QUERY__RESULT:
+				setResult(newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -185,6 +232,9 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
 				setCondition(CONDITION_EDEFAULT);
 				return;
+			case OclEvaluatorPackage.OCL_QUERY__RESULT:
+				setResult(RESULT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -201,6 +251,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 				return CONTEXT_EDEFAULT == null ? context != null : !CONTEXT_EDEFAULT.equals(context);
 			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
 				return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
+			case OclEvaluatorPackage.OCL_QUERY__RESULT:
+				return RESULT_EDEFAULT == null ? result != null : !RESULT_EDEFAULT.equals(result);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -219,6 +271,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 		result.append(context);
 		result.append(", condition: ");
 		result.append(condition);
+		result.append(", result: ");
+		result.append(result);
 		result.append(')');
 		return result.toString();
 	}

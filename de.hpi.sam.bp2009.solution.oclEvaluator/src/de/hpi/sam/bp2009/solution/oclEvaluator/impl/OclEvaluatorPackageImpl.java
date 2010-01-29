@@ -160,6 +160,15 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getOclQuery_Result() {
+		return (EAttribute)oclQueryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getOclCondition() {
 		return oclConditionEDataType;
 	}
@@ -206,6 +215,7 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 		oclQueryEClass = createEClass(OCL_QUERY);
 		createEAttribute(oclQueryEClass, OCL_QUERY__CONTEXT);
 		createEAttribute(oclQueryEClass, OCL_QUERY__CONDITION);
+		createEAttribute(oclQueryEClass, OCL_QUERY__RESULT);
 
 		// Create data types
 		oclConditionEDataType = createEDataType(OCL_CONDITION);
@@ -261,6 +271,7 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 		initEClass(oclQueryEClass, OclQuery.class, "OclQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOclQuery_Context(), this.getEObject(), "context", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOclQuery_Condition(), this.getOclCondition(), "condition", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOclQuery_Result(), ecorePackage.getEJavaObject(), "result", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(oclConditionEDataType, AbstractOCLCondition.class, "OclCondition", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
