@@ -2,7 +2,6 @@ package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -11,6 +10,7 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
@@ -40,7 +40,7 @@ public class ListPage extends WizardPage {
 		//create the widgets for the page
 		Composite composite = null;
 		composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout();
+		GridLayout layout = new GridLayout(GridData.FILL_BOTH, false);
 		layout.numColumns = 2;
 		composite.setLayout(layout);
 		box= new Combo(composite, SWT.UP);
@@ -55,10 +55,8 @@ public class ListPage extends WizardPage {
 
 		tbl.setOperatorList(((TestframeworkWizard)getWizard()).run.getOperators());
 		tbl.createTable(composite);
-		
+
 		buildRemoveButton(composite);
-		
-		
 		setControl(composite);
 		setPageComplete(true);
 	}
@@ -79,6 +77,10 @@ public class ListPage extends WizardPage {
 					return;
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
 				wiz.run.getOperators().removeAll(tbl.getSelectedOperatorList());
+				// if operator has a wizard page set it invisible
+				for(Operator op: tbl.getSelectedOperatorList())
+					if(op.getOption()!=null && op.getOption().getWizardPage()!=null)
+						op.getOption().getWizardPage().setVisible(false);
 				setPageComplete(true);
 				tbl.refresh();
 			}
@@ -110,8 +112,15 @@ public class ListPage extends WizardPage {
 					TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
 					wiz.run.getOperators().add(op);
 					if(op.getOption()!=null && op.getOption().getWizardPage()!=null){
-						wiz.addPage(op.getOption().getWizardPage());
-						}
+						WizardPage page = op.getOption().getWizardPage();
+						/*
+						 * FIXME if multiple instances running some concurrency issues might result here
+						 */
+						if(page.getWizard()==null)
+							wiz.addPage(page);
+						else
+							page.setVisible(true);
+					}
 					setPageComplete(true);
 				}
 				tbl.refresh();

@@ -1,6 +1,9 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -9,6 +12,10 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
 public class RunningPage extends WizardPage {
 	
@@ -35,9 +42,17 @@ public class RunningPage extends WizardPage {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				Button bt = (Button)e.getSource();
+				bt.setEnabled(false);
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
 				wiz.getIntImpl().getEngine().getTestRuns().add(wiz.run);
 				wiz.getIntImpl().getEngine().benchmark();
+				EList<ResultObject> results= new BasicEList<ResultObject>();
+				for(Operator op:wiz.run.getOperators())
+					results.add(op.getResult());
+				if(wiz.getIntImpl().getResultProcessor()!=null)
+					wiz.getIntImpl().getResultProcessor().showResults(results);
+				bt.setEnabled(true);
 				benchmarked=true;
 
 			}
@@ -56,6 +71,13 @@ public class RunningPage extends WizardPage {
 	
 	@Override
 	public boolean canFlipToNextPage() {
-		return false;
+		return benchmarked;
+	}
+	@Override
+	public IWizardPage getNextPage() {
+		ResultProcessor rp = ((TestframeworkWizard)getWizard()).getIntImpl().getResultProcessor();
+		if(rp!=null && rp.getResultPage()!=null )
+			return rp.getResultPage();
+		return super.getNextPage();
 	}
 }
