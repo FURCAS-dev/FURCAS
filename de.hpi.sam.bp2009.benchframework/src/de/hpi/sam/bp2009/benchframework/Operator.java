@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOperator()
- * @model abstract="true"
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface Operator extends EObject {

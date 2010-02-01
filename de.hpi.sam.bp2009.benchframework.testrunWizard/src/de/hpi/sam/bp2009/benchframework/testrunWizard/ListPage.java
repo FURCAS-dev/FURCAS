@@ -36,7 +36,6 @@ public class ListPage extends WizardPage {
 
 	@Override
 	public void createControl(Composite parent) {
-
 		//create the widgets for the page
 		Composite composite = null;
 		composite = new Composite(parent, SWT.NONE);
@@ -49,7 +48,6 @@ public class ListPage extends WizardPage {
 			box.add(op.getName());
 			nameToEclass.put(op.getName(), op.eClass());
 		}
-
 
 		buildAddButton(composite);
 
@@ -75,12 +73,15 @@ public class ListPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				if(tbl.getSelectedOperatorList().isEmpty())
 					return;
-				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
-				wiz.run.getOperators().removeAll(tbl.getSelectedOperatorList());
+				
 				// if operator has a wizard page set it invisible
 				for(Operator op: tbl.getSelectedOperatorList())
 					if(op.getOption()!=null && op.getOption().getWizardPage()!=null)
 						op.getOption().getWizardPage().setVisible(false);
+				
+				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
+				wiz.run.getOperators().removeAll(tbl.getSelectedOperatorList());
+
 				setPageComplete(true);
 				tbl.refresh();
 			}
@@ -111,6 +112,10 @@ public class ListPage extends WizardPage {
 					Operator op= (Operator)obj;
 					TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
 					wiz.run.getOperators().add(op);
+					
+					/*
+					 * add wizard page or make it visible
+					 */
 					if(op.getOption()!=null && op.getOption().getWizardPage()!=null){
 						WizardPage page = op.getOption().getWizardPage();
 						/*

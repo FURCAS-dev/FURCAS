@@ -17,6 +17,10 @@ import org.eclipse.jface.wizard.WizardPage;
  * A representation of the model object '<em><b>Option Object</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * The base class of all option for an operator, should be subclasses to support specific concepts.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -25,7 +29,7 @@ import org.eclipse.jface.wizard.WizardPage;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOptionObject()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface OptionObject extends EObject {
@@ -37,6 +41,9 @@ public interface OptionObject extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * used for eclipse wizard based option entering
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Wizard Page</em>' attribute.
 	 * @see #setWizardPage(WizardPage)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getOptionObject_WizardPage()
@@ -58,9 +65,25 @@ public interface OptionObject extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * used for text based interfaces
+	 * OptionObject should be able to extract their information out of this map
+	 * <!-- end-model-doc -->
 	 * @model kind="operation"
 	 * @generated
 	 */
-	Map<String, Object> getOptionMap();
+	Map<String, Object> getOptionsAsMap();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * used for text based interfaces
+	 * OptionObject should be able to extract their information out of this map
+	 * <!-- end-model-doc -->
+	 * @model
+	 * @generated
+	 */
+	void setOptionsAsMap(Map<String, Object> map);
 
 } // OptionObject

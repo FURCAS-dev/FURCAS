@@ -17,6 +17,10 @@ import org.eclipse.swt.widgets.Composite;
  * A representation of the model object '<em><b>Result Object</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * Encapsules a view for the results of an operator execution.
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
@@ -25,7 +29,7 @@ import org.eclipse.swt.widgets.Composite;
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject()
- * @model
+ * @model interface="true" abstract="true"
  * @generated
  */
 public interface ResultObject extends EObject {
@@ -37,6 +41,9 @@ public interface ResultObject extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * used for eclipse wizard view
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Result Display</em>' attribute.
 	 * @see #setResultDisplay(Composite)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_ResultDisplay()
@@ -58,6 +65,9 @@ public interface ResultObject extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Used for textbased result processor like XML, CSV, ...
+	 * <!-- end-model-doc -->
 	 * @model kind="operation"
 	 * @generated
 	 */

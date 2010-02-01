@@ -35,24 +35,6 @@ public interface BenchframeworkFactory extends EFactory {
 	Engine createEngine();
 
 	/**
-	 * Returns a new object of class '<em>Option Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Option Object</em>'.
-	 * @generated
-	 */
-	OptionObject createOptionObject();
-
-	/**
-	 * Returns a new object of class '<em>Result Object</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Result Object</em>'.
-	 * @generated
-	 */
-	ResultObject createResultObject();
-
-	/**
 	 * Returns a new object of class '<em>Test Run</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

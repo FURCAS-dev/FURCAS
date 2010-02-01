@@ -68,8 +68,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BenchframeworkPackage.ENGINE: return createEngine();
-			case BenchframeworkPackage.OPTION_OBJECT: return createOptionObject();
-			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
 			case BenchframeworkPackage.TEST_RUN: return createTestRun();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -122,26 +120,6 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public Engine createEngine() {
 		EngineImpl engine = new EngineImpl();
 		return engine;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OptionObject createOptionObject() {
-		OptionObjectImpl optionObject = new OptionObjectImpl();
-		return optionObject;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ResultObject createResultObject() {
-		ResultObjectImpl resultObject = new ResultObjectImpl();
-		return resultObject;
 	}
 
 	/**

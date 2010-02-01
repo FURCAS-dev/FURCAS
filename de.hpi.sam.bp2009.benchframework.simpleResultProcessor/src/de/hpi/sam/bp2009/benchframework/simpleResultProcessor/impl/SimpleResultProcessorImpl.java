@@ -4,37 +4,34 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.benchframework.impl;
-
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.ResultObject;
-import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+package de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
-
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.jface.wizard.WizardPage;
+
+import de.hpi.sam.bp2009.benchframework.TestRun;
+import de.hpi.sam.bp2009.benchframework.simpleResultProcessor.SimpleResultProcessor;
+import de.hpi.sam.bp2009.benchframework.simpleResultProcessor.SimpleResultProcessorPackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Result Processor</b></em>'.
+ * An implementation of the model object '<em><b>Simple Result Processor</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.ResultProcessorImpl#getResultPage <em>Result Page</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl.SimpleResultProcessorImpl#getResultPage <em>Result Page</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl.SimpleResultProcessorImpl#getTestrun <em>Testrun</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class ResultProcessorImpl extends EObjectImpl implements ResultProcessor {
+public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResultProcessor {
 	/**
 	 * The default value of the '{@link #getResultPage() <em>Result Page</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -44,7 +41,6 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	 * @ordered
 	 */
 	protected static final WizardPage RESULT_PAGE_EDEFAULT = null;
-
 	/**
 	 * The cached value of the '{@link #getResultPage() <em>Result Page</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -54,13 +50,22 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	 * @ordered
 	 */
 	protected WizardPage resultPage = RESULT_PAGE_EDEFAULT;
+	/**
+	 * The cached value of the '{@link #getTestrun() <em>Testrun</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestrun()
+	 * @generated
+	 * @ordered
+	 */
+	protected TestRun testrun;
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ResultProcessorImpl() {
+	protected SimpleResultProcessorImpl() {
 		super();
 	}
 
@@ -71,7 +76,7 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return BenchframeworkPackage.Literals.RESULT_PROCESSOR;
+		return SimpleResultProcessorPackage.Literals.SIMPLE_RESULT_PROCESSOR;
 	}
 
 	/**
@@ -92,7 +97,7 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 		WizardPage oldResultPage = resultPage;
 		resultPage = newResultPage;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.RESULT_PROCESSOR__RESULT_PAGE, oldResultPage, resultPage));
+			eNotify(new ENotificationImpl(this, Notification.SET, SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__RESULT_PAGE, oldResultPage, resultPage));
 	}
 
 	/**
@@ -100,11 +105,39 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WizardPage showResults(EList<ResultObject> resultObjects) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public TestRun basicGetTestrun() {
+		return testrun;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestrun(TestRun newTestrun) {
+		TestRun oldTestrun = testrun;
+		testrun = newTestrun;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN, oldTestrun, testrun));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestRun getTestrun() {
+		if (testrun != null && testrun.eIsProxy()) {
+			InternalEObject oldTestrun = (InternalEObject)testrun;
+			testrun = (TestRun)eResolveProxy(oldTestrun);
+			if (testrun != oldTestrun) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN, oldTestrun, testrun));
+			}
+		}
+		return testrun;
+	}
+
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,8 +147,11 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_PROCESSOR__RESULT_PAGE:
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__RESULT_PAGE:
 				return getResultPage();
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
+				if (resolve) return getTestrun();
+				return basicGetTestrun();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -128,8 +164,11 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_PROCESSOR__RESULT_PAGE:
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__RESULT_PAGE:
 				setResultPage((WizardPage)newValue);
+				return;
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
+				setTestrun((TestRun)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -143,8 +182,11 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_PROCESSOR__RESULT_PAGE:
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__RESULT_PAGE:
 				setResultPage(RESULT_PAGE_EDEFAULT);
+				return;
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
+				setTestrun((TestRun)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -158,8 +200,10 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_PROCESSOR__RESULT_PAGE:
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__RESULT_PAGE:
 				return RESULT_PAGE_EDEFAULT == null ? resultPage != null : !RESULT_PAGE_EDEFAULT.equals(resultPage);
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
+				return testrun != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -180,4 +224,4 @@ public abstract class ResultProcessorImpl extends EObjectImpl implements ResultP
 		return result.toString();
 	}
 
-} //ResultProcessorImpl
+} //SimpleResultProcessorImpl

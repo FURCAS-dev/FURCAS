@@ -25,8 +25,8 @@ import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.ETypeParameter;
+
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.jface.wizard.WizardPage;
@@ -266,6 +266,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getResultProcessor_Testrun() {
+		return (EReference)resultProcessorEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOptionObject() {
 		return optionObjectEClass;
 	}
@@ -427,6 +436,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		resultProcessorEClass = createEClass(RESULT_PROCESSOR);
 		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__RESULT_PAGE);
+		createEReference(resultProcessorEClass, RESULT_PROCESSOR__TESTRUN);
 
 		optionObjectEClass = createEClass(OPTION_OBJECT);
 		createEAttribute(optionObjectEClass, OPTION_OBJECT__WIZARD_PAGE);
@@ -490,7 +500,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(operatorEClass, Operator.class, "Operator", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOperator_Option(), this.getOptionObject(), null, "option", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_Result(), this.getResultObject(), null, "result", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getOperator_TestRun(), this.getTestRun(), this.getTestRun_Operators(), "testRun", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -499,19 +509,14 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 
 		addEOperation(operatorEClass, null, "execute", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultProcessor_ResultPage(), this.getWizardPage(), "resultPage", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getResultProcessor_Testrun(), this.getTestRun(), null, "testrun", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(resultProcessorEClass, this.getWizardPage(), "showResults", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(this.getResultObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "resultObjects", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(optionObjectEClass, OptionObject.class, "OptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(optionObjectEClass, OptionObject.class, "OptionObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOptionObject_WizardPage(), this.getWizardPage(), "wizardPage", null, 0, 1, OptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = addEOperation(optionObjectEClass, null, "getOptionMap", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(optionObjectEClass, null, "getOptionsAsMap", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEString());
 		g1.getETypeArguments().add(g2);
@@ -519,7 +524,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
-		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		op = addEOperation(optionObjectEClass, null, "setOptionsAsMap", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "map", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultObject_ResultDisplay(), this.getUIComponent(), "resultDisplay", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		op = addEOperation(resultObjectEClass, null, "getPropertyMap", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -575,13 +588,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	protected void createNullAnnotations() {
-		String source = null;			
+		String source = null;															
 		addAnnotation
 		  ((testRunEClass.getEOperations().get(0)).getEParameters().get(0), 
 		   source, 
 		   new String[] {
 			 "documentation", "This is a test"
-		   });
+		   });			
 	}
 
 } //BenchframeworkPackageImpl

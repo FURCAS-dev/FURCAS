@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.randomGenerator.impl;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -16,8 +18,9 @@ import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.jface.wizard.WizardPage;
 
-import de.hpi.sam.bp2009.benchframework.impl.OptionObjectImpl;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
 
@@ -28,13 +31,32 @@ import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorPackage;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.randomGenerator.impl.RandomGeneratorOptionObjectImpl#getWizardPage <em>Wizard Page</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.randomGenerator.impl.RandomGeneratorOptionObjectImpl#getMetaModel <em>Meta Model</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements RandomGeneratorOptionObject {
+public class RandomGeneratorOptionObjectImpl extends EObjectImpl implements RandomGeneratorOptionObject {
+	/**
+	 * The default value of the '{@link #getWizardPage() <em>Wizard Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWizardPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final WizardPage WIZARD_PAGE_EDEFAULT = null;
+	/**
+	 * The cached value of the '{@link #getWizardPage() <em>Wizard Page</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getWizardPage()
+	 * @generated
+	 * @ordered
+	 */
+	protected WizardPage wizardPage = WIZARD_PAGE_EDEFAULT;
 	/**
 	 * The cached value of the '{@link #getMetaModel() <em>Meta Model</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -64,6 +86,27 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	@Override
 	protected EClass eStaticClass() {
 		return RandomGeneratorPackage.Literals.RANDOM_GENERATOR_OPTION_OBJECT;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public WizardPage getWizardPage() {
+		return wizardPage;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setWizardPage(WizardPage newWizardPage) {
+		WizardPage oldWizardPage = wizardPage;
+		wizardPage = newWizardPage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE, oldWizardPage, wizardPage));
 	}
 
 	/**
@@ -109,9 +152,33 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Map<String, Object> getOptionsAsMap() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOptionsAsMap(Map<String, Object> map) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE:
+				return getWizardPage();
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				if (resolve) return getMetaModel();
 				return basicGetMetaModel();
@@ -127,6 +194,9 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE:
+				setWizardPage((WizardPage)newValue);
+				return;
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				setMetaModel((EPackage)newValue);
 				return;
@@ -142,6 +212,9 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE:
+				setWizardPage(WIZARD_PAGE_EDEFAULT);
+				return;
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				setMetaModel((EPackage)null);
 				return;
@@ -157,10 +230,28 @@ public class RandomGeneratorOptionObjectImpl extends OptionObjectImpl implements
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__WIZARD_PAGE:
+				return WIZARD_PAGE_EDEFAULT == null ? wizardPage != null : !WIZARD_PAGE_EDEFAULT.equals(wizardPage);
 			case RandomGeneratorPackage.RANDOM_GENERATOR_OPTION_OBJECT__META_MODEL:
 				return metaModel != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (wizardPage: ");
+		result.append(wizardPage);
+		result.append(')');
+		return result.toString();
 	}
 
 	private EPackage defaultModel(){

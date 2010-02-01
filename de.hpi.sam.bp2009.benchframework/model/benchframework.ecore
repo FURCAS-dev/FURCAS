@@ -16,7 +16,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="testRuns" upperBound="-1"
         eType="#//TestRun"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Operator" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
@@ -29,42 +29,61 @@
         defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResultProcessor" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ResultProcessor" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
+      <details key="documentation" value="Subclasses are responsible for rendering testrun result processing"/>
     </eAnnotations>
-    <eOperations name="showResults" eType="#//WizardPage">
-      <eParameters name="resultObjects">
-        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
-          <eTypeArguments eClassifier="#//ResultObject"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultPage" eType="#//WizardPage"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testrun" eType="#//TestRun"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OptionObject" abstract="true" interface="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="The base class of all option for an operator, should be subclasses to support specific concepts."/>
+    </eAnnotations>
+    <eOperations name="getOptionsAsMap">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="used for text based interfaces&#xD;&#xA;OptionObject should be able to extract their information out of this map"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="setOptionsAsMap">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="used for text based interfaces&#xD;&#xA;OptionObject should be able to extract their information out of this map"/>
+      </eAnnotations>
+      <eParameters name="map">
+        <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+          <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultPage" eType="#//WizardPage"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardPage" eType="#//WizardPage">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="used for eclipse wizard based option entering"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OptionObject">
+  <eClassifiers xsi:type="ecore:EClass" name="ResultObject" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-    <eOperations name="getOptionMap">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-      </eGenericType>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="wizardPage" eType="#//WizardPage"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResultObject">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
+      <details key="documentation" value="Encapsules a view for the results of an operator execution."/>
     </eAnnotations>
     <eOperations name="getPropertyMap">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Used for textbased result processor like XML, CSV, ..."/>
+      </eAnnotations>
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
       </eGenericType>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultDisplay" eType="#//UIComponent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultDisplay" eType="#//UIComponent">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="used for eclipse wizard view"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -80,6 +99,9 @@
       <details key="documentation" value="A testrun is an internal representation of one single run of the benchmarking framework, containing an ordered list of operators and the model to operate on."/>
     </eAnnotations>
     <eOperations name="getInstanceForClass">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="returns a testrun unique instance of a Class.&#xD;&#xA;The idea is that an operator can register a specific class to the testrun, if another operator use the same class and is aware of other operators, he can just reuse the registered instance."/>
+      </eAnnotations>
       <eGenericType eTypeParameter="#//TestRun/getInstanceForClass/returnType"/>
       <eTypeParameters name="returnType"/>
       <eParameters name="aClass">
@@ -92,6 +114,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="setInstanceForClass" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="registers a testrun unique instance of a Class.&#xD;&#xA;The idea is that an operator can register a specific class to the testrun, if another operator use the same class and is aware of other operators, he can just reuse the registered instance."/>
+      </eAnnotations>
       <eParameters name="aClass">
         <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
           <eTypeArguments/>
@@ -100,9 +125,17 @@
       <eParameters name="anObject" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="model" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"
-        transient="true"/>
+        transient="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="The model instance for a testrun&#xD;&#xA;If using other formats than EResourceSet @see getInstanceForClass"/>
+      </eAnnotations>
+    </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operators" upperBound="-1"
-        eType="#//Operator" eOpposite="#//Operator/testRun"/>
+        eType="#//Operator" eOpposite="#//Operator/testRun">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="All operator, that should be executed on exuting the testrun&#xD;&#xA;"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="OutputStream" instanceClassName="java.io.OutputStream"/>
   <eClassifiers xsi:type="ecore:EDataType" name="WizardPage" instanceClassName="org.eclipse.jface.wizard.WizardPage"/>

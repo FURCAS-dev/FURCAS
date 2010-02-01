@@ -9,7 +9,6 @@ import org.eclipse.ui.IWorkbench;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.TestRun;
-import de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorImpl;
 
 public class TestframeworkWizard extends Wizard implements INewWizard {
 	private ListPage listPage = new ListPage("Module List");

@@ -51,7 +51,7 @@ public class RunningPage extends WizardPage {
 				for(Operator op:wiz.run.getOperators())
 					results.add(op.getResult());
 				if(wiz.getIntImpl().getResultProcessor()!=null)
-					wiz.getIntImpl().getResultProcessor().showResults(results);
+					wiz.getIntImpl().getResultProcessor().getResultPage();
 				bt.setEnabled(true);
 				benchmarked=true;
 
