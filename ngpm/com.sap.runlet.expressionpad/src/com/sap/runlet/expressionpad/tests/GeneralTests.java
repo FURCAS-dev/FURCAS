@@ -29,6 +29,31 @@ import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
 
 public class GeneralTests extends RunletTestCase {
+    public void testOqlWithEqualValuesForDifferentAliasCombinations() throws Exception {
+	// this test enforces the use of List instead of Set for the alias values cache
+	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "new IteratorTest().m2()");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(0), new Fraction(0), new Fraction(0), new Fraction(0) },
+        	result[0]);
+    }
+
+    public void testOqlWithAliasUsagesInFromClause() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "new OqlTest().testSimpleOqlExpression()");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] { new Fraction(5), new Fraction(6), new Fraction(7),
+        	new Fraction(6), new Fraction(7), new Fraction(8), new Fraction(7), new Fraction(8), new Fraction(9) },
+        	result[0]);
+    }
+
     public void testSimpleOql() throws Exception {
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = main.evaluate(
             "(from 1->including(2)->including(3) as a, 4->including(5)->including(6) as b where true).count");

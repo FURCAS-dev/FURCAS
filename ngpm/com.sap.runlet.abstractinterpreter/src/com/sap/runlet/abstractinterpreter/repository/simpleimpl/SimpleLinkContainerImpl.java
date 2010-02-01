@@ -219,7 +219,7 @@ implements SimpleLinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, Typ
     
     public <T> void addLinkToMap(Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> link, T key, Map<T, Collection<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>> map, Integer at) {
 	if (ObjectAndRemoteAssociationEndIgnoringSnapshot.class.isAssignableFrom(key.getClass())) {
-	    if (((ObjectAndRemoteAssociationEndIgnoringSnapshot) key).getObject() instanceof EntityObject) {
+	    if (((ObjectAndRemoteAssociationEndIgnoringSnapshot) key).getObject() instanceof EntityObject<?, ?, ?, ?, ?>) {
 		EntityObject<?, ?, ?, ?, ?> e = (EntityObject<?, ?, ?, ?, ?>) ((ObjectAndRemoteAssociationEndIgnoringSnapshot) key).getObject();
 		if (e.getOrigin() != null) {
 		    assert link.getOrigin() == null || link.getOrigin().equals(e.getOrigin());
@@ -232,7 +232,7 @@ implements SimpleLinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, Typ
 	    set = createLinkCollection(key);
 	    map.put(key, set);
 	}
-	if (at != null && at >= 0 && set instanceof List) {
+	if (at != null && at >= 0 && set instanceof List<?>) {
 	    ((List<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>) set).add(at, link);
 	} else {
 	    set.add(link);
@@ -242,7 +242,7 @@ implements SimpleLinkContainer<LinkMetaObject, LinkEndMetaObject, MetaClass, Typ
     public <T> void removeLinkFromMap(Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> link, T key, Map<T, Collection<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>> map, Integer at) {
 	Collection<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>> set = map.get(key);
 	if (set != null) {
-	    if (at != null && at >= 0 && set instanceof List) {
+	    if (at != null && at >= 0 && set instanceof List<?>) {
 		((List<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>) set).remove(at);
 	    } else {
 		set.remove(link);

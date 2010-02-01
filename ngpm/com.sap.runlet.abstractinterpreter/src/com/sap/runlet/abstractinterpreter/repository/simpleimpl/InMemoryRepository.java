@@ -274,7 +274,7 @@ ClassUsage extends TypeUsage> implements Repository<LinkMetaObject, LinkEndMetaO
 
     @Override
     public Collection<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>> loadLinks(ClassTypedObject<LinkEndMetaObject, TypeUsage, ClassUsage> from, LinkEndMetaObject otherEnd) {
-	assert (from instanceof AbstractValueObject) || from.isPersistent();
+	assert (from instanceof AbstractValueObject<?, ?, ?, ?, ?>) || from.isPersistent();
 	SnapshotIdentifier si = from.getOrigin();
 	resolveIfNotBound(si);
 	assert has(si.getSnapshot());
@@ -617,7 +617,7 @@ ClassUsage extends TypeUsage> implements Repository<LinkMetaObject, LinkEndMetaO
 	}
 	@Override
 	public boolean equals(Object o) {
-	    if (o instanceof Link) {
+	    if (o instanceof Link<?, ?, ?, ?, ?>) {
 		return delegate.logicallyEquals(o);
 	    } else if (LinkWrapper.class.isAssignableFrom(o.getClass())) {
 		return delegate.logicallyEquals(((LinkWrapper) o).delegate);

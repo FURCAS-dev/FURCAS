@@ -21,7 +21,6 @@ import com.sap.tc.moin.repository.events.ChangeListener;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
-import com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.ocl.OclRegistryService;
@@ -34,6 +33,8 @@ import data.classes.AssociationEnd;
 import data.classes.ClassTypeDefinition;
 import data.classes.SapClass;
 import data.classes.TypeAdapter;
+import dataaccess.expressions.MethodCallExpression;
+import dataaccess.expressions.ObjectCreationExpression;
 import dataaccess.expressions.literals.ObjectLiteral;
 
 public class OclIaTest extends StandaloneConnectionBasedTest {
@@ -45,24 +46,52 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	assertNotNull(tcsSyntax);
     }
     
-    private OclExpressionRegistration createOclExpression(String registrationName, String oclExpression, ClassDescriptor<?, ?> forClass) throws OclManagerException {
-	OclRegistryService oclRegistry = connection.getOclRegistryService();
-	final OclExpressionRegistration registration = oclRegistry.getFreestyleRegistry().createExpressionRegistration(
-		registrationName,
-		oclExpression, OclRegistrationSeverity.Info, new String[] { "TestOclIA" },
-		connection.getClass(forClass),
-		new RefPackage[] { connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR) });
-	return registration;
+    /**
+     * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
+     */
+    @Test
+    public void testAnalysisOfRecursiveOperationWithSelf() throws OclManagerException {
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testAnalysisOfRecursiveOperationWithSelf",
+		"self.object.getType().getInnermost().oclAsType(data::classes::ClassTypeDefinition).clazz.allSignatures()->select(s | s.name = '__TEXT___')", MethodCallExpression.CLASS_DESCRIPTOR);
+
+	// construct something like "new HumbaClass1().m()"
+	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
+	cl1.setName("HumbaClass1");
+	final ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinition(connection, cl1, 1, 1);
+	ctd.setClazz(null); // do that again later to cause the appropriate event
+	final MethodCallExpression mce = connection.createElement(MethodCallExpression.CLASS_DESCRIPTOR);
+	final ObjectCreationExpression oce = connection.createElement(ObjectCreationExpression.CLASS_DESCRIPTOR);
+	oce.setClassToInstantiate(cl1);
+	oce.setOwnedTypeDefinition(ctd);
+	mce.setObject(oce);
+	EventFilter eventFilter = registration.getEventFilter(/* notifyNewContextElement */ false);
+	final boolean[] ok = new boolean[1];
+	ChangeListener listener = new ChangeListener() {
+	    @Override
+	    public void notify(ChangeEvent event) {
+		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
+		ok[0] = affectedElements.size() == 1 && affectedElements.contains(mce.get___Mri()) &&
+			!affectedElements.contains(ctd.get___Mri());
+	    }
+	};
+	connection.getEventRegistry().registerListener(listener, eventFilter);
+	try {
+	    ctd.setClazz(cl1);
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
-    
+
     /**
      * data::classes::SapClass.allInstances()->select(c | c.name = 'something'
      */
     @Test
     public void testAllInstancesSelectClassName() throws OclManagerException {
-	final OclExpressionRegistration registration = createOclExpression("testAllInstancesSelectClassName",
-		"data::classes::SapClass.allInstances()->select(c | c.name = 'HumbaClass2')",
-		ClassTypeDefinition.CLASS_DESCRIPTOR);
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testAllInstancesSelectClassName",
+		"data::classes::SapClass.allInstances()->select(c | c.name = 'HumbaClass2')", ClassTypeDefinition.CLASS_DESCRIPTOR);
 
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
@@ -78,17 +107,20 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	cl1.setName("HumbaClass2");
-	assertTrue(ok[0]);
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    cl1.setName("HumbaClass2");
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 
     @Test
     public void testVerySimpleTracerBasedInstanceScopeAnalysisWithNewClassScopeAnalysis() throws OclManagerException {
-	final OclExpressionRegistration registration = createOclExpression(
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(
+		connection,
 		"testVerySimpleTracerBasedInstanceScopeAnalysisWithNewClassScopeAnalysis",
-		"self.oclAsType(data::classes::SapClass).name",
-		SapClass.CLASS_DESCRIPTOR);
+		"self.oclAsType(data::classes::SapClass).name", SapClass.CLASS_DESCRIPTOR);
 
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
@@ -103,16 +135,19 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	cl1.setName("ChangedHumba1");
-	assertTrue(ok[0]);
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    cl1.setName("ChangedHumba1");
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 
     @Test
     public void testInstanceScopeAnalysisForRecursiveOperation() throws OclManagerException {
-	final OclExpressionRegistration registration = createOclExpression("testInstanceScopeAnalysisForRecursiveOperation",
-		"self.adapters->forAll(a | self.conformsTo(a.to))",
-		SapClass.CLASS_DESCRIPTOR);
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testInstanceScopeAnalysisForRecursiveOperation",
+		"self.adapters->forAll(a | self.conformsTo(a.to))", SapClass.CLASS_DESCRIPTOR);
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
 	SapClass cl2 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
@@ -129,17 +164,20 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	adapter.setAdapted(cl1);
-	adapter.setTo(cl2);
-	assertTrue(ok[0]);
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    adapter.setAdapted(cl1);
+	    adapter.setTo(cl2);
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 
     @Test
     public void testVerySimpleInstanceScopeAnalysisWithTupleUsingSelf() throws OclManagerException {
-	final OclExpressionRegistration registration = createOclExpression("testVerySimpleInstanceScopeAnalysisWithTupleUsingSelf",
-		"Tuple{cls=self}.cls.name",
-		SapClass.CLASS_DESCRIPTOR);
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testVerySimpleInstanceScopeAnalysisWithTupleUsingSelf",
+		"Tuple{cls=self}.cls.name", SapClass.CLASS_DESCRIPTOR);
 
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
@@ -154,16 +192,19 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	cl1.setName("ChangedHumba1");
-	assertTrue(ok[0]);
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    cl1.setName("ChangedHumba1");
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 
     @Test
     public void testVerySimpleInstanceScopeAnalysisWithTuple() throws OclManagerException {
-	final OclExpressionRegistration registration = createOclExpression("testVerySimpleInstanceScopeAnalysisWithTuple",
-		"Tuple{name=self.name}.name",
-		SapClass.CLASS_DESCRIPTOR);
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testVerySimpleInstanceScopeAnalysisWithTuple",
+		"Tuple{name=self.name}.name", SapClass.CLASS_DESCRIPTOR);
 
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
@@ -178,16 +219,19 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	cl1.setName("ChangedHumba1");
-	assertTrue(ok[0]);
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    cl1.setName("ChangedHumba1");
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 
     @Test
     public void testVerySimpleTracerBasedInstanceScopeAnalysis() throws OclManagerException {
-	final OclExpressionRegistration registration = createOclExpression("testVerySimpleTracerBasedInstanceScopeAnalysis",
-		"self.oclAsType(data::classes::SapClass).name",
-		SapClass.CLASS_DESCRIPTOR);
+	final OclExpressionRegistration registration = MetamodelUtils.createOclExpression(connection,
+		"testVerySimpleTracerBasedInstanceScopeAnalysis",
+		"self.oclAsType(data::classes::SapClass).name", SapClass.CLASS_DESCRIPTOR);
 
 	final SapClass cl1 = connection.createElement(SapClass.CLASS_DESCRIPTOR);
 	cl1.setName("HumbaClass1");
@@ -202,9 +246,12 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	cl1.setName("ChangedHumba1");
-	assertTrue(ok[0]);
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    cl1.setName("ChangedHumba1");
+	    assertTrue(ok[0]);
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 
     @Test
@@ -245,7 +292,10 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);
-	ae1.setName("ChangedHumba1");
-	connection.getEventRegistry().deregister(listener);
+	try {
+	    ae1.setName("ChangedHumba1");
+	} finally {
+	    connection.getEventRegistry().deregister(listener);
+	}
     }
 }

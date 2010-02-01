@@ -4,11 +4,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import behavioral.actions.Iterator;
 import behavioral.actions.Statement;
@@ -86,15 +84,15 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
 	 * set is the set of cursors/iterators used in the nested loop.
 	 */
 	// start with an empty context and evaluate the full list of from clauses recursively
-	Map<Pair<Expression, Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> cache =
-	    new HashMap<Pair<Expression, Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
+	Map<Pair<Expression, List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> cache =
+	    new HashMap<Pair<Expression, List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
 	// use a single empty row as the "neutral element" for from clause "multiplication" to get things started
 	List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> singleEmptyRow =
 	    new LinkedList<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>();
 	singleEmptyRow.add(new HashMap<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>());
 	List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> cartesianProduct = getNodeSet(
 		singleEmptyRow, oql.getFromClauses(), interpreter, cache);
-	List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filteredByWhere = filtereByWhereClause(cartesianProduct,
+	List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filteredByWhere = filteredByWhereClause(cartesianProduct,
 		interpreter);
 	RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> result = createTuples(filteredByWhere, interpreter);
 	return result;
@@ -130,7 +128,7 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
 	    List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> context,
 	    List<FromClause> remainingFromClauses,
 	    RunletInterpreter interpreter,
-	    Map<Pair<Expression, Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> cache)
+	    Map<Pair<Expression, List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> cache)
 	    throws SecurityException, IllegalArgumentException, NoSuchMethodException, InstantiationException,
 	    IllegalAccessException, InvocationTargetException {
 	FromClause currentFromClause = remainingFromClauses.get(0);
@@ -139,13 +137,13 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
 	List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> nextContextOrResult =
 	    new LinkedList<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>();
 	for (Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> contextRow : context) {
-	    Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> cacheKeySet = new HashSet<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
+	    List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> cacheKeyList = new LinkedList<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
 	    for (Iterator a : fromExpDependsOnAliases) {
-		cacheKeySet.add(contextRow.get(a));
+		cacheKeyList.add(contextRow.get(a));
 	    }
 	    RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> from;
-	    Pair<Expression, Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> cacheKey =
-		new Pair<Expression, Set<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>(currentFromClauseExpression, cacheKeySet);
+	    Pair<Expression, List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> cacheKey =
+		new Pair<Expression, List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>>(currentFromClauseExpression, cacheKeyList);
 	    if (cache.containsKey(cacheKey)) {
 		from = cache.get(cacheKey);
 	    } else {
@@ -209,7 +207,7 @@ Statement, Expression, SignatureImplementation, RunletStackFrame, NativeImpl, Ru
 	return fromExp.getUsedAliases();
     }
     
-    private List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filtereByWhereClause(
+    private List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> filteredByWhereClause(
 	    List<Map<Iterator, RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>> cartesianProduct, RunletInterpreter interpreter) throws JmiException,
 	    SecurityException, IllegalArgumentException, NoSuchMethodException,
 	    InstantiationException, IllegalAccessException, InvocationTargetException {

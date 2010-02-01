@@ -23,20 +23,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.sap.tc.moin.repository.mmi.model.AttachesTo;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.Feature;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.Tag;
-import com.sap.tc.moin.repository.mmi.model.__impl.AttachesToInternal;
-import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
-import com.sap.tc.moin.repository.mmi.model.__impl.MofPackageInternal;
-import com.sap.tc.moin.repository.mmi.model.__impl.TagInternal;
-import com.sap.tc.moin.repository.mmi.reflect.ConstraintViolationException;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import javax.management.MBeanNotificationInfo;
 import javax.management.MalformedObjectNameException;
 import javax.management.Notification;
@@ -58,6 +44,7 @@ import org.omg.ocl.attaching.__impl.OclConstraintInternal;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.OclNamedElement;
 
+import com.sap.tc.moin.ocl.ia.instancescope.PathCache;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.ocl.utils.jmi.JmiCreator;
 import com.sap.tc.moin.ocl.utils.localization.OclServiceExceptions;
@@ -86,6 +73,20 @@ import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
 import com.sap.tc.moin.repository.exception.MoinLocalizedString;
 import com.sap.tc.moin.repository.exception.MoinUnsupportedOperationException;
 import com.sap.tc.moin.repository.jmx.OclRegistryServiceMBean;
+import com.sap.tc.moin.repository.mmi.model.AttachesTo;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.Feature;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
+import com.sap.tc.moin.repository.mmi.model.Tag;
+import com.sap.tc.moin.repository.mmi.model.__impl.AttachesToInternal;
+import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
+import com.sap.tc.moin.repository.mmi.model.__impl.MofPackageInternal;
+import com.sap.tc.moin.repository.mmi.model.__impl.TagInternal;
+import com.sap.tc.moin.repository.mmi.reflect.ConstraintViolationException;
+import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.exceptions.ParsingException;
 import com.sap.tc.moin.repository.ocl.freestyle.OclFreestyleRegistry;
 import com.sap.tc.moin.repository.ocl.freestyle.OclRegistration;
@@ -143,6 +144,8 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
     protected OclMofConstraintRegistryImpl myMofConstraintRegistry;
 
     protected OclEditorServiceImpl myOclEditorService;
+    
+    private PathCache myInstanceScopeImpactAnalysisPathCache;
 
     final static MoinLogger LOGGER = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_CORE_OCL, OclRegistryServiceImpl.class );
 
@@ -184,6 +187,13 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
             this.myFreestyleRegistry = new OclFreestyleRegistryImpl( this, connection );
         }
         return this.myFreestyleRegistry;
+    }
+
+    public PathCache getInstanceScopeImpactAnalysisPathCache() {
+	if (myInstanceScopeImpactAnalysisPathCache == null) {
+	    myInstanceScopeImpactAnalysisPathCache = new PathCache();
+	}
+        return myInstanceScopeImpactAnalysisPathCache;
     }
 
     public CoreOclMetamodelConstraintRegistry getMetamodelConstraintRegistry( CoreConnection connection ) {

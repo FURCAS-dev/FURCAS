@@ -213,7 +213,7 @@ public abstract class LinkContainer<LinkMetaObject extends RefObject,
 	    ClassTypedObject<LinkEndMetaObject, TypeUsage, ClassUsage> from, Side fromSide, LinkEndMetaObject toEnd) {
 	ObjectAndRemoteAssociationEnd<LinkMetaObject, LinkEndMetaObject, TypeUsage, ClassUsage, MetaClass> key = new ObjectAndRemoteAssociationEnd<LinkMetaObject, LinkEndMetaObject, TypeUsage, ClassUsage, MetaClass>(from, toEnd, getModelAdapter());
 	Collection<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>> links = getMapForEnd(fromSide).get(key);
-	if (links == null && ((from instanceof AbstractValueObject) || from.isPersistent())) {
+	if (links == null && ((from instanceof AbstractValueObject<?, ?, ?, ?, ?>) || from.isPersistent())) {
 	    // this container doesn't know anything about this and the from object
 	    // is persistent; ask repository:
 	    links = getRepository().loadLinks(from, toEnd);
@@ -333,10 +333,10 @@ public abstract class LinkContainer<LinkMetaObject extends RefObject,
 	    InterpreterType interpreter) {
 	if (!left.getOrigin().equals(right.getOrigin())) {
 	    if ((getModelAdapter().isContributesToEquality(getModelAdapter().getEnds(association).get(Side.LEFT.endNumber())) &&
-		    right instanceof AbstractValueObject)) {
+		    right instanceof AbstractValueObject<?, ?, ?, ?, ?>)) {
 		right = right.getCopyWithOrigin(left.getOrigin());
 	    } else if (getModelAdapter().isContributesToEquality(getModelAdapter().getEnds(association).get(Side.RIGHT.endNumber())) &&
-		    left instanceof AbstractValueObject) {
+		    left instanceof AbstractValueObject<?, ?, ?, ?, ?>) {
 		left = left.getCopyWithOrigin(right.getOrigin());
 	    } else {
 		throw new RuntimeException("Can't establish link between objects in different snapshots: "+
@@ -626,7 +626,7 @@ public abstract class LinkContainer<LinkMetaObject extends RefObject,
      */
     private boolean shouldBeStoredToRepository(Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage> link) {
 	for (Side side : Side.values()) {
-	    if (link.get(side) instanceof EntityObject && link.get(side).isPersistent()) {
+	    if (link.get(side) instanceof EntityObject<?, ?, ?, ?, ?> && link.get(side).isPersistent()) {
 		if (getModelAdapter().isContributesToEquality(
 			getModelAdapter().getEnds(link.getAssociation()).get(side.endNumber()))) {
 		    return true;
@@ -714,7 +714,7 @@ public abstract class LinkContainer<LinkMetaObject extends RefObject,
 				((List<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>) set).get(at)+" at that position");
 	    }
 	    // TODO respect *at* parameter in case of list
-	    if (set instanceof List && at != null && at >= 0) {
+	    if (set instanceof List<?> && at != null && at >= 0) {
 		((List<Link<LinkMetaObject, LinkEndMetaObject, MetaClass, TypeUsage, ClassUsage>>) set).remove(at);
 	    } else {
 		set.remove(link);
@@ -724,7 +724,7 @@ public abstract class LinkContainer<LinkMetaObject extends RefObject,
 	    // avoids loading a "clean" link set from the repository which would be wrong after modifications
 	    // such as a removal took place on the link set.
 	    if (set.isEmpty()) {
-		if (key instanceof ObjectAndRemoteAssociationEnd) {
+		if (key instanceof ObjectAndRemoteAssociationEnd<?, ?, ?, ?, ?>) {
 		    ObjectAndRemoteAssociationEnd<?, ?, ?, ?, ?> oarae = (ObjectAndRemoteAssociationEnd<?, ?, ?, ?, ?>) key;
 		    if (!oarae.getObject().isPersistent()) {
 			map.remove(key);

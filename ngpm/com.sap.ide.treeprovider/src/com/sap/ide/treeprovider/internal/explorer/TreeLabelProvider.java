@@ -101,7 +101,7 @@ public final class TreeLabelProvider extends TreeNodeLabelProvider {
 	    return Activator.getImageModelRoot();
 	}
 
-	if (treenode instanceof TreeNodeRefObject) {
+	if (treenode instanceof TreeNodeRefObject<?>) {
 	    Image image = Activator.getImage(((TreeNodeRefObject<?>) treenode).getValue());
 	    if (image != null) {
 		return image;

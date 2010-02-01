@@ -4,9 +4,9 @@ import java.util.Set;
 
 import org.omg.ocl.expressions.OclExpression;
 
+import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
 import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
 
 /**
  * All implementations must offer a constructor that takes a {@link CoreConnection} and a {@link OclExpression} impl
@@ -19,12 +19,21 @@ import com.sap.tc.moin.repository.mmi.model.Classifier;
  */
 public interface Tracer {
     /**
-     * Computes a set containing at least all context elements such that when the overall
-     * expression of which the expression represented by this tracer is a part, is evaluated for such an
-     * element, the sub-expression represented by this tracer evaluates to <tt>s</tt>. The result may
-     * also contain more elements for which this does not hold. It hence represents a conservative
-     * estimate.
-     * @param context TODO
+     * Computes a navigation step that when executed, computes a set of elements containing at least all context
+     * elements such that when the overall expression of which the expression represented by this tracer is a part, is
+     * evaluated for such an element, the sub-expression represented by this tracer evaluates to the element passed to
+     * the navigation step's {@link NavigationStep#navigate(CoreConnection, Set)} operation in the set parameter. The
+     * result may also contain elements for which this does not hold. It hence represents a conservative estimate.
+     * 
+     * @param context
+     *            the context type that defines the type of any <tt>self</tt> occurrence outside of operation bodies
+     * @param pathCache
+     *            a global cache that remembers the navigation steps already computed for some OCL expressions
+     * @param classScopeAnalyzer
+     *            retains the results of traversing the outermost expression's tree, a sub-expression of which this
+     *            tracer will analyze in this method. The class scope analyzer in particular remembers the operation
+     *            calls it found and thereby makes it possible to limit the analysis of operation bodies by the scope of
+     *            those calls acually invoking the operation in the context of the outermost expression.
      */
-    Set<RefObjectImpl> traceback(RefObjectImpl s, Classifier context);
+    NavigationStep traceback(MofClass context, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer);
 }

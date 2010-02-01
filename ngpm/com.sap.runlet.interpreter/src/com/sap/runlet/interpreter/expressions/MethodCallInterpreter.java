@@ -53,7 +53,7 @@ public class MethodCallInterpreter extends SignatureCallInterpreter {
 	// multi-valued can't be recognized from the expression's multiplicity; it could itself have
 	// resulted from a multi-valued this invocation, leading to multiple individual results combined
 	// into one multi-valued object; do an ugly "instanceof" instead:
-	boolean isMultipleThis = on instanceof MultiValuedObject;
+	boolean isMultipleThis = on instanceof MultiValuedObject<?, ?, ?>;
 	if (isMultipleThis) {
 	    // create result collection and wrap with MultiValuedObject
 	    final List<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>> resultCollection = new ArrayList<RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>>();
@@ -101,7 +101,7 @@ public class MethodCallInterpreter extends SignatureCallInterpreter {
 			outputType.isOrdered(), outputType.isUnique());
 	    }
 	} else {
-	    if (on instanceof EmptyObject) {
+	    if (on instanceof EmptyObject<?, ?, ?, ?>) {
 		result = new EmptyObject<AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>(
 			getSignatureCallExpression().getSignature().getOutput(), interpreter.getModelAdapter());
 	    }

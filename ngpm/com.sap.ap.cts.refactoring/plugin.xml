@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="com.sap.tc.moin.repository.mmi.reflect.RefObject"
+            class="com.sap.ap.cts.refactoring.adaptation.RefactoringModelAdapterFactory">
+         <adapter
+               type="com.sap.ide.refactoring.core.model.NamedElement">
+         </adapter>
+      </factory>
+   </extension>
+      <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="com.sap.ide.refactoring.viewerContribution"
+            targetID="com.sap.ap.cts.editor.ClassEditor.EditorContext">
+         <menu
+               id="com.sap.ide.refactoring.menu"
+               label="Refactor">
+            <groupMarker
+                  name="content">
+            </groupMarker>
+            <separator
+                  name="additions">
+            </separator>
+         </menu>
+         <action
+               class="com.sap.ide.refactoring.action.rename.RenameAction"
+               definitionId="com.sap.ide.refactoring.rename"
+               helpContextId="com.sap.ide.refactoring.rename"
+               id="com.sap.ide.refactoring.rename"
+               label="Rename..."
+               menubarPath="com.sap.ide.refactoring.menu/content"
+               style="push"
+               tooltip="Rename">
+         </action>
+      </viewerContribution>
+   </extension>
+
+</plugin>

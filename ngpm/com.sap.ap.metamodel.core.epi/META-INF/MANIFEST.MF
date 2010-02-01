@@ -136,3 +136,4 @@ Export-Package: abapmapping,
  ui.databinding.__impl,
  ui.templates,
  ui.templates.__impl
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

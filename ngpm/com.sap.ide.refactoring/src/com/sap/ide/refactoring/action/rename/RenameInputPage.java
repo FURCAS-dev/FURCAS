@@ -1,0 +1,91 @@
+package com.sap.ide.refactoring.action.rename;
+
+import org.eclipse.ltk.core.refactoring.RefactoringStatus;
+import org.eclipse.ltk.ui.refactoring.UserInputWizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.ModifyEvent;
+import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
+
+
+public class RenameInputPage extends UserInputWizardPage {
+
+    private Text textField;
+
+    public RenameInputPage(String name) {
+	super(name);
+    }
+
+    @Override
+    protected RenameRefactoring getRefactoring() {
+	return (RenameRefactoring) super.getRefactoring();
+    }
+
+    @Override
+    public void createControl(Composite parent) {
+	Composite superComposite = new Composite(parent, SWT.NONE);
+	setControl(superComposite);
+	initializeDialogUnits(superComposite);
+	superComposite.setLayout(new GridLayout());
+	Composite composite = new Composite(superComposite, SWT.NONE);
+	composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
+	GridLayout layout = new GridLayout();
+	layout.numColumns = 2;
+	layout.marginHeight = 0;
+	layout.marginWidth = 0;
+
+	composite.setLayout(layout);
+
+	Label label = new Label(composite, SWT.NONE);
+	label.setText("NewName");
+
+	Text text = createTextInputField(composite);
+	text.selectAll();
+	GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+	gd.widthHint = convertWidthInCharsToPixels(25);
+	text.setLayoutData(gd);
+
+	Label separator = new Label(composite, SWT.NONE);
+	GridData gridData = new GridData(SWT.FILL, SWT.FILL, false, false);
+	gridData.heightHint = 2;
+	separator.setLayoutData(gridData);
+
+    }
+
+    protected Text createTextInputField(Composite parent) {
+	textField = new Text(parent, SWT.BORDER);
+	textField.addModifyListener(new ModifyListener() {
+	    public void modifyText(ModifyEvent e) {
+		textModifiedCallback(textField.getText());
+	    }
+	});
+	textField.setText(getRefactoring().getOldModelElementName());
+	return textField;
+    }
+
+    /**
+     * Performs input validation. Returns a <code>RefactoringStatus</code> which
+     * describes the result of input validation. <code>Null<code> is interpreted
+	 * as no error.
+     */
+    protected RefactoringStatus validateTextField(String text) {
+	return RefactoringStatus.createWarningStatus("Name checking not yet implemented. May create invalid model.");
+    }
+
+    /**
+     * Checks the page's state and issues a corresponding error message. The
+     * page validation is computed by calling <code>validatePage</code>.
+     */
+    protected void textModifiedCallback(String text) {
+	RefactoringStatus status = validateTextField(text);	
+	setPageComplete(status);
+	
+	getRefactoring().setNewModelElementName(textField.getText());
+    }
+
+}

@@ -4,6 +4,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
+import com.sap.ap.cts.refactoring.adaptation.RefactoringModelAdapterFactory;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
@@ -13,6 +14,12 @@ import data.classes.SapClass;
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
+    
+    // This is a crude (hopefully temporary hack) to make sure that the Adapter Factory's plugin gets loaded 
+    {
+	new RefactoringModelAdapterFactory();
+	
+    }
 
     // The plug-in ID
     public static final String PLUGIN_ID = "com.sap.ap.cts.editor";
@@ -33,6 +40,7 @@ public class Activator extends AbstractUIPlugin {
      * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
      * )
      */
+    @Override
     public void start(BundleContext context) throws Exception {
 	super.start(context);
 	plugin = this;
@@ -45,6 +53,7 @@ public class Activator extends AbstractUIPlugin {
      * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
      * )
      */
+    @Override
     public void stop(BundleContext context) throws Exception {
 	plugin = null;
 	super.stop(context);

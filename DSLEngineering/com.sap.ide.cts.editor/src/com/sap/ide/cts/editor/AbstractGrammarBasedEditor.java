@@ -112,14 +112,11 @@ import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.events.ChangeListener;
-import com.sap.tc.moin.repository.events.PreChangeListener;
 import com.sap.tc.moin.repository.events.filter.AndFilter;
-import com.sap.tc.moin.repository.events.filter.AssociationFilter;
 import com.sap.tc.moin.repository.events.filter.AttributeFilter;
 import com.sap.tc.moin.repository.events.filter.InstanceFilter;
 import com.sap.tc.moin.repository.events.type.AttributeValueChangeEvent;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
-import com.sap.tc.moin.repository.events.type.LinkRemoveEvent;
 import com.sap.tc.moin.repository.exception.ExecutionRollbackFailedException;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -237,9 +234,7 @@ public abstract class AbstractGrammarBasedEditor extends
 
 	public static boolean highlightTBCanges = false;
 
-	// private IAnnotationModel fAnnotationModel;
-	// private SourceViewer textViewer;
-	private Object result;
+
 	private AbstractGrammarBasedContentOutlinePage outlinePage;
 	private Object model;
 
@@ -539,28 +534,6 @@ public abstract class AbstractGrammarBasedEditor extends
 		initConnection(input);
 		//complete the initialization of the document as the connection is not available
 		registerNameChangeListenerForInput((ModelEditorInput)input);
-		PreChangeListener changeListener = new PreChangeListener(){
-
-			@Override
-			public void prepare(ChangeEvent event) {
-				// TODO Auto-generated method stub
-				if(event instanceof LinkRemoveEvent) {
-					LinkRemoveEvent linkRemove = (LinkRemoveEvent)event;
-					RefObject first = linkRemove.getFirstLinkEnd(getWorkingConnection());
-					//RefObject second = linkRemove.getSecondLinkEnd(getWorkingConnection());
-					if(first != null) {
-						first.equals(null);
-					}
-				}
-			}
-			
-		};
-		AssociationFilter associationFilter = new AssociationFilter(
-				getWorkingConnection().getPackage(
-						TextblocksPackage.PACKAGE_DESCRIPTOR)
-						.getDocumentNodeReferencesCorrespondingModelElement()
-						.refMetaObject());
-		getWorkingConnection().getSession().getEventRegistry().registerPreChangeListener(changeListener, associationFilter);
 		
 		TextBlock rootBlock = ((CtsDocument) getDocumentProvider().getDocument(input)).getRootBlock();
 		setModel(rootBlock);
@@ -985,7 +958,6 @@ public abstract class AbstractGrammarBasedEditor extends
 					errorList.addAll(incrementalParser.getErrorList());
 
 					if (errorList.size() == 0) {
-						setResult(result);
 						if (getEditorInput() instanceof ModelEditorInput) {
 							((ModelEditorInput) getEditorInput())
 									.getRefObject();
@@ -1072,12 +1044,8 @@ public abstract class AbstractGrammarBasedEditor extends
 
 	private ObservableInjectingParser createDryParser(TextBlock rootBlock,
 			Connection connection) {
-		ObservableInjectingParser p;
-
-		p = getParserFactory().createParser(new CommonTokenStream(
-				getParserFactory().createLexer(new ANTLRStringStream(rootBlock
-						.getCachedString()))), connection);
-		return p;
+	    	Lexer lexer = getParserFactory().createLexer(new ANTLRStringStream(rootBlock.getCachedString()));
+		return getParserFactory().createParser(new CommonTokenStream(lexer), connection);
 	}
 
 	/**
@@ -1088,30 +1056,20 @@ public abstract class AbstractGrammarBasedEditor extends
 	 * @throws RecognitionException,
 	 *             {@link SemanticParserException}
 	 */
-	protected TextBlock dryParse(TextBlock rootBlock)
-			throws SemanticParserException {
+	public void dryParse(TextBlock rootBlock) throws SemanticParserException {
 		Connection connection = getWorkingConnection();
 		ObservableInjectingParser p = createDryParser(rootBlock, connection);
 		removeOutdatedParseErrorMarkers(Collections.singleton(rootBlock));
 		
 		List<ParsingError> errorList = p.checkSyntaxWithoutInjecting();
 
-		// errorList.addAll(((MyActionsLexer) lexer).getErrors());
-		// errorList.addAll(p.getErrors());
-
-		if (errorList == null || errorList.size() == 0) {
-			setResult(rootBlock);
-			if (getEditorInput() instanceof ModelEditorInput) {
-				((ModelEditorInput) getEditorInput()).getRefObject();
-			}
-		} else if (errorList.size() > 0) {
+		if (errorList != null && errorList.size() > 0) {
 		    throw new SemanticParserException(errorList, rootBlock, null);
 		}
-		return rootBlock;
+		
 	}
 
 	private void showInputInvalidInfo(Exception e) {
-		result = null;
 		Annotation annotation = new Annotation(ERROR_TYPE, false, e
 				.getMessage() == null ? e.getClass().getName() : e.getMessage());
 		getDocumentProvider().getAnnotationModel(getEditorInput())
@@ -1125,7 +1083,6 @@ public abstract class AbstractGrammarBasedEditor extends
 	 * @param e
 	 */
 	private void showInputInvalidInfo(ParsingError e) {
-		result = null;
 		getDocumentProvider().getAnnotationModel(getEditorInput())
 			.addAnnotation(
 						new Annotation(ERROR_TYPE, false,
@@ -1159,14 +1116,6 @@ public abstract class AbstractGrammarBasedEditor extends
 		}
 		return new Position(0, getSourceViewerPublic().getDocument()
 				.getLength());
-	}
-
-	protected Object getResult() {
-		return result;
-	}
-
-	public void setResult(Object result) {
-		this.result = result;
 	}
 
 	private void setModel(Object model) {

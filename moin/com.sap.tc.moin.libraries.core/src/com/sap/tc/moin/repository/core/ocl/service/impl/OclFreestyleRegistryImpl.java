@@ -221,7 +221,6 @@ public class OclFreestyleRegistryImpl implements OclFreestyleRegistry {
             return result;
         }
 
-        @SuppressWarnings( "unused" )
         boolean registerDeferredConstraintViolationListenerForEvents( DeferredConstraintViolationListener listener ) throws OclManagerException {
 
             boolean added = this.myEventListeners.add( listener );
@@ -229,13 +228,11 @@ public class OclFreestyleRegistryImpl implements OclFreestyleRegistry {
             return added;
         }
 
-        @SuppressWarnings( "unused" )
         boolean registerDeferredConstraintViolationListenerForPartitions( DeferredConstraintViolationListener listener ) throws OclManagerException {
 
             return this.myPartitionListeners.add( listener );
         }
 
-        @SuppressWarnings( "unused" )
         boolean registerImmediateConstraintViolationListener( ImmediateConstraintViolationListener listener ) throws OclManagerException {
 
             boolean added = this.myImmediateListeners.add( listener );
@@ -401,7 +398,7 @@ public class OclFreestyleRegistryImpl implements OclFreestyleRegistry {
             if ( this.categoryRegistrationMap.containsKey( name ) ) {
                 throw new OclManagerException( OclServiceExceptions.REGISTRATIONEXISTS, name );
             }
-            OclExpressionRegistrationImpl registration = new OclExpressionRegistrationImpl( this.connection, name, oclExpression, severity, categories, contextMetaClass, typesPackages );
+            OclExpressionRegistrationImpl registration = new OclExpressionRegistrationImpl( this.connection, name, oclExpression, severity, categories, contextMetaClass, typesPackages, this.registryService.getInstanceScopeImpactAnalysisPathCache() );
             this.categoryRegistrationMap.put( name, registration );
             for ( String category : categories ) {
                 Set<OclExpressionRegistrationImpl> registrations = this.categoryExpressionRegistrationMapping.get( category );

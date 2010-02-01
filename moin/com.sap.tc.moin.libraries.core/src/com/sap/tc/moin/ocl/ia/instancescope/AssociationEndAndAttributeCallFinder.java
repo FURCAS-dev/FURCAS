@@ -96,7 +96,7 @@ public class AssociationEndAndAttributeCallFinder extends TreeWalker {
     
     private Set<ClassifierInternal> getAllGeneralizationsIncludingSelf(ClassifierInternal classifier) {
 	Set<ClassifierInternal> result = new HashSet<ClassifierInternal>();
-	JmiListImpl<GeneralizableElement> supertypes = (JmiListImpl<GeneralizableElement>) ((ClassifierInternal) classifier).getSupertypes(connection);
+	JmiListImpl<GeneralizableElement> supertypes = (JmiListImpl<GeneralizableElement>) classifier.getSupertypes(connection);
 	for (Iterator<GeneralizableElement> i=supertypes.iterator(connection); i.hasNext(); ) {
 	    GeneralizableElement ge = i.next();
 	    result.addAll(getAllGeneralizationsIncludingSelf((ClassifierInternal) ge));

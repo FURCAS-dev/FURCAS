@@ -23,6 +23,7 @@ import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclVoidImpl;
 import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
+import com.sap.tc.moin.ocl.ia.instancescope.PathCache;
 import com.sap.tc.moin.ocl.parser.IOclParser;
 import com.sap.tc.moin.ocl.parser.OclParserFactory;
 import com.sap.tc.moin.ocl.utils.OclStatement;
@@ -41,8 +42,10 @@ import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.exception.MoinIllegalArgumentException;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.MofPackage;
 import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
+import com.sap.tc.moin.repository.mmi.model.__impl.MofClassImpl;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
@@ -87,6 +90,17 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     final Set<ModelChangeEvent> collectedEvents = new HashSet<ModelChangeEvent>( );
 
+    /**
+     * Used for the instance scope impact analysis so as to not having to re-analyze the
+     * same expressions over and over again.
+     */
+    private PathCache instanceScopeAnalysisPathCache;
+
+    /**
+     * Stores the event filters and operation call relationships for this registration's expression
+     */
+    private ClassScopeAnalyzer myClassScopeAnalyzer;
+
     private static final class ValueInvalidationTuple {
 
         private Object value;
@@ -127,19 +141,10 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         }
     }
 
-    /**
-     * @param connection Connection
-     * @param name Name
-     * @param oclExpression Expression
-     * @param severity Severity
-     * @param categories categories
-     * @param context context
-     * @param typesPackages typesPackages
-     * @throws OclManagerException Exception
-     */
-    public OclExpressionRegistrationImpl( CoreConnection connection, String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject context, RefPackage[] typesPackages ) throws OclManagerException {
+    public OclExpressionRegistrationImpl( CoreConnection connection, String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject context, RefPackage[] typesPackages, PathCache instanceScopeAnalysisPathCache ) throws OclManagerException {
 
         super( connection, name, OclRegistrationType.Expression, severity, categories, oclExpression, context, "ExpressionRegistration" ); //$NON-NLS-1$
+        this.instanceScopeAnalysisPathCache = instanceScopeAnalysisPathCache;
         IOclParser parser = OclParserFactory.create( this.myJmiCreator );
         try {
             Set<OclStatement> parserResult = parser.parseString( this.getOclExpression( ), this.parsingConext, typesPackages );
@@ -393,7 +398,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 		if (partitionable instanceof RefObject) {
 		    RefObject meta = ((RefObject) partitionable).refMetaObject();
 		    if (meta instanceof Classifier
-			    && (meta.equals(getOclStatement().getContext()) || ((Classifier) meta).allSupertypes().contains(getOclStatement().getContext()))) {
+			    && (meta.equals(getContext()) || ((Classifier) meta).allSupertypes().contains(getContext()))) {
 			RefObject checkObject = (RefObject) partitionable;
 			if (this.expressionValues.containsKey(checkObject.get___Mri())) {
 			    ValueInvalidationTuple tuple = this.expressionValues.get(checkObject.get___Mri());
@@ -597,7 +602,8 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     @Override
     public Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn) {
 	Statistics.getInstance().receivedEvent(this, mce);
-        Set<MRI> affectedModelElements = getImpactAnalyzer().getAffectedElements(getExpression(), getContext(), mce);
+        Set<MRI> affectedModelElements = getImpactAnalyzer().getAffectedElements((OclExpressionInternal) getExpression(),
+        	(MofClassImpl) getContext(), mce);
 	return affectedModelElements;
     }
 
@@ -655,7 +661,9 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         }
         Set<MRI> affectedModelElements = new HashSet<MRI>( );
         for (ModelChangeEvent mce : collectedEvents) {
-            affectedModelElements.addAll(getImpactAnalyzer().getAffectedElements(getExpression(), getContext(), mce));
+            if (getContext() instanceof MofClass) { // instance-scope impact analysis only defined for class-like context types
+        	affectedModelElements.addAll(getImpactAnalyzer().getAffectedElements(getExpression(), (MofClass) getContext(), mce));
+            }
         }
 
         if ( affectedModelElements.isEmpty( ) ) {
@@ -707,19 +715,27 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     }
 
     @Override
-    public EventFilter getEventFilter(boolean notifyNewContextElement ) {
+    public EventFilter getEventFilter(boolean notifyNewContextElement) {
 	if (this.myEventFilter == null) {
-	    this.myEventFilter = new ClassScopeAnalyzer(myConnection,
-		    (OclExpressionInternal) getOclStatement().getExpression(), /* notifyNewContextElement */
-		    false).getEventFilter();
+	    this.myEventFilter = getClassScopeAnalyzer(notifyNewContextElement).getEventFilter();
 	}
 	return this.myEventFilter;
+    }
+
+    private ClassScopeAnalyzer getClassScopeAnalyzer(boolean notifyNewContextElement) {
+	if (this.myClassScopeAnalyzer == null) {
+	    this.myClassScopeAnalyzer = new ClassScopeAnalyzer(myConnection, (OclExpressionInternal) getOclStatement()
+		    .getExpression(), /* notifyNewContextElement */
+	    false);
+	}
+	return this.myClassScopeAnalyzer;
     }
 
     private InstanceScopeAnalysis getImpactAnalyzer( ) {
 
         if ( this.analyzer == null ) {
-            this.analyzer = new InstanceScopeAnalysis(this.myConnection);
+	    this.analyzer = new InstanceScopeAnalysis(this.myConnection, instanceScopeAnalysisPathCache,
+		    getClassScopeAnalyzer(/* notifyNewContextElement */false));
         }
         return this.analyzer;
     }

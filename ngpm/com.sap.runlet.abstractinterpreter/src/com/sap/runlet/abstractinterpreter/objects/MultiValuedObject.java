@@ -59,10 +59,10 @@ extends RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> {
 		Iterator<RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage>> i = iteratorStack.peek();
 		if (i.hasNext()) {
 		    RunletObject<LinkEndMetaObject, TypeUsage, ClassUsage> candidate = i.next();
-		    if (candidate instanceof MultiValuedObject) {
+		    if (candidate instanceof MultiValuedObject<?, ?, ?>) {
 			iteratorStack.push(candidate.iterator());
 			advanceToNextSingleObject();
-		    } else if (candidate instanceof EmptyObject) {
+		    } else if (candidate instanceof EmptyObject<?, ?, ?, ?>) {
 			// skip empty object
 			advanceToNextSingleObject();
 		    } else {

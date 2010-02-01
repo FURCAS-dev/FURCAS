@@ -1,6 +1,6 @@
-Bundle-ManifestVersion: 2
+Bundle-ManifestVersion: 1
 Bundle-Name: Runlet Expression Pad with Parser
-Bundle-SymbolicName: com.sap.runlet.expressionpad;singleton:=true
+Bundle-SymbolicName: com.sap.runlet.expressionpad;singleton=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sap.runlet.expressionpad.Activator
 Bundle-Vendor: SAP
@@ -31,4 +31,3 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Export-Package: com.sap.runlet.expressionpad,
  com.sap.runlet.expressionpad.views
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6

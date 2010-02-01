@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -121,7 +120,7 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 		Set<Keyword> keywords = modelParsingResult.getKeywords();
 		Iterator<Keyword> iterator = keywords.iterator();
 		for (; iterator.hasNext();) {
-			Keyword keyword = (Keyword) iterator.next();
+			Keyword keyword = iterator.next();
 			keywords.add(keyword);
 		}
 		
@@ -140,12 +139,5 @@ public class TestATLSample extends AbstractTCSInjectionTest {
 		assertNotNull(tokens);
 		assertEquals(1, tokens.size());	
 	}
-	
-
-    private static List<String> list(String entry) {
-        ArrayList<String> list = new ArrayList<String>();
-        list.add(entry);
-        return list;
-    }
 
 }

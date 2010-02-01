@@ -50,11 +50,11 @@ public class TextBlocksModel {
 
 	private TextBlock rootBlock;
 	
-	private VersionedTextBlockNavigator navigator;
+	private final VersionedTextBlockNavigator navigator;
 	
 	private Version activeVersion = VersionEnum.REFERENCE;
 
-	private ShortPrettyPrinter shortPrettyPrinter;
+	private final ShortPrettyPrinter shortPrettyPrinter;
 
         private boolean usecache = false;
     
@@ -370,8 +370,8 @@ public class TextBlocksModel {
 	 */
 	public void replace(final int replacedRegionOffset, final int replacedRegionLength,
 			final String newText) {
-	        final Connection conn = ((Partitionable) rootBlock).get___Connection();
-	        conn.getCommandStack().execute(new Command(conn){
+	        final Connection conn = rootBlock.get___Connection();
+	        conn.getCommandStack().execute(new Command(conn, "Replace Region"){
 
                 @Override
                 public boolean canExecute() {
@@ -407,26 +407,45 @@ public class TextBlocksModel {
 
 	
 	public void doShortPrettyPrintToEditableVersion() {
-	    AbstractToken tok = getStartToken();
-	    while(tok != null && !(tok instanceof Eostoken) && tok.is___Alive()) {
-		if(tok instanceof LexedToken){
-		    String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
-		    //TODO check what to do with the empty string case!
-		    if(!newValue.equals(tok.getValue()) && !newValue.equals("")) {
-			int length = tok.getLength();
-			if(newValue.length() != length) {
-			    int offset = TbUtil.getAbsoluteOffset(tok);
-			    replaceInNonEmptyTree(offset, length, newValue, rootBlock);
-			    rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset) + 
-				    newValue + rootBlock.getCachedString().substring(offset + length, rootBlock.getCachedString().length()) );
-			} else {
-			    tok.setValue(newValue);
-			}
-			
-		    }
-		}
-		tok = TbNavigationUtil.nextToken(tok);
-	    }
+	    	final Connection conn = rootBlock.get___Connection();
+	        conn.getCommandStack().execute(new Command(conn, "Pretty Print Short"){
+
+                @Override
+                public boolean canExecute() {
+                    return true;
+                }
+
+                @Override
+                public void doExecute() {
+        	    AbstractToken tok = getStartToken();
+        	    while(tok != null && !(tok instanceof Eostoken) && tok.is___Alive()) {
+        		if(tok instanceof LexedToken){
+        		    String newValue = shortPrettyPrinter.resynchronizeToEditableState(tok);
+        		    //TODO check what to do with the empty string case!
+        		    if(!newValue.equals(tok.getValue()) && !newValue.equals("")) {
+        			int length = tok.getLength();
+        			if(newValue.length() != length) {
+        			    int offset = TbUtil.getAbsoluteOffset(tok);
+        			    replaceInNonEmptyTree(offset, length, newValue, rootBlock);
+        			    rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset) + 
+        				    newValue + rootBlock.getCachedString().substring(offset + length, rootBlock.getCachedString().length()) );
+        			} else {
+        			    tok.setValue(newValue);
+        			}
+        		    }
+        		}
+        		tok = TbNavigationUtil.nextToken(tok);
+        	    }
+                }
+
+                @Override
+                public Collection<PartitionOperation> getAffectedPartitions() {
+                    PRI pri = rootBlock.get___Partition().getPri();
+                    PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
+                    return Collections.singleton(editOperation);
+                }
+            }); 
+
 	}
 	
 	public void reduceToMinimalVersion() {

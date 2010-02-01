@@ -1,6 +1,6 @@
 <?xml version = '1.0' encoding = 'ISO-8859-1' ?>
 <!-- <!DOCTYPE XMI SYSTEM 'Model1311.DTD' > -->
-<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Mon Dec 21 16:58:07 2009' >
+<XMI xmi.version = '1.1' xmlns:Model='omg.org/mof.Model/1.3' timestamp = 'Fri Jan 29 17:41:50 2010' >
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>Unisys.JCR.1</XMI.exporter>
@@ -1001,7 +1001,7 @@ inv:
             </Model:Operation>
             <!-- ==================== dataaccess.expressions.Expression.getUsedAliases    [Operation] ==================== -->
             <Model:Operation xmi.id = 'a4B277D73000F' 
-              name = 'getUsedAliases' annotation = 'Computes the Iterator objects that are defined by a FromClause of an OqlQuery and that are used in a VariableExpression somewhere in side this expression.' 
+              name = 'getUsedAliases' annotation = 'Computes the Iterator objects that are defined by a FromClause of an OqlQuery and that are used in a VariableExpression somewhere inside this expression. Needs to handle all side effect-free expression types. By the current definition, this excludes, e.g., ObjectCreationExpression and therefore its initializers method call expressions.' 
               scope = 'instance_level' visibility = 'public_vis' 
               isQuery = 'true' >
               <Model:Namespace.contents>
@@ -1131,7 +1131,57 @@ body:
       Set{}
     endif
   else
-    Set{}
+    if self.oclIsKindOf(Replace) then
+      self.oclAsType(Replace).object.getUsedAliases()-&gt;union(
+      self.oclAsType(Replace).steps.filterFunction.getUsedAliases()-&gt;flatten()-&gt;asSet())-&gt;union(
+      self.oclAsType(Replace).with.getUsedAliases())
+    else
+      if self.oclIsKindOf(Selection) then
+        self.oclAsType(Selection).object.getUsedAliases()-&gt;union(
+        self.oclAsType(Selection).selectionExpr.getUsedAliases())
+      else
+        if self.oclIsKindOf(ObjectBasedExpression) then
+          let objectAliases = self.oclAsType(ObjectBasedExpression).object.getUsedAliases() in
+          if self.oclIsKindOf(MethodCallExpression) then
+            objectAliases-&gt;union(self.oclAsType(MethodCallExpression).parameters.getUsedAliases()-&gt;flatten()-&gt;asSet())
+          else
+            objectAliases
+          endif
+        else
+          if self.oclIsKindOf(Equals) then
+            self.oclAsType(Equals).left.getUsedAliases()-&gt;union(self.oclAsType(Equals).right.getUsedAliases())
+          else
+            if self.oclIsKindOf(FunctionCallExpression) then
+              self.oclAsType(FunctionCallExpression).calledBlock.getUsedAliases()-&gt;union(
+                           self.oclAsType(FunctionCallExpression).parameters.getUsedAliases()-&gt;flatten()-&gt;asSet())
+            else
+              if self.oclIsKindOf(Ternary) then
+                let sat = self.oclAsType(Ternary) in
+                sat.condition.getUsedAliases()-&gt;union(sat.trueExpr.getUsedAliases())-&gt;union(sat.falseExpr.getUsedAliases())
+             else
+                 if self.oclIsKindOf(CollectionExpressionWithArgument) then
+                  self.oclAsType(CollectionExpressionWithArgument).argument.getUsedAliases()-&gt;union(
+                  self.oclAsType(CollectionExpressionWithArgument).source.getUsedAliases())
+                else
+                  if self.oclIsKindOf(Iterate) then
+                    self.oclAsType(Iterate).iteratorExpression.getUsedAliases()-&gt;union(
+                    self.oclAsType(Iterate).accumulator.initExpression.getUsedAliases())-&gt;union(
+                    self.oclAsType(Iterate).source.getUsedAliases())
+                  else
+                    if self.oclIsKindOf(OqlQuery) then
+                      self.oclAsType(OqlQuery).fromClauses.fromExpression.getUsedAliases()-&gt;flatten()-&gt;asSet()-&gt;union(
+                      self.oclAsType(OqlQuery).condition.getUsedAliases())
+                    else
+                      Set{}
+                    endif
+                  endif
+                endif
+              endif
+            endif
+          endif
+        endif
+      endif
+    endif
   endif</XMI.any>
           </Model:Tag.values>
           <Model:Tag.elements>

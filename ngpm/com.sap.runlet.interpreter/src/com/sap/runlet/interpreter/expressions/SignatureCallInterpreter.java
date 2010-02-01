@@ -67,7 +67,7 @@ public class SignatureCallInterpreter implements Interpreter<SignatureCallExpres
 	}
 	for (final Expression paramExp:effectiveParameters) {
 	    // FIXME execute non-side-effect-free args first and sequentially, then parallelize only on side effect-free ones
-	    if (paramExp.isSideEffectFree()) {
+	    if (effectiveParameters.size() > 1 && paramExp.isSideEffectFree()) {
 		// background execution
 		Thread t = new Thread("Parallel parameter evaluation") {
 		    public void run() {

@@ -1,9 +1,17 @@
 package com.sap.ap.metamodel.utils;
 
+import ngpm.NgpmPackage;
+
 import com.sap.tc.moin.repository.Connection;
+import com.sap.tc.moin.repository.mmi.descriptors.ClassDescriptor;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
 import com.sap.tc.moin.repository.mql.MQLProcessor;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
+import com.sap.tc.moin.repository.ocl.OclRegistryService;
+import com.sap.tc.moin.repository.ocl.freestyle.OclExpressionRegistration;
+import com.sap.tc.moin.repository.ocl.notification.OclManagerException;
+import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
 
 import data.classes.Association;
 import data.classes.AssociationEnd;
@@ -138,6 +146,16 @@ public class MetamodelUtils {
 	afe.setOwnedTypeDefinition(fstd);
 	fce.setCalledBlock(afe);
 	return fce;
+    }
+
+    public static OclExpressionRegistration createOclExpression(Connection connection, String registrationName, String oclExpression, ClassDescriptor<?, ?> forClass) throws OclManagerException {
+        OclRegistryService oclRegistry = connection.getOclRegistryService();
+        final OclExpressionRegistration registration = oclRegistry.getFreestyleRegistry().createExpressionRegistration(
+        	registrationName,
+        	oclExpression, OclRegistrationSeverity.Info, new String[] { "TestOclIA" },
+        	connection.getClass(forClass),
+        	new RefPackage[] { connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR) });
+        return registration;
     }
 
 }

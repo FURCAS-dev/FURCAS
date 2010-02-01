@@ -54,7 +54,7 @@ public class ObjectParameterizedClassesTests extends RunletTestCase {
         assertEquals(6, result.length);
         assertEquals(0, errors.length);
         
-        assertTrue(result[5] instanceof MultiValuedObject);
+        assertTrue(result[5] instanceof MultiValuedObject<?, ?, ?>);
         for (RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition> ro : result[5]) {
             assertTrue(ro instanceof ValueObject);
             ValueObject vo = (ValueObject) ro;

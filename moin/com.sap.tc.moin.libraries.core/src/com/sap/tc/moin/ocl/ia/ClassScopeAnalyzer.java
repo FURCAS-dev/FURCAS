@@ -1,6 +1,9 @@
 package com.sap.tc.moin.ocl.ia;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.omg.ocl.attaching.OperationBodyDefinition;
@@ -58,9 +61,9 @@ import com.sap.tc.moin.repository.spi.core.Wrapper;
  */
 public class ClassScopeAnalyzer extends TreeWalker {
     final private boolean notifyNewContextElements;
-    private Set<EventFilter> filters = new HashSet<EventFilter>();
-    private Set<OclExpression> visitedOperationBodies = new HashSet<OclExpression>();
-
+    final private Set<EventFilter> filters = new HashSet<EventFilter>();
+    final private Map<OclExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OclExpression, Set<OperationCallExp>>();
+    
     // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
     // redundant/duplicate filters
 
@@ -92,7 +95,7 @@ public class ClassScopeAnalyzer extends TreeWalker {
      * @param notifyNewContextElements
      */
     public ClassScopeAnalyzer(Connection conn, OclExpression exp, boolean notifyNewContextElements) {
-	this((CoreConnection) ((ConnectionWrapper) conn).unwrap(), (OclExpressionInternal) ((Wrapper<?>) exp).unwrap(),
+	this(((ConnectionWrapper) conn).unwrap(), (OclExpressionInternal) ((Wrapper<?>) exp).unwrap(),
 		notifyNewContextElements);
     }
 
@@ -155,11 +158,30 @@ public class ClassScopeAnalyzer extends TreeWalker {
 	    OperationBodyDefinitionImpl a = (OperationBodyDefinitionImpl) connection
 		    .getAssociation(OperationBodyDefinition.ASSOCIATION_DESCRIPTOR);
 	    OclExpression body = a.getBody(connection, expInt.getReferredOperation(connection));
-	    if (body != null && visitedOperationBodies.contains(body)) {
-		visitedOperationBodies.add(body);
-		walk(body);
+	    if (body != null) {
+		Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
+		if (analyzedCallsToBody == null) {
+		    analyzedCallsToBody = new HashSet<OperationCallExp>();
+		    visitedOperationBodies.put(body, analyzedCallsToBody);
+		    // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+		    walk(body);
+		}
+		analyzedCallsToBody.add(exp);
 	    }
 	}
+    }
+    
+    /**
+     * Returns all the calls to the operation whose body is <tt>operationBody</tt> that are reachable
+     * from the root expression analyzed by this {@link ClassScopeAnalyzer}. If no such calls exist,
+     * an empty set is returned.
+     */
+    public Set<OperationCallExp> getCallsOf(OclExpressionInternal operationBody) {
+	Set<OperationCallExp> result = visitedOperationBodies.get(operationBody);
+	if (result == null) {
+	    result = Collections.emptySet();
+	}
+	return result;
     }
 
     @Override

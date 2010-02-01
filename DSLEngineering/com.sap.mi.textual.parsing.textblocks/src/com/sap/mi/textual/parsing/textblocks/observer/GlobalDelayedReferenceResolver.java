@@ -115,8 +115,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
 	@Override
 	public void notifyUpdate(EventChain events) {
-	    if (events.getEvents().size() > 0) {
-		ChangeEvent event = events.getEvents().iterator().next();
+	    for (ChangeEvent event : events.getEvents()) {
 		Connection conn = event.getEventTriggerConnection();
 		if(reference.isGenericReference()) {
 		     //Its a generic reference not an unresolved one
@@ -200,12 +199,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			    }
 			 }
 		     }
-		     int state = backgroundResolver.getState();
-                    if (state != Job.SLEEPING
-                            && state != Job.WAITING
-                            && state != Job.RUNNING) {
-                        backgroundResolver.schedule(500);
-                    }
+                     backgroundResolver.schedule(500);
+                     
 		 } else {
 		    // TODO (for Thomas) this code can probably be removed
 		    RefObject element = (RefObject) conn.getElement(((RefObject) reference.getModelElement())
@@ -343,8 +338,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     private final Map<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>> delayedReference2ReEvaluationListener = new HashMap<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>>();
     private final Set<ConcreteSyntax> registeredSytaxes = new HashSet<ConcreteSyntax>();
-    private Collection<DelayedReference> iaUnresolvedReferences = new Vector<DelayedReference>();
-    private Job backgroundResolver;
+    private final Collection<DelayedReference> iaUnresolvedReferences = new Vector<DelayedReference>();
+    private final Job backgroundResolver;
 
     public GlobalDelayedReferenceResolver() {
 	// Do the assignment here as the constructor will be invoked by the
@@ -1272,78 +1267,65 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     //    
     // }
     // }
+    
     public void resolveReferences(IProgressMonitor monitor) {
-        while(iaUnresolvedReferences.size() > 0) {
-            Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(
-                    iaUnresolvedReferences);
-            final String msg = "Reevaluating OCL References...";
-            monitor.beginTask(msg, workingCopy.size());
-            Collection<DelayedReference> deferredReferences = new ArrayList<DelayedReference>();
-            for (final DelayedReference ref : workingCopy) {
-                monitor.beginTask(msg, workingCopy.size());
-                if (!ref.getConnection().isAlive()) {
-                    Activator.logWarning("Could not re-resolve reference: "
-                            + ref + ". Connection: " + ref.getConnection()
-                            + " is not alive anymore!");
-                } else {
-                    try {
-                        final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-                                ref.getConnection(), (RefBaseObject) ref
-                                        .getModelElement());
-                        ref.getConnection().getCommandStack().execute(
-                                new Command(ref.getConnection()) {
+	Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
+	monitor.beginTask("Reevaluating OCL References...", workingCopy.size());
+	Collection<DelayedReference> deferredReferences = new ArrayList<DelayedReference>();
 
-                                    @Override
-                                    public boolean canExecute() {
-                                        return true;
-                                    }
+	for (final DelayedReference ref : workingCopy) {
+	    if (!ref.getConnection().isAlive()) {
+		Activator.logWarning("Could not re-resolve reference: " + ref + ". Connection: " + ref.getConnection()
+			+ " is not alive anymore!");
+		monitor.worked(1);
+		continue;
+	    }
 
-                                    @Override
-                                    public void doExecute() {
-                                        reEvaluateUnresolvedRef(ref
-                                                .getConnection(),
-                                                outermostPackage, ref, ref
-                                                        .getTextBlock());
-                                    }
+	    try {
+		final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(ref.getConnection(),
+			(RefBaseObject) ref.getModelElement());
 
-                                    @Override
-                                    public Collection<PartitionOperation> getAffectedPartitions() {
-                                        PRI pri = ((Partitionable) ref
-                                                .getModelElement())
-                                                .get___Partition().getPri();
-                                        PartitionOperation editOperation = new PartitionOperation(
-                                                PartitionOperation.Operation.EDIT,
-                                                pri);
-                                        return Collections
-                                                .singleton(editOperation);
-                                    }
+		ref.getConnection().getCommandStack().execute(
+			new Command(ref.getConnection(), "Re-evaluate unresolved Reference") {
 
-                                });
+			    @Override
+			    public boolean canExecute() {
+				return true;
+			    }
 
-                    } catch (InvalidObjectException ex) {
-                        Activator.logWarning("Could not re-resolve reference: "
-                                + ref + ". Element: " + ref.getModelElement()
-                                + " is not alive anymore!");
-                    } catch (PartitionEditingNotPossibleException ex) {
-                        Activator.logWarning("Could not re-resolve reference: "
-                                + ref + ". Partition: " + ex.getPri() 
-                                + " is locked! Will try again later");
-                        deferredReferences.add(ref);
-                    } catch (Exception ex) {
-                        ParsingTextblocksActivator.logError(ex, "Could not re-resolve reference: "
-                                + ref);
-                    }
-                }
-                monitor.worked(1);
-            }
-            //deferred references will tried to be resolved again later
-            //so dont't remove them
-            workingCopy.remove(deferredReferences);
-            iaUnresolvedReferences.removeAll(workingCopy);
-            // if(iaUnresolvedReferences.size() > 0) {
-            // backgroundResolver.schedule(500);
-            // }
-        }
-        monitor.done();
+			    @Override
+			    public void doExecute() {
+				reEvaluateUnresolvedRef(ref.getConnection(), outermostPackage, ref, ref.getTextBlock());
+			    }
+
+			    @Override
+			    public Collection<PartitionOperation> getAffectedPartitions() {
+				PRI pri = ((Partitionable) ref.getModelElement()).get___Partition().getPri();
+				PartitionOperation editOperation = new PartitionOperation(PartitionOperation.Operation.EDIT, pri);
+				return Collections.singleton(editOperation);
+			    }
+
+			});
+
+	    } catch (InvalidObjectException ex) {
+		Activator.logWarning("Could not re-resolve reference: " + ref + ". Element: " + ref.getModelElement()
+			+ " is not alive anymore!");
+	    } catch (PartitionEditingNotPossibleException ex) {
+		Activator.logWarning("Could not re-resolve reference: " + ref + ". Partition: " + ex.getPri()
+			+ " is locked! Will try again later");
+		deferredReferences.add(ref);
+	    } catch (Exception ex) {
+		ParsingTextblocksActivator.logError(ex, "Could not re-resolve reference: " + ref);
+	    }
+	    monitor.worked(1);
+	}
+	// deferred references will tried to be resolved again later so dont't
+	// remove them
+	workingCopy.removeAll(deferredReferences);
+	iaUnresolvedReferences.removeAll(workingCopy);
+	if (!iaUnresolvedReferences.isEmpty()) {
+	    backgroundResolver.schedule(500);
+	}
+	monitor.done();
     }
 }

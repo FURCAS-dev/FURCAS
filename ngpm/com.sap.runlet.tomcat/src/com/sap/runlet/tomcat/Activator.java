@@ -57,6 +57,7 @@ public class Activator extends Plugin implements IStartup {
      * @see
      * org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
      */
+    @Override
     public void start(BundleContext context) throws Exception {
 	super.start(context);
 	plugin = this;
@@ -67,6 +68,9 @@ public class Activator extends Plugin implements IStartup {
 	final String SERVER_AND_ENGINE_NAME = "Runlet";
 	IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
 	IProject tomcatRoot = workspaceRoot.getProject("com.sap.runlet.tomcat");
+	if (!tomcatRoot.getFolder("apache-tomcat-6.0.20").exists()) {
+	    return;  // Tomcat not installed. Do nothing.
+	}
 	File CATALINAHOME = tomcatRoot.getFolder("apache-tomcat-6.0.20").getLocation().toFile();
 	Embedded server = new Embedded();
 	server.setName(SERVER_AND_ENGINE_NAME);
@@ -114,6 +118,7 @@ public class Activator extends Plugin implements IStartup {
      * @see
      * org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
      */
+    @Override
     public void stop(BundleContext context) throws Exception {
 	plugin = null;
 	super.stop(context);

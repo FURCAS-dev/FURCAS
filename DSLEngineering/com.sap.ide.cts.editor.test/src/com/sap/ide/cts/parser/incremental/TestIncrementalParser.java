@@ -54,7 +54,7 @@ public class TestIncrementalParser extends TextBlockTest {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 
 		IncrementalParserFacade facade = getParserFacade();
-		File syntaxDefFile = new File("scenariotestResource/TCS.tcs");
+		File syntaxDefFile = new File("scenarioTestResource/TCS.tcs");
 
 		AbstractToken content = createToken("");
 		TextBlock root = TestSourceTextBlockCreator
@@ -110,7 +110,7 @@ public class TestIncrementalParser extends TextBlockTest {
 		TcsTestHelper.createTcsSyntaxMappingOnConnection(connection);
 		
 		IncrementalParserFacade facade = getParserFacade();
-		File syntaxDefFile = new File("scenariotestResource/Bibtext.tcs");
+		File syntaxDefFile = new File("scenarioTestResource/Bibtext.tcs");
 
 		AbstractToken content = createToken("");
 		TextBlock root = TestSourceTextBlockCreator

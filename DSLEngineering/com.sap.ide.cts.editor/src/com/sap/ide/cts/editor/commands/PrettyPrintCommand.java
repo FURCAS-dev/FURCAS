@@ -26,7 +26,7 @@ public class PrettyPrintCommand extends Command {
 
 	public PrettyPrintCommand(RefObject refObject, ConcreteSyntax syntax,
 			CtsTextBlockTCSExtractorStream target, Connection con) {
-		super(con);
+		super(con, "Pretty Print Full");
 		this.refObject = refObject;
 		this.syntax = syntax;
 		this.target = target;

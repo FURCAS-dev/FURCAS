@@ -27,7 +27,14 @@ public class StandaloneConnectionBasedTest {
 
 		// should be @After and execute after every test
 		if (connection != null && connection.isAlive()) {
-			connection.revert();
+		    while (connection.getCommandStack( ).isCommandRunning()) {
+			try {
+			    Thread.sleep(100 /*ms*/);
+			} catch (InterruptedException e) {
+			    throw new RuntimeException(e);
+			}
+		    }
+		    connection.revert();
 		}
 
 	}

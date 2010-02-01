@@ -33,7 +33,7 @@ public class StartMoin {
         Facility facility = moin.getFacilityById( "PF" );
 
         //FIXME this should not use the Build Facility, instead, it should use Standalone Facility
-        IpiBuildDiService nwdiService = (IpiBuildDiService) ( (BuildPrimaryFacilityImpl) facility ).getBuildDiService( );
+        IpiBuildDiService nwdiService = ( (BuildPrimaryFacilityImpl) facility ).getBuildDiService( );
 
         Moinlet moinlet = getMoinlet( args );
 

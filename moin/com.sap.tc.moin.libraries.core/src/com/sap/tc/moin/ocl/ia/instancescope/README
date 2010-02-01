@@ -1,0 +1,59 @@
+I use the following "Expression" definitions to debug the OCL instance scope impact analysis:
+
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+  conn).serialize(exp, new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+  
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+  connection).serialize(attributeOrAssociationEndCall.getSource(),
+  new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+ 
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+  connection).serialize(attributeOrAssociationEndCall,
+  new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+  
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+  conn).serialize(sourceExpression,
+  new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+  getConnection()).serialize(argumentExpression,
+  new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+  
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+	this.getConnection()).serialize(call,
+		new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0]) +
+"\nin root expression\n"+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+	getConnection()).serializeAndHighlight(getRootExpression((RefObjectImpl) call), call,
+		new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+		
+
+Furthermore, I use the following Detaile Formatter expressions in the Java Debug Variables view:
+
+For AbstractTracer:
+
+getClass().getSimpleName()+" for\n"+
+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+	this.getConnection()).serialize(this.getExpression(),
+		new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0]) +
+"\nin root expression\n"+com.sap.tc.moin.ocl.utils.impl.OclSerializer.getInstance(
+	getConnection()).serializeAndHighlight(getRootExpression(), getExpression(),
+		new com.sap.tc.moin.repository.mmi.reflect.RefPackage[0])
+		
+For OclExpressionRegistration:
+
+toString()+" for\n" + getOclExpression()
+
+For RefObject:
+
+{
+    String name = "";
+    java.lang.reflect.Method[] methods = getClass().getMethods();
+    for (java.lang.reflect.Method m : methods) {
+	if (m.getName().equals("getName")) {
+	    name = "\"" + (String) m.invoke(this) + "\" ";
+	}
+    }
+    return name+this.toString();
+}
+
+

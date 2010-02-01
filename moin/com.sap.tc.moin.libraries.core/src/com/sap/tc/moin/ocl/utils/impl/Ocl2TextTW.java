@@ -89,6 +89,12 @@ class Ocl2TextTW extends TreeWalker {
      * The serialization helper
      */
     private final SerializationHelper mySerializationHelper = new SerializationHelper( );
+    
+    /**
+     * If non-<tt>null</tt>, highlight occurrences of this expression by prefixing and
+     * postfixing with "^^^".
+     */
+    private final OclExpression highlight;
 
     /**
      * Attaches a String to a node
@@ -108,33 +114,50 @@ class Ocl2TextTW extends TreeWalker {
      * @return a String or <tt>null</tt>
      */
     protected String getString( Object node ) {
-
-        return this.nodeToString.get( node );
+	StringBuilder result = new StringBuilder();
+	boolean doHighlight = (highlight != null && node.equals(highlight));
+	if (doHighlight) {
+	    result.append(">>>");
+	}
+        result.append(this.nodeToString.get( node ));
+	if (doHighlight) {
+	    result.append("<<<");
+	}
+	return result.toString();
     }
 
+    public Ocl2TextTW( CoreConnection actConnection, MofPackage mp ) {
+	this(actConnection, /* highlight */ null, mp);
+    }
+    
     /**
      * @param actConnection the core connection
      * @param mp the MofPackage
      */
-    public Ocl2TextTW( CoreConnection actConnection, MofPackage mp ) {
+    public Ocl2TextTW( CoreConnection actConnection, OclExpression highlight, MofPackage mp ) {
 
         super( actConnection );
         if ( mp != null ) {
             this.packageNames.add( ( (MofPackageImpl) mp ).getQualifiedName( actConnection ) );
         }
+        this.highlight = highlight;
     }
 
+    public Ocl2TextTW( CoreConnection actConnection, MofPackage[] mp ) {
+	this(actConnection, /* highlight */ null, mp);
+    }
+    
     /**
      * @param actConnection the core connection
      * @param mp the packages
      */
-    public Ocl2TextTW( CoreConnection actConnection, MofPackage[] mp ) {
+    public Ocl2TextTW( CoreConnection actConnection, OclExpression highlight, MofPackage[] mp ) {
 
         super( actConnection );
         for ( int i = 0; i < mp.length; i++ ) {
             this.packageNames.add( ( (MofPackageImpl) mp[i] ).getQualifiedName( actConnection ) );
         }
-
+        this.highlight = highlight;
     }
 
     /**

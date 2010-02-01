@@ -18,8 +18,7 @@ public class CleanUpTextBlocksCommand extends Command {
 	private TextBlock newRootBlock;
 
 	public CleanUpTextBlocksCommand(TextBlock rootBlock) {
-		super(ModelAdapterUI.getInstance().getConnection(
-				rootBlock));
+		super(ModelAdapterUI.getInstance().getConnection(rootBlock), "Cleanup Textblocks");
 		this.rootBlock = rootBlock;
 	}
 

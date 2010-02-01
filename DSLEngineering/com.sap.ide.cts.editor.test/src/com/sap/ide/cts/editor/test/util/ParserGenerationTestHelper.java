@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.net.URLDecoder;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -250,13 +251,17 @@ public class ParserGenerationTestHelper {
 						+ getSourceRoot(ITokenFactory.class) + File.pathSeparator
 						+ getSourceRoot(RuleNameFinder.class) + File.pathSeparator
 						+ getSourceRoot(IModelElementProxy.class) + File.pathSeparator
-						+ getSourceRoot(Lexer.class) + File.pathSeparator});
+						+ getSourceRoot(Lexer.class)});
 
 		return success;
 	}
 
 	public String getSourceRoot(Class<?> c) {
-		return c.getProtectionDomain().getCodeSource().getLocation().getPath();
+		try {
+		    return new File(URLDecoder.decode(c.getProtectionDomain().getCodeSource().getLocation().getPath(), "UTF-8")).getCanonicalPath();
+		} catch (IOException e) {
+		    throw new RuntimeException(e);
+		}
 	}
 
 	public ModelParsingResult parseStream(String languageName, InputStream in,

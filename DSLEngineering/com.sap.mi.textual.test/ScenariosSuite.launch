@@ -13,5 +13,5 @@
 <stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit4"/>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.sap.mi.textual.test.subsuites.ScenariosSuite"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="com.sap.mi.textual.test"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dantlr.lib.dir=${project_loc:/org.antlr}/bin"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="&quot;-Dantlr.lib.dir=${project_loc:/org.antlr}/bin&quot;"/>
 </launchConfiguration>

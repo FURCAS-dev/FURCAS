@@ -7,15 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
-
 import com.sap.tc.moin.repository.JmiHelper;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.PRI;
@@ -26,6 +17,14 @@ import com.sap.tc.moin.repository.core.EndStorageLink;
 import com.sap.tc.moin.repository.core.Workspace;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefFeaturedImpl;
 import com.sap.tc.moin.repository.core.transactions.actions.ActionFactory;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
+import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
 import com.sap.tc.moin.repository.transactions.microtransactionables.ObjectAttributeChangeMicroTransactionable;
 
 public class ObjectAttributeChangeMicroTransactionableImpl extends AbstractMicroTransactionable implements ObjectAttributeChangeMicroTransactionable {
@@ -294,6 +293,12 @@ public class ObjectAttributeChangeMicroTransactionableImpl extends AbstractMicro
             // partition mark dirty actions
             addMarkDirtyActionsToDoActions( );
         }
+    }
+    
+    @Override
+    public boolean eventCreationNeeded() {
+	boolean valueUnchanged = oldValue != null && oldValue.equals(newValue) || oldValue == null && newValue == null;
+	return !valueUnchanged && super.eventCreationNeeded();
     }
 
     private void copyOnWrite( boolean doCase ) {

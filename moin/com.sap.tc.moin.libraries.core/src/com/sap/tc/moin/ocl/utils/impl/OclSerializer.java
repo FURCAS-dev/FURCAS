@@ -113,7 +113,7 @@ public class OclSerializer {
      * 
      * @param expr the OclExpression to serialize
      * @param packages the packages to which the types in the expression belong
-     * to. If left empty all pathnames are serialized to global names. If
+     * to. If left empty (must be non-<tt>null</tt>) all pathnames are serialized to global names. If
      * <tt>localNames</tt> is set, types contained in these packages are
      * serialized using package local names. Others are serialized using global
      * names.
@@ -126,6 +126,23 @@ public class OclSerializer {
         try {
             mp = toMofPackage( packages );
             Ocl2TextTW ocl2text = new Ocl2TextTW( this.connection, mp );
+
+            return ocl2text.transformToText( expr );
+        } catch ( RuntimeException e ) {
+            throw new OclSerializationException( e );
+        }
+    }
+    
+    /**
+     * Like {@link #serialize(OclExpression, RefPackage[])}, but highlights any occurrence of
+     * <tt>highlight</tt> within <tt>expr</tt> by prefixing and postfixing it with ">>> <<<".
+     */
+    public String serializeAndHighlight(OclExpression expr, OclExpression highlight, RefPackage[] packages)
+	    throws OclSerializationException {
+        MofPackage[] mp;
+        try {
+            mp = toMofPackage( packages );
+            Ocl2TextTW ocl2text = new Ocl2TextTW( this.connection, highlight, mp );
 
             return ocl2text.transformToText( expr );
         } catch ( RuntimeException e ) {

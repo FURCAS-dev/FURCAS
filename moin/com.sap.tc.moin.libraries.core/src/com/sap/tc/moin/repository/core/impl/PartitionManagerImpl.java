@@ -143,89 +143,102 @@ public final class PartitionManagerImpl implements CorePartitionManager {
                 // by now and the partition will be available in memory in the "loadedPartitions" collection.
                 // The "loadedPartitions" collection is a synchronized map, therefore the following code 
                 // is NOT the double-checked lock pattern despite looking a little bit like it
-                synchronized ( loadAndEvictLock ) {
-                    partition = this.loadedPartitions.get( pri );
-                    if ( partition != null ) {
-                        //partition was loaded by another thread in the meantime
-                        return partition;
-                    }
-                    SpiFacility facility = (SpiFacility) this.workspace.getWorkspaceSet( ).getMoin( ).getFacilityById( pri.getDataAreaDescriptor( ).getFacilityId( ) );
-                    // enable bulk notification of consistency violations
-                    this.enableConsistencyViolationBulkNotification( );
-                    // Load the partition from persistence.
-                    try {
-                        if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-                            logger.traceWithStack( MoinSeverity.DEBUG, "Starting to load partition \"{0}\" from persistence. Session is \"{1}\".", pri, session ); //$NON-NLS-1$
-                        }
-                        SpiStage stage = this.workspace.getStage( pri.getDataAreaDescriptor( ) );
-                        if ( stage == null ) {
-                            throw new MoinIllegalStateException( CoreImplMessages.COULDNOTGETSTAGEFORDATAAREAFROMWORKSPACE, pri.getDataAreaDescriptor( ), this.workspace );
-                        }
-                        partition = this.workspace.getPartitionFactory( ).createModelPartition( pri, stage, workspace );
-                        final CoreParserCallbackImpl parserCallback = new CoreParserCallbackImpl( moin.getPartitionSerializationManager( ), session, partition );
-                        SpiPartitionLoadContext loadContext = new SpiPartitionLoadContext( ) {
+		synchronized (this) { // synchronization on this is necessary because a call to
+				      // ExtentManagerImpl.selectExtentForPartitionReader
+		    // may follow which grabs the lock on this, too. However,
+		    synchronized (loadAndEvictLock) {
+			partition = this.loadedPartitions.get(pri);
+			if (partition != null) {
+			    // partition was loaded by another thread in the meantime
+			    return partition;
+			}
+			SpiFacility facility = (SpiFacility) this.workspace.getWorkspaceSet().getMoin()
+				.getFacilityById(pri.getDataAreaDescriptor().getFacilityId());
+			// enable bulk notification of consistency violations
+			this.enableConsistencyViolationBulkNotification();
+			// Load the partition from persistence.
+			try {
+			    if (logger.isTraced(MoinSeverity.DEBUG)) {
+				logger
+					.traceWithStack(
+						MoinSeverity.DEBUG,
+						"Starting to load partition \"{0}\" from persistence. Session is \"{1}\".", pri, session); //$NON-NLS-1$
+			    }
+			    SpiStage stage = this.workspace.getStage(pri.getDataAreaDescriptor());
+			    if (stage == null) {
+				throw new MoinIllegalStateException(
+					CoreImplMessages.COULDNOTGETSTAGEFORDATAAREAFROMWORKSPACE, pri
+						.getDataAreaDescriptor(), this.workspace);
+			    }
+			    partition = this.workspace.getPartitionFactory()
+				    .createModelPartition(pri, stage, workspace);
+			    final CoreParserCallbackImpl parserCallback = new CoreParserCallbackImpl(moin
+				    .getPartitionSerializationManager(), session, partition);
+			    SpiPartitionLoadContext loadContext = new SpiPartitionLoadContext() {
 
-                            public SpiSession getSession( ) {
+				public SpiSession getSession() {
 
-                                return session;
-                            }
+				    return session;
+				}
 
-                            public SpiParserCallback getParserCallback( ) {
+				public SpiParserCallback getParserCallback() {
 
-                                return parserCallback;
-                            }
+				    return parserCallback;
+				}
 
-                            public PRI getPri( ) {
+				public PRI getPri() {
 
-                                return parserCallback.getPri( );
-                            }
+				    return parserCallback.getPri();
+				}
 
-                            public void setPersistedTimestamp( long timestamp ) {
+				public void setPersistedTimestamp(long timestamp) {
 
-                                parserCallback.getPartitionToLoad( ).setPersistedTimestamp( timestamp );
-                            }
+				    parserCallback.getPartitionToLoad().setPersistedTimestamp(timestamp);
+				}
 
-                            public SpiStage getStage( ) {
+				public SpiStage getStage() {
 
-                                return parserCallback.getPartitionToLoad( ).getResourceInformation( ).getStage( );
-                            }
+				    return parserCallback.getPartitionToLoad().getResourceInformation().getStage();
+				}
 
-                            @Override
-                            public String toString( ) {
+				@Override
+				public String toString() {
 
-                                // the PRI which is loaded; stage is ignored
-                                PRI pri = parserCallback.getPri( );
-                                return String.valueOf( pri );
-                            }
+				    // the PRI which is loaded; stage is ignored
+				    PRI pri = parserCallback.getPri();
+				    return String.valueOf(pri);
+				}
 
-
-                        };
-                        assert holdsLockForLoadOrEvict( ) : "Thread tries to load partition without having acquired one of the necessary locks"; //$NON-NLS-1$
-                        boolean successfullyLoaded = facility.getModelPersistence( ).loadPartition( loadContext );
-                        if ( successfullyLoaded ) {
-                            this.addPartition( null, partition );
-                            partition.markPersisted( );
-                            if ( pri.isMetaModelPartition( ) ) {
-                                partition.trimToSize( );
-                            }
-                        } else {
-                            // All instances from the InstanceManager that have been injected up to now must be evicted!
-                            for ( Partitionable element : partition.getElements( ) ) {
-                                this.workspace.getInstanceManager( ).evictInstance( (CorePartitionable) element );
-                            }
-                            if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-                                logger.trace( MoinSeverity.DEBUG, "Couldn't load partition" + partition.getPri( ) ); //$NON-NLS-1$
-                            }
-                            return null;
-                        }
-                        if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-                            logger.trace( MoinSeverity.DEBUG, "Successfully finished loading of partition, result is: " + partition ); //$NON-NLS-1$
-                        }
-                    } finally {
-                        // disable bulk notification of consistency violations
-                        this.finishConsistencyViolationBulkNotification( );
-                    }
-                }
+			    };
+			    assert holdsLockForLoadOrEvict() : "Thread tries to load partition without having acquired one of the necessary locks"; //$NON-NLS-1$
+			    boolean successfullyLoaded = facility.getModelPersistence().loadPartition(loadContext);
+			    if (successfullyLoaded) {
+				this.addPartition(null, partition);
+				partition.markPersisted();
+				if (pri.isMetaModelPartition()) {
+				    partition.trimToSize();
+				}
+			    } else {
+				// All instances from the InstanceManager that have been injected up to now must be
+				// evicted!
+				for (Partitionable element : partition.getElements()) {
+				    this.workspace.getInstanceManager().evictInstance((CorePartitionable) element);
+				}
+				if (logger.isTraced(MoinSeverity.DEBUG)) {
+				    logger.trace(MoinSeverity.DEBUG, "Couldn't load partition" + partition.getPri()); //$NON-NLS-1$
+				}
+				return null;
+			    }
+			    if (logger.isTraced(MoinSeverity.DEBUG)) {
+				logger.trace(MoinSeverity.DEBUG,
+					"Successfully finished loading of partition, result is: " + partition); //$NON-NLS-1$
+			    }
+			} finally {
+			    // disable bulk notification of consistency violations
+			    this.finishConsistencyViolationBulkNotification();
+			}
+		    }
+		}
             }
         }
         return partition;
@@ -1107,7 +1120,13 @@ public final class PartitionManagerImpl implements CorePartitionManager {
         }
         Collection<SpiPartitionSaveContext> result = new ArrayList<SpiPartitionSaveContext>( partitions.size( ) );
         for ( CoreModelPartition partition : partitions ) {
-            SpiPartitionDelta delta = connection.getPartitionChangeRecorder( ).getDeltaForPartition( partition );
+            // (Axel Uhl, d043530) trying without delta calculation for partition deletions; so far, tests still seem to run
+            SpiPartitionDelta delta;
+            if (operation == SpiSaveOperation.DELETE) {
+        	delta = null;
+            } else {
+        	delta = connection.getPartitionChangeRecorder( ).getDeltaForPartition( partition );
+            }
             SpiSerializerCallback callback = new CoreSerializerCallbackImpl( connection.getSession( ), partition );
             result.add( new PartitionSaveContextImpl( connection, partition, callback, delta, operation ) );
         }

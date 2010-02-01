@@ -150,7 +150,7 @@ public class Rucola {
 	    return wrapNativeObject(o, "TimePoint");
 	} else if (o instanceof String) {
 	    return wrapNativeObject(o, "String");
-	} else if (o instanceof Iterable) { // and not a RucolaObject because that was checked first
+	} else if (o instanceof Iterable<?>) { // and not a RucolaObject because that was checked first
 	    // TODO enable wrapping of Java collections into Rucola MultiObject instances
 	    throw new RucolaException("Converting Java collections into Runlet multi-objects not supported yet");
 	} else {

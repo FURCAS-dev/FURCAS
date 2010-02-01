@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Refactoring Plug-in
+Bundle-SymbolicName: com.sap.ap.cts.refactoring;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: com.sap.ap.cts.refactoring.Activator
+Bundle-Vendor: SAP
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.sap.ide.refactoring;bundle-version="1.0.0",
+ com.sap.ap.metamodel.core;bundle-version="0.0.0",
+ com.sap.tc.moin.runtime;bundle-version="2.0.0",
+ com.sap.tc.moin.libraries.api
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Export-Package: com.sap.ap.cts.refactoring.adaptation

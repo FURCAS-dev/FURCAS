@@ -22,3 +22,4 @@ Require-Bundle: com.sap.mi.fwk,
  com.sap.ap.cts.editor;bundle-version="1.0.0",
  com.sap.ide.cts.moin;bundle-version="1.0.0"
 Export-Package: com.sap.mi.textual.moinlookup
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6

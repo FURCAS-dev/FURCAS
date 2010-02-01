@@ -21,7 +21,7 @@ public class ParseCommand extends Command {
 	private final AbstractGrammarBasedEditor editor;
 
 	public ParseCommand(TextBlock previousBlock, Connection connection, AbstractGrammarBasedEditor editor) {
-		super(connection);
+		super(connection, "Incremental Parse and Model Update");
 		this.previousBlock = previousBlock;
 		this.editor = editor;
 	}

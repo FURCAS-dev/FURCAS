@@ -40,7 +40,7 @@ public abstract class AbstractRunletStackFrame<LinkEndMetaObject, TypeUsage, Cla
     
     public boolean equals(Object o) {
 	boolean result = false;
-	if (o instanceof AbstractRunletStackFrame) {
+	if (o instanceof AbstractRunletStackFrame<?, ?, ?, ?>) {
 	    result = getStackFrame().equals(((AbstractRunletStackFrame<?, ?, ?, ?>) o).getStackFrame());
 	}
 	return result;

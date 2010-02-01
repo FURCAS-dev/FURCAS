@@ -598,7 +598,7 @@ public class OperationalTransformationTest extends TestCase {
 		    change.getClass());
 
 	    // further checks for link creation
-	    if (change instanceof LinkCreation) {
+	    if (change instanceof LinkCreation<?, ?, ?, ?, ?>) {
 		// do check for value
 		if (expectedClientResult[i].getC() != null) {
 		    Object objectOnLink = ((NativeObject) ((LinkChange<Association, AssociationEnd, SapClass, TypeDefinition, ClassTypeDefinition>) change).getObject().get(side)).getNativeObject();

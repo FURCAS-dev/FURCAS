@@ -2,15 +2,6 @@ package com.sap.tc.moin.repository.core.transactions.microtransactionables;
 
 import static com.sap.tc.moin.repository.JmiHelper.MULTIPLICITY_BOUND_INFINITE;
 
-import com.sap.tc.moin.repository.mmi.model.Attribute;
-import com.sap.tc.moin.repository.mmi.model.Classifier;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
-import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
-import com.sap.tc.moin.repository.mmi.reflect.JmiException;
-import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
-import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
-
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.PartitionEditingNotPossibleException;
@@ -19,6 +10,14 @@ import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.CorePartitionable;
 import com.sap.tc.moin.repository.core.transactions.actions.ActionFactory;
 import com.sap.tc.moin.repository.messages.core.RepositoryCoreMessages;
+import com.sap.tc.moin.repository.mmi.model.Attribute;
+import com.sap.tc.moin.repository.mmi.model.Classifier;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.PrimitiveType;
+import com.sap.tc.moin.repository.mmi.reflect.InvalidCallException;
+import com.sap.tc.moin.repository.mmi.reflect.JmiException;
+import com.sap.tc.moin.repository.mmi.reflect.RefFeatured;
+import com.sap.tc.moin.repository.mmi.reflect.TypeMismatchException;
 import com.sap.tc.moin.repository.transactions.microtransactionables.DataTypeAttributeChangeMicroTransactionable;
 
 public class DataTypeAttributeChangeMicroTransactionableImpl extends AbstractMicroTransactionable implements DataTypeAttributeChangeMicroTransactionable {
@@ -110,6 +109,12 @@ public class DataTypeAttributeChangeMicroTransactionableImpl extends AbstractMic
     }
 
     @Override
+    public boolean eventCreationNeeded() {
+	boolean valueUnchanged = oldValue != null && oldValue.equals(newValue) || oldValue == null && newValue == null;
+	return !valueUnchanged && super.eventCreationNeeded();
+    }
+
+    @Override
     public void computeRedoActionsAndRedoEvents( ) {
 
         resolve( );
@@ -154,7 +159,7 @@ public class DataTypeAttributeChangeMicroTransactionableImpl extends AbstractMic
             getOrCreateDoEvents( ).add( getEventFactory( ).createAttributeValueChangeEvent( connection, featured, attribute, oldValue, newValue ) );
         }
     }
-
+    
     private void copyOnWrite( ) {
 
         CorePartitionable element = (CorePartitionable) featured;

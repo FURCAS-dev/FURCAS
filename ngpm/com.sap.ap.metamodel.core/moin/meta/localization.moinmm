@@ -1,33 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Partition xmlns:m='http://xml.sap.com/moin'>
 <C n='sap.com/tc/moin/mof_1.4' i='1' v='1.0'/>
-<M c='1' q='Model.AttachesTo' i='45ED2E29092EBA89637D4A76065DC0F48C45219D' se='1' ce='-1' oe='-1'/>
-<M c='1' q='Model.Constrains' i='45ED2E290BBB4E28BAC041E52E7FE0AD24662FFD' se='0' ce='-1' oe='-1'/>
-<M c='1' q='OCL.Expressions.A_tuplePart_tupleLiteralExp' i='45ED2E2923015E6DE474466D075EE20F01D20408' se='1' ce='-1' oe='-1'/>
 <M c='1' q='Model.Package' i='45ED2E2925D14D728A6546C630BDE3FB4BDA77C3'/>
-<M c='1' q='OCL.Types.TupleType' i='45ED2E29264CA5434DDC4F0333D8C92FC76E550B'/>
-<M c='1' q='OCL.Expressions.A_referredOperation_operationCallExp' i='45ED2E292E44287A94754BA40DFCDAD59E374E24' se='1' ce='-1' oe='-1'/>
-<M c='1' q='OCL.Expressions.A_initExpression_initializedVariable' i='45ED2E29305042DD1D714FE10210C36447281C01' se='1' ce='1' oe='-1'/>
 <M c='1' q='Model.Import' i='45ED2E29372BCE32CB9241CD1FB9E2F08880B940'/>
-<M c='1' q='Model.Tag' i='45ED2E29545D7A2836A940A93CC3A3E5E8010D2D'/>
-<M c='1' q='OCL.Expressions.TupleLiteralExp' i='45ED2E29625CCBD9F5794AD1313FDE30289D23D0'/>
-<M c='1' q='OCL.Attaching.OclConstraint' i='45ED2E296BF3BA190A154A871BE194593FC488D2'/>
-<M c='1' q='OCL.Expressions.A_parentOperation_arguments' i='45ED2E297046BE46EB524CAA1143F6FD9EE9162C' se='0' ce='0' oe='1'/>
 <M c='1' q='Model.Attribute' i='45ED2E29726BF05A1AA847C8298F93D7745C3BFB'/>
-<M c='1' q='OCL.Attaching.OclConstraintExpression' i='45ED2E2978C53990A5BC4C2422388AFB1EB36113' se='1' ce='1' oe='-1'/>
 <M c='1' q='Model.Aliases' i='45ED2E297C6E4C4F64E543CC20E2ED5F34992C72' se='0' ce='-1' oe='-1'/>
-<M c='1' q='OCL.Expressions.OperationCallExp' i='45ED2E2999F6EE43264341113E06E6B7B76AEBA3'/>
-<M c='1' q='OCL.Expressions.A_appliedProperty_source' i='45ED2E299BB9CF41F9C44C763865EFB27EADFA32' se='0' ce='0' oe='-1'/>
-<M c='1' q='OCL.Expressions.AttributeCallExp' i='45ED2E29A08E98D7286846340041E0BCDA075FDB'/>
 <M c='1' q='Model.Contains' i='45ED2E29A15C5D7FDF8D483F1CFA93E430ADEDCC' se='0' ce='0' oe='1'/>
-<M c='1' q='OCL.Expressions.A_type_oclExpression' i='45ED2E29A8976A898EAF47150D76C377A0EDBAC2' se='1' ce='-1' oe='-1'/>
-<M c='1' q='OCL.Attaching.ClassifierInvariant' i='45ED2E29B18FDCFB1C7C45620794D5388EE71A7D' se='0' ce='-1' oe='-1'/>
-<M c='1' q='OCL.Expressions.VariableDeclaration' i='45ED2E29BC1A4730247040AC0E6BFC5D0207A4BC'/>
-<M c='1' q='OCL.Expressions.A_referredAttribute_attributeCallExp' i='45ED2E29CAFD7D3C99E34EAA2F3EBDF07176CA55' se='1' ce='-1' oe='-1'/>
 <M c='1' q='Model.IsOfType' i='45ED2E29DA5028C85512452C3856E282A65D065B' se='1' ce='-1' oe='-1'/>
 <M c='1' q='Model.Class' i='45ED2E29E9B8C271FD484D6E2F52CCB9570C451A'/>
-<M c='1' q='OCL.Expressions.IntegerLiteralExp' i='45ED2E29EEDA585F4AF44039203DAA3F135B8576'/>
-<M c='1' q='OCL.Expressions.A_type_variableDeclaration' i='45ED2E29EFCE7A95243B401D25B8DE9E2968A520' se='1' ce='-1' oe='-1'/>
 <Model.Attribute m:c='1' m:i='E089BB2D51F762B73E4B11DEBCF20018DE1146FF' name='text' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Attribute>
@@ -37,93 +17,17 @@
 <Model.Class m:c='1' m:i='E089BB2D51F762B93E4B11DE83E10018DE1146FF' name='TranslatableText' annotation='' isRoot='false' isLeaf='false' isAbstract='false' visibility='public_vis' isSingleton='false'/>
 <Model.Import m:c='1' m:i='E089BB2D51F762BA3E4B11DEBFE90018DE1146FF' name='PrimitiveTypes' annotation='' visibility='public_vis' isClustered='false'/>
 <Model.Package m:c='1' m:i='E089BB2D51F762BB3E4B11DEBA130018DE1146FF' name='localization' annotation='Contains model snipplets useful for parts of the programming model that require translation of (parts of) their artifacts, such as UI texts, message texts or descriptions useful during design-time. This may require linking to concepts such as &quot;development language&quot; providing defaults for the language in which a string is given.&#10;&#10;It will also be an interesting question how the languages, regions and dialects important for the translation process should be represented.' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
-<OCL.Expressions.VariableDeclaration m:c='1' m:i='E0DCF6CDDA1EF9E0EE4911DE9442DC620A140E7A' name='invalid' varName='invalid'/>
-<OCL.Expressions.VariableDeclaration m:c='1' m:i='E0DCF6CDDA1EF9E1EE4911DECCA1DC620A140E7A' name='null' varName='null'/>
-<OCL.Expressions.VariableDeclaration m:c='1' m:i='E0DCF6CDDA1EF9E2EE4911DEAF32DC620A140E7A' name='self(TranslatableText)' varName='self'/>
-<OCL.Expressions.IntegerLiteralExp m:c='1' m:i='E0DCF6CDDA1EF9E3EE4911DE8763DC620A140E7A' name='IntegerLitFor1' integerSymbol='1'/>
-<OCL.Expressions.VariableDeclaration m:c='1' m:i='E0DCF6CDDA1EF9E4EE4911DEC6FADC620A140E7A' name='a' varName='a'/>
-<OCL.Expressions.IntegerLiteralExp m:c='1' m:i='E0DCF6CDDA1EF9E5EE4911DEB7ABDC620A140E7A' name='IntegerLitFor2' integerSymbol='2'/>
-<OCL.Expressions.VariableDeclaration m:c='1' m:i='E0DCF6CDDA1EF9E6EE4911DEB52EDC620A140E7A' name='b' varName='b'/>
-<Model.Attribute m:c='1' m:i='E0DCF6CDDA1EF9E7EE4911DEBBD4DC620A140E7A' name='a' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
-<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='false'/>
-</Model.Attribute>
-<Model.Attribute m:c='1' m:i='E0DCF6CDDA1EF9E8EE4911DE9625DC620A140E7A' name='b' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
-<multiplicity lower='0' upper='-1' isOrdered='false' isUnique='false'/>
-</Model.Attribute>
-<Model.Package m:c='1' m:i='E0DCF6CDDA1EF9E9EE4911DE8782DC620A140E7A' name='OclGenerated_2CCBFB4C5F216CCC9A167346B00A4BECB2FD4999' annotation='This holds the OCL generated stuff for partition sap.com/tc/xupa/ngpm_moin/meta/localization.moinmm' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
-<Model.Tag m:c='1' m:i='E0DCF6CDDA1EF9EAEE4911DECEC6DC620A140E7A' name='packagePrefix' annotation='' tagId='javax.jmi.packagePrefix' values='com.sap.tc.moin.ocl.gen'/>
-<OCL.Types.TupleType m:c='1' m:i='E0DCF6CDDA1EF9EBEE4911DE938DDC620A140E7A' name='TupleLitAt3_3' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis'/>
-<OCL.Expressions.TupleLiteralExp m:c='1' m:i='E0DCF6CDDA1EF9ECEE4911DEB6C7DC620A140E7A' name='ExpForTupleTypeTupleLitAt3_3'/>
-<OCL.Expressions.AttributeCallExp m:c='1' m:i='E0DCF6CDDA1EF9EDEE4911DEBC30DC620A140E7A' name='AttCallFora'/>
-<OCL.Expressions.IntegerLiteralExp m:c='1' m:i='E0DCF6CDDA1EF9EEEE4911DEB123DC620A140E7A' name='IntegerLitFor1' integerSymbol='1'/>
-<OCL.Expressions.OperationCallExp m:c='1' m:i='E0DCF6CDDA1EF9EFEE4911DE9C89DC620A140E7A' name='OpCallForequalsStdLib'/>
-<OCL.Attaching.OclConstraint m:c='1' m:i='E0DCF6CDDA1EF9F0EE4911DE9215DC620A140E7A' name='TestWithTuple' annotation='' expression='context TranslatableText&#10;inv:&#10;  Tuple{a = 1, b = 2}.a = 1' language='OCL' evaluationPolicy='deferred'/>
-<Model.AttachesTo c='1'>
-<L f='E0DCF6CDDA1EF9E9EE4911DE8782DC620A140E7A' s='E0DCF6CDDA1EF9EAEE4911DECEC6DC620A140E7A'/>
-</Model.AttachesTo>
-<Model.Constrains c='1'>
-<L f='E0DCF6CDDA1EF9F0EE4911DE9215DC620A140E7A' s='E089BB2D51F762B93E4B11DE83E10018DE1146FF'/>
-</Model.Constrains>
-<OCL.Expressions.A_tuplePart_tupleLiteralExp c='1'>
-<L f='E0DCF6CDDA1EF9E4EE4911DEC6FADC620A140E7A' s='E0DCF6CDDA1EF9ECEE4911DEB6C7DC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9E6EE4911DEB52EDC620A140E7A' s='E0DCF6CDDA1EF9ECEE4911DEB6C7DC620A140E7A'/>
-</OCL.Expressions.A_tuplePart_tupleLiteralExp>
-<OCL.Expressions.A_referredOperation_operationCallExp c='1'>
-<L f='PF.MetaModelDataArea:45ED2E29CA1549FB29F7431F1AA2B47A033C7358' s='E0DCF6CDDA1EF9EFEE4911DE9C89DC620A140E7A'/>
-</OCL.Expressions.A_referredOperation_operationCallExp>
-<OCL.Expressions.A_initExpression_initializedVariable c='1'>
-<L f='E0DCF6CDDA1EF9E3EE4911DE8763DC620A140E7A' s='E0DCF6CDDA1EF9E4EE4911DEC6FADC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9E5EE4911DEB7ABDC620A140E7A' s='E0DCF6CDDA1EF9E6EE4911DEB52EDC620A140E7A'/>
-</OCL.Expressions.A_initExpression_initializedVariable>
-<OCL.Expressions.A_parentOperation_arguments c='1'>
-<L f='E0DCF6CDDA1EF9EFEE4911DE9C89DC620A140E7A' s='E0DCF6CDDA1EF9EEEE4911DEB123DC620A140E7A'/>
-</OCL.Expressions.A_parentOperation_arguments>
-<OCL.Attaching.OclConstraintExpression c='1'>
-<L f='E0DCF6CDDA1EF9EFEE4911DE9C89DC620A140E7A' s='E0DCF6CDDA1EF9F0EE4911DE9215DC620A140E7A'/>
-</OCL.Attaching.OclConstraintExpression>
 <Model.Aliases c='1'>
 <L f='E089BB2D51F762BA3E4B11DEBFE90018DE1146FF' s='PF.MetaModelDataArea:45ED2E2A9B676E5825E742FD3D27AC08D5F6FAF0'/>
 </Model.Aliases>
-<OCL.Expressions.A_appliedProperty_source c='1'>
-<L f='E0DCF6CDDA1EF9EDEE4911DEBC30DC620A140E7A' s='E0DCF6CDDA1EF9ECEE4911DEB6C7DC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9EFEE4911DE9C89DC620A140E7A' s='E0DCF6CDDA1EF9EDEE4911DEBC30DC620A140E7A'/>
-</OCL.Expressions.A_appliedProperty_source>
 <Model.Contains c='1'>
 <L f='E089BB2D51F762B93E4B11DE83E10018DE1146FF' s='E089BB2D51F762B73E4B11DEBCF20018DE1146FF'/>
 <L f='E089BB2D51F762B93E4B11DE83E10018DE1146FF' s='E089BB2D51F762B83E4B11DE81A00018DE1146FF'/>
-<L f='E089BB2D51F762B93E4B11DE83E10018DE1146FF' s='E0DCF6CDDA1EF9F0EE4911DE9215DC620A140E7A'/>
 <L f='E089BB2D51F762BB3E4B11DEBA130018DE1146FF' s='E089BB2D51F762B93E4B11DE83E10018DE1146FF'/>
 <L f='E089BB2D51F762BB3E4B11DEBA130018DE1146FF' s='E089BB2D51F762BA3E4B11DEBFE90018DE1146FF'/>
-<L f='E0DCF6CDDA1EF9E9EE4911DE8782DC620A140E7A' s='E0DCF6CDDA1EF9EAEE4911DECEC6DC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9E9EE4911DE8782DC620A140E7A' s='E0DCF6CDDA1EF9EBEE4911DE938DDC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9EBEE4911DE938DDC620A140E7A' s='E0DCF6CDDA1EF9E7EE4911DEBBD4DC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9EBEE4911DE938DDC620A140E7A' s='E0DCF6CDDA1EF9E8EE4911DE9625DC620A140E7A'/>
 </Model.Contains>
-<OCL.Expressions.A_type_oclExpression c='1'>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9E3EE4911DE8763DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9E5EE4911DEB7ABDC620A140E7A'/>
-<L f='E0DCF6CDDA1EF9EBEE4911DE938DDC620A140E7A' s='E0DCF6CDDA1EF9ECEE4911DEB6C7DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9EDEE4911DEBC30DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9EEEE4911DEB123DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='E0DCF6CDDA1EF9EFEE4911DE9C89DC620A140E7A'/>
-</OCL.Expressions.A_type_oclExpression>
-<OCL.Attaching.ClassifierInvariant c='1'>
-<L f='E0DCF6CDDA1EF9F0EE4911DE9215DC620A140E7A' s='E089BB2D51F762B93E4B11DE83E10018DE1146FF'/>
-</OCL.Attaching.ClassifierInvariant>
-<OCL.Expressions.A_referredAttribute_attributeCallExp c='1'>
-<L f='E0DCF6CDDA1EF9E7EE4911DEBBD4DC620A140E7A' s='E0DCF6CDDA1EF9EDEE4911DEBC30DC620A140E7A'/>
-</OCL.Expressions.A_referredAttribute_attributeCallExp>
 <Model.IsOfType c='1'>
 <L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E089BB2D51F762B73E4B11DEBCF20018DE1146FF'/>
 <L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E089BB2D51F762B83E4B11DE81A00018DE1146FF'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9E7EE4911DEBBD4DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9E8EE4911DE9625DC620A140E7A'/>
 </Model.IsOfType>
-<OCL.Expressions.A_type_variableDeclaration c='1'>
-<L f='PF.MetaModelDataArea:4670DA1FEE757FB01A3C11DC842C00199904B925' s='E0DCF6CDDA1EF9E0EE4911DE9442DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E290CAFA8D16B86466B3F7DA09CB90428FF' s='E0DCF6CDDA1EF9E1EE4911DECCA1DC620A140E7A'/>
-<L f='E089BB2D51F762B93E4B11DE83E10018DE1146FF' s='E0DCF6CDDA1EF9E2EE4911DEAF32DC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9E4EE4911DEC6FADC620A140E7A'/>
-<L f='PF.MetaModelDataArea:45ED2E2AF04E629AF53140CA2A2CAC07493531C9' s='E0DCF6CDDA1EF9E6EE4911DEB52EDC620A140E7A'/>
-</OCL.Expressions.A_type_variableDeclaration>
 </Partition>
