@@ -110,8 +110,8 @@
 			/>
 		</zip>
 
-		<!-- build Minimal SDK -->
-		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-MinimalSDK${incubation}-${buildAlias}.zip" update="true">
+		<!-- build Core SDK -->
+		<zip destfile="${buildDirectory}/${buildLabel}/${zipPrefix}-CoreSDK${incubation}-${buildAlias}.zip" update="true">
 			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
 			            dirmode="775"
 			            filemode="664"
