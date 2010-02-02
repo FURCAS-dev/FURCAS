@@ -110,7 +110,18 @@ public class TemplateStub extends LocatedElementStub implements Template {
     public boolean hasSyntaxContributions() throws JmiException {
     	// TODO Auto-generated method stub
     	return false;
-    }  
+    }
 
+    @Override
+    public String getSemDisambiguate() throws JmiException {
+	// TODO Auto-generated method stub
+	return null;
+    }
+
+    @Override
+    public void setSemDisambiguate(String newValue) throws JmiException {
+	// TODO Auto-generated method stub
+	
+    }  
 
 }
