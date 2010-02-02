@@ -805,6 +805,9 @@
 <multiplicity lower='1' upper='1' isOrdered='false' isUnique='false'/>
 </Model.Parameter>
 <Model.Tag m:c='1' m:i='E000054C1A97BB10DDC911DEB2F500016CE99C52' name='hasSyntaxContributions_opCodeOcl' annotation='' tagId='org.omg.sap2mof.OperationCodeOcl' values='context SequenceElement::hasSyntaxContributions():Boolean&#13;&#10;body:&#13;&#10;if self.oclIsTypeOf(Alternative) then&#13;&#10;&#9;self.oclAsType(Alternative).sequences-&gt;exists(s | s.elements-&gt;exists(se | se.hasSyntaxContribution()))&#13;&#10;else&#13;&#10;&#9;if self.oclIsTypeOf(FunctionCall) then&#13;&#10;&#9;&#9;self.oclAsType(FunctionCall).calledFunction.sequence.elements-&gt;exists(se | se.hasSyntaxContribution())&#13;&#10;&#9;else&#13;&#10;&#9;&#9;if self.oclIsTypeOf(Property) then&#13;&#10;&#9;&#9;&#9;true&#13;&#10;&#9;&#9;else&#13;&#10;&#9;&#9;&#9;if self.oclIsTypeOf(LiteralRef) then&#13;&#10;&#9;&#9;&#9;&#9;true&#13;&#10;&#9;&#9;&#9;else&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;if self.oclIsTypeOf(InjectorActionsBlock) then&#13;&#10;&#9;&#9;&#9;&#9;&#9;false&#13;&#10;&#9;&#9;&#9;&#9;else&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;if self.oclIsTypeOf(ConditionalElement) then&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;self.oclAsType(ConditionalElement).thenSequence.elements-&gt;exists(se | se.hasSyntaxContributions()) &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;or &#9;self.oclAsType(ConditionalElement).elseSequence.elements-&gt;exists(se | se.hasSyntaxContributions())&#13;&#10;&#9;&#9;&#9;&#9;&#9;else&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;if self.oclIsTypeOf(Block) then&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;self.oclAsType(Block).blockSequence.elements-&gt;exists(se | se.hasSyntaxContributions()) &#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;else&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;&#9;false&#13;&#10;&#9;&#9;&#9;&#9;&#9;&#9;endif&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;&#9;endif&#9;&#9;&#13;&#10;&#9;&#9;&#9;&#9;endif&#9;&#13;&#10;&#9;&#9;&#9;endif&#9;&#13;&#10;&#9;&#9;endif&#9;&#9;&#9;&#13;&#10;&#9;endif&#9;&#13;&#10;endif'/>
+<Model.Attribute m:c='1' m:i='E000054C4660A600E88F11DEAD4B001CBF7437BB' name='semDisambiguate' annotation='' scope='instance_level' visibility='public_vis' isChangeable='true' isDerived='false'>
+<multiplicity lower='0' upper='1' isOrdered='false' isUnique='false'/>
+</Model.Attribute>
 <Model.Association m:c='1' m:i='E000054CC3C682806A7811DEB92500016CE99C52' name='AsPArg_Template' annotation='' isRoot='true' isLeaf='true' isAbstract='false' visibility='public_vis' isDerived='false'/>
 <Model.AssociationEnd m:c='1' m:i='E000054CC3D43E206A7811DE8D0C00016CE99C52' name='asPArg' annotation='' isNavigable='true' aggregation='none' isChangeable='true'>
 <multiplicity lower='0' upper='-1' isOrdered='false' isUnique='true'/>
@@ -1518,6 +1521,7 @@
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E0356A04EB4F13D0B1C711DEC27B00016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E0356A043DF05630B1C811DEB49000016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E009322EE89B1990DDC811DEAFAC00016CE99C52'/>
+<L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E000054C4660A600E88F11DEAD4B001CBF7437BB'/>
 <L f='483FE093F85A80FE2E3811DD917A001742153E0C' s='48400507B29FB2422E4E11DDC815001742153E0C'/>
 <L f='483FE093F85A80FE2E3811DD917A001742153E0C' s='48400552DFD30BE02E4E11DDB5BE001742153E0C'/>
 <L f='483FE093F85CF1F02E3811DD822D001742153E0C' s='4840063F6D2C32502E4F11DDBCA6001742153E0C'/>
@@ -2121,6 +2125,7 @@
 <L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='49CA5B059589BFB0195911DEA47D00016CE99C52'/>
 <L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='49CB834E2E8978D01A0A11DE835300016CE99C52'/>
 <L f='PF.MetaModelDataArea:45ED2E2ABBF58675823844DE052F9021020D6080' s='E000054C17A7C710DDC911DE9B4100016CE99C52'/>
+<L f='PF.MetaModelDataArea:45ED2E2A31B10AA5EF924C3A3316F6D2078D4CF4' s='E000054C4660A600E88F11DEAD4B001CBF7437BB'/>
 <L f='483FE093F87004C82E3811DDBD9A001742153E0C' s='E000054CC3D43E206A7811DE8D0C00016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E000054CC3D43E216A7811DEB28700016CE99C52'/>
 <L f='483FE093F85A80FA2E3811DD8484001742153E0C' s='E000054CC3D5C4C06A7811DE924F00016CE99C52'/>
