@@ -978,80 +978,13 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
                                 "Make sure the metamodel is correctly referenced and loaded.");
                     }
                     if (injectorActionBase instanceof LookupPropertyInit) {
-                        LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
-                        Template template = ((InjectorActionsBlock) injectorAction
-                            .refImmediateComposite()).getParentTemplate();
-                        RefObject parsingContext = null;
-                        if (!MoinHelper.usesContext(injectorAction.getValue())) {
-                            parsingContext = template.getMetaReference();
-                        } else if (MoinHelper.usesContextWithSubsequentCast(injectorAction
-                            .getValue())) {
-                            parsingContext = MoinHelper.getContextMetaObject(connection,
-                                packagesForLookup, injectorAction.getValue());
-                            if (parsingContext == null) {
-                                throw new RuntimeException(
-                                    "Didn't find type use in context casts in expression "
-                                        + injectorAction.getValue());
-                            }
-                        } else {
-                            Matcher matcher = ContextManager.contextPattern.matcher(injectorAction
-                                .getValue());
-                            matcher.find();
-                            parsingContext = getCommonBaseClassForContextTag(cs, matcher.group(2),
-                                elementClass);
-                            if (parsingContext == null) {
-                                throw new RuntimeException("Expected to find use of context "
-                                    + matcher.group(2) + " but didn't");
-                            }
-                        }
-                        try {
-                            String query = injectorAction.getValue();
-                            DelayedReference ref = new DelayedReference(null, null,
-                                    injectorAction.getPropertyReference().getStrucfeature()
-                                        .getName(), null, null, query, false, null);
-                            //now replace any #context parts within the query with self
-                            //and use the context element type for registration if it is
-                            //used here, 
-                            query = MoinHelper.prepareOclQuery(query, null, null);
-                            if (query != null) {
-                                ref.setQueryElement(injectorAction);
-                                ref.setGenericReference(true);
-                                String name = "<genericReference>" + injectorAction.refMofId();
-                                OclExpressionRegistration registration = (OclExpressionRegistration) connection
-                                    .getOclRegistryService().getFreestyleRegistry()
-                                    .getRegistration(name);
-                                if (registration != null) {
-                                    connection.getOclRegistryService().getFreestyleRegistry()
-                                        .deleteRegistration(name);
-                                }
-                                registration = connection.getOclRegistryService()
-                                    .getFreestyleRegistry().createExpressionRegistration(name,
-                                        query, OclRegistrationSeverity.Info,
-                                        new String[] { "TCS Property Init" }, parsingContext,
-                                        packagesForLookup.toArray(new RefPackage[] {}));
-                                Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-                                    registration, ref);
-                                GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
-                                    .getService(globalEventListenerRegistryRef);
-                                registry.addFilters(reEvaluationListener);
-                                registration2DelayedReference.put(registration.getName(), ref);
-                                delayedReference2Registration.put(ref, registration.getName());
-                                delayedReference2ReEvaluationListener
-                                    .put(ref, reEvaluationListener);
-
-                            }
-                        } catch (OclManagerException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch (ModelAdapterException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        } catch(MoinLocalizedBaseRuntimeException ex) {
-                            System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
-                            ex.printStackTrace();
-                        }
+                        registerLookupPropertyInitForIA(cs, connection,
+                                packagesForLookup, elementClass,
+                                injectorActionBase);
                     } else if (injectorActionBase instanceof ForeachPredicatePropertyInit) {
-                        // TODO implement for ForeachPredicatePropertyInit
+                        registerForEachPropertyInitForIA(cs, connection,
+                                packagesForLookup, elementClass,
+                                injectorActionBase);
                     }
                 } 
                 monitor.subTask("Property Queries");
@@ -1059,77 +992,238 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
         	for (RefObject result : resultSetQueries.getRefObjects("instance")) {
         	    monitor.worked(1);
                     Property property = (Property) result;
-                    Template template = property.getParentTemplate();
-                    if (template != null && template.getMetaReference() instanceof MofClass) {
-                        // TODO what about StructureTypes?
-                        QueryParg qarg = TcsUtil.getQueryParg(property);
-                        FilterParg filter = TcsUtil.getFilterParg(property);
-                        if (qarg != null) {
-                            try {
-                                String query = qarg.getQuery();
-                                if (filter != null) {
-                                    query += filter.getFilter();
-                                }
-                                RefObject parsingContext = null;
-                                if (!MoinHelper.usesContext(query)) {
-                                    parsingContext = template.getMetaReference();
-                                } else {
-                                    parsingContext = elementClass;
-                                    // TODO currently this works only if a "#context" is postfixed
-                                    // by a .oclAsType(...) expression.
-                                }
-                                DelayedReference ref = new DelayedReference(
-                                        null,
-                                        null,
-                                        property.getPropertyReference().getStrucfeature().getName(),
-                                        null, null, query, false, null);
-                                query = MoinHelper.prepareOclQuery(query, null,
-                                    TEMPORARY_QUERY_PARAM_REPLACEMENT);
-                                if (query != null) {
-                                    ref.setQueryElement(property);
-                                    ref.setGenericReference(true);
-                                    String name = "<genericReference>" + property.refMofId();
-                                    OclExpressionRegistration registration = (OclExpressionRegistration) connection
-                                        .getOclRegistryService().getFreestyleRegistry()
-                                        .getRegistration(name);
-                                    if (registration != null) {
-                                        connection.getOclRegistryService().getFreestyleRegistry()
-                                            .deleteRegistration(name);
-                                    }
-                                    registration = connection.getOclRegistryService()
-                                        .getFreestyleRegistry().createExpressionRegistration(name,
-                                            query, OclRegistrationSeverity.Info,
-                                            new String[] { "TCS Property Query" }, parsingContext,
-                                            packagesForLookup.toArray(new RefPackage[] {}));
-                                    Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-                                        registration, ref);
-                                    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
-                                        .getService(globalEventListenerRegistryRef);
-                                    registry.addFilters(reEvaluationListener);
-                                    registration2DelayedReference.put(registration.getName(), ref);
-                                    delayedReference2Registration.put(ref, registration.getName());
-                                    delayedReference2ReEvaluationListener.put(ref,
-                                        reEvaluationListener);
-
-                                }
-                            } catch (OclManagerException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            } catch (ModelAdapterException e) {
-                                // TODO Auto-generated catch block
-                                e.printStackTrace();
-                            } catch(MoinLocalizedBaseRuntimeException ex) {
-                                System.err.println("Failed to register at IA: " + qarg.getQuery() + "\n" + ex.getMessage());
-                                ex.printStackTrace();
-                            }
-                        }
-                    }
+                    registerPropertyQueryForIA(connection, packagesForLookup,
+                            elementClass, property);
                 }
 	    } finally{
                 //monitor.done();
             }
 	    registeredSytaxes.add(cs);
 	}
+    }
+
+    private void registerPropertyQueryForIA(Connection connection,
+            Collection<RefPackage> packagesForLookup, MofClass elementClass,
+            Property property) {
+        Template template = property.getParentTemplate();
+        if (template != null && template.getMetaReference() instanceof MofClass) {
+            // TODO what about StructureTypes?
+            QueryParg qarg = TcsUtil.getQueryParg(property);
+            FilterParg filter = TcsUtil.getFilterParg(property);
+            if (qarg != null) {
+                try {
+                    String query = qarg.getQuery();
+                    if (filter != null) {
+                        query += filter.getFilter();
+                    }
+                    RefObject parsingContext = null;
+                    if (!MoinHelper.usesContext(query)) {
+                        parsingContext = template.getMetaReference();
+                    } else {
+                        parsingContext = elementClass;
+                        // TODO currently this works only if a "#context" is postfixed
+                        // by a .oclAsType(...) expression.
+                    }
+                    DelayedReference ref = new DelayedReference(
+                            null,
+                            null,
+                            property.getPropertyReference().getStrucfeature().getName(),
+                            null, null, query, false, null);
+                    query = MoinHelper.prepareOclQuery(query, null,
+                        TEMPORARY_QUERY_PARAM_REPLACEMENT);
+                    if (query != null) {
+                        ref.setQueryElement(property);
+                        ref.setGenericReference(true);
+                        String name = "<genericReference>" + property.refMofId();
+                        OclExpressionRegistration registration = (OclExpressionRegistration) connection
+                            .getOclRegistryService().getFreestyleRegistry()
+                            .getRegistration(name);
+                        if (registration != null) {
+                            connection.getOclRegistryService().getFreestyleRegistry()
+                                .deleteRegistration(name);
+                        }
+                        registration = connection.getOclRegistryService()
+                            .getFreestyleRegistry().createExpressionRegistration(name,
+                                query, OclRegistrationSeverity.Info,
+                                new String[] { "TCS Property Query" }, parsingContext,
+                                packagesForLookup.toArray(new RefPackage[] {}));
+                        Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
+                            registration, ref);
+                        GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+                            .getService(globalEventListenerRegistryRef);
+                        registry.addFilters(reEvaluationListener);
+                        registration2DelayedReference.put(registration.getName(), ref);
+                        delayedReference2Registration.put(ref, registration.getName());
+                        delayedReference2ReEvaluationListener.put(ref,
+                            reEvaluationListener);
+
+                    }
+                } catch (OclManagerException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (ModelAdapterException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch(MoinLocalizedBaseRuntimeException ex) {
+                    System.err.println("Failed to register at IA: " + qarg.getQuery() + "\n" + ex.getMessage());
+                    ex.printStackTrace();
+                }
+            }
+        }
+    }
+
+    private void registerForEachPropertyInitForIA(ConcreteSyntax cs,
+            Connection connection, Collection<RefPackage> packagesForLookup,
+            MofClass elementClass, InjectorAction injectorActionBase) {
+        ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit) injectorActionBase;
+        Template template = foreachPredicatePropertyInit.getInjectorActionsBlockReference()
+            .getParentTemplate();
+        RefObject parsingContext = null;
+        if (!MoinHelper.usesContext(foreachPredicatePropertyInit.getValue())) {
+            parsingContext = template.getMetaReference();
+        } else if (MoinHelper.usesContextWithSubsequentCast(foreachPredicatePropertyInit
+            .getValue())) {
+            parsingContext = MoinHelper.getContextMetaObject(connection,
+                packagesForLookup, foreachPredicatePropertyInit.getValue());
+            if (parsingContext == null) {
+                throw new RuntimeException(
+                    "Didn't find type use in context casts in expression "
+                        + foreachPredicatePropertyInit.getValue());
+            }
+        } else {
+            Matcher matcher = ContextManager.contextPattern.matcher(foreachPredicatePropertyInit
+                .getValue());
+            matcher.find();
+            parsingContext = getCommonBaseClassForContextTag(cs, matcher.group(2),
+                elementClass);
+            if (parsingContext == null) {
+                throw new RuntimeException("Expected to find use of context "
+                    + matcher.group(2) + " but didn't");
+            }
+        }
+        try {
+            String query = foreachPredicatePropertyInit.getValue();
+            DelayedReference ref = new DelayedReference(null, null,
+                    foreachPredicatePropertyInit.getPropertyReference().getStrucfeature()
+                        .getName(), null, null, query, false, null);
+            //now replace any #context parts within the query with self
+            //and use the context element type for registration if it is
+            //used here, 
+            query = MoinHelper.prepareOclQuery(query, null, null);
+            if (query != null) {
+                ref.setQueryElement(foreachPredicatePropertyInit);
+                ref.setGenericReference(true);
+                String name = "<genericReference>" + foreachPredicatePropertyInit.refMofId();
+                OclExpressionRegistration registration = (OclExpressionRegistration) connection
+                    .getOclRegistryService().getFreestyleRegistry()
+                    .getRegistration(name);
+                if (registration != null) {
+                    connection.getOclRegistryService().getFreestyleRegistry()
+                        .deleteRegistration(name);
+                }
+                registration = connection.getOclRegistryService()
+                    .getFreestyleRegistry().createExpressionRegistration(name,
+                        query, OclRegistrationSeverity.Info,
+                        new String[] { "TCS Property Init" }, parsingContext,
+                        packagesForLookup.toArray(new RefPackage[] {}));
+                Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
+                    registration, ref);
+                GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+                    .getService(globalEventListenerRegistryRef);
+                registry.addFilters(reEvaluationListener);
+                registration2DelayedReference.put(registration.getName(), ref);
+                delayedReference2Registration.put(ref, registration.getName());
+                delayedReference2ReEvaluationListener
+                    .put(ref, reEvaluationListener);
+
+            }
+        } catch (OclManagerException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ModelAdapterException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(MoinLocalizedBaseRuntimeException ex) {
+            System.err.println("Failed to register at IA: " + foreachPredicatePropertyInit.getValue() + "\n" + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void registerLookupPropertyInitForIA(ConcreteSyntax cs,
+            Connection connection, Collection<RefPackage> packagesForLookup,
+            MofClass elementClass, InjectorAction injectorActionBase) {
+        LookupPropertyInit injectorAction = (LookupPropertyInit) injectorActionBase;
+        Template template = ((InjectorActionsBlock) injectorAction
+            .refImmediateComposite()).getParentTemplate();
+        RefObject parsingContext = null;
+        if (!MoinHelper.usesContext(injectorAction.getValue())) {
+            parsingContext = template.getMetaReference();
+        } else if (MoinHelper.usesContextWithSubsequentCast(injectorAction
+            .getValue())) {
+            parsingContext = MoinHelper.getContextMetaObject(connection,
+                packagesForLookup, injectorAction.getValue());
+            if (parsingContext == null) {
+                throw new RuntimeException(
+                    "Didn't find type use in context casts in expression "
+                        + injectorAction.getValue());
+            }
+        } else {
+            Matcher matcher = ContextManager.contextPattern.matcher(injectorAction
+                .getValue());
+            matcher.find();
+            parsingContext = getCommonBaseClassForContextTag(cs, matcher.group(2),
+                elementClass);
+            if (parsingContext == null) {
+                throw new RuntimeException("Expected to find use of context "
+                    + matcher.group(2) + " but didn't");
+            }
+        }
+        try {
+            String query = injectorAction.getValue();
+            DelayedReference ref = new DelayedReference(null, null,
+                    injectorAction.getPropertyReference().getStrucfeature()
+                        .getName(), null, null, query, false, null);
+            //now replace any #context parts within the query with self
+            //and use the context element type for registration if it is
+            //used here, 
+            query = MoinHelper.prepareOclQuery(query, null, null);
+            if (query != null) {
+                ref.setQueryElement(injectorAction);
+                ref.setGenericReference(true);
+                String name = "<genericReference>" + injectorAction.refMofId();
+                OclExpressionRegistration registration = (OclExpressionRegistration) connection
+                    .getOclRegistryService().getFreestyleRegistry()
+                    .getRegistration(name);
+                if (registration != null) {
+                    connection.getOclRegistryService().getFreestyleRegistry()
+                        .deleteRegistration(name);
+                }
+                registration = connection.getOclRegistryService()
+                    .getFreestyleRegistry().createExpressionRegistration(name,
+                        query, OclRegistrationSeverity.Info,
+                        new String[] { "TCS Property Init" }, parsingContext,
+                        packagesForLookup.toArray(new RefPackage[] {}));
+                Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
+                    registration, ref);
+                GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+                    .getService(globalEventListenerRegistryRef);
+                registry.addFilters(reEvaluationListener);
+                registration2DelayedReference.put(registration.getName(), ref);
+                delayedReference2Registration.put(ref, registration.getName());
+                delayedReference2ReEvaluationListener
+                    .put(ref, reEvaluationListener);
+
+            }
+        } catch (OclManagerException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (ModelAdapterException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch(MoinLocalizedBaseRuntimeException ex) {
+            System.err.println("Failed to register at IA: " + injectorAction.getValue() + "\n" + ex.getMessage());
+            ex.printStackTrace();
+        }
     }
 
     /**
