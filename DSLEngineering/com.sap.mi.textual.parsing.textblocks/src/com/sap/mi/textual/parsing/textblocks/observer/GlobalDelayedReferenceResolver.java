@@ -14,6 +14,7 @@ import java.util.regex.Matcher;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.osgi.framework.BundleContext;
@@ -49,7 +50,6 @@ import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.grammar.impl.context.ContextManager;
 import com.sap.mi.textual.parsing.textblocks.LexedTokenWrapper;
 import com.sap.mi.textual.parsing.textblocks.LocalContextBuilder;
-import com.sap.mi.textual.parsing.textblocks.ParsingTextblocksActivator;
 import com.sap.mi.textual.parsing.textblocks.TbUtil;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.tcs.util.TcsUtil;
@@ -199,7 +199,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			    }
 			 }
 		     }
-                     backgroundResolver.schedule(500);
+                     backgroundResolver.scheduleIfNeeded();
                      
 		 } else {
 		    // TODO (for Thomas) this code can probably be removed
@@ -279,6 +279,48 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	}
 
     }
+    
+    public class BackgroundResolver  {
+	
+	private final GlobalDelayedReferenceResolver resolver;
+	private final Job job;
+	private boolean runInAsynchronousModus = true;
+	
+        public BackgroundResolver(final GlobalDelayedReferenceResolver resolver) {
+	    this.resolver = resolver;
+	    
+	    this.job = new Job("Reevaluating OCL References") {
+		
+		@Override
+	        public IStatus run(final IProgressMonitor monitor) {
+		    resolver.resolveReferences(monitor);
+		    if (resolver.hasEmptyQueue()) {
+			return Status.OK_STATUS;
+		    } else {
+			return new Status(Status.WARNING, Activator.PLUGIN_ID, "Could not resolve all delayed references.");
+		    }
+	        }
+	    };
+	}
+
+	public void scheduleIfNeeded() {
+	    if (!resolver.hasEmptyQueue()) {
+		if (runInAsynchronousModus) {
+		    job.schedule(500);
+		} else {
+		    resolver.resolveReferences(new NullProgressMonitor());
+		}
+	    }
+	}
+	
+	public void runInAsynchronousMode(boolean isAsync) {
+	    this.runInAsynchronousModus = isAsync;
+	}
+	
+	public boolean isBackgroundJobRunningOrScheduled() {
+	    return this.job.getState() != Job.NONE; 
+	}
+    }
 
     // public class KeyAttributeSetListener implements UpdateListener {
     //
@@ -339,19 +381,13 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     private final Map<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>> delayedReference2ReEvaluationListener = new HashMap<DelayedReference, Map<EventFilter, Map<ListenerType, EventListener>>>();
     private final Set<ConcreteSyntax> registeredSytaxes = new HashSet<ConcreteSyntax>();
     private final Collection<DelayedReference> iaUnresolvedReferences = new Vector<DelayedReference>();
-    private final Job backgroundResolver;
+    private final BackgroundResolver backgroundResolver;
 
     public GlobalDelayedReferenceResolver() {
 	// Do the assignment here as the constructor will be invoked by the
 	// extension point.
 	instance = this;
-	backgroundResolver = new Job("Reevaluating OCL References") {
-            @Override
-            public IStatus run(final IProgressMonitor monitor) {
-                resolveReferences(monitor);
-                return Status.OK_STATUS;
-            }
-        };
+	backgroundResolver = new BackgroundResolver(this);
     }
 
     public static synchronized GlobalDelayedReferenceResolver getInstance() {
@@ -359,7 +395,25 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     }
     
     public boolean hasEmptyQueue() {
-        return iaUnresolvedReferences.size() == 0;
+        return iaUnresolvedReferences.isEmpty();
+    }
+    
+    /**
+     * Clears all currently deferred references.
+     * 
+     * This should ONLY be used in tests.
+     */
+    public void clearUnresolvedIAReferences() {
+	assert !backgroundResolver.isBackgroundJobRunningOrScheduled();
+	iaUnresolvedReferences.clear();
+    }
+    
+    /**
+     * Set to false to run synchronously. This is useful for testcases.
+     * @param isAsync
+     */
+    public void runInAsynchronousMode(boolean isAsync) {
+	backgroundResolver.runInAsynchronousMode(isAsync);
     }
 
     public void removeRegistration(DelayedReference unresolvedRef) {
@@ -1374,6 +1428,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		monitor.worked(1);
 		continue;
 	    }
+	    assert !(ref.getModelElement() instanceof RefObject) || ref.getConnection() == ((RefObject) ref.getModelElement()).get___Connection()
+	    	: "Element must be resolved in given connection.";
 
 	    try {
 		final RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(ref.getConnection(),
@@ -1403,13 +1459,13 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
 	    } catch (InvalidObjectException ex) {
 		Activator.logWarning("Could not re-resolve reference: " + ref + ". Element: " + ref.getModelElement()
-			+ " is not alive anymore!");
+			+ " is not alive anymore! Reference is ignored.");
 	    } catch (PartitionEditingNotPossibleException ex) {
 		Activator.logWarning("Could not re-resolve reference: " + ref + ". Partition: " + ex.getPri()
-			+ " is locked! Will try again later");
+			+ " is locked by connection " + ref.getConnection() +"! Will try again later");
 		deferredReferences.add(ref);
 	    } catch (Exception ex) {
-		ParsingTextblocksActivator.logError(ex, "Could not re-resolve reference: " + ref);
+		Activator.logError(ex, " Could not re-resolve reference: " + ref + ". Reference is ignored.");
 	    }
 	    monitor.worked(1);
 	}
@@ -1417,9 +1473,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	// remove them
 	workingCopy.removeAll(deferredReferences);
 	iaUnresolvedReferences.removeAll(workingCopy);
-	if (!iaUnresolvedReferences.isEmpty()) {
-	    backgroundResolver.schedule(500);
-	}
+	backgroundResolver.scheduleIfNeeded();
 	monitor.done();
     }
 }
