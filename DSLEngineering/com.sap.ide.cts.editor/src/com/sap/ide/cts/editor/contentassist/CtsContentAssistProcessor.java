@@ -29,7 +29,6 @@ import com.sap.ide.cts.editor.contentassist.modeladapter.StubModelAdapter;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.document.TextBlocksModelStore;
 import com.sap.mi.textual.grammar.IModelAdapter;
-import com.sap.mi.textual.grammar.ModelParsingResult;
 import com.sap.mi.textual.grammar.ParserFacade;
 import com.sap.mi.textual.grammar.exceptions.InvalidParserImplementationException;
 import com.sap.mi.textual.grammar.exceptions.UnknownProductionRuleException;
@@ -172,28 +171,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		try {
 			List<ICompletionProposal> results = null;
 
-			String documentContents = getDocumentContents(viewer);
-			ModelParsingResult result = initParsingHandler(documentContents);
-			
-			if(result.getErrors().size() > 0) {
-			    //try to remove last token and try again
-			    CtsContentAssistContext context = getContext(line,
-                                    charPositionInLine);
-			    Token lastToken = context.getToken();
-			    int curOffset = getAbsoluteOffset(viewer, lastToken.getLine()-1,
-			            lastToken.getCharPositionInLine());
-
-                            int stopOffset = getAbsoluteOffset(viewer, lastToken.getLine()-1, lastToken.getCharPositionInLine() + lastToken.getText().length());
-                            String fill = "";
-                            for(int i=0; i < lastToken.getText().length(); i++) {
-                                fill += " ";
-                            }
-			    documentContents = documentContents.substring(0, curOffset) + fill + documentContents.substring(stopOffset, documentContents.length());
-			    result = initParsingHandler(documentContents);
-			    if(result.getErrors().size() > 0) {
-			        result = initParsingHandler(documentContents);
-			    }
-			}
+			initParsingHandler(viewer);
 
 			String prefix = "";
 
@@ -387,14 +365,15 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		return true;
 	}
 
-	private ModelParsingResult initParsingHandler(String documentContents) throws IOException,
+	private void initParsingHandler(ITextViewer viewer) throws IOException,
 			UnknownProductionRuleException,
 			InvalidParserImplementationException {
 		ParserFacade facade;
 		facade = new ParserFacade(getParserClass(), getLexerClass());
 
+		String documentContents = getDocumentContents(viewer);
 		InputStream in = new ByteArrayInputStream(documentContents.getBytes());
-		TextBlocksAwareModelAdapter modelHandler = new TextBlocksAwareModelAdapter(
+		IModelAdapter modelHandler = new TextBlocksAwareModelAdapter(
 				new StubModelAdapter());
 
 		if (syntax == null) {
@@ -408,7 +387,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		parsingHandler = new CtsContentAssistParsingHandler(syntax);
 		delegator.addParsingObserver(parsingHandler);
 
-		return facade.parseProductionRule(in, modelHandler, null, null, delegator);
+		facade.parseProductionRule(in, modelHandler, null, null, delegator);
+
 	}
 
 	private String getDocumentContents(ITextViewer viewer) {
