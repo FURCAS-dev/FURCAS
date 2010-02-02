@@ -1,6 +1,7 @@
 package com.sap.ide.cts.editor.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,6 +16,7 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.Saveable;
 import org.eclipse.ui.internal.Workbench;
+import org.junit.After;
 import org.junit.Before;
 
 import tcs.ClassTemplate;
@@ -43,9 +45,17 @@ public class CtsEditorTest extends FixtureBasedTest {
 
 	@Before
 	public void init() {
-		Workbench wb = Workbench.getInstance();
-		wb.getIntroManager().closeIntro(wb.getIntroManager().getIntro());
+	    Workbench wb = Workbench.getInstance();
+	    wb.getIntroManager().closeIntro(wb.getIntroManager().getIntro());
+	    GlobalDelayedReferenceResolver.getInstance().runInAsynchronousMode(false);
 	}
+	
+	@After
+	public void cleanup() {
+	    GlobalDelayedReferenceResolver.getInstance().clearUnresolvedIAReferences();
+	}
+	
+	
 
 	public static List<String> list(String... entries) {
 		ArrayList<String> list = new ArrayList<String>();
@@ -67,24 +77,12 @@ public class CtsEditorTest extends FixtureBasedTest {
 		return editor;
 	}
 
-	protected void saveAll(AbstractGrammarBasedEditor editor)
-			throws CoreException {
+	protected void saveAll(AbstractGrammarBasedEditor editor) throws CoreException {
 		for (Saveable s : editor.getSaveables()) {
-			s.doSave(new NullProgressMonitor());
+		    s.doSave(new NullProgressMonitor());
 		}
-		int threshold = 50000;
-		int delay = 500;
-		try {
-		    while(!GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue() && threshold > 0) {
-    		
-                        Thread.sleep(delay);
-                    
-                        threshold -= delay;
-		    }
-		} catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-		if(threshold <= 0 && !GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue()) {
+		
+		if(!GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue()) {
 		    fail("There are still delayed reference that were not re evaluted.");
 		}
 	}

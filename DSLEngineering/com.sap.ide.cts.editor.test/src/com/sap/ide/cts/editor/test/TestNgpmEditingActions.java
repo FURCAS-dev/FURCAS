@@ -19,6 +19,7 @@ import org.junit.Test;
 
 import textblocks.TextBlock;
 import behavioral.actions.Block;
+import behavioral.actions.ExpressionStatement;
 import behavioral.actions.Return;
 
 import com.sap.ap.cts.monet.parser.ClassParserFactory;
@@ -1557,4 +1558,29 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         close(editor);
     };
 
+    /**
+     * When changing "this" to the identifier denoting a parameter, a method call on "this" should now have the parameter
+     * VariableExpression as object.
+     */
+    @Test
+    public void testChangeThisToParameter() throws PartInitException, BadLocationException, CoreException {
+	// Source / Copy of: PF.IDE:E03677193DABB480CE4211DE898D0019D29902CC
+	final SapClass refObject = findClass("ThisToParameterChange");
+	assertNotNull(refObject);
+	assertTrue(refObject.is___Alive());
+	AbstractGrammarBasedEditor editor = openEditor(refObject);
+	CtsDocument document = getDocument(editor);
+	document.replace(74, 4, "t");
+	saveAll(editor);
+	// failOnError(editor);
+	assertTrue(refObject.is___Alive());
+	// Your assertions on refObject here
+	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
+	MethodCallExpression mce = (MethodCallExpression) ((ExpressionStatement) ((Block) m.getImplementation()).getStatements().iterator().next()).getExpression();
+	assertNotNull(mce.getObject());
+	assertTrue(mce.getObject() instanceof VariableExpression);
+	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
+	close(editor);
+    };
+  
 }

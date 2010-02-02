@@ -19,16 +19,11 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.progress.IProgressService;
 import org.junit.After;
 import org.junit.Before;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.ServiceReference;
 
-import com.sap.ide.cts.editor.CtsActivator;
 import com.sap.mi.fwk.ConnectionManager;
 import com.sap.mi.fwk.ModelManager;
-import com.sap.mi.fwk.PartitionService;
 import com.sap.mi.fwk.services.local.FileServices;
 import com.sap.mi.fwk.services.local.ZipService;
-import com.sap.tc.moin.globalmodellistener.GlobalEventListenerRegistry;
 import com.sap.tc.moin.repository.Connection;
 
 /**
@@ -47,7 +42,6 @@ public abstract class ProjectConnectionBasedTest {
 	private static final String PLUGIN_NATURE = org.eclipse.pde.internal.core.natures.PDE.PLUGIN_NATURE;
 
 
-	//@Override
 	@Before
 	public void setUp() throws CoreException, IOException {
 		InputStream data = getProjectContentAsStream();
@@ -55,7 +49,6 @@ public abstract class ProjectConnectionBasedTest {
 		refreshProject(mProject);
 	}
 
-	//@Override
 	@After
 	public void tearDown() throws Exception {		
 		closeConnections();
@@ -88,9 +81,9 @@ public abstract class ProjectConnectionBasedTest {
 		IRunnableWithProgress operation = new IRunnableWithProgress() {
 			public void run(IProgressMonitor monitor) {
 				try {
-					prj.refreshLocal(IResource.DEPTH_INFINITE, null);
+					prj.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 					// force a full refresh 
-					ModelManager.getInstance().refreshFromFileSystem(mProject, null);
+					ModelManager.getInstance().refreshFromFileSystem(mProject, monitor);
 				} catch (CoreException e) {
 					fail("Failed to refresh project");
 				}
@@ -105,32 +98,6 @@ public abstract class ProjectConnectionBasedTest {
 	}
 
 	private void deleteProject() throws CoreException {
-		// align MOIN DB to prevent testcases influencing each other 
-		IRunnableWithProgress operation = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) {
-			    // avoid that the many delete events that occur during deleting all partitions
-			    // trigger the event listeners through the global event listener registry
-			    getGlobalEventListenerRegistry().executeWithoutRegisteringListenersForNewSessions(new Runnable() {
-				public void run() {
-				    PartitionService.getInstance().deletePartitions(getProject(), null);
-				}
-			    });
-			}
-
-			private GlobalEventListenerRegistry getGlobalEventListenerRegistry() {
-			    BundleContext context = CtsActivator.getDefault().getBundle().getBundleContext();
-			    ServiceReference ref = context.getServiceReference(GlobalEventListenerRegistry.class.getName());
-			    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context.getService(ref);
-			    return registry;
-			}
-		};
-		IProgressService ps = PlatformUI.getWorkbench().getProgressService();
-		try {
-			ps.busyCursorWhile(operation);
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-		
 		if (mProject != null) {
 			mProject.delete(true, true, null);
 			mProject = null;
@@ -139,7 +106,7 @@ public abstract class ProjectConnectionBasedTest {
 	
 	private static void loadData(InputStream data, IProject project) throws IOException {
 		String zipFilename = FileServices.getTempDir() + File.separator + "moin_sample_data.zip"; //$NON-NLS-1$
-		FileServices.streamToFile(zipFilename, data); //$NON-NLS-1$
+		FileServices.streamToFile(zipFilename, data); 
 		
 		// unzip into the project directory:
 		String targetDirectory = project.getLocation().toOSString();

@@ -6,8 +6,7 @@ import com.sap.ide.cts.editor.test.util.ExtSuite;
 
 @RunWith(ExtSuite.class)
 @ExtSuite.SuiteClasses( {})
-@ExtSuite.SuitePackages( { "com.sap.mi.textual.parsing",
-		"com.sap.ide.cts.parser" })
+@ExtSuite.SuitePackages( { "com.sap.mi.textual", "com.sap.ide.cts.parser" })
 public class TextBlocksSuite {
 	// need this to hold annotations
 }

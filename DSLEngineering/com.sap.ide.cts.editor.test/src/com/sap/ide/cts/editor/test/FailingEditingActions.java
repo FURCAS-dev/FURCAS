@@ -20,6 +20,7 @@ import org.junit.Test;
 
 import behavioral.actions.Block;
 import behavioral.actions.NamedValueDeclaration;
+import behavioral.actions.Return;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
 import com.sap.ide.cts.editor.document.CtsDocument;
@@ -37,6 +38,35 @@ import data.classes.SapClass;
 import dataaccess.expressions.MethodCallExpression;
 
 public class FailingEditingActions extends RunletEditorTest {
+
+    /**
+     * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
+     * multiplicity of calling a method with 1..1 output multiplicity should change to 1..1.
+     */
+    @Test
+    public void testChangeObjectMultiplicityForMethodCall() throws PartInitException, BadLocationException, CoreException {
+        final RefObject refObject = findClass("MethodCallOutputMultiplicityTest");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(52, 0, "1");
+        document.replace(53, 0, ".");
+        document.replace(54, 0, ".");
+        document.replace(55, 0, "1");
+        document.replace(56, 0, " ");
+        document.replace(70, 0, " ");
+        document.replace(71, 0, "1");
+        document.replace(72, 0, ".");
+        document.replace(73, 0, ".");
+        document.replace(74, 0, "1");
+        saveAll(editor);
+        assertTrue(refObject.is___Alive());
+	MethodCallExpression mce = (MethodCallExpression) ((Return) ((Block) ((SapClass) refObject).getOwnedSignatures()
+		.iterator().next().getImplementation()).getStatements().iterator().next()).getArgument();
+	assertEquals(1, mce.getType().getLowerMultiplicity());
+        close(editor);
+    };
 
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.
@@ -168,27 +198,4 @@ public class FailingEditingActions extends RunletEditorTest {
 	close(editor);
     };
 
-    /**
-     * When changing "this" to the identifier denoting a parameter, a method call on "this" which should now have the parameter
-     * VariableExpression as object, has null as the object instead.
-     */
-    @Test
-    public void testChangeThisToParameter() throws PartInitException, BadLocationException, CoreException {
-	// Source / Copy of: PF.IDE:E03677193DABB480CE4211DE898D0019D29902CC
-	final SapClass refObject = findClass("ThisToParameterChange");
-	assertNotNull(refObject);
-	assertTrue(refObject.is___Alive());
-	AbstractGrammarBasedEditor editor = openEditor(refObject);
-	CtsDocument document = getDocument(editor);
-	document.replace(74, 4, "t");
-	saveAll(editor);
-	// failOnError(editor);
-	assertTrue(refObject.is___Alive());
-	// Your assertions on refObject here
-	MethodSignature m = refObject.getOwnedSignatures().iterator().next();
-	MethodCallExpression mce = (MethodCallExpression) ((Block) m.getImplementation()).getStatements().iterator().next();
-	assertNotNull(mce.getObject());
-	close(editor);
-    };
-  
 }
