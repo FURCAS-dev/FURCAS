@@ -12,19 +12,27 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 
 public class OclOperatorWizardPage extends WizardPage {
+	private static final String PAGETITEL	=	"OCL Operator Configuration";
+	private static final String PAGEDESC	=	"Set the options for the OCL Operator.";
+	private static final String LABELTEXT 	= 	"Enter the Constraint in OCL";
 	
 	private OclOptionObject option;
 	ArrayList<Text> textareas= new ArrayList<Text>();
+	private Composite composite;
+	private Composite textareacomposite;
+	private Text textarea;
 	
 	protected OclOperatorWizardPage(String pageName) {
 		super(pageName);
-		setTitle("OCL Operator Configuration");
-		setDescription("Set the options for the OCL Operator.");
+		setTitle(PAGETITEL);
+		setDescription(PAGEDESC);
+		
 		setPageComplete(false);
 	}
 	protected OclOperatorWizardPage(String pageName, OclOptionObject option) {
@@ -33,14 +41,16 @@ public class OclOperatorWizardPage extends WizardPage {
 	}
 	public void createControl(Composite parent) {
 		//create the widgets for the page
-		final Composite composite = new Composite(parent, SWT.NONE);
+		composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
 		
-		Text textarea = new Text(composite, SWT.NONE);
-		textarea.setSize(400, 10);
-		textareas.add(textarea);
+		Label label = new Label(composite, SWT.CENTER);
+		label.setText(LABELTEXT);
 		
+		textarea = new Text(composite, SWT.NONE);
+		textarea.setSize(400, 10);
+	
 		Button addButton = new Button(composite, SWT.PUSH);
 		addButton.setText("+");
 		addButton.addSelectionListener(new SelectionAdapter() {
@@ -48,11 +58,23 @@ public class OclOperatorWizardPage extends WizardPage {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// add another textarea to the page
-				Text txt = new Text(composite, SWT.NONE);
-				textareas.add(txt);
+				if (textarea.getText() != "") {
+					Text txt = new Text(textareacomposite, SWT.UP);
+					txt.setText(textarea.getText());
+					textarea.setText("");		
+					textareas.add(txt);
+					textareacomposite.layout();
+					composite.layout();
+				}
 			}
 		});
+		
+		textareacomposite = new Composite(composite, SWT.NONE);
+		GridLayout textlayout = new GridLayout(1,false);
+		textareacomposite.setLayout(textlayout);
+		textareacomposite.setSize(400, 10);
 	    setControl(composite);
+	    
 	}
 	
 	@Override
