@@ -509,7 +509,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 			return instantiate(getImplementationForAbstractClass(cls), res);
 		EObject current = cls.getEPackage().getEFactoryInstance().create(cls);
 		res.getContents().add(current);
-		
+
 		//get all references of the meta class and link the instance accordingly
 		for (EReference ref:cls.getEAllReferences()){
 			if( ExtendedMetaData.INSTANCE.getAffiliation(cls, ref)==null)
@@ -526,10 +526,12 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 					lowerBound--;
 				}
 			}
-			
+
 			//create remaining needed classes and link them
 			for (int i = 0; i < lowerBound; i++){
 				EObject nextCls = instantiate(ref.getEReferenceType(), res);
+				//the value of a reference can only be an instance of EReference
+				if (!(nextCls instanceof EReference)) break;				
 				cls.eSet(ref, nextCls);
 			}
 		}
