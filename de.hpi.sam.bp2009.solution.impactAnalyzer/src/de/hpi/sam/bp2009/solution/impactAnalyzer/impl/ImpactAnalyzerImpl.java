@@ -16,12 +16,15 @@ import de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl;
 
 
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
 
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
@@ -80,7 +83,7 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 				if(msg instanceof EventNotification){
 					BasicEList<OclQuery> list= new BasicEList<OclQuery>();
 					list.add(query);
-					getOclEvaluator().evaluate(list);
+					handleInternalEvent(list, (EventNotification)msg);
 				}
 					
 		}
@@ -233,7 +236,7 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 		System.out.println("Start Analyse");
 		EventFilter filter = new TautologyFilter();
 		for(OclQuery each: oclQueries)
-			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
+			this.getEventManager().subscribe(root, filter, new EventManagerAdapter(each));
 		this.setQueries(oclQueries);
 	}
 
@@ -264,6 +267,28 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 		for(OclQuery each: oclQueries)
 			this.getEventManager().subscribe(resourceSet,filter, new EventManagerAdapter(each));
 		this.setQueries(oclQueries);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void handleInternalEvent(EList<OclQuery> queries, EventNotification eventNotification) {
+		getOclEvaluator().evaluate(queries);
+		for (Adapter a : eAdapters)
+			notifyApplication(a);
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void notifyApplication(Adapter application) {
+		QueryReevaluateNotification notification = ImpactAnalyzerFactory.eINSTANCE.createQueryReevaluateNotification();
+		notification.setReevaluatedQueries(queries);
+		application.notifyChanged(notification);
 	}
 
 	/**

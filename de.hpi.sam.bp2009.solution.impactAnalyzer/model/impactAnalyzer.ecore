@@ -31,10 +31,31 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="handleInternalEvent">
+      <eParameters name="queries">
+        <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
+          <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="eventNotification" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventNotification"/>
+    </eOperations>
+    <eOperations name="notifyApplication">
+      <eParameters name="application" eType="ecore:EDataType ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//Adapter"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="oclEvaluator" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventManager" eType="ecore:EClass ../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventManager"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="queries" transient="true">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="QueryReevaluateNotification" eSuperTypes="../../de.hpi.sam.bp2009.solution.eventManager/model/eventManager.ecore#//EventNotification">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reevaluatedQueries" transient="true">
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EEList">
         <eTypeArguments eClassifier="ecore:EClass ../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OclQuery"/>
       </eGenericType>
     </eStructuralFeatures>

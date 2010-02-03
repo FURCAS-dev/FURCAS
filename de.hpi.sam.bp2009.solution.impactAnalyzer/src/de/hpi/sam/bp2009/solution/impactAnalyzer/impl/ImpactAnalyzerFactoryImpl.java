@@ -61,6 +61,7 @@ public class ImpactAnalyzerFactoryImpl extends EFactoryImpl implements ImpactAna
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ImpactAnalyzerPackage.IMPACT_ANALYZER: return createImpactAnalyzer();
+			case ImpactAnalyzerPackage.QUERY_REEVALUATE_NOTIFICATION: return createQueryReevaluateNotification();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -74,6 +75,16 @@ public class ImpactAnalyzerFactoryImpl extends EFactoryImpl implements ImpactAna
 	public ImpactAnalyzer createImpactAnalyzer() {
 		ImpactAnalyzerImpl impactAnalyzer = new ImpactAnalyzerImpl();
 		return impactAnalyzer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public QueryReevaluateNotification createQueryReevaluateNotification() {
+		QueryReevaluateNotificationImpl queryReevaluateNotification = new QueryReevaluateNotificationImpl();
+		return queryReevaluateNotification;
 	}
 
 	/**

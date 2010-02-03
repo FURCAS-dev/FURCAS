@@ -8,9 +8,11 @@ package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EObject;
@@ -138,5 +140,21 @@ public interface ImpactAnalyzer extends EObject {
 	 * @generated
 	 */
 	void register(ResourceSet root, EList<OclQuery> oclQueries);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model queriesMany="false"
+	 * @generated
+	 */
+	void handleInternalEvent(EList<OclQuery> queries, EventNotification eventNotification);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model applicationDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
+	 * @generated
+	 */
+	void notifyApplication(Adapter application);
 
 } // ImpactAnalyzer

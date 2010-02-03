@@ -12,6 +12,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
+import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -38,6 +39,13 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 	 * @generated
 	 */
 	private EClass impactAnalyzerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass queryReevaluateNotificationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -146,6 +154,24 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getQueryReevaluateNotification() {
+		return queryReevaluateNotificationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getQueryReevaluateNotification_ReevaluatedQueries() {
+		return (EAttribute)queryReevaluateNotificationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ImpactAnalyzerFactory getImpactAnalyzerFactory() {
 		return (ImpactAnalyzerFactory)getEFactoryInstance();
 	}
@@ -173,6 +199,9 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		createEReference(impactAnalyzerEClass, IMPACT_ANALYZER__OCL_EVALUATOR);
 		createEReference(impactAnalyzerEClass, IMPACT_ANALYZER__EVENT_MANAGER);
 		createEAttribute(impactAnalyzerEClass, IMPACT_ANALYZER__QUERIES);
+
+		queryReevaluateNotificationEClass = createEClass(QUERY_REEVALUATE_NOTIFICATION);
+		createEAttribute(queryReevaluateNotificationEClass, QUERY_REEVALUATE_NOTIFICATION__REEVALUATED_QUERIES);
 	}
 
 	/**
@@ -201,12 +230,14 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		// Obtain other dependent packages
 		OclEvaluatorPackage theOclEvaluatorPackage = (OclEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(OclEvaluatorPackage.eNS_URI);
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
+		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		queryReevaluateNotificationEClass.getESuperTypes().add(theEventManagerPackage.getEventNotification());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(impactAnalyzerEClass, ImpactAnalyzer.class, "ImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -237,6 +268,22 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(impactAnalyzerEClass, null, "handleInternalEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(theEcorePackage_1.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "queries", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEventManagerPackage.getEventNotification(), "eventNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(impactAnalyzerEClass, null, "notifyApplication", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEventManagerPackage.getAdapter(), "application", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(queryReevaluateNotificationEClass, QueryReevaluateNotification.class, "QueryReevaluateNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(theEcorePackage_1.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getQueryReevaluateNotification_ReevaluatedQueries(), g1, "reevaluatedQueries", null, 0, 1, QueryReevaluateNotification.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

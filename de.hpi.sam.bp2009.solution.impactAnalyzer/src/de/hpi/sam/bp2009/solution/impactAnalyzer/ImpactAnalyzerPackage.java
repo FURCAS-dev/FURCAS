@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -107,6 +108,53 @@ public interface ImpactAnalyzerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.impl.QueryReevaluateNotificationImpl <em>Query Reevaluate Notification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.impl.QueryReevaluateNotificationImpl
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPackageImpl#getQueryReevaluateNotification()
+	 * @generated
+	 */
+	int QUERY_REEVALUATE_NOTIFICATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Event</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_REEVALUATE_NOTIFICATION__EVENT = EventManagerPackage.EVENT_NOTIFICATION__EVENT;
+
+	/**
+	 * The feature id for the '<em><b>Notification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_REEVALUATE_NOTIFICATION__NOTIFICATION = EventManagerPackage.EVENT_NOTIFICATION__NOTIFICATION;
+
+	/**
+	 * The feature id for the '<em><b>Reevaluated Queries</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_REEVALUATE_NOTIFICATION__REEVALUATED_QUERIES = EventManagerPackage.EVENT_NOTIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Query Reevaluate Notification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int QUERY_REEVALUATE_NOTIFICATION_FEATURE_COUNT = EventManagerPackage.EVENT_NOTIFICATION_FEATURE_COUNT + 1;
+
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer <em>Impact Analyzer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -148,6 +196,27 @@ public interface ImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getImpactAnalyzer_Queries();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification <em>Query Reevaluate Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Query Reevaluate Notification</em>'.
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification
+	 * @generated
+	 */
+	EClass getQueryReevaluateNotification();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification#getReevaluatedQueries <em>Reevaluated Queries</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reevaluated Queries</em>'.
+	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification#getReevaluatedQueries()
+	 * @see #getQueryReevaluateNotification()
+	 * @generated
+	 */
+	EAttribute getQueryReevaluateNotification_ReevaluatedQueries();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -204,6 +273,24 @@ public interface ImpactAnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute IMPACT_ANALYZER__QUERIES = eINSTANCE.getImpactAnalyzer_Queries();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.impl.QueryReevaluateNotificationImpl <em>Query Reevaluate Notification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.impl.QueryReevaluateNotificationImpl
+		 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.impl.ImpactAnalyzerPackageImpl#getQueryReevaluateNotification()
+		 * @generated
+		 */
+		EClass QUERY_REEVALUATE_NOTIFICATION = eINSTANCE.getQueryReevaluateNotification();
+
+		/**
+		 * The meta object literal for the '<em><b>Reevaluated Queries</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute QUERY_REEVALUATE_NOTIFICATION__REEVALUATED_QUERIES = eINSTANCE.getQueryReevaluateNotification_ReevaluatedQueries();
 
 	}
 
