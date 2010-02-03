@@ -12,7 +12,7 @@
  *     Stefan Schulze - Bug 245619
  *     Adolfo Sanchez-Barbudo Herrera - Bug 260403.
  *     
- * $Id: AbstractTypeChecker.java,v 1.6 2009/12/18 06:26:03 ewillink Exp $
+ * $Id: AbstractTypeChecker.java,v 1.7 2010/02/03 19:54:13 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -1006,6 +1006,7 @@ public abstract class AbstractTypeChecker<C, O, P, PM>
 
 		int i = 0;
 		for (Object paramOrProperty : paramsOrProperties) {
+			@SuppressWarnings("null")
 			TypedElement<C> arg = args.get(i++);
 			C argType = arg.getType();
 			C popType = resolve(uml.getOCLType(paramOrProperty));

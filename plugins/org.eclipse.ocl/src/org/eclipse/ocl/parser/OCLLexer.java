@@ -18,7 +18,7 @@
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.18 2010/01/25 11:31:46 asanchez Exp $
+* $Id: OCLLexer.java,v 1.19 2010/02/03 19:54:11 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -58,9 +58,11 @@ public class OCLLexer extends AbstractLexer implements RuleAction
     private OCLLexerLpgLexStream lexStream;
     
     private static ParseTable prs = new OCLLexerprs();
+    @Override
     public ParseTable getParseTable() { return prs; }
 
     private LexParser lexParser = new LexParser();
+    @Override
     public LexParser getParser() { return lexParser; }
 
     public int getToken(int i) { return lexParser.getToken(i); }
@@ -70,6 +72,7 @@ public class OCLLexer extends AbstractLexer implements RuleAction
     public int getLeftSpan() { return lexParser.getToken(1); }
     public int getRightSpan() { return lexParser.getLastToken(); }
 
+    @Override
     public void resetKeywordLexer()
     {
         if (kwLexer == null)
@@ -77,11 +80,13 @@ public class OCLLexer extends AbstractLexer implements RuleAction
         else this.kwLexer.setInputChars(lexStream.getInputChars());
     }
 
+    @Override
     public void reset(char[] input_chars, String filename)
     {
         reset(input_chars, filename, 1);
     }
     
+    @Override
     public void reset(char[] input_chars, String filename, int tab)
     {
         lexStream = new OCLLexerLpgLexStream(getOCLEnvironment(), input_chars, filename, tab);
@@ -111,11 +116,14 @@ public class OCLLexer extends AbstractLexer implements RuleAction
     	return oclEnvironment;
     }
 
+    @Override
     public DerivedLexStream getILexStream() { return lexStream; }
 
     /**
      * @deprecated replaced by {@link #getILexStream()}
      */
+    @Deprecated
+    @Override
     public ILexStream getLexStream() { return lexStream; }
 
     private void initializeLexer(DerivedPrsStream prsStream, int start_offset, int end_offset)
@@ -132,11 +140,13 @@ public class OCLLexer extends AbstractLexer implements RuleAction
         prsStream.setStreamLength(prsStream.getSize());
     }
 
+    @Override
     public void lexer(DerivedPrsStream prsStream)
     {
         lexer(null, prsStream);
     }
     
+    @Override
     public void lexer(Monitor monitor, DerivedPrsStream prsStream)
     {
         initializeLexer(prsStream, 0, -1);
@@ -144,11 +154,13 @@ public class OCLLexer extends AbstractLexer implements RuleAction
         addEOF(prsStream, lexStream.getStreamIndex());
     }
 
+    @Override
     public void lexer(DerivedPrsStream prsStream, int start_offset, int end_offset)
     {
         lexer(null, prsStream, start_offset, end_offset);
     }
     
+    @Override
     public void lexer(Monitor monitor, DerivedPrsStream prsStream, int start_offset, int end_offset)
     {
         if (start_offset <= 1)
@@ -164,6 +176,7 @@ public class OCLLexer extends AbstractLexer implements RuleAction
      * If a parse stream was not passed to this Lexical analyser then we
      * simply report a lexical error. Otherwise, we produce a bad token.
      */
+    @Override
     public void reportLexicalError(int startLoc, int endLoc) {
         IPrsStream prs_stream = lexStream.getIPrsStream();
         if (prs_stream == null)
@@ -195,12 +208,14 @@ public class OCLLexer extends AbstractLexer implements RuleAction
     boolean printTokens;
     private final static int ECLIPSE_TAB_VALUE = 4;
 
+    @Override
     public int [] getKeywordKinds() { return kwLexer.getKeywordKinds(); }
 
 
     /**
      * @deprecated function replaced by {@link #reset(char [] content, String filename)}
      */
+    @Deprecated
     public void initialize(char [] content, String filename)
     {
         reset(content, filename);
@@ -403,6 +418,7 @@ public class OCLLexer extends AbstractLexer implements RuleAction
         OCLLexersym.Char_EOF              // for '\uffff' or 65535 
     };
             
+    @Override
     public final int getKind(int i)  // Classify character at ith location
     {
         char c = (i >= getStreamLength() ? '\uffff' : getCharValue(i));
@@ -415,6 +431,7 @@ public class OCLLexer extends AbstractLexer implements RuleAction
                             : OCLLexersym.Char_AfterASCIINotAcute;
     }
 
+    @Override
     public String[] orderedExportedSymbols() { return OCLParsersym.orderedTerminalSymbols; }
 
     public OCLLexerLpgLexStream(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, String filename, int tab) throws java.io.IOException
@@ -448,6 +465,7 @@ public OCLLexer(Environment<?,?,?,?,?,?,?,?,?,?,?,?> environment, Reader reader,
 /**
  * @since 3.0
  */
+@Override
 public void reset(Reader reader, String filename) throws java.io.IOException {
 	char[] input_chars = getInputChars(reader);
     reset(input_chars, filename, ECLIPSE_TAB_VALUE);

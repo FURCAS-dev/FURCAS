@@ -28,12 +28,14 @@
         boolean printTokens;
         private final static int ECLIPSE_TAB_VALUE = 4;
 
+        @Override
         public int [] getKeywordKinds() { return kwLexer.getKeywordKinds(); }
 
 
         /**
          * @deprecated function replaced by {@link #reset(char [] content, String filename)}
          */
+        @Deprecated
         public void initialize(char [] content, String filename)
         {
             reset(content, filename);
@@ -236,6 +238,7 @@
             $sym_type.$prefix$EOF$suffix$              // for '\uffff' or 65535 
         };
                 
+        @Override
         public final int getKind(int i)  // Classify character at ith location
         {
             char c = (i >= getStreamLength() ? '\uffff' : getCharValue(i));
@@ -248,6 +251,7 @@
                                 : $sym_type.$prefix$AfterASCIINotAcute$suffix$;
         }
 
+        @Override
         public String[] orderedExportedSymbols() { return $exp_type.orderedTerminalSymbols; }
 
         public $super_stream_class($environment_class environment, String filename, int tab) throws java.io.IOException

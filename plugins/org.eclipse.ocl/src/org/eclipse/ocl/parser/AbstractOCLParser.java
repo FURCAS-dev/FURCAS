@@ -16,7 +16,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLParser.java,v 1.13 2010/01/22 18:37:46 asanchez Exp $
+ * $Id: AbstractOCLParser.java,v 1.14 2010/02/03 19:54:11 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -349,12 +349,12 @@ public abstract class AbstractOCLParser
 		BasicEnvironment benv = getEnvironment();
 		if (benv != null) {
 			sev = benv.getValue(ProblemOption.CONCEPTUAL_OPERATION_NAME);
-		}
-		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-			benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
-				.bind(OCLMessages.Conceptual_Operation_Name_, conceptualName),
-				"unquote", //$NON-NLS-1$
-				token);
+			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+				benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+					.bind(OCLMessages.Conceptual_Operation_Name_, conceptualName),
+					"unquote", //$NON-NLS-1$
+					token);
+			}
 		}
 		return result;
 	}
