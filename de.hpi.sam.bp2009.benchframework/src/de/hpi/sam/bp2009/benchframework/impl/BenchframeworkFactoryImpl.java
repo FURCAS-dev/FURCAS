@@ -68,6 +68,7 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case BenchframeworkPackage.ENGINE: return createEngine();
+			case BenchframeworkPackage.RESULT_OBJECT: return createResultObject();
 			case BenchframeworkPackage.TEST_RUN: return createTestRun();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -82,6 +83,8 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case BenchframeworkPackage.STATUS:
+				return createStatusFromString(eDataType, initialValue);
 			case BenchframeworkPackage.OUTPUT_STREAM:
 				return createOutputStreamFromString(eDataType, initialValue);
 			case BenchframeworkPackage.WIZARD_PAGE:
@@ -101,6 +104,8 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case BenchframeworkPackage.STATUS:
+				return convertStatusToString(eDataType, instanceValue);
 			case BenchframeworkPackage.OUTPUT_STREAM:
 				return convertOutputStreamToString(eDataType, instanceValue);
 			case BenchframeworkPackage.WIZARD_PAGE:
@@ -127,9 +132,39 @@ public class BenchframeworkFactoryImpl extends EFactoryImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public ResultObject createResultObject() {
+		ResultObjectImpl resultObject = new ResultObjectImpl();
+		return resultObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TestRun createTestRun() {
 		TestRunImpl testRun = new TestRunImpl();
 		return testRun;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Status createStatusFromString(EDataType eDataType, String initialValue) {
+		Status result = Status.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertStatusToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

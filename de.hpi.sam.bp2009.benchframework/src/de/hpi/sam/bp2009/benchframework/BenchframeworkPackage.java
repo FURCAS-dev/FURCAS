@@ -9,6 +9,7 @@ package de.hpi.sam.bp2009.benchframework;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -227,23 +228,41 @@ public interface BenchframeworkPackage extends EPackage {
 	int OPTION_OBJECT_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.ResultObject <em>Result Object</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl <em>Result Object</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.ResultObject
+	 * @see de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultObject()
 	 * @generated
 	 */
 	int RESULT_OBJECT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Result Display</b></em>' attribute.
+	 * The feature id for the '<em><b>Result Composite</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_OBJECT__RESULT_DISPLAY = 0;
+	int RESULT_OBJECT__RESULT_COMPOSITE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_OBJECT__STATUS = 1;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_OBJECT__MESSAGE = 2;
 
 	/**
 	 * The number of structural features of the '<em>Result Object</em>' class.
@@ -252,7 +271,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_OBJECT_FEATURE_COUNT = 1;
+	int RESULT_OBJECT_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
@@ -338,6 +357,16 @@ public interface BenchframeworkPackage extends EPackage {
 	int TEST_RUN_FEATURE_COUNT = 2;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.Status
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStatus()
+	 * @generated
+	 */
+	int STATUS = 7;
+
+	/**
 	 * The meta object id for the '<em>Output Stream</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -345,7 +374,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getOutputStream()
 	 * @generated
 	 */
-	int OUTPUT_STREAM = 7;
+	int OUTPUT_STREAM = 8;
 
 	/**
 	 * The meta object id for the '<em>Wizard Page</em>' data type.
@@ -355,7 +384,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getWizardPage()
 	 * @generated
 	 */
-	int WIZARD_PAGE = 8;
+	int WIZARD_PAGE = 9;
 
 	/**
 	 * The meta object id for the '<em>UI Component</em>' data type.
@@ -365,7 +394,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getUIComponent()
 	 * @generated
 	 */
-	int UI_COMPONENT = 9;
+	int UI_COMPONENT = 10;
 
 
 	/**
@@ -376,7 +405,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getException()
 	 * @generated
 	 */
-	int EXCEPTION = 10;
+	int EXCEPTION = 11;
 
 
 	/**
@@ -540,15 +569,37 @@ public interface BenchframeworkPackage extends EPackage {
 	EClass getResultObject();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultDisplay <em>Result Display</em>}'.
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite <em>Result Composite</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Result Display</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.ResultObject#getResultDisplay()
+	 * @return the meta object for the attribute '<em>Result Composite</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite()
 	 * @see #getResultObject()
 	 * @generated
 	 */
-	EAttribute getResultObject_ResultDisplay();
+	EAttribute getResultObject_ResultComposite();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getStatus <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Status</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultObject#getStatus()
+	 * @see #getResultObject()
+	 * @generated
+	 */
+	EAttribute getResultObject_Status();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getMessage <em>Message</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Message</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultObject#getMessage()
+	 * @see #getResultObject()
+	 * @generated
+	 */
+	EAttribute getResultObject_Message();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.UserInterface <em>User Interface</em>}'.
@@ -624,6 +675,16 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getTestRun_Operators();
+
+	/**
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Status</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Status
+	 * @generated
+	 */
+	EEnum getStatus();
 
 	/**
 	 * Returns the meta object for data type '{@link java.io.OutputStream <em>Output Stream</em>}'.
@@ -812,22 +873,38 @@ public interface BenchframeworkPackage extends EPackage {
 		EAttribute OPTION_OBJECT__WIZARD_PAGE = eINSTANCE.getOptionObject_WizardPage();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.ResultObject <em>Result Object</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl <em>Result Object</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.ResultObject
+		 * @see de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl
 		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getResultObject()
 		 * @generated
 		 */
 		EClass RESULT_OBJECT = eINSTANCE.getResultObject();
 
 		/**
-		 * The meta object literal for the '<em><b>Result Display</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Result Composite</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute RESULT_OBJECT__RESULT_DISPLAY = eINSTANCE.getResultObject_ResultDisplay();
+		EAttribute RESULT_OBJECT__RESULT_COMPOSITE = eINSTANCE.getResultObject_ResultComposite();
+
+		/**
+		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULT_OBJECT__STATUS = eINSTANCE.getResultObject_Status();
+
+		/**
+		 * The meta object literal for the '<em><b>Message</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULT_OBJECT__MESSAGE = eINSTANCE.getResultObject_Message();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
@@ -888,6 +965,16 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EReference TEST_RUN__OPERATORS = eINSTANCE.getTestRun_Operators();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.Status <em>Status</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.Status
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getStatus()
+		 * @generated
+		 */
+		EEnum STATUS = eINSTANCE.getStatus();
 
 		/**
 		 * The meta object literal for the '<em>Output Stream</em>' data type.

@@ -6,10 +6,7 @@
  */
 package de.hpi.sam.bp2009.benchframework;
 
-import java.util.Map;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.swt.widgets.Composite;
 
 /**
@@ -24,53 +21,95 @@ import org.eclipse.swt.widgets.Composite;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultDisplay <em>Result Display</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite <em>Result Composite</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getStatus <em>Status</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getMessage <em>Message</em>}</li>
  * </ul>
  * </p>
  *
  * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject()
- * @model interface="true" abstract="true"
+ * @model
  * @generated
  */
 public interface ResultObject extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Result Display</b></em>' attribute.
+	 * Returns the value of the '<em><b>Result Composite</b></em>' attribute.
 	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Result Display</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * used for eclipse wizard view
 	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Result Display</em>' attribute.
-	 * @see #setResultDisplay(Composite)
-	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_ResultDisplay()
+	 * @return the value of the '<em>Result Composite</em>' attribute.
+	 * @see #setResultComposite(Composite)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_ResultComposite()
 	 * @model dataType="de.hpi.sam.bp2009.benchframework.UIComponent"
 	 * @generated
 	 */
-	Composite getResultDisplay();
+	Composite getResultComposite();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultDisplay <em>Result Display</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite <em>Result Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result Display</em>' attribute.
-	 * @see #getResultDisplay()
+	 * @param value the new value of the '<em>Result Composite</em>' attribute.
+	 * @see #getResultComposite()
 	 * @generated
 	 */
-	void setResultDisplay(Composite value);
+	void setResultComposite(Composite value);
 
 	/**
+	 * Returns the value of the '<em><b>Status</b></em>' attribute.
+	 * The literals are from the enumeration {@link de.hpi.sam.bp2009.benchframework.Status}.
 	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Status</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Used for textbased result processor like XML, CSV, ...
-	 * <!-- end-model-doc -->
-	 * @model kind="operation"
+	 * @return the value of the '<em>Status</em>' attribute.
+	 * @see de.hpi.sam.bp2009.benchframework.Status
+	 * @see #setStatus(Status)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_Status()
+	 * @model
 	 * @generated
 	 */
-	Map<String, Object> getPropertyMap();
+	Status getStatus();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getStatus <em>Status</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Status</em>' attribute.
+	 * @see de.hpi.sam.bp2009.benchframework.Status
+	 * @see #getStatus()
+	 * @generated
+	 */
+	void setStatus(Status value);
+
+	/**
+	 * Returns the value of the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Message</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Message</em>' attribute.
+	 * @see #setMessage(String)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_Message()
+	 * @model
+	 * @generated
+	 */
+	String getMessage();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getMessage <em>Message</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Message</em>' attribute.
+	 * @see #getMessage()
+	 * @generated
+	 */
+	void setMessage(String value);
 
 } // ResultObject

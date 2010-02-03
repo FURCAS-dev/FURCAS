@@ -13,6 +13,7 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.UserInterface;
 
@@ -21,6 +22,7 @@ import java.io.OutputStream;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
@@ -88,6 +90,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	private EClass testRunEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum statusEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -318,8 +327,26 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getResultObject_ResultDisplay() {
+	public EAttribute getResultObject_ResultComposite() {
 		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getResultObject_Status() {
+		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getResultObject_Message() {
+		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -383,6 +410,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 */
 	public EReference getTestRun_Operators() {
 		return (EReference)testRunEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getStatus() {
+		return statusEEnum;
 	}
 
 	/**
@@ -468,7 +504,9 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEAttribute(optionObjectEClass, OPTION_OBJECT__WIZARD_PAGE);
 
 		resultObjectEClass = createEClass(RESULT_OBJECT);
-		createEAttribute(resultObjectEClass, RESULT_OBJECT__RESULT_DISPLAY);
+		createEAttribute(resultObjectEClass, RESULT_OBJECT__RESULT_COMPOSITE);
+		createEAttribute(resultObjectEClass, RESULT_OBJECT__STATUS);
+		createEAttribute(resultObjectEClass, RESULT_OBJECT__MESSAGE);
 
 		userInterfaceEClass = createEClass(USER_INTERFACE);
 		createEReference(userInterfaceEClass, USER_INTERFACE__ENGINE);
@@ -478,6 +516,9 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		testRunEClass = createEClass(TEST_RUN);
 		createEAttribute(testRunEClass, TEST_RUN__MODEL);
 		createEReference(testRunEClass, TEST_RUN__OPERATORS);
+
+		// Create enums
+		statusEEnum = createEEnum(STATUS);
 
 		// Create data types
 		outputStreamEDataType = createEDataType(OUTPUT_STREAM);
@@ -569,16 +610,10 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "map", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getResultObject_ResultDisplay(), this.getUIComponent(), "resultDisplay", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		op = addEOperation(resultObjectEClass, null, "getPropertyMap", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEString());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		initEOperation(op, g1);
+		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getResultObject_ResultComposite(), this.getUIComponent(), "resultComposite", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResultObject_Status(), this.getStatus(), "status", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResultObject_Message(), ecorePackage.getEString(), "message", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserInterface_Engine(), this.getEngine(), null, "engine", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -605,6 +640,12 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		addEParameter(op, g1, "aClass", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEJavaObject(), "anObject", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		// Initialize enums and add enum literals
+		initEEnum(statusEEnum, Status.class, "Status");
+		addEEnumLiteral(statusEEnum, Status.FAILED);
+		addEEnumLiteral(statusEEnum, Status.SUCCESSFULL);
+		addEEnumLiteral(statusEEnum, Status.UNKOWN);
+
 		// Initialize data types
 		initEDataType(outputStreamEDataType, OutputStream.class, "OutputStream", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(wizardPageEDataType, WizardPage.class, "WizardPage", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
@@ -626,7 +667,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	protected void createNullAnnotations() {
-		String source = null;															
+		String source = null;														
 		addAnnotation
 		  ((testRunEClass.getEOperations().get(0)).getEParameters().get(0), 
 		   source, 

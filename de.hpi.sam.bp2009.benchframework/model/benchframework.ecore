@@ -77,24 +77,17 @@
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ResultObject" abstract="true" interface="true">
+  <eClassifiers xsi:type="ecore:EClass" name="ResultObject">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Encapsules a view for the results of an operator execution."/>
     </eAnnotations>
-    <eOperations name="getPropertyMap">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Used for textbased result processor like XML, CSV, ..."/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-      </eGenericType>
-    </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultDisplay" eType="#//UIComponent">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultComposite" eType="#//UIComponent">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="documentation" value="used for eclipse wizard view"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -153,4 +146,9 @@
   <eClassifiers xsi:type="ecore:EDataType" name="UIComponent" instanceClassName="org.eclipse.swt.widgets.Composite"/>
   <eClassifiers xsi:type="ecore:EDataType" name="Exception" instanceClassName="java.lang.Exception"
       serializable="false"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Status">
+    <eLiterals name="FAILED" value="1"/>
+    <eLiterals name="SUCCESSFULL" value="2" literal=""/>
+    <eLiterals name="UNKOWN"/>
+  </eClassifiers>
 </ecore:EPackage>
