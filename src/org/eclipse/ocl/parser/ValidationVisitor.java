@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.11 2010/01/11 22:28:16 ewillink Exp $
+ * $Id: ValidationVisitor.java,v 1.12 2010/02/03 19:54:11 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -268,17 +268,17 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			
 			if (benv != null) {
 				sev = benv.getValue(ProblemOption.STRING_CASE_CONVERSION);
+				if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+	                benv.problem(
+	                        sev,
+	                        ProblemHandler.Phase.VALIDATOR,
+	                        OCLMessages.bind(
+	                                OCLMessages.NonStd_Operation_,
+	                                (opcode == PredefinedType.TO_LOWER) ? "String::toLower()" //$NON-NLS-1$
+	                                    : "String::toUpper()"), "operationCallExp", //$NON-NLS-1$ //$NON-NLS-2$
+	                        oc);
+	            }
 			}
-			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-                benv.problem(
-                        sev,
-                        ProblemHandler.Phase.VALIDATOR,
-                        OCLMessages.bind(
-                                OCLMessages.NonStd_Operation_,
-                                (opcode == PredefinedType.TO_LOWER) ? "String::toLower()" //$NON-NLS-1$
-                                    : "String::toUpper()"), "operationCallExp", //$NON-NLS-1$ //$NON-NLS-2$
-                        oc);
-            }
 		}
 		
 		return Boolean.TRUE;
@@ -996,12 +996,12 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 			
 			if (benv != null) {
 				sev = benv.getValue(ProblemOption.CLOSURE_ITERATOR);
+				if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+	                benv.problem(sev, ProblemHandler.Phase.VALIDATOR, OCLMessages
+	                    .bind(OCLMessages.NonStd_Iterator_,
+	                        PredefinedType.CLOSURE_NAME), "iteratorExp", ie); //$NON-NLS-1$
+	            }
 			}
-			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-                benv.problem(sev, ProblemHandler.Phase.VALIDATOR, OCLMessages
-                    .bind(OCLMessages.NonStd_Iterator_,
-                        PredefinedType.CLOSURE_NAME), "iteratorExp", ie); //$NON-NLS-1$
-            }
 			
 			if (!(type instanceof SetType<?, ?>) && !(type instanceof OrderedSetType<?, ?>)) {
 				String message = OCLMessages.bind(

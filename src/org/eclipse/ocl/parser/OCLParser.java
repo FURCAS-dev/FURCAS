@@ -20,7 +20,7 @@
 *        - 300534: Removing the use of deprecated macros.
 * </copyright>
 *
-* $Id: OCLParser.java,v 1.25 2010/01/25 11:31:46 asanchez Exp $
+* $Id: OCLParser.java,v 1.26 2010/02/03 19:54:12 ewillink Exp $
 */
 /**
 * Complete OCL Grammar
@@ -119,35 +119,50 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
     private boolean unimplementedSymbolsWarning = false;
 
     private static ParseTable prsTable = new OCLParserprs();
+	@Override
     public ParseTable getParseTable() { return prsTable; }
 
     private DeterministicParser dtParser = null;
     public DeterministicParser getParser() { return dtParser; }
 
+	@Override
     protected void setResult(Object object) { dtParser.setSym1(object); }
+	@Override
     protected Object getRhsSym(int i) { return dtParser.getSym(i); }
 
+	@Override
     protected int getRhsTokenIndex(int i) { return dtParser.getToken(i); }
+	@Override
     protected IToken getRhsIToken(int i) { return prsStream.getIToken(getRhsTokenIndex(i)); }
     
+	@Override
     protected int getRhsFirstTokenIndex(int i) { return dtParser.getFirstToken(i); }
+	@Override
     protected IToken getRhsFirstIToken(int i) { return prsStream.getIToken(getRhsFirstTokenIndex(i)); }
 
+	@Override
     protected int getRhsLastTokenIndex(int i) { return dtParser.getLastToken(i); }
+	@Override
     protected IToken getRhsLastIToken(int i) { return prsStream.getIToken(getRhsLastTokenIndex(i)); }
 
+	@Override
     protected int getLeftSpan() { return dtParser.getFirstToken(); }
+	@Override
     protected IToken getLeftIToken()  { return prsStream.getIToken(getLeftSpan()); }
 
+	@Override
     protected int getRightSpan() { return dtParser.getLastToken(); }
+	@Override
     protected IToken getRightIToken() { return prsStream.getIToken(getRightSpan()); }
 
+	@Override
     protected int getRhsErrorTokenIndex(int i)
     {
         int index = dtParser.getToken(i);
         IToken err = prsStream.getIToken(index);
         return (err instanceof ErrorToken ? index : 0);
     }
+	@Override
     protected ErrorToken getRhsErrorIToken(int i)
     {
         int index = dtParser.getToken(i);
@@ -156,6 +171,7 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
     }
 
 	@SuppressWarnings("nls")
+	@Override
 	public void reset(ILexStream lexStream)
     {
         prsStream = new DerivedPrsStream(getEnvironment(), lexStream);
@@ -214,27 +230,34 @@ public class OCLParser extends AbstractOCLParser implements RuleAction
         }
     }		
 
+	@Override
     public int numTokenKinds() { return OCLParsersym.numTokenKinds; }
+	@Override
     public String[] orderedTerminalSymbols() { return OCLParsersym.orderedTerminalSymbols; }
     public String getTokenKindName(int kind) { return OCLParsersym.orderedTerminalSymbols[kind]; }            
     public int getEOFTokenKind() { return prsTable.getEoftSymbol(); }
+	@Override
     public DerivedPrsStream getIPrsStream() { return prsStream; }
 
+	@Override
     public CSTNode parser()
     {
         return parser(null, getDefaultRepairCount());
     }
         
+	@Override
     public CSTNode parser(Monitor monitor)
     {
         return parser(monitor, getDefaultRepairCount());
     }
         
+	@Override
     public CSTNode parser(int error_repair_count)
     {
         return parser(null, error_repair_count);
     }
         
+	@Override
     public CSTNode parser(Monitor monitor, int error_repair_count)
     {
         dtParser.setMonitor(monitor);
@@ -290,6 +313,7 @@ public OCLLexer getLexer() {
 * @since 3.0	
 * @deprecated
 */
+@Deprecated
 protected IToken getIToken(int i) {
 	return prsStream.getIToken(i);
 }
@@ -311,6 +335,7 @@ protected IToken getIToken(int i) {
 *
 * @deprecated 
 */
+@Deprecated
 protected String getTokenText(int i) {
 	return prsStream.getTokenText(i);
 }

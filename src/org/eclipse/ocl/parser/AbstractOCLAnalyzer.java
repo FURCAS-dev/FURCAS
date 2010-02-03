@@ -19,7 +19,7 @@
  *
  * </copyright>
  *
- * $Id: AbstractOCLAnalyzer.java,v 1.40 2010/01/11 22:28:15 ewillink Exp $
+ * $Id: AbstractOCLAnalyzer.java,v 1.41 2010/02/03 19:54:12 ewillink Exp $
  */
 package org.eclipse.ocl.parser;
 
@@ -213,6 +213,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	/**
 	 * @since 1.3
 	 */
+	@Override
 	@SuppressWarnings("deprecation")
 	public AbstractOCLParser getAbstractParser() {
 		return (AbstractOCLParser) super.getParser();
@@ -4228,7 +4229,7 @@ public abstract class AbstractOCLAnalyzer<PK, C, O, P, EL, PM, S, COA, SSA, CT, 
 	 * If the source type is a collection and operator is ".", then there is
 	 * an implicit COLLECT operator.
 	 */
-	C operationSourceType = source.getType();
+	C operationSourceType = source != null ? source.getType() : null;
 
 	// if the sourceType is a TypeType then this must be a static operation
 	boolean isStatic = operationSourceType instanceof TypeType<?, ?>;

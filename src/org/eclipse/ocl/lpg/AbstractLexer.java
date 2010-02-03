@@ -15,7 +15,7 @@
 *
 * </copyright>
 *
-* $Id: AbstractLexer.java,v 1.4 2010/01/22 18:37:53 asanchez Exp $
+* $Id: AbstractLexer.java,v 1.5 2010/02/03 19:54:12 ewillink Exp $
 */
 
 package org.eclipse.ocl.lpg;
@@ -86,6 +86,7 @@ public abstract class AbstractLexer
      * @param buffer the characters
      * @deprecated clients should use {@link #reset(char[], String)}
      */
+	@Deprecated
 	public void initialize(char[] inputChars) {
 		reset(inputChars, null);
 	}
@@ -97,6 +98,7 @@ public abstract class AbstractLexer
      * 
      * @deprecated clients should invoke {@link #reset(Reader, String)}
      */
+	@Deprecated
 	public void initialize(Reader reader) throws IOException {
     	char[] buffer = getInputChars(reader);
     	reset(buffer, null);
@@ -106,6 +108,7 @@ public abstract class AbstractLexer
 	 * @param parser the {@link AbstractParser} instance
 	 * @deprecated clients should invoke {@link #lexer(DerivedPrsStream)}
 	 */
+	@Deprecated
 	public void lexToTokens(AbstractParser parser) {
 		lexToTokens(null, parser);
 	}
@@ -114,6 +117,7 @@ public abstract class AbstractLexer
 	 * @param parser the {@link AbstractParser} instance
 	 * @deprecated clients should invoke {@link #lexer(Monitor, DerivedPrsStream)}
 	 */
+	@Deprecated
 	public void lexToTokens(Monitor monitor, AbstractParser parser) {
         lexer(monitor, parser.getIPrsStream());
     }
