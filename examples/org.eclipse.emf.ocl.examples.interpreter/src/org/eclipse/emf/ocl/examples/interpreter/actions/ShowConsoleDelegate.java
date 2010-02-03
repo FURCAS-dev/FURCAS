@@ -50,10 +50,12 @@ public class ShowConsoleDelegate
     public void run(IAction action) {
 		factory.openConsole();
 		
-		shell.getDisplay().asyncExec(new Runnable() {
-            public void run() {
-                consoleOpened(OCLConsole.getInstance());
-            }});
+		if (null != shell) {
+			shell.getDisplay().asyncExec(new Runnable() {
+				public void run() {
+					consoleOpened(OCLConsole.getInstance());
+				}});
+		}
 	}
 	
 	protected void consoleOpened(OCLConsole console) {
@@ -61,7 +63,11 @@ public class ShowConsoleDelegate
 	}
 
 	public void setActiveEditor(IAction action, IEditorPart targetEditor) {
-	    shell = targetEditor.getSite().getShell();
+		if (null == targetEditor) {
+			shell = null;
+		} else {
+			shell = targetEditor.getSite().getShell();
+		}
 	}
 
 	@Override
