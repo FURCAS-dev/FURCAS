@@ -6,9 +6,12 @@
  */
 package de.hpi.sam.bp2009.randomModelModifier.impl;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
+
 import java.util.Random;
 
 import de.hpi.sam.bp2009.benchframework.TestRun;
@@ -123,6 +126,8 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @ordered
 	 */
 	protected static final Random RANDOM_NUMBER_GENERATOR_EDEFAULT = null;
+	private static final String SUCCESS_MESSAGE = "Successfully changed Model.";
+	private static final String FAILED_MESSAGE = "Failed to change Model!";
 	/**
 	 * The cached value of the '{@link #getRandomNumberGenerator() <em>Random Number Generator</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -144,6 +149,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		setName("Random Model Modifier");
 		setDescription("randomly add/remove classes, references or modify attributes in the model");
 		setRandomNumberGenerator(new Random());
+		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
 	}
 	
 	@Override
@@ -160,22 +166,29 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 			switch (task){
 			//FIXME: all called methods should check if the modified elements are modifiable
 			case CLASS_CREATE:
-				createRandomClass(classList);
-				return;
+				getResult().setStatus(createRandomClass(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				break;
 			case CLASS_DELETE:
-				deleteRandomClass(classList);
-				return;
+				getResult().setStatus(deleteRandomClass(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				break;
 			case REFERENCE_CREATE:
-				createRandomReference(classList);
-				return;
+				getResult().setStatus(createRandomReference(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				break;
 			case REFERENCE_DELETE:
-				deleteRandomReference(classList);
-				return;
+				getResult().setStatus(deleteRandomReference(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				break;
 			case MODIFY_ATTRIBUTE:
-				modifyRandomAttribute(classList);
-				return;		
+				getResult().setStatus(modifyRandomAttribute(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				break;		
 			}
 		}
+		if (getResult().getStatus() == Status.SUCCESSFULL){
+			getResult().setMessage(SUCCESS_MESSAGE);
+		} else {
+			getResult().setMessage(FAILED_MESSAGE);
+		}
+		
+		
 	}
 
 	/**
@@ -346,7 +359,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * In case there are no classes with attributes in the given list, nothing will happen
 	 * @param classList a List of classes to choose a random class from
 	 */
-	private void modifyRandomAttribute(BasicEList<EObject> classList) {
+	private boolean modifyRandomAttribute(BasicEList<EObject> classList) {
 		int index = getRandomNumberGenerator().nextInt(classList.size());
 		EObject cls = classList.get(index);
 		int attrSize = cls.eClass().getEAllAttributes().size();
@@ -361,14 +374,16 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 			} else {
 				cls.eSet(attr, attr.getDefaultValue());
 			}
+			return true;
 		} else {
 			//in case there are no attributes, just find another class
 			//to prevent endless loops we remove the already visited classes from the list of choices
 			classList.remove(index);
 			if (!classList.isEmpty()){
-				modifyRandomAttribute(classList);
+				 return modifyRandomAttribute(classList);
 			}
 		}
+		return false;
 	}
 
 	
@@ -378,7 +393,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * In case there are no classes with references in the given list, nothing will happen.
 	 * @param classList a List of classes to choose a random class from
 	 */
-	private void deleteRandomReference(BasicEList<EObject> classList) {
+	private boolean deleteRandomReference(BasicEList<EObject> classList) {
 		int index = getRandomNumberGenerator().nextInt(classList.size());
 		EObject cls = classList.get(index);
 		int refCount = cls.eClass().getEAllReferences().size();
@@ -386,15 +401,17 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 			//a reference was found, remove it
 			EReference ref = cls.eClass().getEAllReferences().get(getRandomNumberGenerator().nextInt(refCount));
 			cls.eUnset(ref);
+			return true;
 		}
 		else{
 			//in case there are no references, just find another class
 			//to prevent endless loops we remove the already visited classes from the list of choices
 			classList.remove(index);
 			if (!classList.isEmpty()){
-				deleteRandomReference(classList);
+				return deleteRandomReference(classList);
 			}
 		}
+		return false;
 		
 		
 	}
@@ -404,7 +421,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * @param classList
 	 */
 	@SuppressWarnings("unchecked")
-	private void createRandomReference(BasicEList<EObject> classList) {
+	private boolean createRandomReference(BasicEList<EObject> classList) {
 		int index = getRandomNumberGenerator().nextInt(classList.size());
 		EObject cls = classList.get(index);
 		int refCount = cls.eClass().getEAllReferences().size();
@@ -425,41 +442,41 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 			if (target != null && size < ref.getUpperBound()){
 				//check if there's a target and if it can be added without exceeding the upper bound of the reference
 				ref.eContents().add(target);
+				return true;
 			}else{
 				classList.remove(cls);
 				if (!classList.isEmpty()){
-					createRandomReference(classList);
-				}
+					return createRandomReference(classList);
+				}	
 			}
 		}else{
 			classList.remove(cls);
 			if (!classList.isEmpty()){
-				createRandomReference(classList);
+				return createRandomReference(classList);
 			}
 		}
+		return false;
 	}
 
 	/**
 	 * Delete a random class and remove it from classList
 	 * @param classList the list to remove a class from
 	 */
-	private void deleteRandomClass(BasicEList<EObject> classList) {
+	private boolean deleteRandomClass(BasicEList<EObject> classList) {
 		//FIXME: This method doesn't actually remove a class from the model
 		EObject cls = classList.get(getRandomNumberGenerator().nextInt(classList.size()));
 		cls.eUnset(cls.eContainingFeature());
-		//in case using this list later on we remove the unset element
-		classList.remove(cls);
+		return classList.remove(cls);
 	}
 
 	/**
 	 * Create a random class and add it to classList
 	 * @param classList the list to add the new class to
 	 */
-	private void createRandomClass(BasicEList<EObject> classList) {
+	private boolean createRandomClass(BasicEList<EObject> classList) {
 		EObject cls = classList.get(getRandomNumberGenerator().nextInt(classList.size()));
 		EObject newCls = cls.eClass().getEPackage().getEFactoryInstance().create(cls.eClass());
-		//in case using this list later on we add the new Classinstance
-		classList.add(newCls);
+		return classList.add(newCls);
 	}
 	
 	/**
