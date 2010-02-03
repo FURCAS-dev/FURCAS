@@ -148,6 +148,7 @@ public class EventManagerSwitch<T> {
 			case EventManagerPackage.LINK_LIFE_CYCLE_EVENT: {
 				LinkLifeCycleEvent linkLifeCycleEvent = (LinkLifeCycleEvent)theEObject;
 				T result = caseLinkLifeCycleEvent(linkLifeCycleEvent);
+				if (result == null) result = caseElementChangeEvent(linkLifeCycleEvent);
 				if (result == null) result = caseModelChangeEvent(linkLifeCycleEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -174,6 +175,7 @@ public class EventManagerSwitch<T> {
 				LinkCreateEvent linkCreateEvent = (LinkCreateEvent)theEObject;
 				T result = caseLinkCreateEvent(linkCreateEvent);
 				if (result == null) result = caseLinkLifeCycleEvent(linkCreateEvent);
+				if (result == null) result = caseElementChangeEvent(linkCreateEvent);
 				if (result == null) result = caseModelChangeEvent(linkCreateEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -182,6 +184,7 @@ public class EventManagerSwitch<T> {
 				LinkDeleteEvent linkDeleteEvent = (LinkDeleteEvent)theEObject;
 				T result = caseLinkDeleteEvent(linkDeleteEvent);
 				if (result == null) result = caseLinkLifeCycleEvent(linkDeleteEvent);
+				if (result == null) result = caseElementChangeEvent(linkDeleteEvent);
 				if (result == null) result = caseModelChangeEvent(linkDeleteEvent);
 				if (result == null) result = defaultCase(theEObject);
 				return result;

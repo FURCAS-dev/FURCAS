@@ -59,4 +59,12 @@ public interface Engine extends EObject {
 	 */
 	EList<Operator> getRegisteredOperators();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" many="false"
+	 * @generated
+	 */
+	EList<ResultProcessor> getRegisteredResultProcessors();
+
 } // Engine

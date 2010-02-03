@@ -15,7 +15,6 @@ import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
-import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
 public class RunningPage extends WizardPage {
 	
@@ -45,10 +44,10 @@ public class RunningPage extends WizardPage {
 				Button bt = (Button)e.getSource();
 				bt.setEnabled(false);
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
-				wiz.getIntImpl().getEngine().getTestRuns().add(wiz.run);
+				wiz.getIntImpl().getEngine().getTestRuns().add(wiz.getRun());
 				wiz.getIntImpl().getEngine().benchmark();
 				EList<ResultObject> results= new BasicEList<ResultObject>();
-				for(Operator op:wiz.run.getOperators())
+				for(Operator op:wiz.getRun().getOperators())
 					results.add(op.getResult());
 				if(wiz.getIntImpl().getResultProcessor()!=null)
 					wiz.getIntImpl().getResultProcessor().getResultPage();
@@ -73,11 +72,12 @@ public class RunningPage extends WizardPage {
 	public boolean canFlipToNextPage() {
 		return benchmarked;
 	}
+	
 	@Override
 	public IWizardPage getNextPage() {
-		ResultProcessor rp = ((TestframeworkWizard)getWizard()).getIntImpl().getResultProcessor();
-		if(rp!=null && rp.getResultPage()!=null )
-			return rp.getResultPage();
-		return super.getNextPage();
+		IWizardPage page=super.getNextPage();
+		if(page==null)
+			((TestframeworkWizard)getWizard()).couldBeFinished();
+		return page;
 	}
 }

@@ -39,6 +39,7 @@ public class SimpleResultPage extends WizardPage {
 	 */
 	public void setOps(EList<Operator> ops) {
 		this.ops = ops;
+		setControl(null);
 	}
 	/**
 	 * @param pageName
@@ -67,24 +68,22 @@ public class SimpleResultPage extends WizardPage {
 			TableColumn c= new TableColumn(table, SWT.NONE);
 			c.setText(col);
 		}
-			
+
 		for(Operator o:ops){
 			ResultObject r = o.getResult();
-			if(r!=null){
+			if(r!=null)
 				for(Entry<String, Object>entry:r.getPropertyMap().entrySet()){
 					TableItem item= new TableItem(table, SWT.NONE);
 					item.setText(o.getName());
 					item.setText(0, o.getName());
 					item.setText(1, entry.getKey());
 					item.setText(2, entry.getValue().toString());
-			}
-			}
+				}
 
 		}
 		for(TableColumn c:table.getColumns())
 			c.pack();
-		
-		
+		setControl(composite);
 	}
-	
+
 }

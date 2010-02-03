@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class LinkLifeCycleEventImpl extends ModelChangeEventImpl implements LinkLifeCycleEvent {
+public class LinkLifeCycleEventImpl extends ElementChangeEventImpl implements LinkLifeCycleEvent {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -6,27 +6,24 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.benchframework.Operator;
-import de.hpi.sam.bp2009.benchframework.TestRun;
-
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.emf.ecore.resource.ResourceSet;
-
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.TestRun;
 
 /**
  * <!-- begin-user-doc -->
@@ -72,6 +69,9 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 * @ordered
 	 */
 	protected EList<Operator> operators;
+
+	@SuppressWarnings("unchecked")
+	private Map<Class,Object> mapClassToObject= new HashMap<Class, Object>();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -128,23 +128,30 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
+	@SuppressWarnings("unchecked")
 	public <returnType> returnType getInstanceForClass(Class<returnType> aClass) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		Object rtr = this.mapClassToObject.get(aClass);
+		try {
+			return (returnType)rtr;
+		} catch (ClassCastException e) {
+			this.mapClassToObject.remove(aClass);
+			return null;
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean setInstanceForClass(Class<?> aClass, Object anObject) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		if(! (anObject.getClass().equals(aClass)))
+			throw new IllegalArgumentException(new ClassCastException("Wrong Object for given class"));
+		boolean rtr=this.mapClassToObject.containsKey(aClass);
+		this.mapClassToObject.put(aClass, anObject);
+		return rtr;
 	}
 
 	/**

@@ -51,7 +51,7 @@
       <details key="documentation"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LinkLifeCycleEvent" eSuperTypes="#//ModelChangeEvent">
+  <eClassifiers xsi:type="ecore:EClass" name="LinkLifeCycleEvent" eSuperTypes="#//ElementChangeEvent">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>

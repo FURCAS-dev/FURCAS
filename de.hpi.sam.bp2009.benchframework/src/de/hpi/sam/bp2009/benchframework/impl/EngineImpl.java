@@ -6,20 +6,23 @@
  */
 package de.hpi.sam.bp2009.benchframework.impl;
 
+import java.util.Collection;
+
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.Engine;
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 import de.hpi.sam.bp2009.benchframework.TestRun;
-
-import java.util.Collection;
-
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,6 +38,11 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * @generated
  */
 public class EngineImpl extends EObjectImpl implements Engine {
+	private static final String OPERATOR_EXTENSION_CLASS = "operatorClass";
+	private static final String RESULT_EXTENSION_CLASS = "resultClass";
+	private static final String OPERATORID	=	"de.hpi.sam.bp2009.benchframework.operatorExtensionPointID";
+	private static final String RESULTPROCESSORID = "de.hpi.sam.bp2009.benchframework.resultExtensionPointID";
+
 	/**
 	 * The cached value of the '{@link #getTestRuns() <em>Test Runs</em>}' reference list.
 	 * <!-- begin-user-doc -->
@@ -79,23 +87,67 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void benchmark() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		for(TestRun run:getTestRuns()){
+			for(Operator op:run.getOperators()){
+				try {
+					op.execute();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public EList<Operator> getRegisteredOperators() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+		IConfigurationElement[] configurationElement = extensionRegistry.getConfigurationElementsFor(OPERATORID);
+		EList<Operator> operators=new BasicEList<Operator>();
+		
+		for(IConfigurationElement element:configurationElement){
+		
+				Object obj=null;
+				try {
+					obj = element.createExecutableExtension(OPERATOR_EXTENSION_CLASS);
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+				if(obj instanceof Operator)
+					operators.add((Operator) obj);
+		}
+		return operators;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public EList<ResultProcessor> getRegisteredResultProcessors() {
+		IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
+		IConfigurationElement[] configurationElement = extensionRegistry.getConfigurationElementsFor(RESULTPROCESSORID);
+		BasicEList<ResultProcessor> resultProcessors=new BasicEList<ResultProcessor>();
+		
+		for(IConfigurationElement element:configurationElement){
+		
+				Object obj=null;
+				try {
+					obj = element.createExecutableExtension(RESULT_EXTENSION_CLASS);
+				} catch (CoreException e) {
+					e.printStackTrace();
+				}
+				if(obj instanceof Operator)
+					resultProcessors.add((ResultProcessor) obj);
+		}
+		return resultProcessors;
 	}
 
 	/**

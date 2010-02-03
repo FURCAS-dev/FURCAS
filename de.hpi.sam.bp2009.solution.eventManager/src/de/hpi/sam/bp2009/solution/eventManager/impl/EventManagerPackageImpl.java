@@ -796,7 +796,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		elementChangeEventEClass.getESuperTypes().add(this.getModelChangeEvent());
 		attributeValueChangeEventEClass.getESuperTypes().add(this.getElementChangeEvent());
 		elementLifeCycleEventEClass.getESuperTypes().add(this.getElementChangeEvent());
-		linkLifeCycleEventEClass.getESuperTypes().add(this.getModelChangeEvent());
+		linkLifeCycleEventEClass.getESuperTypes().add(this.getElementChangeEvent());
 		elementCreateEventEClass.getESuperTypes().add(this.getElementLifeCycleEvent());
 		elementDeleteEventEClass.getESuperTypes().add(this.getElementLifeCycleEvent());
 		linkCreateEventEClass.getESuperTypes().add(this.getLinkLifeCycleEvent());

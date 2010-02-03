@@ -217,7 +217,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_LIFE_CYCLE_EVENT__SOURCE_OBJECT = MODEL_CHANGE_EVENT__SOURCE_OBJECT;
+	int LINK_LIFE_CYCLE_EVENT__SOURCE_OBJECT = ELEMENT_CHANGE_EVENT__SOURCE_OBJECT;
 
 	/**
 	 * The number of structural features of the '<em>Link Life Cycle Event</em>' class.
@@ -226,7 +226,7 @@ public interface EventManagerPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LINK_LIFE_CYCLE_EVENT_FEATURE_COUNT = MODEL_CHANGE_EVENT_FEATURE_COUNT + 0;
+	int LINK_LIFE_CYCLE_EVENT_FEATURE_COUNT = ELEMENT_CHANGE_EVENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.eventManager.impl.ElementCreateEventImpl <em>Element Create Event</em>}' class.

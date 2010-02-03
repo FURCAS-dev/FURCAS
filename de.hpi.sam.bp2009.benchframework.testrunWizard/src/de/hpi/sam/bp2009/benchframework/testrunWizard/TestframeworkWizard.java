@@ -1,72 +1,113 @@
 package de.hpi.sam.bp2009.benchframework.testrunWizard;
 
+import java.util.List;
 
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
-import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.ui.INewWizard;
-import org.eclipse.ui.IWorkbench;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
+import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 
-public class TestframeworkWizard extends Wizard implements INewWizard {
-	private ListPage listPage = new ListPage("Module List");
-	TestRun run=BenchframeworkFactory.eINSTANCE.createTestRun();
-	RunningPage runningPage=new RunningPage("RunningPage");
+/**
+ * @author Philipp Berger
+ *
+ */
+public class TestframeworkWizard extends AdvancedWizard {
 	
-	protected IStructuredSelection selection;
-	
-	protected IWorkbench workbench;
+	private ListPage listPage;
+	private TestRun run;
+	private RunningPage runningPage;
 	private WizardUserInterfaceImpl intImpl;
-	
+	private ResultProcessor resultProcessor;
+	private boolean couldBeFinished;
+
+	public TestframeworkWizard() {
+		setListPage(new ListPage("Module List"));
+		getListPage().setWizard(this);
+		
+		setRunningPage(new RunningPage("RunningPage"));
+		getRunningPage().setWizard(this);
+		
+		setRun(BenchframeworkFactory.eINSTANCE.createTestRun());
+		
+		setIntImpl(new WizardUserInterfaceImpl());
+		getIntImpl().setEngine(BenchframeworkFactory.eINSTANCE.createEngine());
+	}
+
+	public void couldBeFinished() {
+		couldBeFinished=true;
+	}
+
 	public WizardUserInterfaceImpl getIntImpl() {
 		return intImpl;
+	}
+
+	@Override
+	public IWizardPage getLastPage() {
+		return getRunningPage();
+	}
+	@Override
+	public IWizardPage getLeastPage() {
+		if (resultProcessor == null)
+			return null;
+		return resultProcessor.getResultPage();
+	}
+	private ListPage getListPage() {
+		return listPage;
+	}
+
+	public List<ResultProcessor> getRegisteredResultProcessors() {
+		// returns the first registered processor
+		return this.getIntImpl().getEngine().getRegisteredResultProcessors();
+
+	}
+
+	TestRun getRun() {
+		return run;
+	}
+
+	RunningPage getRunningPage() {
+		return runningPage;
+	}
+
+	@Override
+	public IWizardPage getStartingPage() {
+		return getListPage();
+	}
+
+	@Override
+	public boolean performCancel() {
+		this.setRun(BenchframeworkFactory.eINSTANCE.createTestRun());
+		return super.performCancel();
+	}
+
+	@Override
+	public boolean performFinish() {
+		return couldBeFinished;
 	}
 
 	public void setIntImpl(WizardUserInterfaceImpl intImpl) {
 		this.intImpl = intImpl;
 	}
 
-	
-	public void addPages() {
-		addPage(listPage);
-		addPage(runningPage);
-//		for(Operator op:this.getIntImpl().getAvailableOperators())
-//			addPage(op.getOption().getWizardPage());
-		//addPage( new OclOperatorImpl().getOption().getWizardPage());
-
+	private void setListPage(ListPage listPage) {
+		this.listPage = listPage;
 	}
 
-	@Override
-	public boolean performFinish() {
-		// TODO Auto-generated method stub
-		return false;
+	public void setResultProcessor(ResultProcessor obj) {
+		if (resultProcessor != null)
+			resultProcessor.getResultPage().setVisible(false);
+		resultProcessor = obj;
+		resultProcessor.getResultPage().setWizard(this);
+		;
 	}
 
-	@Override
-	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		
-		this.workbench = workbench;
-		this.selection = selection;
-		this.intImpl= new WizardUserInterfaceImpl();
-		this.intImpl.setEngine(BenchframeworkFactory.eINSTANCE.createEngine());	
-		
-	}
-	@Override
-	public IWizardPage getNextPage(IWizardPage page) {
-		if(runningPage==null){
-			runningPage=new RunningPage("RunningPage");
-			addPage(runningPage);}
-		
-		if(runningPage.equals(super.getNextPage(page)))
-			return this.getNextPage(runningPage);
-		
-		if(super.getNextPage(page)==null)
-			return runningPage;
-		return super.getNextPage(page);
-		
+	void setRun(TestRun run) {
+		this.run = run;
 	}
 
+	void setRunningPage(RunningPage runningPage) {
+		this.runningPage = runningPage;
+	}
 
 }

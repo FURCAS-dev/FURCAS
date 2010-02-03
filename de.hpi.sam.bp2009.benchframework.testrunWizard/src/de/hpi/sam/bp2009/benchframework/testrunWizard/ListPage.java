@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.ResultProcessor;
 
 public class ListPage extends WizardPage {
 	private static final String PAGETITEL="Testrun Configuration";
@@ -24,8 +25,9 @@ public class ListPage extends WizardPage {
 	private static final String ADDBUTTONTEXT="Add";
 	private static final String REMOVEBUTTONTEXT = "Remove";
 	private OperatorTable tbl = new OperatorTable();
-	private Combo box;
+	private Combo operatorBox;
 	private Map<String, EClass> nameToEclass;
+	private Combo processorBox;
 
 	protected ListPage(String pageName) {
 		super(pageName);
@@ -42,21 +44,44 @@ public class ListPage extends WizardPage {
 		GridLayout layout = new GridLayout(GridData.FILL_BOTH, false);
 		layout.numColumns = 2;
 		composite.setLayout(layout);
-		box= new Combo(composite, SWT.UP);
-		nameToEclass=new HashMap<String,EClass>();
-		for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){
-			box.add(op.getName());
-			nameToEclass.put(op.getName(), op.eClass());
-		}
-
+		generateEClassMappingAndSelectionBoxForOperators(composite);
+		
 		buildAddButton(composite);
 
-		tbl.setOperatorList(((TestframeworkWizard)getWizard()).run.getOperators());
+		tbl.setOperatorList(((TestframeworkWizard)getWizard()).getRun().getOperators());
 		tbl.createTable(composite);
 
 		buildRemoveButton(composite);
+		processorBox=new Combo(composite, SWT.UP);
+		for(ResultProcessor p:((TestframeworkWizard)getWizard()).getIntImpl().getEngine().getRegisteredResultProcessors())
+			processorBox.setData(p.toString(),p);
+		processorBox.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ResultProcessor obj = (ResultProcessor) processorBox.getData(processorBox.getItem(processorBox.getSelectionIndex()));
+				obj.setTestrun(((TestframeworkWizard)getWizard()).getRun());
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		setControl(composite);
 		setPageComplete(true);
+	}
+
+	private void generateEClassMappingAndSelectionBoxForOperators(
+			Composite composite) {
+		operatorBox= new Combo(composite, SWT.UP);
+		nameToEclass=new HashMap<String,EClass>();
+		for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){
+			operatorBox.add(op.getName());
+			nameToEclass.put(op.getName(), op.eClass());
+		}
 	}
 
 	/** Generates an RemoveButton and add it to the Canvas
@@ -73,14 +98,8 @@ public class ListPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				if(tbl.getSelectedOperatorList().isEmpty())
 					return;
-				
-				// if operator has a wizard page set it invisible
-				for(Operator op: tbl.getSelectedOperatorList())
-					if(op.getOption()!=null && op.getOption().getWizardPage()!=null)
-						op.getOption().getWizardPage().setVisible(false);
-				
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
-				wiz.run.getOperators().removeAll(tbl.getSelectedOperatorList());
+				wiz.getRun().getOperators().removeAll(tbl.getSelectedOperatorList());
 
 				setPageComplete(true);
 				tbl.refresh();
@@ -104,28 +123,14 @@ public class ListPage extends WizardPage {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if(box.getSelectionIndex()==-1)
+				if(operatorBox.getSelectionIndex()==-1)
 					return;
-				EClass cls = nameToEclass.get(box.getItem(box.getSelectionIndex()));
+				EClass cls = nameToEclass.get(operatorBox.getItem(operatorBox.getSelectionIndex()));
 				EObject obj=cls.getEPackage().getEFactoryInstance().create(cls);
 				if(obj instanceof Operator){
 					Operator op= (Operator)obj;
 					TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
-					wiz.run.getOperators().add(op);
-					
-					/*
-					 * add wizard page or make it visible
-					 */
-					if(op.getOption()!=null && op.getOption().getWizardPage()!=null){
-						WizardPage page = op.getOption().getWizardPage();
-						/*
-						 * FIXME if multiple instances running some concurrency issues might result here
-						 */
-						if(page.getWizard()==null)
-							wiz.addPage(page);
-						else
-							page.setVisible(true);
-					}
+					wiz.getRun().getOperators().add(op);
 					setPageComplete(true);
 				}
 				tbl.refresh();
@@ -140,10 +145,31 @@ public class ListPage extends WizardPage {
 	}
 	@Override
 	public IWizardPage getNextPage() {
+		TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
+		wiz.flushInnerPages();
+		for(Operator op:wiz.getRun().getOperators())
+			addOperatorToWizard(op, wiz);
 		return super.getNextPage();
 	}
+	
 	@Override
 	public boolean canFlipToNextPage() {
-		return !((TestframeworkWizard)getWizard()).run.getOperators().isEmpty();
+		return !((TestframeworkWizard)getWizard()).getRun().getOperators().isEmpty();
+	}
+	private void addOperatorToWizard(Operator op,
+			TestframeworkWizard wiz) {
+		/*
+		 * add wizard page or make it visible
+		 */
+		if(op.getOption()!=null && op.getOption().getWizardPage()!=null){
+			WizardPage page = op.getOption().getWizardPage();
+			/*
+			 * FIXME if multiple instances running some concurrency issues might result here
+			 */
+			if(page.getWizard()==null)
+				wiz.addPage(page);
+			else
+				page.setVisible(true);
+		}
 	}
 }

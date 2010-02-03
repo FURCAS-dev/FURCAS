@@ -13,6 +13,11 @@
         <eTypeArguments eClassifier="#//Operator"/>
       </eGenericType>
     </eOperations>
+    <eOperations name="getRegisteredResultProcessors">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+        <eTypeArguments eClassifier="#//ResultProcessor"/>
+      </eGenericType>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testRuns" upperBound="-1"
         eType="#//TestRun"/>
   </eClassifiers>
