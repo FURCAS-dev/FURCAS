@@ -72,7 +72,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		throw new UnsupportedOperationException();
 	}
 
-	public IQueryResult executeQueryOn(String completeConstraint, Resource resource) {
+	public IQueryResult executeQueryOn(String completeConstraint, Resource resource) throws ParserException, IllegalArgumentException {
 		
 		Pattern pattern=Pattern.compile(regex);
 		Matcher match=pattern.matcher(completeConstraint);
@@ -117,21 +117,8 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		EClass eclass=null;
 		try {
 			eclass=(EClass)packageInstance.getClass().getMethod("get"+queryContext).invoke(packageInstance);
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			//Nothing to do
 		}
 		return eclass;
 	}
@@ -142,20 +129,17 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	 * @param query a String like context Usecase inv: self.ID<10
 	 * @param resource the Resource for the Diagram to execute on like my.usecase
 	 * @return IQueryResult {@link IQueryResult}
+	 * @throws ParserException 
 	 * @throws ParserException
 	 */
-	public static IQueryResult validateOclQuery(EClass context, String query, Resource resource){
+	public static IQueryResult validateOclQuery(EClass context, String query, Resource resource) throws ParserException{
 		OCL ocl= OCL.newInstance();
 		Condition condition=null;
-		try {
-			condition = new org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition<EClassifier, EClass, EObject>(
+		condition = new org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition<EClassifier, EClass, EObject>(
 					ocl.getEnvironment(),
 					query,
 					context);
-		} catch (ParserException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
 				new FROM(resource.getContents()), new WHERE((EObjectCondition) condition));
 

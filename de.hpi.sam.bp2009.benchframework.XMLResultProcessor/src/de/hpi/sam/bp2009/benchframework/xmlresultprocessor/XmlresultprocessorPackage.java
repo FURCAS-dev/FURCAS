@@ -41,7 +41,7 @@ public interface XmlresultprocessorPackage extends EPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	String eNS_URI = "http://de.hpi.sam.benchframework.xmlresultprocessor";
+	String eNS_URI = "http://de.hpi.sam.bp2009.benchframework.xmlresultprocessor";
 
 	/**
 	 * The package namespace name.
@@ -68,6 +68,24 @@ public interface XmlresultprocessorPackage extends EPackage {
 	 * @generated
 	 */
 	int XML_RESULT_PROCESSOR = 0;
+
+	/**
+	 * The feature id for the '<em><b>Result Page</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_RESULT_PROCESSOR__RESULT_PAGE = BenchframeworkPackage.RESULT_PROCESSOR__RESULT_PAGE;
+
+	/**
+	 * The feature id for the '<em><b>Testrun</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int XML_RESULT_PROCESSOR__TESTRUN = BenchframeworkPackage.RESULT_PROCESSOR__TESTRUN;
 
 	/**
 	 * The number of structural features of the '<em>XML Result Processor</em>' class.

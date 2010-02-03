@@ -111,6 +111,13 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	private EDataType uiComponentEDataType = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType exceptionEDataType = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -187,6 +194,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 */
 	public EReference getEngine_TestRuns() {
 		return (EReference)engineEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEngine_ExeptionsDuringLastRun() {
+		return (EAttribute)engineEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -401,6 +417,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getException() {
+		return exceptionEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public BenchframeworkFactory getBenchframeworkFactory() {
 		return (BenchframeworkFactory)getEFactoryInstance();
 	}
@@ -426,6 +451,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		// Create classes and their features
 		engineEClass = createEClass(ENGINE);
 		createEReference(engineEClass, ENGINE__TEST_RUNS);
+		createEAttribute(engineEClass, ENGINE__EXEPTIONS_DURING_LAST_RUN);
 
 		operatorEClass = createEClass(OPERATOR);
 		createEReference(operatorEClass, OPERATOR__OPTION);
@@ -457,6 +483,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		outputStreamEDataType = createEDataType(OUTPUT_STREAM);
 		wizardPageEDataType = createEDataType(WIZARD_PAGE);
 		uiComponentEDataType = createEDataType(UI_COMPONENT);
+		exceptionEDataType = createEDataType(EXCEPTION);
 	}
 
 	/**
@@ -491,12 +518,16 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		// Initialize classes and features; add operations and parameters
 		initEClass(engineEClass, Engine.class, "Engine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEngine_TestRuns(), this.getTestRun(), null, "testRuns", null, 0, -1, Engine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
+		EGenericType g2 = createEGenericType(this.getException());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getEngine_ExeptionsDuringLastRun(), g1, "exeptionsDuringLastRun", null, 0, 1, Engine.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		addEOperation(engineEClass, null, "benchmark", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		EOperation op = addEOperation(engineEClass, null, "getRegisteredOperators", 0, 1, IS_UNIQUE, IS_ORDERED);
-		EGenericType g1 = createEGenericType(ecorePackage.getEEList());
-		EGenericType g2 = createEGenericType(this.getOperator());
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(this.getOperator());
 		g1.getETypeArguments().add(g2);
 		initEOperation(op, g1);
 
@@ -578,6 +609,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEDataType(outputStreamEDataType, OutputStream.class, "OutputStream", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(wizardPageEDataType, WizardPage.class, "WizardPage", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(uiComponentEDataType, Composite.class, "UIComponent", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(exceptionEDataType, Exception.class, "Exception", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

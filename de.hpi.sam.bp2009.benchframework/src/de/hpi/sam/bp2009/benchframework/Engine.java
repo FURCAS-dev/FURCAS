@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.Engine#getTestRuns <em>Test Runs</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.Engine#getExeptionsDuringLastRun <em>Exeptions During Last Run</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,6 +43,32 @@ public interface Engine extends EObject {
 	 * @generated
 	 */
 	EList<TestRun> getTestRuns();
+
+	/**
+	 * Returns the value of the '<em><b>Exeptions During Last Run</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Exeptions During Last Run</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Exeptions During Last Run</em>' attribute.
+	 * @see #setExeptionsDuringLastRun(EList)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getEngine_ExeptionsDuringLastRun()
+	 * @model many="false" transient="true"
+	 * @generated
+	 */
+	EList<Exception> getExeptionsDuringLastRun();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.Engine#getExeptionsDuringLastRun <em>Exeptions During Last Run</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exeptions During Last Run</em>' attribute.
+	 * @see #getExeptionsDuringLastRun()
+	 * @generated
+	 */
+	void setExeptionsDuringLastRun(EList<Exception> value);
 
 	/**
 	 * <!-- begin-user-doc -->

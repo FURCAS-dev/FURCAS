@@ -66,8 +66,7 @@ public class ListPage extends WizardPage {
 			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
-				
+				//Nothing to do
 			}
 		});
 		setControl(composite);

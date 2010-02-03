@@ -80,13 +80,22 @@ public interface BenchframeworkPackage extends EPackage {
 	int ENGINE__TEST_RUNS = 0;
 
 	/**
+	 * The feature id for the '<em><b>Exeptions During Last Run</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENGINE__EXEPTIONS_DURING_LAST_RUN = 1;
+
+	/**
 	 * The number of structural features of the '<em>Engine</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENGINE_FEATURE_COUNT = 1;
+	int ENGINE_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}' class.
@@ -360,6 +369,17 @@ public interface BenchframeworkPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Exception</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see java.lang.Exception
+	 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getException()
+	 * @generated
+	 */
+	int EXCEPTION = 10;
+
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.Engine <em>Engine</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -379,6 +399,17 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEngine_TestRuns();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.Engine#getExeptionsDuringLastRun <em>Exeptions During Last Run</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Exeptions During Last Run</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.Engine#getExeptionsDuringLastRun()
+	 * @see #getEngine()
+	 * @generated
+	 */
+	EAttribute getEngine_ExeptionsDuringLastRun();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
@@ -628,6 +659,17 @@ public interface BenchframeworkPackage extends EPackage {
 	EDataType getUIComponent();
 
 	/**
+	 * Returns the meta object for data type '{@link java.lang.Exception <em>Exception</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Exception</em>'.
+	 * @see java.lang.Exception
+	 * @model instanceClass="java.lang.Exception" serializeable="false"
+	 * @generated
+	 */
+	EDataType getException();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -666,6 +708,14 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ENGINE__TEST_RUNS = eINSTANCE.getEngine_TestRuns();
+
+		/**
+		 * The meta object literal for the '<em><b>Exeptions During Last Run</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ENGINE__EXEPTIONS_DURING_LAST_RUN = eINSTANCE.getEngine_ExeptionsDuringLastRun();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}' class.
@@ -868,6 +918,16 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType UI_COMPONENT = eINSTANCE.getUIComponent();
+
+		/**
+		 * The meta object literal for the '<em>Exception</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see java.lang.Exception
+		 * @see de.hpi.sam.bp2009.benchframework.impl.BenchframeworkPackageImpl#getException()
+		 * @generated
+		 */
+		EDataType EXCEPTION = eINSTANCE.getException();
 
 	}
 

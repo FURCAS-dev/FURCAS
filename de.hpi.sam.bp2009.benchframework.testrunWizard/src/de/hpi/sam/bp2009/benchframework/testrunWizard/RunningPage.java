@@ -6,19 +6,27 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.events.ControlAdapter;
+import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+import de.hpi.sam.bp2009.benchframework.Engine;
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
 public class RunningPage extends WizardPage {
-	
+	final String NEW_LINE = System.getProperty("line.separator");
+	protected static final String RUNSUCCEED = "Yeah, benchmark complete!!";
 	private boolean benchmarked=false;
+	private Label error;
+	private Composite composite;
 	
 	protected RunningPage(String pageName) {
 		super(pageName);
@@ -28,13 +36,15 @@ public class RunningPage extends WizardPage {
 	}
 	public void createControl(Composite parent) {
 		//create the widgets for the page
-		Composite composite = new Composite(parent, SWT.NONE);
+		composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout(1, false);
 		composite.setLayout(layout);
 		
 		Label label = new Label(composite, SWT.CENTER);
 		label.setText("Click Run to Start the Run.");
 		Button btn = new Button(composite, SWT.CENTER);
+		error = new Label(composite, SWT.LEFT );    
+
 		btn.setText("START");
 		btn.pack();
 		btn.addSelectionListener(new SelectionListener() {
@@ -44,8 +54,24 @@ public class RunningPage extends WizardPage {
 				Button bt = (Button)e.getSource();
 				bt.setEnabled(false);
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
-				wiz.getIntImpl().getEngine().getTestRuns().add(wiz.getRun());
-				wiz.getIntImpl().getEngine().benchmark();
+				Engine engine = wiz.getIntImpl().getEngine();
+				engine.getTestRuns().add(wiz.getRun());
+				try{
+					engine.benchmark();
+				}catch(java.lang.Throwable e1){
+					error.setText(e1.getMessage()+"\n");
+					composite.layout();
+					return;
+				}
+				if(engine.getExeptionsDuringLastRun()!=null){
+					StringBuilder sb= new StringBuilder();
+					if(engine.getExeptionsDuringLastRun().size()>0)
+						for(Exception ex: engine.getExeptionsDuringLastRun())
+							sb.append(getCustomStackTrace(ex));
+					else
+						sb.append(RUNSUCCEED);
+					error.setText(sb.toString());
+				}
 				EList<ResultObject> results= new BasicEList<ResultObject>();
 				for(Operator op:wiz.getRun().getOperators())
 					results.add(op.getResult());
@@ -53,6 +79,8 @@ public class RunningPage extends WizardPage {
 					wiz.getIntImpl().getResultProcessor().getResultPage();
 				bt.setEnabled(true);
 				benchmarked=true;
+				composite.layout();
+				
 
 			}
 
@@ -66,6 +94,7 @@ public class RunningPage extends WizardPage {
 		});
 		//ProgressBar bar = new ProgressBar(composite, SWT.CENTER);
 	    setControl(composite);
+
 	}
 	
 	@Override
@@ -80,4 +109,19 @@ public class RunningPage extends WizardPage {
 			((TestframeworkWizard)getWizard()).couldBeFinished();
 		return page;
 	}
+	public static String getCustomStackTrace(Throwable aThrowable) {
+		//add the class name and any message passed to constructor
+		final StringBuilder result = new StringBuilder();
+		result.append(aThrowable.toString());
+		final String NEW_LINE = System.getProperty("line.separator");
+		result.append(NEW_LINE);
+
+		//add each element of the stack trace
+		for (StackTraceElement element : aThrowable.getStackTrace() ){
+		result.append( element );
+		result.append( NEW_LINE );
+		}
+		return result.toString();
+		}
+
 }

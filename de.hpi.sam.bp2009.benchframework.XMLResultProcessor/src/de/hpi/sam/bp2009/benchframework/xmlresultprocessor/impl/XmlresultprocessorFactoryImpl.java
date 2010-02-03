@@ -31,7 +31,7 @@ public class XmlresultprocessorFactoryImpl extends EFactoryImpl implements Xmlre
 	 */
 	public static XmlresultprocessorFactory init() {
 		try {
-			XmlresultprocessorFactory theXmlresultprocessorFactory = (XmlresultprocessorFactory)EPackage.Registry.INSTANCE.getEFactory("http://de.hpi.sam.benchframework.xmlresultprocessor"); 
+			XmlresultprocessorFactory theXmlresultprocessorFactory = (XmlresultprocessorFactory)EPackage.Registry.INSTANCE.getEFactory("http://de.hpi.sam.bp2009.benchframework.xmlresultprocessor"); 
 			if (theXmlresultprocessorFactory != null) {
 				return theXmlresultprocessorFactory;
 			}

@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
@@ -15,6 +16,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
@@ -32,6 +34,7 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EngineImpl#getTestRuns <em>Test Runs</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.EngineImpl#getExeptionsDuringLastRun <em>Exeptions During Last Run</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,6 +55,16 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	 * @ordered
 	 */
 	protected EList<TestRun> testRuns;
+
+	/**
+	 * The cached value of the '{@link #getExeptionsDuringLastRun() <em>Exeptions During Last Run</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExeptionsDuringLastRun()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Exception> exeptionsDuringLastRun;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -87,6 +100,27 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Exception> getExeptionsDuringLastRun() {
+		return exeptionsDuringLastRun;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExeptionsDuringLastRun(EList<Exception> newExeptionsDuringLastRun) {
+		EList<Exception> oldExeptionsDuringLastRun = exeptionsDuringLastRun;
+		exeptionsDuringLastRun = newExeptionsDuringLastRun;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.ENGINE__EXEPTIONS_DURING_LAST_RUN, oldExeptionsDuringLastRun, exeptionsDuringLastRun));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
 	public void benchmark() {
@@ -95,8 +129,9 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				try {
 					op.execute();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					if(getExeptionsDuringLastRun()==null)
+						setExeptionsDuringLastRun(new BasicEList<Exception>());
+					getExeptionsDuringLastRun().add(e);
 				}
 			}
 		}
@@ -160,6 +195,8 @@ public class EngineImpl extends EObjectImpl implements Engine {
 		switch (featureID) {
 			case BenchframeworkPackage.ENGINE__TEST_RUNS:
 				return getTestRuns();
+			case BenchframeworkPackage.ENGINE__EXEPTIONS_DURING_LAST_RUN:
+				return getExeptionsDuringLastRun();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -177,6 +214,9 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				getTestRuns().clear();
 				getTestRuns().addAll((Collection<? extends TestRun>)newValue);
 				return;
+			case BenchframeworkPackage.ENGINE__EXEPTIONS_DURING_LAST_RUN:
+				setExeptionsDuringLastRun((EList<Exception>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -192,6 +232,9 @@ public class EngineImpl extends EObjectImpl implements Engine {
 			case BenchframeworkPackage.ENGINE__TEST_RUNS:
 				getTestRuns().clear();
 				return;
+			case BenchframeworkPackage.ENGINE__EXEPTIONS_DURING_LAST_RUN:
+				setExeptionsDuringLastRun((EList<Exception>)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -206,8 +249,26 @@ public class EngineImpl extends EObjectImpl implements Engine {
 		switch (featureID) {
 			case BenchframeworkPackage.ENGINE__TEST_RUNS:
 				return testRuns != null && !testRuns.isEmpty();
+			case BenchframeworkPackage.ENGINE__EXEPTIONS_DURING_LAST_RUN:
+				return exeptionsDuringLastRun != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (exeptionsDuringLastRun: ");
+		result.append(exeptionsDuringLastRun);
+		result.append(')');
+		return result.toString();
 	}
 
 } //EngineImpl
