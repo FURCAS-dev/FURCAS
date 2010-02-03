@@ -15,7 +15,7 @@ import org.eclipse.swt.widgets.Text;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorOptionObject;
 
 public class RandomGeneratorWizardPage extends WizardPage {
-	private static final String PAGETITEL	=	"Random Generator Configuration";
+	private static final String PAGETITLE	=	"Random Generator Configuration";
 	private static final String PAGEDESC	=	"Set the options for the Random Generator.";
 	private static final String LABELTEXT 	= 	"Enter the URI of the metaModel, if empty we use petrinet";
 	private static final String TOOLTIPTEXT = 	"This url is used to load an EPackage from the PackageRegistry";
@@ -25,7 +25,7 @@ public class RandomGeneratorWizardPage extends WizardPage {
 
 	protected RandomGeneratorWizardPage(String pageName) {
 		super(pageName);
-		setTitle(PAGETITEL);
+		setTitle(PAGETITLE);
 		setDescription(PAGEDESC);
 		setPageComplete(false);
 	}
