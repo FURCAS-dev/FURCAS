@@ -300,6 +300,15 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getResultProcessor_Name() {
+		return (EAttribute)resultProcessorEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getOptionObject() {
 		return optionObjectEClass;
 	}
@@ -490,6 +499,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		resultProcessorEClass = createEClass(RESULT_PROCESSOR);
 		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__RESULT_PAGE);
 		createEReference(resultProcessorEClass, RESULT_PROCESSOR__TESTRUN);
+		createEAttribute(resultProcessorEClass, RESULT_PROCESSOR__NAME);
 
 		optionObjectEClass = createEClass(OPTION_OBJECT);
 		createEAttribute(optionObjectEClass, OPTION_OBJECT__WIZARD_PAGE);
@@ -580,6 +590,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		initEClass(resultProcessorEClass, ResultProcessor.class, "ResultProcessor", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getResultProcessor_ResultPage(), this.getWizardPage(), "resultPage", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getResultProcessor_Testrun(), this.getTestRun(), null, "testrun", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResultProcessor_Name(), ecorePackage.getEString(), "name", null, 0, 1, ResultProcessor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(optionObjectEClass, OptionObject.class, "OptionObject", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOptionObject_WizardPage(), this.getWizardPage(), "wizardPage", null, 0, 1, OptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -601,10 +612,11 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		addEParameter(op, g1, "map", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getResultObject_Status(), this.getStatus(), "status", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getResultObject_Status(), this.getStatus(), "status", "", 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResultObject_Message(), ecorePackage.getEString(), "message", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		addEOperation(resultObjectEClass, this.getUIComponent(), "getComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(resultObjectEClass, this.getUIComponent(), "getComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getUIComponent(), "parent", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserInterface_Engine(), this.getEngine(), null, "engine", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

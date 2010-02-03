@@ -40,7 +40,6 @@ public class RunningPage extends WizardPage {
 		label.setText("Click Run to Start the Run.");
 		Button btn = new Button(composite, SWT.CENTER);
 		error = new Label(composite, SWT.LEFT );    
-
 		btn.setText("START");
 		btn.pack();
 		btn.addSelectionListener(new SelectionListener() {
@@ -67,6 +66,8 @@ public class RunningPage extends WizardPage {
 					else
 						sb.append(RUNSUCCEED);
 					error.setText(sb.toString());
+				}else{
+					error.setText(RUNSUCCEED);
 				}
 				EList<ResultObject> results= new BasicEList<ResultObject>();
 				for(Operator op:wiz.getRun().getOperators())
@@ -76,13 +77,13 @@ public class RunningPage extends WizardPage {
 				bt.setEnabled(true);
 				benchmarked=true;
 				composite.layout();
-				
+				wiz.getContainer().updateButtons();
 
 			}
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-				// TODO Auto-generated method stub
+				// nothing to do
 
 			}
 
@@ -103,6 +104,8 @@ public class RunningPage extends WizardPage {
 		IWizardPage page=super.getNextPage();
 		if(page==null)
 			((TestframeworkWizard)getWizard()).couldBeFinished();
+		else if(page.getControl()!=null)
+			page.getControl().update();
 		return page;
 	}
 	public static String getCustomStackTrace(Throwable aThrowable) {

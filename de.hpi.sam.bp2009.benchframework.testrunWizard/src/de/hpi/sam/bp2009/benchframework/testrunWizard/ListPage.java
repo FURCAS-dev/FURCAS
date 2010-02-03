@@ -27,6 +27,7 @@ public class ListPage extends WizardPage {
 	private OperatorTable tbl = new OperatorTable();
 	private Combo operatorBox;
 	private Map<String, EClass> nameToEclass;
+	private Map<String, ResultProcessor> nameToProc;
 	private Combo processorBox;
 
 	protected ListPage(String pageName) {
@@ -52,15 +53,26 @@ public class ListPage extends WizardPage {
 		tbl.createTable(composite);
 
 		buildRemoveButton(composite);
+		generateEClassMappingAndSelectionBoxForResultProcessors(composite);
+		setControl(composite);
+		setPageComplete(true);
+	}
+
+	private void generateEClassMappingAndSelectionBoxForResultProcessors(
+			Composite composite) {
 		processorBox=new Combo(composite, SWT.UP);
-		for(ResultProcessor p:((TestframeworkWizard)getWizard()).getIntImpl().getEngine().getRegisteredResultProcessors())
-			processorBox.setData(p.toString(),p);
+		nameToProc=new HashMap<String,ResultProcessor>();
+		for(ResultProcessor p:((TestframeworkWizard)getWizard()).getIntImpl().getEngine().getRegisteredResultProcessors()){
+			nameToProc.put(p.getName(), p);
+			processorBox.add(p.getName());
+			}
 		processorBox.addSelectionListener(new SelectionListener() {
 			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ResultProcessor obj = (ResultProcessor) processorBox.getData(processorBox.getItem(processorBox.getSelectionIndex()));
+				ResultProcessor obj = nameToProc.get(processorBox.getItem(processorBox.getSelectionIndex()));
 				obj.setTestrun(((TestframeworkWizard)getWizard()).getRun());
+				((TestframeworkWizard)getWizard()).setResultProcessor(obj);
 				
 			}
 			
@@ -69,8 +81,6 @@ public class ListPage extends WizardPage {
 				//Nothing to do
 			}
 		});
-		setControl(composite);
-		setPageComplete(true);
 	}
 
 	private void generateEClassMappingAndSelectionBoxForOperators(

@@ -12,6 +12,9 @@ import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
@@ -352,5 +355,14 @@ public class JETMResultObjectImpl extends ResultObjectImpl implements JETMResult
 		result.append(')');
 		return result.toString();
 	}
-
+	@Override
+	public Composite getComposite(Composite parent) {
+		
+		Composite composite=super.getComposite(parent);
+		Label label1 = new Label(composite, SWT.CENTER);
+		label1.setText("Duration: "+getDuration());
+		Label label2 = new Label(composite, SWT.CENTER);
+		label2.setText("Ticks: "+getTicks());
+		return composite;
+	}
 } //JETMResultObjectImpl

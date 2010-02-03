@@ -23,6 +23,7 @@ import org.eclipse.jface.wizard.WizardPage;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultProcessor#getResultPage <em>Result Page</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultProcessor#getTestrun <em>Testrun</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultProcessor#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,5 +83,31 @@ public interface ResultProcessor extends EObject {
 	 * @generated
 	 */
 	void setTestrun(TestRun value);
+
+	/**
+	 * Returns the value of the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Name</em>' attribute.
+	 * @see #setName(String)
+	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultProcessor_Name()
+	 * @model
+	 * @generated
+	 */
+	String getName();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.ResultProcessor#getName <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Name</em>' attribute.
+	 * @see #getName()
+	 * @generated
+	 */
+	void setName(String value);
 
 } // ResultProcessor

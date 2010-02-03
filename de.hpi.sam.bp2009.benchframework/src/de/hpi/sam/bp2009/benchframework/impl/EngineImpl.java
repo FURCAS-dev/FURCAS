@@ -179,7 +179,7 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}
-				if(obj instanceof Operator)
+				if(obj instanceof ResultProcessor)
 					resultProcessors.add((ResultProcessor) obj);
 		}
 		return resultProcessors;

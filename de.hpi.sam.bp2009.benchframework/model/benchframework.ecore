@@ -46,6 +46,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultPage" eType="#//WizardPage"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="testrun" eType="#//TestRun"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OptionObject" abstract="true" interface="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -81,8 +82,11 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Encapsules a view for the results of an operator execution."/>
     </eAnnotations>
-    <eOperations name="getComposite" eType="#//UIComponent"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"/>
+    <eOperations name="getComposite" eType="#//UIComponent">
+      <eParameters name="parent" eType="#//UIComponent"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"
+        defaultValueLiteral=""/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="UserInterface" abstract="true">

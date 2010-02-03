@@ -17,7 +17,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 /**
  * <!-- begin-user-doc -->
@@ -77,10 +80,11 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected ResultObjectImpl() {
 		super();
+		setStatus(Status.UNKOWN);
 	}
 
 	/**
@@ -138,12 +142,19 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	public Composite getComposite() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+	public Composite getComposite(Composite parent) {
+		Composite composite = new Composite(parent, SWT.NONE);
+		GridLayout layout = new GridLayout(1, false);
+		composite.setLayout(layout);
+		
+		Label label1 = new Label(composite, SWT.CENTER);
+		label1.setText(getStatus().getLiteral());
+		Label label2 = new Label(composite, SWT.CENTER);
+		label2.setText(getMessage());	
+		
+		return composite;
 	}
 
 	/**

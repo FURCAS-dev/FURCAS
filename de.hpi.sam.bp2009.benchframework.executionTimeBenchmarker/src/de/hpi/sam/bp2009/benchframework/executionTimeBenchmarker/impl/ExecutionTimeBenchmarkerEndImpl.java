@@ -552,6 +552,7 @@ public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements Exec
 		rslt.setEndTime(point.getEndTime());
 		rslt.setTicks(point.getTicks());
 		rslt.setTransactionTime(point.getTransactionTime());
+		setResult(rslt);
 	}
 
 } //ExecutionTimeBenchmarkerEndImpl

@@ -24,9 +24,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGenerator;
 import de.hpi.sam.bp2009.benchframework.randomGenerator.RandomGeneratorFactory;
@@ -343,6 +345,9 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		//instantiate the meta model
 		instantiate(metaClasses.get(new Random().nextInt(metaClasses.size())), result);
 		this.getTestRun().setModel(resultRS);
+		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
+		getResult().setStatus(Status.SUCCESSFULL);
+		getResult().setMessage("Generated "+result.toString());
 	}
 	
 	/**

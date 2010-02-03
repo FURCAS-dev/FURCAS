@@ -13,15 +13,18 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.query.statements.IQueryResult;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 /**
@@ -313,9 +316,12 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 */
 	
 	public void execute() {
+		setResult(OclOperatorFactory.eINSTANCE.createOclResult());
 		if (option instanceof OclOptionObject){
 			executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
-		}
+			getResult().setStatus(Status.SUCCESSFULL);
+		}else
+			getResult().setStatus(Status.FAILED);
 	}
 	
 	/**
@@ -470,7 +476,10 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	public void executeQueries(ResourceSet resource, OclOptionObject option) {
 		for(String con: option.getConstraints()){
 			OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
-			ocl.executeQueryOn(con, resource);
+			
+			IQueryResult r = ocl.executeQueryOn(con, resource);
+			if(getResult() instanceof OclResult)
+				((OclResult)getResult()).getQueriesToResults().put(con, r);
 		}
 		
 	}

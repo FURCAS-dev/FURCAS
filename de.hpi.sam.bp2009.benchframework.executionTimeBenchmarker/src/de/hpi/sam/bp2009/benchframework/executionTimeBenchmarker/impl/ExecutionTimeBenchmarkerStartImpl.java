@@ -15,9 +15,11 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
@@ -665,6 +667,9 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 		EtmMonitor monitor = EtmManager.getEtmMonitor();
 		monitor.start();
 		point = monitor.createPoint(UUID.randomUUID().toString());
+		ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
+		rslt.setStatus(Status.SUCCESSFULL);
+		rslt.setMessage("Monitor started!");
 	}
 
 

@@ -16,5 +16,11 @@
             class="de.hpi.sam.bp2009.benchframework.simpleResultProcessor.SimpleResultProcessorPackage"
             genModel="model/simpleResultProcessor.genmodel"/>
    </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.resultExtensionPointID">
+      <result
+            resultClass="de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl.SimpleResultProcessorImpl">
+      </result>
+   </extension>
 
 </plugin>

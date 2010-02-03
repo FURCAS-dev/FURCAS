@@ -90,6 +90,10 @@ public abstract class  AdvancedWizard extends Wizard implements INewWizard{
         }
         super.dispose();
     }
+	@Override
+	public boolean isHelpAvailable() {
+		return false;
+	}
     @Override
     public IWizardPage getNextPage(IWizardPage page) {
         int index = pagesInOrder.indexOf(page);

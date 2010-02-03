@@ -88,6 +88,15 @@ public interface SimpleResultProcessorPackage extends EPackage {
 	int SIMPLE_RESULT_PROCESSOR__TESTRUN = BenchframeworkPackage.RESULT_PROCESSOR__TESTRUN;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SIMPLE_RESULT_PROCESSOR__NAME = BenchframeworkPackage.RESULT_PROCESSOR__NAME;
+
+	/**
 	 * The number of structural features of the '<em>Simple Result Processor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

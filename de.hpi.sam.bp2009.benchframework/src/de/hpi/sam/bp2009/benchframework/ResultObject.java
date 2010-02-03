@@ -33,6 +33,7 @@ import org.eclipse.swt.widgets.Composite;
 public interface ResultObject extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * The literals are from the enumeration {@link de.hpi.sam.bp2009.benchframework.Status}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -44,7 +45,7 @@ public interface ResultObject extends EObject {
 	 * @see de.hpi.sam.bp2009.benchframework.Status
 	 * @see #setStatus(Status)
 	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_Status()
-	 * @model
+	 * @model default=""
 	 * @generated
 	 */
 	Status getStatus();
@@ -89,9 +90,9 @@ public interface ResultObject extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model kind="operation" dataType="de.hpi.sam.bp2009.benchframework.UIComponent"
+	 * @model dataType="de.hpi.sam.bp2009.benchframework.UIComponent" parentDataType="de.hpi.sam.bp2009.benchframework.UIComponent"
 	 * @generated
 	 */
-	Composite getComposite();
+	Composite getComposite(Composite parent);
 
 } // ResultObject

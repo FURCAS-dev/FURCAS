@@ -7,12 +7,14 @@
 package de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.jface.wizard.WizardPage;
 
+import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.simpleResultProcessor.SimpleResultProcessor;
 import de.hpi.sam.bp2009.benchframework.simpleResultProcessor.SimpleResultProcessorPackage;
@@ -26,6 +28,7 @@ import de.hpi.sam.bp2009.benchframework.simpleResultProcessor.SimpleResultProces
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl.SimpleResultProcessorImpl#getResultPage <em>Result Page</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl.SimpleResultProcessorImpl#getTestrun <em>Testrun</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl.SimpleResultProcessorImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -61,12 +64,34 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 	protected TestRun testrun;
 
 	/**
+	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @see #getName()
 	 * @generated
+	 * @ordered
 	 */
-	protected SimpleResultProcessorImpl() {
+	protected static final String NAME_EDEFAULT = null;
+	private static final String NAME = "Simple";
+	/**
+	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public SimpleResultProcessorImpl() {
 		super();
+		setResultPage(new SimpleResultPage(new BasicEList<Operator>()));
+		setName(NAME);
 	}
 
 	/**
@@ -126,6 +151,27 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__NAME, oldName, name));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public TestRun getTestrun() {
 		if (testrun != null && testrun.eIsProxy()) {
 			InternalEObject oldTestrun = (InternalEObject)testrun;
@@ -152,6 +198,8 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
 				if (resolve) return getTestrun();
 				return basicGetTestrun();
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__NAME:
+				return getName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,6 +217,9 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 				return;
 			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
 				setTestrun((TestRun)newValue);
+				return;
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__NAME:
+				setName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -188,6 +239,9 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
 				setTestrun((TestRun)null);
 				return;
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__NAME:
+				setName(NAME_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -204,6 +258,8 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 				return RESULT_PAGE_EDEFAULT == null ? resultPage != null : !RESULT_PAGE_EDEFAULT.equals(resultPage);
 			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__TESTRUN:
 				return testrun != null;
+			case SimpleResultProcessorPackage.SIMPLE_RESULT_PROCESSOR__NAME:
+				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -220,6 +276,8 @@ public class SimpleResultProcessorImpl extends EObjectImpl implements SimpleResu
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (resultPage: ");
 		result.append(resultPage);
+		result.append(", name: ");
+		result.append(name);
 		result.append(')');
 		return result.toString();
 	}

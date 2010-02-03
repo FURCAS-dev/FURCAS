@@ -191,13 +191,22 @@ public interface BenchframeworkPackage extends EPackage {
 	int RESULT_PROCESSOR__TESTRUN = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RESULT_PROCESSOR__NAME = 2;
+
+	/**
 	 * The number of structural features of the '<em>Result Processor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_PROCESSOR_FEATURE_COUNT = 2;
+	int RESULT_PROCESSOR_FEATURE_COUNT = 3;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}' class.
@@ -529,6 +538,17 @@ public interface BenchframeworkPackage extends EPackage {
 	EReference getResultProcessor_Testrun();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultProcessor#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultProcessor#getName()
+	 * @see #getResultProcessor()
+	 * @generated
+	 */
+	EAttribute getResultProcessor_Name();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -833,6 +853,14 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EReference RESULT_PROCESSOR__TESTRUN = eINSTANCE.getResultProcessor_Testrun();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute RESULT_PROCESSOR__NAME = eINSTANCE.getResultProcessor_Name();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.OptionObject <em>Option Object</em>}' class.

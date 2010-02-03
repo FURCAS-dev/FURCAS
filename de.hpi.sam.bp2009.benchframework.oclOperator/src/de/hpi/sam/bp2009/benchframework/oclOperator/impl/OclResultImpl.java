@@ -7,11 +7,15 @@
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.query.statements.IQueryResult;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
@@ -155,5 +159,13 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 		result.append(')');
 		return result.toString();
 	}
-
+	@Override
+	public Composite getComposite(Composite parent) {
+		Composite composite = super.getComposite(parent);
+		for(Entry<String, IQueryResult> entry:queriesToResults.entrySet()){
+			Label label1 = new Label(composite, SWT.CENTER);
+			label1.setText(entry.getKey() +" : "+entry.getValue());
+		}
+		return composite;
+	}
 } //OclResultImpl
