@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: IterationTemplateReject.java,v 1.4 2009/09/01 20:11:22 ewillink Exp $
+ * $Id: IterationTemplateReject.java,v 1.5 2010/02/03 19:54:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.evaluation;
@@ -63,8 +63,6 @@ public class IterationTemplateReject<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, 
 		}
 		
 		Boolean bodyVal = (Boolean)body;
-		if (bodyVal == null)
-			return resultVal;
 		boolean bodyCond = bodyVal.booleanValue();
 		if (!bodyCond)
 			resultVal.add(currObj);

@@ -169,35 +169,50 @@
         private boolean unimplementedSymbolsWarning = $unimplemented_symbols_warning;
 
         private static ParseTable prsTable = new $prs_type();
+        @Override
         public ParseTable getParseTable() { return prsTable; }
 
         private BacktrackingParser btParser = null;
         public BacktrackingParser getParser() { return btParser; }
 
+        @Override
         protected void setResult(Object object) { btParser.setSym1(object); }
+        @Override
         protected Object getRhsSym(int i) { return btParser.getSym(i); }
 
+        @Override
         protected int getRhsTokenIndex(int i) { return btParser.getToken(i); }
+        @Override
         protected IToken getRhsIToken(int i) { return prsStream.getIToken(getRhsTokenIndex(i)); }
         
+        @Override
         protected int getRhsFirstTokenIndex(int i) { return btParser.getFirstToken(i); }
+        @Override
         protected IToken getRhsFirstIToken(int i) { return prsStream.getIToken(getRhsFirstTokenIndex(i)); }
 
+        @Override
         protected int getRhsLastTokenIndex(int i) { return btParser.getLastToken(i); }
+        @Override
         protected IToken getRhsLastIToken(int i) { return prsStream.getIToken(getRhsLastTokenIndex(i)); }
 
+        @Override
         protected int getLeftSpan() { return btParser.getFirstToken(); }
+        @Override
         protected IToken getLeftIToken()  { return prsStream.getIToken(getLeftSpan()); }
 
+        @Override
         protected int getRightSpan() { return btParser.getLastToken(); }
+        @Override
         protected IToken getRightIToken() { return prsStream.getIToken(getRightSpan()); }
 
+        @Override
         protected int getRhsErrorTokenIndex(int i)
         {
             int index = btParser.getToken(i);
             IToken err = prsStream.getIToken(index);
             return (err instanceof ErrorToken ? index : 0);
         }
+        @Override
         protected ErrorToken getRhsErrorIToken(int i)
         {
             int index = btParser.getToken(i);
@@ -206,6 +221,7 @@
         }
 
 		@SuppressWarnings("nls")
+        @Override
         public void reset(ILexStream lexStream)
         {
             prsStream = new $prs_stream_class(getEnvironment(), lexStream);
@@ -264,27 +280,34 @@
 	        }
         }
         
+        @Override
         public int numTokenKinds() { return $sym_type.numTokenKinds; }
+        @Override
         public String[] orderedTerminalSymbols() { return $sym_type.orderedTerminalSymbols; }
         public String getTokenKindName(int kind) { return $sym_type.orderedTerminalSymbols[kind]; }
         public int getEOFTokenKind() { return prsTable.getEoftSymbol(); }
+        @Override
         public $prs_stream_class getIPrsStream() { return prsStream; }
 
+        @Override
         public $ast_class parser()
         {
             return parser(null, getDefaultRepairCount());
         }
         
+        @Override
         public $ast_class parser(Monitor monitor)
         {
             return parser(monitor, getDefaultRepairCount());
         }
         
+        @Override
         public $ast_class parser(int error_repair_count)
         {
             return parser(null, error_repair_count);
         }
 
+        @Override
         public $ast_class parser(Monitor monitor, int error_repair_count)
         {
             btParser.setMonitor(monitor);

@@ -139,9 +139,11 @@
         private $super_stream_class lexStream;
         
         private static ParseTable prs = new $prs_type();
+        @Override
         public ParseTable getParseTable() { return prs; }
 
         private LexParser lexParser = new LexParser();
+        @Override
         public LexParser getParser() { return lexParser; }
 
         public int getToken(int i) { return lexParser.getToken(i); }
@@ -151,6 +153,7 @@
         public int getLeftSpan() { return lexParser.getToken(1); }
         public int getRightSpan() { return lexParser.getLastToken(); }
   
+        @Override
         public void resetKeywordLexer()
         {
             if (kwLexer == null)
@@ -158,11 +161,13 @@
             else this.kwLexer.setInputChars(lexStream.getInputChars());
         }
 
+        @Override
         public void reset(char[] input_chars, String filename)
         {
             reset(input_chars, filename, 1);
         }
         
+        @Override
         public void reset(char[] input_chars, String filename, int tab)
         {
             lexStream = new $super_stream_class(getOCLEnvironment(), input_chars, filename, tab);
@@ -192,11 +197,14 @@
         	return oclEnvironment;
         }
 
+        @Override
         public $lex_stream_class getILexStream() { return lexStream; }
 
         /**
          * @deprecated replaced by {@link #getILexStream()}
          */
+        @Deprecated
+        @Override
         public ILexStream getLexStream() { return lexStream; }
 
         private void initializeLexer($prs_stream_class prsStream, int start_offset, int end_offset)
@@ -213,11 +221,13 @@
             prsStream.setStreamLength(prsStream.getSize());
         }
 
+        @Override
         public void lexer($prs_stream_class prsStream)
         {
             lexer(null, prsStream);
         }
         
+        @Override
         public void lexer(Monitor monitor, $prs_stream_class prsStream)
         {
             initializeLexer(prsStream, 0, -1);
@@ -225,11 +235,13 @@
             addEOF(prsStream, lexStream.getStreamIndex());
         }
 
+        @Override
         public void lexer($prs_stream_class prsStream, int start_offset, int end_offset)
         {
             lexer(null, prsStream, start_offset, end_offset);
         }
         
+        @Override
         public void lexer(Monitor monitor, $prs_stream_class prsStream, int start_offset, int end_offset)
         {
             if (start_offset <= 1)
@@ -245,6 +257,7 @@
          * If a parse stream was not passed to this Lexical analyser then we
          * simply report a lexical error. Otherwise, we produce a bad token.
          */
+        @Override
         public void reportLexicalError(int startLoc, int endLoc) {
             IPrsStream prs_stream = lexStream.getIPrsStream();
             if (prs_stream == null)

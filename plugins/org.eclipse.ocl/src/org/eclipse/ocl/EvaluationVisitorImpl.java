@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: EvaluationVisitorImpl.java,v 1.5 2010/01/11 22:28:16 ewillink Exp $
+ * $Id: EvaluationVisitorImpl.java,v 1.6 2010/02/03 19:54:13 ewillink Exp $
  */
 
 package org.eclipse.ocl;
@@ -933,9 +933,6 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 							// XOR does not have a short-circuit
 							argVal = arg.accept(getVisitor());
 							
-							if (sourceVal == null) {
-                                return argVal;
-                            }
 							return (argVal == null) ? sourceVal
 								: (((Boolean) sourceVal).booleanValue()
 									^ ((Boolean) argVal).booleanValue() ? Boolean.TRUE
@@ -1101,6 +1098,9 @@ public class EvaluationVisitorImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 
 						case PredefinedType.AT: {
 							// OrderedSet, Sequence::at(Integer)
+							if (!(argVal instanceof Integer)) {
+								return getInvalid();
+							}
 							int indexVal = ((Integer) argVal).intValue();
 							return CollectionUtil.at(sourceColl, indexVal);
 						}

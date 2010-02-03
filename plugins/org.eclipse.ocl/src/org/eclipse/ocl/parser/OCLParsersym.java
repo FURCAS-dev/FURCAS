@@ -20,7 +20,7 @@
 *        - 300534: Removing the use of deprecated macros.
 * </copyright>
 *
-* $Id: OCLParsersym.java,v 1.21 2010/01/25 11:31:46 asanchez Exp $
+* $Id: OCLParsersym.java,v 1.22 2010/02/03 19:54:12 ewillink Exp $
 */
 /**
 * Complete OCL Grammar

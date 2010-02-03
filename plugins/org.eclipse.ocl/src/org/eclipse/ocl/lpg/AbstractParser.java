@@ -15,7 +15,7 @@
  *   
  * </copyright>
  *
- * $Id: AbstractParser.java,v 1.9 2010/01/22 18:38:03 asanchez Exp $
+ * $Id: AbstractParser.java,v 1.10 2010/02/03 19:54:12 ewillink Exp $
  */
 package org.eclipse.ocl.lpg;
 
@@ -115,6 +115,7 @@ public abstract class AbstractParser {
 	 * @return
 	 * @deprecated clients should invoke {@link #parser()}
 	 */
+	@Deprecated
 	public CSTNode parseTokensToCST() {
 		return parser(null, defaultRepairCount);
 	}
@@ -123,6 +124,7 @@ public abstract class AbstractParser {
 	 * @param lexStream
      * @deprecated To set/reset the lex stream use {@link #reset(ILexStream)}
 	 */	
+	@Deprecated
 	public void resetLexStream(LexStream lexStream) {
 		getIPrsStream().resetLexStream(lexStream);
 	}
@@ -152,6 +154,7 @@ public abstract class AbstractParser {
 	 * @param lexer
      * @deprecated To set/reset the lex stream use {@link #reset(ILexStream)}
 	 */
+	@Deprecated
 	public void setLexStream(AbstractLexer lexer) {
 		this.lexer = lexer;
 		getIPrsStream().resetLexStream(lexer.getILexStream());
@@ -329,12 +332,12 @@ public abstract class AbstractParser {
 				if (benv != null) {
 					sev = benv
 						.getValue(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE);
-				}
-				if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-					benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
-						.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
-						"unquote", //$NON-NLS-1$
-						null);
+					if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+						benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+							.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
+							"unquote", //$NON-NLS-1$
+							null);
+					}
 				}
 			}
 		}
@@ -372,12 +375,12 @@ public abstract class AbstractParser {
 		if (benv != null) {
 			sev = benv
 				.getValue(ProblemOption.ELEMENT_NAME_QUOTE_ESCAPE);
-		}
-		if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
-			benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
-				.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
-				"unquote", //$NON-NLS-1$
-				token);
+			if ((sev != null) && (sev != ProblemHandler.Severity.OK)) {
+				benv.problem(sev, ProblemHandler.Phase.PARSER, OCLMessages
+					.bind(OCLMessages.NonStd_DQuote_Escape_, quoted),
+					"unquote", //$NON-NLS-1$
+					token);
+			}
 		}
 		return decodeString(token, quoted.substring(1, quotedLength-1));
 	}
