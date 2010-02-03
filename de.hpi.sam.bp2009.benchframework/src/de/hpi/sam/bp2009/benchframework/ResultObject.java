@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Composite;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite <em>Result Composite</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getStatus <em>Status</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.ResultObject#getMessage <em>Message</em>}</li>
  * </ul>
@@ -32,31 +31,6 @@ import org.eclipse.swt.widgets.Composite;
  * @generated
  */
 public interface ResultObject extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Result Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * used for eclipse wizard view
-	 * <!-- end-model-doc -->
-	 * @return the value of the '<em>Result Composite</em>' attribute.
-	 * @see #setResultComposite(Composite)
-	 * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getResultObject_ResultComposite()
-	 * @model dataType="de.hpi.sam.bp2009.benchframework.UIComponent"
-	 * @generated
-	 */
-	Composite getResultComposite();
-
-	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite <em>Result Composite</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Result Composite</em>' attribute.
-	 * @see #getResultComposite()
-	 * @generated
-	 */
-	void setResultComposite(Composite value);
-
 	/**
 	 * Returns the value of the '<em><b>Status</b></em>' attribute.
 	 * The literals are from the enumeration {@link de.hpi.sam.bp2009.benchframework.Status}.
@@ -111,5 +85,13 @@ public interface ResultObject extends EObject {
 	 * @generated
 	 */
 	void setMessage(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model kind="operation" dataType="de.hpi.sam.bp2009.benchframework.UIComponent"
+	 * @generated
+	 */
+	Composite getComposite();
 
 } // ResultObject

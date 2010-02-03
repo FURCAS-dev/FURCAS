@@ -238,22 +238,13 @@ public interface BenchframeworkPackage extends EPackage {
 	int RESULT_OBJECT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Result Composite</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RESULT_OBJECT__RESULT_COMPOSITE = 0;
-
-	/**
 	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_OBJECT__STATUS = 1;
+	int RESULT_OBJECT__STATUS = 0;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute.
@@ -262,7 +253,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_OBJECT__MESSAGE = 2;
+	int RESULT_OBJECT__MESSAGE = 1;
 
 	/**
 	 * The number of structural features of the '<em>Result Object</em>' class.
@@ -271,7 +262,7 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int RESULT_OBJECT_FEATURE_COUNT = 3;
+	int RESULT_OBJECT_FEATURE_COUNT = 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl <em>User Interface</em>}' class.
@@ -567,17 +558,6 @@ public interface BenchframeworkPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getResultObject();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite <em>Result Composite</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Result Composite</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.ResultObject#getResultComposite()
-	 * @see #getResultObject()
-	 * @generated
-	 */
-	EAttribute getResultObject_ResultComposite();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.ResultObject#getStatus <em>Status</em>}'.
@@ -881,14 +861,6 @@ public interface BenchframeworkPackage extends EPackage {
 		 * @generated
 		 */
 		EClass RESULT_OBJECT = eINSTANCE.getResultObject();
-
-		/**
-		 * The meta object literal for the '<em><b>Result Composite</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute RESULT_OBJECT__RESULT_COMPOSITE = eINSTANCE.getResultObject_ResultComposite();
 
 		/**
 		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature.

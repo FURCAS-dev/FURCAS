@@ -12,6 +12,7 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperator;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorFactory;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
+import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -52,6 +53,13 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 	 * @generated
 	 */
 	private EClass oclUtilEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass oclResultEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -165,6 +173,24 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getOclResult() {
+		return oclResultEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOclResult_QueriesToResults() {
+		return (EAttribute)oclResultEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDataType getIQueryResult() {
 		return iQueryResultEDataType;
 	}
@@ -204,6 +230,9 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 
 		oclUtilEClass = createEClass(OCL_UTIL);
 
+		oclResultEClass = createEClass(OCL_RESULT);
+		createEAttribute(oclResultEClass, OCL_RESULT__QUERIES_TO_RESULTS);
+
 		// Create data types
 		iQueryResultEDataType = createEDataType(IQUERY_RESULT);
 	}
@@ -241,6 +270,7 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		// Add supertypes to classes
 		oclOperatorEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
 		oclOptionObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getOptionObject());
+		oclResultEClass.getESuperTypes().add(theBenchframeworkPackage.getResultObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(oclOperatorEClass, OclOperator.class, "OclOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -260,6 +290,14 @@ public class OclOperatorPackageImpl extends EPackageImpl implements OclOperatorP
 		op = addEOperation(oclUtilEClass, this.getIQueryResult(), "executeQueryOn", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEString(), "completeConstraint", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEResourceSet(), "resource", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		initEClass(oclResultEClass, OclResult.class, "OclResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(this.getIQueryResult());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getOclResult_QueriesToResults(), g1, "queriesToResults", null, 0, 1, OclResult.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(iQueryResultEDataType, IQueryResult.class, "IQueryResult", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

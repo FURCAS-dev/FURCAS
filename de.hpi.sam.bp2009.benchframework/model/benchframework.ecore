@@ -81,11 +81,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation" value="Encapsules a view for the results of an operator execution."/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="resultComposite" eType="#//UIComponent">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="used for eclipse wizard view"/>
-      </eAnnotations>
-    </eStructuralFeatures>
+    <eOperations name="getComposite" eType="#//UIComponent"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="status" eType="#//Status"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>

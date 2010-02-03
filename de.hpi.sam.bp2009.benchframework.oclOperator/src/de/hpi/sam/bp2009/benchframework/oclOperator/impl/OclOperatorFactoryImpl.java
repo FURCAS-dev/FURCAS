@@ -66,6 +66,7 @@ public class OclOperatorFactoryImpl extends EFactoryImpl implements OclOperatorF
 			case OclOperatorPackage.OCL_OPERATOR: return createOclOperator();
 			case OclOperatorPackage.OCL_OPTION_OBJECT: return createOclOptionObject();
 			case OclOperatorPackage.OCL_UTIL: return createOclUtil();
+			case OclOperatorPackage.OCL_RESULT: return createOclResult();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -129,6 +130,16 @@ public class OclOperatorFactoryImpl extends EFactoryImpl implements OclOperatorF
 	public OclUtil createOclUtil() {
 		OclUtilImpl oclUtil = new OclUtilImpl();
 		return oclUtil;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OclResult createOclResult() {
+		OclResultImpl oclResult = new OclResultImpl();
+		return oclResult;
 	}
 
 	/**

@@ -26,7 +26,6 @@ import org.eclipse.swt.widgets.Composite;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl#getResultComposite <em>Result Composite</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl#getStatus <em>Status</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl#getMessage <em>Message</em>}</li>
  * </ul>
@@ -35,26 +34,6 @@ import org.eclipse.swt.widgets.Composite;
  * @generated
  */
 public class ResultObjectImpl extends EObjectImpl implements ResultObject {
-	/**
-	 * The default value of the '{@link #getResultComposite() <em>Result Composite</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResultComposite()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Composite RESULT_COMPOSITE_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getResultComposite() <em>Result Composite</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResultComposite()
-	 * @generated
-	 * @ordered
-	 */
-	protected Composite resultComposite = RESULT_COMPOSITE_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -119,27 +98,6 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Composite getResultComposite() {
-		return resultComposite;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResultComposite(Composite newResultComposite) {
-		Composite oldResultComposite = resultComposite;
-		resultComposite = newResultComposite;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BenchframeworkPackage.RESULT_OBJECT__RESULT_COMPOSITE, oldResultComposite, resultComposite));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Status getStatus() {
 		return status;
 	}
@@ -182,11 +140,20 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Composite getComposite() {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_OBJECT__RESULT_COMPOSITE:
-				return getResultComposite();
 			case BenchframeworkPackage.RESULT_OBJECT__STATUS:
 				return getStatus();
 			case BenchframeworkPackage.RESULT_OBJECT__MESSAGE:
@@ -203,9 +170,6 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_OBJECT__RESULT_COMPOSITE:
-				setResultComposite((Composite)newValue);
-				return;
 			case BenchframeworkPackage.RESULT_OBJECT__STATUS:
 				setStatus((Status)newValue);
 				return;
@@ -224,9 +188,6 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_OBJECT__RESULT_COMPOSITE:
-				setResultComposite(RESULT_COMPOSITE_EDEFAULT);
-				return;
 			case BenchframeworkPackage.RESULT_OBJECT__STATUS:
 				setStatus(STATUS_EDEFAULT);
 				return;
@@ -245,8 +206,6 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case BenchframeworkPackage.RESULT_OBJECT__RESULT_COMPOSITE:
-				return RESULT_COMPOSITE_EDEFAULT == null ? resultComposite != null : !RESULT_COMPOSITE_EDEFAULT.equals(resultComposite);
 			case BenchframeworkPackage.RESULT_OBJECT__STATUS:
 				return status != STATUS_EDEFAULT;
 			case BenchframeworkPackage.RESULT_OBJECT__MESSAGE:
@@ -265,9 +224,7 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (resultComposite: ");
-		result.append(resultComposite);
-		result.append(", status: ");
+		result.append(" (status: ");
 		result.append(status);
 		result.append(", message: ");
 		result.append(message);

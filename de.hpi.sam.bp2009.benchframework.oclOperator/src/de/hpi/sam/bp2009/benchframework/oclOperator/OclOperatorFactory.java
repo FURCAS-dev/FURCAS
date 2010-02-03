@@ -53,6 +53,15 @@ public interface OclOperatorFactory extends EFactory {
 	OclUtil createOclUtil();
 
 	/**
+	 * Returns a new object of class '<em>Ocl Result</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Ocl Result</em>'.
+	 * @generated
+	 */
+	OclResult createOclResult();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

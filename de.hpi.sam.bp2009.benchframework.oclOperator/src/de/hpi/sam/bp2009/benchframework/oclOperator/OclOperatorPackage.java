@@ -182,6 +182,52 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_UTIL_FEATURE_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclResultImpl <em>Ocl Result</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclResultImpl
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclResult()
+	 * @generated
+	 */
+	int OCL_RESULT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_RESULT__STATUS = BenchframeworkPackage.RESULT_OBJECT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_RESULT__MESSAGE = BenchframeworkPackage.RESULT_OBJECT__MESSAGE;
+
+	/**
+	 * The feature id for the '<em><b>Queries To Results</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_RESULT__QUERIES_TO_RESULTS = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Ocl Result</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_RESULT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '<em>IQuery Result</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -189,7 +235,7 @@ public interface OclOperatorPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getIQueryResult()
 	 * @generated
 	 */
-	int IQUERY_RESULT = 3;
+	int IQUERY_RESULT = 4;
 
 
 	/**
@@ -232,6 +278,27 @@ public interface OclOperatorPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOclUtil();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclResult <em>Ocl Result</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Ocl Result</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclResult
+	 * @generated
+	 */
+	EClass getOclResult();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclResult#getQueriesToResults <em>Queries To Results</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Queries To Results</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclResult#getQueriesToResults()
+	 * @see #getOclResult()
+	 * @generated
+	 */
+	EAttribute getOclResult_QueriesToResults();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.query.statements.IQueryResult <em>IQuery Result</em>}'.
@@ -303,6 +370,24 @@ public interface OclOperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OCL_UTIL = eINSTANCE.getOclUtil();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclResultImpl <em>Ocl Result</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclResultImpl
+		 * @see de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOperatorPackageImpl#getOclResult()
+		 * @generated
+		 */
+		EClass OCL_RESULT = eINSTANCE.getOclResult();
+
+		/**
+		 * The meta object literal for the '<em><b>Queries To Results</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_RESULT__QUERIES_TO_RESULTS = eINSTANCE.getOclResult_QueriesToResults();
 
 		/**
 		 * The meta object literal for the '<em>IQuery Result</em>' data type.

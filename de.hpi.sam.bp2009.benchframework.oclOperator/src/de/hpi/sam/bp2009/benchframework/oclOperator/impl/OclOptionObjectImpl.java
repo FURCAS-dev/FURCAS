@@ -69,7 +69,7 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 	 */
 	public OclOptionObjectImpl() {
 		super();
-		setWizardPage(new OclOperatorWizardPage("OCL Operator"));
+		setWizardPage(new OclOperatorWizardPage("OCL Operator", this));
 		
 	}
 

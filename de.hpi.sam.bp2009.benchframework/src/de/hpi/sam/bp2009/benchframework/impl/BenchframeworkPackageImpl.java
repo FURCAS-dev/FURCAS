@@ -327,7 +327,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getResultObject_ResultComposite() {
+	public EAttribute getResultObject_Status() {
 		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -336,17 +336,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getResultObject_Status() {
-		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getResultObject_Message() {
-		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)resultObjectEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -504,7 +495,6 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		createEAttribute(optionObjectEClass, OPTION_OBJECT__WIZARD_PAGE);
 
 		resultObjectEClass = createEClass(RESULT_OBJECT);
-		createEAttribute(resultObjectEClass, RESULT_OBJECT__RESULT_COMPOSITE);
 		createEAttribute(resultObjectEClass, RESULT_OBJECT__STATUS);
 		createEAttribute(resultObjectEClass, RESULT_OBJECT__MESSAGE);
 
@@ -611,9 +601,10 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		addEParameter(op, g1, "map", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(resultObjectEClass, ResultObject.class, "ResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getResultObject_ResultComposite(), this.getUIComponent(), "resultComposite", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResultObject_Status(), this.getStatus(), "status", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getResultObject_Message(), ecorePackage.getEString(), "message", null, 0, 1, ResultObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		addEOperation(resultObjectEClass, this.getUIComponent(), "getComposite", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(userInterfaceEClass, UserInterface.class, "UserInterface", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserInterface_Engine(), this.getEngine(), null, "engine", null, 0, 1, UserInterface.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -667,7 +658,7 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 	 * @generated
 	 */
 	protected void createNullAnnotations() {
-		String source = null;														
+		String source = null;													
 		addAnnotation
 		  ((testRunEClass.getEOperations().get(0)).getEParameters().get(0), 
 		   source, 

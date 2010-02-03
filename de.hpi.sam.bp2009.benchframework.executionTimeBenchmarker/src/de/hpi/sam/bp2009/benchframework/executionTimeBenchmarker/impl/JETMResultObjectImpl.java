@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
+import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -25,7 +26,6 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObjec
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getResultDisplay <em>Result Display</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getStartTime <em>Start Time</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getEndTime <em>End Time</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMResultObjectImpl#getTicks <em>Ticks</em>}</li>
@@ -35,27 +35,7 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObjec
  *
  * @generated
  */
-public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObject {
-	/**
-	 * The default value of the '{@link #getResultDisplay() <em>Result Display</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResultDisplay()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final Composite RESULT_DISPLAY_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getResultDisplay() <em>Result Display</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getResultDisplay()
-	 * @generated
-	 * @ordered
-	 */
-	protected Composite resultDisplay = RESULT_DISPLAY_EDEFAULT;
-
+public class JETMResultObjectImpl extends ResultObjectImpl implements JETMResultObject {
 	/**
 	 * The default value of the '{@link #getStartTime() <em>Start Time</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -168,27 +148,6 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Composite getResultDisplay() {
-		return resultDisplay;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setResultDisplay(Composite newResultDisplay) {
-		Composite oldResultDisplay = resultDisplay;
-		resultDisplay = newResultDisplay;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__RESULT_DISPLAY, oldResultDisplay, resultDisplay));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public long getStartTime() {
 		return startTime;
 	}
@@ -287,8 +246,6 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__RESULT_DISPLAY:
-				return getResultDisplay();
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__START_TIME:
 				return getStartTime();
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__END_TIME:
@@ -309,9 +266,6 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__RESULT_DISPLAY:
-				setResultDisplay((Composite)newValue);
-				return;
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__START_TIME:
 				setStartTime((Long)newValue);
 				return;
@@ -336,9 +290,6 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__RESULT_DISPLAY:
-				setResultDisplay(RESULT_DISPLAY_EDEFAULT);
-				return;
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__START_TIME:
 				setStartTime(START_TIME_EDEFAULT);
 				return;
@@ -363,8 +314,6 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__RESULT_DISPLAY:
-				return RESULT_DISPLAY_EDEFAULT == null ? resultDisplay != null : !RESULT_DISPLAY_EDEFAULT.equals(resultDisplay);
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__START_TIME:
 				return startTime != START_TIME_EDEFAULT;
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT__END_TIME:
@@ -376,7 +325,6 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 		}
 		return super.eIsSet(featureID);
 	}
-	@Override
 	public Map<String, Object> getPropertyMap() {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put(STARTTIMESTRING, startTime);
@@ -395,9 +343,7 @@ public class JETMResultObjectImpl extends EObjectImpl implements JETMResultObjec
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (resultDisplay: ");
-		result.append(resultDisplay);
-		result.append(", startTime: ");
+		result.append(" (startTime: ");
 		result.append(startTime);
 		result.append(", endTime: ");
 		result.append(endTime);

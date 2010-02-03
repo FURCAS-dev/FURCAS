@@ -237,13 +237,22 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int JETM_RESULT_OBJECT = 2;
 
 	/**
-	 * The feature id for the '<em><b>Result Display</b></em>' attribute.
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JETM_RESULT_OBJECT__RESULT_DISPLAY = BenchframeworkPackage.RESULT_OBJECT__RESULT_DISPLAY;
+	int JETM_RESULT_OBJECT__STATUS = BenchframeworkPackage.RESULT_OBJECT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JETM_RESULT_OBJECT__MESSAGE = BenchframeworkPackage.RESULT_OBJECT__MESSAGE;
 
 	/**
 	 * The feature id for the '<em><b>Start Time</b></em>' attribute.
