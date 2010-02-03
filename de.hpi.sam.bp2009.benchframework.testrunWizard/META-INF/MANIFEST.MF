@@ -3,6 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: de.hpi.sam.bp2009.benchframework.testrunWizard
 Bundle-SymbolicName: de.hpi.sam.bp2009.benchframework.testrunWizard;singleton:=true
 Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.core.resources,
@@ -10,4 +13,4 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.ui,
  de.hpi.sam.bp2009.benchframework,
  org.eclipse.jface;bundle-version="3.5.1"
-Eclipse-LazyStart: false
+Bundle-ActivationPolicy: lazy
