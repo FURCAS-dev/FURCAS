@@ -1,0 +1,268 @@
+/**
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
+ */
+package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;
+
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+
+/**
+ * <!-- begin-user-doc -->
+ * The <b>Package</b> for the model.
+ * It contains accessors for the meta objects to represent
+ * <ul>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
+ * </ul>
+ * <!-- end-user-doc -->
+ * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerFactory
+ * @model kind="package"
+ * @generated
+ */
+public interface ModifiedImpactAnalyzerPackage extends EPackage {
+	/**
+	 * The package name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNAME = "modifiedImpactAnalyzer";
+
+	/**
+	 * The package namespace URI.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_URI = "http://de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer";
+
+	/**
+	 * The package namespace name.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	String eNS_PREFIX = "benchframework.modifiedImpactAnalyzer";
+
+	/**
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	ModifiedImpactAnalyzerPackage eINSTANCE = de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl.init();
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerImpl <em>Modified Impact Analyzer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerImpl
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getModifiedImpactAnalyzer()
+	 * @generated
+	 */
+	int MODIFIED_IMPACT_ANALYZER = 0;
+
+	/**
+	 * The feature id for the '<em><b>Ocl Evaluator</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_IMPACT_ANALYZER__OCL_EVALUATOR = ImpactAnalyzerPackage.IMPACT_ANALYZER__OCL_EVALUATOR;
+
+	/**
+	 * The feature id for the '<em><b>Event Manager</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_IMPACT_ANALYZER__EVENT_MANAGER = ImpactAnalyzerPackage.IMPACT_ANALYZER__EVENT_MANAGER;
+
+	/**
+	 * The feature id for the '<em><b>Queries</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_IMPACT_ANALYZER__QUERIES = ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES;
+
+	/**
+	 * The number of structural features of the '<em>Modified Impact Analyzer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODIFIED_IMPACT_ANALYZER_FEATURE_COUNT = ImpactAnalyzerPackage.IMPACT_ANALYZER_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl <em>Incoming Event Notification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getIncomingEventNotification()
+	 * @generated
+	 */
+	int INCOMING_EVENT_NOTIFICATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Event</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCOMING_EVENT_NOTIFICATION__EVENT = EventManagerPackage.EVENT_NOTIFICATION__EVENT;
+
+	/**
+	 * The feature id for the '<em><b>Notification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCOMING_EVENT_NOTIFICATION__NOTIFICATION = EventManagerPackage.EVENT_NOTIFICATION__NOTIFICATION;
+
+	/**
+	 * The number of structural features of the '<em>Incoming Event Notification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCOMING_EVENT_NOTIFICATION_FEATURE_COUNT = EventManagerPackage.EVENT_NOTIFICATION_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl <em>Outgoing Result Notification</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getOutgoingResultNotification()
+	 * @generated
+	 */
+	int OUTGOING_RESULT_NOTIFICATION = 2;
+
+	/**
+	 * The feature id for the '<em><b>Event</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTGOING_RESULT_NOTIFICATION__EVENT = EventManagerPackage.EVENT_NOTIFICATION__EVENT;
+
+	/**
+	 * The feature id for the '<em><b>Notification</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTGOING_RESULT_NOTIFICATION__NOTIFICATION = EventManagerPackage.EVENT_NOTIFICATION__NOTIFICATION;
+
+	/**
+	 * The number of structural features of the '<em>Outgoing Result Notification</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OUTGOING_RESULT_NOTIFICATION_FEATURE_COUNT = EventManagerPackage.EVENT_NOTIFICATION_FEATURE_COUNT + 0;
+
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer <em>Modified Impact Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Modified Impact Analyzer</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer
+	 * @generated
+	 */
+	EClass getModifiedImpactAnalyzer();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification <em>Incoming Event Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Incoming Event Notification</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification
+	 * @generated
+	 */
+	EClass getIncomingEventNotification();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification <em>Outgoing Result Notification</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Outgoing Result Notification</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification
+	 * @generated
+	 */
+	EClass getOutgoingResultNotification();
+
+	/**
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the factory that creates the instances of the model.
+	 * @generated
+	 */
+	ModifiedImpactAnalyzerFactory getModifiedImpactAnalyzerFactory();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * Defines literals for the meta objects that represent
+	 * <ul>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
+	 * </ul>
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	interface Literals {
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerImpl <em>Modified Impact Analyzer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerImpl
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getModifiedImpactAnalyzer()
+		 * @generated
+		 */
+		EClass MODIFIED_IMPACT_ANALYZER = eINSTANCE.getModifiedImpactAnalyzer();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl <em>Incoming Event Notification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getIncomingEventNotification()
+		 * @generated
+		 */
+		EClass INCOMING_EVENT_NOTIFICATION = eINSTANCE.getIncomingEventNotification();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl <em>Outgoing Result Notification</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getOutgoingResultNotification()
+		 * @generated
+		 */
+		EClass OUTGOING_RESULT_NOTIFICATION = eINSTANCE.getOutgoingResultNotification();
+
+	}
+
+} //ModifiedImpactAnalyzerPackage
