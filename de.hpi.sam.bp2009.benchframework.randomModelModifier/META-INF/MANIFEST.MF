@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: de.hpi.sam.bp2009.benchframework.randomModelModifier;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: de.hpi.sam.bp2009.randomModelModifier,
+ de.hpi.sam.bp2009.randomModelModifier.impl,
+ de.hpi.sam.bp2009.randomModelModifier.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ de.hpi.sam.bp2009.benchframework;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.jface.wizard
