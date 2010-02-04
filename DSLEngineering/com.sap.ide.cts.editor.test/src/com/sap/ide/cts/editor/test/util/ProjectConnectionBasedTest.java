@@ -14,9 +14,10 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IProgressService;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubProgressMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.junit.After;
 import org.junit.Before;
 
@@ -38,22 +39,33 @@ public abstract class ProjectConnectionBasedTest {
 	private IProject mProject;
 	private final Set<Connection> mConnections = new HashSet<Connection>();
 	
+	/**
+	 * Set this to true in your testclass constructor to retrieve inMemory connections only.
+	 * Those cannot be saved, but instead come with a great speed improvement.
+	 */
+	protected boolean memoryChangesOnly = false;
+	
 	private static final String MOIN_NATURE = "com.sap.mi.fwk.dcfwk.MoinNature";
 	private static final String PLUGIN_NATURE = org.eclipse.pde.internal.core.natures.PDE.PLUGIN_NATURE;
 
 
 	@Before
 	public void setUp() throws CoreException, IOException {
-		InputStream data = getProjectContentAsStream();
-		mProject = createProjectWithData(getProjectName(), data);
-		refreshProject(mProject);
+	    	mProject = ResourcesPlugin.getWorkspace().getRoot().getProject(getProjectName());
+		if (!memoryChangesOnly || !mProject.exists()) {
+		    InputStream data = getProjectContentAsStream();
+		    mProject = createProjectWithData(getProjectName(), data);
+		    refreshProject(mProject);
+		}
 	}
 
 	@After
 	public void tearDown() throws Exception {		
 		closeConnections();
 		mConnections.clear();
-		deleteProject();
+		if (!memoryChangesOnly) {
+		    deleteProject();
+		}
 	}
 	
 	private IProject createProjectWithData(String projectName, InputStream data) throws CoreException, IOException {
@@ -78,23 +90,28 @@ public abstract class ProjectConnectionBasedTest {
 	 * @param project
 	 */
 	private void refreshProject(final IProject prj) {
-		IRunnableWithProgress operation = new IRunnableWithProgress() {
-			public void run(IProgressMonitor monitor) {
-				try {
-					prj.refreshLocal(IResource.DEPTH_INFINITE, monitor);
-					// force a full refresh 
-					ModelManager.getInstance().refreshFromFileSystem(mProject, monitor);
-				} catch (CoreException e) {
-					fail("Failed to refresh project");
-				}
-			    }
-			};
-			IProgressService ps = PlatformUI.getWorkbench().getProgressService();
+	    
+	    	Job refresh = new Job("Refresh project") {
+		    @Override
+		    protected IStatus run(IProgressMonitor monitor) {
+		    	monitor.beginTask("Refresh Test Project from Filesystem", 20);
 			try {
-			    ps.busyCursorWhile(operation);
-			} catch (Exception e) {
-			    throw new RuntimeException(e);
+				prj.refreshLocal(IResource.DEPTH_INFINITE, new SubProgressMonitor(monitor, 10));
+				// force a full refresh 
+				ModelManager.getInstance().refreshFromFileSystem(mProject, new SubProgressMonitor(monitor, 10));
+			} catch (CoreException e) {
+				fail("Failed to refresh project");
 			}
+			monitor.done();
+			return Status.OK_STATUS;
+		    } 
+	    	};
+	    	refresh.schedule();
+	    	try {
+		    refresh.join();
+		} catch (InterruptedException e) {
+		    fail("Failed to refresh project");
+		}
 	}
 
 	private void deleteProject() throws CoreException {
@@ -144,18 +161,24 @@ public abstract class ProjectConnectionBasedTest {
 	 */
 	protected Connection createConnection() {
 		final Connection[] con = new Connection[1];
-		IRunnableWithProgress operation = new IRunnableWithProgress() {
-		    public void run(IProgressMonitor monitor) {
-				con[0] = ConnectionManager.getInstance().createConnection(getProject());
+		
+		Job creator = new Job("Create Connection") {
+		    @Override
+		    protected IStatus run(IProgressMonitor monitor) {
+			con[0] = ConnectionManager.getInstance().createConnection(getProject());
+			return Status.OK_STATUS;
 		    }
 		};
-		IProgressService ps = PlatformUI.getWorkbench().getProgressService();
+		creator.schedule();
 		try {
-		    ps.busyCursorWhile(operation);
-		} catch (Exception e) {
-		    throw new RuntimeException(e);
+		    creator.join();
+		} catch (InterruptedException e) {
+		    fail(e.getMessage());
 		}
-		
+	
+		if (memoryChangesOnly) {
+		    con[0].enableMemoryChangeOnly();
+		}
 		mConnections.add(con[0]);
 		return con[0];
 	}

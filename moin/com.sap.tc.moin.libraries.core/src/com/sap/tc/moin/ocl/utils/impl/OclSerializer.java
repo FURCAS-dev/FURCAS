@@ -4,6 +4,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
+import org.omg.ocl.expressions.OclExpression;
+
+import com.sap.tc.moin.ocl.utils.OclConstants;
+import com.sap.tc.moin.ocl.utils.OclStatement;
+import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.mmi.model.Association;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
@@ -15,12 +20,6 @@ import com.sap.tc.moin.repository.mmi.model.Parameter;
 import com.sap.tc.moin.repository.mmi.model.__impl.ModelElementInternal;
 import com.sap.tc.moin.repository.mmi.model.__impl.MofPackageInternal;
 import com.sap.tc.moin.repository.mmi.reflect.RefPackage;
-
-import org.omg.ocl.expressions.OclExpression;
-
-import com.sap.tc.moin.ocl.utils.OclConstants;
-import com.sap.tc.moin.ocl.utils.OclStatement;
-import com.sap.tc.moin.repository.core.CoreConnection;
 
 /**
  * This class serializes <tt>OclStatement</tt>s and <tt>OclExpression</tt>s into
@@ -86,7 +85,7 @@ public class OclSerializer {
 
         return new OclSerializer( connection, false, false, 4, 4 );
     }
-
+    
     /**
      * Creates a new OclSerializer
      * 

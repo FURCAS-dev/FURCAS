@@ -37,6 +37,7 @@ import textblocks.DocumentNode;
 import textblocks.LexedToken;
 import textblocks.LexedTokenReferenesSequenceElement;
 import textblocks.TextBlock;
+import textblocks.TextBlockAdditionalTemplates;
 import textblocks.TextBlockType;
 import textblocks.VersionEnum;
 
@@ -131,9 +132,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			     //TODO use affectedModelElements instead but first find out which elements are actually contained in there
 			     Collection<TextBlock> tbs = new ArrayList<TextBlock>(tbTypeAssoc.getTextBlock(def));
 			     //now find all TextBlocks that reference the template in their "additionalTemplate"
-//			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
-//			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
-//			     tbs.addAll(additionalTbs);
+			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
+			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
+			     tbs.addAll(additionalTbs);
 			     Set<MRI> affectedElements = null;
 			     for (TextBlock textBlock : tbs) {
 				//first check if the alternative in which the injector action resides was
@@ -160,7 +161,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 					affectedElements = getAffectedElements(events, conn);
 				    }
 				    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-					    conn, affectedElements, textBlock);
+					    reference, conn, affectedElements, textBlock);
 				    for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
 					DelayedReference clonedRef = (DelayedReference) reference.clone();
 					clonedRef.setModelElement(ro);
@@ -183,7 +184,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 				     affectedElements = getAffectedElements(events, conn);
 				 }
 				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-					conn, affectedElements, lt.getParentBlock());
+					reference, conn, affectedElements, lt.getParentBlock());
 				for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
 				    DelayedReference clonedRef = (DelayedReference) reference.clone();
                                     clonedRef.setModelElement(ro);
@@ -224,11 +225,24 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	 * @param tb The {@link TextBlock} which's corresponding elements should be filtered.
 	 * @return the intersection between affected elements and the corresponding elements of the given {@link TextBlock}. 
 	 */
-	private Set<RefObject> filterWithAffectedElements(Connection conn,
+	private Set<RefObject> filterWithAffectedElements(DelayedReference ref, Connection conn,
 		Set<MRI> affectedElements, TextBlock tb) {
-		List<RefObject> correspondingModelElements = tb.getCorrespondingModelElements();
+	    	Matcher matcher = ContextManager.contextPattern.matcher(ref.getOclQuery());
+	    	Collection<RefObject> correspondingModelElements = null;
+	        boolean isContext = matcher.find();
+		if (isContext) {
+	            LocalContextBuilder localContextBuilder = new LocalContextBuilder();
+	            TbUtil.constructContext(tb,	localContextBuilder);
+			if(!localContextBuilder.getContextStack().isEmpty()) {
+			    correspondingModelElements = new ArrayList<RefObject>(); 
+			    correspondingModelElements.add((RefObject) localContextBuilder.getContextStack().peek().getRealObject());
+			}
+	        } else {
+	            correspondingModelElements = tb.getCorrespondingModelElements();
+	        }
+		
 		Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
-		if (intersectionOfCorrespondingAndAffectedElements.size() > 1) {
+		if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 		    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
 		    for (RefObject cme : correspondingModelElements) {
 			correspondingModelElementsMris.add(cme.get___Mri());
@@ -241,7 +255,15 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
 		    }
 		}
-		return intersectionOfCorrespondingAndAffectedElements;
+		if(isContext) {
+		    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+			return new HashSet<RefObject>(tb.getCorrespondingModelElements());			
+		    } else {
+			return new HashSet<RefObject>(0);
+		    }
+		} else {
+		    return intersectionOfCorrespondingAndAffectedElements;   
+		}
 	}
 
 	private Set<MRI> getAffectedElements(EventChain events, Connection conn) {
@@ -394,10 +416,49 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	return instance;
     }
     
+    private Set<IAExpressionInvalidationChangeListener> getAllListeners() {
+	Set<IAExpressionInvalidationChangeListener> result = new HashSet<IAExpressionInvalidationChangeListener>();
+	for (Map<EventFilter, Map<ListenerType, EventListener>> m : delayedReference2ReEvaluationListener.values()) {
+	    for (Map<ListenerType, EventListener> ltel : m.values()) {
+		for (EventListener listener : ltel.values()) {
+		    result.add((IAExpressionInvalidationChangeListener) listener);
+		}
+	    }
+	}
+	return result;
+    }
+    
     public boolean hasEmptyQueue() {
         return iaUnresolvedReferences.isEmpty();
     }
     
+    public String getDebugInfo(Connection conn) {
+	Statistics oclIaStatistics = Statistics.getInstance();
+	StringBuilder result = new StringBuilder();
+	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
+	    OclExpressionRegistration registration = listener.registration;
+	    if (registration != null) {
+		result.append(oclIaStatistics.toString(registration, conn));
+		result.append('\n');
+	    }
+	}
+	return result.toString();
+    }
+    
+    public String getDebugInfoAsCsv(Connection conn) {
+	Statistics oclIaStatistics = Statistics.getInstance();
+	StringBuilder result = new StringBuilder();
+	result.append(oclIaStatistics.getCsvHeader());
+	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
+	    OclExpressionRegistration registration = listener.registration;
+	    if (registration != null) {
+		result.append(oclIaStatistics.toCsv(registration, conn));
+		result.append('\n');
+	    }
+	}
+	return result.toString();
+    }
+
     /**
      * Clears all currently deferred references.
      * 

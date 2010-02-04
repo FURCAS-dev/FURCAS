@@ -10,13 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
-import java.util.logging.LoggingMXBean;
 
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import javax.management.ObjectName;
 import javax.management.StandardMBean;
 
@@ -55,6 +50,9 @@ import com.sap.tc.moin.repository.events.type.PartitionChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionContentChangeEvent;
 import com.sap.tc.moin.repository.events.type.PartitionDeleteEvent;
 import com.sap.tc.moin.repository.events.type.PartitionSaveEvent;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
  * Manages creation, deletion, and returning of markers for model objects.
@@ -1148,7 +1146,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 
 			if (sTracer.isLoggable(Level.FINE)) {
 				long end = System.currentTimeMillis();
-				sTracer.logp(Level.FINE, "MarkerManager", "initCache", "Cache initialized in " + (end - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				sTracer.logp(Level.FINE, "MarkerManager", "initCache", "Cache initialized in " + (end - start) + "ms."); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			}
 			return mrisToMarkers;
 		}
@@ -1206,7 +1204,7 @@ public final class MarkerManager extends EventManager implements IResourceChange
 			Map<MRI, Set<IMarker>> mrisToMarkers = initCache(pri, false);
 			if (mrisToMarkers != null) {
 				if (sTracer.isLoggable(Level.FINE)) {
-					sTracer.logp(Level.FINE, "MarkerCache", "getMarkers", "cache hit. pri:" + pri + ", mri:" + mri);//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+					sTracer.logp(Level.FINE, "MarkerCache", "getMarkers", "cache hit. pri:" + pri + ", mri:" + mri);//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 				}
 				Set<IMarker> set = mrisToMarkers.get(mri);
 				if (set != null) {

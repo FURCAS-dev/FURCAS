@@ -2,8 +2,8 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-12-16 14:55:10 +0100 (Mi, 16 Dez 2009) $
- * Revision: $Revision: 9126 $
+ * Date: $Date: 2010-02-03 18:15:17 +0100 (Mi, 03 Feb 2010) $
+ * Revision: $Revision: 9353 $
  * Author: $Author: d043530 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.impl;
@@ -409,7 +409,12 @@ public class DelayedReferencesHelper {
 	    // context as query context
 	    Object navigatedObject = navigateLookIn(contextElement, reference.getModelElement(), path, true,
 		    modelAdapter, reference.getToken(), contextManager);
-	    contextElement = contextManager.getContextForElement(navigatedObject);
+	    if(navigatedObject instanceof IModelElementProxy) {
+		contextElement = contextManager.getContextForElement(navigatedObject);
+	    } else {
+		contextElement = contextManager.getContextForElement(new ResolvedModelElementProxy(navigatedObject));
+	    }
+	    
 	}
 	return contextElement;
     }

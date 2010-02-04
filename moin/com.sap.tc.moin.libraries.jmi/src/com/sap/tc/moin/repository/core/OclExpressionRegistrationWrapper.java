@@ -54,11 +54,11 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
             }
 
             Object result = this.oclExpressionRegistration.evaluateExpression( unwrappedContext );
-            if ( result instanceof Collection ) {
-                if ( result instanceof JmiList ) {
-                    return this.connection.getWrapperForJmiList( (JmiList) result );
+            if ( result instanceof Collection<?> ) {
+                if ( result instanceof JmiList<?> ) {
+                    return this.connection.getWrapperForJmiList( (JmiList<?>) result );
                 }
-                return this.getConnectionWrappingCollection( (Collection) result );
+                return this.getConnectionWrappingCollection( (Collection<Object>) result );
 
             } else if ( result instanceof RefBaseObject ) {
                 return this.connection.getWrapperForJmiObject( (RefBaseObject) result );
@@ -137,7 +137,7 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
                 }
             }
             return result;
-        } else if ( collection instanceof Set ) {
+        } else if ( collection instanceof Set<?> ) {
             Set<Object> result = new HashSet<Object>( );
             for ( Object any : collection ) {
                 if ( any instanceof RefBaseObject ) {
@@ -147,7 +147,7 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
                 }
             }
             return result;
-        } else if ( collection instanceof List ) {
+        } else if ( collection instanceof List<?> ) {
             List<Object> result = new ArrayList<Object>( );
             for ( Object any : collection ) {
                 if ( any instanceof RefBaseObject ) {
@@ -333,5 +333,5 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
             this.synchronizationManager.releaseReadLock( );
         }    
     }
-
+    
 }

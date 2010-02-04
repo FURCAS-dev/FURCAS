@@ -19,6 +19,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
     private MofClass targetType;
     private OclExpressionInternal debugInfo;
     private int navigateCounter;
+    private int resultObjectsCounter;
     private Set<AlwaysEmptyChangeListener> alwaysEmptyChangeListeners;
     private Set<SourceTypeChangeListener> sourceTypeChangeListeners;
     private Set<TargetTypeChangeListener> targetTypeChangeListeners;
@@ -82,6 +83,10 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	return navigateCounter;
     }
     
+    public int getResultObjectsCounter() {
+	return resultObjectsCounter;
+    }
+    
     @Override
     public OclExpressionInternal getDebugInfo() {
 	return debugInfo;
@@ -110,6 +115,7 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 		}
 	    }
 	}
+	resultObjectsCounter += result.size();
 	return result;
     }
     
@@ -187,6 +193,21 @@ public abstract class AbstractNavigationStep implements NavigationStep {
 	    }
 	}
         return result;
+    }
+    
+    /**
+     * The default size in particular for atomic navigation steps is <tt>1</tt>.
+     */
+    public int size() {
+	Set<NavigationStep> visited = new HashSet<NavigationStep>();
+	return size(visited);
+    }
+    
+    /**
+     * The default size in particular for atomic navigation steps is <tt>1</tt>.
+     */
+    protected int size(Set<NavigationStep> visited) {
+	return visited.contains(this) ? 0 : 1;
     }
 
 }

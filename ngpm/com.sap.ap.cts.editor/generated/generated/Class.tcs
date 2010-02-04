@@ -163,18 +163,54 @@ syntax Class(k=0 ) {
 		
 	operatorTemplate FunctionCallExpression(operators = lparen, source = 'calledBlock')
 		:	parameters{separator=","} ")"
-			--{{
-				-- We must produce a NestedTypeDefinition iff the source object's type isMany() and the called signature's type isMany()
-				-- details: https://research.qkal.sap.corp/mediawiki/index.php?title=Runlet_-_A_Programming_Model_Exploration_Environment/Language_Specification#Method_invocation
-			--	ownedTypeDefinition = foreach("OCL:functionSignature.output",  
-			--		when="OCL:methodSignature.output.isMany() and self.object.getType().isMany()", mode="functionCallExpression", as="NestedTypeDefinition",
-			--		when="OCL:methodSignature.output.oclIsKindOf(ClassTypeDefinition)", mode="functionCallExpression", as="ClassTypeDefinition", 
-			--		when="OCL:methodSignature.output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="functionCallExpression", as="FunctionSignatureTypeDefinition",
-			--		when="OCL:methodSignature.output.oclIsKindOf(NestedTypeDefinition)", mode="functionCallExpressionNoFurtherNesting", as="NestedTypeDefinition")
-			--}}
+		{{
+			-- We must produce a NestedTypeDefinition iff the source object's type isMany() and the called signature's type isMany()
+			-- details: https://research.qkal.sap.corp/mediawiki/index.php?title=Runlet_-_A_Programming_Model_Exploration_Environment/Language_Specification#Method_invocation
+			ownedTypeDefinition = foreach("OCL:self.getSignature().output",  
+				when="OCL:self.getSignature().output.isMany() and self.calledBlock.getType().isMany()", mode="functionCallExpression", as=NestedTypeDefinition,
+				when="OCL:self.getSignature().output.oclIsKindOf(ClassTypeDefinition)", mode="functionCallExpression", as=ClassTypeDefinition, 
+				when="OCL:self.getSignature().output.oclIsKindOf(FunctionSignatureTypeDefinition)", mode="functionCallExpression", as=FunctionSignatureTypeDefinition,
+				when="OCL:self.getSignature().output.oclIsKindOf(NestedTypeDefinition)", mode="functionCallExpressionNoFurtherNesting", as=NestedTypeDefinition)
+		}}
 		;
 	
+	template TypeDefinition #functionCallExpression abstract;
+
+	template ClassTypeDefinition #functionCallExpression (disambiguateV3="'___1000___'")
+		: {{ clazz=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.oclAsType(ClassTypeDefinition).clazz"),
+	             objectParameters=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.oclAsType(ClassTypeDefinition).objectParameters"), 
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.lowerMultiplicity * self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.isMany() or self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().isMany() then -1 else self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.upperMultiplicity * self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().upperMultiplicity endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.ordered or self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.unique and not self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().isMany()") }}
+		;
 	
+	template FunctionSignatureTypeDefinition #functionCallExpression (disambiguateV3="'___2000___'")
+		: {{ signature=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.oclAsType(FunctionSignatureTypeDefinition).signature"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.lowerMultiplicity * self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:if self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.isMany() or self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().isMany() then -1 else self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.upperMultiplicity * self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().upperMultiplicity endif"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.ordered or self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.unique and not self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().isMany()") }}
+		;
+		
+	template NestedTypeDefinition #functionCallExpression (disambiguateV3="'___3000___'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().upperMultiplicity"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().ordered"),
+		     unique='false'
+		  }}
+		;
+		
+	template NestedTypeDefinition #functionCallExpressionNoFurtherNesting (disambiguateV3="'4000'")
+		: {{ type = lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.oclAsType(NestedTypeDefinition).type"),
+		     lowerMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.lowerMultiplicity * self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().lowerMultiplicity"),
+		     upperMultiplicity=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().upperMultiplicity"),
+		     ordered=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.ordered or self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().ordered"),
+		     unique=lookIn("OCL:self.ownerTypedElement.oclAsType(FunctionCallExpression).getSignature().output.unique and not self.ownerTypedElement.oclAsType(FunctionCallExpression).calledBlock.getType().isMany()")
+		  }}
+		;
+		
 	template Return
 		:	"return" argument
 		;

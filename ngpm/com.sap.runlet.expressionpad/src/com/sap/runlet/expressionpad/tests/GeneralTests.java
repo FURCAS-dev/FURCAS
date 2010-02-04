@@ -29,6 +29,18 @@ import data.classes.ClassTypeDefinition;
 import data.classes.TypeDefinition;
 
 public class GeneralTests extends RunletTestCase {
+    public void testMultiFunctionCall() throws Exception {
+        ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(
+            "new FunctionTest().test()");
+        RunletObject<AssociationEnd, TypeDefinition, ClassTypeDefinition>[] result = executeResult.getResult();
+        String[]      errors = executeResult.getErrors();
+        assertEquals(1, result.length);
+        assertEquals(0, errors.length);
+        assertMultiObjectOfNativeObjectsEqualsIgnoringOrdering(new Fraction[] {
+        	new Fraction(16), new Fraction(8) },
+        	result[0]);
+    }
+
     public void testOqlWithEqualValuesForDifferentAliasCombinations() throws Exception {
 	// this test enforces the use of List instead of Set for the alias values cache
 	ExecuteResult<AssociationEnd, TypeDefinition, ClassTypeDefinition> executeResult = main.execute(

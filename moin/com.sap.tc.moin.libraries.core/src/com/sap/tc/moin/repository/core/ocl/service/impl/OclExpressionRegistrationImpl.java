@@ -308,7 +308,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     }
 
     private Object evaluateExpression( RefObject context, boolean forceEvaluation ) throws OclManagerException {
-
+	long time = System.nanoTime();
         MRI mri = null;
         if ( context != null ) {
             mri = context.get___Mri( );
@@ -350,6 +350,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
             throw new OclManagerException( re, OclServiceExceptions.OCLEVALRTEX, re.getMessage( ) );
         } finally {
             EvaluationContext.CurrentContext.reset( );
+            Statistics.getInstance().evaluated(this, System.nanoTime()-time);
         }
 
     }
@@ -602,8 +603,10 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     @Override
     public Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn) {
 	Statistics.getInstance().receivedEvent(this, mce);
+	long time = System.nanoTime();
         Set<MRI> affectedModelElements = getImpactAnalyzer().getAffectedElements((OclExpressionInternal) getExpression(),
         	(MofClassImpl) getContext(), mce);
+        Statistics.getInstance().instanceScopeAnalysisPerformed(this, mce, System.nanoTime()-time, affectedModelElements.size());
 	return affectedModelElements;
     }
 
@@ -724,9 +727,11 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     private ClassScopeAnalyzer getClassScopeAnalyzer(boolean notifyNewContextElement) {
 	if (this.myClassScopeAnalyzer == null) {
+	    long time = System.nanoTime();
 	    this.myClassScopeAnalyzer = new ClassScopeAnalyzer(myConnection, (OclExpressionInternal) getOclStatement()
 		    .getExpression(), /* notifyNewContextElement */
 	    false);
+	    Statistics.getInstance().classScopeAnalysisPerformed(this, System.nanoTime()-time);
 	}
 	return this.myClassScopeAnalyzer;
     }
@@ -749,4 +754,5 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     public OclExpression getExpression() {
 	return getOclStatement().getExpression();
     }
+    
 }

@@ -133,7 +133,7 @@ public final class StructuredProjectViewerEventAdapterImpl implements MarkerRefr
 	 */
 	public void onMarkerChange(IProject affectedProject) {
 		CRI container = ModelAdapterUI.getInstance().getContainer(affectedProject);
-		if (container != null) {
+		if (container != null && !mContainersToUpdate.contains(container)) {
 			TreeUpdater updater = new TreeUpdater(container, false);
 			Display.getDefault().asyncExec(updater);
 		}

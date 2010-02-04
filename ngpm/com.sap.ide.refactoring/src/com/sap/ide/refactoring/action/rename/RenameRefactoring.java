@@ -7,6 +7,7 @@ import org.eclipse.ltk.core.refactoring.Change;
 import org.eclipse.ltk.core.refactoring.Refactoring;
 import org.eclipse.ltk.core.refactoring.RefactoringStatus;
 
+import com.sap.ide.refactoring.core.RefactoringResult;
 import com.sap.ide.refactoring.core.model.NamedElement;
 import com.sap.ide.refactoring.core.model.util.RefactoringModelUtil;
 import com.sap.ide.refactoring.core.textual.RefactoringEditorFacade;
@@ -18,9 +19,10 @@ public class RenameRefactoring extends Refactoring {
     private RefObject target;
     private NamedElement targetAsNamedElement;
     private String newName;
+    
     private final RefactoringEditorFacade facade;
-    private Change change; 
-       
+    private RefactoringResult refactoringResult;
+
 
     public RenameRefactoring(RefactoringEditorFacade facade) {
 	this.facade = facade;
@@ -56,18 +58,19 @@ public class RenameRefactoring extends Refactoring {
     }
     
     @Override
-    public RefactoringStatus checkFinalConditions(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	if (change == null) {
-	    RenameCommand cmd = new RenameCommand(facade, targetAsNamedElement, newName);
-	    change = cmd.runRefactoringForPreview();
+    public RefactoringStatus checkFinalConditions(final IProgressMonitor pm) throws CoreException, OperationCanceledException {
+	assert targetAsNamedElement != null : "LTK must have called checkInitialConditions atleast once.";
+	if (refactoringResult == null) {
+	    final RenameCommand cmd = new RenameCommand(facade, targetAsNamedElement, newName);
+	    refactoringResult = cmd.runRefactoringForPreview();
 	}
-	return new RefactoringStatus();
+	return refactoringResult.status;
     }
 
     @Override
     public Change createChange(IProgressMonitor pm) throws CoreException, OperationCanceledException {
-	assert change != null;
-	return change;
+	assert refactoringResult != null : "LTK must have called checkFinalConditions atleast once.";
+	return refactoringResult.change;
     }
 
     @Override
