@@ -6,7 +6,6 @@ package de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -37,14 +36,14 @@ public class SimpleResultPage extends WizardPage {
 	 */
 	public void setOps(EList<Operator> ops) {
 		this.ops = ops;
-		composite.layout(true, true);
+		if(composite!=null)
+			composite.layout(true, true);
 	}
 	/**
 	 * @param pageName
 	 */
 	public SimpleResultPage(String pageName) {
 		super(pageName);
-		// TODO Auto-generated constructor stub
 	}
 	public SimpleResultPage( EList<Operator> ops){
 		super(PAGENAME);
@@ -58,18 +57,36 @@ public class SimpleResultPage extends WizardPage {
 	@Override
 	public void createControl(Composite parent) {
 		//create the widgets for the page
-		composite = new Composite(parent, SWT.NONE);
-		GridLayout layout = new GridLayout(1, false);
+		composite = new Composite(parent,SWT.V_SCROLL);
+		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
+		composite.setBounds(10, 40, 200, 200);
+
 		for(Operator o:ops){
 			ResultObject r = o.getResult();
 			Label label1 = new Label(composite, SWT.CENTER);
 			label1.setText(o.getName());
-			r.getComposite(composite).layout();
+			try{
+			r.getComposite(composite);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
-
 		setControl(composite);
-		composite.layout();
 	}
+	public static String getCustomStackTrace(Throwable aThrowable) {
+		//add the class name and any message passed to constructor
+		final StringBuilder result = new StringBuilder();
+		result.append(aThrowable.toString());
+		final String NEW_LINE = System.getProperty("line.separator");
+		result.append(NEW_LINE);
+
+		//add each element of the stack trace
+		for (StackTraceElement element : aThrowable.getStackTrace() ){
+		result.append( element );
+		result.append( NEW_LINE );
+		}
+		return result.toString();
+		}
 
 }

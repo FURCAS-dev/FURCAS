@@ -50,6 +50,7 @@ public class TestframeworkWizard extends AdvancedWizard {
 	public IWizardPage getLeastPage() {
 		if (resultProcessor == null)
 			return null;
+		resultProcessor.getResultPage().dispose();
 		return resultProcessor.getResultPage();
 	}
 	private ListPage getListPage() {

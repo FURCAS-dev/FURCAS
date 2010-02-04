@@ -18,7 +18,7 @@ import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
 
 public class RunningPage extends WizardPage {
-	final String NEW_LINE = System.getProperty("line.separator");
+	final static String NEW_LINE = System.getProperty("line.separator");
 	protected static final String RUNSUCCEED = "Yeah, benchmark complete!!";
 	private boolean benchmarked=false;
 	private Label error;
@@ -39,7 +39,7 @@ public class RunningPage extends WizardPage {
 		Label label = new Label(composite, SWT.CENTER);
 		label.setText("Click Run to Start the Run.");
 		Button btn = new Button(composite, SWT.CENTER);
-		error = new Label(composite, SWT.LEFT );    
+		error = new Label(composite, SWT.LEFT |SWT.H_SCROLL|SWT.V_SCROLL);    
 		btn.setText("START");
 		btn.pack();
 		btn.addSelectionListener(new SelectionListener() {
@@ -69,6 +69,7 @@ public class RunningPage extends WizardPage {
 				}else{
 					error.setText(RUNSUCCEED);
 				}
+				error.pack();
 				EList<ResultObject> results= new BasicEList<ResultObject>();
 				for(Operator op:wiz.getRun().getOperators())
 					results.add(op.getResult());
@@ -112,7 +113,6 @@ public class RunningPage extends WizardPage {
 		//add the class name and any message passed to constructor
 		final StringBuilder result = new StringBuilder();
 		result.append(aThrowable.toString());
-		final String NEW_LINE = System.getProperty("line.separator");
 		result.append(NEW_LINE);
 
 		//add each element of the stack trace

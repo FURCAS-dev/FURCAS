@@ -664,12 +664,13 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	@Override
 	public void execute() {
 		BasicEtmConfigurator.configure();
-		EtmMonitor monitor = EtmManager.getEtmMonitor();
-		monitor.start();
+		setMonitor(EtmManager.getEtmMonitor());
+		getMonitor().start();
 		point = monitor.createPoint(UUID.randomUUID().toString());
 		ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
 		rslt.setStatus(Status.SUCCESSFULL);
 		rslt.setMessage("Monitor started!");
+		setResult(rslt);
 	}
 
 

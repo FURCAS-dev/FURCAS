@@ -162,6 +162,8 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	@Override
 	public Composite getComposite(Composite parent) {
 		Composite composite = super.getComposite(parent);
+		if(queriesToResults==null)
+			return composite;
 		for(Entry<String, IQueryResult> entry:queriesToResults.entrySet()){
 			Label label1 = new Label(composite, SWT.CENTER);
 			label1.setText(entry.getKey() +" : "+entry.getValue());

@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
@@ -552,6 +553,7 @@ public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements Exec
 		rslt.setEndTime(point.getEndTime());
 		rslt.setTicks(point.getTicks());
 		rslt.setTransactionTime(point.getTransactionTime());
+		rslt.setStatus(Status.SUCCESSFULL);
 		setResult(rslt);
 	}
 

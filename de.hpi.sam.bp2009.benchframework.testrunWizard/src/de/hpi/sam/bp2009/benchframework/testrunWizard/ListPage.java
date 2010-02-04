@@ -15,6 +15,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.ResultProcessor;
@@ -24,9 +25,12 @@ public class ListPage extends WizardPage {
 	private static final String PAGEDESC="Choose the steps you want to perform during the test run.";
 	private static final String ADDBUTTONTEXT="Add";
 	private static final String REMOVEBUTTONTEXT = "Remove";
+	private static final String ADDRESULTPROCESSOR = "Choose a Result View!";
 	private OperatorTable tbl = new OperatorTable();
 	private Combo operatorBox;
 	private Map<String, EClass> nameToEclass;
+	private Map<String, Integer> nameToCount;
+
 	private Map<String, ResultProcessor> nameToProc;
 	private Combo processorBox;
 
@@ -60,7 +64,7 @@ public class ListPage extends WizardPage {
 
 	private void generateEClassMappingAndSelectionBoxForResultProcessors(
 			Composite composite) {
-		processorBox=new Combo(composite, SWT.UP);
+		processorBox=new Combo(composite, SWT.RIGHT);
 		nameToProc=new HashMap<String,ResultProcessor>();
 		for(ResultProcessor p:((TestframeworkWizard)getWizard()).getIntImpl().getEngine().getRegisteredResultProcessors()){
 			nameToProc.put(p.getName(), p);
@@ -81,15 +85,19 @@ public class ListPage extends WizardPage {
 				//Nothing to do
 			}
 		});
+		Label label= new Label(composite, SWT.LEFT);
+		label.setText(ADDRESULTPROCESSOR);
 	}
 
 	private void generateEClassMappingAndSelectionBoxForOperators(
 			Composite composite) {
 		operatorBox= new Combo(composite, SWT.UP);
 		nameToEclass=new HashMap<String,EClass>();
+		nameToCount=new HashMap<String,Integer>();
 		for(Operator op:((TestframeworkWizard)getWizard()).getIntImpl().getAvailableOperators()){
 			operatorBox.add(op.getName());
 			nameToEclass.put(op.getName(), op.eClass());
+			nameToCount.put(op.getName(),0);
 		}
 	}
 
@@ -134,10 +142,17 @@ public class ListPage extends WizardPage {
 			public void widgetSelected(SelectionEvent e) {
 				if(operatorBox.getSelectionIndex()==-1)
 					return;
-				EClass cls = nameToEclass.get(operatorBox.getItem(operatorBox.getSelectionIndex()));
+				String name=operatorBox.getItem(operatorBox.getSelectionIndex());
+				EClass cls = nameToEclass.get(name);
+				
 				EObject obj=cls.getEPackage().getEFactoryInstance().create(cls);
+				
 				if(obj instanceof Operator){
 					Operator op= (Operator)obj;
+					
+					op.setName(op.getName()+ " "+ nameToCount.get(name));
+					nameToCount.put(name,nameToCount.get(name)+1);
+					
 					TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
 					wiz.getRun().getOperators().add(op);
 					setPageComplete(true);
@@ -172,6 +187,7 @@ public class ListPage extends WizardPage {
 		 */
 		if(op.getOption()!=null && op.getOption().getWizardPage()!=null){
 			WizardPage page = op.getOption().getWizardPage();
+			page.setTitle(page.getTitle() + " (" +op.getName()+")");
 			/*
 			 * FIXME if multiple instances running some concurrency issues might result here
 			 */
@@ -179,6 +195,9 @@ public class ListPage extends WizardPage {
 				wiz.addPage(page);
 			else
 				page.setVisible(true);
+		}else{
+			
+		
 		}
 	}
 }

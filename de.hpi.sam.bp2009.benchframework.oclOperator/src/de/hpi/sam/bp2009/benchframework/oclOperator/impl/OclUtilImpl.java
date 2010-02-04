@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
@@ -64,15 +65,9 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public IQueryResult executeQueryOn(String completeConstraint, ResourceSet resource) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	public IQueryResult executeQueryOn(String completeConstraint, Resource resource) throws ParserException, IllegalArgumentException {
 		
 		Pattern pattern=Pattern.compile(regex);
 		Matcher match=pattern.matcher(completeConstraint);
@@ -84,7 +79,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 		String queryInvariant=completeConstraint.substring(completeConstraint.indexOf("inv:")+4);
 		queryInvariant=queryInvariant.trim();
 		IQueryResult results= null;
-		Registry registry = resource.getResourceSet().getPackageRegistry();
+		Registry registry = resource.getPackageRegistry();
 		EPackage packageInstance=null;
 		for(String key: registry.keySet()){
 			EPackage current = registry.getEPackage(key);
@@ -100,7 +95,11 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 			throw new IllegalArgumentException("Context not found!");
 		}
 		
-		results = validateOclQuery(context, queryInvariant, resource);
+		try {
+			results = validateOclQuery(context, queryInvariant, resource);
+		} catch (ParserException e) {
+			e.printStackTrace();
+		}
 	
 		return results;
 	}
@@ -132,16 +131,18 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	 * @throws ParserException 
 	 * @throws ParserException
 	 */
-	public static IQueryResult validateOclQuery(EClass context, String query, Resource resource) throws ParserException{
+	public static IQueryResult validateOclQuery(EClass context, String query, ResourceSet resource) throws ParserException{
 		OCL ocl= OCL.newInstance();
 		Condition condition=null;
 		condition = new org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition<EClassifier, EClass, EObject>(
 					ocl.getEnvironment(),
 					query,
 					context);
-
+		BasicEList<EObject> list= new BasicEList<EObject>();
+		for(Resource r: resource.getResources())
+			list.addAll(r.getContents());
 		SELECT statement = new SELECT(SELECT.UNBOUNDED, false,
-				new FROM(resource.getContents()), new WHERE((EObjectCondition) condition));
+				new FROM(list), new WHERE((EObjectCondition) condition));
 
 		return statement.execute();
 	}

@@ -231,12 +231,10 @@ public class JETMResultObjectImpl extends ResultObjectImpl implements JETMResult
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public long getDuration() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		return getEndTime()-getStartTime();
 	}
 
 	/**
