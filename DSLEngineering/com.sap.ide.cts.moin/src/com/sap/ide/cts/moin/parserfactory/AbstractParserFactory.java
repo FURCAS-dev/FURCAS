@@ -13,11 +13,13 @@ import org.antlr.runtime.Token;
 import org.antlr.runtime.TokenStream;
 
 import com.sap.ide.cts.parser.incremental.antlr.ANTLRParserFactory;
+import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.InjectionOptionsBean;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
 import com.sap.mi.textual.grammar.impl.ModelInjector;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.mi.textual.moinlookup.util.RuleNameFinder;
 import com.sap.mi.textual.parsing.textblocks.ITextBlocksTokenStream;
 import com.sap.mi.textual.parsing.textblocks.TextBlocksAwareModelAdapter;
 import com.sap.mi.textual.parsing.textblocks.observer.ParserTextBlocksHandler;
@@ -31,7 +33,9 @@ import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 
 public abstract class AbstractParserFactory<P extends ObservableInjectingParser, L extends Lexer>
 	extends ANTLRParserFactory<P, L> {
-	public abstract RefPackage getMetamodelPackage(Connection connection);
+	private IRuleName ruleNameFinder = new RuleNameFinder();
+
+    public abstract RefPackage getMetamodelPackage(Connection connection);
 
 	/**
 	 * Return the names of the constants that define the tokens in the parser class (see
@@ -158,6 +162,11 @@ public abstract class AbstractParserFactory<P extends ObservableInjectingParser,
 		}catch(Exception e) {
 			return null;
 		}
+	}
+	
+	@Override
+	public IRuleName getRuleNameFinder() {
+	    return ruleNameFinder;
 	}
 
 }

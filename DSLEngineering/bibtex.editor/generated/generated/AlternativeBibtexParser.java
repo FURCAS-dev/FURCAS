@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g 2010-01-13 16:31:18
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g 2010-01-21 16:11:57
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -52,10 +52,10 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         
 
     public String[] getTokenNames() { return AlternativeBibtexParser.tokenNames; }
-    public String getGrammarFileName() { return "C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g"; }
+    public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g"; }
 
 
-       private static final String syntaxUUID = "E0E1B8C6B1DEE0A0005811DFB3B8FB578D150602";
+       private static final String syntaxUUID = "E0356A0450CAF810069F11DF8994D1958D03C068";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -130,20 +130,19 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifier"
-    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:207:1: identifier returns [Object ret2] : (ast= NAME ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:207:1: identifier returns [Object ret2] : (ast= NAME ) ;
     public final Object identifier() throws RecognitionException {
-
         Object ret2 = null;
 
         Token ast=null;
 
         java.lang.Object ret=null;
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:208:3: ( (ast= NAME ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:3: (ast= NAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:208:3: ( (ast= NAME ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:3: (ast= NAME )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:3: (ast= NAME )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:4: ast= NAME
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:3: (ast= NAME )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:209:4: ast= NAME
             {
             ast=(Token)match(input,NAME,FOLLOW_NAME_in_identifier69); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -174,20 +173,19 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "integerSymbol"
-    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:217:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:217:1: integerSymbol returns [Object ret2] : (ast= INT ) ;
     public final Object integerSymbol() throws RecognitionException {
-
         Object ret2 = null;
 
         Token ast=null;
 
         java.lang.Object ret=null;
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:218:3: ( (ast= INT ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:218:3: ( (ast= INT ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:3: (ast= INT )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:3: (ast= INT )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:4: ast= INT
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:3: (ast= INT )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:219:4: ast= INT
             {
             ast=(Token)match(input,INT,FOLLOW_INT_in_integerSymbol100); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -218,23 +216,22 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "main"
-    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:227:1: main returns [Object ret2] : ( (ret= bibtex_literaturedb ) EOF ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:227:1: main returns [Object ret2] : ( (ret= bibtex_literaturedb ) EOF ) ;
     public final Object main() throws RecognitionException {
-
         Object ret2 = null;
 
         Object ret = null;
 
 
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:228:3: ( ( (ret= bibtex_literaturedb ) EOF ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:3: ( (ret= bibtex_literaturedb ) EOF )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:228:3: ( ( (ret= bibtex_literaturedb ) EOF ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:3: ( (ret= bibtex_literaturedb ) EOF )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:3: ( (ret= bibtex_literaturedb ) EOF )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:4: (ret= bibtex_literaturedb ) EOF
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:3: ( (ret= bibtex_literaturedb ) EOF )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:4: (ret= bibtex_literaturedb ) EOF
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:4: (ret= bibtex_literaturedb )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:5: ret= bibtex_literaturedb
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:4: (ret= bibtex_literaturedb )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:229:5: ret= bibtex_literaturedb
             {
             pushFollow(FOLLOW_bibtex_literaturedb_in_main128);
             ret=bibtex_literaturedb();
@@ -270,9 +267,8 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_literaturedb"
-    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:1: bibtex_literaturedb returns [Object ret2] : ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:236:1: bibtex_literaturedb returns [Object ret2] : ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) ;
     public final Object bibtex_literaturedb() throws RecognitionException {
-
         Object ret2 = null;
 
         Object temp = null;
@@ -284,24 +280,24 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:241:3: ( ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:241:3: ( ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:4: 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}'
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:3: ( 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:4: 'DB:' (temp= identifier ) '{' ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) ) '}'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DAE900005811DFC5A5FB578D150602");
+              _beforeSeqEl("E0356A0450C66430069F11DFCD90D1958D03C068");
             }
             match(input,15,FOLLOW_15_in_bibtex_literaturedb162); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DB1011005811DFB343FB578D150602");
+              _beforeSeqEl("E0356A0450C68B41069F11DF88E2D1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:143: (temp= identifier )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:145: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:143: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:145: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_literaturedb169);
             temp=identifier();
@@ -319,25 +315,25 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DB3720005811DF8AB8FB578D150602");
+              _beforeSeqEl("E0356A0450C6B250069F11DFCCAAD1958D03C068");
             }
             match(input,16,FOLLOW_16_in_bibtex_literaturedb175); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DB5E31005811DFCB35FB578D150602");
+              _beforeSeqEl("E0356A0450C70070069F11DF8833D1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:348: ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:348: ( ( (temp= bibtex_author (temp= bibtex_author )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:350: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:349: ( (temp= bibtex_author (temp= bibtex_author )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:350: (temp= bibtex_author (temp= bibtex_author )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DB3722005811DFB6F9FB578D150602");
+              _beforeSeqEl("E0356A0450C6B252069F11DFB818D1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:409: (temp= bibtex_author (temp= bibtex_author )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:409: (temp= bibtex_author (temp= bibtex_author )* )?
             int alt2=2;
             int LA2_0 = input.LA(1);
 
@@ -346,7 +342,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             }
             switch (alt2) {
                 case 1 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:411: temp= bibtex_author (temp= bibtex_author )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:411: temp= bibtex_author (temp= bibtex_author )*
                     {
                     pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb185);
                     temp=bibtex_author();
@@ -357,7 +353,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "author", temp);
                     }
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:466: (temp= bibtex_author )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:466: (temp= bibtex_author )*
                     loop1:
                     do {
                         int alt1=2;
@@ -370,7 +366,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
                         switch (alt1) {
                     	case 1 :
-                    	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:468: temp= bibtex_author
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:242:468: temp= bibtex_author
                     	    {
                     	    pushFollow(FOLLOW_bibtex_author_in_bibtex_literaturedb193);
                     	    temp=bibtex_author();
@@ -409,7 +405,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DB8540005811DFBE7AFB578D150602");
+              _beforeSeqEl("E0356A0450C70071069F11DFC8E5D1958D03C068");
             }
             match(input,17,FOLLOW_17_in_bibtex_literaturedb207); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -440,9 +436,8 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_entry"
-    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:1: bibtex_entry returns [Object ret2] : ( (temp= identifier ) ':' (temp= identifier ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:250:1: bibtex_entry returns [Object ret2] : ( (temp= identifier ) ':' (temp= identifier ) ) ;
     public final Object bibtex_entry() throws RecognitionException {
-
         Object ret2 = null;
 
         Object temp = null;
@@ -454,17 +449,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:255:3: ( ( (temp= identifier ) ':' (temp= identifier ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:3: ( (temp= identifier ) ':' (temp= identifier ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:255:3: ( ( (temp= identifier ) ':' (temp= identifier ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:3: ( (temp= identifier ) ':' (temp= identifier ) )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:3: ( (temp= identifier ) ':' (temp= identifier ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:4: (temp= identifier ) ':' (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:3: ( (temp= identifier ) ':' (temp= identifier ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:4: (temp= identifier ) ':' (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DC6FA0005811DFB002FB578D150602");
+              _beforeSeqEl("E0356A0450C7EAD1069F11DF9CDAD1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:63: (temp= identifier )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:65: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:63: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:65: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry251);
             temp=identifier();
@@ -482,17 +477,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DC6FA1005811DFAF40FB578D150602");
+              _beforeSeqEl("E0356A0450C811E0069F11DFA125D1958D03C068");
             }
             match(input,18,FOLLOW_18_in_bibtex_entry257); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DC96B0005811DFCD5EFB578D150602");
+              _beforeSeqEl("E0356A0450C838F0069F11DFB24CD1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:266: (temp= identifier )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:268: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:266: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:256:268: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_entry264);
             temp=identifier();
@@ -510,7 +505,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DCBDC0005811DFADBFFB578D150602");
+              _beforeSeqEl("E0356A0450C88710069F11DF89C6D1958D03C068");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "literturedb", null, null, "OCL:#context", true);_exitInjectorAction();
@@ -543,9 +538,8 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "bibtex_author"
-    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:1: bibtex_author returns [Object ret2] : ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:264:1: bibtex_author returns [Object ret2] : ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) ;
     public final Object bibtex_author() throws RecognitionException {
-
         Object ret2 = null;
 
         Object temp = null;
@@ -557,17 +551,17 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
         org.antlr.runtime.Token firstToken=input.LT(1);
 
         try {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:269:3: ( ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:269:3: ( ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:4: (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:3: ( (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:4: (temp= identifier ) ':' ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DD8111005811DFB033FB578D150602");
+              _beforeSeqEl("E0356A0450C94A61069F11DFBD1AD1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:63: (temp= identifier )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:65: temp= identifier
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:63: (temp= identifier )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:65: temp= identifier
             {
             pushFollow(FOLLOW_identifier_in_bibtex_author314);
             temp=identifier();
@@ -585,25 +579,25 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DDA820005811DFBD37FB578D150602");
+              _beforeSeqEl("E0356A0450C97170069F11DF8608D1958D03C068");
             }
             match(input,18,FOLLOW_18_in_bibtex_author320); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DDCF31005811DF804DFB578D150602");
+              _beforeSeqEl("E0356A0450C9BF90069F11DFB738D1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:268: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:268: ( ( (temp= bibtex_entry (temp= bibtex_entry )* )? ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
             {
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:270: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:269: ( (temp= bibtex_entry (temp= bibtex_entry )* )? )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:270: (temp= bibtex_entry (temp= bibtex_entry )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DDA822005811DF8AB0FB578D150602");
+              _beforeSeqEl("E0356A0450C97172069F11DF9E70D1958D03C068");
             }
-            // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:329: (temp= bibtex_entry (temp= bibtex_entry )* )?
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:329: (temp= bibtex_entry (temp= bibtex_entry )* )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -624,7 +618,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
             }
             switch (alt4) {
                 case 1 :
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:331: temp= bibtex_entry (temp= bibtex_entry )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:331: temp= bibtex_entry (temp= bibtex_entry )*
                     {
                     pushFollow(FOLLOW_bibtex_entry_in_bibtex_author330);
                     temp=bibtex_entry();
@@ -635,7 +629,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "publications", temp);
                     }
-                    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:391: (temp= bibtex_entry )*
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:391: (temp= bibtex_entry )*
                     loop3:
                     do {
                         int alt3=2;
@@ -666,7 +660,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
 
                         switch (alt3) {
                     	case 1 :
-                    	    // C:\\Users\\coretti\\Documents\\FURCAS\\furcas\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:393: temp= bibtex_entry
+                    	    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\bibtex.editor\\generated\\generated\\AlternativeBibtex.g:270:393: temp= bibtex_entry
                     	    {
                     	    pushFollow(FOLLOW_bibtex_entry_in_bibtex_author338);
                     	    temp=bibtex_entry();
@@ -705,7 +699,7 @@ public class AlternativeBibtexParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0E1B8C6B1DE1D50005811DFB8FFFB578D150602");
+              _beforeSeqEl("E0356A0450CA0DB0069F11DF85B4D1958D03C068");
             }
             if ( state.backtracking==0 ) {
               setOclRef(ret, "literturedb", null, null, "OCL:#context", true);_exitInjectorAction();

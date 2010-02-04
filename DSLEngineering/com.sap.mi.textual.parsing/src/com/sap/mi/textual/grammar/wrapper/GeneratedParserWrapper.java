@@ -152,7 +152,6 @@ public class GeneratedParserWrapper {
     }
 
 
-
     /**
      * returns a modelElement as cretaed by the ModelAdapter, or null
      * @param in
@@ -165,6 +164,20 @@ public class GeneratedParserWrapper {
      * @throws UnknownProductionRuleException 
      */
     public Object parse(InputStream in, String productionRule, IModelAdapter targetModelAdapter, InjectionOptionsBean bean, IParsingObserver observer) throws IOException, UnknownProductionRuleException {
+        return parse(in, productionRule, targetModelAdapter, bean, observer, true);
+    }
+    /**
+     * returns a modelElement as cretaed by the ModelAdapter, or null
+     * @param in
+     * @param productionRule
+     * @param targetModelAdapter
+     * @param bean 
+     * @param observer 
+     * @return
+     * @throws IOException 
+     * @throws UnknownProductionRuleException 
+     */
+    public Object parse(InputStream in, String productionRule, IModelAdapter targetModelAdapter, InjectionOptionsBean bean, IParsingObserver observer, boolean setDelayedreferences) throws IOException, UnknownProductionRuleException {
         if (in == null || productionRule == null || targetModelAdapter == null) {
             throw new IllegalArgumentException("Argument is null " + in + ", " + productionRule + ", " + targetModelAdapter);
         }
@@ -203,7 +216,9 @@ public class GeneratedParserWrapper {
             
             parsedModelElement = productionRuleMethod.invoke(parser, (Object[])null);
             
-            parser.setDelayedReferencesAfterParsing();
+            if(setDelayedreferences) {
+                parser.setDelayedReferencesAfterParsing();
+            }
             
         } catch(java.lang.reflect.InvocationTargetException ite) {
             if (ite.getCause() != null && ite.getCause() instanceof IncompatibleClassChangeError) {

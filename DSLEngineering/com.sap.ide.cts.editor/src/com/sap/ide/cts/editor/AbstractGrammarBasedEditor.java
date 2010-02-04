@@ -305,7 +305,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		return getParserFactory().getLexerClass();
 	}
 
-	protected ObservableInjectingParser getParser() {
+	public ObservableInjectingParser getParser() {
 		return parser;
 	}
 	
@@ -401,7 +401,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		}
 		
 		// Refresh necessary ?
-		if (getEditorInput().getAdapter(IProject.class).equals(affectedProject)) {
+		if (getEditorInput().getAdapter(IProject.class).equals(affectedProject) && getDocumentProvider() != null) {
 			
 			providerTaskQueue.add(getDocumentProvider());
 		}
@@ -520,7 +520,8 @@ public abstract class AbstractGrammarBasedEditor extends
 	    	    		" is not consistent with mapping: " + syntax.get___Mri());
 		}
 		
-		document.completeInit(syntax, rootTemplate, getParserFactory(), getRecoveryStrategy(), getModelEditor().getPendingMonitor());
+		document.completeInit(syntax, rootTemplate, getParserFactory(), getRecoveryStrategy(),
+		        getParser(), getModelEditor().getPendingMonitor());
 		
 		if (input instanceof FileEditorInput) {
 			// TODO this is a temporary hack solve by choosing the right context

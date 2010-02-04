@@ -59,17 +59,24 @@ public class CtsDocument extends AbstractDocument {
      * was called. A precondition for a call to this method is that
      * {@link #modelEditorInput} can resolve the contained model element, which
      * itself requires a completely initialized connection.
+     * @param concreteSyntax
+     * @param rootTemplate
+     * @param parserFactory
+     * @param recoveryStrategy
+     * @param observableInjectingParser
+     * @param monitor 
      * 
      * @param grammarBasedEditor
      */
     public void completeInit(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    ModelEditorInputRecoveryStrategy recoveryStrategy, IProgressMonitor monitor) {
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, ObservableInjectingParser observableInjectingParser, IProgressMonitor monitor) {
 
 	syntax = concreteSyntax;
 	GlobalDelayedReferenceResolver.getInstance().registerReferenceForIncrementalEvaluation(syntax, syntax.get___Connection(),
 		GlobalDelayedReferenceResolver.getInstance().getOutermostPackageThroughClusteredImports(
-			syntax.get___Connection(), modelEditorInput.getRefObject()), monitor);
+			syntax.get___Connection(), modelEditorInput.getRefObject()), observableInjectingParser,
+			parserFactory.getRuleNameFinder(), monitor);
 
 	RefObject inputObject = (RefObject) modelEditorInput.getRefObject();
 	if (inputObject instanceof TextBlock) {

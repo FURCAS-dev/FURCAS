@@ -96,7 +96,7 @@ public class CtsEditorTest extends FixtureBasedTest {
 		if (!document.isCompletelyItitialized()) {
 			ConcreteSyntax syntax = EditorUtil.getActiveSyntax(editor);
 			ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
-			document.completeInit(syntax, rootTemplate, editor.getParserFactory(), editor.getRecoveryStrategy(), new NullProgressMonitor());
+			document.completeInit(syntax, rootTemplate, editor.getParserFactory(), editor.getRecoveryStrategy(),editor.getParser(), new NullProgressMonitor());
 		}
 
 		if(document.getRootBlock().getType() == null || 

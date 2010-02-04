@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 
+import tcs.ClassTemplate;
 import tcs.ConcreteSyntax;
 import tcs.ContextTemplate;
 import tcs.FilterParg;
@@ -27,6 +28,7 @@ import tcs.ForeachPredicatePropertyInit;
 import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
 import tcs.LookupPropertyInit;
+import tcs.PredicateSemantic;
 import tcs.Property;
 import tcs.QueryParg;
 import tcs.Template;
@@ -37,10 +39,12 @@ import textblocks.DocumentNode;
 import textblocks.LexedToken;
 import textblocks.LexedTokenReferenesSequenceElement;
 import textblocks.TextBlock;
+import textblocks.TextBlockAdditionalTemplates;
 import textblocks.TextBlockType;
 import textblocks.VersionEnum;
 
 import com.sap.mi.textual.common.exceptions.ModelAdapterException;
+import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.ModelElementCreationException;
 import com.sap.mi.textual.grammar.impl.DelayedReference;
 import com.sap.mi.textual.grammar.impl.ModelElementProxy;
@@ -131,9 +135,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			     //TODO use affectedModelElements instead but first find out which elements are actually contained in there
 			     Collection<TextBlock> tbs = new ArrayList<TextBlock>(tbTypeAssoc.getTextBlock(def));
 			     //now find all TextBlocks that reference the template in their "additionalTemplate"
-//			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
-//			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
-//			     tbs.addAll(additionalTbs);
+			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
+			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
+			     tbs.addAll(additionalTbs);
 			     Set<MRI> affectedElements = null;
 			     for (TextBlock textBlock : tbs) {
 				//first check if the alternative in which the injector action resides was
@@ -382,6 +386,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     private final Set<ConcreteSyntax> registeredSytaxes = new HashSet<ConcreteSyntax>();
     private final Collection<DelayedReference> iaUnresolvedReferences = new Vector<DelayedReference>();
     private final BackgroundResolver backgroundResolver;
+    private Map<ConcreteSyntax, ObservableInjectingParser> parsersBySyntax = new HashMap<ConcreteSyntax, ObservableInjectingParser>();
 
     public GlobalDelayedReferenceResolver() {
 	// Do the assignment here as the constructor will be invoked by the
@@ -585,7 +590,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	    LexedTokenWrapper token = (LexedTokenWrapper) unresolvedRef
 		    .getToken();
 	    DocumentNode referringDocumentNode = null;
-	    if (token != null) {
+	    ConcreteSyntax cs;
+        if (token != null) {
 		AbstractToken modelElementToken = token.getWrappedToken();
 		LexedToken tokenInCurrentConnection = (LexedToken) conn
 			.getElement(modelElementToken.get___Mri());
@@ -602,12 +608,14 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		if(!localContextBuilder.getContextStack().isEmpty()) {
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
+		cs = token.getParentBlock().getType().getParseRule().getConcretesyntax();
 	    } else if (contextTextBlock != null) {
 		TbUtil.constructContext(contextTextBlock, localContextBuilder);
 		referringDocumentNode = contextTextBlock;
 		if(!localContextBuilder.getContextStack().isEmpty()) {
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
+		cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
 	    } else {
 		removeRegistration(unresolvedRef);
 		notifyReferenceResolvingListenerReferencesRemoved(Collections
@@ -624,7 +632,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		    unresolvedRef.setModelElement(elementInCurrentConnection);
 		    boolean resolved = constructModelInjector(conn,
 			    outermostPackage).resolveReference(unresolvedRef,
-			    localContextBuilder.getContextManager(), (ObservableInjectingParser)null);
+			    localContextBuilder.getContextManager(), 
+			    getParser(cs));
 		    if (resolved) {
 			if(unresolvedRef.getRealValue() instanceof RefObject) {
 			    referringDocumentNode.getReferencedElements().add(
@@ -646,6 +655,10 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	} catch (InvalidConnectionException ice) {
 	    ice.printStackTrace();
 	}
+    }
+
+    private ObservableInjectingParser getParser(ConcreteSyntax concretesyntax) {
+        return parsersBySyntax.get(concretesyntax);
     }
 
     @Override
@@ -990,10 +1003,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
     }
 
     public void registerReferenceForIncrementalEvaluation(ConcreteSyntax cs,
-	    Connection connection, RefPackage outermostPackageOfMetamodel, IProgressMonitor monitor) {
+	    Connection connection, RefPackage outermostPackageOfMetamodel, 
+	    ObservableInjectingParser parser, IRuleName ruleNameBuilder,
+	    IProgressMonitor monitor) {
 
 	if (!registeredSytaxes.contains(cs)) {
-	    
+	    parsersBySyntax.put(cs, parser);
 	    Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
 	    packagesForLookup.addAll(MoinHelper
 		    .getImportedRefPackages(outermostPackageOfMetamodel));
@@ -1038,7 +1053,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
                     } else if (injectorActionBase instanceof ForeachPredicatePropertyInit) {
                         registerForEachPropertyInitForIA(cs, connection,
                                 packagesForLookup, elementClass,
-                                injectorActionBase);
+                                injectorActionBase, ruleNameBuilder);
                     }
                 } 
                 monitor.subTask("Property Queries");
@@ -1128,9 +1143,10 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     private void registerForEachPropertyInitForIA(ConcreteSyntax cs,
             Connection connection, Collection<RefPackage> packagesForLookup,
-            MofClass elementClass, InjectorAction injectorActionBase) {
+            MofClass elementClass, InjectorAction injectorActionBase, IRuleName ruleNameFinder) {
         ForeachPredicatePropertyInit foreachPredicatePropertyInit = (ForeachPredicatePropertyInit) injectorActionBase;
-        Template template = foreachPredicatePropertyInit.getInjectorActionsBlockReference()
+        InjectorActionsBlock block = foreachPredicatePropertyInit.getInjectorActionsBlockReference();
+        Template template = block
             .getParentTemplate();
         RefObject parsingContext = null;
         if (!MoinHelper.usesContext(foreachPredicatePropertyInit.getValue())) {
@@ -1157,9 +1173,39 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
         }
         try {
             String query = foreachPredicatePropertyInit.getValue();
-            DelayedReference ref = new DelayedReference(null, null,
-                    foreachPredicatePropertyInit.getPropertyReference().getStrucfeature()
-                        .getName(), null, null, query, false, null);
+            List<com.sap.mi.textual.grammar.impl.PredicateSemantic> list = new ArrayList<com.sap.mi.textual.grammar.impl.PredicateSemantic>();
+            Iterator<PredicateSemantic> semIt = ((ForeachPredicatePropertyInit) foreachPredicatePropertyInit).getPredicatesemantic().iterator();
+            String mode = template instanceof ClassTemplate ? ((ClassTemplate) template).getMode() : null;
+            while (semIt.hasNext()) {
+                PredicateSemantic next = semIt.next();
+                String localMode = mode;
+                if (next.getMode() != null) {
+                    localMode = next.getMode();
+                }
+                if (next.getWhen() != null) {
+                    String javaQueryWhen = next.getWhen().replaceAll("\\\"", "\\\\\"");
+                    javaQueryWhen = javaQueryWhen.replaceAll("\r\n", "\"+\"");
+                    javaQueryWhen = javaQueryWhen.replaceAll("\n", "\"+\"");
+                    list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(
+                            javaQueryWhen,
+                            ruleNameFinder.getRuleName(next.getAs(), localMode)));
+            
+                } else {
+                    list.add(new com.sap.mi.textual.grammar.impl.PredicateSemantic(null, ruleNameFinder.getRuleName(next.getAs(), localMode)));
+                }
+            }
+            boolean hasContext = false;
+            if (block.getParentTemplate() instanceof ClassTemplate) {
+                hasContext = ((ClassTemplate) block.getParentTemplate()).isContext();
+            }
+            DelayedReference ref = new DelayedReference(null,
+                        DelayedReference.SEMANTIC_PREDICATE, null, 
+                        foreachPredicatePropertyInit.getPropertyReference().getStrucfeature().getName(),
+                        query, null, list, ruleNameFinder, null, hasContext, 
+                        /*isOptional: ForEach is always considered optional as 
+                         * error reporting will be done based on metamodel constraints.*/
+                        true);
+                
             //now replace any #context parts within the query with self
             //and use the context element type for registration if it is
             //used here, 

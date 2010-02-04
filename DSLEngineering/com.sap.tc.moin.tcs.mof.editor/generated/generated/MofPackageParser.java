@@ -1,4 +1,4 @@
-// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g 2009-12-22 13:24:09
+// $ANTLR 3.1.1 C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g 2010-02-02 13:52:21
 
 package generated;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class MofPackageParser extends ObservableInjectingParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "QNAME", "STRING", "MULTI_LINE_COMMENT", "INT", "BOOL", "LCURL", "RCURL", "DDOT", "STAR", "LBRACKET", "RBRACKET", "LBRACK_LCURL", "RCURL_RBRACK", "LCURL_LBRACK", "RBRACK_RCURL", "COMMENT", "LPAREN", "RPAREN", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "FLOAT", "RANGE_OR_INT", "'private'", "'public'", "'->'", "'protected'", "'readonly'", "'class'", "'package'", "'abstract'", "'association'", "';'", "'<>'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "NAME", "QNAME", "STRING", "MULTI_LINE_COMMENT", "INT", "BOOL", "LCURL", "RCURL", "DDOT", "STAR", "LBRACKET", "RBRACKET", "LBRACK_LCURL", "RCURL_RBRACK", "LCURL_LBRACK", "RBRACK_RCURL", "COMMENT", "LPAREN", "RPAREN", "NL", "WS", "DIGIT", "ALPHA", "SNAME", "FLOAT", "RANGE_OR_INT", "'package'", "'private'", "'readonly'", "'protected'", "'class'", "'abstract'", "';'", "'<>'", "'->'", "'association'", "'public'"
     };
     public static final int RCURL_RBRACK=17;
     public static final int LCURL_LBRACK=18;
@@ -77,7 +77,7 @@ public class MofPackageParser extends ObservableInjectingParser {
     public String getGrammarFileName() { return "C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g"; }
 
 
-       private static final String syntaxUUID = "E0C26B3DE6039940EEF411DECC63FB9C8D1505E2";
+       private static final String syntaxUUID = "E03D8471CC170BE00FF911DF90DAEEDE8D1505E2";
        public String getSyntaxUUID() {
             return syntaxUUID;
        }
@@ -195,7 +195,7 @@ public class MofPackageParser extends ObservableInjectingParser {
 
 
     // $ANTLR start "identifierOrKeyword"
-    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' ) ;
+    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:217:1: identifierOrKeyword returns [Object ret2] : (ast= NAME | 'package' | 'private' | 'readonly' | 'protected' | 'class' | 'abstract' | ';' | '<>' | '->' | 'association' | 'public' ) ;
     public final Object identifierOrKeyword() throws RecognitionException {
         Object ret2 = null;
 
@@ -203,10 +203,10 @@ public class MofPackageParser extends ObservableInjectingParser {
 
         java.lang.Object ret=null;
         try {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:218:3: ( (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' ) )
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:3: (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:218:3: ( (ast= NAME | 'package' | 'private' | 'readonly' | 'protected' | 'class' | 'abstract' | ';' | '<>' | '->' | 'association' | 'public' ) )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:3: (ast= NAME | 'package' | 'private' | 'readonly' | 'protected' | 'class' | 'abstract' | ';' | '<>' | '->' | 'association' | 'public' )
             {
-            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:3: (ast= NAME | 'private' | 'public' | '->' | 'protected' | 'readonly' | 'class' | 'package' | 'abstract' | 'association' | ';' | '<>' )
+            // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:219:3: (ast= NAME | 'package' | 'private' | 'readonly' | 'protected' | 'class' | 'abstract' | ';' | '<>' | '->' | 'association' | 'public' )
             int alt1=12;
             switch ( input.LA(1) ) {
             case NAME:
@@ -290,31 +290,31 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 2 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:221:5: 'private'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:221:5: 'package'
                     {
                     match(input,30,FOLLOW_30_in_identifierOrKeyword108); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "package";
+                    }
+
+                    }
+                    break;
+                case 3 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:222:5: 'private'
+                    {
+                    match(input,31,FOLLOW_31_in_identifierOrKeyword116); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "private";
                     }
 
                     }
                     break;
-                case 3 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:222:5: 'public'
-                    {
-                    match(input,31,FOLLOW_31_in_identifierOrKeyword116); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "public";
-                    }
-
-                    }
-                    break;
                 case 4 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:223:5: '->'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:223:5: 'readonly'
                     {
                     match(input,32,FOLLOW_32_in_identifierOrKeyword124); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "->";
+                      ret = "readonly";
                     }
 
                     }
@@ -330,71 +330,71 @@ public class MofPackageParser extends ObservableInjectingParser {
                     }
                     break;
                 case 6 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:225:5: 'readonly'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:225:5: 'class'
                     {
                     match(input,34,FOLLOW_34_in_identifierOrKeyword140); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "readonly";
-                    }
-
-                    }
-                    break;
-                case 7 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:226:5: 'class'
-                    {
-                    match(input,35,FOLLOW_35_in_identifierOrKeyword148); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "class";
                     }
 
                     }
                     break;
-                case 8 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:227:5: 'package'
+                case 7 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:226:5: 'abstract'
                     {
-                    match(input,36,FOLLOW_36_in_identifierOrKeyword156); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "package";
-                    }
-
-                    }
-                    break;
-                case 9 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:228:5: 'abstract'
-                    {
-                    match(input,37,FOLLOW_37_in_identifierOrKeyword164); if (state.failed) return ret2;
+                    match(input,35,FOLLOW_35_in_identifierOrKeyword148); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = "abstract";
                     }
 
                     }
                     break;
-                case 10 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:229:5: 'association'
+                case 8 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:227:5: ';'
                     {
-                    match(input,38,FOLLOW_38_in_identifierOrKeyword172); if (state.failed) return ret2;
-                    if ( state.backtracking==0 ) {
-                      ret = "association";
-                    }
-
-                    }
-                    break;
-                case 11 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:230:5: ';'
-                    {
-                    match(input,39,FOLLOW_39_in_identifierOrKeyword180); if (state.failed) return ret2;
+                    match(input,36,FOLLOW_36_in_identifierOrKeyword156); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       ret = ";";
                     }
 
                     }
                     break;
+                case 9 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:228:5: '<>'
+                    {
+                    match(input,37,FOLLOW_37_in_identifierOrKeyword164); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "<>";
+                    }
+
+                    }
+                    break;
+                case 10 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:229:5: '->'
+                    {
+                    match(input,38,FOLLOW_38_in_identifierOrKeyword172); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "->";
+                    }
+
+                    }
+                    break;
+                case 11 :
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:230:5: 'association'
+                    {
+                    match(input,39,FOLLOW_39_in_identifierOrKeyword180); if (state.failed) return ret2;
+                    if ( state.backtracking==0 ) {
+                      ret = "association";
+                    }
+
+                    }
+                    break;
                 case 12 :
-                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:231:5: '<>'
+                    // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:231:5: 'public'
                     {
                     match(input,40,FOLLOW_40_in_identifierOrKeyword188); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
-                      ret = "<>";
+                      ret = "public";
                     }
 
                     }
@@ -752,7 +752,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:4: annotation[ret] 'package' (temp= identifier ) LCURL ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DD2580EEF411DEC927FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB054DC00FF911DF91B4EEDE8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_package436);
             annotation(ret);
@@ -764,14 +764,14 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DD4C90EEF411DE876DFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB065F300FF911DFC709EEDE8D1505E2");
             }
-            match(input,36,FOLLOW_36_in_model_package440); if (state.failed) return ret2;
+            match(input,30,FOLLOW_30_in_model_package440); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DD4C92EEF411DE90B7FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB085B000FF911DFBD14EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:237: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:239: temp= identifier
@@ -792,20 +792,20 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DD73A0EEF411DE9A25FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB0ACC000FF911DFBA88EEDE8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DD73A1EEF411DE997CFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB0CEEE00FF911DF949CEEDE8D1505E2");
             }
             match(input,LCURL,FOLLOW_LCURL_in_model_package456); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DE0FE1EEF411DE816FFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBAEFB400FF911DFBB3FEEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:521: ( ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:522: ( (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )? )
@@ -814,7 +814,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:523: (temp= model_modelelement_classes (temp= model_modelelement_classes )* )? (temp= model_modelelement_associations (temp= model_modelelement_associations )* )?
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DD9AB1EEF411DEB1F1FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB0F86F00FF911DFAEF1EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:582: (temp= model_modelelement_classes (temp= model_modelelement_classes )* )?
             int alt3=2;
@@ -822,17 +822,17 @@ public class MofPackageParser extends ObservableInjectingParser {
                 case MULTI_LINE_COMMENT:
                     {
                     switch ( input.LA(2) ) {
+                        case 34:
                         case 35:
-                        case 37:
                             {
                             alt3=1;
                             }
                             break;
-                        case 31:
+                        case 40:
                             {
                             int LA3_3 = input.LA(3);
 
-                            if ( (LA3_3==35||LA3_3==37) ) {
+                            if ( ((LA3_3>=34 && LA3_3<=35)) ) {
                                 alt3=1;
                             }
                             }
@@ -841,16 +841,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                             {
                             int LA3_4 = input.LA(3);
 
-                            if ( (LA3_4==35||LA3_4==37) ) {
+                            if ( ((LA3_4>=34 && LA3_4<=35)) ) {
                                 alt3=1;
                             }
                             }
                             break;
-                        case 30:
+                        case 31:
                             {
                             int LA3_5 = input.LA(3);
 
-                            if ( (LA3_5==35||LA3_5==37) ) {
+                            if ( ((LA3_5>=34 && LA3_5<=35)) ) {
                                 alt3=1;
                             }
                             }
@@ -859,17 +859,17 @@ public class MofPackageParser extends ObservableInjectingParser {
 
                     }
                     break;
+                case 34:
                 case 35:
-                case 37:
                     {
                     alt3=1;
                     }
                     break;
-                case 31:
+                case 40:
                     {
                     int LA3_3 = input.LA(2);
 
-                    if ( (LA3_3==35||LA3_3==37) ) {
+                    if ( ((LA3_3>=34 && LA3_3<=35)) ) {
                         alt3=1;
                     }
                     }
@@ -878,16 +878,16 @@ public class MofPackageParser extends ObservableInjectingParser {
                     {
                     int LA3_4 = input.LA(2);
 
-                    if ( (LA3_4==35||LA3_4==37) ) {
+                    if ( ((LA3_4>=34 && LA3_4<=35)) ) {
                         alt3=1;
                     }
                     }
                     break;
-                case 30:
+                case 31:
                     {
                     int LA3_5 = input.LA(2);
 
-                    if ( (LA3_5==35||LA3_5==37) ) {
+                    if ( ((LA3_5>=34 && LA3_5<=35)) ) {
                         alt3=1;
                     }
                     }
@@ -915,17 +915,17 @@ public class MofPackageParser extends ObservableInjectingParser {
                         case MULTI_LINE_COMMENT:
                             {
                             switch ( input.LA(2) ) {
+                            case 34:
                             case 35:
-                            case 37:
                                 {
                                 alt2=1;
                                 }
                                 break;
-                            case 31:
+                            case 40:
                                 {
                                 int LA2_3 = input.LA(3);
 
-                                if ( (LA2_3==35||LA2_3==37) ) {
+                                if ( ((LA2_3>=34 && LA2_3<=35)) ) {
                                     alt2=1;
                                 }
 
@@ -936,18 +936,18 @@ public class MofPackageParser extends ObservableInjectingParser {
                                 {
                                 int LA2_4 = input.LA(3);
 
-                                if ( (LA2_4==35||LA2_4==37) ) {
+                                if ( ((LA2_4>=34 && LA2_4<=35)) ) {
                                     alt2=1;
                                 }
 
 
                                 }
                                 break;
-                            case 30:
+                            case 31:
                                 {
                                 int LA2_5 = input.LA(3);
 
-                                if ( (LA2_5==35||LA2_5==37) ) {
+                                if ( ((LA2_5>=34 && LA2_5<=35)) ) {
                                     alt2=1;
                                 }
 
@@ -959,11 +959,11 @@ public class MofPackageParser extends ObservableInjectingParser {
 
                             }
                             break;
-                        case 31:
+                        case 40:
                             {
                             int LA2_3 = input.LA(2);
 
-                            if ( (LA2_3==35||LA2_3==37) ) {
+                            if ( ((LA2_3>=34 && LA2_3<=35)) ) {
                                 alt2=1;
                             }
 
@@ -974,26 +974,26 @@ public class MofPackageParser extends ObservableInjectingParser {
                             {
                             int LA2_4 = input.LA(2);
 
-                            if ( (LA2_4==35||LA2_4==37) ) {
+                            if ( ((LA2_4>=34 && LA2_4<=35)) ) {
                                 alt2=1;
                             }
 
 
                             }
                             break;
-                        case 30:
+                        case 31:
                             {
                             int LA2_5 = input.LA(2);
 
-                            if ( (LA2_5==35||LA2_5==37) ) {
+                            if ( ((LA2_5>=34 && LA2_5<=35)) ) {
                                 alt2=1;
                             }
 
 
                             }
                             break;
+                        case 34:
                         case 35:
-                        case 37:
                             {
                             alt2=1;
                             }
@@ -1033,13 +1033,13 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DDE8D0EEF411DE8FC6FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CB10BF700FF911DFBB99EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:313:806: (temp= model_modelelement_associations (temp= model_modelelement_associations )* )?
             int alt5=2;
             int LA5_0 = input.LA(1);
 
-            if ( ((LA5_0>=NAME && LA5_0<=QNAME)||LA5_0==MULTI_LINE_COMMENT||(LA5_0>=30 && LA5_0<=38)||LA5_0==40) ) {
+            if ( ((LA5_0>=NAME && LA5_0<=QNAME)||LA5_0==MULTI_LINE_COMMENT||(LA5_0>=30 && LA5_0<=35)||(LA5_0>=37 && LA5_0<=40)) ) {
                 alt5=1;
             }
             switch (alt5) {
@@ -1061,7 +1061,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                         int alt4=2;
                         int LA4_0 = input.LA(1);
 
-                        if ( ((LA4_0>=NAME && LA4_0<=QNAME)||LA4_0==MULTI_LINE_COMMENT||(LA4_0>=30 && LA4_0<=38)||LA4_0==40) ) {
+                        if ( ((LA4_0>=NAME && LA4_0<=QNAME)||LA4_0==MULTI_LINE_COMMENT||(LA4_0>=30 && LA4_0<=35)||(LA4_0>=37 && LA4_0<=40)) ) {
                             alt4=1;
                         }
 
@@ -1107,7 +1107,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5DE36F0EEF411DE9B28FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBAF70700FF911DFA9B9EEDE8D1505E2");
             }
             match(input,RCURL,FOLLOW_RCURL_in_model_package513); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1334,7 +1334,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:4: annotation[ret] visibility[ret] ( ( 'abstract' ) | ) 'class' (temp= identifier ) ';'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E080E0EEF411DEA4C7FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB4A0900FF911DFB8A1EEDE8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_class_classes662);
             annotation(ret);
@@ -1346,7 +1346,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E0A7F0EEF411DE9331FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB4A0910FF911DFB79CEEDE8D1505E2");
             }
             pushFollow(FOLLOW_visibility_in_model_class_classes666);
             visibility(ret);
@@ -1358,16 +1358,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E0F610EEF411DEC24DFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB7D4E00FF911DF8FAFEEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:244: ( ( 'abstract' ) | )
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( (LA6_0==37) ) {
+            if ( (LA6_0==35) ) {
                 alt6=1;
             }
-            else if ( (LA6_0==35) ) {
+            else if ( (LA6_0==34) ) {
                 alt6=2;
             }
             else {
@@ -1388,9 +1388,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:363:262: 'abstract'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E0CF01EEF411DEB228FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBB64E400FF911DFA090EEDE8D1505E2");
                     }
-                    match(input,37,FOLLOW_37_in_model_class_classes676); if (state.failed) return ret2;
+                    match(input,35,FOLLOW_35_in_model_class_classes676); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -1428,14 +1428,14 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E11D20EEF411DEB906FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB95B800FF911DFAF40EEDE8D1505E2");
             }
-            match(input,35,FOLLOW_35_in_model_class_classes694); if (state.failed) return ret2;
+            match(input,34,FOLLOW_34_in_model_class_classes694); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E11D22EEF411DEA2EAFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB95B820FF911DFA862EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:364:158: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:364:160: temp= identifier
@@ -1456,15 +1456,15 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E11D23EEF411DEBFC9FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB982900FF911DF886CEEDE8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E14430EEF411DE8A34FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBB982910FF911DF9136EEDE8D1505E2");
             }
-            match(input,39,FOLLOW_39_in_model_class_classes709); if (state.failed) return ret2;
+            match(input,36,FOLLOW_36_in_model_class_classes709); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -1689,7 +1689,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:4: annotation[ret] visibility[ret] 'association' (temp= identifier ) LCURL ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) ) RCURL
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E3B530EEF411DE894FFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBBD53200FF911DFB099EEDE8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_association_associations857);
             annotation(ret);
@@ -1701,7 +1701,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E3B531EEF411DE9D93FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBBD7A300FF911DF941CEEDE8D1505E2");
             }
             pushFollow(FOLLOW_visibility_in_model_association_associations861);
             visibility(ret);
@@ -1713,14 +1713,14 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E3B532EEF411DEB31FFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBBD7A310FF911DFA8C9EEDE8D1505E2");
             }
-            match(input,38,FOLLOW_38_in_model_association_associations865); if (state.failed) return ret2;
+            match(input,39,FOLLOW_39_in_model_association_associations865); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E3B534EEF411DEB00CFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBBD7A330FF911DF9C29EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:331: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:333: temp= identifier
@@ -1741,20 +1741,20 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E3DC40EEF411DEA975FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBBDA1400FF911DFB355EEDE8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E3DC41EEF411DE8C7DFB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBBDA1410FF911DFAE6BEEDE8D1505E2");
             }
             match(input,LCURL,FOLLOW_LCURL_in_model_association_associations881); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E49F90EEF411DEC357FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC123B00FF911DF954EEEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:615: ( ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:616: ( (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';' )
@@ -1763,7 +1763,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:617: (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) ) ';'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E45170EEF411DECB31FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC0D5900FF911DF9273EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:676: (temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds ) )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:678: temp= model_modelelement_associationEnds ( ( ';' ) temp= model_modelelement_associationEnds )
@@ -1787,9 +1787,9 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:414:775: ';'
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E42A60EEF411DEB0A1FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC039500FF911DFB8D4EEDE8D1505E2");
             }
-            match(input,39,FOLLOW_39_in_model_association_associations900); if (state.failed) return ret2;
+            match(input,36,FOLLOW_36_in_model_association_associations900); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -1818,9 +1818,9 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E47880EEF411DEBFC5FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC0FCA00FF911DFC92FEEDE8D1505E2");
             }
-            match(input,39,FOLLOW_39_in_model_association_associations914); if (state.failed) return ret2;
+            match(input,36,FOLLOW_36_in_model_association_associations914); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
@@ -1834,7 +1834,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E49F91EEF411DE8E26FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC123B10FF911DFA737EEDE8D1505E2");
             }
             match(input,RCURL,FOLLOW_RCURL_in_model_association_associations921); if (state.failed) return ret2;
             if ( state.backtracking==0 ) {
@@ -1973,7 +1973,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:4: annotation[ret] ( ( '->' ) | ) ( () | ( '<>' ) ) ( () | ( 'readonly' ) ) typereference[ret] (temp= model_multiplicitytype ) (temp= identifier )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E64D40EEF411DEA706FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC31F800FF911DF8122EEDE8D1505E2");
             }
             pushFollow(FOLLOW_annotation_in_model_associationend_associationEnds1016);
             annotation(ret);
@@ -1985,16 +1985,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E69B62EEF411DE91D0FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBC36DA10FF911DFB213EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:154: ( ( '->' ) | )
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==32) ) {
+            if ( (LA7_0==38) ) {
                 alt7=1;
             }
-            else if ( ((LA7_0>=NAME && LA7_0<=QNAME)||LA7_0==34||LA7_0==40) ) {
+            else if ( ((LA7_0>=NAME && LA7_0<=QNAME)||LA7_0==32||LA7_0==37) ) {
                 alt7=2;
             }
             else {
@@ -2015,9 +2015,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:446:172: '->'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E69B60EEF411DEA656FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBC346930FF911DF8FD2EEDE8D1505E2");
                     }
-                    match(input,32,FOLLOW_32_in_model_associationend_associationEnds1026); if (state.failed) return ret2;
+                    match(input,38,FOLLOW_38_in_model_associationend_associationEnds1026); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2055,16 +2055,16 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E75EB0EEF411DEC442FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBCA99900FF911DF9EF8EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:447:76: ( () | ( '<>' ) )
             int alt8=2;
             int LA8_0 = input.LA(1);
 
-            if ( ((LA8_0>=NAME && LA8_0<=QNAME)||LA8_0==34) ) {
+            if ( ((LA8_0>=NAME && LA8_0<=QNAME)||LA8_0==32) ) {
                 alt8=1;
             }
-            else if ( (LA8_0==40) ) {
+            else if ( (LA8_0==37) ) {
                 alt8=2;
             }
             else {
@@ -2085,7 +2085,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:447:94: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E6E980EEF411DEB8C2FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBC876B00FF911DFB935EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "aggregation", com.sap.tc.moin.repository.mmi.model.AggregationKindEnum.NONE);_exitInjectorAction();
@@ -2112,14 +2112,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:21: '<>'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E71090EEF411DE8BFCFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBC9FD500FF911DFCBA1EEDE8D1505E2");
                     }
-                    match(input,40,FOLLOW_40_in_model_associationend_associationEnds1062); if (state.failed) return ret2;
+                    match(input,37,FOLLOW_37_in_model_associationend_associationEnds1062); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E737A0EEF411DEBF6FFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBCA24620FF911DF86DAEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "aggregation", com.sap.tc.moin.repository.mmi.model.AggregationKindEnum.COMPOSITE);_exitInjectorAction();
@@ -2143,7 +2143,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E7D3E1EEF411DE8F02FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBCB5CE20FF911DFC790EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:391: ( () | ( 'readonly' ) )
             int alt9=2;
@@ -2152,7 +2152,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             if ( ((LA9_0>=NAME && LA9_0<=QNAME)) ) {
                 alt9=1;
             }
-            else if ( (LA9_0==34) ) {
+            else if ( (LA9_0==32) ) {
                 alt9=2;
             }
             else {
@@ -2193,9 +2193,9 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:448:503: 'readonly'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E7ACD1EEF411DE912EFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBCB5CE00FF911DFC36DEEDE8D1505E2");
                     }
-                    match(input,34,FOLLOW_34_in_model_associationend_associationEnds1089); if (state.failed) return ret2;
+                    match(input,32,FOLLOW_32_in_model_associationend_associationEnds1089); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
@@ -2218,7 +2218,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E7FAF0EEF411DE9D56FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBCBD2100FF911DFCFA5EEDE8D1505E2");
             }
             pushFollow(FOLLOW_typereference_in_model_associationend_associationEnds1099);
             typereference(ret);
@@ -2230,7 +2230,7 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E82200EEF411DE8830FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBCBD2120FF911DFA751EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:169: (temp= model_multiplicitytype )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:171: temp= model_multiplicitytype
@@ -2251,13 +2251,13 @@ public class MofPackageParser extends ObservableInjectingParser {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E82201EEF411DEAAE9FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBCBD2130FF911DF8AE9EEDE8D1505E2");
             }
             if ( state.backtracking==0 ) {
               _afterSeqEl();
             }
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5E84910EEF411DEC9D3FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBCBF9210FF911DF95ABEEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:391: (temp= identifier )
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:449:393: temp= identifier
@@ -2315,7 +2315,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:4: ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5EA44E0EEF411DE8915FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBEA56910FF911DF8986EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:63: ( ( (temp= qualifiedNameSymbol ) ) | ( (temp= identifier ) ) )
             int alt10=2;
@@ -2345,7 +2345,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:81: (temp= qualifiedNameSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E98192EEF411DEC9DBFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBE993400FF911DFB8D6EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:140: (temp= qualifiedNameSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:459:142: temp= qualifiedNameSymbol
@@ -2384,7 +2384,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:21: (temp= identifier )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5E9F6C1EEF411DEB92BFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBE9E1640FF911DF919AEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:80: (temp= identifier )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:460:82: temp= identifier
@@ -2452,19 +2452,19 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:4: ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5EC67C1EEF411DE9346FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBEFFBE10FF911DFA7F7EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:63: ( () | ( 'public' ) | ( 'protected' ) | ( 'private' ) )
             int alt11=4;
             switch ( input.LA(1) ) {
+            case 34:
             case 35:
-            case 37:
-            case 38:
+            case 39:
                 {
                 alt11=1;
                 }
                 break;
-            case 31:
+            case 40:
                 {
                 alt11=2;
                 }
@@ -2474,7 +2474,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                 alt11=3;
                 }
                 break;
-            case 30:
+            case 31:
                 {
                 alt11=4;
                 }
@@ -2498,7 +2498,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:469:81: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EB0831EEF411DEB2BEFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEE27200FF911DFC722EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS);_exitInjectorAction();
@@ -2525,14 +2525,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:470:21: 'public'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EB5651EEF411DEAC46FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEE4E310FF911DFBA83EEDE8D1505E2");
                     }
-                    match(input,31,FOLLOW_31_in_visibility1235); if (state.failed) return ;
+                    match(input,40,FOLLOW_40_in_visibility1235); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EBA470EEF411DEAC45FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEEC3600FF911DFA054EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PUBLIC_VIS);_exitInjectorAction();
@@ -2559,14 +2559,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:471:21: 'protected'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EBCB80EEF411DE9634FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEEEA700FF911DF858FEEDE8D1505E2");
                     }
                     match(input,33,FOLLOW_33_in_visibility1251); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EBF290EEF411DEC0ABFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEF38910FF911DFB2B1EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PROTECTED_VIS);_exitInjectorAction();
@@ -2593,14 +2593,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:472:21: 'private'
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EC19A0EEF411DEAD62FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEF5FA00FF911DFC723EEDE8D1505E2");
                     }
-                    match(input,30,FOLLOW_30_in_visibility1267); if (state.failed) return ;
+                    match(input,31,FOLLOW_31_in_visibility1267); if (state.failed) return ;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EC40B1EEF411DEAF16FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBEFD4D10FF911DF8DFCEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "visibility", com.sap.tc.moin.repository.mmi.model.VisibilityKindEnum.PRIVATE_VIS);_exitInjectorAction();
@@ -2659,7 +2659,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:4: ( ( (temp= annotationSymbol ) ) | )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE5EDC750EEF411DEC240FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CBF8D5800FF911DFC4CCEEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:64: ( ( (temp= annotationSymbol ) ) | )
             int alt12=2;
@@ -2668,7 +2668,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             if ( (LA12_0==MULTI_LINE_COMMENT) ) {
                 alt12=1;
             }
-            else if ( ((LA12_0>=NAME && LA12_0<=QNAME)||(LA12_0>=30 && LA12_0<=38)||LA12_0==40) ) {
+            else if ( ((LA12_0>=NAME && LA12_0<=QNAME)||(LA12_0>=30 && LA12_0<=35)||(LA12_0>=37 && LA12_0<=40)) ) {
                 alt12=2;
             }
             else {
@@ -2689,7 +2689,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:82: (temp= annotationSymbol )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5ED7932EEF411DEB45AFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBF887620FF911DF8F17EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:141: (temp= annotationSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:481:143: temp= annotationSymbol
@@ -2710,7 +2710,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EDA040EEF411DE9DA5FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBF8AE700FF911DF8051EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
@@ -2785,7 +2785,7 @@ public class MofPackageParser extends ObservableInjectingParser {
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:4: ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () )
             {
             if ( state.backtracking==0 ) {
-              _beforeSeqEl("E0C26B3DE6012841EEF411DEB538FB9C8D1505E2");
+              _beforeSeqEl("E03D8471CC1166910FF911DFBC99EEDE8D1505E2");
             }
             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:63: ( ( integerSymbol DDOT STAR | integerSymbol DDOT integerSymbol )=> ( (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol DDOT )=> ( LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LCURL integerSymbol DDOT )=> ( LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LBRACK_LCURL integerSymbol DDOT )=> ( LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK integerSymbol DDOT )=> ( LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( STAR | integerSymbol ~ DDOT )=> ( ( ( STAR ) | ( (temp= integerSymbol ) ) ) ) | ( LBRACKET integerSymbol RBRACKET | LBRACKET STAR RBRACKET )=> ( LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET ) | ( LBRACKET RBRACKET )=> ( LBRACKET RBRACKET ) | ( LCURL STAR RCURL | LCURL integerSymbol RCURL )=> ( LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL ) | ( LCURL RCURL )=> ( LCURL RCURL ) | ( LBRACK_LCURL STAR RCURL_RBRACK | LBRACK_LCURL integerSymbol RCURL_RBRACK )=> ( LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK ) | ( LCURL_LBRACK STAR RBRACK_RCURL | LCURL_LBRACK integerSymbol RBRACK_RCURL )=> ( LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL ) | ( LCURL_LBRACK RBRACK_RCURL )=> ( LCURL_LBRACK RBRACK_RCURL ) | ( LBRACK_LCURL RCURL_RBRACK )=> ( LBRACK_LCURL RCURL_RBRACK ) | () )
             int alt23=15;
@@ -2801,7 +2801,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:145: (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EE8AA0EEF411DE840DFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBF9BFE10FF911DFAA4AEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:204: (temp= integerSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:206: temp= integerSymbol
@@ -2822,14 +2822,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EE8AA1EEF411DEA9D4FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBF9BFE20FF911DFA008EEDE8D1505E2");
                     }
                     match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1391); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EF26E0EEF411DEAFF0FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBFEF0000FF911DFB6CDEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:417: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt13=2;
@@ -2859,7 +2859,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:435: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5EED8C1EEF411DEBF99FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CBFE7AD00FF911DFADE0EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1402); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -2887,7 +2887,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:596: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5EEFFD1EEF411DE92ADFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CBFE7AD30FF911DFCDADEEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:655: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:495:657: temp= integerSymbol
@@ -2925,7 +2925,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EF7501EEF411DEADF0FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBFF65300FF911DF9C09EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -2952,14 +2952,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:54: LBRACKET (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EFC320EEF411DEA625FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBFFB3500FF911DFC9E1EEDE8D1505E2");
                     }
                     match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1457); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EFEA30EEF411DEC7EDFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBFFB3520FF911DF8CD6EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:198: (temp= integerSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:200: temp= integerSymbol
@@ -2980,14 +2980,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5EFEA31EEF411DEC953FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CBFFB3530FF911DFB25BEEDE8D1505E2");
                     }
                     match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1472); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F08670EEF411DECE73FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0028800FF911DFB57FEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:411: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt14=2;
@@ -3017,7 +3017,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:429: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F03850EEF411DEB400FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CBFFDA620FF911DFBDEFEEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1483); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3045,7 +3045,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:590: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F05F61EEF411DE8BD9FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0001720FF911DFC2EEEEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:649: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:497:651: temp= integerSymbol
@@ -3083,7 +3083,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F0D492EEF411DEBEFBFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0076A00FF911DFC64DEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3092,7 +3092,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F0FBA0EEF411DEA1D6FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0076A10FF911DFA5B6EEDE8D1505E2");
                     }
                     match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1518); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3117,14 +3117,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:51: LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F149C0EEF411DE9331FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC00C4C00FF911DFA833EEDE8D1505E2");
                     }
                     match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype1543); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F149C2EEF411DEAC31FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC00C4C20FF911DF9036EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:192: (temp= integerSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:194: temp= integerSymbol
@@ -3145,14 +3145,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F170D0EEF411DEAC01FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC00EBD00FF911DFB1C4EEDE8D1505E2");
                     }
                     match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1558); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F1E601EEF411DEA610FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0161010FF911DF8DCFEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:405: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt15=2;
@@ -3182,7 +3182,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:423: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F1BEF0EEF411DEA48BFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0112E10FF911DFC107EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1569); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3210,7 +3210,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:584: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F1BEF3EEF411DEB995FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0139F10FF911DF9410EEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:643: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:499:645: temp= integerSymbol
@@ -3248,7 +3248,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F25B30EEF411DECEB4FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC01AF200FF911DF966CEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -3257,7 +3257,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F28240EEF411DEB188FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC01AF210FF911DFCF7CEEDE8D1505E2");
                     }
                     match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype1604); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3282,14 +3282,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:58: LBRACK_LCURL (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F2A950EEF411DEAAC3FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC01FD400FF911DFB256EEDE8D1505E2");
                     }
                     match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype1629); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F2D061EEF411DEA72BFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC01FD420FF911DFC1ABEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:206: (temp= integerSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:208: temp= integerSymbol
@@ -3310,14 +3310,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F2D062EEF411DEA6B5FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0224500FF911DF8A83EEDE8D1505E2");
                     }
                     match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1644); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F36CA0EEF411DE88F3FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0272710FF911DF8EECEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:419: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt16=2;
@@ -3347,7 +3347,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:437: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F31E81EEF411DEC309FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC024B610FF911DF8445EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1655); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3375,7 +3375,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:598: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F34591EEF411DE95E8FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC024B640FF911DFA3D3EEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:657: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:501:659: temp= integerSymbol
@@ -3413,7 +3413,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F3BAC1EEF411DEA2D9FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC02E7A00FF911DFCB61EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3422,7 +3422,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F3E1D0EEF411DEB8EEFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC02E7A10FF911DFC0EAEEDE8D1505E2");
                     }
                     match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype1690); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3447,14 +3447,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:58: LCURL_LBRACK (temp= integerSymbol ) DDOT ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F42FF0EEF411DE9587FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0335C00FF911DFA856EEDE8D1505E2");
                     }
                     match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype1715); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F42FF2EEF411DEC12DFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0335C20FF911DFCCC0EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:206: (temp= integerSymbol )
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:208: temp= integerSymbol
@@ -3475,14 +3475,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F45700EEF411DEA92AFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0335C30FF911DFAEBCEEDE8D1505E2");
                     }
                     match(input,DDOT,FOLLOW_DDOT_in_model_multiplicitytype1730); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F4CC31EEF411DE81BBFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC03AAF10FF911DFC3C1EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:419: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt17=2;
@@ -3512,7 +3512,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:437: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F47E11EEF411DECA98FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0383E00FF911DFB475EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1741); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3540,7 +3540,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:598: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F4A522EEF411DEA934FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0383E30FF911DFB822EEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:657: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:503:659: temp= integerSymbol
@@ -3578,7 +3578,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F54160EEF411DEA3C5FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0531900FF911DFB649EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3587,7 +3587,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F56870EEF411DEA4C0FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0531910FF911DFB0E4EEDE8D1505E2");
                     }
                     match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype1776); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3612,7 +3612,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:53: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F62BC1EEF411DE95DAFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC061BF10FF911DF807DEEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:113: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt18=2;
@@ -3642,7 +3642,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:131: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F5DDA1EEF411DECBC3FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC05F4E00FF911DFC094EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1810); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3670,7 +3670,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:292: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F604B2EEF411DEB1B0FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC05F4E30FF911DF959EEEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:351: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:505:353: temp= integerSymbol
@@ -3708,7 +3708,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F6C800EEF411DEB433FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC066A120FF911DFBF42EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -3735,14 +3735,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:83: LBRACKET ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F6EF10EEF411DE8B79FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC06B8300FF911DF8608EEDE8D1505E2");
                     }
                     match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1873); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F78B50EEF411DE9301FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC072D610FF911DF8999EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:228: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt19=2;
@@ -3772,7 +3772,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:246: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F73D31EEF411DEB4A5FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0706500FF911DFB56CEEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1884); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3800,7 +3800,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:407: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F76441EEF411DE9F39FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0706530FF911DFA95DEEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:466: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:507:468: temp= integerSymbol
@@ -3838,7 +3838,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F80082EEF411DEBA3FFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC077B820FF911DFAF3CEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -3847,7 +3847,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F82790EEF411DE8ECFFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC07A2900FF911DFB2FBEEDE8D1505E2");
                     }
                     match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1919); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3872,14 +3872,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:509:44: LBRACKET RBRACKET
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F875B0EEF411DEC7E4FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC07C9A00FF911DF8A9EEEDE8D1505E2");
                     }
                     match(input,LBRACKET,FOLLOW_LBRACKET_in_model_multiplicitytype1942); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F8EAE1EEF411DECC43FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC08DB100FF911DFCD2EEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -3888,7 +3888,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F911F0EEF411DE9042FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC08DB110FF911DF955EEEDE8D1505E2");
                     }
                     match(input,RBRACKET,FOLLOW_RBRACKET_in_model_multiplicitytype1950); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -3913,14 +3913,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:71: LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F93900EEF411DEC550FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0929300FF911DFC69AEEDE8D1505E2");
                     }
                     match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype1983); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5F9FC50EEF411DE9DADFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0A13900FF911DF9DC6EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:213: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt20=2;
@@ -3950,7 +3950,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:231: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F9AE30EEF411DECCCDFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC09C5710FF911DFA6DDEEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype1994); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -3978,7 +3978,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:392: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5F9D541EEF411DEC8FAFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC09EC810FF911DF88F0EEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:451: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:510:453: temp= integerSymbol
@@ -4016,7 +4016,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FA7182EEF411DEACBFFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0A61B20FF911DF8110EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -4025,7 +4025,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FA9890EEF411DE8557FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0BE8500FF911DFAD46EEDE8D1505E2");
                     }
                     match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype2029); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4050,14 +4050,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:512:38: LCURL RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FAE6B0EEF411DEAB2BFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0C36700FF911DF9DDAEEDE8D1505E2");
                     }
                     match(input,LCURL,FOLLOW_LCURL_in_model_multiplicitytype2052); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FB5BE1EEF411DEAD1FFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0C84920FF911DF89ACEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();
@@ -4066,7 +4066,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FB82F0EEF411DEA258FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0CF9C00FF911DF944FEEDE8D1505E2");
                     }
                     match(input,RCURL,FOLLOW_RCURL_in_model_multiplicitytype2060); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4091,14 +4091,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:100: LBRACK_LCURL ( ( STAR ) | ( (temp= integerSymbol ) ) ) RCURL_RBRACK
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FBD110EEF411DEC3D7FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0D20D00FF911DF9183EEDE8D1505E2");
                     }
                     match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2093); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FC4641EEF411DEACF6FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0DBD100FF911DFAC27EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:249: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt21=2;
@@ -4128,7 +4128,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:267: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5FBF821EEF411DEC12AFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0D47E10FF911DF9301EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype2104); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -4156,7 +4156,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:428: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5FC1F32EEF411DEA92BFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0D96010FF911DF9057EEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:487: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:513:489: temp= integerSymbol
@@ -4194,7 +4194,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FCE280EEF411DEB7B9FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0E0B320FF911DFBFA4EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4203,7 +4203,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FD0990EEF411DEBD25FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0E32400FF911DFCCB8EEDE8D1505E2");
                     }
                     match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2139); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4228,14 +4228,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:100: LCURL_LBRACK ( ( STAR ) | ( (temp= integerSymbol ) ) ) RBRACK_RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FD30A0EEF411DE98D2FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0E59500FF911DFBBAAEEDE8D1505E2");
                     }
                     match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2172); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FDCCE0EEF411DE9D71FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0ECE800FF911DF8D90EEDE8D1505E2");
                     }
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:249: ( ( STAR ) | ( (temp= integerSymbol ) ) )
                     int alt22=2;
@@ -4265,7 +4265,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:267: STAR
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5FD7EC1EEF411DEC9FFFB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0E80610FF911DFAA94EEDE8D1505E2");
                             }
                             match(input,STAR,FOLLOW_STAR_in_model_multiplicitytype2183); if (state.failed) return ret2;
                             if ( state.backtracking==0 ) {
@@ -4293,7 +4293,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:428: (temp= integerSymbol )
                             {
                             if ( state.backtracking==0 ) {
-                              _beforeSeqEl("E0C26B3DE5FDA5D1EEF411DECCE8FB9C8D1505E2");
+                              _beforeSeqEl("E03D8471CC0EA7710FF911DF88CCEEDE8D1505E2");
                             }
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:487: (temp= integerSymbol )
                             // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:515:489: temp= integerSymbol
@@ -4331,7 +4331,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FE4211EEF411DEB90DFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0F1CA00FF911DFA28FEEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4340,7 +4340,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FE6920EEF411DEAD33FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0F1CA10FF911DF8FF6EEDE8D1505E2");
                     }
                     match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2218); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4365,14 +4365,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:517:53: LCURL_LBRACK RBRACK_RCURL
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FEB740EEF411DEBA94FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0F6AC00FF911DF959FEEDE8D1505E2");
                     }
                     match(input,LCURL_LBRACK,FOLLOW_LCURL_LBRACK_in_model_multiplicitytype2241); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FF2C71EEF411DE9D54FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0FB8E00FF911DFC4A0EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4381,7 +4381,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FF5380EEF411DE9433FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0FB8E10FF911DF9E4BEEDE8D1505E2");
                     }
                     match(input,RBRACK_RCURL,FOLLOW_RBRACK_RCURL_in_model_multiplicitytype2249); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4406,14 +4406,14 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:518:53: LBRACK_LCURL RCURL_RBRACK
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE5FFA1A0EEF411DE9796FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC0FDFF10FF911DF9C64EEDE8D1505E2");
                     }
                     match(input,LBRACK_LCURL,FOLLOW_LBRACK_LCURL_in_model_multiplicitytype2272); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE60016D0EEF411DEA92BFB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC1055200FF911DFB525EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "upper", -1);_exitInjectorAction();setProperty(ret, "isUnique", true);_exitInjectorAction();setProperty(ret, "isOrdered", true);_exitInjectorAction();
@@ -4422,7 +4422,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                       _afterSeqEl();
                     }
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE6003DE0EEF411DE82A5FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC107C300FF911DF871FEEDE8D1505E2");
                     }
                     match(input,RCURL_RBRACK,FOLLOW_RCURL_RBRACK_in_model_multiplicitytype2280); if (state.failed) return ret2;
                     if ( state.backtracking==0 ) {
@@ -4447,7 +4447,7 @@ public class MofPackageParser extends ObservableInjectingParser {
                     // C:\\_fzi\\projects\\CTS\\git\\DSLEngineering\\com.sap.tc.moin.tcs.mof.editor\\generated\\generated\\MofPackage.g:519:22: 
                     {
                     if ( state.backtracking==0 ) {
-                      _beforeSeqEl("E0C26B3DE600DA22EEF411DEBDE9FB9C8D1505E2");
+                      _beforeSeqEl("E03D8471CC113F800FF911DFC7D7EEDE8D1505E2");
                     }
                     if ( state.backtracking==0 ) {
                       setProperty(ret, "lower", 0);_exitInjectorAction();setProperty(ret, "upper", 1);_exitInjectorAction();setProperty(ret, "isOrdered", false);_exitInjectorAction();setProperty(ret, "isUnique", false);_exitInjectorAction();
@@ -5462,53 +5462,53 @@ public class MofPackageParser extends ObservableInjectingParser {
     public static final BitSet FOLLOW_BOOL_in_booleanSymbol374 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_package_in_main402 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_main405 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_package436 = new BitSet(new long[]{0x0000001000000000L});
-    public static final BitSet FOLLOW_36_in_model_package440 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotation_in_model_package436 = new BitSet(new long[]{0x0000000040000000L});
+    public static final BitSet FOLLOW_30_in_model_package440 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_model_package447 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LCURL_in_model_package456 = new BitSet(new long[]{0x0000006AC0000880L});
-    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package467 = new BitSet(new long[]{0x0000006AC0000880L});
-    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package475 = new BitSet(new long[]{0x0000006AC0000880L});
-    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package490 = new BitSet(new long[]{0x00000042C0000880L});
-    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package498 = new BitSet(new long[]{0x00000042C0000880L});
+    public static final BitSet FOLLOW_LCURL_in_model_package456 = new BitSet(new long[]{0x0000018E80000880L});
+    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package467 = new BitSet(new long[]{0x0000018E80000880L});
+    public static final BitSet FOLLOW_model_modelelement_classes_in_model_package475 = new BitSet(new long[]{0x0000018E80000880L});
+    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package490 = new BitSet(new long[]{0x0000018280000880L});
+    public static final BitSet FOLLOW_model_modelelement_associations_in_model_package498 = new BitSet(new long[]{0x0000018280000880L});
     public static final BitSet FOLLOW_RCURL_in_model_package513 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_namespace_classes_in_model_modelelement_classes551 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_generalizableelement_classes_in_model_namespace_classes578 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_classifier_classes_in_model_generalizableelement_classes605 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_class_classes_in_model_classifier_classes632 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_class_classes662 = new BitSet(new long[]{0x0000002AC0000000L});
-    public static final BitSet FOLLOW_visibility_in_model_class_classes666 = new BitSet(new long[]{0x0000002800000000L});
-    public static final BitSet FOLLOW_37_in_model_class_classes676 = new BitSet(new long[]{0x0000000800000000L});
-    public static final BitSet FOLLOW_35_in_model_class_classes694 = new BitSet(new long[]{0x0000000000000010L});
-    public static final BitSet FOLLOW_identifier_in_model_class_classes701 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_model_class_classes709 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_annotation_in_model_class_classes662 = new BitSet(new long[]{0x0000010E80000000L});
+    public static final BitSet FOLLOW_visibility_in_model_class_classes666 = new BitSet(new long[]{0x0000000C00000000L});
+    public static final BitSet FOLLOW_35_in_model_class_classes676 = new BitSet(new long[]{0x0000000400000000L});
+    public static final BitSet FOLLOW_34_in_model_class_classes694 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_identifier_in_model_class_classes701 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_model_class_classes709 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_namespace_associations_in_model_modelelement_associations746 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_generalizableelement_associations_in_model_namespace_associations773 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_classifier_associations_in_model_generalizableelement_associations800 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_association_associations_in_model_classifier_associations827 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_association_associations857 = new BitSet(new long[]{0x00000042C0000000L});
-    public static final BitSet FOLLOW_visibility_in_model_association_associations861 = new BitSet(new long[]{0x0000004000000000L});
-    public static final BitSet FOLLOW_38_in_model_association_associations865 = new BitSet(new long[]{0x0000000000000010L});
+    public static final BitSet FOLLOW_annotation_in_model_association_associations857 = new BitSet(new long[]{0x0000018280000000L});
+    public static final BitSet FOLLOW_visibility_in_model_association_associations861 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_39_in_model_association_associations865 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_model_association_associations872 = new BitSet(new long[]{0x0000000000000400L});
-    public static final BitSet FOLLOW_LCURL_in_model_association_associations881 = new BitSet(new long[]{0x00000105000000B0L});
-    public static final BitSet FOLLOW_model_modelelement_associationEnds_in_model_association_associations892 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_model_association_associations900 = new BitSet(new long[]{0x00000105000000B0L});
-    public static final BitSet FOLLOW_model_modelelement_associationEnds_in_model_association_associations907 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_39_in_model_association_associations914 = new BitSet(new long[]{0x0000000000000800L});
+    public static final BitSet FOLLOW_LCURL_in_model_association_associations881 = new BitSet(new long[]{0x00000061000000B0L});
+    public static final BitSet FOLLOW_model_modelelement_associationEnds_in_model_association_associations892 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_model_association_associations900 = new BitSet(new long[]{0x00000061000000B0L});
+    public static final BitSet FOLLOW_model_modelelement_associationEnds_in_model_association_associations907 = new BitSet(new long[]{0x0000001000000000L});
+    public static final BitSet FOLLOW_36_in_model_association_associations914 = new BitSet(new long[]{0x0000000000000800L});
     public static final BitSet FOLLOW_RCURL_in_model_association_associations921 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_typedelement_associationEnds_in_model_modelelement_associationEnds959 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_model_associationend_associationEnds_in_model_typedelement_associationEnds986 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_annotation_in_model_associationend_associationEnds1016 = new BitSet(new long[]{0x0000010500000030L});
-    public static final BitSet FOLLOW_32_in_model_associationend_associationEnds1026 = new BitSet(new long[]{0x0000010400000030L});
-    public static final BitSet FOLLOW_40_in_model_associationend_associationEnds1062 = new BitSet(new long[]{0x0000000400000030L});
-    public static final BitSet FOLLOW_34_in_model_associationend_associationEnds1089 = new BitSet(new long[]{0x0000000000000030L});
+    public static final BitSet FOLLOW_annotation_in_model_associationend_associationEnds1016 = new BitSet(new long[]{0x0000006100000030L});
+    public static final BitSet FOLLOW_38_in_model_associationend_associationEnds1026 = new BitSet(new long[]{0x0000002100000030L});
+    public static final BitSet FOLLOW_37_in_model_associationend_associationEnds1062 = new BitSet(new long[]{0x0000000100000030L});
+    public static final BitSet FOLLOW_32_in_model_associationend_associationEnds1089 = new BitSet(new long[]{0x0000000000000030L});
     public static final BitSet FOLLOW_typereference_in_model_associationend_associationEnds1099 = new BitSet(new long[]{0x0000000000056510L});
     public static final BitSet FOLLOW_model_multiplicitytype_in_model_associationend_associationEnds1107 = new BitSet(new long[]{0x0000000000000010L});
     public static final BitSet FOLLOW_identifier_in_model_associationend_associationEnds1119 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_qualifiedNameSymbol_in_typereference1165 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_identifier_in_typereference1185 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_visibility1235 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_visibility1235 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_33_in_visibility1251 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_30_in_visibility1267 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_visibility1267 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_annotationSymbol_in_annotation1309 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_integerSymbol_in_model_multiplicitytype1384 = new BitSet(new long[]{0x0000000000001000L});
     public static final BitSet FOLLOW_DDOT_in_model_multiplicitytype1391 = new BitSet(new long[]{0x0000000000002100L});

@@ -35,8 +35,8 @@ public class CtsHistoryDocument extends CtsDocument {
     @Override
     public void completeInit(ConcreteSyntax concreteSyntax, ClassTemplate rootTemplate,
 	    ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> parserFactory,
-	    ModelEditorInputRecoveryStrategy recoveryStrategy, IProgressMonitor monitor) {
-	super.completeInit(concreteSyntax, rootTemplate, parserFactory, recoveryStrategy, monitor);
+	    ModelEditorInputRecoveryStrategy recoveryStrategy, ObservableInjectingParser parser, IProgressMonitor monitor) {
+	super.completeInit(concreteSyntax, rootTemplate, parserFactory, recoveryStrategy, parser, monitor);
 
 	IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(this.modelEditorInput.getProjectName());
 	DocumentHistory history = new DocumentHistory(this, project);

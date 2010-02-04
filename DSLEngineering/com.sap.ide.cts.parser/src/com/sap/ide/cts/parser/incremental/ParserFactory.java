@@ -9,6 +9,7 @@ import org.antlr.runtime.CharStream;
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.TokenStream;
 
+import com.sap.mi.textual.common.interfaces.IRuleName;
 import com.sap.mi.textual.grammar.antlr3.ANTLR3LocationToken;
 import com.sap.mi.textual.grammar.antlr3.ITokenFactory;
 import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
@@ -46,4 +47,6 @@ public interface ParserFactory<P extends ObservableInjectingParser,
     public Collection<PRI> getParserLookupScope(Connection connection);
 
     public String getSyntaxUUID();
+
+    public IRuleName getRuleNameFinder();
 }
