@@ -1,17 +1,25 @@
 package com.sap.ide.refactoring.core.textual;
 
+import java.util.Collection;
+
+import org.antlr.runtime.ANTLRStringStream;
+import org.antlr.runtime.CommonTokenStream;
+import org.antlr.runtime.Lexer;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.jface.viewers.Viewer;
 
 import tcs.ConcreteSyntax;
+import textblocks.TextBlock;
 import textblocks.TextblocksPackage;
 
 import com.sap.ide.cts.editor.AbstractGrammarBasedEditor;
-import com.sap.ide.cts.editor.EditorUtil;
 import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.CtsPrettyPrinter;
 import com.sap.ide.cts.editor.prettyprint.CtsTextBlockTCSExtractorStream;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
+import com.sap.ide.cts.parser.incremental.ParserFactory;
+import com.sap.mi.textual.grammar.impl.ObservableInjectingParser;
+import com.sap.mi.textual.grammar.impl.ParsingError;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.ModelPartition;
@@ -19,25 +27,14 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 public class RefactoringEditorFacade {
 
-    private final AbstractGrammarBasedEditor editor;
-
+    protected AbstractGrammarBasedEditor editor;
+    
     public RefactoringEditorFacade(AbstractGrammarBasedEditor editor) {
 	this.editor = editor;
     }
-
-    private CtsDocument getDocument() {
+        
+    protected CtsDocument getDocument() {
 	return (CtsDocument) editor.getDocumentProvider().getDocument(editor.getEditorInput());
-    }
-
-    // private IModelElementInvestigator getModelElementInvestigator() {
-    // RefPackage metamodelPackage =
-    // editor.getParserFactory().getMetamodelPackage(getConnection());
-    // return new MOINModelAdapter(metamodelPackage, getConnection(), null,
-    // null);
-    // }
-
-    public String getContentAsText() {
-	return getDocument().get();
     }
 
     public TextBlocksModel getTextBlocksModel() {
@@ -46,6 +43,14 @@ public class RefactoringEditorFacade {
 
     public RefObject getDecoratedDomainRootObject() {
 	return (RefObject) getDocument().getRootObject();
+    }
+    
+    public String getContentAsText() {
+	return getTextBlocksModel().get(0, getTextBlocksModel().getLength());
+    }
+
+    public Connection getConnection() {
+	return editor.getWorkingConnection();
     }
 
     /**
@@ -65,17 +70,26 @@ public class RefactoringEditorFacade {
     }
 
     public void prettyPrintFull(TextBlocksModel model) throws SyntaxAndModelMismatchException {
-	ConcreteSyntax syntax = EditorUtil.getActiveSyntax(editor);
+	ConcreteSyntax syntax = model.getRoot().getType().getParseRule().getConcretesyntax();
 	TextblocksPackage pkg = getConnection().getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR);
 	ModelPartition partition = model.getRoot().get___Partition();
-	CtsTextBlockTCSExtractorStream stream = new CtsTextBlockTCSExtractorStream(pkg, partition, editor.getParserFactory());
+	CtsTextBlockTCSExtractorStream stream = new CtsTextBlockTCSExtractorStream(pkg, partition, getParserFactory());
 
 	CtsPrettyPrinter.prettyPrint(getDecoratedDomainRootObject(), syntax, stream);
 	model.setRootTextBlock(stream.getRootBlock());
     }
 
-    public Connection getConnection() {
-	return editor.getWorkingConnection();
+    protected ParserFactory<? extends ObservableInjectingParser, ? extends Lexer> getParserFactory() {
+	return editor.getParserFactory();
     }
 
+    public Collection<ParsingError> checkAndGetSyntacticalErrors(TextBlock block) {
+	ObservableInjectingParser parser = createDryParser();
+	return parser.checkSyntaxWithoutInjecting();
+    }
+
+    protected ObservableInjectingParser createDryParser() {
+	Lexer lexer = getParserFactory().createLexer(new ANTLRStringStream(getTextBlocksModel().getRoot().getCachedString()));
+	return getParserFactory().createParser(new CommonTokenStream(lexer), getConnection());
+    }
 }

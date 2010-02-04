@@ -64,9 +64,12 @@ import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.InvalidConnectionException;
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.PRI;
 import com.sap.tc.moin.repository.PartitionEditingNotPossibleException;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.PartitionsNotSavedException;
+import com.sap.tc.moin.repository.ReferencedTransientElementsException;
 import com.sap.tc.moin.repository.commands.Command;
 import com.sap.tc.moin.repository.commands.PartitionOperation;
 import com.sap.tc.moin.repository.events.EventChain;
@@ -138,6 +141,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
 			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
 			     tbs.addAll(additionalTbs);
+			     tbs = filterVersionedTextBlockForNewest(tbs);
+			     
 			     Set<MRI> affectedElements = null;
 			     for (TextBlock textBlock : tbs) {
 				//first check if the alternative in which the injector action resides was
@@ -164,7 +169,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 					affectedElements = getAffectedElements(events, conn);
 				    }
 				    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-					    conn, affectedElements, textBlock);
+					    reference, conn, affectedElements, textBlock);
 				    for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
 					DelayedReference clonedRef = (DelayedReference) reference.clone();
 					clonedRef.setModelElement(ro);
@@ -187,7 +192,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 				     affectedElements = getAffectedElements(events, conn);
 				 }
 				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-					conn, affectedElements, lt.getParentBlock());
+					reference, conn, affectedElements, lt.getParentBlock());
 				for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
 				    DelayedReference clonedRef = (DelayedReference) reference.clone();
                                     clonedRef.setModelElement(ro);
@@ -220,7 +225,17 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	    }
 	}
 
-	/**
+	private Collection<TextBlock> filterVersionedTextBlockForNewest(
+            Collection<TextBlock> tbs) {
+            for (TextBlock textBlock : new ArrayList<TextBlock>(tbs)) {
+                if(!TbUtil.getNewestVersion(textBlock).equals(textBlock)) {
+                    tbs.remove(textBlock);
+                }
+            }
+            return tbs;
+        }
+
+    /**
 	 * Filters the given elements with the corresponding elements of the given {@link TextBlock}.
 	 * 
 	 * @param conn the connection used to resolve the MRIs within affecedElements
@@ -228,11 +243,24 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	 * @param tb The {@link TextBlock} which's corresponding elements should be filtered.
 	 * @return the intersection between affected elements and the corresponding elements of the given {@link TextBlock}. 
 	 */
-	private Set<RefObject> filterWithAffectedElements(Connection conn,
+	private Set<RefObject> filterWithAffectedElements(DelayedReference ref, Connection conn,
 		Set<MRI> affectedElements, TextBlock tb) {
-		List<RefObject> correspondingModelElements = tb.getCorrespondingModelElements();
+	    	Matcher matcher = ContextManager.contextPattern.matcher(ref.getOclQuery());
+	    	Collection<RefObject> correspondingModelElements = null;
+	        boolean isContext = matcher.find();
+		if (isContext) {
+	            LocalContextBuilder localContextBuilder = new LocalContextBuilder();
+	            TbUtil.constructContext(tb,	localContextBuilder);
+			if(!localContextBuilder.getContextStack().isEmpty()) {
+			    correspondingModelElements = new ArrayList<RefObject>(); 
+			    correspondingModelElements.add((RefObject) localContextBuilder.getContextStack().peek().getRealObject());
+			}
+	        } else {
+	            correspondingModelElements = tb.getCorrespondingModelElements();
+	        }
+		
 		Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
-		if (intersectionOfCorrespondingAndAffectedElements.size() > 1) {
+		if (intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 		    List<MRI> correspondingModelElementsMris = new ArrayList<MRI>(correspondingModelElements.size());
 		    for (RefObject cme : correspondingModelElements) {
 			correspondingModelElementsMris.add(cme.get___Mri());
@@ -245,7 +273,21 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			intersectionOfCorrespondingAndAffectedElements.add((RefObject) conn.getElement(mri));
 		    }
 		}
-		return intersectionOfCorrespondingAndAffectedElements;
+		if(isContext) {
+		    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+		        HashSet<RefObject> result = new HashSet<RefObject>();
+		        for (RefObject refObject : tb.getCorrespondingModelElements()) {
+                            if(refObject.refIsInstanceOf(TcsUtil.getParentTemplate((RefObject)ref.getQueryElement()).getMetaReference(), false)){
+                                result.add(refObject);
+                            }
+                        }
+                        return result;			
+		    } else {
+			return new HashSet<RefObject>(0);
+		    }
+		} else {
+		    return intersectionOfCorrespondingAndAffectedElements;   
+		}
 	}
 
 	private Set<MRI> getAffectedElements(EventChain events, Connection conn) {
@@ -399,10 +441,49 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	return instance;
     }
     
+    private Set<IAExpressionInvalidationChangeListener> getAllListeners() {
+	Set<IAExpressionInvalidationChangeListener> result = new HashSet<IAExpressionInvalidationChangeListener>();
+	for (Map<EventFilter, Map<ListenerType, EventListener>> m : delayedReference2ReEvaluationListener.values()) {
+	    for (Map<ListenerType, EventListener> ltel : m.values()) {
+		for (EventListener listener : ltel.values()) {
+		    result.add((IAExpressionInvalidationChangeListener) listener);
+		}
+	    }
+	}
+	return result;
+    }
+    
     public boolean hasEmptyQueue() {
         return iaUnresolvedReferences.isEmpty();
     }
     
+    public String getDebugInfo(Connection conn) {
+	Statistics oclIaStatistics = Statistics.getInstance();
+	StringBuilder result = new StringBuilder();
+	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
+	    OclExpressionRegistration registration = listener.registration;
+	    if (registration != null) {
+		result.append(oclIaStatistics.toString(registration, conn));
+		result.append('\n');
+	    }
+	}
+	return result.toString();
+    }
+    
+    public String getDebugInfoAsCsv(Connection conn) {
+	Statistics oclIaStatistics = Statistics.getInstance();
+	StringBuilder result = new StringBuilder();
+	result.append(oclIaStatistics.getCsvHeader());
+	for (IAExpressionInvalidationChangeListener listener : getAllListeners()) {
+	    OclExpressionRegistration registration = listener.registration;
+	    if (registration != null) {
+		result.append(oclIaStatistics.toCsv(registration, conn));
+		result.append('\n');
+	    }
+	}
+	return result.toString();
+    }
+
     /**
      * Clears all currently deferred references.
      * 
@@ -602,13 +683,18 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			    .singleton(unresolvedRef));
 		    return;
 		}
+		cs = token.getParentBlock().getType().getParseRule().getConcretesyntax();
+		
 		TbUtil.constructContext(tokenInCurrentConnection,
 			localContextBuilder);
 		referringDocumentNode = tokenInCurrentConnection;
+                //also rebuild the context for the parser, 
+                //as it may be used e.g. in foreach predicate references
+                TbUtil.constructContext(tokenInCurrentConnection, getParser(cs));
 		if(!localContextBuilder.getContextStack().isEmpty()) {
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
-		cs = token.getParentBlock().getType().getParseRule().getConcretesyntax();
+		
 	    } else if (contextTextBlock != null) {
 		TbUtil.constructContext(contextTextBlock, localContextBuilder);
 		referringDocumentNode = contextTextBlock;
@@ -616,6 +702,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
 		cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
+	              //also rebuild the context for the parser, 
+                //as it may be used e.g. in foreach predicate references
+		getParser(cs).reset();
+                TbUtil.constructContext(contextTextBlock, getParser(cs));
+
 	    } else {
 		removeRegistration(unresolvedRef);
 		notifyReferenceResolvingListenerReferencesRemoved(Collections
@@ -1466,7 +1557,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
 	monitor.beginTask("Reevaluating OCL References...", workingCopy.size());
 	Collection<DelayedReference> deferredReferences = new ArrayList<DelayedReference>();
-
+	Set<Connection> connectionsToSave = new HashSet<Connection>();
+	
 	for (final DelayedReference ref : workingCopy) {
 	    if (!ref.getConnection().isAlive()) {
 		Activator.logWarning("Could not re-resolve reference: " + ref + ". Connection: " + ref.getConnection()
@@ -1502,7 +1594,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			    }
 
 			});
-
+		connectionsToSave.add(ref.getConnection());
 	    } catch (InvalidObjectException ex) {
 		Activator.logWarning("Could not re-resolve reference: " + ref + ". Element: " + ref.getModelElement()
 			+ " is not alive anymore! Reference is ignored.");
@@ -1515,6 +1607,18 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	    }
 	    monitor.worked(1);
 	}
+	//TODO see if this is good, maybe we should not save these connection automatically
+	for (Connection connection : connectionsToSave) {
+            try {
+                connection.save();
+            } catch (NullPartitionNotEmptyException e) {
+                Activator.logError(e, " Could not save connection: " + connection + " after re-resolving reference");
+            } catch (ReferencedTransientElementsException e) {
+                Activator.logError(e, " Could not save connection: " + connection + " after re-resolving reference");
+            } catch (PartitionsNotSavedException e) {
+                Activator.logError(e, " Could not save connection: " + connection + " after re-resolving reference");
+            }
+        }
 	// deferred references will tried to be resolved again later so dont't
 	// remove them
 	workingCopy.removeAll(deferredReferences);

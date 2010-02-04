@@ -56,7 +56,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 import org.eclipse.ui.texteditor.SourceViewerDecorationSupport;
@@ -379,12 +378,8 @@ public abstract class AbstractGrammarBasedEditor extends
 		textViewer.addTextListener(new ITextListener() {
 
 			public void textChanged(TextEvent event) {
-			    //TODO check how to synchronize this properly
-				if (event.getDocumentEvent() != null && 
-					parseRunnable.getState() != Job.SLEEPING
-					&& parseRunnable.getState() != Job.WAITING 
-					&& parseRunnable.getState() != Job.RUNNING) {
-                		    parseRunnable.schedule(500);
+				if (event.getDocumentEvent() != null) {
+                		    parseRunnable.schedule(650);
 				}
 			}
 
@@ -496,9 +491,8 @@ public abstract class AbstractGrammarBasedEditor extends
 	@Override
 	protected void initDeferred(IEditorSite site, IEditorInput input) {
 		super.initDeferred(site, input);
-		//hack to remove history listener that updates action bars
-//		removeHistoryListener();
-				
+		getWorkingConnection().getCommandStack().openGroup("Deferred Editor Initialization");
+		try {        				
 		// Initialize the document
 		ConcreteSyntax syntax = EditorUtil.getActiveSyntax(this);
 		if(syntax == null) {
@@ -507,11 +501,7 @@ public abstract class AbstractGrammarBasedEditor extends
 		        getLanguageId() + "\" found. Make sure the editor project is correctly referenced and the mapping model is available.",
 		        status);
 		    return;
-		}
-		ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
-		
-		CtsDocument document = (CtsDocument) getDocumentProvider().getDocument(input);
-		
+        		}	
 		if(!isParserConsistentToMapping(syntax, parserFactory)){
 			MessageDialog.openError(
 	    	    		CtsActivator.getDefault().getWorkbench().getActiveWorkbenchWindow().getShell(),
@@ -520,27 +510,23 @@ public abstract class AbstractGrammarBasedEditor extends
 	    	    		" is not consistent with mapping: " + syntax.get___Mri());
 		}
 		
-		document.completeInit(syntax, rootTemplate, getParserFactory(), getRecoveryStrategy(),
-		        getParser(), getModelEditor().getPendingMonitor());
+        		initConnection(input);
+        		initializeNewParser(getWorkingConnection());
+        		
+        		ClassTemplate rootTemplate = TcsUtil.getMainClassTemplate(syntax);
+        		CtsDocument document = (CtsDocument) getDocumentProvider().getDocument(input);
+        		document.completeInit(syntax, rootTemplate, getParserFactory(), getRecoveryStrategy(),
+        	                        getParser(), getModelEditor().getPendingMonitor());
 		
-		if (input instanceof FileEditorInput) {
-			// TODO this is a temporary hack solve by choosing the right context
-			// element
-			ModelEditorInput modelInput = new ModelEditorInput("");
-
-			modelInput.setProjectName(((FileEditorInput) input).getFile()
-					.getProject().getName());
-			input = modelInput;
-		}
-		initConnection(input);
-		//complete the initialization of the document as the connection is not available
-		registerNameChangeListenerForInput((ModelEditorInput)input);
+        		registerNameChangeListenerForInput((RefObject) document.getRootObject());
 		
-		TextBlock rootBlock = ((CtsDocument) getDocumentProvider().getDocument(input)).getRootBlock();
+        		TextBlock rootBlock = document.getRootBlock();
 		setModel(rootBlock);
-		initializeNewParser(((Partitionable) rootBlock).get___Connection());
 		TbRecoverUtil.checkAndMigrateTokenIds(rootBlock, getParser(), getLexer(), shortPrettyPrinter, false);
-		tbPartition = ((Partitionable) rootBlock).get___Partition();
+        		tbPartition = rootBlock.get___Partition();
+		} finally {
+		    getWorkingConnection().getCommandStack().closeGroup();
+	}
 	}
 	
 	
@@ -625,24 +611,25 @@ public abstract class AbstractGrammarBasedEditor extends
 			}};
 	}
 
-	private void registerNameChangeListenerForInput(ModelEditorInput input) {
-	RefObject inputObject = (RefObject) input.getRefObject();
+	private void registerNameChangeListenerForInput(RefObject inputObject) {
 	Entry<Attribute, String> nameAttribute = ModelManager.getInstance().getObjectNameAttribute(inputObject);
 
 	if (nameAttribute != null) {
 	    ChangeListener changeListener = new ChangeListener() {
 
 		@Override
-		public void notify(ChangeEvent event) {
-		    // TODO Auto-generated method stub
-		    if (event instanceof AttributeValueChangeEvent) {
-			AttributeValueChangeEvent changeEvent = (AttributeValueChangeEvent) event;
+		public void notify(ChangeEvent event) {	
+		    
+		    final AttributeValueChangeEvent changeEvent = (AttributeValueChangeEvent) event;
+		    Runnable uiUpdater = new Runnable() {
+			public void run() {
 			setPartName((String) changeEvent.getNewValue());
 			// this will make the tab re-render itself
 			firePropertyChange(PROP_DIRTY);
 		    }
+		    };
+		    Display.getDefault().asyncExec(uiUpdater);
 		}
-
 	    };
 	    AttributeFilter attributeFilter = new AttributeFilter(nameAttribute.getKey());
 	    InstanceFilter instanceFilter = new InstanceFilter(inputObject);
@@ -815,57 +802,82 @@ public abstract class AbstractGrammarBasedEditor extends
 	    }
 	}
 
-	void refreshModelAnnotations(ModelPartition rootPartition) {
+	
+	private Set<ModelPartition> annotatedPartitionsToUpdate = Collections.synchronizedSet(new HashSet<ModelPartition>());
+	
+	private class AnnotationUpdater implements Runnable {
+    
+	    	private ModelPartition rootPartition;
+        
+        	public AnnotationUpdater(ModelPartition partition) {
+        	    this.rootPartition = partition;
+        	    annotatedPartitionsToUpdate.add(partition);
+        	}
+        
+        	@Override
+        	public void run() {
+        	    annotatedPartitionsToUpdate.remove(rootPartition);
 		for (Annotation markerAnnotation : new HashSet<Annotation>(markerAnnotations)) {
-			getDocumentProvider().getAnnotationModel(getEditorInput()).removeAnnotation(markerAnnotation);
+        		IAnnotationModel model = getDocumentProvider().getAnnotationModel(getEditorInput());
 			markerAnnotations.remove(markerAnnotation);
+        		if (model != null) {
+        		    model.removeAnnotation(markerAnnotation);
 		}
+        	    }
 		IMarker[] markers = ModelManager.getMarkerManager().findMarkers(rootPartition, IMarker.PROBLEM, true, 0);
 		for (IMarker marker : markers) {
 			RefObject element;
 			try {
-				element = (RefObject) getWorkingConnection()
-						.getElement(getWorkingConnection().getSession().getMoin().createMri(
+        		    element = (RefObject) getWorkingConnection().getElement(
+        			    getWorkingConnection().getSession().getMoin().createMri(
 								(String) marker.getAttribute(MarkerManager.ATTRIBUTE_OBJ_MRI)));
-				Annotation annotation = new Annotation(
-						ERROR_TYPE,
-						false,
-						marker.getAttribute(IMarker.MESSAGE, ""));
-				if(element instanceof DocumentNode) {
-					DocumentNode source = (DocumentNode)element;
-					if(TbUtil.isAncestorOf(((CtsDocument)getDocumentProvider().getDocument(getEditorInput())).getRootBlock(), source)){
+        		    Annotation annotation = new Annotation(ERROR_TYPE, false, marker.getAttribute(IMarker.MESSAGE, ""));
+        		    if (element instanceof DocumentNode) {
+        			DocumentNode source = (DocumentNode) element;
+        			if (TbUtil.isAncestorOf(((CtsDocument) getDocumentProvider().getDocument(getEditorInput()))
+        				.getRootBlock(), source)) {
 						Position position = null;
-						if(source instanceof TextBlock) {
-							position = new Position(TbUtil.getAbsoluteOffsetWithoutBlanks((TextBlock) source), source.getLength());
+        			    if (source instanceof TextBlock) {
+        				position = new Position(TbUtil.getAbsoluteOffsetWithoutBlanks((TextBlock) source), source
+        					.getLength());
 						} else {
 							position = new Position(TbUtil.getAbsoluteOffset(source), source.getLength());
 						}
-						getDocumentProvider().getAnnotationModel(getEditorInput()).addAnnotation(
-							annotation
-							, position);
-						markerAnnotations .add(annotation);
+        			    getDocumentProvider().getAnnotationModel(getEditorInput()).addAnnotation(annotation, position);
+        			    markerAnnotations.add(annotation);
 					}
-				} else if(element != null) {
-					DocumentNodeReferencesCorrespondingModelElement assoc = 
-						getWorkingConnection().getPackage(TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencesCorrespondingModelElement();
+        		    } else if (element != null) {
+        			DocumentNodeReferencesCorrespondingModelElement assoc = getWorkingConnection().getPackage(
+        				TextblocksPackage.PACKAGE_DESCRIPTOR).getDocumentNodeReferencesCorrespondingModelElement();
 					Collection<DocumentNode> nodes = assoc.getDocumentNode(element);
 					for (DocumentNode documentNode : nodes) {
-						if(documentNode instanceof TextBlock){
-							if(TbUtil.isAncestorOf(((CtsDocument)getDocumentProvider().getDocument(getEditorInput())).getRootBlock(), documentNode)){
+        			    if (documentNode instanceof TextBlock) {
+        				if (TbUtil.isAncestorOf(((CtsDocument) getDocumentProvider().getDocument(getEditorInput()))
+        					.getRootBlock(), documentNode)) {
 								getDocumentProvider().getAnnotationModel(getEditorInput()).addAnnotation(
-									annotation
-									, new Position(TbUtil.getAbsoluteOffsetWithoutBlanks((TextBlock) documentNode), documentNode.getLength()));
-								markerAnnotations .add(annotation);
+        					    annotation,
+        					    new Position(TbUtil.getAbsoluteOffsetWithoutBlanks((TextBlock) documentNode),
+        						    documentNode.getLength()));
+        				    markerAnnotations.add(annotation);
 							}
 						}
 					}
 				}
 			} catch (InvalidResourceIdentifierException e) {
-				//Ignore, marker seems to be out of date
+        		    // Ignore, marker seems to be out of date
 			} catch (CoreException e) {
-				//Ignore, marker seems to be out of date
+        		    // Ignore, marker seems to be out of date
 			}
 		}
+
+	}
+	}
+
+	void refreshModelAnnotations(ModelPartition rootPartition) {
+	    	if (!annotatedPartitionsToUpdate.contains(rootPartition)) {
+	    	    AnnotationUpdater updater = new AnnotationUpdater(rootPartition);
+	    	    Display.getDefault().asyncExec(updater);
+	    	}
 	}
 
 	private PartitionHighlighter getPartitionHighlighter() {
@@ -875,22 +887,20 @@ public abstract class AbstractGrammarBasedEditor extends
 		return partitionHighlighter;
 	}
 
+	
+	private boolean runningOutlineUpdate = false;
+	
 	private void updateOutlineSave() {
 		try {
-			if (outlinePage != null) {
-				// TODO connection should already been initialized as this
-				// point!
-				initConnection(null);
-				if(Display.getCurrent() == null) {
+			if (outlinePage != null && !runningOutlineUpdate) {
+			    	runningOutlineUpdate = true;
 				    Display.getDefault().asyncExec(new Runnable() {
 				           public void run() {
+				              runningOutlineUpdate = false;
 				               outlinePage.setInput(getModel());
 				           }
 				        });
-				} else {
-				    outlinePage.setInput(getModel());
 				}
-			}
 		} catch (Exception ex) {
 			// log the error but we do not want the saving process or whatever
 			// caused the
@@ -1227,9 +1237,6 @@ public abstract class AbstractGrammarBasedEditor extends
 	}
 
 	public MappingLinkRecoveringIncrementalParser getIncrementalParser() {
-	    if(incrementalParser == null) {
-		initializeNewParser(getWorkingConnection());
-	    }
 	    return incrementalParser;
 	}
 }

@@ -8,5 +8,5 @@ How to update the FURCAS update site
 6) Upload site.xml, content.jar, artifacts.jar and directories "plugins" and "features" using ftp:
 	ftp://www.furcas.org
 	user: furcas
-	pw: MoIn
+	pw: moin
 7) Finished

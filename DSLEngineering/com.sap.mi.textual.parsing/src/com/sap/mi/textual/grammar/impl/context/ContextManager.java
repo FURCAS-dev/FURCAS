@@ -125,6 +125,9 @@ public class ContextManager {
      */
     public Object getContextForElement(Object object) {
         Context objectContext = contextByElement.get(object);
+        if(objectContext == null && object instanceof IModelElementProxy) {
+            objectContext = contextByElement.get(((IModelElementProxy)object).getRealObject());
+        }
         if (objectContext != null) {
             return objectContext.getElement();
         }

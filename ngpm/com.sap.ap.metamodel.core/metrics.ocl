@@ -22,6 +22,8 @@ Mof::Model::Class.allInstances()->select(c |
   (c.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='ngpm') or
   (c.container.container.container.container.container.container.importer->select(isClustered).container->notEmpty() and c.container.container.container.container.container.container.importer->select(isClustered).container->asSequence()->first().name='ngpm')).contents->select(m | m.oclIsKindOf(Mof::Model::Operation))->size()
 
+-- Number of all OCL (sub-) expressions (also from all other metamodels):
+Mof::Ocl::Expressions::OclExpression.allInstances()->size()
 
 Constraints:
 

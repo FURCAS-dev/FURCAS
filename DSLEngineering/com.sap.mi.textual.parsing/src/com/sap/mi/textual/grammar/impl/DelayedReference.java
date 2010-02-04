@@ -437,7 +437,11 @@ public class DelayedReference implements Cloneable {
      */
     @Override
     public String toString() {
-        String result = modelElement.getClass().getName() + '.'
+        String result = modelElement.getClass() != null ? modelElement.getClass().getName() : "<generic>";
+        if(getType() == DelayedReference.SEMANTIC_PREDICATE) {
+            result += " [FOR_EACH_PROPERTY_INIT] ";
+        }
+        result += '.'
                 + getPropertyName() + "=>" + getValueTypeName();
         if (getCreateAs() != null) {
             result += " as " + getCreateAs();
@@ -445,6 +449,9 @@ public class DelayedReference implements Cloneable {
         result += " with " + getKeyName() + "=" + getKeyValue();
         if (getCreateIn() != null) {
             result += " to create in " + getCreateIn();
+        }
+        if(getOclQuery() != null) {
+            result += " using query: " + getOclQuery(); 
         }
         return result;
     }

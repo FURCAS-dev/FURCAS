@@ -82,6 +82,7 @@ public class ReuseAwareTextBlockFactoryImpl implements TextBlockFactory {
 		tb.setType(tbDef);
 		tb.setSequenceElement(newVersion.getSequenceElement());
 		tb.getParentAltChoices().addAll(newVersion.getAlternativeChoices());
+		tb.getAdditionalTemplates().addAll(newVersion.getAdditionalTemplates());
 		int endIndex = 0;
 		for (Object subNode : newVersion.getSubNodes()) {
 			if (subNode instanceof TextBlockProxy) {

@@ -63,7 +63,7 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 	    // an OCL-specified operation; trace back using the body expression
 	    result = pathCache.getPathForNode(body);
 	    if (result == null) {
-		IndirectingStep bodyStep = pathCache.createIndirectingStepFor(body, getExpression());
+		IndirectingStep bodyStep = pathCache.createIndirectingStepFor(body);
 		Tracer bodyTracer = InstanceScopeAnalysis.getTracer(getConnection(), body);
 		NavigationStep actualStep = bodyTracer.traceback(context, pathCache, classScopeAnalyzer);
 		bodyStep.setActualStep(actualStep);

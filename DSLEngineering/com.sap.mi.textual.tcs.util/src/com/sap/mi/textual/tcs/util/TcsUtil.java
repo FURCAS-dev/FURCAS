@@ -31,6 +31,7 @@ import tcs.ForcedLowerParg;
 import tcs.ForcedUpperParg;
 import tcs.FunctionCall;
 import tcs.FunctionTemplate;
+import tcs.InjectorAction;
 import tcs.InjectorActionsBlock;
 import tcs.Keyword;
 import tcs.Literal;
@@ -1889,4 +1890,21 @@ public class TcsUtil {
 			return null;
 		}
 	}
+
+	
+    /**
+     * Retrieves the parent {@link Template} of the queryElement which may be either 
+     * a {@link InjectorAction} or a {@link Property}.
+     * @param queryElement
+     * @return
+     */
+    public static Template getParentTemplate(RefObject queryElement) {
+        if(queryElement instanceof Property) {
+            return ((Property) queryElement).getParentTemplate();
+        } else if(queryElement instanceof InjectorAction) {
+            return ((InjectorAction) queryElement).getInjectorActionsBlockReference().getParentTemplate();
+        } else {
+            return null;
+        }
+    }
 }

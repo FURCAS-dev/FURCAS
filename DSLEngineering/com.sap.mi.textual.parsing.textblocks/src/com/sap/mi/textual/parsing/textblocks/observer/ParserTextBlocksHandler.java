@@ -112,6 +112,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 								.toArray(new PRI[] {}) : null,
 						this.additionalCRIScope.toArray(new CRI[] {}));
 		this.input = input;
+		this.traverser = new TextBlockTraverser();
 	}
 	
 	/**

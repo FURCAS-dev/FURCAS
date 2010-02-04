@@ -1,5 +1,7 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
+import java.util.Set;
+
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -22,4 +24,18 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep {
 	return steps;
     }
 
+    /**
+     * The default size in particular for atomic navigation steps is <tt>1</tt>.
+     */
+    @Override
+    protected int size(Set<NavigationStep> visited) {
+	int result = 0;
+	if (!visited.contains(this)) {
+	    visited.add(this);
+	    for (NavigationStep step : steps) {
+		result += ((AbstractNavigationStep) step).size(visited);
+	    }
+	}
+	return result;
+    }
 }

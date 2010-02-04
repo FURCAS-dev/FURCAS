@@ -218,6 +218,10 @@ public class MoinModelAdapterDelegate {
                 RefObject refObjectValue = (RefObject) value;
                 jmiHelperDelegate.createAssociationLink(reference, refAObject, refObjectValue);
             } else if (reference != null && value instanceof Collection) {
+                if(reference.getMultiplicity().getUpper() < ((Collection)value).size()) {
+                    throw new ModelAdapterException("Cannot add value, property " + propertyName + " has an upper multiplicity of " + 
+                            reference.getMultiplicity().getUpper()  + " but wanted to to set " + ((Collection)value).size() + " elements (" + ((Collection)value) + "");
+                }
             	for (Iterator iterator = ((Collection)value).iterator(); iterator
 						.hasNext();) {
 					RefObject refObjectValue = (RefObject) iterator.next();

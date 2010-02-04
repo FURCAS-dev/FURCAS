@@ -52,4 +52,10 @@ public class LocalContextBuilder implements ContextBuilder {
 		contextManager.addToContext(currentContextElement, elementInContext);
 	    }
 	}
+
+    @Override
+    public void reset() {
+          contextStack.clear();
+          contextManager = new ContextManager();
+    }
 }

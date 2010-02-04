@@ -38,6 +38,28 @@ import data.classes.SapClass;
 import dataaccess.expressions.MethodCallExpression;
 
 public class FailingEditingActions extends RunletEditorTest {
+    /**
+     * Expecting that accessor methods are renamed as well
+     */
+    @Test
+    public void testRenameAssociationEnd() throws PartInitException, BadLocationException, CoreException {
+	final RefObject refObject = findClass("OrdrdStrgsTest");
+        assertNotNull(refObject); 
+        assertTrue(refObject.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        document.replace(69, 0, "2");
+        saveAll(editor);
+        assertTrue(refObject.is___Alive());
+        boolean found = false;
+        for (MethodSignature ms : ((SapClass) refObject).getOwnedSignatures()) {
+            if (ms.getName().equals(".orderedNumbersInOrderedStringsTest2")) {
+        	found = true;
+            }
+        }
+        assertTrue(found);
+        close(editor);
+    }
 
     /**
      * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output

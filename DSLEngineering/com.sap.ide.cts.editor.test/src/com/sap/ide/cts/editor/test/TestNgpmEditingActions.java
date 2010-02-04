@@ -28,6 +28,7 @@ import com.sap.ide.cts.editor.document.CtsDocument;
 import com.sap.ide.cts.editor.prettyprint.SyntaxAndModelMismatchException;
 import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.mi.fwk.ModelManager;
+import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
 import com.sap.tc.moin.repository.LRI;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
@@ -1582,5 +1583,11 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 	assertTrue(((VariableExpression) mce.getObject()).getVariable().getName().equals("t"));
 	close(editor);
     };
+    
+    @Test
+    public void testReadStatistice() {
+	GlobalDelayedReferenceResolver resolver = GlobalDelayedReferenceResolver.getInstance();
+	System.out.println(resolver.getDebugInfoAsCsv(connection));
+    }
   
 }

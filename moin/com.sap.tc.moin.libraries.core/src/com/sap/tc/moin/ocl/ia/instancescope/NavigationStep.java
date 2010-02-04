@@ -80,4 +80,9 @@ public interface NavigationStep {
      * method with this step as parameter.
      */
     void addTargetTypeChangeListener(TargetTypeChangeListener listener);
+    
+    /**
+     * Counts the number of steps in the navigation step tree of which this is the root
+     */
+    int size();
 }

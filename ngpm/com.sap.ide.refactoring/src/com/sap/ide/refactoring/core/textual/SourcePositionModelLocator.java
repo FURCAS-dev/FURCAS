@@ -3,19 +3,22 @@ package com.sap.ide.refactoring.core.textual;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 
 import org.eclipse.jface.text.source.ISourceViewer;
 
+import textblocks.Bostoken;
 import textblocks.DocumentNode;
-import textblocks.TextBlock;
+import textblocks.Eostoken;
 
+import com.sap.ide.cts.parser.incremental.IncrementalParser.TextBlocksTarjanTreeContentProvider;
+import com.sap.ide.cts.parser.incremental.util.TarjansLCA;
 import com.sap.mi.textual.parsing.textblocks.TbNavigationUtil;
 import com.sap.mi.textual.textblocks.model.TextBlocksModel;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 
 /**
- * Helper to access the underlying domain model through the textblocks model
+ * Helper to access the underlying domain model through the textblocks model.
+ * Works based on the current cursor position and text selection.
  * 
  * @author D049157
  *
@@ -33,45 +36,69 @@ public class SourcePositionModelLocator {
     public Collection<DocumentNode> findSelecetedTextBlocks() {;
 	int offsetFrom = sourceViewer.getSelectedRange().x;
 	int offsetTo = offsetFrom + sourceViewer.getSelectedRange().y;
+		
+	DocumentNode leftMostSelectedNode = textBlockModel.getFloorTokenInRoot(offsetFrom);
+	DocumentNode rightMostSelectedNode = textBlockModel.getFloorTokenInRoot(offsetTo);
 	
-	List<DocumentNode> selectedTextBlocks = textBlockModel.getNodesBetweenAsRootSet(textBlockModel.getRoot(), offsetFrom, offsetTo);
+	// Handle special case that the user has exactly selected a  whole textblock. 
+	// We use this LCA shortcut as it is (much) faster than #getNodesBetweenAsRootSet.
+	TarjansLCA<DocumentNode> lca = new TarjansLCA<DocumentNode>(new TextBlocksTarjanTreeContentProvider());
+	DocumentNode commonAncestor = lca.lcaSearch(textBlockModel.getRoot(), leftMostSelectedNode, rightMostSelectedNode);
 	
-	boolean isFirst = TbNavigationUtil.isFirstInSubTree(selectedTextBlocks.get(0));
-	boolean isLast = TbNavigationUtil.isLastInSubTree(selectedTextBlocks.get(selectedTextBlocks.size()-1));
-	TextBlock parentBlock = TbNavigationUtil.getParentBlock(selectedTextBlocks.get(0));
+	DocumentNode leftMostAncestorNode = TbNavigationUtil.firstToken(commonAncestor); // could be BOS token
+	DocumentNode rightMostAncestorNode = TbNavigationUtil.lastToken(commonAncestor); // could be EOS token 
 	
-	if (isFirst && isLast && parentBlock != null) {
-	    // there is a common ParentBlock containing exactly the selected elements
-	    return Collections.singletonList((DocumentNode) parentBlock);
-	} else {
-	    return selectedTextBlocks;
+	// special case handling is for omitted BOS/EOS token
+	boolean equalLeftMostToken = leftMostAncestorNode.equals(leftMostSelectedNode) || leftMostAncestorNode instanceof Bostoken &&
+		TbNavigationUtil.getNextInSubTree(leftMostAncestorNode).equals(leftMostSelectedNode);
+	boolean equalRightMostToken = rightMostAncestorNode.equals(rightMostSelectedNode)  || rightMostAncestorNode instanceof Eostoken &&
+		TbNavigationUtil.getPreviousInSubTree(rightMostAncestorNode).equals(rightMostSelectedNode);
+		
+	if (equalLeftMostToken && equalRightMostToken) {
+	    return Collections.singletonList(commonAncestor);
+	} else {    
+	    return textBlockModel.getNodesBetweenAsRootSet(textBlockModel.getRoot(), offsetFrom, offsetTo);
 	}
     }
     
     /**
      * Find the corresponding ModelElements of the current selection.
-     * Moves up the TextBlocks hierarchy to find the innermost corresponding elements.
+     * 
+     * It may happen that only TextBlocks are selected which do not contain any
+     * corresponding ModelElements. In this case the the algorithm moves up the
+     * TextBlocks hierarchy level after level. Once there is a level reached where
+     * atleast one of the TextBlocks (parents of our original selected TextBlocks)
+     * has defined a corresponding ModelElement, all known corresponding ModelElements
+     * on this level are returned.
      */
     public Collection<RefObject> findSelectedCorrespondingModelElements() {
 	Collection<DocumentNode> selectedTextBlocks = findSelecetedTextBlocks();
-	
         Collection<RefObject> selectedElements = new HashSet<RefObject>();
-        for (DocumentNode node : selectedTextBlocks) {
-            selectedElements.addAll(findCorrespondingModelElements(node));
-        }
+        
+        while (selectedElements.isEmpty()) {
+            for (DocumentNode node : selectedTextBlocks) {
+                selectedElements.addAll(node.getCorrespondingModelElements());
+            }
+            if (selectedElements.isEmpty()) {
+        	selectedTextBlocks = getNodeParents(selectedTextBlocks);
+            }
+            if (selectedTextBlocks.isEmpty()) {
+        	break; // root node reached
+            }
+        }    
         return selectedElements;
     }
     
-    private Collection<RefObject> findCorrespondingModelElements(DocumentNode node) {
-	Collection<RefObject> decoratedElements = node.getCorrespondingModelElements();
-	if (decoratedElements.isEmpty()) {
-	    TextBlock parentBlock = TbNavigationUtil.getParentBlock(node);
-	    while (parentBlock != null && decoratedElements.isEmpty()) {
-		decoratedElements = parentBlock.getCorrespondingModelElements();
-		parentBlock = parentBlock.getParentBlock();
+    
+    private Collection<DocumentNode> getNodeParents(Collection<DocumentNode> selectedTextBlocks) {
+	Collection<DocumentNode> parentNodes = new HashSet<DocumentNode>();
+	for (DocumentNode node : selectedTextBlocks) {
+	    DocumentNode parent = TbNavigationUtil.getParentBlock(node);
+	    if (parent != null) {
+		parentNodes.add(parent);
 	    }
 	}
-	return decoratedElements;
+	return parentNodes;
     }
     
     /**

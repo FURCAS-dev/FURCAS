@@ -16,7 +16,7 @@
 <stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/pde-junit"/>
 <booleanAttribute key="default" value="true"/>
 <booleanAttribute key="includeOptional" value="true"/>
-<stringAttribute key="location" value="${workspace_loc}/../runtime-workspace"/>
+<stringAttribute key="location" value="C:\_fzi\projects\CTS\work\runtime-Runlet"/>
 <listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
 <listEntry value="/com.sap.runlet.expressionpad/src/com/sap/runlet/expressionpad/tests"/>
 </listAttribute>

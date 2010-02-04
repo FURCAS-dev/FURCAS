@@ -91,4 +91,16 @@ public class IndirectingStep extends AbstractNavigationStep {
 		+ ((actualStep != null) ? ((actualStep instanceof AbstractNavigationStep ? ((AbstractNavigationStep) actualStep)
 			.contentToString(visited, maxId, indent) : actualStep.toString())) : "null");
     }
+    
+    /**
+     * An indirecting step  <tt>1</tt>.
+     */
+    @Override
+    protected int size(Set<NavigationStep> visited) {
+	if (visited.contains(this)) {
+	    return 0;
+	} else {
+	    return ((AbstractNavigationStep) actualStep).size(visited);
+	}
+    }
 }

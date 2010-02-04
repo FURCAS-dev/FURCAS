@@ -99,7 +99,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	OperationImpl op = InstanceScopeAnalysis.getDefines(getConnection(), rootExpression);
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
-	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getExpression());
+	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression());
 	for (OperationCallExp call : classScopeAnalyzer.getCallsOf((OclExpressionInternal) rootExpression)) {
 	    OclExpression argumentExpression = ((JmiListImpl<OclExpression>) ((OperationCallExpImpl) call).getArguments(getConnection())).
 	    	get(getConnection().getSession(), pos);
@@ -158,7 +158,7 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	    // in an operation, self needs to be traced back to all source expressions of
 	    // calls to that operation
 	    Collection<OperationCallExp> calls = classScopeAnalyzer.getCallsOf((OclExpressionInternal) getRootExpression());
-	    IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression(), getExpression());
+	    IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression());
 	    List<NavigationStep> stepsForCalls = new ArrayList<NavigationStep>();
 	    for (OperationCallExp call : calls) {
 		OclExpression callSource = ((OperationCallExpImpl) call).getSource(getConnection());

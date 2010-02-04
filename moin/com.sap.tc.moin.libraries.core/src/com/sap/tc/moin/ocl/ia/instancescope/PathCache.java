@@ -33,7 +33,7 @@ public class PathCache {
 	return subexpressionToPath.get(subexpression);
     }
     
-    public void put(OclExpression subexpression, NavigationStep path) {
+    private void put(OclExpression subexpression, NavigationStep path) {
 	subexpressionToPath.put(subexpression, path);
     }
 
@@ -50,7 +50,6 @@ public class PathCache {
      * A factory method for {@link NavigationStep}s that combines a sequence of navigation steps into a single new one.
      * In doing so, shortcuts may be taken. For example, if the last step is an absolute step, it is returned as the
      * result because all prior navigations are irrelevant.
-     * @param connection TODO
      * @param debugInfo
      *            may be <tt>null</tt>; optionally, use this to tell a debugging user to which OCL (sub-)expression the
      *            navigation step to create belongs
@@ -72,11 +71,9 @@ public class PathCache {
      * recursion. When a lookup happens for <tt>expr</tt>, the indirection step returned by this
      * method will be found in this cache and therefore will not lead to an endless-recursive
      * step creation procedure.
-     * 
-     * TODO remove debugInfo argument and always use expr instead
      */
-    public IndirectingStep createIndirectingStepFor(OclExpression expr, OclExpressionInternal debugInfo) {
-	IndirectingStep result = new IndirectingStep(debugInfo);
+    public IndirectingStep createIndirectingStepFor(OclExpression expr) {
+	IndirectingStep result = new IndirectingStep((OclExpressionInternal) expr);
 	put(expr, result);
 	return result;
     }

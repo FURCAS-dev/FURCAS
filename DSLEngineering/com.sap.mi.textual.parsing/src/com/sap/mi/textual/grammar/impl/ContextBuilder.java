@@ -13,4 +13,9 @@ public interface ContextBuilder {
 
     public abstract void addToCurrentContext(Object elementInContext);
 
+    /**
+     * Resets the context that is currently handled.
+     */
+    public abstract void reset();
+
 }
