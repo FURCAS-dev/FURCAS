@@ -80,10 +80,11 @@ public class CtsEditorTest extends FixtureBasedTest {
 	protected void saveAll(AbstractGrammarBasedEditor editor) throws CoreException {
 		for (Saveable s : editor.getSaveables()) {
 		    s.doSave(new NullProgressMonitor());
+		    System.out.println("saved");
 		}
 		
 		if(!GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue()) {
-		    fail("There are still delayed reference that were not re evaluted.");
+		    fail("There are still delayed reference that were not re-evaluated.");
 		}
 	}
 

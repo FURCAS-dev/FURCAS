@@ -78,6 +78,77 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         close(editor);
     };
    
+    @Test
+    public void testResolveDelayedReferenceHandler()
+                    throws NullPartitionNotEmptyException,
+                    ReferencedTransientElementsException, PartitionsNotSavedException,
+                    BadLocationException, CoreException {
+
+            NgpmPackage rootPkg = connection
+                            .getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
+            final SapClass clazz = (SapClass) rootPkg.getData().getClasses()
+                            .getSapClass().refCreateInstanceInPartition(
+                                            ModelManager.getPartitionService().getPartition(
+                                                            connection, getProject(),
+                                                            new Path("src/Package1235568260162.types")));
+            clazz.setName("C1");
+            SapClass clazz2 = (SapClass) rootPkg.getData().getClasses()
+                            .getSapClass().refCreateInstanceInPartition(
+                                            ModelManager.getPartitionService().getPartition(
+                                                            connection, getProject(),
+                                                            new Path("src/Package1235568260162.types")));
+            clazz2.setName("C2");
+            connection.save();
+
+            AbstractGrammarBasedEditor editor = openEditor(clazz);
+
+            CtsDocument document = getDocument(editor);
+            String contents = document.get();
+            int bodyStart = contents.indexOf('{');
+            String newBody = "C2 c2 {.}";
+            document.replace(bodyStart + 1, 0, newBody);
+            assertEquals("class C1 {" + newBody + "\n  \n}", document.get());
+
+            saveAll(editor);
+
+            assertEquals(1, clazz.getElementsOfType().size());
+            ClassTypeDefinition ctd = clazz.getElementsOfType().iterator().next();
+            assertNotNull(ctd);
+            assertEquals(clazz2, ctd.getAssociationEnd().otherEnd().getType()
+                            .getClazz());
+            ((RefObject) editor.getWorkingConnection().getElement(
+                            ((Partitionable) clazz2).get___Mri())).refDelete();
+            editor.getWorkingConnection().save();
+            assertEquals(null, ctd.getAssociationEnd().otherEnd().getType()
+                            .getClazz());
+            clazz2 = (SapClass) rootPkg.getData().getClasses().getSapClass()
+                            .refCreateInstanceInPartition(
+                                            ModelManager.getPartitionService().getPartition(
+                                                            connection, getProject(),
+                                                            new Path("src/Package1235568260162.types")));
+            clazz2.setName("test");
+            connection.save();
+
+            close(editor);
+
+            editor = openEditor(clazz2);
+            document = getDocument(editor);
+
+            contents = document.get();
+            int indexofName = contents.indexOf("test");
+            String newName = "C2";
+            document.replace(indexofName, "test".length(), newName);
+
+            saveAll(editor);
+            //save twice to be sure all delayed references have been resolved
+            saveAll(editor);
+
+            assertEquals(clazz2, ctd.getAssociationEnd().otherEnd().getType()
+                            .getClazz());
+
+            close(editor);
+    }
+    
     /**
      * Takes an abstract method and makes it concrete by changing its return
      * type from "void" to "Number" and replacing the ";" by a block that
@@ -928,76 +999,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		close(editor);
 	}
 
-	@Test
-	public void testResolveDelayedReferenceHandler()
-			throws NullPartitionNotEmptyException,
-			ReferencedTransientElementsException, PartitionsNotSavedException,
-			BadLocationException, CoreException {
-
-		NgpmPackage rootPkg = connection
-				.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR);
-		final SapClass clazz = (SapClass) rootPkg.getData().getClasses()
-				.getSapClass().refCreateInstanceInPartition(
-						ModelManager.getPartitionService().getPartition(
-								connection, getProject(),
-								new Path("src/Package1235568260162.types")));
-		clazz.setName("C1");
-		SapClass clazz2 = (SapClass) rootPkg.getData().getClasses()
-				.getSapClass().refCreateInstanceInPartition(
-						ModelManager.getPartitionService().getPartition(
-								connection, getProject(),
-								new Path("src/Package1235568260162.types")));
-		clazz2.setName("C2");
-		connection.save();
-
-		AbstractGrammarBasedEditor editor = openEditor(clazz);
-
-		CtsDocument document = getDocument(editor);
-		String contents = document.get();
-		int bodyStart = contents.indexOf('{');
-		String newBody = "C2 c2 {.}";
-		document.replace(bodyStart + 1, 0, newBody);
-		assertEquals("class C1 {" + newBody + "\n  \n}", document.get());
-
-		saveAll(editor);
-
-		assertEquals(1, clazz.getElementsOfType().size());
-		ClassTypeDefinition ctd = clazz.getElementsOfType().iterator().next();
-		assertNotNull(ctd);
-		assertEquals(clazz2, ctd.getAssociationEnd().otherEnd().getType()
-				.getClazz());
-		((RefObject) editor.getWorkingConnection().getElement(
-				((Partitionable) clazz2).get___Mri())).refDelete();
-		editor.getWorkingConnection().save();
-		assertEquals(null, ctd.getAssociationEnd().otherEnd().getType()
-				.getClazz());
-		clazz2 = (SapClass) rootPkg.getData().getClasses().getSapClass()
-				.refCreateInstanceInPartition(
-						ModelManager.getPartitionService().getPartition(
-								connection, getProject(),
-								new Path("src/Package1235568260162.types")));
-		clazz2.setName("test");
-		connection.save();
-
-		close(editor);
-
-		editor = openEditor(clazz2);
-		document = getDocument(editor);
-
-		contents = document.get();
-		int indexofName = contents.indexOf("test");
-		String newName = "C2";
-		document.replace(indexofName, "test".length(), newName);
-
-		saveAll(editor);
-		//save twice to be sure all delayed references have been resolved
-	        saveAll(editor);
-
-		assertEquals(clazz2, ctd.getAssociationEnd().otherEnd().getType()
-				.getClazz());
-
-		close(editor);
-	}
+	
 
 	@Test
 	public void testAddAssocToPackage() throws NullPartitionNotEmptyException,

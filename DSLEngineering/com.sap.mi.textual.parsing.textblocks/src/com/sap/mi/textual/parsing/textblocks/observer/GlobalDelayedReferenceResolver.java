@@ -191,19 +191,26 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 				 if (affectedElements == null) {
 				     affectedElements = getAffectedElements(events, conn);
 				 }
-				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-					reference, conn, affectedElements, lt.getParentBlock());
-				for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
-				    DelayedReference clonedRef = (DelayedReference) reference.clone();
-                                    clonedRef.setModelElement(ro);
-                                    clonedRef.setRealValue(null);
-                                    clonedRef.setConnection(conn);
-                                    
-                                    clonedRef.setToken(new LexedTokenWrapper(lt));
-                                    clonedRef.setKeyValue(lt.getValue());
-				    String oclQuery = clonedRef.getOclQuery();
-				    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-				    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+//				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+//					reference, conn, affectedElements, lt);
+				 //TODO Actually we would have to analyse the OCL reference and check 
+				 //for an intersection of the affectedElements with the token's value
+				 //as this is the only hint we have at this place
+				if(affectedElements.size() > 0) {
+				        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+			                        reference, lt.getParentBlock());
+        				for (RefObject ro : result) {
+        				    DelayedReference clonedRef = (DelayedReference) reference.clone();
+                                            clonedRef.setModelElement(ro);
+                                            clonedRef.setRealValue(null);
+                                            clonedRef.setConnection(conn);
+                                            
+                                            clonedRef.setToken(new LexedTokenWrapper(lt));
+                                            clonedRef.setKeyValue(lt.getValue());
+        				    String oclQuery = clonedRef.getOclQuery();
+        				    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+        				    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+        				}
 				}
 			    }
 			 }
@@ -240,23 +247,25 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	 * 
 	 * @param conn the connection used to resolve the MRIs within affecedElements
 	 * @param affectedElements Elements that were affected by 
-	 * @param tb The {@link TextBlock} which's corresponding elements should be filtered.
+	 * @param node The {@link TextBlock} which's corresponding elements should be filtered.
 	 * @return the intersection between affected elements and the corresponding elements of the given {@link TextBlock}. 
 	 */
 	private Set<RefObject> filterWithAffectedElements(DelayedReference ref, Connection conn,
-		Set<MRI> affectedElements, TextBlock tb) {
+		Set<MRI> affectedElements, DocumentNode node) {
 	    	Matcher matcher = ContextManager.contextPattern.matcher(ref.getOclQuery());
 	    	Collection<RefObject> correspondingModelElements = null;
 	        boolean isContext = matcher.find();
 		if (isContext) {
 	            LocalContextBuilder localContextBuilder = new LocalContextBuilder();
-	            TbUtil.constructContext(tb,	localContextBuilder);
+	            TbUtil.constructContext(node,	localContextBuilder);
 			if(!localContextBuilder.getContextStack().isEmpty()) {
 			    correspondingModelElements = new ArrayList<RefObject>(); 
 			    correspondingModelElements.add((RefObject) localContextBuilder.getContextStack().peek().getRealObject());
 			}
 	        } else {
-	            correspondingModelElements = tb.getCorrespondingModelElements();
+	            correspondingModelElements = new ArrayList<RefObject>(node.getCorrespondingModelElements());
+	            correspondingModelElements.addAll(node.getReferencedElements());
+	            
 	        }
 		
 		Set<RefObject> intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(correspondingModelElements);
@@ -275,12 +284,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		}
 		if(isContext) {
 		    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-		        HashSet<RefObject> result = new HashSet<RefObject>();
-		        for (RefObject refObject : tb.getCorrespondingModelElements()) {
-                            if(refObject.refIsInstanceOf(TcsUtil.getParentTemplate((RefObject)ref.getQueryElement()).getMetaReference(), false)){
-                                result.add(refObject);
-                            }
-                        }
+		        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+                        ref, node);
                         return result;			
 		    } else {
 			return new HashSet<RefObject>(0);
@@ -289,6 +294,17 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		    return intersectionOfCorrespondingAndAffectedElements;   
 		}
 	}
+
+    private Set<RefObject> filterCorrespondingElementsByDelayedReferenceSourceType(
+            DelayedReference ref, DocumentNode node) {
+        Set<RefObject> result = new HashSet<RefObject>();
+        for (RefObject refObject : node.getCorrespondingModelElements()) {
+                    if(refObject.refIsInstanceOf(TcsUtil.getParentTemplate((RefObject)ref.getQueryElement()).getMetaReference(), false)){
+                        result.add(refObject);
+                    }
+                }
+        return result;
+    }
 
 	private Set<MRI> getAffectedElements(EventChain events, Connection conn) {
 	    Statistics.getInstance().setCurrentObjectForSelf(reference.getElementForSelf());
@@ -339,7 +355,11 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		
 		@Override
 	        public IStatus run(final IProgressMonitor monitor) {
-		    resolver.resolveReferences(monitor);
+		    try {
+		        resolver.resolveReferences(monitor);   
+                    } catch (Exception e) {
+                        return Status.OK_STATUS;
+                    }
 		    if (resolver.hasEmptyQueue()) {
 			return Status.OK_STATUS;
 		    } else {
@@ -354,6 +374,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		if (runInAsynchronousModus) {
 		    job.schedule(500);
 		} else {
+		    System.out.println("scheduled");
 		    resolver.resolveReferences(new NullProgressMonitor());
 		}
 	    }
@@ -1625,5 +1646,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	iaUnresolvedReferences.removeAll(workingCopy);
 	backgroundResolver.scheduleIfNeeded();
 	monitor.done();
+	System.out.println("resolved");
     }
 }
