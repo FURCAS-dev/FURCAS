@@ -59,8 +59,10 @@ public class InstanceScopeAnalysis {
     private final ClassScopeAnalyzer classScopeAnalyzer;
 
     /**
+     * @param expression
+     * 		  the OCL expression for which to perform instance scope impact analysis
      * @param conn
-     *            the connection used to
+     *            the connection used to walk the expression tree
      * @param pathCache
      *            caches {@link NavigationPath} traceback navigations to the possible contexts for a given expression
      *            that can be invoked for model elements; using this cache avoids redundant path calculations for common
@@ -69,11 +71,12 @@ public class InstanceScopeAnalysis {
      *            makes available the operation call relations reachable from the root expression that was analyzed by
      *            the class scope analyzer.
      */
-    public InstanceScopeAnalysis(CoreConnection conn, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
+    public InstanceScopeAnalysis(OclExpression expression, CoreConnection conn, PathCache pathCache, ClassScopeAnalyzer classScopeAnalyzer) {
 	associationEndAndAttributeCallFinder = new AssociationEndAndAttributeCallFinder(conn);
 	expressionToStep = new HashMap<OclExpression, NavigationStep>();
 	this.pathCache = pathCache;
 	this.classScopeAnalyzer = classScopeAnalyzer;
+	associationEndAndAttributeCallFinder.walk((OclExpressionInternal) expression);
     }
     
     /**
@@ -94,16 +97,16 @@ public class InstanceScopeAnalysis {
 	return result;
     }
     
-    public Set<MRI> getAffectedElements(OclExpression expression, MofClass context, ModelChangeEvent changeEvent) {
-	return getAffectedElements((OclExpressionInternal) ((Wrapper<?>) expression).unwrap(),
-		(MofClassImpl) ((RefObjectWrapperImpl<?>) context).unwrap(), changeEvent);
+    public Set<MRI> getAffectedElements(MofClass context, ModelChangeEvent changeEvent) {
+	return getAffectedElements((MofClassImpl) ((RefObjectWrapperImpl<?>) context).unwrap(),
+		changeEvent);
     }
 
     /**
      * Tells the context model elements on which <tt>expression</tt> may now return a result different from
      * before the <tt>changeEvent</tt> occurred.
      */
-    public Set<MRI> getAffectedElements(OclExpressionInternal expression, MofClassImpl context, ModelChangeEvent changeEvent) {
+    public Set<MRI> getAffectedElements(MofClassImpl context, ModelChangeEvent changeEvent) {
 	if (changeEvent instanceof ElementLifeCycleEvent) {
 	    // create and delete of elements only affects the allInstances expressions;
 	    // for those, however, no "self" context can easily be determined and therefore
@@ -111,8 +114,7 @@ public class InstanceScopeAnalysis {
 	    RefObject metaObject = ((ElementLifeCycleEvent) changeEvent).getMetaObject(changeEvent.getEventTriggerConnection());
 	    // If package extents are created (RefPackage), those may also trigger ElementLifeCycleEvents.
 	    // However, their meta object would not be a Classifier but rather a package. Filter this case:
-	    if (metaObject instanceof Classifier && expressionContainsAllInstancesCallForType(expression,
-		    (ClassifierInternal) ((Wrapper<?>) metaObject).unwrap())) {
+	    if (metaObject instanceof Classifier && expressionContainsAllInstancesCallForType((ClassifierInternal) ((Wrapper<?>) metaObject).unwrap())) {
 		return getAllPossibleContextInstancesMris(((ConnectionWrapper) changeEvent.getEventTriggerConnection())
 			.unwrap(), context);
 	    } else {
@@ -120,8 +122,7 @@ public class InstanceScopeAnalysis {
 	    }
 	} else {
 	    Set<MRI> result = new LinkedHashSet<MRI>();
-	    for (ModelPropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(expression,
-		    changeEvent)) {
+	    for (ModelPropertyCallExp attributeOrAssociationEndCall : getAttributeOrAssociationEndCalls(changeEvent)) {
 		RefObjectImpl sourceElement = getSourceElement(changeEvent, (ModelPropertyCallExpInternal) attributeOrAssociationEndCall);
 		if (sourceElement != null) {
 		    // the source element may have been deleted already by subsequent events; at this point,
@@ -137,8 +138,7 @@ public class InstanceScopeAnalysis {
 	}
     }
 
-    private boolean expressionContainsAllInstancesCallForType(OclExpressionInternal expression, ClassifierInternal classifier) {
-	associationEndAndAttributeCallFinder.walk(expression);
+    private boolean expressionContainsAllInstancesCallForType(ClassifierInternal classifier) {
 	return !associationEndAndAttributeCallFinder.getAllInstancesCallsFor(classifier).isEmpty();
     }
 
@@ -209,7 +209,12 @@ public class InstanceScopeAnalysis {
 	assert changeEvent instanceof AttributeValueChangeEvent || changeEvent instanceof LinkChangeEvent;
 	RefObjectImpl result;
 	if (changeEvent instanceof AttributeValueChangeEvent) {
-	    result = (RefObjectImpl) ((Wrapper<?>) ((AttributeValueChangeEvent) changeEvent).getAffectedElement(conn)).unwrap();
+	    Wrapper<?> sourceElement = (Wrapper<?>) ((AttributeValueChangeEvent) changeEvent).getAffectedElement(conn);
+	    if (sourceElement != null) {
+		result = (RefObjectImpl) sourceElement.unwrap();
+	    } else {
+		result = null;
+	    }
 	} else {
 	    AssociationEndCallExpInternal aece = (AssociationEndCallExpInternal) attributeOrAssociationEndCall;
 	    SpiJmiHelper jmiHelper = coreConn.getCoreJmiHelper();
@@ -241,10 +246,8 @@ public class InstanceScopeAnalysis {
      * Finds all attribute and association end call expressions in <tt>expression</tt> that are affected by the
      * <tt>changeEvent</tt>. The result is always non-<tt>null</tt> but may be empty.
      */
-    private Set<? extends ModelPropertyCallExp> getAttributeOrAssociationEndCalls(OclExpressionInternal expression,
-	    ModelChangeEvent changeEvent) {
+    private Set<? extends ModelPropertyCallExp> getAttributeOrAssociationEndCalls(ModelChangeEvent changeEvent) {
 	CoreConnection conn = ((ConnectionWrapper) changeEvent.getEventTriggerConnection()).unwrap();
-	associationEndAndAttributeCallFinder.walk(expression);
 	Set<? extends ModelPropertyCallExp> result;
 	if (changeEvent instanceof AttributeValueChangeEvent) {
 	    result = associationEndAndAttributeCallFinder.getAttributeCallExpressions(

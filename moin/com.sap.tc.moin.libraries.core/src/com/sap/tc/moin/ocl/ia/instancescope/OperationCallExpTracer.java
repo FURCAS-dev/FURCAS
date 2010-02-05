@@ -103,11 +103,10 @@ public class OperationCallExpTracer extends AbstractTracer<OperationCallExpImpl>
 		// conform to the type on which allInstances() is invoked here; for example, the
 		// expression may navigate from the result of allInstances() across an association
 		// defined on a superclass of the one on which allInstances() was invoked. Therefore,
-		// ensure that the typing of the AllInstancesNavigationStep is correct. The
-		// AllInstancesNavigationStep 
+		// ensure that the typing of the AllInstancesNavigationStep is correct.
 		MofClass classifier = (MofClass) ((TypeExpInternal) getExpression().getSource(getConnection()))
 			.getReferredType(getConnection());
-		result = new AllInstancesNavigationStep(classifier, classifier, getExpression()); // non-absolute
+		result = new AllInstancesNavigationStep(classifier, context, getExpression()); // non-absolute
 	    } else {
 		result = new EmptyResultNavigationStep(getExpression()); // hope, we didn't forget stdlib operations that pass on
 							  // source or argument values into their result

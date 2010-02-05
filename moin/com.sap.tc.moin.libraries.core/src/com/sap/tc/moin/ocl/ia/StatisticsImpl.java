@@ -94,6 +94,11 @@ public class StatisticsImpl extends Statistics {
 	currentlyHandlingEvent = event;
     }
 
+    @Override
+    public void doneWithEvent(OclExpressionRegistrationImpl oclExpressionRegistrationImpl, ModelChangeEvent mce) {
+	currentlyHandlingEventFor = null;
+	currentlyHandlingEvent = null;
+    }
     public void allInstancesCalled(List<String> classQname) {
 	if (currentlyHandlingEventFor != null && currentlyHandlingEvent != null) {
 	    Record record = new Record(currentlyHandlingEventFor, currentlyHandlingEvent, classQname,
@@ -376,4 +381,5 @@ public class StatisticsImpl extends Statistics {
     public String getCsvHeader() {
 	return "Expression\tClass scope analysis (ns)\tevents\tavg instance scope (ns)\tavg affected elements\t#evals\tavg eval time (ns)\tallInstances()\tcontext elements\n";
     }
+
 }
