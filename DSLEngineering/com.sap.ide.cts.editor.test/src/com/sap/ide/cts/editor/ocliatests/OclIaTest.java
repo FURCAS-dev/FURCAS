@@ -102,8 +102,8 @@ public class OclIaTest extends StandaloneConnectionBasedTest {
 	    @Override
 	    public void notify(ChangeEvent event) {
 		Set<MRI> affectedElements = registration.getAffectedModelElements((ModelChangeEvent) event, connection);
-		ok[0] = affectedElements.size() > 0 && affectedElements.contains(cl1.get___Mri()) &&
-			!affectedElements.contains(ctd.get___Mri());
+		ok[0] = affectedElements.size() > 0 && affectedElements.contains(ctd.get___Mri()) &&
+			!affectedElements.contains(cl1.get___Mri());
 	    }
 	};
 	connection.getEventRegistry().registerListener(listener, eventFilter);

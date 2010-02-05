@@ -424,14 +424,14 @@ public class TextBlocksModel {
         		    //TODO check what to do with the empty string case!
         		    if(!newValue.equals(tok.getValue()) && !newValue.equals("")) {
         			int length = tok.getLength();
+    			    	int offset = TbUtil.getAbsoluteOffset(tok);
         			if(newValue.length() != length) {
-        			    int offset = TbUtil.getAbsoluteOffset(tok);
         			    replaceInNonEmptyTree(offset, length, newValue, rootBlock);
-        			    rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset) + 
-        				    newValue + rootBlock.getCachedString().substring(offset + length, rootBlock.getCachedString().length()) );
         			} else {
         			    tok.setValue(newValue);
         			}
+    			    	rootBlock.setCachedString(rootBlock.getCachedString().substring(0, offset) + 
+				    newValue + rootBlock.getCachedString().substring(offset + length, rootBlock.getCachedString().length()));
         		    }
         		}
         		tok = TbNavigationUtil.nextToken(tok);

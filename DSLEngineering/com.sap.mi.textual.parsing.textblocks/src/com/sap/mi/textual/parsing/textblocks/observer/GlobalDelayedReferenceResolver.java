@@ -1351,7 +1351,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 
     private Map<EventFilter, Map<ListenerType, EventListener>> createReEvaluationListener(
 	    OclExpressionRegistration registration, DelayedReference ref) {
-	EventFilter filter = registration.getEventFilter(/* notifyNewContextElement */ true); // TODO clarify if this should be false
+	// notifyNewContextElement can be set to false because element creation is handled by the
+	// parser itself, evaluating all properties initially that cna be evaluated at that point.
+	EventFilter filter = registration.getEventFilter(/* notifyNewContextElement */ false);
 	// if(ref.getToken() != null) {
 	// //for refersTo References add filter that only re-evaluates the Query
 	// if
