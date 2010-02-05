@@ -38,28 +38,7 @@ import data.classes.SapClass;
 import dataaccess.expressions.MethodCallExpression;
 
 public class FailingEditingActions extends RunletEditorTest {
-    /**
-     * Expecting that accessor methods are renamed as well
-     */
-    @Test
-    public void testRenameAssociationEnd() throws PartInitException, BadLocationException, CoreException {
-	final RefObject refObject = findClass("OrdrdStrgsTest");
-        assertNotNull(refObject); 
-        assertTrue(refObject.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(refObject);
-        CtsDocument document = getDocument(editor);
-        document.replace(69, 0, "2");
-        saveAll(editor);
-        assertTrue(refObject.is___Alive());
-        boolean found = false;
-        for (MethodSignature ms : ((SapClass) refObject).getOwnedSignatures()) {
-            if (ms.getName().equals(".orderedNumbersInOrderedStringsTest2")) {
-        	found = true;
-            }
-        }
-        assertTrue(found);
-        close(editor);
-    }
+    
 
     /**
      * When a parameter that is used as object for a method call changes its multiplicity from 0..1 to 1..1, the output
@@ -185,39 +164,6 @@ public class FailingEditingActions extends RunletEditorTest {
 	close(editor);
     }
 
-    /**
-     * When renaming an association end, the method signatures that expose the
-     * association end in the class are duplicated.
-     */
-    @Test
-    public void testRenameOfAssociationEnd() throws PartInitException, BadLocationException, CoreException {
-	// Copy of: PF.IDE:E0C792CE25597711A2A411DEB83300155883529C
-//	String lriString = "PF.IDE:E0E1B8C684C82AA0ACF111DEBF7C00155883529C";
-//	LRI lri = connection.getSession().getMoin().createLri(lriString);
-	final RefObject refObject = findClass("OrderedAssocTestCase");
-	assertNotNull(refObject);
-	assertTrue(refObject.is___Alive());
-	AbstractGrammarBasedEditor editor = openEditor(refObject);
-	CtsDocument document = getDocument(editor);
-	String content = document.get();
-	document.replace(content.indexOf("Numbers"), "Numbers".length(), "String");
-	
-	assertEquals(
-			"Unexpected document content",
-			"class OrderedAssocTestCase {\n\t\tString[] orderedString {., =, +=, -=}\n\t\tPerson[] orderedPersons {., =, +=, -=}\n}", document.get());
-	
-	saveAll(editor);
-	// failOnError(editor);
-	assertTrue(refObject.is___Alive());
-	// Your assertions on refObject here
-	SapClass c = (SapClass) refObject;
-	for (MethodSignature ms : c.getOwnedSignatures()) {
-	    if (ms.getName().equals(".orderedNumbers") || ms.getName().equals("orderedNumbers+=")
-		    || ms.getName().equals("orderedNumbers-=") || ms.getName().equals("orderedNumbers=")) {
-		fail("found method " + ms.getName() + " which should have been deleted");
-	    }
-	}
-	close(editor);
-    };
+    
 
 }

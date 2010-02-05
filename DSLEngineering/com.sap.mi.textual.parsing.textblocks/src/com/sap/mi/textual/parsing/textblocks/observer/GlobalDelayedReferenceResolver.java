@@ -104,8 +104,7 @@ import com.sap.tc.moin.repository.ocl.registry.OclRegistrationSeverity;
 import com.sap.tc.moin.textual.moinadapter.adapter.MOINModelAdapter;
 import com.sap.tc.moin.textual.moinadapter.adapter.MoinHelper;
 
-public class GlobalDelayedReferenceResolver implements GlobalEventListener,
-	PreChangeListener, UpdateListener {
+public class GlobalDelayedReferenceResolver implements GlobalEventListener, UpdateListener {
     private static final String TEMPORARY_QUERY_PARAM_REPLACEMENT = "__TEMP__";
 
     public class IAExpressionInvalidationChangeListener implements
@@ -141,7 +140,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			     TextBlockAdditionalTemplates tbAdditionalAssoc = conn.getAssociation(TextBlockAdditionalTemplates.ASSOCIATION_DESCRIPTOR);
 			     Collection<TextBlock> additionalTbs = tbAdditionalAssoc.getTextblock(template);
 			     tbs.addAll(additionalTbs);
-			     tbs = filterVersionedTextBlockForNewest(tbs);
+			     tbs = TbUtil.filterVersionedTextBlockForNewest(tbs);
 			     
 			     Set<MRI> affectedElements = null;
 			     for (TextBlock textBlock : tbs) {
@@ -169,7 +168,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 					affectedElements = getAffectedElements(events, conn);
 				    }
 				    Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-					    reference, conn, affectedElements, textBlock);
+					    conn, affectedElements, textBlock);
 				    for (RefObject ro : intersectionOfCorrespondingAndAffectedElements) {
 					DelayedReference clonedRef = (DelayedReference) reference.clone();
 					clonedRef.setModelElement(ro);
@@ -191,14 +190,14 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 				 if (affectedElements == null) {
 				     affectedElements = getAffectedElements(events, conn);
 				 }
-//				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-//					reference, conn, affectedElements, lt);
+				Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+					conn, affectedElements, lt.getParentBlock());
 				 //TODO Actually we would have to analyse the OCL reference and check 
 				 //for an intersection of the affectedElements with the token's value
 				 //as this is the only hint we have at this place
-				if(affectedElements.size() > 0) {
+				if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 				        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-			                        reference, lt.getParentBlock());
+			                        conn, lt.getParentBlock());
         				for (RefObject ro : result) {
         				    DelayedReference clonedRef = (DelayedReference) reference.clone();
                                             clonedRef.setModelElement(ro);
@@ -232,15 +231,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	    }
 	}
 
-	private Collection<TextBlock> filterVersionedTextBlockForNewest(
-            Collection<TextBlock> tbs) {
-            for (TextBlock textBlock : new ArrayList<TextBlock>(tbs)) {
-                if(!TbUtil.getNewestVersion(textBlock).equals(textBlock)) {
-                    tbs.remove(textBlock);
-                }
-            }
-            return tbs;
-        }
+	
 
     /**
 	 * Filters the given elements with the corresponding elements of the given {@link TextBlock}.
@@ -250,9 +241,9 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	 * @param node The {@link TextBlock} which's corresponding elements should be filtered.
 	 * @return the intersection between affected elements and the corresponding elements of the given {@link TextBlock}. 
 	 */
-	private Set<RefObject> filterWithAffectedElements(DelayedReference ref, Connection conn,
+	private Set<RefObject> filterWithAffectedElements(Connection conn,
 		Set<MRI> affectedElements, DocumentNode node) {
-	    	Matcher matcher = ContextManager.contextPattern.matcher(ref.getOclQuery());
+	    	Matcher matcher = ContextManager.contextPattern.matcher(reference.getOclQuery());
 	    	Collection<RefObject> correspondingModelElements = null;
 	        boolean isContext = matcher.find();
 		if (isContext) {
@@ -285,7 +276,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		if(isContext) {
 		    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
 		        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-                        ref, node);
+		                conn, node);
                         return result;			
 		    } else {
 			return new HashSet<RefObject>(0);
@@ -295,16 +286,25 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		}
 	}
 
-    private Set<RefObject> filterCorrespondingElementsByDelayedReferenceSourceType(
-            DelayedReference ref, DocumentNode node) {
-        Set<RefObject> result = new HashSet<RefObject>();
-        for (RefObject refObject : node.getCorrespondingModelElements()) {
-                    if(refObject.refIsInstanceOf(TcsUtil.getParentTemplate((RefObject)ref.getQueryElement()).getMetaReference(), false)){
-                        result.add(refObject);
+	/**
+	 * Filtes the elements in {@link DocumentNode#getCorrespondingModelElements()} by comparing them
+	 * to the type given by the parent template of the query element of the {@link #reference}.
+	 * 
+	 * @param conn The connection to use to resolve the template
+	 * @param node To node from which the corresponding elements should be filtered.
+	 * @return A type filtered set of elements by the {@link #reference}'s query elements template.
+	 */
+	private Set<RefObject> filterCorrespondingElementsByDelayedReferenceSourceType(Connection conn, DocumentNode node) {
+            Set<RefObject> result = new HashSet<RefObject>();
+            RefObject queryElement = (RefObject) conn.getElement(((Partitionable)reference.getQueryElement()).get___Mri());
+            for (RefObject refObject : node.getCorrespondingModelElements()) {
+               
+                        if(refObject.refIsInstanceOf(TcsUtil.getParentTemplate(queryElement).getMetaReference(), false)){
+                            result.add(refObject);
+                        }
                     }
-                }
-        return result;
-    }
+            return result;
+        }
 
 	private Set<MRI> getAffectedElements(EventChain events, Connection conn) {
 	    Statistics.getInstance().setCurrentObjectForSelf(reference.getElementForSelf());
@@ -319,29 +319,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	}
     }
 
-    public class DeletionListener implements UpdateListener {
-
-	private final DelayedReference unresolvedRef;
-
-	public DeletionListener(DelayedReference unresolvedRef) {
-	    this.unresolvedRef = unresolvedRef;
-	}
-
-	@Override
-	public void notifyUpdate(EventChain events) {
-	    for (ChangeEvent event : events.getEvents()) {
-
-		if (event instanceof ElementDeleteEvent) {
-		    // ElementDeleteEvent delEvent = (ElementDeleteEvent) event;
-		    removeRegistration(unresolvedRef);
-		    notifyReferenceResolvingListenerReferencesRemoved(Collections
-			    .singleton(unresolvedRef));
-		}
-	    }
-	}
-
-    }
-    
     public class BackgroundResolver  {
 	
 	private final GlobalDelayedReferenceResolver resolver;
@@ -374,7 +351,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		if (runInAsynchronousModus) {
 		    job.schedule(500);
 		} else {
-		    System.out.println("scheduled");
 		    resolver.resolveReferences(new NullProgressMonitor());
 		}
 	    }
@@ -388,40 +364,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	    return this.job.getState() != Job.NONE; 
 	}
     }
-
-    // public class KeyAttributeSetListener implements UpdateListener {
-    //
-    // private final DelayedReference unresolvedRef;
-    //
-    // public KeyAttributeSetListener(DelayedReference unresolvedRef) {
-    // this.unresolvedRef = unresolvedRef;
-    // }
-    //
-    // @Override
-    // public void notifyUpdate(EventChain events) {
-    // for (ChangeEvent event : events.getEvents()) {
-    //
-    // if (event instanceof AttributeValueChangeEvent) {
-    // AttributeValueChangeEvent attEvent = (AttributeValueChangeEvent) event;
-    // // Only trigger re-resolving if value changed to the one the
-    // // ref is waiting for
-    // if (attEvent.getNewValue() != null &&
-    // attEvent.getNewValue().equals(unresolvedRef.getKeyValue())) {
-    // Connection conn = event.getEventTriggerConnection();
-    //
-    // RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-    // conn, attEvent.getAffectedElement(conn));
-    // GlobalDelayedReferenceResolver.this.reEvaluateUnresolvedRef(
-    // conn, outermostPackage, this.unresolvedRef);
-    // }
-    // }
-    // }
-    // }
-    //
-    //	
-    //
-    //	
-    // }
 
     private final Set<DelayedReference> unresolvedReferences = new HashSet<DelayedReference>();
 
@@ -550,83 +492,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	}
     }
 
-    /**
-     * The given {@link DelayedReference} will be registered and resolved as
-     * soon as possible.
-     * 
-     * @param unresolvedRef
-     * @param referringToken
-     *            The model element token referring to the element searched by
-     *            the unresolved reference. if given this token will replace the
-     *            {@link DelayedReference#getToken()}.
-     * @param buildNewContext
-     *            If a token is given in <tt>referringToken</tt>
-     *            <tt>useContext</tt> indicated wether this token should be used
-     *            to construct a new context for the reference.
-     */
-    public void registerUnresolvedReference(DelayedReference unresolvedRef,
-	    LexedToken referringToken, boolean buildNewContext) {
-	if (unresolvedRef.getModelElement() == null
-		|| !((RefObject) unresolvedRef.getModelElement()).is___Alive()) {
-	    return;
-	}
-	if (referringToken != null) {
-	    unresolvedRef.setToken(new LexedTokenWrapper(referringToken));
-	    if (buildNewContext) {
-		LocalContextBuilder localContextBuilder = new LocalContextBuilder();
-		TbUtil.constructContext(referringToken, localContextBuilder);
-		unresolvedRef.setContextElement(localContextBuilder
-			.getContextStack().isEmpty() ? null
-			: localContextBuilder.getContextStack().peek());
-	    }
-	}
-
-	DelayedReference registeredRefForToken = token2References
-		.get(referringToken);
-	if (registeredRefForToken != null) {
-	    // there is an existing reference for the token, as a new delayed
-	    // reference was created for it
-	    // this one is out of date, so remove it.
-	    removeRegistration(registeredRefForToken);
-	}
-	unresolvedReferences.add(unresolvedRef);
-	token2References.put(referringToken, unresolvedRef);
-
-	Connection conn = ((Partitionable) unresolvedRef.getModelElement())
-		.get___Connection();
-
-	Map<EventFilter, Map<ListenerType, EventListener>> resolveListener = null;
-	// createResolveListener(conn, unresolvedRef);
-	if (false /*resolveListener != null*/) {
-	    // also register a deletion listener that removes all registrations
-	    // if the model element was deleted.
-	    Map<EventFilter, Map<ListenerType, EventListener>> deletionListener = createDeletionListener(
-		    conn, unresolvedRef);
-	    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
-		    .getService(globalEventListenerRegistryRef);
-	    registry.addFilters(resolveListener);
-	    registry.addFilters(deletionListener);
-	    refsToListners.put(unresolvedRef, resolveListener);
-	    refsToDeletionListners.put(unresolvedRef, deletionListener);
-	} else {
-	    registerReferenceForIncrementalEvaluation(unresolvedRef,
-		    referringToken, conn);
-	}
-	notifyReferenceResolvingListenerReferenceAdded(unresolvedRef);
-    }
-
-    private Map<EventFilter, Map<ListenerType, EventListener>> createDeletionListener(
-	    Connection conn, DelayedReference unresolvedRef) {
-	EventFilter filter = new InstanceFilter(((RefObject) unresolvedRef
-		.getModelElement()).get___Mri());
-	Map<ListenerType, EventListener> listenerForType = new HashMap<ListenerType, EventListener>();
-	listenerForType.put(ListenerType.UPDATE, new DeletionListener(
-		unresolvedRef));
-	Map<EventFilter, Map<ListenerType, EventListener>> map = new HashMap<EventFilter, Map<ListenerType, EventListener>>();
-	map.put(filter, listenerForType);
-	return map;
-    }
-
     @Override
     public Map<EventFilter, Map<ListenerType, EventListener>> getFilters(
 	    Connection connection, BundleContext bundleContext) {
@@ -704,14 +569,17 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 			    .singleton(unresolvedRef));
 		    return;
 		}
-		cs = token.getParentBlock().getType().getParseRule().getConcretesyntax();
+		cs = tokenInCurrentConnection.getParentBlock().getType().getParseRule().getConcretesyntax();
 		
 		TbUtil.constructContext(tokenInCurrentConnection,
 			localContextBuilder);
 		referringDocumentNode = tokenInCurrentConnection;
                 //also rebuild the context for the parser, 
                 //as it may be used e.g. in foreach predicate references
-                TbUtil.constructContext(tokenInCurrentConnection, getParser(cs));
+		if(unresolvedRef.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+		    getParser(cs).reset();
+                    TbUtil.constructContext(tokenInCurrentConnection, getParser(cs));
+		}
 		if(!localContextBuilder.getContextStack().isEmpty()) {
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
@@ -723,10 +591,12 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		    unresolvedRef.setContextElement(localContextBuilder.getContextStack().peek());
 		}
 		cs = contextTextBlock.getType().getParseRule().getConcretesyntax();
-	              //also rebuild the context for the parser, 
+		//also rebuild the context for the parser, 
                 //as it may be used e.g. in foreach predicate references
-		getParser(cs).reset();
-                TbUtil.constructContext(contextTextBlock, getParser(cs));
+                if(unresolvedRef.getType() == DelayedReference.SEMANTIC_PREDICATE) {
+                    getParser(cs).reset();
+                    TbUtil.constructContext(contextTextBlock, getParser(cs));
+                }
 
 	    } else {
 		removeRegistration(unresolvedRef);
@@ -773,90 +643,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
         return parsersBySyntax.get(concretesyntax);
     }
 
-    @Override
-    public void prepare(ChangeEvent event) {
-	// TODO this is probably also dead code
-	if (event instanceof LinkRemoveEvent) {
-	    LinkRemoveEvent lre = (LinkRemoveEvent) event;
-	    MRI documentNodeMri = lre.getFirstLinkEndMri();
-	    Connection conn = event.getEventTriggerConnection();
-	    DocumentNode documentNode = (DocumentNode) conn
-		    .getElement(documentNodeMri);
-	    if (documentNode instanceof LexedToken) {
-		LexedToken lt = (LexedToken) documentNode;
-		// Only if an persistent link is deleted which is the case only
-		// for REFRENCE Version DocumentNodes
-		if (VersionEnum.REFERENCE.equals(lt.getVersion())) {
-		    LocalContextBuilder localContextBuilder = new LocalContextBuilder();
-		    TbUtil.constructContext(lt, localContextBuilder);
-		    // FIXME context elements are not filled; where do we need
-		    // to
-		    // build up
-		    // those contents? Only upon lookup?
-		    if (lt.getParentBlock().getCorrespondingModelElements()
-			    .size() > 0
-			    && lt.getSequenceElement() instanceof Property) {
-			Property se = (Property) lt.getSequenceElement();
-			if (se != null) {
-			    DelayedReference unresolvedRef = new DelayedReference(
-				    // the next outer context element, as
-				    // obtained from
-				    // the
-				    // re-constructed
-				    // context stack:
-				    localContextBuilder.getContextStack()
-					    .isEmpty() ? null
-					    : localContextBuilder
-						    .getContextStack().peek(),
-				    // the model element on which the reference
-				    // is to be set, obtained from
-				    // the parent text block corresponding with
-				    // the template containing the reference
-				    // FIXME link could be broken; what to do?
-				    // FIXME what about referenceOnly templates
-				    // and how to resolve them?
-				    lt.getParentBlock()
-					    .getCorrespondingModelElements()
-					    .iterator().next(),
-				    // the name of the property to be set by the
-				    // reference
-				    /* propertyName */
-				    se.getPropertyReference().getStrucfeature()
-					    .getName(),
-				    /* keyName */
-				    TcsUtil.getRefersToParg(se) != null ? TcsUtil
-					    .getRefersToParg(se)
-					    .getPropertyName()
-					    : null,
-				    /* keyValue */lt.getValue(),
-				    /* oclQuery */TcsUtil.getQueryParg(se) != null ? TcsUtil
-					    .getQuery(se)
-					    : null,
-				    /* isOptional */isOptional(se
-					    .getPropertyReference()
-					    .getStrucfeature()),
-				    /* token */new LexedTokenWrapper(lt));
-			    registerUnresolvedReference(unresolvedRef, null,
-				    false);
-			}
-		    }
-		}
-	    }
-	}
-    }
-
-    private boolean isOptional(TypedElement strucfeature) {
-	if (strucfeature instanceof AssociationEnd) {
-	    AssociationEnd end = (AssociationEnd) strucfeature;
-	    return end.getMultiplicity().getLower() == 0;
-
-	}
-	if (strucfeature instanceof StructuralFeature) {
-	    StructuralFeature feat = (StructuralFeature) strucfeature;
-	    return feat.getMultiplicity().getLower() == 0;
-	}
-	return false;
-    }
 
     @Override
     public void notifyUpdate(EventChain events) {
@@ -876,110 +662,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 		notifyReferenceResolvingListenerReferencesRemoved(refs);
 	    }
 	}
-    }
-
-    // /**
-    // * Creates a combination of {@link EventFilter} and {@link ListenerType} +
-    // * {@link EventListener} for the given {@link DelayedReference}
-    // * <tt>unresolvedRef</tt>. The Event is triggered if, at any class
-    // * instance the attribute which is uses as keyValue of the reference is
-    // set
-    // * to the keyValue given by the reference. This might be a good point in
-    // * time to try re-resolving the reference. TODO: However this could be
-    // * improved by using Impact Analyis for this task.
-    // *
-    // * @param conn
-    // * @param unresolvedRef
-    // * @return
-    // */
-    // private Map<EventFilter, Map<ListenerType, EventListener>>
-    // createResolveListener(
-    // Connection conn, DelayedReference unresolvedRef) {
-    // // TODO currently only attribute based refrences are supported. -> Add
-    // // supported for
-    // // lookIn Property inits which may also refer to references!!
-    // MofClass parentElementMofClass = ((MofClass) ((RefObject) unresolvedRef
-    // .getModelElement()).refMetaObject());
-    // Reference property = conn.getJmiHelper().getReferenceByName(
-    // parentElementMofClass, unresolvedRef.getPropertyName(), true);
-    // if(property != null) {
-    // Attribute referredKeyAttribute = conn.getJmiHelper()
-    // .getAttributeByName((MofClass) property.getType(),
-    // unresolvedRef.getKeyName(), true);
-    // if (referredKeyAttribute != null) {
-    // EventFilter filter = new AttributeFilter(referredKeyAttribute);
-    // Map<ListenerType, EventListener> listenerForType = new
-    // HashMap<ListenerType, EventListener>();
-    // listenerForType.put(ListenerType.UPDATE,
-    // new KeyAttributeSetListener(unresolvedRef));
-    // Map<EventFilter, Map<ListenerType, EventListener>> map = new
-    // HashMap<EventFilter, Map<ListenerType, EventListener>>();
-    // map.put(filter, listenerForType);
-    // return map;
-    // }
-    // }
-    // return null;
-    // }
-
-    /**
-     * Tries to resolved <tt>unresolvedRef</tt>. Returns <tt>true</tt> if
-     * successful, <tt>false</tt> otherwise.
-     */
-    @SuppressWarnings("unused")
-    // preparing the resolver
-    private boolean resolveAll(Connection connection,
-	    DelayedReference unresolvedRef, RefPackage outermostPackage) {
-	// TODO need to construct the "context" inside out
-	ModelInjector mi = constructModelInjector(connection, outermostPackage);
-
-	/*
-	 * It is assumed here that at this point of time, the code structure
-	 * guarantees that the list of delayed References does not contain any
-	 * IModelElementproxy elements, neither does the ContextManager contain
-	 * any IModelElementProxy object.
-	 */
-	// try to resolve references as long as there are new references
-	// resolved
-	// this is done because the actual optimal ordering is not known at
-	// this point
-	boolean resolvedNewReference = true;
-	while (!unresolvedReferences.isEmpty() && resolvedNewReference) {
-	    // clear the error list as the errors might get resolved within
-	    // the next iteration
-	    // if not they will be added again anyways
-	    mi.getErrorList().clear();
-	    resolvedNewReference = false;
-	    for (Iterator<DelayedReference> iterator = unresolvedReferences
-		    .iterator(); iterator.hasNext();) {
-		DelayedReference reference = iterator.next();
-		try {
-		    LocalContextBuilder localContextBuilder = new LocalContextBuilder();
-		    TbUtil.constructContext(((LexedTokenWrapper) reference
-			    .getToken()), localContextBuilder);
-		    boolean newlyResolved = mi.resolveReference(reference,
-			    localContextBuilder.getContextManager(), (ObservableInjectingParser)null);
-		    if (newlyResolved) {
-			iterator.remove();
-			resolvedNewReference = true;
-		    }
-
-		    if (reference.getRealValue() != null) {
-			/*
-			 * Object me = (reference.getModelElement() instanceof
-			 * IModelElementProxy) ? ((IModelElementProxy) reference
-			 * .getModelElement()).getRealObject() :
-			 * reference.getModelElement();
-			 */
-			// onRuleElementResolvedOutOfContext(reference
-			// .getRealValue(), me, reference.getToken());
-		    }
-		} catch (ModelElementCreationException e) {
-		    mi.addError(new ParsingError(e.getMessage(), reference
-			    .getToken()));
-		}
-	    }
-	}
-	return mi.getErrorList().size() == 0;
     }
 
     private ModelInjector constructModelInjector(Connection connection,
@@ -1053,65 +735,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	for (ReferenceResolvingListener listener : listeners) {
 	    listener.outdatedReferencesRemoved(refs);
 	}
-    }
-
-    public void registerReferenceForIncrementalEvaluation(DelayedReference ref,
-	    LexedToken referringToken, Connection connection) {
-	Object modelElement = ref.getModelElement();
-	RefObject ro = null;
-	if (modelElement instanceof RefObject) {
-	    ro = (RefObject) modelElement;
-	} else if (modelElement instanceof ModelElementProxy) {
-	    ro = (RefObject) ((ModelElementProxy) modelElement).getRealObject();
-	} else {
-	    return;
-	}
-
-	if (referringToken != null) {
-	    ref.setToken(new LexedTokenWrapper(referringToken));
-	}
-
-	RefPackage root = ro.refOutermostPackage();
-	Collection<RefPackage> packagesForLookup = new ArrayList<RefPackage>();
-	packagesForLookup.addAll(MoinHelper.getImportedRefPackages(root));
-	packagesForLookup.add(root);
-	try {
-	    String query = MoinHelper.prepareOclQuery(ref.getOclQuery(), ref
-		    .getContextElement(), ref.getKeyValue());
-	    if (query != null) {
-		String name = ro.refMofId() + ref.getPropertyName();
-		OclExpressionRegistration registration = (OclExpressionRegistration) connection
-			.getOclRegistryService().getFreestyleRegistry()
-			.getRegistration(name);
-		if (registration != null) {
-		    connection.getOclRegistryService().getFreestyleRegistry()
-			    .deleteRegistration(name);
-		}
-		registration = connection.getOclRegistryService()
-			.getFreestyleRegistry().createExpressionRegistration(
-				name, query, OclRegistrationSeverity.Info,
-				new String[] { "TCS Property Init" },
-				ro.refClass(),
-				packagesForLookup.toArray(new RefPackage[] {}));
-		Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
-			registration, ref);
-		GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
-			.getService(globalEventListenerRegistryRef);
-		registry.addFilters(reEvaluationListener);
-		registration2DelayedReference.put(registration.getName(), ref);
-		delayedReference2Registration.put(ref, registration.getName());
-		delayedReference2ReEvaluationListener.put(ref,
-			reEvaluationListener);
-
-	    }
-	} catch (OclManagerException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	} catch (ModelAdapterException e) {
-	    // TODO Auto-generated catch block
-	    e.printStackTrace();
-	}
-
     }
 
     public void registerReferenceForIncrementalEvaluation(ConcreteSyntax cs,
@@ -1558,23 +1181,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	map.put(filter, listenerForType);
 	return map;
     }
-
-    // @Override
-    // public void notify(Collection<MRI> objectsToReEvaluate,
-    // OclExpressionRegistration registration, Connection con) {
-    // for (MRI mri : objectsToReEvaluate) {
-    // RefBaseObject ro = con.getElement(mri);
-    // RefPackage outermostPackage = getOutermostPackageThroughClusteredImports(
-    // con, ro);
-    // DelayedReference unresolvedRef = registration2DelayedReference
-    // .get(registration.getName());
-    //
-    // if(unresolvedRef != null) {
-    // reEvaluateUnresolvedRef(con, outermostPackage, unresolvedRef);
-    // }
-    //    
-    // }
-    // }
     
     public void resolveReferences(IProgressMonitor monitor) {
 	Collection<DelayedReference> workingCopy = new ArrayList<DelayedReference>(iaUnresolvedReferences);
@@ -1648,6 +1254,5 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener,
 	iaUnresolvedReferences.removeAll(workingCopy);
 	backgroundResolver.scheduleIfNeeded();
 	monitor.done();
-	System.out.println("resolved");
     }
 }

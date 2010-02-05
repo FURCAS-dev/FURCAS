@@ -2,6 +2,8 @@ package com.sap.mi.textual.parsing.textblocks;
 
 import static com.sap.mi.textual.parsing.textblocks.TbNavigationUtil.getParentBlock;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -498,5 +500,15 @@ public class TbUtil {
 			return true;
 		}
 	}
+
+        public static Collection<TextBlock> filterVersionedTextBlockForNewest(
+            Collection<TextBlock> tbs) {
+            for (TextBlock textBlock : new ArrayList<TextBlock>(tbs)) {
+                if(!TbUtil.getNewestVersion(textBlock).equals(textBlock)) {
+                    tbs.remove(textBlock);
+                }
+            }
+            return tbs;
+        }
 
 }

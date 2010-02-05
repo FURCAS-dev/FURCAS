@@ -5,6 +5,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Collection;
 
@@ -51,6 +52,41 @@ import dataaccess.expressions.This;
 import dataaccess.expressions.VariableExpression;
 
 public class TestNgpmEditingActions extends RunletEditorTest {
+    
+    /**
+     * When renaming an association end, the method signatures that expose the
+     * association end in the class are duplicated.
+     */
+    @Test
+    public void testRenameOfAssociationEnd() throws PartInitException, BadLocationException, CoreException {
+        // Copy of: PF.IDE:E0C792CE25597711A2A411DEB83300155883529C
+//      String lriString = "PF.IDE:E0E1B8C684C82AA0ACF111DEBF7C00155883529C";
+//      LRI lri = connection.getSession().getMoin().createLri(lriString);
+        final RefObject refObject = findClass("OrderedAssocTestCase");
+        assertNotNull(refObject);
+        assertTrue(refObject.is___Alive());
+        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        CtsDocument document = getDocument(editor);
+        String content = document.get();
+        document.replace(content.indexOf("Numbers"), "Numbers".length(), "String");
+        
+//      assertEquals(
+//                      "Unexpected document content",
+//                      "class OrderedAssocTestCase {\n\t\tString[] orderedString {., =, +=, -=}\n\t\tPerson[] orderedPersons {., =, +=, -=}\n}", document.get());
+//      
+        saveAll(editor);
+        // failOnError(editor);
+        assertTrue(refObject.is___Alive());
+        // Your assertions on refObject here
+        SapClass c = (SapClass) refObject;
+        for (MethodSignature ms : c.getOwnedSignatures()) {
+            if (ms.getName().equals(".orderedNumbers") || ms.getName().equals("orderedNumbers+=")
+                    || ms.getName().equals("orderedNumbers-=") || ms.getName().equals("orderedNumbers=")) {
+                fail("found method " + ms.getName() + " which should have been deleted");
+            }
+        }
+        close(editor);
+    };
 
     /**
      * The outcommenting doesn't seem to be honored by the incremental parser.
@@ -1544,18 +1580,16 @@ public class TestNgpmEditingActions extends RunletEditorTest {
     @Test
     public void testAddingObjectParametersToValueClass() throws PartInitException, BadLocationException, CoreException {
         // Copy of: PF.IDE:E03677197CCEEE80B83411DE85060019D29902CC
-        String lriString = "PF.IDE:E01F0466B2FBA520B83411DEA84F0019D29902CC";
-        LRI lri = connection.getSession().getMoin().createLri(lriString);
-        final RefObject refObject = (RefObject) connection.getElement(lri);
-        assertNotNull(refObject); 
-        assertTrue(refObject.is___Alive()); 
-        AbstractGrammarBasedEditor editor = openEditor(refObject);
+        final SapClass clazz = findClass("OPCWithOptiCpy0");
+        assertNotNull(clazz); 
+        assertTrue(clazz.is___Alive()); 
+        AbstractGrammarBasedEditor editor = openEditor(clazz);
         CtsDocument document = getDocument(editor);
         document.replace(27, 0, "|Number* precision=0.minus(1), Number roundingRule=0| ");
         document.replace(81, 1, "");
         saveAll(editor);
         //failOnError(editor);
-        assertTrue(refObject.is___Alive());
+        assertTrue(clazz.is___Alive());
         // Your assertions on refObject here 
 
         close(editor);
