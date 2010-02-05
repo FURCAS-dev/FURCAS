@@ -171,6 +171,7 @@ import com.sap.tc.moin.repository.xm.serializer.XmSerializerConfiguration;
 import com.sap.tc.moin.repository.xmi.XmiReader;
 import com.sap.tc.moin.repository.xmi.XmiWriter;
 import com.sap.tc.moin.xm.adapter.ie.IeFactoryImpl;
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
 
 
 /**
@@ -618,7 +619,10 @@ public final class ConnectionImpl implements CoreConnection, EventRegistry {
     }
 
     private Extent getExtent( ExtentDescriptor extentDescriptor ) {
-
+	if (getSession() == null) {
+	    throw new RuntimeException("Connection "+this+" doesn't have a valid session attached anymore. Is alive: "+
+		    isAlive());
+	}
         WorkspaceSet workspaceSet = getSession( ).getWorkspaceSet( );
         return workspaceSet.getMoin( ).getExtent( extentDescriptor );
     }

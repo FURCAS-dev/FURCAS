@@ -28,4 +28,6 @@ public class StatisticsStub extends Statistics {
     public void evaluated(OclExpressionRegistrationImpl registration, long l) {}
     @Override
     public String getCsvHeader() { return "<empty>"; }
+    @Override
+    public void doneWithEvent(OclExpressionRegistrationImpl oclExpressionRegistrationImpl, ModelChangeEvent mce) {}
 }

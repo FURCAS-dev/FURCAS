@@ -3,7 +3,6 @@ package com.sap.tc.moin.ocl.ia.instancescope;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
@@ -21,13 +20,13 @@ import org.omg.ocl.expressions.__impl.TypeExpInternal;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.ocl.utils.treewalker.TreeWalker;
 import com.sap.tc.moin.repository.core.CoreConnection;
-import com.sap.tc.moin.repository.core.links.JmiListImpl;
 import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.Attribute;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
 import com.sap.tc.moin.repository.mmi.model.GeneralizableElement;
 import com.sap.tc.moin.repository.mmi.model.Operation;
 import com.sap.tc.moin.repository.mmi.model.__impl.ClassifierInternal;
+import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 
 /**
  * A tree walker that finds and remembers all expressions of type {@link AttributeCallExp} and
@@ -83,23 +82,22 @@ public class AssociationEndAndAttributeCallFinder extends TreeWalker {
 	    walk(bodyExpr);
 	} else if (referredOperation.getName().equals(OclConstants.OP_ALLINSTANCES)) {
 	    Classifier classifier = ((TypeExpInternal) ((OperationCallExpInternal) oce).getSource(connection)).getReferredType(connection);
-	    for (ClassifierInternal generalization : getAllGeneralizationsIncludingSelf((ClassifierInternal) classifier)) {
-		Set<OperationCallExp> set = allInstancesCalls.get(generalization);
+	    for (ClassifierInternal specialization : getAllSpecializationsIncludingSelf((ClassifierInternal) classifier)) {
+		Set<OperationCallExp> set = allInstancesCalls.get(specialization);
 		if (set == null) {
 		    set = new HashSet<OperationCallExp>();
-		    allInstancesCalls.put(generalization, set);
+		    allInstancesCalls.put(specialization, set);
 		}
 		set.add(oce);
 	    }
 	}
     }
     
-    private Set<ClassifierInternal> getAllGeneralizationsIncludingSelf(ClassifierInternal classifier) {
+    private Set<ClassifierInternal> getAllSpecializationsIncludingSelf(ClassifierInternal classifier) {
 	Set<ClassifierInternal> result = new HashSet<ClassifierInternal>();
-	JmiListImpl<GeneralizableElement> supertypes = (JmiListImpl<GeneralizableElement>) classifier.getSupertypes(connection);
-	for (Iterator<GeneralizableElement> i=supertypes.iterator(connection); i.hasNext(); ) {
-	    GeneralizableElement ge = i.next();
-	    result.addAll(getAllGeneralizationsIncludingSelf((ClassifierInternal) ge));
+	SpiJmiHelper jmiHelper = connection.getCoreJmiHelper();
+	for (GeneralizableElement ge : jmiHelper.getAllSubtypes(connection, (GeneralizableElement) classifier)) {
+	    result.add((ClassifierInternal) ge);
 	}
 	result.add(classifier);
 	return result;
@@ -146,6 +144,9 @@ public class AssociationEndAndAttributeCallFinder extends TreeWalker {
     }
     
     public void walk(OclExpressionInternal expression) {
+	if (!connection.isAlive()) {
+	    throw new RuntimeException("Can't walk OCL expression with dead connection "+connection);
+	}
 	if (!visitedExpressions.contains(expression)) {
 	    visitedExpressions.add(expression);
 	    super.walk((OclExpression) expression);

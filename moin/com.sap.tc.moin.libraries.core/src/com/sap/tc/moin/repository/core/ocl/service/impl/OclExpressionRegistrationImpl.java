@@ -33,6 +33,7 @@ import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
 import com.sap.tc.moin.repository.ModelPartition;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.events.VetoException;
 import com.sap.tc.moin.repository.events.ChangeListener;
@@ -602,12 +603,18 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     @Override
     public Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn) {
-	Statistics.getInstance().receivedEvent(this, mce);
-	long time = System.nanoTime();
-        Set<MRI> affectedModelElements = getImpactAnalyzer().getAffectedElements((OclExpressionInternal) getExpression(),
-        	(MofClassImpl) getContext(), mce);
-        Statistics.getInstance().instanceScopeAnalysisPerformed(this, mce, System.nanoTime()-time, affectedModelElements.size());
-	return affectedModelElements;
+	try {
+	    Statistics.getInstance().receivedEvent(this, mce);
+	    long time = System.nanoTime();
+	    Set<MRI> affectedModelElements = getImpactAnalyzer((CoreConnection) conn).getAffectedElements((MofClassImpl) getContext(), mce);
+	    Statistics.getInstance().instanceScopeAnalysisPerformed(this, mce, System.nanoTime() - time,
+		    affectedModelElements.size());
+	    return affectedModelElements;
+	} catch (Throwable t) {
+	    throw new RuntimeException(t);
+	} finally {
+	    Statistics.getInstance().doneWithEvent(this, mce);
+	}
     }
 
     private void registerInEventFramework( ) {
@@ -665,7 +672,7 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         Set<MRI> affectedModelElements = new HashSet<MRI>( );
         for (ModelChangeEvent mce : collectedEvents) {
             if (getContext() instanceof MofClass) { // instance-scope impact analysis only defined for class-like context types
-        	affectedModelElements.addAll(getImpactAnalyzer().getAffectedElements(getExpression(), (MofClass) getContext(), mce));
+        	affectedModelElements.addAll(getImpactAnalyzer(((ConnectionWrapper) mce.getEventTriggerConnection()).unwrap()).getAffectedElements((MofClass) getContext(), mce));
             }
         }
 
@@ -736,10 +743,10 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 	return this.myClassScopeAnalyzer;
     }
 
-    private InstanceScopeAnalysis getImpactAnalyzer( ) {
+    private InstanceScopeAnalysis getImpactAnalyzer(CoreConnection conn) {
 
         if ( this.analyzer == null ) {
-	    this.analyzer = new InstanceScopeAnalysis(this.myConnection, instanceScopeAnalysisPathCache,
+	    this.analyzer = new InstanceScopeAnalysis(getExpression(), conn, instanceScopeAnalysisPathCache,
 		    getClassScopeAnalyzer(/* notifyNewContextElement */false));
         }
         return this.analyzer;

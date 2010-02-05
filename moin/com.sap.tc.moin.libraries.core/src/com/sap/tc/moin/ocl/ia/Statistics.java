@@ -38,4 +38,5 @@ public abstract class Statistics {
     public abstract void classScopeAnalysisPerformed(OclExpressionRegistration registration, long timeInNanoseconds);
     public abstract void evaluated(OclExpressionRegistrationImpl registration, long l);
     public abstract String getCsvHeader();
+    public abstract void doneWithEvent(OclExpressionRegistrationImpl oclExpressionRegistrationImpl, ModelChangeEvent mce);
 }
