@@ -263,6 +263,12 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = addEOperation(impactAnalyzerEClass, null, "evaluateQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(theEcorePackage_1.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "queries", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		initEClass(queryReevaluateNotificationEClass, QueryReevaluateNotification.class, "QueryReevaluateNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(theEcorePackage_1.getEEList());
 		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());

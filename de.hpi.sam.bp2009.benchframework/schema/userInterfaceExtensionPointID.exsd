@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn="de.hpi.sam.bp2009.benchframework.impl.UserInterfaceImpl:"/>
+                  <meta.attribute kind="java" basedOn=":de.hpi.sam.bp2009.benchframework.UserInterface"/>
                </appInfo>
             </annotation>
          </attribute>

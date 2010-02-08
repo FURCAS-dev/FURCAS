@@ -137,4 +137,12 @@ public interface ImpactAnalyzer extends EObject {
 	 */
 	void register(Notifier root, Adapter receiver, EList<OclQuery> oclQueries);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model queriesMany="false"
+	 * @generated
+	 */
+	void evaluateQueries(EList<OclQuery> queries);
+
 } // ImpactAnalyzer

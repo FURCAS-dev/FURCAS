@@ -9,6 +9,7 @@
 -->
 
 <plugin>
+   <extension-point id="modifiedEMBenchmarkExtensionPoint" name="modified EM Benchmark Extension Point" schema="schema/modifiedEMBenchmarkExtensionPoint.exsd"/>
 
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package

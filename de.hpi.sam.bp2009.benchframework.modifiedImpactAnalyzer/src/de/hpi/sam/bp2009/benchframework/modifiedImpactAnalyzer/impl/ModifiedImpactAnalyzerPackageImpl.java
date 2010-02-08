@@ -7,7 +7,9 @@
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -218,6 +220,7 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 
 		// Obtain other dependent packages
 		ImpactAnalyzerPackage theImpactAnalyzerPackage = (ImpactAnalyzerPackage)EPackage.Registry.INSTANCE.getEPackage(ImpactAnalyzerPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
@@ -233,6 +236,10 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modifiedImpactAnalyzerEClass, ModifiedImpactAnalyzer.class, "ModifiedImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		EOperation op = addEOperation(modifiedImpactAnalyzerEClass, null, "sendBenchmarkNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(incomingEventNotificationEClass, IncomingEventNotification.class, "IncomingEventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

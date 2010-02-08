@@ -24,6 +24,7 @@ import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
@@ -221,31 +222,22 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * @generated NOT
 	 */
 	public void handleInternalEvent(EList<OclQuery> queries, EventNotification eventNotification) {
-		getOclEvaluator().evaluate(queries);
+		evaluateQueries(queries);
+		QueryReevaluateNotification noti= ImpactAnalyzerFactory.eINSTANCE.createQueryReevaluateNotification();
+		noti.setEvent(eventNotification.getEvent());
+		noti.setReevaluatedQueries(queries);
 		for (Adapter a : eAdapters)
-			notifyApplication(a, eventNotification);
+			notifyApplication(a, noti);
 	}
 	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void notifyApplication(Adapter application, QueryReevaluateNotification msg) {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void notifyApplication(Adapter application, EventNotification msg) {
+	public void notifyApplication(Adapter application, QueryReevaluateNotification msg) {
 		application.notifyChanged(msg);
 	}
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -260,6 +252,15 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 		for(OclQuery each: oclQueries)
 			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
 		this.setQueries(oclQueries);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void evaluateQueries(EList<OclQuery> queries) {
+		getOclEvaluator().evaluate(queries);
 	}
 
 	/**
