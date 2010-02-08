@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc. and others.
+ * Copyright (c) 2006, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 240230
  *   Achim Demelt - Bug 245897
+ *	 E.D.Willink Bug 298128
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.10 2009/09/04 08:27:32 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.11 2010/02/08 20:57:00 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -33,6 +34,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
@@ -444,10 +446,13 @@ public class UMLReflectionImpl
         return null;
     }
     
-    @SuppressWarnings("unchecked")
-    public List<EObject> getConstrainedElements(Constraint constraint) {
-        return (List) constraint.getConstrainedElements();
+    public List<EModelElement> getConstrainedElements(Constraint constraint) {
+        return constraint.getConstrainedElements();
     }
+
+	public void addConstrainedElement(Constraint constraint, EObject constrainedElement) {
+		constraint.getConstrainedElements().add((EModelElement) constrainedElement);
+	}
     
     /**
      * Gets the qualifiers of an association end.

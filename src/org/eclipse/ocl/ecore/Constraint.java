@@ -13,12 +13,13 @@
  * 
  * </copyright>
  *
- * $Id: Constraint.java,v 1.8 2008/11/24 00:45:05 cdamus Exp $
+ * $Id: Constraint.java,v 1.9 2010/02/08 20:57:00 ewillink Exp $
  */
 package org.eclipse.ocl.ecore;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.ocl.utilities.ExpressionInOCL;
@@ -72,7 +73,7 @@ public interface Constraint
 
 	/**
 	 * Returns the value of the '<em><b>Constrained Elements</b></em>' reference list.
-	 * The list contents are of type {@link org.eclipse.emf.ecore.ENamedElement}.
+	 * The list contents are of type {@link org.eclipse.emf.ecore.EModelElement}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Constrained Elements</em>' reference list isn't clear,
@@ -84,7 +85,7 @@ public interface Constraint
 	 * @model
 	 * @generated
 	 */
-	EList<ENamedElement> getConstrainedElements();
+	EList<EModelElement> getConstrainedElements();
 
 	/**
 	 * Returns the value of the '<em><b>Stereotype</b></em>' attribute.
