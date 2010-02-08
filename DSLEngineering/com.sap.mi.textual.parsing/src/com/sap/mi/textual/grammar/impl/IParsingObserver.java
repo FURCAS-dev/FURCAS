@@ -187,6 +187,8 @@ public interface IParsingObserver {
      */
     void notifyExitOperatorSequence();
 
+    void reset();
+
 
 
 

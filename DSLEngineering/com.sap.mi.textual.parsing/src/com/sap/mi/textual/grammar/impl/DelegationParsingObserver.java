@@ -239,5 +239,12 @@ public class DelegationParsingObserver implements IParsingObserver {
 	 }
     }
 
+    @Override
+    public void reset() {
+        for (IParsingObserver observer : observers) {
+            observer.reset();
+        }
+    }
+
 
 }
