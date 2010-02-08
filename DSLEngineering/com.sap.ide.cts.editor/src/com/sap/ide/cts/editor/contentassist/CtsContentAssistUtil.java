@@ -59,12 +59,12 @@ public class CtsContentAssistUtil {
 		if (token != null) {
 
 			if (isInToken(line, charPositionInLine, token)) {
-				replacementOffset = getOffset(viewer, token.getLine() - 1,
-						token.getCharPositionInLine());
+				replacementOffset = getOffset(viewer, getLine(token),
+						getCharPositionInLine(token));
 
 				replacementLength = Math.min(displayString.length(), Math.min(
-						token.getText().length(), getCommonPrefix(
-								token.getText(), replacementString).length()));
+						getLength(token), getCommonPrefix(token.getText(),
+								replacementString).length()));
 			} else {
 
 				// TODO workaround because ANTRL will not create error token
@@ -75,11 +75,11 @@ public class CtsContentAssistUtil {
 				int stopOffset = -1;
 
 				// stop at end of last valid token
-				if (token.getCharPositionInLine() != -1) {
+				if (getCharPositionInLine(token) != -1) {
 					try {
 						stopOffset = viewer.getDocument().getLineInformation(
-								token.getLine() - 1).getOffset()
-								+ token.getCharPositionInLine();
+								getLine(token)).getOffset()
+								+ getCharPositionInLine(token);
 					} catch (BadLocationException e) {
 						// do nothing
 					}
@@ -475,11 +475,12 @@ public class CtsContentAssistUtil {
 			RefersToParg refersToArg = TcsUtil.getRefersToParg(prop);
 			FilterParg filterArg = TcsUtil.getFilterParg(prop);
 			QueryParg queryArg = TcsUtil.getQueryParg(prop);
-			
+
 			if (filterArg != null) {
 				if (queryArg != null) {
-					// first execute query, then apply invert OCL expression to each result to generate proposal strings
-					
+					// first execute query, then apply invert OCL expression to
+					// each result to generate proposal strings
+
 					String invert = filterArg.getInvert();
 					if (invert != null) {
 						// if invert is null, we don't really know how to derive
@@ -517,27 +518,25 @@ public class CtsContentAssistUtil {
 					}
 				}
 			}
-			
+
 			if (refersToArg != null) {
-				
+
 				if (queryArg != null) {
-					// first execute query, then use refersTo property name to generate proposal strings
-					
+					// first execute query, then use refersTo property name to
+					// generate proposal strings
+
 					List<RefObject> oclElements = getQueryResult(viewer, line,
 							charPositionInLine, tbModel, prop, queryArg);
-					
+
 					for (RefObject refObj : oclElements) {
 						String displayString = refObj.refGetValue(
-								refersToArg.getPropertyName())
-								.toString();
+								refersToArg.getPropertyName()).toString();
 						String replacementString = displayString;
-						results.add(createPropValueProposal(
-								displayString, replacementString,
-								viewer, line, charPositionInLine,
-								token));
-					}				
-					
-					
+						results.add(createPropValueProposal(displayString,
+								replacementString, viewer, line,
+								charPositionInLine, token));
+					}
+
 				} else {
 					// propose referenced feature of model elements queried by
 					// type
@@ -595,13 +594,11 @@ public class CtsContentAssistUtil {
 
 		if (tbModel != null && tbModel.getRoot() != null) {
 
-			AbstractToken floorToken = tbModel
-					.getFloorTokenInRoot(getOffset(viewer, line,
-							charPositionInLine));
+			AbstractToken floorToken = tbModel.getFloorTokenInRoot(getOffset(
+					viewer, line, charPositionInLine));
 			TextBlock parentBlock = floorToken.getParentBlock();
 			while (parentBlock != null
-					&& parentBlock.getCorrespondingModelElements()
-							.size() < 1) {
+					&& parentBlock.getCorrespondingModelElements().size() < 1) {
 				parentBlock = parentBlock.getParentBlock();
 			}
 
@@ -609,11 +606,10 @@ public class CtsContentAssistUtil {
 				// we found a parent block with attached model
 				// element(s)
 
-				RefObject element = parentBlock
-						.getCorrespondingModelElements().get(0);
-				RefObject contextElement = getContextElement(
-						element, parentBlock, TcsUtil
-								.getContextTag(queryArg.getQuery()));
+				RefObject element = parentBlock.getCorrespondingModelElements()
+						.get(0);
+				RefObject contextElement = getContextElement(element,
+						parentBlock, TcsUtil.getContextTag(queryArg.getQuery()));
 
 				Object oclResult = null;
 
@@ -852,20 +848,124 @@ public class CtsContentAssistUtil {
 	}
 
 	static boolean isInToken(int line, int charPositionInLine, Token t) {
-		// ANTLR lines start at 1
-		if (line + 1 != t.getLine()) {
+		if (line != getLine(t)) {
 			return false;
 		}
 
-		if (charPositionInLine < t.getCharPositionInLine()) {
+		if (charPositionInLine < getCharPositionInLine(t)) {
 			return false;
 		}
 
-		if (charPositionInLine > t.getCharPositionInLine()
-				+ t.getText().length()) {
+		if (charPositionInLine > getCharPositionInLine(t) + getLength(t)) {
 			return false;
 		}
 
 		return true;
+	}
+
+	static int getAbsoluteOffset(ITextViewer viewer, int line,
+			int charPositionInLine) throws BadLocationException {
+		return viewer.getDocument().getLineInformation(line).getOffset()
+				+ charPositionInLine;
+	}
+
+	static String getDocumentContents(ITextViewer viewer) {
+		return viewer.getDocument().get();
+	}
+
+	static int getCharPositionInLine(Token token) {
+		// ANTRL line positions start at 0
+		return token.getCharPositionInLine();
+	}
+
+	static int getLine(Token token) {
+		// ANTRL lines start at 1
+		return token.getLine() - 1;
+	}
+
+	static int getLength(Token token) {
+		int length = 0;
+		if (token.getText() != null) {
+			length = token.getText().length();
+		}
+		return length;
+	}
+	
+	static boolean isContextAtWhitespace(ITextViewer viewer, CtsContentAssistContext context) throws BadLocationException {
+		if (context != null) {
+			if (context.getToken() != null) {
+				String contents = getDocumentContents(viewer);
+				int offset = getAbsoluteOffset(viewer, getLine(context.getToken()), getCharPositionInLine(context.getToken()));
+				
+				char c = contents.charAt(offset);
+				if (isWhitespace(c)) {
+					return true;
+				}
+			}
+		}
+		
+		return false;
+	}
+
+	static void fixTokenText(ITextViewer viewer, Token t)
+			throws BadLocationException {
+		// assumes the tokens line and charPositionInLine point to its start
+		// location
+
+		String contents = getDocumentContents(viewer);
+		int curOffset = CtsContentAssistUtil.getAbsoluteOffset(viewer,
+				getLine(t), getCharPositionInLine(t));
+
+		String newText = "";
+
+		boolean firstWhitespace = true;
+
+		while (curOffset < contents.length()) {
+			char c = contents.charAt(curOffset);
+			if (!isWhitespace(c)) {
+				firstWhitespace = false;
+				newText += c;
+			} else {
+				if (!firstWhitespace) {
+					break;
+				}
+
+				// move token to the right or down
+				if (c == ' ' || c == '\t') {
+					t.setCharPositionInLine(t.getCharPositionInLine() + 1);
+				}
+				if (c == '\n') {
+					t.setLine(t.getLine() + 1);
+				}
+			}
+			curOffset++;
+		}
+
+		t.setText(newText);
+	}
+
+	/**
+	 * 
+	 * @param viewer
+	 * @param offset
+	 *            0..n-1
+	 * @return
+	 * @throws BadLocationException
+	 */
+	static int getLine(ITextViewer viewer, int offset)
+			throws BadLocationException {
+		return viewer.getDocument().getLineOfOffset(offset);
+	}
+
+	static boolean isAtEndOfToken(int line, int charPositionInLine, Token t) {
+		if (line != getLine(t)) {
+			return false;
+		}
+
+		if (charPositionInLine == getCharPositionInLine(t) + getLength(t)) {
+			return true;
+		}
+
+		return false;
 	}
 }

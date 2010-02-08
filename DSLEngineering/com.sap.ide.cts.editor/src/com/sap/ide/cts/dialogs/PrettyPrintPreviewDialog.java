@@ -22,7 +22,7 @@ public class PrettyPrintPreviewDialog extends Dialog
 	
 	public PrettyPrintPreviewDialog(String title, String error, String oldVersionOfClass, String newVersionOfClass)
 	{
-		super(Display.getCurrent().getActiveShell(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
+		super(Display.getCurrent().getActiveShell(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL | SWT.RESIZE);
 		this.title = (title != null) ? title : "";
 		this.startPrettyPrinter = false;
 		this.error = (error != null) ? error : "";

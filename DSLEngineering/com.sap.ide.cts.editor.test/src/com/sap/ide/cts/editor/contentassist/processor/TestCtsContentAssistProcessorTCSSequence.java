@@ -29,7 +29,7 @@ public class TestCtsContentAssistProcessorTCSSequence extends
 		initSyntax(TCSLexer.class.getResourceAsStream("TCS.tcs"));
 		IncrementalParserFacade facade = createFacade(new TcsParserFactory(),
 				tcsPackage);
-		initProcessorForFixture("Sequence.tcs", facade, "TCS");
+		initProcessorForFixture("Sequence.tcs", null, facade, "TCS");
 	}
 
 	@Test
