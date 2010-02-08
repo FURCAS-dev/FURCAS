@@ -67,6 +67,11 @@ public class ModifiedEventManagerImpl extends EventManagerImpl implements Modifi
 		super.notifyApplication(application, msg);
 	}
 	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	public void sendBenchmarkNotification(Object communicationPartner, boolean incoming) {
 		//TODO: think about adding the method that caused the notification as a parameter
 		ENotificationImpl n;

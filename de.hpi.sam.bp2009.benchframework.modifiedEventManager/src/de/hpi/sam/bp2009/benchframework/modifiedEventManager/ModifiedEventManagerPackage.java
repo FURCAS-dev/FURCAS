@@ -6,10 +6,11 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedEventManager;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -88,43 +89,68 @@ public interface ModifiedEventManagerPackage extends EPackage {
 	int MODIFIED_EVENT_MANAGER_FEATURE_COUNT = EventManagerPackage.EVENT_MANAGER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.IncomingEventNotificationImpl <em>Incoming Event Notification</em>}' class.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.EmbedModifiedEMOperatorImpl <em>Embed Modified EM Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.IncomingEventNotificationImpl
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getIncomingEventNotification()
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.EmbedModifiedEMOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getEmbedModifiedEMOperator()
 	 * @generated
 	 */
-	int INCOMING_EVENT_NOTIFICATION = 1;
+	int EMBED_MODIFIED_EM_OPERATOR = 1;
 
 	/**
-	 * The number of structural features of the '<em>Incoming Event Notification</em>' class.
+	 * The feature id for the '<em><b>Option</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INCOMING_EVENT_NOTIFICATION_FEATURE_COUNT = 0;
+	int EMBED_MODIFIED_EM_OPERATOR__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.OutgoingEventNotificationImpl <em>Outgoing Event Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.OutgoingEventNotificationImpl
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getOutgoingEventNotification()
-	 * @generated
-	 */
-	int OUTGOING_EVENT_NOTIFICATION = 2;
-
-	/**
-	 * The number of structural features of the '<em>Outgoing Event Notification</em>' class.
+	 * The feature id for the '<em><b>Result</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OUTGOING_EVENT_NOTIFICATION_FEATURE_COUNT = 0;
+	int EMBED_MODIFIED_EM_OPERATOR__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
 
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_EM_OPERATOR__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_EM_OPERATOR__NAME = BenchframeworkPackage.OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_EM_OPERATOR__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+
+	/**
+	 * The number of structural features of the '<em>Embed Modified EM Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_EM_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager <em>Modified Event Manager</em>}'.
@@ -137,24 +163,14 @@ public interface ModifiedEventManagerPackage extends EPackage {
 	EClass getModifiedEventManager();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.IncomingEventNotification <em>Incoming Event Notification</em>}'.
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator <em>Embed Modified EM Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Incoming Event Notification</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.IncomingEventNotification
+	 * @return the meta object for class '<em>Embed Modified EM Operator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator
 	 * @generated
 	 */
-	EClass getIncomingEventNotification();
-
-	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.OutgoingEventNotification <em>Outgoing Event Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Outgoing Event Notification</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.OutgoingEventNotification
-	 * @generated
-	 */
-	EClass getOutgoingEventNotification();
+	EClass getEmbedModifiedEMOperator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -189,24 +205,14 @@ public interface ModifiedEventManagerPackage extends EPackage {
 		EClass MODIFIED_EVENT_MANAGER = eINSTANCE.getModifiedEventManager();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.IncomingEventNotificationImpl <em>Incoming Event Notification</em>}' class.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.EmbedModifiedEMOperatorImpl <em>Embed Modified EM Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.IncomingEventNotificationImpl
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getIncomingEventNotification()
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.EmbedModifiedEMOperatorImpl
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getEmbedModifiedEMOperator()
 		 * @generated
 		 */
-		EClass INCOMING_EVENT_NOTIFICATION = eINSTANCE.getIncomingEventNotification();
-
-		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.OutgoingEventNotificationImpl <em>Outgoing Event Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.OutgoingEventNotificationImpl
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getOutgoingEventNotification()
-		 * @generated
-		 */
-		EClass OUTGOING_EVENT_NOTIFICATION = eINSTANCE.getOutgoingEventNotification();
+		EClass EMBED_MODIFIED_EM_OPERATOR = eINSTANCE.getEmbedModifiedEMOperator();
 
 	}
 

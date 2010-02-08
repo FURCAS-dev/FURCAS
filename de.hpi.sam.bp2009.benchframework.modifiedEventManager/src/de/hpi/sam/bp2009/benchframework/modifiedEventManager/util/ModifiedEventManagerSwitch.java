@@ -6,14 +6,16 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedEventManager.util;
 
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.*;
-
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -96,15 +98,10 @@ public class ModifiedEventManagerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModifiedEventManagerPackage.INCOMING_EVENT_NOTIFICATION: {
-				IncomingEventNotification incomingEventNotification = (IncomingEventNotification)theEObject;
-				T result = caseIncomingEventNotification(incomingEventNotification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModifiedEventManagerPackage.OUTGOING_EVENT_NOTIFICATION: {
-				OutgoingEventNotification outgoingEventNotification = (OutgoingEventNotification)theEObject;
-				T result = caseOutgoingEventNotification(outgoingEventNotification);
+			case ModifiedEventManagerPackage.EMBED_MODIFIED_EM_OPERATOR: {
+				EmbedModifiedEMOperator embedModifiedEMOperator = (EmbedModifiedEMOperator)theEObject;
+				T result = caseEmbedModifiedEMOperator(embedModifiedEMOperator);
+				if (result == null) result = caseOperator(embedModifiedEMOperator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,32 +125,17 @@ public class ModifiedEventManagerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Incoming Event Notification</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Embed Modified EM Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Incoming Event Notification</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Embed Modified EM Operator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseIncomingEventNotification(IncomingEventNotification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Outgoing Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Outgoing Event Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOutgoingEventNotification(OutgoingEventNotification object) {
+	public T caseEmbedModifiedEMOperator(EmbedModifiedEMOperator object) {
 		return null;
 	}
 
@@ -169,6 +151,21 @@ public class ModifiedEventManagerSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventManager(EventManager object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperator(Operator object) {
 		return null;
 	}
 

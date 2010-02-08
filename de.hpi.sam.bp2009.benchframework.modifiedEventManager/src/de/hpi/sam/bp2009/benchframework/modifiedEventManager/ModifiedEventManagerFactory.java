@@ -35,22 +35,13 @@ public interface ModifiedEventManagerFactory extends EFactory {
 	ModifiedEventManager createModifiedEventManager();
 
 	/**
-	 * Returns a new object of class '<em>Incoming Event Notification</em>'.
+	 * Returns a new object of class '<em>Embed Modified EM Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Incoming Event Notification</em>'.
+	 * @return a new object of class '<em>Embed Modified EM Operator</em>'.
 	 * @generated
 	 */
-	IncomingEventNotification createIncomingEventNotification();
-
-	/**
-	 * Returns a new object of class '<em>Outgoing Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Outgoing Event Notification</em>'.
-	 * @generated
-	 */
-	OutgoingEventNotification createOutgoingEventNotification();
+	EmbedModifiedEMOperator createEmbedModifiedEMOperator();
 
 	/**
 	 * Returns the package supported by this factory.

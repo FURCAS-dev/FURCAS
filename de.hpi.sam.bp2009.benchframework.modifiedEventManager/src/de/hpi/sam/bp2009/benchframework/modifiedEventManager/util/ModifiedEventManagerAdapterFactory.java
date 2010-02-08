@@ -6,16 +6,16 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedEventManager.util;
 
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.*;
-
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -78,16 +78,16 @@ public class ModifiedEventManagerAdapterFactory extends AdapterFactoryImpl {
 				return createModifiedEventManagerAdapter();
 			}
 			@Override
-			public Adapter caseIncomingEventNotification(IncomingEventNotification object) {
-				return createIncomingEventNotificationAdapter();
-			}
-			@Override
-			public Adapter caseOutgoingEventNotification(OutgoingEventNotification object) {
-				return createOutgoingEventNotificationAdapter();
+			public Adapter caseEmbedModifiedEMOperator(EmbedModifiedEMOperator object) {
+				return createEmbedModifiedEMOperatorAdapter();
 			}
 			@Override
 			public Adapter caseEventManager(EventManager object) {
 				return createEventManagerAdapter();
+			}
+			@Override
+			public Adapter caseOperator(Operator object) {
+				return createOperatorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -124,30 +124,16 @@ public class ModifiedEventManagerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.IncomingEventNotification <em>Incoming Event Notification</em>}'.
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator <em>Embed Modified EM Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.IncomingEventNotification
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator
 	 * @generated
 	 */
-	public Adapter createIncomingEventNotificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.OutgoingEventNotification <em>Outgoing Event Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.OutgoingEventNotification
-	 * @generated
-	 */
-	public Adapter createOutgoingEventNotificationAdapter() {
+	public Adapter createEmbedModifiedEMOperatorAdapter() {
 		return null;
 	}
 
@@ -162,6 +148,20 @@ public class ModifiedEventManagerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventManagerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator
+	 * @generated
+	 */
+	public Adapter createOperatorAdapter() {
 		return null;
 	}
 

@@ -7,15 +7,13 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
       <details key="documentation"/>
     </eAnnotations>
+    <eOperations name="sendBenchmarkNotification">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation"/>
+      </eAnnotations>
+      <eParameters name="communicationPartner" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+      <eParameters name="incoming" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IncomingEventNotification">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OutgoingEventNotification">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation"/>
-    </eAnnotations>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedEMOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
 </ecore:EPackage>

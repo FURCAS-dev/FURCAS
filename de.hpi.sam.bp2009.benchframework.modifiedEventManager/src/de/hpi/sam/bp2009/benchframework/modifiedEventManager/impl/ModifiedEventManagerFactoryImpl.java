@@ -61,8 +61,7 @@ public class ModifiedEventManagerFactoryImpl extends EFactoryImpl implements Mod
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case ModifiedEventManagerPackage.MODIFIED_EVENT_MANAGER: return createModifiedEventManager();
-			case ModifiedEventManagerPackage.INCOMING_EVENT_NOTIFICATION: return createIncomingEventNotification();
-			case ModifiedEventManagerPackage.OUTGOING_EVENT_NOTIFICATION: return createOutgoingEventNotification();
+			case ModifiedEventManagerPackage.EMBED_MODIFIED_EM_OPERATOR: return createEmbedModifiedEMOperator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -83,19 +82,9 @@ public class ModifiedEventManagerFactoryImpl extends EFactoryImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IncomingEventNotification createIncomingEventNotification() {
-		IncomingEventNotificationImpl incomingEventNotification = new IncomingEventNotificationImpl();
-		return incomingEventNotification;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public OutgoingEventNotification createOutgoingEventNotification() {
-		OutgoingEventNotificationImpl outgoingEventNotification = new OutgoingEventNotificationImpl();
-		return outgoingEventNotification;
+	public EmbedModifiedEMOperator createEmbedModifiedEMOperator() {
+		EmbedModifiedEMOperatorImpl embedModifiedEMOperator = new EmbedModifiedEMOperatorImpl();
+		return embedModifiedEMOperator;
 	}
 
 	/**

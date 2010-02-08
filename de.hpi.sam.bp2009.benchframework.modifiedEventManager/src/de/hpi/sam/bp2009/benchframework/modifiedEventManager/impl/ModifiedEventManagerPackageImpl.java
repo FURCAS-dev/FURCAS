@@ -6,18 +6,18 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl;
 
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.IncomingEventNotification;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.OutgoingEventNotification;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,14 +38,7 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass incomingEventNotificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass outgoingEventNotificationEClass = null;
+	private EClass embedModifiedEMOperatorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -94,6 +87,7 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 		isInited = true;
 
 		// Initialize simple dependencies
+		BenchframeworkPackage.eINSTANCE.eClass();
 		EventManagerPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -125,17 +119,8 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIncomingEventNotification() {
-		return incomingEventNotificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOutgoingEventNotification() {
-		return outgoingEventNotificationEClass;
+	public EClass getEmbedModifiedEMOperator() {
+		return embedModifiedEMOperatorEClass;
 	}
 
 	/**
@@ -168,9 +153,7 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 		// Create classes and their features
 		modifiedEventManagerEClass = createEClass(MODIFIED_EVENT_MANAGER);
 
-		incomingEventNotificationEClass = createEClass(INCOMING_EVENT_NOTIFICATION);
-
-		outgoingEventNotificationEClass = createEClass(OUTGOING_EVENT_NOTIFICATION);
+		embedModifiedEMOperatorEClass = createEClass(EMBED_MODIFIED_EM_OPERATOR);
 	}
 
 	/**
@@ -198,6 +181,8 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 
 		// Obtain other dependent packages
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -205,13 +190,16 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 
 		// Add supertypes to classes
 		modifiedEventManagerEClass.getESuperTypes().add(theEventManagerPackage.getEventManager());
+		embedModifiedEMOperatorEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modifiedEventManagerEClass, ModifiedEventManager.class, "ModifiedEventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(incomingEventNotificationEClass, IncomingEventNotification.class, "IncomingEventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		EOperation op = addEOperation(modifiedEventManagerEClass, null, "sendBenchmarkNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		initEClass(outgoingEventNotificationEClass, OutgoingEventNotification.class, "OutgoingEventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(embedModifiedEMOperatorEClass, EmbedModifiedEMOperator.class, "EmbedModifiedEMOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

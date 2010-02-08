@@ -49,6 +49,7 @@ public class OCLEvaluatorImpl extends EObjectImpl implements OCLEvaluator {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @generated NOT
 	 */
 	@SuppressWarnings("unchecked")
 	public Object evaluate(AbstractOCLCondition queryobject, EObject context) {
