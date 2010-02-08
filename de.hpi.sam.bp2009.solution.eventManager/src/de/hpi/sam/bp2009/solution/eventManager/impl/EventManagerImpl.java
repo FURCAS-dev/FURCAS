@@ -63,16 +63,11 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		public EventAdapter(Adapter listener, EventFilter filter, EventMappper mapper) {
 			this.caller = listener;
 			this.filter = filter;
-			this.mapper=mapper;
+			this.mapper = mapper;
 		}
 		@Override
 		public void notifyChanged(Notification notification) {
-			EventNotification noti = EventManagerFactory.eINSTANCE.createEventNotification();
-			noti.setNotification(notification);
-			noti.setEvent(mapper.mapNotificationToEvent(notification));
-			if(filter.matchesFor(noti.getEvent()))
-				notifyApplication(caller, noti);
-			
+			handleEMFEvent(caller, notification, filter);	
 		}
 	}
 	/**
@@ -141,6 +136,19 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 */
 	public void notifyApplication(Adapter application, EventNotification msg) {
 		application.notifyChanged(msg);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void handleEMFEvent(Adapter caller, Notification notification, EventFilter filter) {
+		EventNotification noti = EventManagerFactory.eINSTANCE.createEventNotification();
+		noti.setNotification(notification);
+		noti.setEvent(getEventMapper().mapNotificationToEvent(notification));
+		if(filter.matchesFor(noti.getEvent()))
+			notifyApplication(caller, noti);
 	}
 
 	/**

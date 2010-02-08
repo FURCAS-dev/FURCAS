@@ -16,6 +16,11 @@
       <eParameters name="application" eType="#//Adapter"/>
       <eParameters name="msg" eType="#//EventNotification"/>
     </eOperations>
+    <eOperations name="handleEMFEvent">
+      <eParameters name="caller" eType="#//Adapter"/>
+      <eParameters name="notification" eType="#//Notification"/>
+      <eParameters name="filter" eType="#//EventFilter"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventMapper" lowerBound="1"
         eType="#//EventMappper"/>
   </eClassifiers>

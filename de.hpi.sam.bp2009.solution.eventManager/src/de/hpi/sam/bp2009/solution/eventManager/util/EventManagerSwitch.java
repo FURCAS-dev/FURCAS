@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.eventManager.util;
 
+import de.hpi.sam.bp2009.solution.eventManager.*;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;

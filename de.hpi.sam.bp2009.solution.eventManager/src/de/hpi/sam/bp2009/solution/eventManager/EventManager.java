@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.solution.eventManager;
 
 import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 
@@ -68,5 +69,13 @@ public interface EventManager extends EObject {
 	 * @generated
 	 */
 	void notifyApplication(Adapter application, EventNotification msg);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model callerDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" notificationDataType="de.hpi.sam.bp2009.solution.eventManager.Notification"
+	 * @generated
+	 */
+	void handleEMFEvent(Adapter caller, Notification notification, EventFilter filter);
 
 } // EventManager
