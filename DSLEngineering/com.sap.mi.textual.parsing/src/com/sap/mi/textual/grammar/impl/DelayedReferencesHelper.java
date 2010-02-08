@@ -186,6 +186,7 @@ public class DelayedReferencesHelper {
 	    InvocationTargetException, ModelElementCreationException {
 	// invoke the parser to execute the template
 	Method methodToCall = parser.getClass().getMethod(ruleName);
+	parser.reset();
 	if (!Modifier.isFinal(methodToCall.getModifiers())) {
 	    throw new UnknownProductionRuleException(ruleName
 		    + " is not a production rule in generated Parser.");

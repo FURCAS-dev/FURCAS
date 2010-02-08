@@ -191,7 +191,7 @@ public class ReferenceHandlerImpl implements ReferenceHandler {
 					.contains(tbtokenStream
 							.getTokenModelElementForParserToken(ref.getToken()));
 			boolean newlyResolve = newlyResolvableReferences.contains(ref);
-			if(ref.getType() == DelayedReference.SEMANTIC_PREDICATE){
+			if(ref.getType() == DelayedReference.SEMANTIC_PREDICATE && refToken != null){
 				if(TbVersionUtil.getOtherVersion(tbtokenStream
 						.getTokenModelElementForParserToken(ref.getToken())
 						.getParentBlock(), VersionEnum.REFERENCE) != null) {

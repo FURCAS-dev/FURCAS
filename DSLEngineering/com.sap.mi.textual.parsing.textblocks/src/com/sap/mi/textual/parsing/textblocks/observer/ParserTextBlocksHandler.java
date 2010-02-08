@@ -536,6 +536,20 @@ public class ParserTextBlocksHandler implements IParsingObserver {
 			Object contextModelElement, Token referenceLocation) {
 		TextBlock contextBlock = getTextBlockForElementAt((RefObject) contextModelElement, (ANTLR3LocationToken) referenceLocation);
 		if(contextBlock != null && modelElement instanceof RefObject) {
+		    boolean isModelElementInCurrentTbProxy = false;
+		    for (IModelElementProxy proxy : getCurrentTbProxy().getCorrespondingModelElements()) {
+                        if(modelElement.equals(proxy.getRealObject())) {
+                            isModelElementInCurrentTbProxy =true;
+                        }
+                    }
+		    if(isModelElementInCurrentTbProxy) {
+		        //this means we are in the resolving of a foreachproperty init
+		        //thus we have to add the curently set template to the additionalTemplates of
+		        //of the contextBlock. This will make all injectoractions associated with the template
+		        //available for the GDR for the given model element
+		        contextBlock.getAdditionalTemplates().add(getCurrentTbProxy().getTemplate());
+		    }
+		    
 			AbstractToken referenceToken = navigateToToken(contextBlock, referenceLocation);
 			if (referenceToken == null) {
 				//reference location doesn't correspond to a token. Add to block
@@ -747,6 +761,12 @@ public class ParserTextBlocksHandler implements IParsingObserver {
                 secondToLast.addSubNodeAt(last, secondToLast.getSubNodes().size());
             }
         }
+    }
+
+    @Override
+    public void reset() {
+        this.traverser = new TextBlockTraverser();
+        ruleDepth = 0;
     }
 
    
