@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2007 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,10 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *	 E.D.Willink Bug 298128
  *
  * </copyright>
  *
- * $Id: UMLReflection.java,v 1.5 2009/09/04 08:27:07 ewillink Exp $
+ * $Id: UMLReflection.java,v 1.6 2010/02/08 20:57:24 ewillink Exp $
  */
 package org.eclipse.ocl.utilities;
 
@@ -628,12 +629,23 @@ public interface UMLReflection<PK, C, O, P, EL, PM, S, COA, SSA, CT> {
     
     /**
      * Obtains the list of element constraint by a constraint, as a list of
-     * {@link EObject}s.  This list is modifiable.
+     * {@link EObject}s.  This list is modifiable, but only after an unsafe cast to
+     * establish a lower type bound. Therefore the {@link addConstrainedElement} method
+     * should be used instead.
      * 
      * @param constraint a constraint
      * @return its constrained elements
      */
-    List<EObject> getConstrainedElements(CT constraint);
+    List<? extends EObject> getConstrainedElements(CT constraint);
+
+    /**
+     * Adds a constrainedElement to a constraint.
+     * 
+     * @param constraint the constraint to receive
+     * @param constrainedElement the constrained element
+     * @since 3.0
+     */
+    void addConstrainedElement(CT constraint, EObject constrainedElement);
     
     /**
      * Obtains the name of an element, if it is a named element.

@@ -15,7 +15,7 @@
  *
  * </copyright>
  *
- * $Id: ValidationVisitor.java,v 1.12 2010/02/03 19:54:11 ewillink Exp $
+ * $Id: ValidationVisitor.java,v 1.13 2010/02/08 20:57:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.parser;
@@ -1496,7 +1496,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
     Boolean checkExpressionInOCL(ExpressionInOCL<C, PM> expression, CT constraint,
     		OCLExpression<C> body) {
     	String stereotype = uml.getStereotype(constraint);
-    	List<EObject> constrainedElement = uml.getConstrainedElements(constraint);
+    	List<? extends EObject> constrainedElement = uml.getConstrainedElements(constraint);
     	
     	C bodyType = body.getType();
     	C oclBoolean = getStandardLibrary().getBoolean();
@@ -1649,7 +1649,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * @return whether the context classifier is correct
      */
     private Boolean checkContextClassifier(ExpressionInOCL<C, PM> expression,
-    		C constrainedClassifier, List<EObject> constrainedElement) {
+    		C constrainedClassifier, List<? extends EObject> constrainedElement) {
     	
     	C contextualClassifier = getContextualClassifier(expression);
     	
@@ -1682,7 +1682,7 @@ public class ValidationVisitor<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
      * @return whether the context classifier is correct
      */
     private Boolean checkContextFeatureClassifier(ExpressionInOCL<C, PM> expression,
-    		Object constrainedFeature, List<EObject> constrainedElement) {
+    		Object constrainedFeature, List<? extends EObject> constrainedElement) {
     	
     	C contextualClassifier = getContextualClassifier(expression);
     	
