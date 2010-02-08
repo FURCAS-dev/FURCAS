@@ -18,5 +18,5 @@
       <details key="documentation"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="modifiedIAOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedIAOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
 </ecore:EPackage>

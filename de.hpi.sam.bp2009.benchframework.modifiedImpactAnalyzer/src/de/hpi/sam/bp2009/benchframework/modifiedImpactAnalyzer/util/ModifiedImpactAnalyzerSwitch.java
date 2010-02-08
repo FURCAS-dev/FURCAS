@@ -6,15 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.util;
 
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.*;
-
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification;
+import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * <!-- begin-user-doc -->
@@ -111,6 +115,13 @@ public class ModifiedImpactAnalyzerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR: {
+				EmbedModifiedIAOperator embedModifiedIAOperator = (EmbedModifiedIAOperator)theEObject;
+				T result = caseEmbedModifiedIAOperator(embedModifiedIAOperator);
+				if (result == null) result = caseOperator(embedModifiedIAOperator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -161,6 +172,21 @@ public class ModifiedImpactAnalyzerSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Embed Modified IA Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Embed Modified IA Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEmbedModifiedIAOperator(EmbedModifiedIAOperator object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Impact Analyzer</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -187,6 +213,21 @@ public class ModifiedImpactAnalyzerSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventNotification(EventNotification object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operator</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperator(Operator object) {
 		return null;
 	}
 

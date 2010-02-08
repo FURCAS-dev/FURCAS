@@ -6,11 +6,12 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -182,6 +183,70 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.EmbedModifiedIAOperatorImpl <em>Embed Modified IA Operator</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.EmbedModifiedIAOperatorImpl
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getEmbedModifiedIAOperator()
+	 * @generated
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR = 3;
+
+	/**
+	 * The feature id for the '<em><b>Option</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR__OPTION = BenchframeworkPackage.OPERATOR__OPTION;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR__RESULT = BenchframeworkPackage.OPERATOR__RESULT;
+
+	/**
+	 * The feature id for the '<em><b>Test Run</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR__TEST_RUN = BenchframeworkPackage.OPERATOR__TEST_RUN;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR__NAME = BenchframeworkPackage.OPERATOR__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR__DESCRIPTION = BenchframeworkPackage.OPERATOR__DESCRIPTION;
+
+	/**
+	 * The number of structural features of the '<em>Embed Modified IA Operator</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EMBED_MODIFIED_IA_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer <em>Modified Impact Analyzer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -210,6 +275,16 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOutgoingResultNotification();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator <em>Embed Modified IA Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Embed Modified IA Operator</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator
+	 * @generated
+	 */
+	EClass getEmbedModifiedIAOperator();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -262,6 +337,16 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OUTGOING_RESULT_NOTIFICATION = eINSTANCE.getOutgoingResultNotification();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.EmbedModifiedIAOperatorImpl <em>Embed Modified IA Operator</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.EmbedModifiedIAOperatorImpl
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getEmbedModifiedIAOperator()
+		 * @generated
+		 */
+		EClass EMBED_MODIFIED_IA_OPERATOR = eINSTANCE.getEmbedModifiedIAOperator();
 
 	}
 

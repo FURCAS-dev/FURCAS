@@ -53,6 +53,15 @@ public interface ModifiedImpactAnalyzerFactory extends EFactory {
 	OutgoingResultNotification createOutgoingResultNotification();
 
 	/**
+	 * Returns a new object of class '<em>Embed Modified IA Operator</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Embed Modified IA Operator</em>'.
+	 * @generated
+	 */
+	EmbedModifiedIAOperator createEmbedModifiedIAOperator();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

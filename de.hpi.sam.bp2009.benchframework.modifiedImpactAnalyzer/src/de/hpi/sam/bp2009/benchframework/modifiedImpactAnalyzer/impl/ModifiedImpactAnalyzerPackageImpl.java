@@ -6,19 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification;
-
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -47,6 +47,13 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 	 * @generated
 	 */
 	private EClass outgoingResultNotificationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass embedModifiedIAOperatorEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -95,6 +102,7 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		isInited = true;
 
 		// Initialize simple dependencies
+		BenchframeworkPackage.eINSTANCE.eClass();
 		ImpactAnalyzerPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -144,6 +152,15 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getEmbedModifiedIAOperator() {
+		return embedModifiedIAOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModifiedImpactAnalyzerFactory getModifiedImpactAnalyzerFactory() {
 		return (ModifiedImpactAnalyzerFactory)getEFactoryInstance();
 	}
@@ -172,6 +189,8 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		incomingEventNotificationEClass = createEClass(INCOMING_EVENT_NOTIFICATION);
 
 		outgoingResultNotificationEClass = createEClass(OUTGOING_RESULT_NOTIFICATION);
+
+		embedModifiedIAOperatorEClass = createEClass(EMBED_MODIFIED_IA_OPERATOR);
 	}
 
 	/**
@@ -200,6 +219,7 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		// Obtain other dependent packages
 		ImpactAnalyzerPackage theImpactAnalyzerPackage = (ImpactAnalyzerPackage)EPackage.Registry.INSTANCE.getEPackage(ImpactAnalyzerPackage.eNS_URI);
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
+		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -209,6 +229,7 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		modifiedImpactAnalyzerEClass.getESuperTypes().add(theImpactAnalyzerPackage.getImpactAnalyzer());
 		incomingEventNotificationEClass.getESuperTypes().add(theEventManagerPackage.getEventNotification());
 		outgoingResultNotificationEClass.getESuperTypes().add(theEventManagerPackage.getEventNotification());
+		embedModifiedIAOperatorEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modifiedImpactAnalyzerEClass, ModifiedImpactAnalyzer.class, "ModifiedImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -216,6 +237,8 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		initEClass(incomingEventNotificationEClass, IncomingEventNotification.class, "IncomingEventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(outgoingResultNotificationEClass, OutgoingResultNotification.class, "OutgoingResultNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(embedModifiedIAOperatorEClass, EmbedModifiedIAOperator.class, "EmbedModifiedIAOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

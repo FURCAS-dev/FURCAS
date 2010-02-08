@@ -6,17 +6,19 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.util;
 
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.*;
-
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
+
+import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification;
+import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,12 +89,20 @@ public class ModifiedImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 				return createOutgoingResultNotificationAdapter();
 			}
 			@Override
+			public Adapter caseEmbedModifiedIAOperator(EmbedModifiedIAOperator object) {
+				return createEmbedModifiedIAOperatorAdapter();
+			}
+			@Override
 			public Adapter caseImpactAnalyzer(ImpactAnalyzer object) {
 				return createImpactAnalyzerAdapter();
 			}
 			@Override
 			public Adapter caseEventNotification(EventNotification object) {
 				return createEventNotificationAdapter();
+			}
+			@Override
+			public Adapter caseOperator(Operator object) {
+				return createOperatorAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -157,6 +167,20 @@ public class ModifiedImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator <em>Embed Modified IA Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator
+	 * @generated
+	 */
+	public Adapter createEmbedModifiedIAOperatorAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer <em>Impact Analyzer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -181,6 +205,20 @@ public class ModifiedImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventNotificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.Operator
+	 * @generated
+	 */
+	public Adapter createOperatorAdapter() {
 		return null;
 	}
 

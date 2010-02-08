@@ -63,6 +63,7 @@ public class ModifiedImpactAnalyzerFactoryImpl extends EFactoryImpl implements M
 			case ModifiedImpactAnalyzerPackage.MODIFIED_IMPACT_ANALYZER: return createModifiedImpactAnalyzer();
 			case ModifiedImpactAnalyzerPackage.INCOMING_EVENT_NOTIFICATION: return createIncomingEventNotification();
 			case ModifiedImpactAnalyzerPackage.OUTGOING_RESULT_NOTIFICATION: return createOutgoingResultNotification();
+			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR: return createEmbedModifiedIAOperator();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +97,16 @@ public class ModifiedImpactAnalyzerFactoryImpl extends EFactoryImpl implements M
 	public OutgoingResultNotification createOutgoingResultNotification() {
 		OutgoingResultNotificationImpl outgoingResultNotification = new OutgoingResultNotificationImpl();
 		return outgoingResultNotification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EmbedModifiedIAOperator createEmbedModifiedIAOperator() {
+		EmbedModifiedIAOperatorImpl embedModifiedIAOperator = new EmbedModifiedIAOperatorImpl();
+		return embedModifiedIAOperator;
 	}
 
 	/**
