@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2002, 2008 IBM Corporation and others.
+ * Copyright (c) 2002, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -12,7 +12,7 @@
  *
  * </copyright>
  *
- * $Id: OCLHelperImpl.java,v 1.6 2008/04/17 19:38:15 cdamus Exp $
+ * $Id: OCLHelperImpl.java,v 1.7 2010/02/08 20:57:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.internal.helper;
@@ -337,7 +337,7 @@ class OCLHelperImpl<PK, C, O, P, EL, PM, S, COA, SSA, CT, CLS, E>
 		CT constraint = HelperUtil.parseDefExpression(
             this, defExpression, validating, ocl.isParseTracingEnabled());
 		
-		List<EObject> constrainedElement = uml.getConstrainedElements(constraint);
+		List<? extends EObject> constrainedElement = uml.getConstrainedElements(constraint);
 		EObject result = constrainedElement.get(1);
 		
 		if (!ParsingOptions.getValue(getEnvironment(), ParsingOptions.DEFINITION_CONSTRAINS_FEATURE)) {

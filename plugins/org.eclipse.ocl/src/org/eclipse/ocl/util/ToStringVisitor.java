@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2008 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,7 +14,7 @@
  *
  * </copyright>
  *
- * $Id: ToStringVisitor.java,v 1.10 2009/09/04 10:19:33 asanchez Exp $
+ * $Id: ToStringVisitor.java,v 1.11 2010/02/08 20:57:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.util;
@@ -641,7 +641,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
     public String visitConstraint(CT constraint) {
         StringBuffer result = new StringBuffer();
         
-        List<EObject> constrained = getConstrainedElements(constraint);
+        List<? extends EObject> constrained = getConstrainedElements(constraint);
         
         if (!constrained.isEmpty()) {
             EObject elem = constrained.get(0);
@@ -710,7 +710,7 @@ public class ToStringVisitor<C, O, P, EL, PM, S, COA, SSA, CT>
 		return (uml == null)? null : uml.isProperty(element);
 	}
 	
-	protected List<EObject> getConstrainedElements(CT constraint) {
+	protected List<? extends EObject> getConstrainedElements(CT constraint) {
 		return (uml == null)? null : uml.getConstrainedElements(constraint);
 	}
 	

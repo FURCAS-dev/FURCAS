@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 245897
+ *	 E.D.Willink Bug 298128
  *
  * </copyright>
  *
- * $Id: UMLReflectionImpl.java,v 1.1 2009/11/26 20:43:07 ewillink Exp $
+ * $Id: UMLReflectionImpl.java,v 1.2 2010/02/08 20:57:13 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.internal;
@@ -514,10 +515,13 @@ public class UMLReflectionImpl
         return null;
     }
     
-    @SuppressWarnings("unchecked")
-    public List<EObject> getConstrainedElements(Constraint constraint) {
-        return (List) constraint.getConstrainedElements();
+    public List<Element> getConstrainedElements(Constraint constraint) {
+        return constraint.getConstrainedElements();
     }
+
+	public void addConstrainedElement(Constraint constraint, EObject constrainedElement) {
+		constraint.getConstrainedElements().add((Element) constrainedElement);
+	}
     
     public List<Property> getQualifiers(Property property) {
         return property.getQualifiers();
