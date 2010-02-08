@@ -6,25 +6,21 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
-
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
-
-import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
-import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
 import org.eclipse.ocl.ecore.EcorePackage;
+
+import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -33,13 +29,13 @@ import org.eclipse.ocl.ecore.EcorePackage;
  * @generated
  */
 public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAnalyzerPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	private EClass impactAnalyzerEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -248,28 +244,7 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		g1.getETypeArguments().add(g2);
 		initEAttribute(getImpactAnalyzer_Queries(), g1, "queries", null, 0, 1, ImpactAnalyzer.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		EOperation op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEObject(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResource(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResourceSet(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEEList());
-		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(impactAnalyzerEClass, null, "handleInternalEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = addEOperation(impactAnalyzerEClass, null, "handleInternalEvent", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(theEcorePackage_1.getEEList());
 		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
 		g1.getETypeArguments().add(g2);
@@ -278,6 +253,15 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 
 		op = addEOperation(impactAnalyzerEClass, null, "notifyApplication", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, theEventManagerPackage.getAdapter(), "application", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getQueryReevaluateNotification(), "msg", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = addEOperation(impactAnalyzerEClass, null, "register", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEventManagerPackage.getNotifier(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEventManagerPackage.getAdapter(), "receiver", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEEList());
+		g2 = createEGenericType(theOclEvaluatorPackage.getOclQuery());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "oclQueries", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(queryReevaluateNotificationEClass, QueryReevaluateNotification.class, "QueryReevaluateNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		g1 = createEGenericType(theEcorePackage_1.getEEList());
@@ -288,5 +272,6 @@ public class ImpactAnalyzerPackageImpl extends EPackageImpl implements ImpactAna
 		// Create resource
 		createResource(eNS_URI);
 	}
+	
 
 } //ImpactAnalyzerPackageImpl

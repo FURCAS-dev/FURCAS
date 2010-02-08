@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.eventManager.impl;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -232,6 +233,13 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * @generated
 	 */
 	private EDataType notificationEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType notifierEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -671,6 +679,15 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getNotifier() {
+		return notifierEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EventManagerFactory getEventManagerFactory() {
 		return (EventManagerFactory)getEFactoryInstance();
 	}
@@ -760,6 +777,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		// Create data types
 		adapterEDataType = createEDataType(ADAPTER);
 		notificationEDataType = createEDataType(NOTIFICATION);
+		notifierEDataType = createEDataType(NOTIFIER);
 	}
 
 	/**
@@ -818,19 +836,13 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		initEReference(getEventManager_EventMapper(), this.getEventMappper(), null, "eventMapper", null, 1, 1, EventManager.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		EOperation op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEObject(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getNotifier(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResource(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = addEOperation(eventManagerEClass, null, "subscribe", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEResourceSet(), "root", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getEventFilter(), "filter", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, this.getAdapter(), "caller", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = addEOperation(eventManagerEClass, null, "notifyApplication", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getAdapter(), "application", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, this.getEventNotification(), "msg", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(modelChangeEventEClass, ModelChangeEvent.class, "ModelChangeEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getModelChangeEvent_SourceObject(), ecorePackage.getEObject(), null, "sourceObject", null, 0, 1, ModelChangeEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -901,6 +913,7 @@ public class EventManagerPackageImpl extends EPackageImpl implements EventManage
 		// Initialize data types
 		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 		initEDataType(notificationEDataType, Notification.class, "Notification", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
+		initEDataType(notifierEDataType, Notifier.class, "Notifier", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

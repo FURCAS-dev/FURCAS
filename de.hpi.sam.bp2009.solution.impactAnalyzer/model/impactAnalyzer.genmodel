@@ -11,22 +11,23 @@
     <genClasses ecoreClass="impactAnalyzer.ecore#//ImpactAnalyzer">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/oclEvaluator"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference impactAnalyzer.ecore#//ImpactAnalyzer/eventManager"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute impactAnalyzer.ecore#//ImpactAnalyzer/currentQueries"/>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/registerQueries">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/registerQueries/oclQueries"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute impactAnalyzer.ecore#//ImpactAnalyzer/queries"/>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/handleInternalEvent">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/handleInternalEvent/queries"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/handleInternalEvent/eventNotification"/>
+      </genOperations>
+      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/notifyApplication">
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/notifyApplication/application"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/notifyApplication/msg"/>
       </genOperations>
       <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register">
         <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/root"/>
+        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/receiver"/>
         <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register/oclQueries"/>
       </genOperations>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register.1">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.1/root"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.1/oclQueries"/>
-      </genOperations>
-      <genOperations ecoreOperation="impactAnalyzer.ecore#//ImpactAnalyzer/register.2">
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.2/root"/>
-        <genParameters ecoreParameter="impactAnalyzer.ecore#//ImpactAnalyzer/register.2/oclQueries"/>
-      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="impactAnalyzer.ecore#//QueryReevaluateNotification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute impactAnalyzer.ecore#//QueryReevaluateNotification/reevaluatedQueries"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.solution.eventManager.*;
 import org.eclipse.emf.common.notify.Adapter;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -104,6 +105,8 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 				return createAdapterFromString(eDataType, initialValue);
 			case EventManagerPackage.NOTIFICATION:
 				return createNotificationFromString(eDataType, initialValue);
+			case EventManagerPackage.NOTIFIER:
+				return createNotifierFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -121,6 +124,8 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 				return convertAdapterToString(eDataType, instanceValue);
 			case EventManagerPackage.NOTIFICATION:
 				return convertNotificationToString(eDataType, instanceValue);
+			case EventManagerPackage.NOTIFIER:
+				return convertNotifierToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -389,6 +394,24 @@ public class EventManagerFactoryImpl extends EFactoryImpl implements EventManage
 	 * @generated
 	 */
 	public String convertNotificationToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Notifier createNotifierFromString(EDataType eDataType, String initialValue) {
+		return (Notifier)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNotifierToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 

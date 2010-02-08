@@ -6,19 +6,15 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer;
 
-import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -120,30 +116,6 @@ public interface ImpactAnalyzer extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model oclQueriesMany="false"
-	 * @generated
-	 */
-	void register(EObject root, EList<OclQuery> oclQueries);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model oclQueriesMany="false"
-	 * @generated
-	 */
-	void register(Resource root, EList<OclQuery> oclQueries);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model oclQueriesMany="false"
-	 * @generated
-	 */
-	void register(ResourceSet root, EList<OclQuery> oclQueries);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model queriesMany="false"
 	 * @generated
 	 */
@@ -155,6 +127,14 @@ public interface ImpactAnalyzer extends EObject {
 	 * @model applicationDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter"
 	 * @generated
 	 */
-	void notifyApplication(Adapter application);
+	void notifyApplication(Adapter application, QueryReevaluateNotification msg);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model rootDataType="de.hpi.sam.bp2009.solution.eventManager.Notifier" receiverDataType="de.hpi.sam.bp2009.solution.eventManager.Adapter" oclQueriesMany="false"
+	 * @generated
+	 */
+	void register(Notifier root, Adapter receiver, EList<OclQuery> oclQueries);
 
 } // ImpactAnalyzer

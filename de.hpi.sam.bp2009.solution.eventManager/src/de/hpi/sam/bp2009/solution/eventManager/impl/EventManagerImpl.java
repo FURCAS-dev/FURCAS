@@ -11,12 +11,9 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
@@ -58,7 +55,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		super();
 	}
 	
-	private static class EventAdapter extends EContentAdapter{
+	private class EventAdapter extends EContentAdapter{
 		Adapter caller;
 		EventFilter filter;
 		EventMappper mapper;
@@ -74,7 +71,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 			noti.setNotification(notification);
 			noti.setEvent(mapper.mapNotificationToEvent(notification));
 			if(filter.matchesFor(noti.getEvent()))
-				caller.notifyChanged(noti);
+				notifyApplication(caller, noti);
 			
 		}
 	}
@@ -131,26 +128,19 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void subscribe(EObject root, EventFilter filter, Adapter caller) {
-		this.commonSubscribe(root, caller, filter);
+	public void subscribe(Notifier root, EventFilter filter, Adapter caller) {
+		root.eAdapters().add(new EventAdapter(caller, filter, getEventMapper()));
 	}
+
+
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void subscribe(Resource root, EventFilter filter, Adapter caller) {
-		this.commonSubscribe(root, caller, filter);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void subscribe(ResourceSet root, EventFilter filter, Adapter caller) {
-		this.commonSubscribe(root, caller, filter);
+	public void notifyApplication(Adapter application, EventNotification msg) {
+		application.notifyChanged(msg);
 	}
 
 	/**
@@ -211,17 +201,5 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 		}
 		return super.eIsSet(featureID);
 	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * naively subscribe to the whole root
-	 * <!-- end-user-doc -->
-	 */
-	private void commonSubscribe(Notifier root,Adapter caller, EventFilter filter) {
-
-		root.eAdapters().add(new EventAdapter(caller, filter, getEventMapper()));
-	}
-
-
 
 } //EventManagerImpl

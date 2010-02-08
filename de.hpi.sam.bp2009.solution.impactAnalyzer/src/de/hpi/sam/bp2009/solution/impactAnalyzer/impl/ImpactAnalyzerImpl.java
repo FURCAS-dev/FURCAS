@@ -6,40 +6,29 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerFactory;
 import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.eventManager.ModelChangeEvent;
 import de.hpi.sam.bp2009.solution.eventManager.impl.InstanceFilterImpl;
-
-
-
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
-
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
-
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
-
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * <!-- begin-user-doc -->
@@ -231,53 +220,10 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	public void register(EObject root, EList<OclQuery> oclQueries) {
-		//TODO do magic
-		System.out.println("Start Analyse");
-		EventFilter filter = new TautologyFilter();
-		for(OclQuery each: oclQueries)
-			this.getEventManager().subscribe(root, filter, new EventManagerAdapter(each));
-		this.setQueries(oclQueries);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void register(Resource root, EList<OclQuery> oclQueries) {
-		//TODO do magic
-		System.out.println("Start Analyse");
-		EventFilter filter = new TautologyFilter();
-		for(OclQuery each: oclQueries)
-			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
-		this.setQueries(oclQueries);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 * @return 
-	 */
-	public void register(ResourceSet resourceSet, EList<OclQuery> oclQueries) {
-		//TODO do magic
-		System.out.println("Start Analyse");
-		EventFilter filter = new TautologyFilter();
-		for(OclQuery each: oclQueries)
-			this.getEventManager().subscribe(resourceSet,filter, new EventManagerAdapter(each));
-		this.setQueries(oclQueries);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void handleInternalEvent(EList<OclQuery> queries, EventNotification eventNotification) {
 		getOclEvaluator().evaluate(queries);
 		for (Adapter a : eAdapters)
-			notifyApplication(a);
+			notifyApplication(a, eventNotification);
 	}
 	
 	/**
@@ -285,10 +231,35 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyApplication(Adapter application) {
-		QueryReevaluateNotification notification = ImpactAnalyzerFactory.eINSTANCE.createQueryReevaluateNotification();
-		notification.setReevaluatedQueries(queries);
-		application.notifyChanged(notification);
+	public void notifyApplication(Adapter application, QueryReevaluateNotification msg) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void notifyApplication(Adapter application, EventNotification msg) {
+		application.notifyChanged(msg);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void register(Notifier root, Adapter receiver, EList<OclQuery> oclQueries) {
+		//TODO Generate the correct Filter
+		EventFilter filter = new TautologyFilter();
+		
+		//TODO mapping between Application and registered query vs. multiple IA instances
+		this.eAdapters.add(receiver);
+		for(OclQuery each: oclQueries)
+			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
+		this.setQueries(oclQueries);
 	}
 
 	/**

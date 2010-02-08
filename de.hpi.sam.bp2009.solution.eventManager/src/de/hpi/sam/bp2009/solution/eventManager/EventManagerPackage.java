@@ -746,6 +746,17 @@ public interface EventManagerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '<em>Notifier</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.emf.common.notify.Notifier
+	 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getNotifier()
+	 * @generated
+	 */
+	int NOTIFIER = 26;
+
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.eventManager.EventManager <em>Event Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1173,6 +1184,17 @@ public interface EventManagerPackage extends EPackage {
 	EDataType getNotification();
 
 	/**
+	 * Returns the meta object for data type '{@link org.eclipse.emf.common.notify.Notifier <em>Notifier</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Notifier</em>'.
+	 * @see org.eclipse.emf.common.notify.Notifier
+	 * @model instanceClass="org.eclipse.emf.common.notify.Notifier"
+	 * @generated
+	 */
+	EDataType getNotifier();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1573,6 +1595,16 @@ public interface EventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EDataType NOTIFICATION = eINSTANCE.getNotification();
+
+		/**
+		 * The meta object literal for the '<em>Notifier</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.emf.common.notify.Notifier
+		 * @see de.hpi.sam.bp2009.solution.eventManager.impl.EventManagerPackageImpl#getNotifier()
+		 * @generated
+		 */
+		EDataType NOTIFIER = eINSTANCE.getNotifier();
 
 	}
 

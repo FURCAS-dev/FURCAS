@@ -8,19 +8,13 @@
       <details key="documentation"/>
     </eAnnotations>
     <eOperations name="subscribe">
-      <eParameters name="root" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+      <eParameters name="root" eType="#//Notifier"/>
       <eParameters name="filter" eType="#//EventFilter"/>
       <eParameters name="caller" eType="#//Adapter"/>
     </eOperations>
-    <eOperations name="subscribe">
-      <eParameters name="root" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResource"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
-      <eParameters name="caller" eType="#//Adapter"/>
-    </eOperations>
-    <eOperations name="subscribe">
-      <eParameters name="root" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EResourceSet"/>
-      <eParameters name="filter" eType="#//EventFilter"/>
-      <eParameters name="caller" eType="#//Adapter"/>
+    <eOperations name="notifyApplication">
+      <eParameters name="application" eType="#//Adapter"/>
+      <eParameters name="msg" eType="#//EventNotification"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventMapper" lowerBound="1"
         eType="#//EventMappper"/>
@@ -165,4 +159,5 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="Notification" instanceClassName="org.eclipse.emf.common.notify.Notification"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="Notifier" instanceClassName="org.eclipse.emf.common.notify.Notifier"/>
 </ecore:EPackage>
