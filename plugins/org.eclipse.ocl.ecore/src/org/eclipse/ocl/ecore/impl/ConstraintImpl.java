@@ -12,7 +12,7 @@
  * 
  * </copyright>
  *
- * $Id: ConstraintImpl.java,v 1.7 2008/11/24 00:39:24 cdamus Exp $
+ * $Id: ConstraintImpl.java,v 1.8 2010/02/08 20:57:00 ewillink Exp $
  */
 package org.eclipse.ocl.ecore.impl;
 
@@ -23,7 +23,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EParameter;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENamedElementImpl;
@@ -71,7 +71,7 @@ public class ConstraintImpl
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ENamedElement> constrainedElements;
+	protected EList<EModelElement> constrainedElements;
 
 	/**
 	 * The default value of the '{@link #getStereotype() <em>Stereotype</em>}' attribute.
@@ -174,10 +174,10 @@ public class ConstraintImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ENamedElement> getConstrainedElements() {
+	public EList<EModelElement> getConstrainedElements() {
 		if (constrainedElements == null) {
-			constrainedElements = new EObjectResolvingEList<ENamedElement>(
-				ENamedElement.class, this,
+			constrainedElements = new EObjectResolvingEList<EModelElement>(
+				EModelElement.class, this,
 				EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS);
 		}
 		return constrainedElements;
@@ -253,7 +253,7 @@ public class ConstraintImpl
 			case EcorePackage.CONSTRAINT__CONSTRAINED_ELEMENTS :
 				getConstrainedElements().clear();
 				getConstrainedElements().addAll(
-					(Collection<? extends ENamedElement>) newValue);
+					(Collection<? extends EModelElement>) newValue);
 				return;
 			case EcorePackage.CONSTRAINT__STEREOTYPE :
 				setStereotype((String) newValue);
