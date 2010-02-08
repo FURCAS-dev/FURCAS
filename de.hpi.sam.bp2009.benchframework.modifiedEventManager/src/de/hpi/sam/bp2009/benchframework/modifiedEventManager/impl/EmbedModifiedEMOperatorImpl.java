@@ -13,12 +13,16 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +42,10 @@ import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManage
  * @generated
  */
 public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedModifiedEMOperator {
+	
+	private static final String EM_NAME = "Event Manager";
+	private static final String EM_DESCRIPTION = "The Event Manager handles incoming EMF events and maps them to internal events";
+	
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -111,10 +119,12 @@ public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedMod
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected EmbedModifiedEMOperatorImpl() {
 		super();
+		this.setName(EM_NAME);
+		this.setDescription(EM_DESCRIPTION);
 	}
 
 	/**
@@ -308,12 +318,13 @@ public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedMod
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void execute() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		getTestRun().setInstanceForClass(EventManager.class, ModifiedEventManagerFactory.eINSTANCE.createModifiedEventManager());
+		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
+		getResult().setStatus(Status.SUCCESSFULL);
+		getResult().setMessage("Attached EM to TestRun");
 	}
 
 	/**
