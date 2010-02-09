@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007,2009 IBM Corporation and others.
+ * Copyright (c) 2007, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
- *   Ed Willink - Bug 296409
+ *   E.D.Willink - Bugs 296409, 295166
  *
  * </copyright>
  *
- * $Id: GenericKeywordsTest.java,v 1.2 2009/12/16 21:00:41 ewillink Exp $
+ * $Id: GenericKeywordsTest.java,v 1.3 2010/02/09 21:04:25 ewillink Exp $
  */
 
 package org.eclipse.ocl.tests;
@@ -113,11 +113,13 @@ public abstract class GenericKeywordsTest<E extends EObject, PK extends E, T ext
     public void test_package_162300() {
         assertInvariant(clazz, "self._package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)");
         assertInvariant(clazz, "_package.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)");
+        assertInvariant(clazz, "_'package'.oclIsUndefined() implies Set{VisibilityKind::protected, VisibilityKind::_package}->excludes(self.visibility)");
     }
 
     public void test_context_162300() {
         assertInvariant(constraint, "self._context <> null implies _context.oclIsKindOf(Class)");
         assertInvariant(constraint, "_context <> null implies self._context.oclIsKindOf(Class)");
+        assertInvariant(constraint, "_'con''te' 'x'\n't' <> null implies self._context.oclIsKindOf(Class)");
     }
 
     public void test_isUniqueOperation_162300() {
@@ -135,6 +137,7 @@ public abstract class GenericKeywordsTest<E extends EObject, PK extends E, T ext
     public void test_contextOperation_162300() {
         assertInvariant(block, "self._context(self).name = 'Block'");
         assertInvariant(block, "_context(self).name = 'Block'");
+        assertInvariant(block, "_'context'(self).name = 'Block'");
     }
 
     public void test_reservedPackageName_183362() {
