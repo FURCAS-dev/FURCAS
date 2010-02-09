@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2007, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2007, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bugs 2488692, 253252, 259630
+ *   E.D.Willink - Bug 295166
  *
  * </copyright>
  *
- * $Id: UMLEnvironmentTest.java,v 1.10 2009/11/28 18:08:20 ewillink Exp $
+ * $Id: UMLEnvironmentTest.java,v 1.11 2010/02/09 21:04:24 ewillink Exp $
  */
 
 package org.eclipse.ocl.uml.tests;
@@ -83,9 +84,9 @@ public class UMLEnvironmentTest
 
         Constraint constraint = null;
         
-        try {
+        try {	// Double \ for Java and Double \ again for OCL String Literal
             constraint = helper.createInvariant(
-                    "self.regexMatch('\\d{3}-\\d{3}-\\d{3}') <> null");
+                    "self.regexMatch('\\\\d{3}-\\\\d{3}-\\\\d{3}') <> null");
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage());
         }
