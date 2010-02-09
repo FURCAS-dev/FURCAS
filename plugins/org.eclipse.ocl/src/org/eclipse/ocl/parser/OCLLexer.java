@@ -2,7 +2,7 @@
 * Essential OCL Lexer
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation and others.
+* Copyright (c) 2005, 2010 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
-*   E.D.Willink - Bug 292112
+*   E.D.Willink - Bug 292112, 295166
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 *
 * </copyright>
 *
-* $Id: OCLLexer.java,v 1.19 2010/02/03 19:54:11 ewillink Exp $
+* $Id: OCLLexer.java,v 1.20 2010/02/09 21:04:08 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -493,15 +493,15 @@ public void reset(Reader reader, String filename) throws java.io.IOException {
             }
 	
             //
-            // Rule 3:  Token ::= SingleQuote SLNotSQOpt SingleQuote
+            // Rule 3:  Token ::= _ SingleQuote SLNotSQOpt SingleQuote
             //
             case 3: { 
-				makeToken(OCLParsersym.TK_STRING_LITERAL);
+				makeToken(OCLParsersym.TK_QUOTED_IDENTIFIER);
 	              break;
             }
 	
             //
-            // Rule 4:  Token ::= Acute SLNotSQOpt Acute
+            // Rule 4:  Token ::= SingleQuote SLNotSQOpt SingleQuote
             //
             case 4: { 
 				makeToken(OCLParsersym.TK_STRING_LITERAL);
@@ -509,7 +509,7 @@ public void reset(Reader reader, String filename) throws java.io.IOException {
             }
 	
             //
-            // Rule 5:  Token ::= BackQuote SLNotSQOpt Acute
+            // Rule 5:  Token ::= Acute SLNotSQOpt Acute
             //
             case 5: { 
 				makeToken(OCLParsersym.TK_STRING_LITERAL);
@@ -517,295 +517,303 @@ public void reset(Reader reader, String filename) throws java.io.IOException {
             }
 	
             //
-            // Rule 6:  Token ::= IntegerLiteral
+            // Rule 6:  Token ::= BackQuote SLNotSQOpt Acute
             //
-            case 6:
-                break; 
+            case 6: { 
+				makeToken(OCLParsersym.TK_STRING_LITERAL);
+	              break;
+            }
 	
             //
-            // Rule 7:  Token ::= IntegerLiteral DotToken
+            // Rule 7:  Token ::= IntegerLiteral
             //
             case 7:
                 break; 
 	
             //
-            // Rule 8:  Token ::= IntegerLiteral DotDotToken
+            // Rule 8:  Token ::= IntegerLiteral DotToken
             //
             case 8:
                 break; 
 	
             //
-            // Rule 9:  Token ::= RealLiteral
+            // Rule 9:  Token ::= IntegerLiteral DotDotToken
             //
-            case 9: { 
+            case 9:
+                break; 
+	
+            //
+            // Rule 10:  Token ::= RealLiteral
+            //
+            case 10: { 
 				makeToken(OCLParsersym.TK_REAL_LITERAL);
 	              break;
             }
 	
             //
-            // Rule 10:  Token ::= SLC
+            // Rule 11:  Token ::= SLC
             //
-            case 10: { 
+            case 11: { 
 				makeComment(OCLParsersym.TK_SINGLE_LINE_COMMENT);
 	              break;
             }
 	
             //
-            // Rule 11:  Token ::= / * Inside Stars /
+            // Rule 12:  Token ::= / * Inside Stars /
             //
-            case 11: { 
+            case 12: { 
                 makeComment(OCLParsersym.TK_MULTI_LINE_COMMENT);
                   break;
             }
     
             //
-            // Rule 12:  Token ::= WS
+            // Rule 13:  Token ::= WS
             //
-            case 12: { 
+            case 13: { 
 				skipToken();
 	              break;
             }
 	
             //
-            // Rule 13:  Token ::= +
+            // Rule 14:  Token ::= +
             //
-            case 13: { 
+            case 14: { 
 				makeToken(OCLParsersym.TK_PLUS);
 	              break;
             }
 	
             //
-            // Rule 14:  Token ::= -
+            // Rule 15:  Token ::= -
             //
-            case 14: { 
+            case 15: { 
 				makeToken(OCLParsersym.TK_MINUS);
 	              break;
             }
 	
             //
-            // Rule 15:  Token ::= *
+            // Rule 16:  Token ::= *
             //
-            case 15: { 
+            case 16: { 
 				makeToken(OCLParsersym.TK_MULTIPLY);
 	              break;
             }
 	
             //
-            // Rule 16:  Token ::= /
+            // Rule 17:  Token ::= /
             //
-            case 16: { 
+            case 17: { 
 				makeToken(OCLParsersym.TK_DIVIDE);
 	              break;
             }
 	
             //
-            // Rule 17:  Token ::= (
+            // Rule 18:  Token ::= (
             //
-            case 17: { 
+            case 18: { 
 				makeToken(OCLParsersym.TK_LPAREN);
 	              break;
             }
 	
             //
-            // Rule 18:  Token ::= )
+            // Rule 19:  Token ::= )
             //
-            case 18: { 
+            case 19: { 
 				makeToken(OCLParsersym.TK_RPAREN);
 	              break;
             }
 	
             //
-            // Rule 19:  Token ::= >
+            // Rule 20:  Token ::= >
             //
-            case 19: { 
+            case 20: { 
 				makeToken(OCLParsersym.TK_GREATER);
 	              break;
             }
 	
             //
-            // Rule 20:  Token ::= <
+            // Rule 21:  Token ::= <
             //
-            case 20: { 
+            case 21: { 
 				makeToken(OCLParsersym.TK_LESS);
 	              break;
             }
 	
             //
-            // Rule 21:  Token ::= =
+            // Rule 22:  Token ::= =
             //
-            case 21: { 
+            case 22: { 
 				makeToken(OCLParsersym.TK_EQUAL);
 	              break;
             }
 	
             //
-            // Rule 22:  Token ::= > =
+            // Rule 23:  Token ::= > =
             //
-            case 22: { 
+            case 23: { 
 				makeToken(OCLParsersym.TK_GREATER_EQUAL);
 	              break;
             }
 	
             //
-            // Rule 23:  Token ::= < =
+            // Rule 24:  Token ::= < =
             //
-            case 23: { 
+            case 24: { 
 				makeToken(OCLParsersym.TK_LESS_EQUAL);
 	              break;
             }
 	
             //
-            // Rule 24:  Token ::= < >
+            // Rule 25:  Token ::= < >
             //
-            case 24: { 
+            case 25: { 
 				makeToken(OCLParsersym.TK_NOT_EQUAL);
 	              break;
             }
 	
             //
-            // Rule 25:  Token ::= [
+            // Rule 26:  Token ::= [
             //
-            case 25: { 
+            case 26: { 
 				makeToken(OCLParsersym.TK_LBRACKET);
 	              break;
             }
 	
             //
-            // Rule 26:  Token ::= ]
+            // Rule 27:  Token ::= ]
             //
-            case 26: { 
+            case 27: { 
 				makeToken(OCLParsersym.TK_RBRACKET);
 	              break;
             }
 	
             //
-            // Rule 27:  Token ::= {
+            // Rule 28:  Token ::= {
             //
-            case 27: { 
+            case 28: { 
 				makeToken(OCLParsersym.TK_LBRACE);
 	              break;
             }
 	
             //
-            // Rule 28:  Token ::= }
+            // Rule 29:  Token ::= }
             //
-            case 28: { 
+            case 29: { 
 				makeToken(OCLParsersym.TK_RBRACE);
 	              break;
             }
 	
             //
-            // Rule 29:  Token ::= - >
+            // Rule 30:  Token ::= - >
             //
-            case 29: { 
+            case 30: { 
 				makeToken(OCLParsersym.TK_ARROW);
 	              break;
             }
 	
             //
-            // Rule 30:  Token ::= |
+            // Rule 31:  Token ::= |
             //
-            case 30: { 
+            case 31: { 
 				makeToken(OCLParsersym.TK_BAR);
 	              break;
             }
 	
             //
-            // Rule 31:  Token ::= ,
+            // Rule 32:  Token ::= ,
             //
-            case 31: { 
+            case 32: { 
 				makeToken(OCLParsersym.TK_COMMA);
 	              break;
             }
 	
             //
-            // Rule 32:  Token ::= :
+            // Rule 33:  Token ::= :
             //
-            case 32: { 
+            case 33: { 
 				makeToken(OCLParsersym.TK_COLON);
 	              break;
             }
 	
             //
-            // Rule 33:  Token ::= : :
+            // Rule 34:  Token ::= : :
             //
-            case 33: { 
+            case 34: { 
 				makeToken(OCLParsersym.TK_COLONCOLON);
 	              break;
             }
 	
             //
-            // Rule 34:  Token ::= ;
+            // Rule 35:  Token ::= ;
             //
-            case 34: { 
+            case 35: { 
 				makeToken(OCLParsersym.TK_SEMICOLON);
 	              break;
             }
 	
             //
-            // Rule 35:  Token ::= DotToken
+            // Rule 36:  Token ::= DotToken
             //
-            case 35:
+            case 36:
                 break; 
 	
             //
-            // Rule 36:  DotToken ::= .
+            // Rule 37:  DotToken ::= .
             //
-            case 36: { 
+            case 37: { 
 				makeToken(OCLParsersym.TK_DOT);
 	              break;
             }
 	
             //
-            // Rule 37:  Token ::= DotDotToken
+            // Rule 38:  Token ::= DotDotToken
             //
-            case 37:
+            case 38:
                 break; 
 	
             //
-            // Rule 38:  DotDotToken ::= . .
+            // Rule 39:  DotDotToken ::= . .
             //
-            case 38: { 
+            case 39: { 
 				makeToken(OCLParsersym.TK_DOTDOT);
 	              break;
             }
 	
             //
-            // Rule 39:  IntegerLiteral ::= Integer
+            // Rule 40:  IntegerLiteral ::= Integer
             //
-            case 39: { 
+            case 40: { 
 				makeToken(OCLParsersym.TK_INTEGER_LITERAL);
 	              break;
             }
 	
             //
-            // Rule 264:  Token ::= @
+            // Rule 265:  Token ::= @
             //
-            case 264: { 
+            case 265: { 
 				makeToken(OCLParsersym.TK_AT);
 	              break;
             }
 	
             //
-            // Rule 265:  Token ::= ^
+            // Rule 266:  Token ::= ^
             //
-            case 265: { 
+            case 266: { 
 				makeToken(OCLParsersym.TK_CARET);
 	              break;
             }
 	
             //
-            // Rule 266:  Token ::= ^ ^
+            // Rule 267:  Token ::= ^ ^
             //
-            case 266: { 
+            case 267: { 
 				makeToken(OCLParsersym.TK_CARETCARET);
 	              break;
             }
 	
             //
-            // Rule 267:  Token ::= ?
+            // Rule 268:  Token ::= ?
             //
-            case 267: { 
+            case 268: { 
 				makeToken(OCLParsersym.TK_QUESTIONMARK);
 	              break;
             }
