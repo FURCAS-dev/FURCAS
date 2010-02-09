@@ -115,10 +115,14 @@
 			<zipfileset src="${buildDirectory}/${buildLabel}/${SDKZip}"
 			            dirmode="775"
 			            filemode="664"
-			            excludes="**/${domainNamespace}.*.examples*, **/${domainNamespace}.*.examples*/**, **/${domainNamespace}.*.samples*, **/${domainNamespace}.*.samples*/**, **/${domainNamespace}.*.doc*, **/${domainNamespace}.*.doc*/**, **/${domainNamespace}.*.edit*, **/${domainNamespace}.*.edit*/**"
 			>
-				<include name="**/${domainNamespace}.ocl*/" />
-				<include name="**/${domainNamespace}.ocl*/**" />
+				<include name="**/features/${domainNamespace}.ocl.core.sdk_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.source_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.ecore.source_*/" />
+				<include name="**/plugins/${domainNamespace}.ocl.uml.source_*/" />
 				<include name="**/eclipse/epl-v10.html" />
 				<include name="**/eclipse/notice.html" />
 			</zipfileset>
