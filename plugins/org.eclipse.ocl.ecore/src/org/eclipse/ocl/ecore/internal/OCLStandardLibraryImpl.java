@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2006, 2008 IBM Corporation, Zeligsoft Inc., and others.
+ * Copyright (c) 2006, 2010 IBM Corporation, Zeligsoft Inc., and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,10 +10,11 @@
  * Contributors:
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 252600
+ *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Bug 297666
  *
  * </copyright>
  *
- * $Id: OCLStandardLibraryImpl.java,v 1.9 2009/09/01 20:11:57 ewillink Exp $
+ * $Id: OCLStandardLibraryImpl.java,v 1.10 2010/02/09 10:32:35 asanchez Exp $
  */
 
 package org.eclipse.ocl.ecore.internal;
@@ -94,7 +95,7 @@ public final class OCLStandardLibraryImpl implements OCLStandardLibrary<EClassif
     
     /** The singleton instance of the <tt>OclInvalid</tt> standard library type. */
     public static final EObject INVALID = stdlibPackage.getEFactoryInstance().create(
-        (EClass) stdlibPackage.getEClassifier("Invalid_Class")); //$NON-NLS-1$
+        (EClass) stdlibPackage.getEClassifier("OclInvalid_Class")); //$NON-NLS-1$
     
     // not instantiable by clients
 	private OCLStandardLibraryImpl() {
