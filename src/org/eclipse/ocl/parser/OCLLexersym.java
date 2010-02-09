@@ -2,7 +2,7 @@
 * Essential OCL Lexer
 * <copyright>
 *
-* Copyright (c) 2005, 2009 IBM Corporation and others.
+* Copyright (c) 2005, 2010 IBM Corporation and others.
 * All rights reserved.   This program and the accompanying materials
 * are made available under the terms of the Eclipse Public License v1.0
 * which accompanies this distribution, and is available at
@@ -12,13 +12,13 @@
 *   IBM - Initial API and implementation
 *   E.D.Willink - Lexer and Parser refactoring to support extensibility and flexible error handling
 *   Borland - Bug 242880
-*   E.D.Willink - Bug 292112
+*   E.D.Willink - Bug 292112, 295166
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - LPG v 2.0.17 adoption (242153)
 *   Adolfo Sanchez-Barbudo Herrera (Open Canarias) - Introducing new LPG templates (299396)
 *
 * </copyright>
 *
-* $Id: OCLLexersym.java,v 1.17 2010/02/03 19:54:11 ewillink Exp $
+* $Id: OCLLexersym.java,v 1.18 2010/02/09 21:04:08 ewillink Exp $
 */
 /**
 * Complete OCL Lexer
@@ -49,8 +49,8 @@ package org.eclipse.ocl.parser;
 public interface OCLLexersym {
     public final static int
       Char_CtlCharNotWS = 103,
-      Char_LF = 99,
-      Char_CR = 100,
+      Char_LF = 100,
+      Char_CR = 101,
       Char_HT = 97,
       Char_FF = 98,
       Char_a = 17,
@@ -119,19 +119,19 @@ public interface OCLLexersym {
       Char_AfterASCIINotAcute = 68,
       Char_Space = 69,
       Char_DoubleQuote = 90,
-      Char_SingleQuote = 74,
+      Char_SingleQuote = 70,
       Char_Percent = 91,
       Char_VerticalBar = 75,
       Char_Exclamation = 92,
       Char_AtSign = 76,
       Char_BackQuote = 77,
-      Char_Acute = 101,
+      Char_Acute = 102,
       Char_Tilde = 93,
       Char_Sharp = 94,
       Char_DollarSign = 78,
       Char_Ampersand = 95,
-      Char_Caret = 70,
-      Char_Colon = 71,
+      Char_Caret = 71,
+      Char_Colon = 72,
       Char_SemiColon = 79,
       Char_BackSlash = 96,
       Char_LeftBrace = 80,
@@ -143,14 +143,14 @@ public interface OCLLexersym {
       Char_Dot = 13,
       Char_LessThan = 86,
       Char_GreaterThan = 14,
-      Char_Plus = 72,
+      Char_Plus = 73,
       Char_Minus = 15,
       Char_Slash = 87,
-      Char_Star = 73,
+      Char_Star = 74,
       Char_LeftParen = 88,
       Char_RightParen = 89,
       Char_Equal = 16,
-      Char_EOF = 102;
+      Char_EOF = 99;
 
     public final static String orderedTerminalSymbols[] = {
                  "",
@@ -223,11 +223,11 @@ public interface OCLLexersym {
                  "Z",
                  "AfterASCIINotAcute",
                  "Space",
+                 "SingleQuote",
                  "Caret",
                  "Colon",
                  "Plus",
                  "Star",
-                 "SingleQuote",
                  "VerticalBar",
                  "AtSign",
                  "BackQuote",
@@ -252,10 +252,10 @@ public interface OCLLexersym {
                  "BackSlash",
                  "HT",
                  "FF",
+                 "EOF",
                  "LF",
                  "CR",
                  "Acute",
-                 "EOF",
                  "CtlCharNotWS"
              };
 
