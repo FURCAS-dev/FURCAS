@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 253252
  *   Borland - Bug 242880
+ *   E.D.Willink - Bug 295166
  *
  * </copyright>
  *
- * $Id: BasicOCLTest.java,v 1.15 2009/11/28 17:40:23 ewillink Exp $
+ * $Id: BasicOCLTest.java,v 1.16 2010/02/09 21:04:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -353,7 +354,13 @@ public class BasicOCLTest
 	 */
     public void test_backslashes_184948() {
         helper.setContext(EcorePackage.Literals.ESTRING);
-        String self = "";
+
+		Boolean oldBackslashProcessingEnabled = ParsingOptions.getValue(ocl
+			.getEnvironment(), ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING);
+		ParsingOptions.setOption(ocl.getEnvironment(),
+			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING, false);
+
+		String self = "";
         
         try {
             assertEquals("str\\ning",
@@ -367,6 +374,10 @@ public class BasicOCLTest
                     "\"s\\\"g\""));
         } catch (ParserException e) {
             fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
+		} finally {
+			ParsingOptions.setOption(ocl.getEnvironment(),
+				ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
+				oldBackslashProcessingEnabled);
         }
     }
     
@@ -375,12 +386,6 @@ public class BasicOCLTest
 	 */
 	public void test_escapeSequences_242880() {
 		helper.setContext(EcorePackage.Literals.ESTRING);
-
-		Boolean oldBackslashProcessingEnabled = ParsingOptions.getValue(ocl
-			.getEnvironment(), ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING);
-		ParsingOptions.setOption(ocl.getEnvironment(),
-			ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING, true);
-
 		String self = "";
 
 		try {
@@ -442,10 +447,6 @@ public class BasicOCLTest
 				evaluate(helper, self, "'string\\t\\378'"));
 		} catch (ParserException e) {
 			fail("Failed to parse or evaluate: " + e.getLocalizedMessage());
-		} finally {
-			ParsingOptions.setOption(ocl.getEnvironment(),
-				ParsingOptions.USE_BACKSLASH_ESCAPE_PROCESSING,
-				oldBackslashProcessingEnabled);
 		}
 	}
     
@@ -454,13 +455,13 @@ public class BasicOCLTest
         String self = "";
         
         try {
-            assertEquals("str'ing",
-                evaluate(helper, self, "'str''ing'"));
+//            assertEquals("str'ing",
+//                evaluate(helper, self, "'str''ing'"));
             
             assertEquals("",
                 evaluate(helper, self, "''"));
             
-            assertEquals("'",
+            assertEquals("",
                 evaluate(helper, self, "''''"));
             assertEquals("",
                 evaluate(helper, self, "'' ''"));

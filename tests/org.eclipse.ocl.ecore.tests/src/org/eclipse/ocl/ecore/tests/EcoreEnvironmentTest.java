@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 2005, 2009 IBM Corporation, Zeligsoft Inc., Borland Software Corp., and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,10 +11,11 @@
  *   IBM - Initial API and implementation
  *   Zeligsoft - Bug 248869
  *   Borland - Bug 242880
+ *   E.D.Willink - Bug 295166
  *
  * </copyright>
  *
- * $Id: EcoreEnvironmentTest.java,v 1.9 2009/11/28 17:41:00 ewillink Exp $
+ * $Id: EcoreEnvironmentTest.java,v 1.10 2010/02/09 21:04:27 ewillink Exp $
  */
 
 package org.eclipse.ocl.ecore.tests;
@@ -140,9 +141,9 @@ public class EcoreEnvironmentTest
 
         Constraint constraint = null;
         
-        try {
+        try {	// Double \ for Java and Double \ again for OCL String Literal
             constraint = helper.createInvariant(
-                    "self.regexMatch('\\d{3}-\\d{3}-\\d{3}') <> null");
+                    "self.regexMatch('\\\\d{3}-\\\\d{3}-\\\\d{3}') <> null");
         } catch (Exception e) {
             fail("Failed to parse: " + e.getLocalizedMessage());
         }

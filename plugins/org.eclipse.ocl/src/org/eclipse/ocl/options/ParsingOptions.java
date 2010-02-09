@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- * Copyright (c) 2007, 2009 IBM Corporation and others.
+ * Copyright (c) 2007, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -9,11 +9,12 @@
  *
  * Contributors:
  *   IBM - Initial API and implementation
+ *   E.D.Willink - Bugs 295166
  *   Borland - Bug 242880
  *
  * </copyright>
  *
- * $Id: ParsingOptions.java,v 1.8 2009/10/04 11:06:44 ewillink Exp $
+ * $Id: ParsingOptions.java,v 1.9 2010/02/09 21:04:08 ewillink Exp $
  */
 
 package org.eclipse.ocl.options;
@@ -93,18 +94,17 @@ public class ParsingOptions {
 	/**
 	 * <p>
 	 * Parsing option indicating whether to process backslash escape sequences (
-	 * <tt>\n</tt>, <tt>\r</tt>, etc.) the way it is done in Java or not to
-	 * perform such processing to support backwards compatibility.
+	 * <tt>\n</tt>, <tt>\r</tt>, etc.) as specified by OMG Issue 14357 for OCL 2.3.
 	 * </p>
 	 * <p>
-	 * The default value of this option is <tt>false</tt>. For enabling
-	 * backslash escaping support, set this option <tt>true</tt>.
+	 * The default value of this option is <tt>true</tt>. To disable
+	 * backslash escaping support, set this option <tt>false</tt>.
 	 * </p>
 	 * 
 	 * @since 1.3
 	 */
     public static final Option<Boolean> USE_BACKSLASH_ESCAPE_PROCESSING =
-        new BasicOption<Boolean>("use.backslash.escape.processing", false); //$NON-NLS-1$
+        new BasicOption<Boolean>("use.backslash.escape.processing", true); //$NON-NLS-1$
 
     /**
      * <p>

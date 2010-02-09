@@ -12,7 +12,7 @@
 -- *
 -- * </copyright>
 -- *
--- * $Id: EssentialOCL.gi,v 1.7 2010/02/03 19:54:11 ewillink Exp $
+-- * $Id: EssentialOCL.gi,v 1.8 2010/02/09 21:04:08 ewillink Exp $
 -- */
 --
 -- The EssentialOCL Parser
@@ -71,7 +71,7 @@
  * Essential OCL Grammar
  * <copyright>
  *
- * Copyright (c) 2005, 2009 IBM Corporation and others.
+ * Copyright (c) 2005, 2010 IBM Corporation and others.
  * All rights reserved.   This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -81,7 +81,7 @@
  *   IBM - Initial API and implementation
  *   E.D.Willink - Elimination of some shift-reduce conflicts
  *   E.D.Willink - Remove unnecessary warning suppression
- *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112
+ *   E.D.Willink - Bugs 184048, 225493, 243976, 259818, 282882, 287993, 288040, 292112, 295166
  *   Borland - Bug 242880
  *   Adolfo Sanchez-Barbudo Herrera (Open Canarias):
  *        - 242153: LPG v 2.0.17 adoption.
@@ -89,7 +89,7 @@
  *        - 300534: Removing the use of deprecated macros.
  * </copyright>
  *
- * $Id: EssentialOCL.gi,v 1.7 2010/02/03 19:54:11 ewillink Exp $
+ * $Id: EssentialOCL.gi,v 1.8 2010/02/09 21:04:08 ewillink Exp $
  */
     ./
 %End
@@ -168,7 +168,7 @@
 
 %Terminals
     
-    INTEGER_LITERAL REAL_LITERAL STRING_LITERAL
+    QUOTED_IDENTIFIER INTEGER_LITERAL REAL_LITERAL STRING_LITERAL
     
     PLUS     ::= '+'
     MINUS    ::= '-'
@@ -353,6 +353,27 @@
                             iToken
                         );
                     setOffsets(result, iToken);
+                    setResult(result);
+          $EndCode
+        ./
+    simpleNameCS -> QuotedSimpleNameCS
+    QuotedSimpleNameCS ::= QUOTED_IDENTIFIER
+        /.$BeginCode
+                    IToken iToken = getRhsIToken(1);
+                    SimpleNameCS result = createQuotedSimpleNameCS(
+                            SimpleTypeEnum.IDENTIFIER_LITERAL,
+                            iToken
+                        );
+                    setOffsets(result, iToken);
+                    setResult(result);
+          $EndCode
+        ./
+    QuotedSimpleNameCS ::= QuotedSimpleNameCS STRING_LITERAL
+        /.$BeginCode
+                    SimpleNameCS string = (SimpleNameCS)getRhsSym(1);
+                    IToken literalToken = getRhsIToken(2);
+                    SimpleNameCS result = extendQuotedSimpleNameCS(string, literalToken);
+                    setOffsets(result, string, literalToken);
                     setResult(result);
           $EndCode
         ./
