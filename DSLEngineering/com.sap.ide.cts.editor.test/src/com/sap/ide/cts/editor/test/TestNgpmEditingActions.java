@@ -58,9 +58,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
      */
     @Test
     public void testRenameOfAssociationEnd() throws PartInitException, BadLocationException, CoreException {
-        // Copy of: PF.IDE:E0C792CE25597711A2A411DEB83300155883529C
-//      String lriString = "PF.IDE:E0E1B8C684C82AA0ACF111DEBF7C00155883529C";
-//      LRI lri = connection.getSession().getMoin().createLri(lriString);
         final RefObject refObject = findClass("OrderedAssocTestCase");
         assertNotNull(refObject);
         assertTrue(refObject.is___Alive());
@@ -68,15 +65,9 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         CtsDocument document = getDocument(editor);
         String content = document.get();
         document.replace(content.indexOf("Numbers"), "Numbers".length(), "String");
-        
-//      assertEquals(
-//                      "Unexpected document content",
-//                      "class OrderedAssocTestCase {\n\t\tString[] orderedString {., =, +=, -=}\n\t\tPerson[] orderedPersons {., =, +=, -=}\n}", document.get());
-//      
         saveAll(editor);
         // failOnError(editor);
         assertTrue(refObject.is___Alive());
-        // Your assertions on refObject here
         SapClass c = (SapClass) refObject;
         for (MethodSignature ms : c.getOwnedSignatures()) {
             if (ms.getName().equals(".orderedNumbers") || ms.getName().equals("orderedNumbers+=")

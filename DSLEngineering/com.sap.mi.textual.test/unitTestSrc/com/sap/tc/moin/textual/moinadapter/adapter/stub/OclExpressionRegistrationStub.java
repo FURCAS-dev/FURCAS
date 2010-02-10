@@ -1,13 +1,16 @@
 package com.sap.tc.moin.textual.moinadapter.adapter.stub;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
+import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.ocl.debugger.OclDebuggerNode;
@@ -133,6 +136,19 @@ public class OclExpressionRegistrationStub implements OclExpressionRegistration 
 	public OclExpression getExpression() {
 	    // TODO Auto-generated method stub
 	    return null;
+	}
+
+	@Override
+	public Set<MRI> getAffectedModelElements(EventChain events, Connection conn) {
+	    // TODO Auto-generated method stub
+	    return null;
+	}
+
+	@Override
+	public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events,
+		String replacementFor__TEMP__) {
+	    // TODO Auto-generated method stub
+	    return false;
 	}
 
 }

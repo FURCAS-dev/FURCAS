@@ -2,9 +2,11 @@ package com.sap.tc.moin.repository.core.ocl.service.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +25,7 @@ import com.sap.tc.moin.ocl.evaluator.stdlib.impl.OclVoidImpl;
 import com.sap.tc.moin.ocl.ia.ClassScopeAnalyzer;
 import com.sap.tc.moin.ocl.ia.Statistics;
 import com.sap.tc.moin.ocl.ia.instancescope.InstanceScopeAnalysis;
+import com.sap.tc.moin.ocl.ia.instancescope.NavigationStep;
 import com.sap.tc.moin.ocl.ia.instancescope.PathCache;
 import com.sap.tc.moin.ocl.parser.IOclParser;
 import com.sap.tc.moin.ocl.parser.OclParserFactory;
@@ -36,7 +39,9 @@ import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.core.ConnectionWrapper;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.events.VetoException;
+import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.events.ChangeListener;
+import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
@@ -65,6 +70,7 @@ import com.sap.tc.moin.repository.shared.logger.MoinLocationEnum;
 import com.sap.tc.moin.repository.shared.logger.MoinLogger;
 import com.sap.tc.moin.repository.shared.logger.MoinLoggerFactory;
 import com.sap.tc.moin.repository.shared.logger.MoinSeverity;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * @author d022737
@@ -142,10 +148,10 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         }
     }
 
-    public OclExpressionRegistrationImpl( CoreConnection connection, String name, String oclExpression, OclRegistrationSeverity severity, String[] categories, RefObject context, RefPackage[] typesPackages, PathCache instanceScopeAnalysisPathCache ) throws OclManagerException {
-
+    public OclExpressionRegistrationImpl(CoreConnection connection, String name, String oclExpression,
+	    OclRegistrationSeverity severity, String[] categories, RefObject context, RefPackage[] typesPackages) throws OclManagerException {
         super( connection, name, OclRegistrationType.Expression, severity, categories, oclExpression, context, "ExpressionRegistration" ); //$NON-NLS-1$
-        this.instanceScopeAnalysisPathCache = instanceScopeAnalysisPathCache;
+        this.instanceScopeAnalysisPathCache = new PathCache();
         IOclParser parser = OclParserFactory.create( this.myJmiCreator );
         try {
             Set<OclStatement> parserResult = parser.parseString( this.getOclExpression( ), this.parsingConext, typesPackages );
@@ -603,10 +609,23 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
 
     @Override
     public Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn) {
+	Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache = new HashMap<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>>();
+	return getAffectedModelElements(mce, conn, cache);
+    }
+
+    private Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn,
+	    Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
 	try {
+	    CoreConnection coreConnection;
+	    if (conn instanceof CoreConnection) {
+		coreConnection = (CoreConnection) conn;
+	    } else {
+		coreConnection = ((ConnectionWrapper) conn).unwrap();
+	    }
 	    Statistics.getInstance().receivedEvent(this, mce);
 	    long time = System.nanoTime();
-	    Set<MRI> affectedModelElements = getImpactAnalyzer((CoreConnection) conn).getAffectedElements((MofClassImpl) getContext(), mce);
+	    Set<MRI> affectedModelElements = getImpactAnalyzer(coreConnection).getAffectedElements(
+		    (MofClassImpl) getContext(), mce, cache);
 	    Statistics.getInstance().instanceScopeAnalysisPerformed(this, mce, System.nanoTime() - time,
 		    affectedModelElements.size());
 	    return affectedModelElements;
@@ -669,11 +688,10 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
         if ( !notifyRequired ) {
             return;
         }
-        Set<MRI> affectedModelElements = new HashSet<MRI>( );
-        for (ModelChangeEvent mce : collectedEvents) {
-            if (getContext() instanceof MofClass) { // instance-scope impact analysis only defined for class-like context types
-        	affectedModelElements.addAll(getImpactAnalyzer(((ConnectionWrapper) mce.getEventTriggerConnection()).unwrap()).getAffectedElements((MofClass) getContext(), mce));
-            }
+        Set<MRI> affectedModelElements = Collections.emptySet();
+        if (collectedEvents.size() > 0) {
+            Connection conn = collectedEvents.iterator().next().getEventTriggerConnection();
+            affectedModelElements = getImpactAnalyzer(((ConnectionWrapper) conn).unwrap()).getAffectedElements((MofClass) getContext(), collectedEvents);
         }
 
         if ( affectedModelElements.isEmpty( ) ) {
@@ -760,6 +778,28 @@ public class OclExpressionRegistrationImpl extends OclRegistrationImpl implement
     @Override
     public OclExpression getExpression() {
 	return getOclStatement().getExpression();
+    }
+
+    @Override
+    public Set<MRI> getAffectedModelElements(EventChain events, Connection conn) {
+	Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache = new HashMap<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>>();
+	Set<MRI> result = new LinkedHashSet<MRI>();
+	for (ChangeEvent e : events.getEvents()) {
+	    if (e instanceof ModelChangeEvent) {
+		result.addAll(getAffectedModelElements((ModelChangeEvent) e, conn, cache));
+	    }
+	}
+	return result;
+    }
+
+    @Override
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events, String replacementFor__TEMP__) {
+	boolean result = false;
+	if (events.size() > 0) {
+	    result = getImpactAnalyzer(((ConnectionWrapper) events.iterator().next().getEventTriggerConnection()).unwrap()).
+	    	isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events, replacementFor__TEMP__);
+	}
+	return result;
     }
     
 }

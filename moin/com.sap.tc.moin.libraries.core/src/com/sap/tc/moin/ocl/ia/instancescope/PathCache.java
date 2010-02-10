@@ -21,7 +21,16 @@ import com.sap.tc.moin.repository.mmi.model.MofClass;
  * recursive operation calls.<p>
  * 
  * During the analysis of the traceback paths, for each subexpression visited, the
- * {@link NavigationPath} for that node is stored in this cache.
+ * {@link NavigationPath} for that node is stored in this cache.<p>
+ * 
+ * Don't re-use an instance of this class for analyzing more than one expression when those
+ * expressions are dynamically parsed, e.g., as with the {@link OclExpressionRegistryImpl} class because
+ * in those cases, new operation calls are created dynamically which turn existing entries in the
+ * {@link PathCache} for <tt>self</tt> and parameter expressions of the operation called invalid.
+ * Additionally, all dependent paths would become invalid too. Identifying and removing those
+ * entries from a {@link PathCache} seems to cause more effort than using a new {@link PathCache}
+ * object for each expression analyzed, particularly given the fact that the {@link NavigationPath}
+ * assembly only has to happen once per life-time of an {@link OclExpression} during a session.
  * 
  * @author Axel Uhl D043530
  *

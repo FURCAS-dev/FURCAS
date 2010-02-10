@@ -49,7 +49,7 @@ public abstract class ReferenceService {
 			ModelElement element = iter.next();
 			if (element instanceof Reference) {
 				Reference reference = (Reference) element;
-				if (reference != null && associationEnd.equals(reference.getReferencedEnd())) {
+				if (associationEnd.equals(reference.getReferencedEnd())) {
 					references.add(reference);
 				}
 			}

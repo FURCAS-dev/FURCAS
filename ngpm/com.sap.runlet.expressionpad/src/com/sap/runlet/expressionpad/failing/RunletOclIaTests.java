@@ -108,6 +108,8 @@ public class RunletOclIaTests extends TestCase {
 	// no elements are expected to be affected; the ClassTypeDefinition marks the output
 	// of the "t0" MethodSignature on the output multiplicity test class. The OCL expression,
 	// however, only considers ObjectBasedExpression elements.
+	
+	// FIXME we're currently getting 191 results here; check if this was to be expected...
 	assertEquals(0, affectedElements.size());
     }
 

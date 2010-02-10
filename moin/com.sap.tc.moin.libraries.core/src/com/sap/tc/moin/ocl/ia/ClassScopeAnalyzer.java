@@ -62,6 +62,10 @@ import com.sap.tc.moin.repository.spi.core.Wrapper;
 public class ClassScopeAnalyzer extends TreeWalker {
     final private boolean notifyNewContextElements;
     final private Set<EventFilter> filters = new HashSet<EventFilter>();
+    
+    /**
+     * For each operation body analyzed, stores the calls to the operation that were visited
+     */
     final private Map<OclExpression, Set<OperationCallExp>> visitedOperationBodies = new HashMap<OclExpression, Set<OperationCallExp>>();
     
     // TODO declare structures to accumulate the events of the expression analyzed; may need to add some data to avoid
@@ -104,7 +108,7 @@ public class ClassScopeAnalyzer extends TreeWalker {
      * value of the expression may have changed for one or more evaluation contexts. To determine a superset of those
      * context elements for which the value may have changed, feed the event and the {@link OclStatement} holding the
      * expression and its context into
-     * {@link InstanceScopeAnalysis#getAffectedElements(com.sap.tc.moin.ocl.utils.OclStatement, com.sap.tc.moin.repository.events.type.ModelChangeEvent)}.
+     * {@link InstanceScopeAnalysis#getAffectedElements(com.sap.tc.moin.ocl.utils.OclStatement, com.sap.tc.moin.repository.events.type.ModelChangeEvent, Map)}.
      */
     public EventFilter getEventFilter() {
 	return new OrFilter(filters);
@@ -162,8 +166,8 @@ public class ClassScopeAnalyzer extends TreeWalker {
 		Set<OperationCallExp> analyzedCallsToBody = visitedOperationBodies.get(body);
 		if (analyzedCallsToBody == null) {
 		    analyzedCallsToBody = new HashSet<OperationCallExp>();
-		    visitedOperationBodies.put(body, analyzedCallsToBody);
 		    // we didn't analyze the body on behalf of the this analyzer's root expression yet; do it now: 
+		    visitedOperationBodies.put(body, analyzedCallsToBody);
 		    walk(body);
 		}
 		analyzedCallsToBody.add(exp);

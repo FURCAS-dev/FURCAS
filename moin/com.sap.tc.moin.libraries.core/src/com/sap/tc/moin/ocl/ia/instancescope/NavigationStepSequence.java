@@ -1,7 +1,6 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Performs a sequence of navigation steps where the subsequent step uses as its input
@@ -168,7 +168,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
     }
 
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
 	Set<RefObjectImpl> result = Collections.singleton(fromObject);
 	if (isAlwaysEmpty()) {
 	    result = Collections.emptySet();
@@ -176,14 +176,14 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 	    // If the navigation along the sequence produces an empty set, we can abort
 	    // the navigation.
 	    for (int i=0; !result.isEmpty() && i<getSteps().length; i++) {
-		result = getSteps()[i].navigate(conn, result);
+		result = getSteps()[i].navigate(conn, result, cache);
 	    }
 	}
 	return result;
     }
 
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	StringBuilder sb = new StringBuilder();
 	boolean first = true;
 	for (NavigationStep step : getSteps()) {
@@ -193,7 +193,7 @@ public class NavigationStepSequence extends CompositeNavigationStep {
 		first = false;
 	    }
 	    if (step instanceof AbstractNavigationStep) {
-		sb.append(((AbstractNavigationStep) step).toString(visited, maxId, indent));
+		sb.append(((AbstractNavigationStep) step).toString(visited, indent));
 	    } else {
 		sb.append(step);
 	    }

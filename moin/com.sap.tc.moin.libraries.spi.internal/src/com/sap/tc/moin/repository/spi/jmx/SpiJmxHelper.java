@@ -374,7 +374,7 @@ public final class SpiJmxHelper {
             AnnotatedStandardMBean mbean = new AnnotatedStandardMBean( mbeanImplementation, mbeanInterface );
             mBeanServer.registerMBean( mbean, objectName );
         } catch ( InstanceAlreadyExistsException e ) {
-            //throw new RuntimeException( e );
+            throw new RuntimeException( e );
         } catch ( MBeanRegistrationException e ) {
             throw new RuntimeException( e );
         } catch ( NotCompliantMBeanException e ) {
