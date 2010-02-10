@@ -333,8 +333,8 @@ public class TestNgpmEditingActions extends RunletEditorTest {
         assertTrue(clazz.is___Alive()); 
         AbstractGrammarBasedEditor editor = openEditor(clazz);
         CtsDocument document = getDocument(editor);
-        document.replace(63, 1, "");
-        document.replace(63, 0, "a");
+        document.replace(65, 1, "");
+        document.replace(65, 0, "a");
         saveAll(editor);
         failOnError(editor);
         assertTrue(clazz.is___Alive());
@@ -444,9 +444,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 	@Test
 	public void testCreationOfAnotherAssociation() throws PartInitException,
 			BadLocationException, CoreException {
-		String lriString = "PF.IDE:E0BACD53733F3860B84911DE8E850019D29902CC";
-		LRI lri = connection.getSession().getMoin().createLri(lriString);
-		final RefObject refObject = (RefObject) connection.getElement(lri);
+		final RefObject refObject = (RefObject) findClass("OrdrdStrgsTest");
 		assertNotNull(refObject);
 		assertTrue(refObject.is___Alive());
 		AbstractGrammarBasedEditor editor = openEditor(refObject);
