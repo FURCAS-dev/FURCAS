@@ -72,13 +72,13 @@ public class SimpleResultPage extends WizardPage {
 			ResultObject r = o.getResult();
 			Label label1 = new Label(composite, SWT.CENTER);
 			label1.setText(o.getName());
-			scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 			try{
 			r.getComposite(composite);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
+		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 		setControl(scrolledComposite);
 	}
 	public static String getCustomStackTrace(Throwable aThrowable) {

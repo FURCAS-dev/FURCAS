@@ -513,8 +513,8 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		//get all references of the meta class and link the instance accordingly
 		for (EReference ref:cls.getEAllReferences()){
 			if( ExtendedMetaData.INSTANCE.getAffiliation(cls, ref)==null)
-				//TODO don't know how to handle this stuff
-				continue;
+				//this position should never been reached
+				continue;			
 			//link to already existing classes
 			int lowerBound = ref.getLowerBound();
 			for (EObject resContent:res.getContents()){
