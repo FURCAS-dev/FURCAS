@@ -22,5 +22,11 @@
             type="modifiedocloptimizer"
             class="de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.util.ModifiedOclOptimizerResourceFactoryImpl"/>
    </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
+      <operator
+            operatorClass="de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.EmbedModifiedOclOptOperatorImpl">
+      </operator>
+   </extension>
 
 </plugin>

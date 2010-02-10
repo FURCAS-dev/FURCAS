@@ -147,7 +147,7 @@ public class TestRunImpl extends EObjectImpl implements TestRun {
 	 * @generated NOT
 	 */
 	public boolean setInstanceForClass(Class<?> aClass, Object anObject) {
-		if(! (anObject.getClass().equals(aClass)))
+		if(! (aClass.isInstance(anObject)))
 			throw new IllegalArgumentException(new ClassCastException("Wrong Object for given class"));
 		boolean rtr=this.mapClassToObject.containsKey(aClass);
 		this.mapClassToObject.put(aClass, anObject);

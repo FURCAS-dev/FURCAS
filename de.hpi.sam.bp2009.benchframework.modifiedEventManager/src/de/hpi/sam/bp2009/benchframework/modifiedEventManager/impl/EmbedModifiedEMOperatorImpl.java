@@ -121,7 +121,7 @@ public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedMod
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected EmbedModifiedEMOperatorImpl() {
+	public EmbedModifiedEMOperatorImpl() {
 		super();
 		this.setName(NAME);
 		this.setDescription(DESCRIPTION);

@@ -17,5 +17,11 @@
             class="de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage"
             genModel="model/modifiedEventManager.genmodel"/>
    </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
+      <operator
+            operatorClass="de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.EmbedModifiedEMOperatorImpl">
+      </operator>
+   </extension>
 
 </plugin>
