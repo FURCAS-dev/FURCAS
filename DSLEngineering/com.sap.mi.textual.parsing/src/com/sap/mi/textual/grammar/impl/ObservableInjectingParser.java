@@ -973,6 +973,7 @@ public abstract class ObservableInjectingParser extends ObservablePatchedParser
 				 * error reporting will be done based on metamodel constraints.*/
 				true);
 		unResolvedDelayedReferenceList.add(ref);
+		onDelayedReferenceCreated(ref);
 	}
 
 	/**

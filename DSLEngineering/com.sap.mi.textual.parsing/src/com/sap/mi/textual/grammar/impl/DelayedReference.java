@@ -41,6 +41,8 @@ public class DelayedReference implements Cloneable {
     /** Constant for reference type semantic predicate */
     public static final int SEMANTIC_PREDICATE = 1;
 
+    public static final int CONTEXT_LOOKUP = 2;
+
     /** The current context. */
     private Object referenceContextObject;
 
