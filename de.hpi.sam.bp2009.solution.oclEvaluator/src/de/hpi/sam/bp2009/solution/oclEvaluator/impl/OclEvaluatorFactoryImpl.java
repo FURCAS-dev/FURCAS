@@ -6,6 +6,7 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
+import de.hpi.sam.bp2009.solution.oclEvaluator.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import org.eclipse.ocl.expressions.OCLExpression;
 import de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
@@ -80,6 +82,8 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 		switch (eDataType.getClassifierID()) {
 			case OclEvaluatorPackage.INTERPRETER:
 				return createInterpreterFromString(eDataType, initialValue);
+			case OclEvaluatorPackage.EXPRESSION:
+				return createexpressionFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -95,6 +99,8 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 		switch (eDataType.getClassifierID()) {
 			case OclEvaluatorPackage.INTERPRETER:
 				return convertInterpreterToString(eDataType, instanceValue);
+			case OclEvaluatorPackage.EXPRESSION:
+				return convertexpressionToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -138,6 +144,24 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 	 */
 	public String convertInterpreterToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OCLExpression createexpressionFromString(EDataType eDataType, String initialValue) {
+		return (OCLExpression)super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertexpressionToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

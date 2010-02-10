@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
@@ -16,6 +17,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.ocl.ecore.EcorePackage;
 
+import org.eclipse.ocl.expressions.OCLExpression;
 import de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
@@ -49,6 +51,13 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 	 * @generated
 	 */
 	private EEnum interpreterEEnum = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType expressionEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -146,8 +155,8 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getOclQuery_Expression() {
-		return (EReference)oclQueryEClass.getEStructuralFeatures().get(1);
+	public EAttribute getOclQuery_Expression() {
+		return (EAttribute)oclQueryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -156,6 +165,15 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 	 * @generated
 	 */
 	public EAttribute getOclQuery_Result() {
+		return (EAttribute)oclQueryEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getOclQuery_Map() {
 		return (EAttribute)oclQueryEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -166,6 +184,15 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 	 */
 	public EEnum getInterpreter() {
 		return interpreterEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EDataType getexpression() {
+		return expressionEDataType;
 	}
 
 	/**
@@ -200,11 +227,15 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 
 		oclQueryEClass = createEClass(OCL_QUERY);
 		createEReference(oclQueryEClass, OCL_QUERY__CONTEXT);
-		createEReference(oclQueryEClass, OCL_QUERY__EXPRESSION);
 		createEAttribute(oclQueryEClass, OCL_QUERY__RESULT);
+		createEAttribute(oclQueryEClass, OCL_QUERY__MAP);
+		createEAttribute(oclQueryEClass, OCL_QUERY__EXPRESSION);
 
 		// Create enums
 		interpreterEEnum = createEEnum(INTERPRETER);
+
+		// Create data types
+		expressionEDataType = createEDataType(EXPRESSION);
 	}
 
 	/**
@@ -232,7 +263,6 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 
 		// Obtain other dependent packages
 		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -262,13 +292,24 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 
 		initEClass(oclQueryEClass, OclQuery.class, "OclQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOclQuery_Context(), ecorePackage.getEObject(), null, "context", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getOclQuery_Expression(), theEcorePackage.getOCLExpression(), null, "expression", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOclQuery_Result(), ecorePackage.getEJavaObject(), "result", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(theEcorePackage_1.getEClass());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(theEcorePackage_1.getEEList());
+		g1.getETypeArguments().add(g2);
+		EGenericType g3 = createEGenericType(theEcorePackage_1.getEObject());
+		g2.getETypeArguments().add(g3);
+		initEAttribute(getOclQuery_Map(), g1, "map", null, 0, 1, OclQuery.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOclQuery_Expression(), this.getexpression(), "expression", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(interpreterEEnum, Interpreter.class, "Interpreter");
 		addEEnumLiteral(interpreterEEnum, Interpreter.OCL);
 		addEEnumLiteral(interpreterEEnum, Interpreter.MQL);
+
+		// Initialize data types
+		initEDataType(expressionEDataType, OCLExpression.class, "expression", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

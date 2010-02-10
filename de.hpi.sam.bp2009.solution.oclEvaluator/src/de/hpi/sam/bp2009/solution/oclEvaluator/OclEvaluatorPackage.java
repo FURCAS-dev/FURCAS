@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.solution.oclEvaluator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -99,22 +100,31 @@ public interface OclEvaluatorPackage extends EPackage {
 	int OCL_QUERY__CONTEXT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Expression</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_QUERY__EXPRESSION = 1;
-
-	/**
 	 * The feature id for the '<em><b>Result</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_QUERY__RESULT = 2;
+	int OCL_QUERY__RESULT = 1;
+
+	/**
+	 * The feature id for the '<em><b>Map</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_QUERY__MAP = 2;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_QUERY__EXPRESSION = 3;
 
 	/**
 	 * The number of structural features of the '<em>Ocl Query</em>' class.
@@ -123,7 +133,7 @@ public interface OclEvaluatorPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_QUERY_FEATURE_COUNT = 3;
+	int OCL_QUERY_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}' enum.
@@ -134,6 +144,16 @@ public interface OclEvaluatorPackage extends EPackage {
 	 * @generated
 	 */
 	int INTERPRETER = 2;
+
+	/**
+	 * The meta object id for the '<em>expression</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.ocl.expressions.OCLExpression
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getexpression()
+	 * @generated
+	 */
+	int EXPRESSION = 3;
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator <em>OCL Evaluator</em>}'.
@@ -167,15 +187,15 @@ public interface OclEvaluatorPackage extends EPackage {
 	EReference getOclQuery_Context();
 
 	/**
-	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}'.
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @return the meta object for the attribute '<em>Expression</em>'.
 	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression()
 	 * @see #getOclQuery()
 	 * @generated
 	 */
-	EReference getOclQuery_Expression();
+	EAttribute getOclQuery_Expression();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}'.
@@ -189,6 +209,17 @@ public interface OclEvaluatorPackage extends EPackage {
 	EAttribute getOclQuery_Result();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap <em>Map</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Map</em>'.
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap()
+	 * @see #getOclQuery()
+	 * @generated
+	 */
+	EAttribute getOclQuery_Map();
+
+	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,6 +228,17 @@ public interface OclEvaluatorPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getInterpreter();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.ocl.expressions.OCLExpression <em>expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>expression</em>'.
+	 * @see org.eclipse.ocl.expressions.OCLExpression
+	 * @model instanceClass="org.eclipse.ocl.expressions.OCLExpression"
+	 * @generated
+	 */
+	EDataType getexpression();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -249,12 +291,12 @@ public interface OclEvaluatorPackage extends EPackage {
 		EReference OCL_QUERY__CONTEXT = eINSTANCE.getOclQuery_Context();
 
 		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference OCL_QUERY__EXPRESSION = eINSTANCE.getOclQuery_Expression();
+		EAttribute OCL_QUERY__EXPRESSION = eINSTANCE.getOclQuery_Expression();
 
 		/**
 		 * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
@@ -265,6 +307,14 @@ public interface OclEvaluatorPackage extends EPackage {
 		EAttribute OCL_QUERY__RESULT = eINSTANCE.getOclQuery_Result();
 
 		/**
+		 * The meta object literal for the '<em><b>Map</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_QUERY__MAP = eINSTANCE.getOclQuery_Map();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -273,6 +323,16 @@ public interface OclEvaluatorPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum INTERPRETER = eINSTANCE.getInterpreter();
+
+		/**
+		 * The meta object literal for the '<em>expression</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.ocl.expressions.OCLExpression
+		 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getexpression()
+		 * @generated
+		 */
+		EDataType EXPRESSION = eINSTANCE.getexpression();
 
 	}
 

@@ -6,8 +6,11 @@
  */
 package de.hpi.sam.bp2009.solution.oclEvaluator;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.ecore.OCLExpression;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,8 +21,9 @@ import org.eclipse.ocl.ecore.OCLExpression;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap <em>Map</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,26 +59,26 @@ public interface OclQuery extends EObject {
 	void setContext(EObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Expression</b></em>' reference.
+	 * Returns the value of the '<em><b>Expression</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Expression</em>' reference.
+	 * @return the value of the '<em>Expression</em>' attribute.
 	 * @see #setExpression(OCLExpression)
 	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Expression()
-	 * @model
+	 * @model dataType="de.hpi.sam.bp2009.solution.oclEvaluator.expression"
 	 * @generated
 	 */
 	OCLExpression getExpression();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}' reference.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Expression</em>' reference.
+	 * @param value the new value of the '<em>Expression</em>' attribute.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -105,5 +109,31 @@ public interface OclQuery extends EObject {
 	 * @generated
 	 */
 	void setResult(Object value);
+
+	/**
+	 * Returns the value of the '<em><b>Map</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Map</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Map</em>' attribute.
+	 * @see #setMap(Map)
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Map()
+	 * @model transient="true"
+	 * @generated
+	 */
+	Map<EClass, EList<EObject>> getMap();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap <em>Map</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Map</em>' attribute.
+	 * @see #getMap()
+	 * @generated
+	 */
+	void setMap(Map<EClass, EList<EObject>> value);
 
 } // OclQuery
