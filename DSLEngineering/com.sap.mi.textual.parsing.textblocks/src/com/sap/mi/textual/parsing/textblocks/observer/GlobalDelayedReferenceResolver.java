@@ -31,6 +31,7 @@ import tcs.LookupPropertyInit;
 import tcs.PredicateSemantic;
 import tcs.Property;
 import tcs.QueryParg;
+import tcs.RefersToParg;
 import tcs.Template;
 import textblockdefinition.TextBlockDefinition;
 import textblockdefinition.TextblockDefinitionReferencesProduction;
@@ -121,8 +122,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
 	@Override
 	public void notifyUpdate(EventChain events) {
-	    for (ChangeEvent event : events.getEvents()) {
-		Connection conn = event.getEventTriggerConnection();
+	    if (events.getEvents().size() > 0) {
+		Connection conn = events.getEvents().iterator().next().getEventTriggerConnection();
 		if(reference.isGenericReference()) {
 		     //Its a generic reference not an unresolved one
 		     if(reference.getQueryElement() != null) {
@@ -212,33 +213,38 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
          //now find all TextBlocks referencing this property;
          LexedTokenReferenesSequenceElement lexedTokenSeqElAssoc = conn.getAssociation(LexedTokenReferenesSequenceElement.ASSOCIATION_DESCRIPTOR);
          Collection<LexedToken> toks = lexedTokenSeqElAssoc.getLexedtoken(property);
-         Set<MRI> affectedElements = null;
-         for (LexedToken lt : toks) {
-         if (affectedElements == null) {
-             affectedElements = getAffectedElements(events, conn);
+         Set<MRI> affectedElements = getAffectedElements(events, conn);
+         if(affectedElements.size() > 0) {
+             for (LexedToken lt : toks) {
+                 Set<RefObject> intersectionOfCorrespondingAndAffectedElements = null;
+                 if(reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
+                     intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+                             conn, affectedElements, lt.getParentBlock());
+                 } else {
+                     intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(lt.getParentBlock().getCorrespondingModelElements());
+                 }
+                 //TODO Actually we would have to analyse the OCL reference and check 
+                 //for an intersection of the affectedElements with the token's value
+                 //as this is the only hint we have at this place
+                if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+                        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+                                    conn, lt.getParentBlock());
+                		for (RefObject ro : result) {
+                		    DelayedReference clonedRef = (DelayedReference) reference.clone();
+                                            clonedRef.setModelElement(ro);
+                                            clonedRef.setRealValue(null);
+                                            clonedRef.setConnection(conn);
+                                            
+                                            clonedRef.setToken(new LexedTokenWrapper(lt));
+                                            clonedRef.setTextBlock(lt.getParentBlock());
+                                            clonedRef.setKeyValue(lt.getValue());
+                		    String oclQuery = clonedRef.getOclQuery();
+                		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+                		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+                		}
+                }
+            }
          }
-        Set<RefObject> intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-        	conn, affectedElements, lt.getParentBlock());
-         //TODO Actually we would have to analyse the OCL reference and check 
-         //for an intersection of the affectedElements with the token's value
-         //as this is the only hint we have at this place
-        if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-                Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-                            conn, lt.getParentBlock());
-        		for (RefObject ro : result) {
-        		    DelayedReference clonedRef = (DelayedReference) reference.clone();
-                                    clonedRef.setModelElement(ro);
-                                    clonedRef.setRealValue(null);
-                                    clonedRef.setConnection(conn);
-                                    
-                                    clonedRef.setToken(new LexedTokenWrapper(lt));
-                                    clonedRef.setKeyValue(lt.getValue());
-        		    String oclQuery = clonedRef.getOclQuery();
-        		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-        		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-        		}
-        }
-        }
     }
 
 	
@@ -259,8 +265,8 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 		if (isContext) {
 	            LocalContextBuilder localContextBuilder = new LocalContextBuilder();
 	            TbUtil.constructContext(node,	localContextBuilder);
-			if(!localContextBuilder.getContextStack().isEmpty()) {
-			    correspondingModelElements = new ArrayList<RefObject>(); 
+	                correspondingModelElements = new ArrayList<RefObject>();
+			if(!localContextBuilder.getContextStack().isEmpty()) { 
 			    correspondingModelElements.add((RefObject) localContextBuilder.getContextStack().peek().getRealObject());
 			}
 	        } else {
@@ -823,6 +829,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         if (template != null && template.getMetaReference() instanceof MofClass) {
             // TODO what about StructureTypes?
             QueryParg qarg = TcsUtil.getQueryParg(property);
+            RefersToParg refersToArg = TcsUtil.getRefersToParg(property);
             FilterParg filter = TcsUtil.getFilterParg(property);
             if (qarg != null) {
                 try {
@@ -880,6 +887,61 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
                     e.printStackTrace();
                 } catch(MoinLocalizedBaseRuntimeException ex) {
                     System.err.println("Failed to register at IA: " + qarg.getQuery() + "\n" + ex.getMessage());
+                    ex.printStackTrace();
+                }
+            } else if(refersToArg != null) {
+                String query = refersToArg.getPropertyName();
+                try {                   
+                    RefObject parsingContext = null;
+                    if (!MoinHelper.usesContext(query)) {
+                        query = "self.lookInContext(null)";
+                    } else {
+                        parsingContext = elementClass;
+                        // TODO add context tag instead of "null"
+                        query = "self.lookInContext(null)";
+                    }
+                    String qualifiedName = TcsUtil.joinNameList(property.getPropertyReference().getStrucfeature().getType().getQualifiedName());
+                    query += "->select(e | e.oclIsKindOf(" +
+                            qualifiedName + "))->select(e | e.oclAsType(" + qualifiedName + ")."
+                            + refersToArg.getPropertyName() + " = '" + TEMPORARY_QUERY_PARAM_REPLACEMENT + "')";;
+                    
+                    DelayedReference ref = new DelayedReference(
+                            null,
+                            null,
+                            property.getPropertyReference().getStrucfeature().getName(),
+                            null, null, query, false, null);
+                    ref.setType(DelayedReference.CONTEXT_LOOKUP);
+                    parsingContext = connection.getClass(TextBlock.CLASS_DESCRIPTOR).refMetaObject();
+                    ref.setQueryElement(property);
+                    ref.setGenericReference(true);
+                    String name = "<genericReference>" + property.refMofId();
+                    OclExpressionRegistration registration = (OclExpressionRegistration) connection
+                        .getOclRegistryService().getFreestyleRegistry()
+                        .getRegistration(name);
+                    if (registration != null) {
+                        connection.getOclRegistryService().getFreestyleRegistry()
+                            .deleteRegistration(name);
+                    }
+                    registration = connection.getOclRegistryService()
+                        .getFreestyleRegistry().createExpressionRegistration(name,
+                            query, OclRegistrationSeverity.Info,
+                            new String[] { "TCS Property Context Lookup" }, parsingContext,
+                            packagesForLookup.toArray(new RefPackage[] {}));
+                    Map<EventFilter, Map<ListenerType, EventListener>> reEvaluationListener = createReEvaluationListener(
+                        registration, ref);
+                    GlobalEventListenerRegistry registry = (GlobalEventListenerRegistry) context
+                        .getService(globalEventListenerRegistryRef);
+                    registry.addFilters(reEvaluationListener);
+                    registration2DelayedReference.put(registration.getName(), ref);
+                    delayedReference2Registration.put(ref, registration.getName());
+                    delayedReference2ReEvaluationListener.put(ref,
+                        reEvaluationListener);
+
+                } catch (OclManagerException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch(MoinLocalizedBaseRuntimeException ex) {
+                    System.err.println("Failed to register at IA: " + query + "\n" + ex.getMessage());
                     ex.printStackTrace();
                 }
             }
