@@ -11,7 +11,9 @@ import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
+import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.reflect.RefBaseObject;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -79,7 +81,7 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
             Object result = this.oclExpressionRegistration.evaluateExpression( contextMri );
             if ( result instanceof Collection ) {
                 if ( result instanceof JmiList ) {
-                    return this.connection.getWrapperForJmiList( (JmiList) result );
+                    return this.connection.getWrapperForJmiList( (JmiList<?>) result );
                 }
                 return this.getConnectionWrappingCollection( (Collection) result );
 
@@ -176,8 +178,6 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
     public boolean registerEventBasedInvalidationListener( ExpressionInvalidationListener listener, Collection<MRI> objectFilter, boolean immediate ) {
 
         synchronized ( this.synchronizationManager.getProhibitWriteSyncObject( ) ) {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
             return this.oclExpressionRegistration.registerEventBasedInvalidationListener( listener, objectFilter, immediate );
         }
     }
@@ -185,8 +185,6 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
     public boolean registerEventBasedInvalidationListener( ExpressionInvalidationListener listener, boolean immediate ) {
 
         synchronized ( this.synchronizationManager.getProhibitWriteSyncObject( ) ) {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
             return this.oclExpressionRegistration.registerEventBasedInvalidationListener( listener, immediate );
         }
     }
@@ -194,67 +192,30 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
     public boolean registerPartitionBasedInvalidationListener( String category, ExpressionInvalidationListener listener ) throws IllegalArgumentException {
 
         synchronized ( this.synchronizationManager.getProhibitWriteSyncObject( ) ) {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
             return this.oclExpressionRegistration.registerPartitionBasedInvalidationListener( category, listener );
         }
     }
 
     public boolean registerPartitionBasedInvalidationListener( String category, ExpressionInvalidationListener listener, Collection<MRI> objectFilter ) throws IllegalArgumentException {
-
         synchronized ( this.synchronizationManager.getProhibitWriteSyncObject( ) ) {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
             return this.oclExpressionRegistration.registerPartitionBasedInvalidationListener( category, listener, objectFilter );
         }
     }
 
     public boolean unregisterInvalidationListener( ExpressionInvalidationListener listener ) {
-
-        this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return this.oclExpressionRegistration.unregisterInvalidationListener( listener );
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }
+	return this.oclExpressionRegistration.unregisterInvalidationListener( listener );
     }
 
     public Set<String> getCategories( ) {
-
-        this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return this.oclExpressionRegistration.getCategories( );
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }
+	return this.oclExpressionRegistration.getCategories( );
     }
 
     public String getName( ) {
-
-        this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return this.oclExpressionRegistration.getName( );
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }
+	return this.oclExpressionRegistration.getName( );
     }
 
     public String getOclExpression( ) {
-
-        this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return this.oclExpressionRegistration.getOclExpression( );
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }
+	return this.oclExpressionRegistration.getOclExpression( );
     }
 
     public OclRegistrationSeverity getSeverity( ) {
@@ -288,14 +249,7 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
 
     @Override
     public Set<MRI> getAffectedModelElements(ModelChangeEvent mce, Connection conn) {
-//	this.synchronizationManager.acquireReadLock( );
-//        try {
-//            assertConnectionAlive( );
-//            attachConnectionIfRequired( );
-            return this.oclExpressionRegistration.getAffectedModelElements(mce, ((ConnectionWrapper)conn).getCoreConnection());
-//        } finally {
-//            this.synchronizationManager.releaseReadLock( );
-//        }
+	return this.oclExpressionRegistration.getAffectedModelElements(mce, ((ConnectionWrapper)conn).getCoreConnection());
     }
 
     @Override
@@ -312,26 +266,24 @@ public class OclExpressionRegistrationWrapper extends AbstractConnectionAwareWra
 
     @Override
     public RefObject getContext() {
-	this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return connection.getWrapperForJmiObject(this.oclExpressionRegistration.getContext());
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }    
+	return connection.getWrapperForJmiObject(this.oclExpressionRegistration.getContext());
     }
 
     @Override
     public OclExpression getExpression() {
-	this.synchronizationManager.acquireReadLock( );
-        try {
-            assertConnectionAlive( );
-            attachConnectionIfRequired( );
-            return connection.getWrapperForJmiObject(this.oclExpressionRegistration.getExpression());
-        } finally {
-            this.synchronizationManager.releaseReadLock( );
-        }    
+	return connection.getWrapperForJmiObject(this.oclExpressionRegistration.getExpression());
+    }
+
+    @Override
+    public Set<MRI> getAffectedModelElements(EventChain events, Connection conn) {
+        return this.oclExpressionRegistration.getAffectedModelElements(events, conn);
+    }
+
+    @Override
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events,
+	    String replacementFor__TEMP__) {
+	return this.oclExpressionRegistration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events,
+		replacementFor__TEMP__);
     }
     
 }

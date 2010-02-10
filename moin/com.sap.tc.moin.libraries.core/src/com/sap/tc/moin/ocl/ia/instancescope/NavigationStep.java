@@ -1,5 +1,6 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
@@ -8,6 +9,7 @@ import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * During instance scope analysis, starting from an event's source element, by navigation the analyzer is trying to find
@@ -31,11 +33,11 @@ import com.sap.tc.moin.repository.mmi.reflect.RefObject;
  * 
  */
 public interface NavigationStep {
-    Set<RefObjectImpl> navigate(CoreConnection conn, Set<RefObjectImpl> from);
+    Set<RefObjectImpl> navigate(CoreConnection conn, Set<RefObjectImpl> from, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache);
     
     /**
      * Some "navigation" steps produce absolute results, ignoring the <tt>from</tt> object that is
-     * passed to {@link #navigate(CoreConnection, Set)}. Those must return <tt>true</tt> here.
+     * passed to {@link #navigate(CoreConnection, Set, Map)}. Those must return <tt>true</tt> here.
      * Examples are navigation steps returning all instances of a given type and the step always
      * returning the empty set.
      */

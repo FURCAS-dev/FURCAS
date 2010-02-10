@@ -80,7 +80,7 @@ public class CtsEditorTest extends FixtureBasedTest {
 	protected void saveAll(AbstractGrammarBasedEditor editor) throws CoreException {
 		for (Saveable s : editor.getSaveables()) {
 		    s.doSave(new NullProgressMonitor());
-		    System.out.println("saved");
+		    GlobalDelayedReferenceResolver.getInstance().resolveReferences(new NullProgressMonitor());
 		}
 		
 		if(!GlobalDelayedReferenceResolver.getInstance().hasEmptyQueue()) {

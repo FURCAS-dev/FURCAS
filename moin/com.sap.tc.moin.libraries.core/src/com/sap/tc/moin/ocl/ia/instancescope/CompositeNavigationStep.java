@@ -20,7 +20,7 @@ public abstract class CompositeNavigationStep extends AbstractNavigationStep {
 	this.steps = steps;
     }
     
-    protected NavigationStep[] getSteps() {
+    public NavigationStep[] getSteps() {
 	return steps;
     }
 

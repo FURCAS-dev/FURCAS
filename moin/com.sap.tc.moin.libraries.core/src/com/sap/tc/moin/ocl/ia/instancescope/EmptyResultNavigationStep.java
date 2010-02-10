@@ -1,13 +1,14 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
 
@@ -17,12 +18,12 @@ public class EmptyResultNavigationStep extends AbsoluteNavigationStep {
     }
     
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
 	return Collections.emptySet();
     }
     
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return "<empty>";
     }
 

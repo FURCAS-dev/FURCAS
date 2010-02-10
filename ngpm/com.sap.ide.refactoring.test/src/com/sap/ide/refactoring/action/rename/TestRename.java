@@ -25,7 +25,7 @@ public class TestRename extends RefactoringBaseTest {
 	facade = createEditorFacadeForRunletClass("Class1");
 
 	sut = new RenameRefactoring(facade);
-	sut.setNewModelElementName(newName);
+	assertTrue(sut.setNewModelElementName(newName).isOK());
 	sut.setRenameTarget(facade.getDecoratedDomainRootObject());
 
 	assertTrue(sut.checkInitialConditions(new NullProgressMonitor()).isOK());

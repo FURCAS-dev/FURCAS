@@ -108,7 +108,6 @@ public final class MarkerManager extends EventManager implements IResourceChange
 
 	private static MarkerManager sInstance;
 
-	
 	private ObjectName mBeanName;
 	private MarkerManagerMBean mBean;
 	private final MarkerCache markerCache = new MarkerCache();
@@ -130,8 +129,6 @@ public final class MarkerManager extends EventManager implements IResourceChange
 		public void onMarkerChange(IProject affectedProject);
 	}
 
-	
-	
 	/**
 	 * Adds a listener to the marker manager which is informed if markers
 	 * change.

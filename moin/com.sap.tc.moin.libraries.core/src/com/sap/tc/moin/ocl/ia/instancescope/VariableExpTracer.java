@@ -100,6 +100,11 @@ public class VariableExpTracer extends AbstractTracer<VariableExpImpl> {
 	int pos = getParameterPosition(op);
 	List<NavigationStep> stepsPerCall = new ArrayList<NavigationStep>();
 	IndirectingStep indirectingStep = pathCache.createIndirectingStepFor(getExpression());
+	// As new operation calls change the set of OperationCallExp returned here for existing operations,
+	// the PathCache cannot trivially be re-used across expression registrations. We would have to
+	// invalidate all cache entries that depend on this step. Or we add steps produced for new calls to this
+	// step as the calls get added; but that may require a re-assessment of the isAlwaysEmpty() calls.
+	// This may not pay off.
 	for (OperationCallExp call : classScopeAnalyzer.getCallsOf((OclExpressionInternal) rootExpression)) {
 	    OclExpression argumentExpression = ((JmiListImpl<OclExpression>) ((OperationCallExpImpl) call).getArguments(getConnection())).
 	    	get(getConnection().getSession(), pos);

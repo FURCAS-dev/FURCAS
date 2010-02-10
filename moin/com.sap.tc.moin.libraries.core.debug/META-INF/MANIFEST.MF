@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Debug
+Bundle-SymbolicName: com.sap.tc.moin.libraries.core.debug
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: SAP
+Fragment-Host: com.sap.tc.moin.libraries.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: com.sap.tc.moin.ocl.ia.instancescope.debug
+Bundle-ClassPath: lib/y.jar,
+ .
+Require-Bundle: org.junit4
