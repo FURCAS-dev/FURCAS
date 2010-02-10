@@ -11,6 +11,7 @@ import org.eclipse.core.runtime.Platform;
 
 import com.sap.ide.treeprovider.INodeExplorer;
 import com.sap.ide.treeprovider.RootNodeProvider;
+import com.sap.ide.treeprovider.internal.Activator;
 import com.sap.mi.fwk.ui.tree.nodes.ITreeNode;
 import com.sap.mi.fwk.ui.tree.nodes.TreeNodeDomainRoot;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
@@ -49,7 +50,7 @@ public final class RootNodeComponent extends TreeNodeDomainRoot implements INode
 		    provider = (RootNodeProvider) element.createExecutableExtension("classname");
 		    children.addAll(provider.getChildren(this, getValue(), getConnection()));
 		} catch (CoreException e) {
-		    throw new RuntimeException(e);
+		    Activator.logError(e, true);
 		}
 	    }
 	}
@@ -67,7 +68,7 @@ public final class RootNodeComponent extends TreeNodeDomainRoot implements INode
 		    provider = (RootNodeProvider) element.createExecutableExtension("classname");
 		    result.addAll(provider.getTopLevelModelElementTypes(getConnection()));
 		} catch (CoreException e) {
-		    throw new RuntimeException(e);
+			Activator.logError(e, true);
 		}
 	    }
 	}

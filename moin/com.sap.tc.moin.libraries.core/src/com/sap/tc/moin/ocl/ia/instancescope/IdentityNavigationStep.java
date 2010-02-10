@@ -1,18 +1,19 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Performs a trivial "identity" navigation, returning the <tt>fromObject</tt> again. This is useful when only the type
- * checking that is performed by {@link AbstractNavigationStep#navigate(CoreConnection, java.util.Set)} shall be
+ * checking that is performed by {@link AbstractNavigationStep#navigate(CoreConnection, java.util.Set, Map)} shall be
  * employed, such as for an <tt>oclAsType</tt> method call.<p>
  * 
  * When the source and target type have no common elements in the reflexive subclass inheritance trees,
@@ -32,8 +33,8 @@ public class IdentityNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
-	Collection<RefObjectImpl> result = new ArrayList<RefObjectImpl>(1);
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+	Set<RefObjectImpl> result = new LinkedHashSet<RefObjectImpl>(1);
 	result.add(fromObject);
 	return result;
     }
@@ -44,7 +45,7 @@ public class IdentityNavigationStep extends AbstractNavigationStep {
     }
     
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return "this";
     }
 }

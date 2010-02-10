@@ -236,24 +236,6 @@ public class TestBasicExpressions extends TestCase {
 	fail("Expected RuntimeException(\"No value defined for a\") to be thrown");
     }
 
-    private NumberLiteral createNumberLiteral(Connection conn, String numberAsString) {
-	NumberLiteral result = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
-	result.setLiteral(numberAsString);
-	SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
-	ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinitionExactlyOne(conn, numberClass);
-	result.setOwnedTypeDefinition(ctd);
-	return result;
-    }
-    
-    private StringLiteral createStringLiteral(Connection conn, String string) {
-	StringLiteral result = conn.createElement(StringLiteral.CLASS_DESCRIPTOR);
-	result.setLiteral(string);
-	SapClass stringClass = MetamodelUtils.findClass(conn, "String");
-	ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinitionExactlyOne(conn, stringClass);
-	result.setOwnedTypeDefinition(ctd);
-	return result;
-    }
-    
     /**
      * Tests that for this kind of recursion the parameter passing works and that
      * the parameter is used from the local frame
@@ -292,7 +274,7 @@ public class TestBasicExpressions extends TestCase {
 	    MethodSignature greaterThan = MetamodelUtils.findMethod(conn, "Number", "greaterThan");
 	    iGreaterZero.setMethodSignature(greaterThan);
 	    iGreaterZero.setObject(iExp);
-	    iGreaterZero.getParameters().add(createNumberLiteral(conn, "0"));
+	    iGreaterZero.getParameters().add(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    ifElse.setCondition(iGreaterZero);
 	    Block ifBranch = conn.createElement(Block.CLASS_DESCRIPTOR);
 	    MethodCallExpression iMinusOne = conn.createElement(MethodCallExpression.CLASS_DESCRIPTOR);
@@ -301,7 +283,7 @@ public class TestBasicExpressions extends TestCase {
 	    iMinusOne.setObject(iExp);
 	    MethodSignature minus = MetamodelUtils.findMethod(conn, "Number", "minus");
 	    iMinusOne.setMethodSignature(minus);
-	    iMinusOne.getParameters().add(createNumberLiteral(conn, "1"));
+	    iMinusOne.getParameters().add(MetamodelUtils.createNumberLiteral(conn, "1"));
 	    FunctionCallExpression recursion = MetamodelUtils.createFunctionCallExpression(conn, funcSig);
 	    recursion.getParameters().add(iMinusOne);
 	    
@@ -319,7 +301,7 @@ public class TestBasicExpressions extends TestCase {
 	    
 	    Block elseBranch = conn.createElement(Block.CLASS_DESCRIPTOR);
 	    Return retElse = conn.createElement(Return.CLASS_DESCRIPTOR);
-	    retElse.setArgument(createNumberLiteral(conn, "0"));
+	    retElse.setArgument(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    elseBranch.getStatements().add(retElse);
 
 	    ifElse.getNestedBlocks().add(ifBranch);
@@ -328,7 +310,7 @@ public class TestBasicExpressions extends TestCase {
 	    block.getStatements().add(ifElse);
 	    
 	    FunctionCallExpression fce = MetamodelUtils.createFunctionCallExpression(conn, funcSig);
-	    fce.getParameters().add(createNumberLiteral(conn, "10"));
+	    fce.getParameters().add(MetamodelUtils.createNumberLiteral(conn, "10"));
 	    
 	    RunletInterpreter interpreter = new RunletInterpreter(conn, new RunletInMemoryRepository(com.sap.runlet.interpreter.Activator.getDefault().getModelAdapter()));
 	    NativeObject result = (NativeObject) interpreter.evaluate(fce);
@@ -365,7 +347,7 @@ public class TestBasicExpressions extends TestCase {
 	    NamedValueDeclaration varDecl = conn.createElement(NamedValueDeclaration.CLASS_DESCRIPTOR);
 	    Variable a = conn.createElement(Variable.CLASS_DESCRIPTOR);
 	    a.setName("a");
-	    a.setInitExpression(createNumberLiteral(conn, "0"));
+	    a.setInitExpression(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    varDecl.setNamedValue(a);
 	    block.getStatements().add(varDecl);
 
@@ -385,14 +367,14 @@ public class TestBasicExpressions extends TestCase {
 	    MethodSignature greaterThan = MetamodelUtils.findMethod(conn, "Number", "greaterThan");
 	    iGreaterZero.setMethodSignature(greaterThan);
 	    iGreaterZero.setObject(iExp);
-	    iGreaterZero.getParameters().add(createNumberLiteral(conn, "0"));
+	    iGreaterZero.getParameters().add(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    ifElse.setCondition(iGreaterZero);
 
 	    Block ifBranch = conn.createElement(Block.CLASS_DESCRIPTOR);
 	    NamedValueDeclaration innerVarDecl = conn.createElement(NamedValueDeclaration.CLASS_DESCRIPTOR);
 	    Variable innerA = conn.createElement(Variable.CLASS_DESCRIPTOR);
 	    innerA.setName("a");
-	    innerA.setInitExpression(createNumberLiteral(conn, "1"));
+	    innerA.setInitExpression(MetamodelUtils.createNumberLiteral(conn, "1"));
 	    innerVarDecl.setNamedValue(innerA);
 	    ifBranch.getStatements().add(innerVarDecl);
 	    NamedValueDeclaration bDecl = conn.createElement(NamedValueDeclaration.CLASS_DESCRIPTOR);
@@ -438,7 +420,7 @@ public class TestBasicExpressions extends TestCase {
 	    block.getStatements().add(ifElse);
 	    
 	    FunctionCallExpression fce = MetamodelUtils.createFunctionCallExpression(conn, funcSig);
-	    fce.getParameters().add(createNumberLiteral(conn, "10"));
+	    fce.getParameters().add(MetamodelUtils.createNumberLiteral(conn, "10"));
 	    
 	    RunletInterpreter interpreter = new RunletInterpreter(conn, new RunletInMemoryRepository(com.sap.runlet.interpreter.Activator.getDefault().getModelAdapter()));
 	    NativeObject result = (NativeObject) interpreter.evaluate(fce);
@@ -464,7 +446,7 @@ public class TestBasicExpressions extends TestCase {
 	    Block s1Impl = conn.createElement(Block.CLASS_DESCRIPTOR);
 	    s1.setImplementation(s1Impl);
 	    Return s1ImplReturn = conn.createElement(Return.CLASS_DESCRIPTOR);
-	    s1ImplReturn.setArgument(createNumberLiteral(conn, "12345"));
+	    s1ImplReturn.setArgument(MetamodelUtils.createNumberLiteral(conn, "12345"));
 	    s1Impl.getStatements().add(s1ImplReturn);
 	    c1.getOwnedSignatures().add(s1);
 	    SapClass c2 = createClass(conn, "C2");
@@ -567,7 +549,7 @@ public class TestBasicExpressions extends TestCase {
 	    addLink.setAssociation(c1ToNumber);
 	    VariableExpression aRef = createVariableExpression(conn, a);
 	    addLink.getObjects().add(aRef);
-	    addLink.getObjects().add(createNumberLiteral(conn, "42"));
+	    addLink.getObjects().add(MetamodelUtils.createNumberLiteral(conn, "42"));
 	    block.getStatements().add(addLink);
 	    Return ret = conn.createElement(Return.CLASS_DESCRIPTOR);
 	    AssociationEndNavigationExpression aene = conn.createElement(AssociationEndNavigationExpression.CLASS_DESCRIPTOR);
@@ -625,13 +607,13 @@ public class TestBasicExpressions extends TestCase {
 	    addLink.setAssociation(c1ToNumber);
 	    VariableExpression aRef = createVariableExpression(conn, a);
 	    addLink.getObjects().add(aRef);
-	    addLink.getObjects().add(createNumberLiteral(conn, "42"));
+	    addLink.getObjects().add(MetamodelUtils.createNumberLiteral(conn, "42"));
 	    block.getStatements().add(addLink);
 	    AddLink addLink2 = conn.createElement(AddLink.CLASS_DESCRIPTOR);
 	    addLink2.setAssociation(c1ToNumber);
 	    VariableExpression aRef2 = createVariableExpression(conn, a);
 	    addLink2.getObjects().add(aRef2);
-	    addLink2.getObjects().add(createNumberLiteral(conn, "43"));
+	    addLink2.getObjects().add(MetamodelUtils.createNumberLiteral(conn, "43"));
 	    block.getStatements().add(addLink2);
 	    Return ret = conn.createElement(Return.CLASS_DESCRIPTOR);
 	    AssociationEndNavigationExpression aene = conn.createElement(AssociationEndNavigationExpression.CLASS_DESCRIPTOR);
@@ -730,13 +712,13 @@ public class TestBasicExpressions extends TestCase {
 	    addLink.setAssociation(c1ToNumber);
 	    VariableExpression aRef = createVariableExpression(conn, a);
 	    addLink.getObjects().add(aRef);
-	    addLink.getObjects().add(createNumberLiteral(conn, "42"));
+	    addLink.getObjects().add(MetamodelUtils.createNumberLiteral(conn, "42"));
 	    block.getStatements().add(addLink);
 	    AddLink addLink2 = conn.createElement(AddLink.CLASS_DESCRIPTOR);
 	    addLink2.setAssociation(c1ToNumber);
 	    VariableExpression aRef2 = createVariableExpression(conn, a);
 	    addLink2.getObjects().add(aRef2);
-	    addLink2.getObjects().add(createNumberLiteral(conn, "43"));
+	    addLink2.getObjects().add(MetamodelUtils.createNumberLiteral(conn, "43"));
 	    block.getStatements().add(addLink2);
 	    Return ret = conn.createElement(Return.CLASS_DESCRIPTOR);
 	    AssociationEndNavigationExpression aene = conn.createElement(AssociationEndNavigationExpression.CLASS_DESCRIPTOR);
@@ -937,8 +919,8 @@ public class TestBasicExpressions extends TestCase {
 	    fce.getParameters().add(createFacts(conn, salesOrder, salesOrderItem, product, customer,
 		    productToCategory, salesOrderItemToPrice, salesOrderItemToProduct,
 		    customerToRegion, salesOrderToCustomer, salesOrderToSalesOrderItems));
-	    fce.getParameters().add(createStringLiteral(conn, "Toys"));     // productCategory parameter
-	    fce.getParameters().add(createStringLiteral(conn, "Americas")); // customerRegion parameter
+	    fce.getParameters().add(MetamodelUtils.createStringLiteral(conn, "Toys"));     // productCategory parameter
+	    fce.getParameters().add(MetamodelUtils.createStringLiteral(conn, "Americas")); // customerRegion parameter
 	    
 	    Collection<JmiException> cellExpressionExceptions = fce.refVerifyConstraints(/* deepVerify */true);
 	    assertTrue("CellSet function call expression has "
@@ -1086,7 +1068,7 @@ public class TestBasicExpressions extends TestCase {
 	addLink.setAssociation(customerToRegion);
 	VariableExpression cAccess = createVariableExpression(conn, c);
 	addLink.getObjects().add(cAccess);
-	addLink.getObjects().add(createStringLiteral(conn, customerRegion));
+	addLink.getObjects().add(MetamodelUtils.createStringLiteral(conn, customerRegion));
 	impl.getStatements().add(addLink);
 	
 	//     so.setCustomer(c);
@@ -1149,7 +1131,7 @@ public class TestBasicExpressions extends TestCase {
 	addLink.setAssociation(salesOrderItemToPrice);
 	VariableExpression soiAccess = createVariableExpression(conn, soi);
 	addLink.getObjects().add(soiAccess);
-	addLink.getObjects().add(createNumberLiteral(conn, price));
+	addLink.getObjects().add(MetamodelUtils.createNumberLiteral(conn, price));
 	blockToAddStatementsTo.getStatements().add(addLink);
 	
 	//     p = new Product();
@@ -1160,7 +1142,7 @@ public class TestBasicExpressions extends TestCase {
 	addLink.setAssociation(productToCategory);
 	VariableExpression pAccess = createVariableExpression(conn, p);
 	addLink.getObjects().add(pAccess);
-	addLink.getObjects().add(createStringLiteral(conn, productCategory));
+	addLink.getObjects().add(MetamodelUtils.createStringLiteral(conn, productCategory));
 	blockToAddStatementsTo.getStatements().add(addLink);
 	
 	//     soi.setProduct(p);
@@ -1234,7 +1216,7 @@ public class TestBasicExpressions extends TestCase {
 	iterate.setSource(paramReference);
 	Constant accumulator = conn.createElement(Constant.CLASS_DESCRIPTOR);
 	accumulator.setName("acc");
-	accumulator.setInitExpression(createNumberLiteral(conn, "0"));
+	accumulator.setInitExpression(MetamodelUtils.createNumberLiteral(conn, "0"));
 	iterate.setAccumulator(accumulator);
 	MethodCallExpression add = conn.createElement(MethodCallExpression.CLASS_DESCRIPTOR);
 	VariableExpression accAccess = createVariableExpression(conn, accumulator);
@@ -1415,7 +1397,7 @@ public class TestBasicExpressions extends TestCase {
 	    createCodeToInvokeMethod(conn, productAccessors.get(Accessors.SETTER), soi, p, impl);
 	    createCodeToInvokeMethod(conn, categoryAccessors.get(Accessors.SETTER),
 		    createVariableExpression(conn, p),
-		    createStringLiteral(conn, "TheCategory1"), impl);
+		    MetamodelUtils.createStringLiteral(conn, "TheCategory1"), impl);
 
 	    // item #2
 	    impl.getStatements().add(assignNewToVariable(conn, salesOrderItem, soi));
@@ -1424,7 +1406,7 @@ public class TestBasicExpressions extends TestCase {
 	    createCodeToInvokeMethod(conn, productAccessors.get(Accessors.SETTER), soi, p, impl);
 	    createCodeToInvokeMethod(conn, categoryAccessors.get(Accessors.SETTER),
 		    createVariableExpression(conn, p),
-		    createStringLiteral(conn, "TheCategory2"), impl);
+		    MetamodelUtils.createStringLiteral(conn, "TheCategory2"), impl);
 
 	    // item #3
 	    impl.getStatements().add(assignNewToVariable(conn, salesOrderItem, soi));
@@ -1433,7 +1415,7 @@ public class TestBasicExpressions extends TestCase {
 	    createCodeToInvokeMethod(conn, productAccessors.get(Accessors.SETTER), soi, p, impl);
 	    createCodeToInvokeMethod(conn, categoryAccessors.get(Accessors.SETTER),
 		    createVariableExpression(conn, p),
-		    createStringLiteral(conn, "TheCategory3"), impl);
+		    MetamodelUtils.createStringLiteral(conn, "TheCategory3"), impl);
 	    
 	    // remove item #3 again
 	    createCodeToInvokeMethod(conn, itemsAccessors.get(Accessors.REMOVER), so, soi, impl);
@@ -1523,7 +1505,7 @@ public class TestBasicExpressions extends TestCase {
 	    result.setName("result");
 	    result.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinition(conn, MetamodelUtils.findClass(conn, "Number"), 0, -1,
 		    /* ordered */ false, /* unique */ false));
-	    result.setInitExpression(createNumberLiteral(conn, "0"));
+	    result.setInitExpression(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    resultDecl.setNamedValue(result);
 	    impl.getStatements().add(resultDecl);
 	    int count = 3;
@@ -1533,7 +1515,7 @@ public class TestBasicExpressions extends TestCase {
 	    for (int i=1; i<=count; i++) {
 		Including incl = conn.createElement(Including.CLASS_DESCRIPTOR);
 		incl.setSource(createVariableExpression(conn, arr));
-		incl.setArgument(createNumberLiteral(conn, ""+i));
+		incl.setArgument(MetamodelUtils.createNumberLiteral(conn, ""+i));
 		Assignment assignment = conn.createElement(Assignment.CLASS_DESCRIPTOR);
 		assignment.setArgument(incl);
 		assignment.setAssignTo(arr);
@@ -1598,7 +1580,7 @@ public class TestBasicExpressions extends TestCase {
 	    result.setName("result");
 	    result.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinition(conn, MetamodelUtils.findClass(conn, "Number"), 0, -1,
 		    /* ordered */ false, /* unique */ false));
-	    result.setInitExpression(createNumberLiteral(conn, "0"));
+	    result.setInitExpression(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    resultDecl.setNamedValue(result);
 	    impl.getStatements().add(resultDecl);
 	    int count = 3;
@@ -1608,7 +1590,7 @@ public class TestBasicExpressions extends TestCase {
 	    for (int i=1; i<=count; i++) {
 		Including incl = conn.createElement(Including.CLASS_DESCRIPTOR);
 		incl.setSource(createVariableExpression(conn, arr));
-		incl.setArgument(createNumberLiteral(conn, ""+i));
+		incl.setArgument(MetamodelUtils.createNumberLiteral(conn, ""+i));
 		Assignment assignment = conn.createElement(Assignment.CLASS_DESCRIPTOR);
 		assignment.setArgument(incl);
 		assignment.setAssignTo(arr);
@@ -1617,7 +1599,7 @@ public class TestBasicExpressions extends TestCase {
 	    //   arr = arr->excluding(2);
 	    Excluding excl = conn.createElement(Excluding.CLASS_DESCRIPTOR);
 	    excl.setSource(createVariableExpression(conn, arr));
-	    excl.setArgument(createNumberLiteral(conn, "2"));
+	    excl.setArgument(MetamodelUtils.createNumberLiteral(conn, "2"));
 	    Assignment assignment = conn.createElement(Assignment.CLASS_DESCRIPTOR);
 	    assignment.setArgument(excl);
 	    assignment.setAssignTo(arr);
@@ -1688,7 +1670,7 @@ public class TestBasicExpressions extends TestCase {
 	    result.setName("result");
 	    result.setOwnedTypeDefinition(MetamodelUtils.createClassTypeDefinition(conn, MetamodelUtils.findClass(conn, "Number"), 0, -1,
 		    /* ordered */ true, unique));
-	    result.setInitExpression(createNumberLiteral(conn, "0"));
+	    result.setInitExpression(MetamodelUtils.createNumberLiteral(conn, "0"));
 	    resultDecl.setNamedValue(result);
 	    impl.getStatements().add(resultDecl);
 	    //    arr = arr->including(0);
@@ -1702,7 +1684,7 @@ public class TestBasicExpressions extends TestCase {
 		for (int t = 0; t < times; t++) {
 		    Including incl = conn.createElement(Including.CLASS_DESCRIPTOR);
 		    incl.setSource(createVariableExpression(conn, arr));
-		    incl.setArgument(createNumberLiteral(conn, "" + i));
+		    incl.setArgument(MetamodelUtils.createNumberLiteral(conn, "" + i));
 		    Assignment assignment = conn.createElement(Assignment.CLASS_DESCRIPTOR);
 		    assignment.setArgument(incl);
 		    assignment.setAssignTo(arr);
@@ -1724,7 +1706,7 @@ public class TestBasicExpressions extends TestCase {
 	    for (int excl:toExclude) {
 		Including incl = conn.createElement(Including.CLASS_DESCRIPTOR);
 		incl.setSource(createVariableExpression(conn, toExcludeVar));
-		incl.setArgument(createNumberLiteral(conn, ""+excl));
+		incl.setArgument(MetamodelUtils.createNumberLiteral(conn, ""+excl));
 		Assignment assignment = conn.createElement(Assignment.CLASS_DESCRIPTOR);
 		assignment.setArgument(incl);
 		assignment.setAssignTo(toExcludeVar);
