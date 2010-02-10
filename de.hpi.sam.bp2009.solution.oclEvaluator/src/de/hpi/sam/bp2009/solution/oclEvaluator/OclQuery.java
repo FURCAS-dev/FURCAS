@@ -22,7 +22,7 @@ import org.eclipse.ocl.expressions.OCLExpression;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap <em>Map</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExtentMap <em>Extent Map</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -111,29 +111,29 @@ public interface OclQuery extends EObject {
 	void setResult(Object value);
 
 	/**
-	 * Returns the value of the '<em><b>Map</b></em>' attribute.
+	 * Returns the value of the '<em><b>Extent Map</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Map</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Extent Map</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Map</em>' attribute.
-	 * @see #setMap(Map)
-	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Map()
+	 * @return the value of the '<em>Extent Map</em>' attribute.
+	 * @see #setExtentMap(Map)
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_ExtentMap()
 	 * @model transient="true"
 	 * @generated
 	 */
-	Map<EClass, EList<EObject>> getMap();
+	Map<EClass, EList<? extends EObject>> getExtentMap();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap <em>Map</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExtentMap <em>Extent Map</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Map</em>' attribute.
-	 * @see #getMap()
+	 * @param value the new value of the '<em>Extent Map</em>' attribute.
+	 * @see #getExtentMap()
 	 * @generated
 	 */
-	void setMap(Map<EClass, EList<EObject>> value);
+	void setExtentMap(Map<EClass, EList<? extends EObject>> value);
 
 } // OclQuery

@@ -173,7 +173,7 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getOclQuery_Map() {
+	public EAttribute getOclQuery_ExtentMap() {
 		return (EAttribute)oclQueryEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -228,7 +228,7 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 		oclQueryEClass = createEClass(OCL_QUERY);
 		createEReference(oclQueryEClass, OCL_QUERY__CONTEXT);
 		createEAttribute(oclQueryEClass, OCL_QUERY__RESULT);
-		createEAttribute(oclQueryEClass, OCL_QUERY__MAP);
+		createEAttribute(oclQueryEClass, OCL_QUERY__EXTENT_MAP);
 		createEAttribute(oclQueryEClass, OCL_QUERY__EXPRESSION);
 
 		// Create enums
@@ -298,9 +298,11 @@ public class OclEvaluatorPackageImpl extends EPackageImpl implements OclEvaluato
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(theEcorePackage_1.getEEList());
 		g1.getETypeArguments().add(g2);
-		EGenericType g3 = createEGenericType(theEcorePackage_1.getEObject());
+		EGenericType g3 = createEGenericType();
 		g2.getETypeArguments().add(g3);
-		initEAttribute(getOclQuery_Map(), g1, "map", null, 0, 1, OclQuery.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		EGenericType g4 = createEGenericType(theEcorePackage_1.getEObject());
+		g3.setEUpperBound(g4);
+		initEAttribute(getOclQuery_ExtentMap(), g1, "extentMap", null, 0, 1, OclQuery.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getOclQuery_Expression(), this.getexpression(), "expression", null, 0, 1, OclQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals

@@ -28,7 +28,7 @@ import java.util.Map;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getContext <em>Context</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getResult <em>Result</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getMap <em>Map</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getExtentMap <em>Extent Map</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  * </p>
@@ -67,14 +67,14 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	protected Object result = RESULT_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getMap() <em>Map</em>}' attribute.
+	 * The cached value of the '{@link #getExtentMap() <em>Extent Map</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getMap()
+	 * @see #getExtentMap()
 	 * @generated
 	 * @ordered
 	 */
-	protected Map<EClass, EList<EObject>> map;
+	protected Map<EClass, EList<? extends EObject>> extentMap;
 
 	/**
 	 * The default value of the '{@link #getExpression() <em>Expression</em>}' attribute.
@@ -200,8 +200,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Map<EClass, EList<EObject>> getMap() {
-		return map;
+	public Map<EClass, EList<? extends EObject>> getExtentMap() {
+		return extentMap;
 	}
 
 	/**
@@ -209,11 +209,11 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMap(Map<EClass, EList<EObject>> newMap) {
-		Map<EClass, EList<EObject>> oldMap = map;
-		map = newMap;
+	public void setExtentMap(Map<EClass, EList<? extends EObject>> newExtentMap) {
+		Map<EClass, EList<? extends EObject>> oldExtentMap = extentMap;
+		extentMap = newExtentMap;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclEvaluatorPackage.OCL_QUERY__MAP, oldMap, map));
+			eNotify(new ENotificationImpl(this, Notification.SET, OclEvaluatorPackage.OCL_QUERY__EXTENT_MAP, oldExtentMap, extentMap));
 	}
 
 	/**
@@ -229,8 +229,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 				return basicGetContext();
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				return getResult();
-			case OclEvaluatorPackage.OCL_QUERY__MAP:
-				return getMap();
+			case OclEvaluatorPackage.OCL_QUERY__EXTENT_MAP:
+				return getExtentMap();
 			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
 				return getExpression();
 		}
@@ -252,8 +252,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				setResult(newValue);
 				return;
-			case OclEvaluatorPackage.OCL_QUERY__MAP:
-				setMap((Map<EClass, EList<EObject>>)newValue);
+			case OclEvaluatorPackage.OCL_QUERY__EXTENT_MAP:
+				setExtentMap((Map<EClass, EList<? extends EObject>>)newValue);
 				return;
 			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
 				setExpression((OCLExpression)newValue);
@@ -276,8 +276,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				setResult(RESULT_EDEFAULT);
 				return;
-			case OclEvaluatorPackage.OCL_QUERY__MAP:
-				setMap((Map<EClass, EList<EObject>>)null);
+			case OclEvaluatorPackage.OCL_QUERY__EXTENT_MAP:
+				setExtentMap((Map<EClass, EList<? extends EObject>>)null);
 				return;
 			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
 				setExpression(EXPRESSION_EDEFAULT);
@@ -298,8 +298,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 				return context != null;
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				return RESULT_EDEFAULT == null ? result != null : !RESULT_EDEFAULT.equals(result);
-			case OclEvaluatorPackage.OCL_QUERY__MAP:
-				return map != null;
+			case OclEvaluatorPackage.OCL_QUERY__EXTENT_MAP:
+				return extentMap != null;
 			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
 				return EXPRESSION_EDEFAULT == null ? expression != null : !EXPRESSION_EDEFAULT.equals(expression);
 		}
@@ -318,8 +318,8 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (result: ");
 		result.append(result);
-		result.append(", map: ");
-		result.append(map);
+		result.append(", extentMap: ");
+		result.append(extentMap);
 		result.append(", expression: ");
 		result.append(expression);
 		result.append(')');

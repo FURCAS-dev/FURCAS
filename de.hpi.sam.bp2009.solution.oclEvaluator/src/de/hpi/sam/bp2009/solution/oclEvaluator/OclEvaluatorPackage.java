@@ -109,13 +109,13 @@ public interface OclEvaluatorPackage extends EPackage {
 	int OCL_QUERY__RESULT = 1;
 
 	/**
-	 * The feature id for the '<em><b>Map</b></em>' attribute.
+	 * The feature id for the '<em><b>Extent Map</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_QUERY__MAP = 2;
+	int OCL_QUERY__EXTENT_MAP = 2;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' attribute.
@@ -209,15 +209,15 @@ public interface OclEvaluatorPackage extends EPackage {
 	EAttribute getOclQuery_Result();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap <em>Map</em>}'.
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExtentMap <em>Extent Map</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Map</em>'.
-	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getMap()
+	 * @return the meta object for the attribute '<em>Extent Map</em>'.
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExtentMap()
 	 * @see #getOclQuery()
 	 * @generated
 	 */
-	EAttribute getOclQuery_Map();
+	EAttribute getOclQuery_ExtentMap();
 
 	/**
 	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}'.
@@ -307,12 +307,12 @@ public interface OclEvaluatorPackage extends EPackage {
 		EAttribute OCL_QUERY__RESULT = eINSTANCE.getOclQuery_Result();
 
 		/**
-		 * The meta object literal for the '<em><b>Map</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Extent Map</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OCL_QUERY__MAP = eINSTANCE.getOclQuery_Map();
+		EAttribute OCL_QUERY__EXTENT_MAP = eINSTANCE.getOclQuery_ExtentMap();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}' enum.
