@@ -7,8 +7,7 @@
 package de.hpi.sam.bp2009.solution.oclEvaluator;
 
 import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 /**
  * <!-- begin-user-doc -->
@@ -19,7 +18,7 @@ import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getCondition <em>Condition</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}</li>
  * </ul>
  * </p>
@@ -30,58 +29,56 @@ import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
  */
 public interface OclQuery extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Context</b></em>' attribute.
+	 * Returns the value of the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Context</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Context</em>' attribute.
+	 * @return the value of the '<em>Context</em>' reference.
 	 * @see #setContext(EObject)
 	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Context()
-	 * @model dataType="de.hpi.sam.bp2009.solution.oclEvaluator.EObject"
+	 * @model
 	 * @generated
 	 */
 	EObject getContext();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Context</em>' attribute.
+	 * @param value the new value of the '<em>Context</em>' reference.
 	 * @see #getContext()
 	 * @generated
 	 */
 	void setContext(EObject value);
 
 	/**
-	 * Returns the value of the '<em><b>Condition</b></em>' attribute.
+	 * Returns the value of the '<em><b>Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Condition</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Expression</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Condition</em>' attribute.
-	 * @see #setCondition(AbstractOCLCondition)
-	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Condition()
-	 * @model dataType="de.hpi.sam.bp2009.solution.oclEvaluator.OclCondition"
+	 * @return the value of the '<em>Expression</em>' reference.
+	 * @see #setExpression(OCLExpression)
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage#getOclQuery_Expression()
+	 * @model
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	AbstractOCLCondition getCondition();
+	OCLExpression getExpression();
 
 	/**
-	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getCondition <em>Condition</em>}' attribute.
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Condition</em>' attribute.
-	 * @see #getCondition()
+	 * @param value the new value of the '<em>Expression</em>' reference.
+	 * @see #getExpression()
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	void setCondition(AbstractOCLCondition value);
+	void setExpression(OCLExpression value);
 
 	/**
 	 * Returns the value of the '<em><b>Result</b></em>' attribute.

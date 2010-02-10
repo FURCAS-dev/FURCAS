@@ -19,9 +19,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-
-import org.eclipse.ocl.ecore.EcorePackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,7 +91,6 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 
 		// Initialize simple dependencies
 		BenchframeworkPackage.eINSTANCE.eClass();
-		EcorePackage.eINSTANCE.eClass();
 		OclEvaluatorPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
@@ -186,7 +184,7 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 
 		// Obtain other dependent packages
 		OclEvaluatorPackage theOclEvaluatorPackage = (OclEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(OclEvaluatorPackage.eNS_URI);
-		org.eclipse.emf.ecore.EcorePackage theEcorePackage_1 = (org.eclipse.emf.ecore.EcorePackage)EPackage.Registry.INSTANCE.getEPackage(org.eclipse.emf.ecore.EcorePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
 		// Create type parameters
@@ -201,8 +199,8 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 		initEClass(modifiedOclOptimizerEClass, ModifiedOclOptimizer.class, "ModifiedOclOptimizer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		EOperation op = addEOperation(modifiedOclOptimizerEClass, null, "sendBenchmarkNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage_1.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage_1.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, theEcorePackage.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
 
 		initEClass(embedModifiedOclOptOperatorEClass, EmbedModifiedOclOptOperator.class, "EmbedModifiedOclOptOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

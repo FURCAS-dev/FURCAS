@@ -1,10 +1,6 @@
 package de.hpi.sam.bp2009.solution.expressionSupplier.util;
 
-import java.io.File;
-import java.io.IOException;
-
 import org.eclipse.emf.common.util.TreeIterator;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EFactory;
@@ -15,8 +11,6 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcoreFactory;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 
 
@@ -175,7 +169,7 @@ public class PetriNetModelBuilder {
 		}
 		// Create a resource set
 		//
-		ResourceSet resourceSet = new ResourceSetImpl();
+//		ResourceSet resourceSet = new ResourceSetImpl();
 
         
 //		Resource resource = resourceSet.createResource("phil.de/unbesiegbar");

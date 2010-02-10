@@ -43,8 +43,8 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
  */
 public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedModifiedEMOperator {
 	
-	private static final String EM_NAME = "Event Manager";
-	private static final String EM_DESCRIPTION = "The Event Manager handles incoming EMF events and maps them to internal events";
+	private static final String NAME = "Event Manager";
+	private static final String DESCRIPTION = "The Event Manager handles incoming EMF events and maps them to internal events";
 	
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
@@ -123,8 +123,8 @@ public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedMod
 	 */
 	protected EmbedModifiedEMOperatorImpl() {
 		super();
-		this.setName(EM_NAME);
-		this.setDescription(EM_DESCRIPTION);
+		this.setName(NAME);
+		this.setDescription(DESCRIPTION);
 	}
 
 	/**

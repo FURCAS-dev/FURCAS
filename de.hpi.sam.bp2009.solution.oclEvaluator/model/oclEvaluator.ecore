@@ -9,7 +9,6 @@
     </eAnnotations>
     <eOperations name="evaluate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject">
       <eParameters name="queryobject" eType="#//OclQuery"/>
-      <eParameters name="context" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
     </eOperations>
     <eOperations name="evaluate">
       <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
@@ -21,6 +20,10 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="passToInterpreter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject">
+      <eParameters name="interpreter" eType="#//Interpreter"/>
+      <eParameters name="queryobject" eType="#//OclQuery"/>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OclQuery">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -29,5 +32,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" eType="ecore:EClass platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.ecore#//ecore/OCLExpression"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="result" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Interpreter">
+    <eLiterals name="Ocl"/>
+    <eLiterals name="Mql" value="1"/>
   </eClassifiers>
 </ecore:EPackage>

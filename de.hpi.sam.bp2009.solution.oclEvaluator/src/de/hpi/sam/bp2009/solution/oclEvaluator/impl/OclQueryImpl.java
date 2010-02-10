@@ -9,9 +9,10 @@ package de.hpi.sam.bp2009.solution.oclEvaluator.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
+import org.eclipse.ocl.ecore.OCLExpression;
 
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
@@ -24,7 +25,7 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
  * The following features are implemented:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getContext <em>Context</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getCondition <em>Condition</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getExpression <em>Expression</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclQueryImpl#getResult <em>Result</em>}</li>
  * </ul>
  * </p>
@@ -33,46 +34,24 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
  */
 public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	/**
-	 * The default value of the '{@link #getContext() <em>Context</em>}' attribute.
+	 * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getContext()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EObject CONTEXT_EDEFAULT = null;
+	protected EObject context;
 
 	/**
-	 * The cached value of the '{@link #getContext() <em>Context</em>}' attribute.
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContext()
+	 * @see #getExpression()
 	 * @generated
 	 * @ordered
 	 */
-	protected EObject context = CONTEXT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition()
-	 * @generated
-	 * @ordered
-	 */
-	@SuppressWarnings("unchecked")
-	protected static final AbstractOCLCondition CONDITION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCondition()
-	 * @generated
-	 * @ordered
-	 */
-	@SuppressWarnings("unchecked")
-	protected AbstractOCLCondition condition = CONDITION_EDEFAULT;
+	protected OCLExpression expression;
 
 	/**
 	 * The default value of the '{@link #getResult() <em>Result</em>}' attribute.
@@ -119,6 +98,23 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * @generated
 	 */
 	public EObject getContext() {
+		if (context != null && context.eIsProxy()) {
+			InternalEObject oldContext = (InternalEObject)context;
+			context = eResolveProxy(oldContext);
+			if (context != oldContext) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OclEvaluatorPackage.OCL_QUERY__CONTEXT, oldContext, context));
+			}
+		}
+		return context;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EObject basicGetContext() {
 		return context;
 	}
 
@@ -139,9 +135,16 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public AbstractOCLCondition getCondition() {
-		return condition;
+	public OCLExpression getExpression() {
+		if (expression != null && expression.eIsProxy()) {
+			InternalEObject oldExpression = (InternalEObject)expression;
+			expression = (OCLExpression)eResolveProxy(oldExpression);
+			if (expression != oldExpression) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OclEvaluatorPackage.OCL_QUERY__EXPRESSION, oldExpression, expression));
+			}
+		}
+		return expression;
 	}
 
 	/**
@@ -149,12 +152,20 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public void setCondition(AbstractOCLCondition newCondition) {
-		AbstractOCLCondition oldCondition = condition;
-		condition = newCondition;
+	public OCLExpression basicGetExpression() {
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExpression(OCLExpression newExpression) {
+		OCLExpression oldExpression = expression;
+		expression = newExpression;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclEvaluatorPackage.OCL_QUERY__CONDITION, oldCondition, condition));
+			eNotify(new ENotificationImpl(this, Notification.SET, OclEvaluatorPackage.OCL_QUERY__EXPRESSION, oldExpression, expression));
 	}
 
 	/**
@@ -187,9 +198,11 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case OclEvaluatorPackage.OCL_QUERY__CONTEXT:
-				return getContext();
-			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
-				return getCondition();
+				if (resolve) return getContext();
+				return basicGetContext();
+			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
+				if (resolve) return getExpression();
+				return basicGetExpression();
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				return getResult();
 		}
@@ -201,15 +214,14 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case OclEvaluatorPackage.OCL_QUERY__CONTEXT:
 				setContext((EObject)newValue);
 				return;
-			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
-				setCondition((AbstractOCLCondition)newValue);
+			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
+				setExpression((OCLExpression)newValue);
 				return;
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				setResult(newValue);
@@ -227,10 +239,10 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case OclEvaluatorPackage.OCL_QUERY__CONTEXT:
-				setContext(CONTEXT_EDEFAULT);
+				setContext((EObject)null);
 				return;
-			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
-				setCondition(CONDITION_EDEFAULT);
+			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
+				setExpression((OCLExpression)null);
 				return;
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				setResult(RESULT_EDEFAULT);
@@ -248,9 +260,9 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case OclEvaluatorPackage.OCL_QUERY__CONTEXT:
-				return CONTEXT_EDEFAULT == null ? context != null : !CONTEXT_EDEFAULT.equals(context);
-			case OclEvaluatorPackage.OCL_QUERY__CONDITION:
-				return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
+				return context != null;
+			case OclEvaluatorPackage.OCL_QUERY__EXPRESSION:
+				return expression != null;
 			case OclEvaluatorPackage.OCL_QUERY__RESULT:
 				return RESULT_EDEFAULT == null ? result != null : !RESULT_EDEFAULT.equals(result);
 		}
@@ -267,11 +279,7 @@ public class OclQueryImpl extends EObjectImpl implements OclQuery {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (context: ");
-		result.append(context);
-		result.append(", condition: ");
-		result.append(condition);
-		result.append(", result: ");
+		result.append(" (result: ");
 		result.append(result);
 		result.append(')');
 		return result.toString();

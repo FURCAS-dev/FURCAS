@@ -58,12 +58,12 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	private class EventAdapter extends EContentAdapter{
 		Adapter caller;
 		EventFilter filter;
-		EventMappper mapper;
+		//EventMappper mapper;
 
 		public EventAdapter(Adapter listener, EventFilter filter, EventMappper mapper) {
 			this.caller = listener;
 			this.filter = filter;
-			this.mapper = mapper;
+			//this.mapper = mapper;
 		}
 		@Override
 		public void notifyChanged(Notification notification) {

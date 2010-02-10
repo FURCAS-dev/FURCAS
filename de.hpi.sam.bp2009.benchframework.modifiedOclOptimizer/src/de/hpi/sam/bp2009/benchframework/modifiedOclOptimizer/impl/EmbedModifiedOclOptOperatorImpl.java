@@ -6,22 +6,23 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
+import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
-
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.EmbedModifiedOclOptOperator;
+import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerPackage;
-
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,6 +42,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public class EmbedModifiedOclOptOperatorImpl extends EObjectImpl implements EmbedModifiedOclOptOperator {
+	
+	private static final String NAME = "Ocl Optimizer";
+	private static final String DESCRIPTION = "The Ocl Optimizer optimizes the queries before they're reevaluated to increase the overall performance.";
+	
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -114,10 +119,12 @@ public class EmbedModifiedOclOptOperatorImpl extends EObjectImpl implements Embe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected EmbedModifiedOclOptOperatorImpl() {
+	public EmbedModifiedOclOptOperatorImpl() {
 		super();
+		this.setName(NAME);
+		this.setDescription(DESCRIPTION);
 	}
 
 	/**
@@ -311,12 +318,13 @@ public class EmbedModifiedOclOptOperatorImpl extends EObjectImpl implements Embe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	public void execute() {
-		// TODO: implement this method
-		// Ensure that you remove @generated or mark it @generated NOT
-		throw new UnsupportedOperationException();
+		this.getTestRun().setInstanceForClass(OCLEvaluator.class, ModifiedOclOptimizerFactory.eINSTANCE.createModifiedOclOptimizer());
+		this.setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
+		getResult().setStatus(Status.SUCCESSFULL);
+		getResult().setMessage("Attached OclOptimizer to TestRun");
 	}
 
 	/**

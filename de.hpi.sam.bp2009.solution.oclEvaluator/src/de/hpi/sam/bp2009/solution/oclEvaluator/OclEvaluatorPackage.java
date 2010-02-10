@@ -8,8 +8,9 @@ package de.hpi.sam.bp2009.solution.oclEvaluator;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -89,7 +90,7 @@ public interface OclEvaluatorPackage extends EPackage {
 	int OCL_QUERY = 1;
 
 	/**
-	 * The feature id for the '<em><b>Context</b></em>' attribute.
+	 * The feature id for the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -98,13 +99,13 @@ public interface OclEvaluatorPackage extends EPackage {
 	int OCL_QUERY__CONTEXT = 0;
 
 	/**
-	 * The feature id for the '<em><b>Condition</b></em>' attribute.
+	 * The feature id for the '<em><b>Expression</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_QUERY__CONDITION = 1;
+	int OCL_QUERY__EXPRESSION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Result</b></em>' attribute.
@@ -125,25 +126,14 @@ public interface OclEvaluatorPackage extends EPackage {
 	int OCL_QUERY_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '<em>Ocl Condition</em>' data type.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition
-	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getOclCondition()
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getInterpreter()
 	 * @generated
 	 */
-	int OCL_CONDITION = 2;
-
-	/**
-	 * The meta object id for the '<em>EObject</em>' data type.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see org.eclipse.emf.ecore.EObject
-	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getEObject()
-	 * @generated
-	 */
-	int EOBJECT = 3;
-
+	int INTERPRETER = 2;
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator <em>OCL Evaluator</em>}'.
@@ -166,26 +156,26 @@ public interface OclEvaluatorPackage extends EPackage {
 	EClass getOclQuery();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext <em>Context</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Context</em>'.
+	 * @return the meta object for the reference '<em>Context</em>'.
 	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getContext()
 	 * @see #getOclQuery()
 	 * @generated
 	 */
-	EAttribute getOclQuery_Context();
+	EReference getOclQuery_Context();
 
 	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getCondition <em>Condition</em>}'.
+	 * Returns the meta object for the reference '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression <em>Expression</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Condition</em>'.
-	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getCondition()
+	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getExpression()
 	 * @see #getOclQuery()
 	 * @generated
 	 */
-	EAttribute getOclQuery_Condition();
+	EReference getOclQuery_Expression();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery#getResult <em>Result</em>}'.
@@ -199,26 +189,14 @@ public interface OclEvaluatorPackage extends EPackage {
 	EAttribute getOclQuery_Result();
 
 	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition <em>Ocl Condition</em>}'.
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>Ocl Condition</em>'.
-	 * @see org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition
-	 * @model instanceClass="org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition"
+	 * @return the meta object for enum '<em>Interpreter</em>'.
+	 * @see de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter
 	 * @generated
 	 */
-	EDataType getOclCondition();
-
-	/**
-	 * Returns the meta object for data type '{@link org.eclipse.emf.ecore.EObject <em>EObject</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for data type '<em>EObject</em>'.
-	 * @see org.eclipse.emf.ecore.EObject
-	 * @model instanceClass="org.eclipse.emf.ecore.EObject"
-	 * @generated
-	 */
-	EDataType getEObject();
+	EEnum getInterpreter();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -263,20 +241,20 @@ public interface OclEvaluatorPackage extends EPackage {
 		EClass OCL_QUERY = eINSTANCE.getOclQuery();
 
 		/**
-		 * The meta object literal for the '<em><b>Context</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Context</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OCL_QUERY__CONTEXT = eINSTANCE.getOclQuery_Context();
+		EReference OCL_QUERY__CONTEXT = eINSTANCE.getOclQuery_Context();
 
 		/**
-		 * The meta object literal for the '<em><b>Condition</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Expression</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute OCL_QUERY__CONDITION = eINSTANCE.getOclQuery_Condition();
+		EReference OCL_QUERY__EXPRESSION = eINSTANCE.getOclQuery_Expression();
 
 		/**
 		 * The meta object literal for the '<em><b>Result</b></em>' attribute feature.
@@ -287,24 +265,14 @@ public interface OclEvaluatorPackage extends EPackage {
 		EAttribute OCL_QUERY__RESULT = eINSTANCE.getOclQuery_Result();
 
 		/**
-		 * The meta object literal for the '<em>Ocl Condition</em>' data type.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter <em>Interpreter</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition
-		 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getOclCondition()
+		 * @see de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter
+		 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getInterpreter()
 		 * @generated
 		 */
-		EDataType OCL_CONDITION = eINSTANCE.getOclCondition();
-
-		/**
-		 * The meta object literal for the '<em>EObject</em>' data type.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see org.eclipse.emf.ecore.EObject
-		 * @see de.hpi.sam.bp2009.solution.oclEvaluator.impl.OclEvaluatorPackageImpl#getEObject()
-		 * @generated
-		 */
-		EDataType EOBJECT = eINSTANCE.getEObject();
+		EEnum INTERPRETER = eINSTANCE.getInterpreter();
 
 	}
 

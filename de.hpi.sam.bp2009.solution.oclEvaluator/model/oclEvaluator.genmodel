@@ -3,24 +3,31 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.solution.oclEvaluator/src"
     modelPluginID="de.hpi.sam.bp2009.solution.oclEvaluator" modelName="OclEvaluator"
-    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false">
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl platform:/plugin/org.eclipse.ocl.ecore/model/OCLEcore.genmodel#//ocl">
   <foreignModel>oclEvaluator.ecore</foreignModel>
   <genPackages prefix="OclEvaluator" basePackage="de.hpi.sam.bp2009.solution" disposableProviderFactory="true"
       ecorePackage="oclEvaluator.ecore#/">
-    <genDataTypes ecoreDataType="oclEvaluator.ecore#//OclCondition"/>
-    <genDataTypes ecoreDataType="oclEvaluator.ecore#//EObject"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="oclEvaluator.ecore#//Interpreter">
+      <genEnumLiterals ecoreEnumLiteral="oclEvaluator.ecore#//Interpreter/Ocl"/>
+      <genEnumLiterals ecoreEnumLiteral="oclEvaluator.ecore#//Interpreter/Mql"/>
+    </genEnums>
     <genClasses ecoreClass="oclEvaluator.ecore#//OCLEvaluator">
       <genOperations ecoreOperation="oclEvaluator.ecore#//OCLEvaluator/evaluate">
         <genParameters ecoreParameter="oclEvaluator.ecore#//OCLEvaluator/evaluate/queryobject"/>
-        <genParameters ecoreParameter="oclEvaluator.ecore#//OCLEvaluator/evaluate/context"/>
       </genOperations>
       <genOperations ecoreOperation="oclEvaluator.ecore#//OCLEvaluator/evaluate.1">
         <genParameters ecoreParameter="oclEvaluator.ecore#//OCLEvaluator/evaluate.1/queries"/>
       </genOperations>
+      <genOperations ecoreOperation="oclEvaluator.ecore#//OCLEvaluator/passToInterpreter">
+        <genParameters ecoreParameter="oclEvaluator.ecore#//OCLEvaluator/passToInterpreter/interpreter"/>
+        <genParameters ecoreParameter="oclEvaluator.ecore#//OCLEvaluator/passToInterpreter/queryobject"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="oclEvaluator.ecore#//OclQuery">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute oclEvaluator.ecore#//OclQuery/context"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute oclEvaluator.ecore#//OclQuery/condition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EReference oclEvaluator.ecore#//OclQuery/context"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference oclEvaluator.ecore#//OclQuery/expression"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute oclEvaluator.ecore#//OclQuery/result"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

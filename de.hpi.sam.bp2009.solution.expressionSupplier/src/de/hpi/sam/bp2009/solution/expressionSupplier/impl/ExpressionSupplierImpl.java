@@ -6,24 +6,18 @@
  */
 package de.hpi.sam.bp2009.solution.expressionSupplier.impl;
 
-import de.hpi.sam.bp2009.solution.expressionSupplier.ExpressionSupplier;
-import de.hpi.sam.bp2009.solution.expressionSupplier.ExpressionSupplierPackage;
-
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
-
-import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.Logger;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
+import de.hpi.sam.bp2009.solution.expressionSupplier.ExpressionSupplier;
+import de.hpi.sam.bp2009.solution.expressionSupplier.ExpressionSupplierPackage;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 /**
  * <!-- begin-user-doc -->

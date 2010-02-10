@@ -6,7 +6,6 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
-import de.hpi.sam.bp2009.solution.impactAnalyzer.*;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;

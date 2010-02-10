@@ -45,6 +45,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
  * @generated
  */
 public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedModifiedIAOperator {
+	
+	private static final String NAME = "Impact Analyzer";
+	private static final String DESCRIPTION = "The Impact analyzer determines which OCL Conditions have to be reevaluated on a certain internal event.";
+	
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -105,6 +109,8 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	 */
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
+	
+
 	/**
 	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -118,10 +124,12 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
-	protected EmbedModifiedIAOperatorImpl() {
+	public EmbedModifiedIAOperatorImpl() {
 		super();
+		this.setName(NAME);
+		this.setDescription(DESCRIPTION);
 	}
 
 	/**

@@ -12,8 +12,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.query.ocl.conditions.AbstractOCLCondition;
 
+import de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
@@ -78,10 +78,8 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case OclEvaluatorPackage.OCL_CONDITION:
-				return createOclConditionFromString(eDataType, initialValue);
-			case OclEvaluatorPackage.EOBJECT:
-				return createEObjectFromString(eDataType, initialValue);
+			case OclEvaluatorPackage.INTERPRETER:
+				return createInterpreterFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -95,10 +93,8 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case OclEvaluatorPackage.OCL_CONDITION:
-				return convertOclConditionToString(eDataType, instanceValue);
-			case OclEvaluatorPackage.EOBJECT:
-				return convertEObjectToString(eDataType, instanceValue);
+			case OclEvaluatorPackage.INTERPRETER:
+				return convertInterpreterToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -129,9 +125,10 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
-	public AbstractOCLCondition createOclConditionFromString(EDataType eDataType, String initialValue) {
-		return (AbstractOCLCondition)super.createFromString(eDataType, initialValue);
+	public Interpreter createInterpreterFromString(EDataType eDataType, String initialValue) {
+		Interpreter result = Interpreter.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
 	}
 
 	/**
@@ -139,26 +136,8 @@ public class OclEvaluatorFactoryImpl extends EFactoryImpl implements OclEvaluato
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertOclConditionToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EObject createEObjectFromString(EDataType eDataType, String initialValue) {
-		return (EObject)super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertEObjectToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
+	public String convertInterpreterToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**
