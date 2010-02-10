@@ -7,6 +7,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridLayout;
@@ -27,6 +28,7 @@ public class OclOperatorWizardPage extends WizardPage {
 	private Composite composite;
 	private Composite textareacomposite;
 	private Text textarea;
+	private ScrolledComposite scrolledComposite;
 	
 	protected OclOperatorWizardPage(String pageName) {
 		super(pageName);
@@ -41,9 +43,14 @@ public class OclOperatorWizardPage extends WizardPage {
 	}
 	public void createControl(Composite parent) {
 		//create the widgets for the page
-		composite = new Composite(parent, SWT.NONE);
+		scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.BORDER);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		composite = new Composite(scrolledComposite, SWT.NONE);
+		scrolledComposite.setContent(composite);
 		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
+
 		
 		Label label = new Label(composite, SWT.CENTER);
 		label.setText(LABELTEXT);
@@ -65,6 +72,7 @@ public class OclOperatorWizardPage extends WizardPage {
 					textareas.add(txt);
 					textareacomposite.layout();
 					composite.layout();
+					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				}
 			}
 		});
@@ -73,7 +81,8 @@ public class OclOperatorWizardPage extends WizardPage {
 		GridLayout textlayout = new GridLayout(1,false);
 		textareacomposite.setLayout(textlayout);
 		textareacomposite.setSize(400, 10);
-	    setControl(composite);
+		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+	    setControl(scrolledComposite);
 	    
 	}
 	

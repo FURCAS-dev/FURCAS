@@ -6,6 +6,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
@@ -23,6 +24,7 @@ public class RunningPage extends WizardPage {
 	private boolean benchmarked=false;
 	private Label error;
 	private Composite composite;
+	private ScrolledComposite scrolledComposite;
 	
 	protected RunningPage(String pageName) {
 		super(pageName);
@@ -32,7 +34,11 @@ public class RunningPage extends WizardPage {
 	}
 	public void createControl(Composite parent) {
 		//create the widgets for the page
-		composite = new Composite(parent, SWT.NONE);
+		scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		composite = new Composite(scrolledComposite, SWT.NONE);
+		scrolledComposite.setContent(composite);
 		GridLayout layout = new GridLayout(1, false);
 		composite.setLayout(layout);
 		
@@ -53,9 +59,11 @@ public class RunningPage extends WizardPage {
 				engine.getTestRuns().add(wiz.getRun());
 				try{
 					engine.benchmark();
+					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				}catch(java.lang.Throwable e1){
 					error.setText(e1.getMessage()+"\n");
 					composite.layout();
+					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 					return;
 				}
 				if(engine.getExeptionsDuringLastRun()!=null){
@@ -78,6 +86,7 @@ public class RunningPage extends WizardPage {
 				bt.setEnabled(true);
 				benchmarked=true;
 				composite.layout();
+				scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 				wiz.getContainer().updateButtons();
 
 			}
@@ -91,7 +100,7 @@ public class RunningPage extends WizardPage {
 
 		});
 		//ProgressBar bar = new ProgressBar(composite, SWT.CENTER);
-	    setControl(composite);
+	    setControl(scrolledComposite);
 
 	}
 	

@@ -6,6 +6,7 @@ package de.hpi.sam.bp2009.benchframework.simpleResultProcessor.impl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
@@ -24,6 +25,7 @@ public class SimpleResultPage extends WizardPage {
 
 	private EList<Operator> ops;
 	private Composite composite;
+	private ScrolledComposite scrolledComposite;
 
 	/**
 	 * @return the ops
@@ -57,7 +59,11 @@ public class SimpleResultPage extends WizardPage {
 	@Override
 	public void createControl(Composite parent) {
 		//create the widgets for the page
-		composite = new Composite(parent,SWT.V_SCROLL);
+		scrolledComposite = new ScrolledComposite(parent, SWT.H_SCROLL | SWT.V_SCROLL);
+		scrolledComposite.setExpandHorizontal(true);
+		scrolledComposite.setExpandVertical(true);
+		composite = new Composite(scrolledComposite,SWT.NONE);
+		scrolledComposite.setContent(composite);
 		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
 		composite.setBounds(10, 40, 200, 200);
@@ -66,13 +72,14 @@ public class SimpleResultPage extends WizardPage {
 			ResultObject r = o.getResult();
 			Label label1 = new Label(composite, SWT.CENTER);
 			label1.setText(o.getName());
+			scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
 			try{
 			r.getComposite(composite);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
-		setControl(composite);
+		setControl(scrolledComposite);
 	}
 	public static String getCustomStackTrace(Throwable aThrowable) {
 		//add the class name and any message passed to constructor
