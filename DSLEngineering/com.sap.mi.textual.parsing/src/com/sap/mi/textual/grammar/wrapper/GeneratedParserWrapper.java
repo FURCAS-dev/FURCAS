@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-09-21 14:32:09 +0200 (Mo, 21 Sep 2009) $
- * Revision: $Revision: 7911 $
- * Author: $Author: c5126871 $
+ * Date: $Date: 2010-02-05 15:00:44 +0100 (Fr, 05 Feb 2010) $
+ * Revision: $Revision: 9371 $
+ * Author: $Author: c5106462 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar.wrapper;
 

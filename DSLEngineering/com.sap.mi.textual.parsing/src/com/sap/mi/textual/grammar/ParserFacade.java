@@ -2,9 +2,9 @@
  * Copyright (c) 2008 SAP
  * see https://research.qkal.sap.corp/mediawiki/index.php/CoMONET
  * 
- * Date: $Date: 2009-11-10 14:52:04 +0100 (Di, 10 Nov 2009) $
- * Revision: $Revision: 8522 $
- * Author: $Author: d043530 $
+ * Date: $Date: 2010-02-05 15:00:44 +0100 (Fr, 05 Feb 2010) $
+ * Revision: $Revision: 9371 $
+ * Author: $Author: c5106462 $
  *******************************************************************************/
 package com.sap.mi.textual.grammar;
 

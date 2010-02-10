@@ -91,7 +91,7 @@ public class DelayedReferencesHelper {
 	if (reference.getType() == DelayedReference.SEMANTIC_PREDICATE) {
 	    return setDelayedReferenceWithPredicate(reference, modelAdapter, contextManager, contextElement, parser);
 	}
-	if (reference.getOclQuery() != null) {
+	if (reference.getOclQuery() != null && reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
 	    return setDelayedReferenceWithQuery(reference, modelAdapter, contextManager, contextElement);
 	} else {
 	    return setDelayedReferenceWithLookup(reference, modelAdapter, contextManager, contextElement);
@@ -193,13 +193,28 @@ public class DelayedReferencesHelper {
 	}
 	boolean originalResolveProxiesValue = parser.isResolveProxies();
 	parser.setResolveProxies(false);
-
+	
+	IModelElementProxy proxyForContextElement = null;
 	if (reference.getContextElement() instanceof IModelElementProxy) {
-	    parser.getCurrentContextStack().push((IModelElementProxy) reference.getContextElement());
+	    proxyForContextElement = (IModelElementProxy) reference.getContextElement();
 	} else {
-	    parser.getCurrentContextStack().push(
-		    new ResolvedModelElementProxy(reference.getContextElement()));
+	    proxyForContextElement = new ResolvedModelElementProxy(reference.getContextElement());
 	}
+	
+	if (parser.getContextManager().getContextForElement(reference.getContextElement()) == null) {
+            parser.addContext(proxyForContextElement);
+            if(proxyForContextElement.getRealObject() != null && reference.getContextElement() instanceof RefObject) {
+                parser.getContextManager().notifyProxyResolvedWith(proxyForContextElement,  reference.getContextElement(),   /*
+                         * no creation context element needs to be provided here because the proxy has just been created and has
+                         * not been added to any other context
+                         */null);
+            }
+            
+        } else {
+            parser.getCurrentContextStack().push(proxyForContextElement); // the Context object was already created elsewhere
+        }
+	
+	
 	if (reference.hasContext() && next instanceof RefObject) {
 	    ResolvedModelElementProxy proxyForNext = new ResolvedModelElementProxy(next);
 	    if (parser.getContextManager().getContextForElement(next) == null) {
@@ -639,11 +654,18 @@ public class DelayedReferencesHelper {
 	List<String> valueTypeName = reference.getValueTypeName();
 	Object keyValue = reference.getKeyValue();
 	String keyName = reference.getKeyName();
+	
+	
 
 	Object candidate = null;
 
-	candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
+	if(reference.getType() == DelayedReference.CONTEXT_LOOKUP) {
+	    candidate = modelAdapter.setOclReference(reference.getTextBlock(), reference.getPropertyName(),
+                    reference.getKeyValue(), reference.getOclQuery(), contextElement);
+	} else {
+	    candidate = contextManager.findCandidatesInContext(modelAdapter, contextElement, valueTypeName, keyName,
 		keyValue);
+	}
 
 	if (candidate != null) {
 	    reference.setRealValue(candidate);

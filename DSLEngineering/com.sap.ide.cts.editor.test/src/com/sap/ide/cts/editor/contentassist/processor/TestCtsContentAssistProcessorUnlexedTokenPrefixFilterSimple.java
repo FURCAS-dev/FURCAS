@@ -39,7 +39,6 @@ public class TestCtsContentAssistProcessorUnlexedTokenPrefixFilterSimple extends
 	public void beginningOfFile() {
 		List<String> expected = new ArrayList<String>();
 		expected.add("*(?=|");
-		expected.add("*(?=| name !!!");
 		expected.add("*(?=| name $$$");
 
 		assertDisplayStrings(expected, 0, 0);
@@ -48,7 +47,6 @@ public class TestCtsContentAssistProcessorUnlexedTokenPrefixFilterSimple extends
 	@Test
 	public void beforeNonIdentifierToken() {
 		List<String> expected = new ArrayList<String>();
-		expected.add("!!!");
 		expected.add("$$$");
 
 		assertDisplayStrings(expected, 0, 12);

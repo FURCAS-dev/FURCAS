@@ -39,7 +39,7 @@ public class TestFinexEditingActions extends FinexEditorTest {
         document.replace(59, 0, "3");
         document.replace(61, 0, ";");
         saveAll(editor);
-        //failOnError(editor);
+        failOnError(editor);
         assertTrue(testInfixChangeClass.is___Alive());
         // Your assertions on refObject here 
         assertEquals(2, testInfixChangeClass.getInvariants().size());
@@ -48,7 +48,7 @@ public class TestFinexEditingActions extends FinexEditorTest {
             if (e instanceof BinaryNumericOperator) {
                 BinaryNumericOperator bno = (BinaryNumericOperator) e;
                 if (bno.getOperator().equals("<")) {
-                    found = (bno.getLeft() instanceof IntegerLiteral &&
+                    found = found || (bno.getLeft() instanceof IntegerLiteral &&
                              bno.getRight() instanceof IntegerLiteral &&
                              ((IntegerLiteral) bno.getLeft()).getLiteral().equals("2") &&
                              ((IntegerLiteral) bno.getRight()).getLiteral().equals("3"));

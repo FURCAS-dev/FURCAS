@@ -1,13 +1,16 @@
 package com.sap.tc.moin.repository.ocl.freestyle;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.omg.ocl.expressions.OclExpression;
 
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.MRI;
+import com.sap.tc.moin.repository.events.EventChain;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
+import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
@@ -175,5 +178,14 @@ public interface OclExpressionRegistration extends OclRegistration {
     RefObject getContext();
 
     OclExpression getExpression();
+
+    /**
+     * Calls {@link #getAffectedModelElements(ModelChangeEvent, Connection)} for each {@link ModelChangeEvent}
+     * in the <tt>events</tt> collection and adds up all affected elements into the result set which is always
+     * valid (non-<tt>null</tt>) but may be empty.
+     */
+    public Set<MRI> getAffectedModelElements(EventChain events, Connection conn);
+
+    public boolean isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(List<ChangeEvent> events, String replacementFor__TEMP__);
 
 }

@@ -49,8 +49,13 @@ public class RenameRefactoring extends Refactoring {
         
 // #### Further Validation and Execution #### 
     
-    void setNewModelElementName(String newName) {
+    RefactoringStatus setNewModelElementName(String newName) {
 	this.newName = newName;
+	if (facade.isValidIdentifierFor(newName, targetAsNamedElement)) {
+	    return new RefactoringStatus();
+	} else {
+	    return RefactoringStatus.createErrorStatus("Given name is not a valid identifier");
+	}
     }
     
     String getOldModelElementName() {

@@ -1,6 +1,5 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,6 +9,7 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * Steps of this type can be an empty placeholder during the analysis phase and can
@@ -22,9 +22,10 @@ import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
  */
 public class IndirectingStep extends AbstractNavigationStep {
     private NavigationStep actualStep;
+    private boolean equalsOrHashCodeCalledBeforeActualStepSet = false;
 
     /**
-     * The set of objects for which {@link #navigate(CoreConnection, RefObjectImpl)} is currently being evaluated on
+     * The set of objects for which {@link #navigate(CoreConnection, RefObjectImpl, Map)} is currently being evaluated on
      * this step instance, keyed by the current thread by means of using a {@link ThreadLocal}. This is used to avoid
      * endless recursions. Navigating the same thing again starting from the same object wouldn't contribute new things.
      * So in that case, an empty set will be returned.
@@ -40,9 +41,35 @@ public class IndirectingStep extends AbstractNavigationStep {
 	super(null, null, debugInfo);
     }
     
+    public boolean equals(Object o) {
+	boolean result;
+	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
+	    equalsOrHashCodeCalledBeforeActualStepSet = true;
+	    result = this.equals(o);
+	} else {
+	    Object toCompareWith = o;
+	    if (o instanceof IndirectingStep) {
+		toCompareWith = ((IndirectingStep) o).getActualStep();
+	    }
+	    result = actualStep.equals(toCompareWith);
+	}
+	return result;
+    }
+    
+    public int hashCode() {
+	int result;
+	if (actualStep == null || equalsOrHashCodeCalledBeforeActualStepSet) {
+	    equalsOrHashCodeCalledBeforeActualStepSet = true;
+	    result = this.hashCode();
+	} else {
+	    result = actualStep.hashCode();
+	}
+	return result;
+    }
+    
     public void setActualStep(NavigationStep actualStep) {
 	if (this.actualStep != null) {
-	    throw new RuntimeException("Internal error: can't set an IndirectingStep's actual step twice");
+	   throw new RuntimeException("Internal error: can't set an IndirectingStep's actual step twice");
 	}
 	this.actualStep = actualStep;
 	setSourceType(actualStep.getSourceType());
@@ -59,19 +86,42 @@ public class IndirectingStep extends AbstractNavigationStep {
 	    });
 	}
     }
+    
+    public NavigationStep getActualStep() {
+        return actualStep;
+    }
 
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
-	Collection<RefObjectImpl> result;
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+	Set<RefObjectImpl> result;
 	if (currentlyEvaluatingNavigateFor.get().contains(fromObject) || isAlwaysEmpty()) {
 	    result = Collections.emptySet();
 	} else {
 	    currentlyEvaluatingNavigateFor.get().add(fromObject);
 	    Set<RefObjectImpl> set = Collections.singleton(fromObject);
-	    result = actualStep.navigate(conn, set);
+	    result = actualStep.navigate(conn, set, cache);
 	    currentlyEvaluatingNavigateFor.get().remove(fromObject);
 	}
 	return result;
+    }
+    
+    /** 
+     * Overrides incrementNavigateCounter to suppress counting of additional navigate() call in case of a recursion 
+     */
+    @Override
+    protected void incrementNavigateCounter(CoreConnection conn, Set<RefObjectImpl> from) {
+	boolean oneFromObjectIsEvaluating = false;
+	
+	for(RefObjectImpl obj : from){
+	    if( currentlyEvaluatingNavigateFor.get().contains(obj) ){
+		oneFromObjectIsEvaluating = true;
+		return;
+	    }
+	}
+	
+	if(!oneFromObjectIsEvaluating){
+            super.incrementNavigateCounter(conn, from);
+        }
     }
     
     @Override
@@ -86,10 +136,10 @@ public class IndirectingStep extends AbstractNavigationStep {
     }
     
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return "(i)"
 		+ ((actualStep != null) ? ((actualStep instanceof AbstractNavigationStep ? ((AbstractNavigationStep) actualStep)
-			.contentToString(visited, maxId, indent) : actualStep.toString())) : "null");
+			.contentToString(visited, indent) : actualStep.toString())) : "null");
     }
     
     /**

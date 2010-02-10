@@ -28,7 +28,7 @@ public class TestCtsContentAssistProcessorClassEmpty extends
 		initSyntax(ClassLexer.class.getResourceAsStream("Class.tcs"));
 		IncrementalParserFacade facade = createFacade(new ClassParserFactory(),
 				connection.getPackage(NgpmPackage.PACKAGE_DESCRIPTOR));
-		initProcessorForFixture("Empty.class", facade, "Class");
+		initProcessorForFixture("Empty.class", null, facade, "Class");
 	}
 
 	@Test

@@ -6,7 +6,6 @@ import static com.sap.mi.textual.parsing.textblocks.TbUtil.getAbsoluteOffset;
 import java.util.Iterator;
 import java.util.List;
 
-import textblockdefinition.TextblockDefinitionGeneralisation;
 import textblocks.AbstractToken;
 import textblocks.Bostoken;
 import textblocks.DocumentNode;

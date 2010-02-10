@@ -5,27 +5,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.ListIterator;
 
-import com.sap.tc.moin.repository.mmi.model.EnumerationType;
-import com.sap.tc.moin.repository.mmi.model.ModelElement;
-import com.sap.tc.moin.repository.mmi.model.MofClass;
-import com.sap.tc.moin.repository.mmi.model.MofPackage;
-import com.sap.tc.moin.repository.mmi.model.StructureType;
-import com.sap.tc.moin.repository.mmi.reflect.RefObject;
-
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.progress.IProgressService;
 
 import com.sap.ide.moftool.editor.core.commands.MofService;
-import com.sap.mi.fwk.ConnectionManager;
 import com.sap.mi.fwk.ModelAdapter;
 import com.sap.mi.gfw.mm.pictograms.Diagram;
 import com.sap.mi.gfw.mm.pictograms.Shape;
 import com.sap.mi.gfw.util.LinkUtil;
 import com.sap.tc.moin.repository.Connection;
 import com.sap.tc.moin.repository.Partitionable;
+import com.sap.tc.moin.repository.mmi.model.EnumerationType;
+import com.sap.tc.moin.repository.mmi.model.ModelElement;
+import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.mmi.model.MofPackage;
+import com.sap.tc.moin.repository.mmi.model.StructureType;
+import com.sap.tc.moin.repository.mmi.reflect.RefObject;
 import com.sap.tc.moin.repository.mql.MQLResultSet;
 
 public abstract class DiagramService {
@@ -104,7 +98,8 @@ public abstract class DiagramService {
 		IProject project = ModelAdapter.getInstance().getProject(connection);
 		for (int i = 0; i < resultSet.getSize(); i++) {
 			RefObject ro = resultSet.getRefObject(i, "d"); //$NON-NLS-1$
-			if (ModelAdapter.getInstance().getProject(ro).equals(project)) {
+			IProject projectOfObject = ModelAdapter.getInstance().getProject(ro);
+			if (projectOfObject != null && projectOfObject.equals(project)) {
 				children.add((Diagram) ro);
 			}
 		}

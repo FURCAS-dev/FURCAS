@@ -11,7 +11,6 @@ import java.util.Map;
 
 import org.antlr.runtime.Lexer;
 import org.antlr.runtime.Parser;
-import org.antlr.runtime.Token;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -90,7 +89,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			int offset) {
 
 		try {
-			int line = getLine(viewer, offset);
+			int line = CtsContentAssistUtil.getLine(viewer, offset);
 			int charPositionInLine = getCharPositionInLine(viewer, offset, line);
 
 			return computeCompletionProposals(viewer, line, charPositionInLine);
@@ -111,33 +110,10 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 	 * @return
 	 * @throws BadLocationException
 	 */
-	private int getCharPositionInLine(ITextViewer viewer, int offset, int line)
-			throws BadLocationException {
+	private static int getCharPositionInLine(ITextViewer viewer, int offset,
+			int line) throws BadLocationException {
 		IRegion lineRegion = viewer.getDocument().getLineInformation(line);
 		return offset - lineRegion.getOffset();
-	}
-
-	/**
-	 * 
-	 * @param viewer
-	 * @param offset
-	 *            0..n-1
-	 * @return
-	 * @throws BadLocationException
-	 */
-	private int getLine(ITextViewer viewer, int offset)
-			throws BadLocationException {
-		return viewer.getDocument().getLineOfOffset(offset);
-	}
-
-	private int getLine(Token token) {
-		// ANTRL lines start at 1
-		return token.getLine() - 1;
-	}
-
-	private int getCharPositionInLine(Token token) {
-		// ANTRL line positions start at 0
-		return token.getCharPositionInLine();
 	}
 
 	public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer,
@@ -169,7 +145,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			int line, int charPositionInLine, TextBlocksModel tbModel) {
 
 		try {
-			List<ICompletionProposal> results = null;
+			List<ICompletionProposal> results = new ArrayList<ICompletionProposal>();
 
 			initParsingHandler(viewer);
 
@@ -179,6 +155,16 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 				CtsContentAssistContext context = getContext(line,
 						charPositionInLine);
+
+				// workaround for ANTLR unlexed tokens that get parsed but start
+				// with whitespace
+				if (context != null) {
+
+					if (CtsContentAssistUtil.isContextAtWhitespace(viewer,
+							context)) {
+						context = getPreviousContext(context, viewer);
+					}
+				}
 
 				if (!isValid(context)) {
 					// no floor context, get first possible proposals
@@ -193,21 +179,30 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 					// TODO this assumes languages with standard whitespaces
 					// filter by currently un-tokenized non-whitespace prefix
 
-					int curOffset = getAbsoluteOffset(viewer, line,
-							charPositionInLine);
+					int curOffset = CtsContentAssistUtil.getAbsoluteOffset(
+							viewer, line, charPositionInLine);
 
 					// stop just before start of current line
-					int stopOffset = getAbsoluteOffset(viewer, line, 0) - 1;
+					int stopOffset = CtsContentAssistUtil.getAbsoluteOffset(
+							viewer, line, 0) - 1;
 
 					prefix = CtsContentAssistUtil.computeNonWhitespacePrefix(
-							getDocumentContents(viewer), curOffset, stopOffset);
+							CtsContentAssistUtil.getDocumentContents(viewer),
+							curOffset, stopOffset);
 
 					results = prefixFilter(removeNullValues(results), prefix);
 
 					// end workaround
 
 				} else {
-					// we are at or past a token
+
+					if (context.getToken().getText() == null) {
+						// TODO workaround as ANTLR does not create a correct
+						// token for unlexed content
+						CtsContentAssistUtil.fixTokenText(viewer, context
+								.getToken());
+					}
+
 					if (CtsContentAssistUtil.isInToken(line,
 							charPositionInLine, context.getToken())) {
 
@@ -217,15 +212,14 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 						// get proposals that follow previous token, and apply
 						// prefix filter
 
-						if (!isValid(previousContext)
-								|| previousContext.isErrorContext()) {
+						if (!isValid(previousContext)) {
+
 							results = CtsContentAssistUtil
 									.createFirstPossibleProposals(syntax,
 											classTemplateMap, viewer, line,
 											charPositionInLine, context
 													.getToken(), tbModel);
 						} else {
-							// get proposals that follow token
 							results = CtsContentAssistUtil
 									.createFollowProposalsFromContext(syntax,
 											previousContext, classTemplateMap,
@@ -234,11 +228,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 						}
 
 						// compute prefix from token text
-						prefix = context.getToken().getText().substring(
-								0,
-								charPositionInLine
-										- context.getToken()
-												.getCharPositionInLine());
+						prefix = computePrefixFromContext(charPositionInLine,
+								context);
 
 						results = prefixFilter(removeNullValues(results),
 								prefix);
@@ -251,8 +242,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 						// symbol
 						// space variables
 						if (previousContext != null
-								&& isAtEndOfToken(line, charPositionInLine,
-										context.getToken())) {
+								&& CtsContentAssistUtil.isAtEndOfToken(line,
+										charPositionInLine, context.getToken())) {
 							results.addAll(CtsContentAssistUtil
 									.createFollowProposalsFromContext(syntax,
 											context, classTemplateMap, viewer,
@@ -263,40 +254,16 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 						}
 
 					} else {
-						// get proposals that follow token
-						results = CtsContentAssistUtil
-								.createFollowProposalsFromContext(syntax,
-										context, classTemplateMap, viewer,
-										line, charPositionInLine, context
-												.getToken(), tbModel);
+						if (!context.isErrorContext()) {
+							// get proposals that follow token
+							results = CtsContentAssistUtil
+									.createFollowProposalsFromContext(syntax,
+											context, classTemplateMap, viewer,
+											line, charPositionInLine, context
+													.getToken(), tbModel);
+						}
 
-						// TODO workaround because ANTRL will not create error
-						// token
-						// for unlexed characters
-						// TODO this assumes languages with standard whitespaces
-						// filter by currently un-tokenized non-whitespace
-						// prefix
-
-						int curOffset = getAbsoluteOffset(viewer, line,
-								charPositionInLine);
-
-						// stop at beginning of last valid token
-						int stopOffset = viewer.getDocument()
-								.getLineInformation(
-										context.getToken().getLine() - 1)
-								.getOffset()
-								+ context.getToken().getCharPositionInLine();
-
-						prefix = CtsContentAssistUtil
-								.computeNonWhitespacePrefix(
-										getDocumentContents(viewer), curOffset,
-										stopOffset);
-
-						results = prefixFilter(removeNullValues(results),
-								prefix);
 					}
-
-					// end workaround
 				}
 
 				return proposalListAsArray(sortProposals(
@@ -317,12 +284,23 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 	}
 
+	private String computePrefixFromContext(int charPositionInLine,
+			CtsContentAssistContext context) {
+		String prefix;
+		prefix = context.getToken().getText()
+				.substring(
+						0,
+						charPositionInLine
+								- context.getToken().getCharPositionInLine());
+		return prefix;
+	}
+
 	private boolean inComment(ITextViewer viewer, int line,
 			int charPositionInLine) throws BadLocationException {
 		IRegion lineInfo = viewer.getDocument().getLineInformation(line);
-		String curLine = getDocumentContents(viewer).substring(
-				lineInfo.getOffset(),
-				lineInfo.getOffset() + lineInfo.getLength());
+		String curLine = CtsContentAssistUtil.getDocumentContents(viewer)
+				.substring(lineInfo.getOffset(),
+						lineInfo.getOffset() + lineInfo.getLength());
 
 		// TODO update this when other forms than end of line comments
 		// become possible
@@ -335,12 +313,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		}
 
 		return false;
-	}
-
-	private int getAbsoluteOffset(ITextViewer viewer, int line,
-			int charPositionInLine) throws BadLocationException {
-		return viewer.getDocument().getLineInformation(line).getOffset()
-				+ charPositionInLine;
 	}
 
 	/**
@@ -358,7 +330,7 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			return false;
 		}
 
-		if (getCharPositionInLine(context.getToken()) == -1) {
+		if (CtsContentAssistUtil.getCharPositionInLine(context.getToken()) == -1) {
 			return false;
 		}
 
@@ -371,7 +343,8 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 		ParserFacade facade;
 		facade = new ParserFacade(getParserClass(), getLexerClass());
 
-		String documentContents = getDocumentContents(viewer);
+		String documentContents = CtsContentAssistUtil
+				.getDocumentContents(viewer);
 		InputStream in = new ByteArrayInputStream(documentContents.getBytes());
 		IModelAdapter modelHandler = new TextBlocksAwareModelAdapter(
 				new StubModelAdapter());
@@ -391,10 +364,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 
 	}
 
-	private String getDocumentContents(ITextViewer viewer) {
-		return viewer.getDocument().get();
-	}
-
 	private void initClassTemplateMap() {
 		classTemplateMap = TcsUtil.createClassTemplateMap(syntax);
 	}
@@ -403,8 +372,9 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			CtsContentAssistContext context, ITextViewer viewer)
 			throws BadLocationException {
 		// get the context one offset before this context
-		return getContext(getLine(context.getToken()),
-				getCharPositionInLine(context.getToken()) - 1);
+		return getContext(
+				CtsContentAssistUtil.getLine(context.getToken()),
+				CtsContentAssistUtil.getCharPositionInLine(context.getToken()) - 1);
 	}
 
 	private CtsContentAssistContext getContext(int line, int charPositionInLine)
@@ -425,20 +395,6 @@ public class CtsContentAssistProcessor implements IContentAssistProcessor {
 			}
 		}
 		return null;
-	}
-
-	static boolean isAtEndOfToken(int line, int charPositionInLine, Token t) {
-		// ANTLR lines start at 1 and char positions at 0
-		if (line + 1 != t.getLine()) {
-			return false;
-		}
-
-		if (charPositionInLine == t.getCharPositionInLine()
-				+ t.getText().length()) {
-			return true;
-		}
-
-		return false;
 	}
 
 	static boolean containsDisplayString(List<ICompletionProposal> proposals,

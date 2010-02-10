@@ -42,18 +42,17 @@ public class RenameInputPage extends UserInputWizardPage {
 	composite.setLayout(layout);
 
 	Label label = new Label(composite, SWT.NONE);
-	label.setText("NewName");
+	label.setText("New Name:");
 
-	Text text = createTextInputField(composite);
-	text.selectAll();
+	Text textField = createTextInputField(composite);
+	textField.setText(getRefactoring().getOldModelElementName());
+	
 	GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 	gd.widthHint = convertWidthInCharsToPixels(25);
-	text.setLayoutData(gd);
-
-	Label separator = new Label(composite, SWT.NONE);
-	GridData gridData = new GridData(SWT.FILL, SWT.FILL, false, false);
-	gridData.heightHint = 2;
-	separator.setLayoutData(gridData);
+	textField.setLayoutData(gd);
+	
+	textField.setFocus();
+	textField.selectAll();
 
     }
 
@@ -64,17 +63,18 @@ public class RenameInputPage extends UserInputWizardPage {
 		textModifiedCallback(textField.getText());
 	    }
 	});
-	textField.setText(getRefactoring().getOldModelElementName());
 	return textField;
     }
 
     /**
      * Performs input validation. Returns a <code>RefactoringStatus</code> which
      * describes the result of input validation. <code>Null<code> is interpreted
-	 * as no error.
+     * as no error.
      */
     protected RefactoringStatus validateTextField(String text) {
-	return RefactoringStatus.createWarningStatus("Name checking not yet implemented. May create invalid model.");
+	RefactoringStatus status = new RefactoringStatus();
+	status.merge(getRefactoring().setNewModelElementName(text));
+	return status;
     }
 
     /**
@@ -82,10 +82,8 @@ public class RenameInputPage extends UserInputWizardPage {
      * page validation is computed by calling <code>validatePage</code>.
      */
     protected void textModifiedCallback(String text) {
-	RefactoringStatus status = validateTextField(text);	
+	RefactoringStatus status = validateTextField(text);
 	setPageComplete(status);
-	
-	getRefactoring().setNewModelElementName(textField.getText());
     }
 
 }

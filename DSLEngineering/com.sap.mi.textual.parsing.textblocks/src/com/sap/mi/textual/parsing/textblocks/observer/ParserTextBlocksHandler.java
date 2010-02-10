@@ -766,7 +766,7 @@ public class ParserTextBlocksHandler implements IParsingObserver {
     @Override
     public void reset() {
         this.traverser = new TextBlockTraverser();
-        ruleDepth = 0;
+        //ruleDepth = 0;
     }
 
    

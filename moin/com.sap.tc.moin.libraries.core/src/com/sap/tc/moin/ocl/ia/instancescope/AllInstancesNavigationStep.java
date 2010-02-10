@@ -1,13 +1,14 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
-import java.util.Collection;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 public class AllInstancesNavigationStep extends AbstractNavigationStep {
     private final boolean absolute;
@@ -27,7 +28,7 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     /**
      * Constructs a non-{@link NavigationStep#isAbsolute() absolute} navigation step that
      * computes all instances of <tt>targetType</tt> and all its direct and indirect subtypes,
-     * if the <tt>fromObject</tt> passed to {@link #navigate(CoreConnection, RefObjectImpl)}
+     * if the <tt>fromObject</tt> passed to {@link #navigate(CoreConnection, RefObjectImpl, Map)}
      * conforms to the <tt>sourceType</tt>. Otherwise, an empty set is returned. The
      * consideration of the <tt>fromObject</tt> is the reason why if constructed with this
      * constructor an object of this class is not absolute.
@@ -44,12 +45,12 @@ public class AllInstancesNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
 	return InstanceScopeAnalysis.getAllPossibleContextInstances(conn, getTargetType());
     }
 
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return "allInstances("+getTargetType().getName()+")";
     }
 }

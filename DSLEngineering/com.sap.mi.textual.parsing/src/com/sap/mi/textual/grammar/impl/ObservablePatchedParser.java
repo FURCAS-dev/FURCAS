@@ -66,7 +66,7 @@ extends Parser
         if (observer == null) {
             return;
         }
-        //observer.reset();
+        observer.reset();
     }
     
     protected void onEnterTemplateRule(List<String> createdElement) {
