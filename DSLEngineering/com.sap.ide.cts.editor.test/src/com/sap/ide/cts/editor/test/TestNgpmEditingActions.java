@@ -443,11 +443,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 	@Test
 	public void testCreationOfAnotherAssociation() throws PartInitException,
 			BadLocationException, CoreException {
-<<<<<<< HEAD
-		final RefObject refObject = (RefObject) findClass("OrdrdStrgsTest");
-=======
 		final SapClass refObject = findClass("OrdrdStrgsTest");
->>>>>>> 5e973dffaad2674dade58d2aba78310692a0b169
 		assertNotNull(refObject);
 		assertTrue(refObject.is___Alive());
 		AbstractGrammarBasedEditor editor = openEditor(refObject);
