@@ -53,6 +53,7 @@ public class EventManagerImpl extends EObjectImpl implements EventManager {
 	 */
 	protected EventManagerImpl() {
 		super();
+		this.setEventMapper(EventManagerFactory.eINSTANCE.createEventMappper());
 	}
 	
 	private class EventAdapter extends EContentAdapter{

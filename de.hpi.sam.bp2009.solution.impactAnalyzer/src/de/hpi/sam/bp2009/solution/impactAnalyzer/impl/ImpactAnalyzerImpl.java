@@ -226,7 +226,7 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 		QueryReevaluateNotification noti= ImpactAnalyzerFactory.eINSTANCE.createQueryReevaluateNotification();
 		noti.setEvent(eventNotification.getEvent());
 		noti.setReevaluatedQueries(queries);
-		for (Adapter a : eAdapters)
+		for (Adapter a : eAdapters())
 			notifyApplication(a, noti);
 	}
 	
