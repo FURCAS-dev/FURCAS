@@ -364,35 +364,36 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		EObject cls = classList.get(index);
 		int attrSize = cls.eClass().getEAllAttributes().size();
 		if (attrSize > 0){
-			EAttribute attr = cls.eClass().getEAllAttributes().get(getRandomNumberGenerator().nextInt(attrSize));
-			//if the attribute has the default value, we unset it
-			//if it's not the default, we set it to the default
-			//this always changes the attribute and might as well invalidate some OCL Conditions
-			if (!attr.isChangeable()){
-				//if the attribute is not changeable, try the next class
-				//TODO: try out all attributes first
-				classList.remove(index);
-				if (!classList.isEmpty()){
-					return modifyRandomAttribute(classList);
-				}else{
-					return false;
+			
+			EList<EAttribute> attrList = cls.eClass().getEAllAttributes();
+			//would be set later on, because attribute size > 0
+			EAttribute attr = null;
+			//try to find a attribute to change
+			while (!(attrList.isEmpty())){
+				int number = getRandomNumberGenerator().nextInt(attrList.size());
+				attr = attrList.get(number);
+				//if the attribute is not changeable, remove it from attribute list and try an other one
+				if (!attr.isChangeable()){
+					attrList.remove(number);
+					continue;
 				}
-			}
-			if (cls.eGet(attr) == attr.getDefaultValue()){
-				cls.eUnset(attr);
-			} else {
-				cls.eSet(attr, attr.getDefaultValue());
-			}
-			return true;
-		} else {
-			//in case there are no attributes, just find another class
-			//to prevent endless loops we remove the already visited classes from the list of choices
-			classList.remove(index);
-			if (!classList.isEmpty()){
-				 return modifyRandomAttribute(classList);
+				//valid attribute found
+				//if the attribute has the default value, we unset it
+				//if it's not the default, we set it to the default
+				//this always changes the attribute and might as well invalidate some OCL Conditions
+				if (cls.eGet(attr) == attr.getDefaultValue())
+					cls.eUnset(attr);
+				else
+					cls.eSet(attr, attr.getDefaultValue());
+				return true;
+				
 			}
 		}
-		return false;
+		classList.remove(index);
+		if (!classList.isEmpty())
+			return modifyRandomAttribute(classList);
+		else
+			return false;		
 	}
 
 	
@@ -409,40 +410,39 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		int refCount = cls.eClass().getEAllReferences().size();
 		if (refCount > 0){
 			//a reference was found, remove one referenced class
-			EReference ref = cls.eClass().getEAllReferences().get(getRandomNumberGenerator().nextInt(refCount));
-			Object obj = cls.eGet(ref);
-			if (!ref.isChangeable() || null == obj || ( obj instanceof EList<?> && ((EList<Object>)obj).isEmpty() )){
-				//if the reference is not changeable or empty, try the next class
-				//TODO: try out all references first
-				classList.remove(index);
-				if (!classList.isEmpty()){
-					return deleteRandomReference(classList);
-				}else{
-					return false;
+			EList<EReference> refList = cls.eClass().getEAllReferences();
+			EReference ref = null;
+			Object obj = null;
+			while  (!(refList.isEmpty())){
+				int number = getRandomNumberGenerator().nextInt(refList.size());
+				ref = refList.get(number);
+				obj = cls.eGet(ref);
+				//the chosen reference can't be removed, try an other one
+				if (!ref.isChangeable() || null == obj || ( obj instanceof EList<?> && ((EList<Object>)obj).isEmpty() )){
+					refList.remove(number);
+					continue;
 				}
-			}
-			if (ref.isMany()){
-				//remove one referenced class
-				//casting to EList should be safe because we have a to-many reference at this point
-				EList<EObject> list = (EList<EObject>)obj;
-				list.remove(getRandomNumberGenerator().nextInt(list.size()));
-			}else{
-				//unset the whole reference
-				cls.eUnset(ref);
-			}
-			return true;
-		}
-		else{
-			//in case there are no references, just find another class
-			//to prevent endless loops we remove the already visited classes from the list of choices
-			classList.remove(index);
-			if (!classList.isEmpty()){
-				return deleteRandomReference(classList);
+				else {
+					if (ref.isMany()){
+						//remove one referenced class
+						//casting to EList should be safe because we have a to-many reference at this point
+						EList<EObject> list = (EList<EObject>)obj;
+						list.remove(getRandomNumberGenerator().nextInt(list.size()));
+					}else{
+						//unset the whole reference
+						cls.eUnset(ref);
+					}
+					return true;
+				}
+					
 			}
 		}
-		return false;
-		
-		
+		//if no changeable reference was found, try the next class
+		classList.remove(index);
+		if (!classList.isEmpty())
+			return deleteRandomReference(classList);
+		else
+			return false;
 	}
 
 	/**
@@ -457,44 +457,39 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		int refCount = cls.eClass().getEAllReferences().size();
 		if (refCount > 0){
 			//a reference was found, set it to a valid class
-			EReference ref = cls.eClass().getEAllReferences().get(getRandomNumberGenerator().nextInt(refCount));
-			if (!ref.isChangeable()){
-				//if the reference is not changeable, try the next class
-				//TODO: try out all references first
-				classList.remove(index);
-				if (!classList.isEmpty()){
-					return createRandomReference(classList);
-				}else{
-					return false;
+			EList<EReference> refList = cls.eClass().getEAllReferences();
+			EReference ref = null;
+			while (!(refList.isEmpty())){
+				int number = getRandomNumberGenerator().nextInt(refList.size());
+				ref = refList.get(number);
+				//if the reference is not changeable, try an other one of the refList
+				if (!ref.isChangeable()){
+					refList.remove(number);
+					continue;
 				}
-			}
-			EClass targetType = ref.getEReferenceType();
-			EObject target = getRandomClassOfType(targetType, classList);
-			int size = 0;
-			if (ref.isMany()){
-				//get the size of a to-many reference (eGet always returns an EList if it's a to-many reference)
-				size = ((EList<EObject>)cls.eGet(ref)).size();
-			}else if (cls.eGet(ref) != null) {
-				//check if the to-one reference is set
-				size = 1;
-			}
-			
-			if (target != null && size < ref.getUpperBound()){
-				//check if there's a target and if it can be added without exceeding the upper bound of the reference
-				ref.eContents().add(target);
-				return true;
-			}else{
-				classList.remove(cls);
-				if (!classList.isEmpty()){
-					return createRandomReference(classList);
-				}	
-			}
-		}else{
-			classList.remove(cls);
-			if (!classList.isEmpty()){
-				return createRandomReference(classList);
+				EClass targetType = ref.getEReferenceType();
+				EObject target = getRandomClassOfType(targetType, classList);
+				int size = 0;
+				if (ref.isMany()){
+					//get the size of a to-many reference (eGet always returns an EList if it's a to-many reference)
+					size = ((EList<EObject>)cls.eGet(ref)).size();
+				}else if (cls.eGet(ref) != null) {
+					//check if the to-one reference is set
+					size = 1;
+				}
+				if (target != null && size < ref.getUpperBound()){
+					//check if there's a target and if it can be added without exceeding the upper bound of the reference
+					ref.eContents().add(target);
+					return true;
+				}
+				//the reference couldn't be added to the current class, try an other class
+				break;
 			}
 		}
+		classList.remove(cls);
+		if (!classList.isEmpty())
+			return createRandomReference(classList);
+		
 		return false;
 	}
 
