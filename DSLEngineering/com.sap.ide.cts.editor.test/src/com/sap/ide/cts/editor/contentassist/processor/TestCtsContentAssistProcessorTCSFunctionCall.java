@@ -30,7 +30,7 @@ public class TestCtsContentAssistProcessorTCSFunctionCall extends
 		initSyntax(TCSLexer.class.getResourceAsStream("TCS.tcs"));
 		IncrementalParserFacade facade = createFacade(new TcsParserFactory(),
 				tcsPackage);
-		initProcessorForFixture("FunctionCall.tcs", facade, "TCS");
+		initProcessorForFixture("FunctionCall.tcs", null, facade, "TCS");
 	}
 
 	@Test

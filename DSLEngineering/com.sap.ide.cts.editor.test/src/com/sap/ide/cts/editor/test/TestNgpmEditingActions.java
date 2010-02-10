@@ -31,7 +31,6 @@ import com.sap.ide.cts.editor.prettyprint.TcsPrettyPrinterTestHelper;
 import com.sap.mi.fwk.ModelManager;
 import com.sap.mi.textual.parsing.textblocks.observer.GlobalDelayedReferenceResolver;
 import com.sap.mi.textual.tcs.util.TcsUtil;
-import com.sap.tc.moin.repository.LRI;
 import com.sap.tc.moin.repository.NullPartitionNotEmptyException;
 import com.sap.tc.moin.repository.Partitionable;
 import com.sap.tc.moin.repository.PartitionsNotSavedException;
@@ -327,7 +326,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
      */
     @Test
     public void testChangingFromNumberLiteralToObjectParameter() throws PartInitException, BadLocationException, CoreException {
-        // Source / Copy of: PF.IDE:E0367719FC65A530BE2911DECE29005056C00001
         final SapClass clazz = findClass("Humba");
         assertNotNull(clazz); 
         assertTrue(clazz.is___Alive()); 
@@ -437,14 +435,19 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 
 		close(editor);
 	    }
-	 /**
+	    
+	/**
 	 * This is a regression. Creation of more than one association used to work fine. For some
 	 * reason, now I can't create more than one association per class anymore.
 	 */
 	@Test
 	public void testCreationOfAnotherAssociation() throws PartInitException,
 			BadLocationException, CoreException {
+<<<<<<< HEAD
 		final RefObject refObject = (RefObject) findClass("OrdrdStrgsTest");
+=======
+		final SapClass refObject = findClass("OrdrdStrgsTest");
+>>>>>>> 5e973dffaad2674dade58d2aba78310692a0b169
 		assertNotNull(refObject);
 		assertTrue(refObject.is___Alive());
 		AbstractGrammarBasedEditor editor = openEditor(refObject);
@@ -508,11 +511,10 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		assertTrue(refObject.is___Alive());
 		// Your assertions on refObject here
 
-		SapClass c = (SapClass) refObject;
 		String[] methodSignatureNamesToFind = new String[] { ".orderedStrings",
 				"orderedStrings=", "orderedStrings+=", "orderedStrings-=" };
 		boolean[] found = new boolean[methodSignatureNamesToFind.length];
-		for (MethodSignature ms : c.getOwnedSignatures()) {
+		for (MethodSignature ms : refObject.getOwnedSignatures()) {
 			for (int i = 0; i < methodSignatureNamesToFind.length; i++) {
 				if (ms.getName().equals(methodSignatureNamesToFind[i])) {
 					found[i] = true;
@@ -632,7 +634,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
     }
     
     
-    @Test
+    	@Test
 	public void testProxyInstantiationThroughOperatorTemplate() throws NullPartitionNotEmptyException,
 			ReferencedTransientElementsException, BadLocationException,
 			CoreException {
@@ -678,7 +680,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		close(editor);
 	}
     
-    @Test
+    	@Test
 	public void testIncrementalContextLookup() throws NullPartitionNotEmptyException,
 			ReferencedTransientElementsException, BadLocationException,
 			CoreException {
@@ -718,7 +720,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		close(editor);
 	}
     
-    @Test
+    	@Test
 	public void testChangeMultiplicity2() throws NullPartitionNotEmptyException,
 			ReferencedTransientElementsException, BadLocationException,
 			CoreException {
@@ -756,7 +758,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 		close(editor);
 	}
     
-    @Test
+    	@Test
 	public void testChangeMultiplicity() throws NullPartitionNotEmptyException,
 			ReferencedTransientElementsException, BadLocationException,
 			CoreException {
@@ -1032,8 +1034,6 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 
 		close(editor);
 	}
-
-	
 
 	@Test
 	public void testAddAssocToPackage() throws NullPartitionNotEmptyException,
@@ -1605,7 +1605,7 @@ public class TestNgpmEditingActions extends RunletEditorTest {
 	assertTrue(refObject.is___Alive());
 	AbstractGrammarBasedEditor editor = openEditor(refObject);
 	CtsDocument document = getDocument(editor);
-	document.replace(74, 4, "t");
+	document.replace(76, 4, "t");
 	saveAll(editor);
 	// failOnError(editor);
 	assertTrue(refObject.is___Alive());

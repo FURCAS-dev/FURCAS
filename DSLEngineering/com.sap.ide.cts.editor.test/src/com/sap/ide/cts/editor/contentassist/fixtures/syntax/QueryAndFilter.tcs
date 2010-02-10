@@ -16,7 +16,7 @@ syntax QueryAndFilter {
 		:	title "by" 
 			author{ 
 				as=identifier,
-				query="OCL:#context.oclAsType(test::reference::Book).library.authors", 
+				query="OCL:#context.oclAsType(test::reference::Book).library.authors->select(s | s.name.subString(name.size(),name.size()) = '=')", 
 				filter="->select(s | s.name = ?.concat('='))", 
 				invert="name.subString(1, -1+name.size())"
 			}

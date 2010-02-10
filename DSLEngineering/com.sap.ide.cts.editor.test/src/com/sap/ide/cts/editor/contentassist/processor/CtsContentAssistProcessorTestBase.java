@@ -84,6 +84,7 @@ public abstract class CtsContentAssistProcessorTestBase extends
 	 * @throws IllegalAccessException
 	 */
 	protected void initProcessorForFixture(String fixtureName,
+			StringReplacement postFixtureParseReplacement,
 			IncrementalParserFacade facade, String language)
 			throws IOException, UnknownProductionRuleException,
 			InvalidParserImplementationException, InstantiationException,
@@ -94,11 +95,11 @@ public abstract class CtsContentAssistProcessorTestBase extends
 
 		String fixturePath = "fixtures/" + fixtureName + ".dsl";
 
-		viewer = new TextViewerStub(fixturePath, null);
+		viewer = new TextViewerStub(fixturePath, postFixtureParseReplacement);
 
 		InputStream in = TcsFixtureBase.class.getResourceAsStream(fixturePath);
 
-		initTbModel(in, facade, null);
+		initTbModel(in, facade, postFixtureParseReplacement);
 
 		processor = new CtsContentAssistProcessor(syntax, facade
 				.getLexerClass(), facade.getParserClass(), language);

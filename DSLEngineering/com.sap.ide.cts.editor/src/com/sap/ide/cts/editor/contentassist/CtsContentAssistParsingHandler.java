@@ -41,7 +41,7 @@ import com.sap.tc.moin.repository.ModelPartition;
  * 
  */
 public class CtsContentAssistParsingHandler implements IParsingObserver {
-	
+
 	private static final String TRANSIENT_PARTITION_NAME = "ParsingHandlerTransientPartition";
 
 	/**
@@ -56,6 +56,11 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	}
 
 	ConcreteSyntax syntax;
+
+	/**
+	 * set to true after an error is found
+	 */
+	private Boolean foundError = false;
 
 	public CtsContentAssistParsingHandler(ConcreteSyntax syntax) {
 		Assert.isNotNull(syntax);
@@ -95,11 +100,10 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	Stack<Template> currentParentTemplateStack = new Stack<Template>();
 	boolean currentIsOperator = false;
 
-	List<CtsContentAssistContext> contextsAwaitingCorrespondingModelElement = new ArrayList<CtsContentAssistContext>();
-
 	private int loglevel = 0; // 0 = no log, 1 = errorsonly, 2 = all
 
 	public void reset() {
+		foundError = false;
 		positionMap.clear();
 		currentSequenceStack.clear();
 		currentSequenceElementStack.clear();
@@ -355,8 +359,21 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 	public void notifyErrorInRule(RecognitionException re) {
 		logInfo("notifyErrorInRule " + re);
 
-		// do nothing
+		foundError = true;
 
+		// mark last created context as error context
+		if (getLastContext() != null) {
+			getLastContext().setErrorContext(true);
+		}
+
+	}
+
+	private CtsContentAssistContext getLastContext() {
+		if (positionMap.size() > 0) {
+			return positionMap.get(positionMap.lastKey());
+		}
+
+		return null;
 	}
 
 	@Override
@@ -443,27 +460,15 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 				return;
 			}
 
+			if (foundError) {
+				logInfo("skipping context creation");
+				return;
+			}
+
 			try {
-				CtsContentAssistContext context = new CtsContentAssistContext();
-				context.setToken(token);
-				context.setSequenceElement(currentSequenceElementStack.peek());
-				context
-						.setParentFunctionCallStack(TcsUtil
-								.duplicateFunctionCallStack(currentParentFunctionCallStack));
-				context.setParentPropertyStack(TcsUtil
-						.duplicatePropertyStack(currentParentPropertyStack));
-				context.setParentTemplateStack(TcsUtil
-						.duplicateTemplateStack(currentParentTemplateStack));
-				context.setOperator(currentIsOperator);
+				CtsContentAssistContext context = createContextFromToken(token);
+				addContextToPositionMap(context);
 
-				// reset, as only the first token is the operator
-				currentIsOperator = false;
-
-				contextsAwaitingCorrespondingModelElement.add(context);
-				// ANTLR token lines start with 1
-				// ANTRL token line positions start with 0
-				positionMap.put(new TextPosition(token.getLine() - 1, token
-						.getCharPositionInLine()), context);
 			} catch (EmptyStackException e) {
 				System.err
 						.println("could not create context, sequence element stack is empty");
@@ -474,21 +479,60 @@ public class CtsContentAssistParsingHandler implements IParsingObserver {
 
 	}
 
+	private void addContextToPositionMap(CtsContentAssistContext context) {
+		positionMap.put(new TextPosition(CtsContentAssistUtil.getLine(context
+				.getToken()), CtsContentAssistUtil
+				.getCharPositionInLine(context.getToken())), context);
+	}
+
+	private CtsContentAssistContext createContextFromToken(Token token) {
+		CtsContentAssistContext context = new CtsContentAssistContext();
+		context.setToken(token);
+		context.setSequenceElement(currentSequenceElementStack.peek());
+		context.setParentFunctionCallStack(TcsUtil
+				.duplicateFunctionCallStack(currentParentFunctionCallStack));
+		context.setParentPropertyStack(TcsUtil
+				.duplicatePropertyStack(currentParentPropertyStack));
+		context.setParentTemplateStack(TcsUtil
+				.duplicateTemplateStack(currentParentTemplateStack));
+		context.setOperator(currentIsOperator);
+
+		// reset, as only the first token is the operator
+		currentIsOperator = false;
+		return context;
+	}
+
 	@Override
 	public void notifyTokenConsumeWithError(Token token) {
 		logInfo("notifyTokenConsumeWithError " + token);
 
+		if (foundError) {
+			logInfo("skipping context creation");
+			return;
+		}
+		foundError = true;
+
 		if (token != null) {
+			if (token.getText() == null) {
+				// seems to be an unlexed token.
+				// fix location. text is fixed in parsing handler where document
+				// text is available
+				if (getLastContext() != null) {
+					Token lastContextToken = getLastContext().getToken();
+					if (lastContextToken != null
+							&& lastContextToken.getText() != null) {
+						token.setLine(lastContextToken.getLine());
+						token.setCharPositionInLine(lastContextToken
+								.getCharPositionInLine()
+								+ lastContextToken.getText().length());
+					}
+				}
+			}
 
-			CtsContentAssistContext context = new CtsContentAssistContext();
+			CtsContentAssistContext context = createContextFromToken(token);
 			context.setErrorContext(true);
-			context.setToken(token);
 
-			// ANTLR token lines start with 1
-			// ANTRL token line positions start with 0
-			positionMap.put(new TextPosition(token.getLine() - 1, token
-					.getCharPositionInLine()), context);
-
+			addContextToPositionMap(context);
 		}
 	}
 
