@@ -277,6 +277,7 @@ public class DynEMF_hugeModel {
 			}
 			place = nextPlace;
 		}
+		
 		// Create a resource set
 		//
 		ResourceSet resourceSet = new ResourceSetImpl();

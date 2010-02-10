@@ -10,12 +10,6 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.randomModelModifier,
  de.hpi.sam.bp2009.randomModelModifier.impl,
  de.hpi.sam.bp2009.randomModelModifier.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- de.hpi.sam.bp2009.benchframework;visibility:=reexport,
+Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  org.eclipse.jface;bundle-version="3.5.1"
 Bundle-ActivationPolicy: lazy
-Import-Package: org.eclipse.swt,
- org.eclipse.swt.events,
- org.eclipse.swt.layout,
- org.eclipse.swt.widgets
