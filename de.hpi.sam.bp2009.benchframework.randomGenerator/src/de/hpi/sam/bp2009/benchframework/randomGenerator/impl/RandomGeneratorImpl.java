@@ -23,6 +23,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.ExtendedMetaData;
+import org.eclipse.emf.ecore.xml.type.internal.RegEx.REUtil;
+import org.eclipse.jface.operation.ModalContext;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -330,6 +332,7 @@ public class RandomGeneratorImpl extends EObjectImpl implements RandomGenerator 
 		Resource result = resultRS.createResource(URI.createURI("http://de.hpi.sam.bp2009.benchframework.randomGenerator/generatedInstance1"));
 		RandomGeneratorOptionObject options = (RandomGeneratorOptionObject) getOption();
 		EPackage metaModel = options.getMetaModel();
+		resultRS.getPackageRegistry().put(metaModel.getNsURI(), metaModel);
 		metaClasses = new ArrayList<EClass>();
 		
 		//get all classes in the meta model

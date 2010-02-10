@@ -12,9 +12,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RandomModelModifierOptionObject" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//OptionObject">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="times" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EIntegerObject"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="task" eType="#//tasks"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="task" eType="#//Task"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="tasks" instanceClassName="java.lang.string">
+  <eClassifiers xsi:type="ecore:EEnum" name="Task" instanceClassName="java.lang.string">
     <eLiterals name="classDelete" literal="classDelete"/>
     <eLiterals name="classCreate" value="1"/>
     <eLiterals name="referenceDelete" value="2"/>

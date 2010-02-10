@@ -21,7 +21,7 @@ import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import de.hpi.sam.bp2009.randomModelModifier.tasks;
+import de.hpi.sam.bp2009.randomModelModifier.Task;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -144,7 +144,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 * <!-- end-user-doc -->
 	 * @generated NOT
 	 */
-	protected RandomModelModifierImpl() {
+	public RandomModelModifierImpl() {
 		super();
 		setOption(RandomModelModifierFactory.eINSTANCE.createRandomModelModifierOptionObject());
 		setName("Random Model Modifier");
@@ -155,7 +155,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	
 	@Override
 	public void execute() {
-		tasks task = ((RandomModelModifierOptionObject)getOption()).getTask();
+		Task task = ((RandomModelModifierOptionObject)getOption()).getTask();
 		Integer times = ((RandomModelModifierOptionObject)getOption()).getTimes();
 		//collect all instance objects from all resources
 		BasicEList<EObject> classList = new BasicEList<EObject>();
@@ -452,6 +452,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean createRandomReference(BasicEList<EObject> classList) {
+		//FIXME java.lang.IllegalArgumentException: n must be positive on testing
 		int index = getRandomNumberGenerator().nextInt(classList.size());
 		EObject cls = classList.get(index);
 		int refCount = cls.eClass().getEAllReferences().size();

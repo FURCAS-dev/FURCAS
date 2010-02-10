@@ -10,6 +10,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -22,19 +23,20 @@ public class OclOperatorWizardPage extends WizardPage {
 	private static final String PAGETITEL	=	"OCL Operator Configuration";
 	private static final String PAGEDESC	=	"Set the options for the OCL Operator.";
 	private static final String LABELTEXT 	= 	"Enter the Constraint in OCL";
-	
+	private static final String LABELTEXTIA = 	"Register to ImpactAnalyser";
+
 	private OclOptionObject option;
 	ArrayList<Text> textareas= new ArrayList<Text>();
 	private Composite composite;
 	private Composite textareacomposite;
 	private Text textarea;
 	private ScrolledComposite scrolledComposite;
-	
+
 	protected OclOperatorWizardPage(String pageName) {
 		super(pageName);
 		setTitle(PAGETITEL);
 		setDescription(PAGEDESC);
-		
+
 		setPageComplete(false);
 	}
 	protected OclOperatorWizardPage(String pageName, OclOptionObject option) {
@@ -50,18 +52,35 @@ public class OclOperatorWizardPage extends WizardPage {
 		scrolledComposite.setContent(composite);
 		GridLayout layout = new GridLayout(2, false);
 		composite.setLayout(layout);
+		Button btn = new Button(composite, SWT.CHECK);
+		btn.setText(LABELTEXTIA);
+		btn.addSelectionListener(new SelectionListener() {
 
-		
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				if(((Button)(e.getSource())).getSelection())
+					option.setUseImpactAnalyzer(true);
+				else
+					option.setUseImpactAnalyzer(false);
+			}
+
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				//Nothing to do
+			}
+		});
+
+
 		Label label = new Label(composite, SWT.CENTER);
 		label.setText(LABELTEXT);
-		
+
 		textarea = new Text(composite, SWT.NONE);
 		textarea.setSize(400, 10);
-	
+
 		Button addButton = new Button(composite, SWT.PUSH);
 		addButton.setText("+");
 		addButton.addSelectionListener(new SelectionAdapter() {
-			
+
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// add another textarea to the page
@@ -76,21 +95,21 @@ public class OclOperatorWizardPage extends WizardPage {
 				}
 			}
 		});
-		
+
 		textareacomposite = new Composite(composite, SWT.NONE);
 		GridLayout textlayout = new GridLayout(1,false);
 		textareacomposite.setLayout(textlayout);
 		textareacomposite.setSize(400, 10);
 		scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-	    setControl(scrolledComposite);
-	    
+		setControl(scrolledComposite);
+
 	}
-	
+
 	@Override
 	public boolean canFlipToNextPage() {
 		return true;
 	}
-	
+
 	@Override
 	public IWizardPage getNextPage() {
 		// TODO create an EList with all constraints and pass it to the option object

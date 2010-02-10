@@ -61,7 +61,7 @@ public class ModifiedImpactAnalyzerImpl extends ImpactAnalyzerImpl implements Mo
 		else
 			n = new ENotificationImpl(this, 0, null, null, communicationPartner);
 
-		for (Adapter a : eAdapters){
+		for (Adapter a : eAdapters()){
 			a.notifyChanged(n);
 		}
 	}

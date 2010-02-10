@@ -54,7 +54,7 @@ public interface RandomModelModifierOptionObject extends OptionObject {
 
 	/**
 	 * Returns the value of the '<em><b>Task</b></em>' attribute.
-	 * The literals are from the enumeration {@link de.hpi.sam.bp2009.randomModelModifier.tasks}.
+	 * The literals are from the enumeration {@link de.hpi.sam.bp2009.randomModelModifier.Task}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Task</em>' attribute isn't clear,
@@ -62,23 +62,23 @@ public interface RandomModelModifierOptionObject extends OptionObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Task</em>' attribute.
-	 * @see de.hpi.sam.bp2009.randomModelModifier.tasks
-	 * @see #setTask(tasks)
+	 * @see de.hpi.sam.bp2009.randomModelModifier.Task
+	 * @see #setTask(Task)
 	 * @see de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage#getRandomModelModifierOptionObject_Task()
-	 * @model dataType="de.hpi.sam.bp2009.randomModelModifier.tasks"
+	 * @model dataType="de.hpi.sam.bp2009.randomModelModifier.Task"
 	 * @generated
 	 */
-	tasks getTask();
+	Task getTask();
 
 	/**
 	 * Sets the value of the '{@link de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject#getTask <em>Task</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Task</em>' attribute.
-	 * @see de.hpi.sam.bp2009.randomModelModifier.tasks
+	 * @see de.hpi.sam.bp2009.randomModelModifier.Task
 	 * @see #getTask()
 	 * @generated
 	 */
-	void setTask(tasks value);
+	void setTask(Task value);
 
 } // RandomModelModifierOptionObject

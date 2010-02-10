@@ -129,6 +129,7 @@ public class EngineImpl extends EObjectImpl implements Engine {
 				try {
 					op.execute();
 				} catch (Exception e) {
+					e.printStackTrace();
 					if(getExeptionsDuringLastRun()==null)
 						setExeptionsDuringLastRun(new BasicEList<Exception>());
 					getExeptionsDuringLastRun().add(e);

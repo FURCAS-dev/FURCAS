@@ -17,11 +17,11 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>tasks</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage#gettasks()
- * @model instanceClass="de.hpi.sam.bp2009.randomModelModifier.tasks"
+ * @see de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage#getTask()
+ * @model instanceClass="de.hpi.sam.bp2009.randomModelModifier.Task"
  * @generated
  */
-public enum tasks implements Enumerator {
+public enum Task implements Enumerator {
 	/**
 	 * The '<em><b>Class Delete</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -148,13 +148,13 @@ public enum tasks implements Enumerator {
 	public static final int MODIFY_ATTRIBUTE_VALUE = 4;
 
 	/**
-	 * An array of all the '<em><b>tasks</b></em>' enumerators.
+	 * An array of all the '<em><b>Task</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final tasks[] VALUES_ARRAY =
-		new tasks[] {
+	private static final Task[] VALUES_ARRAY =
+		new Task[] {
 			CLASS_DELETE,
 			CLASS_CREATE,
 			REFERENCE_DELETE,
@@ -163,22 +163,22 @@ public enum tasks implements Enumerator {
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>tasks</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Task</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<tasks> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<Task> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>tasks</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Task</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static tasks get(String literal) {
+	public static Task get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			tasks result = VALUES_ARRAY[i];
+			Task result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -187,14 +187,14 @@ public enum tasks implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>tasks</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Task</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static tasks getByName(String name) {
+	public static Task getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			tasks result = VALUES_ARRAY[i];
+			Task result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -203,12 +203,12 @@ public enum tasks implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>tasks</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Task</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static tasks get(int value) {
+	public static Task get(int value) {
 		switch (value) {
 			case CLASS_DELETE_VALUE: return CLASS_DELETE;
 			case CLASS_CREATE_VALUE: return CLASS_CREATE;
@@ -246,7 +246,7 @@ public enum tasks implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private tasks(int value, String name, String literal) {
+	private Task(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;

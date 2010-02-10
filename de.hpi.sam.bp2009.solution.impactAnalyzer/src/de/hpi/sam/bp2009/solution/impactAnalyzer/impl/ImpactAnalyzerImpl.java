@@ -247,8 +247,9 @@ public class ImpactAnalyzerImpl extends EObjectImpl implements ImpactAnalyzer {
 		//TODO Generate the correct Filter
 		EventFilter filter = new TautologyFilter();
 		
+		
 		//TODO mapping between Application and registered query vs. multiple IA instances
-		this.eAdapters.add(receiver);
+		eAdapters().add(receiver);
 		for(OclQuery each: oclQueries)
 			this.getEventManager().subscribe(root,filter, new EventManagerAdapter(each));
 		this.setQueries(oclQueries);

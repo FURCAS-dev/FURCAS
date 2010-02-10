@@ -77,8 +77,8 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case RandomModelModifierPackage.TASKS:
-				return createtasksFromString(eDataType, initialValue);
+			case RandomModelModifierPackage.TASK:
+				return createTaskFromString(eDataType, initialValue);
 			case RandomModelModifierPackage.RANDOM:
 				return createRandomFromString(eDataType, initialValue);
 			default:
@@ -94,8 +94,8 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case RandomModelModifierPackage.TASKS:
-				return converttasksToString(eDataType, instanceValue);
+			case RandomModelModifierPackage.TASK:
+				return convertTaskToString(eDataType, instanceValue);
 			case RandomModelModifierPackage.RANDOM:
 				return convertRandomToString(eDataType, instanceValue);
 			default:
@@ -128,8 +128,8 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public tasks createtasksFromString(EDataType eDataType, String initialValue) {
-		tasks result = tasks.get(initialValue);
+	public Task createTaskFromString(EDataType eDataType, String initialValue) {
+		Task result = Task.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -139,7 +139,7 @@ public class RandomModelModifierFactoryImpl extends EFactoryImpl implements Rand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String converttasksToString(EDataType eDataType, Object instanceValue) {
+	public String convertTaskToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

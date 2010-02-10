@@ -183,15 +183,14 @@ public interface RandomModelModifierPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.randomModelModifier.tasks <em>tasks</em>}' enum.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.randomModelModifier.Task <em>Task</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.randomModelModifier.tasks
-	 * @see de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierPackageImpl#gettasks()
+	 * @see de.hpi.sam.bp2009.randomModelModifier.Task
+	 * @see de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierPackageImpl#getTask()
 	 * @generated
 	 */
-	int TASKS = 2;
-
+	int TASK = 2;
 
 	/**
 	 * The meta object id for the '<em>Random</em>' data type.
@@ -258,14 +257,14 @@ public interface RandomModelModifierPackage extends EPackage {
 	EAttribute getRandomModelModifierOptionObject_Task();
 
 	/**
-	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.randomModelModifier.tasks <em>tasks</em>}'.
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.randomModelModifier.Task <em>Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>tasks</em>'.
-	 * @see de.hpi.sam.bp2009.randomModelModifier.tasks
+	 * @return the meta object for enum '<em>Task</em>'.
+	 * @see de.hpi.sam.bp2009.randomModelModifier.Task
 	 * @generated
 	 */
-	EEnum gettasks();
+	EEnum getTask();
 
 	/**
 	 * Returns the meta object for data type '{@link java.util.Random <em>Random</em>}'.
@@ -345,14 +344,14 @@ public interface RandomModelModifierPackage extends EPackage {
 		EAttribute RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TASK = eINSTANCE.getRandomModelModifierOptionObject_Task();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.randomModelModifier.tasks <em>tasks</em>}' enum.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.randomModelModifier.Task <em>Task</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.randomModelModifier.tasks
-		 * @see de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierPackageImpl#gettasks()
+		 * @see de.hpi.sam.bp2009.randomModelModifier.Task
+		 * @see de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierPackageImpl#getTask()
 		 * @generated
 		 */
-		EEnum TASKS = eINSTANCE.gettasks();
+		EEnum TASK = eINSTANCE.getTask();
 
 		/**
 		 * The meta object literal for the '<em>Random</em>' data type.

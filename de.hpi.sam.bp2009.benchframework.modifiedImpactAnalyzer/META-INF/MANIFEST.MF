@@ -10,7 +10,7 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer,
  de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl,
  de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.util
-Require-Bundle: de.hpi.sam.bp2009.solution.impactAnalyzer;visibility:=reexport,
+Require-Bundle: de.hpi.sam.bp2009.solution.impactAnalyzer,
  de.hpi.sam.bp2009.benchframework;bundle-version="1.0.0",
  org.eclipse.emf.ecore.xmi;bundle-version="2.5.0",
  de.hpi.sam.bp2009.solution.eventManager;bundle-version="1.0.0",

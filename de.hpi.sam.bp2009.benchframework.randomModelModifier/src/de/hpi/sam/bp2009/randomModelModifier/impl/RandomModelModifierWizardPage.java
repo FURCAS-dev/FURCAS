@@ -11,7 +11,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
-import de.hpi.sam.bp2009.randomModelModifier.tasks;
+import de.hpi.sam.bp2009.randomModelModifier.Task;
 
 public class RandomModelModifierWizardPage extends WizardPage {
 	private static final String PAGETITLE	=	"Random Model Modifier Configuration";
@@ -63,17 +63,21 @@ public class RandomModelModifierWizardPage extends WizardPage {
 		Label cmblabel = new Label(composite, SWT.NONE);
 		cmblabel.setText(COMBOLABEL);
 		combo = new Combo(composite, SWT.NONE);
-		for (tasks tsk : tasks.VALUES){
+		for (Task tsk : Task.VALUES){
 			combo.add(tsk.toString());
 		}
 		combo.addModifyListener(new ModifyListener() {
 			
 			@Override
 			public void modifyText(ModifyEvent e) {
-				option.setTask(tasks.get(combo.getSelectionIndex()));	
+				option.setTask(Task.get(combo.getSelectionIndex()));	
 			}
 		});
 		setControl(composite);
+	}
+	@Override
+	public boolean canFlipToNextPage() {
+		return true;
 	}
 
 }

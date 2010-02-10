@@ -13,7 +13,7 @@ import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierFactory;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage;
 
-import de.hpi.sam.bp2009.randomModelModifier.tasks;
+import de.hpi.sam.bp2009.randomModelModifier.Task;
 import java.util.Random;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -49,7 +49,7 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum tasksEEnum = null;
+	private EEnum taskEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,8 +172,8 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum gettasks() {
-		return tasksEEnum;
+	public EEnum getTask() {
+		return taskEEnum;
 	}
 
 	/**
@@ -221,7 +221,7 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 		createEAttribute(randomModelModifierOptionObjectEClass, RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TASK);
 
 		// Create enums
-		tasksEEnum = createEEnum(TASKS);
+		taskEEnum = createEEnum(TASK);
 
 		// Create data types
 		randomEDataType = createEDataType(RANDOM);
@@ -267,15 +267,15 @@ public class RandomModelModifierPackageImpl extends EPackageImpl implements Rand
 
 		initEClass(randomModelModifierOptionObjectEClass, RandomModelModifierOptionObject.class, "RandomModelModifierOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRandomModelModifierOptionObject_Times(), ecorePackage.getEIntegerObject(), "times", null, 0, 1, RandomModelModifierOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getRandomModelModifierOptionObject_Task(), this.gettasks(), "task", null, 0, 1, RandomModelModifierOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRandomModelModifierOptionObject_Task(), this.getTask(), "task", null, 0, 1, RandomModelModifierOptionObject.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(tasksEEnum, tasks.class, "tasks");
-		addEEnumLiteral(tasksEEnum, tasks.CLASS_DELETE);
-		addEEnumLiteral(tasksEEnum, tasks.CLASS_CREATE);
-		addEEnumLiteral(tasksEEnum, tasks.REFERENCE_DELETE);
-		addEEnumLiteral(tasksEEnum, tasks.REFERENCE_CREATE);
-		addEEnumLiteral(tasksEEnum, tasks.MODIFY_ATTRIBUTE);
+		initEEnum(taskEEnum, Task.class, "Task");
+		addEEnumLiteral(taskEEnum, Task.CLASS_DELETE);
+		addEEnumLiteral(taskEEnum, Task.CLASS_CREATE);
+		addEEnumLiteral(taskEEnum, Task.REFERENCE_DELETE);
+		addEEnumLiteral(taskEEnum, Task.REFERENCE_CREATE);
+		addEEnumLiteral(taskEEnum, Task.MODIFY_ATTRIBUTE);
 
 		// Initialize data types
 		initEDataType(randomEDataType, Random.class, "Random", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

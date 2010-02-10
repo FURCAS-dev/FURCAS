@@ -16,7 +16,7 @@ import org.eclipse.jface.wizard.WizardPage;
 
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierOptionObject;
 import de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage;
-import de.hpi.sam.bp2009.randomModelModifier.tasks;
+import de.hpi.sam.bp2009.randomModelModifier.Task;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,7 +82,7 @@ public class RandomModelModifierOptionObjectImpl extends EObjectImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected static final tasks TASK_EDEFAULT = tasks.CLASS_DELETE;
+	protected static final Task TASK_EDEFAULT = Task.CLASS_DELETE;
 
 	/**
 	 * The cached value of the '{@link #getTask() <em>Task</em>}' attribute.
@@ -92,7 +92,7 @@ public class RandomModelModifierOptionObjectImpl extends EObjectImpl implements 
 	 * @generated
 	 * @ordered
 	 */
-	protected tasks task = TASK_EDEFAULT;
+	protected Task task = TASK_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -101,6 +101,7 @@ public class RandomModelModifierOptionObjectImpl extends EObjectImpl implements 
 	 */
 	protected RandomModelModifierOptionObjectImpl() {
 		super();
+		this.setWizardPage(new RandomModelModifierWizardPage("RandomModelModifier", this));
 	}
 
 	/**
@@ -160,7 +161,7 @@ public class RandomModelModifierOptionObjectImpl extends EObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public tasks getTask() {
+	public Task getTask() {
 		return task;
 	}
 
@@ -169,8 +170,8 @@ public class RandomModelModifierOptionObjectImpl extends EObjectImpl implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTask(tasks newTask) {
-		tasks oldTask = task;
+	public void setTask(Task newTask) {
+		Task oldTask = task;
 		task = newTask == null ? TASK_EDEFAULT : newTask;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, RandomModelModifierPackage.RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TASK, oldTask, task));
@@ -231,7 +232,7 @@ public class RandomModelModifierOptionObjectImpl extends EObjectImpl implements 
 				setTimes((Integer)newValue);
 				return;
 			case RandomModelModifierPackage.RANDOM_MODEL_MODIFIER_OPTION_OBJECT__TASK:
-				setTask((tasks)newValue);
+				setTask((Task)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

@@ -16,5 +16,11 @@
             class="de.hpi.sam.bp2009.randomModelModifier.RandomModelModifierPackage"
             genModel="model/randomModelModifier.genmodel"/>
    </extension>
+   <extension
+         point="de.hpi.sam.bp2009.benchframework.operatorExtensionPointID">
+      <operator
+            operatorClass="de.hpi.sam.bp2009.randomModelModifier.impl.RandomModelModifierImpl">
+      </operator>
+   </extension>
 
 </plugin>

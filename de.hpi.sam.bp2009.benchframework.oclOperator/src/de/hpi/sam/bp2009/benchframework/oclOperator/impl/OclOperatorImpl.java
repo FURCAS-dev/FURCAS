@@ -516,7 +516,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 			try {
 				 expr= (OCLExpression<EClassifier>) ocl.getOCLExpression(con, resource);
 			} catch (ParserException e) {
-				throw new IllegalArgumentException("Invalid Query, parsing failed", e);
+				throw new IllegalArgumentException("Invalid Query, parsing failed " +e.getMessage(), e);
 			}
 			OclQuery q= OclEvaluatorFactory.eINSTANCE.createOclQuery();
 			q.setExpression(expr);
