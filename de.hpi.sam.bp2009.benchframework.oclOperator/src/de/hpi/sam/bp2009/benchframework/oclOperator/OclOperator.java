@@ -29,4 +29,12 @@ public interface OclOperator extends Operator {
 	 */
 	void executeQueries(ResourceSet resource, OclOptionObject option);
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model
+	 * @generated
+	 */
+	void registerQueriesIA(ResourceSet resource, OclOptionObject option);
+
 } // OclOperator

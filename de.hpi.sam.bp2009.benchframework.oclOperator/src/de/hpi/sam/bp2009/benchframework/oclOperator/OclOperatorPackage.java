@@ -154,13 +154,22 @@ public interface OclOperatorPackage extends EPackage {
 	int OCL_OPTION_OBJECT__CONSTRAINTS = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Use Impact Analyzer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Ocl Option Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
+	int OCL_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.
@@ -270,6 +279,17 @@ public interface OclOperatorPackage extends EPackage {
 	EAttribute getOclOptionObject_Constraints();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Use Impact Analyzer</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer()
+	 * @see #getOclOptionObject()
+	 * @generated
+	 */
+	EAttribute getOclOptionObject_UseImpactAnalyzer();
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil <em>Ocl Util</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -360,6 +380,14 @@ public interface OclOperatorPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute OCL_OPTION_OBJECT__CONSTRAINTS = eINSTANCE.getOclOptionObject_Constraints();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Impact Analyzer</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER = eINSTANCE.getOclOptionObject_UseImpactAnalyzer();
 
 		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclUtilImpl <em>Ocl Util</em>}' class.

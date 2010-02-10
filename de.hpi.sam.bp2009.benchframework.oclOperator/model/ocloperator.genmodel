@@ -4,10 +4,10 @@
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/de.hpi.sam.bp2009.benchframework.oclOperator/src"
     modelPluginID="de.hpi.sam.bp2009.benchframework.oclOperator" modelName="Ocloperator"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
-    publicConstructors="true" usedGenPackages="../../de.hpi.sam.bp2009.benchframework/model/benchframework.genmodel#//benchframework">
+    usedGenPackages="../../de.hpi.sam.bp2009.benchframework/model/benchframework.genmodel#//benchframework platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.ocl/model/OCL.genmodel#//ocl">
   <foreignModel>ocloperator.ecore</foreignModel>
   <genPackages prefix="OclOperator" basePackage="de.hpi.sam.bp2009.benchframework"
-      disposableProviderFactory="true" contentTypeIdentifier="" ecorePackage="ocloperator.ecore#/">
+      disposableProviderFactory="true" ecorePackage="ocloperator.ecore#/">
     <genDataTypes ecoreDataType="ocloperator.ecore#//IQueryResult"/>
     <genClasses ecoreClass="ocloperator.ecore#//OclOperator">
       <genOperations ecoreOperation="ocloperator.ecore#//OclOperator/executeQueries">
@@ -17,12 +17,20 @@
     </genClasses>
     <genClasses ecoreClass="ocloperator.ecore#//OclOptionObject">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocloperator.ecore#//OclOptionObject/constraints"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocloperator.ecore#//OclOptionObject/useImpactAnalyzer"/>
     </genClasses>
     <genClasses ecoreClass="ocloperator.ecore#//OclUtil">
       <genOperations ecoreOperation="ocloperator.ecore#//OclUtil/executeQueryOn">
         <genParameters ecoreParameter="ocloperator.ecore#//OclUtil/executeQueryOn/completeConstraint"/>
         <genParameters ecoreParameter="ocloperator.ecore#//OclUtil/executeQueryOn/resource"/>
       </genOperations>
+      <genOperations ecoreOperation="ocloperator.ecore#//OclUtil/getOCLExpression">
+        <genParameters ecoreParameter="ocloperator.ecore#//OclUtil/getOCLExpression/completeConstraint"/>
+        <genParameters ecoreParameter="ocloperator.ecore#//OclUtil/getOCLExpression/resource"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="ocloperator.ecore#//OclResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ocloperator.ecore#//OclResult/queriesToResults"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

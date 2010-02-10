@@ -50,7 +50,7 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OclResultImpl() {
+	protected OclResultImpl() {
 		super();
 	}
 
@@ -159,6 +159,12 @@ public class OclResultImpl extends ResultObjectImpl implements OclResult {
 		result.append(')');
 		return result.toString();
 	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
 	@Override
 	public Composite getComposite(Composite parent) {
 		Composite composite = super.getComposite(parent);

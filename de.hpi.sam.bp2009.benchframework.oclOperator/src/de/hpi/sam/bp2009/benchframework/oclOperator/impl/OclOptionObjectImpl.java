@@ -29,6 +29,7 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl#getWizardPage <em>Wizard Page</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.impl.OclOptionObjectImpl#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,6 +63,24 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 	 * @ordered
 	 */
 	protected EList<String> constraints;
+	/**
+	 * The default value of the '{@link #isUseImpactAnalyzer() <em>Use Impact Analyzer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseImpactAnalyzer()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_IMPACT_ANALYZER_EDEFAULT = false;
+	/**
+	 * The cached value of the '{@link #isUseImpactAnalyzer() <em>Use Impact Analyzer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isUseImpactAnalyzer()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useImpactAnalyzer = USE_IMPACT_ANALYZER_EDEFAULT;
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -138,6 +157,27 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isUseImpactAnalyzer() {
+		return useImpactAnalyzer;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setUseImpactAnalyzer(boolean newUseImpactAnalyzer) {
+		boolean oldUseImpactAnalyzer = useImpactAnalyzer;
+		useImpactAnalyzer = newUseImpactAnalyzer;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER, oldUseImpactAnalyzer, useImpactAnalyzer));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public Map<String, Object> getOptionsAsMap() {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
@@ -167,6 +207,8 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 				return getWizardPage();
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
 				return getConstraints();
+			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
+				return isUseImpactAnalyzer();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -186,6 +228,9 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
 				setConstraints((EList<String>)newValue);
 				return;
+			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
+				setUseImpactAnalyzer((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -204,6 +249,9 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
 				setConstraints((EList<String>)null);
 				return;
+			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
+				setUseImpactAnalyzer(USE_IMPACT_ANALYZER_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -220,6 +268,8 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 				return WIZARD_PAGE_EDEFAULT == null ? wizardPage != null : !WIZARD_PAGE_EDEFAULT.equals(wizardPage);
 			case OclOperatorPackage.OCL_OPTION_OBJECT__CONSTRAINTS:
 				return constraints != null;
+			case OclOperatorPackage.OCL_OPTION_OBJECT__USE_IMPACT_ANALYZER:
+				return useImpactAnalyzer != USE_IMPACT_ANALYZER_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -238,6 +288,8 @@ public class OclOptionObjectImpl extends EObjectImpl implements OclOptionObject 
 		result.append(wizardPage);
 		result.append(", constraints: ");
 		result.append(constraints);
+		result.append(", useImpactAnalyzer: ");
+		result.append(useImpactAnalyzer);
 		result.append(')');
 		return result.toString();
 	}

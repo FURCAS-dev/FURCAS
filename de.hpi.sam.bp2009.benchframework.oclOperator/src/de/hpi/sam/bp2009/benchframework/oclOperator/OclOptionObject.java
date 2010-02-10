@@ -18,6 +18,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#getConstraints <em>Constraints</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,4 +53,30 @@ public interface OclOptionObject extends OptionObject {
 	 * @generated
 	 */
 	void setConstraints(EList<String> value);
+
+	/**
+	 * Returns the value of the '<em><b>Use Impact Analyzer</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use Impact Analyzer</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Use Impact Analyzer</em>' attribute.
+	 * @see #setUseImpactAnalyzer(boolean)
+	 * @see de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage#getOclOptionObject_UseImpactAnalyzer()
+	 * @model
+	 * @generated
+	 */
+	boolean isUseImpactAnalyzer();
+
+	/**
+	 * Sets the value of the '{@link de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject#isUseImpactAnalyzer <em>Use Impact Analyzer</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Use Impact Analyzer</em>' attribute.
+	 * @see #isUseImpactAnalyzer()
+	 * @generated
+	 */
+	void setUseImpactAnalyzer(boolean value);
 } // OclOptionObject

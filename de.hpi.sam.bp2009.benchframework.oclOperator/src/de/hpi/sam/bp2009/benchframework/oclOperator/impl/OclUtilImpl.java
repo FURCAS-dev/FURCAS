@@ -13,6 +13,7 @@ import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
@@ -23,10 +24,15 @@ import org.eclipse.emf.query.conditions.Condition;
 import org.eclipse.emf.query.conditions.eobjects.EObjectCondition;
 import org.eclipse.emf.query.statements.FROM;
 import org.eclipse.emf.query.statements.IQueryResult;
+import org.eclipse.ocl.expressions.OCLExpression;
 import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
 import org.eclipse.ocl.ParserException;
-import org.eclipse.ocl.ecore.OCL;
+import org.eclipse.ocl.ecore.Constraint;
+import org.eclipse.ocl.ecore.EcoreEnvironmentFactory;
+import org.eclipse.ocl.helper.OCLHelper;
+import org.eclipse.ocl.OCL;
+
 
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
@@ -105,6 +111,75 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	}
 	
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @throws ParserException 
+	 * @generated NOT
+	 */
+	public OCLExpression<?> getOCLExpression(String completeConstraint, ResourceSet resource) throws ParserException {
+		
+		Pattern pattern=Pattern.compile(regex);
+		Matcher match=pattern.matcher(completeConstraint);
+		String queryContext="";
+		if(match.find()){
+			queryContext=match.group(1);
+		}
+		queryContext=queryContext.trim();
+		String queryInvariant=completeConstraint.substring(completeConstraint.indexOf("inv:")+4);
+		queryInvariant=queryInvariant.trim();
+		
+		EClassifier cls = getEClassifierForName(resource, queryContext);
+		
+		EClass contextClass = castToEClass(cls);
+		
+		
+		OCLExpression<EClassifier> query1 = null;
+
+		    // create an OCL instance for Ecore
+		    OCL<?, EClassifier, ?, ?, ?, ?, ?, ?, ?, Constraint, EClass, EObject> ocl;
+		    ocl = OCL.newInstance(EcoreEnvironmentFactory.INSTANCE);
+		    
+		    // create an OCL helper object
+		    OCLHelper<EClassifier, ?, ?, Constraint> helper = ocl.createOCLHelper();
+		    
+		    // set the OCL context classifier
+		    helper.setContext(contextClass);
+		    
+		    query1 = helper.createQuery(queryInvariant);
+		    
+		    // record success
+		return query1;
+	}
+
+	private EClassifier getEClassifierForName(ResourceSet resource,
+			String queryContext) {
+		Registry registry = resource.getPackageRegistry();
+		EClassifier cls=null;
+		for(String key: registry.keySet()){
+			EPackage current = registry.getEPackage(key);
+			if(current.getEClassifier(queryContext)!=null){
+				cls=current.getEClassifier(queryContext);
+				break;
+			}
+		}
+		return cls;
+	}
+
+	private EClass castToEClass(EClassifier cls)
+			throws IllegalArgumentException {
+		EClass contextClass= null;
+		if(cls==null)
+			throw new IllegalArgumentException("Context cannot be null");
+		else if(cls instanceof EDataType)
+			throw new IllegalArgumentException("Context cannot be a EDataType");
+		else if(cls instanceof EClass)
+			contextClass=(EClass)cls;
+		else
+			throw new IllegalArgumentException("Context is invalid");
+		return contextClass;
+	}
+
+	/**
 	 * Resolve the EClass for a given name
 	 * @param queryContext name of the Context EClass
 	 * @return the EClass
@@ -132,7 +207,7 @@ public class OclUtilImpl extends EObjectImpl implements OclUtil {
 	 * @throws ParserException
 	 */
 	public static IQueryResult validateOclQuery(EClass context, String query, ResourceSet resource) throws ParserException{
-		OCL ocl= OCL.newInstance();
+		org.eclipse.ocl.ecore.OCL ocl= org.eclipse.ocl.ecore.OCL.newInstance();
 		Condition condition=null;
 		condition = new org.eclipse.emf.query.ocl.conditions.BooleanOCLCondition<EClassifier, EClass, EObject>(
 					ocl.getEnvironment(),

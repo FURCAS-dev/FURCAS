@@ -6,14 +6,21 @@
  */
 package de.hpi.sam.bp2009.benchframework.oclOperator.impl;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.Notifier;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.query.statements.IQueryResult;
+import org.eclipse.ocl.ParserException;
+import org.eclipse.ocl.expressions.OCLExpression;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
@@ -26,6 +33,9 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 
 /**
  * <!-- begin-user-doc -->
@@ -45,6 +55,10 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
  * @generated
  */
 public class OclOperatorImpl extends EObjectImpl implements OclOperator {
+	
+	private static final String NAME = "OCLOperator";
+	private static final String DESCRIPTION = "Evaluates a specific ocl expression";
+
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -117,8 +131,8 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	public OclOperatorImpl() {
 		super();
 		setOption(OclOperatorFactory.eINSTANCE.createOclOptionObject());
-		this.setName("OCLOperator");
-		this.setDescription("Evaluates a specific ocl expression");
+		this.setName(NAME);
+		this.setDescription(DESCRIPTION);
 	}
 
 	/**
@@ -318,10 +332,16 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	public void execute() {
 		setResult(OclOperatorFactory.eINSTANCE.createOclResult());
 		if (option instanceof OclOptionObject){
-			executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
+			if(((OclOptionObject) option).isUseImpactAnalyzer())
+				registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
+			else
+				executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
 			getResult().setStatus(Status.SUCCESSFULL);
 		}else
 			getResult().setStatus(Status.FAILED);
+			getResult().setMessage("Invalid OptionObject");
+		
+
 	}
 	
 	/**
@@ -474,13 +494,59 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	}
 
 	public void executeQueries(ResourceSet resource, OclOptionObject option) {
+		OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
 		for(String con: option.getConstraints()){
-			OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
-			
 			IQueryResult r = ocl.executeQueryOn(con, resource);
 			if(getResult() instanceof OclResult)
 				((OclResult)getResult()).getQueriesToResults().put(con, r);
 		}
+		
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
+		OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
+		EList<OclQuery> list= new BasicEList<OclQuery>();
+		for(String con: option.getConstraints()){
+			OCLExpression<EClassifier> expr=null;
+			try {
+				 expr= (OCLExpression<EClassifier>) ocl.getOCLExpression(con, resource);
+			} catch (ParserException e) {
+				throw new IllegalArgumentException("Invalid Query, parsing failed", e);
+			}
+			OclQuery q= OclEvaluatorFactory.eINSTANCE.createOclQuery();
+			q.setExpression(expr);
+			list.add(q);
+		}
+		final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
+		if(ia== null)
+			throw new IllegalArgumentException("Invalid Testrun, no Iimpact Analyzer defined");
+		else
+			ia.register(resource, new Adapter() {
+				
+				@Override
+				public void setTarget(Notifier newTarget) {
+				}
+				
+				@Override
+				public void notifyChanged(Notification notification) {
+					System.out.println(getName() +" gets Notfied");
+				}
+				
+				@Override
+				public boolean isAdapterForType(Object type) {
+					return false;
+				}
+				
+				@Override
+				public Notifier getTarget() {
+					return ia;
+				}
+			}, list);
 		
 	}
 
