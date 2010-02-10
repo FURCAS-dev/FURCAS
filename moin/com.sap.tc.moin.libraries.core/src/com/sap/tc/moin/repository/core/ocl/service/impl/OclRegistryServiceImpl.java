@@ -44,7 +44,6 @@ import org.omg.ocl.attaching.__impl.OclConstraintInternal;
 import org.omg.ocl.expressions.OclExpression;
 import org.omg.ocl.expressions.OclNamedElement;
 
-import com.sap.tc.moin.ocl.ia.instancescope.PathCache;
 import com.sap.tc.moin.ocl.utils.OclConstants;
 import com.sap.tc.moin.ocl.utils.jmi.JmiCreator;
 import com.sap.tc.moin.ocl.utils.localization.OclServiceExceptions;
@@ -145,8 +144,6 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
 
     protected OclEditorServiceImpl myOclEditorService;
     
-    private PathCache myInstanceScopeImpactAnalysisPathCache;
-
     final static MoinLogger LOGGER = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_CORE_OCL, OclRegistryServiceImpl.class );
 
     private final static Set<OclRegistrationCategory> EMPTY_CAT = new HashSet<OclRegistrationCategory>( );
@@ -189,13 +186,6 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
         return this.myFreestyleRegistry;
     }
 
-    public PathCache getInstanceScopeImpactAnalysisPathCache() {
-	if (myInstanceScopeImpactAnalysisPathCache == null) {
-	    myInstanceScopeImpactAnalysisPathCache = new PathCache();
-	}
-        return myInstanceScopeImpactAnalysisPathCache;
-    }
-
     public CoreOclMetamodelConstraintRegistry getMetamodelConstraintRegistry( CoreConnection connection ) {
 
         if ( this.myMetamodelRegistry == null ) {
@@ -204,12 +194,12 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
         return this.myMetamodelRegistry;
     }
 
-    public CoreOclMofConstraintRegistry getCoreOclMofConstraintRegistry( CoreConnection connection ) throws OclManagerException {
+    public CoreOclMofConstraintRegistry getCoreOclMofConstraintRegistry( CoreConnection connection ) {
 
         return getMofConstraintRegistry( connection );
     }
 
-    public CoreOclMofConstraintRegistry getMofConstraintRegistry( CoreConnection connection ) throws OclManagerException {
+    public CoreOclMofConstraintRegistry getMofConstraintRegistry( CoreConnection connection ) {
 
         if ( this.myMofConstraintRegistry == null ) {
             this.myMofConstraintRegistry = new OclMofConstraintRegistryImpl( this );
@@ -249,7 +239,7 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
         return evaluated;
     }
 
-    public void resetEvents( CoreConnection connection, String category ) throws OclManagerException {
+    public void resetEvents( CoreConnection connection, String category ) {
 
         ( (OclMetaModelConstraintRegistryImpl) this.getMetamodelConstraintRegistry( connection ) ).resetEvents( category );
         ( (OclFreestyleRegistryImpl) this.getFreestyleRegistry( connection ) ).resetEvents( category );
@@ -628,7 +618,7 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
             }
         }
 
-        public TabularData getAvailableMofConstraints( ) throws IOException {
+        public TabularData getAvailableMofConstraints( ) {
 
             return computeTabularDataForConstraintRegistrations( getConstraints( true ) );
         }
@@ -638,7 +628,7 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
             return createSummaryOfConstraintRegistrations( true );
         }
 
-        public TabularData getAvailableMetamodelConstraints( ) throws IOException {
+        public TabularData getAvailableMetamodelConstraints( ) {
 
             return computeTabularDataForConstraintRegistrations( getConstraints( false ) );
         }
@@ -660,8 +650,6 @@ public class OclRegistryServiceImpl implements CoreOclRegistryService {
                         try {
                             constraints = registryService.getMofConstraintRegistry( conn ).getAvailableMofConstraints( conn );
                         } catch ( OclConstraintManagerException e ) {
-                            throw new MoinLocalizedBaseRuntimeException( e );
-                        } catch ( OclManagerException e ) {
                             throw new MoinLocalizedBaseRuntimeException( e );
                         }
                     } else {

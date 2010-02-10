@@ -1,5 +1,6 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
+import java.util.Map;
 import java.util.Set;
 
 import org.omg.ocl.expressions.OclExpression;
@@ -22,7 +23,7 @@ public interface Tracer {
      * Computes a navigation step that when executed, computes a set of elements containing at least all context
      * elements such that when the overall expression of which the expression represented by this tracer is a part, is
      * evaluated for such an element, the sub-expression represented by this tracer evaluates to the element passed to
-     * the navigation step's {@link NavigationStep#navigate(CoreConnection, Set)} operation in the set parameter. The
+     * the navigation step's {@link NavigationStep#navigate(CoreConnection, Set, Map)} operation in the set parameter. The
      * result may also contain elements for which this does not hold. It hence represents a conservative estimate.
      * 
      * @param context

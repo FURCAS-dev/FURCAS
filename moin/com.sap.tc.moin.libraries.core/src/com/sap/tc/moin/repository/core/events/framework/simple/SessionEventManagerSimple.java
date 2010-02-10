@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.management.MBeanNotificationInfo;
 import javax.management.MalformedObjectNameException;
@@ -49,11 +51,6 @@ import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.filter.OrFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.jmx.SessionEventManagerMBean;
-import com.sap.tc.moin.repository.shared.logger.MoinCategoryEnum;
-import com.sap.tc.moin.repository.shared.logger.MoinLocationEnum;
-import com.sap.tc.moin.repository.shared.logger.MoinLogger;
-import com.sap.tc.moin.repository.shared.logger.MoinLoggerFactory;
-import com.sap.tc.moin.repository.shared.logger.MoinSeverity;
 import com.sap.tc.moin.repository.shared.util.WeakReferenceWithObjectName;
 
 /**
@@ -77,7 +74,7 @@ public class SessionEventManagerSimple implements SessionEventManager {
         }
     }
 
-    private static MoinLogger logger = MoinLoggerFactory.getLogger( MoinCategoryEnum.MOIN_CORE, MoinLocationEnum.MOIN_EVENTS, SessionEventManagerSimple.class );
+    private static Logger logger = Logger.getLogger(SessionEventManager.class.getName());
 
     private List<NotifierSimple> preChangeListeners = new ArrayList<NotifierSimple>( );
 
@@ -179,8 +176,9 @@ public class SessionEventManagerSimple implements SessionEventManager {
             listenerHelper.add( listenerType, notifier.getListener( ), notifier.getFilter( ) );
         }
 
-        if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-            logger.traceWithStack( MoinSeverity.DEBUG, "Event listener {0} registered with Filter:\n{1}", notifier.getListener( ), notifier.getFilter( ) ); //$NON-NLS-1$
+        if ( logger.isLoggable(Level.FINE) ) {
+            logger.log( Level.FINE, "Event listener {0} registered with Filter:\n{1}",
+        	    new Object[] { notifier.getListener( ), notifier.getFilter( ) } ); //$NON-NLS-1$
             traceListenerCount( );
         }
 
@@ -188,12 +186,12 @@ public class SessionEventManagerSimple implements SessionEventManager {
 
     private void traceListenerCount( ) {
 
-        if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-            logger.trace( MoinSeverity.DEBUG, "Number of currently registered pre change listeners: {0}", preChangeListeners.size( ) ); //$NON-NLS-1$
-            logger.trace( MoinSeverity.DEBUG, "Number of currently registered post change listeners: {0}", postChangeListeners.size( ) ); //$NON-NLS-1$
-            logger.trace( MoinSeverity.DEBUG, "Number of currently registered pre commit listeners: {0}", preCommitListeners.size( ) ); //$NON-NLS-1$
-            logger.trace( MoinSeverity.DEBUG, "Number of currently registered post commit listeners: {0}", postCommitListeners.size( ) ); //$NON-NLS-1$
-            logger.trace( MoinSeverity.DEBUG, "Number of currently registered update listeners: {0}", updateListeners.size( ) ); //$NON-NLS-1$
+        if ( logger.isLoggable( Level.FINE ) ) {
+            logger.log( Level.FINE, "Number of currently registered pre change listeners: {0}", preChangeListeners.size( ) ); //$NON-NLS-1$
+            logger.log( Level.FINE, "Number of currently registered post change listeners: {0}", postChangeListeners.size( ) ); //$NON-NLS-1$
+            logger.log( Level.FINE, "Number of currently registered pre commit listeners: {0}", preCommitListeners.size( ) ); //$NON-NLS-1$
+            logger.log( Level.FINE, "Number of currently registered post commit listeners: {0}", postCommitListeners.size( ) ); //$NON-NLS-1$
+            logger.log( Level.FINE, "Number of currently registered update listeners: {0}", updateListeners.size( ) ); //$NON-NLS-1$
         }
     }
 
@@ -213,8 +211,8 @@ public class SessionEventManagerSimple implements SessionEventManager {
             listenerHelper.remove( listener );
         }
 
-        if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-            logger.traceWithStack( MoinSeverity.DEBUG, "Event listener {0} deregistered", listener ); //$NON-NLS-1$
+        if ( logger.isLoggable( Level.FINE ) ) {
+            logger.log( Level.FINE, "Event listener {0} deregistered", listener ); //$NON-NLS-1$
             traceListenerCount( );
         }
 
@@ -372,16 +370,16 @@ public class SessionEventManagerSimple implements SessionEventManager {
                 chains[j].deliverEvents( );
             } catch ( RuntimeException e ) {
                 if ( vetoAllowed && e instanceof VetoException ) {
-                    if ( logger.isTraced( MoinSeverity.DEBUG ) ) {
-                        logger.trace( e, MoinSeverity.DEBUG, "Listener vetoed event chain. " + chains[j], null ); //$NON-NLS-1$
+                    if ( logger.isLoggable( Level.FINE ) ) {
+                        logger.log( Level.FINE, "Listener vetoed event chain. " + chains[j], e ); //$NON-NLS-1$
                     }
                     throw e;
                 }
 
                 //unexpected exception thrown from listener code
                 //show must go on anyway, therefore just trace it and continue
-                if ( logger.isTraced( MoinSeverity.ERROR ) ) {
-                    logger.trace( e, MoinSeverity.ERROR, "Listener has thrown exception. " + chains[j], null ); //$NON-NLS-1$
+                if ( logger.isLoggable( Level.SEVERE ) ) {
+                    logger.log( Level.SEVERE, "Listener has thrown exception. " + chains[j], e); //$NON-NLS-1$
                 }
             }
         }

@@ -1,9 +1,9 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 
@@ -16,6 +16,7 @@ import com.sap.tc.moin.repository.mmi.model.AssociationEnd;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
 import com.sap.tc.moin.repository.mmi.model.__impl.AssociationEndInternal;
 import com.sap.tc.moin.repository.mmi.reflect.RefObject;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 import com.sap.tc.moin.repository.spi.core.SpiJmiHelper;
 
 public class AssociationNavigationStep extends AbstractNavigationStep {
@@ -27,8 +28,8 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
-	Collection<RefObjectImpl> result;
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
+	Set<RefObjectImpl> result;
 
 	Association assoc = (Association) ((AssociationEndInternal) toEnd).getContainer(conn);
 	SpiJmiHelper jmiHelper = conn.getCoreJmiHelper();
@@ -36,7 +37,7 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
 		assoc);
 	JmiListImpl<RefObject> objectOrCollection = (JmiListImpl<RefObject>) refAssoc.refQuery(conn,
 		((AssociationEndInternal) toEnd).otherEnd(conn), fromObject);
-	result = new ArrayList<RefObjectImpl>(objectOrCollection.size(conn.getSession()));
+	result = new LinkedHashSet<RefObjectImpl>(objectOrCollection.size(conn.getSession()));
 	for (Iterator<RefObject> i = objectOrCollection.iterator(conn); i.hasNext();) {
 	    result.add((RefObjectImpl) i.next());
 	}
@@ -44,7 +45,7 @@ public class AssociationNavigationStep extends AbstractNavigationStep {
     }
 
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	return toEnd.getName();
     }
 }

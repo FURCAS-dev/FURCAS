@@ -76,7 +76,6 @@ import com.sap.tc.moin.repository.events.UpdateListener;
 import com.sap.tc.moin.repository.events.filter.EventFilter;
 import com.sap.tc.moin.repository.events.type.ChangeEvent;
 import com.sap.tc.moin.repository.events.type.ElementDeleteEvent;
-import com.sap.tc.moin.repository.events.type.ModelChangeEvent;
 import com.sap.tc.moin.repository.exception.MoinLocalizedBaseRuntimeException;
 import com.sap.tc.moin.repository.mmi.model.Aliases;
 import com.sap.tc.moin.repository.mmi.model.Classifier;
@@ -113,13 +112,16 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
 	@Override
 	public void notifyUpdate(EventChain events) {
-	    if (events.getEvents().size() > 0) {
+	    if (!events.getEvents().isEmpty()) {
 		Connection conn = events.getEvents().iterator().next().getEventTriggerConnection();
 		if(reference.isGenericReference()) {
 		     //Its a generic reference not an unresolved one
 		     if(reference.getQueryElement() != null) {
 			 if(reference.getQueryElement() instanceof InjectorAction) {
-			     filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
+			    if (!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events
+				    .getEvents(), /* replacement for __TEMP__ */null)) {
+			        filterEventsAndRegisterDelayedReferencesForInjectorAction(events, conn);
+			    }
 			 } else if(reference.getQueryElement() instanceof Property) {
 			     filterEventsAndQueueDelayedReferencesForPropertyQuery(events, conn);
 			 }
@@ -207,33 +209,35 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
          Set<MRI> affectedElements = getAffectedElements(events, conn);
          if(affectedElements.size() > 0) {
              for (LexedToken lt : toks) {
-                 Set<RefObject> intersectionOfCorrespondingAndAffectedElements = null;
-                 if(reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
-                     intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
-                             conn, affectedElements, lt.getParentBlock());
-                 } else {
-                     intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(lt.getParentBlock().getCorrespondingModelElements());
+                 if(!registration.isUnaffectedDueToPrimitiveAttributeValueComparisonWithLiteralOnly(events.getEvents(), lt.getValue())) {
+                     Set<RefObject> intersectionOfCorrespondingAndAffectedElements = null;
+                     if(reference.getType() != DelayedReference.CONTEXT_LOOKUP) {
+                         intersectionOfCorrespondingAndAffectedElements = filterWithAffectedElements(
+                                 conn, affectedElements, lt.getParentBlock());
+                     } else {
+                         intersectionOfCorrespondingAndAffectedElements = new HashSet<RefObject>(lt.getParentBlock().getCorrespondingModelElements());
+                     }
+                     //TODO Actually we would have to analyse the OCL reference and check 
+                     //for an intersection of the affectedElements with the token's value
+                     //as this is the only hint we have at this place
+                    if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
+                            Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
+                                        conn, lt.getParentBlock());
+                    		for (RefObject ro : result) {
+                    		    DelayedReference clonedRef = (DelayedReference) reference.clone();
+                                                clonedRef.setModelElement(ro);
+                                                clonedRef.setRealValue(null);
+                                                clonedRef.setConnection(conn);
+                                                
+                                                clonedRef.setToken(new LexedTokenWrapper(lt));
+                                                clonedRef.setTextBlock(lt.getParentBlock());
+                                                clonedRef.setKeyValue(lt.getValue());
+                    		    String oclQuery = clonedRef.getOclQuery();
+                    		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
+                    		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
+                    		}
+                    }
                  }
-                 //TODO Actually we would have to analyse the OCL reference and check 
-                 //for an intersection of the affectedElements with the token's value
-                 //as this is the only hint we have at this place
-                if(intersectionOfCorrespondingAndAffectedElements.size() > 0) {
-                        Set<RefObject> result = filterCorrespondingElementsByDelayedReferenceSourceType(
-                                    conn, lt.getParentBlock());
-                		for (RefObject ro : result) {
-                		    DelayedReference clonedRef = (DelayedReference) reference.clone();
-                                            clonedRef.setModelElement(ro);
-                                            clonedRef.setRealValue(null);
-                                            clonedRef.setConnection(conn);
-                                            
-                                            clonedRef.setToken(new LexedTokenWrapper(lt));
-                                            clonedRef.setTextBlock(lt.getParentBlock());
-                                            clonedRef.setKeyValue(lt.getValue());
-                		    String oclQuery = clonedRef.getOclQuery();
-                		    clonedRef.setOclQuery(oclQuery.replaceAll(TEMPORARY_QUERY_PARAM_REPLACEMENT, lt.getValue()));
-                		    GlobalDelayedReferenceResolver.this.iaUnresolvedReferences.add(clonedRef);
-                		}
-                }
             }
          }
     }
@@ -315,13 +319,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
 	private Set<MRI> getAffectedElements(EventChain events, Connection conn) {
 	    Statistics.getInstance().setCurrentObjectForSelf(reference.getElementForSelf());
-	    Set<MRI> affectedElements = new HashSet<MRI>();
-	    for (ChangeEvent e : events.getEvents()) {
-	     if (e instanceof ModelChangeEvent) {
-	         affectedElements.addAll(
-	    	     registration.getAffectedModelElements((ModelChangeEvent) e, conn));
-	     }
-	     }
+	    Set<MRI> affectedElements = registration.getAffectedModelElements(events, conn);
 	    return affectedElements;
 	}
     }
@@ -330,7 +328,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	
 	private final GlobalDelayedReferenceResolver resolver;
 	private final Job job;
-	private boolean runInAsynchronousModus = true;
+	private boolean runInAsynchronousMode = true;
 	
         public BackgroundResolver(final GlobalDelayedReferenceResolver resolver) {
 	    this.resolver = resolver;
@@ -355,7 +353,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 
 	public void scheduleIfNeeded() {
 	    if (!resolver.hasEmptyQueue()) {
-		if (runInAsynchronousModus) {
+		if (runInAsynchronousMode) {
 		    job.schedule(500);
 		} else {
 		    resolver.resolveReferences(new NullProgressMonitor());
@@ -364,7 +362,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	}
 	
 	public void runInAsynchronousMode(boolean isAsync) {
-	    this.runInAsynchronousModus = isAsync;
+	    this.runInAsynchronousMode = isAsync;
 	}
 	
 	public boolean isBackgroundJobRunningOrScheduled() {
@@ -723,13 +721,6 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
 	listeners.remove(listener);
     }
 
-    private void notifyReferenceResolvingListenerReferenceAdded(
-	    DelayedReference ref) {
-	for (ReferenceResolvingListener listener : listeners) {
-	    listener.unresolvedReferenceRegistered(ref);
-	}
-    }
-
     private void notifyReferenceResolvingListenerReferenceResolved(
 	    DelayedReference ref) {
 	for (ReferenceResolvingListener listener : listeners) {
@@ -972,7 +963,7 @@ public class GlobalDelayedReferenceResolver implements GlobalEventListener, Upda
         try {
             String query = foreachPredicatePropertyInit.getValue();
             List<com.sap.mi.textual.grammar.impl.PredicateSemantic> list = new ArrayList<com.sap.mi.textual.grammar.impl.PredicateSemantic>();
-            Iterator<PredicateSemantic> semIt = ((ForeachPredicatePropertyInit) foreachPredicatePropertyInit).getPredicatesemantic().iterator();
+            Iterator<PredicateSemantic> semIt = foreachPredicatePropertyInit.getPredicatesemantic().iterator();
             String mode = template instanceof ClassTemplate ? ((ClassTemplate) template).getMode() : null;
             while (semIt.hasNext()) {
                 PredicateSemantic next = semIt.next();

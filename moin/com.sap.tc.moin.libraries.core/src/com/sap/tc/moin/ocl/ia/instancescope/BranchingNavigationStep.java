@@ -1,6 +1,5 @@
 package com.sap.tc.moin.ocl.ia.instancescope;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
@@ -11,6 +10,7 @@ import org.omg.ocl.expressions.__impl.OclExpressionInternal;
 import com.sap.tc.moin.repository.core.CoreConnection;
 import com.sap.tc.moin.repository.core.jmi.reflect.RefObjectImpl;
 import com.sap.tc.moin.repository.mmi.model.MofClass;
+import com.sap.tc.moin.repository.shared.util.Tuple.Pair;
 
 /**
  * A navigation step that branches in several paths and combines the results into one.
@@ -71,7 +71,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 			    public void targetTypeChanged(NavigationStep stepForWhichTargetTypeChanged) {
 				// if source type is set where it was previously not set, check if that step
 				// can be removed
-				if (!haveIntersectingSubclassTree(conn, stepForWhichTargetTypeChanged.getSourceType(), getTargetType())) {
+				if (!haveIntersectingSubclassTree(conn, stepForWhichTargetTypeChanged.getTargetType(), getTargetType())) {
 				    stepsAlwaysEmptyInThisStepsContext.add(stepForWhichTargetTypeChanged);
 				    if (stepsAlwaysEmptyInThisStepsContext.size() == getSteps().length) {
 					setAlwaysEmpty();
@@ -107,17 +107,17 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
     }
     
     @Override
-    protected Collection<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject) {
+    protected Set<RefObjectImpl> navigate(CoreConnection conn, RefObjectImpl fromObject, Map<Pair<NavigationStep, RefObjectImpl>, Set<RefObjectImpl>> cache) {
 	Set<RefObjectImpl> result = new HashSet<RefObjectImpl>();
 	for (NavigationStep singleStep : getSteps()) {
 	    Set<RefObjectImpl> fromSet = Collections.singleton(fromObject);
-	    result.addAll(singleStep.navigate(conn, fromSet));
+	    result.addAll(singleStep.navigate(conn, fromSet, cache));
 	}
 	return result;
     }
 
     @Override
-    protected String contentToString(Map<NavigationStep, Integer> visited, int[] maxId, int indent) {
+    protected String contentToString(Map<NavigationStep, Integer> visited, int indent) {
 	StringBuilder sb = new StringBuilder();
 	boolean first = true;
 	sb.append("{\n");
@@ -129,7 +129,7 @@ public class BranchingNavigationStep extends CompositeNavigationStep {
 		first = false;
 	    }
 	    if (step instanceof AbstractNavigationStep) {
-		sb.append(((AbstractNavigationStep) step).toString(visited, maxId, indent+2));
+		sb.append(((AbstractNavigationStep) step).toString(visited, indent+2));
 	    } else {
 		sb.append(step);
 	    }

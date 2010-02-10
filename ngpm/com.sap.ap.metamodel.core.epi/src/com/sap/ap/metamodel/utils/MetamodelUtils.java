@@ -23,6 +23,8 @@ import data.classes.SapClass;
 import dataaccess.expressions.FunctionCallExpression;
 import dataaccess.expressions.SignatureCallExpression;
 import dataaccess.expressions.fp.AnonymousFunctionExpr;
+import dataaccess.expressions.literals.NumberLiteral;
+import dataaccess.expressions.literals.StringLiteral;
 
 /**
  * Some utility / helper methods for the AP/NGPM/Runlet metamodel
@@ -31,6 +33,24 @@ import dataaccess.expressions.fp.AnonymousFunctionExpr;
  *
  */
 public class MetamodelUtils {
+    public static NumberLiteral createNumberLiteral(Connection conn, String numberAsString) {
+	NumberLiteral result = conn.createElement(NumberLiteral.CLASS_DESCRIPTOR);
+	result.setLiteral(numberAsString);
+	SapClass numberClass = MetamodelUtils.findClass(conn, "Number");
+	ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinitionExactlyOne(conn, numberClass);
+	result.setOwnedTypeDefinition(ctd);
+	return result;
+    }
+    
+    public static StringLiteral createStringLiteral(Connection conn, String string) {
+	StringLiteral result = conn.createElement(StringLiteral.CLASS_DESCRIPTOR);
+	result.setLiteral(string);
+	SapClass stringClass = MetamodelUtils.findClass(conn, "String");
+	ClassTypeDefinition ctd = MetamodelUtils.createClassTypeDefinitionExactlyOne(conn, stringClass);
+	result.setOwnedTypeDefinition(ctd);
+	return result;
+    }
+    
     public static ClassTypeDefinition createClassTypeDefinition(Connection conn, SapClass c1, int lower, int upper,
 	    boolean ordered, boolean unique) {
 	ClassTypeDefinition c1TD = (ClassTypeDefinition) conn.getClass(ClassTypeDefinition.CLASS_DESCRIPTOR).refCreateInstance();
