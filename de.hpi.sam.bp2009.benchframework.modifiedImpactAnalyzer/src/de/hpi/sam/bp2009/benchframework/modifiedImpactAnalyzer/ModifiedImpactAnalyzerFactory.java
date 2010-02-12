@@ -35,24 +35,6 @@ public interface ModifiedImpactAnalyzerFactory extends EFactory {
 	ModifiedImpactAnalyzer createModifiedImpactAnalyzer();
 
 	/**
-	 * Returns a new object of class '<em>Incoming Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Incoming Event Notification</em>'.
-	 * @generated
-	 */
-	IncomingEventNotification createIncomingEventNotification();
-
-	/**
-	 * Returns a new object of class '<em>Outgoing Result Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Outgoing Result Notification</em>'.
-	 * @generated
-	 */
-	OutgoingResultNotification createOutgoingResultNotification();
-
-	/**
 	 * Returns a new object of class '<em>Embed Modified IA Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

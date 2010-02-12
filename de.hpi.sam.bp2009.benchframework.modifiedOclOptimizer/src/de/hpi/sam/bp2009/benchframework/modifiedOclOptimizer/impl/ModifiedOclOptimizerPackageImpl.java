@@ -6,21 +6,18 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.EmbedModifiedOclOptOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizer;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerPackage;
-
+import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.ecore.EPackage;
-
-import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -42,6 +39,13 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 	 * @generated
 	 */
 	private EClass embedModifiedOclOptOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum notifyLiteralsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -131,6 +135,15 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getNotifyLiterals() {
+		return notifyLiteralsEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModifiedOclOptimizerFactory getModifiedOclOptimizerFactory() {
 		return (ModifiedOclOptimizerFactory)getEFactoryInstance();
 	}
@@ -157,6 +170,9 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 		modifiedOclOptimizerEClass = createEClass(MODIFIED_OCL_OPTIMIZER);
 
 		embedModifiedOclOptOperatorEClass = createEClass(EMBED_MODIFIED_OCL_OPT_OPERATOR);
+
+		// Create enums
+		notifyLiteralsEEnum = createEEnum(NOTIFY_LITERALS);
 	}
 
 	/**
@@ -184,7 +200,6 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 
 		// Obtain other dependent packages
 		OclEvaluatorPackage theOclEvaluatorPackage = (OclEvaluatorPackage)EPackage.Registry.INSTANCE.getEPackage(OclEvaluatorPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
 		// Create type parameters
@@ -198,11 +213,14 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 		// Initialize classes and features; add operations and parameters
 		initEClass(modifiedOclOptimizerEClass, ModifiedOclOptimizer.class, "ModifiedOclOptimizer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(modifiedOclOptimizerEClass, null, "sendBenchmarkNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(embedModifiedOclOptOperatorEClass, EmbedModifiedOclOptOperator.class, "EmbedModifiedOclOptOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.SEND_QUERY_TO_INTERPRETER);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.GET_RESULT_FROM_INTERPRETER);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_EVALUATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_EVALUATION);
 
 		// Create resource
 		createResource(eNS_URI);

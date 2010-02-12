@@ -19,12 +19,4 @@ import de.hpi.sam.bp2009.solution.eventManager.EventManager;
  * @generated
  */
 public interface ModifiedEventManager extends EventManager {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void sendBenchmarkNotification(Object communicationPartner, boolean incoming);
 } // ModifiedEventManager

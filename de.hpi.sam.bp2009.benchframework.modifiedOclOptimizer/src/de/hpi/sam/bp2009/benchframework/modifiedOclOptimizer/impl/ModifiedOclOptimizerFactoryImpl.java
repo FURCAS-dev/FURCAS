@@ -9,6 +9,7 @@ package de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -72,6 +73,36 @@ public class ModifiedOclOptimizerFactoryImpl extends EFactoryImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case ModifiedOclOptimizerPackage.NOTIFY_LITERALS:
+				return createNotifyLiteralsFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case ModifiedOclOptimizerPackage.NOTIFY_LITERALS:
+				return convertNotifyLiteralsToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModifiedOclOptimizer createModifiedOclOptimizer() {
 		ModifiedOclOptimizerImpl modifiedOclOptimizer = new ModifiedOclOptimizerImpl();
 		return modifiedOclOptimizer;
@@ -85,6 +116,26 @@ public class ModifiedOclOptimizerFactoryImpl extends EFactoryImpl implements Mod
 	public EmbedModifiedOclOptOperator createEmbedModifiedOclOptOperator() {
 		EmbedModifiedOclOptOperatorImpl embedModifiedOclOptOperator = new EmbedModifiedOclOptOperatorImpl();
 		return embedModifiedOclOptOperator;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotifyLiterals createNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
+		NotifyLiterals result = NotifyLiterals.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

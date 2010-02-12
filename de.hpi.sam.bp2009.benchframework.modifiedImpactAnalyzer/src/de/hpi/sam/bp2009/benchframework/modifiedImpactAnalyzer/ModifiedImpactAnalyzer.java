@@ -25,15 +25,4 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
  * @generated
  */
 public interface ModifiedImpactAnalyzer extends ImpactAnalyzer {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Build and send a notification to all registered benchmarkers.
-	 * <!-- end-model-doc -->
-	 * @model
-	 * @generated
-	 */
-	void sendBenchmarkNotification(Object communicationPartner, boolean incoming);
 } // ModifiedImpactAnalyzer

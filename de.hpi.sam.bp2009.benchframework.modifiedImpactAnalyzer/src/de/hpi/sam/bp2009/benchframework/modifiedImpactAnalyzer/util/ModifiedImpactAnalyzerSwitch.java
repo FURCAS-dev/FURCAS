@@ -13,11 +13,8 @@ import org.eclipse.emf.ecore.EObject;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification;
-import de.hpi.sam.bp2009.solution.eventManager.EventNotification;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 
 /**
@@ -101,20 +98,6 @@ public class ModifiedImpactAnalyzerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModifiedImpactAnalyzerPackage.INCOMING_EVENT_NOTIFICATION: {
-				IncomingEventNotification incomingEventNotification = (IncomingEventNotification)theEObject;
-				T result = caseIncomingEventNotification(incomingEventNotification);
-				if (result == null) result = caseEventNotification(incomingEventNotification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModifiedImpactAnalyzerPackage.OUTGOING_RESULT_NOTIFICATION: {
-				OutgoingResultNotification outgoingResultNotification = (OutgoingResultNotification)theEObject;
-				T result = caseOutgoingResultNotification(outgoingResultNotification);
-				if (result == null) result = caseEventNotification(outgoingResultNotification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case ModifiedImpactAnalyzerPackage.EMBED_MODIFIED_IA_OPERATOR: {
 				EmbedModifiedIAOperator embedModifiedIAOperator = (EmbedModifiedIAOperator)theEObject;
 				T result = caseEmbedModifiedIAOperator(embedModifiedIAOperator);
@@ -138,36 +121,6 @@ public class ModifiedImpactAnalyzerSwitch<T> {
 	 * @generated
 	 */
 	public T caseModifiedImpactAnalyzer(ModifiedImpactAnalyzer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Incoming Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Incoming Event Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseIncomingEventNotification(IncomingEventNotification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Outgoing Result Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Outgoing Result Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOutgoingResultNotification(OutgoingResultNotification object) {
 		return null;
 	}
 
@@ -198,21 +151,6 @@ public class ModifiedImpactAnalyzerSwitch<T> {
 	 * @generated
 	 */
 	public T caseImpactAnalyzer(ImpactAnalyzer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEventNotification(EventNotification object) {
 		return null;
 	}
 

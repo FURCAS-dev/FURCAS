@@ -7,9 +7,8 @@
 package de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -17,6 +16,7 @@ import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOper
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 /**
@@ -39,6 +39,13 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 	 * @generated
 	 */
 	private EClass embedModifiedEMOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum notifyLiteralsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -128,6 +135,15 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEnum getNotifyLiterals() {
+		return notifyLiteralsEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModifiedEventManagerFactory getModifiedEventManagerFactory() {
 		return (ModifiedEventManagerFactory)getEFactoryInstance();
 	}
@@ -154,6 +170,9 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 		modifiedEventManagerEClass = createEClass(MODIFIED_EVENT_MANAGER);
 
 		embedModifiedEMOperatorEClass = createEClass(EMBED_MODIFIED_EM_OPERATOR);
+
+		// Create enums
+		notifyLiteralsEEnum = createEEnum(NOTIFY_LITERALS);
 	}
 
 	/**
@@ -181,7 +200,6 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 
 		// Obtain other dependent packages
 		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
 		// Create type parameters
@@ -195,11 +213,16 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 		// Initialize classes and features; add operations and parameters
 		initEClass(modifiedEventManagerEClass, ModifiedEventManager.class, "ModifiedEventManager", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(modifiedEventManagerEClass, null, "sendBenchmarkNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		initEClass(embedModifiedEMOperatorEClass, EmbedModifiedEMOperator.class, "EmbedModifiedEMOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_SUBSCRIBTION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_SUBSCRIBTION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_EMF_EVENT_HANDLING);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_EMF_EVENT_HANDLING);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_APPLICATION_NOTIFICATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_APPLICATION_NOTIFICATION);
 
 		// Create resource
 		createResource(eNS_URI);

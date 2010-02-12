@@ -6,12 +6,13 @@
  */
 package de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl;
 
-import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizer;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.oclEvaluator.Interpreter;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
 import de.hpi.sam.bp2009.solution.oclEvaluator.impl.OCLEvaluatorImpl;
@@ -47,35 +48,18 @@ public class ModifiedOclOptimizerImpl extends OCLEvaluatorImpl implements Modifi
 	@Override
 	public Object passToInterpreter(Interpreter interpreter,
 			OclQuery queryobject) {
-		sendBenchmarkNotification(interpreter, false);
+		eNotify(new ENotificationImpl(this,NotifyLiterals.SEND_QUERY_TO_INTERPRETER_VALUE, Notification.NO_FEATURE_ID, null, null));
 		Object result = super.passToInterpreter(interpreter, queryobject);
-		sendBenchmarkNotification(interpreter, true);
+		eNotify(new ENotificationImpl(this,NotifyLiterals.GET_RESULT_FROM_INTERPRETER_VALUE, Notification.NO_FEATURE_ID, null, null));
 		return result;
 	}
 	
 	@Override
 	public Object evaluate(OclQuery queryobject) {
-		sendBenchmarkNotification(null, true);
+		eNotify(new ENotificationImpl(this,NotifyLiterals.START_EVALUATION_VALUE, Notification.NO_FEATURE_ID, null, null));
 		Object result = super.evaluate(queryobject);
-		sendBenchmarkNotification(null, false);
+		eNotify(new ENotificationImpl(this,NotifyLiterals.END_EVALUATION_VALUE, Notification.NO_FEATURE_ID, null, null));
 		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
-	public void sendBenchmarkNotification(Object communicationPartner, boolean incoming) {
-		ENotificationImpl n;
-		if (incoming)
-			n = new ENotificationImpl(this, 1, null, null, communicationPartner);
-		else
-			n = new ENotificationImpl(this, 0, null, null, communicationPartner);
-
-		for (Adapter a : eAdapters){
-			a.notifyChanged(n);
-		}
 	}
 
 } //ModifiedOclOptimizerImpl

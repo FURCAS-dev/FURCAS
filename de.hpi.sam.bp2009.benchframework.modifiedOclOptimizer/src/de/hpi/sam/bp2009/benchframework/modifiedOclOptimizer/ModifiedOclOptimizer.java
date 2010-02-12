@@ -19,12 +19,5 @@ import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
  * @generated
  */
 public interface ModifiedOclOptimizer extends OCLEvaluator {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model
-	 * @generated
-	 */
-	void sendBenchmarkNotification(Object communicationPartner, boolean incoming);
 
 } // ModifiedOclOptimizer

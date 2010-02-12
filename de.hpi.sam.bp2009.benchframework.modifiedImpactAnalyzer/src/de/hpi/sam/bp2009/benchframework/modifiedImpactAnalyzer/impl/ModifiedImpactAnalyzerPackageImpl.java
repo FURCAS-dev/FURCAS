@@ -7,19 +7,16 @@
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EOperation;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
 /**
@@ -41,21 +38,14 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass incomingEventNotificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass outgoingResultNotificationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	private EClass embedModifiedIAOperatorEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum notifyLiteralsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -136,26 +126,17 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getIncomingEventNotification() {
-		return incomingEventNotificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EClass getOutgoingResultNotification() {
-		return outgoingResultNotificationEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getEmbedModifiedIAOperator() {
 		return embedModifiedIAOperatorEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getNotifyLiterals() {
+		return notifyLiteralsEEnum;
 	}
 
 	/**
@@ -188,11 +169,10 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		// Create classes and their features
 		modifiedImpactAnalyzerEClass = createEClass(MODIFIED_IMPACT_ANALYZER);
 
-		incomingEventNotificationEClass = createEClass(INCOMING_EVENT_NOTIFICATION);
-
-		outgoingResultNotificationEClass = createEClass(OUTGOING_RESULT_NOTIFICATION);
-
 		embedModifiedIAOperatorEClass = createEClass(EMBED_MODIFIED_IA_OPERATOR);
+
+		// Create enums
+		notifyLiteralsEEnum = createEEnum(NOTIFY_LITERALS);
 	}
 
 	/**
@@ -220,8 +200,6 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 
 		// Obtain other dependent packages
 		ImpactAnalyzerPackage theImpactAnalyzerPackage = (ImpactAnalyzerPackage)EPackage.Registry.INSTANCE.getEPackage(ImpactAnalyzerPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		EventManagerPackage theEventManagerPackage = (EventManagerPackage)EPackage.Registry.INSTANCE.getEPackage(EventManagerPackage.eNS_URI);
 		BenchframeworkPackage theBenchframeworkPackage = (BenchframeworkPackage)EPackage.Registry.INSTANCE.getEPackage(BenchframeworkPackage.eNS_URI);
 
 		// Create type parameters
@@ -230,22 +208,23 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 
 		// Add supertypes to classes
 		modifiedImpactAnalyzerEClass.getESuperTypes().add(theImpactAnalyzerPackage.getImpactAnalyzer());
-		incomingEventNotificationEClass.getESuperTypes().add(theEventManagerPackage.getEventNotification());
-		outgoingResultNotificationEClass.getESuperTypes().add(theEventManagerPackage.getEventNotification());
 		embedModifiedIAOperatorEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(modifiedImpactAnalyzerEClass, ModifiedImpactAnalyzer.class, "ModifiedImpactAnalyzer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
-		EOperation op = addEOperation(modifiedImpactAnalyzerEClass, null, "sendBenchmarkNotification", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEJavaObject(), "communicationPartner", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, theEcorePackage.getEBoolean(), "incoming", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		initEClass(incomingEventNotificationEClass, IncomingEventNotification.class, "IncomingEventNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(outgoingResultNotificationEClass, OutgoingResultNotification.class, "OutgoingResultNotification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-
 		initEClass(embedModifiedIAOperatorEClass, EmbedModifiedIAOperator.class, "EmbedModifiedIAOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		// Initialize enums and add enum literals
+		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_INTERNAL_EVENT_HANDLING);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_INTERNAL_EVENT_HANDLING);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_APPLICATION_NOTIFICATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_APPLICATION_NOTIFICATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_QUERY_EVALUATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_QUERY_EVALUATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_APPLICATION_REGISTRATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_APPLICATION_REGISTRATION);
 
 		// Create resource
 		createResource(eNS_URI);

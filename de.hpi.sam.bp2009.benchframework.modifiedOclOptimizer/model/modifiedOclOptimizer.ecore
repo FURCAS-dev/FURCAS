@@ -3,11 +3,12 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="modifiedOclOptimizer"
     nsURI="http://de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer" nsPrefix="benchframework.modifiedOclOptimizer">
-  <eClassifiers xsi:type="ecore:EClass" name="ModifiedOclOptimizer" eSuperTypes="../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator">
-    <eOperations name="sendBenchmarkNotification">
-      <eParameters name="communicationPartner" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-      <eParameters name="incoming" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    </eOperations>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ModifiedOclOptimizer" eSuperTypes="../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator"/>
   <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedOclOptOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="NotifyLiterals">
+    <eLiterals name="SEND_QUERY_TO_INTERPRETER"/>
+    <eLiterals name="GET_RESULT_FROM_INTERPRETER" value="1"/>
+    <eLiterals name="START_EVALUATION" value="2"/>
+    <eLiterals name="END_EVALUATION" value="3"/>
+  </eClassifiers>
 </ecore:EPackage>

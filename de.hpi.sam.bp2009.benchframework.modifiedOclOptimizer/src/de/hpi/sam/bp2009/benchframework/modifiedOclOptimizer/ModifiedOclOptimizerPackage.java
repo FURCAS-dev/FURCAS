@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
@@ -146,6 +147,16 @@ public interface ModifiedOclOptimizerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals <em>Notify Literals</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.ModifiedOclOptimizerPackageImpl#getNotifyLiterals()
+	 * @generated
+	 */
+	int NOTIFY_LITERALS = 2;
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizer <em>Modified Ocl Optimizer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -164,6 +175,16 @@ public interface ModifiedOclOptimizerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEmbedModifiedOclOptOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals <em>Notify Literals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Notify Literals</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals
+	 * @generated
+	 */
+	EEnum getNotifyLiterals();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -206,6 +227,16 @@ public interface ModifiedOclOptimizerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EMBED_MODIFIED_OCL_OPT_OPERATOR = eINSTANCE.getEmbedModifiedOclOptOperator();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals <em>Notify Literals</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.ModifiedOclOptimizerPackageImpl#getNotifyLiterals()
+		 * @generated
+		 */
+		EEnum NOTIFY_LITERALS = eINSTANCE.getNotifyLiterals();
 
 	}
 

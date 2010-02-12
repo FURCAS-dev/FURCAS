@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.*;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;

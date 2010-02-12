@@ -7,10 +7,10 @@
 package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
-import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
 /**
@@ -108,81 +108,6 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int MODIFIED_IMPACT_ANALYZER_FEATURE_COUNT = ImpactAnalyzerPackage.IMPACT_ANALYZER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl <em>Incoming Event Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getIncomingEventNotification()
-	 * @generated
-	 */
-	int INCOMING_EVENT_NOTIFICATION = 1;
-
-	/**
-	 * The feature id for the '<em><b>Event</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCOMING_EVENT_NOTIFICATION__EVENT = EventManagerPackage.EVENT_NOTIFICATION__EVENT;
-
-	/**
-	 * The feature id for the '<em><b>Notification</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCOMING_EVENT_NOTIFICATION__NOTIFICATION = EventManagerPackage.EVENT_NOTIFICATION__NOTIFICATION;
-
-	/**
-	 * The number of structural features of the '<em>Incoming Event Notification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int INCOMING_EVENT_NOTIFICATION_FEATURE_COUNT = EventManagerPackage.EVENT_NOTIFICATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl <em>Outgoing Result Notification</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getOutgoingResultNotification()
-	 * @generated
-	 */
-	int OUTGOING_RESULT_NOTIFICATION = 2;
-
-	/**
-	 * The feature id for the '<em><b>Event</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTGOING_RESULT_NOTIFICATION__EVENT = EventManagerPackage.EVENT_NOTIFICATION__EVENT;
-
-	/**
-	 * The feature id for the '<em><b>Notification</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTGOING_RESULT_NOTIFICATION__NOTIFICATION = EventManagerPackage.EVENT_NOTIFICATION__NOTIFICATION;
-
-	/**
-	 * The number of structural features of the '<em>Outgoing Result Notification</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OUTGOING_RESULT_NOTIFICATION_FEATURE_COUNT = EventManagerPackage.EVENT_NOTIFICATION_FEATURE_COUNT + 0;
-
-
-	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.EmbedModifiedIAOperatorImpl <em>Embed Modified IA Operator</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -190,7 +115,7 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getEmbedModifiedIAOperator()
 	 * @generated
 	 */
-	int EMBED_MODIFIED_IA_OPERATOR = 3;
+	int EMBED_MODIFIED_IA_OPERATOR = 1;
 
 	/**
 	 * The feature id for the '<em><b>Option</b></em>' reference.
@@ -247,6 +172,16 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int EMBED_MODIFIED_IA_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals <em>Notify Literals</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getNotifyLiterals()
+	 * @generated
+	 */
+	int NOTIFY_LITERALS = 2;
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer <em>Modified Impact Analyzer</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -257,26 +192,6 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	EClass getModifiedImpactAnalyzer();
 
 	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification <em>Incoming Event Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Incoming Event Notification</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.IncomingEventNotification
-	 * @generated
-	 */
-	EClass getIncomingEventNotification();
-
-	/**
-	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification <em>Outgoing Result Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Outgoing Result Notification</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.OutgoingResultNotification
-	 * @generated
-	 */
-	EClass getOutgoingResultNotification();
-
-	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator <em>Embed Modified IA Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -285,6 +200,16 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEmbedModifiedIAOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals <em>Notify Literals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Notify Literals</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals
+	 * @generated
+	 */
+	EEnum getNotifyLiterals();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -319,26 +244,6 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 		EClass MODIFIED_IMPACT_ANALYZER = eINSTANCE.getModifiedImpactAnalyzer();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl <em>Incoming Event Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.IncomingEventNotificationImpl
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getIncomingEventNotification()
-		 * @generated
-		 */
-		EClass INCOMING_EVENT_NOTIFICATION = eINSTANCE.getIncomingEventNotification();
-
-		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl <em>Outgoing Result Notification</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.OutgoingResultNotificationImpl
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getOutgoingResultNotification()
-		 * @generated
-		 */
-		EClass OUTGOING_RESULT_NOTIFICATION = eINSTANCE.getOutgoingResultNotification();
-
-		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.EmbedModifiedIAOperatorImpl <em>Embed Modified IA Operator</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -347,6 +252,16 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EMBED_MODIFIED_IA_OPERATOR = eINSTANCE.getEmbedModifiedIAOperator();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals <em>Notify Literals</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getNotifyLiterals()
+		 * @generated
+		 */
+		EEnum NOTIFY_LITERALS = eINSTANCE.getNotifyLiterals();
 
 	}
 

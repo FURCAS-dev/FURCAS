@@ -7,6 +7,7 @@
 package de.hpi.sam.bp2009.benchframework.modifiedEventManager;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
@@ -153,6 +154,16 @@ public interface ModifiedEventManagerPackage extends EPackage {
 	int EMBED_MODIFIED_EM_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals <em>Notify Literals</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getNotifyLiterals()
+	 * @generated
+	 */
+	int NOTIFY_LITERALS = 2;
+
+	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager <em>Modified Event Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -171,6 +182,16 @@ public interface ModifiedEventManagerPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getEmbedModifiedEMOperator();
+
+	/**
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals <em>Notify Literals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Notify Literals</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals
+	 * @generated
+	 */
+	EEnum getNotifyLiterals();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -213,6 +234,16 @@ public interface ModifiedEventManagerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EMBED_MODIFIED_EM_OPERATOR = eINSTANCE.getEmbedModifiedEMOperator();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals <em>Notify Literals</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getNotifyLiterals()
+		 * @generated
+		 */
+		EEnum NOTIFY_LITERALS = eINSTANCE.getNotifyLiterals();
 
 	}
 
