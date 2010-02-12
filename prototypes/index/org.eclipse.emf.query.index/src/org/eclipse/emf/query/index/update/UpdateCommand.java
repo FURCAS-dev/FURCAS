@@ -21,12 +21,6 @@ public interface UpdateCommand {
 
 	void preCommitAction(IndexUpdater updater);
 
-	/**
-	 * 
-	 * @Deprecated Use {@link #preCommitAction(IndexUpdater)} instead
-	 */
-	void preCommitAction();
-
 	void postCommitAction();
 
 }
