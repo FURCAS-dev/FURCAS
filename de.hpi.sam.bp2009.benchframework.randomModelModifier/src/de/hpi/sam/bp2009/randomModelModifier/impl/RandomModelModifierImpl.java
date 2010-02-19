@@ -512,6 +512,7 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		//no need to check if class can be created because we take one that has already been created and make another instance
 		EObject cls = classList.get(getRandomNumberGenerator().nextInt(classList.size()));
 		EObject newCls = cls.eClass().getEPackage().getEFactoryInstance().create(cls.eClass());
+		EcoreUtil.getRootContainer(cls).eContents().add(newCls);
 		return classList.add(newCls);
 	}
 	
