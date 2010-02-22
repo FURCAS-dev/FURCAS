@@ -10,13 +10,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedIAOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
   <eClassifiers xsi:type="ecore:EEnum" name="NotifyLiterals">
-    <eLiterals name="START_INTERNAL_EVENT_HANDLING"/>
-    <eLiterals name="END_INTERNAL_EVENT_HANDLING" value="1"/>
-    <eLiterals name="START_APPLICATION_NOTIFICATION" value="2"/>
-    <eLiterals name="END_APPLICATION_NOTIFICATION" value="3"/>
-    <eLiterals name="START_QUERY_EVALUATION" value="4"/>
-    <eLiterals name="END_QUERY_EVALUATION" value="5"/>
-    <eLiterals name="START_APPLICATION_REGISTRATION" value="6"/>
-    <eLiterals name="END_APPLICATION_REGISTRATION" value="7"/>
+    <eLiterals name="START_FILTER_CREATION"/>
+    <eLiterals name="END_FILTER_CREATION" value="1"/>
+    <eLiterals name="START_CONTEXT_OBJECT_ANALYZATION" value="2" literal="START_CONTEXT_OBJECT_ANALYZATION"/>
+    <eLiterals name="END_CONTEXT_OBJECT_ANALYZATION" value="3"/>
   </eClassifiers>
 </ecore:EPackage>

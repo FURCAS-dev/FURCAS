@@ -217,14 +217,10 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 
 		// Initialize enums and add enum literals
 		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_INTERNAL_EVENT_HANDLING);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_INTERNAL_EVENT_HANDLING);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_APPLICATION_NOTIFICATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_APPLICATION_NOTIFICATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_QUERY_EVALUATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_QUERY_EVALUATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_APPLICATION_REGISTRATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_APPLICATION_REGISTRATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_FILTER_CREATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_FILTER_CREATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION);
+		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION);
 
 		// Create resource
 		createResource(eNS_URI);

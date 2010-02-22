@@ -23,204 +23,98 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum NotifyLiterals implements Enumerator {
 	/**
-	 * The '<em><b>START INTERNAL EVENT HANDLING</b></em>' literal object.
+	 * The '<em><b>START FILTER CREATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #START_INTERNAL_EVENT_HANDLING_VALUE
+	 * @see #START_FILTER_CREATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	START_INTERNAL_EVENT_HANDLING(0, "START_INTERNAL_EVENT_HANDLING", "START_INTERNAL_EVENT_HANDLING"),
-
-	/**
-	 * The '<em><b>END INTERNAL EVENT HANDLING</b></em>' literal object.
+	START_FILTER_CREATION(0, "START_FILTER_CREATION", "START_FILTER_CREATION"), /**
+	 * The '<em><b>END FILTER CREATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #END_INTERNAL_EVENT_HANDLING_VALUE
+	 * @see #END_FILTER_CREATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	END_INTERNAL_EVENT_HANDLING(1, "END_INTERNAL_EVENT_HANDLING", "END_INTERNAL_EVENT_HANDLING"),
-
-	/**
-	 * The '<em><b>START APPLICATION NOTIFICATION</b></em>' literal object.
+	END_FILTER_CREATION(1, "END_FILTER_CREATION", "END_FILTER_CREATION"), /**
+	 * The '<em><b>START CONTEXT OBJECT ANALYZATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #START_APPLICATION_NOTIFICATION_VALUE
+	 * @see #START_CONTEXT_OBJECT_ANALYZATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	START_APPLICATION_NOTIFICATION(2, "START_APPLICATION_NOTIFICATION", "START_APPLICATION_NOTIFICATION"),
-
-	/**
-	 * The '<em><b>END APPLICATION NOTIFICATION</b></em>' literal object.
+	START_CONTEXT_OBJECT_ANALYZATION(2, "START_CONTEXT_OBJECT_ANALYZATION", "START_CONTEXT_OBJECT_ANALYZATION"), /**
+	 * The '<em><b>END CONTEXT OBJECT ANALYZATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #END_APPLICATION_NOTIFICATION_VALUE
+	 * @see #END_CONTEXT_OBJECT_ANALYZATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	END_APPLICATION_NOTIFICATION(3, "END_APPLICATION_NOTIFICATION", "END_APPLICATION_NOTIFICATION"),
+	END_CONTEXT_OBJECT_ANALYZATION(3, "END_CONTEXT_OBJECT_ANALYZATION", "END_CONTEXT_OBJECT_ANALYZATION");
 
 	/**
-	 * The '<em><b>START QUERY EVALUATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #START_QUERY_EVALUATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	START_QUERY_EVALUATION(4, "START_QUERY_EVALUATION", "START_QUERY_EVALUATION"),
-
-	/**
-	 * The '<em><b>END QUERY EVALUATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #END_QUERY_EVALUATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	END_QUERY_EVALUATION(5, "END_QUERY_EVALUATION", "END_QUERY_EVALUATION"),
-
-	/**
-	 * The '<em><b>START APPLICATION REGISTRATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #START_APPLICATION_REGISTRATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	START_APPLICATION_REGISTRATION(6, "START_APPLICATION_REGISTRATION", "START_APPLICATION_REGISTRATION"),
-
-	/**
-	 * The '<em><b>END APPLICATION REGISTRATION</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #END_APPLICATION_REGISTRATION_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	END_APPLICATION_REGISTRATION(7, "END_APPLICATION_REGISTRATION", "END_APPLICATION_REGISTRATION");
-
-	/**
-	 * The '<em><b>START INTERNAL EVENT HANDLING</b></em>' literal value.
+	 * The '<em><b>START FILTER CREATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>START INTERNAL EVENT HANDLING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>START FILTER CREATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #START_INTERNAL_EVENT_HANDLING
+	 * @see #START_FILTER_CREATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_INTERNAL_EVENT_HANDLING_VALUE = 0;
+	public static final int START_FILTER_CREATION_VALUE = 0;
 
 	/**
-	 * The '<em><b>END INTERNAL EVENT HANDLING</b></em>' literal value.
+	 * The '<em><b>END FILTER CREATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>END INTERNAL EVENT HANDLING</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>END FILTER CREATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #END_INTERNAL_EVENT_HANDLING
+	 * @see #END_FILTER_CREATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int END_INTERNAL_EVENT_HANDLING_VALUE = 1;
+	public static final int END_FILTER_CREATION_VALUE = 1;
 
 	/**
-	 * The '<em><b>START APPLICATION NOTIFICATION</b></em>' literal value.
+	 * The '<em><b>START CONTEXT OBJECT ANALYZATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>START APPLICATION NOTIFICATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>START CONTEXT OBJECT ANALYZATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #START_APPLICATION_NOTIFICATION
+	 * @see #START_CONTEXT_OBJECT_ANALYZATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_APPLICATION_NOTIFICATION_VALUE = 2;
+	public static final int START_CONTEXT_OBJECT_ANALYZATION_VALUE = 2;
 
 	/**
-	 * The '<em><b>END APPLICATION NOTIFICATION</b></em>' literal value.
+	 * The '<em><b>END CONTEXT OBJECT ANALYZATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>END APPLICATION NOTIFICATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>END CONTEXT OBJECT ANALYZATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #END_APPLICATION_NOTIFICATION
+	 * @see #END_CONTEXT_OBJECT_ANALYZATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int END_APPLICATION_NOTIFICATION_VALUE = 3;
-
-	/**
-	 * The '<em><b>START QUERY EVALUATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>START QUERY EVALUATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #START_QUERY_EVALUATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int START_QUERY_EVALUATION_VALUE = 4;
-
-	/**
-	 * The '<em><b>END QUERY EVALUATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>END QUERY EVALUATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #END_QUERY_EVALUATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int END_QUERY_EVALUATION_VALUE = 5;
-
-	/**
-	 * The '<em><b>START APPLICATION REGISTRATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>START APPLICATION REGISTRATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #START_APPLICATION_REGISTRATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int START_APPLICATION_REGISTRATION_VALUE = 6;
-
-	/**
-	 * The '<em><b>END APPLICATION REGISTRATION</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>END APPLICATION REGISTRATION</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #END_APPLICATION_REGISTRATION
-	 * @model
-	 * @generated
-	 * @ordered
-	 */
-	public static final int END_APPLICATION_REGISTRATION_VALUE = 7;
+	public static final int END_CONTEXT_OBJECT_ANALYZATION_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Notify Literals</b></em>' enumerators.
@@ -230,14 +124,10 @@ public enum NotifyLiterals implements Enumerator {
 	 */
 	private static final NotifyLiterals[] VALUES_ARRAY =
 		new NotifyLiterals[] {
-			START_INTERNAL_EVENT_HANDLING,
-			END_INTERNAL_EVENT_HANDLING,
-			START_APPLICATION_NOTIFICATION,
-			END_APPLICATION_NOTIFICATION,
-			START_QUERY_EVALUATION,
-			END_QUERY_EVALUATION,
-			START_APPLICATION_REGISTRATION,
-			END_APPLICATION_REGISTRATION,
+			START_FILTER_CREATION,
+			END_FILTER_CREATION,
+			START_CONTEXT_OBJECT_ANALYZATION,
+			END_CONTEXT_OBJECT_ANALYZATION,
 		};
 
 	/**
@@ -288,14 +178,10 @@ public enum NotifyLiterals implements Enumerator {
 	 */
 	public static NotifyLiterals get(int value) {
 		switch (value) {
-			case START_INTERNAL_EVENT_HANDLING_VALUE: return START_INTERNAL_EVENT_HANDLING;
-			case END_INTERNAL_EVENT_HANDLING_VALUE: return END_INTERNAL_EVENT_HANDLING;
-			case START_APPLICATION_NOTIFICATION_VALUE: return START_APPLICATION_NOTIFICATION;
-			case END_APPLICATION_NOTIFICATION_VALUE: return END_APPLICATION_NOTIFICATION;
-			case START_QUERY_EVALUATION_VALUE: return START_QUERY_EVALUATION;
-			case END_QUERY_EVALUATION_VALUE: return END_QUERY_EVALUATION;
-			case START_APPLICATION_REGISTRATION_VALUE: return START_APPLICATION_REGISTRATION;
-			case END_APPLICATION_REGISTRATION_VALUE: return END_APPLICATION_REGISTRATION;
+			case START_FILTER_CREATION_VALUE: return START_FILTER_CREATION;
+			case END_FILTER_CREATION_VALUE: return END_FILTER_CREATION;
+			case START_CONTEXT_OBJECT_ANALYZATION_VALUE: return START_CONTEXT_OBJECT_ANALYZATION;
+			case END_CONTEXT_OBJECT_ANALYZATION_VALUE: return END_CONTEXT_OBJECT_ANALYZATION;
 		}
 		return null;
 	}

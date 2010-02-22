@@ -6,21 +6,17 @@
  */
 package de.hpi.sam.bp2009.solution.impactAnalyzer.impl;
 
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.ocl.ecore.EcorePackage;
 
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerFactory;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
 /**

@@ -33,6 +33,8 @@ import de.hpi.sam.bp2009.benchframework.oclOperator.OclOperatorPackage;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclOptionObject;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclResult;
 import de.hpi.sam.bp2009.benchframework.oclOperator.OclUtil;
+import de.hpi.sam.bp2009.solution.eventManager.EventFilter;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorFactory;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclQuery;
@@ -508,6 +510,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	public void registerQueriesIA(ResourceSet resource, OclOptionObject option) {
 		OclUtil ocl = OclOperatorFactory.eINSTANCE.createOclUtil();
 		EList<OclQuery> list= new BasicEList<OclQuery>();
@@ -523,10 +526,16 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 			list.add(q);
 		}
 		final ImpactAnalyzer ia = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer.class);
+		final EventManager em = getTestRun().getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
+
 		if(ia== null)
-			throw new IllegalArgumentException("Invalid Testrun, no Iimpact Analyzer defined");
-		else
-			ia.register(resource, new Adapter() {
+			throw new IllegalArgumentException("Invalid Testrun, no Impact Analyzer defined");
+		else if(em == null)
+			throw new IllegalArgumentException("Invalid Testrun, no Event Manager defined");
+		else{
+			for (OclQuery item: list){
+				EventFilter filter = ia.createFilterForQuery(item);
+				em.subscribe(resource, filter, new Adapter() {
 				
 				@Override
 				public void setTarget(Notifier newTarget) {
@@ -534,6 +543,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 				
 				@Override
 				public void notifyChanged(Notification notification) {
+					//TODO: call ia to getContext Object
 					System.out.println(getName() +" gets Notfied");
 				}
 				
@@ -545,9 +555,9 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 				@Override
 				public Notifier getTarget() {
 					return ia;
-				}
-			}, list);
-		
+				}});
+			}
+		}
 	}
 
 } //OclOperatorImpl

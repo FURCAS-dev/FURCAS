@@ -72,33 +72,6 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int MODIFIED_IMPACT_ANALYZER = 0;
 
 	/**
-	 * The feature id for the '<em><b>Ocl Evaluator</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_IMPACT_ANALYZER__OCL_EVALUATOR = ImpactAnalyzerPackage.IMPACT_ANALYZER__OCL_EVALUATOR;
-
-	/**
-	 * The feature id for the '<em><b>Event Manager</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_IMPACT_ANALYZER__EVENT_MANAGER = ImpactAnalyzerPackage.IMPACT_ANALYZER__EVENT_MANAGER;
-
-	/**
-	 * The feature id for the '<em><b>Queries</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODIFIED_IMPACT_ANALYZER__QUERIES = ImpactAnalyzerPackage.IMPACT_ANALYZER__QUERIES;
-
-	/**
 	 * The number of structural features of the '<em>Modified Impact Analyzer</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
