@@ -77,14 +77,6 @@ public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 				return createImpactAnalyzerAdapter();
 			}
 			@Override
-			public Adapter caseQueryReevaluateNotification(QueryReevaluateNotification object) {
-				return createQueryReevaluateNotificationAdapter();
-			}
-			@Override
-			public Adapter caseEventNotification(EventNotification object) {
-				return createEventNotificationAdapter();
-			}
-			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -115,34 +107,6 @@ public class ImpactAnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createImpactAnalyzerAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification <em>Query Reevaluate Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.impactAnalyzer.QueryReevaluateNotification
-	 * @generated
-	 */
-	public Adapter createQueryReevaluateNotificationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.solution.eventManager.EventNotification <em>Event Notification</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see de.hpi.sam.bp2009.solution.eventManager.EventNotification
-	 * @generated
-	 */
-	public Adapter createEventNotificationAdapter() {
 		return null;
 	}
 

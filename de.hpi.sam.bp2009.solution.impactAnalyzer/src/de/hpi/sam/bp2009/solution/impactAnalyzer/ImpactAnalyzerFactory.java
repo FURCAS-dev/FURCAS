@@ -35,15 +35,6 @@ public interface ImpactAnalyzerFactory extends EFactory {
 	ImpactAnalyzer createImpactAnalyzer();
 
 	/**
-	 * Returns a new object of class '<em>Query Reevaluate Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Query Reevaluate Notification</em>'.
-	 * @generated
-	 */
-	QueryReevaluateNotification createQueryReevaluateNotification();
-
-	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -94,13 +94,6 @@ public class ImpactAnalyzerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ImpactAnalyzerPackage.QUERY_REEVALUATE_NOTIFICATION: {
-				QueryReevaluateNotification queryReevaluateNotification = (QueryReevaluateNotification)theEObject;
-				T result = caseQueryReevaluateNotification(queryReevaluateNotification);
-				if (result == null) result = caseEventNotification(queryReevaluateNotification);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -117,36 +110,6 @@ public class ImpactAnalyzerSwitch<T> {
 	 * @generated
 	 */
 	public T caseImpactAnalyzer(ImpactAnalyzer object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Query Reevaluate Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Query Reevaluate Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseQueryReevaluateNotification(QueryReevaluateNotification object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Event Notification</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Event Notification</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseEventNotification(EventNotification object) {
 		return null;
 	}
 
