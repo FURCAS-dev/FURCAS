@@ -28,7 +28,7 @@ import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart;
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals;
 import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
@@ -172,7 +172,7 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 		map.put("incoming EMF Events", 0);
 		map.put("outgoing Internal Events", 0);
 		rslt.setEventCounts(map);
-		rslt.setStatus(Status.UNKOWN);
+		rslt.setStatus(Status.UNKNOWN);
 		setResult(rslt);
 	}
 
@@ -633,9 +633,9 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 			public void notifyChanged(Notification notification) {
 				Map<String, Integer> counters = ((EventCounterResultObject)getResult()).getEventCounts();
 				
-				if (notification.getEventType() == NotifyLiterals.START_EMF_EVENT_HANDLING_VALUE){
+				if (notification.getEventType() == ModifiedEventManagerNotifyLiterals.START_EMF_EVENT_HANDLING_VALUE){
 					counters.put("incoming EMF Events", counters.get("incoming EMF Events") + 1);
-				} else if (notification.getEventType() == NotifyLiterals.START_APPLICATION_NOTIFICATION_VALUE) {
+				} else if (notification.getEventType() == ModifiedEventManagerNotifyLiterals.START_APPLICATION_NOTIFICATION_VALUE) {
 					counters.put("outgoing Internal Events", counters.get("outgoing Internal Events") + 1);
 				}
 			}

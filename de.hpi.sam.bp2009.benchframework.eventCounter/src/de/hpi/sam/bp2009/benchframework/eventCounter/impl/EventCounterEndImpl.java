@@ -546,7 +546,7 @@ public class EventCounterEndImpl extends EObjectImpl implements EventCounterEnd 
 		
 		//set the result message and the status
 		EventCounterResultObject rslt = (EventCounterResultObject)getStartPoint().getResult();
-		rslt.setStatus(Status.SUCCESSFULL);
+		rslt.setStatus(Status.SUCCESSFUL);
 		String msg = "";
 		for (String key : rslt.getEventCounts().keySet()){
 			msg += key + " " + rslt.getEventCounts().get(key).toString() + "; ";

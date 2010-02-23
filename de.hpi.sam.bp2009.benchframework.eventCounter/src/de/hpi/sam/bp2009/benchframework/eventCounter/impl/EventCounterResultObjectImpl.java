@@ -6,18 +6,15 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
-import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
-import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
-
-import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
-
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
+import de.hpi.sam.bp2009.benchframework.impl.ResultObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
