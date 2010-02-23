@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="eventCounter"
+    nsURI="http://de.hpi.sam.bp2009.benchframework.eventCounter" nsPrefix="benchframework.eventCounter">
+  <eClassifiers xsi:type="ecore:EClass" name="EventCounterStart" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This operator starts execution time measurement."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endPoint" eType="#//EventCounterEnd"
+        eOpposite="#//EventCounterEnd/startPoint"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="count" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="adapter" eType="#//Adapter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EventCounterEnd" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="This operator ends execution time measurement."/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startPoint" eType="#//EventCounterStart"
+        eOpposite="#//EventCounterStart/endPoint"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Adapter" instanceClassName="org.eclipse.emf.common.notify.Adapter"/>
+</ecore:EPackage>
