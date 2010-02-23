@@ -6,6 +6,8 @@
  */
 package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -22,8 +24,8 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerFactory;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
-import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
 
 /**
@@ -542,19 +544,54 @@ public class ExecutionTimeBenchmarkerEndImpl extends EObjectImpl implements Exec
 		return result.toString();
 	}
 
+	/* (non-Javadoc)
+	 * @see de.hpi.sam.bp2009.benchframework.Operator#execute()
+	 */
 	@Override
 	public void execute(){
-		EtmMonitor monitor = getStartPoint().getMonitor();
-		EtmPoint point = getStartPoint().getPoint();
+		
+		/*
+		 * Ensure that result is a multi result object
+		 */
+		if(!(getResult()!=null && getResult() instanceof JETMMultiResultObject)){
+			setResult(ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMMultiResultObject());
+		}
+		JETMMultiResultObject multiResult = (JETMMultiResultObject)getResult();
+		
+		/*
+		 * Collect the start point (of the start operator, which symbolize the start of the measurement at all)
+		 */
+		multiResult.getResults().add(collectPoint(getStartPoint().getPoint()));
+		/*
+		 * all points, which not collect yet, so no matching End notification was fired
+		 */
+		Collection<EtmPoint> uncollectedPoints = getStartPoint().getStringToPoint().values();
+		
+		for(EtmPoint p:uncollectedPoints){
+			multiResult.getResults().add(collectPoint(p));
+		}
+		/*
+		 * stop monitor and add successful status to the result
+		 */
+		getStartPoint().getMonitor().stop();
+		getResult().setStatus(Status.SUCCESSFUL);
+		getResult().setMessage("Monitor stopped!");
+	}
+
+	/**
+	 * Collect a point and map all relevant info to a new result object, which is returned
+	 * @param point the point to collect
+	 * @return the new ResultObject
+	 */
+	private JETMResultObject collectPoint(EtmPoint point) {
 		point.collect();
-		monitor.stop();
 		JETMResultObject rslt = ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMResultObject();
 		rslt.setStartTime(point.getStartTime());
 		rslt.setEndTime(point.getEndTime());
 		rslt.setTicks(point.getTicks());
 		rslt.setTransactionTime(point.getTransactionTime());
-		rslt.setStatus(Status.SUCCESSFULL);
-		setResult(rslt);
+		rslt.setStatus(Status.SUCCESSFUL);
+		return rslt;
 	}
 
 } //ExecutionTimeBenchmarkerEndImpl

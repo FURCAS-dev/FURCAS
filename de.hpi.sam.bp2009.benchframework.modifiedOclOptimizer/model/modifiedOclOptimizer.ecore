@@ -5,7 +5,7 @@
     nsURI="http://de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer" nsPrefix="benchframework.modifiedOclOptimizer">
   <eClassifiers xsi:type="ecore:EClass" name="ModifiedOclOptimizer" eSuperTypes="../../de.hpi.sam.bp2009.solution.oclEvaluator/model/oclEvaluator.ecore#//OCLEvaluator"/>
   <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedOclOptOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="NotifyLiterals">
+  <eClassifiers xsi:type="ecore:EEnum" name="ModifiedOclOptimizerNotifyLiterals">
     <eLiterals name="SEND_QUERY_TO_INTERPRETER"/>
     <eLiterals name="GET_RESULT_FROM_INTERPRETER" value="1"/>
     <eLiterals name="START_EVALUATION" value="2"/>

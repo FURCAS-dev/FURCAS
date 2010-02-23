@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer;
+package de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,110 +17,110 @@ import org.eclipse.emf.common.util.Enumerator;
  * A representation of the literals of the enumeration '<em><b>Notify Literals</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerPackage#getNotifyLiterals()
+ * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage#getModifiedImpactAnalyzerNotifyLiterals()
  * @model
  * @generated
  */
-public enum NotifyLiterals implements Enumerator {
+public enum ModifiedImpactAnalyzerNotifyLiterals implements Enumerator {
 	/**
-	 * The '<em><b>SEND QUERY TO INTERPRETER</b></em>' literal object.
+	 * The '<em><b>START FILTER CREATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SEND_QUERY_TO_INTERPRETER_VALUE
+	 * @see #START_FILTER_CREATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SEND_QUERY_TO_INTERPRETER(0, "SEND_QUERY_TO_INTERPRETER", "SEND_QUERY_TO_INTERPRETER"),
+	START_FILTER_CREATION(0, "START_FILTER_CREATION", "START_FILTER_CREATION"),
 
 	/**
-	 * The '<em><b>GET RESULT FROM INTERPRETER</b></em>' literal object.
+	 * The '<em><b>END FILTER CREATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #GET_RESULT_FROM_INTERPRETER_VALUE
+	 * @see #END_FILTER_CREATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GET_RESULT_FROM_INTERPRETER(1, "GET_RESULT_FROM_INTERPRETER", "GET_RESULT_FROM_INTERPRETER"),
+	END_FILTER_CREATION(1, "END_FILTER_CREATION", "END_FILTER_CREATION"),
 
 	/**
-	 * The '<em><b>START EVALUATION</b></em>' literal object.
+	 * The '<em><b>START CONTEXT OBJECT ANALYZATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #START_EVALUATION_VALUE
+	 * @see #START_CONTEXT_OBJECT_ANALYZATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	START_EVALUATION(2, "START_EVALUATION", "START_EVALUATION"),
+	START_CONTEXT_OBJECT_ANALYZATION(2, "START_CONTEXT_OBJECT_ANALYZATION", "START_CONTEXT_OBJECT_ANALYZATION"),
 
 	/**
-	 * The '<em><b>END EVALUATION</b></em>' literal object.
+	 * The '<em><b>END CONTEXT OBJECT ANALYZATION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #END_EVALUATION_VALUE
+	 * @see #END_CONTEXT_OBJECT_ANALYZATION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	END_EVALUATION(3, "END_EVALUATION", "END_EVALUATION");
+	END_CONTEXT_OBJECT_ANALYZATION(3, "END_CONTEXT_OBJECT_ANALYZATION", "END_CONTEXT_OBJECT_ANALYZATION");
 
 	/**
-	 * The '<em><b>SEND QUERY TO INTERPRETER</b></em>' literal value.
+	 * The '<em><b>START FILTER CREATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SEND QUERY TO INTERPRETER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>START FILTER CREATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SEND_QUERY_TO_INTERPRETER
+	 * @see #START_FILTER_CREATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int SEND_QUERY_TO_INTERPRETER_VALUE = 0;
+	public static final int START_FILTER_CREATION_VALUE = 0;
 
 	/**
-	 * The '<em><b>GET RESULT FROM INTERPRETER</b></em>' literal value.
+	 * The '<em><b>END FILTER CREATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>GET RESULT FROM INTERPRETER</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>END FILTER CREATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #GET_RESULT_FROM_INTERPRETER
+	 * @see #END_FILTER_CREATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int GET_RESULT_FROM_INTERPRETER_VALUE = 1;
+	public static final int END_FILTER_CREATION_VALUE = 1;
 
 	/**
-	 * The '<em><b>START EVALUATION</b></em>' literal value.
+	 * The '<em><b>START CONTEXT OBJECT ANALYZATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>START EVALUATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>START CONTEXT OBJECT ANALYZATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #START_EVALUATION
+	 * @see #START_CONTEXT_OBJECT_ANALYZATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_EVALUATION_VALUE = 2;
+	public static final int START_CONTEXT_OBJECT_ANALYZATION_VALUE = 2;
 
 	/**
-	 * The '<em><b>END EVALUATION</b></em>' literal value.
+	 * The '<em><b>END CONTEXT OBJECT ANALYZATION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>END EVALUATION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>END CONTEXT OBJECT ANALYZATION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #END_EVALUATION
+	 * @see #END_CONTEXT_OBJECT_ANALYZATION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int END_EVALUATION_VALUE = 3;
+	public static final int END_CONTEXT_OBJECT_ANALYZATION_VALUE = 3;
 
 	/**
 	 * An array of all the '<em><b>Notify Literals</b></em>' enumerators.
@@ -128,12 +128,12 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final NotifyLiterals[] VALUES_ARRAY =
-		new NotifyLiterals[] {
-			SEND_QUERY_TO_INTERPRETER,
-			GET_RESULT_FROM_INTERPRETER,
-			START_EVALUATION,
-			END_EVALUATION,
+	private static final ModifiedImpactAnalyzerNotifyLiterals[] VALUES_ARRAY =
+		new ModifiedImpactAnalyzerNotifyLiterals[] {
+			START_FILTER_CREATION,
+			END_FILTER_CREATION,
+			START_CONTEXT_OBJECT_ANALYZATION,
+			END_CONTEXT_OBJECT_ANALYZATION,
 		};
 
 	/**
@@ -142,7 +142,7 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<NotifyLiterals> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ModifiedImpactAnalyzerNotifyLiterals> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Notify Literals</b></em>' literal with the specified literal value.
@@ -150,9 +150,9 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NotifyLiterals get(String literal) {
+	public static ModifiedImpactAnalyzerNotifyLiterals get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NotifyLiterals result = VALUES_ARRAY[i];
+			ModifiedImpactAnalyzerNotifyLiterals result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -166,9 +166,9 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NotifyLiterals getByName(String name) {
+	public static ModifiedImpactAnalyzerNotifyLiterals getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NotifyLiterals result = VALUES_ARRAY[i];
+			ModifiedImpactAnalyzerNotifyLiterals result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -182,12 +182,12 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NotifyLiterals get(int value) {
+	public static ModifiedImpactAnalyzerNotifyLiterals get(int value) {
 		switch (value) {
-			case SEND_QUERY_TO_INTERPRETER_VALUE: return SEND_QUERY_TO_INTERPRETER;
-			case GET_RESULT_FROM_INTERPRETER_VALUE: return GET_RESULT_FROM_INTERPRETER;
-			case START_EVALUATION_VALUE: return START_EVALUATION;
-			case END_EVALUATION_VALUE: return END_EVALUATION;
+			case START_FILTER_CREATION_VALUE: return START_FILTER_CREATION;
+			case END_FILTER_CREATION_VALUE: return END_FILTER_CREATION;
+			case START_CONTEXT_OBJECT_ANALYZATION_VALUE: return START_CONTEXT_OBJECT_ANALYZATION;
+			case END_CONTEXT_OBJECT_ANALYZATION_VALUE: return END_CONTEXT_OBJECT_ANALYZATION;
 		}
 		return null;
 	}
@@ -219,7 +219,7 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private NotifyLiterals(int value, String name, String literal) {
+	private ModifiedImpactAnalyzerNotifyLiterals(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -263,4 +263,4 @@ public enum NotifyLiterals implements Enumerator {
 		return literal;
 	}
 	
-} //NotifyLiterals
+} //ModifiedImpactAnalyzerNotifyLiterals

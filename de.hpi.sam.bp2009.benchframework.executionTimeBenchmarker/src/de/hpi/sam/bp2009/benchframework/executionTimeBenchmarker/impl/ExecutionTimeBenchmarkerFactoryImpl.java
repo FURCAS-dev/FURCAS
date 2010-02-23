@@ -67,6 +67,7 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_END: return createExecutionTimeBenchmarkerEnd();
 			case ExecutionTimeBenchmarkerPackage.JETM_RESULT_OBJECT: return createJETMResultObject();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT: return createExecutionTimeBenchmarkerOptionObject();
+			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT: return createJETMMultiResultObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -80,6 +81,8 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+			case ExecutionTimeBenchmarkerPackage.MEASURABLE_CLASS_LITERALS:
+				return createMeasurableClassLiteralsFromString(eDataType, initialValue);
 			case ExecutionTimeBenchmarkerPackage.ETM_MONITOR:
 				return createETMMonitorFromString(eDataType, initialValue);
 			case ExecutionTimeBenchmarkerPackage.ETM_POINT:
@@ -97,6 +100,8 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+			case ExecutionTimeBenchmarkerPackage.MEASURABLE_CLASS_LITERALS:
+				return convertMeasurableClassLiteralsToString(eDataType, instanceValue);
 			case ExecutionTimeBenchmarkerPackage.ETM_MONITOR:
 				return convertETMMonitorToString(eDataType, instanceValue);
 			case ExecutionTimeBenchmarkerPackage.ETM_POINT:
@@ -144,6 +149,36 @@ public class ExecutionTimeBenchmarkerFactoryImpl extends EFactoryImpl implements
 	public ExecutionTimeBenchmarkerOptionObject createExecutionTimeBenchmarkerOptionObject() {
 		ExecutionTimeBenchmarkerOptionObjectImpl executionTimeBenchmarkerOptionObject = new ExecutionTimeBenchmarkerOptionObjectImpl();
 		return executionTimeBenchmarkerOptionObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JETMMultiResultObject createJETMMultiResultObject() {
+		JETMMultiResultObjectImpl jetmMultiResultObject = new JETMMultiResultObjectImpl();
+		return jetmMultiResultObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public MeasurableClassLiterals createMeasurableClassLiteralsFromString(EDataType eDataType, String initialValue) {
+		MeasurableClassLiterals result = MeasurableClassLiterals.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertMeasurableClassLiteralsToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

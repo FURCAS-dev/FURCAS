@@ -4,7 +4,7 @@
  *
  * $Id$
  */
-package de.hpi.sam.bp2009.benchframework;
+package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,119 +14,119 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Status</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Measurable Class Literals</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see de.hpi.sam.bp2009.benchframework.BenchframeworkPackage#getStatus()
+ * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage#getMeasurableClassLiterals()
  * @model
  * @generated
  */
-public enum Status implements Enumerator {
+public enum MeasurableClassLiterals implements Enumerator {
 	/**
-	 * The '<em><b>FAILED</b></em>' literal object.
+	 * The '<em><b>IMPACT ANALYZER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #FAILED_VALUE
+	 * @see #IMPACT_ANALYZER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FAILED(1, "FAILED", "FAILED"),
+	IMPACT_ANALYZER(0, "IMPACT_ANALYZER", "IMPACT_ANALYZER"),
 
 	/**
-	 * The '<em><b>SUCCESSFUL</b></em>' literal object.
+	 * The '<em><b>EVENT MANAGER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #SUCCESSFUL_VALUE
+	 * @see #EVENT_MANAGER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	SUCCESSFUL(2, "SUCCESSFUL", ""),
+	EVENT_MANAGER(1, "EVENT_MANAGER", "EVENT_MANAGER"),
 
 	/**
-	 * The '<em><b>UNKNOWN</b></em>' literal object.
+	 * The '<em><b>OCL EVALUATOR</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #UNKNOWN_VALUE
+	 * @see #OCL_EVALUATOR_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	UNKNOWN(0, "UNKNOWN", "UNKNOWN");
+	OCL_EVALUATOR(2, "OCL_EVALUATOR", "OCL_EVALUATOR");
 
 	/**
-	 * The '<em><b>FAILED</b></em>' literal value.
+	 * The '<em><b>IMPACT ANALYZER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>FAILED</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>IMPACT ANALYZER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #FAILED
+	 * @see #IMPACT_ANALYZER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int FAILED_VALUE = 1;
+	public static final int IMPACT_ANALYZER_VALUE = 0;
 
 	/**
-	 * The '<em><b>SUCCESSFUL</b></em>' literal value.
+	 * The '<em><b>EVENT MANAGER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>SUCCESSFUL</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>EVENT MANAGER</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #SUCCESSFUL
-	 * @model literal=""
-	 * @generated
-	 * @ordered
-	 */
-	public static final int SUCCESSFUL_VALUE = 2;
-
-	/**
-	 * The '<em><b>UNKNOWN</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of '<em><b>UNKNOWN</b></em>' literal object isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @see #UNKNOWN
+	 * @see #EVENT_MANAGER
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int UNKNOWN_VALUE = 0;
+	public static final int EVENT_MANAGER_VALUE = 1;
 
 	/**
-	 * An array of all the '<em><b>Status</b></em>' enumerators.
+	 * The '<em><b>OCL EVALUATOR</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>OCL EVALUATOR</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #OCL_EVALUATOR
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int OCL_EVALUATOR_VALUE = 2;
+
+	/**
+	 * An array of all the '<em><b>Measurable Class Literals</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final Status[] VALUES_ARRAY =
-		new Status[] {
-			FAILED,
-			SUCCESSFUL,
-			UNKNOWN,
+	private static final MeasurableClassLiterals[] VALUES_ARRAY =
+		new MeasurableClassLiterals[] {
+			IMPACT_ANALYZER,
+			EVENT_MANAGER,
+			OCL_EVALUATOR,
 		};
 
 	/**
-	 * A public read-only list of all the '<em><b>Status</b></em>' enumerators.
+	 * A public read-only list of all the '<em><b>Measurable Class Literals</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<Status> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<MeasurableClassLiterals> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
-	 * Returns the '<em><b>Status</b></em>' literal with the specified literal value.
+	 * Returns the '<em><b>Measurable Class Literals</b></em>' literal with the specified literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static Status get(String literal) {
+	public static MeasurableClassLiterals get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			Status result = VALUES_ARRAY[i];
+			MeasurableClassLiterals result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -135,14 +135,14 @@ public enum Status implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Status</b></em>' literal with the specified name.
+	 * Returns the '<em><b>Measurable Class Literals</b></em>' literal with the specified name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static Status getByName(String name) {
+	public static MeasurableClassLiterals getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			Status result = VALUES_ARRAY[i];
+			MeasurableClassLiterals result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -151,16 +151,16 @@ public enum Status implements Enumerator {
 	}
 
 	/**
-	 * Returns the '<em><b>Status</b></em>' literal with the specified integer value.
+	 * Returns the '<em><b>Measurable Class Literals</b></em>' literal with the specified integer value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static Status get(int value) {
+	public static MeasurableClassLiterals get(int value) {
 		switch (value) {
-			case FAILED_VALUE: return FAILED;
-			case SUCCESSFUL_VALUE: return SUCCESSFUL;
-			case UNKNOWN_VALUE: return UNKNOWN;
+			case IMPACT_ANALYZER_VALUE: return IMPACT_ANALYZER;
+			case EVENT_MANAGER_VALUE: return EVENT_MANAGER;
+			case OCL_EVALUATOR_VALUE: return OCL_EVALUATOR;
 		}
 		return null;
 	}
@@ -192,7 +192,7 @@ public enum Status implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Status(int value, String name, String literal) {
+	private MeasurableClassLiterals(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -236,4 +236,4 @@ public enum Status implements Enumerator {
 		return literal;
 	}
 	
-} //Status
+} //MeasurableClassLiterals

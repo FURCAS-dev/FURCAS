@@ -15,8 +15,8 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.EmbedModifiedIAOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerFactory;
+import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals;
 import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerPackage;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzerPackage;
 
 /**
@@ -45,7 +45,7 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum notifyLiteralsEEnum = null;
+	private EEnum modifiedImpactAnalyzerNotifyLiteralsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -135,8 +135,8 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getNotifyLiterals() {
-		return notifyLiteralsEEnum;
+	public EEnum getModifiedImpactAnalyzerNotifyLiterals() {
+		return modifiedImpactAnalyzerNotifyLiteralsEEnum;
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		embedModifiedIAOperatorEClass = createEClass(EMBED_MODIFIED_IA_OPERATOR);
 
 		// Create enums
-		notifyLiteralsEEnum = createEEnum(NOTIFY_LITERALS);
+		modifiedImpactAnalyzerNotifyLiteralsEEnum = createEEnum(MODIFIED_IMPACT_ANALYZER_NOTIFY_LITERALS);
 	}
 
 	/**
@@ -216,11 +216,11 @@ public class ModifiedImpactAnalyzerPackageImpl extends EPackageImpl implements M
 		initEClass(embedModifiedIAOperatorEClass, EmbedModifiedIAOperator.class, "EmbedModifiedIAOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
-		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_FILTER_CREATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_FILTER_CREATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION);
+		initEEnum(modifiedImpactAnalyzerNotifyLiteralsEEnum, ModifiedImpactAnalyzerNotifyLiterals.class, "ModifiedImpactAnalyzerNotifyLiterals");
+		addEEnumLiteral(modifiedImpactAnalyzerNotifyLiteralsEEnum, ModifiedImpactAnalyzerNotifyLiterals.START_FILTER_CREATION);
+		addEEnumLiteral(modifiedImpactAnalyzerNotifyLiteralsEEnum, ModifiedImpactAnalyzerNotifyLiterals.END_FILTER_CREATION);
+		addEEnumLiteral(modifiedImpactAnalyzerNotifyLiteralsEEnum, ModifiedImpactAnalyzerNotifyLiterals.START_CONTEXT_OBJECT_ANALYZATION);
+		addEEnumLiteral(modifiedImpactAnalyzerNotifyLiteralsEEnum, ModifiedImpactAnalyzerNotifyLiterals.END_CONTEXT_OBJECT_ANALYZATION);
 
 		// Create resource
 		createResource(eNS_URI);

@@ -15,8 +15,8 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.EmbedModifiedEMOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerFactory;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals;
 import de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage;
-import de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.eventManager.EventManagerPackage;
 
 /**
@@ -45,7 +45,7 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum notifyLiteralsEEnum = null;
+	private EEnum modifiedEventManagerNotifyLiteralsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -135,8 +135,8 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getNotifyLiterals() {
-		return notifyLiteralsEEnum;
+	public EEnum getModifiedEventManagerNotifyLiterals() {
+		return modifiedEventManagerNotifyLiteralsEEnum;
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 		embedModifiedEMOperatorEClass = createEClass(EMBED_MODIFIED_EM_OPERATOR);
 
 		// Create enums
-		notifyLiteralsEEnum = createEEnum(NOTIFY_LITERALS);
+		modifiedEventManagerNotifyLiteralsEEnum = createEEnum(MODIFIED_EVENT_MANAGER_NOTIFY_LITERALS);
 	}
 
 	/**
@@ -216,13 +216,13 @@ public class ModifiedEventManagerPackageImpl extends EPackageImpl implements Mod
 		initEClass(embedModifiedEMOperatorEClass, EmbedModifiedEMOperator.class, "EmbedModifiedEMOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
-		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_SUBSCRIBTION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_SUBSCRIBTION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_EMF_EVENT_HANDLING);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_EMF_EVENT_HANDLING);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_APPLICATION_NOTIFICATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_APPLICATION_NOTIFICATION);
+		initEEnum(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.class, "ModifiedEventManagerNotifyLiterals");
+		addEEnumLiteral(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.START_SUBSCRIPTION);
+		addEEnumLiteral(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.END_SUBSCRIPTION);
+		addEEnumLiteral(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.START_EMF_EVENT_HANDLING);
+		addEEnumLiteral(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.END_EMF_EVENT_HANDLING);
+		addEEnumLiteral(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.START_APPLICATION_NOTIFICATION);
+		addEEnumLiteral(modifiedEventManagerNotifyLiteralsEEnum, ModifiedEventManagerNotifyLiterals.END_APPLICATION_NOTIFICATION);
 
 		// Create resource
 		createResource(eNS_URI);

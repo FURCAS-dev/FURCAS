@@ -338,7 +338,7 @@ public class OclOperatorImpl extends EObjectImpl implements OclOperator {
 				registerQueriesIA(this.getTestRun().getModel(), (OclOptionObject) option);
 			else
 				executeQueries(this.getTestRun().getModel(), (OclOptionObject) option);
-			getResult().setStatus(Status.SUCCESSFULL);
+			getResult().setStatus(Status.SUCCESSFUL);
 		}else
 			getResult().setStatus(Status.FAILED);
 			getResult().setMessage("Invalid OptionObject");

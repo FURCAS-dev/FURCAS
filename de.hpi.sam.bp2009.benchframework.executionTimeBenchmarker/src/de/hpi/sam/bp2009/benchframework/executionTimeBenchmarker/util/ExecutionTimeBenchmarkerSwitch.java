@@ -119,6 +119,13 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case ExecutionTimeBenchmarkerPackage.JETM_MULTI_RESULT_OBJECT: {
+				JETMMultiResultObject jetmMultiResultObject = (JETMMultiResultObject)theEObject;
+				T result = caseJETMMultiResultObject(jetmMultiResultObject);
+				if (result == null) result = caseResultObject(jetmMultiResultObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -180,6 +187,21 @@ public class ExecutionTimeBenchmarkerSwitch<T> {
 	 * @generated
 	 */
 	public T caseExecutionTimeBenchmarkerOptionObject(ExecutionTimeBenchmarkerOptionObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>JETM Multi Result Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>JETM Multi Result Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseJETMMultiResultObject(JETMMultiResultObject object) {
 		return null;
 	}
 

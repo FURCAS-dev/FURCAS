@@ -84,7 +84,7 @@ public class ResultObjectImpl extends EObjectImpl implements ResultObject {
 	 */
 	protected ResultObjectImpl() {
 		super();
-		setStatus(Status.UNKOWN);
+		setStatus(Status.UNKNOWN);
 	}
 
 	/**

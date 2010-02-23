@@ -76,8 +76,8 @@ public class ModifiedEventManagerFactoryImpl extends EFactoryImpl implements Mod
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ModifiedEventManagerPackage.NOTIFY_LITERALS:
-				return createNotifyLiteralsFromString(eDataType, initialValue);
+			case ModifiedEventManagerPackage.MODIFIED_EVENT_MANAGER_NOTIFY_LITERALS:
+				return createModifiedEventManagerNotifyLiteralsFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -91,8 +91,8 @@ public class ModifiedEventManagerFactoryImpl extends EFactoryImpl implements Mod
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ModifiedEventManagerPackage.NOTIFY_LITERALS:
-				return convertNotifyLiteralsToString(eDataType, instanceValue);
+			case ModifiedEventManagerPackage.MODIFIED_EVENT_MANAGER_NOTIFY_LITERALS:
+				return convertModifiedEventManagerNotifyLiteralsToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -123,8 +123,8 @@ public class ModifiedEventManagerFactoryImpl extends EFactoryImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotifyLiterals createNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
-		NotifyLiterals result = NotifyLiterals.get(initialValue);
+	public ModifiedEventManagerNotifyLiterals createModifiedEventManagerNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
+		ModifiedEventManagerNotifyLiterals result = ModifiedEventManagerNotifyLiterals.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -134,7 +134,7 @@ public class ModifiedEventManagerFactoryImpl extends EFactoryImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
+	public String convertModifiedEventManagerNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

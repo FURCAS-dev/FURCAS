@@ -154,14 +154,14 @@ public interface ModifiedEventManagerPackage extends EPackage {
 	int EMBED_MODIFIED_EM_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals <em>Notify Literals</em>}' enum.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals <em>Notify Literals</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getNotifyLiterals()
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getModifiedEventManagerNotifyLiterals()
 	 * @generated
 	 */
-	int NOTIFY_LITERALS = 2;
+	int MODIFIED_EVENT_MANAGER_NOTIFY_LITERALS = 2;
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManager <em>Modified Event Manager</em>}'.
@@ -184,14 +184,14 @@ public interface ModifiedEventManagerPackage extends EPackage {
 	EClass getEmbedModifiedEMOperator();
 
 	/**
-	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals <em>Notify Literals</em>}'.
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals <em>Notify Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Notify Literals</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals
 	 * @generated
 	 */
-	EEnum getNotifyLiterals();
+	EEnum getModifiedEventManagerNotifyLiterals();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -236,14 +236,14 @@ public interface ModifiedEventManagerPackage extends EPackage {
 		EClass EMBED_MODIFIED_EM_OPERATOR = eINSTANCE.getEmbedModifiedEMOperator();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals <em>Notify Literals</em>}' enum.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals <em>Notify Literals</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getNotifyLiterals()
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerNotifyLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.impl.ModifiedEventManagerPackageImpl#getModifiedEventManagerNotifyLiterals()
 		 * @generated
 		 */
-		EEnum NOTIFY_LITERALS = eINSTANCE.getNotifyLiterals();
+		EEnum MODIFIED_EVENT_MANAGER_NOTIFY_LITERALS = eINSTANCE.getModifiedEventManagerNotifyLiterals();
 
 	}
 

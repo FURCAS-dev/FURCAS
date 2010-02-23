@@ -646,8 +646,8 @@ public class BenchframeworkPackageImpl extends EPackageImpl implements Benchfram
 		// Initialize enums and add enum literals
 		initEEnum(statusEEnum, Status.class, "Status");
 		addEEnumLiteral(statusEEnum, Status.FAILED);
-		addEEnumLiteral(statusEEnum, Status.SUCCESSFULL);
-		addEEnumLiteral(statusEEnum, Status.UNKOWN);
+		addEEnumLiteral(statusEEnum, Status.SUCCESSFUL);
+		addEEnumLiteral(statusEEnum, Status.UNKNOWN);
 
 		// Initialize data types
 		initEDataType(outputStreamEDataType, OutputStream.class, "OutputStream", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

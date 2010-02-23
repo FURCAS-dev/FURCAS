@@ -15,8 +15,8 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.EmbedModifiedOclOptOperator;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizer;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerFactory;
+import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals;
 import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerPackage;
-import de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals;
 import de.hpi.sam.bp2009.solution.oclEvaluator.OclEvaluatorPackage;
 
 /**
@@ -45,7 +45,7 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EEnum notifyLiteralsEEnum = null;
+	private EEnum modifiedOclOptimizerNotifyLiteralsEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -135,8 +135,8 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getNotifyLiterals() {
-		return notifyLiteralsEEnum;
+	public EEnum getModifiedOclOptimizerNotifyLiterals() {
+		return modifiedOclOptimizerNotifyLiteralsEEnum;
 	}
 
 	/**
@@ -172,7 +172,7 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 		embedModifiedOclOptOperatorEClass = createEClass(EMBED_MODIFIED_OCL_OPT_OPERATOR);
 
 		// Create enums
-		notifyLiteralsEEnum = createEEnum(NOTIFY_LITERALS);
+		modifiedOclOptimizerNotifyLiteralsEEnum = createEEnum(MODIFIED_OCL_OPTIMIZER_NOTIFY_LITERALS);
 	}
 
 	/**
@@ -216,11 +216,11 @@ public class ModifiedOclOptimizerPackageImpl extends EPackageImpl implements Mod
 		initEClass(embedModifiedOclOptOperatorEClass, EmbedModifiedOclOptOperator.class, "EmbedModifiedOclOptOperator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Initialize enums and add enum literals
-		initEEnum(notifyLiteralsEEnum, NotifyLiterals.class, "NotifyLiterals");
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.SEND_QUERY_TO_INTERPRETER);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.GET_RESULT_FROM_INTERPRETER);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.START_EVALUATION);
-		addEEnumLiteral(notifyLiteralsEEnum, NotifyLiterals.END_EVALUATION);
+		initEEnum(modifiedOclOptimizerNotifyLiteralsEEnum, ModifiedOclOptimizerNotifyLiterals.class, "ModifiedOclOptimizerNotifyLiterals");
+		addEEnumLiteral(modifiedOclOptimizerNotifyLiteralsEEnum, ModifiedOclOptimizerNotifyLiterals.SEND_QUERY_TO_INTERPRETER);
+		addEEnumLiteral(modifiedOclOptimizerNotifyLiteralsEEnum, ModifiedOclOptimizerNotifyLiterals.GET_RESULT_FROM_INTERPRETER);
+		addEEnumLiteral(modifiedOclOptimizerNotifyLiteralsEEnum, ModifiedOclOptimizerNotifyLiterals.START_EVALUATION);
+		addEEnumLiteral(modifiedOclOptimizerNotifyLiteralsEEnum, ModifiedOclOptimizerNotifyLiterals.END_EVALUATION);
 
 		// Create resource
 		createResource(eNS_URI);

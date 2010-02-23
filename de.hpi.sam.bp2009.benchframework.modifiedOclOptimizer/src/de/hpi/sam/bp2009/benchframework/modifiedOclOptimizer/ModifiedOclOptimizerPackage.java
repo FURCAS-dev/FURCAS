@@ -147,14 +147,14 @@ public interface ModifiedOclOptimizerPackage extends EPackage {
 
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals <em>Notify Literals</em>}' enum.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals <em>Notify Literals</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.ModifiedOclOptimizerPackageImpl#getNotifyLiterals()
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.ModifiedOclOptimizerPackageImpl#getModifiedOclOptimizerNotifyLiterals()
 	 * @generated
 	 */
-	int NOTIFY_LITERALS = 2;
+	int MODIFIED_OCL_OPTIMIZER_NOTIFY_LITERALS = 2;
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizer <em>Modified Ocl Optimizer</em>}'.
@@ -177,14 +177,14 @@ public interface ModifiedOclOptimizerPackage extends EPackage {
 	EClass getEmbedModifiedOclOptOperator();
 
 	/**
-	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals <em>Notify Literals</em>}'.
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals <em>Notify Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Notify Literals</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals
 	 * @generated
 	 */
-	EEnum getNotifyLiterals();
+	EEnum getModifiedOclOptimizerNotifyLiterals();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -229,14 +229,14 @@ public interface ModifiedOclOptimizerPackage extends EPackage {
 		EClass EMBED_MODIFIED_OCL_OPT_OPERATOR = eINSTANCE.getEmbedModifiedOclOptOperator();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals <em>Notify Literals</em>}' enum.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals <em>Notify Literals</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.NotifyLiterals
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.ModifiedOclOptimizerPackageImpl#getNotifyLiterals()
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.ModifiedOclOptimizerNotifyLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedOclOptimizer.impl.ModifiedOclOptimizerPackageImpl#getModifiedOclOptimizerNotifyLiterals()
 		 * @generated
 		 */
-		EEnum NOTIFY_LITERALS = eINSTANCE.getNotifyLiterals();
+		EEnum MODIFIED_OCL_OPTIMIZER_NOTIFY_LITERALS = eINSTANCE.getModifiedOclOptimizerNotifyLiterals();
 
 	}
 

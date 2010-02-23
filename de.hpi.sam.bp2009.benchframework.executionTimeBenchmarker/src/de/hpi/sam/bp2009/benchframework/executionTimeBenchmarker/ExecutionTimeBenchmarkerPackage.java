@@ -11,6 +11,7 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -145,13 +146,22 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_START__POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>String To Point</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Start</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 3;
+	int EXECUTION_TIME_BENCHMARKER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
@@ -320,13 +330,96 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__WIZARD_PAGE = BenchframeworkPackage.OPTION_OBJECT__WIZARD_PAGE;
 
 	/**
+	 * The feature id for the '<em><b>Start Literal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__START_LITERAL = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Class Literal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__CLASS_LITERAL = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>End Literal</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__END_LITERAL = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Option Object</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 0;
+	int EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT_FEATURE_COUNT = BenchframeworkPackage.OPTION_OBJECT_FEATURE_COUNT + 3;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMMultiResultObjectImpl <em>JETM Multi Result Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMMultiResultObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getJETMMultiResultObject()
+	 * @generated
+	 */
+	int JETM_MULTI_RESULT_OBJECT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JETM_MULTI_RESULT_OBJECT__STATUS = BenchframeworkPackage.RESULT_OBJECT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JETM_MULTI_RESULT_OBJECT__MESSAGE = BenchframeworkPackage.RESULT_OBJECT__MESSAGE;
+
+	/**
+	 * The feature id for the '<em><b>Results</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JETM_MULTI_RESULT_OBJECT__RESULTS = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>JETM Multi Result Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int JETM_MULTI_RESULT_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getMeasurableClassLiterals()
+	 * @generated
+	 */
+	int MEASURABLE_CLASS_LITERALS = 5;
 
 	/**
 	 * The meta object id for the '<em>ETM Monitor</em>' data type.
@@ -336,7 +429,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMMonitor()
 	 * @generated
 	 */
-	int ETM_MONITOR = 4;
+	int ETM_MONITOR = 6;
 
 
 	/**
@@ -347,7 +440,7 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getETMPoint()
 	 * @generated
 	 */
-	int ETM_POINT = 5;
+	int ETM_POINT = 7;
 
 
 	/**
@@ -392,6 +485,17 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExecutionTimeBenchmarkerStart_Point();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint <em>String To Point</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>String To Point</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart#getStringToPoint()
+	 * @see #getExecutionTimeBenchmarkerStart()
+	 * @generated
+	 */
+	EAttribute getExecutionTimeBenchmarkerStart_StringToPoint();
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerEnd <em>End</em>}'.
@@ -479,6 +583,70 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 	EClass getExecutionTimeBenchmarkerOptionObject();
 
 	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject#getStartLiteral <em>Start Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Start Literal</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject#getStartLiteral()
+	 * @see #getExecutionTimeBenchmarkerOptionObject()
+	 * @generated
+	 */
+	EAttribute getExecutionTimeBenchmarkerOptionObject_StartLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject#getClassLiteral <em>Class Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Class Literal</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject#getClassLiteral()
+	 * @see #getExecutionTimeBenchmarkerOptionObject()
+	 * @generated
+	 */
+	EAttribute getExecutionTimeBenchmarkerOptionObject_ClassLiteral();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject#getEndLiteral <em>End Literal</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>End Literal</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject#getEndLiteral()
+	 * @see #getExecutionTimeBenchmarkerOptionObject()
+	 * @generated
+	 */
+	EAttribute getExecutionTimeBenchmarkerOptionObject_EndLiteral();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject <em>JETM Multi Result Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>JETM Multi Result Object</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject
+	 * @generated
+	 */
+	EClass getJETMMultiResultObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject#getResults <em>Results</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Results</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject#getResults()
+	 * @see #getJETMMultiResultObject()
+	 * @generated
+	 */
+	EAttribute getJETMMultiResultObject_Results();
+
+	/**
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Measurable Class Literals</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals
+	 * @generated
+	 */
+	EEnum getMeasurableClassLiterals();
+
+	/**
 	 * Returns the meta object for data type '{@link etm.core.monitor.EtmMonitor <em>ETM Monitor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -557,6 +725,14 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		EAttribute EXECUTION_TIME_BENCHMARKER_START__POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_Point();
 
 		/**
+		 * The meta object literal for the '<em><b>String To Point</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT = eINSTANCE.getExecutionTimeBenchmarkerStart_StringToPoint();
+
+		/**
 		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerEndImpl <em>End</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -625,6 +801,58 @@ public interface ExecutionTimeBenchmarkerPackage extends EPackage {
 		 * @generated
 		 */
 		EClass EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT = eINSTANCE.getExecutionTimeBenchmarkerOptionObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Start Literal</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__START_LITERAL = eINSTANCE.getExecutionTimeBenchmarkerOptionObject_StartLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>Class Literal</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__CLASS_LITERAL = eINSTANCE.getExecutionTimeBenchmarkerOptionObject_ClassLiteral();
+
+		/**
+		 * The meta object literal for the '<em><b>End Literal</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXECUTION_TIME_BENCHMARKER_OPTION_OBJECT__END_LITERAL = eINSTANCE.getExecutionTimeBenchmarkerOptionObject_EndLiteral();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMMultiResultObjectImpl <em>JETM Multi Result Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.JETMMultiResultObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getJETMMultiResultObject()
+		 * @generated
+		 */
+		EClass JETM_MULTI_RESULT_OBJECT = eINSTANCE.getJETMMultiResultObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Results</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute JETM_MULTI_RESULT_OBJECT__RESULTS = eINSTANCE.getJETMMultiResultObject_Results();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals <em>Measurable Class Literals</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerPackageImpl#getMeasurableClassLiterals()
+		 * @generated
+		 */
+		EEnum MEASURABLE_CLASS_LITERALS = eINSTANCE.getMeasurableClassLiterals();
 
 		/**
 		 * The meta object literal for the '<em>ETM Monitor</em>' data type.

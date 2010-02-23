@@ -323,7 +323,7 @@ public class EmbedModifiedOclOptOperatorImpl extends EObjectImpl implements Embe
 	public void execute() {
 		this.getTestRun().setInstanceForClass(OCLEvaluator.class, ModifiedOclOptimizerFactory.eINSTANCE.createModifiedOclOptimizer());
 		this.setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
-		getResult().setStatus(Status.SUCCESSFULL);
+		getResult().setStatus(Status.SUCCESSFUL);
 		getResult().setMessage("Attached OclOptimizer to TestRun");
 	}
 

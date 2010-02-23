@@ -323,7 +323,7 @@ public class EmbedModifiedEMOperatorImpl extends EObjectImpl implements EmbedMod
 	public void execute() {
 		getTestRun().setInstanceForClass(EventManager.class, ModifiedEventManagerFactory.eINSTANCE.createModifiedEventManager());
 		setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
-		getResult().setStatus(Status.SUCCESSFULL);
+		getResult().setStatus(Status.SUCCESSFUL);
 		getResult().setMessage("Attached EM to TestRun");
 	}
 

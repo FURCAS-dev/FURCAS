@@ -145,14 +145,14 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	int EMBED_MODIFIED_IA_OPERATOR_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals <em>Notify Literals</em>}' enum.
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals <em>Notify Literals</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getNotifyLiterals()
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getModifiedImpactAnalyzerNotifyLiterals()
 	 * @generated
 	 */
-	int NOTIFY_LITERALS = 2;
+	int MODIFIED_IMPACT_ANALYZER_NOTIFY_LITERALS = 2;
 
 	/**
 	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzer <em>Modified Impact Analyzer</em>}'.
@@ -175,14 +175,14 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 	EClass getEmbedModifiedIAOperator();
 
 	/**
-	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals <em>Notify Literals</em>}'.
+	 * Returns the meta object for enum '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals <em>Notify Literals</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for enum '<em>Notify Literals</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals
+	 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals
 	 * @generated
 	 */
-	EEnum getNotifyLiterals();
+	EEnum getModifiedImpactAnalyzerNotifyLiterals();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -227,14 +227,14 @@ public interface ModifiedImpactAnalyzerPackage extends EPackage {
 		EClass EMBED_MODIFIED_IA_OPERATOR = eINSTANCE.getEmbedModifiedIAOperator();
 
 		/**
-		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals <em>Notify Literals</em>}' enum.
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals <em>Notify Literals</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals
-		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getNotifyLiterals()
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.ModifiedImpactAnalyzerNotifyLiterals
+		 * @see de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.impl.ModifiedImpactAnalyzerPackageImpl#getModifiedImpactAnalyzerNotifyLiterals()
 		 * @generated
 		 */
-		EEnum NOTIFY_LITERALS = eINSTANCE.getNotifyLiterals();
+		EEnum MODIFIED_IMPACT_ANALYZER_NOTIFY_LITERALS = eINSTANCE.getModifiedImpactAnalyzerNotifyLiterals();
 
 	}
 

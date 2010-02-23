@@ -9,7 +9,7 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedIAOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="NotifyLiterals">
+  <eClassifiers xsi:type="ecore:EEnum" name="ModifiedImpactAnalyzerNotifyLiterals">
     <eLiterals name="START_FILTER_CREATION"/>
     <eLiterals name="END_FILTER_CREATION" value="1"/>
     <eLiterals name="START_CONTEXT_OBJECT_ANALYZATION" value="2" literal="START_CONTEXT_OBJECT_ANALYZATION"/>

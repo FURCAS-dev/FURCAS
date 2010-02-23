@@ -148,7 +148,7 @@
       serializable="false"/>
   <eClassifiers xsi:type="ecore:EEnum" name="Status">
     <eLiterals name="FAILED" value="1"/>
-    <eLiterals name="SUCCESSFULL" value="2" literal=""/>
-    <eLiterals name="UNKOWN"/>
+    <eLiterals name="SUCCESSFUL" value="2" literal=""/>
+    <eLiterals name="UNKNOWN"/>
   </eClassifiers>
 </ecore:EPackage>

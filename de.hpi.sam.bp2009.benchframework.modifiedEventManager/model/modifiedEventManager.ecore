@@ -9,9 +9,9 @@
     </eAnnotations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EmbedModifiedEMOperator" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator"/>
-  <eClassifiers xsi:type="ecore:EEnum" name="NotifyLiterals">
-    <eLiterals name="START_SUBSCRIBTION"/>
-    <eLiterals name="END_SUBSCRIBTION" value="1"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ModifiedEventManagerNotifyLiterals">
+    <eLiterals name="START_SUBSCRIPTION" literal="START_SUBSCRIPTION"/>
+    <eLiterals name="END_SUBSCRIPTION" value="1"/>
     <eLiterals name="START_EMF_EVENT_HANDLING" value="2"/>
     <eLiterals name="END_EMF_EVENT_HANDLING" value="3"/>
     <eLiterals name="START_APPLICATION_NOTIFICATION" value="4"/>

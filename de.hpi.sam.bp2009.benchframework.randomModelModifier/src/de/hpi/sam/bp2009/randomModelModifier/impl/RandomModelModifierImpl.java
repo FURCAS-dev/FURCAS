@@ -166,23 +166,23 @@ public class RandomModelModifierImpl extends EObjectImpl implements RandomModelM
 		for (int i = 0; i < times; i++){
 			switch (task){
 			case CLASS_CREATE:
-				getResult().setStatus(createRandomClass(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				getResult().setStatus(createRandomClass(classList) ? Status.SUCCESSFUL : Status.FAILED);
 				break;
 			case CLASS_DELETE:
-				getResult().setStatus(deleteRandomClass(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				getResult().setStatus(deleteRandomClass(classList) ? Status.SUCCESSFUL : Status.FAILED);
 				break;
 			case REFERENCE_CREATE:
-				getResult().setStatus(createRandomReference(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				getResult().setStatus(createRandomReference(classList) ? Status.SUCCESSFUL : Status.FAILED);
 				break;
 			case REFERENCE_DELETE:
-				getResult().setStatus(deleteRandomReference(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				getResult().setStatus(deleteRandomReference(classList) ? Status.SUCCESSFUL : Status.FAILED);
 				break;
 			case MODIFY_ATTRIBUTE:
-				getResult().setStatus(modifyRandomAttribute(classList) ? Status.SUCCESSFULL : Status.FAILED);
+				getResult().setStatus(modifyRandomAttribute(classList) ? Status.SUCCESSFUL : Status.FAILED);
 				break;		
 			}
 		}
-		if (getResult().getStatus() == Status.SUCCESSFULL){
+		if (getResult().getStatus() == Status.SUCCESSFUL){
 			getResult().setMessage(SUCCESS_MESSAGE);
 		} else {
 			getResult().setMessage(FAILED_MESSAGE);

@@ -76,8 +76,8 @@ public class ModifiedImpactAnalyzerFactoryImpl extends EFactoryImpl implements M
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ModifiedImpactAnalyzerPackage.NOTIFY_LITERALS:
-				return createNotifyLiteralsFromString(eDataType, initialValue);
+			case ModifiedImpactAnalyzerPackage.MODIFIED_IMPACT_ANALYZER_NOTIFY_LITERALS:
+				return createModifiedImpactAnalyzerNotifyLiteralsFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -91,8 +91,8 @@ public class ModifiedImpactAnalyzerFactoryImpl extends EFactoryImpl implements M
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ModifiedImpactAnalyzerPackage.NOTIFY_LITERALS:
-				return convertNotifyLiteralsToString(eDataType, instanceValue);
+			case ModifiedImpactAnalyzerPackage.MODIFIED_IMPACT_ANALYZER_NOTIFY_LITERALS:
+				return convertModifiedImpactAnalyzerNotifyLiteralsToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -123,8 +123,8 @@ public class ModifiedImpactAnalyzerFactoryImpl extends EFactoryImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotifyLiterals createNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
-		NotifyLiterals result = NotifyLiterals.get(initialValue);
+	public ModifiedImpactAnalyzerNotifyLiterals createModifiedImpactAnalyzerNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
+		ModifiedImpactAnalyzerNotifyLiterals result = ModifiedImpactAnalyzerNotifyLiterals.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -134,7 +134,7 @@ public class ModifiedImpactAnalyzerFactoryImpl extends EFactoryImpl implements M
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
+	public String convertModifiedImpactAnalyzerNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

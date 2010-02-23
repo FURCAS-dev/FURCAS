@@ -92,6 +92,10 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 				return createExecutionTimeBenchmarkerOptionObjectAdapter();
 			}
 			@Override
+			public Adapter caseJETMMultiResultObject(JETMMultiResultObject object) {
+				return createJETMMultiResultObjectAdapter();
+			}
+			@Override
 			public Adapter caseOperator(Operator object) {
 				return createOperatorAdapter();
 			}
@@ -176,6 +180,20 @@ public class ExecutionTimeBenchmarkerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExecutionTimeBenchmarkerOptionObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject <em>JETM Multi Result Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject
+	 * @generated
+	 */
+	public Adapter createJETMMultiResultObjectAdapter() {
 		return null;
 	}
 

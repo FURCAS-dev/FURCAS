@@ -328,7 +328,7 @@ public class EmbedModifiedIAOperatorImpl extends EObjectImpl implements EmbedMod
 	public void execute() {
 		this.getTestRun().setInstanceForClass(ImpactAnalyzer.class, ModifiedImpactAnalyzerFactory.eINSTANCE.createModifiedImpactAnalyzer());
 		this.setResult(BenchframeworkFactory.eINSTANCE.createResultObject());
-		getResult().setStatus(Status.SUCCESSFULL);
+		getResult().setStatus(Status.SUCCESSFUL);
 		getResult().setMessage("Attached IA to TestRun");
 	}
 

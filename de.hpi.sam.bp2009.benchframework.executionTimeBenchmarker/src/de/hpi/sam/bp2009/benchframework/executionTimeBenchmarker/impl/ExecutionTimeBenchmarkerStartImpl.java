@@ -8,8 +8,10 @@ package de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl;
 
 import java.util.UUID;
 
+import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -26,10 +28,18 @@ import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBe
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerOptionObject;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerPackage;
 import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.ExecutionTimeBenchmarkerStart;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMMultiResultObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.JETMResultObject;
+import de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.MeasurableClassLiterals;
+import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.solution.oclEvaluator.OCLEvaluator;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
+
 import etm.core.configuration.BasicEtmConfigurator;
 import etm.core.configuration.EtmManager;
 import etm.core.monitor.EtmMonitor;
 import etm.core.monitor.EtmPoint;
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->
@@ -46,6 +56,7 @@ import etm.core.monitor.EtmPoint;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getEndPoint <em>End Point</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getMonitor <em>Monitor</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getPoint <em>Point</em>}</li>
+ *   <li>{@link de.hpi.sam.bp2009.benchframework.executionTimeBenchmarker.impl.ExecutionTimeBenchmarkerStartImpl#getStringToPoint <em>String To Point</em>}</li>
  * </ul>
  * </p>
  *
@@ -170,6 +181,16 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 * @ordered
 	 */
 	protected EtmPoint point = POINT_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getStringToPoint() <em>String To Point</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getStringToPoint()
+	 * @generated
+	 * @ordered
+	 */
+	protected Map<String, EtmPoint> stringToPoint;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -406,6 +427,38 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Map<String, EtmPoint> getStringToPoint() {
+		return stringToPoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setStringToPoint(Map<String, EtmPoint> newStringToPoint) {
+		Map<String, EtmPoint> oldStringToPoint = stringToPoint;
+		stringToPoint = newStringToPoint;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT, oldStringToPoint, stringToPoint));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EtmPoint getStartPointForUUID(String uuid) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -465,6 +518,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 				return getMonitor();
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				return getPoint();
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
+				return getStringToPoint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -474,6 +529,7 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -500,6 +556,9 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 				return;
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				setPoint((EtmPoint)newValue);
+				return;
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
+				setStringToPoint((Map<String, EtmPoint>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -632,6 +691,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 				return MONITOR_EDEFAULT == null ? monitor != null : !MONITOR_EDEFAULT.equals(monitor);
 			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__POINT:
 				return POINT_EDEFAULT == null ? point != null : !POINT_EDEFAULT.equals(point);
+			case ExecutionTimeBenchmarkerPackage.EXECUTION_TIME_BENCHMARKER_START__STRING_TO_POINT:
+				return stringToPoint != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -654,6 +715,8 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 		result.append(monitor);
 		result.append(", point: ");
 		result.append(point);
+		result.append(", stringToPoint: ");
+		result.append(stringToPoint);
 		result.append(')');
 		return result.toString();
 	}
@@ -666,9 +729,93 @@ public class ExecutionTimeBenchmarkerStartImpl extends EObjectImpl implements Ex
 		BasicEtmConfigurator.configure();
 		setMonitor(EtmManager.getEtmMonitor());
 		getMonitor().start();
-		point = monitor.createPoint(UUID.randomUUID().toString());
+		setPoint(monitor.createPoint(UUID.randomUUID().toString()));
+		final ExecutionTimeBenchmarkerOptionObject opt=(ExecutionTimeBenchmarkerOptionObject)option;
+		if (opt.getEndLiteral()!=null && opt.getStartLiteral()!=null && opt.getClassLiteral()!=null){
+			Notifier noti=null;
+			if(opt.getClassLiteral().compareTo(MeasurableClassLiterals.EVENT_MANAGER_VALUE)==0)
+				noti=(Notifier) getTestRun().getInstanceForClass(EventManager.class);
+			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.IMPACT_ANALYZER_VALUE)==0) {
+				noti=(Notifier) getTestRun().getInstanceForClass(ImpactAnalyzer.class);
+			}
+			else if (opt.getClassLiteral().compareTo(MeasurableClassLiterals.OCL_EVALUATOR_VALUE)==0) {
+				noti=(Notifier) getTestRun().getInstanceForClass(OCLEvaluator.class);
+			}
+			else {
+				ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
+				rslt.setStatus(Status.FAILED);
+				rslt.setMessage("Unknown Class Literal");
+				setResult(rslt);
+				return;
+			}
+			
+			noti.eAdapters().add(new Adapter() {
+				
+				@Override
+				public void setTarget(Notifier newTarget) {
+				}
+				
+				@Override
+				public void notifyChanged(Notification notification) {
+					if(notification.getEventType() == opt.getStartLiteral()){
+						createNewPoint(notification);						
+					}else if(notification.getEventType() == opt.getEndLiteral() &&notification.getOldValue()!=null){
+						collectPoint(notification);
+					}
+					
+				}
+
+				/**
+				 * Collect a point, create from this point a new Result object, and add the Result to the Result of the endpoint
+				 * @param notification
+				 */
+				private void collectPoint(Notification notification) {
+					EtmPoint p=getStringToPoint().get(notification.getOldStringValue());
+					if(p==null)
+						return;
+					p.collect();
+					JETMResultObject r = ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMResultObject();
+					r.setEndTime(p.getEndTime());
+					r.setStartTime(p.getStartTime());
+					r.setTicks(p.getTicks());
+					r.setTransactionTime(p.getTransactionTime());
+					r.setStatus(Status.SUCCESSFUL);
+					r.setMessage("Point collected");
+					if(!(getEndPoint().getResult()!=null && getEndPoint().getResult() instanceof JETMMultiResultObject)){
+						getEndPoint().setResult(ExecutionTimeBenchmarkerFactory.eINSTANCE.createJETMMultiResultObject());
+					}
+					((JETMMultiResultObject)getEndPoint().getResult()).getResults().add(r);
+					getStringToPoint().remove(notification.getOldStringValue());
+				}
+
+				/**
+				 * Create a new point with the UUID from the notification or a new one
+				 * @param notification
+				 */
+				private void createNewPoint(Notification notification) {
+					String uuid = UUID.randomUUID().toString();
+					if(notification.getOldValue()!=null){
+						uuid= notification.getOldStringValue();
+					}
+					EtmPoint startPoint = getMonitor().createPoint(uuid);
+					getStringToPoint().put(uuid, startPoint);
+				}
+				
+				@Override
+				public boolean isAdapterForType(Object type) {
+					return false;
+				}
+				
+				@Override
+				public Notifier getTarget() {
+					return null;
+				}
+			});
+			
+		}
+			
 		ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
-		rslt.setStatus(Status.SUCCESSFULL);
+		rslt.setStatus(Status.SUCCESSFUL);
 		rslt.setMessage("Monitor started!");
 		setResult(rslt);
 	}

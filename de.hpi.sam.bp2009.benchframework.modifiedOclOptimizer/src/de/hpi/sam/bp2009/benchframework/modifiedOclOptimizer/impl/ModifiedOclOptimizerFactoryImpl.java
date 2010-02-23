@@ -76,8 +76,8 @@ public class ModifiedOclOptimizerFactoryImpl extends EFactoryImpl implements Mod
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-			case ModifiedOclOptimizerPackage.NOTIFY_LITERALS:
-				return createNotifyLiteralsFromString(eDataType, initialValue);
+			case ModifiedOclOptimizerPackage.MODIFIED_OCL_OPTIMIZER_NOTIFY_LITERALS:
+				return createModifiedOclOptimizerNotifyLiteralsFromString(eDataType, initialValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -91,8 +91,8 @@ public class ModifiedOclOptimizerFactoryImpl extends EFactoryImpl implements Mod
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-			case ModifiedOclOptimizerPackage.NOTIFY_LITERALS:
-				return convertNotifyLiteralsToString(eDataType, instanceValue);
+			case ModifiedOclOptimizerPackage.MODIFIED_OCL_OPTIMIZER_NOTIFY_LITERALS:
+				return convertModifiedOclOptimizerNotifyLiteralsToString(eDataType, instanceValue);
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -123,8 +123,8 @@ public class ModifiedOclOptimizerFactoryImpl extends EFactoryImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotifyLiterals createNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
-		NotifyLiterals result = NotifyLiterals.get(initialValue);
+	public ModifiedOclOptimizerNotifyLiterals createModifiedOclOptimizerNotifyLiteralsFromString(EDataType eDataType, String initialValue) {
+		ModifiedOclOptimizerNotifyLiterals result = ModifiedOclOptimizerNotifyLiterals.get(initialValue);
 		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		return result;
 	}
@@ -134,7 +134,7 @@ public class ModifiedOclOptimizerFactoryImpl extends EFactoryImpl implements Mod
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String convertNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
+	public String convertModifiedOclOptimizerNotifyLiteralsToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

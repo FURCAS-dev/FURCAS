@@ -14,33 +14,33 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Notify Literals</b></em>',
+ * A representation of the literals of the enumeration '<em><b>modified Event Manager Notify Literals</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage#getNotifyLiterals()
+ * @see de.hpi.sam.bp2009.benchframework.modifiedEventManager.ModifiedEventManagerPackage#getModifiedEventManagerNotifyLiterals()
  * @model
  * @generated
  */
-public enum NotifyLiterals implements Enumerator {
+public enum ModifiedEventManagerNotifyLiterals implements Enumerator {
 	/**
-	 * The '<em><b>START SUBSCRIBTION</b></em>' literal object.
+	 * The '<em><b>START SUBSCRIPTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #START_SUBSCRIBTION_VALUE
+	 * @see #START_SUBSCRIPTION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	START_SUBSCRIBTION(0, "START_SUBSCRIBTION", "START_SUBSCRIBTION"),
+	START_SUBSCRIPTION(0, "START_SUBSCRIPTION", "START_SUBSCRIPTION"),
 
 	/**
-	 * The '<em><b>END SUBSCRIBTION</b></em>' literal object.
+	 * The '<em><b>END SUBSCRIPTION</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #END_SUBSCRIBTION_VALUE
+	 * @see #END_SUBSCRIPTION_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	END_SUBSCRIBTION(1, "END_SUBSCRIBTION", "END_SUBSCRIBTION"),
+	END_SUBSCRIPTION(1, "END_SUBSCRIPTION", "END_SUBSCRIPTION"),
 
 	/**
 	 * The '<em><b>START EMF EVENT HANDLING</b></em>' literal object.
@@ -83,34 +83,34 @@ public enum NotifyLiterals implements Enumerator {
 	END_APPLICATION_NOTIFICATION(5, "END_APPLICATION_NOTIFICATION", "END_APPLICATION_NOTIFICATION");
 
 	/**
-	 * The '<em><b>START SUBSCRIBTION</b></em>' literal value.
+	 * The '<em><b>START SUBSCRIPTION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>START SUBSCRIBTION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>START SUBSCRIPTION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #START_SUBSCRIBTION
+	 * @see #START_SUBSCRIPTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int START_SUBSCRIBTION_VALUE = 0;
+	public static final int START_SUBSCRIPTION_VALUE = 0;
 
 	/**
-	 * The '<em><b>END SUBSCRIBTION</b></em>' literal value.
+	 * The '<em><b>END SUBSCRIPTION</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>END SUBSCRIBTION</b></em>' literal object isn't clear,
+	 * If the meaning of '<em><b>END SUBSCRIPTION</b></em>' literal object isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @see #END_SUBSCRIBTION
+	 * @see #END_SUBSCRIPTION
 	 * @model
 	 * @generated
 	 * @ordered
 	 */
-	public static final int END_SUBSCRIBTION_VALUE = 1;
+	public static final int END_SUBSCRIPTION_VALUE = 1;
 
 	/**
 	 * The '<em><b>START EMF EVENT HANDLING</b></em>' literal value.
@@ -178,10 +178,10 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final NotifyLiterals[] VALUES_ARRAY =
-		new NotifyLiterals[] {
-			START_SUBSCRIBTION,
-			END_SUBSCRIBTION,
+	private static final ModifiedEventManagerNotifyLiterals[] VALUES_ARRAY =
+		new ModifiedEventManagerNotifyLiterals[] {
+			START_SUBSCRIPTION,
+			END_SUBSCRIPTION,
 			START_EMF_EVENT_HANDLING,
 			END_EMF_EVENT_HANDLING,
 			START_APPLICATION_NOTIFICATION,
@@ -194,7 +194,7 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final List<NotifyLiterals> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static final List<ModifiedEventManagerNotifyLiterals> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
 	/**
 	 * Returns the '<em><b>Notify Literals</b></em>' literal with the specified literal value.
@@ -202,9 +202,9 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NotifyLiterals get(String literal) {
+	public static ModifiedEventManagerNotifyLiterals get(String literal) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NotifyLiterals result = VALUES_ARRAY[i];
+			ModifiedEventManagerNotifyLiterals result = VALUES_ARRAY[i];
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -218,9 +218,9 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NotifyLiterals getByName(String name) {
+	public static ModifiedEventManagerNotifyLiterals getByName(String name) {
 		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			NotifyLiterals result = VALUES_ARRAY[i];
+			ModifiedEventManagerNotifyLiterals result = VALUES_ARRAY[i];
 			if (result.getName().equals(name)) {
 				return result;
 			}
@@ -234,10 +234,10 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static NotifyLiterals get(int value) {
+	public static ModifiedEventManagerNotifyLiterals get(int value) {
 		switch (value) {
-			case START_SUBSCRIBTION_VALUE: return START_SUBSCRIBTION;
-			case END_SUBSCRIBTION_VALUE: return END_SUBSCRIBTION;
+			case START_SUBSCRIPTION_VALUE: return START_SUBSCRIPTION;
+			case END_SUBSCRIPTION_VALUE: return END_SUBSCRIPTION;
 			case START_EMF_EVENT_HANDLING_VALUE: return START_EMF_EVENT_HANDLING;
 			case END_EMF_EVENT_HANDLING_VALUE: return END_EMF_EVENT_HANDLING;
 			case START_APPLICATION_NOTIFICATION_VALUE: return START_APPLICATION_NOTIFICATION;
@@ -273,7 +273,7 @@ public enum NotifyLiterals implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private NotifyLiterals(int value, String name, String literal) {
+	private ModifiedEventManagerNotifyLiterals(int value, String name, String literal) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
@@ -317,4 +317,4 @@ public enum NotifyLiterals implements Enumerator {
 		return literal;
 	}
 	
-} //NotifyLiterals
+} //modifiedEventManagerNotifyLiterals
