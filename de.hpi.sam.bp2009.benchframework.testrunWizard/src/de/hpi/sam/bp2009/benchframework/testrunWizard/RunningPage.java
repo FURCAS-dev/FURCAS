@@ -56,16 +56,29 @@ public class RunningPage extends WizardPage {
 				bt.setEnabled(false);
 				TestframeworkWizard wiz=((TestframeworkWizard)getWizard());
 				Engine engine = wiz.getIntImpl().getEngine();
-				engine.getTestRuns().add(wiz.getRun());
-				try{
-					engine.benchmark();
-					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-				}catch(java.lang.Throwable e1){
-					error.setText(e1.getMessage()+"\n");
-					composite.layout();
-					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+				if(!addTestRunToEngineAndExecute(wiz, engine))
 					return;
-				}
+				fillErrorWindow(engine);
+				EList<ResultObject> results= new BasicEList<ResultObject>();
+				
+				for(Operator op:wiz.getRun().getOperators())
+					results.add(op.getResult());
+				if(wiz.getIntImpl().getResultProcessor()!=null)
+					wiz.getIntImpl().getResultProcessor().getResultPage();
+				bt.setEnabled(true);
+				benchmarked=true;
+				composite.layout();
+				scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+				wiz.getContainer().updateButtons();
+
+			}
+
+
+			/**
+			 * Fills the error window with the actual status of the engine
+			 * @param engine
+			 */
+			private void fillErrorWindow(Engine engine) {
 				if(engine.getExeptionsDuringLastRun()!=null){
 					StringBuilder sb= new StringBuilder();
 					if(engine.getExeptionsDuringLastRun().size()>0)
@@ -78,17 +91,29 @@ public class RunningPage extends WizardPage {
 					error.setText(RUNSUCCEED);
 				}
 				error.pack();
-				EList<ResultObject> results= new BasicEList<ResultObject>();
-				for(Operator op:wiz.getRun().getOperators())
-					results.add(op.getResult());
-				if(wiz.getIntImpl().getResultProcessor()!=null)
-					wiz.getIntImpl().getResultProcessor().getResultPage();
-				bt.setEnabled(true);
-				benchmarked=true;
-				composite.layout();
-				scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
-				wiz.getContainer().updateButtons();
+			}
 
+
+			/**
+			 * Add testrun to the engine and run actual benchmarking return true if successful
+			 * @param wiz
+			 * @param engine
+			 * @return
+			 */
+			private boolean addTestRunToEngineAndExecute(TestframeworkWizard wiz,
+					Engine engine) {
+				engine.getTestRuns().removeAll(engine.getTestRuns());
+				engine.getTestRuns().add(wiz.getRun());
+				try{
+					engine.benchmark();
+					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+				}catch(java.lang.Throwable e1){
+					error.setText(e1.getMessage()+"\n");
+					composite.layout();
+					scrolledComposite.setMinSize(composite.computeSize(SWT.DEFAULT, SWT.DEFAULT));
+					return false;
+				}
+				return true;
 			}
 
 			@Override
@@ -104,11 +129,17 @@ public class RunningPage extends WizardPage {
 
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
 	@Override
 	public boolean canFlipToNextPage() {
 		return benchmarked;
 	}
 	
+	/* (non-Javadoc)
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
 	@Override
 	public IWizardPage getNextPage() {
 		IWizardPage page=super.getNextPage();
@@ -118,6 +149,12 @@ public class RunningPage extends WizardPage {
 			page.getControl().update();
 		return page;
 	}
+	
+	/**
+	 * Calculate a printable Version of a StackTrace
+	 * @param aThrowable
+	 * @return
+	 */
 	public static String getCustomStackTrace(Throwable aThrowable) {
 		//add the class name and any message passed to constructor
 		final StringBuilder result = new StringBuilder();

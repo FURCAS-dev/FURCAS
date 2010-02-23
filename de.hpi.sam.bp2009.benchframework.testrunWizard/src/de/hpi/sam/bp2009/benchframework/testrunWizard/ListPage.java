@@ -193,11 +193,8 @@ public class ListPage extends WizardPage {
 			 */
 			if(page.getWizard()==null)
 				wiz.addPage(page);
-			else
+			else if(page.getControl()!=null)
 				page.setVisible(true);
-		}else{
-			
-		
 		}
 	}
 }

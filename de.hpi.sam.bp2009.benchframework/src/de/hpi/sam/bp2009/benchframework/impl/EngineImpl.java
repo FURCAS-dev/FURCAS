@@ -124,14 +124,13 @@ public class EngineImpl extends EObjectImpl implements Engine {
 	 * @generated NOT
 	 */
 	public void benchmark() {
+		setExeptionsDuringLastRun(new BasicEList<Exception>());
 		for(TestRun run:getTestRuns()){
 			for(Operator op:run.getOperators()){
 				try {
 					op.execute();
 				} catch (Exception e) {
 					e.printStackTrace();
-					if(getExeptionsDuringLastRun()==null)
-						setExeptionsDuringLastRun(new BasicEList<Exception>());
 					getExeptionsDuringLastRun().add(e);
 				}
 			}
