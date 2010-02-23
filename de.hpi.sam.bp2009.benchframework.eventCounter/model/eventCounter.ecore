@@ -13,7 +13,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EventCounterEnd" eSuperTypes="../../de.hpi.sam.bp2009.benchframework/model/benchframework.ecore#//Operator">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-      <details key="documentation" value="This operator ends execution time measurement."/>
+      <details key="documentation" value="This operator ends event counting."/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="startPoint" eType="#//EventCounterStart"
         eOpposite="#//EventCounterStart/endPoint"/>

@@ -14,7 +14,7 @@ import de.hpi.sam.bp2009.benchframework.Operator;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * This operator ends execution time measurement.
+ * This operator ends event counting.
  * <!-- end-model-doc -->
  *
  * <p>
