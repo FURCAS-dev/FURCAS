@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.eventCounter.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 
+import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.*;
 
 import java.util.List;
@@ -103,6 +104,19 @@ public class EventCounterSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EventCounterPackage.EVENT_COUNTER_OPTION_OBJECT: {
+				EventCounterOptionObject eventCounterOptionObject = (EventCounterOptionObject)theEObject;
+				T result = caseEventCounterOptionObject(eventCounterOptionObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT: {
+				EventCounterResultObject eventCounterResultObject = (EventCounterResultObject)theEObject;
+				T result = caseEventCounterResultObject(eventCounterResultObject);
+				if (result == null) result = caseResultObject(eventCounterResultObject);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -138,6 +152,36 @@ public class EventCounterSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Option Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventCounterOptionObject(EventCounterOptionObject object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Result Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Result Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEventCounterResultObject(EventCounterResultObject object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Operator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -149,6 +193,21 @@ public class EventCounterSwitch<T> {
 	 * @generated
 	 */
 	public T caseOperator(Operator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Result Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Result Object</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseResultObject(ResultObject object) {
 		return null;
 	}
 

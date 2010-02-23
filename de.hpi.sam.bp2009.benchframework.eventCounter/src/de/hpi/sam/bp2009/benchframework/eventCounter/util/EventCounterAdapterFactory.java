@@ -8,6 +8,7 @@ package de.hpi.sam.bp2009.benchframework.eventCounter.util;
 
 import de.hpi.sam.bp2009.benchframework.Operator;
 
+import de.hpi.sam.bp2009.benchframework.ResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.*;
 
 import org.eclipse.emf.common.notify.Adapter;
@@ -82,8 +83,20 @@ public class EventCounterAdapterFactory extends AdapterFactoryImpl {
 				return createEventCounterEndAdapter();
 			}
 			@Override
+			public Adapter caseEventCounterOptionObject(EventCounterOptionObject object) {
+				return createEventCounterOptionObjectAdapter();
+			}
+			@Override
+			public Adapter caseEventCounterResultObject(EventCounterResultObject object) {
+				return createEventCounterResultObjectAdapter();
+			}
+			@Override
 			public Adapter caseOperator(Operator object) {
 				return createOperatorAdapter();
+			}
+			@Override
+			public Adapter caseResultObject(ResultObject object) {
+				return createResultObjectAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -134,6 +147,34 @@ public class EventCounterAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject <em>Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject
+	 * @generated
+	 */
+	public Adapter createEventCounterOptionObjectAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject <em>Result Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject
+	 * @generated
+	 */
+	public Adapter createEventCounterResultObjectAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.Operator <em>Operator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -144,6 +185,20 @@ public class EventCounterAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOperatorAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link de.hpi.sam.bp2009.benchframework.ResultObject <em>Result Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see de.hpi.sam.bp2009.benchframework.ResultObject
+	 * @generated
+	 */
+	public Adapter createResultObjectAdapter() {
 		return null;
 	}
 

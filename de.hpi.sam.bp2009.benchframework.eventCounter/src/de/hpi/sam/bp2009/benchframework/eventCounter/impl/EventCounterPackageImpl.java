@@ -10,13 +10,16 @@ import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -42,6 +45,20 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 * @generated
 	 */
 	private EClass eventCounterEndEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventCounterOptionObjectEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass eventCounterResultObjectEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -137,17 +154,8 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getEventCounterStart_Count() {
-		return (EAttribute)eventCounterStartEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getEventCounterStart_Adapter() {
-		return (EAttribute)eventCounterStartEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)eventCounterStartEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -166,6 +174,33 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 	 */
 	public EReference getEventCounterEnd_StartPoint() {
 		return (EReference)eventCounterEndEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventCounterOptionObject() {
+		return eventCounterOptionObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getEventCounterResultObject() {
+		return eventCounterResultObjectEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getEventCounterResultObject_EventCounts() {
+		return (EAttribute)eventCounterResultObjectEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -207,11 +242,15 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 		// Create classes and their features
 		eventCounterStartEClass = createEClass(EVENT_COUNTER_START);
 		createEReference(eventCounterStartEClass, EVENT_COUNTER_START__END_POINT);
-		createEAttribute(eventCounterStartEClass, EVENT_COUNTER_START__COUNT);
 		createEAttribute(eventCounterStartEClass, EVENT_COUNTER_START__ADAPTER);
 
 		eventCounterEndEClass = createEClass(EVENT_COUNTER_END);
 		createEReference(eventCounterEndEClass, EVENT_COUNTER_END__START_POINT);
+
+		eventCounterOptionObjectEClass = createEClass(EVENT_COUNTER_OPTION_OBJECT);
+
+		eventCounterResultObjectEClass = createEClass(EVENT_COUNTER_RESULT_OBJECT);
+		createEAttribute(eventCounterResultObjectEClass, EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS);
 
 		// Create data types
 		adapterEDataType = createEDataType(ADAPTER);
@@ -250,15 +289,25 @@ public class EventCounterPackageImpl extends EPackageImpl implements EventCounte
 		// Add supertypes to classes
 		eventCounterStartEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
 		eventCounterEndEClass.getESuperTypes().add(theBenchframeworkPackage.getOperator());
+		eventCounterResultObjectEClass.getESuperTypes().add(theBenchframeworkPackage.getResultObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventCounterStartEClass, EventCounterStart.class, "EventCounterStart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventCounterStart_EndPoint(), this.getEventCounterEnd(), this.getEventCounterEnd_StartPoint(), "endPoint", null, 0, 1, EventCounterStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEventCounterStart_Count(), ecorePackage.getEInt(), "count", null, 0, 1, EventCounterStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEventCounterStart_Adapter(), this.getAdapter(), "adapter", null, 0, 1, EventCounterStart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(eventCounterEndEClass, EventCounterEnd.class, "EventCounterEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEventCounterEnd_StartPoint(), this.getEventCounterStart(), this.getEventCounterStart_EndPoint(), "startPoint", null, 0, 1, EventCounterEnd.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventCounterOptionObjectEClass, EventCounterOptionObject.class, "EventCounterOptionObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(eventCounterResultObjectEClass, EventCounterResultObject.class, "EventCounterResultObject", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
+		EGenericType g2 = createEGenericType(ecorePackage.getEString());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEIntegerObject());
+		g1.getETypeArguments().add(g2);
+		initEAttribute(getEventCounterResultObject_EventCounts(), g1, "eventCounts", null, 0, 1, EventCounterResultObject.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize data types
 		initEDataType(adapterEDataType, Adapter.class, "Adapter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS);

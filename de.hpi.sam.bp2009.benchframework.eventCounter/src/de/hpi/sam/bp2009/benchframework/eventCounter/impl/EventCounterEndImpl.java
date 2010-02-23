@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
@@ -21,6 +20,7 @@ import de.hpi.sam.bp2009.benchframework.Status;
 import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart;
 
 /**
@@ -541,11 +541,17 @@ public class EventCounterEndImpl extends EObjectImpl implements EventCounterEnd 
 
 	@Override
 	public void execute(){
+		//remove the adapter of the start point
 		getStartPoint().getAdapter().getTarget().eAdapters().remove(getStartPoint().getAdapter());
-		ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
-		rslt.setMessage("Events raised: "+ getStartPoint().getCount());
+		
+		//set the result message and the status
+		EventCounterResultObject rslt = (EventCounterResultObject)getStartPoint().getResult();
 		rslt.setStatus(Status.SUCCESSFULL);
-		setResult(rslt);
+		String msg = "";
+		for (String key : rslt.getEventCounts().keySet()){
+			msg += key + " " + rslt.getEventCounts().get(key).toString() + "; ";
+		}
+		rslt.setMessage(msg);
 	}
 
 } //ExecutionTimeBenchmarkerEndImpl

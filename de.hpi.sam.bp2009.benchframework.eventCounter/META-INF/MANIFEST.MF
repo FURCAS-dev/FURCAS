@@ -12,6 +12,6 @@ Export-Package: de.hpi.sam.bp2009.benchframework.eventCounter,
  de.hpi.sam.bp2009.benchframework.eventCounter.util
 Require-Bundle: de.hpi.sam.bp2009.benchframework;visibility:=reexport,
  org.eclipse.jface;bundle-version="3.5.1",
- de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer;bundle-version="1.0.0",
- de.hpi.sam.bp2009.solution.impactAnalyzer;bundle-version="1.0.0"
+ de.hpi.sam.bp2009.solution.eventManager;bundle-version="1.0.0",
+ de.hpi.sam.bp2009.benchframework.modifiedEventManager;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy

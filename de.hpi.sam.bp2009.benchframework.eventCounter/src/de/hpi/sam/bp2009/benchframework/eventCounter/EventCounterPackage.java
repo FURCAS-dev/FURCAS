@@ -127,22 +127,13 @@ public interface EventCounterPackage extends EPackage {
 	int EVENT_COUNTER_START__END_POINT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Count</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EVENT_COUNTER_START__COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Adapter</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START__ADAPTER = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 2;
+	int EVENT_COUNTER_START__ADAPTER = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Start</em>' class.
@@ -151,7 +142,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EVENT_COUNTER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 3;
+	int EVENT_COUNTER_START_FEATURE_COUNT = BenchframeworkPackage.OPERATOR_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterEndImpl <em>End</em>}' class.
@@ -228,6 +219,71 @@ public interface EventCounterPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterOptionObjectImpl <em>Option Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterOptionObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getEventCounterOptionObject()
+	 * @generated
+	 */
+	int EVENT_COUNTER_OPTION_OBJECT = 2;
+
+	/**
+	 * The number of structural features of the '<em>Option Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_COUNTER_OPTION_OBJECT_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterResultObjectImpl <em>Result Object</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterResultObjectImpl
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getEventCounterResultObject()
+	 * @generated
+	 */
+	int EVENT_COUNTER_RESULT_OBJECT = 3;
+
+	/**
+	 * The feature id for the '<em><b>Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_COUNTER_RESULT_OBJECT__STATUS = BenchframeworkPackage.RESULT_OBJECT__STATUS;
+
+	/**
+	 * The feature id for the '<em><b>Message</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_COUNTER_RESULT_OBJECT__MESSAGE = BenchframeworkPackage.RESULT_OBJECT__MESSAGE;
+
+	/**
+	 * The feature id for the '<em><b>Event Counts</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Result Object</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_COUNTER_RESULT_OBJECT_FEATURE_COUNT = BenchframeworkPackage.RESULT_OBJECT_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '<em>Adapter</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -235,7 +291,7 @@ public interface EventCounterPackage extends EPackage {
 	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getAdapter()
 	 * @generated
 	 */
-	int ADAPTER = 2;
+	int ADAPTER = 4;
 
 
 	/**
@@ -258,17 +314,6 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventCounterStart_EndPoint();
-
-	/**
-	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getCount <em>Count</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Count</em>'.
-	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getCount()
-	 * @see #getEventCounterStart()
-	 * @generated
-	 */
-	EAttribute getEventCounterStart_Count();
 
 	/**
 	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart#getAdapter <em>Adapter</em>}'.
@@ -301,6 +346,37 @@ public interface EventCounterPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventCounterEnd_StartPoint();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject <em>Option Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Option Object</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterOptionObject
+	 * @generated
+	 */
+	EClass getEventCounterOptionObject();
+
+	/**
+	 * Returns the meta object for class '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject <em>Result Object</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Result Object</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject
+	 * @generated
+	 */
+	EClass getEventCounterResultObject();
+
+	/**
+	 * Returns the meta object for the attribute '{@link de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject#getEventCounts <em>Event Counts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Event Counts</em>'.
+	 * @see de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject#getEventCounts()
+	 * @see #getEventCounterResultObject()
+	 * @generated
+	 */
+	EAttribute getEventCounterResultObject_EventCounts();
 
 	/**
 	 * Returns the meta object for data type '{@link org.eclipse.emf.common.notify.Adapter <em>Adapter</em>}'.
@@ -354,14 +430,6 @@ public interface EventCounterPackage extends EPackage {
 		EReference EVENT_COUNTER_START__END_POINT = eINSTANCE.getEventCounterStart_EndPoint();
 
 		/**
-		 * The meta object literal for the '<em><b>Count</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute EVENT_COUNTER_START__COUNT = eINSTANCE.getEventCounterStart_Count();
-
-		/**
 		 * The meta object literal for the '<em><b>Adapter</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -386,6 +454,34 @@ public interface EventCounterPackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_COUNTER_END__START_POINT = eINSTANCE.getEventCounterEnd_StartPoint();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterOptionObjectImpl <em>Option Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterOptionObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getEventCounterOptionObject()
+		 * @generated
+		 */
+		EClass EVENT_COUNTER_OPTION_OBJECT = eINSTANCE.getEventCounterOptionObject();
+
+		/**
+		 * The meta object literal for the '{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterResultObjectImpl <em>Result Object</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterResultObjectImpl
+		 * @see de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterPackageImpl#getEventCounterResultObject()
+		 * @generated
+		 */
+		EClass EVENT_COUNTER_RESULT_OBJECT = eINSTANCE.getEventCounterResultObject();
+
+		/**
+		 * The meta object literal for the '<em><b>Event Counts</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT_COUNTER_RESULT_OBJECT__EVENT_COUNTS = eINSTANCE.getEventCounterResultObject_EventCounts();
 
 		/**
 		 * The meta object literal for the '<em>Adapter</em>' data type.

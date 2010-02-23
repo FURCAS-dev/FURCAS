@@ -44,6 +44,24 @@ public interface EventCounterFactory extends EFactory {
 	EventCounterEnd createEventCounterEnd();
 
 	/**
+	 * Returns a new object of class '<em>Option Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Option Object</em>'.
+	 * @generated
+	 */
+	EventCounterOptionObject createEventCounterOptionObject();
+
+	/**
+	 * Returns a new object of class '<em>Result Object</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Result Object</em>'.
+	 * @generated
+	 */
+	EventCounterResultObject createEventCounterResultObject();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

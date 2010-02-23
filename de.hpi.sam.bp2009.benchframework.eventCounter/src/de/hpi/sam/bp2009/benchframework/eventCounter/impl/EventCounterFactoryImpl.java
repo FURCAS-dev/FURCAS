@@ -64,6 +64,8 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 		switch (eClass.getClassifierID()) {
 			case EventCounterPackage.EVENT_COUNTER_START: return createEventCounterStart();
 			case EventCounterPackage.EVENT_COUNTER_END: return createEventCounterEnd();
+			case EventCounterPackage.EVENT_COUNTER_OPTION_OBJECT: return createEventCounterOptionObject();
+			case EventCounterPackage.EVENT_COUNTER_RESULT_OBJECT: return createEventCounterResultObject();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -117,6 +119,26 @@ public class EventCounterFactoryImpl extends EFactoryImpl implements EventCounte
 	public EventCounterEnd createEventCounterEnd() {
 		EventCounterEndImpl eventCounterEnd = new EventCounterEndImpl();
 		return eventCounterEnd;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventCounterOptionObject createEventCounterOptionObject() {
+		EventCounterOptionObjectImpl eventCounterOptionObject = new EventCounterOptionObjectImpl();
+		return eventCounterOptionObject;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EventCounterResultObject createEventCounterResultObject() {
+		EventCounterResultObjectImpl eventCounterResultObject = new EventCounterResultObjectImpl();
+		return eventCounterResultObject;
 	}
 
 	/**

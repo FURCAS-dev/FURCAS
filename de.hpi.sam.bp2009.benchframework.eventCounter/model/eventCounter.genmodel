@@ -8,9 +8,11 @@
   <foreignModel>eventCounter.ecore</foreignModel>
   <genPackages prefix="EventCounter" basePackage="de.hpi.sam.bp2009.benchframework"
       disposableProviderFactory="true" ecorePackage="eventCounter.ecore#/">
+    <genDataTypes ecoreDataType="eventCounter.ecore#//Adapter"/>
     <genClasses ecoreClass="eventCounter.ecore#//EventCounterStart">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference eventCounter.ecore#//EventCounterStart/endPoint"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventCounter.ecore#//EventCounterStart/count"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute eventCounter.ecore#//EventCounterStart/adapter"/>
     </genClasses>
     <genClasses ecoreClass="eventCounter.ecore#//EventCounterEnd">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference eventCounter.ecore#//EventCounterEnd/startPoint"/>

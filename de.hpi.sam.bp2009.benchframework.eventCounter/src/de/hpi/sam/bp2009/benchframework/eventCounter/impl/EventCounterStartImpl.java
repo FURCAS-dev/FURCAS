@@ -6,6 +6,9 @@
  */
 package de.hpi.sam.bp2009.benchframework.eventCounter.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -15,7 +18,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import de.hpi.sam.bp2009.benchframework.BenchframeworkFactory;
 import de.hpi.sam.bp2009.benchframework.BenchframeworkPackage;
 import de.hpi.sam.bp2009.benchframework.OptionObject;
 import de.hpi.sam.bp2009.benchframework.ResultObject;
@@ -24,9 +26,10 @@ import de.hpi.sam.bp2009.benchframework.TestRun;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterEnd;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterFactory;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterPackage;
+import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterResultObject;
 import de.hpi.sam.bp2009.benchframework.eventCounter.EventCounterStart;
-import de.hpi.sam.bp2009.benchframework.modifiedImpactAnalyzer.NotifyLiterals;
-import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
+import de.hpi.sam.bp2009.benchframework.modifiedEventManager.NotifyLiterals;
+import de.hpi.sam.bp2009.solution.eventManager.EventManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -41,7 +44,6 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
  *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterStartImpl#getName <em>Name</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterStartImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterStartImpl#getEndPoint <em>End Point</em>}</li>
- *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterStartImpl#getCount <em>Count</em>}</li>
  *   <li>{@link de.hpi.sam.bp2009.benchframework.eventCounter.impl.EventCounterStartImpl#getAdapter <em>Adapter</em>}</li>
  * </ul>
  * </p>
@@ -51,7 +53,7 @@ import de.hpi.sam.bp2009.solution.impactAnalyzer.ImpactAnalyzer;
 public class EventCounterStartImpl extends EObjectImpl implements EventCounterStart {
 	private static final String DESCRIPTION = "Count Internal Events handled by the Impact Analyzer";
 
-	private static final String NAME = "Internal Event Counter";
+	private static final String NAME = "Event Counter";
 
 	/**
 	 * The cached value of the '{@link #getOption() <em>Option</em>}' reference.
@@ -134,26 +136,6 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 	protected EventCounterEnd endPoint;
 
 	/**
-	 * The default value of the '{@link #getCount() <em>Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int COUNT_EDEFAULT = 0;
-
-	/**
-	 * The cached value of the '{@link #getCount() <em>Count</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCount()
-	 * @generated
-	 * @ordered
-	 */
-	protected int count = COUNT_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getAdapter() <em>Adapter</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,6 +165,15 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 		setName(NAME);
 		setDescription(DESCRIPTION);
 		setEndPoint(EventCounterFactory.eINSTANCE.createEventCounterEnd()); 
+		
+		//create the result object
+		EventCounterResultObject rslt = EventCounterFactory.eINSTANCE.createEventCounterResultObject();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("incoming EMF Events", 0);
+		map.put("outgoing Internal Events", 0);
+		rslt.setEventCounts(map);
+		rslt.setStatus(Status.UNKOWN);
+		setResult(rslt);
 	}
 
 	/**
@@ -362,27 +353,6 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int getCount() {
-		return count;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCount(int newCount) {
-		int oldCount = count;
-		count = newCount;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, EventCounterPackage.EVENT_COUNTER_START__COUNT, oldCount, count));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Adapter getAdapter() {
 		return adapter;
 	}
@@ -459,8 +429,6 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 			case EventCounterPackage.EVENT_COUNTER_START__END_POINT:
 				if (resolve) return getEndPoint();
 				return basicGetEndPoint();
-			case EventCounterPackage.EVENT_COUNTER_START__COUNT:
-				return getCount();
 			case EventCounterPackage.EVENT_COUNTER_START__ADAPTER:
 				return getAdapter();
 		}
@@ -492,9 +460,6 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 				return;
 			case EventCounterPackage.EVENT_COUNTER_START__END_POINT:
 				setEndPoint((EventCounterEnd)newValue);
-				return;
-			case EventCounterPackage.EVENT_COUNTER_START__COUNT:
-				setCount((Integer)newValue);
 				return;
 			case EventCounterPackage.EVENT_COUNTER_START__ADAPTER:
 				setAdapter((Adapter)newValue);
@@ -606,9 +571,6 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 			case EventCounterPackage.EVENT_COUNTER_START__END_POINT:
 				setEndPoint((EventCounterEnd)null);
 				return;
-			case EventCounterPackage.EVENT_COUNTER_START__COUNT:
-				setCount(COUNT_EDEFAULT);
-				return;
 			case EventCounterPackage.EVENT_COUNTER_START__ADAPTER:
 				setAdapter(ADAPTER_EDEFAULT);
 				return;
@@ -636,8 +598,6 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 				return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
 			case EventCounterPackage.EVENT_COUNTER_START__END_POINT:
 				return endPoint != null;
-			case EventCounterPackage.EVENT_COUNTER_START__COUNT:
-				return count != COUNT_EDEFAULT;
 			case EventCounterPackage.EVENT_COUNTER_START__ADAPTER:
 				return ADAPTER_EDEFAULT == null ? adapter != null : !ADAPTER_EDEFAULT.equals(adapter);
 		}
@@ -658,54 +618,34 @@ public class EventCounterStartImpl extends EObjectImpl implements EventCounterSt
 		result.append(name);
 		result.append(", description: ");
 		result.append(description);
-		result.append(", count: ");
-		result.append(count);
 		result.append(", adapter: ");
 		result.append(adapter);
 		result.append(')');
 		return result.toString();
 	}
 	
-	/* not sure if ETMMonitor is a singleton...might lead to problems when using more than one ExecutionTimeBenchmarker
-	 * @see de.hpi.sam.bp2009.benchframework.impl.OperatorImpl#execute()
-	 */
 	@Override
 	public void execute() {
-		ResultObject rslt = BenchframeworkFactory.eINSTANCE.createResultObject();
-		count=0;
-		setAdapter(new Adapter() {
-			
-			private Notifier target;
-
-			@Override
-			public void setTarget(Notifier newTarget) {
-				this.target=newTarget;
-				
-			}
-			
+		//register an adapter at the Modified Event Manager
+		final EventManager em = testRun.getInstanceForClass(de.hpi.sam.bp2009.solution.eventManager.EventManager.class);
+		em.eAdapters().add(new Adapter() {		
 			@Override
 			public void notifyChanged(Notification notification) {
-				if(notification.getEventType()==NotifyLiterals.START_INTERNAL_EVENT_HANDLING_VALUE ){
-					count++;
+				Map<String, Integer> counters = ((EventCounterResultObject)getResult()).getEventCounts();
+				
+				if (notification.getEventType() == NotifyLiterals.START_EMF_EVENT_HANDLING_VALUE){
+					counters.put("incoming EMF Events", counters.get("incoming EMF Events") + 1);
+				} else if (notification.getEventType() == NotifyLiterals.START_APPLICATION_NOTIFICATION_VALUE) {
+					counters.put("outgoing Internal Events", counters.get("outgoing Internal Events") + 1);
 				}
 			}
-			
 			@Override
-			public boolean isAdapterForType(Object type) {
-				return false;
-			}
-			
+			public boolean isAdapterForType(Object type) { return false; }
 			@Override
-			public Notifier getTarget() {
-				return target;
-			}
+			public Notifier getTarget() { return null; }
+			@Override
+			public void setTarget(Notifier newTarget) {}
 		});
-		ImpactAnalyzer ia=getTestRun().getInstanceForClass(ImpactAnalyzer.class);
-		getAdapter().setTarget(ia);
-		ia.eAdapters().add(getAdapter());
-		rslt.setStatus(Status.SUCCESSFULL);
-		rslt.setMessage("Counter registered to IA!");
-		setResult(rslt);
 	}
 
 
